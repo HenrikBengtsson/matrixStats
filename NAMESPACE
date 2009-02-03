@@ -1,0 +1,5 @@
+useDynLib(matrixStats)
+
+## Export all non-private methods (anything w/out a dot prefix).
+exportPattern("^[^\\.]")
+#exportPattern(".*")

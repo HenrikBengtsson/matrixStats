@@ -1,0 +1,30 @@
+Package: matrixStats
+====================
+
+Version: 0.1.4 [2009-02-02]
+o Added methods {col|row}Weighted{Mean|Median}s() for weighted averaging.
+o Added more Rdoc comments.
+o Package passes R CMD check flawlessly.
+
+
+Version: 0.1.3 [2008-07-30]
+o Added {col|row}Tabulates() for integer and raw matrices.
+o BUG FIX: rowCollapse(x) was broken and returned the wrong elements.
+
+
+Version: 0.1.2 [2008-04-13]
+o Added {col|row}Collapse().
+o Added varDiff(), sdDiff() and madDiff().
+o Added indexByRow().
+
+
+Version: 0.1.1 [2008-03-25]
+o Added {col|row}OrderStats().
+o Added {col|row}Ranges() and {col|row}{Min|Max}s().
+o Added colMedians().
+o Now anyMissing() support most data types as structures.
+
+
+Version: 0.1.0 [2007-11-26]
+o Imported the rowNnn() methods from Biobase.
+o Created.
