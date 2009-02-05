@@ -34,7 +34,7 @@ for (na.rm in c(FALSE, TRUE)) {
 }
 
 # All NAs
-x <- matrix(NA, nrow=20, ncol=5)
+x <- matrix(as.integer(NA), nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
   r1 <- rowCounts(x, na.rm=na.rm)
   r2 <- colCounts(t(x), na.rm=na.rm)

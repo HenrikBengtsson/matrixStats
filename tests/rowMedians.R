@@ -19,7 +19,7 @@ for (kk in 1:20) {
   nas <- sample(c(TRUE,FALSE), size=1)
   if (nas) {
     nna <- sample(nrow*ncol, size=1)
-    x[sample(length(x), size=nna)] <- NA
+    x[sample(length(x), size=nna)] <- as.double(NA)
   }
 
   na.rm <- sample(c(TRUE,FALSE), size=1)
@@ -29,8 +29,6 @@ for (kk in 1:20) {
   t2 <- system.time({
     y2 <- apply(x, MARGIN=1, FUN=median, na.rm=na.rm)
   })
-  # When all values of 'y2' are NA, 'y2' is logical
-  if (is.logical(y2)) y2 <- as.double(y2)
   stopifnot(all.equal(y1,y2))
   cat(sprintf("Timing: rowMedians()/apply(): %.3g\n", (t1/t2)[3]))
 }

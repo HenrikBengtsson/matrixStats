@@ -1,7 +1,7 @@
 library("matrixStats")
 
 x <- matrix(1:100, nrow=20, ncol=5)
-x[13:17,c(2,4)] <- NA
+x[13:17,c(2,4)] <- as.double(NA)
 
 # Row/column ranges
 for (na.rm in c(FALSE, TRUE)) {
@@ -30,7 +30,7 @@ for (na.rm in c(FALSE, TRUE)) {
 }
 
 # All NAs
-x <- matrix(NA, nrow=20, ncol=5)
+x <- matrix(as.double(NA), nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
   r1 <- rowRanges(x, na.rm=na.rm)
   r2 <- colRanges(t(x), na.rm=na.rm)
