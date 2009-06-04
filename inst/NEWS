@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.1.5 [2009-02-04]
+o BUG FIX: For some errors in rowOrderStats(), the stack would not 
+  become UNPROTECTED before calling error.
+ 
+
 Version: 0.1.4 [2009-02-02]
 o Added methods {col|row}Weighted{Mean|Median}s() for weighted averaging.
 o Added more Rdoc comments.

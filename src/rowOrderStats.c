@@ -122,8 +122,10 @@ SEXP rowOrderStats(SEXP x, SEXP which) {
   qq = asInteger(which) - 1;
 
   /* Assert that 'qq' is a valid index */
-  if (qq < 0 || qq >= ncol)
-    error("Argument 'which' is out of range");
+  if (qq < 0 || qq >= ncol) {
+    UNPROTECT(1);
+    error("Argument 'which' is out of range.");
+  }
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
@@ -131,13 +133,11 @@ SEXP rowOrderStats(SEXP x, SEXP which) {
   } else if (isInteger(x)) {
     ans = rowOrderStatsInteger(x, nrow, ncol, qq);
   } else {
-    ans = NULL;
+    UNPROTECT(1);
+    error("Argument 'x' must be numeric.");
   }
 
   UNPROTECT(1);
-
-  if (ans == NULL)
-    error("Argument 'x' must be numeric.");
 
   return(ans);
 } // rowOrderStats()
@@ -145,6 +145,9 @@ SEXP rowOrderStats(SEXP x, SEXP which) {
 
 /***************************************************************************
  HISTORY:
+ 2009-02-04 [HB]
+  o BUG FIX: For some errors in rowOrderStats(), the stack would not become
+    UNPROTECTED before calling error.
  2008-03-25 [HB]
   o Renamed from 'rowQuantiles' to 'rowOrderStats'.
  2007-08-10 [HB]

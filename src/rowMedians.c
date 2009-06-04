@@ -296,13 +296,11 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
   } else if (isInteger(x)) {
     ans = rowMediansInteger(x, nrow, ncol, narm, hasna);
   } else {
-    ans = NULL;
+    UNPROTECT(1);
+    error("Argument 'x' must be a numeric.");
   }
 
   UNPROTECT(1);
-
-  if (ans == NULL)
-    error("Argument 'x' must be a numeric.");
 
   return(ans);
 } /* rowMedians() */
