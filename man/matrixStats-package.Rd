@@ -38,7 +38,7 @@
   either dispatching mechanisms.
   This is the reason why some methods are based on S4 and some on S3.
   The ones using S3 rely on the \pkg{R.methodsS3} package to define the
-  methods.  There are also dependancies of other packages.  The plan
+  methods.  There are also dependancies on other packages.  The plan
   is to remove all such dependancies as soon as the API settles, but
   until then, we keep the dependancies for conveniency and in order to
   avoid reduncancy of available implementations of identical methods.
@@ -84,7 +84,7 @@
 
 \section{How to cite this package}{
  \preformatted{
-  Henrik Bengtsson (partly by Robert Gentleman) (2009). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.1.4.
+  Henrik Bengtsson (partly by Robert Gentleman) (2009). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.1.5.
  }
 }
 
