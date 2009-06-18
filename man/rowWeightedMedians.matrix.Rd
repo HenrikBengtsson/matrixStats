@@ -47,6 +47,7 @@
 }
 
 \examples{
+if (require("aroma.light")) {
 x <- matrix(rnorm(20), nrow=5, ncol=4)
 print(x)
 
@@ -77,7 +78,8 @@ w <- 1:4
 xM1 <- rowWeightedMedians(x, w=w)
 xM2 <- colWeightedMedians(t(x), w=w)
 stopifnot(all.equal(xM2, xM1))
-}
+
+}}
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 

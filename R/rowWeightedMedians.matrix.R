@@ -36,7 +36,10 @@
 #   \code{rowMeans()}/\code{colMeans()} are used, respectively.
 # }
 #
-# @examples "../incl/rowWeightedMedians.Rex"
+# \examples{
+# if (require("aroma.light")) {
+# @include "../incl/rowWeightedMedians.Rex"
+# }}
 #
 # @author
 #
@@ -138,6 +141,10 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
 
 ##############################################################################
 # HISTORY:
+# 2009-06-17
+# o Updated the Rdoc example to run conditionally on aroma.light, which is
+#   only a suggested package - not a required one.  This in order to prevent
+#   R CMD check to fail on CRAN (as currently done on their OSX servers).
 # 2008-02-02
 # o Created from rowWeightedMeans.matrix.R.
 ##############################################################################

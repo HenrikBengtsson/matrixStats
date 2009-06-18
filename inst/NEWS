@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.1.6 [2009-06-17]
+o Updated the Rdoc example for rowWeightedMedians() to run conditionally 
+  on aroma.light, which is only a suggested package - not a required one.
+  This in order to prevent R CMD check to fail on CRAN, which prevents
+  it for building binaries (as it currently happens on their OSX servers).
+
+
 Version: 0.1.5 [2009-02-04]
 o BUG FIX: For some errors in rowOrderStats(), the stack would not 
   become UNPROTECTED before calling error.

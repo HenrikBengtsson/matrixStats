@@ -22,7 +22,7 @@
 \section{Installation}{
   To install this package, please do:
   \preformatted{
-    install.packages("matrixStats", repos="http://www.rforge.net/")
+    install.packages("matrixStats")
   }
 }
 
