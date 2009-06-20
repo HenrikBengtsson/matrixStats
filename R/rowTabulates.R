@@ -56,7 +56,10 @@ setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
     if (is.raw(values)) {
       values <- as.integer(values);
       values <- sort(values);
-      names <- sprintf("%#x", values);
+      # WORKAROUND: Cannot use "%#x" because it gives an error OSX with
+      # R v2.9.0 devel (2009-01-13 r47593b) at R-forge. /HB 2009-06-20
+      names <- sprintf("%x", values);
+      names <- paste("0x", names, sep="");
       values <- as.raw(values);
     } else {
       values <- sort(values);
@@ -64,7 +67,8 @@ setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
     }
   } else {
     if (is.raw(values)) {
-      names <- sprintf("%#x", as.integer(values));
+      names <- sprintf("%x", as.integer(values));
+      names <- paste("0x", names, sep="");
     } else {
       names <- as.character(values);
     }
@@ -111,6 +115,10 @@ setMethod("colTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-06-20
+# WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column
+# names of the result matrix.  It gav an error OSX with R v2.9.0 devel
+# (2009-01-13 r47593b) current the OSX server at R-forge.
 # 2009-02-02
 # o Fixed Rdoc comments.
 # 2008-07-01

@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.1.7 [2009-06-20]
+WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column
+names of the result matrix.  It gav an error OSX with R v2.9.0 devel
+(2009-01-13 r47593b) current the OSX server at R-forge.
+
+
 Version: 0.1.6 [2009-06-17]
 o Updated the Rdoc example for rowWeightedMedians() to run conditionally 
   on aroma.light, which is only a suggested package - not a required one.
