@@ -84,7 +84,7 @@
 
 \section{How to cite this package}{
  \preformatted{
-  Henrik Bengtsson (partly by Robert Gentleman) (2009). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.1.5.
+  Henrik Bengtsson (partly by Robert Gentleman) (2009). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.1.7.
  }
 }
 

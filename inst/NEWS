@@ -1,6 +1,15 @@
 Package: matrixStats
 ====================
 
+Version: 0.1.8 [2009-11-13]
+o BUG FIX: colRanges(x) would return a matrix of wrong dimension
+  if 'x' did not have any missing values.  This would affect all
+  functions relying on colRanges(), e.g. colMins() and colMaxs().
+  Added a redundancy test for this case.  Thanks Pierre Neuvial
+  at UC Berkeley for reporting this.
+o BUG FIX: {col|row}Ranges() return a matrix with dimension names.
+
+
 Version: 0.1.7 [2009-06-20]
 WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column
 names of the result matrix.  It gav an error OSX with R v2.9.0 devel

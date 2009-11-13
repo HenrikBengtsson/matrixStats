@@ -64,7 +64,8 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   # Use the much faster rowOrderStats() if possible
   if (!anyMissing(as.vector(x))) {
     xRange <- rowOrderStats(x, which=1);
-    xRange <- cbind(xRange, rowOrderStats(x, which=ncol(x)));
+    xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
+    dim(xRange) <- c(nrow(x), 2L);
     return(xRange);
   }
 
@@ -172,8 +173,10 @@ setGeneric("colRanges", function(x, na.rm=FALSE, ...) {
 setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   # Use the much faster rowOrderStats() if possible
   if (!anyMissing(as.vector(x))) {
+    x <- t(x);
     xRange <- rowOrderStats(x, which=1);
-    xRange <- cbind(xRange, rowOrderStats(x, which=ncol(x)));
+    xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
+    dim(xRange) <- c(nrow(x), 2L);
     return(xRange);
   }
 
