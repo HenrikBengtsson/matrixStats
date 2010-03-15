@@ -3,8 +3,8 @@ Package: matrixStats
 
 Version: 0.1.9 [2010-02-03]
 o BUG FIX: (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly 
-  treat missing values as zeros.  Added corresponding redundancy tests.
-  Thanks Pierre Neuvial for reporting this.
+  treat missing values as zeros.  Added corresponding redundancy tests
+  (also for the median case).  Thanks Pierre Neuvial for reporting this.
 
 
 Version: 0.1.8 [2009-11-13]
