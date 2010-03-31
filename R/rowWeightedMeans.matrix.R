@@ -32,7 +32,7 @@
 #   The implementations of these methods are optimized for both speed
 #   and memory.
 #   If no weights are given, the corresponding 
-#   \code{rowMeans()}/\code{colMeans()} are used, respectively.
+#   \code{rowMeans()}/\code{colMeans()} is used.
 # }
 #
 # @examples "../incl/rowWeightedMeans.Rex"
@@ -40,7 +40,9 @@
 # @author
 #
 # \seealso{
-#   See \code{rowSums()} and \code{colSums()} in @see "base::colSums".
+#   See \code{rowMeans()} and \code{colMeans()} in @see "base::colSums"
+#   for non-weighted means.
+#   See also @see "stats::weighted.mean".
 # }
 #
 # @keyword array

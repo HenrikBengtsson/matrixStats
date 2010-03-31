@@ -33,7 +33,7 @@
 #   The implementations of these methods are optimized for both speed
 #   and memory.
 #   If no weights are given, the corresponding 
-#   \code{rowMeans()}/\code{colMeans()} are used, respectively.
+#   @see "rowMedians"/\code{colMedians()} is used.
 # }
 #
 # \examples{
@@ -44,6 +44,7 @@
 # @author
 #
 # \seealso{
+#   See @see "rowMedians" and \code{colMedians()} for non-weighted medians.
 #   Internally, @see "aroma.light::weightedMedian" of \pkg{aroma.light}
 #   is used.
 # }

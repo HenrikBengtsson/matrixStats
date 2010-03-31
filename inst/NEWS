@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.2.0 [2010-03-30]
+o DOCUMENTATION: Fixed some incorrect cross references.
+
+
 Version: 0.1.9 [2010-02-03]
 o BUG FIX: (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly 
   treat missing values as zeros.  Added corresponding redundancy tests

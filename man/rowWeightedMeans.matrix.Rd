@@ -42,7 +42,7 @@
   The implementations of these methods are optimized for both speed
   and memory.
   If no weights are given, the corresponding
-  \code{rowMeans()}/\code{colMeans()} are used, respectively.
+  \code{rowMeans()}/\code{colMeans()} is used.
 }
 
 \examples{
@@ -81,7 +81,9 @@ stopifnot(all.equal(xM2, xM1))
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  See \code{rowSums()} and \code{colSums()} in \code{\link[base]{colSums}}().
+  See \code{rowMeans()} and \code{colMeans()} in \code{\link[base]{colSums}}()
+  for non-weighted means.
+  See also \code{\link[stats]{weighted.mean}}.
 }
 
 

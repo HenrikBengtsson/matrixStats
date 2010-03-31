@@ -43,7 +43,7 @@
   The implementations of these methods are optimized for both speed
   and memory.
   If no weights are given, the corresponding
-  \code{rowMeans()}/\code{colMeans()} are used, respectively.
+  \code{\link{rowMedians}}()/\code{colMedians()} is used.
 }
 
 \examples{
@@ -84,6 +84,7 @@ stopifnot(all.equal(xM2, xM1))
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
+  See \code{\link{rowMedians}}() and \code{colMedians()} for non-weighted medians.
   Internally, \code{\link[aroma.light]{weightedMedian}} of \pkg{aroma.light}
   is used.
 }

@@ -38,7 +38,8 @@
 # @author
 #
 # \seealso{
-#   See \code{rowMeans()} in @see "base::colSums".
+#   See @see "rowMedians" and \code{colMedians()} for weighted medians.
+#   For mean estimates, see \code{rowMeans()} in @see "base::colSums".
 # }
 #
 # @keyword array

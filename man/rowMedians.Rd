@@ -47,7 +47,8 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  See \code{rowMeans()} in \code{\link[base]{colSums}}().
+  See \code{\link{rowMedians}}() and \code{colMedians()} for weighted medians.
+  For mean estimates, see \code{rowMeans()} in \code{\link[base]{colSums}}().
 }
 
 
