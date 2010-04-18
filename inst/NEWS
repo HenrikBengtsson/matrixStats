@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.2.1 [2010-04-05]
+o Added a startup message when package is loaded.
+o CLEAN UP: Removed obsolete internal .First.lib() and .Last.lib().
+
+
 Version: 0.2.0 [2010-03-30]
 o DOCUMENTATION: Fixed some incorrect cross references.
 

@@ -1,6 +1,6 @@
 Package: matrixStats
-Version: 0.2.0
-Date: 2010-03-30
+Version: 0.2.1
+Date: 2010-04-05
 Title: Methods that apply to rows and columns of a matrix
 Author: Henrik Bengtsson <henrikb@braju.com> (partly by Robert Gentleman)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
