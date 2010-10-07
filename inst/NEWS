@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.2.2 [2010-10-06]
+o Now the result of {row|col}Quantiles() contains column names.
+
+
 Version: 0.2.1 [2010-04-05]
 o Added a startup message when package is loaded.
 o CLEAN UP: Removed obsolete internal .First.lib() and .Last.lib().

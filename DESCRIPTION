@@ -1,12 +1,12 @@
 Package: matrixStats
-Version: 0.2.1
-Date: 2010-04-05
+Version: 0.2.2
+Date: 2010-10-06
 Title: Methods that apply to rows and columns of a matrix
 Author: Henrik Bengtsson <henrikb@braju.com> (partly by Robert Gentleman)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Depends: R (>= 2.6.0), methods, R.methodsS3
 Suggests: aroma.light (>= 1.8.0)
-Description: This packages provides methods operating on rows and columns of matrices.  The methods are optimized for speed and memory.  This package is currently in a beta phase.  Make sure to read the 'Roadmap' section in the package help.
+Description: This packages provides methods operating on rows and columns of matrices.  The objective is that all methods will optimized for speed and memory.  This package is currently in a beta phase.  Make sure to read the 'Roadmap' section in the package help.
 License: Artistic-2.0
 LazyLoad: TRUE
 biocViews: Infrastructure, Statistics
