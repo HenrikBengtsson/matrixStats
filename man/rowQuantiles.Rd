@@ -25,7 +25,7 @@
 }
 
 \arguments{
- \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with N >= 0.}
  \item{probs}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J probabilities in [0,1].}
  \item{...}{Additional arguments passed to \code{\link[stats]{quantile}}.}
  \item{drop}{If TRUE, singleton dimensions in the result are dropped,

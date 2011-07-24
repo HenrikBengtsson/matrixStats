@@ -15,7 +15,7 @@
 
 
 \description{
-  This packages provides methods operating on rows and columns of matrices.  The methods are optimized for speed and memory.  This package is currently in a beta phase.  Make sure to read the 'Roadmap' section in the package help..
+  This packages provides methods operating on rows and columns of matrices.  The objective is that all methods will optimized for speed and memory.  This package is currently in a beta phase.  Make sure to read the 'Roadmap' section in the package help..
   Please consider this package to be in a beta phase.
 }
 
@@ -84,7 +84,7 @@
 
 \section{How to cite this package}{
  \preformatted{
-  Henrik Bengtsson (partly by Robert Gentleman) (2010). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.2.1.
+  Henrik Bengtsson <henrikb@braju.com> (partly by Robert Gentleman) (2011). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.3.0.
  }
 }
 

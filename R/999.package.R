@@ -71,7 +71,7 @@
 #
 # \section{How to cite this package}{
 #  \preformatted{
-#   @eval "x <- citation('matrixStats'); attr(x, 'textVersion')"
+#   @eval "x <- citation('matrixStats'); format(x, 'textVersion')"
 #  }
 # }
 #
