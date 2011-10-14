@@ -1,6 +1,15 @@
 Package: matrixStats
 ====================
 
+Version: 0.3.0 [2011-10-13]
+o SPEEDUP/LESS MEMORY: colMedians(x) no longer uses rowMedians(t(x));
+  instead there is now an optimized native-code implementation.
+  Also, colMads() utilizes the new colMedians() directly.
+  This improvement was kindly contributed by Harris Jaffee at
+  Biostatistics of John Hopkins, USA.
+o Added additional unit tests for colMedians() and rowMedians().
+
+
 Version: 0.2.2 [2010-10-06]
 o Now the result of {row|col}Quantiles() contains column names.
 

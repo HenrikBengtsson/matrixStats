@@ -26,7 +26,7 @@
  rowSds(x, ...)
  colSds(x, ...)
  rowMads(x, centers=NULL, constant=1.4826, ...)
- colMads(x, ...)
+ colMads(x, centers=NULL, constant=1.4826, ...)
 }
 
 \arguments{

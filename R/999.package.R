@@ -69,6 +69,12 @@
 #  }
 # }
 #
+# \section{How to contribute}{
+#   This is an open-source project which embraces collaborations.
+#   If you have improvements on code and/or documentation, or
+#   new function, please consider contributing them to this package.
+# }
+#
 # \section{How to cite this package}{
 #  \preformatted{
 #   @eval "x <- citation('matrixStats'); format(x, 'textVersion')"

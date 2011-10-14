@@ -82,9 +82,15 @@
  }
 }
 
+\section{How to contribute}{
+  This is an open-source project which embraces collaborations.
+  If you have improvements on code and/or documentation, or
+  new function, please consider contributing them to this package.
+}
+
 \section{How to cite this package}{
  \preformatted{
-  Henrik Bengtsson <henrikb@braju.com> (partly by Robert Gentleman) (2011). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.3.0.
+  Henrik Bengtsson, Harris Jaffee and Robert Gentleman (2011). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.3.0.
  }
 }
 

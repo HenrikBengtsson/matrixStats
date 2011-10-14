@@ -26,13 +26,14 @@
 # }
 #
 # \details{
-#   The implementation of \code{rowMedians()} is optimized for both 
-#   speed and memory.  
+#   The implementation of \code{rowMedians()} and \code{colMedians()}
+#   is optimized for both speed and memory.  
 #   To avoid coercing to @doubles (and hence memory allocation), there
-#   is a unique implementation for @integer matrices, that is, if 
-#   \code{x} is an @integer @matrix, then \code{rowMedians(as.double(x))}
-#   requires three times the memory compared with \code{rowMedians(x)}.
-#   Currently, \code{colMedians(x)} is calling \code{rowMedians(t(x))}.
+#   is a special implementation for @integer matrices.
+#   That is, if \code{x} is an @integer @matrix, then
+#   \code{rowMedians(as.double(x))} (\code{rowMedians(as.double(x))})
+#   would require three times the memory of \code{rowMedians(x)}
+#   (\code{colMedians(x)}), but all this is avoided.
 # }
 #
 # @author
@@ -63,12 +64,18 @@ setGeneric("colMedians", function(x, na.rm=FALSE, ...) {
 })
 
 setMethod("colMedians", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  rowMedians(t(x), na.rm=na.rm, ...);
+  #rowMedians(t(x), na.rm=na.rm, ...);
+  na.rm <- as.logical(na.rm);
+  hasNAs <- TRUE;  # Add as an argument? /2007-08-24
+  .Call("colMedians", x, na.rm, hasNAs, PACKAGE="matrixStats");
 })
 
 
 ############################################################################
 # HISTORY:
+# 2011-10-13 [HJ]
+# o In the past, colMedians(x) was accomplished as rowMedians(t(x)); 
+#   it is now done directly.
 # 2008-03-25
 # o Added colMedians() - a wrapper around rowMedians() for now.
 # o Turned into a S4 method as it used to be in Biobase.

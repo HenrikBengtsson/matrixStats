@@ -35,13 +35,14 @@
 }
 
 \details{
-  The implementation of \code{rowMedians()} is optimized for both
-  speed and memory.
+  The implementation of \code{rowMedians()} and \code{colMedians()}
+  is optimized for both speed and memory.
   To avoid coercing to \code{\link[base]{double}}s (and hence memory allocation), there
-  is a unique implementation for \code{\link[base]{integer}} matrices, that is, if
-  \code{x} is an \code{\link[base]{integer}} \code{\link[base]{matrix}}, then \code{rowMedians(as.double(x))}
-  requires three times the memory compared with \code{rowMedians(x)}.
-  Currently, \code{colMedians(x)} is calling \code{rowMedians(t(x))}.
+  is a special implementation for \code{\link[base]{integer}} matrices.
+  That is, if \code{x} is an \code{\link[base]{integer}} \code{\link[base]{matrix}}, then
+  \code{rowMedians(as.double(x))} (\code{rowMedians(as.double(x))})
+  would require three times the memory of \code{rowMedians(x)}
+  (\code{colMedians(x)}), but all this is avoided.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
