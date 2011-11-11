@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.4.0 [2011-11-11]
+o Added rowRanks() and colRanks().  Thanks Hector Corrada Bravo
+  (University of Maryland) and Harris Jaffee (John Hopkins).
+o Dropped the previously introduced expansion of 'center' in rowMads()
+  and colMads().  It added unnecessary overhead if not needed.
+
+
 Version: 0.3.0 [2011-10-13]
 o SPEEDUP/LESS MEMORY: colMedians(x) no longer uses rowMedians(t(x));
   instead there is now an optimized native-code implementation.

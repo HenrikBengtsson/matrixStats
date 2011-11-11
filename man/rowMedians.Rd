@@ -45,7 +45,9 @@
   (\code{colMedians(x)}), but all this is avoided.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{
+  Henrik Bengtsson and Harris Jaffee.
+}
 
 \seealso{
   See \code{\link{rowMedians}}() and \code{colMedians()} for weighted medians.

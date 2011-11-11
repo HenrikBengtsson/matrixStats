@@ -15,8 +15,9 @@
 
 
 \description{
-  This packages provides methods operating on rows and columns of matrices.  The objective is that all methods will optimized for speed and memory.  This package is currently in a beta phase.  Make sure to read the 'Roadmap' section in the package help..
-  Please consider this package to be in a beta phase.
+  This packages provides methods operating on rows and columns of matrices.  The objective is to have all methods being optimized for speed and memory consumption..
+  This package went public (on CRAN) in June 2009.
+  It is currently in a beta version where new methods are added.
 }
 
 \section{Installation}{
@@ -28,20 +29,6 @@
 
 \section{Dependancies and other requirements}{
   See DESCRIPTION file for now.
-}
-
-\section{Roadmap}{
-  The plan is to publish this package on CRAN when the API is
-  settled/stable.  Currently, we are in a stage of adding new methods
-  to the package.  It is currently not decided whether the methods
-  should be S4 or S3 methods.  What is sure is that we will use
-  either dispatching mechanisms.
-  This is the reason why some methods are based on S4 and some on S3.
-  The ones using S3 rely on the \pkg{R.methodsS3} package to define the
-  methods.  There are also dependancies on other packages.  The plan
-  is to remove all such dependancies as soon as the API settles, but
-  until then, we keep the dependancies for conveniency and in order to
-  avoid reduncancy of available implementations of identical methods.
 }
 
 \section{To get started}{
@@ -88,10 +75,20 @@
   new function, please consider contributing them to this package.
 }
 
+\section{For developers}{
+  It is currently not decided whether the methods should be S4 or S3
+  methods.
+  This is the reason why some methods are based on S4 and some on S3.
+  The ones using S3 rely on the \pkg{R.methodsS3} package to define the
+  methods.
+  There are also dependancies on other packages.  The plan
+  is to remove all such dependancies as soon as the API settles, but
+  until then, we keep the dependancies for conveniency and in order to
+  avoid reduncancy of available implementations of identical methods.
+}
+
 \section{How to cite this package}{
- \preformatted{
-  Henrik Bengtsson, Harris Jaffee and Robert Gentleman (2011). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.3.0.
- }
+  Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman and Harris Jaffee (2011). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.4.0.
 }
 
 \author{
