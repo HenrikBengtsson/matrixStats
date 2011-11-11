@@ -45,6 +45,7 @@
 #    \item rowIQRs()
 #    \item rowQuantiles()
 #    \item rowOrderStats()
+#    \item rowRanks()
 #    \item rowRanges()
 #    \item rowMins()
 #    \item rowMaxs()
@@ -79,8 +80,6 @@
 # }
 #
 # \author{
-#   @get "author"
-#   The native implementation of \code{rowOrderStats()} was adopted from
-#   Robert Gentleman's @see "Biobase::rowQ" in the \pkg{Biobase} package.
+#   @eval "packageDescription('matrixStats')$Author".
 # }
 #*/#########################################################################  

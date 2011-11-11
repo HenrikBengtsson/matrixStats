@@ -11,12 +11,13 @@
 # }
 #
 # \usage{
-#  rowRanks(x)
-#  colRanks(x)
+#  rowRanks(x, ...)
+#  colRanks(x, ...)
 # }
 #
 # \arguments{
 #  \item{x}{A @numeric or @integer NxK @matrix.}
+#  \item{...}{Not used.}
 # }
 #
 # \value{
@@ -62,24 +63,27 @@
 # @keyword robust
 # @keyword univar
 #*/########################################################################### 
-setGeneric("rowRanks", function(x) {
+setGeneric("rowRanks", function(x, ...) {
   standardGeneric("rowRanks")
 })
 
-setMethod("rowRanks", signature(x="matrix"), function(x) {
+setMethod("rowRanks", signature(x="matrix"), function(x, ...) {
   .Call("rowRanks", x, PACKAGE="matrixStats");
 })
 
-setGeneric("colRanks", function(x) {
-  standardGeneric("colRanks")
+setGeneric("colRanks", function(x, ...) {
+  standardGeneric("colRanks");
 })
 
-setMethod("colRanks", signature(x="matrix"), function(x) {
-  rowRanks(t(x))
+setMethod("colRanks", signature(x="matrix"), function(x, ...) {
+  x <- t(x);
+  rowRanks(x, ...);
 })
 
 ############################################################################
 # HISTORY:
-# 2011-10-17
-# o rowRanks and colRanks()
+# 2011-11-11 [HB]
+# o Added '...' to generic functions rowRanks() and colRanks().
+# 2011-10-17 [HJ]
+# o Added rowRanks and colRanks().
 ############################################################################ 

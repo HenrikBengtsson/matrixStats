@@ -20,12 +20,13 @@
 }
 
 \usage{
- rowRanks(x)
- colRanks(x)
+ rowRanks(x, ...)
+ colRanks(x, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK \code{\link[base]{matrix}}.}
+ \item{...}{Not used.}
 }
 
 \value{

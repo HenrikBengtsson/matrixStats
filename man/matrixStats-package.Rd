@@ -58,6 +58,7 @@
    \item rowIQRs()
    \item rowQuantiles()
    \item rowOrderStats()
+   \item rowRanks()
    \item rowRanges()
    \item rowMins()
    \item rowMaxs()
@@ -92,8 +93,6 @@
 }
 
 \author{
-  Henrik Bengtsson (\url{http://www.braju.com/R/})
-  The native implementation of \code{rowOrderStats()} was adopted from
-  Robert Gentleman's \code{\link[Biobase]{rowQ}} in the \pkg{Biobase} package.
+  Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Harris Jaffee.
 }
 \keyword{package}

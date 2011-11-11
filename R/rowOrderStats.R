@@ -56,7 +56,7 @@
 # @keyword univar
 #*/########################################################################### 
 setGeneric("rowOrderStats", function(x, which, ...) {
-  standardGeneric("rowOrderStats")
+  standardGeneric("rowOrderStats");
 })
 
 setMethod("rowOrderStats", signature(x="matrix"), function(x, which, ...) {
@@ -65,7 +65,7 @@ setMethod("rowOrderStats", signature(x="matrix"), function(x, which, ...) {
 
 
 setGeneric("colOrderStats", function(x, which, ...) {
-  standardGeneric("colOrderStats")
+  standardGeneric("colOrderStats");
 })
 
 setMethod("colOrderStats", signature(x="matrix"), function(x, which, ...) {

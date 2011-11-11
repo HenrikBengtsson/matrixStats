@@ -15,10 +15,10 @@
 \alias{sdDiff,numeric-method}
 \alias{madDiff,numeric-method}
 
-\title{Estimation of discrepancies off sequential order differences in a vector}
+\title{Estimation of discrepancies based on sequential order differences in a vector}
 
 \description{
-  Estimation of discrepancies off sequential order differences in a vector.
+  Estimation of discrepancies based on sequential order differences in a vector.
 }
 
 \usage{
