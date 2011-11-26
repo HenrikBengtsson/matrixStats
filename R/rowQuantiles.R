@@ -22,7 +22,7 @@
 # }
 #
 # \value{
-#   Returns a @numeric NxJ (JxK) @matrix.
+#   Returns a @numeric NxJ (KxJ) @matrix.
 # }
 #
 # @author

@@ -24,7 +24,7 @@
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
- \item{...}{Additional arguments passed to \code{rowQuantiles()}
+ \item{...}{Additional arguments passed to \code{\link{rowQuantiles}}()
     (\code{colQuantiles()}).}
 }
 

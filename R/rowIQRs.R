@@ -15,7 +15,7 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
-#  \item{...}{Additional arguments passed to \code{rowQuantiles()}
+#  \item{...}{Additional arguments passed to @see "rowQuantiles"
 #     (\code{colQuantiles()}).}
 # }
 #

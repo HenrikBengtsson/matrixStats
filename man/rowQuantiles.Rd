@@ -31,7 +31,7 @@
 }
 
 \value{
-  Returns a \code{\link[base]{numeric}} NxJ (JxK) \code{\link[base]{matrix}}.
+  Returns a \code{\link[base]{numeric}} NxJ (KxJ) \code{\link[base]{matrix}}.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
