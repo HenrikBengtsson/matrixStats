@@ -10,8 +10,6 @@
 \alias{rowQuantiles}
 
 \alias{colQuantiles}
-\alias{rowIQRs}
-\alias{colIQRs}
 
 \title{Estimates quantiles for each row (column) in a matrix}
 
