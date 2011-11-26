@@ -3,6 +3,7 @@ Package: matrixStats
 
 Version: 0.4.1 [2011-11-25]
 o Added help pages with an example to rowIQRs() and colIQRs().
+o Added example to rowQuantiles().
 o BUG FIX: rowIQRs() and colIQRs() would return the 25% and the 75%
   quantiles, not the difference between them.  Thanks Pierre Neuvial
   at CNRS, Evry, France for the report.

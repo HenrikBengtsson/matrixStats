@@ -22,8 +22,10 @@
 # }
 #
 # \value{
-#   Returns a @numeric NxJ (KxJ) @matrix.
+#   Returns a @numeric JxN (JxK) @matrix.
 # }
+#
+# @examples "../incl/rowQuantiles.Rex"
 #
 # @author
 #
@@ -75,6 +77,8 @@ colQuantiles <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-11-29 [HB] 
+# o Added an Rdoc example.
 # 2010-10-06 [HB] 
 # o Now the result of {row|col}Quantiles() contains column names.
 # 2008-03-26 [HB] 

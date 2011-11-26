@@ -37,7 +37,7 @@
 #
 # \seealso{
 #   @see "stats::sd", @see "stats::mad" and \code{\link[stats:cor]{var}}.
-#   @see "rowQuantiles".
+#   @see "rowIQRs".
 # }
 #
 # @keyword array

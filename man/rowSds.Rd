@@ -46,7 +46,7 @@
 
 \seealso{
   \code{\link[stats]{sd}}, \code{\link[stats]{mad}} and \code{\link[stats:cor]{var}}.
-  \code{\link{rowQuantiles}}().
+  \code{\link{rowIQRs}}().
 }
 
 
