@@ -56,7 +56,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE) {
       }
     }
   } else {
-    # Set the column names in case there are now rows
+    # Set the column names in case there are no rows
     t <- quantile(0.0, probs=probs, ...);
     colnames(q) <- names(t);
   }
