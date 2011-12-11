@@ -20,7 +20,8 @@ for (kk in 1:20) {
   if (nas) {
     cat("Adding NAs\n");
     nna <- sample(n, size=1)
-    x[sample(length(x), size=nna)] <- as.double(NA)
+    naValues <- c(as.double(NA), NaN);
+    x[sample(length(x), size=nna)] <- sample(naValues, size=nna, replace=TRUE)
   }
 
   # Integer or double?

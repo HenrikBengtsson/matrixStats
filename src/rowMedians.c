@@ -78,7 +78,7 @@ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_colu
       for(jj=0; jj < ncol; jj++) {
         value = xx[rowIdx+colOffset[jj]];  //HJ
 
-        if (ISNA(value)) {
+        if (ISNAN(value)) {
           if (narm == FALSE) {
             kk = -1;
             break;
@@ -110,7 +110,7 @@ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_colu
         if (isOdd == TRUE) {
           REAL(ans)[ii] = value;
         } else {
-          if (narm == TRUE || !ISNA(value)) {
+          if (narm == TRUE || !ISNAN(value)) {
             /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
                place with smaller values to the left, ... */
             rPsort(rowData, qq+1, qq);
@@ -380,6 +380,9 @@ SEXP colMedians(SEXP x, SEXP naRm, SEXP hasNA) {
 
 /***************************************************************************
  HISTORY:
+ 2011-12-11 [HB]
+ o BUG FIX: rowMediansReal(..., na.rm=TRUE) did not handle NaN:s, only NA:s.
+   Note that NaN:s does not exist for integers.
  2011-10-12 [HJ]
  o Added colMedians().
  o Now rowMediansInteger/Real() can operate also by columns, cf. argument
