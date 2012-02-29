@@ -3,7 +3,7 @@ Package: matrixStats
 
 Version: 0.4.3 [2011-12-11]
 o BUG FIX: rowMedians(..., na.rm=TRUE) did not handle NaN (only NA).
-  The reason for this was the the native coded used ISNA() to test
+  The reason for this was the the native code used ISNA() to test
   for NA and NaN, but it should have been ISNAN(), which is opposite
   to how is.na() and is.nan() at the R level work.  Added system
   tests for this case.
