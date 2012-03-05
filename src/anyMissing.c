@@ -78,10 +78,6 @@ SEXP anyMissing(SEXP x) {
       break; 
     default:
       break; 
-			/*
-      warningcall(call, _("%s() applied to non-vector of type '%s'"), 
-                  "anyMissing", type2char(TYPEOF(x)));
-			*/
   } /* switch() */
 
   UNPROTECT(1); /* ans */

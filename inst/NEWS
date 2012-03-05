@@ -5,6 +5,8 @@ Version: 0.4.4 [2012-03-05]
 o BUG FIX: colMads() would return the incorrect estimates. This bug
   was introduced in matrixStats v0.4.0 (2011-11-11).
 o ROBUSTNESS: Added system/redundancy tests for rowMads()/colMads().
+o CRAN: Made the system tests "lighter" by default, but full tests 
+  can still be run, cf. tests/*.R scripts.
 
 
 Version: 0.4.3 [2011-12-11]

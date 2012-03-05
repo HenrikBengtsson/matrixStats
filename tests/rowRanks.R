@@ -6,7 +6,8 @@ library("matrixStats")
 set.seed(1)
 
 cat("Consistency checks:\n")
-for (kk in 1:20) {
+K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 2 else 20;
+for (kk in 1:K) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
