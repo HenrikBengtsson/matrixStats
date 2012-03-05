@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.4.4 [2012-03-05]
+o BUG FIX: colMads() would return the incorrect estimates. This bug
+  was introduced in matrixStats v0.4.0 (2011-11-11).
+o ROBUSTNESS: Added system/redundancy tests for rowMads()/colMads().
+
+
 Version: 0.4.3 [2011-12-11]
 o BUG FIX: rowMedians(..., na.rm=TRUE) did not handle NaN (only NA).
   The reason for this was the the native code used ISNA() to test

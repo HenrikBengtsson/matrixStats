@@ -1,5 +1,8 @@
 library("matrixStats")
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# With and without some NAs
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (addNA in c(FALSE, TRUE)) {
   cat("addNA=", addNA, "\n", sep="");
 
@@ -35,17 +38,20 @@ for (addNA in c(FALSE, TRUE)) {
     stopifnot(identical(m1, m2))
     stopifnot(identical(m1, m3))
   }
-  
-  # All NAs
-  x <- matrix(as.double(NA), nrow=20, ncol=5)
-  for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm=", na.rm, "\n", sep="");
-    r1 <- rowRanges(x, na.rm=na.rm)
-    r2 <- colRanges(t(x), na.rm=na.rm)
-    suppressWarnings({
-      r3 <- t(apply(x, MARGIN=1, FUN=range, na.rm=na.rm))
-    })
-    stopifnot(identical(r1, r2))
-    stopifnot(identical(r1, r3))
-  }
 } # for (addNA ...)
+
+  
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# All NAs
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(as.double(NA), nrow=20, ncol=5)
+for (na.rm in c(FALSE, TRUE)) {
+  cat("na.rm=", na.rm, "\n", sep="");
+  r1 <- rowRanges(x, na.rm=na.rm)
+  r2 <- colRanges(t(x), na.rm=na.rm)
+  suppressWarnings({
+    r3 <- t(apply(x, MARGIN=1, FUN=range, na.rm=na.rm))
+  })
+  stopifnot(identical(r1, r2))
+  stopifnot(identical(r1, r3))
+}

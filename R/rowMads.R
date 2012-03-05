@@ -14,7 +14,9 @@ colMads <- function(x, centers=NULL, constant=1.4826, ...) {
   if (is.null(centers)) {
     centers <- colMedians(x, ...)
   }
-  x <- x - centers;
+  for (cc in seq(length=ncol(x))) {
+    x[,cc] <- x[,cc] - centers[cc];
+  }
   x <- abs(x);
   x <- colMedians(x, ...);
   x <- constant*x;
@@ -23,6 +25,9 @@ colMads <- function(x, centers=NULL, constant=1.4826, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-03-04 [HC]
+# o BUG FIX: colMads() would return the incorrect estimates. This bug
+#   was introduced in matrixStats v0.4.0 (2011-11-11).
 # 2011-11-11 [HB]
 # o Dropped the previously introduced expansion of 'center' in rowMads()
 #   and colMads().  It added unnecessary overhead if not needed.
