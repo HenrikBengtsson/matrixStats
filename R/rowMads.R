@@ -1,7 +1,4 @@
-rowMads <- function(x, centers=NULL, constant=1.4826, ...) {
-  if (is.null(centers)) {
-    centers <- rowMedians(x, ...);
-  }
+rowMads <- function(x, centers=rowMedians(x,...), constant=1.4826, ...) {
   x <- x - centers;
   x <- abs(x);
   x <- rowMedians(x, ...);
@@ -10,10 +7,7 @@ rowMads <- function(x, centers=NULL, constant=1.4826, ...) {
 } # rowMads()
 
 
-colMads <- function(x, centers=NULL, constant=1.4826, ...) {
-  if (is.null(centers)) {
-    centers <- colMedians(x, ...)
-  }
+colMads <- function(x, centers=colMedians(x,...), constant=1.4826, ...) {
   for (cc in seq(length=ncol(x))) {
     x[,cc] <- x[,cc] - centers[cc];
   }
@@ -25,6 +19,8 @@ colMads <- function(x, centers=NULL, constant=1.4826, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-03-19 [HJ]
+# o Changed default value of centers to row/colMedians(x,...) 
 # 2012-03-04 [HC]
 # o BUG FIX: colMads() would return the incorrect estimates. This bug
 #   was introduced in matrixStats v0.4.0 (2011-11-11).
