@@ -25,14 +25,14 @@
 \usage{
  rowSds(x, ...)
  colSds(x, ...)
- rowMads(x, centers=NULL, constant=1.4826, ...)
- colMads(x, centers=NULL, constant=1.4826, ...)
+ rowMads(x, centers=rowMedians(x,...), constant=1.4826, ...)
+ colMads(x, centers=colMedians(x,...), constant=1.4826, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
  \item{centers}{A optional \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K) with centers.
-    If \code{\link[base]{NULL}}, they are calculated using \code{\link{rowMedians}}().}
+    By default, they are calculated using \code{\link{rowMedians}}().}
  \item{constant}{A scale factor.  See \code{\link[stats]{mad}} for details.}
  \item{...}{Additional arguments passed to \code{\link{rowVars}}() and
     \code{\link{rowMedians}}(), respectively.}

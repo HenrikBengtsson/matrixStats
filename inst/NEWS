@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.4.5 [2012-03-19]
+o Updated the default argument 'centers' of rowMads()/colMads()
+  to explicitly be rowMedians(x,...)/colMedians(x,...).  The
+  default behavior has not changed.
+
+
 Version: 0.4.4 [2012-03-05]
 o BUG FIX: colMads() would return the incorrect estimates. This bug
   was introduced in matrixStats v0.4.0 (2011-11-11).
