@@ -6,6 +6,8 @@ o Added weightedMad() from aroma.core v2.5.0.
 o Added weightedMedian() from aroma.light v1.25.2.
 o This package no longer depend on the aroma.light package for 
   any of its functions.
+o Now this package only imports R.methodsS3, meaning it no 
+  longer loads R.methodsS3 when it is loaded.
 
 
 Version: 0.4.5 [2012-03-19]
