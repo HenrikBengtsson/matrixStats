@@ -21,8 +21,7 @@
 #  \item{w}{A @numeric @vector of length K (N).}
 #  \item{na.rm}{If @TRUE, missing values are excluded from the calculation,
 #    otherwise not.}
-#  \item{...}{Additional arguments passed to 
-#    @see "aroma.light::weightedMedian".}
+#  \item{...}{Additional arguments passed to @see "weightedMedian".}
 # }
 #
 # \value{
@@ -37,16 +36,14 @@
 # }
 #
 # \examples{
-# if (require("aroma.light")) {
-# @include "../incl/rowWeightedMedians.Rex"
-# }}
+#  @include "../incl/rowWeightedMedians.Rex"
+# }
 #
 # @author
 #
 # \seealso{
 #   See @see "rowMedians" and \code{colMedians()} for non-weighted medians.
-#   Internally, @see "aroma.light::weightedMedian" of \pkg{aroma.light}
-#   is used.
+#   Internally, @see "weightedMedian" is used.
 # }
 #
 # @keyword array
@@ -55,8 +52,6 @@
 # @keyword univar
 #*/###########################################################################
 setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {
-  require("aroma.light") || stop("Package not loaded: aroma.light");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -87,7 +82,7 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     w <- w / sum(w, na.rm=na.rm);
 
     res <- apply(x, MARGIN=1, FUN=function(x) {
-      aroma.light::weightedMedian(x, w=w, na.rm=na.rm, ...);
+      weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
   } else {
     res <- rowMedians(x, na.rm=na.rm);
@@ -98,8 +93,6 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
 
 
 setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {
-  require("aroma.light") || stop("Package not loaded: aroma.light");
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -130,18 +123,21 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     w <- w / sum(w, na.rm=na.rm);
 
     res <- apply(x, MARGIN=2, FUN=function(x) {
-      aroma.light::weightedMedian(x, w=w, na.rm=na.rm, ...);
+      weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
   } else {
     res <- colMedians(x, na.rm=na.rm);
   }
 
   res;
-})
+}) # colWeightedMedians()
 
 
 ##############################################################################
 # HISTORY:
+# 2012-04-16
+# o Now {col|row}WeightedMedians() no longer require aroma.light, because
+#   weightedMedian() is now in this package.
 # 2009-06-17
 # o Updated the Rdoc example to run conditionally on aroma.light, which is
 #   only a suggested package - not a required one.  This in order to prevent

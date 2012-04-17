@@ -31,8 +31,7 @@
  \item{w}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length K (N).}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are excluded from the calculation,
    otherwise not.}
- \item{...}{Additional arguments passed to
-   \code{\link[aroma.light]{weightedMedian}}.}
+ \item{...}{Additional arguments passed to \code{\link{weightedMedian}}().}
 }
 
 \value{
@@ -47,8 +46,7 @@
 }
 
 \examples{
-if (require("aroma.light")) {
-x <- matrix(rnorm(20), nrow=5, ncol=4)
+ x <- matrix(rnorm(20), nrow=5, ncol=4)
 print(x)
 
 # Non-weighted row averages
@@ -79,14 +77,13 @@ xM1 <- rowWeightedMedians(x, w=w)
 xM2 <- colWeightedMedians(t(x), w=w)
 stopifnot(all.equal(xM2, xM1))
 
-}}
+}
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   See \code{\link{rowMedians}}() and \code{colMedians()} for non-weighted medians.
-  Internally, \code{\link[aroma.light]{weightedMedian}} of \pkg{aroma.light}
-  is used.
+  Internally, \code{\link{weightedMedian}}() is used.
 }
 
 
