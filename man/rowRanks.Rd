@@ -57,7 +57,7 @@
 \author{
   Hector Corrada Bravo and Harris Jaffee.
   The native implementation of \code{rowRanks()} was adapted from
-  Robert Gentleman's \code{\link[Biobase]{rowQ}} in the \pkg{Biobase} package.
+  Robert Gentleman's \code{rowQ()} in the \pkg{Biobase} package.
 }
 
 \seealso{

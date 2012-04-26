@@ -43,7 +43,7 @@
 # \author{
 #   @get "author"
 #   The native implementation of \code{rowOrderStats()} was adopted from
-#   Robert Gentleman's @see "Biobase::rowQ" in the \pkg{Biobase} package.
+#   Robert Gentleman's \code{rowQ()} in the \pkg{Biobase} package.
 # }
 #
 # \seealso{

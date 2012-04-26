@@ -52,7 +52,7 @@
 \author{
   Henrik Bengtsson (\url{http://www.braju.com/R/})
   The native implementation of \code{rowOrderStats()} was adopted from
-  Robert Gentleman's \code{\link[Biobase]{rowQ}} in the \pkg{Biobase} package.
+  Robert Gentleman's \code{rowQ()} in the \pkg{Biobase} package.
 }
 
 \seealso{
