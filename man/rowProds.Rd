@@ -25,6 +25,7 @@
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are ignored, otherwise not.}
  \item{...}{Arguments passed to \code{\link[base]{rowSums}}().}
 }
 
@@ -34,7 +35,8 @@
 
 \details{
   Internally the product is calculated via the logarithmic transform,
-  treating zeros and negative values specially.
+  treating zeros and negative values specially.  This enhance the
+  precision and lower the risk for overflow.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

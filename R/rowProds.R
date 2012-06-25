@@ -16,6 +16,7 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{na.rm}{If @TRUE, missing values are ignored, otherwise not.}
 #  \item{...}{Arguments passed to @see "base::rowSums".}
 # }
 #
@@ -25,7 +26,8 @@
 #
 # \details{
 #   Internally the product is calculated via the logarithmic transform,
-#   treating zeros and negative values specially.
+#   treating zeros and negative values specially.  This enhance the
+#   precision and lower the risk for overflow.
 # }
 #
 # @author
@@ -35,34 +37,67 @@
 # @keyword robust
 # @keyword univar
 #*/########################################################################### 
-rowProds <- function(x, ...) {
+rowProds <- function(x, na.rm=FALSE, ...) {
   # Preallocate result (zero:ed by default)
-  y <- vector(mode(x), length=nrow(x));
+  modeX <- mode(x);
+  y <- vector(modeX, length=nrow(x));
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Handle missing values
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  isNA <- is.na(x);
+  rowHasNA <- rowAnys(isNA);
+  hasNAs <- any(rowHasNA);
+  if (hasNAs) {
+    if (na.rm) {
+      oneValue <- 1;
+      mode(oneValue) <- modeX;
+      x[isNA] <- oneValue;
+      rowHasNA <- rep(FALSE, times=length(rowHasNA));
+      hasNAs <- FALSE;
+    } else {
+      isNaN <- is.nan(x);
+      rowHasNaN <- rowAnys(isNaN);
+    }
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Handle zeros
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for rows with at least one zero
-  s <- (x == 0);
-  s <- rowSums(s);
+  isZero <- (x == 0);
+  rowHasZero <- rowAnys(isZero);
 
-  # Only calculate the products on rows without zeros
-  ok <- (s == 0);
-  rm(s);
-  x <- x[ok,,drop=FALSE];
+  # Only calculate the products on rows without zeros and missing values
+  toCalc <- (!rowHasNA & !rowHasZero);
+  x <- x[toCalc,,drop=FALSE];
 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Calculate product via logarithmic sum
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Infer signs
-  s <- (x < 0);
-  s <- rowSums(s);
-  s <- (s %% 2);
-  s <- c(+1,-1)[s+1];
+  isNeg <- (x < 0);
+  isNeg <- rowSums(isNeg);
+  isNeg <- (isNeg %% 2);
+  isNeg <- c(+1,-1)[isNeg+1];
 
   # Calculate the product via the log transform
   x <- abs(x);
   x <- log(x);
   x <- rowSums(x, ...);
   x <- exp(x);
-  x <- s*x;
-  y[ok] <- x;
+  x <- isNeg*x;
+  y[toCalc] <- x;
 
-  rm(ok, s, x);
+
+  # Missing values?
+  if (hasNAs) {
+    naValue <- NA;
+    mode(naValue) <- modeX;
+    y[rowHasNA] <- naValue;
+    y[rowHasNaN] <- NaN;
+  }
 
   y;
 }
@@ -75,6 +110,7 @@ colProds <- function(x, ...) {
 ############################################################################
 # HISTORY:
 # 2012-06-25 [HB]
+# o GENERALIZATION: Now row- and colProds() handles missing values.
 # o BUG FIX: In certain cases, row- and colProds() would return NA instead
 #   of 0 for some elements.  Thanks Brenton Kenkel at University of 
 #   Rochester for reporting on this.

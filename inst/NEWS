@@ -2,6 +2,7 @@ Package: matrixStats
 ====================
 
 Version: 0.5.1 [2012-06-25]
+o GENERALIZATION: Now row- and colProds() handle missing values.
 o BUG FIX: In certain cases, row- and colProds() would return NA instead
   of 0 for some elements.  Added a redundancy test for the case.
   Thanks Brenton Kenkel at University of Rochester for reporting on this.
