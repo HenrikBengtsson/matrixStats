@@ -10,8 +10,8 @@
 # }
 #
 # \usage{
-#  rowProds(x, ...)
-#  colProds(x, ...)
+#  rowProds(x, na.rm=FALSE, ...)
+#  colProds(x, na.rm=FALSE, ...)
 # }
 #
 # \arguments{
@@ -40,7 +40,14 @@
 rowProds <- function(x, na.rm=FALSE, ...) {
   # Preallocate result (zero:ed by default)
   modeX <- mode(x);
-  y <- vector(modeX, length=nrow(x));
+  n <- nrow(x);
+  y <- vector(modeX, length=n);
+
+  # Nothing todo?
+  if (n == 0) {
+    return(y);
+  }
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Handle missing values
@@ -53,11 +60,13 @@ rowProds <- function(x, na.rm=FALSE, ...) {
       oneValue <- 1;
       mode(oneValue) <- modeX;
       x[isNA] <- oneValue;
-      rowHasNA <- rep(FALSE, times=length(rowHasNA));
+      rowHasNA <- logical(n); # Defaults to FALSE
       hasNAs <- FALSE;
     } else {
-      isNaN <- is.nan(x);
-      rowHasNaN <- rowAnys(isNaN);
+      # Among the rows with missing values, which has NaN:s?
+      rowHasNaN <- logical(n); # Defaults to FALSE
+      isNaN <- is.nan(x[rowHasNA,,drop=FALSE]);
+      rowHasNaN[rowHasNA] <- rowAnys(isNaN);
     }
   }
 
@@ -72,6 +81,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # Only calculate the products on rows without zeros and missing values
   toCalc <- (!rowHasNA & !rowHasZero);
   x <- x[toCalc,,drop=FALSE];
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Calculate product via logarithmic sum
@@ -100,12 +110,12 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   }
 
   y;
-}
+} # rowProds()
 
-colProds <- function(x, ...) {
+colProds <- function(x, na.rm=FALSE, ...) {
   x <- t(x);
-  rowProds(x, ...);
-}
+  rowProds(x, na.rm=na.rm, ...);
+} # colProds()
 
 ############################################################################
 # HISTORY:

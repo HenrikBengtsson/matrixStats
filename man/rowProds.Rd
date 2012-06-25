@@ -19,8 +19,8 @@
 }
 
 \usage{
- rowProds(x, ...)
- colProds(x, ...)
+ rowProds(x, na.rm=FALSE, ...)
+ colProds(x, na.rm=FALSE, ...)
 }
 
 \arguments{
