@@ -36,6 +36,9 @@
 # @keyword univar
 #*/########################################################################### 
 rowProds <- function(x, ...) {
+  # Preallocate result (zero:ed by default)
+  y <- vector(mode(x), length=nrow(x));
+
   # Check for rows with at least one zero
   s <- (x == 0);
   s <- rowSums(s);
@@ -44,9 +47,6 @@ rowProds <- function(x, ...) {
   ok <- (s == 0);
   rm(s);
   x <- x[ok,,drop=FALSE];
-
-  # Preallocate result (zero:ed by default)
-  y <- vector(mode(x), nrow(x));
 
   # Infer signs
   s <- (x < 0);
@@ -74,6 +74,10 @@ colProds <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-06-25 [HB]
+# o BUG FIX: In certain cases, row- and colProds() would return NA instead
+#   of 0 for some elements.  Thanks Brenton Kenkel at University of 
+#   Rochester for reporting on this.
 # 2008-07-30 [HB] 
 # o Now it is only rows without zeros for which the calculation is
 #   actually performed.

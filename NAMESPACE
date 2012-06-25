@@ -1,5 +1,6 @@
 useDynLib(matrixStats)
 
+import(methods)
 import(R.methodsS3)
 
 ## Export all non-private methods (anything w/out a dot prefix).
