@@ -9,7 +9,7 @@
 # @title "Estimation of discrepancies based on sequential order differences in a vector"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -36,6 +36,11 @@
 #   See @see "base::diff".
 # }
 #
+# \references{
+#  [1] J. von Neumann et al., \emph{The mean square successive difference}.
+#      Annals of Mathematical Statistics, 1941, 12, 153-162.\cr
+# }
+#
 # @keyword iteration
 # @keyword robust
 # @keyword univar
@@ -55,6 +60,8 @@ setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1, ..
 
 ############################################################################
 # HISTORY:
+# 2012-07-17
+# o Added the reference to von Neumann et al. (1941).
 # 2009-02-02
 # o Added Rdoc comments.
 # 2008-04-13

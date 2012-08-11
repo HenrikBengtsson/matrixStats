@@ -45,6 +45,11 @@
   See \code{\link[base]{diff}}().
 }
 
+\references{
+ [1] J. von Neumann et al., \emph{The mean square successive difference}.
+     Annals of Mathematical Statistics, 1941, 12, 153-162.\cr
+}
+
 
 
 
