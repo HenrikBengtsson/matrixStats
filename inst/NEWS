@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.5.3 [2012-09-10]
+o CRAN POLICY: Replaced the .Internal(psort(...)) call with 
+  a call to a new internal partial sorting function, which
+  utilizes the native rPsort() part of the R internals.
+
+
 Version: 0.5.2 [2012-07-02]
 o Updated package dependencies to match CRAN.
 

@@ -114,9 +114,6 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  code <- "function(x, partial) { .Internal(psort(x, partial))[partial] }";
-  psortGet <- eval(parse(text=code));
-
   qsort <- function(x) {
     ## .Internal(qsort(x, TRUE));  # index.return=TRUE
     sort.int(x, index.return=TRUE, method="quick");
@@ -177,10 +174,11 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     n <- length(x);
     half <- (n+1)/2;
     if (n%%2 == 1) {
-      return(psortGet(x, half));
+      # Get x(half), where x(k) is k:th sorted value in x;
+      return(.psortKM(x, k=half));
     } else {
-      partial <- c(half, half+1);
-      return(sum(psortGet(x, partial))/2);
+      # Average x(half) and x(half+1).
+      return(sum(.psortKM(x, k=half+1L, m=2L))/2);
     }
   }
   
@@ -321,6 +319,8 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 
 ###############################################################################
 # HISTORY:
+# 2012-09-10
+# o Replaced an .Internal(psort(...)) call with new .psortKM().
 # 2012-04-16
 # o Added local function qsort() to weightedMedian(), which was adopted
 #   from calculateResidualSet() for ProbeLevelModel in aroma.affymatrix 2.5.0.
