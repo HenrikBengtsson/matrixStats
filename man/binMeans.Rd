@@ -42,7 +42,7 @@
 
 \examples{
 x <- 1:200
-mu <- rep(0, length(x))
+mu <- double(length(x))
 mu[1:50] <- 5
 mu[101:150] <- -5
 y <- mu + rnorm(length(x))
@@ -68,7 +68,7 @@ for (kk in seq(along=yS)) {
 }
 
 \author{
-  Henrik Bengtsson and Martin Morgan [1].
+  Henrik Bengtsson with initial code contributions by Martin Morgan [1].
 }
 
 

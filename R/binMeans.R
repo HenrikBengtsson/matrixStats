@@ -44,7 +44,7 @@
 # }
 #
 # \author{
-#   Henrik Bengtsson and Martin Morgan [1].
+#   Henrik Bengtsson with initial code contributions by Martin Morgan [1].
 # }
 #
 # @keyword "univar"
@@ -117,6 +117,8 @@ setMethodS3("binMeans", "default", function(y, x, bx, count=TRUE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-10-04 [HB in Anahola] 
+# o Updated Rdocs.
 # 2012-10-03 [HB] 
 # o Added binMeans() based on native code adopted from code by 
 #   Martin Morgan, Fred Hutchinson Cancer Research Center, Seattle.

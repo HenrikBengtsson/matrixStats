@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.6.0 [2012-10-04]
+o Added binMeans() for fast sample-mean calculation in bins.
+  Thanks to Martin Morgan at the Fred Hutchinson Cancer Research 
+  Center, Seattle, for contributing the core code for this.
+o Added binCounts() for fast element counting in bins.
+
+
 Version: 0.5.3 [2012-09-10]
 o CRAN POLICY: Replaced the .Internal(psort(...)) call with 
   a call to a new internal partial sorting function, which
