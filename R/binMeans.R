@@ -15,6 +15,8 @@
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
 #      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
+#   \item{na.rm}{If @TRUE, missing values in \code{y} are dropped
+#      before calculating the mean, otherwise not.}
 #   \item{count}{If @TRUE, the number of data points in each bins is
 #      returned as attribute \code{count}, which is an @integer @vector
 #      of length B.}
@@ -49,7 +51,7 @@
 #
 # @keyword "univar"
 #*/############################################################################ 
-setMethodS3("binMeans", "default", function(y, x, bx, count=TRUE, ...) {
+setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,6 +84,11 @@ setMethodS3("binMeans", "default", function(y, x, bx, count=TRUE, ...) {
     stop("Argument 'bx' is not ordered.");
   }
 
+  # Argument 'na.rm':
+  if (!is.logical(na.rm)) {
+    stop("Argument 'na.rm' is not logical: ", mode(na.rm));
+  }
+
   # Argument 'count':
   if (!is.logical(count)) {
     stop("Argument 'count' is not logical: ", mode(count));
@@ -91,11 +98,21 @@ setMethodS3("binMeans", "default", function(y, x, bx, count=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Preprocessing of (x,y)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Drop missing values
+  # Drop missing values in 'x'
   keep <- which(!is.na(x));
   if (length(keep) < n) {
     x <- x[keep];
-    y <- x[keep];
+    y <- y[keep];
+    n <- length(y);
+  }
+
+  # Drop missing values in 'y'?
+  if (na.rm) {
+    keep <- which(!is.na(y));
+    if (length(keep) < n) {
+      x <- x[keep];
+      y <- y[keep];
+    }
   }
 
   # Order (x,y) by increasing x.
@@ -117,7 +134,8 @@ setMethodS3("binMeans", "default", function(y, x, bx, count=TRUE, ...) {
 
 ############################################################################
 # HISTORY:
-# 2012-10-04 [HB in Anahola] 
+# 2012-10-04 [HB in Anahola]
+# o Added argument 'na.rm' to binMeans().
 # o Updated Rdocs.
 # 2012-10-03 [HB] 
 # o Added binMeans() based on native code adopted from code by 

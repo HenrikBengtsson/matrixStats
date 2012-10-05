@@ -12,7 +12,7 @@
 
 \title{Fast mean calculations in non-overlapping bins}
 
-\usage{\method{binMeans}{default}(y, x, bx, count=TRUE, ...)}
+\usage{\method{binMeans}{default}(y, x, bx, na.rm=TRUE, count=TRUE, ...)}
 
 \description{
   Computes the sample means in non-overlapping bins
@@ -24,6 +24,8 @@
   \item{bx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B+1 ordered positions specifying
      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
      \code{[bx[B],bx[B+1])}.}
+  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values in \code{y} are dropped
+     before calculating the mean, otherwise not.}
   \item{count}{If \code{\link[base:logical]{TRUE}}, the number of data points in each bins is
      returned as attribute \code{count}, which is an \code{\link[base]{integer}} \code{\link[base]{vector}}
      of length B.}
