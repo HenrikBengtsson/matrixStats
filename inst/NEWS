@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.6.1 [2012-10-10]
+o BUG FIX: In some cases binCounts() and binMeans() could try to go
+  past the last bin resulting a core dump.
+o BUG FIX: binCounts() and binMeans() would return random/garbage 
+  values for bins that were beyond the last data point.
+
+
 Version: 0.6.0 [2012-10-04]
 o Added binMeans() for fast sample-mean calculation in bins.
   Thanks to Martin Morgan at the Fred Hutchinson Cancer Research 

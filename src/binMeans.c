@@ -32,12 +32,15 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   }
 
   // Skip to the first bin
-  while (xp[iStart] < bxp[0]) { 
+  while (iStart < nx & xp[iStart] < bxp[0]) { 
     ++iStart;
   }
   
   // For each x...
   for (i = iStart; i < nx; ++i) {
+    // No more bins?
+    if (j >= nb) break;
+
     // Skip to a new bin?
     while (xp[i] >= bxp[j+1]) {
       // Update statistic of current bin?
@@ -45,17 +48,31 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
       ansp[j] = n > 0 ? sum / n : 0;
       sum = 0.0;
       n = 0;
+
       // ...and move to next
-      ++j;
+      j++;
+
+      // No more bins?
+      if (j >= nb) break;
     }
+
     sum += yp[i];
     n += 1;
   }
 
-  // Update statistic of last bin
-  ansp[j] = n > 0 ? sum / n : 0;
+  // Update statistic of the last bin?
+  if (j < nb) {
+    if (retcount) countp[j] = n;
+    ansp[j] = n > 0 ? sum / n : 0;
+
+    // Assign the remaining bins to zero counts and missing mean values
+    while (++j < nb) {
+      ansp[j] = R_NaReal;
+      if (retcount) countp[j] = 0;
+    }
+  }
+
   if (retcount) {
-    countp[j] = n;
     setAttrib(ans, install("count"), count);
     UNPROTECT(1); // 'count'
   }
@@ -67,6 +84,10 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
 
 /***************************************************************************
  HISTORY:
+ 2012-10-10 [HB]
+  o BUG FIX: binMeans() would return random/garbage means/counts for
+    bins that were beyond the last data point.
+  o BUG FIX: In some cases binMeans() could try to go past the last bin.
  2012-10-03 [HB]
   o Created binMeans(), which was adopted from from code proposed by
     Martin Morgan (Fred Hutchinson Cancer Research Center, Seattle) as
