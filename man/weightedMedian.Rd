@@ -141,11 +141,8 @@ weightedMedian(x, w)                # NA
 bench <- function(N=1e5, K=10) {
   x <- rnorm(N)
   t <- c()
-  gc()
   t[1] <- system.time(for (k in 1:K) median(x))[3]
-  gc()
   t[2] <- system.time(for (k in 1:K) weightedMedian(x, method="quick"))[3]
-  gc()
   t[3] <- system.time(for (k in 1:K) weightedMedian(x, method="shell"))[3]
   t <- t / t[1]
   t[4] <- t[2]/t[3]
@@ -153,12 +150,10 @@ bench <- function(N=1e5, K=10) {
   t
 }
 
-print(bench(N=  5, K=1000))
-print(bench(N=100, K=1000))
-print(bench(N=1e3, K=100))
-print(bench(N=1e5, K=10))
-print(bench(N=1e6, K=1))
-
+print(bench(N=  5, K=500))
+print(bench(N= 50, K=500))
+print(bench(N=200, K=200))
+print(bench(N=1e5, K=5))
 }
 
 \seealso{

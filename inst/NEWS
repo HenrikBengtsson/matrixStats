@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.6.2 [2012-11-15]
+o CRAN POLICY: Made example(weightedMedian) faster.
+
+
 Version: 0.6.1 [2012-10-10]
 o BUG FIX: In some cases binCounts() and binMeans() could try to go
   past the last bin resulting a core dump.
