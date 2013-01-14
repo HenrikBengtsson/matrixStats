@@ -23,10 +23,11 @@ rowRanksX <- function(x, ties.method, fcn, ...) {
 set.seed(1)
 
 # Simulate data in a matrix of any shape
-dim <- sample(500:2000, size=2)
+dim <- sample(300:1000, size=2)
 n <- prod(dim)
-x <- round(rnorm(n), digits=2)
+x <- round(rnorm(n, sd=20), digits=2)
 dim(x) <- dim
+str(x)
 
 # Integer or double?
 for (mode in c("double", "integer")) {
