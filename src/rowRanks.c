@@ -4,7 +4,7 @@
  SEXP colRanks(SEXP x, SEXP tiesMethod)
 
  Private methods:
- SEXP rowRanksReal(SEXP x, int nrow, int ncol , int by_column)
+ SEXP rowRanksReal(SEXP x, int nrow, int ncol, int by_column)
  SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int by_column)
 
  To do: Add support for missing values.
