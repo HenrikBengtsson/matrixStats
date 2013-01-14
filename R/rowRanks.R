@@ -92,6 +92,9 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
 
 
   if (flavor == "v1") {
+    if (ties.method != "max") {
+      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method);
+    }
     return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"));
   }
 
@@ -118,6 +121,9 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
 
 
   if (flavor == "v1") {
+    if (ties.method != "max") {
+      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method);
+    }
     x <- t(x);
     return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"));
   }
