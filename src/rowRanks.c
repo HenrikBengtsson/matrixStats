@@ -4,8 +4,8 @@
  SEXP colRanks(SEXP x, SEXP tiesMethod)
 
  Private methods:
- SEXP rowRanksReal(SEXP x, int nrow, int ncol, int by_column)
- SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int by_column)
+ SEXP rowRanksReal(SEXP x, int nrow, int ncol, int by_row)
+ SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int by_row)
 
  To do: Add support for missing values.
 
@@ -16,7 +16,7 @@
 #include <Rinternals.h>
 #include <Rmath.h>
 
-SEXP rowRanksReal(SEXP x, int nrow, int ncol, int by_column) {
+SEXP rowRanksReal(SEXP x, int nrow, int ncol, int by_row) {
   SEXP ans;
   int ii, jj;
   int *colOffset;
@@ -95,7 +95,7 @@ SEXP rowRanksReal(SEXP x, int nrow, int ncol, int by_column) {
   return(ans);
 }
 
-SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int by_column) {
+SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int by_row) {
   SEXP ans;
   int ii, jj;
   int *colOffset;
