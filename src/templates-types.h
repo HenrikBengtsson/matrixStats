@@ -14,12 +14,14 @@
   #endif
   #define X_C_TYPE int
   #define X_IN_C INTEGER
+  #define X_ISNAN(x) (x == NA_INTEGER)
 #elif X_TYPE == 'r'
   #ifndef METHOD_NAME
     #define METHOD_NAME CONCAT_MACROS(METHOD, Real)
   #endif
   #define X_C_TYPE double
   #define X_IN_C REAL
+  #define X_ISNAN(x) ISNAN(x)
 #endif
 
 

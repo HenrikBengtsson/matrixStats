@@ -5,6 +5,7 @@
 
 #undef X_C_TYPE
 #undef X_IN_C
+#undef X_ISNAN
 
 #undef ANS_SXP
 #undef ANS_NA
