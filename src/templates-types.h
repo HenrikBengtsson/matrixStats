@@ -9,11 +9,15 @@
  Data type macros for argument 'x'
  */
 #if X_TYPE == 'i'
-  #define METHOD_TYPE CONCAT_MACROS(METHOD, Integer)
+  #ifndef METHOD_NAME
+    #define METHOD_NAME CONCAT_MACROS(METHOD, Integer)
+  #endif
   #define X_C_TYPE int
   #define X_IN_C INTEGER
 #elif X_TYPE == 'r'
-  #define METHOD_TYPE CONCAT_MACROS(METHOD, Real)
+  #ifndef METHOD_NAME
+    #define METHOD_NAME CONCAT_MACROS(METHOD, Real)
+  #endif
   #define X_C_TYPE double
   #define X_IN_C REAL
 #endif

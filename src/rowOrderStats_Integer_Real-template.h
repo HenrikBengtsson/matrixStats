@@ -1,18 +1,35 @@
-/***************************************************************************
- Private methods:
- SEXP rowOrderStats_<Integer|Real>(SEXP x, int nrow, int ncol, int qq)
+/***********************************************************************
+ TEMPLATE:
+  SEXP rowOrderStats_<Integer|Real>(SEXP x, int nrow, int ncol, int qq)
 
- Authors: Adopted from rowQ() by R. Gentleman.
+ GENERATES:
+  SEXP rowOrderStats_Real(SEXP x, int nrow, int ncol, int qq)
+  SEXP rowOrderStats_Integer(SEXP x, int nrow, int ncol, int qq)
 
- To do: Add support for missing values.
+ Arguments:
+   The following macros ("arguments") should be defined for the 
+   template to work as intended.
 
- Copyright Henrik Bengtsson, 2007-2013
- **************************************************************************/
+  - METHOD_NAME: the name of the resulting function
+  - X_TYPE: 'i' or 'r'
+  - ANS_TYPE: 'i' or 'r'
+
+ Authors:
+  Adopted from rowQ() by R. Gentleman.
+  Template by Henrik Bengtsson.
+
+ Copyright: Henrik Bengtsson, 2007-2013
+ ***********************************************************************/ 
 #include <Rdefines.h>
 #include <Rmath.h>
 
-/* Setup template macros */
+/* Expand arguments:
+    X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
+    ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
+ */
 #include "templates-types.h" 
+
+
 #if X_TYPE == 'i'
   #define PSORT iPsort
 #elif X_TYPE == 'r'
@@ -20,7 +37,7 @@
 #endif
 
 
-SEXP METHOD_TYPE(SEXP x, int nrow, int ncol, int qq) {
+SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int qq) {
   SEXP ans;
   int ii, jj;
   int *colOffset;
