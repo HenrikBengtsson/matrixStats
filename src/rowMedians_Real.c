@@ -10,11 +10,21 @@
 #include <Rdefines.h>
 #include <Rmath.h>
 
-#define X_IN_C REAL
-#define X_C_TYPE double
+#define X_TYPE 'r'
 
-#define IS_NA(x) ISNAN(x)
-#define PSORT rPsort
+/* Expand arguments:
+    X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
+ */
+#include "templates-types.h" 
+
+#if X_TYPE == 'i'
+  #define IS_NA(x) (x == NA_INTEGER)
+  #define PSORT iPsort
+#elif X_TYPE == 'r'
+  #define IS_NA(x) ISNAN(x)
+  #define PSORT rPsort
+#endif
+
 
 SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   SEXP ans;
