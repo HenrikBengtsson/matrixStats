@@ -13,6 +13,22 @@ SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
 SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
 
 
+/* 
+TEMPLATE rowMedians_<Integer|Real>(...):
+- SEXP rowMedians_Real(...);
+- SEXP rowMedians_Integer(...);
+ */
+#define METHOD rowMedians
+
+#define X_TYPE 'i'
+#include "rowMedians_Integer_Real-template.h"
+
+#define X_TYPE 'r'
+#include "rowMedians_Integer_Real-template.h"
+
+#undef METHOD 
+
+
 SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
   SEXP ans;
