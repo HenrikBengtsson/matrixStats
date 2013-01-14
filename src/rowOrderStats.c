@@ -12,18 +12,18 @@
 #include <Rdefines.h>
 
 /* 
-TEMPLATE rowOrderStats_<Real|Integer>(...):
+TEMPLATE rowOrderStats_<Integer|Real>(...):
 - SEXP rowOrderStats_Real(SEXP x, int nrow, int ncol, int qq);
 - SEXP rowOrderStats_Integer(SEXP x, int nrow, int ncol, int qq);
  */
 #define METHOD rowOrderStats
 
 #define R_TYPE 'i'
-#include "rowOrderStats-internal-template.h"
+#include "rowOrderStats_Integer_Real-template.h"
 #undef R_TYPE
 
 #define R_TYPE 'r'
-#include "rowOrderStats-internal-template.h"
+#include "rowOrderStats_Integer_Real-template.h"
 #undef R_TYPE
 
 #undef METHOD

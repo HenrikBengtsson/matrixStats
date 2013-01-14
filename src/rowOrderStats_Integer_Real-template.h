@@ -1,6 +1,6 @@
 /***************************************************************************
  Private methods:
- SEXP rowOrderStats_<Real|Integer>(SEXP x, int nrow, int ncol, int qq)
+ SEXP rowOrderStats_<Integer|Real>(SEXP x, int nrow, int ncol, int qq)
 
  Authors: Adopted from rowQ() by R. Gentleman.
 
@@ -66,7 +66,7 @@ SEXP METHOD_TYPE(SEXP x, int nrow, int ncol, int qq) {
  HISTORY:
  2013-01-13 [HB]
   o Merged rowOrderStatsReal() and rowOrderStatsInteger() into 
-    one rowOrderStats_<Real|Integer>() templated function.
+    one rowOrderStats_<Integer|Real>() templated function.
  2009-02-04 [HB]
   o BUG FIX: For some errors in rowOrderStats(), the stack would not become
     UNPROTECTED before calling error.
