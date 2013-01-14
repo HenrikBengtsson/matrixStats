@@ -20,19 +20,23 @@
 }
 
 \usage{
- rowRanks(x, ...)
- colRanks(x, ...)
+ rowRanks(x, ties.method=c("max"), ...)
+ colRanks(x, ties.method=c("max"), ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK \code{\link[base]{matrix}}.}
+ \item{ties.method}{A \code{\link[base]{character}} string specifying how ties are treated.
+    For details, see below.}
  \item{...}{Not used.}
 }
 
 \value{
-  \code{rowRanks()} (\code{colRanks()}) returns an \code{\link[base]{integer}} NxK
-  (KxN) \code{\link[base]{matrix}}, where
+  \code{rowRanks()} (\code{colRanks()}) returns an NxK (KxN) \code{\link[base]{matrix}}, where
   N (K) is the number of rows (columns) for which ranks are calculated.
+  The mode of the returned matrix is \code{\link[base]{integer}}.
+%%  The mode of the returned matrix is \code{\link[base]{integer}}, except for
+%%  \code{ties.method == "average"} when it is \code{\link[base]{double}}.
 }
 
 \details{
@@ -51,8 +55,17 @@
 }
 
 \section{Ties}{
-  Ties are ranked equally, as with setting \code{ties.method="max"}
-  in the \code{\link[base]{rank}}() function.
+  When some values are equal ("ties"), argument \code{ties.method}
+  specifies what their ranks should be.
+  If \code{ties.method} is \code{"max"}, ties
+  are ranked as the maximum value.
+%%  If \code{ties.method} is \code{"average"}, ties are ranked
+%%  by their average.
+%%  If \code{ties.method} is \code{"max"} (\code{"min"}), ties
+%%  are ranked as the maximum (minimum) value.
+%%  If \code{ties.method} is \code{"average"}, ties are ranked
+%%  by their average.
+  For further details, see \code{\link[base]{rank}}().
 }
 
 \author{

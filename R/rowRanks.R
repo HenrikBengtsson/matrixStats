@@ -11,19 +11,23 @@
 # }
 #
 # \usage{
-#  rowRanks(x, ...)
-#  colRanks(x, ...)
+#  rowRanks(x, ties.method=c("max"), ...)
+#  colRanks(x, ties.method=c("max"), ...)
 # }
 #
 # \arguments{
 #  \item{x}{A @numeric or @integer NxK @matrix.}
+#  \item{ties.method}{A @character string specifying how ties are treated.
+#     For details, see below.}
 #  \item{...}{Not used.}
 # }
 #
 # \value{
-#   \code{rowRanks()} (\code{colRanks()}) returns an @integer NxK
-#   (KxN) @matrix, where
+#   \code{rowRanks()} (\code{colRanks()}) returns an NxK (KxN) @matrix, where
 #   N (K) is the number of rows (columns) for which ranks are calculated.
+#   The mode of the returned matrix is @integer.
+# %%  The mode of the returned matrix is @integer, except for
+# %%  \code{ties.method == "average"} when it is @double.
 # }
 #
 # \details{
@@ -42,8 +46,17 @@
 # }
 #
 # \section{Ties}{
-#   Ties are ranked equally, as with setting \code{ties.method="max"}
-#   in the @see "base::rank" function.
+#   When some values are equal ("ties"), argument \code{ties.method}
+#   specifies what their ranks should be.
+#   If \code{ties.method} is \code{"max"}, ties 
+#   are ranked as the maximum value.
+# %%  If \code{ties.method} is \code{"average"}, ties are ranked
+# %%  by their average.
+# %%  If \code{ties.method} is \code{"max"} (\code{"min"}), ties 
+# %%  are ranked as the maximum (minimum) value.
+# %%  If \code{ties.method} is \code{"average"}, ties are ranked
+# %%  by their average.
+#   For further details, see @see "base::rank".
 # }
 #
 # \author{
@@ -64,26 +77,43 @@
 # @keyword robust
 # @keyword univar
 #*/########################################################################### 
-setGeneric("rowRanks", function(x, ...) {
-  standardGeneric("rowRanks")
+setGeneric("rowRanks", function(x, ties.method=c("max"), ...) {
+  standardGeneric("rowRanks");
 })
 
-setMethod("rowRanks", signature(x="matrix"), function(x, ...) {
-  .Call("rowRanks", x, PACKAGE="matrixStats");
+setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max"), ...) {
+  # Argument 'ties.method':
+##  choices <- c("max", "average", "min");
+  choices <- c("max");
+  ties.method <- match.arg(ties.method, choices=choices);
+
+  tiesMethod <- charmatch(ties.method, choices);
+  .Call("rowRanks", x, as.integer(tiesMethod), PACKAGE="matrixStats");
 })
 
-setGeneric("colRanks", function(x, ...) {
+setGeneric("colRanks", function(x, ties.method=c("max"), ...) {
   standardGeneric("colRanks");
 })
 
-setMethod("colRanks", signature(x="matrix"), function(x, ...) {
-  x <- t(x);
-  rowRanks(x, ...);
+setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max"), ...) {
+  # Argument 'ties.method':
+##  choices <- c("max", "average", "min");
+  choices <- c("max");
+  ties.method <- match.arg(ties.method, choices=choices);
+
+  tiesMethod <- charmatch(ties.method, choices);
+  res <- .Call("colRanks", x, as.integer(tiesMethod), PACKAGE="matrixStats");
+
+  res;
 })
 
 
 ############################################################################
 # HISTORY:
+# 2012-01-13 [HB]
+# o Now colRanks() no longer transpose 'x' and calls native colRanks().
+# o Added argument 'ties.method' to rowRanks() and colRanks(), but
+#   still only support for "max".
 # 2011-11-11 [HB]
 # o Added '...' to generic functions rowRanks() and colRanks().
 # 2011-10-17 [HJ]

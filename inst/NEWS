@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.6.4 [2013-01-13]
+o Added argument 'ties.method' to rowRanks() and colRanks(), but
+  still only support for "max" (as before).
+
+
 Version: 0.6.3 [2013-01-13]
 o Added anyMissing() for data type 'raw', which always returns FALSE.
 o ROBUSTNESS: Added system test for anyMissing().
