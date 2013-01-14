@@ -102,18 +102,13 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max"), .
   ties.method <- match.arg(ties.method, choices=choices);
 
   tiesMethod <- charmatch(ties.method, choices);
-  res <- .Call("colRanks", x, as.integer(tiesMethod), PACKAGE="matrixStats");
-
-  res;
+  x <- t(x);
+  .Call("rowRanks", x, as.integer(tiesMethod), PACKAGE="matrixStats");
 })
 
 
 ############################################################################
 # HISTORY:
-# 2012-01-13 [HB]
-# o Now colRanks() no longer transpose 'x' and calls native colRanks().
-# o Added argument 'ties.method' to rowRanks() and colRanks(), but
-#   still only support for "max".
 # 2011-11-11 [HB]
 # o Added '...' to generic functions rowRanks() and colRanks().
 # 2011-10-17 [HJ]
