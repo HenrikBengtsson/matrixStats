@@ -74,8 +74,9 @@ SEXP rowOrderStatsInteger(SEXP x, int nrow, int ncol, int qq) {
 
   xx = INTEGER(x);
   for(ii=0; ii < nrow; ii++) {
-    for(jj=0; jj < ncol; jj++) 
+    for(jj=0; jj < ncol; jj++) { 
       rowData[jj] = xx[ii+colOffset[jj]];
+    }
 
     /* Sort vector of length 'ncol' up to position 'qq'. 
        "...partial sorting: they permute x so that x[k] is in the
@@ -90,6 +91,22 @@ SEXP rowOrderStatsInteger(SEXP x, int nrow, int ncol, int qq) {
 
   return(ans);
 }
+
+
+/* 
+ * rowOrderStats_<i,r>()
+ */
+#define METHOD rowOrderStats
+
+#define R_TYPE 'i'
+#include "rowOrderStats-internal-template.h"
+#undef R_TYPE
+
+#define R_TYPE 'r'
+#include "rowOrderStats-internal-template.h"
+#undef R_TYPE
+
+#undef METHOD
 
 
 /***************************************************************************
