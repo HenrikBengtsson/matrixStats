@@ -7,19 +7,16 @@
 
  Copyright Henrik Bengtsson, 2007
  **************************************************************************/
-
-/* Include R packages */
 #include <Rdefines.h>
 
 SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
 SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
 
-SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
+
+SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
+  int narm, hasna, byrow;
   SEXP ans;
   int nrow, ncol;
-  int narm;
-  int hasna;
-  int byrow = 1;
 
   /* Argument 'x': */
   if (!isMatrix(x))
@@ -36,12 +33,22 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
   if (narm != TRUE && narm != FALSE)
     error("Argument 'naRm' must be either TRUE or FALSE.");
 
+  /* Argument 'hasNA': */
   hasna = LOGICAL(hasNA)[0];
+
+  /* Argument 'byRow': */
+  byrow = INTEGER(byRow)[0];
+
 
   /* Get dimensions of 'x'. */
   PROTECT(ans = getAttrib(x, R_DimSymbol));
-  nrow = INTEGER(ans)[0];
-  ncol = INTEGER(ans)[1];
+  if (byrow) {
+    nrow = INTEGER(ans)[0];
+    ncol = INTEGER(ans)[1];
+  } else {
+    nrow = INTEGER(ans)[1];
+    ncol = INTEGER(ans)[0];
+  }
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
@@ -58,55 +65,11 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
   return(ans);
 } /* rowMedians() */
 
-//HJ begin
-SEXP colMedians(SEXP x, SEXP naRm, SEXP hasNA) {
-  SEXP ans;
-  int nrow, ncol;
-  int narm;
-  int hasna;
-  int byrow = 0;
-
-  /* Argument 'x': */
-  if (!isMatrix(x))
-    error("Argument 'x' must be a matrix.");
-
-  /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-
-  narm = LOGICAL(naRm)[0];
-  if (narm != TRUE && narm != FALSE)
-    error("Argument 'naRm' must be either TRUE or FALSE.");
-
-  hasna = LOGICAL(hasNA)[0];
-
-  /* Get dimensions of 'x'. */
-  PROTECT(ans = getAttrib(x, R_DimSymbol));
-  nrow = INTEGER(ans)[1];
-  ncol = INTEGER(ans)[0];
-
-  /* Double matrices are more common to use. */
-  if (isReal(x)) {
-    ans = rowMedians_Real(x, nrow, ncol, narm, hasna, byrow);
-  } else if (isInteger(x)) {
-    ans = rowMedians_Integer(x, nrow, ncol, narm, hasna, byrow);
-  } else {
-    UNPROTECT(1);
-    error("Argument 'x' must be a numeric.");
-  }
-
-  UNPROTECT(1);
-
-  return(ans);
-} /* colMedians() */
-//HJ end
 
 /***************************************************************************
  HISTORY:
  2013-01-13 [HB]
+ o Added argument 'byRow' to rowMedians() and dropped colMedians().
  o Using internal arguments 'by_row' instead of 'by_column'.
  2011-12-11 [HB]
  o BUG FIX: rowMediansReal(..., na.rm=TRUE) did not handle NaN:s, only NA:s.
