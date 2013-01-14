@@ -32,7 +32,7 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   }
 
   // Skip to the first bin
-  while (iStart < nx & xp[iStart] < bxp[0]) { 
+  while ((iStart < nx) & (xp[iStart] < bxp[0])) { 
     ++iStart;
   }
   

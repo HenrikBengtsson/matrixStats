@@ -17,7 +17,7 @@ SEXP binCounts(SEXP x, SEXP bx) {
   int i = 0, j = 0, n = 0, iStart=0;
 
   // Skip to the first bin
-  while (iStart < nx & xp[iStart] < bxp[0]) { 
+  while ((iStart < nx) & (xp[iStart] < bxp[0])) { 
     ++iStart;
   }
   
