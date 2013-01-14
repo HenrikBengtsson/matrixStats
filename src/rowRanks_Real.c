@@ -41,7 +41,7 @@ SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow) {
 
     // Set a minimum finite value for this row
     current_min = R_PosInf;
-    for (jj=0; jj<ncol; jj++) {
+    for (jj=0; jj < ncol; jj++) {
       tmp = xx[ii+colOffset[jj]];
       if (R_FINITE(tmp) && tmp < current_min)
 	current_min = tmp;

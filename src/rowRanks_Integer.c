@@ -30,15 +30,16 @@ SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow) {
   I = (int *) R_alloc(ncol, sizeof(int));
 
   colOffset = (int *) R_alloc(ncol, sizeof(int));
-  for (jj=0; jj < ncol; jj++) 
+  for (jj=0; jj < ncol; jj++) {
     colOffset[jj] = (int) jj*nrow;
+  }
 
   xx = INTEGER(x);
   aa = INTEGER(ans);
 
-  for (ii=0; ii<nrow; ii++) {
+  for (ii=0; ii < nrow; ii++) {
     nna = 0;	// number of NA's in this row
-    for (jj=0; jj<ncol; jj++) {
+    for (jj=0; jj < ncol; jj++) {
       rowData[jj] = xx[ii+colOffset[jj]];
       if (rowData[jj] == NA_INTEGER)
 	nna++;
