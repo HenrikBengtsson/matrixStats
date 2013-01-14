@@ -18,7 +18,7 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   int retcount = LOGICAL(retCount)[0];
   SEXP count = NULL;
   int *countp = NULL;
-  int i = 0, j = 0, n = 0, iStart=0;
+  int ii = 0, jj = 0, n = 0, iStart=0;
   double sum = 0.0;
 
   // Assert same lengths of 'x' and 'y'
@@ -37,38 +37,38 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   }
   
   // For each x...
-  for (i = iStart; i < nx; ++i) {
+  for (ii = iStart; ii < nx; ++ii) {
     // No more bins?
-    if (j >= nb) break;
+    if (jj >= nb) break;
 
     // Skip to a new bin?
-    while (xp[i] >= bxp[j+1]) {
+    while (xp[ii] >= bxp[jj+1]) {
       // Update statistic of current bin?
-      if (retcount) { countp[j] = n; }
-      ansp[j] = n > 0 ? sum / n : 0;
+      if (retcount) { countp[jj] = n; }
+      ansp[jj] = n > 0 ? sum / n : 0;
       sum = 0.0;
       n = 0;
 
       // ...and move to next
-      j++;
+      jj++;
 
       // No more bins?
-      if (j >= nb) break;
+      if (jj >= nb) break;
     }
 
-    sum += yp[i];
+    sum += yp[ii];
     n += 1;
   }
 
   // Update statistic of the last bin?
-  if (j < nb) {
-    if (retcount) countp[j] = n;
-    ansp[j] = n > 0 ? sum / n : 0;
+  if (jj < nb) {
+    if (retcount) countp[jj] = n;
+    ansp[jj] = n > 0 ? sum / n : 0;
 
     // Assign the remaining bins to zero counts and missing mean values
-    while (++j < nb) {
-      ansp[j] = R_NaReal;
-      if (retcount) countp[j] = 0;
+    while (++jj < nb) {
+      ansp[jj] = R_NaReal;
+      if (retcount) countp[jj] = 0;
     }
   }
 

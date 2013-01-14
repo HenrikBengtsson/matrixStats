@@ -14,7 +14,7 @@ SEXP binCounts(SEXP x, SEXP bx) {
   double *xp = REAL(x), *bxp = REAL(bx);
   SEXP count = PROTECT(NEW_INTEGER(nb));
   int *countp = INTEGER(count);
-  int i = 0, j = 0, n = 0, iStart=0;
+  int ii = 0, jj = 0, n = 0, iStart=0;
 
   // Skip to the first bin
   while ((iStart < nx) & (xp[iStart] < bxp[0])) { 
@@ -22,16 +22,16 @@ SEXP binCounts(SEXP x, SEXP bx) {
   }
   
   // For each x...
-  for (i = iStart; i < nx; ++i) {
+  for (ii = iStart; ii < nx; ++ii) {
     // No more bins?
-    if (j >= nb) break;
+    if (jj >= nb) break;
 
     // Skip to a new bin?
-    while (xp[i] >= bxp[j+1]) {
-      countp[j++] = n;
+    while (xp[ii] >= bxp[jj+1]) {
+      countp[jj++] = n;
 
       // No more bins?
-      if (j >= nb) break;
+      if (jj >= nb) break;
 
       n = 0;
     }
@@ -40,12 +40,12 @@ SEXP binCounts(SEXP x, SEXP bx) {
   }
 
   // Update count of the last bin?
-  if (j < nb) {
-    countp[j] = n;
+  if (jj < nb) {
+    countp[jj] = n;
   
     // Assign the remaining bins to zero counts
-    while (++j < nb) {
-      countp[j] = 0;
+    while (++jj < nb) {
+      countp[jj] = 0;
     }
   }
 
