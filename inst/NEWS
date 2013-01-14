@@ -4,6 +4,10 @@ Package: matrixStats
 Version: 0.6.4 [2013-01-13]
 o Added argument 'ties.method' to rowRanks() and colRanks(), but
   still only support for "max" (as before).
+o ROBUSTNESS: Lots of cleanup of the internal/native code.  Native
+  code for integer and double cases have been harmonized and are
+  now generated from a common code template.  This was inspired by
+  code contributions from Peter Langfelder (UCLA).
 
 
 Version: 0.6.3 [2013-01-13]
