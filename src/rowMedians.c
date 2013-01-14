@@ -4,8 +4,8 @@
  SEXP colMedians(SEXP x, SEXP naRm, SEXP hasNA)
 
  Private methods:
- SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row)
- SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row)
+ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
+ SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
 
  Authors: Adopted from rowQuantiles.c by R. Gentleman.
 
@@ -19,7 +19,7 @@
 
 
 
-SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row) {
+SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   SEXP ans;
   int isOdd;
   int ii, jj, kk, qq;
@@ -56,7 +56,7 @@ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row)
   colOffset = (int *) R_alloc(ncol, sizeof(int));
 
   //HJ begin
-  if (by_row) {
+  if (byrow) {
     for(jj=0; jj < ncol; jj++) 
       colOffset[jj] = (int)jj*nrow;
   } else {
@@ -72,7 +72,7 @@ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row)
 
       // Rprintf("ii=%d\n", ii);
 
-      int rowIdx = by_row ? ii : ncol*ii; //HJ
+      int rowIdx = byrow ? ii : ncol*ii; //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
       for(jj=0; jj < ncol; jj++) {
@@ -127,7 +127,7 @@ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row)
       if(ii % 1000 == 0)
         R_CheckUserInterrupt(); 
 
-      int rowIdx = by_row ? ii : ncol*ii; //HJ
+      int rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for(jj=0; jj < ncol; jj++)
         rowData[jj] = xx[rowIdx+colOffset[jj]]; //HJ
@@ -158,7 +158,7 @@ SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row)
 
 
 
-SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int by_row) {
+SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   SEXP ans;
   int isOdd;
   int ii, jj, kk, qq;
@@ -194,7 +194,7 @@ SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int by_r
   colOffset = (int *) R_alloc(ncol, sizeof(int));
 
   // HJ begin
-  if (by_row) {
+  if (byrow) {
     for(jj=0; jj < ncol; jj++) 
       colOffset[jj] = (int)jj*nrow;
   } else {
@@ -208,7 +208,7 @@ SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int by_r
       if(ii % 1000 == 0)
         R_CheckUserInterrupt(); 
 
-      int rowIdx = by_row ? ii : ncol*ii; //HJ
+      int rowIdx = byrow ? ii : ncol*ii; //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
       for(jj=0; jj < ncol; jj++) {
@@ -263,7 +263,7 @@ SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int by_r
       if(ii % 1000 == 0)
         R_CheckUserInterrupt(); 
 
-      int rowIdx = by_row ? ii : ncol*ii; //HJ
+      int rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for(jj=0; jj < ncol; jj++)
         rowData[jj] = xx[rowIdx+colOffset[jj]]; //HJ
@@ -293,7 +293,7 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
   int nrow, ncol;
   int narm;
   int hasna;
-  int by_row = 1;
+  int byrow = 1;
 
   /* Argument 'x': */
   if (!isMatrix(x))
@@ -319,9 +319,9 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowMediansReal(x, nrow, ncol, narm, hasna, by_row);
+    ans = rowMediansReal(x, nrow, ncol, narm, hasna, byrow);
   } else if (isInteger(x)) {
-    ans = rowMediansInteger(x, nrow, ncol, narm, hasna, by_row);
+    ans = rowMediansInteger(x, nrow, ncol, narm, hasna, byrow);
   } else {
     UNPROTECT(1);
     error("Argument 'x' must be a numeric.");
@@ -338,7 +338,7 @@ SEXP colMedians(SEXP x, SEXP naRm, SEXP hasNA) {
   int nrow, ncol;
   int narm;
   int hasna;
-  int by_row = 0;
+  int byrow = 0;
 
   /* Argument 'x': */
   if (!isMatrix(x))
@@ -364,9 +364,9 @@ SEXP colMedians(SEXP x, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowMediansReal(x, nrow, ncol, narm, hasna, by_row);
+    ans = rowMediansReal(x, nrow, ncol, narm, hasna, byrow);
   } else if (isInteger(x)) {
-    ans = rowMediansInteger(x, nrow, ncol, narm, hasna, by_row);
+    ans = rowMediansInteger(x, nrow, ncol, narm, hasna, byrow);
   } else {
     UNPROTECT(1);
     error("Argument 'x' must be a numeric.");

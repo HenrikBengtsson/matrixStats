@@ -3,7 +3,7 @@
  SEXP rowOrderStats(SEXP x, SEXP which)
 
  Private methods:
- SEXP rowOrderStatsReal(SEXP x, int nrow, int ncol, int qq,)
+ SEXP rowOrderStatsReal(SEXP x, int nrow, int ncol, int qq)
  SEXP rowOrderStatsInteger(SEXP x, int nrow, int ncol, int qq)
 
  Authors: Adopted from rowQ() by R. Gentleman.
