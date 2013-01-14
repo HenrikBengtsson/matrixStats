@@ -4,8 +4,8 @@
  SEXP colRanks(SEXP x, SEXP tiesMethod)
 
  Private methods:
- SEXP rowRanksReal(SEXP x, int nrow, int ncol, int byrow)
- SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int byrow)
+ SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow)
+ SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow)
 
  To do: Add support for missing values.
 
@@ -14,8 +14,8 @@
  **************************************************************************/
 #include <Rinternals.h>
 
-SEXP rowRanksReal(SEXP x, int nrow, int ncol, int byrow);
-SEXP rowRanksInteger(SEXP x, int nrow, int ncol, int byrow);
+SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow);
+SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow);
 
 
 SEXP rowRanks(SEXP x, SEXP tiesMethod) {
@@ -34,9 +34,9 @@ SEXP rowRanks(SEXP x, SEXP tiesMethod) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowRanksReal(x, nrow, ncol, 0);
+    ans = rowRanks_Real(x, nrow, ncol, 0);
   } else if (isInteger(x)) {
-    ans = rowRanksInteger(x, nrow, ncol, 0);
+    ans = rowRanks_Integer(x, nrow, ncol, 0);
   } else {
     ans = NULL; // To please compiler
     error("Argument 'x' must be numeric.");
