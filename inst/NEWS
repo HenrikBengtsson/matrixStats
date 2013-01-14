@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.7.0 [2013-01-14]
+o Now rowRanks() and colRanks() support "max" (default), "min"
+  and "average" for argument 'ties.method'.  Added system tests
+  validation these cases.  Thanks Peter Langfelder (UCLA) for 
+  contributing this. 
+
+
 Version: 0.6.4 [2013-01-13]
 o Added argument 'ties.method' to rowRanks() and colRanks(), but
   still only support for "max" (as before).

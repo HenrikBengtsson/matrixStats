@@ -82,6 +82,5 @@ SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow) {
 /***************************************************************************
  HISTORY:
  2013-01-13 [HB]
- o Added argument 'tiesMethod' to row/colRanks().
- o Added colRanks() analogously to row/colMedians().
+ o Added argument 'tiesMethod' to rowRanks().
  **************************************************************************/

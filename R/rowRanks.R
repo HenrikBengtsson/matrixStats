@@ -11,8 +11,8 @@
 # }
 #
 # \usage{
-#  rowRanks(x, ties.method=c("max"), ...)
-#  colRanks(x, ties.method=c("max"), ...)
+#  rowRanks(x, ties.method=c("max", "average", "min"), ...)
+#  colRanks(x, ties.method=c("max", "average", "min"), ...)
 # }
 #
 # \arguments{
@@ -50,17 +50,18 @@
 #   specifies what their ranks should be.
 #   If \code{ties.method} is \code{"max"}, ties 
 #   are ranked as the maximum value.
-# %%  If \code{ties.method} is \code{"average"}, ties are ranked
-# %%  by their average.
-# %%  If \code{ties.method} is \code{"max"} (\code{"min"}), ties 
-# %%  are ranked as the maximum (minimum) value.
-# %%  If \code{ties.method} is \code{"average"}, ties are ranked
-# %%  by their average.
+#   If \code{ties.method} is \code{"average"}, ties are ranked
+#   by their average.
+#   If \code{ties.method} is \code{"max"} (\code{"min"}), ties 
+#   are ranked as the maximum (minimum) value.
+#   If \code{ties.method} is \code{"average"}, ties are ranked
+#   by their average.
 #   For further details, see @see "base::rank".
 # }
 #
 # \author{
 #   Hector Corrada Bravo and Harris Jaffee.
+#   Peter Langfelder for adding 'ties.method' support.
 #   The native implementation of \code{rowRanks()} was adapted from
 #   Robert Gentleman's \code{rowQ()} in the \pkg{Biobase} package.
 # }
@@ -77,38 +78,62 @@
 # @keyword robust
 # @keyword univar
 #*/########################################################################### 
-setGeneric("rowRanks", function(x, ties.method=c("max"), ...) {
+setGeneric("rowRanks", function(x, ties.method=c("max", "average", "min"), ...) {
   standardGeneric("rowRanks");
 })
 
-setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max"), ...) {
+setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), ...) {
   # Argument 'ties.method':
-##  choices <- c("max", "average", "min");
-  choices <- c("max");
-  ties.method <- match.arg(ties.method, choices=choices);
+  ties.method <- match.arg(ties.method);
 
-  tiesMethod <- charmatch(ties.method, choices);
-  .Call("rowRanks", x, as.integer(tiesMethod), PACKAGE="matrixStats");
+  # Argument 'flavor'
+  flavor <- (list(...)$version);
+  flavor <- ifelse(is.null(flavor), "v2", flavor);
+
+
+  if (flavor == "v1") {
+    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"));
+  }
+
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"));
+  .Call("rowRanksWithTies", x, as.integer(tiesMethod), TRUE, PACKAGE="matrixStats");
 })
 
-setGeneric("colRanks", function(x, ties.method=c("max"), ...) {
+
+setGeneric("colRanks", function(x, ties.method=c("max", "average", "min"), ...) {
   standardGeneric("colRanks");
 })
 
-setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max"), ...) {
+setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), ...) {
   # Argument 'ties.method':
-##  choices <- c("max", "average", "min");
-  choices <- c("max");
-  ties.method <- match.arg(ties.method, choices=choices);
+  ties.method <- match.arg(ties.method);
 
-  tiesMethod <- charmatch(ties.method, choices);
-  x <- t(x);
-  .Call("rowRanks", x, as.integer(tiesMethod), PACKAGE="matrixStats");
+  # Argument 'flavor'
+  flavor <- (list(...)$version);
+  flavor <- ifelse(is.null(flavor), "v2", flavor);
+
+  # Argument 'transpose'
+  transpose <- (list(...)$transpose);
+  transpose <- ifelse(is.null(transpose), TRUE, isTRUE(transpose));
+
+
+  if (flavor == "v1") {
+    x <- t(x);
+    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"));
+  }
+
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"));
+  y <- .Call("rowRanksWithTies", x, as.integer(tiesMethod), FALSE, PACKAGE="matrixStats");
+  if (transpose) y <- t(y);
+  y;
 })
 
 
 ############################################################################
 # HISTORY:
+# 2013-01-14 [HB]
+# o Added internal support for rowRanks() with ties "max", "min" and
+#   "average".
 # 2011-11-11 [HB]
 # o Added '...' to generic functions rowRanks() and colRanks().
 # 2011-10-17 [HJ]

@@ -21,9 +21,9 @@
   - TIESMETHOD: '0' (min), '1' (max), 'a' (average)
 
  Authors:
-  Hector Corrada Bravo (original with "max" ties)
-  Peter Langfelder (initial template and support for different ties).
-  Henrik Bengtsson (template cleanup and extensions)
+  Hector Corrada Bravo [HCB]
+  Peter Langfelder [PL]
+  Henrik Bengtsson [HB]
  ***********************************************************************/
 #include <Rdefines.h>
 #include <Rmath.h>
@@ -168,3 +168,16 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
 #undef INDEX_OF
 #undef TIESMETHOD
 #include "templates-types_undef.h"
+
+
+/***************************************************************************
+ HISTORY:
+ 2013-01-13 [HB]
+ o Template cleanup.  Extened tempate to integer matrices.
+ o Added argument 'tiesMethod' to rowRanks().
+ 2012-12-14 [PL]
+ o Added internal support for "min", "max" and "average" ties.  Using
+   template to generate the various versions of the functions.
+ 2013-01-13 [HCB]
+ o Created.  Using "max" ties.
+ **************************************************************************/

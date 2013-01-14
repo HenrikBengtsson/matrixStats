@@ -190,3 +190,10 @@ SEXP rowRanksWithTies(SEXP x, SEXP tiesMethod, SEXP byRow) {
 
   return(ans);
 } // rowRanksWithTies()
+
+
+/***************************************************************************
+ HISTORY:
+ 2013-01-13 [HB]
+ o Added argument 'tiesMethod' to rowRanks().
+ **************************************************************************/

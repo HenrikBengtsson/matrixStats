@@ -1,8 +1,8 @@
 Package: matrixStats
-Version: 0.6.4
+Version: 0.7.0
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3 (>= 1.4.2)
-Date: 2013-01-13
+Date: 2013-01-14
 Title: Methods that apply to rows and columns of a matrix
 Author: Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Harris Jaffee
 Maintainer: Henrik Bengtsson <henrikb@braju.com>

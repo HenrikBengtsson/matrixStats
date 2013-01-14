@@ -20,8 +20,8 @@
 }
 
 \usage{
- rowRanks(x, ties.method=c("max"), ...)
- colRanks(x, ties.method=c("max"), ...)
+ rowRanks(x, ties.method=c("max", "average", "min"), ...)
+ colRanks(x, ties.method=c("max", "average", "min"), ...)
 }
 
 \arguments{
@@ -59,17 +59,18 @@
   specifies what their ranks should be.
   If \code{ties.method} is \code{"max"}, ties
   are ranked as the maximum value.
-%%  If \code{ties.method} is \code{"average"}, ties are ranked
-%%  by their average.
-%%  If \code{ties.method} is \code{"max"} (\code{"min"}), ties
-%%  are ranked as the maximum (minimum) value.
-%%  If \code{ties.method} is \code{"average"}, ties are ranked
-%%  by their average.
+  If \code{ties.method} is \code{"average"}, ties are ranked
+  by their average.
+  If \code{ties.method} is \code{"max"} (\code{"min"}), ties
+  are ranked as the maximum (minimum) value.
+  If \code{ties.method} is \code{"average"}, ties are ranked
+  by their average.
   For further details, see \code{\link[base]{rank}}().
 }
 
 \author{
   Hector Corrada Bravo and Harris Jaffee.
+  Peter Langfelder for adding 'ties.method' support.
   The native implementation of \code{rowRanks()} was adapted from
   Robert Gentleman's \code{rowQ()} in the \pkg{Biobase} package.
 }
