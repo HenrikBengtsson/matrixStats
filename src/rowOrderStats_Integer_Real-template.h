@@ -24,21 +24,21 @@ SEXP METHOD_TYPE(SEXP x, int nrow, int ncol, int qq) {
   SEXP ans;
   int ii, jj;
   int *colOffset;
-  C_TYPE *rowData, *xx;
+  X_C_TYPE *rowData, *xx;
 
   /* R allocate a double vector of length 'nrow' */
-  PROTECT(ans = allocVector(R_SXP, nrow));
+  PROTECT(ans = allocVector(ANS_SXP, nrow));
 
   /* R allocate memory for the 'rowData'.  This will be 
      taken care of by the R garbage collector later on. */
-  rowData = (C_TYPE *) R_alloc(ncol, sizeof(C_TYPE));
+  rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
   /* Pre-calculate the column offsets */
   colOffset = (int *) R_alloc(ncol, sizeof(int));
   for(jj=0; jj < ncol; jj++) 
     colOffset[jj] = (int)jj*nrow;
 
-  xx = R_TO_C(x);
+  xx = X_IN_C(x);
   for(ii=0; ii < nrow; ii++) {
     for(jj=0; jj < ncol; jj++) 
       rowData[jj] = xx[ii+colOffset[jj]];
@@ -49,7 +49,7 @@ SEXP METHOD_TYPE(SEXP x, int nrow, int ncol, int qq) {
        to the right." */
     PSORT(rowData, ncol, qq);
 
-    R_TO_C(ans)[ii] = rowData[qq];
+    ANS_IN_C(ans)[ii] = rowData[qq];
   }
 
   UNPROTECT(1);

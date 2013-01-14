@@ -1,7 +1,8 @@
 #undef CONCAT
 #undef CONCAT_MACROS
 
-#undef R_TO_C
-#undef R_SXP
-#undef C_TYPE
 #undef METHOD_TYPE
+#undef X_C_TYPE
+#undef X_IN_C
+#undef ANS_SXP
+#undef ANS_IN_C
