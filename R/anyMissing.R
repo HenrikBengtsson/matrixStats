@@ -8,6 +8,7 @@
 # \alias{anyMissing,data.frame-method}
 # \alias{anyMissing,list-method}
 # \alias{anyMissing,NULL-method}
+# \alias{anyMissing,raw-method}
 #
 # @title "Checks if there are any missing values in an object or not"
 #
@@ -85,6 +86,10 @@ setMethod("anyMissing", signature(x="list"), function(x, ...) {
   FALSE;
 })
 
+setMethod("anyMissing", signature(x="raw"), function(x, ...) {
+  FALSE;
+})
+
 setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
   FALSE;
 })
@@ -92,6 +97,8 @@ setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-01-13
+# o Added anyMissing() for raw, which always returns FALSE.
 # 2008-03-25
 # o Added anyMissing() for matrices, data.frames, lists and NULL.
 # o Added anyMissing() for numeric, logical, complex and character.

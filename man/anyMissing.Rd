@@ -17,6 +17,7 @@
 \alias{anyMissing,data.frame-method}
 \alias{anyMissing,list-method}
 \alias{anyMissing,NULL-method}
+\alias{anyMissing,raw-method}
 
 \title{Checks if there are any missing values in an object or not}
 

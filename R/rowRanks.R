@@ -22,7 +22,8 @@
 #
 # \value{
 #   \code{rowRanks()} (\code{colRanks()}) returns an @integer NxK
-#   (KxN) @matrix.
+#   (KxN) @matrix, where
+#   N (K) is the number of rows (columns) for which ranks are calculated.
 # }
 #
 # \details{
@@ -79,6 +80,7 @@ setMethod("colRanks", signature(x="matrix"), function(x, ...) {
   x <- t(x);
   rowRanks(x, ...);
 })
+
 
 ############################################################################
 # HISTORY:

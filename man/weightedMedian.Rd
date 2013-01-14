@@ -51,7 +51,7 @@
 }
 
 \value{
-  Returns the weighted median.
+  Returns a \code{\link[base]{numeric}} scalar.
 }
 
 \details{

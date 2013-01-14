@@ -2,7 +2,9 @@ Package: matrixStats
 ====================
 
 Version: 0.6.3 [2013-01-13]
+o Added anyMissing() for data type 'raw', which always returns FALSE.
 o ROBUSTNESS: Added system test for anyMissing().
+o ROBUSTNESS: Now S3 methods are declared in the namespace.
 
 
 Version: 0.6.2 [2012-11-15]

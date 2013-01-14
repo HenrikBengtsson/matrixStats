@@ -42,7 +42,7 @@
 # }
 #
 # \value{
-#   Returns the weighted median.
+#   Returns a @numeric scalar.
 # }
 #
 # \details{

@@ -1,8 +1,33 @@
-useDynLib(matrixStats)
+useDynLib("matrixStats")
 
-import(methods)
-import(R.methodsS3)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# IMPORTS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+import("methods")
+importFrom("R.methodsS3", "setMethodS3")
+importFrom("R.methodsS3", "throw") 
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# EXPORTS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## Export all non-private methods (anything w/out a dot prefix).
 exportPattern("^[^\\.]")
 #exportPattern(".*")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# DECLARATIONS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Vector methods
+S3method("binCounts", "default")
+S3method("binMeans", "default")
+S3method("weightedMad", "default")
+S3method("weightedMedian", "default")
+
+# Matrix methods
+S3method("rowAvgsPerColSet", "matrix")
+S3method("colAvgsPerRowSet", "matrix")
+
+S3method("rowWeightedMeans", "matrix")
+S3method("colWeightedMeans", "matrix")

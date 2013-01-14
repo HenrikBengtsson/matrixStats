@@ -14,11 +14,16 @@ data <- data.frame(
 modes <- names(data)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# NULL
+# Special: NULL and raw
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("NULL...\n")
 stopifnot(anyMissing(NULL) == FALSE)
 cat("NULL...done\n")
+
+cat("raw...\n")
+stopifnot(anyMissing(as.raw(0:3)) == FALSE)
+cat("raw...done\n")
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Scalars, vectors, and matrices of various modes

@@ -22,7 +22,9 @@
 # }
 #
 # \value{
-#   Returns a @numeric JxN (JxK) @matrix.
+#   Returns a @numeric JxN (JxK) @matrix, where
+#   N (K) is the number of rows (columns) for which the J quantiles are 
+#   calculated.
 # }
 #
 # @examples "../incl/rowQuantiles.Rex"

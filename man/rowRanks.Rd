@@ -31,7 +31,8 @@
 
 \value{
   \code{rowRanks()} (\code{colRanks()}) returns an \code{\link[base]{integer}} NxK
-  (KxN) \code{\link[base]{matrix}}.
+  (KxN) \code{\link[base]{matrix}}, where
+  N (K) is the number of rows (columns) for which ranks are calculated.
 }
 
 \details{

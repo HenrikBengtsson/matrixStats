@@ -27,13 +27,15 @@
 
  \arguments{
    \item{x}{An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
-   \item{values}{An \code{\link[base]{vector}} of values of count. If \code{\link[base]{NULL}}, all (unique)
+   \item{values}{An \code{\link[base]{vector}} of J values of count. If \code{\link[base]{NULL}}, all (unique)
     values are counted.}
    \item{...}{Not used.}
  }
 
  \value{
-   Returns a NxJ (KxJ) \code{\link[base]{matrix}} where J is the number of values counted.
+   Returns a NxJ (KxJ) \code{\link[base]{matrix}} where
+   N (K) is the number of row (column) \code{\link[base]{vector}}s tabulated and
+   J is the number of values counted.
  }
 
  \examples{

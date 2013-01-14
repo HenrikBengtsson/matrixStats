@@ -35,7 +35,10 @@
 #
 # \value{
 #   \code{rowRanges()} (\code{colRanges()}) returns a 
-#   @numeric Nx2 (Kx2) @matrix.
+#   @numeric Nx2 (Kx2) @matrix, where
+#   N (K) is the number of rows (columns) for which the ranges are 
+#   calculated.
+#
 #   \code{rowMins()/rowMaxs()} (\code{colMins()/colMaxs()}) returns a 
 #   @numeric @vector of length N (K).
 # }

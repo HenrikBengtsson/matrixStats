@@ -44,7 +44,10 @@
 
 \value{
   \code{rowRanges()} (\code{colRanges()}) returns a
-  \code{\link[base]{numeric}} Nx2 (Kx2) \code{\link[base]{matrix}}.
+  \code{\link[base]{numeric}} Nx2 (Kx2) \code{\link[base]{matrix}}, where
+  N (K) is the number of rows (columns) for which the ranges are
+  calculated.
+
   \code{rowMins()/rowMaxs()} (\code{colMins()/colMaxs()}) returns a
   \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K).
 }

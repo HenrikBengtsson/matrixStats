@@ -18,13 +18,15 @@
 #
 # \arguments{
 #   \item{x}{An @integer or @raw NxK @matrix.}
-#   \item{values}{An @vector of values of count. If @NULL, all (unique)
+#   \item{values}{An @vector of J values of count. If @NULL, all (unique)
 #    values are counted.}
 #   \item{...}{Not used.}
 # }
 # 
 # \value{
-#   Returns a NxJ (KxJ) @matrix where J is the number of values counted.
+#   Returns a NxJ (KxJ) @matrix where 
+#   N (K) is the number of row (column) @vectors tabulated and 
+#   J is the number of values counted.
 # }
 #
 # @examples "../incl/rowTabulates.Rex"
