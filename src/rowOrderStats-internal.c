@@ -93,22 +93,6 @@ SEXP rowOrderStatsInteger(SEXP x, int nrow, int ncol, int qq) {
 }
 
 
-/* 
- * rowOrderStats_<i,r>()
- */
-#define METHOD rowOrderStats
-
-#define R_TYPE 'i'
-#include "rowOrderStats-internal-template.h"
-#undef R_TYPE
-
-#define R_TYPE 'r'
-#include "rowOrderStats-internal-template.h"
-#undef R_TYPE
-
-#undef METHOD
-
-
 /***************************************************************************
  HISTORY:
  2009-02-04 [HB]
