@@ -6,3 +6,6 @@
 #undef X_IN_C
 #undef ANS_SXP
 #undef ANS_IN_C
+
+#undef X_TYPE
+#undef ANS_TYPE

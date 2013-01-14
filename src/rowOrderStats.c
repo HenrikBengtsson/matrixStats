@@ -18,13 +18,11 @@ TEMPLATE rowOrderStats_<Integer|Real>(...):
  */
 #define METHOD rowOrderStats
 
-#define R_TYPE 'i'
+#define X_TYPE 'i'
 #include "rowOrderStats_Integer_Real-template.h"
-#undef R_TYPE
 
-#define R_TYPE 'r'
+#define X_TYPE 'r'
 #include "rowOrderStats_Integer_Real-template.h"
-#undef R_TYPE
 
 #undef METHOD
 

@@ -13,9 +13,9 @@
 
 /* Setup template macros */
 #include "templates-types.h" 
-#if R_TYPE == 'i'
+#if X_TYPE == 'i'
   #define PSORT iPsort
-#elif R_TYPE == 'r'
+#elif X_TYPE == 'r'
   #define PSORT rPsort
 #endif
 
