@@ -29,8 +29,12 @@
 
 #if ANS_TYPE == 'i'
   #define ANS_SXP INTSXP
+  #define ANS_NA NA_INTEGER
+  #define ANS_C_TYPE int
   #define ANS_IN_C INTEGER
 #elif ANS_TYPE == 'r'
   #define ANS_SXP REALSXP
+  #define ANS_NA NA_REAL
+  #define ANS_C_TYPE double
   #define ANS_IN_C REAL
 #endif
