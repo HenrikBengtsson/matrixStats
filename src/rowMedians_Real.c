@@ -10,19 +10,24 @@
 #include <Rdefines.h>
 #include <Rmath.h>
 
+#define X_IN_C REAL
+#define X_C_TYPE double
+
+#define IS_NA(x) ISNAN(x)
+#define PSORT rPsort
+
 SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   SEXP ans;
   int isOdd;
   int ii, jj, kk, qq;
   int *colOffset;
-  double *rowData, *xx;
-  double value;
+  X_C_TYPE *rowData, *xx, value;
 
-  xx = REAL(x);
+  xx = X_IN_C(x);
 
   /* R allocate memory for the 'rowData'.  This will be 
      taken care of by the R garbage collector later on. */
-  rowData = (double *) R_alloc(ncol, sizeof(double));
+  rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
   /* R allocate a double vector of length 'nrow' */
   PROTECT(ans = allocVector(REALSXP, nrow));
@@ -66,7 +71,7 @@ SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
       for(jj=0; jj < ncol; jj++) {
         value = xx[rowIdx+colOffset[jj]];  //HJ
 
-        if (ISNAN(value)) {
+        if (IS_NA(value)) {
           if (narm == FALSE) {
             kk = -1;
             break;
@@ -90,21 +95,24 @@ SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
   
         /* Permute x[0:kk-1] so that x[qq] is in the correct 
            place with smaller values to the left, ... */
-        rPsort(rowData, kk, qq+1);
+        PSORT(rowData, kk, qq+1);
         value = rowData[qq+1];
 
         if (isOdd == TRUE) {
-          REAL(ans)[ii] = value;
+          REAL(ans)[ii] = (double)value;
         } else {
-          if (narm == TRUE || !ISNAN(value)) {
+          if (narm == TRUE || !IS_NA(value)) {
             /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
                place with smaller values to the left, ... */
-            rPsort(rowData, qq+1, qq);
-            value = (rowData[qq] + value)/2;
+            PSORT(rowData, qq+1, qq);
+            if (IS_NA(rowData[qq]))
+              REAL(ans)[ii] = R_NaReal;
+            else
+              REAL(ans)[ii] = (double)((rowData[qq] + value)/2);
+          } else {
+            REAL(ans)[ii] = (double)value;
           }
-          REAL(ans)[ii] = value;
         }
-
       }
     }
   } else {
@@ -119,7 +127,7 @@ SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
   
       /* Permute x[0:ncol-1] so that x[qq] is in the correct 
          place with smaller values to the left, ... */
-      rPsort(rowData, ncol, qq+1);
+      PSORT(rowData, ncol, qq+1);
       value = rowData[qq+1];
 
       if (isOdd == TRUE) {
@@ -127,7 +135,7 @@ SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
       } else {
         /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
            place with smaller values to the left, ... */
-        rPsort(rowData, qq+1, qq);
+        PSORT(rowData, qq+1, qq);
         REAL(ans)[ii] = (double)((rowData[qq] + value))/2;
       }
 
@@ -138,6 +146,11 @@ SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
 
   return(ans);
 } /* rowMedians_Real() */
+
+/* Undo template macros */
+#undef PSORT
+#undef IS_NA
+#include "templates-types_undef.h" 
 
 
 /***************************************************************************
