@@ -1,160 +1,16 @@
 /***************************************************************************
  Private methods:
- SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
- SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
+ SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
 
  Authors: Adopted from rowQuantiles.c by R. Gentleman.
 
  Copyright Henrik Bengtsson, 2007
  **************************************************************************/
-
-/* Include R packages */
 #include <R.h>
 #include <Rdefines.h>
 #include <Rmath.h>
 
-
-
-SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
-  SEXP ans;
-  int isOdd;
-  int ii, jj, kk, qq;
-  int *colOffset;
-  double *rowData, *xx;
-  double value;
-
-  xx = REAL(x);
-
-  /* R allocate memory for the 'rowData'.  This will be 
-     taken care of by the R garbage collector later on. */
-  rowData = (double *) R_alloc(ncol, sizeof(double));
-
-  /* R allocate a double vector of length 'nrow' */
-  PROTECT(ans = allocVector(REALSXP, nrow));
-
-  /* If there are no missing values, don't try to remove them. */
-  if (hasna == FALSE)
-    narm = FALSE;
-
-  /* When narm == FALSE, isOdd and qq are the same for all rows */
-  if (narm == FALSE) {
-    isOdd = (ncol % 2 == 1);
-    qq = (int)(ncol/2) - 1;
-  } else {
-    isOdd = FALSE;
-    qq = 0;
-  }
-  //  Rprintf("isOdd=%d, qq=%d\n", isOdd, qq);
-
-  value = 0;
-
-  /* Pre-calculate the column offsets */
-  colOffset = (int *) R_alloc(ncol, sizeof(int));
-
-  //HJ begin
-  if (byrow) {
-    for(jj=0; jj < ncol; jj++) 
-      colOffset[jj] = (int)jj*nrow;
-  } else {
-    for(jj=0; jj < ncol; jj++) 
-      colOffset[jj] = jj;
-  }
-  //HJ end
-
-  if (hasna == TRUE) {
-    for(ii=0; ii < nrow; ii++) {
-      if(ii % 1000 == 0)
-        R_CheckUserInterrupt(); 
-
-      // Rprintf("ii=%d\n", ii);
-
-      int rowIdx = byrow ? ii : ncol*ii; //HJ
-
-      kk = 0;  /* The index of the last non-NA value detected */
-      for(jj=0; jj < ncol; jj++) {
-        value = xx[rowIdx+colOffset[jj]];  //HJ
-
-        if (ISNAN(value)) {
-          if (narm == FALSE) {
-            kk = -1;
-            break;
-          }
-        } else {
-          rowData[kk] = value;
-          kk = kk + 1;
-        }
-      }
-  
-      if (kk == 0) {
-        REAL(ans)[ii] = R_NaN;
-      } else if (kk == -1) {
-        REAL(ans)[ii] = R_NaReal;
-      } else {
-        /* When narm == TRUE, isOdd and qq may change with row */
-        if (narm == TRUE) {
-          isOdd = (kk % 2 == 1);
-          qq = (int)(kk/2) - 1;
-        }
-  
-        /* Permute x[0:kk-1] so that x[qq] is in the correct 
-           place with smaller values to the left, ... */
-        rPsort(rowData, kk, qq+1);
-        value = rowData[qq+1];
-
-        // Rprintf("kk=%d, qq+1=%d, value=%d\n", kk, qq, value);
-
-        if (isOdd == TRUE) {
-          REAL(ans)[ii] = value;
-        } else {
-          if (narm == TRUE || !ISNAN(value)) {
-            /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
-               place with smaller values to the left, ... */
-            rPsort(rowData, qq+1, qq);
-            value = (rowData[qq] + value)/2;
-            //  Rprintf("qq+1=%d, qq=%d, value=%d\n", qq+1, qq, value);
-          }
-          REAL(ans)[ii] = value;
-        }
-
-      }
-    }
-  } else {
-    for(ii=0; ii < nrow; ii++) {
-      if(ii % 1000 == 0)
-        R_CheckUserInterrupt(); 
-
-      int rowIdx = byrow ? ii : ncol*ii; //HJ
-
-      for(jj=0; jj < ncol; jj++)
-        rowData[jj] = xx[rowIdx+colOffset[jj]]; //HJ
-  
-      /* Permute x[0:ncol-1] so that x[qq] is in the correct 
-         place with smaller values to the left, ... */
-      rPsort(rowData, ncol, qq+1);
-      value = rowData[qq+1];
-
-      if (isOdd == TRUE) {
-        REAL(ans)[ii] = (double)value;
-      } else {
-        /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
-           place with smaller values to the left, ... */
-        rPsort(rowData, qq+1, qq);
-        value = (rowData[qq] + value)/2;
-        REAL(ans)[ii] = (double)value;
-      }
-
-    }
-  } /* if (hasna ...) */
-
-  UNPROTECT(1);
-
-  return(ans);
-} /* rowMediansReal() */
-
-
-
-
-SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
+SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   SEXP ans;
   int isOdd;
   int ii, jj, kk, qq;
@@ -271,6 +127,8 @@ SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byro
       if (isOdd == TRUE) {
         REAL(ans)[ii] = (double)value;
       } else {
+        /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
+           place with smaller values to the left, ... */
         iPsort(rowData, qq+1, qq);
         REAL(ans)[ii] = (double)((rowData[qq] + value))/2;
       }
@@ -280,7 +138,7 @@ SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byro
   UNPROTECT(1);
 
   return(ans);
-} /* rowMediansInteger() */
+} /* rowMedians_Integer() */
 
 
 /***************************************************************************

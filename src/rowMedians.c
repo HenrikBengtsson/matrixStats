@@ -11,8 +11,8 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-SEXP rowMediansReal(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
-SEXP rowMediansInteger(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
+SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
+SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
 
 SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
   SEXP ans;
