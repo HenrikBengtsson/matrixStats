@@ -11,8 +11,23 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-SEXP rowOrderStatsReal(SEXP x, int nrow, int ncol, int qq);
-SEXP rowOrderStatsInteger(SEXP x, int nrow, int ncol, int qq);
+/* 
+TEMPLATE rowOrderStats_<Real|Integer>(...):
+- SEXP rowOrderStats_Real(SEXP x, int nrow, int ncol, int qq);
+- SEXP rowOrderStats_Integer(SEXP x, int nrow, int ncol, int qq);
+ */
+#define METHOD rowOrderStats
+
+#define R_TYPE 'i'
+#include "rowOrderStats-internal-template.h"
+#undef R_TYPE
+
+#define R_TYPE 'r'
+#include "rowOrderStats-internal-template.h"
+#undef R_TYPE
+
+#undef METHOD
+
 
 
 SEXP rowOrderStats(SEXP x, SEXP which) {
@@ -47,9 +62,9 @@ SEXP rowOrderStats(SEXP x, SEXP which) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowOrderStatsReal(x, nrow, ncol, qq);
+    ans = rowOrderStats_Real(x, nrow, ncol, qq);
   } else if (isInteger(x)) {
-    ans = rowOrderStatsInteger(x, nrow, ncol, qq);
+    ans = rowOrderStats_Integer(x, nrow, ncol, qq);
   } else {
     UNPROTECT(1);
     error("Argument 'x' must be numeric.");
