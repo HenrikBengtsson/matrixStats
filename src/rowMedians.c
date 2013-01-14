@@ -45,9 +45,9 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowMediansReal(x, nrow, ncol, narm, hasna, byrow);
+    ans = rowMedians_Real(x, nrow, ncol, narm, hasna, byrow);
   } else if (isInteger(x)) {
-    ans = rowMediansInteger(x, nrow, ncol, narm, hasna, byrow);
+    ans = rowMedians_Integer(x, nrow, ncol, narm, hasna, byrow);
   } else {
     UNPROTECT(1);
     error("Argument 'x' must be a numeric.");
@@ -90,9 +90,9 @@ SEXP colMedians(SEXP x, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowMediansReal(x, nrow, ncol, narm, hasna, byrow);
+    ans = rowMedians_Real(x, nrow, ncol, narm, hasna, byrow);
   } else if (isInteger(x)) {
-    ans = rowMediansInteger(x, nrow, ncol, narm, hasna, byrow);
+    ans = rowMedians_Integer(x, nrow, ncol, narm, hasna, byrow);
   } else {
     UNPROTECT(1);
     error("Argument 'x' must be a numeric.");
