@@ -21,10 +21,10 @@ TEMPLATE rowMedians_<Integer|Real>(...):
 #define METHOD rowMedians
 
 #define X_TYPE 'i'
-#include "rowMedians_Integer_Real-template.h"
+#include "rowMedians_TYPE-template.h"
 
 #define X_TYPE 'r'
-#include "rowMedians_Integer_Real-template.h"
+#include "rowMedians_TYPE-template.h"
 
 #undef METHOD 
 

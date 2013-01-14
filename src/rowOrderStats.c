@@ -19,10 +19,10 @@ TEMPLATE rowOrderStats_<Integer|Real>(...):
 #define METHOD rowOrderStats
 
 #define X_TYPE 'i'
-#include "rowOrderStats_Integer_Real-template.h"
+#include "rowOrderStats_TYPE-template.h"
 
 #define X_TYPE 'r'
-#include "rowOrderStats_Integer_Real-template.h"
+#include "rowOrderStats_TYPE-template.h"
 
 #undef METHOD
 
