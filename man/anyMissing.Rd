@@ -30,7 +30,7 @@
 
 \arguments{
  \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or \code{\link[base]{NULL}}.}
- \item{...}{Not use.}
+ \item{...}{Not used.}
 }
 
 \value{
@@ -39,7 +39,7 @@
 
 \details{
   The implementation of this method is optimized for both speed and memory.
-  The method will return \code{\link[base:logical]{TRUE}} at the first detected missing value.
+  The method will return \code{\link[base:logical]{TRUE}} as soon as a missing value is detected.
 }
 
 \examples{

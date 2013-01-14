@@ -21,7 +21,7 @@
 #
 # \arguments{
 #  \item{x}{A @vector, a @list, a @matrix, a @data.frame, or @NULL.}
-#  \item{...}{Not use.}
+#  \item{...}{Not used.}
 # }
 #
 # \value{
@@ -30,7 +30,7 @@
 #
 # \details{
 #   The implementation of this method is optimized for both speed and memory.
-#   The method will return @TRUE at the first detected missing value.
+#   The method will return @TRUE as soon as a missing value is detected.
 # }
 #
 # \examples{
@@ -45,7 +45,7 @@
 # @keyword logic
 #*/########################################################################### 
 setGeneric("anyMissing", function(x, ...) {
-  standardGeneric("anyMissing")
+  standardGeneric("anyMissing");
 })
 
 setMethod("anyMissing", signature(x="numeric"), function(x, ...) {

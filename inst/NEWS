@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.6.3 [2013-01-13]
+o ROBUSTNESS: Added system test for anyMissing().
+
+
 Version: 0.6.2 [2012-11-15]
 o CRAN POLICY: Made example(weightedMedian) faster.
 

@@ -4,7 +4,7 @@ library("matrixStats")
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (addNA in c(FALSE, TRUE)) {
-  cat("addNA=", addNA, "\n", sep="");
+  cat("addNA=", addNA, "\n", sep="")
 
   x <- matrix(1:100, nrow=20, ncol=5)
   if (addNA) {
@@ -13,7 +13,7 @@ for (addNA in c(FALSE, TRUE)) {
 
   # Row/column ranges
   for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm=", na.rm, "\n", sep="");
+    cat("na.rm=", na.rm, "\n", sep="")
     r0 <- apply(x, MARGIN=1, FUN=mad, na.rm=na.rm)
     r1 <- rowMads(x, na.rm=na.rm)
     r2 <- colMads(t(x), na.rm=na.rm)

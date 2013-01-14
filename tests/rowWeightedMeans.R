@@ -21,7 +21,7 @@ stopifnot(all.equal(xM, xM0))
 
 # Weighted row averages (excluding some columns)
 w <- c(1,1,0,1)
-xM0 <- rowMeans(x[,(w == 1),drop=FALSE]);
+xM0 <- rowMeans(x[,(w == 1),drop=FALSE])
 xM <- rowWeightedMeans(x, w=w)
 print(xM)
 stopifnot(all.equal(xM, xM0))
@@ -29,7 +29,7 @@ stopifnot(all.equal(xM, xM0))
 
 # Weighted row averages (excluding some columns)
 w <- c(0,1,0,0)
-xM0 <- rowMeans(x[,(w == 1),drop=FALSE]);
+xM0 <- rowMeans(x[,(w == 1),drop=FALSE])
 xM <- rowWeightedMeans(x, w=w)
 stopifnot(all.equal(xM, xM0))
 

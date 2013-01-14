@@ -6,7 +6,7 @@ library("matrixStats")
 set.seed(1)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 2 else 20;
+K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 2 else 20
 for (kk in 1:K) {
   cat("Random test #", kk, "\n", sep="")
 
@@ -19,14 +19,14 @@ for (kk in 1:K) {
   # Add NAs?
   nas <- sample(c(TRUE,FALSE), size=1)
   if (nas) {
-    cat("Adding NAs\n");
+    cat("Adding NAs\n")
     nna <- sample(n, size=1)
     x[sample(length(x), size=nna)] <- as.double(NA)
   }
 
   # Integer or double?
   if (sample(c(TRUE,FALSE), size=1)) {
-    cat("Coercing to integers\n");
+    cat("Coercing to integers\n")
     storage.mode(x) <- c("integer")
   }
 

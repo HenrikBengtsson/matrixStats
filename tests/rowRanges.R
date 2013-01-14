@@ -4,7 +4,7 @@ library("matrixStats")
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (addNA in c(FALSE, TRUE)) {
-  cat("addNA=", addNA, "\n", sep="");
+  cat("addNA=", addNA, "\n", sep="")
 
   x <- matrix(1:100, nrow=20, ncol=5)
   if (addNA) {
@@ -13,7 +13,7 @@ for (addNA in c(FALSE, TRUE)) {
 
   # Row/column ranges
   for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm=", na.rm, "\n", sep="");
+    cat("na.rm=", na.rm, "\n", sep="")
     r1 <- rowRanges(x, na.rm=na.rm)
     r2 <- colRanges(t(x), na.rm=na.rm)
     r3 <- t(apply(x, MARGIN=1, FUN=range, na.rm=na.rm))
@@ -23,7 +23,7 @@ for (addNA in c(FALSE, TRUE)) {
   
   # Row/column extremes
   for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm=", na.rm, "\n", sep="");
+    cat("na.rm=", na.rm, "\n", sep="")
     # Min
     m1 <- rowMins(x, na.rm=na.rm)
     m2 <- colMins(t(x), na.rm=na.rm)
@@ -46,7 +46,7 @@ for (addNA in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(as.double(NA), nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
-  cat("na.rm=", na.rm, "\n", sep="");
+  cat("na.rm=", na.rm, "\n", sep="")
   r1 <- rowRanges(x, na.rm=na.rm)
   r2 <- colRanges(t(x), na.rm=na.rm)
   suppressWarnings({
