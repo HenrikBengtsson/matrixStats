@@ -24,7 +24,7 @@
 #
 # \value{
 #   \code{rowRanks()} (\code{colRanks()}) returns an NxK (KxN) @matrix, where
-#   N (K) is the number of rows (columns) for which ranks are calculated.
+#   N (K) is the number of rows (columns) whose ranks are calculated.
 #   The mode of the returned matrix is @integer.
 # %%  The mode of the returned matrix is @integer, except for
 # %%  \code{ties.method == "average"} when it is @double.

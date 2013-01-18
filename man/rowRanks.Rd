@@ -33,7 +33,7 @@
 
 \value{
   \code{rowRanks()} (\code{colRanks()}) returns an NxK (KxN) \code{\link[base]{matrix}}, where
-  N (K) is the number of rows (columns) for which ranks are calculated.
+  N (K) is the number of rows (columns) whose ranks are calculated.
   The mode of the returned matrix is \code{\link[base]{integer}}.
 %%  The mode of the returned matrix is \code{\link[base]{integer}}, except for
 %%  \code{ties.method == "average"} when it is \code{\link[base]{double}}.
