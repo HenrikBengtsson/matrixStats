@@ -103,7 +103,7 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
 
   # Argument 'flavor'
   flavor <- (list(...)$flavor);
-  flavor <- ifelse(is.null(flavor), "v1", flavor);
+  flavor <- ifelse(is.null(flavor), "v2", flavor);
 
 
   if (flavor == "v1") {
@@ -129,7 +129,7 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
 
   # Argument 'flavor'
   flavor <- (list(...)$flavor);
-  flavor <- ifelse(is.null(flavor), "v1", flavor);
+  flavor <- ifelse(is.null(flavor), "v2", flavor);
 
   # Argument 'preserveShape'
   preserveShape <- as.logical(preserveShape);

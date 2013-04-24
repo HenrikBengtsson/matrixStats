@@ -40,7 +40,7 @@
 #endif
 
 /* Expand arguments:
-    X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
+    X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
     ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
 #include "templates-types.h"
@@ -97,8 +97,8 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
     */
     for (jj = 0; jj <= lastFinite; jj++) {
       tmp = xx[ INDEX_OF(jj, ii, vecLen, nVec) ];
-      if (ISNAN(tmp)) {
-        while (lastFinite > jj && ISNAN(xx[ INDEX_OF(lastFinite, ii, vecLen, nVec) ])) {
+      if (X_ISNAN(tmp)) {
+        while (lastFinite > jj && X_ISNAN(xx[ INDEX_OF(lastFinite, ii, vecLen, nVec) ])) {
           I[lastFinite] = lastFinite;
           lastFinite--;
         }
@@ -172,6 +172,8 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
 
 /***************************************************************************
  HISTORY:
+ 2013-04-23 [HB]
+ o BUG FIX: Ranks did not work for integers with NAs; now using X_ISNAN().
  2013-01-13 [HB]
  o Template cleanup.  Extened tempate to integer matrices.
  o Added argument 'tiesMethod' to rowRanks().
