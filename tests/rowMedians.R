@@ -11,7 +11,7 @@ for (kk in 1:K) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  dim <- sample(50:200, size=2)
+  dim <- sample(500:2000, size=2)
   n <- prod(dim)
   x <- rnorm(n, sd=100)
   dim(x) <- dim

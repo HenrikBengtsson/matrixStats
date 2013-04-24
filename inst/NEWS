@@ -5,11 +5,10 @@ Version: 0.7.1 [2013-04-23]
 o Added argument 'preserveShape' to colRanks().  For backward
   compatibility the default is preserveShape=FALSE, but it may
   change in the future.
-o BUG FIX: (row|col)Ranks() gave the incorrect results for
-  integer matrices with missing values.
-o KNOWN ISSUES: (row|col)Medians() for integers does not
-  handle ties as median() does.  This is not the case with
-  matrixStats v0.6.2 that is on CRAN.
+o BUG FIX: Since v0.6.4, (row|col)Ranks() gave the incorrect 
+  results for integer matrices with missing values.
+o BUG FIX: Since v0.6.4, (row|col)Medians() for integers would 
+  calculate ties as floor(tieAvg).
 
 
 Version: 0.7.0 [2013-01-14]

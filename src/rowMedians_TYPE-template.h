@@ -127,7 +127,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
             if (X_ISNAN(rowData[qq]))
               REAL(ans)[ii] = R_NaReal;
             else
-              REAL(ans)[ii] = (double)((rowData[qq] + value)/2);
+              REAL(ans)[ii] = ((double)(rowData[qq] + value))/2;
           } else {
             REAL(ans)[ii] = (double)value;
           }
@@ -173,6 +173,11 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
 
 /***************************************************************************
  HISTORY:
+ 2013-04-23 [HB]
+  o BUG FIX: The integer template of rowMedians_<Integer|Real>() would
+    not handle ties properly.  This was because ties were calculated as
+    '(double)((rowData[qq] + value)/2)' instead of 
+    '((double)(rowData[qq] + value))/2'.
  2013-01-13 [HB]
   o Merged rowMedians_Integer() and rowMedians_Read() into template
     rowMedians_<Integer|Real>().
