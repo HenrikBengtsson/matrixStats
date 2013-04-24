@@ -39,7 +39,7 @@
   Returns a \code{\link[base]{numeric}} scalar.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{\link[base]{diff}}().

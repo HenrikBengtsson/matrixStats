@@ -49,7 +49,7 @@
  stopifnot(anyMissing(x) == any(is.na(x)))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

@@ -6,37 +6,37 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{rowCollapse}
+\name{rowCollapse}
 \alias{rowCollapse}
 
- \alias{colCollapse}
- \alias{rowCollapse,matrix-method}
- \alias{colCollapse,matrix-method}
+\alias{colCollapse}
+\alias{rowCollapse,matrix-method}
+\alias{colCollapse,matrix-method}
 
- \title{Extracts one cell per row (column) from a matrix}
+\title{Extracts one cell per row (column) from a matrix}
 
- \description{
-  Extracts one cell per row (column) from a matrix.
-  The implementation is optimized for memory and speed.
- }
+\description{
+ Extracts one cell per row (column) from a matrix.
+ The implementation is optimized for memory and speed.
+}
 
- \usage{
-   rowCollapse(x, idxs, ...)
-   colCollapse(x, idxs, ...)
- }
+\usage{
+  rowCollapse(x, idxs, ...)
+  colCollapse(x, idxs, ...)
+}
 
- \arguments{
-   \item{x}{An NxK \code{\link[base]{matrix}}.}
-   \item{idxs}{An index \code{\link[base]{vector}} of (maximum) length N (K) specifying the
-    columns (rows) to be extracted.}
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{x}{An NxK \code{\link[base]{matrix}}.}
+  \item{idxs}{An index \code{\link[base]{vector}} of (maximum) length N (K) specifying the
+   columns (rows) to be extracted.}
+  \item{...}{Not used.}
+}
 
- \value{
-   Returns a \code{\link[base]{vector}} of length N (K).
- }
+\value{
+  Returns a \code{\link[base]{vector}} of length N (K).
+}
 
- \examples{
+\examples{
 x <- matrix(1:27, ncol=3)
 
 y <- rowCollapse(x, 1)
@@ -54,12 +54,12 @@ yT <- c(x[1,1],x[2,2],x[3,3],x[4,1],x[5,2],x[6,3],x[7,1],x[8,2],x[9,3])
 stopifnot(identical(y, yT))
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
- \seealso{
-   \emph{Matrix indexing} to index elements in matrices and arrays,
-   cf. \code{\link[base]{[}}().
- }
+\seealso{
+  \emph{Matrix indexing} to index elements in matrices and arrays,
+  cf. \code{\link[base]{[}}().
+}
 
 
 \keyword{utilities}

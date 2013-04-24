@@ -31,7 +31,7 @@
   Returns a \code{\link[base]{numeric}} Nx(K-1) or (N-1)xK \code{\link[base]{matrix}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[base]{diff}}() is used.

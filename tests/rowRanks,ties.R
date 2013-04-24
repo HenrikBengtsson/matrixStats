@@ -33,7 +33,7 @@ str(x)
 for (mode in c("double", "integer")) {
   if (mode == "integer") {
     cat("Coercing to integers\n")
-    storage.mode(x) <- c("integer")
+    storage.mode(x) <- "integer"
   }
 
   for (MARGIN in 1:2) {
@@ -56,7 +56,7 @@ for (mode in c("double", "integer")) {
       }
 
       t2 <- system.time({
-        y2 <- fcn(x, ties.method=ties)
+        y2 <- fcn(x, ties.method=ties, flavor="v2")
       })
       stopifnot(identical(y2,y0))
       ctime(key, t0, t1, t2)

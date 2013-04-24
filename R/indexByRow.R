@@ -5,7 +5,7 @@
 # @title "Translates matrix indices by rows into indices by columns"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -38,14 +38,14 @@
 #  stopifnot(x == t(y))
 # }
 #
-# @author
+# @author "HB"
 #
 # @keyword iteration
 # @keyword logic
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("indexByRow", function(x, idxs=NULL, ...) {
   standardGeneric("indexByRow")
-}) 
+})
 
 
 setMethod("indexByRow", signature(x="matrix"), function(x, idxs=NULL, ...) {

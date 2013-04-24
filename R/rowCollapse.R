@@ -2,7 +2,7 @@
 # @RdocFunction rowCollapse
 # @alias colCollapse
 # \alias{rowCollapse,matrix-method}
-# \alias{colCollapse,matrix-method} 
+# \alias{colCollapse,matrix-method}
 #
 # @title "Extracts one cell per row (column) from a matrix"
 #
@@ -10,10 +10,10 @@
 #  @get "title".
 #  The implementation is optimized for memory and speed.
 # }
-# 
+#
 # \usage{
 #   rowCollapse(x, idxs, ...)
-#   colCollapse(x, idxs, ...) 
+#   colCollapse(x, idxs, ...)
 # }
 #
 # \arguments{
@@ -22,25 +22,25 @@
 #    columns (rows) to be extracted.}
 #   \item{...}{Not used.}
 # }
-# 
+#
 # \value{
 #   Returns a @vector of length N (K).
 # }
 #
 # @examples "../incl/rowCollapse.Rex"
 #
-# @author
+# @author "HB"
 #
 # \seealso{
-#   \emph{Matrix indexing} to index elements in matrices and arrays, 
+#   \emph{Matrix indexing} to index elements in matrices and arrays,
 #   cf. @see "base::[".
 # }
 #
 # @keyword utilities
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("rowCollapse", function(x, idxs, ...) {
   standardGeneric("rowCollapse")
-}) 
+})
 
 setMethod("rowCollapse", signature("matrix"), function(x, idxs, ...) {
   dim <- dim(x);
@@ -54,7 +54,7 @@ setMethod("rowCollapse", signature("matrix"), function(x, idxs, ...) {
 
 setGeneric("colCollapse", function(x, idxs, ...) {
   standardGeneric("colCollapse")
-}) 
+})
 
 setMethod("colCollapse", signature("matrix"), function(x, idxs, ...) {
   rowCollapse(t(x), idxs=idxs, ...);

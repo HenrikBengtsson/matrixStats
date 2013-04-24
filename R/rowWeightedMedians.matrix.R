@@ -8,7 +8,7 @@
 # @title "Calculates the weighted medians for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -31,7 +31,7 @@
 # \details{
 #   The implementations of these methods are optimized for both speed
 #   and memory.
-#   If no weights are given, the corresponding 
+#   If no weights are given, the corresponding
 #   @see "rowMedians"/\code{colMedians()} is used.
 # }
 #
@@ -39,7 +39,7 @@
 #  @include "../incl/rowWeightedMedians.Rex"
 # }
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   See @see "rowMedians" and \code{colMedians()} for non-weighted medians.
@@ -77,7 +77,7 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     res <- double(m);
     if (m == 0)
       return(res);
-    
+
     # Standardize weights to sum to one.
     w <- w / sum(w, na.rm=na.rm);
 

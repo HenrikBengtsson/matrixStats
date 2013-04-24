@@ -30,12 +30,10 @@
 #   @see "binMeans".
 # }
 #
-# \author{
-#   Henrik Bengtsson.
-# }
+# @author "HB"
 #
 # @keyword "univar"
-#*/############################################################################ 
+#*/############################################################################
 setMethodS3("binCounts", "default", function(x, bx, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -44,7 +42,7 @@ setMethodS3("binCounts", "default", function(x, bx, ...) {
   if (!is.numeric(x)) {
     stop("Argument 'x' is not numeric: ", mode(x));
   }
-  
+
   # Argument 'bx':
   if (!is.numeric(bx)) {
     stop("Argument 'bx' is not numeric: ", mode(bx));

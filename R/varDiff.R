@@ -2,9 +2,9 @@
 # @RdocFunction varDiff
 # @alias sdDiff
 # @alias madDiff
-# \alias{varDiff,numeric-method} 
-# \alias{sdDiff,numeric-method} 
-# \alias{madDiff,numeric-method} 
+# \alias{varDiff,numeric-method}
+# \alias{sdDiff,numeric-method}
+# \alias{madDiff,numeric-method}
 #
 # @title "Estimation of discrepancies based on sequential order differences in a vector"
 #
@@ -20,7 +20,7 @@
 #
 # \arguments{
 #  \item{x}{A @numeric @vector of length N.}
-#  \item{na.rm}{If @TRUE, @NAs are excluded, otherwise not.} 
+#  \item{na.rm}{If @TRUE, @NAs are excluded, otherwise not.}
 #  \item{diff}{The positional distance of elements for which the
 #     difference should be calculated.}
 #  \item{...}{Not used.}
@@ -30,7 +30,7 @@
 #   Returns a @numeric scalar.
 # }
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   See @see "base::diff".
@@ -44,7 +44,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("varDiff", function(x, na.rm=FALSE, diff=1, ...) {
   standardGeneric("varDiff");
 })
@@ -68,4 +68,4 @@ setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1, ..
 # o Added varDiff().
 # 2008-04-10 [on UA930 SFO-LHR]
 # o Created.
-############################################################################  
+############################################################################

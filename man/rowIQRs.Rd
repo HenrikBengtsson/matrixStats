@@ -51,7 +51,7 @@ q0 <- apply(x, MARGIN=2, FUN=IQR)
 stopifnot(all.equal(q0, q))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{\link[stats]{IQR}}.

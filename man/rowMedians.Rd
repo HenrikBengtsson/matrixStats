@@ -45,9 +45,7 @@
   (\code{colMedians(x)}), but all this is avoided.
 }
 
-\author{
-  Henrik Bengtsson and Harris Jaffee.
-}
+\author{Henrik Bengtsson, Harris Jaffee}
 
 \seealso{
   See \code{\link{rowMedians}}() and \code{colMedians()} for weighted medians.

@@ -2,12 +2,12 @@
 # @RdocFunction rowOrderStats
 # @alias colOrderStats
 # \alias{rowOrderStats,matrix-method}
-# \alias{colOrderStats,matrix-method} 
+# \alias{colOrderStats,matrix-method}
 #
 # @title "Gets an order statistic for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -17,7 +17,7 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
-#  \item{which}{An @integer index in [1,K] ([1,N]) indicating which 
+#  \item{which}{An @integer index in [1,K] ([1,N]) indicating which
 #               order statistic to be returned.}
 #  \item{...}{Not used.}
 # }
@@ -27,7 +27,7 @@
 # }
 #
 # \details{
-#   The implementation of \code{rowOrderStats()} is optimized for both 
+#   The implementation of \code{rowOrderStats()} is optimized for both
 #   speed and memory.
 #   To avoid coercing to @doubles (and hence memory allocation), there
 #   is a unique implementation for @integer matrices.
@@ -41,9 +41,9 @@
 # }
 #
 # \author{
-#   @get "author"
-#   The native implementation of \code{rowOrderStats()} was adopted from
-#   Robert Gentleman's \code{rowQ()} in the \pkg{Biobase} package.
+#   The native implementation of \code{rowOrderStats()} was adopted
+#   by Henrik Bengtsson from Robert Gentleman's \code{rowQ()}
+#   in the \pkg{Biobase} package.
 # }
 #
 # \seealso{
@@ -54,7 +54,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("rowOrderStats", function(x, which, ...) {
   standardGeneric("rowOrderStats");
 })
@@ -80,4 +80,4 @@ setMethod("colOrderStats", signature(x="matrix"), function(x, which, ...) {
 # o Renamed from rowQuantiles() to rowOrderStats(), especially because it
 #   is not returning quantiles like quantile().
 # o Created (again?)
-############################################################################ 
+############################################################################

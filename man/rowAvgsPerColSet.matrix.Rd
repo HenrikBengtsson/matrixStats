@@ -7,54 +7,54 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
- \name{rowAvgsPerColSet.matrix}
+\name{rowAvgsPerColSet.matrix}
 \alias{rowAvgsPerColSet.matrix}
-\alias{rowAvgsPerColSet.matrix}
-
- \alias{matrix.colAvgsPerRowSet}
+\alias{matrix.colAvgsPerRowSet}
 \alias{colAvgsPerRowSet.matrix}
 \alias{colAvgsPerRowSet,matrix-method}
 
- \alias{rowAvgsPerColSet}
- \alias{colAvgsPerRowSet}
+\alias{rowAvgsPerColSet}
+\alias{colAvgsPerRowSet}
 
- \title{Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows)}
+\title{Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows)}
 
- \description{
-  Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows).
-  Each subset is averaged independently of the others.
- }
+\description{
+ Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows).
+ Each subset is averaged independently of the others.
+}
 
- \usage{\method{rowAvgsPerColSet}{matrix}(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)}
+\usage{
+\method{rowAvgsPerColSet}{matrix}(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
+}
 
- \arguments{
-   \item{X}{A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.}
-   \item{W}{An optional \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}} of weights.}
-   \item{S}{An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}} specifying the J subsets.  Each
-     column holds K column (row) indices for the corresponding subset.}
-   \item{FUN}{The row-by-row (column-by-column) \code{\link[base]{function}} used to average
-     over each subset of \code{X}.  This function must accept a \code{\link[base]{numeric}}
-     NxK (KxM) \code{\link[base]{matrix}} and the \code{\link[base]{logical}} argument \code{na.rm} (which is
-     automatically set), and return a \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (M).}
-   \item{...}{Additional arguments passed to then \code{FUN} \code{\link[base]{function}}.}
-   \item{tFUN}{If \code{\link[base:logical]{TRUE}}, the NxK (KxM) \code{\link[base]{matrix}} passed to \code{FUN()}
-     is transposed first.}
- }
+\arguments{
+  \item{X}{A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.}
+  \item{W}{An optional \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}} of weights.}
+  \item{S}{An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}} specifying the J subsets.  Each
+    column holds K column (row) indices for the corresponding subset.}
+  \item{FUN}{The row-by-row (column-by-column) \code{\link[base]{function}} used to average
+    over each subset of \code{X}.  This function must accept a \code{\link[base]{numeric}}
+    NxK (KxM) \code{\link[base]{matrix}} and the \code{\link[base]{logical}} argument \code{na.rm} (which is
+    automatically set), and return a \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (M).}
+  \item{...}{Additional arguments passed to then \code{FUN} \code{\link[base]{function}}.}
+  \item{tFUN}{If \code{\link[base:logical]{TRUE}}, the NxK (KxM) \code{\link[base]{matrix}} passed to \code{FUN()}
+    is transposed first.}
+}
 
- \value{
-   Returns a \code{\link[base]{numeric}} JxN (MxJ) \code{\link[base]{matrix}},
-   where row names equal \code{rownames(X)} (\code{colnames(S)})
-   and column names \code{colnames(S)} (\code{colnames(X)}).
- }
+\value{
+  Returns a \code{\link[base]{numeric}} JxN (MxJ) \code{\link[base]{matrix}},
+  where row names equal \code{rownames(X)} (\code{colnames(S)})
+  and column names \code{colnames(S)} (\code{colnames(X)}).
+}
 
- \details{
-   If argument \code{S} is a single column vector with indices
-   \code{1:N}, then \code{rowAvgsPerColSet(X, S=S, FUN=rowMeans)}
-   gives the same result as \code{rowMeans(X)}.
-   Analogously, for \code{rowAvgsPerColSet()}.
- }
+\details{
+  If argument \code{S} is a single column vector with indices
+  \code{1:N}, then \code{rowAvgsPerColSet(X, S=S, FUN=rowMeans)}
+  gives the same result as \code{rowMeans(X)}.
+  Analogously, for \code{rowAvgsPerColSet()}.
+}
 
- \examples{
+\examples{
 X <- matrix(rnorm(20*6), nrow=20, ncol=6)
 rownames(X) <- LETTERS[1:nrow(X)]
 colnames(X) <- letters[1:ncol(X)]
@@ -123,7 +123,7 @@ Z0 <- colMeans(X)
 stopifnot(identical(drop(Z), Z0))
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

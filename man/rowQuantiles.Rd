@@ -57,7 +57,7 @@ q0 <- apply(x, MARGIN=2, FUN=quantile, probs=probs)
 stopifnot(all.equal(q0, t(q)))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[stats]{quantile}}.

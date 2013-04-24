@@ -42,7 +42,7 @@
   Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K).
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[stats]{sd}}, \code{\link[stats]{mad}} and \code{\link[stats:cor]{var}}.

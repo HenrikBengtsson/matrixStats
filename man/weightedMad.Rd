@@ -12,7 +12,9 @@
 
 \title{Weighted Median Absolute Deviation (MAD)}
 
-\usage{\method{weightedMad}{default}(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...)}
+\usage{
+\method{weightedMad}{default}(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...)
+}
 
 \description{
   Computes a weighted MAD of a numeric vector.
@@ -78,6 +80,8 @@ stopifnot(is.na(m))
   Internally \code{\link{weightedMedian}}() is used to
   calculate the weighted median.
 }
+
+\author{Henrik Bengtsson}
 
 
 

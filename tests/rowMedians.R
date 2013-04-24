@@ -28,7 +28,7 @@ for (kk in 1:K) {
   # Integer or double?
   if (sample(c(TRUE,FALSE), size=1)) {
     cat("Coercing to integers\n")
-    storage.mode(x) <- c("integer")
+    storage.mode(x) <- "integer"
   }
 
   na.rm <- sample(c(TRUE,FALSE), size=1)

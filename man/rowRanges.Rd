@@ -57,7 +57,7 @@
   if there are no missing values.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{rowOrderStats}}() and \code{\link{rowRanges}}().

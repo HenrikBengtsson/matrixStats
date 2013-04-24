@@ -2,7 +2,7 @@
 # @RdocFunction rowCounts
 # @alias colCounts
 # \alias{rowCounts,matrix-method}
-# \alias{colCounts,matrix-method} 
+# \alias{colCounts,matrix-method}
 # @alias rowAnys
 # \alias{rowAnys,matrix-method}
 # @alias colAnys
@@ -15,7 +15,7 @@
 # @title "Counts the number of TRUE values in each row (column) of a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -41,16 +41,16 @@
 #
 # @examples "../incl/rowCounts.Rex"
 #
-# @author
+# @author "HB"
 #
 # @keyword array
 # @keyword logic
 # @keyword iteration
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("rowCounts", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowCounts")
-}) 
+})
 
 
 setMethod("rowCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
@@ -65,7 +65,7 @@ setMethod("rowCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 setGeneric("colCounts", function(x, na.rm=FALSE, ...) {
   standardGeneric("colCounts")
-}) 
+})
 
 
 setMethod("colCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
@@ -82,7 +82,7 @@ setMethod("colCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 setGeneric("rowAlls", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowAlls")
-}) 
+})
 
 
 setMethod("rowAlls", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
@@ -93,7 +93,7 @@ setMethod("rowAlls", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 setGeneric("colAlls", function(x, na.rm=FALSE, ...) {
   standardGeneric("colAlls")
-}) 
+})
 
 
 setMethod("colAlls", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
@@ -106,7 +106,7 @@ setMethod("colAlls", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 setGeneric("rowAnys", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowAnys")
-}) 
+})
 
 
 setMethod("rowAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
@@ -117,7 +117,7 @@ setMethod("rowAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 setGeneric("colAnys", function(x, na.rm=FALSE, ...) {
   standardGeneric("colAnys")
-}) 
+})
 
 
 setMethod("colAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {

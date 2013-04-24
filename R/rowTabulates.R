@@ -3,17 +3,17 @@
 # @alias rowdTabulates
 # @alias colTabulates
 # \alias{rowTabulates,matrix-method}
-# \alias{colTabulates,matrix-method} 
+# \alias{colTabulates,matrix-method}
 #
 # @title "Tabulates the values in a matrix by row (column)"
 #
 # \description{
 #  @get "title".
 # }
-# 
+#
 # \usage{
 #   rowTabulates(x, values=NULL, ...)
-#   colTabulates(x, values=NULL, ...) 
+#   colTabulates(x, values=NULL, ...)
 # }
 #
 # \arguments{
@@ -22,23 +22,23 @@
 #    values are counted.}
 #   \item{...}{Not used.}
 # }
-# 
+#
 # \value{
-#   Returns a NxJ (KxJ) @matrix where 
-#   N (K) is the number of row (column) @vectors tabulated and 
+#   Returns a NxJ (KxJ) @matrix where
+#   N (K) is the number of row (column) @vectors tabulated and
 #   J is the number of values counted.
 # }
 #
 # @examples "../incl/rowTabulates.Rex"
 #
-# @author
-# 
+# @author "HB"
+#
 # @keyword utilities
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("rowTabulates", function(x, values=NULL, ...) {
   standardGeneric("rowTabulates");
-}) 
- 
+})
+
 
 setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

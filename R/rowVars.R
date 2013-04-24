@@ -3,12 +3,12 @@
 # @alias rowVars
 # @alias colVars
 # \alias{rowVars,matrix-method}
-# \alias{colVars,matrix-method} 
+# \alias{colVars,matrix-method}
 #
 # @title "Variance estimates for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -19,7 +19,7 @@
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{center}{(optional) The center, defaults to the row means.}
-#  \item{...}{Additional arguments passed to \code{rowMeans()} and 
+#  \item{...}{Additional arguments passed to \code{rowMeans()} and
 #     \code{rowSums()}.}
 # }
 #
@@ -29,7 +29,7 @@
 #
 # @examples "../incl/rowMethods.Rex"
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   See \code{rowMeans()} and \code{rowSums()} in @see "base::colSums".
@@ -39,7 +39,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 rowVars <- function(x, center=NULL, ...) {
   n <- !is.na(x);
   n <- rowSums(n);
@@ -65,7 +65,7 @@ colVars <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Added argument 'center=NULL', cf. base::mad().
 # o Created from genefilter::rowVars() by Wolfgang Huber.
 ############################################################################

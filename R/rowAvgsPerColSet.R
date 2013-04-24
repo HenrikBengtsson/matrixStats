@@ -11,7 +11,7 @@
 #  @get "title".
 #  Each subset is averaged independently of the others.
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -43,7 +43,7 @@
 #
 # @examples "../incl/rowAvgsPerColSet.Rex"
 #
-# @author
+# @author "HB"
 #
 # @keyword internal
 # @keyword utilities
@@ -71,7 +71,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
       stop("Argument 'W' is not numeric: ", mode(W));
     }
   }
-  
+
   # Argument 'S':
   if (!is.matrix(S)) {
     stop("Argument 'S' is not a matrix: ", class(S)[1]);
@@ -117,7 +117,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
     stopifnot(length(Zjj) == dimX[1]);
 
     # Return set average
-    Zjj;        
+    Zjj;
   });
 
   # Sanity check
@@ -168,7 +168,7 @@ setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, t
 
   # ...
   tZ <- rowAvgsPerColSet(X=tX, W=tW, S=S, FUN=FUN, tFUN=!tFUN, ...);
-  
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Transpose back
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -183,4 +183,4 @@ setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, t
 # 2011-11-29
 # o Added rowAvgsPerColSet() and colAvgsPerRowSet().
 # o Created from blockAvg() in the aroma.cn.eval package.
-############################################################################## 
+##############################################################################

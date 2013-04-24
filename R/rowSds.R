@@ -5,12 +5,12 @@
 # @alias rowMads
 # @alias colMads
 # \alias{rowSds,matrix-method}
-# \alias{colSds,matrix-method} 
+# \alias{colSds,matrix-method}
 #
 # @title "Standard deviation estimates for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -33,7 +33,7 @@
 #   Returns a @numeric @vector of length N (K).
 # }
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   @see "stats::sd", @see "stats::mad" and \code{\link[stats:cor]{var}}.
@@ -44,7 +44,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 rowSds <- function(x, ...) {
   x <- rowVars(x, ...);
   sqrt(x);
@@ -61,6 +61,6 @@ colSds <- function(x, ...) {
 # HISTORY:
 # 2012-03-19 [HC]
 # o Changed description of centers argument to rowMads and colMads
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Created from genefilter::rowVars() by Wolfgang Huber.
 ############################################################################

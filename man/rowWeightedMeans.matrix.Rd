@@ -9,8 +9,6 @@
 
 \name{rowWeightedMeans.matrix}
 \alias{rowWeightedMeans.matrix}
-\alias{rowWeightedMeans.matrix}
-
 \alias{rowWeightedMeans}
 \alias{colWeightedMeans}
 \alias{colWeightedMeans.matrix}
@@ -78,7 +76,7 @@ xM2 <- colWeightedMeans(t(x), w=w)
 stopifnot(all.equal(xM2, xM1))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{rowMeans()} and \code{colMeans()} in \code{\link[base]{colSums}}()

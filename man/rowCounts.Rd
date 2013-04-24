@@ -67,7 +67,7 @@ print(colAnys(x))
 print(which(colAnys(x)))  # 1 2 3 4
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

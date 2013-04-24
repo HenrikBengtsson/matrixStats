@@ -9,8 +9,6 @@
 
 \name{rowWeightedMedians.matrix}
 \alias{rowWeightedMedians.matrix}
-\alias{rowWeightedMedians.matrix}
-
 \alias{rowWeightedMedians}
 \alias{colWeightedMedians}
 \alias{colWeightedMedians.matrix}
@@ -79,7 +77,7 @@ stopifnot(all.equal(xM2, xM1))
 
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{\link{rowMedians}}() and \code{colMedians()} for non-weighted medians.

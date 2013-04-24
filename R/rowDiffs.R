@@ -5,7 +5,7 @@
 # @title "Calculates difference for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -22,7 +22,7 @@
 #   Returns a @numeric Nx(K-1) or (N-1)xK @matrix.
 # }
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   Internally @see "base::diff" is used.
@@ -32,7 +32,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 rowDiffs <- function(x, ...) {
   naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
@@ -52,6 +52,6 @@ colDiffs <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Created.
 ############################################################################

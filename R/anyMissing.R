@@ -13,7 +13,7 @@
 # @title "Checks if there are any missing values in an object or not"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -40,11 +40,11 @@
 #  stopifnot(anyMissing(x) == any(is.na(x)))
 # }
 #
-# @author
+# @author "HB"
 #
 # @keyword iteration
 # @keyword logic
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("anyMissing", function(x, ...) {
   standardGeneric("anyMissing");
 })

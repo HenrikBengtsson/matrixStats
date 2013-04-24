@@ -12,7 +12,9 @@
 
 \title{Fast mean calculations in non-overlapping bins}
 
-\usage{\method{binMeans}{default}(y, x, bx, na.rm=TRUE, count=TRUE, ...)}
+\usage{
+\method{binMeans}{default}(y, x, bx, na.rm=TRUE, count=TRUE, ...)
+}
 
 \description{
   Computes the sample means in non-overlapping bins

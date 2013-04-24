@@ -8,7 +8,7 @@
 # @title "Calculates the weighted means for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -31,13 +31,13 @@
 # \details{
 #   The implementations of these methods are optimized for both speed
 #   and memory.
-#   If no weights are given, the corresponding 
+#   If no weights are given, the corresponding
 #   \code{rowMeans()}/\code{colMeans()} is used.
 # }
 #
 # @examples "../incl/rowWeightedMeans.Rex"
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   See \code{rowMeans()} and \code{colMeans()} in @see "base::colSums"
@@ -86,7 +86,7 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       w <- w[idxs];
       x <- x[,idxs,drop=FALSE];
     }
-    
+
     # Has missing values?
     if (na.rm) {
       # Really?
@@ -164,7 +164,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       w <- w[idxs];
       x <- x[idxs,,drop=FALSE];
     }
-    
+
     # Has missing values?
     if (na.rm) {
       # Really?
@@ -185,7 +185,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       for (cc in 1:m) {
         W[,cc] <- W[,cc,drop=TRUE] / wS[cc];
       }
-      
+
       x[nas] <- 0;
       x <- W * x;
     } else {

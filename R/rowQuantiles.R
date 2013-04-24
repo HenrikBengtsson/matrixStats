@@ -5,7 +5,7 @@
 # @title "Estimates quantiles for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -17,19 +17,19 @@
 #  \item{x}{A @numeric NxK @matrix with N >= 0.}
 #  \item{probs}{A @numeric @vector of J probabilities in [0,1].}
 #  \item{...}{Additional arguments passed to @see "stats::quantile".}
-#  \item{drop}{If TRUE, singleton dimensions in the result are dropped, 
+#  \item{drop}{If TRUE, singleton dimensions in the result are dropped,
 #    otherwise not.}
 # }
 #
 # \value{
 #   Returns a @numeric JxN (JxK) @matrix, where
-#   N (K) is the number of rows (columns) for which the J quantiles are 
+#   N (K) is the number of rows (columns) for which the J quantiles are
 #   calculated.
 # }
 #
 # @examples "../incl/rowQuantiles.Rex"
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   @see "stats::quantile".
@@ -39,7 +39,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE) {
   naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
@@ -79,10 +79,10 @@ colQuantiles <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
-# 2011-11-29 [HB] 
+# 2011-11-29 [HB]
 # o Added an Rdoc example.
-# 2010-10-06 [HB] 
+# 2010-10-06 [HB]
 # o Now the result of {row|col}Quantiles() contains column names.
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Created.
 ############################################################################

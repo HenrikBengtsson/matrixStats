@@ -12,7 +12,9 @@
 
 \title{Fast element counting in non-overlapping bins}
 
-\usage{\method{binCounts}{default}(x, bx, ...)}
+\usage{
+\method{binCounts}{default}(x, bx, ...)
+}
 
 \description{
   Counts the number of elements in non-overlapping bins
@@ -39,9 +41,7 @@
   \code{\link{binMeans}}().
 }
 
-\author{
-  Henrik Bengtsson.
-}
+\author{Henrik Bengtsson}
 
 
 \keyword{univar}

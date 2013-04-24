@@ -6,7 +6,7 @@
 # @title "Calculates the product for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -30,13 +30,13 @@
 #   precision and lower the risk for overflow.
 # }
 #
-# @author
+# @author "HB"
 #
 # @keyword array
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 rowProds <- function(x, na.rm=FALSE, ...) {
   # Preallocate result (zero:ed by default)
   modeX <- mode(x);
@@ -122,11 +122,11 @@ colProds <- function(x, na.rm=FALSE, ...) {
 # 2012-06-25 [HB]
 # o GENERALIZATION: Now row- and colProds() handles missing values.
 # o BUG FIX: In certain cases, row- and colProds() would return NA instead
-#   of 0 for some elements.  Thanks Brenton Kenkel at University of 
+#   of 0 for some elements.  Thanks Brenton Kenkel at University of
 #   Rochester for reporting on this.
-# 2008-07-30 [HB] 
+# 2008-07-30 [HB]
 # o Now it is only rows without zeros for which the calculation is
 #   actually performed.
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Created.
 ############################################################################

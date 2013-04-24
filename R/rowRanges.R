@@ -2,7 +2,7 @@
 # @RdocFunction rowRanges
 # @alias colRanges
 # \alias{rowRanges,matrix-method}
-# \alias{colRanges,matrix-method} 
+# \alias{colRanges,matrix-method}
 # @alias rowMins
 # \alias{rowMins,matrix-method}
 # @alias rowMaxs
@@ -15,7 +15,7 @@
 # @title "Gets the range of values in each row (column) of a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -34,12 +34,12 @@
 # }
 #
 # \value{
-#   \code{rowRanges()} (\code{colRanges()}) returns a 
+#   \code{rowRanges()} (\code{colRanges()}) returns a
 #   @numeric Nx2 (Kx2) @matrix, where
-#   N (K) is the number of rows (columns) for which the ranges are 
+#   N (K) is the number of rows (columns) for which the ranges are
 #   calculated.
 #
-#   \code{rowMins()/rowMaxs()} (\code{colMins()/colMaxs()}) returns a 
+#   \code{rowMins()/rowMaxs()} (\code{colMins()/colMaxs()}) returns a
 #   @numeric @vector of length N (K).
 # }
 #
@@ -48,7 +48,7 @@
 #   if there are no missing values.
 # }
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   @see "rowOrderStats" and @see "rowRanges".
@@ -58,10 +58,10 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("rowRanges", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowRanges")
-}) 
+})
 
 setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   # Use the much faster rowOrderStats() if possible
@@ -85,7 +85,7 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
     if (na.rm) {
       todo <- which(is.na(xRange[,1]));
       if (length(todo) > 0) {
-        xRange[todo,] <- matrix(c(Inf,-Inf), 
+        xRange[todo,] <- matrix(c(Inf,-Inf),
                              nrow=length(todo), ncol=2, byrow=TRUE);
       }
     }
@@ -171,7 +171,7 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 setGeneric("colRanges", function(x, na.rm=FALSE, ...) {
   standardGeneric("colRanges")
-}) 
+})
 
 setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   # Use the much faster rowOrderStats() if possible
@@ -196,7 +196,7 @@ setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
     if (na.rm) {
       todo <- which(is.na(xRange[,1]));
       if (length(todo) > 0) {
-        xRange[todo,] <- matrix(c(Inf,-Inf), 
+        xRange[todo,] <- matrix(c(Inf,-Inf),
                              nrow=length(todo), ncol=2, byrow=TRUE);
       }
     }

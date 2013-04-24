@@ -20,7 +20,7 @@
 #            or not.  If @NA, no check at all for @NAs is done.
 #            Default value is @NA (for effiency).}
 #   \item{constant}{A @numeric scale factor, cf. @see "stats::mad".}
-#   \item{center}{Optional @numeric scalar specifying the center 
+#   \item{center}{Optional @numeric scalar specifying the center
 #            location of the data.  If @NULL, it is estimated from data.}
 #   \item{...}{Not used.}
 # }
@@ -31,7 +31,7 @@
 #
 # \section{Missing values}{
 #   Missing values are dropped at the very beginning, if argument
-#   \code{na.rm} is @TRUE, otherwise not.  
+#   \code{na.rm} is @TRUE, otherwise not.
 # }
 #
 # @examples "../incl/weightedMad.Rex"
@@ -42,9 +42,11 @@
 #   calculate the weighted median.
 # }
 #
+# @author "HB"
+#
 # @keyword "univar"
 # @keyword "robust"
-#*/############################################################################ 
+#*/############################################################################
 setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
   # Argument 'x':
   n <- length(x);
@@ -60,7 +62,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
   # Argument 'na.rm':
 
 
-  naValue <- NA; 
+  naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
 
 
@@ -72,7 +74,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
     x <- .subset(x, tmp);
     w <- .subset(w, tmp);
     n <- length(x);
-  } 
+  }
 
   # Drop missing values?
   if (na.rm) {
@@ -85,7 +87,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
   }
 
   # Are any weights Inf? Then treat them with equal weight and all others
-  # with weight zero. 
+  # with weight zero.
   tmp <- is.infinite(w);
   if (any(tmp)) {
     keep <- tmp;

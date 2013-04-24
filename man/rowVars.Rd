@@ -90,7 +90,7 @@ s2 <- colSds(x)
 print(summary(s1-s2))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{rowMeans()} and \code{rowSums()} in \code{\link[base]{colSums}}().

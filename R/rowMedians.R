@@ -2,12 +2,12 @@
 # @RdocFunction rowMedians
 # @alias colMedians
 # \alias{rowMedians,matrix-method}
-# \alias{colMedians,matrix-method} 
+# \alias{colMedians,matrix-method}
 #
 # @title "Calculates the median for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -27,7 +27,7 @@
 #
 # \details{
 #   The implementation of \code{rowMedians()} and \code{colMedians()}
-#   is optimized for both speed and memory.  
+#   is optimized for both speed and memory.
 #   To avoid coercing to @doubles (and hence memory allocation), there
 #   is a special implementation for @integer matrices.
 #   That is, if \code{x} is an @integer @matrix, then
@@ -36,9 +36,7 @@
 #   (\code{colMedians(x)}), but all this is avoided.
 # }
 #
-# \author{
-#   Henrik Bengtsson and Harris Jaffee.
-# }
+# @author "HB, HJ"
 #
 # \seealso{
 #   See @see "rowMedians" and \code{colMedians()} for weighted medians.
@@ -49,7 +47,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 setGeneric("rowMedians", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowMedians");
 })
@@ -76,7 +74,7 @@ setMethod("colMedians", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 ############################################################################
 # HISTORY:
 # 2011-10-13 [HJ]
-# o In the past, colMedians(x) was accomplished as rowMedians(t(x)); 
+# o In the past, colMedians(x) was accomplished as rowMedians(t(x));
 #   it is now done directly.
 # 2008-03-25
 # o Added colMedians() - a wrapper around rowMedians() for now.

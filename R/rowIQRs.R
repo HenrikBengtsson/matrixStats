@@ -5,7 +5,7 @@
 # @title "Estimates of the interquartile range for each row (column) in a matrix"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
 # }
 #
 # \usage{
@@ -25,7 +25,7 @@
 #
 # @examples "../incl/rowIQRs.Rex"
 #
-# @author
+# @author "HB"
 #
 # \seealso{
 #   See @see "stats::IQR".
@@ -36,7 +36,7 @@
 # @keyword iteration
 # @keyword robust
 # @keyword univar
-#*/########################################################################### 
+#*/###########################################################################
 rowIQRs <- function(x, ...) {
   Q <- rowQuantiles(x, probs=c(0.25, 0.75), ...);
   Q[,2,drop=TRUE] - Q[,1,drop=TRUE];
@@ -56,6 +56,6 @@ colIQRs <- function(x, ...) {
 # o BUG FIX: rowIQRs() and colIQRs() would return the 25% and the 75%
 #   quantiles, not the difference between them.  Thanks Pierre Neuvial
 #   at CNRS, Evry, France for the report.
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Created.
 ############################################################################

@@ -39,7 +39,7 @@
   precision and lower the risk for overflow.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

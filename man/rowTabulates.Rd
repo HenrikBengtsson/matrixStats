@@ -6,39 +6,39 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{rowTabulates}
+\name{rowTabulates}
 \alias{rowTabulates}
 
- \alias{rowdTabulates}
- \alias{colTabulates}
- \alias{rowTabulates,matrix-method}
- \alias{colTabulates,matrix-method}
+\alias{rowdTabulates}
+\alias{colTabulates}
+\alias{rowTabulates,matrix-method}
+\alias{colTabulates,matrix-method}
 
- \title{Tabulates the values in a matrix by row (column)}
+\title{Tabulates the values in a matrix by row (column)}
 
- \description{
-  Tabulates the values in a matrix by row (column).
- }
+\description{
+ Tabulates the values in a matrix by row (column).
+}
 
- \usage{
-   rowTabulates(x, values=NULL, ...)
-   colTabulates(x, values=NULL, ...)
- }
+\usage{
+  rowTabulates(x, values=NULL, ...)
+  colTabulates(x, values=NULL, ...)
+}
 
- \arguments{
-   \item{x}{An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
-   \item{values}{An \code{\link[base]{vector}} of J values of count. If \code{\link[base]{NULL}}, all (unique)
-    values are counted.}
-   \item{...}{Not used.}
- }
+\arguments{
+  \item{x}{An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
+  \item{values}{An \code{\link[base]{vector}} of J values of count. If \code{\link[base]{NULL}}, all (unique)
+   values are counted.}
+  \item{...}{Not used.}
+}
 
- \value{
-   Returns a NxJ (KxJ) \code{\link[base]{matrix}} where
-   N (K) is the number of row (column) \code{\link[base]{vector}}s tabulated and
-   J is the number of values counted.
- }
+\value{
+  Returns a NxJ (KxJ) \code{\link[base]{matrix}} where
+  N (K) is the number of row (column) \code{\link[base]{vector}}s tabulated and
+  J is the number of values counted.
+}
 
- \examples{
+\examples{
 x <- matrix(1:5, nrow=10, ncol=5)
 print(x)
 print(rowTabulates(x))
@@ -54,7 +54,7 @@ print(rowTabulates(y))
 print(colTabulates(y))
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 \keyword{utilities}
