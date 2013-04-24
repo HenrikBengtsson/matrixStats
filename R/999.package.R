@@ -3,7 +3,7 @@
 #
 # \description{
 #   @eval "packageDescription('matrixStats')$Description".
-#   This package went public (on CRAN) in June 2009.  
+#   This package went public (on CRAN) in June 2009.
 #   It is currently in a beta version where new methods are added.
 # }
 #
@@ -65,7 +65,7 @@
 #
 # \section{For developers}{
 #   It is currently not decided whether the methods should be S4 or S3
-#   methods.  
+#   methods.
 #   This is the reason why some methods are based on S4 and some on S3.
 #   The ones using S3 rely on the \pkg{R.methodsS3} package to define the
 #   methods.
@@ -79,7 +79,5 @@
 #   @eval "x <- citation('matrixStats'); format(x, 'textVersion')"
 # }
 #
-# \author{
-#   @eval "packageDescription('matrixStats')$Author".
-# }
-#*/#########################################################################  
+# @author "*"
+#*/#########################################################################
