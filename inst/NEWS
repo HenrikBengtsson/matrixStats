@@ -7,13 +7,16 @@ o Added argument 'preserveShape' to colRanks().  For backward
   change in the future.
 o BUG FIX: (row|col)Ranks() gave the incorrect results for
   integer matrices with missing values.
+o KNOWN ISSUES: (row|col)Medians() for integers does not
+  handle ties as median() does.  This is not the case with
+  matrixStats v0.6.2 that is on CRAN.
 
 
 Version: 0.7.0 [2013-01-14]
 o Now rowRanks() and colRanks() support "max" (default), "min"
   and "average" for argument 'ties.method'.  Added system tests
-  validation these cases.  Thanks Peter Langfelder (UCLA) for 
-  contributing this. 
+  validation these cases.  Thanks Peter Langfelder (UCLA) for
+  contributing this.
 
 
 Version: 0.6.4 [2013-01-13]
@@ -38,19 +41,19 @@ o CRAN POLICY: Made example(weightedMedian) faster.
 Version: 0.6.1 [2012-10-10]
 o BUG FIX: In some cases binCounts() and binMeans() could try to go
   past the last bin resulting a core dump.
-o BUG FIX: binCounts() and binMeans() would return random/garbage 
+o BUG FIX: binCounts() and binMeans() would return random/garbage
   values for bins that were beyond the last data point.
 
 
 Version: 0.6.0 [2012-10-04]
 o Added binMeans() for fast sample-mean calculation in bins.
-  Thanks to Martin Morgan at the Fred Hutchinson Cancer Research 
+  Thanks to Martin Morgan at the Fred Hutchinson Cancer Research
   Center, Seattle, for contributing the core code for this.
 o Added binCounts() for fast element counting in bins.
 
 
 Version: 0.5.3 [2012-09-10]
-o CRAN POLICY: Replaced the .Internal(psort(...)) call with 
+o CRAN POLICY: Replaced the .Internal(psort(...)) call with
   a call to a new internal partial sorting function, which
   utilizes the native rPsort() part of the R internals.
 
@@ -70,9 +73,9 @@ o Now this package only imports methods.
 Version: 0.5.0 [2012-04-16]
 o Added weightedMad() from aroma.core v2.5.0.
 o Added weightedMedian() from aroma.light v1.25.2.
-o This package no longer depends on the aroma.light package for 
+o This package no longer depends on the aroma.light package for
   any of its functions.
-o Now this package only imports R.methodsS3, meaning it no 
+o Now this package only imports R.methodsS3, meaning it no
   longer loads R.methodsS3 when it is loaded.
 
 
@@ -86,7 +89,7 @@ Version: 0.4.4 [2012-03-05]
 o BUG FIX: colMads() would return the incorrect estimates. This bug
   was introduced in matrixStats v0.4.0 (2011-11-11).
 o ROBUSTNESS: Added system/redundancy tests for rowMads()/colMads().
-o CRAN: Made the system tests "lighter" by default, but full tests 
+o CRAN: Made the system tests "lighter" by default, but full tests
   can still be run, cf. tests/*.R scripts.
 
 
@@ -140,7 +143,7 @@ o DOCUMENTATION: Fixed some incorrect cross references.
 
 
 Version: 0.1.9 [2010-02-03]
-o BUG FIX: (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly 
+o BUG FIX: (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly
   treat missing values as zeros.  Added corresponding redundancy tests
   (also for the median case).  Thanks Pierre Neuvial for reporting this.
 
@@ -161,16 +164,16 @@ names of the result matrix.  It gav an error OSX with R v2.9.0 devel
 
 
 Version: 0.1.6 [2009-06-17]
-o Updated the Rdoc example for rowWeightedMedians() to run conditionally 
+o Updated the Rdoc example for rowWeightedMedians() to run conditionally
   on aroma.light, which is only a suggested package - not a required one.
   This in order to prevent R CMD check to fail on CRAN, which prevents
   it for building binaries (as it currently happens on their OSX servers).
 
 
 Version: 0.1.5 [2009-02-04]
-o BUG FIX: For some errors in rowOrderStats(), the stack would not 
+o BUG FIX: For some errors in rowOrderStats(), the stack would not
   become UNPROTECTED before calling error.
- 
+
 
 Version: 0.1.4 [2009-02-02]
 o Added methods {col|row}Weighted{Mean|Median}s() for weighted averaging.
