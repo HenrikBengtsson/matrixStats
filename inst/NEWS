@@ -6,8 +6,8 @@ o Added argument 'preserveShape' to colRanks().  For backward
   compatibility the default is preserveShape=FALSE, but it may
   change in the future.
 o "BUG FIX": Reverted back to use the default implementation
-  of (row|col)Ranks(), because the code in v0.7.0 does not
-  handle missing values properly.
+  of (row|col)Ranks(), because the new code in v0.7.0 does not
+  handle missing values in integer matrices.
 
 
 Version: 0.7.0 [2013-01-14]
