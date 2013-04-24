@@ -1,0 +1,3 @@
+^Makefile$
+^incl
+^inst/doc/[.].*[.]rsp$
