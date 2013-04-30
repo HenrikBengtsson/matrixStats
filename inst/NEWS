@@ -1,9 +1,10 @@
 Package: matrixStats
 ====================
 
-Version: 0.7.2 [2013-04-29]
-o Added (row|col)SumsInLogspace() for accurate computing of
-  log(rowSums(x)) and log(colSums(x)) given log(x). Thanks to
+Version: 0.7.2 [2013-04-30]
+o Added logSumExp(lx) and (row|col)LogSumExps(lx) for accurately
+  computing of log(sum(exp(lx))) for standalone vectors, and
+  row and column vectors of matrices. Thanks to
   Nakayama ??? for the suggestion and contributing R code.
 
 

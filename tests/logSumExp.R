@@ -10,7 +10,7 @@ y0 <- log(1/mean(1/x))
 print(y0)  ## -1.600885
 
 lx <- log(x)
-y1 <- log(length(x)) - sumInLogspace(-lx)
+y1 <- log(length(x)) - logSumExp(-lx)
 print(y1)  ## [1] -1.600885
 
 # Sanity check

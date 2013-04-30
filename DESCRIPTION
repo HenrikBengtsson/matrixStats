@@ -2,7 +2,7 @@ Package: matrixStats
 Version: 0.7.2
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3 (>= 1.4.2)
-Date: 2013-04-29
+Date: 2013-04-30
 Title: Methods that apply to rows and columns of a matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),

@@ -10,7 +10,7 @@ X <- matrix(runif(500), nrow=50, ncol=10)
 y0 <- log(1/rowMeans(1/X))
 
 lX <- log(X)
-y1 <- log(ncol(X)) - rowSumsInLogspace(-lX)
+y1 <- log(ncol(X)) - rowLogSumExps(-lX)
 
 # Sanity check
 stopifnot(all.equal(y1, y0))
@@ -20,7 +20,7 @@ stopifnot(all.equal(y1, y0))
 y0 <- log(1/colMeans(1/X))
 
 lX <- log(X)
-y1 <- log(nrow(X)) - colSumsInLogspace(-lX)
+y1 <- log(nrow(X)) - colLogSumExps(-lX)
 
 # Sanity check
 stopifnot(all.equal(y1, y0))

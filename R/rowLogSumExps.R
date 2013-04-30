@@ -1,23 +1,24 @@
 ###########################################################################/**
-# @RdocFunction rowSumsInLogspace
-# @alias colSumsInLogspace
-# \alias{rowSumsInLogspace,matrix-method}
-# \alias{colSumsInLogspace,matrix-method}
+# @RdocFunction rowLogSumExps
+# @alias colLogSumExps
+# \alias{rowLogSumExps,matrix-method}
+# \alias{colLogSumExps,matrix-method}
 #
-# @title "Accurately computes log(sum(x)) of rows or columns"
+# @title "Accurately computes the logarithm of the sum of exponentials across rows or columns"
 #
 # \description{
 #   @get "title".
 # }
 #
 # \usage{
-#  rowSumsInLogspace(lx, ...)
-#  colSumsInLogspace(lx, ...)
+#  rowLogSumExps(lx, ...)
+#  colLogSumExps(lx, ...)
 # }
 #
 # \arguments{
-#  \item{lx}{A @numeric NxK @matrix of \eqn{log(x)} values.}
-#  \item{...}{Additional arguments passed to @see "sumInLogspace".}
+#  \item{lx}{A @numeric NxK @matrix.
+#   Typically \code{lx} are \eqn{log(x)} values.}
+#  \item{...}{Additional arguments passed to @see "logSumExp".}
 # }
 #
 # \value{
@@ -27,20 +28,19 @@
 # @author "HB, NX"
 #
 # \seealso{
-#   Internally, @see "sumInLogspace".
+#   Internally, @see "logSumExp" is used.
 # }
 #
 # @keyword array
-# @keyword iteration
-# @keyword univar
+# @keyword internal
 #*/###########################################################################
-rowSumsInLogspace <- function(lx, ...) {
+rowLogSumExps <- function(lx, ...) {
   n <- nrow(lx);
   res <- double(length=n);
 
   for (rr in seq(length=n)) {
     lxRR <- lx[rr,,drop=TRUE];
-    res[rr] <- sumInLogspace(lxRR, ...);
+    res[rr] <- logSumExp(lxRR, ...);
   } # for cc;
 
   # Preserve names
@@ -50,16 +50,16 @@ rowSumsInLogspace <- function(lx, ...) {
   }
 
   res;
-} # rowSumsInLogspace()
+} # rowLogSumExps()
 
 # original: res <- log( colSums(exp(lx)) )
-colSumsInLogspace <- function(lx, ...) {
+colLogSumExps <- function(lx, ...) {
   n <- ncol(lx);
   res <- double(length=n);
 
   for (cc in seq(length=n)) {
     lxCC <- lx[,cc,drop=TRUE];
-    res[cc] <- sumInLogspace(lxCC, ...);
+    res[cc] <- logSumExp(lxCC, ...);
   } # for cc;
 
   # Preserve names
@@ -69,15 +69,17 @@ colSumsInLogspace <- function(lx, ...) {
   }
 
   res;
-} # colSumsInLogspace()
+} # colLogSumExps()
 
 
 
 ############################################################################
 # HISTORY:
+# 2013-04-30 [HB]
+# o Renamed to (col|row)LogSumExps().
 # 2013-04-29 [HB]
 # o Added rowSumsInLogspace().
-# o Renamed to colSumsInLogspace() which utilizes sumInLogspace().
+# o Renamed to colSumsInLogspace() which utilizes logSumExp().
 # 2013-04-24 [HB]
 # o Added colSumsP() adopted from log.colSums.exp() code contributed
 #   by Nakayama ??? (???) on 2013-01-08.
