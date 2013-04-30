@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.7.2 [2013-04-29]
+o Added (row|col)SumsInLogspace() for accurate computing of
+  log(rowSums(x)) and log(colSums(x)) given log(x). Thanks to
+  Nakayama ??? for the suggestion and contributing R code.
+
+
 Version: 0.7.1 [2013-04-23]
 o Added argument 'preserveShape' to colRanks().  For backward
   compatibility the default is preserveShape=FALSE, but it may
