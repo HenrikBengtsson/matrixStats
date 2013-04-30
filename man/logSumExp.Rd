@@ -13,8 +13,8 @@
 \title{Accurately computes the logarithm of the sum of exponentials}
 
 \description{
- get "title", that is, \eqn{log(sum(exp(lx)))}.
- If \eqn{lx = log(x)}, then this is equivalently to calculate
+ Accurately computes the logarithm of the sum of exponentials, that is, \eqn{log(sum(exp(lx)))}.
+ If \eqn{lx = log(x)}, then this is equivalently to calculating
  \eqn{log(sum(x))}.
 
  This function, which avoid numerical underflow, is often used when
@@ -39,11 +39,10 @@
 \details{
  This is function is more accurate than \code{log(sum(exp(lx)))}
  when the values of \eqn{x = exp(lx)} are \eqn{|x| << 1}.
- Example of such \eqn{x}:s are p-values.
-  The implementation of this function is based on the observation that
+ The implementation of this function is based on the observation that
   \deqn{
      log(x + y)
-       = \{ lx = log(x), ly = log(y) \}
+       = { lx = log(x), ly = log(y) }
        = log( exp(lx) + exp(ly) )
        = lx + log ( 1 + exp(ly - lx) )
   }
@@ -51,16 +50,25 @@
 
 \examples{
 ## EXAMPLE #1
-lx <- c(1, 1000.02)
+lx <- c(1000.01, 1000.02)
 y0 <- log(sum(exp(lx)))
 print(y0) ## Inf
 
 y1 <- logSumExp(lx)
-print(y1) ## 1000.02
+print(y1) ## 1000.708
 
 
-## EXAMPLE #2:
-## R-help thread \emph{'[R] Beyond double-precision?'} on May 9, 2009.
+## EXAMPLE #2
+lx <- c(-1000.01, -1000.02)
+y0 <- log(sum(exp(lx)))
+print(y0) ## -Inf
+
+y1 <- logSumExp(lx)
+print(y1) ## -999.3218
+
+
+## EXAMPLE #3
+## R-help thread 'Beyond double-precision?' on May 9, 2009.
 
 set.seed(1)
 x <- runif(50)
@@ -77,11 +85,12 @@ print(y1)  ## [1] -1.600885
 stopifnot(all.equal(y1, y0))
 }
 
-\author{Henrik Bengtsson, Nakayama X}
+\author{
+  Native implementation by Henrik Bengtsson.
+  Original R code by Nakayama ???.
+}
 
 \seealso{
-  Internally, \code{\link[base]{log1p}}() is used for accurately computing
-  \eqn{log(1+x)}.
   For adding \emph{two} double values in native code, R provides
   the C function \code{logspace_add()} [1].
   For properties of the log-sum-exponential function, see [2].

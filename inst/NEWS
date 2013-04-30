@@ -5,7 +5,7 @@ Version: 0.7.2 [2013-04-30]
 o Added logSumExp(lx) and (row|col)LogSumExps(lx) for accurately
   computing of log(sum(exp(lx))) for standalone vectors, and
   row and column vectors of matrices. Thanks to
-  Nakayama ??? for the suggestion and contributing R code.
+  Nakayama ??? for the suggestion and contributing original R code.
 
 
 Version: 0.7.1 [2013-04-23]

@@ -4,8 +4,8 @@
 # @title "Accurately computes the logarithm of the sum of exponentials"
 #
 # \description{
-#  get "title", that is, \eqn{log(sum(exp(lx)))}.
-#  If \eqn{lx = log(x)}, then this is equivalently to calculate
+#  @get "title", that is, \eqn{log(sum(exp(lx)))}.
+#  If \eqn{lx = log(x)}, then this is equivalently to calculating
 #  \eqn{log(sum(x))}.
 #
 #  This function, which avoid numerical underflow, is often used when
@@ -30,11 +30,10 @@
 # \details{
 #  This is function is more accurate than \code{log(sum(exp(lx)))}
 #  when the values of \eqn{x = exp(lx)} are \eqn{|x| << 1}.
-#  Example of such \eqn{x}:s are p-values.
-#   The implementation of this function is based on the observation that
+#  The implementation of this function is based on the observation that
 #   \deqn{
 #      log(x + y)
-#        = \{ lx = log(x), ly = log(y) \}
+#        = { lx = log(x), ly = log(y) }
 #        = log( exp(lx) + exp(ly) )
 #        = lx + log ( 1 + exp(ly - lx) )
 #   }
@@ -42,11 +41,12 @@
 #
 # @examples "../incl/logSumExp.Rex"
 #
-# @author "HB, NX"
+# \author{
+#   Native implementation by Henrik Bengtsson.
+#   Original R code by Nakayama ???.
+# }
 #
 # \seealso{
-#   Internally, @see "base::log1p" is used for accurately computing
-#   \eqn{log(1+x)}.
 #   For adding \emph{two} double values in native code, R provides
 #   the C function \code{logspace_add()} [1].
 #   For properties of the log-sum-exponential function, see [2].
@@ -66,58 +66,19 @@
 #
 # @keyword internal
 #*/###########################################################################
-logSumExp <- function(lx, na.rm=FALSE, hasNA=anyMissing(lx)) {
-  nx <- length(lx);
-
-  # Fast result?
-  if (nx == 0L) {
-    return(-Inf);
-  } else if (nx == 1L) {
-    return(lx);
-  }
-
-  # Handle missing values
-  if (hasNA) {
-    # Return NA?
-    if (!na.rm) {
-      return(lx[NA]);
-    }
-
-    # Drop NAs
-    lx <- lx[!is.na(lx)];
-    nx <- length(lx);
-
-    # Fast result?
-    if (nx == 0L) {
-      return(-Inf);
-    } else if (nx == 1L) {
-      return(lx);
-    }
-  } # if (hasNA)
-
-  # Locate the largest value
-  idxMax <- which.max(lx);
-  lxMax <- lx[idxMax];
-
-  # Nothing more to do?
-  if (lxMax == -Inf) {
-    return(-Inf);
-  }
-
-  lx <- lx[-idxMax];
-  lx <- lx - lxMax;
-  x <- exp(lx);
-  e <- sum(x, na.rm=FALSE);
-  lxMax + log1p(e);  # == lxMax + log(1+e)
+logSumExp <- function(lx, na.rm=FALSE, hasNA=TRUE, ...) {
+  .Call("logSumExp", as.numeric(lx), as.logical(na.rm), as.logical(hasNA),
+                                                     PACKAGE="matrixStats");
 } # logSumExp()
 
 
-############################################################################
+##############################################################################
 # HISTORY:
 # 2013-04-30 [HB]
+# o Added native implementation.
 # o Renamed to logSumExp(), because that seems to be the naming convention
 #   elsewhere, e.g. Python.
 # 2013-04-29 [HB]
 # o Added sumInLogspace().
 # o Created.
-############################################################################
+##############################################################################
