@@ -27,7 +27,8 @@
 \arguments{
  \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
   Typically \code{lx} are \eqn{log(x)} values.}
- \item{...}{Additional arguments passed to \code{\link{logSumExp}}().}
+ \item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are ignored, otherwise not.}
+ \item{...}{Not used.}
 }
 
 \value{

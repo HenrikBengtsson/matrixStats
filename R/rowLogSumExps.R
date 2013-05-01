@@ -18,7 +18,8 @@
 # \arguments{
 #  \item{lx}{A @numeric NxK @matrix.
 #   Typically \code{lx} are \eqn{log(x)} values.}
-#  \item{...}{Additional arguments passed to @see "logSumExp".}
+#  \item{na.rm}{If @TRUE, any missing values are ignored, otherwise not.}
+#  \item{...}{Not used.}
 # }
 #
 # \value{

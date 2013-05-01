@@ -23,13 +23,10 @@
 }
 
 \arguments{
-  \item{lx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.
-    Typically \code{lx} are \eqn{log(x)} values.}
-  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are removed before
-    doing the computation, otherwise not.
-    Only used if argument \code{hasNA} is \code{\link[base:logical]{TRUE}}.}
-  \item{hasNA}{A \code{\link[base]{logical}} indicating whether \code{lx} contains
-    missing values or not.}
+ \item{lx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.
+   Typically \code{lx} are \eqn{log(x)} values.}
+ \item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are ignored, otherwise not.}
+ \item{...}{Not used.}
 }
 
 \value{

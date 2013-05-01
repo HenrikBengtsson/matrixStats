@@ -14,13 +14,10 @@
 # }
 #
 # \arguments{
-#   \item{lx}{A @numeric @vector.
-#     Typically \code{lx} are \eqn{log(x)} values.}
-#   \item{na.rm}{If @TRUE, any missing values are removed before
-#     doing the computation, otherwise not.
-#     Only used if argument \code{hasNA} is @TRUE.}
-#   \item{hasNA}{A @logical indicating whether \code{lx} contains
-#     missing values or not.}
+#  \item{lx}{A @numeric @vector.
+#    Typically \code{lx} are \eqn{log(x)} values.}
+#  \item{na.rm}{If @TRUE, any missing values are ignored, otherwise not.}
+#  \item{...}{Not used.}
 # }
 #
 # \value{
@@ -70,7 +67,8 @@
 # }
 #
 #*/###########################################################################
-logSumExp <- function(lx, na.rm=FALSE, hasNA=TRUE, ...) {
+logSumExp <- function(lx, na.rm=FALSE, ...) {
+  hasNA <- TRUE;
   .Call("logSumExp", as.numeric(lx), as.logical(na.rm), as.logical(hasNA),
                                                      PACKAGE="matrixStats");
 } # logSumExp()
