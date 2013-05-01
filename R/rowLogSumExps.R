@@ -40,7 +40,6 @@
 # }
 #
 # @keyword array
-# @keyword internal
 #*/###########################################################################
 rowLogSumExps <- function(lx, na.rm=FALSE, ...) {
   hasNA <- TRUE;

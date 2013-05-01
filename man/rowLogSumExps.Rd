@@ -39,13 +39,14 @@
   for speed and memory.
 }
 
-\author{Henrik Bengtsson, Nakayama X}
+\author{
+  Native implementation by Henrik Bengtsson.
+  Original R code by Nakayama ???.
+}
 
 \seealso{
   To calculate the same on vectors, \code{\link{logSumExp}}().
 }
 
 
-
 \keyword{array}
-\keyword{internal}

@@ -90,10 +90,7 @@ print(y1)  ## [1] -1.600885
 stopifnot(all.equal(y1, y0))
 }
 
-\author{
-  Native implementation by Henrik Bengtsson.
-  Original R code by Nakayama ???.
-}
+\author{Henrik Bengtsson}
 
 \seealso{
   To compute this function on rows or columns of a matrix,
@@ -116,5 +113,3 @@ stopifnot(all.equal(y1, y0))
     \url{https://stat.ethz.ch/pipermail/r-help/2011-February/269205.html}\cr
 }
 
-
-\keyword{internal}

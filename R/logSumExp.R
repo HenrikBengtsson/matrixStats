@@ -69,7 +69,6 @@
 #     \url{https://stat.ethz.ch/pipermail/r-help/2011-February/269205.html}\cr
 # }
 #
-# @keyword internal
 #*/###########################################################################
 logSumExp <- function(lx, na.rm=FALSE, hasNA=TRUE, ...) {
   .Call("logSumExp", as.numeric(lx), as.logical(na.rm), as.logical(hasNA),
