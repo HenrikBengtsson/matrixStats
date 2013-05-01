@@ -29,16 +29,23 @@
 #  when the values of \eqn{x = exp(lx)} are \eqn{|x| << 1}.
 #  The implementation of this function is based on the observation that
 #   \deqn{
-#      log(x + y)
-#        = { lx = log(x), ly = log(y) }
-#        = log( exp(lx) + exp(ly) )
-#        = lx + log ( 1 + exp(ly - lx) )
+#      log(a + b)
+#        = { la = log(a), lb = log(b) }
+#        = log( exp(la) + exp(lb) )
+#        = la + log ( 1 + exp(lb - la) )
 #   }
+#  Assuming \eqn{la > lb}, then \eqn{|lb - la| < |lb|}, and it is
+#  less likely that the computation of \eqn{1 + exp(lb - la)} will
+#  not underflow/overflow numerically.  Because of this, the overall
+#  result from this function should be more accurate.
+#  Analoguously to this, the implementation of this function finds the
+#  maximum value of \code{lx} and subtracts it from the remaining values
+#  in \code{lx}.
 # }
 #
 # \section{Benchmarking}{
-#   This method is implemented in native code and has been optimized
-#   for speed and memory.
+#   This method is optimized for correctness, that avoiding underflowing.
+#   It is implemented in native code that is optimized for speed and memory.
 # }
 #
 # @examples "../incl/logSumExp.Rex"
