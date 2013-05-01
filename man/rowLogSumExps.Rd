@@ -42,7 +42,7 @@
 
 \author{
   Native implementation by Henrik Bengtsson.
-  Original R code by Nakayama ???.
+  Original R code by Nakayama ??? (Japan).
 }
 
 \seealso{

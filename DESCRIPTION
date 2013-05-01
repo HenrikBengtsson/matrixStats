@@ -1,8 +1,8 @@
 Package: matrixStats
-Version: 0.7.2
+Version: 0.8.0
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3 (>= 1.4.2)
-Date: 2013-04-30
+Date: 2013-05-01
 Title: Methods that apply to rows and columns of a matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
@@ -10,7 +10,6 @@ Authors@R: c(
   person("Hector", "Corrada Bravo", role="ctb"),
   person("Robert", "Gentleman", role="ctb"),
   person("Ola", "Hossjer", role="ctb"),
-  person("Nakayama", "X", role="ctb"),
   person("Harris", "Jaffee", role="ctb"),
   person("Peter", "Langfelder", role="ctb"))
 Author: Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder

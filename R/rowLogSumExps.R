@@ -33,7 +33,7 @@
 #
 # \author{
 #   Native implementation by Henrik Bengtsson.
-#   Original R code by Nakayama ???.
+#   Original R code by Nakayama ??? (Japan).
 # }
 #
 # \seealso{
@@ -85,6 +85,6 @@ colLogSumExps <- function(lx, na.rm=FALSE, ...) {
 # o Renamed to colSumsInLogspace() which utilizes logSumExp().
 # 2013-04-24 [HB]
 # o Added colSumsP() adopted from log.colSums.exp() code contributed
-#   by Nakayama ??? (???) on 2013-01-08.
+#   by Nakayama ??? (Japan) on 2013-01-08.
 # o Created.
 ############################################################################
