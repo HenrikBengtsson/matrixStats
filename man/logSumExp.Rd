@@ -48,6 +48,11 @@
   }
 }
 
+\section{Benchmarking}{
+  This method is implemented in native code and has been optimized
+  for speed and memory.
+}
+
 \examples{
 ## EXAMPLE #1
 lx <- c(1000.01, 1000.02)
@@ -91,6 +96,9 @@ stopifnot(all.equal(y1, y0))
 }
 
 \seealso{
+  To compute this function on rows or columns of a matrix,
+  see \code{\link{rowLogSumExps}}().
+
   For adding \emph{two} double values in native code, R provides
   the C function \code{logspace_add()} [1].
   For properties of the log-sum-exponential function, see [2].

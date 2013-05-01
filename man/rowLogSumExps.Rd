@@ -20,8 +20,8 @@
 }
 
 \usage{
- rowLogSumExps(lx, ...)
- colLogSumExps(lx, ...)
+ rowLogSumExps(lx, na.rm=FALSE, ...)
+ colLogSumExps(lx, na.rm=FALSE, ...)
 }
 
 \arguments{
@@ -34,10 +34,15 @@
  A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K).
 }
 
+\section{Benchmarking}{
+  These methods are implemented in native code and have been optimized
+  for speed and memory.
+}
+
 \author{Henrik Bengtsson, Nakayama X}
 
 \seealso{
-  Internally, \code{\link{logSumExp}}() is used.
+  To calculate the same on vectors, \code{\link{logSumExp}}().
 }
 
 

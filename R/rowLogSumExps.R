@@ -11,8 +11,8 @@
 # }
 #
 # \usage{
-#  rowLogSumExps(lx, ...)
-#  colLogSumExps(lx, ...)
+#  rowLogSumExps(lx, na.rm=FALSE, ...)
+#  colLogSumExps(lx, na.rm=FALSE, ...)
 # }
 #
 # \arguments{
@@ -25,23 +25,28 @@
 #  A @numeric @vector of length N (K).
 # }
 #
-# @author "HB, NX"
+# \section{Benchmarking}{
+#   These methods are implemented in native code and have been optimized
+#   for speed and memory.
+# }
+#
+# \author{
+#   Native implementation by Henrik Bengtsson.
+#   Original R code by Nakayama ???.
+# }
 #
 # \seealso{
-#   Internally, @see "logSumExp" is used.
+#   To calculate the same on vectors, @see "logSumExp".
 # }
 #
 # @keyword array
 # @keyword internal
 #*/###########################################################################
-rowLogSumExps <- function(lx, ...) {
-  n <- nrow(lx);
-  res <- double(length=n);
-
-  for (rr in seq(length=n)) {
-    lxRR <- lx[rr,,drop=TRUE];
-    res[rr] <- logSumExp(lxRR, ...);
-  } # for cc;
+rowLogSumExps <- function(lx, na.rm=FALSE, ...) {
+  hasNA <- TRUE;
+  res <- .Call("rowLogSumExps",
+               lx, as.logical(na.rm), as.logical(hasNA), TRUE,
+               PACKAGE="matrixStats");
 
   # Preserve names
   names <- rownames(lx);
@@ -52,15 +57,12 @@ rowLogSumExps <- function(lx, ...) {
   res;
 } # rowLogSumExps()
 
-# original: res <- log( colSums(exp(lx)) )
-colLogSumExps <- function(lx, ...) {
-  n <- ncol(lx);
-  res <- double(length=n);
 
-  for (cc in seq(length=n)) {
-    lxCC <- lx[,cc,drop=TRUE];
-    res[cc] <- logSumExp(lxCC, ...);
-  } # for cc;
+colLogSumExps <- function(lx, na.rm=FALSE, ...) {
+  hasNA <- TRUE;
+  res <- .Call("rowLogSumExps",
+               lx, as.logical(na.rm), as.logical(hasNA), FALSE,
+               PACKAGE="matrixStats");
 
   # Preserve names
   names <- colnames(lx);
@@ -69,13 +71,14 @@ colLogSumExps <- function(lx, ...) {
   }
 
   res;
-} # colLogSumExps()
+} # rowLogSumExps()
 
 
 
 ############################################################################
 # HISTORY:
 # 2013-04-30 [HB]
+# o SPEEDUP: (col|row)LogSumExps() are now implemented natively.
 # o Renamed to (col|row)LogSumExps().
 # 2013-04-29 [HB]
 # o Added rowSumsInLogspace().

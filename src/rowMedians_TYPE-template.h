@@ -48,7 +48,8 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
      taken care of by the R garbage collector later on. */
   rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
-  /* R allocate a double vector of length 'nrow' */
+  /* R allocate a double vector of length 'nrow'
+     Note that 'nrow' means 'ncol' if byrow=FALSE. */
   PROTECT(ans = allocVector(REALSXP, nrow));
 
   /* If there are no missing values, don't try to remove them. */

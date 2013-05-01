@@ -39,14 +39,19 @@
 #   }
 # }
 #
-# @examples "../incl/logSumExp.Rex"
-#
-# \author{
-#   Native implementation by Henrik Bengtsson.
-#   Original R code by Nakayama ???.
+# \section{Benchmarking}{
+#   This method is implemented in native code and has been optimized
+#   for speed and memory.
 # }
 #
+# @examples "../incl/logSumExp.Rex"
+#
+# @author "HB"
+#
 # \seealso{
+#   To compute this function on rows or columns of a matrix,
+#   see @see "rowLogSumExps".
+#
 #   For adding \emph{two} double values in native code, R provides
 #   the C function \code{logspace_add()} [1].
 #   For properties of the log-sum-exponential function, see [2].
