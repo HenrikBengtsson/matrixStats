@@ -4,7 +4,8 @@
 library("matrixStats")
 
 logSumExp0 <- function(lx) {
-  log(sum(exp(lx)))
+  iMax <- which.max(lx)
+  log1p(sum(exp(lx[-iMax] - lx[iMax]))) + lx[iMax]
 } # logSumExp0()
 
 
@@ -36,6 +37,7 @@ t2 <- system.time({
   y2 <- log(ncol(X)) - rowLogSumExps(nlX)
 })
 stopifnot(all.equal(y2,y0))
+cat(sprintf("Timing: rowLogSumExps()/apply(logSumExp0): %.3g\n", (t2/t0)[3]))
 cat(sprintf("Timing: rowLogSumExps()/apply(logSumExp): %.3g\n", (t2/t1)[3]))
 
 t3 <- system.time({
@@ -66,6 +68,7 @@ t2 <- system.time({
   y2 <- log(nrow(X)) - colLogSumExps(nlX)
 })
 stopifnot(all.equal(y2,y0))
+cat(sprintf("Timing: colLogSumExps()/apply(logSumExp0): %.3g\n", (t2/t0)[3]))
 cat(sprintf("Timing: colLogSumExps()/apply(logSumExp): %.3g\n", (t2/t1)[3]))
 
 t3 <- system.time({
