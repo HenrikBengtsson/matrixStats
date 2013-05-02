@@ -28,8 +28,9 @@
 # }
 #
 # \section{Missing and non-finite values}{
-#   Data points where either of \code{y} and {x} is missing are dropped.
-#   Non-finite values in code{y} are not allowed and gives an error.
+#   Data points where either of \code{y} and \code{x} is missing are
+#   dropped.
+#   Non-finite values in \code{y} are not allowed and gives an error.
 #   Missing values in \code{bx} are not allowed and gives an error.
 # }
 #
@@ -41,7 +42,7 @@
 # }
 #
 # \references{
-#   [1] R-devel thread \emph{Fastest non-overlapping binning mean function 
+#   [1] R-devel thread \emph{Fastest non-overlapping binning mean function
 #       out there?} on Oct 3, 2012\cr
 # }
 #
@@ -50,7 +51,7 @@
 # }
 #
 # @keyword "univar"
-#*/############################################################################ 
+#*/############################################################################
 setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -63,7 +64,7 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ..
     stop("Argument 'y' must not contain Inf values.");
   }
   n <- length(y);
- 
+
   # Argument 'x':
   if (!is.numeric(x)) {
     stop("Argument 'x' is not numeric: ", mode(x));
@@ -137,8 +138,8 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ..
 # 2012-10-04 [HB in Anahola]
 # o Added argument 'na.rm' to binMeans().
 # o Updated Rdocs.
-# 2012-10-03 [HB] 
-# o Added binMeans() based on native code adopted from code by 
+# 2012-10-03 [HB]
+# o Added binMeans() based on native code adopted from code by
 #   Martin Morgan, Fred Hutchinson Cancer Research Center, Seattle.
 # o Created.
 ############################################################################

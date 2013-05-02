@@ -42,13 +42,14 @@
  \itemize{
    \item rowSums()
    \item rowProds()
+   \item rowLogSumExps(), logSumExp()
  }
  \bold{Estimates of the mean}:
  \itemize{
    \item rowMeans()
    \item rowMedians()
    \item rowWeightedMeans()
-   \item rowWeightedMedians()
+   \item rowWeightedMedians(), weightedMedian()
  }
  \bold{Estimates of the standard deviation, variance and more}:
  \itemize{
@@ -62,6 +63,13 @@
    \item rowRanges()
    \item rowMins()
    \item rowMaxs()
+   \item madDiff(), sdDiff(), varDiff()
+   \item weightedMad()
+ }
+ \bold{Binning}:
+ \itemize{
+   \item binCounts()
+   \item binMeans()
  }
  \bold{Miscellaneous}:
  \itemize{
@@ -89,7 +97,7 @@
 }
 
 \section{How to cite this package}{
-  Henrik Bengtsson (2013). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.8.0.
+  Henrik Bengtsson (2013). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.8.1.
 }
 
 \author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder}

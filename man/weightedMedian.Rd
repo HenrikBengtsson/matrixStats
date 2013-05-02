@@ -88,9 +88,6 @@
  it also making use of the internal quick sort algorithm (from \R v1.5.0).
  The result is that \code{weightedMedian(x)} is about half as slow as
  \code{median(x)}.
- It is hard to say how much since it depends on the data set, but it is
- also hard to time it exactly since internal garbage collector etc might
- mess up the measurements.
 
  Initial test also indicates that \code{method="shell"}, which uses
  \code{order()} is slower than \code{method="quick"}, which uses internal

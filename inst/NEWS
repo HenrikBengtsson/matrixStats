@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.2 [2013-05-02]
+o DOCUMENTATION: Minor corrections and updates to help pages.
+
+
 Version: 0.8.1 [2013-05-02]
 o BUG FIX: Native code of logSumExp() used an invalid check for
   missing value of an integer argument.  Detected by Brian Ripley
@@ -8,7 +12,7 @@ o BUG FIX: Native code of logSumExp() used an invalid check for
 
 
 Version: 0.8.0 [2013-05-01]
-o Added logSumExp(lx) and (row|col)LogSumExps(lx) for accurately
+o Added logSumExp(lx) and (col|row)LogSumExps(lx) for accurately
   computing of log(sum(exp(lx))) for standalone vectors, and
   row and column vectors of matrices. Thanks to Nakayama (Japan)
   for the suggestion and contributing a draft in R.
@@ -18,15 +22,15 @@ Version: 0.7.1 [2013-04-23]
 o Added argument 'preserveShape' to colRanks().  For backward
   compatibility the default is preserveShape=FALSE, but it may
   change in the future.
-o BUG FIX: Since v0.6.4, (row|col)Ranks() gave the incorrect 
+o BUG FIX: Since v0.6.4, (col|row)Ranks() gave the incorrect 
   results for integer matrices with missing values.
-o BUG FIX: Since v0.6.4, (row|col)Medians() for integers would 
+o BUG FIX: Since v0.6.4, (col|row)Medians() for integers would 
   calculate ties as floor(tieAvg).
 
 
 Version: 0.7.0 [2013-01-14]
-o Now rowRanks() and colRanks() support "max" (default), "min"
-  and "average" for argument 'ties.method'.  Added system tests
+o Now (col|row)Ranks() support "max" (default), "min" and 
+  "average" for argument 'ties.method'.  Added system tests
   validation these cases.  Thanks Peter Langfelder (UCLA) for
   contributing this.
 
@@ -75,8 +79,8 @@ o Updated package dependencies to match CRAN.
 
 
 Version: 0.5.1 [2012-06-25]
-o GENERALIZATION: Now row- and colProds() handle missing values.
-o BUG FIX: In certain cases, row- and colProds() would return NA instead
+o GENERALIZATION: Now (col|row)Prods() handle missing values.
+o BUG FIX: In certain cases, (col|row)Prods() would return NA instead
   of 0 for some elements.  Added a redundancy test for the case.
   Thanks Brenton Kenkel at University of Rochester for reporting on this.
 o Now this package only imports methods.
@@ -93,8 +97,8 @@ o Now this package only imports R.methodsS3, meaning it no
 
 Version: 0.4.5 [2012-03-19]
 o Updated the default argument 'centers' of rowMads()/colMads()
-  to explicitly be rowMedians(x,...)/colMedians(x,...).  The
-  default behavior has not changed.
+  to explicitly be (col|row)Medians(x,...).  The  default 
+  behavior has not changed.
 
 
 Version: 0.4.4 [2012-03-05]
@@ -142,7 +146,7 @@ o Added additional unit tests for colMedians() and rowMedians().
 
 
 Version: 0.2.2 [2010-10-06]
-o Now the result of {row|col}Quantiles() contains column names.
+o Now the result of (col|row)Quantiles() contains column names.
 
 
 Version: 0.2.1 [2010-04-05]
@@ -166,7 +170,7 @@ o BUG FIX: colRanges(x) would return a matrix of wrong dimension
   functions relying on colRanges(), e.g. colMins() and colMaxs().
   Added a redundancy test for this case.  Thanks Pierre Neuvial
   at UC Berkeley for reporting this.
-o BUG FIX: {col|row}Ranges() return a matrix with dimension names.
+o BUG FIX: (col|row)Ranges() return a matrix with dimension names.
 
 
 Version: 0.1.7 [2009-06-20]
@@ -188,25 +192,25 @@ o BUG FIX: For some errors in rowOrderStats(), the stack would not
 
 
 Version: 0.1.4 [2009-02-02]
-o Added methods {col|row}Weighted{Mean|Median}s() for weighted averaging.
+o Added methods (col|row)Weighted(Mean|Median)s() for weighted averaging.
 o Added more Rdoc comments.
 o Package passes R CMD check flawlessly.
 
 
 Version: 0.1.3 [2008-07-30]
-o Added {col|row}Tabulates() for integer and raw matrices.
+o Added (col|row)Tabulates() for integer and raw matrices.
 o BUG FIX: rowCollapse(x) was broken and returned the wrong elements.
 
 
 Version: 0.1.2 [2008-04-13]
-o Added {col|row}Collapse().
+o Added (col|row)Collapse().
 o Added varDiff(), sdDiff() and madDiff().
 o Added indexByRow().
 
 
 Version: 0.1.1 [2008-03-25]
-o Added {col|row}OrderStats().
-o Added {col|row}Ranges() and {col|row}{Min|Max}s().
+o Added (col|row)OrderStats().
+o Added (col|row)Ranges() and (col|row)(Min|Max)s().
 o Added colMedians().
 o Now anyMissing() support most data types as structures.
 

@@ -39,8 +39,9 @@
 }
 
 \section{Missing and non-finite values}{
-  Data points where either of \code{y} and {x} is missing are dropped.
-  Non-finite values in code{y} are not allowed and gives an error.
+  Data points where either of \code{y} and \code{x} is missing are
+  dropped.
+  Non-finite values in \code{y} are not allowed and gives an error.
   Missing values in \code{bx} are not allowed and gives an error.
 }
 

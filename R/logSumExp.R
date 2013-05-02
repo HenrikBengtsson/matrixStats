@@ -30,7 +30,7 @@
 #  The implementation of this function is based on the observation that
 #   \deqn{
 #      log(a + b)
-#        = { la = log(a), lb = log(b) }
+#        = [ la = log(a), lb = log(b) ]
 #        = log( exp(la) + exp(lb) )
 #        = la + log ( 1 + exp(lb - la) )
 #   }

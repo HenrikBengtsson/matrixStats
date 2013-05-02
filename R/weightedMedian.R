@@ -23,7 +23,7 @@
 #            Default value is @NA (for effiency).}
 #   \item{interpolate}{If @TRUE, linear interpolation is used to get a
 #            consistant estimate of the weighted median.}
-#   \item{ties}{If \code{interpolate == FALSE}, 
+#   \item{ties}{If \code{interpolate == FALSE},
 #            a character string specifying how to solve ties between two
 #            \code{x}'s that are satisfying the weighted median criteria.
 #            Note that at most two values can satisfy the criteria.
@@ -46,14 +46,14 @@
 # }
 #
 # \details{
-#  For the \code{n} elements \code{x = c(x[1], x[2], ..., x[n])} with positive 
-#  weights \code{w = c(w[1], w[2], ..., w[n])} such that \code{sum(w) = S}, 
-#  the \emph{weighted median} is defined as the element \code{x[k]} for which 
-#  the total weight of all elements \code{x[i] < x[k]} is less or equal to 
-#  \code{S/2} and for which the total weight of all elements \code{x[i] > x[k]} 
+#  For the \code{n} elements \code{x = c(x[1], x[2], ..., x[n])} with positive
+#  weights \code{w = c(w[1], w[2], ..., w[n])} such that \code{sum(w) = S},
+#  the \emph{weighted median} is defined as the element \code{x[k]} for which
+#  the total weight of all elements \code{x[i] < x[k]} is less or equal to
+#  \code{S/2} and for which the total weight of all elements \code{x[i] > x[k]}
 #  is less or equal to \code{S/2} (c.f. [1]).
 #
-#  If \code{w} is missing then all elements of \code{x} are given the same 
+#  If \code{w} is missing then all elements of \code{x} are given the same
 #  positive weight. If all weights are zero, \code{NA} is returned.
 #
 #  If one or more weights are \code{Inf}, it is the same as these weights
@@ -77,9 +77,6 @@
 #  it also making use of the internal quick sort algorithm (from \R v1.5.0).
 #  The result is that \code{weightedMedian(x)} is about half as slow as
 #  \code{median(x)}.
-#  It is hard to say how much since it depends on the data set, but it is
-#  also hard to time it exactly since internal garbage collector etc might
-#  mess up the measurements.
 #
 #  Initial test also indicates that \code{method="shell"}, which uses
 #  \code{order()} is slower than \code{method="quick"}, which uses internal
@@ -96,7 +93,7 @@
 # }
 #
 # \references{
-#   [1]  T.H. Cormen, C.E. Leiserson, R.L. Rivest, Introduction to Algorithms, 
+#   [1]  T.H. Cormen, C.E. Leiserson, R.L. Rivest, Introduction to Algorithms,
 #        The MIT Press, Massachusetts Institute of Technology, 1989.
 # }
 #
@@ -129,7 +126,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     w <- rep(1, times=length(x));
   }
 
-  naValue <- NA; 
+  naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
 
   # Argument 'na.rm':
@@ -181,7 +178,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
       return(sum(.psortKM(x, k=half+1L, m=2L))/2);
     }
   }
-  
+
   # If all weights are equal, the regular median could be used instead,
   # which is assumed to be faster.
   # DO NOT DO THIS: For efficiency reasons when length(x) is small
@@ -213,7 +210,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     # Adjusting the cumulative weights by subtracting of half the weights.
     wcum <- wcum - (w/2);
 
-    # Find the position k such that 
+    # Find the position k such that
     #   i) sum(w[i], i=1:(k-1)) < wmid, and
     #  ii) sum(w[i], i=1:k)    >= wmid
     # In other words, it is the (k+1):th value that brings the cumulative
@@ -225,7 +222,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
       k  <- max(1, sum(lows));
     } else {
       # Alt 2 (020627): faster for long vectors
-      
+
       # Design example:
       #
       #    1 2 3 4<5>6 7 8 9 10
@@ -243,7 +240,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
       }
       k <- k0;
     }
-    
+
     # The width and the height of the "rectangle".
     Dx <-    .subset(x, k+1) -    .subset(x, k);
     Dy <- .subset(wcum, k+1) - .subset(wcum, k);
@@ -256,7 +253,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 
     # The corresponding x value
     xm <- dx + .subset(x, k);
-    
+
 ##    if (FALSE == TRUE) {
 ##      x0 <- x[k];
 ##      x1 <- x[k+1];
@@ -278,19 +275,19 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # The code below has become more obsolete after interpolation has been added.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Find the position where the sum of the weights of the elements such that 
+  # Find the position where the sum of the weights of the elements such that
   # x[i] < x[k] is less or equal than half the sum of all weights.
   # (these two lines could probably be optimized for speed).
   lows <- (wcum <= wmid);
   k  <- sum(lows);
 
-  # Two special cases where more than half of the total weight 
+  # Two special cases where more than half of the total weight
   # is at a) the first, or b) the last value
   if (k == 0) return(.subset(x, 1));
   if (k == n) return(.subset(x, n));
 
   # At this point we know that:
-  #  1) at most half the total weight is in the set x[1:k], 
+  #  1) at most half the total weight is in the set x[1:k],
   #  2) that the set x[(k+2):n] contains less than half the total weight
   # The question is whether x[(k+1):n] contains *more* than
   # half the total weight (try x=c(1,2,3), w=c(1,1,1)). If it is then
@@ -328,9 +325,9 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 # 2011-04-08
 # o Now weightedMedian() returns NA:s of the same mode as argument 'x'.
 # 2006-04-21
-# o Now negative weights are not check for, but instead treated as zero 
+# o Now negative weights are not check for, but instead treated as zero
 #   weights.  This was done to minimize the overhead of the function.
-# o Replace all "[[" and "[" with .subset2() and .subset() to minimize 
+# o Replace all "[[" and "[" with .subset2() and .subset() to minimize
 #   overhead from method dispatching.
 # o Remove all calls to rm().
 # o It is now possible to specify via na.rm=NA that there are no NAs.
