@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.1 [2013-05-02]
+o BUG FIX: Native code of logSumExp() used an invalid check for
+  missing value of an integer argument.  Detected by Brian Ripley
+  upon CRAN submission.
+
+
 Version: 0.8.0 [2013-05-01]
 o Added logSumExp(lx) and (row|col)LogSumExps(lx) for accurately
   computing of log(sum(exp(lx))) for standalone vectors, and

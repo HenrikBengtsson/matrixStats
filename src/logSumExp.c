@@ -221,10 +221,6 @@ SEXP logSumExp(SEXP lx, SEXP naRm, SEXP hasNA) {
   /* Argument 'hasNA': */
   hasna = LOGICAL(hasNA)[0];
 
-  /* If unknown, assume NAs */
-  if (ISNAN(hasna)) {
-    hasna = TRUE;
-  }
 
   /* Get the values */
   x = REAL(lx);
@@ -266,10 +262,6 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
   /* Argument 'byRow': */
   byrow = INTEGER(byRow)[0];
 
-  /* If unknown, assume NAs */
-  if (ISNAN(hasna)) {
-    hasna = TRUE;
-  }
 
   /* Get dimensions of 'lx'. */
   PROTECT(ans = getAttrib(lx, R_DimSymbol));
@@ -312,6 +304,9 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
 
 /***************************************************************************
  HISTORY:
+ 2013-05-02 [HB]
+ o BUG FIX: Incorrectly used ISNAN() on an int variable as caught by the
+   'cc' compiler on Solaris.  Reported by Brian Ripley upon CRAN submission.
  2013-04-30 [HB]
  o Created.
  **************************************************************************/
