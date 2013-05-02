@@ -85,8 +85,8 @@
 \author{
   Hector Corrada Bravo and Harris Jaffee.
   Peter Langfelder for adding 'ties.method' support.
-  The native implementation of \code{rowRanks()} was adapted by
-  Henrik Bengtsson from Robert Gentleman's \code{rowQ()}
+  Henrik Bengtsson adapted the original native implementation
+  of \code{rowRanks()} from Robert Gentleman's \code{rowQ()}
   in the \pkg{Biobase} package.
 }
 
