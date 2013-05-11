@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.3 [2013-05-10]
+o SPEEDUP: binCounts() and binMeans() now uses Hoare's Quicksort
+  for presorting 'x' before counting/averaging.  They also no longer
+  test in every iteration (=for every data point) whether the last
+  last bin has been reached or not, but only after completing a bin.
+
+
 Version: 0.8.2 [2013-05-02]
 o DOCUMENTATION: Minor corrections and updates to help pages.
 
@@ -22,14 +29,14 @@ Version: 0.7.1 [2013-04-23]
 o Added argument 'preserveShape' to colRanks().  For backward
   compatibility the default is preserveShape=FALSE, but it may
   change in the future.
-o BUG FIX: Since v0.6.4, (col|row)Ranks() gave the incorrect 
+o BUG FIX: Since v0.6.4, (col|row)Ranks() gave the incorrect
   results for integer matrices with missing values.
-o BUG FIX: Since v0.6.4, (col|row)Medians() for integers would 
+o BUG FIX: Since v0.6.4, (col|row)Medians() for integers would
   calculate ties as floor(tieAvg).
 
 
 Version: 0.7.0 [2013-01-14]
-o Now (col|row)Ranks() support "max" (default), "min" and 
+o Now (col|row)Ranks() support "max" (default), "min" and
   "average" for argument 'ties.method'.  Added system tests
   validation these cases.  Thanks Peter Langfelder (UCLA) for
   contributing this.
@@ -97,7 +104,7 @@ o Now this package only imports R.methodsS3, meaning it no
 
 Version: 0.4.5 [2012-03-19]
 o Updated the default argument 'centers' of rowMads()/colMads()
-  to explicitly be (col|row)Medians(x,...).  The  default 
+  to explicitly be (col|row)Medians(x,...).  The  default
   behavior has not changed.
 
 

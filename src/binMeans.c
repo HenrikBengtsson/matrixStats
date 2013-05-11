@@ -31,46 +31,54 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
     countp = INTEGER(count);
   }
 
-  // Skip to the first bin
-  while ((iStart < nx) & (xp[iStart] < bxp[0])) { 
-    ++iStart;
-  }
+  // Count?
+  if (nb > 0) {
+
+    // Skip to the first bin
+    while ((iStart < nx) && (xp[iStart] < bxp[0])) { 
+      ++iStart;
+    }
+    
+    // For each x...
+    for (ii = iStart; ii < nx; ++ii) {
+
+      // Skip to a new bin?
+      while (xp[ii] >= bxp[jj+1]) {
+        // Update statistic of current bin?
+        if (retcount) { countp[jj] = n; }
+        ansp[jj] = n > 0 ? sum / n : 0;
+        sum = 0.0;
+        n = 0;
   
-  // For each x...
-  for (ii = iStart; ii < nx; ++ii) {
-    // No more bins?
-    if (jj >= nb) break;
-
-    // Skip to a new bin?
-    while (xp[ii] >= bxp[jj+1]) {
-      // Update statistic of current bin?
-      if (retcount) { countp[jj] = n; }
+        // ...and move to next
+        ++jj;
+  
+        // No more bins?
+        if (jj >= nb) {
+          ii = nx; // Cause outer for-loop to exit
+          break;
+        }
+      }
+  
+      // Sum and count 
+      sum += yp[ii];
+      ++n;
+    }
+  
+    // Update statistic of the last bin?
+    if (jj < nb) {
+      if (retcount) countp[jj] = n;
       ansp[jj] = n > 0 ? sum / n : 0;
-      sum = 0.0;
-      n = 0;
-
-      // ...and move to next
-      jj++;
-
-      // No more bins?
-      if (jj >= nb) break;
+  
+      // Assign the remaining bins to zero counts and missing mean values
+      while (++jj < nb) {
+        ansp[jj] = R_NaReal;
+        if (retcount) countp[jj] = 0;
+      }
     }
+  
+  } // if (nb > 0)
 
-    sum += yp[ii];
-    n += 1;
-  }
-
-  // Update statistic of the last bin?
-  if (jj < nb) {
-    if (retcount) countp[jj] = n;
-    ansp[jj] = n > 0 ? sum / n : 0;
-
-    // Assign the remaining bins to zero counts and missing mean values
-    while (++jj < nb) {
-      ansp[jj] = R_NaReal;
-      if (retcount) countp[jj] = 0;
-    }
-  }
 
   if (retcount) {
     setAttrib(ans, install("count"), count);
@@ -84,6 +92,9 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
 
 /***************************************************************************
  HISTORY:
+ 2013-05-10 [HB]
+  o SPEEDUP: binMeans() no longer tests in every iteration (=for every
+    data point) whether the last bin has been reached or not.
  2012-10-10 [HB]
   o BUG FIX: binMeans() would return random/garbage means/counts for
     bins that were beyond the last data point.

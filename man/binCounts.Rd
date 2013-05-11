@@ -38,7 +38,11 @@
 }
 
 \seealso{
-  \code{\link{binMeans}}().
+  Note that \code{\link[graphics]{hist}} is almost as fast for counting
+  occurances within bins, e.g.
+  \code{hist(x, breaks=bx, right=FALSE, plot=FALSE)$counts}.
+
+  To average values within bins, see \code{\link{binMeans}}().
 }
 
 \author{Henrik Bengtsson}

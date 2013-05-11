@@ -27,7 +27,11 @@
 # }
 #
 # \seealso{
-#   @see "binMeans".
+#   Note that @see "graphics::hist" is almost as fast for counting
+#   occurances within bins, e.g.
+#   \code{hist(x, breaks=bx, right=FALSE, plot=FALSE)$counts}.
+#
+#   To average values within bins, see @see "binMeans".
 # }
 #
 # @author "HB"
@@ -66,7 +70,9 @@ setMethodS3("binCounts", "default", function(x, bx, ...) {
   }
 
   # Order x (by increasing x).
-  x <- sort(x);
+  # If 'x' is already sorted, the overhead of (re)sorting is
+  # relatively small.
+  x <- sort.int(x, method="quick");
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -80,6 +86,11 @@ setMethodS3("binCounts", "default", function(x, bx, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-05-10 [HB]
+# o DOCUMENTATION: Now help(binCounts) cross references hist(), which is
+#   almost as fast. Thanks Ilari Scheinin (Finland) for pointing this out.
+# o SPEEDUP: Now binMeans() and binCounts() use Hoare's Quicksort
+#   method for sorting 'x'.
 # 2012-10-03 [HB]
 # o Created.
 ############################################################################

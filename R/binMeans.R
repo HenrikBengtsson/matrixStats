@@ -117,9 +117,11 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ..
   }
 
   # Order (x,y) by increasing x.
-  o <- order(x, decreasing=FALSE);
-  x <- x[o];
-  y <- y[o];
+  # If 'x' is already sorted, the overhead of (re)sorting is
+  # relatively small.
+  x <- sort.int(x, method="quick", index.return=TRUE);
+  y <- y[x$ix];
+  x <- x$x;
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -135,6 +137,9 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ..
 
 ############################################################################
 # HISTORY:
+# 2013-05-10 [HB]
+# o SPEEDUP: Now binMeans() and binCounts() use Hoare's Quicksort
+#   method for sorting 'x'.
 # 2012-10-04 [HB in Anahola]
 # o Added argument 'na.rm' to binMeans().
 # o Updated Rdocs.
