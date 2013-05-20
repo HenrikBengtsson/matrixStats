@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.4 [2013-05-20]
+o CRAN POLICY: Now all Rd \usage{} lines are at most 90 characters long.
+
+
 Version: 0.8.3 [2013-05-10]
 o SPEEDUP: binCounts() and binMeans() now uses Hoare's Quicksort
   for presorting 'x' before counting/averaging.  They also no longer

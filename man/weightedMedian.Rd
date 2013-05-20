@@ -15,7 +15,8 @@
 \title{Weighted Median Value}
 
 \usage{
-\method{weightedMedian}{default}(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...)
+\method{weightedMedian}{default}(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
+  method=c("quick", "shell"), ...)
 }
 
 \description{
