@@ -88,10 +88,10 @@ setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
     hasValue <- as.integer(hasValue);
     dim(hasValue) <- dim;
     sums <- rowSums(hasValue, ...);
-    rm(hasValue);
+    hasValue <- NULL; # Not needed anymore
     sums <- as.integer(sums);
     counts[,kk] <- sums;
-    rm(sums);
+    sums <- NULL; # Not needed anymore
   }
 
   counts;
@@ -107,7 +107,7 @@ setGeneric("colTabulates", function(x, values=NULL, ...) {
 setMethod("colTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
   x <- t(x);
   counts <- rowTabulates(x, values=values, ...);
-  rm(x);
+  x <- NULL; # Not needed anymore
 #  if (transpose)
 #    counts <- t(counts);
   counts;

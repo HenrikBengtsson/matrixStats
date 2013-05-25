@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.5 [2013-05-25]
+o Minor speedup of (col|row)Tabulates() by replacing rm() calls
+  with NULL assignments.
+
+
 Version: 0.8.4 [2013-05-20]
 o CRAN POLICY: Now all Rd \usage{} lines are at most 90 characters long.
 
