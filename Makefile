@@ -1,3 +1,5 @@
+# Makefile for R packages
+
 # CORE MACROS
 ifeq ($(OS), Windows_NT)
 CD=cd
@@ -26,8 +28,9 @@ FILES_VIGNETTES := $(wildcard vignettes/*)
 FILES_SRC := $(wildcard src/* src/*/* src/*/*/* src/*/*/*/* src/*/*/*/*/* src/*/*/*/*/*/* src/*/*/*/*/*/*/* src/*/*/*/*/*/*/*/*)
 FILES_TESTS := $(wildcard tests/*.R)
 FILES_NEWS := $(wildcard NEWS inst/NEWS)
-FILES_ROOT := DESCRIPTION NAMESPACE .Rbuildignore
+FILES_ROOT := DESCRIPTION NAMESPACE $(wildcard .Rbuildignore .Rinstignore)
 PKG_FILES := $(FILES_ROOT) $(FILES_NEWS) $(FILES_R) $(FILES_DATA) $(FILES_MAN) $(FILES_INST) $(FILES_VIGNETTES) $(FILES_SRC) $(FILES_TESTS)
+FILES_MAKEFILE := $(wildcard ../../Makefile)
 
 # Has vignettes in 'vignettes/' or 'inst/doc/'?
 DIR_VIGNS := $(wildcard vignettes inst/doc)
@@ -85,12 +88,15 @@ debug_full: debug
 
 # Update existing packages
 update:
-	$(R_SCRIPT) -e "update.packages(ask=FALSE)"
+	$(R_SCRIPT) -e "update.packages(ask=FALSE); source('http://bioconductor.org/biocLite.R'); biocLite(ask=FALSE);"
 
 # Install missing dependencies
 deps: DESCRIPTION
 	$(MAKE) update
-	$(R_SCRIPT) -e "x <- unlist(strsplit(read.dcf('DESCRIPTION',fields=c('Depends', 'Imports', 'Suggests')),',')); x <- gsub('([[:space:]]*|[(].*[)])', '', x); x <- unique(setdiff(x, c('R', rownames(installed.packages())))); if (length(x) > 0) { install.packages(x); x <- unique(setdiff(x, c('R', rownames(installed.packages())))); source('http://bioconductor.org/biocLite.R'); biocLite(x); }"
+	$(R_SCRIPT) -e "x <- unlist(strsplit(read.dcf('DESCRIPTION',fields=c('Depends', 'Imports', 'Suggests')),',')); x <- gsub('([[:space:]]*|[(].*[)])', '', x); libs <- .libPaths()[file.access(.libPaths(), mode=2) == 0]; x <- unique(setdiff(x, c('R', rownames(installed.packages(lib.loc=libs))))); if (length(x) > 0) { install.packages(x); x <- unique(setdiff(x, c('R', rownames(installed.packages(lib.loc=libs))))); source('http://bioconductor.org/biocLite.R'); biocLite(x); }"
+
+setup:	update deps
+	$(R_SCRIPT) -e "source('http://aroma-project.org/hbLite.R'); hbLite('R.oo')"
 
 
 # Build source tarball
@@ -144,14 +150,17 @@ binary: ../$(R_OUTDIR)/$(PKG_TARBALL)
 	$(R_CMD) INSTALL --build --merge-multiarch $(PKG_TARBALL)
 
 
-# Check the line width of incl/*.(R|Rex) files
+# Check the line width of incl/*.(R|Rex) files [max 100 chars in R devel]
 check_Rex:
-	$(R_SCRIPT) -e "setwd('incl/'); fs <- dir(pattern='[.](R|Rex)$$'); ns <- sapply(fs, function(f) max(nchar(readLines(f)))); ns <- ns[ns > 100]; print(ns); if (length(ns) > 0L) quit(status=1)"
+	$(R_SCRIPT) -e "if (!file.exists('incl')) quit(status=0); setwd('incl/'); fs <- dir(pattern='[.](R|Rex)$$'); ns <- sapply(fs, function(f) max(nchar(readLines(f)))); ns <- ns[ns > 100]; print(ns); if (length(ns) > 0L) quit(status=1)"
 
 
 # Build Rd help files from Rdoc comments
 Rd: check_Rex
-	$(R_SCRIPT) -e "setwd('..'); Sys.setlocale(locale='C'); R.oo::compileRdoc('$(PKG_NAME)')"
+	$(R_SCRIPT) -e "setwd('..'); Sys.setlocale(locale='C'); R.oo::compileRdoc('$(PKG_NAME)', path='$(PKG_DIR)')"
+
+%.Rd:
+	$(R_SCRIPT) -e "setwd('..'); Sys.setlocale(locale='C'); R.oo::compileRdoc('$(PKG_NAME)', path='$(PKG_DIR)', '$*.R')"
 
 
 spell_Rd:
@@ -190,12 +199,16 @@ test: ../$(R_OUTDIR)/tests/%.R
 
 
 # Run extensive CRAN submission checks
-../$(R_OUTDIR)/submit_to_cran/$(PKG_TARBALL): ../$(R_OUTDIR)/$(PKG_TARBALL)
-	$(MKDIR) ../$(R_OUTDIR)/submit_to_cran
-	$(CP) ../$(R_OUTDIR)/$(PKG_TARBALL) ../$(R_OUTDIR)/submit_to_cran
+../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_TARBALL): ../$(R_OUTDIR)/$(PKG_TARBALL)
+	$(MKDIR) ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN
+	$(CP) ../$(R_OUTDIR)/$(PKG_TARBALL) ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN
 
-../$(R_OUTDIR)/submit_to_cran/$(PKG_NAME),EmailToCRAN.txt: ../$(R_OUTDIR)/submit_to_cran/$(PKG_TARBALL)
-	$(CD) ../$(R_OUTDIR)/submit_to_cran;\
+../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_NAME),EmailToCRAN.txt: ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_TARBALL)
+	$(CD) ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN;\
 	$(R_SCRIPT) -e "RCmdCheckTools::testPkgsToSubmit()"
 
-submit: ../$(R_OUTDIR)/submit_to_cran/$(PKG_NAME),EmailToCRAN.txt
+submit: ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_NAME),EmailToCRAN.txt
+
+
+Makefile: $(FILES_MAKEFILE)
+	$(R_SCRIPT) -e "d <- 'Makefile'; s <- '../../Makefile'; if (file_test('-nt', s, d) && (regexpr('Makefile for R packages', readLines(s, n=1L)) != -1L)) file.copy(s, d, overwrite=TRUE)"

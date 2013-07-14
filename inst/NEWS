@@ -14,7 +14,7 @@ Version: 0.8.3 [2013-05-10]
 o SPEEDUP: binCounts() and binMeans() now uses Hoare's Quicksort
   for presorting 'x' before counting/averaging.  They also no longer
   test in every iteration (=for every data point) whether the last
-  last bin has been reached or not, but only after completing a bin.
+  bin has been reached or not, but only after completing a bin.
 
 
 Version: 0.8.2 [2013-05-02]
