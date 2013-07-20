@@ -5,7 +5,7 @@ useDynLib("matrixStats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 import("methods")
 importFrom("R.methodsS3", "setMethodS3")
-importFrom("R.methodsS3", "throw") 
+importFrom("R.methodsS3", "throw")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -13,7 +13,6 @@ importFrom("R.methodsS3", "throw")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## Export all non-private methods (anything w/out a dot prefix).
 exportPattern("^[^\\.]")
-#exportPattern(".*")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -31,3 +30,6 @@ S3method("colAvgsPerRowSet", "matrix")
 
 S3method("rowWeightedMeans", "matrix")
 S3method("colWeightedMeans", "matrix")
+
+S3method("rowWeightedMedians", "matrix")
+S3method("colWeightedMedians", "matrix")

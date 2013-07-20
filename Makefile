@@ -40,11 +40,14 @@ R_HOME := $(shell echo "$(R_HOME)" | tr "\\\\" "/")
 R = R --no-init-file
 R_CMD = $(R) CMD
 R_SCRIPT = Rscript
+R_VERSION_STATUS := $(shell $(R_SCRIPT) -e "status <- tolower(R.version[['status']]); if (regexpr('unstable', status) != -1L) status <- 'devel'; cat(status)")
 R_VERSION := $(shell $(R_SCRIPT) -e "cat(as.character(getRversion()))")
+R_VERSION_FULL := $(R_VERSION)$(R_VERSION_STATUS)
 R_LIBS_USER_X := $(shell $(R_SCRIPT) -e "cat(.libPaths()[1])")
-R_OUTDIR := _R-$(R_VERSION)
+R_OUTDIR := _R-$(R_VERSION_FULL)
 R_CHECK_OUTDIR := $(R_OUTDIR)/$(PKG_NAME).Rcheck
 R_CHECK_OPTS = --as-cran --timings
+R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
 
 all: build install check
@@ -64,10 +67,13 @@ debug:
 	@echo R_CMD=\'$(R_CMD)\'
 	@echo R_SCRIPT=\'$(R_SCRIPT)\'
 	@echo R_VERSION=\'$(R_VERSION)\'
+	@echo R_VERSION_STATUS=\'$(R_VERSION_STATUS)\'
+	@echo R_VERSION_FULL=\'$(R_VERSION_FULL)\'
 	@echo R_LIBS_USER_X=\'$(R_LIBS_USER_X)\'
 	@echo R_OUTDIR=\'$(R_OUTDIR)\'
 	@echo R_CHECK_OUTDIR=\'$(R_CHECK_OUTDIR)\'
 	@echo R_CHECK_OPTS=\'$(R_CHECK_OPTS)\'
+	@echo R_CRAN_OUTDIR=\'$(R_CRAN_OUTDIR)\'
 
 debug_full: debug
 	@echo
@@ -199,15 +205,18 @@ test: ../$(R_OUTDIR)/tests/%.R
 
 
 # Run extensive CRAN submission checks
-../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_TARBALL): ../$(R_OUTDIR)/$(PKG_TARBALL)
-	$(MKDIR) ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN
-	$(CP) ../$(R_OUTDIR)/$(PKG_TARBALL) ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN
+../$(R_CRAN_OUTDIR)/$(PKG_TARBALL): ../$(R_OUTDIR)/$(PKG_TARBALL)
+	$(MKDIR) ../$(R_CRAN_OUTDIR)
+	$(CP) ../$(R_OUTDIR)/$(PKG_TARBALL) ../$(R_CRAN_OUTDIR)
 
-../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_NAME),EmailToCRAN.txt: ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_TARBALL)
-	$(CD) ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN;\
+../$(R_CRAN_OUTDIR)/$(PKG_NAME),EmailToCRAN.txt: ../$(R_CRAN_OUTDIR)/$(PKG_TARBALL)
+	$(CD) ../$(R_CRAN_OUTDIR);\
 	$(R_SCRIPT) -e "RCmdCheckTools::testPkgsToSubmit()"
 
-submit: ../$(R_OUTDIR)/$(PKG_NAME).Rcheck.CRAN/$(PKG_NAME),EmailToCRAN.txt
+setup_RCmdCheckTools:
+	$(R_SCRIPT) -e "source('http://aroma-project.org/hbLite.R'); hbLite('RCmdCheckTools', devel=TRUE)"
+
+submit: setup_RCmdCheckTools ../$(R_CRAN_OUTDIR)/$(PKG_NAME),EmailToCRAN.txt
 
 
 Makefile: $(FILES_MAKEFILE)
