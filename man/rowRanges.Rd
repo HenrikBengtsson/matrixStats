@@ -60,7 +60,7 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  \code{\link{rowOrderStats}}() and \code{\link{rowRanges}}().
+  \code{\link{rowOrderStats}}() and \code{\link[base]{pmin.int}}().
 }
 
 

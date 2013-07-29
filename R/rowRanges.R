@@ -51,7 +51,7 @@
 # @author "HB"
 #
 # \seealso{
-#   @see "rowOrderStats" and @see "rowRanges".
+#   @see "rowOrderStats" and @see "base::pmin.int".
 # }
 #
 # @keyword array
