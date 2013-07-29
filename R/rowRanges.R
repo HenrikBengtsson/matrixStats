@@ -95,8 +95,8 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
 .rowRanges <- function(x, na.rm=FALSE, which=1:2, drop=TRUE, ...) {
   na.rm <- as.logical(na.rm);
   dim <- dim(x);
-  ncol <- dim[1L];
-  nrow <- dim[2L];
+  nrow <- dim[1L];
+  ncol <- dim[2L];
 
   # Default range is (+Inf,-Inf). See explanation in help(min)
 
@@ -131,8 +131,9 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
     if (max) {
       xRange <- c(xRange, rowOrderStats(x, which=ncol));
     }
-    dim(xRange) <- c(nrow(x), length(which));
-    xRange <- xRange[,which,drop=drop];
+    if (!drop || length(which) > 1L) {
+      dim(xRange) <- c(nrow(x), length(which));
+    }
     return(xRange);
   }
 
@@ -226,8 +227,8 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
 .colRanges <- function(x, na.rm=FALSE, which=1:2, drop=TRUE, ...) {
   na.rm <- as.logical(na.rm);
   dim <- dim(x);
-  ncol <- dim[1L];
-  nrow <- dim[2L];
+  nrow <- dim[1L];
+  ncol <- dim[2L];
 
   # Default range is (+Inf,-Inf). See explanation in help(min)
 
@@ -263,8 +264,9 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
     if (max) {
       xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
     }
-    dim(xRange) <- c(nrow(x), length(which));
-    xRange <- xRange[,which,drop=drop];
+    if (!drop || length(which) > 1L) {
+      dim(xRange) <- c(nrow(x), length(which));
+    }
     return(xRange);
   }
 
@@ -329,14 +331,14 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
 
       xValues <- x[rr,idxs];
 
-      # Identify smaller values
+      # Identify smaller values?
       if (min) {
         isExtreme <- (xValues < xRange[idxs,1L]);
         xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
       }
 
-      # Identify greater values
-      if (min) {
+      # Identify greater values?
+      if (max) {
         isExtreme <- (xValues > xRange[idxs,2L]);
         xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
       }
