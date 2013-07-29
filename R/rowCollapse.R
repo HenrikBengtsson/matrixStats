@@ -12,8 +12,8 @@
 # }
 #
 # \usage{
-#   rowCollapse(x, idxs, ...)
-#   colCollapse(x, idxs, ...)
+#   @usage rowCollapse
+#   @usage colCollapse
 # }
 #
 # \arguments{
@@ -44,9 +44,9 @@ setGeneric("rowCollapse", function(x, idxs, ...) {
 
 setMethod("rowCollapse", signature("matrix"), function(x, idxs, ...) {
   dim <- dim(x);
-  colOffsets <- c(0, cumsum(rep(dim[1], times=dim[2]-1)));
-  rowOffsets <- seq_len(dim[1]);
-  idxs <- rep(idxs, length.out=dim[1]);
+  colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)));
+  rowOffsets <- seq_len(dim[1L]);
+  idxs <- rep(idxs, length.out=dim[1L]);
   colOffsets <- colOffsets[idxs];
   idxs <- rowOffsets + colOffsets;
   x[idxs];

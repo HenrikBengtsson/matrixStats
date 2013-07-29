@@ -12,8 +12,8 @@
 # }
 #
 # \usage{
-#  \method{rowWeightedMedians}{matrix}(x, w=NULL, na.rm=FALSE, ...)
-#  \method{colWeightedMedians}{matrix}(x, w=NULL, na.rm=FALSE, ...)
+#  @usage rowWeightedMedians,matrix
+#  @usage colWeightedMedians,matrix
 # }
 #
 # \arguments{
@@ -75,13 +75,13 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     # Allocate results
     m <- nrow(x);
     res <- double(m);
-    if (m == 0)
+    if (m == 0L)
       return(res);
 
     # Standardize weights to sum to one.
     w <- w / sum(w, na.rm=na.rm);
 
-    res <- apply(x, MARGIN=1, FUN=function(x) {
+    res <- apply(x, MARGIN=1L, FUN=function(x) {
       weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
   } else {
@@ -116,13 +116,13 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     # Allocate results
     m <- ncol(x);
     res <- double(m);
-    if (m == 0)
+    if (m == 0L)
       return(res);
 
     # Standardize weights to sum to one.
     w <- w / sum(w, na.rm=na.rm);
 
-    res <- apply(x, MARGIN=2, FUN=function(x) {
+    res <- apply(x, MARGIN=2L, FUN=function(x) {
       weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
   } else {

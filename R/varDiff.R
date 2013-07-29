@@ -13,9 +13,9 @@
 # }
 #
 # \usage{
-#  varDiff(x, na.rm=FALSE, diff=1, ...)
-#  sdDiff(x, na.rm=FALSE, diff=1, ...)
-#  madDiff(x, na.rm=FALSE, diff=1, ...)
+#  @usage varDiff
+#  @usage sdDiff
+#  @usage madDiff
 # }
 #
 # \arguments{
@@ -45,14 +45,14 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("varDiff", function(x, na.rm=FALSE, diff=1, ...) {
+setGeneric("varDiff", function(x, na.rm=FALSE, diff=1L, ...) {
   standardGeneric("varDiff");
 })
 
-setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1, ...) {
+setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, ...) {
   if (na.rm)
     x <- x[!is.na(x)];
-  if (diff > 0)
+  if (diff > 0L)
     x <- diff(x, differences=diff);
   var(x, na.rm=FALSE)/(2^diff);
 })

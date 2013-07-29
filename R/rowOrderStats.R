@@ -11,8 +11,8 @@
 # }
 #
 # \usage{
-#  rowOrderStats(x, which, ...)
-#  colOrderStats(x, which, ...)
+#  @usage rowOrderStats
+#  @usage colOrderStats
 # }
 #
 # \arguments{

@@ -22,6 +22,10 @@
  such as probabilities.
 }
 
+\usage{
+logSumExp(lx, na.rm=FALSE, ...)
+}
+
 \arguments{
  \item{lx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.
    Typically \code{lx} are \eqn{log(x)} values.}

@@ -9,8 +9,8 @@
 # }
 #
 # \usage{
-#  rowIQRs(x, ...)
-#  colIQRs(x, ...)
+#  @usage rowIQRs
+#  @usage colIQRs
 # }
 #
 # \arguments{
@@ -39,13 +39,13 @@
 #*/###########################################################################
 rowIQRs <- function(x, ...) {
   Q <- rowQuantiles(x, probs=c(0.25, 0.75), ...);
-  Q[,2,drop=TRUE] - Q[,1,drop=TRUE];
+  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE];
 }
 
 
 colIQRs <- function(x, ...) {
   Q <- colQuantiles(x, probs=c(0.25, 0.75), ...);
-  Q[,2,drop=TRUE] - Q[,1,drop=TRUE];
+  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE];
 }
 
 

@@ -13,6 +13,8 @@
 #  such as probabilities.
 # }
 #
+# @synopsis
+#
 # \arguments{
 #  \item{lx}{A @numeric @vector.
 #    Typically \code{lx} are \eqn{log(x)} values.}

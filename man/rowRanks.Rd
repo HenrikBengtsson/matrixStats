@@ -21,7 +21,7 @@
 
 \usage{
  rowRanks(x, ties.method=c("max", "average", "min"), ...)
- colRanks(x, ties.method=c("max", "average", "min"), preserveShape = FALSE, ...)
+ colRanks(x, ties.method=c("max", "average", "min"), preserveShape=FALSE, ...)
 }
 
 \arguments{

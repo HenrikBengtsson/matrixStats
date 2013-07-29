@@ -12,8 +12,8 @@
 # }
 #
 # \usage{
-#  \method{rowWeightedMeans}{matrix}(x, w=NULL, na.rm=FALSE, ...)
-#  \method{colWeightedMeans}{matrix}(x, w=NULL, na.rm=FALSE, ...)
+#  @usage rowWeightedMeans,matrix
+#  @usage colWeightedMeans,matrix
 # }
 #
 # \arguments{
@@ -74,13 +74,13 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
     # Allocate results
     m <- nrow(x);
     res <- double(m);
-    if (m == 0)
+    if (m == 0L)
       return(res);
 
     # Drop entries with zero weight?
     idxs <- which(w != 0);
     nw <- length(idxs);
-    if (nw == 0) {
+    if (nw == 0L) {
       return(res);
     } else if (nw < n) {
       w <- w[idxs];
@@ -152,13 +152,13 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
     # Allocate results
     m <- ncol(x);
     res <- double(m);
-    if (m == 0)
+    if (m == 0L)
       return(res);
 
     # Drop entries with zero weight?
     idxs <- which(w != 0);
     nw <- length(idxs);
-    if (nw == 0) {
+    if (nw == 0L) {
       return(res);
     } else if (nw < n) {
       w <- w[idxs];

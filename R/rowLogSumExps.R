@@ -11,8 +11,8 @@
 # }
 #
 # \usage{
-#  rowLogSumExps(lx, na.rm=FALSE, ...)
-#  colLogSumExps(lx, na.rm=FALSE, ...)
+#  @usage rowLogSumExps
+#  @usage colLogSumExps
 # }
 #
 # \arguments{

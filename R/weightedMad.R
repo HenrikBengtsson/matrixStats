@@ -99,9 +99,9 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
 
   # Are there any values left to calculate the weighted median of?
   # This is consistent with how stats::mad() works.
-  if (n == 0) {
+  if (n == 0L) {
     return(naValue);
-  } else if (n == 1) {
+  } else if (n == 1L) {
     zeroValue <- 0;
     storage.mode(zeroValue) <- storage.mode(x);
     return(zeroValue);

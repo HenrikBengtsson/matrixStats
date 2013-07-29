@@ -12,8 +12,8 @@
 # }
 #
 # \usage{
-#  rowVars(x, center=NULL, ...)
-#  colVars(x, ...)
+#  @usage rowVars
+#  @usage colVars
 # }
 #
 # \arguments{
@@ -43,7 +43,7 @@
 rowVars <- function(x, center=NULL, ...) {
   n <- !is.na(x);
   n <- rowSums(n);
-  n[n <= 1] <- NA;
+  n[n <= 1L] <- NA;
 
   if (is.null(center)) {
     center <- rowMeans(x, ...);

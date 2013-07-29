@@ -9,8 +9,8 @@
 # }
 #
 # \usage{
-#  rowQuantiles(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE)
-#  colQuantiles(x, ...)
+#  @usage rowQuantiles
+#  @usage colQuantiles
 # }
 #
 # \arguments{
@@ -53,7 +53,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE) {
     q[1L,] <- t;
 
     if (nrow >= 2L) {
-      for (rr in 2L:nrow) {
+      for (rr in 2:nrow) {
         q[rr,] <- quantile(x[rr,], probs=probs, ...);
       }
     }

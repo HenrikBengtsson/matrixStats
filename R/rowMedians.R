@@ -11,8 +11,8 @@
 # }
 #
 # \usage{
-#  rowMedians(x, na.rm=FALSE, ...)
-#  colMedians(x, na.rm=FALSE, ...)
+#  @usage rowMedians
+#  @usage colMedians
 # }
 #
 # \arguments{

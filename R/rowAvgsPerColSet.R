@@ -54,7 +54,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
   if (!is.matrix(S)) {
-    stop("Argument 'X' is not a matrix: ", class(X)[1]);
+    stop("Argument 'X' is not a matrix: ", class(X)[1L]);
   }
   dimX <- dim(X);
 
@@ -62,7 +62,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
   hasW <- !is.null(W);
   if (hasW) {
     if (!is.matrix(W)) {
-      stop("Argument 'W' is not a matrix: ", class(W)[1]);
+      stop("Argument 'W' is not a matrix: ", class(W)[1L]);
     }
     if (any(dim(W) != dimX)) {
       stop("Argument 'W' does not have the same dimension as 'X': ", paste(dim(W), collapse="x"), " != ", paste(dimX, collapse="x"));
@@ -74,7 +74,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
 
   # Argument 'S':
   if (!is.matrix(S)) {
-    stop("Argument 'S' is not a matrix: ", class(S)[1]);
+    stop("Argument 'S' is not a matrix: ", class(S)[1L]);
   }
   nbrOfSets <- ncol(S);
   setNames <- colnames(S);
@@ -96,7 +96,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
   dimnames(X) <- NULL;
 
   # Average in sets of columns of X.
-  Z <- apply(S, MARGIN=2, FUN=function(jj) {
+  Z <- apply(S, MARGIN=2L, FUN=function(jj) {
     # Extract set of columns from X
     jj <- jj[is.finite(jj)];
     Zjj <- X[,jj,drop=FALSE];
@@ -114,14 +114,14 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
     }
 
     # Sanity check
-    stopifnot(length(Zjj) == dimX[1]);
+    stopifnot(length(Zjj) == dimX[1L]);
 
     # Return set average
     Zjj;
   });
 
   # Sanity check
-  stopifnot(dim(Z) == c(dimX[1], nbrOfSets));
+  stopifnot(dim(Z) == c(dimX[1L], nbrOfSets));
 
   # Set names
   rownames(Z) <- rownamesX;
@@ -137,14 +137,14 @@ setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, t
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
   if (!is.matrix(S)) {
-    stop("Argument 'X' is not a matrix: ", class(X)[1]);
+    stop("Argument 'X' is not a matrix: ", class(X)[1L]);
   }
 
   # Argument 'W':
 
   # Argument 'S':
   if (!is.matrix(S)) {
-    stop("Argument 'S' is not a matrix: ", class(S)[1]);
+    stop("Argument 'S' is not a matrix: ", class(S)[1L]);
   }
 
   # Argument 'FUN':

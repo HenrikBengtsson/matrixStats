@@ -12,8 +12,8 @@
 # }
 #
 # \usage{
-#   rowTabulates(x, values=NULL, ...)
-#   colTabulates(x, values=NULL, ...)
+#   @usage rowTabulates
+#   @usage colTabulates
 # }
 #
 # \arguments{
@@ -78,7 +78,7 @@ setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
 
 
   nbrOfValues <- length(values);
-  counts <- matrix(as.integer(0), nrow=nrow(x), ncol=nbrOfValues);
+  counts <- matrix(as.integer(0L), nrow=nrow(x), ncol=nbrOfValues);
   colnames(counts) <- names;
 
   dim <- dim(x);

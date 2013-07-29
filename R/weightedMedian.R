@@ -154,9 +154,9 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   }
 
   # Are there any values left to calculate the weighted median of?
-  if (n == 0) {
+  if (n == 0L) {
     return(naValue);
-  } else if (n == 1) {
+  } else if (n == 1L) {
     return(x);
   }
 
@@ -169,7 +169,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     # Here we know there are no NAs; we can do better than stats::median(),
     # because we do not have to check for NAs etc.
     n <- length(x);
-    half <- (n+1)/2;
+    half <- (n+1L)/2;
     if (n%%2 == 1) {
       # Get x(half), where x(k) is k:th sorted value in x;
       return(.psortKM(x, k=half));
@@ -190,9 +190,9 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   # Order the values and order the weights
   if (identical(method, "quick")) {
     # Using new (from R v1.5.0) internal quick sort.
-    l <- qsort(x);                   # index.return=TRUE
-    x <- .subset2(l, 1);             # l$x
-    w <- .subset(w, .subset2(l, 2)); # l$index
+    l <- qsort(x);                    # index.return=TRUE
+    x <- .subset2(l, 1L);             # l$x
+    w <- .subset(w, .subset2(l, 2L)); # l$index
   } else {
     # .Internal() calls are no longer allowed. /HB 2012-04-16
     ## ord <- .Internal(order(TRUE, FALSE, x));  # == order(x)
@@ -242,8 +242,8 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     }
 
     # The width and the height of the "rectangle".
-    Dx <-    .subset(x, k+1) -    .subset(x, k);
-    Dy <- .subset(wcum, k+1) - .subset(wcum, k);
+    Dx <-    .subset(x, k+1L) -    .subset(x, k);
+    Dy <- .subset(wcum, k+1L) - .subset(wcum, k);
 
     # The width and the height of the triangle which upper corner touches
     # the level where the cumulative sum of weights *equals* half the
@@ -283,7 +283,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 
   # Two special cases where more than half of the total weight
   # is at a) the first, or b) the last value
-  if (k == 0) return(.subset(x, 1));
+  if (k == 0L) return(.subset(x, 1L));
   if (k == n) return(.subset(x, n));
 
   # At this point we know that:
@@ -298,18 +298,18 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   whigh <- wsum - wlow;       # the weight of x[(k+1):n]
 
   if (whigh > wmid)
-    return(.subset(x, k+1));
+    return(.subset(x, k+1L));
 
   if (is.null(ties) || ties == "weighted") {  # Default!
-    (wlow*.subset(x, k) + whigh*.subset(x, k+1)) / wsum;
+    (wlow*.subset(x, k) + whigh*.subset(x, k+1L)) / wsum;
   } else if (ties == "max") {
-    .subset(x, k+1);
+    .subset(x, k+1L);
   } else if (ties == "min") {
     .subset(x, k);
   } else if (ties == "mean") {
-    (.subset(x, k)+.subset(x, k+1))/2;
+    (.subset(x, k)+.subset(x, k+1L))/2;
   } else if (ties == "both") {
-    .subset(x, k, k+1);
+    .subset(x, k, k+1L);
   }
 })
 

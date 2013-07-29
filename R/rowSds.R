@@ -14,10 +14,10 @@
 # }
 #
 # \usage{
-#  rowSds(x, ...)
-#  colSds(x, ...)
-#  rowMads(x, centers=rowMedians(x,...), constant=1.4826, ...)
-#  colMads(x, centers=colMedians(x,...), constant=1.4826, ...)
+#  @usage rowSds
+#  @usage colSds
+#  @usage rowMads
+#  @usage colMads
 # }
 #
 # \arguments{

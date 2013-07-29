@@ -19,12 +19,12 @@
 # }
 #
 # \usage{
-#   rowCounts(x, na.rm=FALSE, ...)
-#   colCounts(x, na.rm=FALSE, ...)
-#   rowAlls(x, na.rm=FALSE, ...)
-#   colAlls(x, na.rm=FALSE, ...)
-#   rowAnys(x, na.rm=FALSE, ...)
-#   colAnys(x, na.rm=FALSE, ...)
+#   @usage rowCounts
+#   @usage colCounts
+#   @usage rowAlls
+#   @usage colAlls
+#   @usage rowAnys
+#   @usage colAnys
 # }
 #
 # \arguments{
@@ -111,7 +111,7 @@ setGeneric("rowAnys", function(x, na.rm=FALSE, ...) {
 
 setMethod("rowAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   counts <- rowCounts(x, na.rm=na.rm, ...);
-  (counts > 0);
+  (counts > 0L);
 })
 
 
@@ -122,7 +122,7 @@ setGeneric("colAnys", function(x, na.rm=FALSE, ...) {
 
 setMethod("colAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   counts <- colCounts(x, na.rm=na.rm, ...);
-  (counts > 0);
+  (counts > 0L);
 })
 
 

@@ -9,8 +9,8 @@
 # }
 #
 # \usage{
-#  rowDiffs(x, ...)
-#  colDiffs(x, ...)
+#  @usage rowDiffs
+#  @usage colDiffs
 # }
 #
 # \arguments{
@@ -36,7 +36,7 @@
 rowDiffs <- function(x, ...) {
   naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x)-1);
+  d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x)-1L);
   for (rr in seq(length=nrow(x))) {
     d[rr,] <- diff(x[rr,], ...);
   }

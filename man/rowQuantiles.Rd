@@ -18,7 +18,7 @@
 }
 
 \usage{
- rowQuantiles(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE)
+ rowQuantiles(x, probs=seq(from = 0, to = 1, by = 0.25), ..., drop=TRUE)
  colQuantiles(x, ...)
 }
 

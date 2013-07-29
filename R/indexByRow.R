@@ -9,7 +9,7 @@
 # }
 #
 # \usage{
-#  indexByRow(x, idxs=NULL, ...)
+#  @usage indexByRow
 # }
 #
 # \arguments{

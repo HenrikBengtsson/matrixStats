@@ -10,8 +10,8 @@
 # }
 #
 # \usage{
-#  rowProds(x, na.rm=FALSE, ...)
-#  colProds(x, na.rm=FALSE, ...)
+#  @usage rowProds
+#  @usage colProds
 # }
 #
 # \arguments{
