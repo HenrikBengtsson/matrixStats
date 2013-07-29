@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.7 [2013-07-28]
+o BUG FIX: rowRanges(x) on an Nx0 matrix would give an error.
+  Same for colRanges(x) on an 0xN matrix.  Added system tests
+  for these and other special cases.
+
+
 Version: 0.8.6 [2013-07-20]
 o Forgot to declare S3 methods (col|row)WeightedMedians().
 o Bumped up package dependencies.
