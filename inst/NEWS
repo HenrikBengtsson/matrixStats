@@ -2,6 +2,7 @@ Package: matrixStats
 ====================
 
 Version: 0.8.7 [2013-07-28]
+o SPEEDUP: Made (col|row)Mins() and (col|row)Maxs() much faster.
 o BUG FIX: rowRanges(x) on an Nx0 matrix would give an error.
   Same for colRanges(x) on an 0xN matrix.  Added system tests
   for these and other special cases.

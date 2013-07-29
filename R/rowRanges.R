@@ -63,34 +63,76 @@ setGeneric("rowRanges", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowRanges")
 })
 
+setGeneric("colRanges", function(x, na.rm=FALSE, ...) {
+  standardGeneric("colRanges")
+})
+
 setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
+  .rowRanges(x, na.rm=na.rm, which=1:2, ...);
+}) # rowRanges()
+
+setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
+  .colRanges(x, na.rm=na.rm, which=1:2, drop=FALSE, ...);
+}) # colRanges()
+
+
+rowMins <- function(x, na.rm=FALSE, ...) {
+  .rowRanges(x, na.rm=na.rm, which=1L, drop=TRUE, ...);
+}
+
+rowMaxs <- function(x, na.rm=FALSE, ...) {
+  .rowRanges(x, na.rm=na.rm, which=2L, drop=TRUE, ...);
+}
+
+colMins <- function(x, na.rm=FALSE, ...) {
+  .colRanges(x, na.rm=na.rm, which=1L, drop=TRUE, ...);
+}
+
+colMaxs <- function(x, na.rm=FALSE, ...) {
+  .colRanges(x, na.rm=na.rm, which=2L, drop=TRUE, ...);
+}
+
+.rowRanges <- function(x, na.rm=FALSE, which=1:2, drop=TRUE, ...) {
   na.rm <- as.logical(na.rm);
-  ncol <- ncol(x);
-  nrow <- nrow(x);
+  dim <- dim(x);
+  ncol <- dim[1L];
+  nrow <- dim[2L];
+
+  # Default range is (+Inf,-Inf). See explanation in help(min)
 
   # Special cases: Nx0 and Nx1 matrices
   if (ncol == 0L) {
-    # Default range is (+Inf,-Inf).  See explanation in help(min)
     xRange <- matrix(c(Inf,-Inf), nrow=nrow, ncol=2L, byrow=TRUE);
+    xRange <- xRange[,which,drop=drop];
     return(xRange);
   } else if (ncol == 1L) {
-    xRange <- matrix(x[,1L,drop=TRUE], nrow=nrow, ncol=2L);
+    xValues <- x[,1L,drop=TRUE];
+    xRange <- matrix(xValues, nrow=nrow, ncol=2L);
     if (na.rm) {
-      todo <- which(is.na(xRange[,1L]));
+      todo <- which(is.na(xValues));
       ntodo <- length(todo);
       if (ntodo > 0L) {
-        xRange[todo,] <- matrix(c(Inf,-Inf),
-                                nrow=ntodo, ncol=2L, byrow=TRUE);
+        xRange[todo,] <- matrix(c(Inf,-Inf), nrow=ntodo, ncol=2L, byrow=TRUE);
       }
     }
+    xRange <- xRange[,which,drop=drop];
     return(xRange);
   }
 
+  min <- (is.element(1L, which));
+  max <- (is.element(2L, which));
+
   # Use the much faster rowOrderStats() if possible
   if (!anyMissing(x)) {
-    xRange <- rowOrderStats(x, which=1L);
-    xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
-    dim(xRange) <- c(nrow(x), 2L);
+    xRange <- NULL;
+    if (min) {
+      xRange <- c(xRange, rowOrderStats(x, which=1L))
+    }
+    if (max) {
+      xRange <- c(xRange, rowOrderStats(x, which=ncol));
+    }
+    dim(xRange) <- c(nrow(x), length(which));
+    xRange <- xRange[,which,drop=drop];
     return(xRange);
   }
 
@@ -101,7 +143,7 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   if (na.rm) {
     anyMissing <- TRUE;  # Either none or both of xMin & xMax are NAs.
     for (cc in 1:ncol) {
-      xValues <- x[,cc];
+      xValues <- x[,cc,drop=TRUE];
 
       # Always update the elements with missing ranges.
       if (anyMissing) {
@@ -121,13 +163,17 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
       idxs <- which(todo);
       xValues <- xValues[idxs];
 
-      # Identify smaller values
-      isExtreme <- (xValues < xRange[idxs,1L]);
-      xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      # Identify smaller values?
+      if (min) {
+        isExtreme <- (xValues < xRange[idxs,1L]);
+        xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      }
 
-      # Identify greater values
-      isExtreme <- (xValues > xRange[idxs,2L]);
-      xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      # Identify greater values?
+      if (max) {
+        isExtreme <- (xValues > xRange[idxs,2L]);
+        xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      }
     }
   } else {
     for (cc in 1:ncol) {
@@ -152,15 +198,21 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
       xValues <- x[idxs,cc];
 
-      # Identify smaller values
-      isExtreme <- (xValues < xRange[idxs,1L]);
-      xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      # Identify smaller values?
+      if (min) {
+        isExtreme <- (xValues < xRange[idxs,1L]);
+        xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      }
 
-      # Identify greater values
-      isExtreme <- (xValues > xRange[idxs,2L]);
-      xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      # Identify greater values?
+      if (max) {
+        isExtreme <- (xValues > xRange[idxs,2L]);
+        xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      }
     }
   }
+
+  xRange <- xRange[,which,drop=drop];
 
   # Return data type consistent with range()
   if (storage.mode(x) %in% c("logical", "integer")) {
@@ -169,22 +221,20 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   }
 
   xRange;
-}) # rowRanges()
+} # .rowRanges()
 
-
-setGeneric("colRanges", function(x, na.rm=FALSE, ...) {
-  standardGeneric("colRanges")
-})
-
-setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
+.colRanges <- function(x, na.rm=FALSE, which=1:2, drop=TRUE, ...) {
   na.rm <- as.logical(na.rm);
-  ncol <- ncol(x);
-  nrow <- nrow(x);
+  dim <- dim(x);
+  ncol <- dim[1L];
+  nrow <- dim[2L];
+
+  # Default range is (+Inf,-Inf). See explanation in help(min)
 
   # Special cases: 0xN and 1xN matrices
   if (nrow == 0L) {
-    # Default range is (+Inf,-Inf).  See explanation in help(min)
     xRange <- matrix(c(Inf,-Inf), nrow=ncol, ncol=2L, byrow=TRUE);
+    xRange <- xRange[,which,drop=drop];
     return(xRange);
   } else if (nrow == 1L) {
     xRange <- matrix(x[1,,drop=TRUE], nrow=ncol, ncol=2L);
@@ -196,15 +246,25 @@ setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
                                 nrow=ntodo, ncol=2L, byrow=TRUE);
       }
     }
+    xRange <- xRange[,which,drop=drop];
     return(xRange);
   }
+
+  min <- (is.element(1L, which));
+  max <- (is.element(2L, which));
 
   # Use the much faster rowOrderStats() if possible
   if (!anyMissing(x)) {
     x <- t(x);
-    xRange <- rowOrderStats(x, which=1L);
-    xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
-    dim(xRange) <- c(nrow(x), 2L);
+    xRange <- NULL;
+    if (min) {
+      xRange <- c(xRange, rowOrderStats(x, which=1L));
+    }
+    if (max) {
+      xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
+    }
+    dim(xRange) <- c(nrow(x), length(which));
+    xRange <- xRange[,which,drop=drop];
     return(xRange);
   }
 
@@ -234,13 +294,17 @@ setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
       idxs <- which(todo);
       xValues <- xValues[idxs];
 
-      # Identify smaller values
-      isExtreme <- (xValues < xRange[idxs,1L]);
-      xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      # Identify smaller values?
+      if (min) {
+        isExtreme <- (xValues < xRange[idxs,1L]);
+        xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      }
 
-      # Identify greater values
-      isExtreme <- (xValues > xRange[idxs,2L]);
-      xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      # Identify greater values?
+      if (max) {
+        isExtreme <- (xValues > xRange[idxs,2L]);
+        xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      }
     }
   } else {
     for (rr in 1:nrow) {
@@ -266,14 +330,20 @@ setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
       xValues <- x[rr,idxs];
 
       # Identify smaller values
-      isExtreme <- (xValues < xRange[idxs,1L]);
-      xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      if (min) {
+        isExtreme <- (xValues < xRange[idxs,1L]);
+        xRange[idxs[isExtreme],1L] <- xValues[isExtreme];
+      }
 
       # Identify greater values
-      isExtreme <- (xValues > xRange[idxs,2L]);
-      xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      if (min) {
+        isExtreme <- (xValues > xRange[idxs,2L]);
+        xRange[idxs[isExtreme],2L] <- xValues[isExtreme];
+      }
     }
   }
+
+  xRange <- xRange[,which,drop=drop];
 
   # Return data type consistent with range()
   if (storage.mode(x) %in% c("logical", "integer")) {
@@ -282,31 +352,15 @@ setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   }
 
   xRange;
-}) # colRanges()
+} # .colRanges()
 
 
-
-
-rowMins <- function(x, na.rm=FALSE, ...) {
-  rowRanges(x, na.rm=na.rm, ...)[,1L];
-}
-
-rowMaxs <- function(x, na.rm=FALSE, ...) {
-  rowRanges(x, na.rm=na.rm, ...)[,2L];
-}
-
-colMins <- function(x, na.rm=FALSE, ...) {
-  colRanges(x, na.rm=na.rm, ...)[,1L];
-}
-
-colMaxs <- function(x, na.rm=FALSE, ...) {
-  colRanges(x, na.rm=na.rm, ...)[,2L];
-}
 
 
 ############################################################################
 # HISTORY:
 # 2013-07-28
+# o SPEEDUP: Made (col|row)Mins() and (col|row)Maxs() faster.
 # o BUG FIX: rowRanges(x) on an Nx0 matrix 'x' would give an error.
 #   Ditto for colRanges(x).
 # 2009-02-01
