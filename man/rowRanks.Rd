@@ -39,7 +39,7 @@
  where N (K) is the number of rows (columns) whose ranks are calculated.
 
  The \code{colRanks()} function returns an NxK \code{\link[base]{matrix}},
- if \code{preserveShape = TRUE}, otherwise an KxN \code{\link[base]{matrix}}.
+ if \code{preserveShape = TRUE}, otherwise a KxN \code{\link[base]{matrix}}.
 
 %%  The mode of the returned matrix is \code{\link[base]{integer}}, except for
 %%  \code{ties.method == "average"} when it is \code{\link[base]{double}}.

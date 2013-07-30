@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.8 [2013-07-29]
+o DOCUMENTATION: The dimension of the return value was swapped
+  in help("rowQuantiles").
+
+
 Version: 0.8.7 [2013-07-28]
 o SPEEDUP: Made (col|row)Mins() and (col|row)Maxs() much faster.
 o BUG FIX: rowRanges(x) on an Nx0 matrix would give an error.

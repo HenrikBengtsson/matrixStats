@@ -22,9 +22,9 @@
 }
 
 \usage{
- varDiff(x, na.rm=FALSE, diff=1, ...)
- sdDiff(x, na.rm=FALSE, diff=1, ...)
- madDiff(x, na.rm=FALSE, diff=1, ...)
+ varDiff(x, na.rm=FALSE, diff=1L, ...)
+ sdDiff(x, na.rm=FALSE, diff=1L, ...)
+ madDiff(x, na.rm=FALSE, diff=1L, ...)
 }
 
 \arguments{

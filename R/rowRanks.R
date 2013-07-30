@@ -30,7 +30,7 @@
 #  where N (K) is the number of rows (columns) whose ranks are calculated.
 #
 #  The \code{colRanks()} function returns an NxK @matrix,
-#  if \code{preserveShape = TRUE}, otherwise an KxN @matrix.
+#  if \code{preserveShape = TRUE}, otherwise a KxN @matrix.
 #
 # %%  The mode of the returned matrix is @integer, except for
 # %%  \code{ties.method == "average"} when it is @double.
