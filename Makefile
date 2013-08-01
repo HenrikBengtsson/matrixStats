@@ -216,7 +216,10 @@ test: ../$(R_OUTDIR)/tests/%.R
 setup_RCmdCheckTools:
 	$(R_SCRIPT) -e "source('http://aroma-project.org/hbLite.R'); hbLite('RCmdCheckTools', devel=TRUE)"
 
-submit: setup_RCmdCheckTools ../$(R_CRAN_OUTDIR)/$(PKG_NAME),EmailToCRAN.txt
+cran: setup_RCmdCheckTools ../$(R_CRAN_OUTDIR)/$(PKG_NAME),EmailToCRAN.txt
+
+# Backward compatibilities
+submit: cran
 
 
 Makefile: $(FILES_MAKEFILE)
