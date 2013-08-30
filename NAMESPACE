@@ -6,7 +6,7 @@ useDynLib("matrixStats")
 import("methods")
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.methodsS3", "throw")
-importFrom("R.methodsS3", "startupMessage")
+importFrom("R.methodsS3", "pkgStartupMessage")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
