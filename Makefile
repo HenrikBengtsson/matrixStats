@@ -45,6 +45,8 @@ R_VERSION := $(shell $(R_SCRIPT) -e "cat(as.character(getRversion()))")
 R_VERSION_FULL := $(R_VERSION)$(R_VERSION_STATUS)
 R_LIBS_USER_X := $(shell $(R_SCRIPT) -e "cat(.libPaths()[1])")
 R_OUTDIR := _R-$(R_VERSION_FULL)
+R_BUILD_OPTS := 
+## R_BUILD_OPTS := $(R_BUILD_OPTS) --no-build-vignettes
 R_CHECK_OUTDIR := $(R_OUTDIR)/$(PKG_NAME).Rcheck
 R_CHECK_OPTS = --as-cran --timings
 R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
@@ -109,7 +111,7 @@ setup:	update deps
 ../$(R_OUTDIR)/$(PKG_TARBALL): $(PKG_FILES)
 	$(MKDIR) ../$(R_OUTDIR)
 	$(CD) ../$(R_OUTDIR);\
-	$(R_CMD) build ../$(PKG_DIR)
+	$(R_CMD) build $(R_BUILD_OPTS) ../$(PKG_DIR)
 
 build: ../$(R_OUTDIR)/$(PKG_TARBALL)
 
