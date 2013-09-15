@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.10 [2013-09-15]
+o CLEANUP: Now only importing two functions from the 'methods' package.
+o Bumped up package dependencies.
+
+
 Version: 0.8.9 [2013-08-29]
 o CLEANUP: Now the package startup message acknowledges argument
   'quietly' of library()/require().
