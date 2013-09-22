@@ -1,4 +1,5 @@
 library("matrixStats")
+library("stats")
 
 set.seed(1)
 

@@ -2,6 +2,7 @@
 # thread '[R] Beyond double-precision?' on May 9, 2009.
 
 library("matrixStats")
+library("stats")
 
 logSumExp0 <- function(lx) {
   iMax <- which.max(lx)

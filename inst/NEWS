@@ -4,8 +4,10 @@ Package: matrixStats
 Version: 0.8.11 [2013-09-21]
 o ROBUSTNESS: Now importing 'loadMethod' from 'methods' package such
   that 'matrixStats' S4-based methods also work when 'methods' is
-  not attached, e.g. when 'Rscript' is used, cf. Section 'Default 
+  not loaded, e.g. when 'Rscript' is used, cf. Section 'Default 
   packages' in 'R Installation and Administration'.
+o ROBUSTNESS: Updates package system tests such that the can run
+  with only the 'base' package loaded.
 
 
 Version: 0.8.10 [2013-09-15]

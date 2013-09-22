@@ -1,4 +1,5 @@
 library("matrixStats")
+library("stats")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Local functions

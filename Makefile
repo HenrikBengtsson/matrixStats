@@ -79,6 +79,8 @@ debug:
 	@echo R_CHECK_OUTDIR=\'$(R_CHECK_OUTDIR)\'
 	@echo R_CHECK_OPTS=\'$(R_CHECK_OPTS)\'
 	@echo R_CRAN_OUTDIR=\'$(R_CRAN_OUTDIR)\'
+	@echo "Default packages:" $(shell $(R) --slave -e "cat(paste(getOption('defaultPackages'), collapse=', '))")
+
 
 debug_full: debug
 	@echo

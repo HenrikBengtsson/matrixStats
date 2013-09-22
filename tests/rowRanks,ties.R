@@ -1,4 +1,5 @@
 library("matrixStats")
+library("utils")
 
 ctime <- function(which, t0, t1, t2, ...) {
   cat(sprintf("%s: t1/t0=%.3g, t2/t0=%.3g, t2/t1=%.3g\n", which, (t1/t0)[3], (t2/t0)[3], (t2/t1)[3]))

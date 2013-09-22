@@ -1,4 +1,5 @@
 library("matrixStats")
+library("utils")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Local functions
@@ -30,7 +31,7 @@ for (k in c(1, 2, 500, 501, length(x))) {
     cat(sprintf(".psortKM(x, k=%d, m=%d):\n", k, m))
     print(px)
     stopifnot(identical(px, px0))
-  
+
     py0 <- psortKM0(y, k=k, m=m)
     py <- matrixStats:::.psortKM(y, k=k, m=m)
     cat(sprintf(".psortKM(y, k=%d, m=%d):\n", k, m))

@@ -1,4 +1,5 @@
 library("matrixStats")
+library("stats")
 
 ## R-help thread \emph{'[R] Beyond double-precision?'} on May 9, 2009.
 

@@ -1,4 +1,5 @@
 library("matrixStats")
+library("stats")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Naive R implementation of binMeans()
