@@ -5,6 +5,7 @@ useDynLib("matrixStats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 importFrom("methods", "setMethod")
 importFrom("methods", "setGeneric")
+importFrom("methods", "loadMethod")
 
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.methodsS3", "throw")
