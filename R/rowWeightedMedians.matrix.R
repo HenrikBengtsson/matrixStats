@@ -89,7 +89,7 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
   }
 
   res;
-}) # rowWeightedMeans()
+}) # rowWeightedMedians()
 
 
 setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {

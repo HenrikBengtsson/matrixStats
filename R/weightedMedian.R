@@ -137,7 +137,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     tmp <- !(is.na(x) | is.na(w));
     x <- .subset(x, tmp);
     w <- .subset(w, tmp);
-  } else if (any(is.na(x))) {
+  } else if (anyMissing(x)) {
     return(naValue);
   }
 
@@ -316,6 +316,8 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 
 ###############################################################################
 # HISTORY:
+# 2013-09-26
+# o Now utilizing anyMissing().
 # 2012-09-10
 # o Replaced an .Internal(psort(...)) call with new .psortKM().
 # 2012-04-16

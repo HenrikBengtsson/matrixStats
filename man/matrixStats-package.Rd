@@ -15,7 +15,7 @@
 
 
 \description{
-  This packages provides methods operating on rows and columns of matrices, e.g. col/rowMedians() and col/rowRanks().  There are also some vector-based methods, e.g. anyMissing(), weightedMedians(), and binMeans().  The objective is to have all methods being optimized for speed and memory consumption..
+  This packages provides methods operating on rows and columns of matrices, e.g. col/rowMedians() and col/rowRanks().  There are also some vector-based methods, e.g. anyMissing(), weightedMedians(), and binMeans().  The objective is to have all methods being optimized for speed and memory..
   This package went public (on CRAN) in June 2009.
   It is currently in a beta version where new methods are added.
 }
@@ -97,7 +97,7 @@
 }
 
 \section{How to cite this package}{
-  Henrik Bengtsson (2013). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.8.9.
+  Henrik Bengtsson (2013). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.8.12.
 }
 
 \author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder}

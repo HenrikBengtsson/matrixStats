@@ -42,6 +42,11 @@
 #
 # @author "HB"
 #
+# \seealso{
+#   Starting with R v3.1.0, there is \code{anyNA()} in the \pkg{base},
+#   which provides the same functionality as this function.
+# }
+#
 # @keyword iteration
 # @keyword logic
 #*/###########################################################################
@@ -97,6 +102,8 @@ setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-09-26
+# o Added help reference to base::anyNA().
 # 2013-01-13
 # o Added anyMissing() for raw, which always returns FALSE.
 # 2008-03-25

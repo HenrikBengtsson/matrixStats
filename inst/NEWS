@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.12 [2013-09-26]
+o SPEEDUP: Now utilizing anyMissing() everywhere possible.
+
+
 Version: 0.8.11 [2013-09-21]
 o ROBUSTNESS: Now importing 'loadMethod' from 'methods' package such
   that 'matrixStats' S4-based methods also work when 'methods' is

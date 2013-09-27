@@ -82,7 +82,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
     x <- .subset(x, keep);
     w <- .subset(w, keep);
     n <- length(x);
-  } else if (any(is.na(x))) {
+  } else if (anyMissing(x)) {
     return(naValue);
   }
 
@@ -125,6 +125,8 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
 
 ############################################################################
 # HISTORY:
+# 2013-09-26
+# o Now utilizing anyMissing().
 # 2012-03-22
 # o Added an Rdoc example, which also serves as a redundancy test.
 # o SPEEDUP: Now weightedMad() lets weightedMedian() know that there are
