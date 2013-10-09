@@ -2,8 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.8.13 [2013-10-08]
-o Now binCounts() and binMeans() support binning by (u,v] in
-  addition to the default [u,v).
+o Added argument 'right' to binCounts() and binMeans() to specify
+  whether binning should be done by (u,v] or [u,v).
 o Bumped up package dependencies.
 
 

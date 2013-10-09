@@ -20,12 +20,8 @@
 #   \item{count}{If @TRUE, the number of data points in each bins is
 #      returned as attribute \code{count}, which is an @integer @vector
 #      of length B.}
-#   \item{binBy}{A @character string specifying how to bin.
-#      If \code{"[u,v)"}, \code{bx} specified left-closed
-#      and right-open bins, e.g. \code{[bx[1],bx[2])}.
-#      If \code{"(u,v]"}, \code{bx} specified left-closed
-#      and right-open bins, e.g. \code{(bx[1],bx[2]]}.
-#   }
+#   \item{right}{If @TRUE, the bins are right-closed (left open),
+#      otherwise left-closed (right open).}
 #   \item{...}{Not used.}
 # }
 #
@@ -58,7 +54,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, binBy=c("[u,v)", "(u,v]"), ...) {
+setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -101,8 +97,8 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, bi
     stop("Argument 'count' is not logical: ", mode(count));
   }
 
-  # Argument 'binBy':
-  binBy <- match.arg(binBy);
+  # Argument 'right':
+  right <- as.logical(right);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -140,8 +136,7 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, bi
   x <- as.numeric(x);
   bx <- as.numeric(bx);
   count <- as.logical(count);
-  binBy <- switch(binBy, "[u,v)"=1L, "(u,v]"=2L);
-  .Call("binMeans", y, x, bx, count, binBy, PACKAGE="matrixStats");
+  .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats");
 }) # binMeans()
 
 

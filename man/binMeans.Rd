@@ -13,7 +13,7 @@
 \title{Fast mean calculations in non-overlapping bins}
 
 \usage{
-\method{binMeans}{default}(y, x, bx, na.rm=TRUE, count=TRUE, binBy=c("[u,v)", "(u,v]"), ...)
+\method{binMeans}{default}(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 }
 
 \description{
@@ -31,12 +31,8 @@
   \item{count}{If \code{\link[base:logical]{TRUE}}, the number of data points in each bins is
      returned as attribute \code{count}, which is an \code{\link[base]{integer}} \code{\link[base]{vector}}
      of length B.}
-  \item{binBy}{A \code{\link[base]{character}} string specifying how to bin.
-     If \code{"[u,v)"}, \code{bx} specified left-closed
-     and right-open bins, e.g. \code{[bx[1],bx[2])}.
-     If \code{"(u,v]"}, \code{bx} specified left-closed
-     and right-open bins, e.g. \code{(bx[1],bx[2]]}.
-  }
+  \item{right}{If \code{\link[base:logical]{TRUE}}, the bins are right-closed (left open),
+     otherwise left-closed (right open).}
   \item{...}{Not used.}
 }
 

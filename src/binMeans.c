@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP binBy)
+ binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right)
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
@@ -16,15 +16,15 @@
 #include "binMeans-BINBY-template.h"
 
 
-SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP binBy) {
-  int binby = INTEGER(binBy)[0];
+SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
+  int closedRight = LOGICAL(right)[0];
   SEXP count;
-  if (binby == 1) {
+  if (closedRight == 0) {
     return binMeans_L(y, x, bx, retCount);
-  } else if (binby == 2) {
+  } else if (closedRight == 1) {
     return binMeans_R(y, x, bx, retCount);
   } else {
-    error("Unknown value of argument 'binBy': %d", binby);
+    error("Unknown value of argument 'right': %d", closedRight);
   }
   return NULL;
 } // binMeans()

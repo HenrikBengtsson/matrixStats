@@ -14,12 +14,8 @@
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
 #      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
-#   \item{binBy}{A @character string specifying how to bin.
-#      If \code{"[u,v)"}, \code{bx} specified left-closed
-#      and right-open bins, e.g. \code{[bx[1],bx[2])}.
-#      If \code{"(u,v]"}, \code{bx} specified left-closed
-#      and right-open bins, e.g. \code{(bx[1],bx[2]]}.
-#   }
+#   \item{right}{If @TRUE, the bins are right-closed (left open),
+#      otherwise left-closed (right open).}
 #   \item{...}{Not used.}
 # }
 #
@@ -44,7 +40,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-setMethodS3("binCounts", "default", function(x, bx, binBy=c("[u,v)", "(u,v]"), ...) {
+setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -65,8 +61,8 @@ setMethodS3("binCounts", "default", function(x, bx, binBy=c("[u,v)", "(u,v]"), .
     stop("Argument 'bx' is not ordered.");
   }
 
-  # Argument 'binBy':
-  binBy <- match.arg(binBy);
+  # Argument 'right':
+  right <- as.logical(right);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -89,8 +85,7 @@ setMethodS3("binCounts", "default", function(x, bx, binBy=c("[u,v)", "(u,v]"), .
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   x <- as.numeric(x);
   bx <- as.numeric(bx);
-  binBy <- switch(binBy, "[u,v)"=1L, "(u,v]"=2L);
-  .Call("binCounts", x, bx, binBy, PACKAGE="matrixStats");
+  .Call("binCounts", x, bx, right, PACKAGE="matrixStats");
 }) # binCounts()
 
 

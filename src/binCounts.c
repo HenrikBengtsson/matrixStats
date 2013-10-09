@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- binCounts(SEXP x, SEXP bx, SEXP binBy)
+ binCounts(SEXP x, SEXP bx, SEXP right)
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
@@ -16,15 +16,15 @@
 #include "binCounts-BINBY-template.h"
 
 
-SEXP binCounts(SEXP x, SEXP bx, SEXP binBy) {
-  int binby = INTEGER(binBy)[0];
+SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
+  int closedRight = LOGICAL(right)[0];
   SEXP count;
-  if (binby == 1) {
+  if (closedRight == 0) {
     return binCounts_L(x, bx);
-  } else if (binby == 2) {
+  } else if (closedRight == 1) {
     return binCounts_R(x, bx);
   } else {
-    error("Unknown value of argument 'binBy': %d", binby);
+    error("Unknown value of argument 'right': %d", closedRight);
   }
   return NULL;
 } // binCounts()
