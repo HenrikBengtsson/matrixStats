@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.8.13 [2013-10-08]
+o Now binCounts() and binMeans() support binning by (u,v] in
+  addition to the default [u,v).
+o Bumped up package dependencies.
+
+
 Version: 0.8.12 [2013-09-26]
 o SPEEDUP: Now utilizing anyMissing() everywhere possible.
 

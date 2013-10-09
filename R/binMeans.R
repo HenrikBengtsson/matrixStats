@@ -20,6 +20,12 @@
 #   \item{count}{If @TRUE, the number of data points in each bins is
 #      returned as attribute \code{count}, which is an @integer @vector
 #      of length B.}
+#   \item{binBy}{A @character string specifying how to bin.
+#      If \code{"[u,v)"}, \code{bx} specified left-closed
+#      and right-open bins, e.g. \code{[bx[1],bx[2])}.
+#      If \code{"(u,v]"}, \code{bx} specified left-closed
+#      and right-open bins, e.g. \code{(bx[1],bx[2]]}.
+#   }
 #   \item{...}{Not used.}
 # }
 #
@@ -52,7 +58,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ...) {
+setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, binBy=c("[u,v)", "(u,v]"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -95,6 +101,9 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ..
     stop("Argument 'count' is not logical: ", mode(count));
   }
 
+  # Argument 'binBy':
+  binBy <- match.arg(binBy);
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Preprocessing of (x,y)
@@ -131,7 +140,8 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ..
   x <- as.numeric(x);
   bx <- as.numeric(bx);
   count <- as.logical(count);
-  .Call("binMeans", y, x, bx, count, PACKAGE="matrixStats");
+  binBy <- switch(binBy, "[u,v)"=1L, "(u,v]"=2L);
+  .Call("binMeans", y, x, bx, count, binBy, PACKAGE="matrixStats");
 }) # binMeans()
 
 
