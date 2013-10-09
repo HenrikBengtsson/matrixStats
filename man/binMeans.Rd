@@ -40,6 +40,11 @@
   Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of length B.
 }
 
+\details{
+  \code{binMeans(x, bx, right=TRUE)} gives equivalent results as
+  \code{rev(binMeans(-x, bx=sort(-bx), right=FALSE))}, but is faster.
+}
+
 \section{Missing and non-finite values}{
   Data points where either of \code{y} and \code{x} is missing are
   dropped.

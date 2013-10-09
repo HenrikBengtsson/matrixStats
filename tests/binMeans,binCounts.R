@@ -39,11 +39,13 @@ bx <- c(0.5,50.5,100.5,150.5,200.5)
 
 yS0 <- binMeans0(y, x=x, bx=bx)
 yS <- binMeans(y, x=x, bx=bx)
+ySr <- rev(binMeans(y, x=-x, bx=sort(-bx), right=TRUE))
 nS <- binCounts(x, bx=bx)
 
 # Sanity check
 stopifnot(all.equal(yS, yS0))
 stopifnot(all(attr(yS, "count"), nS))
+stopifnot(all.equal(ySr, yS, check.attributes=FALSE))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,6 +68,9 @@ t <- system.time({
 })
 nS <- binCounts(x, bx=bx1)
 
+ySr <- rev(binMeans(y, x=-x, bx=sort(-bx1), right=TRUE))
+
 # Sanity check
 stopifnot(all.equal(yS, yS0))
 stopifnot(all(attr(yS, "count"), nS))
+stopifnot(all.equal(ySr, yS, check.attributes=FALSE))

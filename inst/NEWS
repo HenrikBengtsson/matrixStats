@@ -3,7 +3,8 @@ Package: matrixStats
 
 Version: 0.8.13 [2013-10-08]
 o Added argument 'right' to binCounts() and binMeans() to specify
-  whether binning should be done by (u,v] or [u,v).
+  whether binning should be done by (u,v] or [u,v).  Added system
+  tests validating the correctness of the two cases.
 o Bumped up package dependencies.
 
 

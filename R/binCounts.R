@@ -23,6 +23,11 @@
 #   Returns an @integer @vector of length B with non-negative integers.
 # }
 #
+# \details{
+#   \code{binCounts(x, bx, right=TRUE)} gives equivalent results as
+#   \code{rev(binCounts(-x, bx=sort(-bx), right=FALSE))}, but is faster.
+# }
+#
 # \section{Missing and non-finite values}{
 #   Missing values in \code{x} are ignored/dropped.
 #   Missing values in \code{bx} are not allowed and gives an error.
