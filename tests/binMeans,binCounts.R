@@ -39,7 +39,7 @@ bx <- c(0.5,50.5,100.5,150.5,200.5)
 
 yS0 <- binMeans0(y, x=x, bx=bx)
 yS <- binMeans(y, x=x, bx=bx)
-ySr <- rev(binMeans(y, x=-x, bx=sort(-bx), right=TRUE))
+ySr <- rev(binMeans(y, x=-x, bx=rev(-bx), right=TRUE))
 nS <- binCounts(x, bx=bx)
 
 # Sanity check
@@ -68,7 +68,7 @@ t <- system.time({
 })
 nS <- binCounts(x, bx=bx1)
 
-ySr <- rev(binMeans(y, x=-x, bx=sort(-bx1), right=TRUE))
+ySr <- rev(binMeans(y, x=-x, bx=rev(-bx1), right=TRUE))
 
 # Sanity check
 stopifnot(all.equal(yS, yS0))

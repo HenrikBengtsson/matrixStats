@@ -40,7 +40,7 @@ for (kk in 1:2) {
 
   # Check reversed
   t1r <- system.time({
-    n1r <- rev(binCounts(-x, bx=sort(-bx), right=TRUE))
+    n1r <- rev(binCounts(-x, bx=rev(-bx), right=TRUE))
   })
   cat(sprintf("  Timing: binCounts(\"right\")/binCounts(): %.3gx\n", (t1r/t1)[3]))
   stopifnot(identical(n1r, n1))

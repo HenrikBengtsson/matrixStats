@@ -25,7 +25,8 @@
 #
 # \details{
 #   \code{binCounts(x, bx, right=TRUE)} gives equivalent results as
-#   \code{rev(binCounts(-x, bx=sort(-bx), right=FALSE))}, but is faster.
+#   \code{rev(binCounts(-x, bx=rev(-bx), right=FALSE))}, but is
+#   faster and more memory efficient.
 # }
 #
 # \section{Missing and non-finite values}{
@@ -34,9 +35,9 @@
 # }
 #
 # \seealso{
-#   Note that @see "graphics::hist" is almost as fast for counting
-#   occurances within bins, e.g.
-#   \code{hist(x, breaks=bx, right=FALSE, plot=FALSE)$counts}.
+#   An alternative for counting occurances within bins is
+#   @see "graphics::hist", e.g. \code{hist(x, breaks=bx, plot=FALSE)$counts}.
+#   That approach is ~30-60\% slower than \code{binCounts(..., right=TRUE)}.
 #
 #   To average values within bins, see @see "binMeans".
 # }
