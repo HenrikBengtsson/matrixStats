@@ -1,5 +1,5 @@
 Package: matrixStats
-Version: 0.8.4
+Version: 0.8.14
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3 (>= 1.5.2)
 Date: 2013-11-23
