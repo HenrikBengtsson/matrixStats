@@ -59,6 +59,7 @@ setMethod("rowCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   x <- as.integer(x);
   dim(x) <- dim;
   counts <- rowSums(x, na.rm=na.rm);
+  x <- NULL; # Not needed anymore
   as.integer(counts);
 })
 
@@ -74,6 +75,7 @@ setMethod("colCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   x <- as.integer(x);
   dim(x) <- dim;
   counts <- colSums(x, na.rm=na.rm);
+  x <- NULL; # Not needed anymore
   as.integer(counts);
 }) # colCounts()
 

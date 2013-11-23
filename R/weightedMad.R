@@ -75,6 +75,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
     w <- .subset(w, tmp);
     n <- length(x);
   }
+  tmp <- NULL; # Not needed anymore
 
   # Drop missing values?
   if (na.rm) {
@@ -82,6 +83,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
     x <- .subset(x, keep);
     w <- .subset(w, keep);
     n <- length(x);
+    keep <- NULL; # Not needed anymore
   } else if (anyMissing(x)) {
     return(naValue);
   }
@@ -94,7 +96,9 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
     x <- .subset(x, keep);
     n <- length(x);
     w <- rep(1, times=n);
+    keep <- NULL; # Not needed anymore
   }
+  tmp <- NULL; # Not needed anymore
 
 
   # Are there any values left to calculate the weighted median of?
@@ -115,6 +119,7 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
   # Estimate the standard deviation
   x <- abs(x - center);
   sigma <- weightedMedian(x, w=w, na.rm=NA);
+  x <- w <- NULL; # Not needed anymore
 
   # Rescale for normal distributions
   sigma <- constant * sigma;
@@ -125,6 +130,8 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
 
 ############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: Now weightedMad() cleans out allocated objects sooner.
 # 2013-09-26
 # o Now utilizing anyMissing().
 # 2012-03-22

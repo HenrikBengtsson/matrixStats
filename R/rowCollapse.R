@@ -49,6 +49,7 @@ setMethod("rowCollapse", signature("matrix"), function(x, idxs, ...) {
   idxs <- rep(idxs, length.out=dim[1L]);
   colOffsets <- colOffsets[idxs];
   idxs <- rowOffsets + colOffsets;
+  rowOffsets <- colOffsets <- NULL; # Not needed anymore
   x[idxs];
 })
 
@@ -63,6 +64,9 @@ setMethod("colCollapse", signature("matrix"), function(x, idxs, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: rowCollapse() does a better job cleaning out allocated
+#   objects sooner.
 # 2008-06-13
 # o BUG FIX: rowCollapse(x) was broken and returned the wrong elements.
 # 2008-04-13

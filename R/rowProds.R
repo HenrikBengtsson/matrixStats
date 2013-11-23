@@ -69,6 +69,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
       rowHasNaN[rowHasNA] <- rowAnys(isNaN);
     }
   }
+  isNA <- NULL; # Not needed anymore
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -77,9 +78,11 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # Check for rows with at least one zero
   isZero <- (x == 0);
   rowHasZero <- rowAnys(isZero);
+  isZero <- NULL; # Not needed anymore
 
   # Only calculate the products on rows without zeros and missing values
   toCalc <- (!rowHasNA & !rowHasZero);
+  rowHasZero <- NULL; # Not needed anymore
   x <- x[toCalc,,drop=FALSE];
 
 
@@ -99,7 +102,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   x <- exp(x);
   x <- isNeg*x;
   y[toCalc] <- x;
-
+  toCalc <- isNeg <- NULL; # Not needed anymore
 
   # Missing values?
   if (hasNAs) {
@@ -119,6 +122,9 @@ colProds <- function(x, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-11-23 [HB]
+# o MEMORY: rowProbs() does a better job cleaning out allocated
+#   objects sooner.
 # 2012-06-25 [HB]
 # o GENERALIZATION: Now row- and colProds() handles missing values.
 # o BUG FIX: In certain cases, row- and colProds() would return NA instead

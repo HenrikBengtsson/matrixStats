@@ -84,6 +84,8 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     res <- apply(x, MARGIN=1L, FUN=function(x) {
       weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
+
+    w <- NULL; # Not needed anymore
   } else {
     res <- rowMedians(x, na.rm=na.rm);
   }
@@ -125,6 +127,8 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
     res <- apply(x, MARGIN=2L, FUN=function(x) {
       weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
+
+    w <- NULL; # Not needed anymore
   } else {
     res <- colMedians(x, na.rm=na.rm);
   }
@@ -135,6 +139,8 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
 
 ##############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: Now (col|row)WeightedMedians() clean out allocated objects sooner.
 # 2012-04-16
 # o Now {col|row}WeightedMedians() no longer require aroma.light, because
 #   weightedMedian() is now in this package.

@@ -54,12 +54,16 @@ setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, .
     x <- x[!is.na(x)];
   if (diff > 0L)
     x <- diff(x, differences=diff);
-  var(x, na.rm=FALSE)/(2^diff);
+  var <- var(x, na.rm=FALSE);
+  x <- NULL; # Not needed anymore
+  var/(2^diff);
 })
 
 
 ############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: Now varDiff() cleans out allocated objects sooner.
 # 2012-07-17
 # o Added the reference to von Neumann et al. (1941).
 # 2009-02-02

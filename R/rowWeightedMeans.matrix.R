@@ -86,6 +86,7 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       w <- w[idxs];
       x <- x[,idxs,drop=FALSE];
     }
+    idxs <- NULL; # Not needed anymore
 
     # Has missing values?
     if (na.rm) {
@@ -99,6 +100,7 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
 
       # Weight matrix
       W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=TRUE);
+      w <- NULL; # Not needed anymore
       W[nas] <- NA;
       wS <- base::rowSums(W, na.rm=TRUE);
 
@@ -107,7 +109,10 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       W <- W / wS;
 
       x[nas] <- 0;
+      nas <- NULL; # Not needed anymore
+
       x <- W * x;
+      W <- NULL; # Not needed anymore
     } else {
       wS <- sum(w);
       # Standardize weights summing to one.
@@ -116,6 +121,8 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       for (rr in 1:m) {
         x[rr,] <- w * x[rr,,drop=TRUE];
       }
+
+      w <- NULL; # Not needed anymore
     }
 
     # Here we know there are no missing value in the new 'x'
@@ -164,6 +171,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       w <- w[idxs];
       x <- x[idxs,,drop=FALSE];
     }
+    idxs <- NULL; # Not needed anymore
 
     # Has missing values?
     if (na.rm) {
@@ -177,6 +185,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
 
       # Weight matrix
       W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=FALSE);
+      w <- NULL; # Not needed anymore
       W[nas] <- NA;
       wS <- base::colSums(W, na.rm=TRUE);
 
@@ -187,7 +196,11 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       }
 
       x[nas] <- 0;
+      nas <- NULL; # Not needed anymore
+
       x <- W * x;
+
+      W <- NULL; # Not needed anymore
     } else {
       wS <- sum(w);
       # Standardize weights summing to one.
@@ -195,6 +208,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
 
       # Weighted values
       x <- w*x;
+      w <- NULL; # Not needed anymore
     }
 
     # Here we know there are no missing value in the new 'x'
@@ -204,11 +218,13 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
   }
 
   res;
-})
+}) # colWeightedMeans()
 
 
 ##############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: Now (col|row)WeightedMeans() clean out allocated objects sooner.
 # 2010-02-03
 # o BUG FIX: (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly treat
 #   missing values as zeros.  Thanks Pierre Neuvial for reporting this.

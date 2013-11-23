@@ -66,6 +66,7 @@ setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
   if (any(diff(o) != 1L)) {
     stop("Argument 'bx' is not ordered.");
   }
+  o <- NULL; # Not needed anymoreo
 
   # Argument 'right':
   right <- as.logical(right);
@@ -79,6 +80,7 @@ setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
   if (length(keep) < length(x)) {
     x <- x[keep];
   }
+  keep <- NULL; # Not needed anymore
 
   # Order x (by increasing x).
   # If 'x' is already sorted, the overhead of (re)sorting is
@@ -97,6 +99,9 @@ setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-11-23 [HB]
+# o MEMORY: binCounts() cleans out more temporary variables as soon as
+#   possible such that the garbage collector can remove them sooner.
 # 2012-05-10 [HB]
 # o DOCUMENTATION: Now help(binCounts) cross references hist(), which is
 #   almost as fast. Thanks Ilari Scheinin (Finland) for pointing this out.

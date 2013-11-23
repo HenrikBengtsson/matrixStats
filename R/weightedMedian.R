@@ -137,6 +137,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     tmp <- !(is.na(x) | is.na(w));
     x <- .subset(x, tmp);
     w <- .subset(w, tmp);
+    tmp <- NULL; # Not needed anymore
   } else if (anyMissing(x)) {
     return(naValue);
   }
@@ -152,6 +153,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     w <- .subset(w, tmp);
     n <- sum(tmp);
   }
+  tmp <- NULL; # Not needed anymore
 
   # Are there any values left to calculate the weighted median of?
   if (n == 0L) {
@@ -178,6 +180,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
       return(sum(.psortKM(x, k=half+1L, m=2L))/2);
     }
   }
+  tmp <- NULL; # Not needed anymore
 
   # If all weights are equal, the regular median could be used instead,
   # which is assumed to be faster.
@@ -193,12 +196,14 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     l <- qsort(x);                    # index.return=TRUE
     x <- .subset2(l, 1L);             # l$x
     w <- .subset(w, .subset2(l, 2L)); # l$index
+    l <- NULL; # Not needed anymore
   } else {
     # .Internal() calls are no longer allowed. /HB 2012-04-16
     ## ord <- .Internal(order(TRUE, FALSE, x));  # == order(x)
     ord <- order(x);
     x <- .subset(x, ord);
     w <- .subset(w, ord);
+    ord <- NULL; # Not needed anymore
   }
 
   # Calculate the cumulative sum, the total weight and the middle total weight.
@@ -206,9 +211,10 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   wsum <- .subset(wcum, n);
   wmid <- wsum/2;
 
-  if (interpolate == TRUE) {
+  if (interpolate) {
     # Adjusting the cumulative weights by subtracting of half the weights.
     wcum <- wcum - (w/2);
+    w <- NULL; # Not needed anymore
 
     # Find the position k such that
     #   i) sum(w[i], i=1:(k-1)) < wmid, and
@@ -220,6 +226,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
       # Alt 1: faster for short vectors
       lows <- (wcum < wmid);
       k  <- max(1, sum(lows));
+      lows <- NULL; # Not needed anymore
     } else {
       # Alt 2 (020627): faster for long vectors
 
@@ -249,6 +256,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     # the level where the cumulative sum of weights *equals* half the
     # total weight.
     dy <- wmid - .subset(wcum, k);
+    wcum <- NULL; # Not needed anymore
     dx <- (dy/Dy) * Dx;
 
     # The corresponding x value
@@ -270,7 +278,8 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 ##    }
 
     return(xm);
-  }
+  } # if (interpolate)
+  w <- NULL; # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # The code below has become more obsolete after interpolation has been added.
@@ -280,6 +289,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   # (these two lines could probably be optimized for speed).
   lows <- (wcum <= wmid);
   k  <- sum(lows);
+  lows <- NULL; # Not needed anymore
 
   # Two special cases where more than half of the total weight
   # is at a) the first, or b) the last value
@@ -296,6 +306,7 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 
   wlow  <- .subset(wcum, k);  # the weight of x[1:k]
   whigh <- wsum - wlow;       # the weight of x[(k+1):n]
+  wcum <- NULL; # Not needed anymore
 
   if (whigh > wmid)
     return(.subset(x, k+1L));
@@ -316,6 +327,8 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
 
 ###############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: Now weightedMad() cleans out allocated objects sooner.
 # 2013-09-26
 # o Now utilizing anyMissing().
 # 2012-09-10

@@ -91,6 +91,7 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
   if (any(diff(o) != 1L)) {
     stop("Argument 'bx' is not ordered.");
   }
+  o <- NULL; # Not needed anymore
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
@@ -116,6 +117,7 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
     y <- y[keep];
     n <- length(y);
   }
+  keep <- NULL; # Not needed anymore
 
   # Drop missing values in 'y'?
   if (na.rm) {
@@ -124,6 +126,7 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
       x <- x[keep];
       y <- y[keep];
     }
+    keep <- NULL; # Not needed anymore
   }
 
   # Order (x,y) by increasing x.
@@ -147,6 +150,9 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
 
 ############################################################################
 # HISTORY:
+# 2013-11-23 [HB]
+# o MEMORY: binMeans() cleans out more temporary variables as soon as
+#   possible such that the garbage collector can remove them sooner.
 # 2013-05-10 [HB]
 # o SPEEDUP: Now binMeans() and binCounts() use Hoare's Quicksort
 #   method for sorting 'x'.

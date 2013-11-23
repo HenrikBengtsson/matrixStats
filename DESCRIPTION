@@ -1,8 +1,8 @@
 Package: matrixStats
-Version: 0.8.13
+Version: 0.8.4
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3 (>= 1.5.2)
-Date: 2013-10-08
+Date: 2013-11-23
 Title: Methods that apply to rows and columns of a matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),

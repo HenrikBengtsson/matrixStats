@@ -100,6 +100,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
     # Extract set of columns from X
     jj <- jj[is.finite(jj)];
     Zjj <- X[,jj,drop=FALSE];
+    jj <- NULL; # Not needed anymore
 
     if (tFUN) {
       Zjj <- t(Zjj);
@@ -109,6 +110,7 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
     if (hasW) {
       Wjj <- W[,jj,drop=FALSE];
       Zjj <- FUN(Zjj, W=Wjj, ..., na.rm=na.rm);
+      Wjj <- NULL; # Not needed anymore
     } else {
       Zjj <- FUN(Zjj, ..., na.rm=na.rm);
     }
@@ -168,11 +170,13 @@ setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, t
 
   # ...
   tZ <- rowAvgsPerColSet(X=tX, W=tW, S=S, FUN=FUN, tFUN=!tFUN, ...);
+  tX <- tW <- NULL; # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Transpose back
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Z <- t(tZ);
+  tZ <- NULL; # Not needed anymore
 
   Z;
 }) # colAvgsPerRowSet()
@@ -180,6 +184,9 @@ setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, t
 
 ##############################################################################
 # HISTORY:
+# 2013-11-23
+# o MEMORY: rowAvgsPerColSet() and colAvgsPerRowSet() do a better job
+#   cleaning out allocated objects sooner.
 # 2011-11-29
 # o Added rowAvgsPerColSet() and colAvgsPerRowSet().
 # o Created from blockAvg() in the aroma.cn.eval package.
