@@ -39,6 +39,11 @@
 #   @see "graphics::hist", e.g. \code{hist(x, breaks=bx, plot=FALSE)$counts}.
 #   That approach is ~30-60\% slower than \code{binCounts(..., right=TRUE)}.
 #
+#   To count occurances of indices \code{x} (positive @integers) in
+#   \code{[1,B]}, use \code{tabulate(x, nbins=B)}, where \code{x} does
+#   \emph{not} have to be sorted first.
+#   For details, see @see "base::tabulate".
+#
 #   To average values within bins, see @see "binMeans".
 # }
 #
@@ -99,6 +104,8 @@ setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-11-24 [HB]
+# o DOCUMENTATION: Added reference to base::tabulate().
 # 2013-11-23 [HB]
 # o MEMORY: binCounts() cleans out more temporary variables as soon as
 #   possible such that the garbage collector can remove them sooner.
