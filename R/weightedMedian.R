@@ -22,7 +22,7 @@
 #            or not.  If @NA, no check at all for @NAs is done.
 #            Default value is @NA (for effiency).}
 #   \item{interpolate}{If @TRUE, linear interpolation is used to get a
-#            consistant estimate of the weighted median.}
+#            consistent estimate of the weighted median.}
 #   \item{ties}{If \code{interpolate == FALSE},
 #            a character string specifying how to solve ties between two
 #            \code{x}'s that are satisfying the weighted median criteria.
