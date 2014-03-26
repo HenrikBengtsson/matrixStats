@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.0 [2014-03-26]
+o Added weighedVar() and weightedSd().
+
+
 Version: 0.8.14 [2013-11-23]
 o MEMORY: Updated all functions to do a better job of cleaning out
   temporarily allocated objects as soon as possible such that the

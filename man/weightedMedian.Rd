@@ -34,7 +34,7 @@
            or not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s is done.
            Default value is \code{\link[base]{NA}} (for effiency).}
   \item{interpolate}{If \code{\link[base:logical]{TRUE}}, linear interpolation is used to get a
-           consistant estimate of the weighted median.}
+           consistent estimate of the weighted median.}
   \item{ties}{If \code{interpolate == FALSE},
            a character string specifying how to solve ties between two
            \code{x}'s that are satisfying the weighted median criteria.

@@ -51,7 +51,7 @@
 #    \item rowMins()
 #    \item rowMaxs()
 #    \item madDiff(), sdDiff(), varDiff()
-#    \item weightedMad()
+#    \item weightedMad(), weightedSd(), weightedVar()
 #  }
 #  \bold{Binning}:
 #  \itemize{

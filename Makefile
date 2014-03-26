@@ -54,6 +54,7 @@ _R_CHECK_CRAN_INCOMING_ = $(shell $(R_SCRIPT) -e "cat(Sys.getenv('_R_CHECK_CRAN_
 _R_CHECK_XREFS_REPOSITORIES_ = $(shell if $(_R_CHECK_CRAN_INCOMING_) = "TRUE"; then echo ""; else echo "invalidURL"; fi)
 _R_CHECK_FULL_ = $(shell $(R_SCRIPT) -e "cat(Sys.getenv('_R_CHECK_FULL_', ''))")
 R_CHECK_OPTS = --as-cran --timings
+R_RD4PDF = $(shell $(R_SCRIPT) -e "if (getRversion() < 3) cat('times,hyper')")
 R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
 HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !is.na(utils:::aspell_find_program('aspell'))))")
@@ -92,6 +93,7 @@ debug:
 	@echo _R_CHECK_XREFS_REPOSITORIES_=\'$(_R_CHECK_XREFS_REPOSITORIES_)\'
 	@echo _R_CHECK_FULL_=\'$(_R_CHECK_FULL_)\'
 	@echo R_CHECK_OPTS=\'$(R_CHECK_OPTS)\'
+	@echo R_RD4PDF=\'$(R_RD4PDF)\'
 	@echo
 	@echo R_CRAN_OUTDIR=\'$(R_CRAN_OUTDIR)\'
 
@@ -164,6 +166,7 @@ install_force:
 	export _R_CHECK_DOT_INTERNAL_=1;\
 	export _R_CHECK_USE_CODETOOLS_=1;\
 	export _R_CHECK_FORCE_SUGGESTS_=0;\
+	export R_RD4PDF=$(R_RD4PDF);\
 	export _R_CHECK_FULL_=$(_R_CHECK_FULL_);\
 	$(R) --no-init-file CMD check $(R_CHECK_OPTS) $(PKG_TARBALL);\
 	echo done > $(PKG_NAME).Rcheck/.check.complete
@@ -229,6 +232,11 @@ test_files: ../$(R_OUTDIR)/tests/*.R
 
 test: ../$(R_OUTDIR)/tests/%.R
 	$(CD) ../$(R_OUTDIR)/tests;\
+	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { source(f, echo=TRUE) }"
+
+test_full: ../$(R_OUTDIR)/tests/%.R
+	$(CD) ../$(R_OUTDIR)/tests;\
+	export _R_CHECK_FULL_=TRUE;\
 	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { source(f, echo=TRUE) }"
 
 
