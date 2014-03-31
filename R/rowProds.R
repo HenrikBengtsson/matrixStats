@@ -89,20 +89,24 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Calculate product via logarithmic sum
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Infer signs
-  isNeg <- (x < 0);
-  isNeg <- rowSums(isNeg);
-  isNeg <- (isNeg %% 2);
-  isNeg <- c(+1,-1)[isNeg+1];
+  if (nrow(x) > 0L) {
+    # Infer signs
+    isNeg <- (x < 0);
+    isNeg <- rowSums(isNeg);
+    isNeg <- (isNeg %% 2);
+    isNeg <- c(+1,-1)[isNeg+1];
 
-  # Calculate the product via the log transform
-  x <- abs(x);
-  x <- log(x);
-  x <- rowSums(x, ...);
-  x <- exp(x);
-  x <- isNeg*x;
-  y[toCalc] <- x;
-  toCalc <- isNeg <- NULL; # Not needed anymore
+    # Calculate the product via the log transform
+    x <- abs(x);
+    x <- log(x);
+    x <- rowSums(x, ...);
+    x <- exp(x);
+    x <- isNeg*x;
+    isNeg <- NULL; # Not needed anymore
+
+    y[toCalc] <- x;
+  } # if (nrow(x) > 0L)
+  toCalc <- NULL; # Not needed anymore
 
   # Missing values?
   if (hasNAs) {
@@ -122,6 +126,11 @@ colProds <- function(x, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-03-31 [HB]
+# o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
+#   be an array of at least two dimensions" on matrices where all rows
+#   contained at least on zero.  Thanks to Roel Verbelen at KU Leuven
+#   for the report.
 # 2013-11-23 [HB]
 # o MEMORY: rowProbs() does a better job cleaning out allocated
 #   objects sooner.

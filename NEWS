@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.1 [2014-03-31]
+o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
+  be an array of at least two dimensions" on matrices where all rows
+  contained at least on zero.  Thanks to Roel Verbelen at KU Leuven
+  for the report.
+
+
 Version: 0.9.0 [2014-03-26]
 o Added weighedVar() and weightedSd().
 
@@ -8,7 +15,7 @@ o Added weighedVar() and weightedSd().
 Version: 0.8.14 [2013-11-23]
 o MEMORY: Updated all functions to do a better job of cleaning out
   temporarily allocated objects as soon as possible such that the
-  garbage collector can remove them sooner, iff wanted.  This 
+  garbage collector can remove them sooner, iff wanted.  This
   increase the chance for a smaller memory footprint.
 
 
