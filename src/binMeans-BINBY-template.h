@@ -75,7 +75,12 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   
         // No more bins?
         if (jj >= nb) {
-          ii = nx; // Cause outer for-loop to exit
+          // Make the outer for-loop to exit...
+          ii = nx - 1;
+          // ...but correct for the fact that the yp[nx-1] point will
+          // be incorrectly added to the sum.  Doing the correction
+          // here avoids an if (ii < nx) sum += yp[ii] below.
+          sum -= yp[ii];
           break;
         }
       }
@@ -120,6 +125,13 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
 
 /***************************************************************************
  HISTORY:
+ 2014-04-04 [HB]
+  o BUG FIX: The native code of binMeans(x, bx) would try to access
+    an out-of-bounds value of argument 'y' iff 'x' contained elements
+    that are left of all bins in 'bx'.  This bug had no impact on the
+    results and since no assignment was done it should also not crash/
+    core dump R.  This was discovered thanks to new memtests (ASAN and
+    valgrind) provided by CRAN.
  2013-10-08 [HB]
   o Created template for binMeans_<L|R>() to create functions that
     bin either by [u,v) or (u,v].
