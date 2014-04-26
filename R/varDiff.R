@@ -23,6 +23,9 @@
 #  \item{na.rm}{If @TRUE, @NAs are excluded, otherwise not.}
 #  \item{diff}{The positional distance of elements for which the
 #     difference should be calculated.}
+#  \item{trim}{A @double in [0,1/2] specifying the fraction of
+#     observations to be trimmed from each end of (sorted) \code{x}
+#     before estimation.}
 #  \item{...}{Not used.}
 # }
 #
@@ -49,11 +52,36 @@ setGeneric("varDiff", function(x, na.rm=FALSE, diff=1L, ...) {
   standardGeneric("varDiff");
 })
 
-setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, ...) {
+setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
     x <- x[!is.na(x)];
-  if (diff > 0L)
+
+  # Nothing to do?
+  n <- length(x);
+  if (n == 0L)
+    return(NA_real_);
+
+  # Calculate differences?
+  if (diff > 0L) {
     x <- diff(x, differences=diff);
+
+    # Nothing to do?
+    n <- length(x);
+    if (n == 0L)
+      return(NA_real_);
+  }
+
+  # Trim?
+  if (trim > 0 && n > 0L) {
+    if (anyNA(x)) return(NA_real_);
+    lo <- floor(n*trim)+1;
+    hi <- (n+1)-lo;
+    partial <- unique(c(lo, hi))
+    x <- sort.int(x, partial=partial);
+    x <- x[lo:hi];
+  }
+
+  # Estimate
   var <- var(x, na.rm=FALSE);
   x <- NULL; # Not needed anymore
   var/(2^diff);

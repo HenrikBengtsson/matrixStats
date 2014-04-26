@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.3 [2014-04-26]
+o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
+
+
 Version: 0.9.2 [2014-04-04]
 o BUG FIX: The native code of binMeans(x, bx) would try to access
   an out-of-bounds value of argument 'y' iff 'x' contained elements

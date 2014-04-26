@@ -1,22 +1,48 @@
-setGeneric("sdDiff", function(x, na.rm=FALSE, diff=1L, ...) {
+setGeneric("sdDiff", function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   standardGeneric("sdDiff");
 })
 
-setMethod("sdDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, ...) {
+setMethod("sdDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
     x <- x[!is.na(x)];
-  if (diff > 0L)
+
+  # Nothing to do?
+  n <- length(x);
+  if (n == 0L)
+    return(NA_real_);
+
+  # Calculate differences?
+  if (diff > 0L) {
     x <- diff(x, differences=diff);
-  sd <- sd(x, na.rm=FALSE)
+
+    # Nothing to do?
+    n <- length(x);
+    if (n == 0L)
+      return(NA_real_);
+  }
+
+  # Trim?
+  if (trim > 0 && n > 0L) {
+    if (anyNA(x)) return(NA_real_);
+    lo <- floor(n*trim)+1;
+    hi <- (n+1)-lo;
+    partial <- unique(c(lo, hi))
+    x <- sort.int(x, partial=partial);
+    x <- x[lo:hi];
+  }
+
+  # Estimate
+  sd <- sd(x, na.rm=FALSE);
   x <- NULL; # Not needed anymore
   sd/(sqrt(2)^diff);
 })
 
 
 
-
 ############################################################################
 # HISTORY:
+# 2014-04-26
+# o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
 # 2013-11-23
 # o MEMORY: Now sdDiff() cleans out allocated objects sooner.
 # 2008-04-13

@@ -23,8 +23,8 @@
 
 \usage{
  varDiff(x, na.rm=FALSE, diff=1L, ...)
- sdDiff(x, na.rm=FALSE, diff=1L, ...)
- madDiff(x, na.rm=FALSE, diff=1L, ...)
+ sdDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ madDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
 }
 
 \arguments{
@@ -32,6 +32,9 @@
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded, otherwise not.}
  \item{diff}{The positional distance of elements for which the
     difference should be calculated.}
+ \item{trim}{A \code{\link[base]{double}} in [0,1/2] specifying the fraction of
+    observations to be trimmed from each end of (sorted) \code{x}
+    before estimation.}
  \item{...}{Not used.}
 }
 

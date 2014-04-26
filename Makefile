@@ -18,6 +18,8 @@ PKG_VERSION := $(shell grep -i ^version DESCRIPTION | cut -d : -d \  -f 2)
 PKG_NAME    := $(shell grep -i ^package DESCRIPTION | cut -d : -d \  -f 2)
 PKG_DIR     := $(shell basename "$(CURDIR)")
 PKG_TARBALL := $(PKG_NAME)_$(PKG_VERSION).tar.gz
+PKG_ZIP     := $(PKG_NAME)_$(PKG_VERSION).zip
+PKG_TGZ     := $(PKG_NAME)_$(PKG_VERSION).tgz
 
 # FILE MACROS
 FILES_R := $(wildcard R/*.R)
@@ -43,6 +45,7 @@ R_HOME := $(shell echo "$(R_HOME)" | tr "\\\\" "/")
 ## R_USE_CRAN := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('R_USE_CRAN', 'FALSE'))")
 R_NO_INIT := --no-init-file
 R_VERSION_STATUS := $(shell $(R_SCRIPT) -e "status <- tolower(R.version[['status']]); if (regexpr('unstable', status) != -1L) status <- 'devel'; cat(status)")
+R_VERSION_X_Y := $(shell $(R_SCRIPT) -e "cat(gsub('[.][0-9]+$$', '', getRversion()))")
 R_VERSION := $(shell $(R_SCRIPT) -e "cat(as.character(getRversion()))")
 R_VERSION_FULL := $(R_VERSION)$(R_VERSION_STATUS)
 R_LIBS_USER_X := $(shell $(R_SCRIPT) -e "cat(.libPaths()[1])")
@@ -78,6 +81,7 @@ debug:
 ##	@echo R_USE_CRAN=\'$(R_USE_CRAN)\'
 	@echo R_NO_INIT=\'$(R_NO_INIT)\'
 	@echo R_SCRIPT=\'$(R_SCRIPT)\'
+	@echo R_VERSION_X_Y=\'$(R_VERSION_X_Y)\'
 	@echo R_VERSION=\'$(R_VERSION)\'
 	@echo R_VERSION_STATUS=\'$(R_VERSION_STATUS)\'
 	@echo R_VERSION_FULL=\'$(R_VERSION_FULL)\'
@@ -180,9 +184,11 @@ check_force:
 
 
 # Install and build binaries
-binary: ../$(R_OUTDIR)/$(PKG_TARBALL)
+../$(R_OUTDIR)/$(PKG_ZIP): ../$(R_OUTDIR)/$(PKG_TARBALL)
 	$(CD) ../$(R_OUTDIR);\
 	$(R) --no-init-file CMD INSTALL --build --merge-multiarch $(PKG_TARBALL)
+
+binary: ../$(R_OUTDIR)/$(PKG_ZIP)
 
 
 # Check the line width of incl/*.(R|Rex) files [max 100 chars in R devel]
@@ -255,9 +261,19 @@ cran_setup: ../$(R_CRAN_OUTDIR)/$(PKG_TARBALL)
 
 cran: cran_setup ../$(R_CRAN_OUTDIR)/$(PKG_NAME),EmailToCRAN.txt
 
-# Backward compatibilities
-submit: cran
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Local repositories
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+REPOS_PATH := T:/My\ Repositories/braju.com/R
+REPOS_SRC := $(REPOS_PATH)/src/contrib
 
+$(REPOS_SRC):
+	$(MKDIR) "$@"
+
+$(REPOS_SRC)/$(PKG_TARBALL): ../$(R_OUTDIR)/$(PKG_TARBALL) $(REPOS_SRC)
+	$(CP) ../$(R_OUTDIR)/$(PKG_TARBALL) $(REPOS_SRC)
+
+repos: $(REPOS_SRC)/$(PKG_TARBALL)
 
 Makefile: $(FILES_MAKEFILE)
 	$(R_SCRIPT) -e "d <- 'Makefile'; s <- '../../Makefile'; if (file_test('-nt', s, d) && (regexpr('Makefile for R packages', readLines(s, n=1L)) != -1L)) file.copy(s, d, overwrite=TRUE)"
