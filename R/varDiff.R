@@ -90,6 +90,8 @@ setMethod("varDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, t
 
 ############################################################################
 # HISTORY:
+# 2014-04-26
+# o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
 # 2013-11-23
 # o MEMORY: Now varDiff() cleans out allocated objects sooner.
 # 2012-07-17

@@ -42,7 +42,7 @@ setMethod("madDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, t
 ############################################################################
 # HISTORY:
 # 2014-04-26
-# o Added argument 'trim' to sdDiff().
+# o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
 # 2008-04-13
 # o Added varDiff().
 # 2008-04-10 [on UA930 SFO-LHR]
