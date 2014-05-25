@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.4 [2014-05-23]
+o CLEANUP: Made indexByRow() an S3 rather than S4 generic.
+
+
 Version: 0.9.3 [2014-04-26]
 o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
 

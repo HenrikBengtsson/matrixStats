@@ -1,6 +1,6 @@
 ###########################################################################/**
 # @RdocFunction indexByRow
-# \alias{indexByRow,matrix-method}
+# \alias{indexByRow.matrix}
 #
 # @title "Translates matrix indices by rows into indices by columns"
 #
@@ -9,7 +9,7 @@
 # }
 #
 # \usage{
-#  @usage indexByRow
+#  @usage indexByRow,matrix
 # }
 #
 # \arguments{
@@ -43,12 +43,7 @@
 # @keyword iteration
 # @keyword logic
 #*/###########################################################################
-setGeneric("indexByRow", function(x, idxs=NULL, ...) {
-  standardGeneric("indexByRow")
-})
-
-
-setMethod("indexByRow", signature(x="matrix"), function(x, idxs=NULL, ...) {
+setMethodS3("indexByRow", "matrix", function(x, idxs=NULL, ...) {
   xT <- matrix(seq(along=x), nrow=ncol(x), ncol=nrow(x), byrow=TRUE);
   if (!is.null(idxs))
     xT <- xT[idxs];
@@ -58,6 +53,8 @@ setMethod("indexByRow", signature(x="matrix"), function(x, idxs=NULL, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2014-05-23
+# o CLEANUP: Made indexByRow() an S3 rather than S4 generic.
 # 2007-04-12
 # o Created.
 ##############################################################################

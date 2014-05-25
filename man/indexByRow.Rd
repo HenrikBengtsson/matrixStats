@@ -9,7 +9,7 @@
 \name{indexByRow}
 \alias{indexByRow}
 
-\alias{indexByRow,matrix-method}
+\alias{indexByRow.matrix}
 
 \title{Translates matrix indices by rows into indices by columns}
 
@@ -18,7 +18,7 @@
 }
 
 \usage{
- indexByRow(x, idxs=NULL, ...)
+ \method{indexByRow}{matrix}(x, idxs=NULL, ...)
 }
 
 \arguments{
