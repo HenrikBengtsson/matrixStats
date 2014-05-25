@@ -11,9 +11,9 @@
 
 \alias{sdDiff}
 \alias{madDiff}
-\alias{varDiff,numeric-method}
-\alias{sdDiff,numeric-method}
-\alias{madDiff,numeric-method}
+\alias{varDiff.numeric}
+\alias{sdDiff.numeric}
+\alias{madDiff.numeric}
 
 \title{Estimation of discrepancies based on sequential order differences in a vector}
 
@@ -22,9 +22,9 @@
 }
 
 \usage{
- varDiff(x, na.rm=FALSE, diff=1L, ...)
- sdDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
- madDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ \method{varDiff}{numeric}(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ \method{sdDiff}{numeric}(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ \method{madDiff}{numeric}(x, na.rm=FALSE, diff=1L, trim=0, ...)
 }
 
 \arguments{

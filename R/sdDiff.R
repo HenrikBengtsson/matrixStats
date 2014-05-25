@@ -1,8 +1,4 @@
-setGeneric("sdDiff", function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
-  standardGeneric("sdDiff");
-})
-
-setMethod("sdDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+setMethodS3("sdDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
     x <- x[!is.na(x)];
 
@@ -38,9 +34,10 @@ setMethod("sdDiff", signature(x="numeric"), function(x, na.rm=FALSE, diff=1L, tr
 })
 
 
-
 ############################################################################
 # HISTORY:
+# 2014-05-24
+# o Turned sdDiff() into an S3 method (was S4).
 # 2014-04-26
 # o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
 # 2013-11-23
