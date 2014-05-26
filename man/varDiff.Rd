@@ -34,7 +34,8 @@
     difference should be calculated.}
  \item{trim}{A \code{\link[base]{double}} in [0,1/2] specifying the fraction of
     observations to be trimmed from each end of (sorted) \code{x}
-    before estimation.}
+    before estimation.  If \code{trim=1}, then all data points
+    are trimmed.}
  \item{...}{Not used.}
 }
 

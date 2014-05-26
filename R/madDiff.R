@@ -19,7 +19,7 @@ setMethodS3("madDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...)
 
   # Trim?
   if (trim > 0 && n > 0L) {
-    if (anyNA(x)) return(NA_real_);
+    if (anyMissing(x)) return(NA_real_);
     lo <- floor(n*trim)+1;
     hi <- (n+1)-lo;
     partial <- unique(c(lo, hi))

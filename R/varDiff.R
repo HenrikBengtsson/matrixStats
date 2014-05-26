@@ -25,7 +25,8 @@
 #     difference should be calculated.}
 #  \item{trim}{A @double in [0,1/2] specifying the fraction of
 #     observations to be trimmed from each end of (sorted) \code{x}
-#     before estimation.}
+#     before estimation.  If \code{trim=1}, then all data points
+#     are trimmed.}
 #  \item{...}{Not used.}
 # }
 #
@@ -69,7 +70,7 @@ setMethodS3("varDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...)
 
   # Trim?
   if (trim > 0 && n > 0L) {
-    if (anyNA(x)) return(NA_real_);
+    if (anyMissing(x)) return(NA_real_);
     lo <- floor(n*trim)+1;
     hi <- (n+1)-lo;
     partial <- unique(c(lo, hi))
