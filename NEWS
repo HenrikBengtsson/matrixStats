@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.5 [2014-06-02]
+o Added benchmark RSP reports, e.g. matrixStats:::benchmark('colMins').
+o CLEANUP: Now only exporting plain functions and generic functions.
+
+
 Version: 0.9.4 [2014-05-23]
 o SPEEDUP: Turned several S4 methods into S3 methods, e.g.
   indexByRow(), madDiff(), sdDiff() and varDiff().
