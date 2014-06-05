@@ -61,6 +61,7 @@ R_RD4PDF = $(shell $(R_SCRIPT) -e "if (getRversion() < 3) cat('times,hyper')")
 R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
 HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !is.na(utils:::aspell_find_program('aspell'))))")
+HAS_ASPELL := FALSE
 
 all: build install check
 
