@@ -19,6 +19,7 @@
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{center}{(optional) The center, defaults to the row means.}
+#  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{...}{Additional arguments passed to \code{rowMeans()} and
 #     \code{rowSums()}.}
 # }

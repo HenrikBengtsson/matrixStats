@@ -2,9 +2,13 @@ Package: matrixStats
 ====================
 
 Version: 0.9.5 [2014-06-02]
-o Added benchmark RSP reports, e.g. matrixStats:::benchmark('colMins').
+o Now rowCounts(), rowAnys(), rowAlls() and corresponding column methods
+  can search for any value in addition to the default TRUE.
+o Added benchmark reports, e.g. matrixStats:::benchmark('colMins').
 o SPEEDUP: Made colVars() and colSds() significantly faster and
   rowVars() and rowSds() a slightly bit faster.
+o SPEEDUP: Turned more S4 methods into S3 methods, e.g. rowCounts(),
+  rowAlls(), and rowAnys().
 o CLEANUP: Now only exporting plain functions and generic functions.
 
 

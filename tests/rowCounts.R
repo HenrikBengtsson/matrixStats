@@ -14,7 +14,16 @@ for (na.rm in c(FALSE, TRUE)) {
   r3 <- apply(x, MARGIN=1, FUN=sum, na.rm=na.rm)
   stopifnot(identical(r1, r2))
   stopifnot(identical(r1, r3))
+
+  rT <- rowCounts(x, value=TRUE, na.rm=na.rm)
+  rF <- rowCounts(x, value=FALSE, na.rm=na.rm)
+  stopifnot(rT + rF == ncol(x))
+
+  cT <- colCounts(x, value=TRUE, na.rm=na.rm)
+  cF <- colCounts(x, value=FALSE, na.rm=na.rm)
+  stopifnot(cT + cF == nrow(x))
 }
+
 
 # Row/column all/any
 for (na.rm in c(FALSE, TRUE)) {

@@ -21,13 +21,14 @@
 }
 
 \usage{
- rowVars(x, center=NULL, ...)
- colVars(x, ...)
+ rowVars(x, na.rm=TRUE, center=NULL, ...)
+ colVars(x, na.rm=TRUE, center=NULL, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
  \item{center}{(optional) The center, defaults to the row means.}
+ \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{...}{Additional arguments passed to \code{rowMeans()} and
     \code{rowSums()}.}
 }

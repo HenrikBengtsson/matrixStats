@@ -27,7 +27,7 @@
 # \details{
 #   Internally the product is calculated via the logarithmic transform,
 #   treating zeros and negative values specially.  This enhance the
-#   precision and lower the risk for overflow.
+#   precision and lowers the risk for overflow.
 # }
 #
 # @author "HB"
@@ -44,7 +44,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   y <- vector(modeX, length=n);
 
   # Nothing todo?
-  if (n == 0) {
+  if (n == 0L) {
     return(y);
   }
 
@@ -52,14 +52,14 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Handle missing values
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  isNA <- is.na(x);
+  isNA <- is.na(x); # EXPENSIVE: Coerce/copy matrix
   rowHasNA <- rowAnys(isNA);
   hasNAs <- any(rowHasNA);
   if (hasNAs) {
     if (na.rm) {
       oneValue <- 1;
       mode(oneValue) <- modeX;
-      x[isNA] <- oneValue;
+      x[isNA] <- oneValue; # EXPENSIVE: Copy matrix
       rowHasNA <- logical(n); # Defaults to FALSE
       hasNAs <- FALSE;
     } else {
@@ -76,14 +76,22 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # Handle zeros
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for rows with at least one zero
-  isZero <- (x == 0);
+  isZero <- (x == 0);  # EXPENSIVE: Coerce/copy matrix
   rowHasZero <- rowAnys(isZero);
   isZero <- NULL; # Not needed anymore
 
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Only calculate the products on rows without zeros and missing values
-  toCalc <- (!rowHasNA & !rowHasZero);
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  toCalc <- which(!rowHasNA & !rowHasZero);
   rowHasZero <- NULL; # Not needed anymore
-  x <- x[toCalc,,drop=FALSE];
+
+  # Subset?
+  if (length(toCalc) < n) {
+    x <- x[toCalc,,drop=FALSE]; # EXPENSIVE: Coerce/copy matrix
+  }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -91,14 +99,14 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (nrow(x) > 0L) {
     # Infer signs
-    isNeg <- (x < 0);
+    isNeg <- (x < 0); # EXPENSIVE: Coerce/copy matrix
     isNeg <- rowSums(isNeg);
     isNeg <- (isNeg %% 2);
     isNeg <- c(+1,-1)[isNeg+1];
 
     # Calculate the product via the log transform
-    x <- abs(x);
-    x <- log(x);
+    x <- abs(x);  # EXPENSIVE: Copy matrix
+    x <- log(x);  # EXPENSIVE: Copy matrix
     x <- rowSums(x, ...);
     x <- exp(x);
     x <- isNeg*x;
@@ -124,8 +132,11 @@ colProds <- function(x, na.rm=FALSE, ...) {
   rowProds(x, na.rm=na.rm, ...);
 } # colProds()
 
+
 ############################################################################
 # HISTORY:
+# 2014-06-02 [HB]
+# o Now rowProds() avoids subsetting rows unless needed.
 # 2014-03-31 [HB]
 # o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
 #   be an array of at least two dimensions" on matrices where all rows

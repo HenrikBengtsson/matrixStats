@@ -36,7 +36,7 @@
 \details{
   Internally the product is calculated via the logarithmic transform,
   treating zeros and negative values specially.  This enhance the
-  precision and lower the risk for overflow.
+  precision and lowers the risk for overflow.
 }
 
 \author{Henrik Bengtsson}

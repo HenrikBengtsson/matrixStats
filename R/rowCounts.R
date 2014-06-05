@@ -1,16 +1,16 @@
 ###########################################################################/**
 # @RdocFunction rowCounts
+# @alias rowCounts.matrix
 # @alias colCounts
-# \alias{rowCounts,matrix-method}
-# \alias{colCounts,matrix-method}
+# @alias colCounts.matrix
 # @alias rowAnys
-# \alias{rowAnys,matrix-method}
+# @alias rowAnys.matrix
 # @alias colAnys
-# \alias{colAnys,matrix-method}
+# @alias colAnys.matrix
 # @alias rowAlls
-# \alias{rowAlls,matrix-method}
+# @alias rowAlls.matrix
 # @alias colAlls
-# \alias{colAlls,matrix-method}
+# @alias colAlls.matrix
 #
 # @title "Counts the number of TRUE values in each row (column) of a matrix"
 #
@@ -19,16 +19,17 @@
 # }
 #
 # \usage{
-#   @usage rowCounts
-#   @usage colCounts
-#   @usage rowAlls
-#   @usage colAlls
-#   @usage rowAnys
-#   @usage colAnys
+#   @usage rowCounts,matrix
+#   @usage colCounts,matrix
+#   @usage rowAlls,matrix
+#   @usage colAlls,matrix
+#   @usage rowAnys,matrix
+#   @usage colAnys,matrix
 # }
 #
 # \arguments{
-#  \item{x}{A @logical NxK @matrix.}
+#  \item{x}{An NxK @matrix.}
+#  \item{value}{A value to search for.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{...}{Not used.}
 # }
@@ -48,82 +49,74 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowCounts", function(x, na.rm=FALSE, ...) {
-  standardGeneric("rowCounts")
-})
+setMethodS3("rowCounts", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
+  # Argument 'value':
+  if (length(value) != 1L) {
+    stop("Argument 'value' has to be a single value: ", length(value));
+  }
+
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x);
 
 
-setMethod("rowCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  dim <- dim(x);
-  x <- as.logical(x);
-  x <- as.integer(x);
-  dim(x) <- dim;
-  counts <- rowSums(x, na.rm=na.rm);
-  x <- NULL; # Not needed anymore
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Count
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.nan(value)) {
+    counts <- apply(x, MARGIN=1L, FUN=function(x) sum(is.nan(x)));
+  } else if (is.na(value)) {
+    counts <- apply(x, MARGIN=1L, FUN=function(x) sum(is.na(x)));
+  } else {
+    counts <- apply(x, MARGIN=1L, FUN=function(x) sum(x == value, na.rm=na.rm));
+  }
+
   as.integer(counts);
 })
 
 
-setGeneric("colCounts", function(x, na.rm=FALSE, ...) {
-  standardGeneric("colCounts")
-})
+setMethodS3("colCounts", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
+  # Argument 'value':
+  if (length(value) != 1L) {
+    stop("Argument 'value' has to be a single value: ", length(value));
+  }
+
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x);
 
 
-setMethod("colCounts", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  dim <- dim(x);
-  x <- as.logical(x);
-  x <- as.integer(x);
-  dim(x) <- dim;
-  counts <- colSums(x, na.rm=na.rm);
-  x <- NULL; # Not needed anymore
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Count
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.nan(value)) {
+    counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.nan(x)));
+  } else if (is.na(value)) {
+    counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.na(x)));
+  } else {
+    counts <- apply(x, MARGIN=2L, FUN=function(x) sum(x == value, na.rm=na.rm));
+  }
+
   as.integer(counts);
 }) # colCounts()
 
 
 
-
-setGeneric("rowAlls", function(x, na.rm=FALSE, ...) {
-  standardGeneric("rowAlls")
-})
-
-
-setMethod("rowAlls", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  counts <- rowCounts(x, na.rm=na.rm, ...);
+setMethodS3("rowAlls", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
+  counts <- rowCounts(x, value=value, na.rm=na.rm, ...);
   (counts == ncol(x));
 })
 
-
-setGeneric("colAlls", function(x, na.rm=FALSE, ...) {
-  standardGeneric("colAlls")
-})
-
-
-setMethod("colAlls", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  counts <- colCounts(x, na.rm=na.rm, ...);
+setMethodS3("colAlls", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
+  counts <- colCounts(x, value=value, na.rm=na.rm, ...);
   (counts == nrow(x));
 })
 
-
-
-
-setGeneric("rowAnys", function(x, na.rm=FALSE, ...) {
-  standardGeneric("rowAnys")
-})
-
-
-setMethod("rowAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  counts <- rowCounts(x, na.rm=na.rm, ...);
+setMethodS3("rowAnys", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
+  counts <- rowCounts(x, value=value, na.rm=na.rm, ...);
   (counts > 0L);
 })
 
-
-setGeneric("colAnys", function(x, na.rm=FALSE, ...) {
-  standardGeneric("colAnys")
-})
-
-
-setMethod("colAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  counts <- colCounts(x, na.rm=na.rm, ...);
+setMethodS3("colAnys", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
+  counts <- colCounts(x, value=value, na.rm=na.rm, ...);
   (counts > 0L);
 })
 
@@ -131,6 +124,9 @@ setMethod("colAnys", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-06-02 [HB]
+# o Made rowCounts() an S3 method (was S4).
+# o Added argument 'value' to col- and rowCounts().
 # 2008-03-25 [HB]
 # o Created.
 ############################################################################

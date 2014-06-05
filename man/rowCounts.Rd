@@ -9,17 +9,17 @@
 \name{rowCounts}
 \alias{rowCounts}
 
+\alias{rowCounts.matrix}
 \alias{colCounts}
-\alias{rowCounts,matrix-method}
-\alias{colCounts,matrix-method}
+\alias{colCounts.matrix}
 \alias{rowAnys}
-\alias{rowAnys,matrix-method}
+\alias{rowAnys.matrix}
 \alias{colAnys}
-\alias{colAnys,matrix-method}
+\alias{colAnys.matrix}
 \alias{rowAlls}
-\alias{rowAlls,matrix-method}
+\alias{rowAlls.matrix}
 \alias{colAlls}
-\alias{colAlls,matrix-method}
+\alias{colAlls.matrix}
 
 \title{Counts the number of TRUE values in each row (column) of a matrix}
 
@@ -28,16 +28,17 @@
 }
 
 \usage{
-  rowCounts(x, na.rm=FALSE, ...)
-  colCounts(x, na.rm=FALSE, ...)
-  rowAlls(x, na.rm=FALSE, ...)
-  colAlls(x, na.rm=FALSE, ...)
-  rowAnys(x, na.rm=FALSE, ...)
-  colAnys(x, na.rm=FALSE, ...)
+  \method{rowCounts}{matrix}(x, value=TRUE, na.rm=FALSE, ...)
+  \method{colCounts}{matrix}(x, value=TRUE, na.rm=FALSE, ...)
+  \method{rowAlls}{matrix}(x, value=TRUE, na.rm=FALSE, ...)
+  \method{colAlls}{matrix}(x, value=TRUE, na.rm=FALSE, ...)
+  \method{rowAnys}{matrix}(x, value=TRUE, na.rm=FALSE, ...)
+  \method{colAnys}{matrix}(x, value=TRUE, na.rm=FALSE, ...)
 }
 
 \arguments{
- \item{x}{A \code{\link[base]{logical}} NxK \code{\link[base]{matrix}}.}
+ \item{x}{An NxK \code{\link[base]{matrix}}.}
+ \item{value}{A value to search.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{...}{Not used.}
 }
