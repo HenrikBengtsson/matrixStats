@@ -1,6 +1,6 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="rowRanks"%>
+<%@string fcnname="rowQuantiles"%>
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
@@ -16,7 +16,7 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* apply() + rank()
+* apply() + quantile()
 
 
 ## Data
@@ -39,9 +39,10 @@ gc()
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+probs <- seq(from=0, to=1, by=0.25)
 stats <- microbenchmark(
- rowRanks = rowRanks(X, na.rm=FALSE),
- apply    = apply(X, MARGIN=1L, FUN=rank, na.last="keep", ties.method="max"),
+ rowQuantiles = rowQuantiles(X, probs=probs, na.rm=FALSE),
+ apply        = apply(X, MARGIN=1L, FUN=quantile, probs=probs, na.rm=FALSE),
  unit = "ms"
 )
 })%>
