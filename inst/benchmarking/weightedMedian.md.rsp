@@ -25,7 +25,6 @@ weightedMedian <- matrixStats::weightedMedian
 %>
 
 # <%@meta name="title"%>
-<%@meta name="author"%> on <%@meta name="date"%> 
 
 This report benchmark the performance of <%=fcnname%>() against alternative methods.
 

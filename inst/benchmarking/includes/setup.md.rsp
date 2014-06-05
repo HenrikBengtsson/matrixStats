@@ -4,6 +4,7 @@
 <%@string appendix="${appendix}" default="true"%>
 <%@string fcnname=""%>
 <%@string fcntags=""%>
+<%@meta author="Henrik Bengtsson"%>
 
 <%--------------------------------------------------------------
  RSP specific
