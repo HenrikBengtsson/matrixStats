@@ -66,15 +66,9 @@ nb <- 50
 bx <- do.call(seq, c(as.list(range(x)), length.out=nb))
 bx1 <- c(bx[-1], bx[nb] + 1)
 
-t0 <- system.time({
-  yS0 <- binMeans0(y, x=x, bx=bx1)
-})
-
-t <- system.time({
-  yS <- binMeans(y, x=x, bx=bx1)
-})
+yS0 <- binMeans0(y, x=x, bx=bx1)
+yS <- binMeans(y, x=x, bx=bx1)
 nS <- binCounts(x, bx=bx1)
-
 ySr <- rev(binMeans(y, x=-x, bx=rev(-bx1), right=TRUE))
 
 # Sanity check

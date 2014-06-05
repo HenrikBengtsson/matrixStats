@@ -16,8 +16,10 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* apply()
-* rowSdColMeans() (below)
+* apply() + sd()
+* rowSdColMeans()
+
+where
 
 ```r
 <%=withCapture({

@@ -34,11 +34,7 @@ for (kk in 1:K) {
   }
 
   # rowQuantiles():
-  t1 <- system.time({
-    y1 <- matrixStats::rowQuantiles(x, probs=probs, na.rm=hasNA)
-  })
-  t2 <- system.time({
-    y2 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, na.rm=hasNA)
-  })
+  y1 <- matrixStats::rowQuantiles(x, probs=probs, na.rm=hasNA)
+  y2 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, na.rm=hasNA)
   stopifnot(all.equal(y1, t(y2)))
 } # for (kk ...)

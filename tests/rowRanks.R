@@ -30,34 +30,18 @@ for (kk in 1:K) {
   }
 
   # rowRanks():
-  t1 <- system.time({
-    y1 <- matrixStats::rowRanks(x)
-  })
-  t2 <- system.time({
-    y2 <- t(apply(x, MARGIN=1, FUN=rank, na.last="keep", ties.method="max"))
-  })
-
+  y1 <- matrixStats::rowRanks(x)
+  y2 <- t(apply(x, MARGIN=1, FUN=rank, na.last="keep", ties.method="max"))
   stopifnot(identical(y1,y2))
-  cat(sprintf("Timing: rowRanks()/t(apply()): %.3g\n", (t1/t2)[3]))
-  t3 <- system.time({
-    y3 <- matrixStats::colRanks(t(x))
-  })
+
+  y3 <- matrixStats::colRanks(t(x))
   stopifnot(identical(y1,y3))
-  cat(sprintf("Timing: rowRanks()/colRanks(t()): %.3g\n", (t1/t3)[3]))
 
   # colRanks():
-  t1 <- system.time({
-    y1 <- matrixStats::colRanks(x)
-  })
-  t2 <- system.time({
-    y2 <- t(apply(x, MARGIN=2, FUN=rank, na.last="keep", ties.method="max"))
-  })
-
+  y1 <- matrixStats::colRanks(x)
+  y2 <- t(apply(x, MARGIN=2, FUN=rank, na.last="keep", ties.method="max"))
   stopifnot(identical(y1,y2))
-  cat(sprintf("Timing: colRanks()/t(apply()): %.3g\n", (t1/t2)[3]))
-  t3 <- system.time({
-    y3 <- matrixStats::rowRanks(t(x))
-  })
+
+  y3 <- matrixStats::rowRanks(t(x))
   stopifnot(identical(y1,y3))
-  cat(sprintf("Timing: colRanks()/rowRanks(t()): %.3g\n", (t1/t3)[3]))
 } # for (kk ...)

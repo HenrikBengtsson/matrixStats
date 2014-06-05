@@ -23,30 +23,17 @@ yH <- log(1/rowMeans(1/X))
 
 nlX <- -log(X)
 
-t0 <- system.time({
-  y0 <- log(ncol(X)) - apply(nlX, MARGIN=1L, FUN=logSumExp0)
-})
+y0 <- log(ncol(X)) - apply(nlX, MARGIN=1L, FUN=logSumExp0)
 stopifnot(all.equal(y0,yH))
 
-t1 <- system.time({
-  y1 <- log(ncol(X)) - apply(nlX, MARGIN=1L, FUN=logSumExp)
-})
+y1 <- log(ncol(X)) - apply(nlX, MARGIN=1L, FUN=logSumExp)
 stopifnot(all.equal(y1,y0))
-cat(sprintf("Timing: apply(logSumExp)/apply(logSumExp0): %.3g\n", (t1/t0)[3]))
 
-t2 <- system.time({
-  y2 <- log(ncol(X)) - rowLogSumExps(nlX)
-})
+y2 <- log(ncol(X)) - rowLogSumExps(nlX)
 stopifnot(all.equal(y2,y0))
-cat(sprintf("Timing: rowLogSumExps()/apply(logSumExp0): %.3g\n", (t2/t0)[3]))
-cat(sprintf("Timing: rowLogSumExps()/apply(logSumExp): %.3g\n", (t2/t1)[3]))
 
-t3 <- system.time({
-  y3 <- log(ncol(X)) - colLogSumExps(t(nlX))
-})
+y3 <- log(ncol(X)) - colLogSumExps(t(nlX))
 stopifnot(all.equal(y3,y0))
-cat(sprintf("Timing: rowLogSumExps()/colLogSumExps(t()): %.3g\n", (t2/t3)[3]))
-
 
 
 ##############################################################
@@ -54,26 +41,14 @@ cat(sprintf("Timing: rowLogSumExps()/colLogSumExps(t()): %.3g\n", (t2/t3)[3]))
 ##############################################################
 yH <- log(1/colMeans(1/X))
 
-t0 <- system.time({
-  y0 <- log(nrow(X)) - apply(nlX, MARGIN=2L, FUN=logSumExp0)
-})
+y0 <- log(nrow(X)) - apply(nlX, MARGIN=2L, FUN=logSumExp0)
 stopifnot(all.equal(y0,yH))
 
-t1 <- system.time({
-  y1 <- log(nrow(X)) - apply(nlX, MARGIN=2L, FUN=logSumExp)
-})
+y1 <- log(nrow(X)) - apply(nlX, MARGIN=2L, FUN=logSumExp)
 stopifnot(all.equal(y1,y0))
-cat(sprintf("Timing: apply(logSumExp)/apply(logSumExp0): %.3g\n", (t1/t0)[3]))
 
-t2 <- system.time({
-  y2 <- log(nrow(X)) - colLogSumExps(nlX)
-})
+y2 <- log(nrow(X)) - colLogSumExps(nlX)
 stopifnot(all.equal(y2,y0))
-cat(sprintf("Timing: colLogSumExps()/apply(logSumExp0): %.3g\n", (t2/t0)[3]))
-cat(sprintf("Timing: colLogSumExps()/apply(logSumExp): %.3g\n", (t2/t1)[3]))
 
-t3 <- system.time({
-  y3 <- log(nrow(X)) - rowLogSumExps(t(nlX))
-})
+y3 <- log(nrow(X)) - rowLogSumExps(t(nlX))
 stopifnot(all.equal(y3,y0))
-cat(sprintf("Timing: colLogSumExps()/rowLogSumExps(t()): %.3g\n", (t2/t3)[3]))

@@ -17,18 +17,10 @@ x <- rnorm(nrow*ncol)
 dim(x) <- c(nrow, ncol)
 probs <- 0.3
 which <- round(probs*ncol)
-gc()
-t0 <- system.time({
-  for (rr in 1:K)
-    y0 <- apply(x, MARGIN=1, FUN=quantile, probs=probs, type=3)
-})
-gc()
-t1 <- system.time({
-  for (rr in 1:K)
-    y1 <- rowOrderStats(x, which=which)
-})
+
+y0 <- apply(x, MARGIN=1, FUN=quantile, probs=probs, type=3)
+y1 <- rowOrderStats(x, which=which)
 stopifnot(all.equal(y0,y1))
-cat(sprintf("rowOrderStats()/apply(): %.3g\n", (t1/t0)[3]))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -47,11 +39,7 @@ for (kk in 1:K) {
   probs <- runif(1)
   which <- round(probs*ncol)
 
-  t0 <- system.time({
-    y0 <- apply(x, MARGIN=1, FUN=quantile, probs=probs, type=3)
-  })
-  t1 <- system.time({
-    y1 <- rowOrderStats(x, which=which)
-  })
+  y0 <- apply(x, MARGIN=1, FUN=quantile, probs=probs, type=3)
+  y1 <- rowOrderStats(x, which=which)
   stopifnot(all.equal(y0,y1))
 } # for (kk in ...)

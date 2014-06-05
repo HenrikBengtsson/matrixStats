@@ -16,7 +16,7 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* apply()
+* apply() + prod()
 
 See also [StackOverflow:rowProds?].
 

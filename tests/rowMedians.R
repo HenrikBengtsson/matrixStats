@@ -33,33 +33,16 @@ for (kk in 1:K) {
   na.rm <- sample(c(TRUE,FALSE), size=1)
 
   # rowMedians():
-  t1 <- system.time({
-    y1 <- matrixStats::rowMedians(x, na.rm=na.rm)
-  })
-  t2 <- system.time({
-    y2 <- apply(x, MARGIN=1, FUN=median, na.rm=na.rm)
-  })
+  y1 <- matrixStats::rowMedians(x, na.rm=na.rm)
+  y2 <- apply(x, MARGIN=1, FUN=median, na.rm=na.rm)
   stopifnot(all.equal(y1,y2))
-  cat(sprintf("Timing: rowMedians()/apply(): %.3g\n", (t1/t2)[3]))
-  t3 <- system.time({
-    y3 <- matrixStats::colMedians(t(x), na.rm=na.rm)
-  })
+  y3 <- matrixStats::colMedians(t(x), na.rm=na.rm)
   stopifnot(all.equal(y1,y3))
-  cat(sprintf("Timing: rowMedians()/colMedians(t()): %.3g\n", (t1/t3)[3]))
-
 
   # colMedians():
-  t1 <- system.time({
-    y1 <- matrixStats::colMedians(x, na.rm=na.rm)
-  })
-  t2 <- system.time({
-    y2 <- apply(x, MARGIN=2, FUN=median, na.rm=na.rm)
-  })
+  y1 <- matrixStats::colMedians(x, na.rm=na.rm)
+  y2 <- apply(x, MARGIN=2, FUN=median, na.rm=na.rm)
   stopifnot(all.equal(y1,y2))
-  cat(sprintf("Timing: colMedians()/apply(): %.3g\n", (t1/t2)[3]))
-  t3 <- system.time({
-    y3 <- matrixStats::rowMedians(t(x), na.rm=na.rm)
-  })
+  y3 <- matrixStats::rowMedians(t(x), na.rm=na.rm)
   stopifnot(all.equal(y1,y3))
-  cat(sprintf("Timing: colMedians()/rowMedians(t()): %.3g\n", (t1/t3)[3]))
 } # for (kk ...)
