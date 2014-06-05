@@ -8,7 +8,7 @@ rmatrix <- function(nrow, ncol, mode=c("double", "integer")) {
 }
 
 set.seed(1)
-mode <- "double"
+
 data <- list(
   "Tiny square" = rmatrix(nrow=  40, ncol=  40),
   "Square"      = rmatrix(nrow= 400, ncol= 400),
