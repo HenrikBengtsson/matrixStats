@@ -4,3 +4,11 @@
 ```r
 <% print(sessionInfo()) %>
 ```
+Total processing time was <%=rspDuration <- round(Sys.time()-rspStartTime, digits=2)%> <%=attr(rspDuration, "units")%>.
+
+
+### Reproducibility
+To reproduce this report, do:
+```r
+html <- matrixStats:::benchmark('<%@string name="fcnname"%>')
+```

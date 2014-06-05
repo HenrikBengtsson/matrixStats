@@ -1,0 +1,56 @@
+<%@include file="includes/setup.md.rsp"%>
+<%@meta title="Benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-03"%>
+
+<%@include file="${header}"%>
+
+<%
+use("matrixStats")
+use("R.utils")
+mprintf <- function(...) message(sprintf(...), appendLF=FALSE)
+%>
+
+# <%@meta name="title"%>
+<%@meta name="author"%> on <%@meta name="date"%> 
+
+List of benchmark report for some of the functions available in the matrixStats package.
+
+<%
+path <- system.file("benchmarking", package="matrixStats")
+pattern <- "[.]md[.]rsp$"
+filenames <- list.files(path=path, pattern=pattern)
+filenames <- setdiff(filenames, "index.md.rsp")
+names <- gsub(pattern, "", filenames)
+%>
+<% for (ii in seq_along(names)) { %>
+<% name <- names[ii] %>
+* [<%=name%>](<%={
+  mprintf("%d of %d. Benchmarking %s()...\n", ii, length(names), name)
+  html <- sprintf("%s.html", name)
+  if (!file_test("-f", html)) {
+    html <- matrixStats:::benchmark(name, path=path, workdir=".", envir=new.env())
+    html <- getRelativePath(html)
+    gc()
+  }
+  mprintf("%d of %d. Benchmarking %s()...done\n", ii, length(names), name)
+  html
+}%>)
+<% } # for (name ...) %>
+
+## Appendix
+To reproduce this page and all of its reports, do:
+```r
+path <- system.file("benchmarking", package="matrixStats")
+R.rsp::rfile("index.md.rsp", path=path)
+```
+<%@string appendix="false"%>
+<%@include file="${footer}"%>
+<%@string appendix="true"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-03
+o Created.
+---------------------------------------------------------------------------%>

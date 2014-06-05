@@ -1,5 +1,5 @@
 <%@string header="includes/header.md.rsp"%>
-<%@string footer="includes/footer.md.rsp"%> 
+<%@string footer="includes/footer.md.rsp"%>
 <%@string references="../includes/references.md.rsp"%>
 <%@string appendix="${appendix}" default="true"%>
 
@@ -25,11 +25,12 @@ use("microbenchmark")
 <% benchmarkResults <- function(stats, fcnname=levels(stats$expr)[1L], tags=NULL, ...) { %>
 
 <% kable(summary(stats)) %>
-_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=dataLabel%> data.  Times are in milliseconds._
+_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data.  Times are in milliseconds._
 
-![](<%=toPNG(fcnname, tags=c(dataLabel, "benchmark"), aspectRatio=2/3, {
-  gg <- qplot(y=time, data=stats, colour=expr)
-  gg <- gg + scale_y_log10()
+![](<%=toPNG(fcnname, tags=c(tags, "benchmark"), aspectRatio=2/3, {
+  gg <- qplot(x=seq_along(time)/length(levels(stats$expr)), y=time/1e6, data=stats, colour=expr)
+  gg <- gg + xlab("iteration") + ylab("time (ms)")
+  gg <- gg + ylim(0,NA)
   print(gg)
 })%>)
 
@@ -39,3 +40,10 @@ _Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastColl
 <%--------------------------------------------------------------
  Macros
  --------------------------------------------------------------%>
+
+
+<%--------------------------------------------------------------
+ Timing
+ --------------------------------------------------------------%>
+<% rspStartTime <- Sys.time() %>
+
