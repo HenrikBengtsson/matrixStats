@@ -24,7 +24,7 @@ TEMPLATE signTabulate_<Integer|Real>(...):
 
 
 SEXP signTabulate(SEXP x) {
-  SEXP ans;
+  SEXP ans = NILSXP;
 
   /* Argument 'x': */
   if (!isVector(x))

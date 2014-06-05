@@ -1,7 +1,16 @@
+#include <Rinternals.h>
+
+/*
+ Backward compatibility with R (< 3.0.0)
+ */
+#ifndef LONG_VECTOR_SUPPORT
+  #define XLENGTH Rf_length
+  typedef int R_xlen_t; 
+#endif
+
 /*
  * Sets type-specific macros
  */
-
 #define CONCAT(x,y) x ##_## y
 #define CONCAT_MACROS(x,y) CONCAT(x,y)
 

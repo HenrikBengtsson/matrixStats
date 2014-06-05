@@ -25,7 +25,7 @@ TEMPLATE productExpSumLog_<Integer|Real>(...):
 
 
 SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
-  SEXP ans;
+  SEXP ans = NILSXP;
   int narm, hasna;
 
   /* Argument 'x': */
