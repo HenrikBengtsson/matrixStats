@@ -3,6 +3,7 @@
 # CORE MACROS
 ifeq ($(OS), Windows_NT)
 CD=cd
+CURDIR=$(subst \,/,"$(shell cmd.exe /C cd)")
 else
 CD=cd -P "$(CURDIR)"; cd   # This handles the case when CURDIR is a softlink
 endif
@@ -17,6 +18,7 @@ RMDIR=$(RM) -r
 PKG_VERSION := $(shell grep -i ^version DESCRIPTION | cut -d : -d \  -f 2)
 PKG_NAME    := $(shell grep -i ^package DESCRIPTION | cut -d : -d \  -f 2)
 PKG_DIR     := $(shell basename "$(CURDIR)")
+PKG_DIR     := $(CURDIR)
 PKG_TARBALL := $(PKG_NAME)_$(PKG_VERSION).tar.gz
 PKG_ZIP     := $(PKG_NAME)_$(PKG_VERSION).zip
 PKG_TGZ     := $(PKG_NAME)_$(PKG_VERSION).tgz
@@ -140,7 +142,7 @@ ns:
 ../$(R_OUTDIR)/$(PKG_TARBALL): $(PKG_FILES)
 	$(MKDIR) ../$(R_OUTDIR)
 	$(CD) ../$(R_OUTDIR);\
-	$(R) $(R_NO_INIT) CMD build $(R_BUILD_OPTS) ../$(PKG_DIR)
+	$(R) $(R_NO_INIT) CMD build $(R_BUILD_OPTS) $(PKG_DIR)
 
 build: ../$(R_OUTDIR)/$(PKG_TARBALL)
 
