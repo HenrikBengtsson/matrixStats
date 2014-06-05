@@ -1,0 +1,27 @@
+<%@string header="includes/header.md.rsp"%>
+<%@string footer="includes/footer.md.rsp"%> 
+<%@string references="../includes/references.md.rsp"%>
+<%@string appendix="${appendix}" default="true"%>
+
+<%--------------------------------------------------------------
+ RSP specific
+ --------------------------------------------------------------%>
+<%
+R.utils::use("R.utils, R.devices, knitr, ggplot2")
+options("devEval/args/field"="pathname")
+options("withCapture/newline"=FALSE)
+options(deparse.cutoff=110)
+kable <- function(...) knitr::kable(..., format="markdown")
+%>
+
+<%--------------------------------------------------------------
+ Report/package specific
+ --------------------------------------------------------------%>
+<%
+use("matrixStats")
+use("microbenchmark")
+%>
+
+<%--------------------------------------------------------------
+ Macros
+ --------------------------------------------------------------%>

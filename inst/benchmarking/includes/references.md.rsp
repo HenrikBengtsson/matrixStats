@@ -1,0 +1,27 @@
+<%---------------------------------------------------------------
+  REFERENCES
+  ---------------------------------------------------------------%>
+[BatchJobs]: https://github.com/tudo-r/BatchJobs
+[Bioconductor]: http://www.bioconductor.org/
+[BOW]: http://bow.codeplex.com/
+[Bowtie2]: http://bowtie-bio.sourceforge.net/bowtie2/
+[BWA]: http://bio-bwa.sourceforge.net/
+[CRAN]: http://cran.r-project.org/
+[fastq-dump]: https://www.ncbi.nlm.nih.gov/books/NBK158900/
+[FastQC]: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+[GATK]: http://www.broadinstitute.org/gatk/
+[HTSeq]: http://www-huber.embl.de/users/anders/HTSeq/
+[Java]: http://www.java.com/
+[Perl]: http://www.perl.org/
+[Python]: https://www.python.org/
+[Picard]: http://picard.sourceforge.net/
+[QDNAseq]: http://example.org/ "To be published"
+[R]: http://www.r-project.org/
+[R-Forge]: http://r-forge.r-project.org/
+[RSP]: http://cran.r-project.org/web/packages/R.rsp
+[SAMtools]: http://samtools.sourceforge.net/
+[SRA Toolkit]: https://www.ncbi.nlm.nih.gov/books/NBK158900/
+[SRP001537]: http://www.ncbi.nlm.nih.gov/sra?term=SRP001537
+[TCGA Mutation/Variation Calling Benchmark 4]: https://cghub.ucsc.edu/datasets/benchmark_download.html
+[TopHat2]: http://tophat.cbcb.umd.edu/
+[bwa mem vs aln]: http://lists.idyll.org/pipermail/ngs-2013/2013-June/000099.html

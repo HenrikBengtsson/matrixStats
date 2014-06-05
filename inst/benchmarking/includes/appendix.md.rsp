@@ -1,0 +1,6 @@
+## Appendix
+
+### Session information
+```r
+<% print(sessionInfo()) %>
+```

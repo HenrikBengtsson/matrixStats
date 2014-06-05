@@ -1,0 +1,33 @@
+<%---------------------------------------------------------------
+  Page footer
+  ---------------------------------------------------------------%>
+<%@string appendix="${appendix}" default="false"%>
+<%@ifeq appendix="true"%>
+  <%@include file="appendix.md.rsp"%>
+<%@endif%>
+
+<%@include file="${references}"%>
+
+---------------------------------------
+Powered by [RSP](http://cran.r-project.org/web/packages/R.rsp/)
+
+<%---------------------------------------------------------------
+  Dynamically insert an HTML favicon
+  ---------------------------------------------------------------%>
+<%
+toFaviconScript <- function(..., envir=parent.frame()) {
+  url <- R.devices::toFavicon(..., envir=envir, field="dataURI");
+  script <- c(
+    "<script>",
+    " var link = document.createElement('link');",
+    " link.rel = 'icon';",
+    sprintf(' link.href = "%s"', url),
+    " document.getElementsByTagName('head')[0].appendChild(link);",
+    "</script>"
+  )
+  paste(script, collapse="\n")
+} # tofaviconScript()
+%>
+<%=toFaviconScript({
+  plot(1, col="blue", bg="yellow", pch=21, cex=4, lwd=4, axes=FALSE)
+}, force=FALSE)%>
