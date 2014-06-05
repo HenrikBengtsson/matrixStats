@@ -18,7 +18,6 @@
 
 SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   int closedRight = LOGICAL(right)[0];
-  SEXP count;
   if (closedRight == 0) {
     return binCounts_L(x, bx);
   } else if (closedRight == 1) {
@@ -32,6 +31,8 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
 
 /***************************************************************************
  HISTORY:
+ 2014-06-03 [HB]
+  o Dropped unused variable 'count'.
  2013-10-08 [HB]
   o Now binCounts() calls binCounts_<Lr|lR>().
  2013-05-10 [HB]
