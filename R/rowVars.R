@@ -46,15 +46,18 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
   # Nothing to do?
   if (ncol <= 1L) {
-    x <- rep(x[1L], times=nrow(x));
+    x <- rep(NA_real_, times=nrow(x));
     return(x);
   }
 
   if (na.rm) {
     # Count number of missing values in each row
-    n <- rowCounts(x, value=NA_real_, na.rm=FALSE);
-    nonNA <- (n == ncol);
-    hasNA <- all(nonNA);
+    nNA <- rowCounts(x, value=NA_real_, na.rm=FALSE);
+
+    # Number of non-missing values
+    n <- ncol - nNA;
+
+    hasNA <- any(nNA > 0L);
     if (hasNA) {
       # Set NA estimates for rows with less than two observations
       n[n <= 1L] <- NA_integer_;
@@ -78,7 +81,7 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
   # Variance
   x <- (x - center^2);
-  x * n/(n-1);
+  x * (n/(n-1));
 }
 
 
@@ -93,9 +96,12 @@ colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
   if (na.rm) {
     # Count number of missing values in each column
-    n <- colCounts(x, value=NA_real_, na.rm=FALSE);
-    nonNA <- (n == nrow);
-    hasNA <- all(nonNA);
+    nNA <- colCounts(x, value=NA_real_, na.rm=FALSE);
+
+    # Number of non-missing values
+    n <- nrow - nNA;
+
+    hasNA <- any(nNA > 0L);
     if (hasNA) {
       # Set NA estimates for rows with less than two observations
       n[n <= 1L] <- NA_integer_;
@@ -119,7 +125,7 @@ colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
   # Variance
   x <- (x - center^2);
-  x * n/(n-1);
+  x * (n/(n-1));
 }
 
 

@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.7 [2014-06-05]
+o BUG FIX: Introduced a bug in v0.9.5 causing col- and rowVars() and
+  hence also col- and rowSds() to return garbage.  Add package tests
+  for these now.
+
+
 Version: 0.9.6 [2014-06-04]
 o SPEEDUP: Now col- and rowProds() utilizes new product() function.
 o SPEEDUP: Added product() for calculating the product of a numeric
