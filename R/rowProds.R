@@ -2,6 +2,7 @@
 # @RdocFunction rowProds
 # @alias rowProds
 # @alias colProds
+# @alias product
 #
 # @title "Calculates the product for each row (column) in a matrix"
 #
@@ -12,12 +13,15 @@
 # \usage{
 #  @usage rowProds
 #  @usage colProds
+#  @usage product
 # }
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{na.rm}{If @TRUE, missing values are ignored, otherwise not.}
-#  \item{...}{Arguments passed to @see "base::rowSums".}
+#  \item{method}{A @character string specifying how each product
+#   is calculated.}
+#  \item{...}{Not used.}
 # }
 #
 # \value{
@@ -25,9 +29,12 @@
 # }
 #
 # \details{
-#   Internally the product is calculated via the logarithmic transform,
-#   treating zeros and negative values specially.  This enhance the
-#   precision and lowers the risk for overflow.
+#   If \code{method="expSumLog"}, then the product is calculated via
+#   the logarithmic transform (treating zeros and negative values
+#   specially).  This improves the precision and lowers the risk
+#   for numeric overflow.
+#   If \code{method="direct"}, the direct product is calculated
+#   via @see "base::prod".
 # }
 #
 # @author "HB"
@@ -37,7 +44,11 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowProds <- function(x, na.rm=FALSE, ...) {
+rowProds <- function(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...) {
+  # Argument 'method':
+  method <- match.arg(method);
+  if (method == "direct") stop("Not implemented.");
+
   # Preallocate result (zero:ed by default)
   modeX <- mode(x);
   n <- nrow(x);
@@ -133,6 +144,8 @@ colProds <- function(x, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-06-04 [HB]
+# o Added argument 'method' to col- and rowProds().
 # 2014-06-02 [HB]
 # o Now rowProds() uses rowCounts(x) when 'x' is logical.
 # o Now rowProds() avoids subsetting rows unless needed.

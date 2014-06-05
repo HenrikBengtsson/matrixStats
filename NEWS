@@ -1,7 +1,15 @@
 Package: matrixStats
 ====================
 
-Version: 0.9.5 [2014-06-02]
+Version: 0.9.6 [2014-06-04]
+o Added signTabulate() for tabulating the number of negatives, zeros,
+  positives and missing values.  For doubles, the number of negative
+  and positive infinite values are also counted.
+
+
+Version: 0.9.5 [2014-06-04]
+o Added argument 'method' to col- and rowProds() for controlling how
+  the product is calculated.
 o SPEEDUP: Package is now byte compiled.
 o SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
 o SPEEDUP: Made rowProds() and rowTabulates() significantly faster.
