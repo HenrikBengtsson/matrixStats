@@ -1,0 +1,87 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string fcnname="weightedMedian"%>
+<% fcnname <- "<%@string name="fcnname"%>" %>
+<%@meta title="${fcnname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-03"%>
+
+<%@include file="${header}"%>
+
+<%
+use("limma")
+limma_weighted.median <- limma::weighted.median
+
+use("cwhmisc")
+cwhmisc_w.median <- cwhmisc::w.median
+
+use("ergm")
+ergm_wtd.median <- ergm::wtd.median
+
+use("laeken")
+laeken_weightedMedian <- laeken::weightedMedian
+
+weightedMedian <- matrixStats::weightedMedian
+%>
+
+# <%@meta name="title"%>
+<%@meta name="author"%> on <%@meta name="date"%> 
+
+This report benchmark the performance of <%=fcnname%>() against alternative methods.
+
+## Alternative methods
+
+* apply() + weightedMedian(..., method="shell")  [default is method="quick"]
+* apply() + limma::weighted.median()
+* apply() + cwhmisc::w.median()
+* apply() + ergm::wtd.median()
+* apply() + laeken::weightedMedian()
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- data[1:3]
+data <- lapply(data, FUN=function(X) X[,seq_len(min(40,ncol(X)))])
+})%>
+```
+
+## Results
+
+<% for (ii in seq_along(data)) { %>
+<%
+dataLabel <- names(data)[ii]
+X <- data[[dataLabel]]
+gc()
+%>
+### <%=dataLabel%> (<%=paste(dim(X), collapse="-by-")%>) matrix
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+w <- runif(nrow(X))
+stats <- microbenchmark(
+ "weightedMedian"         = apply(X, MARGIN=2L, FUN=weightedMedian, w=w, ties="mean", na.rm=FALSE),
+ "weightedMedian/shell"   = apply(X, MARGIN=2L, FUN=weightedMedian, w=w, ties="mean", method="shell", na.rm=FALSE),
+ "limma::weighted.median" = apply(X, MARGIN=2L, FUN=limma_weighted.median, w=w, na.rm=FALSE),
+ "cwhmisc::w.median"      = apply(X, MARGIN=2L, FUN=cwhmisc_w.median, w=w),
+ "ergm::wtd.median"       = apply(X, MARGIN=2L, FUN=ergm_wtd.median, w=w),
+ "laeken::weightedMedian" = apply(X, MARGIN=2L, FUN=laeken_weightedMedian, w=w),
+  unit = "ms"
+)
+})%>
+```
+
+<% benchmarkResults(stats, tags=dataLabel) %>
+
+<% } # for (ii ...) %>
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-03
+o Created using benchmark snippet in incl/weightedMedian.Rex.
+---------------------------------------------------------------------------%>

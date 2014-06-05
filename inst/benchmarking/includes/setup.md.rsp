@@ -2,6 +2,8 @@
 <%@string footer="includes/footer.md.rsp"%>
 <%@string references="../includes/references.md.rsp"%>
 <%@string appendix="${appendix}" default="true"%>
+<%@string fcnname=""%>
+<%@string fcntags=""%>
 
 <%--------------------------------------------------------------
  RSP specific

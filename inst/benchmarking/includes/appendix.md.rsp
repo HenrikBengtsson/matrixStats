@@ -10,5 +10,5 @@ Total processing time was <%=rspDuration <- round(Sys.time()-rspStartTime, digit
 ### Reproducibility
 To reproduce this report, do:
 ```r
-html <- matrixStats:::benchmark('<%@string name="fcnname"%>')
+html <- matrixStats:::benchmark('<%@string name="fcnname"%>'<%@ifneq fcntags=""%>, tags='<%@string name="fcntags"%>'<%@endif%>)
 ```
