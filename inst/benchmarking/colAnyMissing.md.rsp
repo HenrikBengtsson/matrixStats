@@ -1,10 +1,10 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="rowAnyMissing"%>
+<%@string fcnname="colAnyMissing"%>
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-06-02"%>
+<%@meta date="2014-06-04"%>
 
 <%@include file="${header}"%>
 
@@ -17,12 +17,12 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 ## Alternative methods
 
 * apply() + anyMissing()
-* rowAnyMissing()
-* rowSums() + is.na()
+* colAnyMissing()
+* colSums() + is.na()
 
 <%=withCapture({
-rowAnyMissing <- function(x, ...) {
-  is.na(rowCounts(x, na.rm=FALSE))
+colAnyMissing <- function(x, ...) {
+  is.na(colCounts(x, na.rm=FALSE))
 }
 })%>
 
@@ -48,9 +48,9 @@ gc()
 <%=withCapture({
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
- rowAnyMissing = rowAnyMissing(X),
- apply         = apply(X, MARGIN=1L, FUN=anyMissing),
- rowSums       = is.na(rowSums(X, na.rm=FALSE)),
+ colAnyMissing = colAnyMissing(X),
+ apply         = apply(X, MARGIN=2L, FUN=anyMissing),
+ colSums       = is.na(colSums(X, na.rm=FALSE)),
  unit = "ms"
 )
 })%>
@@ -61,9 +61,9 @@ stats <- microbenchmark(
 <%
 # Sanity checks
 Y <- list(
- rowAnyMissing = rowAnyMissing(X),
- apply         = apply(X, MARGIN=1L, FUN=anyMissing),
- rowSums       = is.na(rowSums(X, na.rm=FALSE))
+ colAnyMissing = colAnyMissing(X),
+ apply         = apply(X, MARGIN=2L, FUN=anyMissing),
+ colSums       = is.na(colSums(X, na.rm=FALSE))
 )
 lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
 %>
@@ -76,6 +76,6 @@ lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
 
 <%---------------------------------------------------------------------------
 HISTORY:
-2014-06-02
+2014-06-04
 o Created.
 ---------------------------------------------------------------------------%>
