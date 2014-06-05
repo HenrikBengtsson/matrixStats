@@ -1,5 +1,5 @@
 ############################################################################/**
-# @RdocDefault weightedMedian
+# @RdocFunction weightedMedian
 #
 # \encoding{latin1}
 #
@@ -107,23 +107,15 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  qsort <- function(x) {
-    ## .Internal(qsort(x, TRUE));  # index.return=TRUE
-    sort.int(x, index.return=TRUE, method="quick");
-  } # qsort()
-
-
+weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
+  n <- length(x);
   if (missing(w)) {
     # By default use weights that are one.
-    w <- rep(1, times=length(x));
+    w <- rep(1, times=n);
   }
 
   naValue <- NA;
@@ -134,9 +126,12 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
     # There are no NAs
   } else if (identical(na.rm, TRUE)) {
     # Remove values that are NA's
-    tmp <- !(is.na(x) | is.na(w));
-    x <- .subset(x, tmp);
-    w <- .subset(w, tmp);
+    tmp <- which(!(is.na(x) | is.na(w)));
+    if (length(tmp) < n) {
+      x <- .subset(x, tmp);
+      w <- .subset(w, tmp);
+      n <- length(x);
+    }
     tmp <- NULL; # Not needed anymore
   } else if (anyMissing(x)) {
     return(naValue);
@@ -146,12 +141,11 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   #  1) take care of the case when all weights are zero,
   #  2) make sure that possible tied values are next to each others, and
   #  3) it will most likely speed up the sorting.
-  n <- length(w);
-  tmp <- (w > 0);
-  if (!all(tmp)) {
+  tmp <- which(w > 0);
+  if (length(tmp) < n) {
     x <- .subset(x, tmp);
     w <- .subset(w, tmp);
-    n <- sum(tmp);
+    n <- length(x);
   }
   tmp <- NULL; # Not needed anymore
 
@@ -165,8 +159,8 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   # Are any weights Inf? Then treat them with equal weight and all others
   # with weight zero. If they have equal weight, regular median can be used
   # instead, which is assumed to be faster.
-  tmp <- is.infinite(w);
-  if (any(tmp)) {
+  tmp <- which(is.infinite(w));
+  if (length(tmp) > 0L) {
     x <- .subset(x, tmp);
     # Here we know there are no NAs; we can do better than stats::median(),
     # because we do not have to check for NAs etc.
@@ -322,11 +316,21 @@ setMethodS3("weightedMedian", "default", function(x, w, na.rm=NA, interpolate=is
   } else if (ties == "both") {
     .subset(x, k, k+1L);
   }
-})
+} # weightedMedian()
+
+
+# Used by weightedMedian()
+qsort <- function(x) {
+  ## .Internal(qsort(x, TRUE));  # index.return=TRUE
+  sort.int(x, index.return=TRUE, method="quick");
+} # qsort()
+
 
 
 ###############################################################################
 # HISTORY:
+# 2014-06-03
+# o SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
 # 2013-11-23
 # o MEMORY: Now weightedMad() cleans out allocated objects sooner.
 # 2013-09-26

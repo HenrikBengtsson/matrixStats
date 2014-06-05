@@ -7,15 +7,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{weightedMedian}
-\alias{weightedMedian.default}
 \alias{weightedMedian}
+
 
 \encoding{latin1}
 
 \title{Weighted Median Value}
 
 \usage{
-\method{weightedMedian}{default}(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
+weightedMedian(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
   method=c("quick", "shell"), ...)
 }
 

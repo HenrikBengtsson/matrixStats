@@ -83,7 +83,6 @@ S3method("madDiff", "numeric")
 S3method("sdDiff", "numeric")
 S3method("varDiff", "numeric")
 S3method("weightedMad", "default")
-S3method("weightedMedian", "default")
 S3method("weightedSd", "default")
 S3method("weightedVar", "default")
 

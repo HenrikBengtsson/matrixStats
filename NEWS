@@ -2,6 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.9.5 [2014-06-02]
+o SPEEDUP: Package is now byte compiled.
+o SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
 o SPEEDUP: Made rowProds() and rowTabulates() significantly faster.
 o SPEEDUP: Now rowCounts(), rowAnys(), rowAlls() and corresponding
   column methods can search for any value in addition to the

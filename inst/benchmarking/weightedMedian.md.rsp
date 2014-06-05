@@ -62,12 +62,12 @@ gc()
 X <- data[[.dataLabel.]]
 w <- runif(nrow(X))
 stats <- microbenchmark(
- "weightedMedian"         = apply(X, MARGIN=2L, FUN=weightedMedian, w=w, ties="mean", na.rm=FALSE),
- "weightedMedian/shell"   = apply(X, MARGIN=2L, FUN=weightedMedian, w=w, ties="mean", method="shell", na.rm=FALSE),
- "limma::weighted.median" = apply(X, MARGIN=2L, FUN=limma_weighted.median, w=w, na.rm=FALSE),
- "cwhmisc::w.median"      = apply(X, MARGIN=2L, FUN=cwhmisc_w.median, w=w),
- "ergm::wtd.median"       = apply(X, MARGIN=2L, FUN=ergm_wtd.median, w=w),
- "laeken::weightedMedian" = apply(X, MARGIN=2L, FUN=laeken_weightedMedian, w=w),
+ "weightedMedian"         = for (ii in 1:ncol(X)) weightedMedian(X[,ii], w=w, ties="mean", na.rm=FALSE),
+ "weightedMedian/shell"   = for (ii in 1:ncol(X)) weightedMedian(X[,ii], w=w, ties="mean", method="shell", na.rm=FALSE),
+ "limma::weighted.median" = for (ii in 1:ncol(X)) limma_weighted.median(X[,ii], w=w, na.rm=FALSE),
+ "cwhmisc::w.median"      = for (ii in 1:ncol(X)) cwhmisc_w.median(X[,ii], w=w),
+ "ergm::wtd.median"       = for (ii in 1:ncol(X)) ergm_wtd.median(X[,ii], w=w),
+ "laeken::weightedMedian" = for (ii in 1:ncol(X)) laeken_weightedMedian(X[,ii], w=w),
   unit = "ms"
 )
 })%>
