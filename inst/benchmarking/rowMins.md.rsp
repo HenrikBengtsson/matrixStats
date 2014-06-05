@@ -1,0 +1,78 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string fcnname="rowMins"%>
+<% fcnname <- "<%@string name="fcnname"%>" %>
+<%@meta title="${fcnname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-02"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+<%@meta name="author"%> on <%@meta name="date"%> 
+
+This report benchmark the performance of <%=fcnname%>() against alternative methods.
+
+## Alternative methods
+
+* apply()
+* split() + lapply()
+* lapply() + pmin()
+* lapply() + pmin.int()
+
+## Data
+```r
+<%=withCapture({
+rmatrix <- function(nrow, ncol) {
+  matrix(sample(1e6, size=nrow*ncol, replace=TRUE), nrow=nrow, ncol=ncol)
+}
+
+set.seed(1)
+data <- list(
+  "Tiny square" = rmatrix(nrow=  40, ncol=  40),
+  "Square"      = rmatrix(nrow= 400, ncol= 400),
+  "Tall"        = rmatrix(nrow=4000, ncol=  40),
+  "Wide"        = rmatrix(nrow=  40, ncol=4000),
+  "Wide-tall"   = rmatrix(nrow= 400, ncol=4000)
+)
+})%>
+```
+
+## Results
+
+<% for (ii in seq_along(data)) { %>
+<%
+dataLabel <- names(data)[ii]
+X <- data[[dataLabel]]
+gc()
+%>
+### <%=dataLabel%> (<%=paste(dim(X), collapse="-by-")%>) matrix
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+stats <- microbenchmark(
+ rowMins           = rowMins(X, na.rm=FALSE),
+ apply             = apply(X, MARGIN=1L, FUN=min, na.rm=FALSE),
+# "split+lapply"    = lapply(split(X, f=rep(seq_len(dim(X)[1L]), each=dim(X)[2L])), FUN=min),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(ncol(X)), function(i) X[,i])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(ncol(X)), function(i) X[,i])),
+ unit = "ms"
+)
+})%>
+```
+
+<% benchmarkResults(stats, tags=dataLabel) %>
+
+<% } # for (ii ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-02
+o Created.
+---------------------------------------------------------------------------%>

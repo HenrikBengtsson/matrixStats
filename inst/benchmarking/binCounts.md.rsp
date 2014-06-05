@@ -42,7 +42,7 @@ bx <- c(-1, bx, 2)
 ```
 
 <% benchmark <- function() { %>
-<% sortTag <- if (is.unsorted(x)) "unsorted" else "sorted" %>
+<% dataLabel <- if (is.unsorted(x)) "unsorted" else "sorted" %>
 ```r
 <%=withCapture({
 stats <- microbenchmark(
@@ -53,14 +53,7 @@ stats <- microbenchmark(
 })%>
 ```
 
-<% kable(summary(stats)) %>
-_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=sortTag%> data.  Times are in milliseconds._
-
-![](<%=toPNG(fcnname, tags=c(sortTag, "benchmark"), aspectRatio=2/3, {
-  gg <- qplot(y=time, data=stats, colour=expr)
-  gg <- gg + scale_y_log10()
-  print(gg)
-})%>)
+<% benchmarkResults(stats, tags=dataLabel) %>
 
 <%
 # Sanity checks

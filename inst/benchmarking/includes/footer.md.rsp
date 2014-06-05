@@ -9,7 +9,7 @@
 <%@include file="${references}"%>
 
 ---------------------------------------
-Powered by [RSP](http://cran.r-project.org/web/packages/R.rsp/)
+Powered by [RSP]
 
 <%---------------------------------------------------------------
   Dynamically insert an HTML favicon

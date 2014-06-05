@@ -22,6 +22,20 @@ use("matrixStats")
 use("microbenchmark")
 %>
 
+<% benchmarkResults <- function(stats, fcnname=levels(stats$expr)[1L], tags=NULL, ...) { %>
+
+<% kable(summary(stats)) %>
+_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=dataLabel%> data.  Times are in milliseconds._
+
+![](<%=toPNG(fcnname, tags=c(dataLabel, "benchmark"), aspectRatio=2/3, {
+  gg <- qplot(y=time, data=stats, colour=expr)
+  gg <- gg + scale_y_log10()
+  print(gg)
+})%>)
+
+<% } # benchmarkResults() %>
+
+
 <%--------------------------------------------------------------
  Macros
  --------------------------------------------------------------%>
