@@ -1,10 +1,10 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="binCounts"%>
+<%@string fcnname="binMeans"%>
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-05-25"%>
+<%@meta date="2014-06-04"%>
 
 <%@include file="${header}"%>
 
@@ -16,16 +16,33 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* hist()
+* binMeansNaive()
 
-as below
+which is defined as
 
 ```r
 <%=withCapture({
-hist <- graphics::hist
-binCounts_hist <- function(x, bx, right=FALSE, ...) {
-  hist(x, breaks=bx, right=right, include.lowest=TRUE, plot=FALSE)$counts
-}
+binMeansNaive <- function(y, x, bx, na.rm=FALSE, count=TRUE, right=FALSE) {
+  B <- length(bx)-1L
+  res <- double(B)
+  counts <- integer(B)
+
+  # For each bin...
+  for (kk in seq(length=B)) {
+    if (right) {
+      idxs <- which(bx[kk] <  x & x <= bx[kk+1L])
+    } else {
+      idxs <- which(bx[kk] <= x & x <  bx[kk+1L])
+    }
+    yKK <- y[idxs]
+    muKK <- mean(yKK)
+    res[kk] <- muKK
+    counts[kk] <- length(idxs)
+  } # for (kk ...)
+
+  if (count) attr(res, "count") <- counts
+  res
+} # binMeansNaive()
 })%>
 ```
 
@@ -37,6 +54,7 @@ binCounts_hist <- function(x, bx, right=FALSE, ...) {
 nx <- 100e3 # Number of data points
 set.seed(0xBEEF)
 x <- runif(nx, min=0, max=1)
+y <- runif(nx, min=0, max=1)
 
 # Uniformely distributed bins
 nb <- 10e3 # Number of bins
@@ -50,8 +68,8 @@ bx <- c(-1, bx, 2)
 ```r
 <%=withCapture({
 stats <- microbenchmark(
- binCounts = binCounts(x, bx=bx),
- hist      = binCounts_hist(x, bx=bx),
+ binMeans      = binMeans(x=x, y=y, bx=bx, count=TRUE),
+ binMeansNaive = binMeansNaive(x=x, y=y, bx=bx, count=TRUE),
  unit = "ms"
 )
 })%>
@@ -61,10 +79,10 @@ stats <- microbenchmark(
 
 <%
 # Sanity checks
-n0 <- binCounts_hist(x, bx=bx)
-n1 <- binCounts(x, bx=bx)
+n0 <- binMeans_hist(x, bx=bx)
+n1 <- binMeans(x, bx=bx)
 stopifnot(identical(n1, n0))
-n1r <- rev(binCounts(-x, bx=rev(-bx), right=TRUE))
+n1r <- rev(binMeans(-x, bx=rev(-bx), right=TRUE))
 stopifnot(identical(n1r, n1))
 %>
 <%----
