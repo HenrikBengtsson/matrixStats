@@ -44,6 +44,8 @@ To reproduce this page and all of its reports, do:
 path <- system.file("benchmarking", package="matrixStats")
 R.rsp::rfile("index.md.rsp", path=path)
 ```
+Note: Each reports may take several minutes to complete.
+
 <%@string appendix="false"%>
 <%@include file="${footer}"%>
 <%@string appendix="true"%>

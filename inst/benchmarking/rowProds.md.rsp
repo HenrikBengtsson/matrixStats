@@ -25,6 +25,7 @@ See also [StackOverflow:rowProds?].
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
 })%>
 ```
 

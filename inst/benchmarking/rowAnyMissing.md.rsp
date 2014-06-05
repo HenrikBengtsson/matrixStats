@@ -30,11 +30,7 @@ rowAnyMissing <- function(x, ...) {
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- lapply(data, FUN=function(x) {
-  storage.mode(x) <- "integer";
-  if (runif(1) < 0.1) x[sample(length(x), size=0.1*length(x))] <- NA
-  x
-})
+data <- rmatrices(mode="integer", naProb=0.1)
 })%>
 ```
 

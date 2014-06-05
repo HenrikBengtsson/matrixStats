@@ -34,6 +34,7 @@ logSumExp0 <- function(lx, ...) {
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
 })%>
 ```
 

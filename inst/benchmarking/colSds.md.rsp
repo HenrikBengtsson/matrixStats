@@ -42,6 +42,7 @@ See also [StackOverflow:colSds?].
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
 })%>
 ```
 

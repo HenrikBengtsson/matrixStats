@@ -1,21 +1,25 @@
-rmatrix <- function(nrow, ncol, mode=c("double", "integer")) {
+rmatrix <- function(nrow, ncol, mode=c("double", "integer"), range=c(-100,+100), naProb=0) {
   mode <- match.arg(mode)
   n <- nrow*ncol
-  X <- runif(n, min=-100, max=+100)
+  X <- runif(n, min=range[1], max=range[2])
+  if (naProb > 0) X[sample(n, size=naProb*n)] <- NA_real_
   storage.mode(X) <- mode
   dim(X) <- c(nrow, ncol)
   X
-}
+} # rmatrix()
 
-set.seed(1)
 
-data <- list(
-  "Tiny square" = rmatrix(nrow=  40, ncol=  40),
-  "Square"      = rmatrix(nrow= 400, ncol= 400),
-  "Tall"        = rmatrix(nrow=4000, ncol=  40),
-  "Wide"        = rmatrix(nrow=  40, ncol=4000),
-  "Wide-tall"   = rmatrix(nrow= 400, ncol=4000)
-)
+rmatrices <- function(scale=40, seed=1, ...) {
+  set.seed(seed)
+  data <- list()
+  data$`Tiny Square` <- rmatrix(nrow=scale*  1, ncol=scale*  1, ...)
+  data$`Square`      <- rmatrix(nrow=scale* 10, ncol=scale* 10, ...)
+  data$`Tall Narrow` <- rmatrix(nrow=scale*100, ncol=scale*  1, ...)
+  data$`Short Wide`  <- rmatrix(nrow=scale*  1, ncol=scale*100, ...)
+  data$`Long Wide`   <- rmatrix(nrow=scale* 10, ncol=scale*100, ...)
+  data
+} # rmatrices()
+
 
 ############################################################################
 # HISTORY:

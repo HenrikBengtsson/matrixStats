@@ -24,7 +24,7 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- lapply(data, FUN=function(x) { storage.mode(x) <- "integer"; x })
+data <- rmatrices(mode="integer")
 })%>
 ```
 

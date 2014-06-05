@@ -12,7 +12,7 @@
 R.utils::use("R.utils, R.devices, knitr, ggplot2")
 options("devEval/args/field"="pathname")
 options("withCapture/newline"=FALSE)
-options(deparse.cutoff=110)
+options(deparse.cutoff=100)
 kable <- function(...) knitr::kable(..., format="markdown")
 %>
 

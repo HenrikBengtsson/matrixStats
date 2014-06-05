@@ -36,6 +36,7 @@ rowWeightedMedians_naive <- function(X, W, na.rm=FALSE, ...) {
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
 #data <- data[1:3]
 #ata <- lapply(data, FUN=function(X) X[seq_len(min(40,nrow(X))),])
 })%>
