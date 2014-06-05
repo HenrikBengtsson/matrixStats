@@ -1,9 +1,8 @@
 ###########################################################################/**
 # @RdocFunction rowTabulates
-# @alias rowdTabulates
+# @alias rowTabulates.matrix
 # @alias colTabulates
-# \alias{rowTabulates,matrix-method}
-# \alias{colTabulates,matrix-method}
+# @alias colTabulates.matrix
 #
 # @title "Tabulates the values in a matrix by row (column)"
 #
@@ -12,8 +11,8 @@
 # }
 #
 # \usage{
-#   @usage rowTabulates
-#   @usage colTabulates
+#   @usage rowTabulates,matrix
+#   @usage colTabulates,matrix
 # }
 #
 # \arguments{
@@ -35,12 +34,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setGeneric("rowTabulates", function(x, values=NULL, ...) {
-  standardGeneric("rowTabulates");
-})
-
-
-setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
+setMethodS3("rowTabulates", "matrix", function(x, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -90,13 +84,7 @@ setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
 })
 
 
-
-setGeneric("colTabulates", function(x, values=NULL, ...) {
-  standardGeneric("colTabulates");
-})
-
-
-setMethod("colTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
+setMethodS3("colTabulates", "matrix", function(x, values=NULL, ...) {
   x <- t(x);
   counts <- rowTabulates(x, values=values, ...);
   x <- NULL; # Not needed anymore
@@ -110,6 +98,7 @@ setMethod("colTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
 ############################################################################
 # HISTORY:
 # 2014-06-02
+# o Made rowTabulates() an S3 method (was S4).
 # o SPEEDUP: Now rowTabulates() utilizes rowCounts().
 # 2009-06-20
 # WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column

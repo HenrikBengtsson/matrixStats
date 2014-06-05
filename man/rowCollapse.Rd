@@ -9,9 +9,9 @@
 \name{rowCollapse}
 \alias{rowCollapse}
 
+\alias{rowCollapse.matrix}
 \alias{colCollapse}
-\alias{rowCollapse,matrix-method}
-\alias{colCollapse,matrix-method}
+\alias{colCollapse.matrix}
 
 \title{Extracts one cell per row (column) from a matrix}
 
@@ -21,8 +21,8 @@
 }
 
 \usage{
-  rowCollapse(x, idxs, ...)
-  colCollapse(x, idxs, ...)
+  \method{rowCollapse}{matrix}(x, idxs, ...)
+  \method{colCollapse}{matrix}(x, idxs, ...)
 }
 
 \arguments{

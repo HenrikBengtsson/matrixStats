@@ -9,10 +9,9 @@
 \name{rowTabulates}
 \alias{rowTabulates}
 
-\alias{rowdTabulates}
+\alias{rowTabulates.matrix}
 \alias{colTabulates}
-\alias{rowTabulates,matrix-method}
-\alias{colTabulates,matrix-method}
+\alias{colTabulates.matrix}
 
 \title{Tabulates the values in a matrix by row (column)}
 
@@ -21,8 +20,8 @@
 }
 
 \usage{
-  rowTabulates(x, values=NULL, ...)
-  colTabulates(x, values=NULL, ...)
+  \method{rowTabulates}{matrix}(x, values=NULL, ...)
+  \method{colTabulates}{matrix}(x, values=NULL, ...)
 }
 
 \arguments{

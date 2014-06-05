@@ -1,8 +1,8 @@
 ###########################################################################/**
 # @RdocFunction rowCollapse
+# @alias rowCollapse.matrix
 # @alias colCollapse
-# \alias{rowCollapse,matrix-method}
-# \alias{colCollapse,matrix-method}
+# @alias colCollapse.matrix
 #
 # @title "Extracts one cell per row (column) from a matrix"
 #
@@ -12,8 +12,8 @@
 # }
 #
 # \usage{
-#   @usage rowCollapse
-#   @usage colCollapse
+#   @usage rowCollapse,matrix
+#   @usage colCollapse,matrix
 # }
 #
 # \arguments{
@@ -38,11 +38,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setGeneric("rowCollapse", function(x, idxs, ...) {
-  standardGeneric("rowCollapse")
-})
-
-setMethod("rowCollapse", signature("matrix"), function(x, idxs, ...) {
+setMethodS3("rowCollapse", "matrix", function(x, idxs, ...) {
   dim <- dim(x);
   colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)));
   rowOffsets <- seq_len(dim[1L]);
@@ -53,17 +49,15 @@ setMethod("rowCollapse", signature("matrix"), function(x, idxs, ...) {
   x[idxs];
 })
 
-setGeneric("colCollapse", function(x, idxs, ...) {
-  standardGeneric("colCollapse")
-})
-
-setMethod("colCollapse", signature("matrix"), function(x, idxs, ...) {
+setMethodS3("colCollapse", "matrix", function(x, idxs, ...) {
   rowCollapse(t(x), idxs=idxs, ...);
 })
 
 
 ############################################################################
 # HISTORY:
+# 2014-06-02
+# o Made rowCollapse() an S3 method (was S4).
 # 2013-11-23
 # o MEMORY: rowCollapse() does a better job cleaning out allocated
 #   objects sooner.

@@ -8,11 +8,11 @@ o SPEEDUP: Now rowCounts(), rowAnys(), rowAlls() and corresponding
   default TRUE.  The search for a matching integer or double value
   is done in native code, which is significantly faster (and more
   memory efficent because it avoids creating any new objects).
-o Added benchmark reports, e.g. matrixStats:::benchmark('colMins').
 o SPEEDUP: Made colVars() and colSds() significantly faster and
   rowVars() and rowSds() a slightly bit faster.
 o SPEEDUP: Turned more S4 methods into S3 methods, e.g. rowCounts(),
-  rowAlls(), and rowAnys().
+  rowAlls(), rowAnys(), rowTabulates() and rowCollapse().
+o Added benchmark reports, e.g. matrixStats:::benchmark('colMins').
 o CLEANUP: Now only exporting plain functions and generic functions.
 
 
