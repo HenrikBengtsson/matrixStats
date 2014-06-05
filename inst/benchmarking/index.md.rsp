@@ -28,7 +28,6 @@ List of benchmark report for some of the functions available in the [matrixStats
 
 <%
 path <- system.file("benchmarking", package="matrixStats")
-path <- "../inst/benchmarking/"
 pattern <- "[.]md[.]rsp$"
 filenames <- list.files(path=path, pattern=pattern)
 filenames <- setdiff(filenames, "index.md.rsp")

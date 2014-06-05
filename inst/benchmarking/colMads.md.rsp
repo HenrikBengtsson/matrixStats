@@ -31,6 +31,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -40,8 +41,8 @@ gc()
 <%=withCapture({
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
- colMads = colMads(X, na.rm=FALSE),
- apply   = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE),
+ colMads     = colMads(X, na.rm=FALSE),
+ "apply+mad" = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE),
  unit = "ms"
 )
 })%>
@@ -52,8 +53,8 @@ stats <- microbenchmark(
 <%
 # Sanity checks
 Y <- list(
- colMads = colMads(X, na.rm=FALSE),
- apply   = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE)
+ colMads     = colMads(X, na.rm=FALSE),
+ "apply+mad" = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE)
 )
 lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
 %>

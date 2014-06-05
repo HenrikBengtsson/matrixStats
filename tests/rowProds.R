@@ -8,7 +8,13 @@ stopifnot(identical(y, x[,2]))
 
 y <- rowProds(x, na.rm=FALSE)
 print(y)
-stopifnot(identical(y, x[,1]*x[,2]))
+
+z <- x[,1]*x[,2]
+print(z)
+
+z[is.nan(z)] <- NA_real_
+stopifnot(identical(y, z))
+
 
 # "Empty" rows
 y <- rowProds(x[integer(0),,drop=FALSE], na.rm=FALSE)

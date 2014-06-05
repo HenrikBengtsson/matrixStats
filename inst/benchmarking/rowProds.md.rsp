@@ -16,6 +16,7 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 ## Alternative methods
 
 * apply() + prod()
+* apply() + product()
 
 See also [StackOverflow:rowProds?].
 
@@ -33,6 +34,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -42,8 +44,9 @@ gc()
 <%=withCapture({
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
- rowProds = rowProds(X, na.rm=FALSE),
- apply    = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE),
+ rowProds     = rowProds(X, na.rm=FALSE),
+ "apply+prod" = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE),
+ "apply+product" = apply(X, MARGIN=1L, FUN=product, na.rm=FALSE),
  unit = "ms"
 )
 })%>
@@ -54,8 +57,9 @@ stats <- microbenchmark(
 <%
 # Sanity checks
 Y <- list(
- rowProds = rowProds(X, na.rm=FALSE),
- apply    = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE)
+ rowProds     = rowProds(X, na.rm=FALSE),
+ "apply+prod" = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE),
+ "apply+product" = apply(X, MARGIN=1L, FUN=product, na.rm=FALSE)
 )
 lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
 %>

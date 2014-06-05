@@ -31,6 +31,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -40,8 +41,8 @@ gc()
 <%=withCapture({
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
- rowRanks = rowRanks(X, na.rm=FALSE),
- apply    = apply(X, MARGIN=1L, FUN=rank, na.last="keep", ties.method="max"),
+ rowRanks     = rowRanks(X, na.rm=FALSE),
+ "apply+rank" = apply(X, MARGIN=1L, FUN=rank, na.last="keep", ties.method="max"),
  unit = "ms"
 )
 })%>

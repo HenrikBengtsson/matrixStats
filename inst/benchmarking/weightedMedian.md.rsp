@@ -40,10 +40,9 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 ## Data
 ```r
 <%=withCapture({
-<%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="double")
-data <- data[1:3]
-data <- lapply(data, FUN=function(X) X[,seq_len(min(40,ncol(X)))])
+<%@include file="R/random-vectors.R"%>
+data <- rvectors(mode="double")
+data <- data[1:2]
 })%>
 ```
 
@@ -52,22 +51,24 @@ data <- lapply(data, FUN=function(X) X[,seq_len(min(40,ncol(X)))])
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
-X <- data[[dataLabel]]
+message(dataLabel)
+x <- data[[dataLabel]]
 gc()
 %>
-### <%=dataLabel%> (<%=paste(dim(X), collapse="-by-")%>) matrix
+### <%=dataLabel%> (<%=length(x)%>) vector
 
 ```r
 <%=withCapture({
-X <- data[[.dataLabel.]]
-w <- runif(nrow(X))
+x <- data[[.dataLabel.]]
+w <- runif(length(x))
+
 stats <- microbenchmark(
- "weightedMedian"         = for (ii in 1:ncol(X)) weightedMedian(X[,ii], w=w, ties="mean", na.rm=FALSE),
- "weightedMedian/shell"   = for (ii in 1:ncol(X)) weightedMedian(X[,ii], w=w, ties="mean", method="shell", na.rm=FALSE),
- "limma::weighted.median" = for (ii in 1:ncol(X)) limma_weighted.median(X[,ii], w=w, na.rm=FALSE),
- "cwhmisc::w.median"      = for (ii in 1:ncol(X)) cwhmisc_w.median(X[,ii], w=w),
- "ergm::wtd.median"       = for (ii in 1:ncol(X)) ergm_wtd.median(X[,ii], w=w),
- "laeken::weightedMedian" = for (ii in 1:ncol(X)) laeken_weightedMedian(X[,ii], w=w),
+ "weightedMedian"         = weightedMedian(x, w=w, ties="mean", na.rm=FALSE),
+ "weightedMedian/shell"   = weightedMedian(x, w=w, ties="mean", method="shell", na.rm=FALSE),
+ "limma::weighted.median" = limma_weighted.median(x, w=w, na.rm=FALSE),
+ "cwhmisc::w.median"      = cwhmisc_w.median(x, w=w),
+ "ergm::wtd.median"       = ergm_wtd.median(x, w=w),
+ "laeken::weightedMedian" = laeken_weightedMedian(x, w=w),
   unit = "ms"
 )
 })%>

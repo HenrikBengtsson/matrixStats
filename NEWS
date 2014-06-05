@@ -2,6 +2,9 @@ Package: matrixStats
 ====================
 
 Version: 0.9.6 [2014-06-04]
+o SPEEDUP: Now col- and rowProds() utilizes new product() function.
+o SPEEDUP: Added product() for calculating the product of a numeric
+  vector via the logarithm.
 o Added signTabulate() for tabulating the number of negatives, zeros,
   positives and missing values.  For doubles, the number of negative
   and positive infinite values are also counted.

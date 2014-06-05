@@ -99,7 +99,7 @@ setGeneric("rowRanks", function(x, ties.method=c("max", "average", "min"), ...) 
 
 setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), ...) {
   # Argument 'ties.method':
-  ties.method <- match.arg(ties.method);
+  ties.method <- match.arg(ties.method, choices=c("max", "average", "min"));
 
   # Argument 'flavor'
   flavor <- (list(...)$flavor);

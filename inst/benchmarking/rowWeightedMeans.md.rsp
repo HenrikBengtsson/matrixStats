@@ -46,6 +46,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -56,7 +57,7 @@ gc()
 X <- data[[.dataLabel.]]
 W <- array(runif(length(X)), dim=dim(X))
 stats <- microbenchmark(
- rowWeightedMeans = rowWeightedMeans(X, W=W, na.rm=FALSE),
+ rowWeightedMeans       = rowWeightedMeans(X, W=W, na.rm=FALSE),
  rowWeightedMeans_naive = rowWeightedMeans_naive(X, W=W, na.rm=FALSE),
   unit = "ms"
 )

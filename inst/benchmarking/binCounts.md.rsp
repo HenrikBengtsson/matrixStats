@@ -46,6 +46,7 @@ bx <- c(-1, bx, 2)
 
 <% benchmark <- function() { %>
 <% dataLabel <- if (is.unsorted(x)) "unsorted" else "sorted" %>
+<% message(dataLabel) %>
 ```r
 <%=withCapture({
 stats <- microbenchmark(

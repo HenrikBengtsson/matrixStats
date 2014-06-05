@@ -29,12 +29,25 @@
 # }
 #
 # \details{
-#   If \code{method="expSumLog"}, then the product is calculated via
-#   the logarithmic transform (treating zeros and negative values
-#   specially).  This improves the precision and lowers the risk
-#   for numeric overflow.
-#   If \code{method="direct"}, the direct product is calculated
-#   via @see "base::prod".
+#   If \code{method="expSumLog"}, then then @see "product" function
+#   is used, which calculates the produce via the logarithmic transform
+#   (treating negative values specially).  This improves the precision
+#   and lowers the risk for numeric overflow.
+#   If \code{method="direct"}, the direct product is calculated via
+#   the @see "base::prod" function.
+# }
+#
+# \section{Missing values}{
+#   Note, if \code{method="expSumLog"} and \code{na.rm=FALSE}, then
+#   results returns @NA regardless of whether there were only @NaN
+#   but no @NA in the first place, e.g. \code{product(NaN)} returns @NA
+#   and \code{product(c(NA, NaN))} returns @NA.
+#   This is contrary to @see "base::prod", which can distinguish between
+#   the two, e.g. \code{prod(NaN)} returns @NaN and
+#   \code{prod(c(NA, NaN))} returns @NA.
+#   The reason for this discrepancy is that it is not possible for
+#   \code{product()} to be consistent with \code{prod()} in this sense
+#   without major performance penalities.
 # }
 #
 # @author "HB"
@@ -46,105 +59,51 @@
 #*/###########################################################################
 rowProds <- function(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...) {
   # Argument 'method':
-  method <- match.arg(method);
-  if (method == "direct") stop("Not implemented.");
+  method <- match.arg(method, choices=c("expSumLog", "direct"));
 
   # Preallocate result (zero:ed by default)
-  modeX <- mode(x);
   n <- nrow(x);
-  y <- vector(modeX, length=n);
+  y <- double(length=n);
 
   # Nothing todo?
-  if (n == 0L) {
-    return(y);
-  }
+  if (n == 0L) return(y);
 
+  # How to calculate product?
+  prod <- switch(method, expSumLog=product, direct=prod);
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Handle missing values
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  rowHasNA <- is.na(rowCounts(x, na.rm=FALSE));
-  hasNAs <- any(rowHasNA);
-  if (hasNAs) {
-    if (na.rm) {
-      oneValue <- 1;
-      mode(oneValue) <- modeX;
-      x[is.na(x)] <- oneValue; # EXPENSIVE: Copy matrix
-      rowHasNA <- logical(n); # Defaults to FALSE
-      hasNAs <- FALSE;
-    } else {
-      # Among the rows with missing values, which has NaN:s?
-      rowHasNaN <- logical(n); # Defaults to FALSE
-      isNaN <- is.nan(x[rowHasNA,,drop=FALSE]);
-      rowHasNaN[rowHasNA] <- rowAnys(isNaN);
-    }
-  }
-  isNA <- NULL; # Not needed anymore
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Handle zeros
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Check for rows with at least one zero
-  rowHasZero <- rowAnys(x, value=0);
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Only calculate the products on rows without zeros and missing values
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  toCalc <- which(!rowHasNA & !rowHasZero);
-  rowHasZero <- NULL; # Not needed anymore
-
-  # Subset?
-  if (length(toCalc) < n) {
-    x <- x[toCalc,,drop=FALSE]; # EXPENSIVE: Coerce/copy matrix
-  }
-
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Calculate product via logarithmic sum
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (nrow(x) > 0L) {
-    # Infer signs
-    isNeg <- (x < 0); # EXPENSIVE: Coerce/copy matrix
-    isNeg <- rowCounts(isNeg, na.rm=FALSE);
-    isNeg <- (isNeg %% 2);
-    isNeg <- c(+1,-1)[isNeg+1];
-
-    # Calculate the product via the log transform
-    x <- abs(x);  # EXPENSIVE: Copy matrix
-#    x <- log(x);  # EXPENSIVE: Copy matrix
-    x <- log2(x);  # EXPENSIVE: Copy matrix
-    x <- rowSums(x, na.rm=FALSE, ...);
-#    x <- exp(x);
-    x <- 2^x;
-    x <- isNeg*x;
-    isNeg <- NULL; # Not needed anymore
-
-    y[toCalc] <- x;
-  } # if (nrow(x) > 0L)
-  toCalc <- NULL; # Not needed anymore
-
-  # Missing values?
-  if (hasNAs) {
-    naValue <- NA;
-    mode(naValue) <- modeX;
-    y[rowHasNA] <- naValue;
-    y[rowHasNaN] <- NaN;
+  for (ii in seq_len(n)) {
+    y[ii] <- prod(x[ii,,drop=TRUE], na.rm=na.rm)
   }
 
   y;
 } # rowProds()
 
-colProds <- function(x, na.rm=FALSE, ...) {
-  x <- t(x);
-  rowProds(x, na.rm=na.rm, ...);
+colProds <- function(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...) {
+  # Argument 'method':
+  method <- match.arg(method, choices=c("expSumLog", "direct"));
+
+  # Preallocate result (zero:ed by default)
+  n <- ncol(x);
+  y <- double(length=n);
+
+  # Nothing todo?
+  if (n == 0L) return(y);
+
+  # How to calculate product?
+  prod <- switch(method, expSumLog=product, direct=prod);
+
+  for (ii in seq_len(n)) {
+    y[ii] <- prod(x[,ii,drop=TRUE], na.rm=na.rm)
+  }
+
+  y;
 } # colProds()
 
 
 ############################################################################
 # HISTORY:
 # 2014-06-04 [HB]
+# o Now col- and rowProds() utilizes new product() function.
 # o Added argument 'method' to col- and rowProds().
 # 2014-06-02 [HB]
 # o Now rowProds() uses rowCounts(x) when 'x' is logical.

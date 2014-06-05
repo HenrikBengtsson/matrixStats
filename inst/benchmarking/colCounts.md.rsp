@@ -32,6 +32,7 @@ data <- rmatrices(mode="integer")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -41,9 +42,9 @@ gc()
 <%=withCapture({
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
- colCounts = colCounts(X, value=42, na.rm=FALSE),
- apply     = apply(X, MARGIN=2L, FUN=function(x) sum(x == 42, na.rm=FALSE)),
- colSums   = colSums(X == 42, na.rm=FALSE),
+ colCounts   = colCounts(X, value=42, na.rm=FALSE),
+ "apply+sum" = apply(X, MARGIN=2L, FUN=function(x) sum(x == 42, na.rm=FALSE)),
+ colSums     = colSums(X == 42, na.rm=FALSE),
  unit = "ms"
 )
 })%>
@@ -54,9 +55,9 @@ stats <- microbenchmark(
 <%
 # Sanity checks
 Y <- list(
- colCounts = colCounts(X, value=42, na.rm=FALSE),
- apply     = apply(X, MARGIN=2L, FUN=function(x) sum(x == 42, na.rm=FALSE)),
- colSums   = colSums(X == 42, na.rm=FALSE)
+ colCounts   = colCounts(X, value=42, na.rm=FALSE),
+ "apply+sum" = apply(X, MARGIN=2L, FUN=function(x) sum(x == 42, na.rm=FALSE)),
+ colSums     = colSums(X == 42, na.rm=FALSE)
 )
 lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
 %>

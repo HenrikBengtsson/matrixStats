@@ -1,10 +1,10 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="rowAnyMissing"%>
+<%@string fcnname="product"%>
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-06-02"%>
+<%@meta date="2014-06-04"%>
 
 <%@include file="${header}"%>
 
@@ -15,21 +15,45 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* apply() + anyMissing()
-* rowAnyMissing()
-* rowSums() + is.na()
+* product_naive()
+* prod()
 
+where
+
+```r
 <%=withCapture({
-rowAnyMissing <- function(x, ...) {
-  is.na(rowCounts(x, na.rm=FALSE))
-}
+product_naive <- function(x, na.rm=FALSE, ...) {
+  # Nothing todo?
+  if (length(x) == 0L) return(0);
+
+  # Any missing values?
+  if (na.rm) {
+    x <- x[!is.na(x)];
+  }
+
+  # Any zeros?
+  if (is.integer(x) && any(x == 0)) return(0);
+
+  # Calculate product via logarithmic sum
+  sign <- if (sum(x < 0) %% 2 == 0) +1 else -1;
+  x <- abs(x);
+  x <- log(x);
+  x <- sum(x, na.rm=FALSE);
+  x <- exp(x);
+  y <- sign*x;
+
+  y;
+} # product_naive()
 })%>
+```
+
 
 ## Data
 ```r
 <%=withCapture({
-<%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="integer", naProb=0.1)
+<%@include file="R/random-vectors.R"%>
+data <- rvectors(mode="double")
+data <- data[1:4]
 })%>
 ```
 
@@ -39,34 +63,24 @@ data <- rmatrices(mode="integer", naProb=0.1)
 <%
 dataLabel <- names(data)[ii]
 message(dataLabel)
-X <- data[[dataLabel]]
+x <- data[[dataLabel]]
 gc()
 %>
-### <%=dataLabel%> (<%=paste(dim(X), collapse="-by-")%>) matrix
+### <%=dataLabel%> (<%=length(x)%>) vector
 
 ```r
 <%=withCapture({
-X <- data[[.dataLabel.]]
+x <- data[[.dataLabel.]]
 stats <- microbenchmark(
- rowAnyMissing      = rowAnyMissing(X),
- "apply+anyMissing" = apply(X, MARGIN=1L, FUN=anyMissing),
- rowSums            = is.na(rowSums(X, na.rm=FALSE)),
+ product       = product(x, na.rm=FALSE),
+ product_naive = product_naive(x, na.rm=FALSE),
+ prod          = prod(x, na.rm=FALSE),
  unit = "ms"
 )
 })%>
 ```
 
 <% benchmarkResults(stats, tags=dataLabel) %>
-
-<%
-# Sanity checks
-Y <- list(
- rowAnyMissing      = rowAnyMissing(X),
- "apply+anyMissing" = apply(X, MARGIN=1L, FUN=anyMissing),
- rowSums            = is.na(rowSums(X, na.rm=FALSE))
-)
-lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
-%>
 
 <% } # for (ii ...) %>
 

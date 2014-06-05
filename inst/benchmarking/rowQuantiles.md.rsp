@@ -31,6 +31,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -41,8 +42,8 @@ gc()
 X <- data[[.dataLabel.]]
 probs <- seq(from=0, to=1, by=0.25)
 stats <- microbenchmark(
- rowQuantiles = rowQuantiles(X, probs=probs, na.rm=FALSE),
- apply        = apply(X, MARGIN=1L, FUN=quantile, probs=probs, na.rm=FALSE),
+ rowQuantiles     = rowQuantiles(X, probs=probs, na.rm=FALSE),
+ "apply+quantile" = apply(X, MARGIN=1L, FUN=quantile, probs=probs, na.rm=FALSE),
  unit = "ms"
 )
 })%>

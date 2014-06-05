@@ -50,6 +50,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -60,7 +61,7 @@ gc()
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
  colSds        = colSds(X, na.rm=FALSE),
- apply         = apply(X, MARGIN=2L, FUN=sd, na.rm=FALSE),
+ "apply+sd"    = apply(X, MARGIN=2L, FUN=sd, na.rm=FALSE),
  colSdColMeans = colSdColMeans(X, na.rm=FALSE),
  unit = "ms"
 )
@@ -73,7 +74,7 @@ stats <- microbenchmark(
 # Sanity checks
 Y <- list(
  colSds        = colSds(X, na.rm=FALSE),
- apply         = apply(X, MARGIN=2L, FUN=sd, na.rm=FALSE),
+ "apply+sd"    = apply(X, MARGIN=2L, FUN=sd, na.rm=FALSE),
  colSdColMeans = colSdColMeans(X, na.rm=FALSE)
 )
 lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))

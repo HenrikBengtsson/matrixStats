@@ -35,6 +35,7 @@ data <- rmatrices(mode="double")
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -45,7 +46,7 @@ gc()
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
  colMins           = colMins(X, na.rm=FALSE),
- apply             = apply(X, MARGIN=2L, FUN=min, na.rm=FALSE),
+ "apply+min"       = apply(X, MARGIN=2L, FUN=min, na.rm=FALSE),
  "lapply+pmin"     = do.call(pmin, lapply(seq_len(nrow(X)), function(i) X[i,])),
  "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(nrow(X)), function(i) X[i,])),
  unit = "ms"

@@ -38,6 +38,7 @@ data <- rmatrices(mode="integer", naProb=0.1)
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
+message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
@@ -47,9 +48,9 @@ gc()
 <%=withCapture({
 X <- data[[.dataLabel.]]
 stats <- microbenchmark(
- colAnyMissing = colAnyMissing(X),
- apply         = apply(X, MARGIN=2L, FUN=anyMissing),
- colSums       = is.na(colSums(X, na.rm=FALSE)),
+ colAnyMissing      = colAnyMissing(X),
+ "apply+anyMissing" = apply(X, MARGIN=2L, FUN=anyMissing),
+ colSums            = is.na(colSums(X, na.rm=FALSE)),
  unit = "ms"
 )
 })%>
@@ -60,9 +61,9 @@ stats <- microbenchmark(
 <%
 # Sanity checks
 Y <- list(
- colAnyMissing = colAnyMissing(X),
- apply         = apply(X, MARGIN=2L, FUN=anyMissing),
- colSums       = is.na(colSums(X, na.rm=FALSE))
+ colAnyMissing      = colAnyMissing(X),
+ "apply+anyMissing" = apply(X, MARGIN=2L, FUN=anyMissing),
+ colSums            = is.na(colSums(X, na.rm=FALSE))
 )
 lapply(Y, FUN=function(x) stopifnot(isTRUE(all.equal(x, Y[[1]]))))
 %>
