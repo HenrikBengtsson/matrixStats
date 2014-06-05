@@ -3,5 +3,6 @@
   ---------------------------------------------------------------%>
 [RSP]: http://cran.r-project.org/package=R.rsp
 [matrixStats]: http://cran.r-project.org/package=matrixStats
-[StackOverflow_colMins]: http://stackoverflow.com/questions/13676878/fastest-way-to-get-min-from-every-column-in-a-matrix ": fastest way to get Min from every column in a matrix?"
+[StackOverflow:colMins?]: http://stackoverflow.com/questions/13676878 "Stack Overflow: fastest way to get Min from every column in a matrix?"
+[StackOverflow:colSds?]: http://stackoverflow.com/questions/17549762 "Stack Overflow: Is there such 'colsd' in R?"
 

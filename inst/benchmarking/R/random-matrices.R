@@ -1,8 +1,14 @@
-rmatrix <- function(nrow, ncol) {
-  matrix(sample(1e6, size=nrow*ncol, replace=TRUE), nrow=nrow, ncol=ncol)
+rmatrix <- function(nrow, ncol, mode=c("double", "integer")) {
+  mode <- match.arg(mode)
+  n <- nrow*ncol
+  X <- runif(n, min=-100, max=+100)
+  storage.mode(X) <- mode
+  dim(X) <- c(nrow, ncol)
+  X
 }
 
 set.seed(1)
+mode <- "double"
 data <- list(
   "Tiny square" = rmatrix(nrow=  40, ncol=  40),
   "Square"      = rmatrix(nrow= 400, ncol= 400),

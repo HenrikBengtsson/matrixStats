@@ -10,7 +10,7 @@
 
 
 # <%@meta name="title"%>
-<%@meta name="author"%> on <%@meta name="date"%> 
+<%@meta name="author"%> on <%@meta name="date"%>
 
 This report benchmark the performance of <%=fcnname%>() against alternative methods.
 
@@ -19,6 +19,9 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 * apply()
 * lapply() + pmin()
 * lapply() + pmin.int()
+
+See also [StackOverflow:colMins?].
+
 
 ## Data
 ```r

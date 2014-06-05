@@ -15,6 +15,7 @@ importFrom("R.methodsS3", "pkgStartupMessage")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+export("anyMissing")
 export("binCounts")
 export("binMeans")
 export("colAlls")
@@ -78,15 +79,20 @@ export("weightedVar")
 # Vector methods
 S3method("binCounts", "default")
 S3method("binMeans", "default")
+S3method("madDiff", "numeric")
+S3method("sdDiff", "numeric")
+S3method("varDiff", "numeric")
 S3method("weightedMad", "default")
 S3method("weightedMedian", "default")
+S3method("weightedSd", "default")
+S3method("weightedVar", "default")
+
 
 # Matrix methods
+S3method("indexByRow", "matrix")
 S3method("rowAvgsPerColSet", "matrix")
 S3method("colAvgsPerRowSet", "matrix")
-
 S3method("rowWeightedMeans", "matrix")
 S3method("colWeightedMeans", "matrix")
-
 S3method("rowWeightedMedians", "matrix")
 S3method("colWeightedMedians", "matrix")
