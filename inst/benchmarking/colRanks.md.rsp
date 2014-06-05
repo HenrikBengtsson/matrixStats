@@ -1,0 +1,62 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string fcnname="colRanks"%>
+<% fcnname <- "<%@string name="fcnname"%>" %>
+<%@meta title="${fcnname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-03"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+<%@meta name="author"%> on <%@meta name="date"%>
+
+This report benchmark the performance of <%=fcnname%>() against alternative methods.
+
+## Alternative methods
+
+* apply() + rank()
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+})%>
+```
+
+## Results
+
+<% for (ii in seq_along(data)) { %>
+<%
+dataLabel <- names(data)[ii]
+X <- data[[dataLabel]]
+gc()
+%>
+### <%=dataLabel%> (<%=paste(dim(X), collapse="-by-")%>) matrix
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+stats <- microbenchmark(
+ colRanks = colRanks(X, na.rm=FALSE),
+ apply    = apply(X, MARGIN=2L, FUN=rank, na.last="keep", ties.method="max"),
+ unit = "ms"
+)
+})%>
+```
+
+<% benchmarkResults(stats, tags=dataLabel) %>
+
+<% } # for (ii ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-03
+o Created.
+---------------------------------------------------------------------------%>
