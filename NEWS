@@ -2,7 +2,7 @@ Package: matrixStats
 ====================
 
 Version: 0.9.5 [2014-06-02]
-o SPEEDUP: Made rowProds() significantly faster.
+o SPEEDUP: Made rowProds() and rowTabulates() significantly faster.
 o SPEEDUP: Now rowCounts(), rowAnys(), rowAlls() and corresponding
   column methods can search for any value in addition to the
   default TRUE.  The search for a matching integer or double value

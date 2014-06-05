@@ -94,7 +94,7 @@ setMethodS3("colCounts", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x)) {
-    x <- t(x)
+    x <- t(x);
     na.rm <- as.logical(na.rm);
     hasNAs <- TRUE;
     counts <- .Call("rowCounts", x, value, na.rm, hasNAs, PACKAGE="matrixStats");

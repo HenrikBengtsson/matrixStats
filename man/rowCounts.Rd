@@ -38,7 +38,7 @@
 
 \arguments{
  \item{x}{An NxK \code{\link[base]{matrix}}.}
- \item{value}{A value to search.}
+ \item{value}{A value to search for.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{...}{Not used.}
 }

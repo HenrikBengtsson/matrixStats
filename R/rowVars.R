@@ -52,8 +52,7 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
   if (na.rm) {
     # Count number of missing values in each row
-    n <- !is.na(x); # EXPENSIVE! /HB 2014-06-02
-    n <- rowSums(n);
+    n <- rowCounts(x, value=NA_real_, na.rm=FALSE);
     nonNA <- (n == ncol);
     hasNA <- all(nonNA);
     if (hasNA) {
@@ -93,9 +92,8 @@ colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
   }
 
   if (na.rm) {
-    # Count number of missing values in each row
-    n <- !is.na(x); # EXPENSIVE! /HB 2014-06-02
-    n <- colSums(n);
+    # Count number of missing values in each column
+    n <- colCounts(x, value=NA_real_, na.rm=FALSE);
     nonNA <- (n == nrow);
     hasNA <- all(nonNA);
     if (hasNA) {
@@ -128,6 +126,7 @@ colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 ############################################################################
 # HISTORY:
 # 2014-06-02 [HB]
+# o Now rowVars() are utilizing rowCounts() instead of rowSums().
 # o SPEEDUP: Made colVars() and colSds() significantly faster and
 #   rowVars() and rowSds() a slightly bit faster.
 # o Now using NA_integer_ instead of NA.

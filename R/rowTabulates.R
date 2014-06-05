@@ -78,20 +78,12 @@ setMethod("rowTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
 
 
   nbrOfValues <- length(values);
-  counts <- matrix(as.integer(0L), nrow=nrow(x), ncol=nbrOfValues);
+  counts <- matrix(0L, nrow=nrow(x), ncol=nbrOfValues);
   colnames(counts) <- names;
 
   dim <- dim(x);
   for (kk in seq(length=nbrOfValues)) {
-    value <- values[kk];
-    hasValue <- (x == value);
-    hasValue <- as.integer(hasValue);
-    dim(hasValue) <- dim;
-    sums <- rowSums(hasValue, ...);
-    hasValue <- NULL; # Not needed anymore
-    sums <- as.integer(sums);
-    counts[,kk] <- sums;
-    sums <- NULL; # Not needed anymore
+    counts[,kk] <- rowCounts(x, value=values[kk], ...);
   }
 
   counts;
@@ -117,6 +109,8 @@ setMethod("colTabulates", signature(x="matrix"), function(x, values=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-06-02
+# o SPEEDUP: Now rowTabulates() utilizes rowCounts().
 # 2009-06-20
 # WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column
 # names of the result matrix.  It gav an error OSX with R v2.9.0 devel

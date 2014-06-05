@@ -58,7 +58,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
     if (na.rm) {
       oneValue <- 1;
       mode(oneValue) <- modeX;
-      x[isNA] <- oneValue; # EXPENSIVE: Copy matrix
+      x[is.na(x)] <- oneValue; # EXPENSIVE: Copy matrix
       rowHasNA <- logical(n); # Defaults to FALSE
       hasNAs <- FALSE;
     } else {
@@ -75,7 +75,8 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # Handle zeros
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for rows with at least one zero
-  rowHasZero <- rowAnys(x, value=0);
+#  rowHasZero <- rowAnys(x, value=0);
+  rowHasZero <- FALSE;
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -96,15 +97,17 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   if (nrow(x) > 0L) {
     # Infer signs
     isNeg <- (x < 0); # EXPENSIVE: Coerce/copy matrix
-    isNeg <- rowSums(isNeg);
+    isNeg <- rowCounts(isNeg, na.rm=FALSE);
     isNeg <- (isNeg %% 2);
     isNeg <- c(+1,-1)[isNeg+1];
 
     # Calculate the product via the log transform
     x <- abs(x);  # EXPENSIVE: Copy matrix
-    x <- log(x);  # EXPENSIVE: Copy matrix
-    x <- rowSums(x, ...);
-    x <- exp(x);
+#    x <- log(x);  # EXPENSIVE: Copy matrix
+    x <- log2(x);  # EXPENSIVE: Copy matrix
+    x <- rowSums(x, na.rm=FALSE, ...);
+#    x <- exp(x);
+    x <- 2^x;
     x <- isNeg*x;
     isNeg <- NULL; # Not needed anymore
 
@@ -132,6 +135,7 @@ colProds <- function(x, na.rm=FALSE, ...) {
 ############################################################################
 # HISTORY:
 # 2014-06-02 [HB]
+# o Now rowProds() uses rowCounts(x) when 'x' is logical.
 # o Now rowProds() avoids subsetting rows unless needed.
 # 2014-03-31 [HB]
 # o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
