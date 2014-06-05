@@ -16,13 +16,13 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* binMeansNaive()
+* binMeans_naive()
 
 which is defined as
 
 ```r
 <%=withCapture({
-binMeansNaive <- function(y, x, bx, na.rm=FALSE, count=TRUE, right=FALSE) {
+binMeans_naive <- function(y, x, bx, na.rm=FALSE, count=TRUE, right=FALSE) {
   B <- length(bx)-1L
   res <- double(B)
   counts <- integer(B)
@@ -42,7 +42,7 @@ binMeansNaive <- function(y, x, bx, na.rm=FALSE, count=TRUE, right=FALSE) {
 
   if (count) attr(res, "count") <- counts
   res
-} # binMeansNaive()
+} # binMeans_naive()
 })%>
 ```
 
@@ -68,8 +68,8 @@ bx <- c(-1, bx, 2)
 ```r
 <%=withCapture({
 stats <- microbenchmark(
- binMeans      = binMeans(x=x, y=y, bx=bx, count=TRUE),
- binMeansNaive = binMeansNaive(x=x, y=y, bx=bx, count=TRUE),
+ binMeans       = binMeans(x=x, y=y, bx=bx, count=TRUE),
+ binMeans_naive = binMeans_naive(x=x, y=y, bx=bx, count=TRUE),
  unit = "ms"
 )
 })%>
