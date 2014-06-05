@@ -93,12 +93,20 @@ setMethodS3("colCounts", "matrix", function(x, value=TRUE, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.nan(value)) {
-    counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.nan(x)));
-  } else if (is.na(value)) {
-    counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.na(x)));
+  if (is.numeric(x)) {
+    x <- t(x)
+    na.rm <- as.logical(na.rm);
+    hasNAs <- TRUE;
+    counts <- .Call("rowCounts", x, value, na.rm, hasNAs, PACKAGE="matrixStats");
+    x <- NULL; # Not needed anymore
   } else {
-    counts <- apply(x, MARGIN=2L, FUN=function(x) sum(x == value, na.rm=na.rm));
+    if (is.nan(value)) {
+      counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.nan(x)));
+    } else if (is.na(value)) {
+      counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.na(x)));
+    } else {
+      counts <- apply(x, MARGIN=2L, FUN=function(x) sum(x == value, na.rm=na.rm));
+    }
   }
 
   as.integer(counts);

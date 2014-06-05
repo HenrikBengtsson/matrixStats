@@ -52,8 +52,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Handle missing values
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  isNA <- is.na(x); # EXPENSIVE: Coerce/copy matrix
-  rowHasNA <- rowAnys(isNA);
+  rowHasNA <- is.na(rowCounts(x, na.rm=FALSE));
   hasNAs <- any(rowHasNA);
   if (hasNAs) {
     if (na.rm) {
@@ -76,10 +75,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # Handle zeros
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for rows with at least one zero
-  isZero <- (x == 0);  # EXPENSIVE: Coerce/copy matrix
-  rowHasZero <- rowAnys(isZero);
-  isZero <- NULL; # Not needed anymore
-
+  rowHasZero <- rowAnys(x, value=0);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

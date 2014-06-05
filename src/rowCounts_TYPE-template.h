@@ -29,7 +29,7 @@
 SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
   SEXP ans;
   int ii, jj;
-  int colOffset;
+  int colOffset, count;
   X_C_TYPE *xx, xvalue, vvalue;
 
   /* R allocate a double vector of length 'nrow' */
@@ -39,7 +39,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
   xx = X_IN_C(x);
   vvalue = X_IN_C(value)[0];
 
-  /* Count NA:s? [sic!] */
+  /* Count missing values? [sic!] */
   if (X_ISNAN(vvalue)) {
     for(jj=0; jj < ncol; jj++) {
       colOffset = (int)jj*nrow;
@@ -54,13 +54,17 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
     for(jj=0; jj < ncol; jj++) {
       colOffset = (int)jj*nrow;
       for(ii=0; ii < nrow; ii++) {
+        count = INTEGER(ans)[ii];
+        /* Nothing more to do on this row? */
+        if (count == NA_INTEGER) continue;
+
         xvalue = xx[ii+colOffset];
         if (xvalue == vvalue) {
-          INTEGER(ans)[ii] = INTEGER(ans)[ii] + 1;
+          INTEGER(ans)[ii] = count + 1;
         } else {
           if (!narm && X_ISNAN(xvalue)) {
             INTEGER(ans)[ii] = NA_INTEGER;
-            break;
+            continue;
 	  }
 	}
       }

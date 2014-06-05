@@ -18,7 +18,6 @@
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   int closedRight = LOGICAL(right)[0];
-  SEXP count;
   if (closedRight == 0) {
     return binMeans_L(y, x, bx, retCount);
   } else if (closedRight == 1) {
@@ -33,6 +32,8 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
 
 /***************************************************************************
  HISTORY:
+ 2014-06-02 [HB]
+  o CLEANUP: Removed unused variable in binMeans().
  2013-10-08 [HB]
   o Now binCounts() calls binCounts_<Lr|lR>().
  2013-05-10 [HB]
