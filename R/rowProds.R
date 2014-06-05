@@ -75,8 +75,7 @@ rowProds <- function(x, na.rm=FALSE, ...) {
   # Handle zeros
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Check for rows with at least one zero
-#  rowHasZero <- rowAnys(x, value=0);
-  rowHasZero <- FALSE;
+  rowHasZero <- rowAnys(x, value=0);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

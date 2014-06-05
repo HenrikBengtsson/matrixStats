@@ -64,7 +64,6 @@ setGeneric("colMedians", function(x, na.rm=FALSE, ...) {
 })
 
 setMethod("colMedians", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
-  #rowMedians(t(x), na.rm=na.rm, ...);
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
   .Call("rowMedians", x, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
