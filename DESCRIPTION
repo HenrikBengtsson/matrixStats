@@ -15,7 +15,7 @@ Authors@R: c(
   person("Peter", "Langfelder", role="ctb"))
 Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Peter Langfelder [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
-Description: This packages provides methods operating on rows and columns of matrices, e.g. col/rowMedians() and col/rowRanks().  There are also some vector-based methods, e.g. anyMissing(), weightedMedians(), and binMeans().  The objective is to have all methods being optimized for speed and memory.
+Description: This packages provides methods operating on rows and columns of matrices, e.g. col/rowMedians() and col/rowRanks().  There are also some vector-based methods, e.g. anyMissing(), weightedMedians(), and binMeans().  The objective is to have all methods being optimized for speed and memory usage.
 License: Artistic-2.0
 LazyLoad: TRUE
 NeedsCompilation: TRUE
