@@ -90,7 +90,7 @@ colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
   # Nothing to do?
   if (nrow <= 1L) {
-    x <- rep(x[1L], times=ncol(x));
+    x <- rep(NA_real_, times=ncol(x));
     return(x);
   }
 

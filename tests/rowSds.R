@@ -27,16 +27,29 @@ for (addNA in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("All NAs:\n")
 x <- matrix(as.double(NA), nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
   suppressWarnings({
     r0 <- apply(x, MARGIN=1, FUN=sd, na.rm=na.rm)
   })
-  if (na.rm) {
-    r0[is.na(r0)] <- NaN
-  }
+  r1 <- rowSds(x, na.rm=na.rm)
+  r2 <- colSds(t(x), na.rm=na.rm)
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+}
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# A 1x1 matrix
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(0, nrow=1, ncol=1)
+for (na.rm in c(FALSE, TRUE)) {
+  cat("na.rm=", na.rm, "\n", sep="")
+  suppressWarnings({
+    r0 <- apply(x, MARGIN=1, FUN=sd, na.rm=na.rm)
+  })
   r1 <- rowSds(x, na.rm=na.rm)
   r2 <- colSds(t(x), na.rm=na.rm)
   stopifnot(all.equal(r1, r2))
