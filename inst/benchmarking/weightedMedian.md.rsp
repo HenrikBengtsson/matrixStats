@@ -55,7 +55,7 @@ message(dataLabel)
 x <- data[[dataLabel]]
 gc()
 %>
-### <%=dataLabel%> (<%=length(x)%>) vector
+### <%=dataLabel%> vector
 
 ```r
 <%=withCapture({

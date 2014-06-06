@@ -9,14 +9,16 @@ rmatrix <- function(nrow, ncol, mode=c("double", "integer"), range=c(-100,+100),
 } # rmatrix()
 
 
-rmatrices <- function(scale=40, seed=1, ...) {
+rmatrices <- function(scale=10, seed=1, ...) {
   set.seed(seed)
   data <- list()
-  data$`Tiny Square` <- rmatrix(nrow=scale*  1, ncol=scale*  1, ...)
-  data$`Square`      <- rmatrix(nrow=scale* 10, ncol=scale* 10, ...)
-  data$`Tall Narrow` <- rmatrix(nrow=scale*100, ncol=scale*  1, ...)
-  data$`Short Wide`  <- rmatrix(nrow=scale*  1, ncol=scale*100, ...)
-  data$`Long Wide`   <- rmatrix(nrow=scale* 10, ncol=scale*100, ...)
+  data[[1]] <- rmatrix(nrow=scale*  1, ncol=scale*  1, ...)
+  data[[2]] <- rmatrix(nrow=scale* 10, ncol=scale* 10, ...)
+  data[[3]] <- rmatrix(nrow=scale*100, ncol=scale*  1, ...)
+  data[[4]] <- t(data[[3]])
+  data[[5]] <- rmatrix(nrow=scale* 10, ncol=scale*100, ...)
+  data[[6]] <- t(data[[5]])
+  names(data) <- sapply(data, FUN=function(x) paste(dim(x), collapse="x"))
   data
 } # rmatrices()
 

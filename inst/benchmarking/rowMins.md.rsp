@@ -40,7 +40,7 @@ message(dataLabel)
 X <- data[[dataLabel]]
 gc()
 %>
-### <%=dataLabel%> (<%=paste(dim(X), collapse="-by-")%>) matrix
+### <%=dataLabel%> matrix
 
 ```r
 <%=withCapture({
