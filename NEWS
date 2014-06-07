@@ -1,18 +1,20 @@
 Package: matrixStats
 ====================
 
-Version: 0.9.8 [2014-06-07]
+Version: 0.10.0 [2014-06-07]
 o BUG FIX: The package tests for product() incorrectly assumed that the
   value of prod(c(NaN, NA)) is uniquely defined.  However, as documented
   in help("is.nan"), it may be NA or NaN depending on R system/platform.
 o Relaxed some packages tests such that they assert numerical
   correctness via all.equal() rather than identical().
+o Submitted to CRAN.
 
 
 Version: 0.9.7 [2014-06-05]
 o BUG FIX: Introduced a bug in v0.9.5 causing col- and rowVars() and
   hence also col- and rowSds() to return garbage.  Add package tests
   for these now.
+o Submitted to CRAN.
 
 
 Version: 0.9.6 [2014-06-04]
@@ -77,6 +79,7 @@ o MEMORY: Updated all functions to do a better job of cleaning out
   temporarily allocated objects as soon as possible such that the
   garbage collector can remove them sooner, iff wanted.  This
   increase the chance for a smaller memory footprint.
+o Submitted to CRAN.
 
 
 Version: 0.8.13 [2013-10-08]
