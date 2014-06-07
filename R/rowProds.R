@@ -38,16 +38,11 @@
 # }
 #
 # \section{Missing values}{
-#   Note, if \code{method="expSumLog"} and \code{na.rm=FALSE}, then
-#   results returns @NA regardless of whether there were only @NaN
-#   but no @NA in the first place, e.g. \code{product(NaN)} returns @NA
-#   and \code{product(c(NA, NaN))} returns @NA.
-#   This is contrary to @see "base::prod", which can distinguish between
-#   the two, e.g. \code{prod(NaN)} returns @NaN and
-#   \code{prod(c(NA, NaN))} returns @NA.
-#   The reason for this discrepancy is that it is not possible for
-#   \code{product()} to be consistent with \code{prod()} in this sense
-#   without major performance penalities.
+#   Note, if \code{method="expSumLog"}, \code{na.rm=FALSE}, and \code{x}
+#   contains missing values (@NA or @NaN), then the calculated value
+#   is also missing value.
+#   Note that it depends on platform whether @NaN or @NA is returned
+#   when an @NaN exists, cf. @see "base::is.nan".
 # }
 #
 # @author "HB"

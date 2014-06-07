@@ -17,9 +17,9 @@ for (addNA in c(FALSE, TRUE)) {
     r0 <- apply(x, MARGIN=1, FUN=mad, na.rm=na.rm)
     r1 <- rowMads(x, na.rm=na.rm)
     r2 <- colMads(t(x), na.rm=na.rm)
-    stopifnot(identical(r1, r0))
-    stopifnot(identical(r2, r0))
-    stopifnot(identical(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    stopifnot(all.equal(r1, r2))
   }
 } # for (addNA ...)
 
@@ -38,9 +38,9 @@ for (na.rm in c(FALSE, TRUE)) {
   }
   r1 <- rowMads(x, na.rm=na.rm)
   r2 <- colMads(t(x), na.rm=na.rm)
-  stopifnot(identical(r1, r0))
-  stopifnot(identical(r2, r0))
-  stopifnot(identical(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  stopifnot(all.equal(r1, r2))
 }
 
 

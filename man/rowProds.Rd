@@ -47,16 +47,11 @@
 }
 
 \section{Missing values}{
-  Note, if \code{method="expSumLog"} and \code{na.rm=FALSE}, then
-  results returns \code{\link[base]{NA}} regardless of whether there were only \code{\link[base:is.finite]{NaN}}
-  but no \code{\link[base]{NA}} in the first place, e.g. \code{product(NaN)} returns \code{\link[base]{NA}}
-  and \code{product(c(NA, NaN))} returns \code{\link[base]{NA}}.
-  This is contrary to \code{\link[base]{prod}}(), which can distinguish between
-  the two, e.g. \code{prod(NaN)} returns \code{\link[base:is.finite]{NaN}} and
-  \code{prod(c(NA, NaN))} returns \code{\link[base]{NA}}.
-  The reason for this discrepancy is that it is not possible for
-  \code{product()} to be consistent with \code{prod()} in this sense
-  without major performance penalities.
+  Note, if \code{method="expSumLog"}, \code{na.rm=FALSE}, and \code{x}
+  contains missing values (\code{\link[base]{NA}} or \code{\link[base:is.finite]{NaN}}), then the calculated value
+  is also missing value.
+  Note that it depends on platform whether \code{\link[base:is.finite]{NaN}} or \code{\link[base]{NA}} is returned
+  when an \code{\link[base:is.finite]{NaN}} exists, cf. \code{\link[base]{is.nan}}().
 }
 
 \author{Henrik Bengtsson}

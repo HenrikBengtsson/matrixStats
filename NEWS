@@ -1,6 +1,14 @@
 Package: matrixStats
 ====================
 
+Version: 0.9.8 [2014-06-07]
+o BUG FIX: The package tests for product() incorrectly assumed that the
+  value of prod(c(NaN, NA)) is uniquely defined.  However, as documented
+  in help("is.nan"), it may be NA or NaN depending on R system/platform.
+o Relaxed some packages tests such that they assert numerical
+  correctness via all.equal() rather than identical().
+
+
 Version: 0.9.7 [2014-06-05]
 o BUG FIX: Introduced a bug in v0.9.5 causing col- and rowVars() and
   hence also col- and rowSds() to return garbage.  Add package tests
