@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.10.1 [2014-06-09]
+o Added benchmark reports for also non-matrixStats functions col/rowSums()
+  and col/rowMeans().
+
+
 Version: 0.10.0 [2014-06-07]
 o BUG FIX: The package tests for product() incorrectly assumed that the
   value of prod(c(NaN, NA)) is uniquely defined.  However, as documented
