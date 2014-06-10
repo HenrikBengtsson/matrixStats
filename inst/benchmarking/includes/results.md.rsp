@@ -1,41 +1,15 @@
 <%--------------------------------------------------------------
  BENCHMARK RESULTS
  --------------------------------------------------------------%>
-<% benchmarkResults <- function(stats, fcnname=levels(stats$expr)[1L], tags=NULL, ...) { %>
-
-<% kable(summary(stats)) %>
-_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data.  Times are in milliseconds._
-
-![](<%=toPNG(fcnname, tags=c(tags, "benchmark"), aspectRatio=2/3, {
-  gg <- qplot(x=seq_along(time)/length(levels(stats$expr)), y=time/1e6, data=stats, colour=expr)
-  gg <- gg + xlab("iteration") + ylab("time (ms)")
-  gg <- gg + ylim(0,NA)
-  print(gg)
-})%>)
-
-<% } # benchmarkResults() %>
-
-
-<%--------------------------------------------------------------
- COL- and ROW-WISE BENCHMARK RESULTS
- --------------------------------------------------------------%>
-<% crBenchmarkResults <- function(colStats, rowStats=NULL, tags=NULL, ...) { %>
-
-_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data. The top panel shows times in milliseconds and the bottom panel shows relative times._
-<% kable(summary(colStats, order="median")) %>
-<% kable(summary(colStats, order="median", unit="relative")) %>
-
-<% if (!is.null(rowStats)) { %>
-_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on transposed <%=paste(tags, collapse="+")%> data.  The top panel shows times in milliseconds and the bottom panel shows relative times._
-<% kable(summary(rowStats, order="median")) %>
-<% kable(summary(rowStats, order="median", unit="relative")) %>
-<% } # if (!is.null(rowStats)) %>
-
-
-_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data <% if (!is.null(rowStats)) { %> as well as <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on the same data transposed<% } # if (!is.null(rowStats)) %>.  Outliers are displayed as crosses.  Times are in milliseconds._
-
-<% toImage <- function(stats, name=levels(stats$expr)[1L], ylim=NULL, ...) { %>
+<% toImage <- function(stats, name=levels(stats$expr)[1L], tags=NULL, ylim="auto", ...) { %>
 ![](<%=toPNG(name, tags=c(tags, "benchmark"), aspectRatio=2/3, {
+  if (identical(ylim, "auto")) {
+    y <- stats$time/1e6
+    ymax <- max(y, na.rm=TRUE)
+    y75 <- quantile(y, probs=0.75, na.rm=TRUE)
+    yupper <- min(c(1.5*y75, ymax), na.rm=TRUE)
+    ylim <- c(0, yupper)
+  }
   if (!is.null(ylim)) {
     stats$outlier <- (stats$time > ylim[2]*1e6)
     stats$time[stats$outlier] <- ylim[2]*1e6
@@ -49,6 +23,37 @@ _Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastC
 })%>)
 <% } # toImage() %>
 
+
+<% benchmarkResults <- function(stats, tags=NULL, ...) { %>
+
+<% kable(print(stats)) %>
+
+_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data.  Outliers are displayed as crosses.  Times are in milliseconds._
+
+<% toImage(stats, tags=tags) %>
+
+<% } # benchmarkResults() %>
+
+
+<%--------------------------------------------------------------
+ COL- and ROW-WISE BENCHMARK RESULTS
+ --------------------------------------------------------------%>
+<% crBenchmarkResults <- function(colStats, rowStats=NULL, tags=NULL, ...) { %>
+
+_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data. The top panel shows times in milliseconds and the bottom panel shows relative times._
+<% kable(print(colStats, order="median")) %>
+<% kable(print(colStats, order="median", unit="relative")) %>
+
+<% if (!is.null(rowStats)) { %>
+_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on transposed <%=paste(tags, collapse="+")%> data.  The top panel shows times in milliseconds and the bottom panel shows relative times._
+<% kable(print(rowStats, order="median")) %>
+<% kable(print(rowStats, order="median", unit="relative")) %>
+<% } # if (!is.null(rowStats)) %>
+
+
+_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data <% if (!is.null(rowStats)) { %> as well as <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on the same data transposed<% } # if (!is.null(rowStats)) %>.  Outliers are displayed as crosses.  Times are in milliseconds._
+
+
 <%
 y <- c(colStats$time, rowStats$time)/1e6
 ymax <- max(y, na.rm=TRUE)
@@ -57,8 +62,8 @@ yupper <- min(c(1.5*y75, ymax), na.rm=TRUE)
 ylim <- c(0, yupper)
 %>
 
-<% toImage(colStats, ylim=ylim) %>
-<% if (!is.null(rowStats)) toImage(rowStats, ylim=ylim) %>
+<% toImage(colStats, tags=tags, ylim=ylim) %>
+<% if (!is.null(rowStats)) toImage(rowStats, tags=tags, ylim=ylim) %>
 
 <% if (!is.null(rowStats)) { %>
 <%
@@ -80,20 +85,14 @@ stats[-odd,] <- stats0[-top,]
 %>
 
 _Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data (original and transposed).  The top panel shows times in milliseconds and the bottom panel shows relative times._
-<% kable(summary(stats, order="median")) %>
-<% kable(summary(stats, order="median", unit="relative")) %>
+<% kable(print(stats, order="median")) %>
+<% kable(print(stats, order="median", unit="relative")) %>
 
 
 _Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data (original and transposed).  Outliers are displayed as crosses. Times are in milliseconds._
 
-<%
-y <- stats$time/1e6
-ymax <- max(y, na.rm=TRUE)
-y75 <- quantile(y, probs=0.75, na.rm=TRUE)
-yupper <- min(c(1.5*y75, ymax), na.rm=TRUE)
-ylim <- c(0, yupper)
-%>
-<% toImage(stats, name=paste(levels(stats$expr), collapse="_vs_"), ylim=ylim) %>
+<% toImage(stats, name=paste(levels(stats$expr), collapse="_vs_"), tags=tags) %>
+
 <% } # if (!is.null(rowStats)) %>
 
 <% } # crBenchmarkResults() %>

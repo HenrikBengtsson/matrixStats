@@ -141,6 +141,7 @@ ns:
 # Build source tarball
 $(R_OUTDIR)/$(PKG_TARBALL): $(PKG_FILES)
 	$(MKDIR) $(R_OUTDIR)
+	$(RM) $@
 	$(CD) $(R_OUTDIR);\
 	$(R) $(R_NO_INIT) CMD build $(R_BUILD_OPTS) $(PKG_DIR)
 
