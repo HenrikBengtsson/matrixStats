@@ -43,9 +43,9 @@ message(sprintf("Report #%d: %s\n", seq_along(names), names))
 <% for (ii in seq_along(names)) { %>
 <%
 name <- names[ii]
-if (regexpr("^rowCol", name) != -1L) {
-  name <- gsub("^rowCol", "", name)
-  label <- sprintf("col%s() and row%s()", name, name)
+if (regexpr("^colRow", name) != -1L) {
+  label <- gsub("^colRow", "", name)
+  label <- sprintf("col%s() and row%s()", label, label)
 } else {
   label <- sprintf("%s()", name)
 }

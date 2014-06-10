@@ -37,12 +37,16 @@ data <- rmatrices(mode="integer", range=c(-10,10))
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
+
 colStats <- microbenchmark(
  colTabulates     = colTabulates(X, na.rm=FALSE),
  unit = "ms"
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowTabulates     = rowTabulates(X, na.rm=FALSE),
  unit = "ms"

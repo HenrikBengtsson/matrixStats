@@ -61,6 +61,7 @@ gc()
 <%=withCapture({
 x <- data[[.dataLabel.]]
 w <- runif(length(x))
+gc()
 
 stats <- microbenchmark(
  "weightedMedian"         = weightedMedian(x, w=w, ties="mean", na.rm=FALSE),

@@ -71,6 +71,8 @@ gc()
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
+gc()
+
 stats <- microbenchmark(
  product       = product(x, na.rm=FALSE),
  product_naive = product_naive(x, na.rm=FALSE),

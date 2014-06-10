@@ -38,6 +38,8 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
+
 colStats <- microbenchmark(
  colMeans     = colMeans(X, na.rm=FALSE),
  .colMeans    = .colMeans(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
@@ -46,6 +48,8 @@ colStats <- microbenchmark(
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowMeans     = rowMeans(X, na.rm=FALSE),
  .rowMeans    = .rowMeans(X, m=nrow(X), n=ncol(X), na.rm=FALSE),

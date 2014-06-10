@@ -37,6 +37,7 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
 
 probs <- seq(from=0, to=1, by=0.25)
 
@@ -47,6 +48,8 @@ colStats <- microbenchmark(
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowQuantiles     = rowQuantiles(X, probs=probs, na.rm=FALSE),
  "apply+quantile" = apply(X, MARGIN=1L, FUN=quantile, probs=probs, na.rm=FALSE),

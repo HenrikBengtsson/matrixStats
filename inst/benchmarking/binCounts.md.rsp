@@ -49,6 +49,8 @@ bx <- c(-1, bx, 2)
 <% message(dataLabel) %>
 ```r
 <%=withCapture({
+gc()
+
 stats <- microbenchmark(
  binCounts = binCounts(x, bx=bx),
  hist      = binCounts_hist(x, bx=bx),

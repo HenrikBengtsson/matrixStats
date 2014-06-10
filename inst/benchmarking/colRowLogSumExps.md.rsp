@@ -61,6 +61,8 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
+
 colStats <- microbenchmark(
  colLogSumExps      = colLogSumExps(X, na.rm=FALSE),
  "apply+logSumExp"  = apply(X, MARGIN=2L, FUN=logSumExp, na.rm=FALSE),
@@ -69,6 +71,8 @@ colStats <- microbenchmark(
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowLogSumExps      = rowLogSumExps(X, na.rm=FALSE),
  "apply+logSumExp"  = apply(X, MARGIN=1L, FUN=logSumExp, na.rm=FALSE),

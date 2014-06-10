@@ -1,7 +1,10 @@
 <%--------------------------------------------------------------
  BENCHMARK RESULTS
  --------------------------------------------------------------%>
-<% toImage <- function(stats, name=levels(stats$expr)[1L], tags=NULL, ylim="auto", ...) { %>
+<%--------------------------------------------------------------
+ Local functions
+ --------------------------------------------------------------%>
+<% toImage <- function(stats, name=levels(stats$expr)[1L], tags=NULL, ylim="auto", col=NULL, alpha=NULL, ...) { %>
 ![](<%=toPNG(name, tags=c(tags, "benchmark"), aspectRatio=2/3, {
   if (identical(ylim, "auto")) {
     y <- stats$time/1e6
@@ -17,42 +20,49 @@
   gg <- ggplot(data=stats, aes(x=seq_along(time)/length(levels(expr)), y=time/1e6))
   gg <- gg + geom_point(aes(colour=expr, shape=outlier))
   gg <- gg + scale_shape_manual(values=c(16,4), guide="none")
+  if (!is.null(col)) gg <- gg + scale_colour_manual(values=col)
+  if (!is.null(alpha)) gg <- gg + scale_alpha_manual(values=alpha)
   gg <- gg + xlab("iteration") + ylab("time (ms)")
   if (!is.null(ylim)) gg <- gg + ylim(ylim)
   print(gg)
 })%>)
 <% } # toImage() %>
 
+<% toTable <- function(stats, tags=NULL, order="median", ...) { %>
+<% kable({ s <- summary(stats); s[order(s[[order]]),] }) %>
+<% kable({ s <- summary(stats, unit="relative"); s[order(s[[order]]),] }) %>
+<% } %>
 
+
+<%--------------------------------------------------------------
+ Benchmark results for vector functions
+ --------------------------------------------------------------%>
 <% benchmarkResults <- function(stats, tags=NULL, ...) { %>
 
-<% kable(print(stats)) %>
+_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data. The top panel shows times in milliseconds and the bottom panel shows relative times._
+
+<% toTable(stats, tags=tags) %>
 
 _Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data.  Outliers are displayed as crosses.  Times are in milliseconds._
-
 <% toImage(stats, tags=tags) %>
 
 <% } # benchmarkResults() %>
 
 
 <%--------------------------------------------------------------
- COL- and ROW-WISE BENCHMARK RESULTS
+ Benchmark results for col- and row-specific functions
  --------------------------------------------------------------%>
 <% crBenchmarkResults <- function(colStats, rowStats=NULL, tags=NULL, ...) { %>
 
 _Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data. The top panel shows times in milliseconds and the bottom panel shows relative times._
-<% kable(print(colStats, order="median")) %>
-<% kable(print(colStats, order="median", unit="relative")) %>
 
-<% if (!is.null(rowStats)) { %>
-_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on transposed <%=paste(tags, collapse="+")%> data.  The top panel shows times in milliseconds and the bottom panel shows relative times._
-<% kable(print(rowStats, order="median")) %>
-<% kable(print(rowStats, order="median", unit="relative")) %>
-<% } # if (!is.null(rowStats)) %>
+<% toTable(colStats, tags=tags) %>
 
+_Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data (transposed). The top panel shows times in milliseconds and the bottom panel shows relative times._
+
+<% if (!is.null(rowStats)) { toTable(rowStats, tags=tags) } %>
 
 _Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(colStats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data <% if (!is.null(rowStats)) { %> as well as <%=hpaste(sprintf("%s()", levels(rowStats$expr)), lastCollapse=" and ")%> on the same data transposed<% } # if (!is.null(rowStats)) %>.  Outliers are displayed as crosses.  Times are in milliseconds._
-
 
 <%
 y <- c(colStats$time, rowStats$time)/1e6
@@ -85,13 +95,12 @@ stats[-odd,] <- stats0[-top,]
 %>
 
 _Table: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data (original and transposed).  The top panel shows times in milliseconds and the bottom panel shows relative times._
-<% kable(print(stats, order="median")) %>
-<% kable(print(stats, order="median", unit="relative")) %>
 
+<% toTable(stats, tags=tags) %>
 
 _Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data (original and transposed).  Outliers are displayed as crosses. Times are in milliseconds._
 
-<% toImage(stats, name=paste(levels(stats$expr), collapse="_vs_"), tags=tags) %>
+<% toImage(stats, name=paste(levels(stats$expr), collapse="_vs_"), tags=tags, col=c("#000000", "#999999")) %>
 
 <% } # if (!is.null(rowStats)) %>
 

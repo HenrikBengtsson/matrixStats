@@ -67,6 +67,8 @@ bx <- c(-1, bx, 2)
 <% message(dataLabel) %>
 ```r
 <%=withCapture({
+gc()
+
 stats <- microbenchmark(
  binMeans       = binMeans(x=x, y=y, bx=bx, count=TRUE),
  binMeans_naive = binMeans_naive(x=x, y=y, bx=bx, count=TRUE),

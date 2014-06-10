@@ -16,9 +16,9 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 
 ## Alternative methods
 
-* colAnyMissing()
+* colAnyMissing() and rowAnyMissing()
 * apply() + anyMissing()
-* colSums() + is.na()
+* colSums() + is.na() and rowSums() + is.na()
 
 where
 
@@ -58,18 +58,22 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
+
 colStats <- microbenchmark(
  colAnyMissing      = colAnyMissing(X),
  "apply+anyMissing" = apply(X, MARGIN=2L, FUN=anyMissing),
- colSums            = is.na(colSums(X, na.rm=FALSE)),
+ colSums           = is.na(colSums(X, na.rm=FALSE)),
  unit = "ms"
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowAnyMissing      = rowAnyMissing(X),
  "apply+anyMissing" = apply(X, MARGIN=1L, FUN=anyMissing),
- rowSums            = is.na(rowSums(X, na.rm=FALSE)),
+ rowSums           = is.na(rowSums(X, na.rm=FALSE)),
  unit = "ms"
 )
 })%>

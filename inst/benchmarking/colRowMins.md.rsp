@@ -41,6 +41,8 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
+
 colStats <- microbenchmark(
  colMins           = colMins(X, na.rm=FALSE),
  "apply+min"       = apply(X, MARGIN=2L, FUN=min, na.rm=FALSE),
@@ -50,6 +52,8 @@ colStats <- microbenchmark(
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowMins           = rowMins(X, na.rm=FALSE),
 "apply+min"        = apply(X, MARGIN=1L, FUN=min, na.rm=FALSE),

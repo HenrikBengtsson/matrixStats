@@ -37,6 +37,8 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+gc()
+
 colStats <- microbenchmark(
  colRanges        = colRanges(X, na.rm=FALSE),
  "apply+range"    = apply(X, MARGIN=2L, FUN=range, na.rm=FALSE),
@@ -44,6 +46,8 @@ colStats <- microbenchmark(
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowRanges        = rowRanges(X, na.rm=FALSE),
 "apply+range"     = apply(X, MARGIN=1L, FUN=range, na.rm=FALSE),

@@ -38,6 +38,8 @@ data <- rmatrices(mode="double")
 <%=withCapture({
 X <- data[[.dataLabel.]]
 w <- runif(nrow(X))
+gc()
+
 colStats <- microbenchmark(
  colWeightedMeans     = colWeightedMeans(X, w=w, na.rm=FALSE),
 "apply+weigthed.mean" = apply(X, MARGIN=2L, FUN=weighted.mean, w=w, na.rm=FALSE),
@@ -45,6 +47,8 @@ colStats <- microbenchmark(
 )
 
 X <- t(X)
+gc()
+
 rowStats <- microbenchmark(
  rowWeightedMeans     = rowWeightedMeans(X, w=w, na.rm=FALSE),
 "apply+weigthed.mean" = apply(X, MARGIN=1L, FUN=weighted.mean, w=w, na.rm=FALSE),
