@@ -1,0 +1,104 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colSds"%>
+<%@string rowname="rowSds"%>
+<% rowname <- "<%@string name="rowname"%>" %>
+<%@meta title="${colname}() and ${rowname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-09"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() against alternative methods.
+
+## Alternative methods
+
+* apply() + sd()
+* colSdColMeans() and rowSdColMeans()
+
+where
+
+```r
+<%=withCapture({
+colSdColMeans <- function(x, na.rm=TRUE) {
+  if (na.rm) {
+    n <- colSums(!is.na(x))
+  } else {
+    n <- nrow(x)
+  }
+  var <- colMeans(x*x, na.rm=na.rm) - (colMeans(x, na.rm=na.rm))^2
+  sqrt(var * n/(n-1))
+}
+})%>
+```
+
+and
+
+```r
+<%=withCapture({
+rowSdRowMeans <- function(x, na.rm=TRUE) {
+  if (na.rm) {
+    n <- rowSums(!is.na(x))
+  } else {
+    n <- ncol(x)
+  }
+  mu <- rowMeans(x, na.rm=na.rm)
+  var <- rowMeans(x*x, na.rm=na.rm) - mu^2
+  sqrt(var * (n/(n-1)))
+}
+})%>
+```
+
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+colStats <- microbenchmark(
+ colSds        = colSds(X, na.rm=FALSE),
+ colSdColMeans = colSdColMeans(X, na.rm=FALSE),
+ "apply+sd"    = apply(X, MARGIN=2L, FUN=sd, na.rm=FALSE),
+ unit = "ms"
+)
+
+X <- t(X)
+rowStats <- microbenchmark(
+ rowSds        = rowSds(X, na.rm=FALSE),
+ rowSdRowMeans = rowSdRowMeans(X, na.rm=FALSE),
+"apply+sd"     = apply(X, MARGIN=1L, FUN=sd, na.rm=FALSE),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-09
+o Created.
+---------------------------------------------------------------------------%>

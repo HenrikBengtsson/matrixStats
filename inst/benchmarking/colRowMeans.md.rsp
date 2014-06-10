@@ -1,0 +1,70 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colMeans"%>
+<%@string rowname="rowMeans"%>
+<% rowname <- "<%@string name="rowname"%>" %>
+<%@meta title="${colname}() and ${rowname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-09"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() against alternative methods.
+
+## Alternative methods
+
+* .colMeans() and .rowMeans()
+* apply() + mean()
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+colStats <- microbenchmark(
+ colMeans     = colMeans(X, na.rm=FALSE),
+ .colMeans    = .colMeans(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
+ "apply+mean" = apply(X, MARGIN=2L, FUN=mean, na.rm=FALSE),
+ unit = "ms"
+)
+
+X <- t(X)
+rowStats <- microbenchmark(
+ rowMeans     = rowMeans(X, na.rm=FALSE),
+ .rowMeans    = .rowMeans(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
+ "apply+mean" = apply(X, MARGIN=1L, FUN=mean, na.rm=FALSE),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-09
+o Created.
+---------------------------------------------------------------------------%>

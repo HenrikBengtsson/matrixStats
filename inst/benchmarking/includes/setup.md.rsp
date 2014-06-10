@@ -24,20 +24,7 @@ kable <- function(...) knitr::kable(..., format="markdown")
 use("matrixStats")
 use("microbenchmark")
 %>
-
-<% benchmarkResults <- function(stats, fcnname=levels(stats$expr)[1L], tags=NULL, ...) { %>
-
-<% kable(summary(stats)) %>
-_Figure: Benchmarking of <%=hpaste(sprintf("%s()", levels(stats$expr)), lastCollapse=" and ")%> on <%=paste(tags, collapse="+")%> data.  Times are in milliseconds._
-
-![](<%=toPNG(fcnname, tags=c(tags, "benchmark"), aspectRatio=2/3, {
-  gg <- qplot(x=seq_along(time)/length(levels(stats$expr)), y=time/1e6, data=stats, colour=expr)
-  gg <- gg + xlab("iteration") + ylab("time (ms)")
-  gg <- gg + ylim(0,NA)
-  print(gg)
-})%>)
-
-<% } # benchmarkResults() %>
+<%@include file="results.md.rsp"%>
 
 
 <%--------------------------------------------------------------

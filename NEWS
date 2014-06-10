@@ -4,6 +4,8 @@ Package: matrixStats
 Version: 0.10.1 [2014-06-09]
 o Added benchmark reports for also non-matrixStats functions col/rowSums()
   and col/rowMeans().
+o Now all colNnn() and rowNnn() methods are benchmarked in a combined
+  report making it possible to also compare colNnn(x) with rowNnn(t(x)).
 
 
 Version: 0.10.0 [2014-06-07]

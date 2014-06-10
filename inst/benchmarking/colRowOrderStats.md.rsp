@@ -1,0 +1,71 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colOrderStats"%>
+<%@string rowname="rowOrderStats"%>
+<% rowname <- "<%@string name="rowname"%>" %>
+<%@meta title="${colname}() and ${rowname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-09"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() against alternative methods.
+
+## Alternative methods
+
+* apply() + quantile(..., type=3L)
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+
+probs <- 0.3
+which <- round(probs*nrow(X))
+
+colStats <- microbenchmark(
+ colOrderStats    = colOrderStats(X, which=which, na.rm=FALSE),
+ "apply+quantile" = apply(X, MARGIN=2L, FUN=quantile, probs=probs, na.rm=FALSE, type=3L),
+ unit = "ms"
+)
+
+X <- t(X)
+rowStats <- microbenchmark(
+ rowOrderStats    = rowOrderStats(X, which=which, na.rm=FALSE),
+ "apply+quantile" = apply(X, MARGIN=1L, FUN=quantile, probs=probs, na.rm=FALSE, type=3L),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-09
+o Created.
+---------------------------------------------------------------------------%>

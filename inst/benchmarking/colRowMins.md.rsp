@@ -1,0 +1,75 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colMins"%>
+<%@string rowname="rowMins"%>
+<% rowname <- "<%@string name="rowname"%>" %>
+<%@meta title="${colname}() and ${rowname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-09"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() against alternative methods.
+
+## Alternative methods
+
+* apply() + min()
+* lapply() + pmin()
+* lapply() + pmin.int()
+
+See also [StackOverflow:colMins?].
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+colStats <- microbenchmark(
+ colMins           = colMins(X, na.rm=FALSE),
+ "apply+min"       = apply(X, MARGIN=2L, FUN=min, na.rm=FALSE),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(nrow(X)), function(i) X[i,])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(nrow(X)), function(i) X[i,])),
+ unit = "ms"
+)
+
+X <- t(X)
+rowStats <- microbenchmark(
+ rowMins           = rowMins(X, na.rm=FALSE),
+"apply+min"        = apply(X, MARGIN=1L, FUN=min, na.rm=FALSE),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(ncol(X)), function(i) X[,i])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(ncol(X)), function(i) X[,i])),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-09
+o Created.
+---------------------------------------------------------------------------%>

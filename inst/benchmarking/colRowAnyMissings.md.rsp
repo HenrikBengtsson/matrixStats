@@ -1,0 +1,90 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colAnyMissings"%>
+<%@string rowname="rowAnyMissings"%>
+<% rowname <- "<%@string name="rowname"%>" %>
+<%@meta title="${colname}() and ${rowname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-06-09"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() against alternative methods.
+
+## Alternative methods
+
+* colAnyMissing()
+* apply() + anyMissing()
+* colSums() + is.na()
+
+where
+
+```r
+<%=withCapture({
+colAnyMissing <- function(x, ...) {
+  is.na(colCounts(x, na.rm=FALSE))
+}
+})%>
+```
+
+and
+
+```r
+<%=withCapture({
+rowAnyMissing <- function(x, ...) {
+  is.na(rowCounts(x, na.rm=FALSE))
+}
+})%>
+```
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+colStats <- microbenchmark(
+ colAnyMissing      = colAnyMissing(X),
+ "apply+anyMissing" = apply(X, MARGIN=2L, FUN=anyMissing),
+ colSums            = is.na(colSums(X, na.rm=FALSE)),
+ unit = "ms"
+)
+
+X <- t(X)
+rowStats <- microbenchmark(
+ rowAnyMissing      = rowAnyMissing(X),
+ "apply+anyMissing" = apply(X, MARGIN=1L, FUN=anyMissing),
+ rowSums            = is.na(rowSums(X, na.rm=FALSE)),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-09
+o Created.
+---------------------------------------------------------------------------%>
