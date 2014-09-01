@@ -2,8 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.10.2 [2014-09-01]
-o BUG FIX: Package failed to build on R (<= 2.15.3) with compilation
-  error: "redefinition of typedef 'R_xlen_t'".
+o BUG FIX: On some systems, the package failed to build on R (<= 2.15.3) 
+  with compilation error: "redefinition of typedef 'R_xlen_t'".
 
 
 Version: 0.10.1 [2014-06-09]
