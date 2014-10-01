@@ -47,9 +47,13 @@
 
 \section{Missing and non-finite values}{
   Data points where either of \code{y} and \code{x} is missing are
-  dropped.
+  dropped (and therefore are also not counted).
   Non-finite values in \code{y} are not allowed and gives an error.
   Missing values in \code{bx} are not allowed and gives an error.
+}
+
+\section{Empty bins}{
+  Empty bins will get value \code{\link[base:is.finite]{NaN}}.
 }
 
 \examples{
