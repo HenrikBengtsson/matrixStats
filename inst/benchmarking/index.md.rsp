@@ -7,14 +7,9 @@
 
 <%
 use("matrixStats")
-use("R.utils")
+use("R.utils (>= 1.33.0")
 
 # Simple logging function
-mprintf <- function(...) {
-  s <- sprintf(...)
-  message(s, appendLF=FALSE)
-  invisible(s)
-}
 lenter <- function(...) {
   s <- mprintf(...)
   s <- gsub("[.][.][.](\n)*", "...done\\1", s)
@@ -37,7 +32,7 @@ names <- gsub(pattern, "", filenames)
 # col- and rowAnyMissing() does not really exist
 names <- setdiff(names, c("colAnyMissing", "rowAnyMissing"))
 message("Number of reports found: ", length(names))
-message(sprintf("Report #%d: %s\n", seq_along(names), names))
+mprintf("Report #%d: %s\n", seq_along(names), names)
 %>
 
 <% for (ii in seq_along(names)) { %>

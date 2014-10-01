@@ -12,12 +12,27 @@
  RSP specific
  --------------------------------------------------------------%>
 <%
-R.utils::use("R.utils, R.devices, knitr, ggplot2")
-options("devEval/args/field"="pathname")
+R.utils::use("R.utils, R.devices (>= 2.11.0), knitr, ggplot2")
 devOptions("png", width=390)
 options("withCapture/newline"=FALSE)
 options(deparse.cutoff=100)
 kable <- function(...) knitr::kable(..., format="markdown")
+
+# BACKWARD COMPATIBILITY
+if (R.devices$version < "2.12.0") {
+  toFavicon <- function(..., envir=parent.frame()) {
+    url <- R.devices::toFavicon(..., envir=envir, field="dataURI")
+    script <- c(
+      "<script>",
+      " var link = document.createElement('link');",
+      " link.rel = 'icon';",
+      sprintf(' link.href = "%s"', url),
+      " document.getElementsByTagName('head')[0].appendChild(link);",
+      "</script>"
+    )
+    paste(script, collapse="\n")
+  } # toFavicon()
+}
 %>
 
 <%--------------------------------------------------------------

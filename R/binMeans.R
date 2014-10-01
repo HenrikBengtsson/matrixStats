@@ -41,6 +41,10 @@
 #   Missing values in \code{bx} are not allowed and gives an error.
 # }
 #
+# \section{Empty bins}{
+#   Empty bins will get value @NaN.
+# }
+#
 # @examples "../incl/binMeans.Rex"
 #
 # \seealso{

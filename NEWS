@@ -1,8 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.10.3 [2014-10-01]
+o BUG FIX: binMeans() returned 0.0 instead of NA_real_ for empty bins.
+
+
 Version: 0.10.2 [2014-09-01]
-o BUG FIX: On some systems, the package failed to build on R (<= 2.15.3) 
+o BUG FIX: On some systems, the package failed to build on R (<= 2.15.3)
   with compilation error: "redefinition of typedef 'R_xlen_t'".
 
 

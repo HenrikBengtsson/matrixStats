@@ -55,10 +55,10 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   if (nb > 0) {
 
     // Skip to the first bin
-    while ((iStart < nx) && IS_PART_OF_FIRST_BIN(xp[iStart], bxp[0])) { 
+    while ((iStart < nx) && IS_PART_OF_FIRST_BIN(xp[iStart], bxp[0])) {
       ++iStart;
     }
-    
+
     // For each x...
     for (ii = iStart; ii < nx; ++ii) {
 
@@ -66,13 +66,13 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
       while (IS_PART_OF_NEXT_BIN(xp[ii], bxp[jj+1])) {
         // Update statistic of current bin?
         if (retcount) { countp[jj] = n; }
-        ansp[jj] = n > 0 ? sum / n : 0;
+        ansp[jj] = n > 0 ? sum / n : R_NaN;
         sum = 0.0;
         n = 0;
-  
+
         // ...and move to next
         ++jj;
-  
+
         // No more bins?
         if (jj >= nb) {
           // Make the outer for-loop to exit...
@@ -84,24 +84,24 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
           break;
         }
       }
-  
-      // Sum and count 
+
+      // Sum and count
       sum += yp[ii];
       ++n;
     }
-  
+
     // Update statistic of the last bin?
     if (jj < nb) {
       if (retcount) countp[jj] = n;
-      ansp[jj] = n > 0 ? sum / n : 0;
-  
+      ansp[jj] = n > 0 ? sum / n : R_NaN;
+
       // Assign the remaining bins to zero counts and missing mean values
       while (++jj < nb) {
-        ansp[jj] = R_NaReal;
+        ansp[jj] = R_NaN;
         if (retcount) countp[jj] = 0;
       }
     }
-  
+
   } // if (nb > 0)
 
 
@@ -125,7 +125,9 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
 
 /***************************************************************************
  HISTORY:
- 2014-04-04 [HB]
+2014-10-01 [HB]
+  o BUG FIX: binMeans() returned 0.0 instead of NA_real_ for empty bins.
+2014-04-04 [HB]
   o BUG FIX: The native code of binMeans(x, bx) would try to access
     an out-of-bounds value of argument 'y' iff 'x' contained elements
     that are left of all bins in 'bx'.  This bug had no impact on the

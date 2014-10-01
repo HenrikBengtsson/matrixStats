@@ -7,7 +7,7 @@ library("stats")
 binMeans0 <- function(y, x, bx, count=TRUE, right=FALSE) {
   B <- length(bx)-1L
   res <- double(B)
-  counts <- integer(B)
+  counts <- rep(NaN, times=B)
 
   # For each bin...
   for (kk in seq(length=B)) {
@@ -46,7 +46,7 @@ yS <- binMeans(y, x=x, bx=bx)
 nS <- binCounts(x, bx=bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
-stopifnot(all(attr(yS, "count"), nS))
+stopifnot(all.equal(attr(yS, "count"), nS))
 
 yS0r <- rev(binMeans0(y, x=-x, bx=rev(-bx), count=FALSE, right=TRUE))
 ySr <- rev(binMeans(y, x=-x, bx=rev(-bx), count=FALSE, right=TRUE))
@@ -73,5 +73,19 @@ ySr <- rev(binMeans(y, x=-x, bx=rev(-bx1), right=TRUE))
 
 # Sanity check
 stopifnot(all.equal(yS, yS0))
-stopifnot(all(attr(yS, "count"), nS))
+stopifnot(all.equal(attr(yS, "count"), nS))
 stopifnot(all.equal(ySr, yS, check.attributes=FALSE))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Example #3 (empty bins)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- c(6:8, 16:19)
+nx <- length(x)
+y <- runif(nx)
+bx <- c(0,5,10,15,20,25)
+yS0 <- binMeans0(y, x=x, bx=bx)
+yS <- binMeans(y, x=x, bx=bx)
+nS <- binCounts(x, bx=bx)
+stopifnot(all.equal(attr(yS, "count"), nS))
+stopifnot(all.equal(yS, yS0))

@@ -14,20 +14,6 @@ Copyright <%@meta name="author"%>. Last updated on <%=format(Sys.time(), format=
 <%---------------------------------------------------------------
   Dynamically insert an HTML favicon
   ---------------------------------------------------------------%>
-<%
-toFaviconScript <- function(..., envir=parent.frame()) {
-  url <- R.devices::toFavicon(..., envir=envir, field="dataURI");
-  script <- c(
-    "<script>",
-    " var link = document.createElement('link');",
-    " link.rel = 'icon';",
-    sprintf(' link.href = "%s"', url),
-    " document.getElementsByTagName('head')[0].appendChild(link);",
-    "</script>"
-  )
-  paste(script, collapse="\n")
-} # tofaviconScript()
-%>
-<%=toFaviconScript({
+<%=toFavicon({
   plot(1, col="blue", bg="yellow", pch=21, cex=4, lwd=4, axes=FALSE)
 }, force=FALSE)%>
