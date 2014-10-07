@@ -11,7 +11,7 @@ R CMD check status: <a href="https://travis-ci.org/HenrikBengtsson/matrixStats">
 
 ## Benchmarking
 
-To benchmark most of the functions of 'matrixStats' on your system, do:
+To benchmark most of the functions of 'matrixStats' on your local system, do:
 ```s
 html <- matrixStats:::benchmark('index')
 browseURL(html)
