@@ -65,10 +65,16 @@ R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
 HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !is.na(utils:::aspell_find_program('aspell'))))")
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Main
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 all: build install check
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Displays macros
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 debug: 
 	@echo CURDIR=\'$(CURDIR)\'
 	@echo R_HOME=\'$(R_HOME)\'
@@ -103,6 +109,7 @@ debug:
 	@echo R_RD4PDF=\'$(R_RD4PDF)\'
 	@echo
 	@echo R_CRAN_OUTDIR=\'$(R_CRAN_OUTDIR)\'
+	@echo
 
 
 debug_full: debug
@@ -122,6 +129,9 @@ debug_full: debug
 
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Update / install
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Update existing packages
 update:
 	$(R_SCRIPT) -e "try(update.packages(ask=FALSE)); source('http://bioconductor.org/biocLite.R'); biocLite(ask=FALSE);"
@@ -134,11 +144,13 @@ deps: DESCRIPTION
 setup:	update deps
 	$(R_SCRIPT) -e "source('http://aroma-project.org/hbLite.R'); hbLite('R.oo')"
 
-
 ns:
 	$(R_SCRIPT) -e "library('$(PKG_NAME)'); source('X:/devtools/NAMESPACE.R'); writeNamespaceSection('$(PKG_NAME)'); writeNamespaceImports('$(PKG_NAME)');"
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Build source tarball
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_OUTDIR)/$(PKG_TARBALL): $(PKG_FILES)
 	$(MKDIR) $(R_OUTDIR)
 	$(RM) $@
@@ -163,7 +175,9 @@ ifeq ($(OS), Windows_NT)
 endif
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Install on current system
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_LIBS_USER_X)/$(PKG_NAME)/DESCRIPTION: $(R_OUTDIR)/$(PKG_TARBALL) build_fix
 	$(CD) $(R_OUTDIR);\
 	$(R) --no-init-file CMD INSTALL $(PKG_TARBALL)
@@ -175,7 +189,9 @@ install_force:
 	$(MAKE) install
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Check source tarball
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_CHECK_OUTDIR)/.check.complete: $(R_OUTDIR)/$(PKG_TARBALL) build_fix
 	$(CD) $(R_OUTDIR);\
 	$(RM) -r $(PKG_NAME).Rcheck;\
@@ -198,7 +214,14 @@ check_force:
 	$(MAKE) check
 
 
+# Check the line width of incl/*.(R|Rex) files [max 100 chars in R devel]
+check_Rex:
+	$(R_SCRIPT) -e "if (!file.exists('incl')) quit(status=0); setwd('incl/'); fs <- dir(pattern='[.](R|Rex)$$'); ns <- sapply(fs, function(f) max(nchar(readLines(f)))); ns <- ns[ns > 100]; print(ns); if (length(ns) > 0L) quit(status=1)"
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Install and build binaries
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_OUTDIR)/$(PKG_ZIP): $(R_OUTDIR)/$(PKG_TARBALL) build_fix
 	$(CD) $(R_OUTDIR);\
 	$(R) --no-init-file CMD INSTALL --build --merge-multiarch $(PKG_TARBALL)
@@ -206,12 +229,9 @@ $(R_OUTDIR)/$(PKG_ZIP): $(R_OUTDIR)/$(PKG_TARBALL) build_fix
 binary: $(R_OUTDIR)/$(PKG_ZIP)
 
 
-# Check the line width of incl/*.(R|Rex) files [max 100 chars in R devel]
-check_Rex:
-	$(R_SCRIPT) -e "if (!file.exists('incl')) quit(status=0); setwd('incl/'); fs <- dir(pattern='[.](R|Rex)$$'); ns <- sapply(fs, function(f) max(nchar(readLines(f)))); ns <- ns[ns > 100]; print(ns); if (length(ns) > 0L) quit(status=1)"
-
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Build Rd help files from Rdoc comments
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Rd: check_Rex
 	$(R_SCRIPT) -e "setwd('..'); Sys.setlocale(locale='C'); R.oo::compileRdoc('$(PKG_NAME)', path='$(PKG_DIR)')"
 
@@ -232,7 +252,9 @@ spell:
 	$(R_SCRIPT) -e "utils::aspell('DESCRIPTION', filter='dcf')"
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Build package vignettes
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_OUTDIR)/vigns: install
 	$(MKDIR) $(R_OUTDIR)/vigns/$(shell dirname $(DIR_VIGNS))
 	$(CP) DESCRIPTION $(R_OUTDIR)/vigns/
@@ -243,7 +265,9 @@ $(R_OUTDIR)/vigns: install
 vignettes: $(R_OUTDIR)/vigns
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Run package tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_OUTDIR)/tests/%.R: $(FILES_TESTS)
 	$(RMDIR) $(R_OUTDIR)/tests
 	$(MKDIR) $(R_OUTDIR)/tests
@@ -261,8 +285,9 @@ test_full: $(R_OUTDIR)/tests/%.R
 	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { print(f); source(f, echo=TRUE) }"
 
 
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Run extensive CRAN submission checks
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 $(R_CRAN_OUTDIR)/$(PKG_TARBALL): $(R_OUTDIR)/$(PKG_TARBALL) build_fix
 	$(MKDIR) $(R_CRAN_OUTDIR)
 	$(CP) $(R_OUTDIR)/$(PKG_TARBALL) $(R_CRAN_OUTDIR)
@@ -275,6 +300,20 @@ cran_setup: $(R_CRAN_OUTDIR)/$(PKG_TARBALL)
 	$(R_SCRIPT) -e "if (!nzchar(system.file(package='RCmdCheckTools'))) { source('http://aroma-project.org/hbLite.R'); hbLite('RCmdCheckTools', devel=TRUE); }"
 
 cran: cran_setup $(R_CRAN_OUTDIR)/$(PKG_NAME),EmailToCRAN.txt
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Send to win-builder server
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+WIN_BUILDER = win-builder.r-project.org
+win-builder-devel: $(R_OUTDIR)/$(PKG_TARBALL)
+	curl -v -T $? ftp://anonymous@$(WIN_BUILDER)/R-devel/
+
+win-builder-release: $(R_OUTDIR)/$(PKG_TARBALL)
+	curl -v -T $? ftp://anonymous@$(WIN_BUILDER)/R-release/
+
+win-builder: win-builder-devel win-builder-release
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Local repositories
