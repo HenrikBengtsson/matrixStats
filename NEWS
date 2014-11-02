@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.10.5 [2014-11-02]
+o Added sumOver(), which is a significantly faster version of
+  sum(x[idxs]).  Added package tests and a benchmark report.
+
+
 Version: 0.10.4 [2014-11-01]
 o SPEEDUP: Made anyMissing(), logSumExp(), (col|row)Medians(), 
   (col|row)Counts() slightly faster by making the native code assign 

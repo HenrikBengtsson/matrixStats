@@ -4,7 +4,7 @@
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-10-01"%>
+<%@meta date="2014-11-01"%>
 
 <%@include file="${header}"%>
 
