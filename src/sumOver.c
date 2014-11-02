@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP sumOver(SEXP x, SEXP naRm, SEXP idxs)
+ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
@@ -9,8 +9,8 @@
 
 /* 
 TEMPLATE sumOver_<Integer|Real>(...):
-  SEXP sumOver_Real(SEXP x, SEXP naRm, SEXP idxs)
-  SEXP sumOver_Integer(SEXP x, SEXP naRm, SEXP idxs)
+  SEXP sumOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
+  SEXP sumOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
  */
 #define METHOD sumOver
 
@@ -23,7 +23,7 @@ TEMPLATE sumOver_<Integer|Real>(...):
 #undef METHOD 
 
 
-SEXP sumOver(SEXP x, SEXP naRm, SEXP idxs) {
+SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
 
   /* Argument 'x': */
@@ -32,9 +32,9 @@ SEXP sumOver(SEXP x, SEXP naRm, SEXP idxs) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = sumOver_Real(x, naRm, idxs);
+    ans = sumOver_Real(x, idxs, naRm, mode);
   } else if (isInteger(x)) {
-    ans = sumOver_Integer(x, naRm, idxs);
+    ans = sumOver_Integer(x, idxs, naRm, mode);
   } else {
     error("Argument 'x' must be numeric.");
   }

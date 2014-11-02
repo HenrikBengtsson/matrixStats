@@ -11,15 +11,18 @@
 #
 # \arguments{
 #   \item{x}{A @numeric @vector of length N.}
-#   \item{na.rm}{If @TRUE, missing values are skipped, otherwise not.}
 #   \item{idxs}{A @numeric index @vector in [1,N] of elements to sum over.
 #      If @NULL, all elements are considered.}
+#   \item{na.rm}{If @TRUE, missing values are skipped, otherwise not.}
+#   \item{mode}{A @character string specifying the data type of the
+#      return value.  Default is to use the same mode as argument
+#      \code{x}.}
 #   \item{...}{Not used.}
 # }
 #
 # \value{
-#   Returns a @numeric scalar of the same type as argument \code{x}.
-#   If \code{x} is integer, then integer overflow occurs if the
+#   Returns a scalar of the data type specified by argument \code{mode}.
+#   If \code{mode="integer"}, then integer overflow occurs if the
 #   \emph{sum} is outside the range of defined integer values.
 # }
 #
@@ -28,6 +31,10 @@
 #   \code{sum(x[idxs])}, but is faster and more memory efficient
 #   since it avoids the actual subsetting which requires copying
 #   of elements and garbage collection thereof.
+#
+#   Furthermore, \code{sumOver(x, mode="double")} is equivalent to
+#   \code{sum(as.numeric(x))}, but is much more memory efficient when
+#   \code{x} is an @integer vector.
 # }
 #
 # @examples "../incl/sumOver.Rex"
@@ -40,7 +47,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-sumOver <- function(x, na.rm=FALSE, idxs=NULL, ...) {
+sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -67,11 +74,14 @@ sumOver <- function(x, na.rm=FALSE, idxs=NULL, ...) {
     idxs <- as.integer(idxs);
   }
 
+  # Argument 'mode':
+  mode <- match.arg(mode, choices=c("integer", "numeric", "double"));
+  mode <- c(integer=1L, numeric=2L, double=2L)[mode];
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call("sumOver", x, na.rm, idxs, PACKAGE="matrixStats");
+  .Call("sumOver", x, idxs, na.rm, mode, PACKAGE="matrixStats");
 } # sumOver()
 
 
