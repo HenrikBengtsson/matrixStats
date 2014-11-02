@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.10.5 [2014-11-02]
+Version: 0.11.0 [2014-11-02]
 o Added sumOver() and meanOver(), which are significantly faster versions
   of sum(x[idxs]) and mean(x[idxs]).  Moreover, instead of having to do
   sum(as.numeric(x)) to avoid integer overflow when 'x' is an integer 
