@@ -1,0 +1,53 @@
+library("matrixStats")
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Consistency checks
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+set.seed(1)
+
+meanOver_R <- function(x, na.rm=FALSE, idxs=NULL) {
+  if (is.null(idxs)) {
+    mean(x, na.rm=na.rm)
+  } else {
+    mean(x[idxs], na.rm=na.rm)
+  }
+} # meanOver_R()
+
+
+cat("Consistency checks:\n")
+K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 20
+for (kk in 1:K) {
+  cat("Random test #", kk, "\n", sep="")
+
+  # Simulate data in a matrix of any shape
+  n <- sample(10e3, size=1L)
+  x <- rnorm(n, sd=100)
+
+  # Add NAs?
+  if ((kk %% 4) %in% c(3,0)) {
+    cat("Adding NAs\n")
+    nna <- sample(n, size=1L)
+    naValues <- c(as.double(NA), NaN)
+    x[sample(length(x), size=nna)] <- sample(naValues, size=nna, replace=TRUE)
+  }
+
+  # Integer or double?
+  if ((kk %% 4) %in% c(2,0)) {
+    cat("Coercing to integers\n")
+    storage.mode(x) <- "integer"
+  }
+
+  na.rm <- sample(c(TRUE,FALSE), size=1L)
+
+  # Sum over all
+  y0 <- meanOver_R(x, na.rm=na.rm)
+  y1 <- meanOver(x, na.rm=na.rm)
+  stopifnot(all.equal(y1,y0))
+
+  # Sum over subset
+  nidxs <- sample(n, size=1L)
+  idxs <- sample(n, size=nidxs)
+  y0 <- meanOver_R(x, na.rm=na.rm, idxs=idxs)
+  y1 <- meanOver(x, na.rm=na.rm, idxs=idxs)
+  stopifnot(all.equal(y1,y0))
+} # for (kk ...)

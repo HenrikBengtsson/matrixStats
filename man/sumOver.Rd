@@ -90,6 +90,7 @@ stopifnot(identical(s1, s2))
 
 \seealso{
   \code{\link[base]{sum}}().
+  To efficiently average over a subset, see \code{\link{meanOver}}().
 }
 
 \author{Henrik Bengtsson}
