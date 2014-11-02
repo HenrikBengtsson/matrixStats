@@ -1,6 +1,14 @@
 Package: matrixStats
 ====================
 
+Version: 0.10.4 [2014-11-01]
+o SPEEDUP: Made anyMissing(), logSumExp(), (col|row)Medians(), 
+  (col|row)Counts() slightly faster by making the native code assign 
+  the results directly to the native vector instead of to the R vector,
+  e.g. ansp[i] = v where ansp=REAL(ans) instead of REAL(ans)[i] = v.
+o Added benchmark reports for anyMissing() and logSumExp().
+  
+
 Version: 0.10.3 [2014-10-01]
 o BUG FIX: binMeans() returned 0.0 instead of NA_real_ for empty bins.
 

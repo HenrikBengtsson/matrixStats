@@ -30,17 +30,6 @@ logSumExp0 <- function(lx, ...) {
 })%>
 ```
 
-and
-
-```r
-<%=withCapture({
-logSumExp0 <- function(lx, ...) {
-  iMax <- which.max(lx)
-  log1p(sum(exp(lx[-iMax] - lx[iMax]))) + lx[iMax]
-} # logSumExp0() 
-})%>
-```
-
 
 
 ## Data

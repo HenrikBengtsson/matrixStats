@@ -31,10 +31,13 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
   int ii, jj;
   int colOffset, count;
   X_C_TYPE *xx, xvalue, vvalue;
+  int *ansp;
 
   /* R allocate a double vector of length 'nrow' */
   PROTECT(ans = allocVector(INTSXP, nrow));
-  for(ii=0; ii < nrow; ii++) INTEGER(ans)[ii] = 0;
+  ansp = INTEGER(ans);
+
+  for(ii=0; ii < nrow; ii++) ansp[ii] = 0;
 
   xx = X_IN_C(x);
   vvalue = X_IN_C(value)[0];
@@ -46,7 +49,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
       for(ii=0; ii < nrow; ii++) {
         xvalue = xx[ii+colOffset];
         if (X_ISNAN(xvalue)) {
-          INTEGER(ans)[ii] = INTEGER(ans)[ii] + 1;
+          ansp[ii] = ansp[ii] + 1;
         }
       }
     }
@@ -54,16 +57,16 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
     for(jj=0; jj < ncol; jj++) {
       colOffset = (int)jj*nrow;
       for(ii=0; ii < nrow; ii++) {
-        count = INTEGER(ans)[ii];
+        count = ansp[ii];
         /* Nothing more to do on this row? */
         if (count == NA_INTEGER) continue;
 
         xvalue = xx[ii+colOffset];
         if (xvalue == vvalue) {
-          INTEGER(ans)[ii] = count + 1;
+          ansp[ii] = count + 1;
         } else {
           if (!narm && X_ISNAN(xvalue)) {
-            INTEGER(ans)[ii] = NA_INTEGER;
+            ansp[ii] = NA_INTEGER;
             continue;
 	  }
 	}
@@ -82,6 +85,9 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-01
+  o SPEEDUP: Now using ansp = INTEGER(ans) once and then querying/assigning
+    'ansp[i]' instead of INTEGER(ans)[i].
  2014-06-02 [HB]
   o Created.
  **************************************************************************/

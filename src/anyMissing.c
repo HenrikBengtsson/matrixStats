@@ -14,6 +14,9 @@
 SEXP anyMissing(SEXP x) {
   SEXP ans;
   int n, ii;
+  double *xdp;
+  int *xip, *xlp;
+  Rcomplex *xcp;
 
   PROTECT(ans = allocVector(LGLSXP, 1));
   LOGICAL(ans)[0] = 0;
@@ -29,8 +32,9 @@ SEXP anyMissing(SEXP x) {
 
   switch (TYPEOF(x)) {
     case REALSXP:
+      xdp = REAL(x);
       for (ii=0; ii < n; ii++) {
-        if ISNAN(REAL(x)[ii]) {
+        if ISNAN(xdp[ii]) {
           LOGICAL(ans)[0] = 1;
           break; 
         }
@@ -38,8 +42,9 @@ SEXP anyMissing(SEXP x) {
       break;
 
     case INTSXP:
+      xip = INTEGER(x);
       for (ii=0; ii < n; ii++) {
-        if (INTEGER(x)[ii] == NA_INTEGER) {
+        if (xip[ii] == NA_INTEGER) {
           LOGICAL(ans)[0] = 1;
           break; 
         }
@@ -47,8 +52,9 @@ SEXP anyMissing(SEXP x) {
       break;
 
     case LGLSXP:
+      xlp = LOGICAL(x);
       for (ii=0; ii < n; ii++) {
-        if (LOGICAL(x)[ii] == NA_LOGICAL) {
+        if (xlp[ii] == NA_LOGICAL) {
           LOGICAL(ans)[0] = 1;
           break; 
         }
@@ -56,8 +62,9 @@ SEXP anyMissing(SEXP x) {
       break;
 
     case CPLXSXP:
+      xcp = COMPLEX(x);
       for (ii=0; ii < n; ii++) {
-        if (ISNAN(COMPLEX(x)[ii].r) || ISNAN(COMPLEX(x)[ii].i)) {
+        if (ISNAN(xcp[ii].r) || ISNAN(xcp[ii].i)) {
           LOGICAL(ans)[0] = 1;
           break; 
         }

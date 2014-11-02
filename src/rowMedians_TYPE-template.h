@@ -41,6 +41,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   int ii, jj, kk, qq;
   int *colOffset;
   X_C_TYPE *rowData, *xx, value;
+  double *ansp;
 
   xx = X_IN_C(x);
 
@@ -51,6 +52,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */
   PROTECT(ans = allocVector(REALSXP, nrow));
+  ansp = REAL(ans);
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
@@ -103,9 +105,9 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
       }
   
       if (kk == 0) {
-        REAL(ans)[ii] = R_NaN;
+        ansp[ii] = R_NaN;
       } else if (kk == -1) {
-        REAL(ans)[ii] = R_NaReal;
+        ansp[ii] = R_NaReal;
       } else {
         /* When narm == TRUE, isOdd and qq may change with row */
         if (narm == TRUE) {
@@ -119,18 +121,18 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
         value = rowData[qq+1];
 
         if (isOdd == TRUE) {
-          REAL(ans)[ii] = (double)value;
+          ansp[ii] = (double)value;
         } else {
           if (narm == TRUE || !X_ISNAN(value)) {
             /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
                place with smaller values to the left, ... */
             PSORT(rowData, qq+1, qq);
             if (X_ISNAN(rowData[qq]))
-              REAL(ans)[ii] = R_NaReal;
+              ansp[ii] = R_NaReal;
             else
-              REAL(ans)[ii] = ((double)(rowData[qq] + value))/2;
+              ansp[ii] = ((double)(rowData[qq] + value))/2;
           } else {
-            REAL(ans)[ii] = (double)value;
+            ansp[ii] = (double)value;
           }
         }
       }
@@ -151,12 +153,12 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
       value = rowData[qq+1];
 
       if (isOdd == TRUE) {
-        REAL(ans)[ii] = (double)value;
+        ansp[ii] = (double)value;
       } else {
         /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
            place with smaller values to the left, ... */
         PSORT(rowData, qq+1, qq);
-        REAL(ans)[ii] = (double)((rowData[qq] + value))/2;
+        ansp[ii] = (double)((rowData[qq] + value))/2;
       }
 
     }
@@ -174,6 +176,9 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-01 [HB]
+  o SPEEDUP: Now using 'ansp = REAL(ans)' once and then assigning to 
+    'ansp' instead of to 'REAL(ans)'.
  2013-04-23 [HB]
   o BUG FIX: The integer template of rowMedians_<Integer|Real>() would
     not handle ties properly.  This was because ties were calculated as

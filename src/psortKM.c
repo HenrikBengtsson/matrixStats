@@ -21,7 +21,7 @@
 SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   SEXP ans;
   int ii, nx, kk, mm, ll;
-  double *xx, *xxx;
+  double *xx, *xxx, *ansp;
 
   /* Argument 'x': */
   if (!isReal(x)) {
@@ -69,6 +69,7 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
 
   /* R allocate a double vector of length 'partial' */
   PROTECT(ans = allocVector(REALSXP, mm));
+  ansp = REAL(ans);
 
   /* R allocate memory for the 'xxx'.  This will be 
      taken care of by the R garbage collector later on. */
@@ -95,7 +96,7 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   }
 
   for (ii=0; ii < mm; ii++) {
-    REAL(ans)[ii] = xxx[(kk-mm)+ii];
+    ansp[ii] = xxx[(kk-mm)+ii];
   }
 
   UNPROTECT(1);

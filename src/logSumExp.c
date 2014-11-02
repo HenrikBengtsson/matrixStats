@@ -235,7 +235,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP ans;
   int narm, hasna, byrow;
   int nrow, ncol, len, ii;
-  double *x, *xx;
+  double *x, *xx, *ansp;
 
   /* Argument 'lx': */
   if (!isMatrix(lx)) {
@@ -273,6 +273,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
      Note that 'nrow' means 'ncol' if byrow=FALSE. */ 
   if (byrow) { len = nrow; } else { len = ncol; }
   PROTECT(ans = allocVector(REALSXP, len));
+  ansp = REAL(ans);
 
   /* Get the values */
   x = REAL(lx);
@@ -283,13 +284,13 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
     xx = (double *) R_alloc(ncol, sizeof(double));
 
     for (ii=0; ii < nrow; ii++) {
-      REAL(ans)[ii] = logSumExp_double_by(x, ncol, narm, hasna, nrow, xx);
+      ansp[ii] = logSumExp_double_by(x, ncol, narm, hasna, nrow, xx);
       /* Move to the beginning next row */
       x++;
     }
   } else {
     for (ii=0; ii < ncol; ii++) {
-      REAL(ans)[ii] = logSumExp_double(x, nrow, narm, hasna);
+      ansp[ii] = logSumExp_double(x, nrow, narm, hasna);
       /* Move to the beginning next column */
       x += nrow;
     }
