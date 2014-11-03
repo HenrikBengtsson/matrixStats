@@ -58,8 +58,9 @@ x <- data[[.dataLabel.]]
 gc()
 
 stats <- microbenchmark(
- "meanOver"         = meanOver(x),
- "mean"             = mean(x),
+ "meanOver"           = meanOver(x, refine=TRUE),
+ "meanOver_no_refine" = meanOver(x, refine=FALSE),
+ "mean"               = mean(x),
   unit = "ms"
 )
 })%>
@@ -78,8 +79,9 @@ idxs <- sort(sample(length(x), size=subset*length(x), replace=FALSE))
 gc()
 
 stats <- microbenchmark(
- "meanOver"         = meanOver(x, idxs=idxs),
- "mean+[()"         = meanOver_R(x, idxs=idxs),
+ "meanOver"           = meanOver(x, idxs=idxs, refine=TRUE),
+ "meanOver_no_refine" = meanOver(x, idxs=idxs, refine=FALSE),
+ "mean+[()"           = meanOver_R(x, idxs=idxs),
   unit = "ms"
 )
 })%>

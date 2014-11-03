@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP sumOver_<Integer|Real>(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
+  SEXP sumOver_<Integer|Real>(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
 
  GENERATES:
-  SEXP sumOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
-  SEXP sumOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
+  SEXP sumOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
+  SEXP sumOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -75,13 +75,12 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
           sum = R_NaReal;
           break;
       }
-    }
 #elif X_TYPE == 'r'
       if (!narm || !X_ISNAN(value)) {
         sum += (double)value;
       }
-    }
 #endif
+    } /* for (i ...) */
   } else {
     idxsp = INTEGER(idxs);
     n = XLENGTH(idxs);
@@ -101,13 +100,12 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
           sum = R_NaReal;
           break;
       }
-    }
 #elif X_TYPE == 'r'
       if (!narm || !X_ISNAN(value)) {
         sum += (double)value;
       }
-    }
 #endif
+    } /* for (i ...) */
   }
 
 

@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm)
+ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
@@ -9,8 +9,8 @@
 
 /* 
 TEMPLATE meanOver_<Integer|Real>(...):
-  SEXP meanOver_Real(SEXP x, SEXP idxs, SEXP naRm)
-  SEXP meanOver_Integer(SEXP x, SEXP idxs, SEXP naRm)
+  SEXP meanOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
+  SEXP meanOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
  */
 #define METHOD meanOver
 
@@ -23,7 +23,7 @@ TEMPLATE meanOver_<Integer|Real>(...):
 #undef METHOD 
 
 
-SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm) {
+SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   SEXP ans = NILSXP;
 
   /* Argument 'x': */
@@ -32,9 +32,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = meanOver_Real(x, idxs, naRm);
+    ans = meanOver_Real(x, idxs, naRm, refine);
   } else if (isInteger(x)) {
-    ans = meanOver_Integer(x, idxs, naRm);
+    ans = meanOver_Integer(x, idxs, naRm, refine);
   } else {
     error("Argument 'x' must be numeric.");
   }

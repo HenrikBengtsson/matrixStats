@@ -13,7 +13,7 @@
 \title{Fast averaging over subset of vector elements}
 
 \usage{
-meanOver(x, idxs=NULL, na.rm=FALSE, ...)
+meanOver(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...)
 }
 
 \description{
@@ -25,6 +25,9 @@ meanOver(x, idxs=NULL, na.rm=FALSE, ...)
   \item{idxs}{A \code{\link[base]{numeric}} index \code{\link[base]{vector}} in [1,N] of elements to mean over.
      If \code{\link[base]{NULL}}, all elements are considered.}
   \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are skipped, otherwise not.}
+  \item{refine}{If \code{\link[base:logical]{TRUE}} and \code{x} is \code{\link[base]{numeric}}, then extra effort is
+     used to calculate the average with greater numerical precision,
+     otherwise not.}
   \item{...}{Not used.}
 }
 
@@ -37,6 +40,14 @@ meanOver(x, idxs=NULL, na.rm=FALSE, ...)
   \code{mean(x[idxs])}, but is faster and more memory efficient
   since it avoids the actual subsetting which requires copying
   of elements and garbage collection thereof.
+
+  If \code{x} is \code{\link[base]{numeric}} and \code{refine=TRUE}, then a two-pass scan
+  is used to calculate the average.  The first scan calculates the total
+  sum and divides by the number of (non-missing) values.  In the second
+  scan, this average is refined by adding the residuals towards the first
+  average.  The \code{\link[base]{mean}}() uses this approach.
+  \code{meanOver(..., refine=FALSE)} is almost twice as fast as
+  \code{meanOver(..., refine=TRUE)}.
 }
 
 \examples{

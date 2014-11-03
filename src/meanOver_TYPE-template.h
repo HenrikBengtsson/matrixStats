@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP meanOver_<Integer|Real>(SEXP x, SEXP idxs, SEXP naRm) {
+  SEXP meanOver_<Integer|Real>(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
 
  GENERATES:
-  SEXP meanOver_Integer(SEXP x, SEXP idxs, SEXP naRm) {
-  SEXP meanOver_Real(SEXP x, SEXP idxs, SEXP naRm) {
+  SEXP meanOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
+  SEXP meanOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -28,11 +28,11 @@
 #define R_INT_MAX  INT_MAX
 #define R_INT_MIN -INT_MAX
 
-SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm) {
+SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   /* Arguments */
   X_C_TYPE *xp, value;
   int *idxsp;
-  int narm;
+  int narm, refine2;
   /* Value */
   SEXP ans;
 
@@ -43,7 +43,10 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm) {
   */
 
   int i, idx;
-  double sum = 0;
+  double sum = 0, avg = R_NaN;
+#if X_TYPE == 'r'
+  double rsum = 0;
+#endif
   int count = 0;
 
   /* Argument 'naRm': */
@@ -56,6 +59,18 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm) {
   narm = LOGICAL(naRm)[0];
   if (narm != TRUE && narm != FALSE) {
     error("Argument 'naRm' must be either TRUE or FALSE.");
+  }
+
+  /* Argument 'refine': */
+  if (!isLogical(refine))
+    error("Argument 'refine' must be a single logical.");
+
+  if (length(refine) != 1)
+    error("Argument 'refine' must be a single logical.");
+
+  refine2 = LOGICAL(refine)[0];
+  if (refine2 != TRUE && refine2 != FALSE) {
+    error("Argument 'refine' must be either TRUE or FALSE.");
   }
 
   xp = X_IN_C(x);
@@ -73,14 +88,34 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm) {
           sum = R_NaReal;
           break;
       }
-    }
 #elif X_TYPE == 'r'
-      if (!narm || !X_ISNAN(value)) {
-        sum += (double)value;
+      if (!narm || !ISNAN(value)) {
+        sum += value;
         ++count;
       }
-    }
 #endif
+    } /* for (i ...) */
+
+    if (sum > DBL_MAX) {
+      avg = R_PosInf;
+    } else if (sum < -DBL_MAX) {
+      avg = R_NegInf;
+    } else {
+      avg = sum / count;
+
+      /* Extra precision by summing over residuals? */
+#if X_TYPE == 'r'
+      if (refine2 && R_FINITE(avg)) {
+        for (i=0; i < nx; i++) {
+          value = xp[i];
+          if (!narm || !ISNAN(value)) {
+            rsum += (value - avg);
+          }
+        }
+        avg += (rsum / count);
+      }
+#endif
+    }
   } else {
     idxsp = INTEGER(idxs);
     n = XLENGTH(idxs);
@@ -101,25 +136,39 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm) {
           sum = R_NaReal;
           break;
       }
-    }
 #elif X_TYPE == 'r'
-      if (!narm || !X_ISNAN(value)) {
-        sum += (double)value;
+      if (!narm || !ISNAN(value)) {
+        sum += value;
         ++count;
       }
-    }
 #endif
-  }
+    } /* for (i ...) */
 
+    if (sum > DBL_MAX) {
+      avg = R_PosInf;
+    } else if (sum < -DBL_MAX) {
+      avg = R_NegInf;
+    } else {
+      avg = sum / count;
+
+      /* Extra precision by summing over residuals? */
+#if X_TYPE == 'r'
+      if (refine2 && R_FINITE(avg)) {
+        for (i=0; i < n; i++) {
+          idx = idxsp[i];
+          value = xp[idx-1];
+          if (!narm || !ISNAN(value)) {
+            rsum += (value - avg);
+          }
+        }
+        avg += (rsum / count);
+      }
+#endif
+    }
+  }
 
   PROTECT(ans = allocVector(REALSXP, 1));
-  if (sum > DBL_MAX) {
-    REAL(ans)[0] = R_PosInf;
-  } else if (sum < -DBL_MAX) {
-    REAL(ans)[0] = R_NegInf;
-  } else {
-    REAL(ans)[0] = sum / count;
-  }
+  REAL(ans)[0] = avg;
   UNPROTECT(1);
 
   return(ans);
