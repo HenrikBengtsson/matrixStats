@@ -11,11 +11,6 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-/* 
-TEMPLATE rowOrderStats_<Integer|Real>(...):
-- SEXP rowOrderStats_Real(SEXP x, int nrow, int ncol, int qq);
-- SEXP rowOrderStats_Integer(SEXP x, int nrow, int ncol, int qq);
- */
 #define METHOD rowOrderStats
 
 #define X_TYPE 'i'
@@ -29,7 +24,7 @@ TEMPLATE rowOrderStats_<Integer|Real>(...):
 
 
 SEXP rowOrderStats(SEXP x, SEXP which) {
-  SEXP ans;
+  SEXP dim, ans = NILSXP;
   int nrow, ncol, qq;
 
   /* Argument 'x': */
@@ -45,30 +40,30 @@ SEXP rowOrderStats(SEXP x, SEXP which) {
 
 
   /* Get dimensions of 'x'. */
-  PROTECT(ans = getAttrib(x, R_DimSymbol));
-  nrow = INTEGER(ans)[0];
-  ncol = INTEGER(ans)[1];
+  dim = getAttrib(x, R_DimSymbol);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Subtract one here, since rPsort does zero based addressing */
   qq = asInteger(which) - 1;
 
   /* Assert that 'qq' is a valid index */
   if (qq < 0 || qq >= ncol) {
-    UNPROTECT(1);
     error("Argument 'which' is out of range.");
   }
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowOrderStats_Real(x, nrow, ncol, qq);
-  } else if (isInteger(x)) {
-    ans = rowOrderStats_Integer(x, nrow, ncol, qq);
-  } else {
+    PROTECT(ans = allocVector(REALSXP, nrow));
+    rowOrderStats_Real(REAL(x), nrow, ncol, qq, REAL(ans));
     UNPROTECT(1);
+  } else if (isInteger(x)) {
+    PROTECT(ans = allocVector(INTSXP, nrow));
+    rowOrderStats_Integer(INTEGER(x), nrow, ncol, qq, INTEGER(ans));
+    UNPROTECT(1);
+  } else {
     error("Argument 'x' must be numeric.");
   }
-
-  UNPROTECT(1);
 
   return(ans);
 } // rowOrderStats()
