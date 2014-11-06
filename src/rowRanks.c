@@ -4,8 +4,8 @@
  SEXP colRanks(SEXP x, SEXP tiesMethod)
 
  Private methods:
- SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow)
- SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow)
+ SEXP rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans)
+ SEXP rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans)
 
  To do: Add support for missing values.
 
@@ -14,12 +14,12 @@
  **************************************************************************/
 #include <Rinternals.h>
 
-SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow);
-SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow);
+SEXP rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans);
+SEXP rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans);
 
 
 SEXP rowRanks(SEXP x, SEXP tiesMethod) {
-  SEXP ans, dim;
+  SEXP dim, ans;
   int nrow, ncol;
 
   /* Argument 'x': */
@@ -27,20 +27,23 @@ SEXP rowRanks(SEXP x, SEXP tiesMethod) {
     error("Argument 'x' must be a matrix.");
 
   /* Get dimensions of 'x'. */
-  PROTECT(dim = getAttrib(x, R_DimSymbol));
+  dim = getAttrib(x, R_DimSymbol);
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
-  UNPROTECT(1);
+
+  PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowRanks_Real(x, nrow, ncol, 0);
+    rowRanks_Real(REAL(x), nrow, ncol, 0, INTEGER(ans));
   } else if (isInteger(x)) {
-    ans = rowRanks_Integer(x, nrow, ncol, 0);
+    rowRanks_Integer(INTEGER(x), nrow, ncol, 0, INTEGER(ans));
   } else {
-    ans = NULL; // To please compiler
+    ans = NILSXP; // To please compiler
     error("Argument 'x' must be numeric.");
   }
+
+  UNPROTECT(1);
 
   return(ans);
 } // rowRanks()

@@ -4,8 +4,8 @@
  SEXP colRanks(SEXP x, SEXP tiesMethod)
 
  Private methods:
- SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow)
- SEXP rowRanks_Integer(SEXP x, int nrow, int ncol, int byrow)
+ void rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans)
+ void rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans)
 
  To do: Add support for missing values.
 
@@ -16,41 +16,37 @@
 #include <Rinternals.h>
 #include <Rmath.h>
 
-SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow) {
-  SEXP ans;
+void rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans) {
   int ii, jj;
   int *colOffset;
-  int *aa, *I;
+  int *I;
   int JJ, AA, nna;
-  double *rowData, *xx;
+  double *rowData;
   double current_max, current_min, tmp;
 
-  PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
   rowData = (double *) R_alloc(ncol, sizeof(double));
   I = (int *) R_alloc(ncol, sizeof(int));
 
   colOffset = (int *) R_alloc(ncol, sizeof(int));
-  for (jj=0; jj < ncol; jj++) 
+  for (jj=0; jj < ncol; jj++) {
     colOffset[jj] = (int) jj*nrow;
+  }
 
-  xx = REAL(x);
-  aa = INTEGER(ans);
-
-  for (ii=0; ii<nrow; ii++) {
+  for (ii=0; ii < nrow; ii++) {
     nna = 0;	// number of NA/NaN in this row
 
     // Set a minimum finite value for this row
     current_min = R_PosInf;
     for (jj=0; jj < ncol; jj++) {
-      tmp = xx[ii+colOffset[jj]];
+      tmp = x[ii+colOffset[jj]];
       if (R_FINITE(tmp) && tmp < current_min)
 	current_min = tmp;
     }
     current_min = R_FINITE(current_min) ? current_min - 1 : 0;
 
     // Map -Inf to 'current_min' and Na/NaN to -Inf
-    for (jj=0; jj<ncol; jj++) {
-      tmp = xx[ii+colOffset[jj]];
+    for (jj=0; jj < ncol; jj++) {
+      tmp = x[ii+colOffset[jj]];
       if (tmp == R_NegInf)
 	rowData[jj] = current_min;
       else if (ISNAN(tmp)) {
@@ -61,7 +57,7 @@ SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow) {
 	rowData[jj] = tmp;
 
       I[jj] = jj;
-      // Rprintf("%d %d: %.2f ", ii, jj, xx[ii+colOffset[jj]]);
+      // Rprintf("%d %d: %.2f ", ii, jj, x[ii+colOffset[jj]]);
     }
     // Rprintf("\n");
 
@@ -74,7 +70,7 @@ SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow) {
     JJ = ncol-1;
     current_max = rowData[JJ];
     AA = ii + colOffset[I[JJ]];
-    aa[AA] = (current_max == R_NegInf) ? NA_INTEGER : JJ+1-nna;
+    ans[AA] = (current_max == R_NegInf) ? NA_INTEGER : JJ+1-nna;
     for (jj=ncol-2; jj>=nna; jj--) {
       AA = ii + colOffset[I[jj]];
       // Rprintf("%d %d %d: %d %.2f %.2f ", ii, jj, AA, I[jj], rowData[jj], current_max);
@@ -82,22 +78,22 @@ SEXP rowRanks_Real(SEXP x, int nrow, int ncol, int byrow) {
 	JJ = jj;
 	current_max = rowData[JJ];
       }
-      aa[AA] = JJ+1-nna;
+      ans[AA] = JJ+1-nna;
     }
     for (jj=nna-1; jj>=0; jj--) {
       AA = ii + colOffset[I[jj]];
-      aa[AA] = NA_INTEGER;
+      ans[AA] = NA_INTEGER;
     }
 
     // Rprintf("\n");
   }
-
-  UNPROTECT(1);
-  return(ans);
 }
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+  o CLEANUP: Moving away from R data types in low-level C functions.
+  O Harmonized code toward rowRanks_Integer().
  2013-01-13 [HB]
  o Added argument 'tiesMethod' to rowRanks().
  **************************************************************************/

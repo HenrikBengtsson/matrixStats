@@ -64,6 +64,8 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int qq, X_C_TYPE *ans) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+  o CLEANUP: Moving away from R data types in low-level C functions. 
  2013-01-13 [HB]
   o Merged rowOrderStatsReal() and rowOrderStatsInteger() into 
     one rowOrderStats_<Integer|Real>() templated function.
