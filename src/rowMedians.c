@@ -9,15 +9,6 @@
  **************************************************************************/
 #include <Rdefines.h>
 
-SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
-SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow);
-
-
-/* 
-TEMPLATE rowMedians_<Integer|Real>(...):
-- SEXP rowMedians_Real(...);
-- SEXP rowMedians_Integer(...);
- */
 #define METHOD rowMedians
 
 #define X_TYPE 'i'
@@ -31,7 +22,7 @@ TEMPLATE rowMedians_<Integer|Real>(...):
 
 SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
-  SEXP ans;
+  SEXP dim, ans;
   int nrow, ncol;
 
   /* Argument 'x': */
@@ -57,20 +48,24 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
 
 
   /* Get dimensions of 'x'. */
-  PROTECT(ans = getAttrib(x, R_DimSymbol));
+  dim = getAttrib(x, R_DimSymbol);
   if (byrow) {
-    nrow = INTEGER(ans)[0];
-    ncol = INTEGER(ans)[1];
+    nrow = INTEGER(dim)[0];
+    ncol = INTEGER(dim)[1];
   } else {
-    nrow = INTEGER(ans)[1];
-    ncol = INTEGER(ans)[0];
+    nrow = INTEGER(dim)[1];
+    ncol = INTEGER(dim)[0];
   }
+
+  /* R allocate a double vector of length 'nrow'
+     Note that 'nrow' means 'ncol' if byrow=FALSE. */
+  PROTECT(ans = allocVector(REALSXP, nrow));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowMedians_Real(x, nrow, ncol, narm, hasna, byrow);
+    rowMedians_Real(REAL(x), nrow, ncol, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    ans = rowMedians_Integer(x, nrow, ncol, narm, hasna, byrow);
+    rowMedians_Integer(INTEGER(x), nrow, ncol, narm, hasna, byrow, REAL(ans));
   } else {
     UNPROTECT(1);
     error("Argument 'x' must be a numeric.");

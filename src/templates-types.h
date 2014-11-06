@@ -16,6 +16,7 @@
   #define X_IN_C INTEGER
   #define X_ISNAN(x) (x == NA_INTEGER)
   #define X_ABS(x) abs(x)
+  #define X_PSORT iPsort
 #elif X_TYPE == 'r'
   #ifndef METHOD_NAME
     #define METHOD_NAME CONCAT_MACROS(METHOD, Real)
@@ -24,6 +25,7 @@
   #define X_IN_C REAL
   #define X_ISNAN(x) ISNAN(x)
   #define X_ABS(x) fabs(x)
+  #define X_PSORT rPsort
 #endif
 
 

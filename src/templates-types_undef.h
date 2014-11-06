@@ -7,6 +7,7 @@
 #undef X_IN_C
 #undef X_ISNAN
 #undef X_ABS
+#undef X_PSORT
 
 #undef ANS_SXP
 #undef ANS_NA

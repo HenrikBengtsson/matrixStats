@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP rowMedians_<Integer|Real>(...)
+  void rowMedians_<Integer|Real>(...)
 
  GENERATES:
-  SEXP rowMedians_Integer(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
-  SEXP rowMedians_Real(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow)
+  void rowMedians_Integer(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow, double *ans)
+  void rowMedians_Real(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -28,31 +28,16 @@
  */
 #include "templates-types.h" 
 
-#if X_TYPE == 'i'
-  #define PSORT iPsort
-#elif X_TYPE == 'r'
-  #define PSORT rPsort
-#endif
 
-
-SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
-  SEXP ans;
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow, double *ans) {
   int isOdd;
   int ii, jj, kk, qq;
   int *colOffset;
-  X_C_TYPE *rowData, *xx, value;
-  double *ansp;
-
-  xx = X_IN_C(x);
+  X_C_TYPE *rowData, value;
 
   /* R allocate memory for the 'rowData'.  This will be 
      taken care of by the R garbage collector later on. */
   rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
-
-  /* R allocate a double vector of length 'nrow'
-     Note that 'nrow' means 'ncol' if byrow=FALSE. */
-  PROTECT(ans = allocVector(REALSXP, nrow));
-  ansp = REAL(ans);
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
@@ -91,7 +76,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
 
       kk = 0;  /* The index of the last non-NA value detected */
       for(jj=0; jj < ncol; jj++) {
-        value = xx[rowIdx+colOffset[jj]]; //HJ
+        value = x[rowIdx+colOffset[jj]]; //HJ
 
         if (X_ISNAN(value)) {
           if (narm == FALSE) {
@@ -105,9 +90,9 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
       }
   
       if (kk == 0) {
-        ansp[ii] = R_NaN;
+        ans[ii] = R_NaN;
       } else if (kk == -1) {
-        ansp[ii] = R_NaReal;
+        ans[ii] = R_NaReal;
       } else {
         /* When narm == TRUE, isOdd and qq may change with row */
         if (narm == TRUE) {
@@ -117,22 +102,22 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
   
         /* Permute x[0:kk-1] so that x[qq] is in the correct 
            place with smaller values to the left, ... */
-        PSORT(rowData, kk, qq+1);
+        X_PSORT(rowData, kk, qq+1);
         value = rowData[qq+1];
 
         if (isOdd == TRUE) {
-          ansp[ii] = (double)value;
+          ans[ii] = (double)value;
         } else {
           if (narm == TRUE || !X_ISNAN(value)) {
             /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
                place with smaller values to the left, ... */
-            PSORT(rowData, qq+1, qq);
+            X_PSORT(rowData, qq+1, qq);
             if (X_ISNAN(rowData[qq]))
-              ansp[ii] = R_NaReal;
+              ans[ii] = R_NaReal;
             else
-              ansp[ii] = ((double)(rowData[qq] + value))/2;
+              ans[ii] = ((double)(rowData[qq] + value))/2;
           } else {
-            ansp[ii] = (double)value;
+            ans[ii] = (double)value;
           }
         }
       }
@@ -145,37 +130,34 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int narm, int hasna, int byrow) {
       int rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for(jj=0; jj < ncol; jj++)
-        rowData[jj] = xx[rowIdx+colOffset[jj]]; //HJ
+        rowData[jj] = x[rowIdx+colOffset[jj]]; //HJ
   
       /* Permute x[0:ncol-1] so that x[qq] is in the correct 
          place with smaller values to the left, ... */
-      PSORT(rowData, ncol, qq+1);
+      X_PSORT(rowData, ncol, qq+1);
       value = rowData[qq+1];
 
       if (isOdd == TRUE) {
-        ansp[ii] = (double)value;
+        ans[ii] = (double)value;
       } else {
         /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
            place with smaller values to the left, ... */
-        PSORT(rowData, qq+1, qq);
-        ansp[ii] = (double)((rowData[qq] + value))/2;
+        X_PSORT(rowData, qq+1, qq);
+        ans[ii] = (double)((rowData[qq] + value))/2;
       }
 
     }
   } /* if (hasna ...) */
-
-  UNPROTECT(1);
-
-  return(ans);
 }
 
 /* Undo template macros */
-#undef PSORT
 #include "templates-types_undef.h" 
 
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+  o CLEANUP: Moving away from R data types in low-level C functions.
  2014-11-01 [HB]
   o SPEEDUP: Now using 'ansp = REAL(ans)' once and then assigning to 
     'ansp' instead of to 'REAL(ans)'.
