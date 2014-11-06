@@ -24,8 +24,6 @@ TEMPLATE meanOver_<Integer|Real>(...):
 
 
 SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
-  void *xp;
-  int nx;
   SEXP ans = NILSXP;
   int *idxsp;
   int nidxs;
@@ -35,7 +33,6 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
-  nx = XLENGTH(x);
 
   /* Argument 'idxs': */
   if (isNull(idxs)) {
@@ -73,11 +70,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    xp = REAL(x);
-    avg = meanOver_Real(xp, nx, idxsp, nidxs, narm, refine2);
+    avg = meanOver_Real(REAL(x), XLENGTH(x), idxsp, nidxs, narm, refine2);
   } else if (isInteger(x)) {
-    xp = INTEGER(x);
-    avg = meanOver_Integer(xp, nx, idxsp, nidxs, narm, refine2);
+    avg = meanOver_Integer(INTEGER(x), XLENGTH(x), idxsp, nidxs, narm, refine2);
   } else {
     error("Argument 'x' must be numeric.");
   }

@@ -25,8 +25,6 @@ TEMPLATE sumOver_<Integer|Real>(...):
 
 SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
-  void *xp;
-  int nx;
   int *idxsp;
   int nidxs;
   int narm, mode2;
@@ -35,7 +33,6 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
-  nx = XLENGTH(x);
 
   /* Argument 'idxs': */
   if (isNull(idxs)) {
@@ -67,11 +64,9 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    xp = REAL(x);
-    sum = sumOver_Real(xp, nx, idxsp, nidxs, narm, mode2);
+    sum = sumOver_Real(REAL(x), XLENGTH(x), idxsp, nidxs, narm, mode2);
   } else if (isInteger(x)) {
-    xp = INTEGER(x);
-    sum = sumOver_Integer(xp, nx, idxsp, nidxs, narm, mode2);
+    sum = sumOver_Integer(INTEGER(x), XLENGTH(x), idxsp, nidxs, narm, mode2);
   } else {
     error("Argument 'x' must be numeric.");
   }

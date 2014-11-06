@@ -29,12 +29,12 @@ SEXP signTabulate(SEXP x) {
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
-
+ 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = signTabulate_Real(x);
+    ans = signTabulate_Real(REAL(x), XLENGTH(x));
   } else if (isInteger(x)) {
-    ans = signTabulate_Integer(x);
+    ans = signTabulate_Integer(INTEGER(x), XLENGTH(x));
   } else {
     error("Argument 'x' must be numeric.");
   }
