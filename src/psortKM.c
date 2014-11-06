@@ -20,8 +20,7 @@
 
 SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   SEXP ans;
-  int ii, nx, kk, mm, ll;
-  double *xx, *xxx, *ansp;
+  int nx, kk, mm;
 
   /* Argument 'x': */
   if (!isReal(x)) {
@@ -42,8 +41,7 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   kk = INTEGER(k)[0];
   if (kk <= 0) {
     error("Argument 'k' must be a positive integer."); 
-  }
-  if (kk > nx) {
+  } if (kk > nx) {
     error("Argument 'k' must not be greater than number of elements in 'x'.");
   }
 
@@ -57,52 +55,54 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   mm = INTEGER(m)[0];
   if (mm <= 0) {
     error("Argument 'm' must be a positive integer."); 
-  }
-  if (mm > kk) {
+  } else if (mm > kk) {
     error("Argument 'm' must not be greater than argument 'k'.");
   }
 
 
-  /* Get the arguments */
-  xx = REAL(x);
-
-
   /* R allocate a double vector of length 'partial' */
   PROTECT(ans = allocVector(REALSXP, mm));
-  ansp = REAL(ans);
-
-  /* R allocate memory for the 'xxx'.  This will be 
-     taken care of by the R garbage collector later on. */
-  xxx = (double *) R_alloc(nx, sizeof(double));
-
-  /* Create a local copy 'xxx' of 'x'. */
-  for (ii=0; ii < nx; ii++) {
-    if(ii % 1000 == 0)
-      R_CheckUserInterrupt(); 
-    xxx[ii] = xx[ii];
-  }
-
-  /* Permute xxx[0:partial] so that xxx[partial+1] is in the correct 
-     place with smaller values to the left, ... 
-     Example: psortKM(x, k=50, m=2) with length(x) = 1000
-     rPsort(xxx, 1000, 50);  We know x[50] and that x[1:49] <= x[50]
-     rPsort(xxx, 50, 49);    x[49] and that x[1:48] <= x[49]
-     rPsort(xxx, 49, 48);    x[48] and that x[1:47] <= x[48]
-   */
-  ll = nx;
-  for (ii=0; ii < mm; ii++) {
-    rPsort(xxx, ll, kk-1-ii);
-    ll = (kk-1)-ii;
-  }
-
-  for (ii=0; ii < mm; ii++) {
-    ansp[ii] = xxx[(kk-mm)+ii];
-  }
-
+  psortKM_C(REAL(x), nx, kk, mm, REAL(ans));
   UNPROTECT(1);
 
   return(ans);
 } /* psortKM() */
+
+
+void psortKM_C(double *x, int nx, int k, int m, double *ans) {
+  int ii, ll;
+  double *xx;
+
+  /* R allocate memory for the 'xx'.  This will be 
+     taken care of by the R garbage collector later on. */
+  xx = (double *) R_alloc(nx, sizeof(double));
+
+  /* Create a local copy 'xx' of 'x'. */
+  for (ii=0; ii < nx; ii++) {
+    if(ii % 1000 == 0)
+      R_CheckUserInterrupt(); 
+    xx[ii] = x[ii];
+  }
+
+  /* Permute xx[0:partial] so that xx[partial+1] is in the correct 
+     place with smaller values to the left, ... 
+     Example: psortKM(x, k=50, m=2) with length(x) = 1000
+     rPsort(xx, 1000, 50);  We know x[50] and that x[1:49] <= x[50]
+     rPsort(xx, 50, 49);    x[49] and that x[1:48] <= x[49]
+     rPsort(xx, 49, 48);    x[48] and that x[1:47] <= x[48]
+   */
+  ll = nx;
+  for (ii=0; ii < m; ii++) {
+    rPsort(xx, ll, k-1-ii);
+    ll = (k-1)-ii;
+  }
+
+  for (ii=0; ii < m; ii++) {
+    ans[ii] = xx[(k-m)+ii];
+  }
+} /* psortKM_C() */
+
+
 
 /***************************************************************************
  HISTORY:
