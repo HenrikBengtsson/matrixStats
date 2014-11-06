@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP signTabulate_<Integer|Real>(X_C_TYPE *x, int nx)
+  void signTabulate_<Integer|Real>(X_C_TYPE *x, int nx, double *ans)
 
  GENERATES:
-  SEXP signTabulate_Real(double *x, int nx)
-  SEXP signTabulate_Integer(int *x, int nx)
+  void signTabulate_Real(double *x, int nx, double *ans)
+  void signTabulate_Integer(int *x, int nx, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -25,9 +25,7 @@
 #include "templates-types.h" 
 
 
-SEXP METHOD_NAME(X_C_TYPE *x, R_xlen_t nx) {
-  SEXP ans;
-  double *ansp;
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *ans) {
   X_C_TYPE xi;
   R_xlen_t ii;
   R_xlen_t nNeg = 0, nZero = 0, nPos = 0, nNA=0;
@@ -54,23 +52,14 @@ SEXP METHOD_NAME(X_C_TYPE *x, R_xlen_t nx) {
     }
   }
 
+  ans[0] = nNeg;
+  ans[1] = nZero;
+  ans[2] = nPos;
+  ans[3] = nNA;
 #if X_TYPE == 'r'
-  PROTECT(ans = allocVector(REALSXP, 6));
-#else
-  PROTECT(ans = allocVector(REALSXP, 4));
+  ans[4] = nNegInf;
+  ans[5] = nPosInf;
 #endif
-  ansp = REAL(ans);
-  ansp[0] = nNeg;
-  ansp[1] = nZero;
-  ansp[2] = nPos;
-  ansp[3] = nNA;
-#if X_TYPE == 'r'
-  ansp[4] = nNegInf;
-  ansp[5] = nPosInf;
-#endif
-  UNPROTECT(1);
-
-  return(ans);
 }
 
 /* Undo template macros */

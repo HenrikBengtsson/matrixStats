@@ -32,9 +32,13 @@ SEXP signTabulate(SEXP x) {
  
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = signTabulate_Real(REAL(x), XLENGTH(x));
+    PROTECT(ans = allocVector(REALSXP, 6));
+    signTabulate_Real(REAL(x), XLENGTH(x), REAL(ans));
+    UNPROTECT(1);
   } else if (isInteger(x)) {
-    ans = signTabulate_Integer(INTEGER(x), XLENGTH(x));
+    PROTECT(ans = allocVector(REALSXP, 4));
+    signTabulate_Integer(INTEGER(x), XLENGTH(x), REAL(ans));
+    UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");
   }
