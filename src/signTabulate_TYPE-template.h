@@ -27,6 +27,7 @@
 
 SEXP METHOD_NAME(X_C_TYPE *x, R_xlen_t nx) {
   SEXP ans;
+  double *ansp;
   X_C_TYPE xi;
   R_xlen_t ii;
   R_xlen_t nNeg = 0, nZero = 0, nPos = 0, nNA=0;
@@ -58,13 +59,14 @@ SEXP METHOD_NAME(X_C_TYPE *x, R_xlen_t nx) {
 #else
   PROTECT(ans = allocVector(REALSXP, 4));
 #endif
-  REAL(ans)[0] = nNeg;
-  REAL(ans)[1] = nZero;
-  REAL(ans)[2] = nPos;
-  REAL(ans)[3] = nNA;
+  ansp = REAL(ans);
+  ansp[0] = nNeg;
+  ansp[1] = nZero;
+  ansp[2] = nPos;
+  ansp[3] = nNA;
 #if X_TYPE == 'r'
-  REAL(ans)[4] = nNegInf;
-  REAL(ans)[5] = nPosInf;
+  ansp[4] = nNegInf;
+  ansp[5] = nPosInf;
 #endif
   UNPROTECT(1);
 
