@@ -16,15 +16,19 @@
 #include <Rinternals.h>
 #include <Rmath.h>
 
-void rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans) {
+#define METHOD rowRanks
+#define X_TYPE 'i'
+#include "templates-types.h"
+
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
   int ii, jj;
   int *colOffset;
   int *I;
   int JJ, AA, nna;
-  int *rowData;
-  int current_max;
+  X_C_TYPE *rowData;
+  X_C_TYPE current_max;
 
-  rowData = (int *) R_alloc(ncol, sizeof(int));
+  rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
   I = (int *) R_alloc(ncol, sizeof(int));
 
   colOffset = (int *) R_alloc(ncol, sizeof(int));
@@ -44,7 +48,7 @@ void rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans) {
     // Rprintf("\n");
 
     // Sort 'rowData' increasing with any NA_integer_'s first:
-    R_qsort_int_I(rowData, I, 1, ncol);
+    X_QSORT_I(rowData, I, 1, ncol);
 
     // The following does: rank(ties.method="max", na.last="keep")
 
@@ -69,6 +73,10 @@ void rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans) {
     // Rprintf("\n");
   }
 }
+
+/* Undo template macros */
+#undef METHOD
+#include "templates-types_undef.h"
 
 
 /***************************************************************************

@@ -16,15 +16,20 @@
 #include <Rinternals.h>
 #include <Rmath.h>
 
-void rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans) {
+#define METHOD rowRanks
+#define X_TYPE 'r'
+#include "templates-types.h"
+
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
   int ii, jj;
   int *colOffset;
   int *I;
   int JJ, AA, nna;
-  double *rowData;
-  double current_max, current_min, tmp;
+  X_C_TYPE *rowData;
+  X_C_TYPE current_max;
+  X_C_TYPE current_min, tmp;
 
-  rowData = (double *) R_alloc(ncol, sizeof(double));
+  rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
   I = (int *) R_alloc(ncol, sizeof(int));
 
   colOffset = (int *) R_alloc(ncol, sizeof(int));
@@ -63,7 +68,7 @@ void rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans) {
 
     // We have rid 'rowData' of any NA/NaN, so this will sort it
     // increasing with any -Inf's first.
-    R_qsort_I(rowData, I, 1, ncol);
+    X_QSORT_I(rowData, I, 1, ncol);
 
     // The following does: rank(ties.method="max", na.last="keep")
 
@@ -88,6 +93,10 @@ void rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans) {
     // Rprintf("\n");
   }
 }
+
+/* Undo template macros */
+#undef METHOD
+#include "templates-types_undef.h"
 
 /***************************************************************************
  HISTORY:

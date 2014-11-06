@@ -8,6 +8,7 @@
 #undef X_ISNAN
 #undef X_ABS
 #undef X_PSORT
+#undef X_QSORT_I
 
 #undef ANS_SXP
 #undef ANS_NA

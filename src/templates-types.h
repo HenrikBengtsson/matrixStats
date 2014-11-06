@@ -17,6 +17,7 @@
   #define X_ISNAN(x) (x == NA_INTEGER)
   #define X_ABS(x) abs(x)
   #define X_PSORT iPsort
+  #define X_QSORT_I R_qsort_int_I
 #elif X_TYPE == 'r'
   #ifndef METHOD_NAME
     #define METHOD_NAME CONCAT_MACROS(METHOD, Real)
@@ -26,8 +27,9 @@
   #define X_ISNAN(x) ISNAN(x)
   #define X_ABS(x) fabs(x)
   #define X_PSORT rPsort
+  #define X_QSORT_I R_qsort_I
 #endif
-
+ 
 
 /*
  Data type macros for result ('ans')

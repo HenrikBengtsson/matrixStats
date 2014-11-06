@@ -56,12 +56,6 @@
             element + vector*nElements
 #endif
 
-#if X_TYPE == 'i'
-  #define R_QSORT_I R_qsort_int_I
-#elif X_TYPE == 'r'
-  #define R_QSORT_I R_qsort_I
-#endif
-
 
 SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
   SEXP ans;
@@ -135,7 +129,7 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
     // This will sort the data in increasing order and use the I vector to keep track of the original
     // indices. it only makes sense to do sort if there are at least 2 finite values.
     //
-    if (lastFinite > 0) R_QSORT_I(rowData, I, 1, lastFinite + 1);
+    if (lastFinite > 0) X_QSORT_I(rowData, I, 1, lastFinite + 1);
 
     // Calculate the ranks. 
     for (jj=0; jj <= lastFinite;) {
@@ -163,7 +157,6 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
 }
 
 /* Undo template macros */
-#undef R_QSORT_I
 #undef RANK
 #undef INDEX_OF
 #undef TIESMETHOD
