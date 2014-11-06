@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP rowCounts_<Integer|Real>(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna)
+  SEXP rowCounts_<Integer|Real>(X_C_TYPE *x, int nrow, int ncol, X_C_TYPE value, int narm, int hasna, int *ans)
 
  GENERATES:
-  SEXP rowCounts_Real(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna)
-  SEXP rowCounts_Integer(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna)
+  SEXP rowCounts_Real(double *x, int nrow, int ncol, double value, int narm, int hasna, int *ans)
+  SEXP rowCounts_Integer(int *x, int nrow, int ncol, int value, int narm, int hasna, int *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -26,30 +26,21 @@
 #include "templates-types.h" 
 
 
-SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
-  SEXP ans;
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, X_C_TYPE value, int narm, int hasna, int *ans) {
   int ii, jj;
   int colOffset, count;
-  X_C_TYPE *xx, xvalue, vvalue;
-  int *ansp;
+  X_C_TYPE xvalue;
 
-  /* R allocate a double vector of length 'nrow' */
-  PROTECT(ans = allocVector(INTSXP, nrow));
-  ansp = INTEGER(ans);
-
-  for(ii=0; ii < nrow; ii++) ansp[ii] = 0;
-
-  xx = X_IN_C(x);
-  vvalue = X_IN_C(value)[0];
+  for(ii=0; ii < nrow; ii++) ans[ii] = 0;
 
   /* Count missing values? [sic!] */
-  if (X_ISNAN(vvalue)) {
+  if (X_ISNAN(value)) {
     for(jj=0; jj < ncol; jj++) {
       colOffset = (int)jj*nrow;
       for(ii=0; ii < nrow; ii++) {
-        xvalue = xx[ii+colOffset];
+        xvalue = x[ii+colOffset];
         if (X_ISNAN(xvalue)) {
-          ansp[ii] = ansp[ii] + 1;
+          ans[ii] = ans[ii] + 1;
         }
       }
     }
@@ -57,26 +48,22 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
     for(jj=0; jj < ncol; jj++) {
       colOffset = (int)jj*nrow;
       for(ii=0; ii < nrow; ii++) {
-        count = ansp[ii];
+        count = ans[ii];
         /* Nothing more to do on this row? */
         if (count == NA_INTEGER) continue;
 
-        xvalue = xx[ii+colOffset];
-        if (xvalue == vvalue) {
-          ansp[ii] = count + 1;
+        xvalue = x[ii+colOffset];
+        if (xvalue == value) {
+          ans[ii] = count + 1;
         } else {
           if (!narm && X_ISNAN(xvalue)) {
-            ansp[ii] = NA_INTEGER;
+            ans[ii] = NA_INTEGER;
             continue;
 	  }
 	}
       }
     }
   }
-
-  UNPROTECT(1);
-
-  return(ans);
 }
 
 /* Undo template macros */
@@ -85,7 +72,9 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, SEXP value, int narm, int hasna) {
 
 /***************************************************************************
  HISTORY:
- 2014-11-01
+ 2014-11-06 [HB]
+  o CLEANUP: Moving away from R data types in low-level C functions.
+ 2014-11-01 [HB]
   o SPEEDUP: Now using ansp = INTEGER(ans) once and then querying/assigning
     'ansp[i]' instead of INTEGER(ans)[i].
  2014-06-02 [HB]

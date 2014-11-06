@@ -18,6 +18,41 @@
 #include <Rmath.h>
 
 
+void psortKM_C(double *x, int nx, int k, int m, double *ans) {
+  int ii, ll;
+  double *xx;
+
+  /* R allocate memory for the 'xx'.  This will be 
+     taken care of by the R garbage collector later on. */
+  xx = (double *) R_alloc(nx, sizeof(double));
+
+  /* Create a local copy 'xx' of 'x'. */
+  for (ii=0; ii < nx; ii++) {
+    if(ii % 1000 == 0)
+      R_CheckUserInterrupt(); 
+    xx[ii] = x[ii];
+  }
+
+  /* Permute xx[0:partial] so that xx[partial+1] is in the correct 
+     place with smaller values to the left, ... 
+     Example: psortKM(x, k=50, m=2) with length(x) = 1000
+     rPsort(xx, 1000, 50);  We know x[50] and that x[1:49] <= x[50]
+     rPsort(xx, 50, 49);    x[49] and that x[1:48] <= x[49]
+     rPsort(xx, 49, 48);    x[48] and that x[1:47] <= x[48]
+   */
+  ll = nx;
+  for (ii=0; ii < m; ii++) {
+    rPsort(xx, ll, k-1-ii);
+    ll = (k-1)-ii;
+  }
+
+  for (ii=0; ii < m; ii++) {
+    ans[ii] = xx[(k-m)+ii];
+  }
+} /* psortKM_C() */
+
+
+
 SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   SEXP ans;
   int nx, kk, mm;
@@ -67,40 +102,6 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
 
   return(ans);
 } /* psortKM() */
-
-
-void psortKM_C(double *x, int nx, int k, int m, double *ans) {
-  int ii, ll;
-  double *xx;
-
-  /* R allocate memory for the 'xx'.  This will be 
-     taken care of by the R garbage collector later on. */
-  xx = (double *) R_alloc(nx, sizeof(double));
-
-  /* Create a local copy 'xx' of 'x'. */
-  for (ii=0; ii < nx; ii++) {
-    if(ii % 1000 == 0)
-      R_CheckUserInterrupt(); 
-    xx[ii] = x[ii];
-  }
-
-  /* Permute xx[0:partial] so that xx[partial+1] is in the correct 
-     place with smaller values to the left, ... 
-     Example: psortKM(x, k=50, m=2) with length(x) = 1000
-     rPsort(xx, 1000, 50);  We know x[50] and that x[1:49] <= x[50]
-     rPsort(xx, 50, 49);    x[49] and that x[1:48] <= x[49]
-     rPsort(xx, 49, 48);    x[48] and that x[1:47] <= x[48]
-   */
-  ll = nx;
-  for (ii=0; ii < m; ii++) {
-    rPsort(xx, ll, k-1-ii);
-    ll = (k-1)-ii;
-  }
-
-  for (ii=0; ii < m; ii++) {
-    ans[ii] = xx[(k-m)+ii];
-  }
-} /* psortKM_C() */
 
 
 

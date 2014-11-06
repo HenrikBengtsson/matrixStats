@@ -7,11 +7,6 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-/* 
-TEMPLATE rowCounts_<Integer|Real>(...):
-- SEXP rowCounts_Real(SEXP x, int nrow, int ncol, int qq);
-- SEXP rowCounts_Integer(SEXP x, int nrow, int ncol, int qq);
- */
 #define METHOD rowCounts
 
 #define X_TYPE 'i'
@@ -25,7 +20,7 @@ TEMPLATE rowCounts_<Integer|Real>(...):
 
 
 SEXP rowCounts(SEXP x, SEXP value, SEXP naRm, SEXP hasNA) {
-  SEXP ans;
+  SEXP dim, ans;
   int narm, hasna;
   int nrow, ncol;
 
@@ -55,17 +50,19 @@ SEXP rowCounts(SEXP x, SEXP value, SEXP naRm, SEXP hasNA) {
   hasna = LOGICAL(hasNA)[0];
 
   /* Get dimensions of 'x'. */
-  PROTECT(ans = getAttrib(x, R_DimSymbol));
-  nrow = INTEGER(ans)[0];
-  ncol = INTEGER(ans)[1];
+  dim = getAttrib(x, R_DimSymbol);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
+
+  /* R allocate a double vector of length 'nrow' */
+  PROTECT(ans = allocVector(INTSXP, nrow));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    ans = rowCounts_Real(x, nrow, ncol, value, narm, hasna);
+    rowCounts_Real(REAL(x), nrow, ncol, asReal(value), narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    ans = rowCounts_Integer(x, nrow, ncol, value, narm, hasna);
+    rowCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
   } else {
-    UNPROTECT(1);
     error("Argument 'x' must be numeric.");
   }
 
