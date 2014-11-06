@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP sumOver_<Integer|Real>(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
+  double sumOver_<Integer|Real>(X_C_TYPE *x, int nx, int *idxs, int nidxs, int narm, int mode)
 
  GENERATES:
-  SEXP sumOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
-  SEXP sumOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
+  double sumOver_Integer(int *x, int nx, int *idxs, int nidxs, int narm, int mode)
+  double sumOver_Real(double *x, int nx, int *idxs, int nidxs, int narm, int mode)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -18,6 +18,7 @@
 #include <Rdefines.h>
 #include <Rmath.h>
 #include <float.h>
+#include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
@@ -25,49 +26,15 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
-#define R_INT_MAX  INT_MAX
-#define R_INT_MIN -INT_MAX
-
-SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
-  /* Arguments */
-  X_C_TYPE *xp, value;
-  int *idxsp;
-  int narm;
-  /* Value */
-  SEXP ans;
-
-  int n, nx;
-  /*
-  R_XLEN_T n;
-  R_XLEN_T nx;
-  */
-
+double METHOD_NAME(X_C_TYPE *x, int nx, int *idxs, int nidxs, int narm, int mode) {
+  X_C_TYPE value;
   int i, idx;
   double sum = 0;
 
-  /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-
-  narm = LOGICAL(naRm)[0];
-  if (narm != TRUE && narm != FALSE) {
-    error("Argument 'naRm' must be either TRUE or FALSE.");
-  }
-
-  /* Argument 'mode': */
-  if (!isInteger(mode))
-    error("Argument 'mode' must be a single integer.");
-
-  xp = X_IN_C(x);
-  nx = XLENGTH(x);
-
   /* Sum over all element? */
-  if (isNull(idxs)) {
+  if (!idxs) {
     for (i=0; i < nx; i++) {
-      value = xp[i];
+      value = x[i];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (double)value;
@@ -82,17 +49,14 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 #endif
     } /* for (i ...) */
   } else {
-    idxsp = INTEGER(idxs);
-    n = XLENGTH(idxs);
-
-    for (i=0; i < n; i++) {
-      idx = idxsp[i];
+    for (i=0; i < nidxs; i++) {
+      idx = idxs[i];
       if (idx <= 0) {
         Rf_error("Argument \'idxs\' contains a non-positive index: %d", idx);
       } else if (idx > nx) {
-        Rf_error("Argument \'idxs\' contains an index out of range [1,%d]: %d", n, idx);
+        Rf_error("Argument \'idxs\' contains an index out of range [1,%d]: %d", nx, idx);
       }
-      value = xp[idx-1];
+      value = x[idx-1];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (double)value;
@@ -108,40 +72,7 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     } /* for (i ...) */
   }
 
-
-  /* Return type? */
-  switch (asInteger(mode)) {
-  case 1: /* integer */
-    PROTECT(ans = allocVector(INTSXP, 1));
-    if (ISNAN(sum)) {
-      INTEGER(ans)[0] = NA_INTEGER;
-    } else if (sum > R_INT_MAX || sum < R_INT_MIN) {
-      Rf_warning("Integer overflow. Use sumOver(..., mode=\"numeric\") to avoid this.");
-      INTEGER(ans)[0] = NA_INTEGER;
-    } else {
-      INTEGER(ans)[0] = (int)sum;
-    }
-    UNPROTECT(1);
-    break;
-  case 2: /* numeric */
-    PROTECT(ans = allocVector(REALSXP, 1));
-    if (sum > DBL_MAX) {
-      REAL(ans)[0] = R_PosInf;
-    } else if (sum < -DBL_MAX) {
-      REAL(ans)[0] = R_NegInf;
-    } else {
-      REAL(ans)[0] = sum;
-    }
-    UNPROTECT(1);
-    break;
-
-  default:
-    /* To please the compiler; should never happen. */
-    ans = NILSXP;
-    break;
-  }
-
-  return(ans);
+  return(sum);
 }
 
 /* Undo template macros */
@@ -149,6 +80,8 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+ o CLEANUP: Now sumOver_<Integer|Real>() uses only basic C types.
  2014-11-02 [HB]
  o Created.
  **************************************************************************/

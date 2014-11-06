@@ -1,6 +1,15 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.0-1 [2014-11-06]
+o CLEANUP: Starting to cleanup and harmonize the native code such there
+  are two levels of native code.  The high-level function is called by 
+  R via .Call() and takes care of most of the argument validation and
+  construction of the return value.  This function dispatch to low-level
+  functions depending on data type(s).  The low-level function operates
+  only based on basic C data types.
+
+
 Version: 0.11.0 [2014-11-02]
 o Added sumOver() and meanOver(), which are significantly faster versions
   of sum(x[idxs]) and mean(x[idxs]).  Moreover, instead of having to do

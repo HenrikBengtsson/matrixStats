@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP meanOver_<Integer|Real>(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
+  double meanOver_<Integer|Real>(X_C_TYPE *x, int nx, int *idxs, int nidxs, int narm, int refine)
 
  GENERATES:
-  SEXP meanOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
-  SEXP meanOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
+  double meanOver_Integer(int *x, int nx, int *idxs, int nidxs, int narm, int refine)
+  double meanOver_Real(double *x, int nx, int *idxs, int nidxs, int narm, int refine)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -18,6 +18,7 @@
 #include <Rdefines.h>
 #include <Rmath.h>
 #include <float.h>
+#include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
@@ -25,23 +26,8 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
-#define R_INT_MAX  INT_MAX
-#define R_INT_MIN -INT_MAX
-
-SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
-  /* Arguments */
-  X_C_TYPE *xp, value;
-  int *idxsp;
-  int narm, refine2;
-  /* Value */
-  SEXP ans;
-
-  int n, nx;
-  /*
-  R_XLEN_T n;
-  R_XLEN_T nx;
-  */
-
+double METHOD_NAME(X_C_TYPE *x, int nx, int *idxs, int nidxs, int narm, int refine) {
+  X_C_TYPE value;
   int i, idx;
   double sum = 0, avg = R_NaN;
 #if X_TYPE == 'r'
@@ -49,37 +35,10 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 #endif
   int count = 0;
 
-  /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-
-  narm = LOGICAL(naRm)[0];
-  if (narm != TRUE && narm != FALSE) {
-    error("Argument 'naRm' must be either TRUE or FALSE.");
-  }
-
-  /* Argument 'refine': */
-  if (!isLogical(refine))
-    error("Argument 'refine' must be a single logical.");
-
-  if (length(refine) != 1)
-    error("Argument 'refine' must be a single logical.");
-
-  refine2 = LOGICAL(refine)[0];
-  if (refine2 != TRUE && refine2 != FALSE) {
-    error("Argument 'refine' must be either TRUE or FALSE.");
-  }
-
-  xp = X_IN_C(x);
-  nx = XLENGTH(x);
-
   /* Sum over all element? */
-  if (isNull(idxs)) {
+  if (!idxs) {
     for (i=0; i < nx; i++) {
-      value = xp[i];
+      value = x[i];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (double)value;
@@ -105,9 +64,9 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
       /* Extra precision by summing over residuals? */
 #if X_TYPE == 'r'
-      if (refine2 && R_FINITE(avg)) {
+      if (refine && R_FINITE(avg)) {
         for (i=0; i < nx; i++) {
-          value = xp[i];
+          value = x[i];
           if (!narm || !ISNAN(value)) {
             rsum += (value - avg);
           }
@@ -117,17 +76,14 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 #endif
     }
   } else {
-    idxsp = INTEGER(idxs);
-    n = XLENGTH(idxs);
-
-    for (i=0; i < n; i++) {
-      idx = idxsp[i];
+    for (i=0; i < nidxs; i++) {
+      idx = idxs[i];
       if (idx <= 0) {
         Rf_error("Argument \'idxs\' contains a non-positive index: %d", idx);
       } else if (idx > nx) {
-        Rf_error("Argument \'idxs\' contains an index out of range [1,%d]: %d", n, idx);
+        Rf_error("Argument \'idxs\' contains an index out of range [1,%d]: %d", nx, idx);
       }
-      value = xp[idx-1];
+      value = x[idx-1];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (double)value;
@@ -153,10 +109,10 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
       /* Extra precision by summing over residuals? */
 #if X_TYPE == 'r'
-      if (refine2 && R_FINITE(avg)) {
-        for (i=0; i < n; i++) {
-          idx = idxsp[i];
-          value = xp[idx-1];
+      if (refine && R_FINITE(avg)) {
+        for (i=0; i < nidxs; i++) {
+          idx = idxs[i];
+          value = x[idx-1];
           if (!narm || !ISNAN(value)) {
             rsum += (value - avg);
           }
@@ -167,11 +123,7 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
     }
   }
 
-  PROTECT(ans = allocVector(REALSXP, 1));
-  REAL(ans)[0] = avg;
-  UNPROTECT(1);
-
-  return(ans);
+  return(avg);
 }
 
 /* Undo template macros */
@@ -179,6 +131,8 @@ SEXP METHOD_NAME(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+ o CLEANUP: Now meanOver_<Integer|Real>() uses only basic C types.
  2014-11-02 [HB]
  o Created.
  **************************************************************************/
