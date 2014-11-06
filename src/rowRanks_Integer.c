@@ -20,7 +20,7 @@
 #define X_TYPE 'i'
 #include "templates-types.h"
 
-void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
   int ii, jj;
   int *colOffset;
   int *I;
@@ -40,7 +40,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
     nna = 0;	// number of NA's in this row
     for (jj=0; jj < ncol; jj++) {
       rowData[jj] = x[ii+colOffset[jj]];
-      if (rowData[jj] == NA_INTEGER)
+      if (X_ISNAN(rowData[jj]))
 	nna++;
       I[jj] = jj;
       // Rprintf("%d %d: %d ", ii, jj, x[ii+colOffset[jj]]);
@@ -55,7 +55,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
     JJ = ncol-1;
     current_max = rowData[JJ];
     AA = ii + colOffset[I[JJ]];
-    ans[AA] = (current_max == NA_INTEGER) ? NA_INTEGER : JJ+1-nna;
+    ans[AA] = X_ISNAN(current_max) ? NA_INTEGER : JJ+1-nna;
     for (jj=ncol-2; jj>=nna; jj--) {
       AA = ii + colOffset[I[jj]];
       // Rprintf("%d %d %d: %d %d %d ", ii, jj, AA, I[jj], rowData[jj], current_max);

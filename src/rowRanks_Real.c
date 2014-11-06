@@ -20,7 +20,7 @@
 #define X_TYPE 'r'
 #include "templates-types.h"
 
-void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
   int ii, jj;
   int *colOffset;
   int *I;
@@ -54,7 +54,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, X_C_TYPE *ans) {
       tmp = x[ii+colOffset[jj]];
       if (tmp == R_NegInf)
 	rowData[jj] = current_min;
-      else if (ISNAN(tmp)) {
+      else if (X_ISNAN(tmp)) {
 	nna++;
 	rowData[jj] = R_NegInf;
       }
