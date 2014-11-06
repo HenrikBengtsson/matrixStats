@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP productExpSumLog_<Integer|Real>(SEXP x, int narm, int hasna)
+  SEXP productExpSumLog_<Integer|Real>(X_C_TYPE *x, int nx, int narm, int hasna)
 
  GENERATES:
-  SEXP productExpSumLog_Real(SEXP x, int narm, int hasna)
-  SEXP productExpSumLog_Integer(SEXP x, int narm, int hasna)
+  SEXP productExpSumLog_Real(double *x, int nx, int narm, int hasna)
+  SEXP productExpSumLog_Integer(int *x, int nx, int narm, int hasna)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -32,17 +32,14 @@
 #include "templates-types.h" 
 
 
-SEXP METHOD_NAME(SEXP x, int narm, int hasna) {
-  SEXP ans;
-  X_C_TYPE *xx;
+LDOUBLE METHOD_NAME(X_C_TYPE *x, int nx, int narm, int hasna) {
   LDOUBLE y = 0.0, t;
-  R_xlen_t ii, nneg = 0, n = XLENGTH(x);
-
-  xx = X_IN_C(x);
+  R_xlen_t ii;
+  int isneg = 0;
 
   /* Calculate sum(log(abs(x))) */
-  for (ii = 0 ; ii < n; ii++) {
-    t = xx[ii];
+  for (ii = 0 ; ii < nx; ii++) {
+    t = x[ii];
     /* Skip missing values? */
     if (narm) {
       if (X_ISNAN(t)) continue;
@@ -51,19 +48,19 @@ SEXP METHOD_NAME(SEXP x, int narm, int hasna) {
 #if X_TYPE == 'i'
     /* Early stopping? */
     if (t < 0) {
-      nneg++;
+      isneg = !isneg;
     } else if (t == 0) {
       y = R_NegInf;
       break;
     }
 #elif X_TYPE == 'r'
-    if (t < 0) nneg++;
+    if (t < 0) isneg = !isneg;
 #endif
     t = X_ABS(t);
     t = log(t);
     y += t;
     /*
-      Rprintf("#%d: x=%g, is.nan(x)=%d, abs(x)=%g, is.nan(abs(x))=%d, log(abs(x))=%g, is.nan(log(abs(x)))=%d, sum=%g, is.nan(sum)=%d\n", ii, xx[ii], R_IsNaN(xx[ii]), abs(xx[ii]), R_IsNaN(abs(xx[ii])), t, R_IsNaN(y), y, R_IsNaN(y));  */
+      Rprintf("#%d: x=%g, is.nan(x)=%d, abs(x)=%g, is.nan(abs(x))=%d, log(abs(x))=%g, is.nan(log(abs(x)))=%d, sum=%g, is.nan(sum)=%d\n", ii, x[ii], R_IsNaN(x[ii]), abs(x[ii]), R_IsNaN(abs(x[ii])), t, R_IsNaN(y), y, R_IsNaN(y));  */
   }
 
   if (X_ISNAN(y)) {
@@ -76,7 +73,7 @@ SEXP METHOD_NAME(SEXP x, int narm, int hasna) {
     y = exp(y);
   
     /* Update sign */
-    if (nneg % 2 == 1) {
+    if (isneg) {
       y = -y;
     }
   
@@ -88,12 +85,7 @@ SEXP METHOD_NAME(SEXP x, int narm, int hasna) {
     }
   }
 
-  /* R allocate a double vector of length 1 */
-  PROTECT(ans = allocVector(REALSXP, 1));
-  REAL(ans)[0] = y;
-  UNPROTECT(1);
-
-  return(ans);
+  return(y);
 }
 
 /* Undo template macros */
@@ -102,6 +94,8 @@ SEXP METHOD_NAME(SEXP x, int narm, int hasna) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+  o CLEANUP: Moving away from R data types in low-level C functions.
  2014-06-04 [HB]
   o Created.
  **************************************************************************/

@@ -8,6 +8,14 @@ z <- product(x, na.rm=TRUE)
 print(z)
 stopifnot(all.equal(z, y))
 
+# Test negative values
+x <- c(1,-4,2)
+y <- prod(x, na.rm=TRUE)
+print(y)
+z <- product(x, na.rm=TRUE)
+print(z)
+stopifnot(all.equal(z, y))
+
 # Test missing values
 x <- c(1,NA,NaN,2)
 y <- prod(x, na.rm=TRUE)
@@ -30,5 +38,3 @@ stopifnot(is.na(y))
 z <- product(x, na.rm=FALSE)
 print(z)
 stopifnot(is.na(z))
-
-
