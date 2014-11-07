@@ -14,12 +14,11 @@
  **************************************************************************/
 #include <Rinternals.h>
 
-SEXP rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans);
-SEXP rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans);
-
+#include "rowRanks_Integer.h"
+#include "rowRanks_Real.h"
 
 SEXP rowRanks(SEXP x, SEXP tiesMethod) {
-  SEXP dim, ans;
+  SEXP dim, ans = NILSXP;
   int nrow, ncol;
 
   /* Argument 'x': */
@@ -39,7 +38,6 @@ SEXP rowRanks(SEXP x, SEXP tiesMethod) {
   } else if (isInteger(x)) {
     rowRanks_Integer(INTEGER(x), nrow, ncol, 0, INTEGER(ans));
   } else {
-    ans = NILSXP; // To please compiler
     error("Argument 'x' must be numeric.");
   }
 

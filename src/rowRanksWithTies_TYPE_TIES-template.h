@@ -3,12 +3,18 @@
   <col|row>Ranks_Real_ties<Min|Max|Average>(...)
 
  GENERATES:
-  SEXP colRanks_Real_tiesMin(SEXP x, int nrow, int ncol, int byrow)
-  SEXP rowRanks_Real_tiesMin(SEXP x, int nrow, int ncol, int byrow)
-  SEXP colRanks_Real_tiesMax(SEXP x, int nrow, int ncol, int byrow)
-  SEXP rowRanks_Real_tiesMax(SEXP x, int nrow, int ncol, int byrow)
-  SEXP colRanks_Real_tiesAverage(SEXP x, int nrow, int ncol, int byrow)
-  SEXP rowRanks_Real_tiesAverage(SEXP x, int nrow, int ncol, int byrow)
+  void colRanks_Real_tiesMin(double *x, int nrow, int ncol, int byrow, double *ans)
+  void rowRanks_Real_tiesMin(double *x, int nrow, int ncol, int byrow, double *ans)
+  void colRanks_Real_tiesMax(double *x, int nrow, int ncol, int byrow, double *ans)
+  void rowRanks_Real_tiesMax(double *x, int nrow, int ncol, int byrow, double *ans)
+  void colRanks_Real_tiesAverage(double *x, int nrow, int ncol, int byrow, double *ans)
+  void rowRanks_Real_tiesAverage(double *x, int nrow, int ncol, int byrow, double *ans)
+  void colRanks_Integer_tiesMin(int *x, int nrow, int ncol, int byrow, int *ans)
+  void rowRanks_Integer_tiesMin(int *x, int nrow, int ncol, int byrow, int *ans)
+  void colRanks_Integer_tiesMax(int *x, int nrow, int ncol, int byrow, int *ans)
+  void rowRanks_Integer_tiesMax(int *x, int nrow, int ncol, int byrow, int *ans)
+  void colRanks_Integer_tiesAverage(int *x, int nrow, int ncol, int byrow, int *ans)
+  void rowRanks_Integer_tiesAverage(int *x, int nrow, int ncol, int byrow, int *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -57,10 +63,9 @@
 #endif
 
 
-SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
-  SEXP ans;
-  ANS_C_TYPE *aa, rank;
-  X_C_TYPE *rowData, *xx, current, tmp;
+void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, ANS_C_TYPE *ans) {
+  ANS_C_TYPE rank;
+  X_C_TYPE *rowData, current, tmp;
   int ii, jj, kk;
   int *I;
   int lastFinite, firstTie, aboveTie;
@@ -74,12 +79,9 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
     nVec = ncol;
   }
 
-  PROTECT(ans = allocMatrix(ANS_SXP, nrow, ncol));
   rowData = (X_C_TYPE *) R_alloc(vecLen, sizeof(X_C_TYPE));
   I = (int *) R_alloc(vecLen, sizeof(int));
 
-  xx = X_IN_C(x);
-  aa = ANS_IN_C(ans);
   for (ii=0; ii < nVec; ii++) {
     lastFinite = vecLen-1;
 
@@ -90,17 +92,17 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
        there are missing values. /PL (2012-12-14)
     */
     for (jj = 0; jj <= lastFinite; jj++) {
-      tmp = xx[ INDEX_OF(jj, ii, vecLen, nVec) ];
+      tmp = x[ INDEX_OF(jj, ii, vecLen, nVec) ];
       if (X_ISNAN(tmp)) {
-        while (lastFinite > jj && X_ISNAN(xx[ INDEX_OF(lastFinite, ii, vecLen, nVec) ])) {
+        while (lastFinite > jj && X_ISNAN(x[ INDEX_OF(lastFinite, ii, vecLen, nVec) ])) {
           I[lastFinite] = lastFinite;
           lastFinite--;
         }
 
         I[lastFinite] = jj;
         I[jj] = lastFinite;
-        rowData[ jj ] = xx[ INDEX_OF(lastFinite, ii, vecLen, nVec) ];
-        rowData[ lastFinite] = tmp;
+        rowData[ jj ] = x[ INDEX_OF(lastFinite, ii, vecLen, nVec) ];
+        rowData[ lastFinite ] = tmp;
         lastFinite--;
       } else {
         I[jj] = jj;
@@ -140,20 +142,17 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
       // Depending on rank method, get maximum, average, or minimum rank
       rank = RANK(firstTie, aboveTie);
       for (kk=firstTie; kk < aboveTie; kk++) {
-        aa[ INDEX_OF(I[kk], ii, vecLen, nVec) ] = rank;
+        ans[ INDEX_OF(I[kk], ii, vecLen, nVec) ] = rank;
       }
     }
 
     // At this point jj = lastFinite + 1, no need to re-initialize again.
     for (; jj < vecLen; jj++) {
-      aa[ INDEX_OF(I[jj], ii, vecLen, nVec) ] = ANS_NA;
+      ans[ INDEX_OF(I[jj], ii, vecLen, nVec) ] = ANS_NA;
     }
 
     // Rprintf("\n");
   }
-
-  UNPROTECT(1); /* 'ans' */
-  return(ans);
 }
 
 /* Undo template macros */
@@ -165,6 +164,8 @@ SEXP METHOD_NAME(SEXP x, int nrow, int ncol, int byrow) {
 
 /***************************************************************************
  HISTORY:
+ 2014-11-06 [HB]
+ o CLEANUP: Moving away from R data types in low-level C functions.
  2013-04-23 [HB]
  o BUG FIX: Ranks did not work for integers with NAs; now using X_ISNAN().
  2013-01-13 [HB]
