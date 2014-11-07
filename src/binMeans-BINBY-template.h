@@ -30,12 +30,9 @@
 #endif
 
 
-SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
-  int ny = Rf_length(y), nx = Rf_length(x), nb = Rf_length(bx)-1;
-  double *yp = REAL(y), *xp = REAL(x), *bxp = REAL(bx);
-  SEXP ans = PROTECT(NEW_NUMERIC(nb));
+SEXP METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, int retcount) {
+  SEXP ans = PROTECT(NEW_NUMERIC(nbins));
   double *ansp = REAL(ans);
-  int retcount = LOGICAL(retCount)[0];
   SEXP count = NULL;
   int *countp = NULL;
   int ii = 0, jj = 0, n = 0, iStart=0;
@@ -47,15 +44,15 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
   }
 
   if (retcount) {
-    count = PROTECT(NEW_INTEGER(nb));
+    count = PROTECT(NEW_INTEGER(nbins));
     countp = INTEGER(count);
   }
 
   // Count?
-  if (nb > 0) {
+  if (nbins > 0) {
 
     // Skip to the first bin
-    while ((iStart < nx) && IS_PART_OF_FIRST_BIN(xp[iStart], bxp[0])) {
+    while ((iStart < nx) && IS_PART_OF_FIRST_BIN(x[iStart], bx[0])) {
       ++iStart;
     }
 
@@ -63,7 +60,7 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
     for (ii = iStart; ii < nx; ++ii) {
 
       // Skip to a new bin?
-      while (IS_PART_OF_NEXT_BIN(xp[ii], bxp[jj+1])) {
+      while (IS_PART_OF_NEXT_BIN(x[ii], bx[jj+1])) {
         // Update statistic of current bin?
         if (retcount) { countp[jj] = n; }
         ansp[jj] = n > 0 ? sum / n : R_NaN;
@@ -74,35 +71,35 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
         ++jj;
 
         // No more bins?
-        if (jj >= nb) {
+        if (jj >= nbins) {
           // Make the outer for-loop to exit...
           ii = nx - 1;
-          // ...but correct for the fact that the yp[nx-1] point will
+          // ...but correct for the fact that the y[nx-1] point will
           // be incorrectly added to the sum.  Doing the correction
-          // here avoids an if (ii < nx) sum += yp[ii] below.
-          sum -= yp[ii];
+          // here avoids an if (ii < nx) sum += y[ii] below.
+          sum -= y[ii];
           break;
         }
       }
 
       // Sum and count
-      sum += yp[ii];
+      sum += y[ii];
       ++n;
     }
 
     // Update statistic of the last bin?
-    if (jj < nb) {
+    if (jj < nbins) {
       if (retcount) countp[jj] = n;
       ansp[jj] = n > 0 ? sum / n : R_NaN;
 
       // Assign the remaining bins to zero counts and missing mean values
-      while (++jj < nb) {
+      while (++jj < nbins) {
         ansp[jj] = R_NaN;
         if (retcount) countp[jj] = 0;
       }
     }
 
-  } // if (nb > 0)
+  } // if (nbins > 0)
 
 
   if (retcount) {
@@ -125,6 +122,8 @@ SEXP METHOD_NAME(SEXP y, SEXP x, SEXP bx, SEXP retCount) {
 
 /***************************************************************************
  HISTORY:
+2014-11-06 [HB]
+  o CLEANUP: Moving away from R data types in low-level C functions.
 2014-10-01 [HB]
   o BUG FIX: binMeans() returned 0.0 instead of NA_real_ for empty bins.
 2014-04-04 [HB]

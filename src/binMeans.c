@@ -17,15 +17,37 @@
 
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
+  SEXP ans = NILSXP;
+  int nbins;
+
+  /* Argument 'y': */
+  if (!isVector(y))
+    error("Argument 'y' must be a vector.");
+
+  /* Argument 'x': */
+  if (!isVector(x))
+    error("Argument 'x' must be a vector.");
+
+  /* Argument 'bx': */
+  if (!isVector(bx))
+    error("Argument 'bx' must be a vector.");
+
+  /* Argument 'bx': */
+  if (!isVector(right))
+    error("Argument 'right' must be logical.");
+
+  nbins = Rf_length(bx)-1;
+
   int closedRight = LOGICAL(right)[0];
   if (closedRight == 0) {
-    return binMeans_L(y, x, bx, retCount);
+    ans = binMeans_L(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, asInteger(retCount));
   } else if (closedRight == 1) {
-    return binMeans_R(y, x, bx, retCount);
+    ans = binMeans_R(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, asInteger(retCount));
   } else {
     error("Unknown value of argument 'right': %d", closedRight);
   }
-  return NULL;
+
+  return(ans);
 } // binMeans()
 
 

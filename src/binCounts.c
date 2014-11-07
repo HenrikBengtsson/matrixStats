@@ -17,15 +17,33 @@
 
 
 SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
+  SEXP ans = NILSXP;
+  int nx, nbins;
+
+  /* Argument 'x': */
+  if (!isVector(x))
+    error("Argument 'x' must be a vector.");
+
+  /* Argument 'bx': */
+  if (!isVector(bx))
+    error("Argument 'bx' must be a vector.");
+
+  nx = Rf_length(x);
+  nbins = Rf_length(bx)-1;
+  PROTECT(ans = allocVector(INTSXP, nbins));
+
   int closedRight = LOGICAL(right)[0];
   if (closedRight == 0) {
-    return binCounts_L(x, bx);
+    binCounts_L(REAL(x), nx, REAL(bx), nbins, INTEGER(ans));
   } else if (closedRight == 1) {
-    return binCounts_R(x, bx);
+    binCounts_R(REAL(x), nx, REAL(bx), nbins, INTEGER(ans));
   } else {
     error("Unknown value of argument 'right': %d", closedRight);
   }
-  return NULL;
+
+  UNPROTECT(1);
+
+  return(ans);
 } // binCounts()
 
 
