@@ -19,7 +19,7 @@
 
 
 SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
-  SEXP ans = NILSXP;
+  SEXP ans;
   int *idxsp;
   int nidxs;
   int narm, refine2;
@@ -37,6 +37,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
     idxsp = INTEGER(idxs);
     nidxs = XLENGTH(idxs);
   } else {
+    /* To please compiler */
+    idxsp = NULL;
+    nidxs = 0;
     error("Argument 'idxs' must be NULL or a vector.");
   }
 
@@ -69,6 +72,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   } else if (isInteger(x)) {
     avg = meanOver_Integer(INTEGER(x), XLENGTH(x), idxsp, nidxs, narm, refine2);
   } else {
+    /* To please compiler */
+    ans = NILSXP;
+    avg = 0;
     error("Argument 'x' must be numeric.");
   }
 

@@ -18,6 +18,7 @@
 #include <Rdefines.h>
 #include <Rmath.h>
 #include <float.h>
+#include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])

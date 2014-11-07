@@ -6,6 +6,7 @@
  **************************************************************************/
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h" 
 
 #define METHOD productExpSumLog
 
@@ -46,6 +47,8 @@ SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
   } else if (isInteger(x)) {
     res = productExpSumLog_Integer(INTEGER(x), XLENGTH(x), narm, hasna);
   } else {
+    /* To please compiler */
+    res = 0;
     error("Argument 'x' must be numeric.");
   }
 

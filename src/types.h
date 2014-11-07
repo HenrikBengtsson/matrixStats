@@ -4,7 +4,7 @@
 #ifndef LONG_VECTOR_SUPPORT
   #ifndef R_XLEN_T
     #define XLENGTH Rf_length
-    typedef int R_xlen_t; 
+    typedef int R_xlen_t;
     #define R_XLEN_T 1
   #endif
 #endif

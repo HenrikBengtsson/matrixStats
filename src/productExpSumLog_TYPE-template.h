@@ -19,6 +19,7 @@
 #include <Rmath.h>
 #include <float.h>
 #include <stdlib.h> /* abs() */
+#include "types.h" 
 
 #ifdef HAVE_LONG_DOUBLE
 #define LDOUBLE long double

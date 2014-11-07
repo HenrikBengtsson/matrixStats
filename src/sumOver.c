@@ -37,6 +37,9 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     idxsp = INTEGER(idxs);
     nidxs = XLENGTH(idxs);
   } else {
+    /* To please compiler */
+    idxsp = NULL;
+    nidxs = 0;
     error("Argument 'idxs' must be NULL or a vector.");
   }
 
@@ -95,7 +98,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     break;
 
   default:
-    /* To please the compiler; should never happen. */
+    /* To please compiler */
     ans = NILSXP;
     break;
   }
