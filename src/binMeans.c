@@ -17,8 +17,10 @@
 
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
-  SEXP ans = NILSXP;
+  SEXP ans = NILSXP, count = NULL;
   int nbins;
+  int retcount;
+  int *count_ptr = NULL;
 
   /* Argument 'y': */
   if (!isVector(y))
@@ -36,16 +38,39 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   if (!isVector(right))
     error("Argument 'right' must be logical.");
 
+  /* Argument 'retCount': */
+  if (!isLogical(retCount))
+    error("Argument 'right' must be logical.");
+  retcount = LOGICAL(retCount)[0];
+  if (retcount != TRUE && retcount != FALSE) {
+    error("Argument 'retCount' must be either TRUE or FALSE.");
+  } 
+
   nbins = Rf_length(bx)-1;
+
+  PROTECT(ans = allocVector(REALSXP, nbins));
+  if (retcount) {
+    PROTECT(count = allocVector(INTSXP, nbins));
+    count_ptr = INTEGER(count);
+  }
 
   int closedRight = LOGICAL(right)[0];
   if (closedRight == 0) {
-    ans = binMeans_L(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, asInteger(retCount));
+    binMeans_L(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, REAL(ans), count_ptr);
   } else if (closedRight == 1) {
-    ans = binMeans_R(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, asInteger(retCount));
+    binMeans_R(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, REAL(ans), count_ptr);
   } else {
     error("Unknown value of argument 'right': %d", closedRight);
   }
+
+  if (retcount) {
+    setAttrib(ans, install("count"), count);
+    UNPROTECT(1); // 'count'
+  }
+  UNPROTECT(1); // 'ans'
+
+  return ans;
+
 
   return(ans);
 } // binMeans()

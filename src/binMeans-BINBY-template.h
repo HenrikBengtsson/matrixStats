@@ -30,22 +30,13 @@
 #endif
 
 
-SEXP METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, int retcount) {
-  SEXP ans = PROTECT(NEW_NUMERIC(nbins));
-  double *ansp = REAL(ans);
-  SEXP count = NULL;
-  int *countp = NULL;
+void METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, double *ans, int *count) {
   int ii = 0, jj = 0, n = 0, iStart=0;
   double sum = 0.0;
 
   // Assert same lengths of 'x' and 'y'
   if (ny != nx) {
     error("Argument 'y' and 'x' are of different lengths: %d != %d", ny, nx);
-  }
-
-  if (retcount) {
-    count = PROTECT(NEW_INTEGER(nbins));
-    countp = INTEGER(count);
   }
 
   // Count?
@@ -62,8 +53,8 @@ SEXP METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, in
       // Skip to a new bin?
       while (IS_PART_OF_NEXT_BIN(x[ii], bx[jj+1])) {
         // Update statistic of current bin?
-        if (retcount) { countp[jj] = n; }
-        ansp[jj] = n > 0 ? sum / n : R_NaN;
+        if (count) count[jj] = n;
+        ans[jj] = n > 0 ? sum / n : R_NaN;
         sum = 0.0;
         n = 0;
 
@@ -89,26 +80,17 @@ SEXP METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, in
 
     // Update statistic of the last bin?
     if (jj < nbins) {
-      if (retcount) countp[jj] = n;
-      ansp[jj] = n > 0 ? sum / n : R_NaN;
+      if (count) count[jj] = n;
+      ans[jj] = n > 0 ? sum / n : R_NaN;
 
       // Assign the remaining bins to zero counts and missing mean values
       while (++jj < nbins) {
-        ansp[jj] = R_NaN;
-        if (retcount) countp[jj] = 0;
+        ans[jj] = R_NaN;
+        if (count) count[jj] = 0;
       }
     }
 
   } // if (nbins > 0)
-
-
-  if (retcount) {
-    setAttrib(ans, install("count"), count);
-    UNPROTECT(1); // 'count'
-  }
-  UNPROTECT(1); // 'ans'
-
-  return ans;
 }
 
 
