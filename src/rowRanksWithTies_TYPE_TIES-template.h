@@ -31,8 +31,7 @@
   Peter Langfelder [PL]
   Henrik Bengtsson [HB]
  ***********************************************************************/
-#include <Rdefines.h>
-#include <Rmath.h>
+#include <Rinternals.h>
 
 #if TIESMETHOD == '0'   /* min */
   #define ANS_TYPE 'i'

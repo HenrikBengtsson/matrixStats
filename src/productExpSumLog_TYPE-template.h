@@ -15,17 +15,9 @@
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/ 
-#include <Rdefines.h>
-#include <Rmath.h>
-#include <float.h>
-#include <stdlib.h> /* abs() */
+#include <R_ext/Constants.h>
 #include "types.h" 
-
-#ifdef HAVE_LONG_DOUBLE
-#define LDOUBLE long double
-#else
-#define LDOUBLE double
-#endif
+#include <stdlib.h> /* abs() */
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
@@ -79,9 +71,9 @@ LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
     }
   
     /* Overflow or underflow? */
-    if (y > DBL_MAX) {
+    if (y > DOUBLE_XMAX) {
       y = R_PosInf;
-    } else if (y < -DBL_MAX) {
+    } else if (y < -DOUBLE_XMAX) {
       y = R_NegInf; 
     }
   }

@@ -15,9 +15,6 @@
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/ 
-#include <Rdefines.h>
-#include <Rmath.h>
-#include <float.h>
 #include "types.h"
 
 /* Expand arguments:

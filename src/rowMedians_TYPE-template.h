@@ -19,8 +19,7 @@
 
  Copyright: Henrik Bengtsson, 2007-2013
  ***********************************************************************/ 
-#include <R.h>
-#include <Rdefines.h>
+#include <R_ext/Memory.h>
 #include <Rmath.h>
 #include "types.h"
 
@@ -30,7 +29,7 @@
 #include "templates-types.h" 
 
 
-void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,  int byrow, double *ans) {
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans) {
   int isOdd;
   R_xlen_t ii, jj, kk, qq;
   R_xlen_t *colOffset;
@@ -64,7 +63,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
       colOffset[jj] = (R_xlen_t)jj*nrow;
   } else {
     for (jj=0; jj < ncol; jj++) 
-      colOffset[jj] = jj;
+      colOffset[jj] = (R_xlen_t)jj;
   }
   // HJ end
 

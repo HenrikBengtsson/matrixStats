@@ -6,8 +6,6 @@
 
  Copyright Henrik Bengtsson, 2007
  **************************************************************************/
-
-/* Include R packages */
 #include <Rdefines.h>
 #include "types.h"
 

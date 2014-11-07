@@ -8,7 +8,7 @@
  Hector Corrada Bravo
  Henrik Bengtsson
  **************************************************************************/
-#include <Rinternals.h>
+#include <Rdefines.h>
 
 #include "rowRanks_Integer.h"
 #include "rowRanks_Real.h"

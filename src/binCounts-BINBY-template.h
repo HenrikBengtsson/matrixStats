@@ -13,9 +13,7 @@
 
  Copyright Henrik Bengtsson, 2012-2014
  **************************************************************************/
-/* Include R packages */
-#include <Rdefines.h>
-#include <R.h>
+#include <Rinternals.h>
 
 #if BIN_BY == 'L'   /* [u,v) */
   #define METHOD_NAME binCounts_L

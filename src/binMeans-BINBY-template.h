@@ -13,11 +13,7 @@
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
-/* Include R packages */
-#include <Rdefines.h>
-#include <R.h>
-#include <R_ext/Error.h>
-
+#include "types.h"
 
 #if BIN_BY == 'L'   /* [u,v) */
   #define METHOD_NAME binMeans_L
@@ -33,7 +29,7 @@
 void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, double *ans, int *count) {
   R_xlen_t ii = 0, jj = 0, iStart=0;
   int n = 0;
-  double sum = 0.0;
+  LDOUBLE sum = 0.0;
 
   // Count?
   if (nbins > 0) {

@@ -11,11 +11,8 @@
 
  Copyright Henrik Bengtsson, 2012
  **************************************************************************/
-
-/* Include R packages */
-#include <R.h>
 #include <Rdefines.h>
-#include <Rmath.h>
+#include <R_ext/Utils.h>
 #include "types.h"
 
 

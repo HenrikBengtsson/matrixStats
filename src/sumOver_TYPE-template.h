@@ -15,9 +15,6 @@
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
-#include <Rdefines.h>
-#include <Rmath.h>
-#include <float.h>
 #include "types.h"
 
 /* Expand arguments:
@@ -29,7 +26,7 @@
 double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode) {
   X_C_TYPE value;
   R_xlen_t i, idx;
-  double sum = 0;
+  LDOUBLE sum = 0;
 
   /* Sum over all element? */
   if (!idxs) {
@@ -37,14 +34,14 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       value = x[i];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
-        sum += (double)value;
+        sum += (LDOUBLE)value;
       } else if (!narm) {
           sum = R_NaReal;
           break;
       }
 #elif X_TYPE == 'r'
       if (!narm || !X_ISNAN(value)) {
-        sum += (double)value;
+        sum += (LDOUBLE)value;
       }
 #endif
     } /* for (i ...) */
@@ -59,14 +56,14 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       value = x[idx-1];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
-        sum += (double)value;
+        sum += (LDOUBLE)value;
       } else if (!narm) {
           sum = R_NaReal;
           break;
       }
 #elif X_TYPE == 'r'
       if (!narm || !X_ISNAN(value)) {
-        sum += (double)value;
+        sum += (LDOUBLE)value;
       }
 #endif
     } /* for (i ...) */

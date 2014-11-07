@@ -6,9 +6,7 @@
 
  TO DO: Add support for missing values.
  **************************************************************************/
-#include <R.h>
-#include <Rinternals.h>
-#include <Rmath.h>
+#include <Rdefines.h>
 
 
 /* Template <col|row>Ranks_<Integer|Real>_ties<Min|Max|Average>() */

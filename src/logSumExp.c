@@ -13,9 +13,6 @@
 
  Copyright Henrik Bengtsson, 2013
  **************************************************************************/
-
-/* Include R packages */
-#include <R.h>
 #include <Rdefines.h>
 #include <Rmath.h>
 #include "types.h"
@@ -30,7 +27,8 @@
 */
 double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   R_xlen_t ii, iMax;
-  double xii, xMax, sum;
+  double xii, xMax;
+  LDOUBLE sum;
 
   /* Quick return? */
   if (nx == 0) {
@@ -114,7 +112,8 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
 */
 double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, double *xx) {
   R_xlen_t ii, iMax, idx;
-  double xii, xMax, sum;
+  double xii, xMax;
+  LDOUBLE sum;
 
   /* Quick return? */
   if (nx == 0) {
@@ -235,7 +234,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP dim, ans;
   int narm, hasna, byrow;
   R_xlen_t nrow, ncol, len, ii;
-  double *x, *xx, *ansp;
+  double *x, *xx, *ans_ptr;
 
   /* Argument 'lx': */
   if (!isMatrix(lx)) {
@@ -272,7 +271,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
      Note that 'nrow' means 'ncol' if byrow=FALSE. */ 
   if (byrow) { len = nrow; } else { len = ncol; }
   PROTECT(ans = allocVector(REALSXP, len));
-  ansp = REAL(ans);
+  ans_ptr = REAL(ans);
 
   /* Get the values */
   x = REAL(lx);
@@ -283,13 +282,13 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
     xx = (double *) R_alloc(ncol, sizeof(double));
 
     for (ii=0; ii < nrow; ii++) {
-      ansp[ii] = logSumExp_double_by(x, ncol, narm, hasna, nrow, xx);
+      ans_ptr[ii] = logSumExp_double_by(x, ncol, narm, hasna, nrow, xx);
       /* Move to the beginning next row */
       x++;
     }
   } else {
     for (ii=0; ii < ncol; ii++) {
-      ansp[ii] = logSumExp_double(x, nrow, narm, hasna);
+      ans_ptr[ii] = logSumExp_double(x, nrow, narm, hasna);
       /* Move to the beginning next column */
       x += nrow;
     }

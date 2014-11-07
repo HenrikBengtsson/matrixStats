@@ -15,9 +15,7 @@
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
-#include <Rdefines.h>
-#include <Rmath.h>
-#include <float.h>
+#include <R_ext/Constants.h>
 #include "types.h"
 
 /* Expand arguments:
@@ -29,9 +27,9 @@
 double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int refine) {
   X_C_TYPE value;
   R_xlen_t i, idx;
-  double sum = 0, avg = R_NaN;
+  LDOUBLE sum = 0, avg = R_NaN;
 #if X_TYPE == 'r'
-  double rsum = 0;
+  LDOUBLE rsum = 0;
 #endif
   int count = 0;
 
@@ -41,7 +39,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       value = x[i];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
-        sum += (double)value;
+        sum += (LDOUBLE)value;
         ++count;
       } else if (!narm) {
           sum = R_NaReal;
@@ -55,9 +53,9 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
 #endif
     } /* for (i ...) */
 
-    if (sum > DBL_MAX) {
+    if (sum > DOUBLE_XMAX) {
       avg = R_PosInf;
-    } else if (sum < -DBL_MAX) {
+    } else if (sum < -DOUBLE_XMAX) {
       avg = R_NegInf;
     } else {
       avg = sum / count;
@@ -86,7 +84,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       value = x[idx-1];
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
-        sum += (double)value;
+        sum += (LDOUBLE)value;
         ++count;
       } else if (!narm) {
           sum = R_NaReal;
@@ -100,9 +98,9 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
 #endif
     } /* for (i ...) */
 
-    if (sum > DBL_MAX) {
+    if (sum > DOUBLE_XMAX) {
       avg = R_PosInf;
-    } else if (sum < -DBL_MAX) {
+    } else if (sum < -DOUBLE_XMAX) {
       avg = R_NegInf;
     } else {
       avg = sum / count;

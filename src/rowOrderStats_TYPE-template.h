@@ -20,7 +20,7 @@
 
  Copyright: Henrik Bengtsson, 2007-2014
  ***********************************************************************/ 
-#include <Rdefines.h>
+#include <R_ext/Memory.h>
 #include <Rmath.h>
 #include "types.h"
 

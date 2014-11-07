@@ -4,7 +4,6 @@
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
-/* Include R packages */
 #include <Rdefines.h>
 #include "types.h" 
 

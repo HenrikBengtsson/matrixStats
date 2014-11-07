@@ -4,11 +4,9 @@
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
-/* Include R packages */
 #include <Rdefines.h> 
-#include <R.h>
-#include <R_ext/Error.h>
 #include "types.h"
+#include <R_ext/Error.h>
 
 #define BIN_BY 'L'
 #include "binMeans-BINBY-template.h"
