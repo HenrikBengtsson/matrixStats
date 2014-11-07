@@ -17,6 +17,8 @@ o CLEANUP: Cleanup and harmonized the internal C API such there are two
   the return value.  This function dispatch to functions in the low-level
   API based on data type(s) and other arguments.  The low-level API is
   written to work with basic C data types only.
+o BUG FIX: Package incorrectly redefined R_xlen_t on R (>= 3.0.0) systems
+  where LONG_VECTOR_SUPPORT is not supported.
 
 
 Version: 0.11.0 [2014-11-02]

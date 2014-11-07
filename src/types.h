@@ -15,12 +15,11 @@
 #define LDOUBLE double
 #endif
 
-/* Backward compatibility with R (< 3.0.0) */
-#ifndef LONG_VECTOR_SUPPORT
-  #ifndef R_XLEN_T
-    typedef int R_xlen_t;
-    #define R_XLEN_T 1
-  #endif
+/* Backward compatibility with R (< 3.0.0)
+   As in <R>/src/include/Rinternals.h */
+#ifndef R_XLEN_T_MAX
+  typedef int R_xlen_t;
+  #define R_XLEN_T_MAX R_LEN_T_MAX
   #ifndef xlength
     #define xlength length
   #endif
