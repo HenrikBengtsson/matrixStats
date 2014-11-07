@@ -28,7 +28,7 @@
 
 void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, double *ans, int *count) {
   R_xlen_t ii = 0, jj = 0, iStart=0;
-  int n = 0;
+  R_xlen_t n = 0;
   LDOUBLE sum = 0.0;
 
   // Count?
@@ -45,7 +45,17 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
       // Skip to a new bin?
       while (IS_PART_OF_NEXT_BIN(x[ii], bx[jj+1])) {
         // Update statistic of current bin?
-        if (count) count[jj] = n;
+        if (count) {
+          /* Although unlikely, with long vectors the count for a bin
+             can become greater than what is possible to represent by
+             an integer.  Detect and warn about this. */
+          if (n > R_INT_MAX) {
+            Rf_warning("Integer overflow. Detected a bin (#%d) with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d). The bin mean is still correct.", jj+1, R_INT_MAX);
+            count[jj] = R_INT_MAX;
+          } else {
+            count[jj] = n;
+          }
+	}
         ans[jj] = n > 0 ? sum / n : R_NaN;
         sum = 0.0;
         n = 0;
@@ -72,7 +82,17 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
 
     // Update statistic of the last bin?
     if (jj < nbins) {
-      if (count) count[jj] = n;
+      if (count) {
+        /* Although unlikely, with long vectors the count for a bin
+           can become greater than what is possible to represent by
+           an integer.  Detect and warn about this. */
+        if (n > R_INT_MAX) {
+          Rf_warning("Integer overflow. Detected a bin (#%d) with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d). The bin mean is still correct.", jj+1, R_INT_MAX);
+          count[jj] = R_INT_MAX;
+        } else {
+          count[jj] = n;
+	}
+      }
       ans[jj] = n > 0 ? sum / n : R_NaN;
 
       // Assign the remaining bins to zero counts and missing mean values
@@ -96,6 +116,8 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
 
 /***************************************************************************
  HISTORY:
+2014-11-07 [HB]
+  o ROBUSTNESS: Added protection for integer overflow in bin counts.
 2014-11-06 [HB]
   o CLEANUP: Moving away from R data types in low-level C functions.
 2014-10-01 [HB]

@@ -3,6 +3,12 @@ Package: matrixStats
 
 Version: 0.11.1 [2014-11-07]
 o Better support for long vectors.
+o ROBUSTNESS: Although unlikely, with long vectors support for binCounts()
+  and binMeans() it is possible that a bin gets a higher count than what
+  can be represented by an R integer (.Machine$integer.max=2^31-1).  If
+  that happens, an informative warning is generated and the bin count is
+  set to .Machine$integer.max.  If this happens for binMeans(), the
+  corresponding mean is still properly calculated and valid.
 o PRECISION: Using greater floating-point precision in more internal
   intermediate calculations, where possible.
 o CLEANUP: Cleanup and harmonized the internal C API such there are two

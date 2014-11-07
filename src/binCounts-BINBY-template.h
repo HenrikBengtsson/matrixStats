@@ -53,6 +53,15 @@ void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
         n = 0;
       }
 
+      /* Although unlikely, with long vectors the count for a bin
+         can become greater than what is possible to represent by
+         an integer.  Detect and warn about this. */
+      if (n == R_INT_MAX) {
+        Rf_warning("Integer overflow. Detected a bin (#%d) with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d)", jj+1, R_INT_MAX);
+        // No point in keep counting for this bin
+        break;
+      }
+
       // Count
       ++n;
     }
@@ -80,7 +89,9 @@ void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
  
 /***************************************************************************
  HISTORY:
- 2014-11-06 [HB]
+ 2014-11-07 [HB]
+  o ROBUSTNESS: Added protection for integer overflow in bin counts.
+2014-11-06 [HB]
   o CLEANUP: Moving away from R data types in low-level C functions.
  2013-10-08 [HB]
   o Created template for binCounts_<L|R>() to create functions that
