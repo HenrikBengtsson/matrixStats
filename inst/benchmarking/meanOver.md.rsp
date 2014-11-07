@@ -16,13 +16,22 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 ## Alternative methods
 
 * mean() + [()
+* mean.default() + [() - avoids method dispatching
 
 as below
 
 ```r
 <%=withCapture({
-meanOver_R <- function(x, na.rm=FALSE, idxs) {
+meanOver_R_v1 <- function(x, na.rm=FALSE, idxs) {
   mean(x[idxs], na.rm=na.rm)
+}
+})%>
+```
+and
+```r
+<%=withCapture({
+meanOver_R_v2 <- function(x, na.rm=FALSE, idxs) {
+  mean.default(x[idxs], na.rm=na.rm)
 }
 })%>
 ```
@@ -44,7 +53,7 @@ data <- rvectors(mode=mode)
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
-message(dataLabel)
+mprintf("%s: %s\n", mode, dataLabel)
 x <- data[[dataLabel]]
 gc()
 %>
@@ -61,6 +70,7 @@ stats <- microbenchmark(
  "meanOver"           = meanOver(x, refine=TRUE),
  "meanOver_no_refine" = meanOver(x, refine=FALSE),
  "mean"               = mean(x),
+ "mean.default"       = mean.default(x),
   unit = "ms"
 )
 })%>
@@ -81,7 +91,8 @@ gc()
 stats <- microbenchmark(
  "meanOver"           = meanOver(x, idxs=idxs, refine=TRUE),
  "meanOver_no_refine" = meanOver(x, idxs=idxs, refine=FALSE),
- "mean+[()"           = meanOver_R(x, idxs=idxs),
+ "mean+[()"           = meanOver_R_v1(x, idxs=idxs),
+ "mean.default+[()"   = meanOver_R_v2(x, idxs=idxs),
   unit = "ms"
 )
 })%>

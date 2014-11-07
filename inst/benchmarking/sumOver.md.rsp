@@ -44,7 +44,7 @@ data <- rvectors(mode=mode)
 <% for (ii in seq_along(data)) { %>
 <%
 dataLabel <- names(data)[ii]
-message(dataLabel)
+mprintf("%s: %s\n", mode, dataLabel)
 x <- data[[dataLabel]]
 gc()
 %>
