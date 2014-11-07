@@ -11,6 +11,7 @@
 #include <R.h>
 #include <Rinternals.h>
 #include <Rmath.h>
+#include "types.h"
 
 #define METHOD rowRanks
 #define X_TYPE 'r'
@@ -18,9 +19,10 @@
 
 void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
   int ii, jj;
-  int *colOffset;
+  R_xlen_t *colOffset;
   int *I;
-  int JJ, AA, nna;
+  int JJ, nna;
+  R_xlen_t AA;
   X_C_TYPE *rowData;
   X_C_TYPE current_max;
   X_C_TYPE current_min, tmp;
@@ -28,9 +30,9 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
   rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
   I = (int *) R_alloc(ncol, sizeof(int));
 
-  colOffset = (int *) R_alloc(ncol, sizeof(int));
+  colOffset = (R_xlen_t *) R_alloc(ncol, sizeof(R_xlen_t));
   for (jj=0; jj < ncol; jj++) {
-    colOffset[jj] = (int) jj*nrow;
+    colOffset[jj] = (R_xlen_t) jj*nrow;
   }
 
   for (ii=0; ii < nrow; ii++) {

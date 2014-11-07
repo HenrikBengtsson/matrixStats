@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  void rowOrderStats_<Integer|Real>(X_C_TYPE *x, int nrow, int ncol, int qq, X_C_TYPE *ans)
+  void rowOrderStats_<Integer|Real>(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int qq, X_C_TYPE *ans)
 
  GENERATES:
-  void rowOrderStats_Real(double *x, int nrow, int ncol, int qq, double *ans)
-  void rowOrderStats_Integer(int *x, int nrow, int ncol, int qq, int *ans)
+  void rowOrderStats_Real(double *x, R_xlen_t nrow, R_xlen_t ncol, int qq, double *ans)
+  void rowOrderStats_Integer(int *x, R_xlen_t nrow, R_xlen_t ncol, int qq, int *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -22,6 +22,7 @@
  ***********************************************************************/ 
 #include <Rdefines.h>
 #include <Rmath.h>
+#include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
@@ -30,9 +31,9 @@
 #include "templates-types.h" 
 
 
-void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int qq, X_C_TYPE *ans) {
-  int ii, jj;
-  int *colOffset;
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t qq, X_C_TYPE *ans) {
+  R_xlen_t ii, jj;
+  R_xlen_t *colOffset;
   X_C_TYPE *rowData;
 
   /* R allocate memory for the 'rowData'.  This will be 
@@ -40,12 +41,12 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int qq, X_C_TYPE *ans) {
   rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
   /* Pre-calculate the column offsets */
-  colOffset = (int *) R_alloc(ncol, sizeof(int));
-  for(jj=0; jj < ncol; jj++) 
-    colOffset[jj] = (int)jj*nrow;
+  colOffset = (R_xlen_t *) R_alloc(ncol, sizeof(R_xlen_t));
+  for (jj=0; jj < ncol; jj++) 
+    colOffset[jj] = (R_xlen_t)jj*nrow;
 
-  for(ii=0; ii < nrow; ii++) {
-    for(jj=0; jj < ncol; jj++) 
+  for (ii=0; ii < nrow; ii++) {
+    for (jj=0; jj < ncol; jj++) 
       rowData[jj] = x[ii+colOffset[jj]];
 
     /* Sort vector of length 'ncol' up to position 'qq'. 

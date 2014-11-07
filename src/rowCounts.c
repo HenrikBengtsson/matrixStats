@@ -6,6 +6,7 @@
  **************************************************************************/
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h"
 
 #define METHOD rowCounts
 
@@ -22,7 +23,7 @@
 SEXP rowCounts(SEXP x, SEXP value, SEXP naRm, SEXP hasNA) {
   SEXP dim, ans;
   int narm, hasna;
-  int nrow, ncol;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'x': */
   if (!isMatrix(x))

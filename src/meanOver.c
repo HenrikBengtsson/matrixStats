@@ -6,6 +6,7 @@
  **************************************************************************/
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h"
 
 #define METHOD meanOver
 
@@ -20,25 +21,26 @@
 
 SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   SEXP ans;
-  int *idxsp;
-  int nidxs;
+  int *idxs_ptr;
+  R_xlen_t nx, nidxs;
   int narm, refine2;
   double avg;
 
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
+  nx = xlength(x);
 
   /* Argument 'idxs': */
   if (isNull(idxs)) {
-    idxsp = NULL;
+    idxs_ptr = NULL;
     nidxs = 0;
   } else if (isVector(idxs)) {
-    idxsp = INTEGER(idxs);
-    nidxs = XLENGTH(idxs);
+    idxs_ptr = INTEGER(idxs);
+    nidxs = xlength(idxs);
   } else {
     /* To please compiler */
-    idxsp = NULL;
+    idxs_ptr = NULL;
     nidxs = 0;
     error("Argument 'idxs' must be NULL or a vector.");
   }
@@ -68,9 +70,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    avg = meanOver_Real(REAL(x), XLENGTH(x), idxsp, nidxs, narm, refine2);
+    avg = meanOver_Real(REAL(x), nx, idxs_ptr, nidxs, narm, refine2);
   } else if (isInteger(x)) {
-    avg = meanOver_Integer(INTEGER(x), XLENGTH(x), idxsp, nidxs, narm, refine2);
+    avg = meanOver_Integer(INTEGER(x), nx, idxs_ptr, nidxs, narm, refine2);
   } else {
     /* To please compiler */
     ans = NILSXP;

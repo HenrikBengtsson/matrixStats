@@ -3,8 +3,8 @@
   binMeans_<L|R>(...)
 
  GENERATES:
-  void binMeans_L(double *y, int ny, double *x, int nx, double *bx, int nbins, double *ans, int *count)
-  void binMeans_R(double *y, int ny, double *x, int nx, double *bx, int nbins, double *ans, int *count)
+  void binMeans_L(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, double *ans, int *count)
+  void binMeans_R(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, double *ans, int *count)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -30,8 +30,9 @@
 #endif
 
 
-void METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, double *ans, int *count) {
-  int ii = 0, jj = 0, n = 0, iStart=0;
+void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, double *ans, int *count) {
+  R_xlen_t ii = 0, jj = 0, iStart=0;
+  int n = 0;
   double sum = 0.0;
 
   // Count?

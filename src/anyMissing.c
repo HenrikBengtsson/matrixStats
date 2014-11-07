@@ -9,11 +9,12 @@
 
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h"
 
 
 SEXP anyMissing(SEXP x) {
   SEXP ans;
-  int n, ii;
+  R_xlen_t nx, ii;
   double *xdp;
   int *xip, *xlp;
   Rcomplex *xcp;
@@ -21,11 +22,11 @@ SEXP anyMissing(SEXP x) {
   PROTECT(ans = allocVector(LGLSXP, 1));
   LOGICAL(ans)[0] = 0;
 
-  n = length(x);
+  nx = xlength(x);
 
   /* anyMissing() on zero-length objects should always return FALSE,
      just like any(double(0)). */
-  if (n == 0) {
+  if (nx == 0) {
     UNPROTECT(1);
     return(ans);
   }
@@ -33,7 +34,7 @@ SEXP anyMissing(SEXP x) {
   switch (TYPEOF(x)) {
     case REALSXP:
       xdp = REAL(x);
-      for (ii=0; ii < n; ii++) {
+      for (ii=0; ii < nx; ii++) {
         if ISNAN(xdp[ii]) {
           LOGICAL(ans)[0] = 1;
           break; 
@@ -43,7 +44,7 @@ SEXP anyMissing(SEXP x) {
 
     case INTSXP:
       xip = INTEGER(x);
-      for (ii=0; ii < n; ii++) {
+      for (ii=0; ii < nx; ii++) {
         if (xip[ii] == NA_INTEGER) {
           LOGICAL(ans)[0] = 1;
           break; 
@@ -53,7 +54,7 @@ SEXP anyMissing(SEXP x) {
 
     case LGLSXP:
       xlp = LOGICAL(x);
-      for (ii=0; ii < n; ii++) {
+      for (ii=0; ii < nx; ii++) {
         if (xlp[ii] == NA_LOGICAL) {
           LOGICAL(ans)[0] = 1;
           break; 
@@ -63,7 +64,7 @@ SEXP anyMissing(SEXP x) {
 
     case CPLXSXP:
       xcp = COMPLEX(x);
-      for (ii=0; ii < n; ii++) {
+      for (ii=0; ii < nx; ii++) {
         if (ISNAN(xcp[ii].r) || ISNAN(xcp[ii].i)) {
           LOGICAL(ans)[0] = 1;
           break; 
@@ -72,7 +73,7 @@ SEXP anyMissing(SEXP x) {
       break;
 
     case STRSXP:
-      for (ii=0; ii < n; ii++) {
+      for (ii=0; ii < nx; ii++) {
         if (STRING_ELT(x, ii) == NA_STRING) {
           LOGICAL(ans)[0] = 1;
           break; 

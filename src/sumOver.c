@@ -6,6 +6,7 @@
  **************************************************************************/
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h"
 
 #define METHOD sumOver
 
@@ -21,13 +22,14 @@
 SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
   int *idxsp;
-  int nidxs;
+  R_xlen_t nx, nidxs;
   int narm, mode2;
   double sum;
 
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
+  nx = xlength(x);
 
   /* Argument 'idxs': */
   if (isNull(idxs)) {
@@ -35,7 +37,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     nidxs = 0;
   } else if (isVector(idxs)) {
     idxsp = INTEGER(idxs);
-    nidxs = XLENGTH(idxs);
+    nidxs = xlength(idxs);
   } else {
     /* To please compiler */
     idxsp = NULL;
@@ -62,9 +64,9 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    sum = sumOver_Real(REAL(x), XLENGTH(x), idxsp, nidxs, narm, mode2);
+    sum = sumOver_Real(REAL(x), nx, idxsp, nidxs, narm, mode2);
   } else if (isInteger(x)) {
-    sum = sumOver_Integer(INTEGER(x), XLENGTH(x), idxsp, nidxs, narm, mode2);
+    sum = sumOver_Integer(INTEGER(x), nx, idxsp, nidxs, narm, mode2);
   } else {
     error("Argument 'x' must be numeric.");
   }

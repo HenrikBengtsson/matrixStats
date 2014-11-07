@@ -6,6 +6,7 @@
  **************************************************************************/
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h"
 
 #define METHOD signTabulate
 
@@ -19,22 +20,27 @@
 
 
 SEXP signTabulate(SEXP x) {
-  SEXP ans = NILSXP;
+  SEXP ans;
+  R_xlen_t nx;
 
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
- 
+  nx = xlength(x);
+
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, 6));
-    signTabulate_Real(REAL(x), XLENGTH(x), REAL(ans));
+    signTabulate_Real(REAL(x), nx, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(REALSXP, 4));
-    signTabulate_Integer(INTEGER(x), XLENGTH(x), REAL(ans));
+    signTabulate_Integer(INTEGER(x), nx, REAL(ans));
     UNPROTECT(1);
   } else {
+    /* To please compiler */
+    ans = NILSXP;
+    nx = 0;
     error("Argument 'x' must be numeric.");
   }
 

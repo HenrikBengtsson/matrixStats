@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  void signTabulate_<Integer|Real>(X_C_TYPE *x, int nx, double *ans)
+  void signTabulate_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, double *ans)
 
  GENERATES:
-  void signTabulate_Real(double *x, int nx, double *ans)
-  void signTabulate_Integer(int *x, int nx, double *ans)
+  void signTabulate_Real(double *x, R_xlen_t nx, double *ans)
+  void signTabulate_Integer(int *x, R_xlen_t nx, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 

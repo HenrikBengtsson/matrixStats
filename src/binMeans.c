@@ -8,6 +8,7 @@
 #include <Rdefines.h> 
 #include <R.h>
 #include <R_ext/Error.h>
+#include "types.h"
 
 #define BIN_BY 'L'
 #include "binMeans-BINBY-template.h"
@@ -18,19 +19,19 @@
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   SEXP ans = NILSXP, count = NILSXP;
-  int nx, ny, nbins;
+  R_xlen_t nx, ny, nbins;
   int closedRight, retcount;
   int *count_ptr = NULL;
 
   /* Argument 'y': */
   if (!isVector(y))
     error("Argument 'y' must be a vector.");
-  ny = Rf_length(y);
+  ny = xlength(y);
 
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
-  nx = Rf_length(x);
+  nx = xlength(x);
   if (nx != ny) {
     error("Argument 'y' and 'x' are of different lengths: %d != %d", ny, nx);
   }
@@ -38,7 +39,7 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   /* Argument 'bx': */
   if (!isVector(bx))
     error("Argument 'bx' must be a vector.");
-  nbins = Rf_length(bx)-1;
+  nbins = xlength(bx)-1;
 
   /* Argument 'right': */
   if (!isLogical(right))

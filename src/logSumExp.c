@@ -18,7 +18,7 @@
 #include <R.h>
 #include <Rdefines.h>
 #include <Rmath.h>
-
+#include "types.h"
 
 /* 
  logSumExp_double(x):
@@ -28,14 +28,14 @@
 
   NOTE: The above sweeps the "contiguous" 'x' vector twice.
 */
-double logSumExp_double(double *x, int n, int narm, int hasna) {
-  int ii, iMax;
+double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
+  R_xlen_t ii, iMax;
   double xii, xMax, sum;
 
   /* Quick return? */
-  if (n == 0) {
+  if (nx == 0) {
     return(R_NegInf);
-  } else if (n == 1) {
+  } else if (nx == 1) {
     if (narm && ISNAN(x[0])) {
       return(R_NegInf);
     } else {
@@ -46,7 +46,7 @@ double logSumExp_double(double *x, int n, int narm, int hasna) {
   /* Find the maximum value */
   iMax = 0;
   xMax = x[0];
-  for (ii=1; ii < n; ii++) {
+  for (ii=1; ii < nx; ii++) {
     /* Get the ii:th value */
     xii = x[ii];
 
@@ -70,7 +70,7 @@ double logSumExp_double(double *x, int n, int narm, int hasna) {
 
   /* Sum differences */
   sum = 0.0;
-  for (ii=0; ii < n; ii++) {
+  for (ii=0; ii < nx; ii++) {
     if (ii == iMax) {
       continue;
     }
@@ -112,14 +112,14 @@ double logSumExp_double(double *x, int n, int narm, int hasna) {
   the "contigous" 'xx' vector once.  This is more likely to create 
   cache hits.
 */
-double logSumExp_double_by(double *x, int n, int narm, int hasna, int by, double *xx) {
-  int ii, iMax, idx;
+double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, double *xx) {
+  R_xlen_t ii, iMax, idx;
   double xii, xMax, sum;
 
   /* Quick return? */
-  if (n == 0) {
+  if (nx == 0) {
     return(R_NegInf);
-  } else if (n == 1) {
+  } else if (nx == 1) {
     if (narm && ISNAN(x[0])) {
       return(R_NegInf);
     } else {
@@ -138,7 +138,7 @@ double logSumExp_double_by(double *x, int n, int narm, int hasna, int by, double
   xMax = x[0];
   xx[0] = xMax;
   idx = 0;
-  for (ii=1; ii < n; ii++) {
+  for (ii=1; ii < nx; ii++) {
     /* Get the ii:th value */
     idx = idx + by;
     xii = x[idx];
@@ -167,7 +167,7 @@ double logSumExp_double_by(double *x, int n, int narm, int hasna, int by, double
 
   /* Sum differences */
   sum = 0.0;
-  for (ii=0; ii < n; ii++) {
+  for (ii=0; ii < nx; ii++) {
     if (ii == iMax) {
       continue;
     }
@@ -200,7 +200,7 @@ double logSumExp_double_by(double *x, int n, int narm, int hasna, int by, double
 SEXP logSumExp(SEXP lx, SEXP naRm, SEXP hasNA) {
   int narm, hasna;
   double *x;
-  int n;
+  R_xlen_t nx;
 
   /* Argument 'lx': */
   if (!isReal(lx)) {
@@ -224,17 +224,17 @@ SEXP logSumExp(SEXP lx, SEXP naRm, SEXP hasNA) {
 
   /* Get the values */
   x = REAL(lx);
-  n = length(lx);
+  nx = xlength(lx);
 
-  return(Rf_ScalarReal(logSumExp_double(x, n, narm, hasna)));
+  return(Rf_ScalarReal(logSumExp_double(x, nx, narm, hasna)));
 } /* logSumExp() */
 
 
 
 SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  SEXP ans;
+  SEXP dim, ans;
   int narm, hasna, byrow;
-  int nrow, ncol, len, ii;
+  R_xlen_t nrow, ncol, len, ii;
   double *x, *xx, *ansp;
 
   /* Argument 'lx': */
@@ -252,22 +252,21 @@ SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
   if (length(naRm) != 1)
     error("Argument 'naRm' must be a single logical.");
 
-  narm = LOGICAL(naRm)[0];
+  narm = asLogical(naRm);
   if (narm != TRUE && narm != FALSE)
     error("Argument 'naRm' must be either TRUE or FALSE.");
 
   /* Argument 'hasNA': */
-  hasna = LOGICAL(hasNA)[0];
+  hasna = asLogical(hasNA);
 
   /* Argument 'byRow': */
-  byrow = INTEGER(byRow)[0];
+  byrow = asInteger(byRow);
 
 
   /* Get dimensions of 'lx'. */
-  PROTECT(ans = getAttrib(lx, R_DimSymbol));
-  nrow = INTEGER(ans)[0];
-  ncol = INTEGER(ans)[1];
-  UNPROTECT(1); /* PROTECT(ans = ...) */
+  dim = getAttrib(lx, R_DimSymbol);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */ 

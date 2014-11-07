@@ -8,6 +8,7 @@
  Copyright Henrik Bengtsson, 2007
  **************************************************************************/
 #include <Rdefines.h>
+#include "types.h"
 
 #define METHOD rowMedians
 
@@ -23,7 +24,7 @@
 SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
   SEXP dim, ans;
-  int nrow, ncol;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'x': */
   if (!isMatrix(x))

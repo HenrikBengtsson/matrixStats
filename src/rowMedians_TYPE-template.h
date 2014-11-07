@@ -3,8 +3,8 @@
   void rowMedians_<Integer|Real>(...)
 
  GENERATES:
-  void rowMedians_Integer(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow, double *ans)
-  void rowMedians_Real(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow, double *ans)
+  void rowMedians_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
+  void rowMedians_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -22,6 +22,7 @@
 #include <R.h>
 #include <Rdefines.h>
 #include <Rmath.h>
+#include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
@@ -29,10 +30,10 @@
 #include "templates-types.h" 
 
 
-void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow, double *ans) {
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,  int byrow, double *ans) {
   int isOdd;
-  int ii, jj, kk, qq;
-  int *colOffset;
+  R_xlen_t ii, jj, kk, qq;
+  R_xlen_t *colOffset;
   X_C_TYPE *rowData, value;
 
   /* R allocate memory for the 'rowData'.  This will be 
@@ -46,7 +47,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow
   /* When narm == FALSE, isOdd and qq are the same for all rows */
   if (narm == FALSE) {
     isOdd = (ncol % 2 == 1);
-    qq = (int)(ncol/2) - 1;
+    qq = (R_xlen_t)(ncol/2) - 1;
   } else {
     isOdd = FALSE;
     qq = 0;
@@ -55,27 +56,27 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow
   value = 0;
 
   /* Pre-calculate the column offsets */
-  colOffset = (int *) R_alloc(ncol, sizeof(int));
+  colOffset = (R_xlen_t *) R_alloc(ncol, sizeof(R_xlen_t));
 
   // HJ begin
   if (byrow) {
-    for(jj=0; jj < ncol; jj++) 
-      colOffset[jj] = (int)jj*nrow;
+    for (jj=0; jj < ncol; jj++) 
+      colOffset[jj] = (R_xlen_t)jj*nrow;
   } else {
-    for(jj=0; jj < ncol; jj++) 
+    for (jj=0; jj < ncol; jj++) 
       colOffset[jj] = jj;
   }
   // HJ end
 
   if (hasna == TRUE) {
-    for(ii=0; ii < nrow; ii++) {
-      if(ii % 1000 == 0)
+    for (ii=0; ii < nrow; ii++) {
+      if (ii % 1000 == 0)
         R_CheckUserInterrupt(); 
 
-      int rowIdx = byrow ? ii : ncol*ii; //HJ
+      R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
-      for(jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncol; jj++) {
         value = x[rowIdx+colOffset[jj]]; //HJ
 
         if (X_ISNAN(value)) {
@@ -97,7 +98,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow
         /* When narm == TRUE, isOdd and qq may change with row */
         if (narm == TRUE) {
           isOdd = (kk % 2 == 1);
-          qq = (int)(kk/2) - 1;
+          qq = (R_xlen_t)(kk/2) - 1;
         }
   
         /* Permute x[0:kk-1] so that x[qq] is in the correct 
@@ -123,13 +124,13 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int narm, int hasna, int byrow
       }
     }
   } else {
-    for(ii=0; ii < nrow; ii++) {
-      if(ii % 1000 == 0)
+    for (ii=0; ii < nrow; ii++) {
+      if (ii % 1000 == 0)
         R_CheckUserInterrupt(); 
 
-      int rowIdx = byrow ? ii : ncol*ii; //HJ
+      R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
-      for(jj=0; jj < ncol; jj++)
+      for (jj=0; jj < ncol; jj++)
         rowData[jj] = x[rowIdx+colOffset[jj]]; //HJ
   
       /* Permute x[0:ncol-1] so that x[qq] is in the correct 

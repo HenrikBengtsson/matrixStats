@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  void rowCounts_<Integer|Real>(X_C_TYPE *x, int nrow, int ncol, X_C_TYPE value, int narm, int hasna, int *ans)
+  void rowCounts_<Integer|Real>(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int narm, int hasna, int *ans)
 
  GENERATES:
-  void rowCounts_Real(double *x, int nrow, int ncol, double value, int narm, int hasna, int *ans)
-  void rowCounts_Integer(int *x, int nrow, int ncol, int value, int narm, int hasna, int *ans)
+  void rowCounts_Real(double *x, R_xlen_t nrow, R_xlen_t ncol, double value, int narm, int hasna, int *ans)
+  void rowCounts_Integer(int *x, R_xlen_t nrow, R_xlen_t ncol, int value, int narm, int hasna, int *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -18,6 +18,7 @@
  ***********************************************************************/ 
 #include <Rdefines.h>
 #include <Rmath.h>
+#include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
@@ -26,9 +27,10 @@
 #include "templates-types.h" 
 
 
-void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, X_C_TYPE value, int narm, int hasna, int *ans) {
-  int ii, jj;
-  int colOffset, count;
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int narm, int hasna, int *ans) {
+  R_xlen_t ii, jj;
+  R_xlen_t colOffset;
+  int count;
   X_C_TYPE xvalue;
 
   for(ii=0; ii < nrow; ii++) ans[ii] = 0;

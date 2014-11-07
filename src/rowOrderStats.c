@@ -10,6 +10,7 @@
  **************************************************************************/
 /* Include R packages */
 #include <Rdefines.h>
+#include "types.h"
 
 #define METHOD rowOrderStats
 
@@ -25,7 +26,7 @@
 
 SEXP rowOrderStats(SEXP x, SEXP which) {
   SEXP dim, ans = NILSXP;
-  int nrow, ncol, qq;
+  R_xlen_t nrow, ncol, qq;
 
   /* Argument 'x': */
   if (!isMatrix(x))

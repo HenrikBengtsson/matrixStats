@@ -27,8 +27,9 @@
   #define IS_PART_OF_NEXT_BIN(x, bx1) (x > bx1)
 #endif
 
-void METHOD_NAME(double *x, int nx, double *bx, int nbins, int *count) {
-  int ii = 0, jj = 0, n = 0, iStart = 0;
+void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count) {
+  R_xlen_t ii = 0, jj = 0, iStart = 0;
+  int n = 0;
 
   // Count?
   if (nbins > 0) {

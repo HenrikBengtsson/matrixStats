@@ -8,6 +8,7 @@
 #include <Rdefines.h>
 #include <R.h>
 #include <R_ext/Error.h>
+#include "types.h"
 
 #define BIN_BY 'L'
 #include "binCounts-BINBY-template.h"
@@ -18,7 +19,7 @@
 
 SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   SEXP counts = NILSXP;
-  int nx, nbins;
+  R_xlen_t nx, nbins;
 
   /* Argument 'x': */
   if (!isVector(x))
@@ -28,8 +29,8 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   if (!isVector(bx))
     error("Argument 'bx' must be a vector.");
 
-  nx = Rf_length(x);
-  nbins = Rf_length(bx)-1;
+  nx = xlength(x);
+  nbins = xlength(bx)-1;
   PROTECT(counts = allocVector(INTSXP, nbins));
 
   int closedRight = asLogical(right);

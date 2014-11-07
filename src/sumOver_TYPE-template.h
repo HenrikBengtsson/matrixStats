@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  double sumOver_<Integer|Real>(X_C_TYPE *x, int nx, int *idxs, int nidxs, int narm, int mode)
+  double sumOver_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
 
  GENERATES:
-  double sumOver_Integer(int *x, int nx, int *idxs, int nidxs, int narm, int mode)
-  double sumOver_Real(double *x, int nx, int *idxs, int nidxs, int narm, int mode)
+  double sumOver_Integer(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+  double sumOver_Real(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -26,9 +26,9 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
-double METHOD_NAME(X_C_TYPE *x, int nx, int *idxs, int nidxs, int narm, int mode) {
+double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode) {
   X_C_TYPE value;
-  int i, idx;
+  R_xlen_t i, idx;
   double sum = 0;
 
   /* Sum over all element? */

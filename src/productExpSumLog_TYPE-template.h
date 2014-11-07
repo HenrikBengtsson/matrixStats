@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  LDOUBLE productExpSumLog_<Integer|Real>(X_C_TYPE *x, int nx, int narm, int hasna)
+  LDOUBLE productExpSumLog_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna)
 
  GENERATES:
-  LDOUBLE productExpSumLog_Real(double *x, int nx, int narm, int hasna)
-  LDOUBLE productExpSumLog_Integer(int *x, int nx, int narm, int hasna)
+  LDOUBLE productExpSumLog_Real(double *x, R_xlen_t nx, int narm, int hasna)
+  LDOUBLE productExpSumLog_Integer(int *x, R_xlen_t nx, int narm, int hasna)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -33,7 +33,7 @@
 #include "templates-types.h" 
 
 
-LDOUBLE METHOD_NAME(X_C_TYPE *x, int nx, int narm, int hasna) {
+LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
   LDOUBLE y = 0.0, t;
   R_xlen_t ii;
   int isneg = 0;

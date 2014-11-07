@@ -16,10 +16,11 @@
 #include <R.h>
 #include <Rdefines.h>
 #include <Rmath.h>
+#include "types.h"
 
 
-void psortKM_C(double *x, int nx, int k, int m, double *ans) {
-  int ii, ll;
+void psortKM_C(double *x, R_xlen_t nx, R_xlen_t k, R_xlen_t m, double *ans) {
+  R_xlen_t ii, ll;
   double *xx;
 
   /* R allocate memory for the 'xx'.  This will be 
@@ -28,7 +29,7 @@ void psortKM_C(double *x, int nx, int k, int m, double *ans) {
 
   /* Create a local copy 'xx' of 'x'. */
   for (ii=0; ii < nx; ii++) {
-    if(ii % 1000 == 0)
+    if (ii % 1000 == 0)
       R_CheckUserInterrupt(); 
     xx[ii] = x[ii];
   }
@@ -55,13 +56,13 @@ void psortKM_C(double *x, int nx, int k, int m, double *ans) {
 
 SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   SEXP ans;
-  int nx, kk, mm;
+  R_xlen_t nx, kk, mm;
 
   /* Argument 'x': */
   if (!isReal(x)) {
     error("Argument 'x' must be a numeric vector."); 
   }
-  nx = length(x);
+  nx = xlength(x);
   if (nx == 0) {
     error("Argument 'x' must not be empty."); 
   }

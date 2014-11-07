@@ -2,6 +2,7 @@ Package: matrixStats
 ====================
 
 Version: 0.11.1 [2014-11-06]
+o Better support for long vectors.
 o CLEANUP: Cleanup and harmonized the internal C API such there are two
   well defined API levels.  The high-level API is called by R via .Call()
   and takes care of most of the argument validation and construction of
