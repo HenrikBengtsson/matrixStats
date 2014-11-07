@@ -34,11 +34,6 @@ void METHOD_NAME(double *y, int ny, double *x, int nx, double *bx, int nbins, do
   int ii = 0, jj = 0, n = 0, iStart=0;
   double sum = 0.0;
 
-  // Assert same lengths of 'x' and 'y'
-  if (ny != nx) {
-    error("Argument 'y' and 'x' are of different lengths: %d != %d", ny, nx);
-  }
-
   // Count?
   if (nbins > 0) {
 

@@ -18,25 +18,32 @@
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   SEXP ans = NILSXP, count = NILSXP;
-  int nbins;
-  int retcount;
+  int nx, ny, nbins;
+  int closedRight, retcount;
   int *count_ptr = NULL;
 
   /* Argument 'y': */
   if (!isVector(y))
     error("Argument 'y' must be a vector.");
+  ny = Rf_length(y);
 
   /* Argument 'x': */
   if (!isVector(x))
     error("Argument 'x' must be a vector.");
+  nx = Rf_length(x);
+  if (nx != ny) {
+    error("Argument 'y' and 'x' are of different lengths: %d != %d", ny, nx);
+  }
 
   /* Argument 'bx': */
   if (!isVector(bx))
     error("Argument 'bx' must be a vector.");
+  nbins = Rf_length(bx)-1;
 
-  /* Argument 'bx': */
-  if (!isVector(right))
+  /* Argument 'right': */
+  if (!isLogical(right))
     error("Argument 'right' must be logical.");
+  closedRight = LOGICAL(right)[0];
 
   /* Argument 'retCount': */
   if (!isLogical(retCount))
@@ -46,19 +53,16 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
     error("Argument 'retCount' must be either TRUE or FALSE.");
   } 
 
-  nbins = Rf_length(bx)-1;
-
   PROTECT(ans = allocVector(REALSXP, nbins));
   if (retcount) {
     PROTECT(count = allocVector(INTSXP, nbins));
     count_ptr = INTEGER(count);
   }
 
-  int closedRight = LOGICAL(right)[0];
   if (closedRight == 0) {
-    binMeans_L(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, REAL(ans), count_ptr);
+    binMeans_L(REAL(y), ny, REAL(x), nx, REAL(bx), nbins, REAL(ans), count_ptr);
   } else if (closedRight == 1) {
-    binMeans_R(REAL(y), Rf_length(y), REAL(x), Rf_length(x), REAL(bx), nbins, REAL(ans), count_ptr);
+    binMeans_R(REAL(y), ny, REAL(x), nx, REAL(bx), nbins, REAL(ans), count_ptr);
   } else {
     error("Unknown value of argument 'right': %d", closedRight);
   }
@@ -79,6 +83,8 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
 
 /***************************************************************************
  HISTORY:
+ 2014-10-06 [HB]
+  o CLEANUP: All argument validation is now done by the high-level C API.
  2014-06-02 [HB]
   o CLEANUP: Removed unused variable in binMeans().
  2013-10-08 [HB]
