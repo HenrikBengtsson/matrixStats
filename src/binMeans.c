@@ -17,7 +17,7 @@
 
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
-  SEXP ans = NILSXP, count = NULL;
+  SEXP ans = NILSXP, count = NILSXP;
   int nbins;
   int retcount;
   int *count_ptr = NULL;

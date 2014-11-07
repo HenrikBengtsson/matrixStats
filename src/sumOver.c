@@ -7,11 +7,6 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-/* 
-TEMPLATE sumOver_<Integer|Real>(...):
-  SEXP sumOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
-  SEXP sumOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
- */
 #define METHOD sumOver
 
 #define X_TYPE 'i'

@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  SEXP rowCounts_<Integer|Real>(X_C_TYPE *x, int nrow, int ncol, X_C_TYPE value, int narm, int hasna, int *ans)
+  void rowCounts_<Integer|Real>(X_C_TYPE *x, int nrow, int ncol, X_C_TYPE value, int narm, int hasna, int *ans)
 
  GENERATES:
-  SEXP rowCounts_Real(double *x, int nrow, int ncol, double value, int narm, int hasna, int *ans)
-  SEXP rowCounts_Integer(int *x, int nrow, int ncol, int value, int narm, int hasna, int *ans)
+  void rowCounts_Real(double *x, int nrow, int ncol, double value, int narm, int hasna, int *ans)
+  void rowCounts_Integer(int *x, int nrow, int ncol, int value, int narm, int hasna, int *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the 

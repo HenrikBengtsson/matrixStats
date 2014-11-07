@@ -1,8 +1,4 @@
 /***************************************************************************
- Public methods:
- SEXP rowRanks(SEXP x, SEXP tiesMethod)
- SEXP colRanks(SEXP x, SEXP tiesMethod)
-
  Private methods:
  void rowRanks_Real(double *x, int nrow, int ncol, int byrow, int *ans)
  void rowRanks_Integer(int *x, int nrow, int ncol, int byrow, int *ans)
@@ -10,7 +6,7 @@
  To do: Add support for missing values.
 
  Hector Corrada Bravo
- Henrik Bengtsson (minor)
+ Henrik Bengtsson
  **************************************************************************/
 #include <R.h>
 #include <Rinternals.h>

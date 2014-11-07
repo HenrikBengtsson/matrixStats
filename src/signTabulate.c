@@ -7,11 +7,6 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-/* 
-TEMPLATE signTabulate_<Integer|Real>(...):
-  SEXP signTabulate_Real(SEXP x)
-  SEXP signTabulate_Integer(SEXP x)
- */
 #define METHOD signTabulate
 
 #define X_TYPE 'i'

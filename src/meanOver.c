@@ -7,11 +7,6 @@
 /* Include R packages */
 #include <Rdefines.h>
 
-/* 
-TEMPLATE meanOver_<Integer|Real>(...):
-  SEXP meanOver_Real(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
-  SEXP meanOver_Integer(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
- */
 #define METHOD meanOver
 
 #define X_TYPE 'i'

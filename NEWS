@@ -1,13 +1,13 @@
 Package: matrixStats
 ====================
 
-Version: 0.11.0-1 [2014-11-06]
-o CLEANUP: Starting to cleanup and harmonize the native code such there
-  are two levels of native code.  The high-level function is called by 
-  R via .Call() and takes care of most of the argument validation and
-  construction of the return value.  This function dispatch to low-level
-  functions depending on data type(s).  The low-level function operates
-  only based on basic C data types.
+Version: 0.11.1 [2014-11-06]
+o CLEANUP: Cleanup and harmonized the internal C API such there are two
+  well defined API levels.  The high-level API is called by R via .Call()
+  and takes care of most of the argument validation and construction of
+  the return value.  This function dispatch to functions in the low-level
+  API based on data type(s) and other arguments.  The low-level API is
+  written to work with basic C data types only.
 
 
 Version: 0.11.0 [2014-11-02]

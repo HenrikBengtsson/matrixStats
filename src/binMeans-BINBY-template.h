@@ -3,8 +3,8 @@
   binMeans_<L|R>(...)
 
  GENERATES:
-  SEXP binMeans_L(SEXP y, SEXP x, SEXP bx, SEXP retCount)
-  SEXP binMeans_R(SEXP y, SEXP x, SEXP bx, SEXP retCount)
+  void binMeans_L(double *y, int ny, double *x, int nx, double *bx, int nbins, double *ans, int *count)
+  void binMeans_R(double *y, int ny, double *x, int nx, double *bx, int nbins, double *ans, int *count)
 
  Arguments:
    The following macros ("arguments") should be defined for the
