@@ -45,7 +45,7 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
     error("Argument 'naRm' must be a single logical.");
   if (length(naRm) != 1)
     error("Argument 'naRm' must be a single logical.");
-  narm = LOGICAL(naRm)[0];
+  narm = asLogical(naRm);
   if (narm != TRUE && narm != FALSE) {
     error("Argument 'naRm' must be either TRUE or FALSE.");
   }
@@ -57,7 +57,7 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   if (length(refine) != 1)
     error("Argument 'refine' must be a single logical.");
 
-  refine2 = LOGICAL(refine)[0];
+  refine2 = asLogical(refine);
   if (refine2 != TRUE && refine2 != FALSE) {
     error("Argument 'refine' must be either TRUE or FALSE.");
   }

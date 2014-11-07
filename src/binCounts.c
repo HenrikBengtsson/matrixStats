@@ -32,7 +32,7 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   nbins = Rf_length(bx)-1;
   PROTECT(counts = allocVector(INTSXP, nbins));
 
-  int closedRight = LOGICAL(right)[0];
+  int closedRight = asLogical(right);
   if (closedRight == 0) {
     binCounts_L(REAL(x), nx, REAL(bx), nbins, INTEGER(counts));
   } else if (closedRight == 1) {

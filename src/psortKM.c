@@ -73,7 +73,7 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   if (length(k) != 1) {
     error("Argument 'k' must be a single integer."); 
   }
-  kk = INTEGER(k)[0];
+  kk = asInteger(k);
   if (kk <= 0) {
     error("Argument 'k' must be a positive integer."); 
   } if (kk > nx) {
@@ -87,7 +87,7 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   if (length(m) != 1) {
     error("Argument 'm' must be a single integer.");  
   }
-  mm = INTEGER(m)[0];
+  mm = asInteger(m);
   if (mm <= 0) {
     error("Argument 'm' must be a positive integer."); 
   } else if (mm > kk) {

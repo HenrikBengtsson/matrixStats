@@ -45,7 +45,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     error("Argument 'naRm' must be a single logical.");
   if (length(naRm) != 1)
     error("Argument 'naRm' must be a single logical.");
-  narm = LOGICAL(naRm)[0];
+  narm = asLogical(naRm);
   if (narm != TRUE && narm != FALSE) {
     error("Argument 'naRm' must be either TRUE or FALSE.");
   }

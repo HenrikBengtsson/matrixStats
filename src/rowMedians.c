@@ -36,15 +36,15 @@ SEXP rowMedians(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
   if (length(naRm) != 1)
     error("Argument 'naRm' must be a single logical.");
 
-  narm = LOGICAL(naRm)[0];
+  narm = asLogical(naRm);
   if (narm != TRUE && narm != FALSE)
     error("Argument 'naRm' must be either TRUE or FALSE.");
 
   /* Argument 'hasNA': */
-  hasna = LOGICAL(hasNA)[0];
+  hasna = asLogical(hasNA);
 
   /* Argument 'byRow': */
-  byrow = INTEGER(byRow)[0];
+  byrow = asInteger(byRow);
 
 
   /* Get dimensions of 'x'. */

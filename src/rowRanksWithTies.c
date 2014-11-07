@@ -113,13 +113,13 @@ SEXP rowRanksWithTies(SEXP x, SEXP tiesMethod, SEXP byRow) {
     error("Argument 'x' must be a matrix.");
 
   /* Argument 'tiesMethod': */
-  tiesmethod = INTEGER(tiesMethod)[0];
+  tiesmethod = asInteger(tiesMethod);
   if (tiesmethod < 1 || tiesmethod > 3) {
     error("Argument 'tiesMethod' is out of range [1,3]: %d", tiesmethod);
   }
 
   /* Argument 'byRow': */
-  byrow = INTEGER(byRow)[0];
+  byrow = asLogical(byRow);
 
 
   /* Get dimensions for 'ans' (from 'x') */

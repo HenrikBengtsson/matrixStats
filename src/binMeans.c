@@ -43,12 +43,12 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   /* Argument 'right': */
   if (!isLogical(right))
     error("Argument 'right' must be logical.");
-  closedRight = LOGICAL(right)[0];
+  closedRight = asLogical(right);
 
   /* Argument 'retCount': */
   if (!isLogical(retCount))
     error("Argument 'right' must be logical.");
-  retcount = LOGICAL(retCount)[0];
+  retcount = asLogical(retCount);
   if (retcount != TRUE && retcount != FALSE) {
     error("Argument 'retCount' must be either TRUE or FALSE.");
   } 
