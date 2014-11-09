@@ -7,16 +7,26 @@
    corresponds to assigning a zero value.  Note that the bit
    representation of int's and double's may not be the same
    on all architectures. */
-int memset_zero_int_ok() {
+int memset_zero_ok_int() {
   int t = 1;
   memset(&t, 0, sizeof(t));
   return (t == 0);
 }
 
-int memset_zero_double_ok() {
+int memset_zero_ok_double() {
   double t = 1;
   memset(&t, 0, sizeof(t));
   return (t == 0);
+}
+
+/* For debugging purposes */
+SEXP memsetZeroable() {
+  SEXP ans;
+  PROTECT(ans = allocVector(LGLSXP, 2));
+  LOGICAL(ans)[1] = memset_zero_ok_int();
+  LOGICAL(ans)[2] = memset_zero_ok_double();
+  UNPROTECT(1);
+  return(ans);
 }
 
 void fillWithValue(SEXP ans, SEXP value) {
@@ -42,7 +52,7 @@ void fillWithValue(SEXP ans, SEXP value) {
     case INTSXP:
       value_i = asInteger(value);
       ans_ptr_i = INTEGER(ans);
-      if (value_i == 0 && memset_zero_int_ok()) {
+      if (value_i == 0 && memset_zero_ok_int()) {
         memset(ans_ptr_i, 0, n*sizeof(value_i));
       } else {
         for (i=0; i < n; i++) ans_ptr_i[i] = value_i;
@@ -51,7 +61,7 @@ void fillWithValue(SEXP ans, SEXP value) {
     case REALSXP:
       value_d = asReal(value);
       ans_ptr_d = REAL(ans);
-      if (value_d == 0 && memset_zero_double_ok()) {
+      if (value_d == 0 && memset_zero_ok_double()) {
         memset(ans_ptr_d, 0, n*sizeof(value_d));
       } else {
         for (i=0; i < n; i++) ans_ptr_d[i] = value_d;
@@ -60,7 +70,7 @@ void fillWithValue(SEXP ans, SEXP value) {
     case LGLSXP:
       value_l = asLogical(value);
       ans_ptr_l = LOGICAL(ans);
-      if (value_l == 0 && memset_zero_int_ok()) {
+      if (value_l == 0 && memset_zero_ok_int()) {
         memset(ans_ptr_l, 0, n*sizeof(value_l));
       } else {
         for (i=0; i < n; i++) ans_ptr_l[i] = value_l;
