@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.2 [2014-11-09]
+o Added allocVector(), allocMatrix() and allocArray() for faster 
+  allocation numeric vectors, matrices and arrays, particularly when
+  filled with non-missing values.
+
+
 Version: 0.11.1 [2014-11-07]
 o Better support for long vectors.
 o ROBUSTNESS: Although unlikely, with long vectors support for binCounts()

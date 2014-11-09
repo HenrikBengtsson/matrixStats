@@ -15,6 +15,9 @@ importFrom("R.methodsS3", "pkgStartupMessage")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+export("allocVector")
+export("allocMatrix")
+export("allocArray")
 export("anyMissing")
 export("binCounts")
 export("binMeans")
