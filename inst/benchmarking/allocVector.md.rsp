@@ -1,6 +1,6 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="allocMatrix"%>
+<%@string fcnname="allocVector"%>
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
@@ -15,19 +15,23 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* matrix()
-* matrix() special trick for NA
+* vector() + assignment
+* rep()
+* matrix() + as.vector()
 
 where
 ```r
 <%=withCapture({
-allocMatrix_R <- function(nrow, ncol, value=NA) {
-  if (is.na(value) && !is.nan(value)) {
-    matrix(data=value[c()], nrow=nrow, ncol=ncol)
-  } else {
-    matrix(data=value, nrow=nrow, ncol=ncol)
-  }
-} # allocMatrix_R()
+allocVector_R1 <- function(length, value=NA) {
+  x <- vector(mode=typeof(value), length=length)
+  if (!is.finite(value) || value != 0) x[] <- value
+  x
+} # allocVector_R1()
+
+allocVector_R2 <- function(length, value=NA) {
+  x <- matrix(data=value, nrow=length, ncol=1L)
+  as.vector(x)
+} # allocVector_R2()
 })%>
 ```
 
@@ -38,8 +42,8 @@ allocMatrix_R <- function(nrow, ncol, value=NA) {
 ### Data
 ```r
 <%=withCapture({
-<%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+<%@include file="R/random-vectors.R"%>
+data <- rvectors(mode=mode)
 values <- list(zero=0, one=1, "NA"=NA_real_)
 if (mode != "double")
   values <- lapply(values, FUN=function(x) { storage.mode(x) <- mode; x })
@@ -65,9 +69,7 @@ mprintf("%s: %s, value=%s\n", mode, dataLabel, valueLabel)
 
 ```r
 <%=withCapture({
-dim <- dim(data[[.dataLabel.]])
-nrow <- dim[1L]
-ncol <- dim[2L]
+n <- length(data[[.dataLabel.]])
 str(value)
 })%>
 ```
@@ -76,9 +78,10 @@ str(value)
 ```r
 <%=withCapture({
 stats <- microbenchmark(
- "allocMatrix"         = allocMatrix(nrow=nrow, ncol=ncol, value=value),
- "matrix"              = matrix(data=value, nrow=nrow, ncol=ncol),
- "allocMatrix_R"       = allocMatrix_R(nrow=nrow, ncol=ncol, value=value),
+ "allocVector"         = allocVector(length=n, value=value),
+ "rep"                 = rep(value, times=n),
+ "allocVector_R1"      = allocVector_R1(length=n, value=value),
+ "allocVector_R2"      = allocVector_R2(length=n, value=value),
   unit = "ms"
 )
 })%>
