@@ -68,9 +68,9 @@ data <- rmatrices(mode="index")
 X <- data[[.dataLabel.]]
 dim <- dim(X)
 idxsList <- list(
-  all = NULL,
-  all = seq_len(prod(dim)),
-  odd = seq(from=1, to=prod(dim), by=2L)
+  all  = NULL,
+  all2 = seq_len(prod(dim)),
+  odd  = seq(from=1, to=prod(dim), by=2L)
 )
 str(idxsList)
 })%>
