@@ -40,7 +40,7 @@ o Added sumOver() and meanOver(), which are significantly faster versions
   sum(as.numeric(x)) to avoid integer overflow when 'x' is an integer
   vector, one can do sumOver(x, mode="numeric"), which avoids the extra
   copy created when coercing to numeric (this numeric copy is also twice
-  as large  as the integer vector).  Added package tests and benchmark
+  as large as the integer vector).  Added package tests and benchmark
   reports for these functions.
 
 

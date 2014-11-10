@@ -28,6 +28,7 @@
 void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count) {
   R_xlen_t ii = 0, jj = 0, iStart = 0;
   int n = 0;
+  int warn = 0;
 
   // Count?
   if (nbins > 0) {
@@ -57,7 +58,7 @@ void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
          can become greater than what is possible to represent by
          an integer.  Detect and warn about this. */
       if (n == R_INT_MAX) {
-        Rf_warning("Integer overflow. Detected a bin (#%d) with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d)", jj+1, R_INT_MAX);
+        warn = 1;
         // No point in keep counting for this bin
         break;
       }
@@ -77,6 +78,10 @@ void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
     }
 
   } // if (nbins > 0)
+
+  if (warn) {
+    warning("Integer overflow. Detected one of more bins with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d). The bin mean is still correct.", R_INT_MAX);
+  }
 }
 
 
