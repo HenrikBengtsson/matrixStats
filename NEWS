@@ -2,7 +2,14 @@ Package: matrixStats
 ====================
 
 Version: 0.11.2 [2014-11-09]
-o Added allocVector(), allocMatrix() and allocArray() for faster 
+o SPEEDUP: Implemented indexByRow() in native code and it is no longer
+  a generic function, but a regular function, which is also faster to
+  call.  The first argument of indexByRow() has been changed to 'dim'
+  such that one should use indexByRow(dim(X)) instead of indexByRow(X)
+  as in the past.  The latter form is still supported, but deprecated.
+
+
+o Added allocVector(), allocMatrix() and allocArray() for faster
   allocation numeric vectors, matrices and arrays, particularly when
   filled with non-missing values.
 
@@ -30,20 +37,20 @@ o BUG FIX: Package incorrectly redefined R_xlen_t on R (>= 3.0.0) systems
 Version: 0.11.0 [2014-11-02]
 o Added sumOver() and meanOver(), which are significantly faster versions
   of sum(x[idxs]) and mean(x[idxs]).  Moreover, instead of having to do
-  sum(as.numeric(x)) to avoid integer overflow when 'x' is an integer 
+  sum(as.numeric(x)) to avoid integer overflow when 'x' is an integer
   vector, one can do sumOver(x, mode="numeric"), which avoids the extra
-  copy created when coercing to numeric (this numeric copy is also twice 
+  copy created when coercing to numeric (this numeric copy is also twice
   as large  as the integer vector).  Added package tests and benchmark
   reports for these functions.
 
 
 Version: 0.10.4 [2014-11-01]
-o SPEEDUP: Made anyMissing(), logSumExp(), (col|row)Medians(), 
-  (col|row)Counts() slightly faster by making the native code assign 
+o SPEEDUP: Made anyMissing(), logSumExp(), (col|row)Medians(),
+  (col|row)Counts() slightly faster by making the native code assign
   the results directly to the native vector instead of to the R vector,
   e.g. ansp[i] = v where ansp=REAL(ans) instead of REAL(ans)[i] = v.
 o Added benchmark reports for anyMissing() and logSumExp().
-  
+
 
 Version: 0.10.3 [2014-10-01]
 o BUG FIX: binMeans() returned 0.0 instead of NA_real_ for empty bins.

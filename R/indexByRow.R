@@ -1,6 +1,5 @@
 ###########################################################################/**
 # @RdocFunction indexByRow
-# \alias{indexByRow.matrix}
 #
 # @title "Translates matrix indices by rows into indices by columns"
 #
@@ -9,11 +8,12 @@
 # }
 #
 # \usage{
-#  @usage indexByRow,matrix
+#  @usage indexByRow
 # }
 #
 # \arguments{
-#  \item{x}{A @matrix.}
+#  \item{dim}{A @numeric @vector of length two specifying the length
+#   of the "template" matrix.}
 #  \item{idxs}{A @vector of indices.  If @NULL, all indices are returned.}
 #  \item{...}{Not use.}
 # }
@@ -22,37 +22,31 @@
 #   Returns an @integer @vector of indices.
 # }
 #
-# \examples{
-#  x <- matrix(NA, nrow=5, ncol=4)
-#  y <- t(x)
-#  idxs <- seq(along=x)
-#
-#  # Assign by columns
-#  x[idxs] <- idxs
-#  print(x)
-#
-#  # Assign by rows
-#  y[indexByRow(y, idxs)] <- idxs
-#  print(y)
-#
-#  stopifnot(x == t(y))
-# }
+# @examples "../incl/indexByRow.Rex"
 #
 # @author "HB"
 #
 # @keyword iteration
 # @keyword logic
 #*/###########################################################################
-setMethodS3("indexByRow", "matrix", function(x, idxs=NULL, ...) {
-  xT <- matrix(seq(along=x), nrow=ncol(x), ncol=nrow(x), byrow=TRUE);
-  if (!is.null(idxs))
-    xT <- xT[idxs];
-  xT <- as.vector(xT);
-  xT;
-})
+indexByRow <- function(dim, idxs=NULL, ...) {
+  if (is.matrix(dim)) {
+    # BACKWARD COMPATIBILITY: Keep for a while, but deprecate
+    # in the future.
+    dim <- dim(dim)
+  } else {
+    dim <- as.integer(dim)
+  }
+  if (!is.null(idxs)) idxs <- as.integer(idxs)
+  .Call("indexByRow", dim, idxs, package="matrixStats")
+}
+
 
 ##############################################################################
 # HISTORY:
+# 2014-11-09
+# o Now indexByRow() is a plain R function (was a generic function).
+# o Implemented in C.
 # 2014-05-23
 # o CLEANUP: Made indexByRow() an S3 rather than S4 generic.
 # 2007-04-12

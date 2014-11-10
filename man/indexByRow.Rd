@@ -9,7 +9,6 @@
 \name{indexByRow}
 \alias{indexByRow}
 
-\alias{indexByRow.matrix}
 
 \title{Translates matrix indices by rows into indices by columns}
 
@@ -18,11 +17,12 @@
 }
 
 \usage{
- \method{indexByRow}{matrix}(x, idxs=NULL, ...)
+ indexByRow(dim, idxs=NULL, ...)
 }
 
 \arguments{
- \item{x}{A \code{\link[base]{matrix}}.}
+ \item{dim}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length two specifying the length
+  of the "template" matrix.}
  \item{idxs}{A \code{\link[base]{vector}} of indices.  If \code{\link[base]{NULL}}, all indices are returned.}
  \item{...}{Not use.}
 }
@@ -32,19 +32,20 @@
 }
 
 \examples{
- x <- matrix(NA, nrow=5, ncol=4)
- y <- t(x)
- idxs <- seq(along=x)
+dim <- c(5, 4)
+X <- matrix(NA, nrow=dim[1], ncol=dim[2])
+Y <- t(X)
+idxs <- seq(along=X)
 
- # Assign by columns
- x[idxs] <- idxs
- print(x)
+# Assign by columns
+X[idxs] <- idxs
+print(X)
 
- # Assign by rows
- y[indexByRow(y, idxs)] <- idxs
- print(y)
+# Assign by rows
+Y[indexByRow(Y, idxs)] <- idxs
+print(Y)
 
- stopifnot(x == t(y))
+stopifnot(X == t(Y))
 }
 
 \author{Henrik Bengtsson}

@@ -95,7 +95,6 @@ S3method("weightedVar", "default")
 
 
 # Matrix methods
-S3method("indexByRow", "matrix")
 S3method("rowAvgsPerColSet", "matrix")
 S3method("colAvgsPerRowSet", "matrix")
 S3method("rowWeightedMeans", "matrix")

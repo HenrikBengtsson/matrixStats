@@ -1,0 +1,119 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string fcnname="indexByRow"%>
+<% fcnname <- "<%@string name="fcnname"%>" %>
+<%@meta title="${fcnname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2014-11-09"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=fcnname%>() against alternative methods.
+
+## Alternative methods
+
+* matrix(..., byrow=TRUE)
+
+where
+```r
+<%=withCapture({
+indexByRow_R1 <- function(dim, idxs=NULL, ...) {
+  n <- prod(dim)
+  x <- matrix(seq_len(n), nrow=dim[2L], ncol=dim[1L], byrow=TRUE)
+  if (!is.null(idxs))
+    x <- x[idxs]
+  as.vector(x)
+} # indexByRow_R1()
+})%>
+```
+and
+```r
+<%=withCapture({
+indexByRow_R2 <- function(dim, idxs=NULL, ...) {
+  n <- prod(dim)
+  if (is.null(idxs)) {
+    x <- matrix(seq_len(n), nrow=dim[2L], ncol=dim[1L], byrow=TRUE)
+    as.vector(x)
+  } else {
+    idxs <- idxs - 1
+    cols <- idxs %/% dim[2L]
+    rows <- idxs  %% dim[2L]
+    cols + dim[1L]*rows + 1L
+  }
+} # indexByRow_R2()
+})%>
+```
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="index")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+dim <- dim(X)
+idxsList <- list(
+  all = NULL,
+  all = seq_len(prod(dim)),
+  odd = seq(from=1, to=prod(dim), by=2L)
+)
+str(idxsList)
+})%>
+```
+
+<% for (ii in seq_along(idxsList)) { %>
+<%
+idxs <- idxsList[[ii]]
+idxsTag <- names(idxsList)[ii]
+
+# Validate correctness
+res <- list(
+ indexByRow    = indexByRow(dim, idxs=idxs),
+ indexByRow_R1 = indexByRow_R1(dim, idxs=idxs),
+ indexByRow_R2 = indexByRow_R2(dim, idxs=idxs)
+)
+lapply(res, FUN=function(x) stopifnot(all.equal(x, res[[1]])))
+gc()
+%>
+
+```r
+<%=withCapture({
+stats <- microbenchmark(
+ indexByRow    = indexByRow(dim, idxs=idxs),
+ indexByRow_R1 = indexByRow_R1(dim, idxs=idxs),
+ indexByRow_R2 = indexByRow_R2(dim, idxs=idxs),
+ unit = "ms"
+)
+})%>
+```
+
+<% benchmarkResults(stats, tags=c(dataLabel, idxsTag)) %>
+
+<% } # for (ii ...) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2014-06-09
+o Created.
+---------------------------------------------------------------------------%>
