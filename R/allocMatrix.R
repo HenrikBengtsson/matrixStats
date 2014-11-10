@@ -1,3 +1,40 @@
+############################################################################/**
+# @RdocFunction allocMatrix
+# @alias allocVector
+# @alias allocArray
+#
+# @title "Allocates an empty vector, matrix or array"
+#
+# \usage{
+#  @usage allocVector
+#  @usage allocMatrix
+#  @usage allocArray
+# }
+#
+# \description{
+#   @get title faster than the corresponding function in R.
+# }
+#
+# \arguments{
+#   \item{length, nrow, ncol, dim}{@numerics specifying the dimension of
+#      the created @vector, @matrix or @array.}
+#   \item{value}{A @numeric scalar that all elements will have as value.}
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns a @vector, @matrix and @array respectively of the same data
+#   type as \code{value}.
+# }
+#
+# @author "HB"
+#
+# \seealso{
+#   See also @vector, @matrix and @array.
+# }
+#
+# @keyword "programming"
+#*/############################################################################
 allocVector <- function(length, value=0.0, ...) {
   length <- as.integer(length)
   .Call("allocVector2", length, value, PACKAGE="matrixStats")

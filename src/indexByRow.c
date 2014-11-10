@@ -8,7 +8,7 @@
 #include "types.h"
 
 SEXP indexByRow(SEXP dim, SEXP idxs) {
-  SEXP ans_dim, ans;
+  SEXP ans;
   int nr, nc;
   int *ans_ptr, *idxs_ptr;
   R_xlen_t i, idx, n, nidxs;
