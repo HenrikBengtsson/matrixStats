@@ -86,9 +86,6 @@ export("weightedVar")
 # Vector methods
 S3method("binCounts", "default")
 S3method("binMeans", "default")
-S3method("weightedMad", "default")
-S3method("weightedSd", "default")
-S3method("weightedVar", "default")
 
 
 # Matrix methods

@@ -7,15 +7,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{weightedVar}
-\alias{weightedVar.default}
 \alias{weightedVar}
+
 \alias{weightedSd}
-\alias{weightedSd.default}
 
 \title{Weighted variance}
 
 \usage{
-\method{weightedVar}{default}(x, w, na.rm=FALSE, center=NULL, ...)
+weightedVar(x, w, na.rm=FALSE, center=NULL, ...)
 }
 
 \description{

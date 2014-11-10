@@ -2,7 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.11.3 [2014-11-10]
-o Turned sdDiff(),  madDiff() and varDiff() into plain functions
+o Turned sdDiff(),  madDiff(), varDiff(), weightedSd(), weightedVar()
+  and weightedMad() into plain functions.
   (were generic functions).
 
 

@@ -7,13 +7,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{weightedMad}
-\alias{weightedMad.default}
 \alias{weightedMad}
+
 
 \title{Weighted Median Absolute Deviation (MAD)}
 
 \usage{
-\method{weightedMad}{default}(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...)
+weightedMad(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...)
 }
 
 \description{

@@ -1,7 +1,6 @@
 ############################################################################/**
-# @RdocDefault weightedVar
+# @RdocFunction weightedVar
 # @alias weightedSd
-# @alias weightedSd.default
 #
 # @title "Weighted variance"
 #
@@ -44,7 +43,7 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-setMethodS3("weightedVar", "default", function(x, w, na.rm=FALSE, center=NULL, ...) {
+weightedVar <- function(x, w, na.rm=FALSE, center=NULL, ...) {
   # Argument 'x':
   n <- length(x);
 
@@ -124,15 +123,17 @@ setMethodS3("weightedVar", "default", function(x, w, na.rm=FALSE, center=NULL, .
   x <- w <- NULL; # Not needed anymore
 
   sigma2;
-}) # weightedVar()
+} # weightedVar()
 
-setMethodS3("weightedSd", "default", function(...) {
-  sqrt(weightedVar(...));
-})
+weightedSd <- function(...) {
+  sqrt(weightedVar(...))
+} # weightedSd()
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-10
+# o Turned weightedSd() and weightedVar() into plain function.
 # 2014-03-26
 # o Created from weightedMad.R.
 ############################################################################

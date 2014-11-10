@@ -1,5 +1,5 @@
 ############################################################################/**
-# @RdocDefault weightedMad
+# @RdocFunction weightedMad
 #
 # @title "Weighted Median Absolute Deviation (MAD)"
 #
@@ -47,7 +47,7 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
+weightedMad <- function(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
   # Argument 'x':
   n <- length(x);
 
@@ -125,11 +125,13 @@ setMethodS3("weightedMad", "default", function(x, w, na.rm=FALSE, constant=1.482
   sigma <- constant * sigma;
 
   sigma;
-}) # weightedMad()
+} # weightedMad()
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-10
+# o Turned weightedMad( into a plain function.
 # 2013-11-23
 # o MEMORY: Now weightedMad() cleans out allocated objects sooner.
 # 2013-09-26
