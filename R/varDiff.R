@@ -2,9 +2,6 @@
 # @RdocFunction varDiff
 # @alias sdDiff
 # @alias madDiff
-# \alias{varDiff.numeric}
-# \alias{sdDiff.numeric}
-# \alias{madDiff.numeric}
 #
 # @title "Estimation of discrepancies based on sequential order differences in a vector"
 #
@@ -13,9 +10,9 @@
 # }
 #
 # \usage{
-#  @usage varDiff,numeric
-#  @usage sdDiff,numeric
-#  @usage madDiff,numeric
+#  @usage varDiff
+#  @usage sdDiff
+#  @usage madDiff
 # }
 #
 # \arguments{
@@ -49,7 +46,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setMethodS3("varDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
     x <- x[!is.na(x)];
 
@@ -82,11 +79,13 @@ setMethodS3("varDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...)
   var <- var(x, na.rm=FALSE);
   x <- NULL; # Not needed anymore
   var/(2^diff);
-})
+} # varDiff()
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-10
+# o Turned varDiff() into a function.
 # 2014-05-24
 # o Turned varDiff() into an S3 method (was S4).
 # 2014-04-26

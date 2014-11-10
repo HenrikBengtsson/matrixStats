@@ -1,4 +1,4 @@
-setMethodS3("madDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
     x <- x[!is.na(x)];
 
@@ -31,11 +31,13 @@ setMethodS3("madDiff", "numeric", function(x, na.rm=FALSE, diff=1L, trim=0, ...)
   sd <- mad(x, na.rm=FALSE, ...);
   x <- NULL; # Not needed anymore
   sd / (sqrt(2)^diff);
-})
+} # madDiff()
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-10
+# o Turned madDiff() into a function.
 # 2014-05-24
 # o Turned madDiff() into an S3 method (was S4).
 # 2014-04-26

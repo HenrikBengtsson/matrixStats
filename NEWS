@@ -1,14 +1,17 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.3 [2014-11-10]
+o Turned sdDiff(),  madDiff() and varDiff() into plain functions
+  (were generic functions).
+
+
 Version: 0.11.2 [2014-11-09]
 o SPEEDUP: Implemented indexByRow() in native code and it is no longer
   a generic function, but a regular function, which is also faster to
   call.  The first argument of indexByRow() has been changed to 'dim'
   such that one should use indexByRow(dim(X)) instead of indexByRow(X)
   as in the past.  The latter form is still supported, but deprecated.
-
-
 o Added allocVector(), allocMatrix() and allocArray() for faster
   allocation numeric vectors, matrices and arrays, particularly when
   filled with non-missing values.
