@@ -102,7 +102,7 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=TRUE);
       w <- NULL; # Not needed anymore
       W[nas] <- NA;
-      wS <- base::rowSums(W, na.rm=TRUE);
+      wS <- rowSums(W, na.rm=TRUE);
 
       # Standarized weights summing to one w/out missing values
       W[nas] <- 0;
@@ -126,9 +126,9 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
     }
 
     # Here we know there are no missing value in the new 'x'
-    res <- base::rowSums(x, na.rm=FALSE);
+    res <- rowSums(x, na.rm=FALSE);
   } else {
-    res <- base::rowMeans(x, na.rm=na.rm);
+    res <- rowMeans(x, na.rm=na.rm);
   }
 
   res;
@@ -187,7 +187,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=FALSE);
       w <- NULL; # Not needed anymore
       W[nas] <- NA;
-      wS <- base::colSums(W, na.rm=TRUE);
+      wS <- colSums(W, na.rm=TRUE);
 
       # Standarized weights summing to one w/out missing values
       W[nas] <- 0;
@@ -212,9 +212,9 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
     }
 
     # Here we know there are no missing value in the new 'x'
-    res <- base::colSums(x, na.rm=FALSE);
+    res <- colSums(x, na.rm=FALSE);
   } else {
-    res <- base::colMeans(x, na.rm=na.rm);
+    res <- colMeans(x, na.rm=na.rm);
   }
 
   res;
