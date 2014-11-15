@@ -5,6 +5,7 @@
 # @alias colAnys
 # @alias rowAlls
 # @alias colAlls
+# @alias rowCounts.default
 # @alias colCounts.default
 # @alias rowAnys.default
 # @alias colAnys.default
