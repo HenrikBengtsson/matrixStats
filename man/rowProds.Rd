@@ -20,8 +20,8 @@
 }
 
 \usage{
- rowProds(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...)
- colProds(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...)
+ rowProds(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
+ colProds(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
  product(x, na.rm=FALSE, ...)
 }
 

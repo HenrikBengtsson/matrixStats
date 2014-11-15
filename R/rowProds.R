@@ -52,19 +52,25 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowProds <- function(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...) {
-  # Argument 'method':
-  method <- match.arg(method, choices=c("expSumLog", "direct"));
-
+rowProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
   # Preallocate result (zero:ed by default)
-  n <- nrow(x);
-  y <- double(length=n);
+  n <- nrow(x)
+  y <- double(length=n)
 
   # Nothing todo?
-  if (n == 0L) return(y);
+  if (n == 0L) return(y)
+
+  # Argument 'method':
+  method <- method[1L]
 
   # How to calculate product?
-  prod <- switch(method, expSumLog=product, direct=prod);
+  if (method == "expSumLog") {
+    prod <- product
+  } else if (method == "direct") {
+    prod <- prod
+  } else {
+    stop("Unknown value of argument 'method': ", method)
+  }
 
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[ii,,drop=TRUE], na.rm=na.rm)
@@ -73,30 +79,38 @@ rowProds <- function(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...) {
   y;
 } # rowProds()
 
-colProds <- function(x, na.rm=FALSE, method=c("expSumLog", "direct"), ...) {
-  # Argument 'method':
-  method <- match.arg(method, choices=c("expSumLog", "direct"));
-
+colProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
   # Preallocate result (zero:ed by default)
-  n <- ncol(x);
-  y <- double(length=n);
+  n <- ncol(x)
+  y <- double(length=n)
 
   # Nothing todo?
-  if (n == 0L) return(y);
+  if (n == 0L) return(y)
+
+  # Argument 'method':
+  method <- method[1L]
 
   # How to calculate product?
-  prod <- switch(method, expSumLog=product, direct=prod);
+  if (method == "expSumLog") {
+    prod <- product
+  } else if (method == "direct") {
+    prod <- prod
+  } else {
+    stop("Unknown value of argument 'method': ", method)
+  }
 
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[,ii,drop=TRUE], na.rm=na.rm)
   }
 
-  y;
+  y
 } # colProds()
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-15 [HB]
+# o SPEEDUP: No longer using match.arg() due to its overhead.
 # 2014-06-04 [HB]
 # o Now col- and rowProds() utilizes new product() function.
 # o Added argument 'method' to col- and rowProds().

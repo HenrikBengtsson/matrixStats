@@ -5,7 +5,7 @@
 <% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-06-09"%>
+<%@meta date="2014-11-15"%>
 
 <%@include file="${header}"%>
 
@@ -16,6 +16,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 
 ## Alternative methods
 
+* <%=colname%>()/<%=rowname%>() using method="expSumLog"
 * apply() + prod()
 * apply() + product()
 
@@ -38,22 +39,27 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
-gc()
-
+})%>
+<% gc() %>
+<%=withCapture({
 colStats <- microbenchmark(
- colProds        = colProds(X, na.rm=FALSE),
- "apply+prod"    = apply(X, MARGIN=2L, FUN=prod, na.rm=FALSE),
- "apply+product" = apply(X, MARGIN=2L, FUN=product, na.rm=FALSE),
+ "colProds w/ direct"    = colProds(X, method="direct", na.rm=FALSE),
+ "colProds w/ expSumLog" = colProds(X, method="expSumLog", na.rm=FALSE),
+ "apply+prod"            = apply(X, MARGIN=2L, FUN=prod, na.rm=FALSE),
+ "apply+product"         = apply(X, MARGIN=2L, FUN=product, na.rm=FALSE),
  unit = "ms"
 )
-
+})%>
+<%=withCapture({
 X <- t(X)
-gc()
-
+})%>
+<% gc() %>
+<%=withCapture({
 rowStats <- microbenchmark(
- rowProds     = rowProds(X, na.rm=FALSE),
- "apply+prod" = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE),
- "apply+product" = apply(X, MARGIN=1L, FUN=product, na.rm=FALSE),
+ "rowProds w/ direct"    = rowProds(X, method="direct", na.rm=FALSE),
+ "rowProds w/ expSumLog" = rowProds(X, method="expSumLog", na.rm=FALSE),
+ "apply+prod"            = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE),
+ "apply+product"         = apply(X, MARGIN=1L, FUN=product, na.rm=FALSE),
  unit = "ms"
 )
 })%>

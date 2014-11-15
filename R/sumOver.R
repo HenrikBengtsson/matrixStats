@@ -76,18 +76,23 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   }
 
   # Argument 'mode':
-  mode <- match.arg(mode, choices=c("integer", "numeric", "double"));
-  mode <- c(integer=1L, numeric=2L, double=2L)[mode];
+  mode <- mode[1L]
+  modeI <- charmatch(mode, c("integer", "double"), nomatch=0L)
+  if (modeI == 0L) {
+    stop("Unknown value of argument 'mode': ", mode)
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call("sumOver", x, idxs, na.rm, mode, PACKAGE="matrixStats");
+  .Call("sumOver", x, idxs, na.rm, modeI, PACKAGE="matrixStats");
 } # sumOver()
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-15 [HB]
+# o SPEEDUP: No longer using match.arg() due to its overhead.
 # 2014-11-02 [HB]
 # o Created.
 ############################################################################

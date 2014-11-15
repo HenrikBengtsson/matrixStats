@@ -4,6 +4,10 @@ Package: matrixStats
 Version: 0.11.5 [2014-11-15]
 o SPEEDUP: Now colDiffs(x) no longer uses rowDiffs(t(x)).
   Added package tests for (col|row)Diffs().
+o SPEEDUP: Package no longer utilizes match.arg() due to
+  its overhead; methods sumOver(), (col|row)Prods() and
+  (col|row)Ranks() were updated.
+o (col|row)Prods() now uses default method="direct" (was "expSumLog").
 
 
 Version: 0.11.4 [2014-11-14]

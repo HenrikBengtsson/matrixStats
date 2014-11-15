@@ -94,64 +94,74 @@
 # @keyword univar
 #*/###########################################################################
 setGeneric("rowRanks", function(x, ties.method=c("max", "average", "min"), ...) {
-  standardGeneric("rowRanks");
+  standardGeneric("rowRanks")
 })
 
 setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), ...) {
   # Argument 'ties.method':
-  ties.method <- match.arg(ties.method, choices=c("max", "average", "min"));
+  ties.method <- ties.method[1L]
 
   # Argument 'flavor'
-  flavor <- (list(...)$flavor);
-  flavor <- ifelse(is.null(flavor), "v2", flavor);
+  flavor <- (list(...)$flavor)
+  flavor <- ifelse(is.null(flavor), "v2", flavor)
 
 
   if (flavor == "v1") {
     if (ties.method != "max") {
-      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method);
+      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method)
     }
-    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"));
+    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"))
   }
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"));
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"))
+  if (tiesMethod == 0L) {
+    stop("Unknown value of argument 'ties.method': ", ties.method)
+  }
+
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, as.integer(tiesMethod), TRUE, PACKAGE="matrixStats");
+  .Call("rowRanksWithTies", x, as.integer(tiesMethod), TRUE, PACKAGE="matrixStats")
 })
 
 
 setGeneric("colRanks", function(x, ties.method=c("max", "average", "min"), preserveShape=FALSE, ...) {
-  standardGeneric("colRanks");
+  standardGeneric("colRanks")
 })
 
 setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), preserveShape=FALSE, ...) {
   # Argument 'ties.method':
-  ties.method <- match.arg(ties.method);
+  ties.method <- ties.method[1L]
 
   # Argument 'flavor'
-  flavor <- (list(...)$flavor);
-  flavor <- ifelse(is.null(flavor), "v2", flavor);
+  flavor <- (list(...)$flavor)
+  flavor <- ifelse(is.null(flavor), "v2", flavor)
 
   # Argument 'preserveShape'
-  preserveShape <- as.logical(preserveShape);
+  preserveShape <- as.logical(preserveShape)
 
   if (flavor == "v1") {
     if (ties.method != "max") {
-      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method);
+      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method)
     }
-    x <- t(x);
-    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"));
+    x <- t(x)
+    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"))
   }
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"));
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch=0L)
+  if (tiesMethod == 0L) {
+    stop("Unknown value of argument 'ties.method': ", ties.method)
+  }
+
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, as.integer(tiesMethod), FALSE, PACKAGE="matrixStats");
-  if (!preserveShape) y <- t(y);
-  y;
+  y <- .Call("rowRanksWithTies", x, as.integer(tiesMethod), FALSE, PACKAGE="matrixStats")
+  if (!preserveShape) y <- t(y)
+  y
 })
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-15 [HB]
+# o SPEEDUP: No longer using match.arg() due to its overhead.
 # 2013-04-23 [HB]
 # o Added argument 'preserveShape' to colRanks(), cf. private email
 #   'row- and colRanks in package matrixStats' on 2012-10-05 until
