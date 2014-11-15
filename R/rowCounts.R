@@ -118,11 +118,9 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
     if (is.vector(x)) dim(x) <- dim
-    x <- t(x)
-    dim <- rev(dim)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("rowCounts", x, dim, value, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call("colCounts", x, dim, value, na.rm, hasNAs, PACKAGE="matrixStats")
     x <- NULL # Not needed anymore
   } else {
     if (is.vector(x)) dim(x) <- dim
@@ -163,6 +161,7 @@ setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim=base:
 ############################################################################
 # HISTORY:
 # 2014-11-14 [HB]
+# o SPEEDUP: Now colCounts() is implemented in native code.
 # o CLEANUP: Now (col|row)Count(x) when x is logical utilizes the
 #   same code as as.integer(x).
 # o As a part of transitioning to plain functions, rowCounts() for matrix

@@ -12,8 +12,7 @@
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
-  - X_TYPE: 'i' or 'r'
-  - ANS_TYPE: 'i' or 'r'
+  - X_TYPE: 'i', 'r', or 'l'
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/ 
@@ -21,14 +20,12 @@
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
-    ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
 #include "templates-types.h" 
 
 
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int narm, int hasna, int *ans) {
-  R_xlen_t ii, jj;
-  R_xlen_t colOffset;
+  R_xlen_t ii, jj, kk;
   int count;
   X_C_TYPE xvalue;
 
@@ -36,24 +33,22 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
 
   /* Count missing values? [sic!] */
   if (X_ISNAN(value)) {
+    kk = 0;
     for(jj=0; jj < ncol; jj++) {
-      colOffset = (int)jj*nrow;
       for(ii=0; ii < nrow; ii++) {
-        xvalue = x[ii+colOffset];
-        if (X_ISNAN(xvalue)) {
-          ans[ii] = ans[ii] + 1;
-        }
+        xvalue = x[kk++];
+        if (X_ISNAN(xvalue)) ans[ii] = ans[ii] + 1;
       }
     }
   } else {
+    kk = 0;
     for(jj=0; jj < ncol; jj++) {
-      colOffset = (int)jj*nrow;
       for(ii=0; ii < nrow; ii++) {
         count = ans[ii];
         /* Nothing more to do on this row? */
         if (count == NA_INTEGER) continue;
 
-        xvalue = x[ii+colOffset];
+        xvalue = x[kk++];
         if (xvalue == value) {
           ans[ii] = count + 1;
         } else {

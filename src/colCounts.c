@@ -1,28 +1,28 @@
 /***************************************************************************
  Public methods:
- SEXP rowCounts(SEXP x, SEXP value, SEXP naRm, SEXP hasNA)
+ SEXP colCounts(SEXP x, SEXP value, SEXP naRm, SEXP hasNA)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
 
-#define METHOD rowCounts
+#define METHOD colCounts
 
 #define X_TYPE 'i'
-#include "rowCounts_TYPE-template.h"
+#include "colCounts_TYPE-template.h"
 
 #define X_TYPE 'r'
-#include "rowCounts_TYPE-template.h"
+#include "colCounts_TYPE-template.h"
 
 #define X_TYPE 'l'
-#include "rowCounts_TYPE-template.h"
+#include "colCounts_TYPE-template.h"
 
 #undef METHOD
 
 
 
-SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
+SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   SEXP ans;
   int narm, hasna;
   R_xlen_t nrow, ncol;
@@ -67,16 +67,16 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
 
   /* Get dimensions of 'x'. */
 
-  /* R allocate a double vector of length 'nrow' */
-  PROTECT(ans = allocVector(INTSXP, nrow));
+  /* R allocate a double vector of length 'ncol' */
+  PROTECT(ans = allocVector(INTSXP, ncol));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowCounts_Real(REAL(x), nrow, ncol, asReal(value), narm, hasna, INTEGER(ans));
+    colCounts_Real(REAL(x), nrow, ncol, asReal(value), narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    rowCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
+    colCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
-    rowCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), narm, hasna, INTEGER(ans));
+    colCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), narm, hasna, INTEGER(ans));
   } else {
     error("Argument 'x' must be numeric.");
   }
@@ -84,11 +84,11 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   UNPROTECT(1);
 
   return(ans);
-} // rowCounts()
+} // colCounts()
 
 
 /***************************************************************************
  HISTORY:
- 2014-06-02 [HB]
-  o Created.
+ 2014-11-14 [HB]
+  o Created from rowCounts.c.
  **************************************************************************/
