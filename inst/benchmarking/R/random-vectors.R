@@ -1,8 +1,12 @@
-rvector <- function(n, mode=c("double", "integer"), range=c(-100,+100), naProb=0) {
+rvector <- function(n, mode=c("logical", "double", "integer"), range=c(-100,+100), naProb=0) {
   mode <- match.arg(mode)
-  x <- runif(n, min=range[1], max=range[2])
-  if (naProb > 0) x[sample(n, size=naProb*n)] <- NA_real_
+  if (mode == "logical") {
+    X <- sample(c(FALSE, TRUE), size=n, replace=TRUE)
+  } else {
+    x <- runif(n, min=range[1], max=range[2])
+  }
   storage.mode(x) <- mode
+  if (naProb > 0) x[sample(n, size=naProb*n)] <- NA
   x
 } # rvector()
 

@@ -28,8 +28,15 @@
   #define X_ABS(x) fabs(x)
   #define X_PSORT rPsort
   #define X_QSORT_I R_qsort_I
+#elif X_TYPE == 'l'
+  #ifndef METHOD_NAME
+    #define METHOD_NAME CONCAT_MACROS(METHOD, Logical)
+  #endif
+  #define X_C_TYPE int
+  #define X_IN_C LOGICAL
+  #define X_ISNAN(x) (x == NA_LOGICAL)
 #endif
- 
+
 
 /*
  Data type macros for result ('ans')
@@ -49,4 +56,9 @@
   #define ANS_NA NA_REAL
   #define ANS_C_TYPE double
   #define ANS_IN_C REAL
+#elif ANS_TYPE == 'l'
+  #define ANS_SXP LGLSXP
+  #define ANS_NA NA_LOGICAL
+  #define ANS_C_TYPE int
+  #define ANS_IN_C LOGICAL
 #endif

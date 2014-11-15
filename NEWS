@@ -1,6 +1,20 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.4 [2014-11-14]
+o Added support for vector input to some of the row- and column methods
+  as long as the "intended" matrix dimension is specified via argument
+  'dim'.  For instance, rowCounts(x, dim=c(nrow, ncol)) is the same
+  as rowCounts(matrix(x, nrow, ncol)), but more efficient since it
+  avoids creating/allocating a temporary matrix.  Currently the
+  following row- and column methods supports vectors as well:
+  (col|row)Counts(), (col|row)Anys(), (col|row)Alls().
+o SPEEDUP: (col|row)Counts(), (col|row)Anys(), (col|row)Alls() for
+  logical matrices is now also implemented in native code just
+  as for integer and double matrices.  Added more package tests
+  and benchmarks for these functions.
+
+
 Version: 0.11.3 [2014-11-11]
 o Turned sdDiff(),  madDiff(), varDiff(), weightedSd(), weightedVar()
   and weightedMad() into plain functions (were generic functions).
