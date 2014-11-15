@@ -22,6 +22,8 @@
 #   Returns a @numeric Nx(K-1) or (N-1)xK @matrix.
 # }
 #
+# @examples "../incl/rowDiffs.Rex"
+#
 # @author "HB"
 #
 # \seealso{
@@ -44,14 +46,19 @@ rowDiffs <- function(x, ...) {
 }
 
 colDiffs <- function(x, ...) {
-  x <- t(x);
-  x <- rowDiffs(x, ...);
-  x <- t(x);
-  x;
+  naValue <- NA;
+  storage.mode(naValue) <- storage.mode(x);
+  d <- matrix(naValue, nrow=nrow(x)-1L, ncol=ncol(x));
+  for (cc in seq(length=ncol(x))) {
+    d[,cc] <- diff(x[,cc], ...);
+  }
+  d;
 }
 
 ############################################################################
 # HISTORY:
+# 2014-11-15 [HB]
+# o SPEEDUP: Now colDiffs(x) no longer uses rowDiffs(t(x)).
 # 2008-03-26 [HB]
 # o Created.
 ############################################################################

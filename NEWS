@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.5 [2014-11-15]
+o SPEEDUP: Now colDiffs(x) no longer uses rowDiffs(t(x)).
+  Added package tests for (col|row)Diffs().
+
+
 Version: 0.11.4 [2014-11-14]
 o Added support for vector input to some of the row- and column methods
   as long as the "intended" matrix dimension is specified via argument
