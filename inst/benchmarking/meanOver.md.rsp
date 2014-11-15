@@ -98,15 +98,11 @@ stats <- microbenchmark(
 })%>
 ```
 
-<% benchmarkResults(stats, tags=c(dataLabel, subset)) %>
+<% benchmarkResults(stats, tags=c(mode, dataLabel, subset)) %>
 
 <% } # for (subset in ...) %>
 
 <% } # for (ii ...) %>
-
-
-<% benchmarkResults(stats, tags=c(dataLabel, subset)) %>
-
 
 <% } # for (mode ...) %>
 

@@ -64,7 +64,7 @@ stats <- microbenchmark(
 })%>
 ```
 
-<% benchmarkResults(stats, tags=dataLabel) %>
+<% benchmarkResults(stats, tags=c(mode, dataLabel)) %>
 
 <% } # for (ii ...) %>
 
