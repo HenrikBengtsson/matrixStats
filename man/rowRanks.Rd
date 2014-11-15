@@ -59,7 +59,6 @@
   \code{colRanks(x, preserveShape=TRUE)} than
   \code{t(colRanks(x, preserveShape=FALSE))}.
 
-  Currently, \code{colRanks(x)} is just \code{rowRanks(t(x))}.
   Any \code{\link[base]{names}} of \code{x} are ignored and absent in the result.
 }
 
