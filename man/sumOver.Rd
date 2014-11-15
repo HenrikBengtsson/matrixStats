@@ -76,7 +76,7 @@ stopifnot(identical(s1, s2))
 # Total gives integer overflow (coerce to numeric)
 s1 <- sum(as.numeric(x[1:2]))             # 2147483648
 s2 <- sumOver(as.numeric(x[1:2]))         # 2147483648
-s3 <- sumOver(x[1:2], mode="numeric")     # 2147483648
+s3 <- sumOver(x[1:2], mode="double")      # 2147483648
 stopifnot(identical(s1, s2))
 stopifnot(identical(s1, s3))
 
