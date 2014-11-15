@@ -20,7 +20,7 @@ for (kk in 1:K) {
   if ((kk %% 4) %in% c(3,0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size=1)
-    x[sample(length(x), size=nna)] <- as.double(NA)
+    x[sample(length(x), size=nna)] <- NA_real_
   }
 
   # Integer or double?

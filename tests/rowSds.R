@@ -8,7 +8,7 @@ for (addNA in c(FALSE, TRUE)) {
 
   x <- matrix(1:100, nrow=20, ncol=5)
   if (addNA) {
-    x[13:17,c(2,4)] <- as.double(NA)
+    x[13:17,c(2,4)] <- NA_real_
   }
 
   # Row/column ranges
@@ -27,7 +27,7 @@ for (addNA in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(as.double(NA), nrow=20, ncol=5)
+x <- matrix(NA_real_, nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
   suppressWarnings({

@@ -23,7 +23,7 @@ for (kk in 1:K) {
   if (hasNA) {
     cat("Adding NAs\n")
     nna <- sample(n, size=1)
-    naValues <- c(as.double(NA), NaN)
+    naValues <- c(NA_real_, NaN)
     x[sample(length(x), size=nna)] <- sample(naValues, size=nna, replace=TRUE)
   }
 
