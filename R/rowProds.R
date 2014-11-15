@@ -67,7 +67,6 @@ rowProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
   if (method == "expSumLog") {
     prod <- product
   } else if (method == "direct") {
-    prod <- prod
   } else {
     stop("Unknown value of argument 'method': ", method)
   }
@@ -94,7 +93,6 @@ colProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
   if (method == "expSumLog") {
     prod <- product
   } else if (method == "direct") {
-    prod <- prod
   } else {
     stop("Unknown value of argument 'method': ", method)
   }
