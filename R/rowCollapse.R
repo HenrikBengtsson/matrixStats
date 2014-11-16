@@ -44,16 +44,13 @@ setMethodS3("rowCollapse", "matrix", function(x, idxs, ...) {
   # Argument 'idxs':
   idxs <- rep(idxs, length.out=dim[1L])
 
-  # Calculate row and column offsets
-  colOffsets <- dim[1L] * 0:(dim[2L]-1L)
-  rowOffsets <- seq_len(dim[1L])
-
-  # Subset
-  colOffsets <- colOffsets[idxs]
+  # Columns of interest
+  cols <- 0:(dim[2L]-1L)
+  cols <- cols[idxs]
 
   # Calculate column-based indices
-  idxs <- rowOffsets + colOffsets
-  rowOffsets <- colOffsets <- NULL # Not needed anymore
+  idxs <- dim[1L] * cols + seq_len(dim[1L])
+  cols <- NULL # Not needed anymore
 
   x[idxs]
 })
@@ -64,16 +61,13 @@ setMethodS3("colCollapse", "matrix", function(x, idxs, ...) {
   # Argument 'idxs':
   idxs <- rep(idxs, length.out=dim[2L])
 
-  # Calculate row and column offsets
-  colOffsets <- dim[1L] * 0:(dim[2L]-1L)
-  rowOffsets <- seq_len(dim[1L])
-
-  # Subset
-  rowOffsets <- rowOffsets[idxs]
+  # Rows of interest
+  rows <- seq_len(dim[1L])
+  rows <- rows[idxs]
 
   # Calculate column-based indices
-  idxs <- rowOffsets + colOffsets
-  rowOffsets <- colOffsets <- NULL # Not needed anymore
+  idxs <- dim[1L] * 0:(dim[2L]-1L) + rows
+  rows <- NULL # Not needed anymore
 
   x[idxs]
 })
