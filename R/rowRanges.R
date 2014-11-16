@@ -254,18 +254,17 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
   min <- (is.element(1L, which));
   max <- (is.element(2L, which));
 
-  # Use the much faster rowOrderStats() if possible
+  # Use the much faster colOrderStats() if possible
   if (!anyMissing(x)) {
-    x <- t(x);
     xRange <- NULL;
     if (min) {
-      xRange <- c(xRange, rowOrderStats(x, which=1L));
+      xRange <- c(xRange, colOrderStats(x, which=1L));
     }
     if (max) {
-      xRange <- c(xRange, rowOrderStats(x, which=ncol(x)));
+      xRange <- c(xRange, colOrderStats(x, which=nrow(x)));
     }
     if (!drop || length(which) > 1L) {
-      dim(xRange) <- c(nrow(x), length(which));
+      dim(xRange) <- c(ncol(x), length(which));
     }
     return(xRange);
   }

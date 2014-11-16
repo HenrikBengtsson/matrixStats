@@ -14,29 +14,29 @@ for (addNA in c(FALSE, TRUE)) {
   # Row/column ranges
   for (na.rm in c(FALSE, TRUE)) {
     cat("na.rm=", na.rm, "\n", sep="")
+    r0 <- t(apply(x, MARGIN=1L, FUN=range, na.rm=na.rm))
     r1 <- rowRanges(x, na.rm=na.rm)
     r2 <- colRanges(t(x), na.rm=na.rm)
-    r3 <- t(apply(x, MARGIN=1, FUN=range, na.rm=na.rm))
     stopifnot(all.equal(r1, r2))
-    stopifnot(all.equal(r1, r3))
+    stopifnot(all.equal(r1, r0))
   }
 
   # Row/column extremes
   for (na.rm in c(FALSE, TRUE)) {
     cat("na.rm=", na.rm, "\n", sep="")
     # Min
+    m0 <- apply(x, MARGIN=1L, FUN=min, na.rm=na.rm)
     m1 <- rowMins(x, na.rm=na.rm)
     m2 <- colMins(t(x), na.rm=na.rm)
-    m3 <- apply(x, MARGIN=1, FUN=min, na.rm=na.rm)
     stopifnot(all.equal(m1, m2))
-    stopifnot(all.equal(m1, m3))
+    stopifnot(all.equal(m1, m0))
 
     # Max
+    m0 <- apply(x, MARGIN=1L, FUN=max, na.rm=na.rm)
     m1 <- rowMaxs(x, na.rm=na.rm)
     m2 <- colMaxs(t(x), na.rm=na.rm)
-    m3 <- apply(x, MARGIN=1, FUN=max, na.rm=na.rm)
     stopifnot(all.equal(m1, m2))
-    stopifnot(all.equal(m1, m3))
+    stopifnot(all.equal(m1, m0))
   }
 } # for (addNA ...)
 
@@ -47,13 +47,13 @@ for (addNA in c(FALSE, TRUE)) {
 x <- matrix(NA_real_, nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
+  suppressWarnings({
+    r0 <- t(apply(x, MARGIN=1L, FUN=range, na.rm=na.rm))
+  })
   r1 <- rowRanges(x, na.rm=na.rm)
   r2 <- colRanges(t(x), na.rm=na.rm)
-  suppressWarnings({
-    r3 <- t(apply(x, MARGIN=1, FUN=range, na.rm=na.rm))
-  })
   stopifnot(all.equal(r1, r2))
-  stopifnot(all.equal(r1, r3))
+  stopifnot(all.equal(r1, r0))
 }
 
 

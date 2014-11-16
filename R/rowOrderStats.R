@@ -31,7 +31,6 @@
 #   speed and memory.
 #   To avoid coercing to @doubles (and hence memory allocation), there
 #   is a unique implementation for @integer matrices.
-#   Currently, \code{colOrderStats(x)} is calling \code{rowOrderStats(t(x))}.
 # }
 #
 # \section{Missing values}{
