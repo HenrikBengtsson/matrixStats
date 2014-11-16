@@ -69,12 +69,14 @@ setGeneric("colOrderStats", function(x, which, ...) {
 })
 
 setMethod("colOrderStats", signature(x="matrix"), function(x, which, ...) {
-  rowOrderStats(t(x), which=which, ...);
+  .Call("colOrderStats", x, which, PACKAGE="matrixStats");
 })
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-16
+# o SPEEDUP: Now colOrderStats() also is implemented in native code.
 # 2008-03-25
 # o Added colOrderStats().
 # o Renamed from rowQuantiles() to rowOrderStats(), especially because it

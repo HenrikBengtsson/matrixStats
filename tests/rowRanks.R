@@ -1,17 +1,13 @@
 library("matrixStats")
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Consistency checks
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 set.seed(1)
-
+t0 <- Sys.time()
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 20
-for (kk in 1:K) {
+for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  dim <- sample(500:2000, size=2)
+  dim <- sample(300:600, size=2L)
   n <- prod(dim)
   x <- rnorm(n, sd=10)
   dim(x) <- dim
@@ -19,7 +15,7 @@ for (kk in 1:K) {
   # Add NAs?
   if ((kk %% 4) %in% c(3,0)) {
     cat("Adding NAs\n")
-    nna <- sample(n, size=1)
+    nna <- sample(n, size=1L)
     x[sample(length(x), size=nna)] <- NA_real_
   }
 
@@ -35,7 +31,7 @@ for (kk in 1:K) {
     cat(sprintf("ties.method=%s\n", ties))
     # rowRanks():
     y1 <- matrixStats::rowRanks(x, ties.method=ties)
-    y2 <- t(apply(x, MARGIN=1, FUN=rank, na.last="keep", ties.method=ties))
+    y2 <- t(apply(x, MARGIN=1L, FUN=rank, na.last="keep", ties.method=ties))
     stopifnot(identical(y1,y2))
 
     y3 <- matrixStats::colRanks(t(x), ties.method=ties)
@@ -43,10 +39,11 @@ for (kk in 1:K) {
 
     # colRanks():
     y1 <- matrixStats::colRanks(x, ties.method=ties)
-    y2 <- t(apply(x, MARGIN=2, FUN=rank, na.last="keep", ties.method=ties))
+    y2 <- t(apply(x, MARGIN=2L, FUN=rank, na.last="keep", ties.method=ties))
     stopifnot(identical(y1,y2))
 
     y3 <- matrixStats::rowRanks(t(x), ties.method=ties)
     stopifnot(identical(y1,y3))
   }
 } # for (kk ...)
+print(Sys.time()-t0)

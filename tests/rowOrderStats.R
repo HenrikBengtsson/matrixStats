@@ -3,24 +3,22 @@ library("stats")
 
 set.seed(1)
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Benchmarking
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Benchmarking:\n")
-
 K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 5 else 3
 
 # Simulate data in a matrix of any shape
 nrow <- 1000
-ncol <- 1000
+ncol <- 500
 x <- rnorm(nrow*ncol)
 dim(x) <- c(nrow, ncol)
 probs <- 0.3
 which <- round(probs*ncol)
 
-y0 <- apply(x, MARGIN=1, FUN=quantile, probs=probs, type=3)
+y0 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, type=3L)
 y1 <- rowOrderStats(x, which=which)
-stopifnot(all.equal(y0,y1))
+stopifnot(all.equal(y1,y0))
+y2 <- colOrderStats(t(x), which=which)
+stopifnot(all.equal(y2,y0))
+
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -39,7 +37,9 @@ for (kk in 1:K) {
   probs <- runif(1)
   which <- round(probs*ncol)
 
-  y0 <- apply(x, MARGIN=1, FUN=quantile, probs=probs, type=3)
+  y0 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, type=3L)
   y1 <- rowOrderStats(x, which=which)
-  stopifnot(all.equal(y0,y1))
+  stopifnot(all.equal(y1,y0))
+  y2 <- colOrderStats(t(x), which=which)
+  stopifnot(all.equal(y2,y0))
 } # for (kk in ...)

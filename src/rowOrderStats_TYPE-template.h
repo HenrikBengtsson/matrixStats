@@ -34,11 +34,11 @@
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t qq, X_C_TYPE *ans) {
   R_xlen_t ii, jj;
   R_xlen_t *colOffset;
-  X_C_TYPE *rowData;
+  X_C_TYPE *values;
 
-  /* R allocate memory for the 'rowData'.  This will be 
+  /* R allocate memory for the 'values'.  This will be 
      taken care of by the R garbage collector later on. */
-  rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
+  values = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
   /* Pre-calculate the column offsets */
   colOffset = (R_xlen_t *) R_alloc(ncol, sizeof(R_xlen_t));
@@ -47,15 +47,15 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t qq, X_C_TYP
 
   for (ii=0; ii < nrow; ii++) {
     for (jj=0; jj < ncol; jj++) 
-      rowData[jj] = x[ii+colOffset[jj]];
+      values[jj] = x[ii+colOffset[jj]];
 
     /* Sort vector of length 'ncol' up to position 'qq'. 
-       "...partial sorting: they permute x so that x[k] is in the
+       "...partial sorting: they permute x so that x[qq] is in the
        correct place with smaller values to the left, larger ones
        to the right." */
-    X_PSORT(rowData, ncol, qq);
+    X_PSORT(values, ncol, qq);
 
-    ans[ii] = rowData[qq];
+    ans[ii] = values[qq];
   }
 }
 

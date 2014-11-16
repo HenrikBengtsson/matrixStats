@@ -1,8 +1,8 @@
 /***************************************************************************
  Public methods:
- SEXP rowOrderStats(SEXP x, SEXP which)
+ SEXP colOrderStats(SEXP x, SEXP which)
 
- Authors: Henrik Bengtsson. Adopted from rowQ() by R. Gentleman.
+ Authors: Henrik Bengtsson
 
  To do: Add support for missing values.
 
@@ -11,19 +11,19 @@
 #include <Rdefines.h>
 #include "types.h"
 
-#define METHOD rowOrderStats
+#define METHOD colOrderStats
 
 #define X_TYPE 'i'
-#include "rowOrderStats_TYPE-template.h"
+#include "colOrderStats_TYPE-template.h"
 
 #define X_TYPE 'r'
-#include "rowOrderStats_TYPE-template.h"
+#include "colOrderStats_TYPE-template.h"
 
 #undef METHOD
 
 
 
-SEXP rowOrderStats(SEXP x, SEXP which) {
+SEXP colOrderStats(SEXP x, SEXP which) {
   SEXP dim, ans = NILSXP;
   R_xlen_t nrow, ncol, qq;
 
@@ -48,39 +48,29 @@ SEXP rowOrderStats(SEXP x, SEXP which) {
   qq = asInteger(which) - 1;
 
   /* Assert that 'qq' is a valid index */
-  if (qq < 0 || qq >= ncol) {
+  if (qq < 0 || qq >= nrow) {
     error("Argument 'which' is out of range.");
   }
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    PROTECT(ans = allocVector(REALSXP, nrow));
-    rowOrderStats_Real(REAL(x), nrow, ncol, qq, REAL(ans));
+    PROTECT(ans = allocVector(REALSXP, ncol));
+    colOrderStats_Real(REAL(x), nrow, ncol, qq, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
-    PROTECT(ans = allocVector(INTSXP, nrow));
-    rowOrderStats_Integer(INTEGER(x), nrow, ncol, qq, INTEGER(ans));
+    PROTECT(ans = allocVector(INTSXP, ncol));
+    colOrderStats_Integer(INTEGER(x), nrow, ncol, qq, INTEGER(ans));
     UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");
   }
 
   return(ans);
-} // rowOrderStats()
+} // colOrderStats()
 
 
 /***************************************************************************
  HISTORY:
- 2009-02-04 [HB]
-  o BUG FIX: For some errors in rowOrderStats(), the stack would not become
-    UNPROTECTED before calling error.
- 2008-03-25 [HB]
-  o Renamed from 'rowQuantiles' to 'rowOrderStats'.
- 2007-08-10 [HB]
-  o Removed arguments for NAs since rowOrderStats() still don't support it.
- 2005-11-24 [HB]
-  o Cool, it works and compiles nicely.
-  o Preallocate colOffset to speed up things even more.
-  o Added more comments and error checking.
-  o Adopted from rowQ() in Biobase of Bioconductor.
+ 2014-11-16 [HB]
+  o Created from rowOrderStats.c.
  **************************************************************************/
