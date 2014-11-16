@@ -39,23 +39,50 @@
 # @keyword utilities
 #*/###########################################################################
 setMethodS3("rowCollapse", "matrix", function(x, idxs, ...) {
-  dim <- dim(x);
-  colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)));
-  rowOffsets <- seq_len(dim[1L]);
-  idxs <- rep(idxs, length.out=dim[1L]);
-  colOffsets <- colOffsets[idxs];
-  idxs <- rowOffsets + colOffsets;
-  rowOffsets <- colOffsets <- NULL; # Not needed anymore
-  x[idxs];
+  dim <- dim(x)
+
+  # Argument 'idxs':
+  idxs <- rep(idxs, length.out=dim[1L])
+
+  # Calculate row and column offsets
+  colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)))
+  rowOffsets <- seq_len(dim[1L])
+
+  # Subset
+  colOffsets <- colOffsets[idxs]
+
+  # Calculate column-based indices
+  idxs <- rowOffsets + colOffsets
+  rowOffsets <- colOffsets <- NULL # Not needed anymore
+
+  x[idxs]
 })
 
 setMethodS3("colCollapse", "matrix", function(x, idxs, ...) {
-  rowCollapse(t(x), idxs=idxs, ...);
+  dim <- dim(x)
+
+  # Argument 'idxs':
+  idxs <- rep(idxs, length.out=dim[2L])
+
+  # Calculate row and column offsets
+  colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)))
+  rowOffsets <- seq_len(dim[1L])
+
+  # Subset
+  rowOffsets <- rowOffsets[idxs]
+
+  # Calculate column-based indices
+  idxs <- rowOffsets + colOffsets
+  rowOffsets <- colOffsets <- NULL # Not needed anymore
+
+  x[idxs]
 })
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-15
+# o SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).
 # 2014-06-02
 # o Made rowCollapse() an S3 method (was S4).
 # 2013-11-23

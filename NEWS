@@ -2,6 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.11.5 [2014-11-15]
+o SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).
+  Added package tests for (col|row)Collapse().
 o SPEEDUP: Now colDiffs(x) no longer uses rowDiffs(t(x)).
   Added package tests for (col|row)Diffs().
 o SPEEDUP: Package no longer utilizes match.arg() due to
