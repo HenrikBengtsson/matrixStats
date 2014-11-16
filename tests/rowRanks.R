@@ -1,7 +1,7 @@
 library("matrixStats")
 
 set.seed(1)
-t0 <- Sys.time()
+
 cat("Consistency checks:\n")
 for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep="")
@@ -46,4 +46,3 @@ for (kk in 1:4) {
     stopifnot(identical(y1,y3))
   }
 } # for (kk ...)
-print(Sys.time()-t0)

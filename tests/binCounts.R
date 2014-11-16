@@ -12,8 +12,8 @@ binCounts_hist <- function(x, bx, right=FALSE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Non-sorted and sorted positions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-nx <- 10e6  # Number of data points
-nb <- 200e3  # Number of bins
+nx <- 10e5  # Number of data points
+nb <- 20e3  # Number of bins
 
 # Uniformely distributed bins
 bx <- seq(from=0, to=1, length.out=nb+1L)
