@@ -45,7 +45,7 @@ setMethodS3("rowCollapse", "matrix", function(x, idxs, ...) {
   idxs <- rep(idxs, length.out=dim[1L])
 
   # Calculate row and column offsets
-  colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)))
+  colOffsets <- dim[1L] * 0:(dim[2L]-1L)
   rowOffsets <- seq_len(dim[1L])
 
   # Subset
@@ -65,7 +65,7 @@ setMethodS3("colCollapse", "matrix", function(x, idxs, ...) {
   idxs <- rep(idxs, length.out=dim[2L])
 
   # Calculate row and column offsets
-  colOffsets <- c(0L, cumsum(rep(dim[1L], times=dim[2L]-1L)))
+  colOffsets <- dim[1L] * 0:(dim[2L]-1L)
   rowOffsets <- seq_len(dim[1L])
 
   # Subset
@@ -82,6 +82,7 @@ setMethodS3("colCollapse", "matrix", function(x, idxs, ...) {
 ############################################################################
 # HISTORY:
 # 2014-11-15
+# o SPEEDUP: Made calculation of colOffsets faster.
 # o SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).
 # 2014-06-02
 # o Made rowCollapse() an S3 method (was S4).
