@@ -109,7 +109,7 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
     if (ties.method != "max") {
       stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method)
     }
-    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"))
+    return(.Call("rowRanks", x, 1L, PACKAGE="matrixStats"))
   }
 
   tiesMethod <- charmatch(ties.method, c("max", "average", "min"))
@@ -118,7 +118,7 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
   }
 
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, as.integer(tiesMethod), TRUE, PACKAGE="matrixStats")
+  .Call("rowRanksWithTies", x, tiesMethod, TRUE, PACKAGE="matrixStats")
 })
 
 
@@ -142,7 +142,7 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
       stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method)
     }
     x <- t(x)
-    return(.Call("rowRanks", x, as.integer(1L), PACKAGE="matrixStats"))
+    return(.Call("rowRanks", x, 1L, PACKAGE="matrixStats"))
   }
 
   tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch=0L)
@@ -151,7 +151,7 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
   }
 
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, as.integer(tiesMethod), FALSE, PACKAGE="matrixStats")
+  y <- .Call("rowRanksWithTies", x, tiesMethod, FALSE, PACKAGE="matrixStats")
   if (!preserveShape) y <- t(y)
   y
 })

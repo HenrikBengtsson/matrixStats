@@ -34,7 +34,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
   }
 
   for (ii=0; ii < nrow; ii++) {
-    nna = 0;	// number of NA/NaN in this row
+    nna = 0;	// number of missing values in this row
 
     // Set a minimum finite value for this row
     current_min = R_PosInf;
@@ -58,9 +58,7 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
 	rowData[jj] = tmp;
 
       I[jj] = jj;
-      // Rprintf("%d %d: %.2f ", ii, jj, x[ii+colOffset[jj]]);
     }
-    // Rprintf("\n");
 
     // We have rid 'rowData' of any NA/NaN, so this will sort it
     // increasing with any -Inf's first.
@@ -72,16 +70,15 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
     current_max = rowData[JJ];
     AA = ii + colOffset[I[JJ]];
     ans[AA] = (current_max == R_NegInf) ? NA_INTEGER : JJ+1-nna;
-    for (jj=ncol-2; jj>=nna; jj--) {
+    for (jj=ncol-2; jj >= nna; jj--) {
       AA = ii + colOffset[I[jj]];
-      // Rprintf("%d %d %d: %d %.2f %.2f ", ii, jj, AA, I[jj], rowData[jj], current_max);
       if (rowData[jj] != current_max) {
 	JJ = jj;
 	current_max = rowData[JJ];
       }
       ans[AA] = JJ+1-nna;
     }
-    for (jj=nna-1; jj>=0; jj--) {
+    for (jj=nna-1; jj >= 0; jj--) {
       AA = ii + colOffset[I[jj]];
       ans[AA] = NA_INTEGER;
     }

@@ -33,15 +33,13 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
   }
 
   for (ii=0; ii < nrow; ii++) {
-    nna = 0;	// number of NA's in this row
+    nna = 0;	// number of missing values in this row
     for (jj=0; jj < ncol; jj++) {
       rowData[jj] = x[ii+colOffset[jj]];
       if (X_ISNAN(rowData[jj]))
 	nna++;
       I[jj] = jj;
-      // Rprintf("%d %d: %d ", ii, jj, x[ii+colOffset[jj]]);
     }
-    // Rprintf("\n");
 
     // Sort 'rowData' increasing with any NA_integer_'s first:
     X_QSORT_I(rowData, I, 1, ncol);
@@ -54,7 +52,6 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, int *ans) {
     ans[AA] = X_ISNAN(current_max) ? NA_INTEGER : JJ+1-nna;
     for (jj=ncol-2; jj >= nna; jj--) {
       AA = ii + colOffset[I[jj]];
-      // Rprintf("%d %d %d: %d %d %d ", ii, jj, AA, I[jj], rowData[jj], current_max);
       if (rowData[jj] != current_max) {
 	JJ = jj;
 	current_max = rowData[JJ];
