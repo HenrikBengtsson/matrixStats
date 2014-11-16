@@ -2,7 +2,9 @@ Package: matrixStats
 ====================
 
 Version: 0.11.6 [2014-11-16]
-o SPEEDUP: Now colOrderStats() also is implemented in native code.
+o SPEEDUP: Now colOrderStats() also is implemented in native code,
+  which indirectly makes colMins(), colMaxs() and colRanges() faster.
+o SPEEDUP: colTabulates(x) no longer calls rowTabulates(t(x)).
 o CLEANUP: Argument 'flavor' of (col|row)Ranks() is now ignored.
 
 
