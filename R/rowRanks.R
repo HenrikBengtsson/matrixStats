@@ -100,16 +100,8 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
-  # Argument 'flavor'
-  flavor <- (list(...)$flavor)
-  flavor <- ifelse(is.null(flavor), "v2", flavor)
-
-
-  if (flavor == "v1") {
-    if (ties.method != "max") {
-      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method)
-    }
-    return(.Call("rowRanks", x, 1L, PACKAGE="matrixStats"))
+  if (is.element("flavor", names(list(...)))) {
+    .Deprecated(old="Argument 'flavor' of rowRanks()", package="matrixStats")
   }
 
   tiesMethod <- charmatch(ties.method, c("max", "average", "min"))
@@ -130,20 +122,12 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
-  # Argument 'flavor'
-  flavor <- (list(...)$flavor)
-  flavor <- ifelse(is.null(flavor), "v2", flavor)
+  if (is.element("flavor", names(list(...)))) {
+    .Deprecated(old="Argument 'flavor' of rowRanks()", package="matrixStats")
+  }
 
   # Argument 'preserveShape'
   preserveShape <- as.logical(preserveShape)
-
-  if (flavor == "v1") {
-    if (ties.method != "max") {
-      stop("Unsupported value of argument 'ties.method' for flavor=\"v1\": ", ties.method)
-    }
-    x <- t(x)
-    return(.Call("rowRanks", x, 1L, PACKAGE="matrixStats"))
-  }
 
   tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch=0L)
   if (tiesMethod == 0L) {
