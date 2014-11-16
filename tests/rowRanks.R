@@ -29,19 +29,24 @@ for (kk in 1:K) {
     storage.mode(x) <- "integer"
   }
 
-  # rowRanks():
-  y1 <- matrixStats::rowRanks(x)
-  y2 <- t(apply(x, MARGIN=1, FUN=rank, na.last="keep", ties.method="max"))
-  stopifnot(identical(y1,y2))
+  str(x)
 
-  y3 <- matrixStats::colRanks(t(x))
-  stopifnot(identical(y1,y3))
+  for (ties in c("max", "min", "average")) {
+    cat(sprintf("ties.method=%s\n", ties))
+    # rowRanks():
+    y1 <- matrixStats::rowRanks(x, ties.method=ties)
+    y2 <- t(apply(x, MARGIN=1, FUN=rank, na.last="keep", ties.method=ties))
+    stopifnot(identical(y1,y2))
 
-  # colRanks():
-  y1 <- matrixStats::colRanks(x)
-  y2 <- t(apply(x, MARGIN=2, FUN=rank, na.last="keep", ties.method="max"))
-  stopifnot(identical(y1,y2))
+    y3 <- matrixStats::colRanks(t(x), ties.method=ties)
+    stopifnot(identical(y1,y3))
 
-  y3 <- matrixStats::rowRanks(t(x))
-  stopifnot(identical(y1,y3))
+    # colRanks():
+    y1 <- matrixStats::colRanks(x, ties.method=ties)
+    y2 <- t(apply(x, MARGIN=2, FUN=rank, na.last="keep", ties.method=ties))
+    stopifnot(identical(y1,y2))
+
+    y3 <- matrixStats::rowRanks(t(x), ties.method=ties)
+    stopifnot(identical(y1,y3))
+  }
 } # for (kk ...)
