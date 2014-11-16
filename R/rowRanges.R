@@ -124,15 +124,16 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
 
   # Use the much faster rowOrderStats() if possible
   if (!anyMissing(x)) {
-    xRange <- NULL;
-    if (min) {
-      xRange <- c(xRange, rowOrderStats(x, which=1L))
+    if (identical(which, 1L)) {
+      what <- 0L
+    } else if (identical(which, 2L)) {
+      what <- 1L
+    } else {
+      what <- 2L;
     }
-    if (max) {
-      xRange <- c(xRange, rowOrderStats(x, which=ncol));
-    }
-    if (!drop || length(which) > 1L) {
-      dim(xRange) <- c(nrow(x), length(which));
+    xRange <- .Call("rowRanges", x, what, PACKAGE="matrixStats");
+    if (drop && what != 2L) {
+      dim(xRange) <- NULL;
     }
     return(xRange);
   }
@@ -256,15 +257,16 @@ colMaxs <- function(x, na.rm=FALSE, ...) {
 
   # Use the much faster colOrderStats() if possible
   if (!anyMissing(x)) {
-    xRange <- NULL;
-    if (min) {
-      xRange <- c(xRange, colOrderStats(x, which=1L));
+    if (identical(which, 1L)) {
+      what <- 0L
+    } else if (identical(which, 2L)) {
+      what <- 1L
+    } else {
+      what <- 2L;
     }
-    if (max) {
-      xRange <- c(xRange, colOrderStats(x, which=nrow(x)));
-    }
-    if (!drop || length(which) > 1L) {
-      dim(xRange) <- c(ncol(x), length(which));
+    xRange <- .Call("rowRanges", t(x), what, PACKAGE="matrixStats");
+    if (drop && what != 2L) {
+      dim(xRange) <- NULL;
     }
     return(xRange);
   }
