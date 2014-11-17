@@ -96,4 +96,6 @@ stopifnot(identical(s1, s2))
 \author{Henrik Bengtsson}
 
 
+
 \keyword{univar}
+\keyword{internal}

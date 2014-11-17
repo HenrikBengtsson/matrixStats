@@ -46,7 +46,8 @@
 #
 # @author
 #
-# @keyword "univar"
+# @keyword univar
+# @keyword internal
 #*/############################################################################
 sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

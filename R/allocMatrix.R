@@ -33,7 +33,8 @@
 #   See also @vector, @matrix and @array.
 # }
 #
-# @keyword "programming"
+# @keyword programming
+# @keyword internal
 #*/############################################################################
 allocVector <- function(length, value=0.0, ...) {
   length <- as.integer(length)

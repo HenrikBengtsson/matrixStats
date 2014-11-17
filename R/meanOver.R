@@ -48,7 +48,8 @@
 #
 # @author
 #
-# @keyword "univar"
+# @keyword univar
+# @keyword internal
 #*/############################################################################
 meanOver <- function(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

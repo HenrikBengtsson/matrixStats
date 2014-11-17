@@ -38,4 +38,4 @@ signTabulate(x, ...)
 \author{Henrik Bengtsson}
 
 
-\keyword{univar}
+\keyword{internal}

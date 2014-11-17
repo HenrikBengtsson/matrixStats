@@ -26,7 +26,7 @@
 #
 # @author "HB"
 #
-# @keyword "univar"
+# @keyword internal
 #*/############################################################################
 signTabulate <- function(x, ...) {
   res <- .Call("signTabulate", x, PACKAGE="matrixStats");

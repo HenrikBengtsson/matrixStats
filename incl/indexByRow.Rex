@@ -1,5 +1,5 @@
 dim <- c(5, 4)
-X <- matrix(NA, nrow=dim[1], ncol=dim[2])
+X <- matrix(NA_integer_, nrow=dim[1], ncol=dim[2])
 Y <- t(X)
 idxs <- seq(along=X)
 
@@ -8,7 +8,7 @@ X[idxs] <- idxs
 print(X)
 
 # Assign by rows
-Y[indexByRow(Y, idxs)] <- idxs
+Y[indexByRow(dim(Y), idxs)] <- idxs
 print(Y)
 
 stopifnot(X == t(Y))
