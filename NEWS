@@ -2,8 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.11.6 [2014-11-16]
-o SPEEDUP: Now rowMins(), rowMaxs() and rowRanges() are implemented
-  in native code providing a significant speedup.
+o SPEEDUP: Now (col|row)Mins(), (col|row)Maxs() and (col|row)Ranges()
+  are implemented in native code providing a significant speedup.
 o SPEEDUP: Now colOrderStats() also is implemented in native code,
   which indirectly makes colMins(), colMaxs() and colRanges() faster.
 o SPEEDUP: colTabulates(x) no longer calls rowTabulates(t(x)).
