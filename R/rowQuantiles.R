@@ -71,14 +71,41 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE) {
   q;
 } # rowQuantiles()
 
-colQuantiles <- function(x, ...) {
-  x <- t(x);
-  rowQuantiles(x, ...);
+colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), ..., drop=TRUE) {
+  naValue <- NA;
+  storage.mode(naValue) <- storage.mode(x);
+  ncol <- ncol(x);
+  q <- matrix(naValue, nrow=ncol, ncol=length(probs));
+  if (ncol > 0L) {
+    # In order to seq the column names
+    t <- quantile(x[,1L], probs=probs, ...);
+    colnames(q) <- names(t);
+    q[1L,] <- t;
+
+    if (ncol >= 2L) {
+      for (cc in 2:ncol) {
+        q[cc,] <- quantile(x[,cc], probs=probs, ...);
+      }
+    }
+  } else {
+    # Set the column names in case there are no rows
+    t <- quantile(0.0, probs=probs, ...);
+    colnames(q) <- names(t);
+  }
+
+  # Drop singleton dimensions?
+  if (drop) {
+    q <- drop(q);
+  }
+
+  q;
 }
 
 
 ############################################################################
 # HISTORY:
+# 2014-11-16 [HB]
+# o SPEEDUP: colQuantiles(x) is no longer using colQuantiles(t(x)).
 # 2013-07-29 [HB]
 # o DOCUMENTATION: The dimension of the return value was swapped
 #   in help("rowQuantiles").  Noticed by PL.

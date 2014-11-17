@@ -1,5 +1,9 @@
 library("matrixStats")
 
+rowQuantiles_R <- function(x, probs, na.rm=FALSE) {
+  t(apply(x, MARGIN=1L, FUN=quantile, probs=probs, na.rm=na.rm))
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Consistency checks
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -33,8 +37,12 @@ for (kk in 1:K) {
     storage.mode(x) <- "integer"
   }
 
+  str(x)
+
   # rowQuantiles():
-  y1 <- matrixStats::rowQuantiles(x, probs=probs, na.rm=hasNA)
-  y2 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, na.rm=hasNA)
-  stopifnot(all.equal(y1, t(y2)))
+  y0 <- rowQuantiles_R(x, probs=probs, na.rm=hasNA)
+  y1 <- rowQuantiles(x, probs=probs, na.rm=hasNA)
+  stopifnot(all.equal(y1, y0))
+  y2 <- colQuantiles(t(x), probs=probs, na.rm=hasNA)
+  stopifnot(all.equal(y2, y0))
 } # for (kk ...)
