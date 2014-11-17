@@ -15,6 +15,7 @@
   #define X_C_TYPE int
   #define X_IN_C INTEGER
   #define X_ISNAN(x) (x == NA_INTEGER)
+  #define X_ISNA(x) (x == NA_INTEGER)
   #define X_ABS(x) abs(x)
   #define X_PSORT iPsort
   #define X_QSORT_I R_qsort_int_I
@@ -24,7 +25,8 @@
   #endif
   #define X_C_TYPE double
   #define X_IN_C REAL
-  #define X_ISNAN(x) ISNAN(x)
+  #define X_ISNAN(x) ISNAN(x) /* NA or NaN */
+  #define X_ISNA(x) ISNA(x) /* NA only */
   #define X_ABS(x) fabs(x)
   #define X_PSORT rPsort
   #define X_QSORT_I R_qsort_I

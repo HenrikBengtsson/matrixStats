@@ -23,10 +23,13 @@
 
 
 
-SEXP rowRanges(SEXP x, SEXP what) {
-  SEXP dim, ans = NILSXP;
-  int what2;
-  R_xlen_t nrow, ncol;
+SEXP rowRanges(SEXP x, SEXP what, SEXP naRm, SEXP hasNA) {
+  SEXP dim, ans = NILSXP, ans2;
+  int *mins, *maxs;
+  double *mins2, *maxs2;
+  int *is_counted, all_counted = 0;
+  int what2, narm, hasna;
+  R_xlen_t nrow, ncol, ii;
 
   /* Argument 'x': */
   if (!isMatrix(x))
@@ -41,11 +44,24 @@ SEXP rowRanges(SEXP x, SEXP what) {
   if (what2 < 0 || what2 > 2)
     error("Invalid value of 'what': %d", what2);
 
+  /* Argument 'naRm': */
+  if (!isLogical(naRm))
+    error("Argument 'naRm' must be a single logical.");
+  if (length(naRm) != 1)
+    error("Argument 'naRm' must be a single logical.");
+  narm = asLogical(naRm);
+  if (narm != TRUE && narm != FALSE)
+    error("Argument 'naRm' must be either TRUE or FALSE.");
+
+  /* Argument 'hasNA': */
+  hasna = asLogical(hasNA);
 
   /* Get dimensions of 'x'. */
   dim = getAttrib(x, R_DimSymbol);
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
+
+  is_counted = (int *) R_alloc(nrow, sizeof(int));
 
   if (isReal(x)) {
     if (what2 == 2) {
@@ -53,7 +69,7 @@ SEXP rowRanges(SEXP x, SEXP what) {
     } else {
       PROTECT(ans = allocVector(REALSXP, nrow));
     }
-    rowRanges_Real(REAL(x), nrow, ncol, what2, REAL(ans));
+    rowRanges_Real(REAL(x), nrow, ncol, what2, narm, hasna, REAL(ans), is_counted);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     if (what2 == 2) {
@@ -61,8 +77,66 @@ SEXP rowRanges(SEXP x, SEXP what) {
     } else {
       PROTECT(ans = allocVector(INTSXP, nrow));
     }
-    rowRanges_Integer(INTEGER(x), nrow, ncol, what2, INTEGER(ans));
-    UNPROTECT(1);
+    rowRanges_Integer(INTEGER(x), nrow, ncol, what2, narm, hasna, INTEGER(ans), is_counted);
+
+    /* Any entries with zero non-missing values? */
+    all_counted = 1;
+    for (ii=0; ii < nrow; ii++) {
+      if (!is_counted[ii]) {
+        all_counted = 0;
+        break;
+      }
+    }
+
+    if (!all_counted) {
+      /* Handle zero non-missing values */
+      /* Instead of return INTSXP, we must return REALSXP (to hold -Inf, and Inf) */
+      if (what2 == 0) {
+        PROTECT(ans2 = allocVector(REALSXP, nrow));
+        mins = INTEGER(ans);
+        mins2 = REAL(ans2);
+        for (ii=0; ii < nrow; ii++) {
+          if (is_counted[ii]) {
+            mins2[ii] = (double)mins[ii];
+	  } else {
+            mins2[ii] = R_PosInf;
+	  }
+  	}
+        UNPROTECT(1); /* ans2 */
+      } else if (what2 == 1) {
+        PROTECT(ans2 = allocVector(REALSXP, nrow));
+        maxs = INTEGER(ans);
+        maxs2 = REAL(ans2);
+        for (ii=0; ii < nrow; ii++) {
+          if (is_counted[ii]) {
+            maxs2[ii] = (double)maxs[ii];
+	  } else {
+            maxs2[ii] = R_NegInf;
+	  }
+  	}
+        UNPROTECT(1); /* ans2 */
+      } else if (what2 == 2) {
+        PROTECT(ans2 = allocMatrix(REALSXP, nrow, 2));
+        mins = INTEGER(ans);
+        maxs = &INTEGER(ans)[nrow];
+        mins2 = REAL(ans2);
+        maxs2 = &REAL(ans2)[nrow];
+        for (ii=0; ii < nrow; ii++) {
+          if (is_counted[ii]) {
+            mins2[ii] = (double)mins[ii];
+            maxs2[ii] = (double)maxs[ii];
+	  } else {
+            mins2[ii] = R_PosInf;
+            maxs2[ii] = R_NegInf;
+	  }
+  	}
+        UNPROTECT(1); /* ans2 */
+      }
+
+      ans = ans2;
+    }
+
+    UNPROTECT(1); /* ans */
   } else {
     error("Argument 'x' must be numeric.");
   }

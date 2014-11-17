@@ -6,6 +6,7 @@
 #undef X_C_TYPE
 #undef X_IN_C
 #undef X_ISNAN
+#undef X_ISNA
 #undef X_ABS
 #undef X_PSORT
 #undef X_QSORT_I
