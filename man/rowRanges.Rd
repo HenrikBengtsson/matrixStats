@@ -26,10 +26,10 @@
 \usage{
   rowRanges(x, na.rm=FALSE, ...)
   colRanges(x, na.rm=FALSE, ...)
-  rowMins(x, na.rm=FALSE, drop=TRUE, ...)
-  colMins(x, na.rm=FALSE, drop=TRUE, ...)
-  rowMaxs(x, na.rm=FALSE, drop=TRUE, ...)
-  colMaxs(x, na.rm=FALSE, drop=TRUE, ...)
+  rowMins(x, na.rm=FALSE, ...)
+  colMins(x, na.rm=FALSE, ...)
+  rowMaxs(x, na.rm=FALSE, ...)
+  colMaxs(x, na.rm=FALSE, ...)
 }
 
 \arguments{

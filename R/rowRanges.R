@@ -59,16 +59,12 @@ setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   .Call("rowRanges", x, 2L, na.rm, TRUE, PACKAGE="matrixStats");
 })
 
-rowMins <- function(x, na.rm=FALSE, drop=TRUE, ...) {
-  xRange <- .Call("rowRanges", x, 0L, na.rm, TRUE, PACKAGE="matrixStats");
-  if (!drop) dim(xRange) <- c(length(xRange), 1L);
-  xRange;
+rowMins <- function(x, na.rm=FALSE, ...) {
+  .Call("rowRanges", x, 0L, na.rm, TRUE, PACKAGE="matrixStats");
 }
 
-rowMaxs <- function(x, na.rm=FALSE, drop=TRUE, ...) {
-  xRange <- .Call("rowRanges", x, 1L, na.rm, TRUE, PACKAGE="matrixStats");
-  if (!drop) dim(xRange) <- c(length(xRange), 1L);
-  xRange;
+rowMaxs <- function(x, na.rm=FALSE, ...) {
+  .Call("rowRanges", x, 1L, na.rm, TRUE, PACKAGE="matrixStats");
 }
 
 
@@ -81,16 +77,12 @@ setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, ...) {
   .Call("colRanges", x, 2L, na.rm, TRUE, PACKAGE="matrixStats");
 })
 
-colMins <- function(x, na.rm=FALSE, drop=TRUE, ...) {
-  xRange <- .Call("colRanges", x, 0L, na.rm, TRUE, PACKAGE="matrixStats");
-  if (!drop) dim(xRange) <- c(length(xRange), 1L);
-  xRange;
+colMins <- function(x, na.rm=FALSE, ...) {
+  .Call("colRanges", x, 0L, na.rm, TRUE, PACKAGE="matrixStats");
 }
 
-colMaxs <- function(x, na.rm=FALSE, drop=TRUE, ...) {
-  xRange <- .Call("colRanges", x, 1L, na.rm, TRUE, PACKAGE="matrixStats");
-  if (!drop) dim(xRange) <- c(length(xRange), 1L);
-  xRange;
+colMaxs <- function(x, na.rm=FALSE, ...) {
+  .Call("colRanges", x, 1L, na.rm, TRUE, PACKAGE="matrixStats");
 }
 
 
