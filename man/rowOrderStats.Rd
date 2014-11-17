@@ -40,7 +40,6 @@
   speed and memory.
   To avoid coercing to \code{\link[base]{double}}s (and hence memory allocation), there
   is a unique implementation for \code{\link[base]{integer}} matrices.
-  Currently, \code{colOrderStats(x)} is calling \code{rowOrderStats(t(x))}.
 }
 
 \section{Missing values}{

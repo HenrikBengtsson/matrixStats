@@ -10,16 +10,12 @@
 \alias{rowRanges}
 
 \alias{colRanges}
+\alias{rowMins}
+\alias{rowMaxs}
+\alias{colMins}
+\alias{colMaxs}
 \alias{rowRanges,matrix-method}
 \alias{colRanges,matrix-method}
-\alias{rowMins}
-\alias{rowMins,matrix-method}
-\alias{rowMaxs}
-\alias{rowMaxs,matrix-method}
-\alias{colMins}
-\alias{colMins,matrix-method}
-\alias{colMaxs}
-\alias{colMaxs,matrix-method}
 
 \title{Gets the range of values in each row (column) of a matrix}
 
@@ -30,10 +26,10 @@
 \usage{
   rowRanges(x, na.rm=FALSE, ...)
   colRanges(x, na.rm=FALSE, ...)
-  rowMins(x, na.rm=FALSE, ...)
-  colMins(x, na.rm=FALSE, ...)
-  rowMaxs(x, na.rm=FALSE, ...)
-  colMaxs(x, na.rm=FALSE, ...)
+  rowMins(x, na.rm=FALSE, drop=TRUE, ...)
+  colMins(x, na.rm=FALSE, drop=TRUE, ...)
+  rowMaxs(x, na.rm=FALSE, drop=TRUE, ...)
+  colMaxs(x, na.rm=FALSE, drop=TRUE, ...)
 }
 
 \arguments{
@@ -50,11 +46,6 @@
 
   \code{rowMins()/rowMaxs()} (\code{colMins()/colMaxs()}) returns a
   \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K).
-}
-
-\details{
-  The \code{rowRanges()} function uses the much faster \code{\link{rowOrderStats}}()
-  if there are no missing values.
 }
 
 \author{Henrik Bengtsson}
