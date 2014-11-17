@@ -7,7 +7,7 @@ o SPEEDUP: Now (col|row)Mins(), (col|row)Maxs() and (col|row)Ranges()
 o SPEEDUP: Now colOrderStats() also is implemented in native code,
   which indirectly makes colMins(), colMaxs() and colRanges() faster.
 o SPEEDUP: colTabulates(x) no longer uses rowTabulates(t(x)).
-o SPEEDUP: colQuantiles(x) no longer uses colQuantiles(t(x)).
+o SPEEDUP: colQuantiles(x) no longer uses rowQuantiles(t(x)).
 o CLEANUP: Argument 'flavor' of (col|row)Ranks() is now ignored.
 
 
