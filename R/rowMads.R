@@ -1,26 +1,45 @@
-rowMads <- function(x, centers=rowMedians(x,...), constant=1.4826, ...) {
-  x <- x - centers;
-  x <- abs(x);
-  x <- rowMedians(x, ...);
-  x <- constant*x;
-  x;
+rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
+  if (is.null(centers)) {
+    na.rm <- as.logical(na.rm)
+    constant = as.numeric(constant)
+    hasNAs <- TRUE
+    byRow <- TRUE
+    x <- .Call("rowMads", x, constant, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+  } else {
+    x <- x - centers
+    x <- abs(x)
+    x <- rowMedians(x, na.rm=na.rm, ...)
+    x <- constant*x
+  }
+  x
 } # rowMads()
 
 
-colMads <- function(x, centers=colMedians(x,...), constant=1.4826, ...) {
-  for (cc in seq(length=ncol(x))) {
-    x[,cc] <- x[,cc] - centers[cc];
+colMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
+  if (is.null(centers)) {
+    na.rm <- as.logical(na.rm)
+    constant = as.numeric(constant)
+    hasNAs <- TRUE
+    byRow <- FALSE
+    x <- .Call("rowMads", x, constant, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+  } else {
+    for (cc in seq(length=ncol(x))) {
+      x[,cc] <- x[,cc] - centers[cc]
+    }
+    x <- abs(x)
+    x <- colMedians(x, na.rm=na.rm, ...)
+    x <- constant*x
   }
-  x <- abs(x);
-  x <- colMedians(x, ...);
-  x <- constant*x;
-  x;
+  x
 } # colMads()
+
 
 ############################################################################
 # HISTORY:
+# 2014-11-17 [HB]
+# o SPEEDUP: Implemented (col|row)Mads(..., centers=NULL) in native code.
 # 2012-03-19 [HJ]
-# o Changed default value of centers to row/colMedians(x,...) 
+# o Changed default value of centers to row/colMedians(x,...)
 # 2012-03-04 [HC]
 # o BUG FIX: colMads() would return the incorrect estimates. This bug
 #   was introduced in matrixStats v0.4.0 (2011-11-11).
@@ -32,6 +51,6 @@ colMads <- function(x, centers=colMedians(x,...), constant=1.4826, ...) {
 # o Now rowMads() expands 'center' to a matrix of the same dimensions as
 #   'x'.  This is not actually necessary, but it enforces that 'x' must be
 #   a matrix.
-# 2008-03-26 [HB] 
+# 2008-03-26 [HB]
 # o Created.
 ############################################################################

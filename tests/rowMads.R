@@ -1,5 +1,12 @@
 library("matrixStats")
 
+rowMads_R <- function(x, na.rm=FALSE) {
+  suppressWarnings({
+    apply(x, MARGIN=1L, FUN=mad, na.rm=na.rm)
+  })
+}
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -14,7 +21,7 @@ for (addNA in c(FALSE, TRUE)) {
   # Row/column ranges
   for (na.rm in c(FALSE, TRUE)) {
     cat("na.rm=", na.rm, "\n", sep="")
-    r0 <- apply(x, MARGIN=1, FUN=mad, na.rm=na.rm)
+    r0 <- rowMads_R(x, na.rm=na.rm)
     r1 <- rowMads(x, na.rm=na.rm)
     r2 <- colMads(t(x), na.rm=na.rm)
     stopifnot(all.equal(r1, r0))
@@ -30,12 +37,8 @@ for (addNA in c(FALSE, TRUE)) {
 x <- matrix(NA_real_, nrow=20, ncol=5)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
-  suppressWarnings({
-    r0 <- apply(x, MARGIN=1, FUN=mad, na.rm=na.rm)
-  })
-  if (na.rm) {
-    r0[is.na(r0)] <- NaN
-  }
+  r0 <- rowMads_R(x, na.rm=na.rm)
+  if (na.rm) r0[is.na(r0)] <- NaN
   r1 <- rowMads(x, na.rm=na.rm)
   r2 <- colMads(t(x), na.rm=na.rm)
   stopifnot(all.equal(r1, r0))
@@ -50,9 +53,7 @@ for (na.rm in c(FALSE, TRUE)) {
 x <- matrix(0, nrow=1, ncol=1)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
-  suppressWarnings({
-    r0 <- apply(x, MARGIN=1, FUN=mad, na.rm=na.rm)
-  })
+  r0 <- rowMads_R(x, na.rm=na.rm)
   r1 <- rowMads(x, na.rm=na.rm)
   r2 <- colMads(t(x), na.rm=na.rm)
   stopifnot(all.equal(r1, r2))
@@ -67,9 +68,7 @@ for (na.rm in c(FALSE, TRUE)) {
 x <- matrix(double(0), nrow=0, ncol=0)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
-  suppressWarnings({
-    r0 <- apply(x, MARGIN=1, FUN=mad, na.rm=na.rm)
-  })
+  r0 <- rowMads_R(x, na.rm=na.rm)
   r1 <- rowMads(x, na.rm=na.rm)
   r2 <- colMads(t(x), na.rm=na.rm)
   stopifnot(all.equal(r1, r2))

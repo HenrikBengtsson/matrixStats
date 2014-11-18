@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.7 [2014-11-17]
+o SPEEDUP: Implemented (col|row)Mads() in native code.
+
+
 Version: 0.11.6 [2014-11-16]
 o SPEEDUP: Now (col|row)Mins(), (col|row)Maxs() and (col|row)Ranges()
   are implemented in native code providing a significant speedup.
