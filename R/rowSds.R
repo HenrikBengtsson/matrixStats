@@ -25,6 +25,7 @@
 #  \item{centers}{A optional @numeric @vector of length N (K) with centers.
 #     By default, they are calculated using @see "rowMedians".}
 #  \item{constant}{A scale factor.  See @see "stats::mad" for details.}
+#  \item{na.rm}{If @TRUE, missing values are removed first, otherwise not.}
 #  \item{...}{Additional arguments passed to @see "rowVars" and
 #     @see "rowMedians", respectively.}
 # }

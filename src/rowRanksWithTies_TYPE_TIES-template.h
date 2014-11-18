@@ -64,25 +64,25 @@
 
 void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, ANS_C_TYPE *ans) {
   ANS_C_TYPE rank;
-  X_C_TYPE *rowData, current, tmp;
+  X_C_TYPE *values, current, tmp;
   int ii, jj, kk;
   int *I;
   int lastFinite, firstTie, aboveTie;
-  int vecLen, nVec;
+  int nvalues, nVec;
 
   if (byrow) {
-    vecLen = ncol;
+    nvalues = ncol;
     nVec = nrow;
   } else {
-    vecLen = nrow;
+    nvalues = nrow;
     nVec = ncol;
   }
 
-  rowData = (X_C_TYPE *) R_alloc(vecLen, sizeof(X_C_TYPE));
-  I = (int *) R_alloc(vecLen, sizeof(int));
+  values = (X_C_TYPE *) R_alloc(nvalues, sizeof(X_C_TYPE));
+  I = (int *) R_alloc(nvalues, sizeof(int));
 
   for (ii=0; ii < nVec; ii++) {
-    lastFinite = vecLen-1;
+    lastFinite = nvalues-1;
 
     /* Put the NA/NaN elements at the end of the vector and update
        the index vector appropriately.
@@ -91,21 +91,21 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, ANS_C_TYPE *ans) {
        there are missing values. /PL (2012-12-14)
     */
     for (jj = 0; jj <= lastFinite; jj++) {
-      tmp = x[ INDEX_OF(jj, ii, vecLen, nVec) ];
+      tmp = x[ INDEX_OF(jj, ii, nvalues, nVec) ];
       if (X_ISNAN(tmp)) {
-        while (lastFinite > jj && X_ISNAN(x[ INDEX_OF(lastFinite, ii, vecLen, nVec) ])) {
+        while (lastFinite > jj && X_ISNAN(x[ INDEX_OF(lastFinite, ii, nvalues, nVec) ])) {
           I[lastFinite] = lastFinite;
           lastFinite--;
         }
 
         I[lastFinite] = jj;
         I[jj] = lastFinite;
-        rowData[ jj ] = x[ INDEX_OF(lastFinite, ii, vecLen, nVec) ];
-        rowData[ lastFinite ] = tmp;
+        values[ jj ] = x[ INDEX_OF(lastFinite, ii, nvalues, nVec) ];
+        values[ lastFinite ] = tmp;
         lastFinite--;
       } else {
         I[jj] = jj;
-        rowData[ jj ] = tmp;
+        values[ jj ] = tmp;
       }
     } /* for (jj ...) */
 
@@ -113,16 +113,16 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, ANS_C_TYPE *ans) {
    /*
 
     Rprintf("Swapped vector:\n");
-    for (jj=0; jj < vecLen; jj++) 
+    for (jj=0; jj < nvalues; jj++) 
     { 
-      Rprintf(" %8.4f,", rowData[jj]);
-      if (((jj+1) % 5==0) || (jj==vecLen-1)) Rprintf("\n");
+      Rprintf(" %8.4f,", values[jj]);
+      if (((jj+1) % 5==0) || (jj==nvalues-1)) Rprintf("\n");
     }
     Rprintf("Index vector:\n");
-    for (jj=0; jj<vecLen; jj++) 
+    for (jj=0; jj<nvalues; jj++) 
     { 
       Rprintf(" %d,", I[jj]);
-      if (((jj+1) % 5==0) || (jj==vecLen-1)) Rprintf("\n");
+      if (((jj+1) % 5==0) || (jj==nvalues-1)) Rprintf("\n");
     }
     */
     
@@ -130,24 +130,24 @@ void METHOD_NAME(X_C_TYPE *x, int nrow, int ncol, int byrow, ANS_C_TYPE *ans) {
     // This will sort the data in increasing order and use the I vector to keep track of the original
     // indices. it only makes sense to do sort if there are at least 2 finite values.
     //
-    if (lastFinite > 0) X_QSORT_I(rowData, I, 1, lastFinite + 1);
+    if (lastFinite > 0) X_QSORT_I(values, I, 1, lastFinite + 1);
 
     // Calculate the ranks. 
     for (jj=0; jj <= lastFinite;) {
       firstTie = jj;
-      current = rowData[jj];
-      while ((jj <= lastFinite) && (rowData[jj] == current)) jj++;
+      current = values[jj];
+      while ((jj <= lastFinite) && (values[jj] == current)) jj++;
       aboveTie = jj;
       // Depending on rank method, get maximum, average, or minimum rank
       rank = RANK(firstTie, aboveTie);
       for (kk=firstTie; kk < aboveTie; kk++) {
-        ans[ INDEX_OF(I[kk], ii, vecLen, nVec) ] = rank;
+        ans[ INDEX_OF(I[kk], ii, nvalues, nVec) ] = rank;
       }
     }
 
     // At this point jj = lastFinite + 1, no need to re-initialize again.
-    for (; jj < vecLen; jj++) {
-      ans[ INDEX_OF(I[jj], ii, vecLen, nVec) ] = ANS_NA;
+    for (; jj < nvalues; jj++) {
+      ans[ INDEX_OF(I[jj], ii, nvalues, nVec) ] = ANS_NA;
     }
 
     // Rprintf("\n");

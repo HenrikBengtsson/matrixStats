@@ -33,11 +33,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   int isOdd;
   R_xlen_t ii, jj, kk, qq;
   R_xlen_t *colOffset;
-  X_C_TYPE *rowData, value;
+  X_C_TYPE *values, value;
 
-  /* R allocate memory for the 'rowData'.  This will be 
+  /* R allocate memory for the 'values'.  This will be 
      taken care of by the R garbage collector later on. */
-  rowData = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
+  values = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
@@ -84,7 +84,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
             break;
           }
         } else {
-          rowData[kk] = value;
+          values[kk] = value;
           kk = kk + 1;
         }
       }
@@ -102,8 +102,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   
         /* Permute x[0:kk-1] so that x[qq] is in the correct 
            place with smaller values to the left, ... */
-        X_PSORT(rowData, kk, qq+1);
-        value = rowData[qq+1];
+        X_PSORT(values, kk, qq+1);
+        value = values[qq+1];
 
         if (isOdd == TRUE) {
           ans[ii] = (double)value;
@@ -111,11 +111,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
           if (narm == TRUE || !X_ISNAN(value)) {
             /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
                place with smaller values to the left, ... */
-            X_PSORT(rowData, qq+1, qq);
-            if (X_ISNAN(rowData[qq]))
+            X_PSORT(values, qq+1, qq);
+            if (X_ISNAN(values[qq]))
               ans[ii] = R_NaReal;
             else
-              ans[ii] = ((double)(rowData[qq] + value))/2;
+              ans[ii] = ((double)(values[qq] + value))/2;
           } else {
             ans[ii] = (double)value;
           }
@@ -130,20 +130,20 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for (jj=0; jj < ncol; jj++)
-        rowData[jj] = x[rowIdx+colOffset[jj]]; //HJ
+        values[jj] = x[rowIdx+colOffset[jj]]; //HJ
   
       /* Permute x[0:ncol-1] so that x[qq] is in the correct 
          place with smaller values to the left, ... */
-      X_PSORT(rowData, ncol, qq+1);
-      value = rowData[qq+1];
+      X_PSORT(values, ncol, qq+1);
+      value = values[qq+1];
 
       if (isOdd == TRUE) {
         ans[ii] = (double)value;
       } else {
         /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
            place with smaller values to the left, ... */
-        X_PSORT(rowData, qq+1, qq);
-        ans[ii] = (double)((rowData[qq] + value))/2;
+        X_PSORT(values, qq+1, qq);
+        ans[ii] = (double)((values[qq] + value))/2;
       }
 
     }
