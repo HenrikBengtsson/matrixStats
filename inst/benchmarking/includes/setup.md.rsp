@@ -16,7 +16,11 @@ R.utils::use("R.utils, R.devices (>= 2.11.0), knitr, ggplot2")
 devOptions("png", width=390)
 options("withCapture/newline"=FALSE)
 options(deparse.cutoff=100)
-kable <- function(...) knitr::kable(..., format="markdown")
+kable <- function(...) {
+  t <- knitr::kable(..., format="markdown")
+  print(t)
+}
+
 
 # BACKWARD COMPATIBILITY
 if (R.devices$version < "2.12.0") {
