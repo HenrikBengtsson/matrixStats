@@ -34,7 +34,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   int isOdd;
   R_xlen_t ii, jj, kk, qq;
   R_xlen_t *colOffset;
-  X_C_TYPE *values, value;
+  X_C_TYPE *values, value, mu;
   double *values_d, value_d, mu_d;
 
   /* R allocate memory for the 'values'.  This will be
@@ -116,35 +116,77 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
 
         /* Calculate mu and sigma */
         if (isOdd == TRUE) {
-          mu_d = (double)value;
+          /* Since there are an odd number of values, then we
+             also know that 'mu' is one of the values in 'x',
+             which in turn mean we don't have to coerce integers
+             to doubles, if 'x' is an integer. Simple benchmarking
+             shows that it significantly faster to avoid coercion. */
+          mu = value;
+
+          /* (a) Subtract mu and absolute value, i.e. x <- |x-mu| */
+          for (jj=0; jj < kk; jj++) {
+            value = (values[jj] - mu);
+            values[jj] =  abs(value);
+          }
+
+          /* (b) Calculate median of |x-mu| */
+          /* Permute x[0:kk-1] so that x[qq] is in the correct
+             place with smaller values to the left, ... */
+          X_PSORT(values, kk, qq+1);
+          value = values[qq+1];
+
+          ans[ii] = scale * (double)value;
         } else {
+          /* Here we have to coerce to doubles since 'mu' is an average. */
           /* Permute x[0:qq-2] so that x[qq-1] is in the correct
              place with smaller values to the left, ... */
           X_PSORT(values, qq+1, qq);
+#if X_TYPE == 'i'
+          /* If the difference between two integers is an even number, then
+             their means is also an integer, and then we can avoid coercion
+             to double also here.  This should happen roughly half the
+             time we end up here which is worth optimizing for.  Simple
+             benchmarking show a significant difference in speed, particular
+             for the column-based version. */
+          if ((values[qq] - value) % 2 == 0) {
+            /* No need to coerce */
+            mu = (values[qq] + value)/2;
+
+            /* (a) Subtract mu and absolute value, i.e. x <- |x-mu| */
+            for (jj=0; jj < kk; jj++) {
+              value = (values[jj] - mu);
+              values[jj] =  abs(value);
+            }
+
+            /* (b) Calculate median of |x-mu| */
+            /* Permute x[0:kk-1] so that x[qq] is in the correct
+               place with smaller values to the left, ... */
+            X_PSORT(values, kk, qq+1);
+            X_PSORT(values, qq+1, qq);
+
+            ans[ii] = scale * ((double)values[qq] + (double)values[qq+1])/2;
+
+            /* Done, continue to next vector */
+            continue;
+	  }
+#endif
+
           mu_d = ((double)values[qq] + (double)value)/2;
-        }
 
-        /* (a) Subtract mu and square, i.e. x <- (x-mu)^2 */
-        for (jj=0; jj < kk; jj++) {
-          value_d = ((double)values[jj] - mu_d);
-          value_d = fabs(value_d);
-          values_d[jj] =  fabs(value_d);
-        }
+          /* (a) Subtract mu and square, i.e. x <- (x-mu)^2 */
+          for (jj=0; jj < kk; jj++) {
+            value_d = ((double)values[jj] - mu_d);
+            values_d[jj] =  fabs(value_d);
+          }
 
-        /* (b) Calculate median */
-        /* Permute x[0:kk-1] so that x[qq] is in the correct
-           place with smaller values to the left, ... */
-        rPsort(values_d, kk, qq+1);
-        value_d = values_d[qq+1];
-
-        if (isOdd == TRUE) {
-          ans[ii] = scale * value_d;
-        } else {
-          /* Permute x[0:qq-2] so that x[qq-1] is in the correct
-             place with smaller values to the left, ... */
+          /* (b) Calculate median */
+          /* Permute x[0:kk-1] so that x[qq-1] and x[qq] are in the
+             correct places with smaller values to the left, ... */
+          rPsort(values_d, kk, qq+1);
           rPsort(values_d, qq+1, qq);
-          ans[ii] = scale * (values_d[qq] + value_d)/2;
-        }
+
+          ans[ii] = scale * (values_d[qq] + values_d[qq+1])/2;
+	}
       } /* if (kk == 0) */
     } /* for (ii ...) */
   } else {

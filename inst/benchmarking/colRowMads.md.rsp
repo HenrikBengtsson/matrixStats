@@ -28,31 +28,34 @@ colMads_R <- function(x, na.rm=FALSE) {
 }
 %>
 
-## Data
+
+<% for (mode in c("integer", "double")) { %>
+
+## Data type "<%=mode%>"
+
+### Data
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="double")
+data <- rmatrices(mode=mode)
 })%>
 ```
 
-## Results
+### Results
 
 <% for (dataLabel in names(data)) { %>
-<% message(dataLabel) %>
-### <%=dataLabel%> matrix
+<% mprintf("%s: %s\n", mode, dataLabel)  %>
+#### <%=dataLabel%> <%=mode%> matrix
 
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
-truth <- apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE)
 gc()
 
 colStats <- microbenchmark(
  colMads     = colMads(X, na.rm=FALSE),
  "apply+mad" = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE),
- unit = "ms",
- check = function(x) all.equal(x, truth)
+ unit = "ms"
 )
 
 X <- t(X)
@@ -66,7 +69,9 @@ rowStats <- microbenchmark(
 })%>
 ```
 
-<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+<% crBenchmarkResults(colStats, rowStats, tags=c(mode, dataLabel)) %>
+
+<% } # for (mode ...) %>
 
 <% } # for (dataLabel ...) %>
 
@@ -76,6 +81,6 @@ rowStats <- microbenchmark(
 
 <%---------------------------------------------------------------------------
 HISTORY:
-2014-06-09
+2014-11-17
 o Created.
 ---------------------------------------------------------------------------%>
