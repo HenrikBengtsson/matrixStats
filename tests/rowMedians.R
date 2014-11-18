@@ -180,7 +180,7 @@ stopifnot(all.equal(y1,y0))
 set.seed(1)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 20
+K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 10
 for (kk in 1:K) {
   cat("Random test #", kk, "\n", sep="")
 

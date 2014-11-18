@@ -93,6 +93,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
         }
       } /* for (jj ...) */
 
+      /* Note that 'values' will never contain NA/NaNs */
+
       if (kk == 0) {
         ans[ii] = NA_REAL;
       } else if (kk == 1) {
@@ -114,17 +116,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
         if (isOdd == TRUE) {
           mu = (double)value;
         } else {
-          if (narm == TRUE || !X_ISNAN(value)) {
-            /* Permute x[0:qq-2] so that x[qq-1] is in the correct
-               place with smaller values to the left, ... */
-            X_PSORT(values, qq+1, qq);
-            if (X_ISNAN(values[qq]))
-              mu = R_NaReal;
-            else
-              mu = ((double)values[qq] + value)/2;
-          } else {
-            mu = (double)value;
-          }
+          /* Permute x[0:qq-2] so that x[qq-1] is in the correct
+             place with smaller values to the left, ... */
+          X_PSORT(values, qq+1, qq);
+          mu = ((double)values[qq] + value)/2;
         }
 
         if (X_ISNAN(mu)) {
@@ -134,8 +129,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           /* (a) Subtract mu and square, i.e. x <- (x-mu)^2 */
           for (jj=0; jj < kk; jj++) {
             tmp_d = ((double)values[jj] - mu);
-            tmp_d = abs(tmp_d);
-            values_d[jj] =  tmp_d;
+            values_d[jj] =  abs(tmp_d);
           }
 
           /* (b) Calculate median */
@@ -147,17 +141,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           if (isOdd == TRUE) {
             ans[ii] = scale * (double)tmp_d;
           } else {
-            if (narm == TRUE || !X_ISNAN(tmp_d)) {
-              /* Permute x[0:qq-2] so that x[qq-1] is in the correct
-                 place with smaller values to the left, ... */
-              X_PSORT(values, qq+1, qq);
-              if (X_ISNAN(values[qq]))
-                ans[ii] = R_NaReal;
-              else
-                ans[ii] = scale * ((double)values[qq] + tmp_d)/2;
-            } else {
-              ans[ii] = scale * (double)tmp_d;
-            }
+            /* Permute x[0:qq-2] so that x[qq-1] is in the correct
+               place with smaller values to the left, ... */
+            X_PSORT(values, qq+1, qq);
+            ans[ii] = scale * ((double)values[qq] + tmp_d)/2;
           }
  	} /* if (X_ISNAN(mu)) */
       } /* if (kk == 0) */

@@ -89,6 +89,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
         }
       }
 
+      /* Note that 'values' will never contain NA/NaNs */
+
       if (kk == 0) {
         ans[ii] = R_NaN;
       } else if (kk == -1) {
@@ -108,17 +110,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
         if (isOdd == TRUE) {
           ans[ii] = (double)value;
         } else {
-          if (narm == TRUE || !X_ISNAN(value)) {
-            /* Permute x[0:qq-2] so that x[qq-1] is in the correct
-               place with smaller values to the left, ... */
-            X_PSORT(values, qq+1, qq);
-            if (X_ISNAN(values[qq]))
-              ans[ii] = R_NaReal;
-            else
-              ans[ii] = ((double)values[qq] + value)/2;
-          } else {
-            ans[ii] = (double)value;
-          }
+          /* Permute x[0:qq-2] so that x[qq-1] is in the correct
+             place with smaller values to the left, ... */
+          X_PSORT(values, qq+1, qq);
+          ans[ii] = ((double)values[qq] + value)/2;
         }
       }
     }
