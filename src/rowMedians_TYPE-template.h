@@ -7,7 +7,7 @@
   void rowMedians_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD: the name of the resulting function
@@ -18,7 +18,7 @@
   Template by Henrik Bengtsson.
 
  Copyright: Henrik Bengtsson, 2007-2013
- ***********************************************************************/ 
+ ***********************************************************************/
 #include <R_ext/Memory.h>
 #include <Rmath.h>
 #include "types.h"
@@ -26,7 +26,7 @@
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
  */
-#include "templates-types.h" 
+#include "templates-types.h"
 
 
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans) {
@@ -35,7 +35,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   R_xlen_t *colOffset;
   X_C_TYPE *values, value;
 
-  /* R allocate memory for the 'values'.  This will be 
+  /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
   values = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
 
@@ -59,10 +59,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
 
   // HJ begin
   if (byrow) {
-    for (jj=0; jj < ncol; jj++) 
+    for (jj=0; jj < ncol; jj++)
       colOffset[jj] = (R_xlen_t)jj*nrow;
   } else {
-    for (jj=0; jj < ncol; jj++) 
+    for (jj=0; jj < ncol; jj++)
       colOffset[jj] = (R_xlen_t)jj;
   }
   // HJ end
@@ -70,7 +70,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   if (hasna == TRUE) {
     for (ii=0; ii < nrow; ii++) {
       if (ii % 1000 == 0)
-        R_CheckUserInterrupt(); 
+        R_CheckUserInterrupt();
 
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
@@ -88,7 +88,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
           kk = kk + 1;
         }
       }
-  
+
       if (kk == 0) {
         ans[ii] = R_NaN;
       } else if (kk == -1) {
@@ -99,8 +99,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
           isOdd = (kk % 2 == 1);
           qq = (R_xlen_t)(kk/2) - 1;
         }
-  
-        /* Permute x[0:kk-1] so that x[qq] is in the correct 
+
+        /* Permute x[0:kk-1] so that x[qq] is in the correct
            place with smaller values to the left, ... */
         X_PSORT(values, kk, qq+1);
         value = values[qq+1];
@@ -109,13 +109,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
           ans[ii] = (double)value;
         } else {
           if (narm == TRUE || !X_ISNAN(value)) {
-            /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
+            /* Permute x[0:qq-2] so that x[qq-1] is in the correct
                place with smaller values to the left, ... */
             X_PSORT(values, qq+1, qq);
             if (X_ISNAN(values[qq]))
               ans[ii] = R_NaReal;
             else
-              ans[ii] = ((double)(values[qq] + value))/2;
+              ans[ii] = ((double)values[qq] + value)/2;
           } else {
             ans[ii] = (double)value;
           }
@@ -125,14 +125,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   } else {
     for (ii=0; ii < nrow; ii++) {
       if (ii % 1000 == 0)
-        R_CheckUserInterrupt(); 
+        R_CheckUserInterrupt();
 
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for (jj=0; jj < ncol; jj++)
         values[jj] = x[rowIdx+colOffset[jj]]; //HJ
-  
-      /* Permute x[0:ncol-1] so that x[qq] is in the correct 
+
+      /* Permute x[0:ncol-1] so that x[qq] is in the correct
          place with smaller values to the left, ... */
       X_PSORT(values, ncol, qq+1);
       value = values[qq+1];
@@ -140,10 +140,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
       if (isOdd == TRUE) {
         ans[ii] = (double)value;
       } else {
-        /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
+        /* Permute x[0:qq-2] so that x[qq-1] is in the correct
            place with smaller values to the left, ... */
         X_PSORT(values, qq+1, qq);
-        ans[ii] = (double)((values[qq] + value))/2;
+        ans[ii] = ((double)values[qq] + value)/2;
       }
 
     }
@@ -151,7 +151,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
 }
 
 /* Undo template macros */
-#include "templates-types_undef.h" 
+#include "templates-types_undef.h"
 
 
 /***************************************************************************
@@ -159,12 +159,12 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
  2014-11-06 [HB]
   o CLEANUP: Moving away from R data types in low-level C functions.
  2014-11-01 [HB]
-  o SPEEDUP: Now using 'ansp = REAL(ans)' once and then assigning to 
+  o SPEEDUP: Now using 'ansp = REAL(ans)' once and then assigning to
     'ansp' instead of to 'REAL(ans)'.
  2013-04-23 [HB]
   o BUG FIX: The integer template of rowMedians_<Integer|Real>() would
     not handle ties properly.  This was because ties were calculated as
-    '(double)((rowData[qq] + value)/2)' instead of 
+    '(double)((rowData[qq] + value)/2)' instead of
     '((double)(rowData[qq] + value))/2'.
  2013-01-13 [HB]
   o Merged rowMedians_Integer() and rowMedians_Read() into template

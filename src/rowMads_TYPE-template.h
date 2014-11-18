@@ -7,7 +7,7 @@
   void rowMads_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD: the name of the resulting function
@@ -18,7 +18,7 @@
   Template by Henrik Bengtsson.
 
  Copyright: Henrik Bengtsson, 2007-2013
- ***********************************************************************/ 
+ ***********************************************************************/
 #include <R_ext/Memory.h>
 #include <Rmath.h>
 #include "types.h"
@@ -27,7 +27,7 @@
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
  */
-#include "templates-types.h" 
+#include "templates-types.h"
 
 
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int narm, int hasna, int byrow, double *ans) {
@@ -37,7 +37,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   X_C_TYPE *values, value;
   double *values_d, mu, tmp_d;
 
-  /* R allocate memory for the 'values'.  This will be 
+  /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
   values   = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
   values_d = (double *) R_alloc(ncol, sizeof(double));
@@ -62,10 +62,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
 
   // HJ begin
   if (byrow) {
-    for (jj=0; jj < ncol; jj++) 
+    for (jj=0; jj < ncol; jj++)
       colOffset[jj] = (R_xlen_t)jj*nrow;
   } else {
-    for (jj=0; jj < ncol; jj++) 
+    for (jj=0; jj < ncol; jj++)
       colOffset[jj] = (R_xlen_t)jj;
   }
   // HJ end
@@ -74,7 +74,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   if (hasna == TRUE) {
     for (ii=0; ii < nrow; ii++) {
       if (ii % 1000 == 0)
-        R_CheckUserInterrupt(); 
+        R_CheckUserInterrupt();
 
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
@@ -92,7 +92,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           kk = kk + 1;
         }
       } /* for (jj ...) */
-  
+
       if (kk == 0) {
         ans[ii] = NA_REAL;
       } else if (kk == 1) {
@@ -105,8 +105,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           isOdd = (kk % 2 == 1);
           qq = (R_xlen_t)(kk/2) - 1;
         }
-  
-        /* Permute x[0:kk-1] so that x[qq] is in the correct 
+
+        /* Permute x[0:kk-1] so that x[qq] is in the correct
            place with smaller values to the left, ... */
         X_PSORT(values, kk, qq+1);
         value = values[qq+1];
@@ -115,13 +115,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           mu = (double)value;
         } else {
           if (narm == TRUE || !X_ISNAN(value)) {
-            /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
+            /* Permute x[0:qq-2] so that x[qq-1] is in the correct
                place with smaller values to the left, ... */
             X_PSORT(values, qq+1, qq);
             if (X_ISNAN(values[qq]))
               mu = R_NaReal;
             else
-              mu = ((double)(values[qq] + value))/2;
+              mu = ((double)values[qq] + value)/2;
           } else {
             mu = (double)value;
           }
@@ -139,7 +139,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           }
 
           /* (b) Calculate median */
-          /* Permute x[0:kk-1] so that x[qq] is in the correct 
+          /* Permute x[0:kk-1] so that x[qq] is in the correct
              place with smaller values to the left, ... */
           rPsort(values_d, kk, qq+1);
           tmp_d = values_d[qq+1];
@@ -148,13 +148,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
             ans[ii] = scale * (double)tmp_d;
           } else {
             if (narm == TRUE || !X_ISNAN(tmp_d)) {
-              /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
+              /* Permute x[0:qq-2] so that x[qq-1] is in the correct
                  place with smaller values to the left, ... */
               X_PSORT(values, qq+1, qq);
               if (X_ISNAN(values[qq]))
                 ans[ii] = R_NaReal;
               else
-                ans[ii] = scale * ((double)(values[qq] + tmp_d))/2;
+                ans[ii] = scale * ((double)values[qq] + tmp_d)/2;
             } else {
               ans[ii] = scale * (double)tmp_d;
             }
@@ -165,14 +165,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   } else {
     for (ii=0; ii < nrow; ii++) {
       if (ii % 1000 == 0)
-        R_CheckUserInterrupt(); 
+        R_CheckUserInterrupt();
 
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for (jj=0; jj < ncol; jj++)
         values[jj] = x[rowIdx+colOffset[jj]]; //HJ
-  
-      /* Permute x[0:ncol-1] so that x[qq] is in the correct 
+
+      /* Permute x[0:ncol-1] so that x[qq] is in the correct
          place with smaller values to the left, ... */
       X_PSORT(values, ncol, qq+1);
       value = values[qq+1];
@@ -180,10 +180,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
       if (isOdd == TRUE) {
         ans[ii] = (double)value;
       } else {
-        /* Permute x[0:qq-2] so that x[qq-1] is in the correct 
+        /* Permute x[0:qq-2] so that x[qq-1] is in the correct
            place with smaller values to the left, ... */
         X_PSORT(values, qq+1, qq);
-        ans[ii] = (double)((values[qq] + value))/2;
+        ans[ii] = ((double)values[qq] + value)/2;
       }
 
     } /* for (ii ...) */
@@ -191,7 +191,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
 }
 
 /* Undo template macros */
-#include "templates-types_undef.h" 
+#include "templates-types_undef.h"
 
 
 /***************************************************************************
