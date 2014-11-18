@@ -113,7 +113,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
           /* Permute x[0:qq-2] so that x[qq-1] is in the correct
              place with smaller values to the left, ... */
           X_PSORT(values, qq+1, qq);
-          ans[ii] = ((double)values[qq] + value)/2;
+          ans[ii] = ((double)values[qq] + (double)value)/2;
         }
       }
     }
@@ -138,7 +138,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
         /* Permute x[0:qq-2] so that x[qq-1] is in the correct
            place with smaller values to the left, ... */
         X_PSORT(values, qq+1, qq);
-        ans[ii] = ((double)values[qq] + value)/2;
+        ans[ii] = ((double)values[qq] + (double)value)/2;
       }
 
     }

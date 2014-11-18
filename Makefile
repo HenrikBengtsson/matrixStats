@@ -178,7 +178,7 @@ build_fast: $(PKG_FILES)
 	$(MKDIR) $(R_OUTDIR)
 	$(RM) $@
 	$(CD) $(R_OUTDIR);\
-	$(R) $(R_NO_INIT) CMD build --no-build-vignettes --no-manual --no-resave-data $(R_BUILD_OPTS) $(PKG_DIR)
+	$(R) $(R_NO_INIT) CMD build --keep-empty-dirs --no-build-vignettes --no-manual --no-resave-data --compact-vignettes="no" $(R_BUILD_OPTS) $(PKG_DIR)
 
 build: $(R_OUTDIR)/$(PKG_TARBALL)
 

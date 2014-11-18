@@ -5,7 +5,7 @@
 <% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-06-09"%>
+<%@meta date="2014-11-18"%>
 
 <%@include file="${header}"%>
 
@@ -18,6 +18,15 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 
 * apply() + mad()
 
+<%
+rowMads_R <- function(x, na.rm=FALSE) {
+ apply(x, MARGIN=1L, FUN=mad, na.rm=na.rm)
+}
+
+colMads_R <- function(x, na.rm=FALSE) {
+ apply(x, MARGIN=2L, FUN=mad, na.rm=na.rm)
+}
+%>
 
 ## Data
 ```r
@@ -33,16 +42,17 @@ data <- rmatrices(mode="double")
 <% message(dataLabel) %>
 ### <%=dataLabel%> matrix
 
-
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
+truth <- apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE)
 gc()
 
 colStats <- microbenchmark(
  colMads     = colMads(X, na.rm=FALSE),
  "apply+mad" = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE),
- unit = "ms"
+ unit = "ms",
+ check = function(x) all.equal(x, truth)
 )
 
 X <- t(X)

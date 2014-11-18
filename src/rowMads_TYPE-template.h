@@ -22,7 +22,7 @@
 #include <R_ext/Memory.h>
 #include <Rmath.h>
 #include "types.h"
-#include <stdlib.h> /* abs() */
+#include <stdlib.h> /* abs() and fabs() */
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
@@ -35,7 +35,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   R_xlen_t ii, jj, kk, qq;
   R_xlen_t *colOffset;
   X_C_TYPE *values, value;
-  double *values_d, mu, tmp_d;
+  double *values_d, value_d, mu_d;
 
   /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
@@ -113,40 +113,38 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
         X_PSORT(values, kk, qq+1);
         value = values[qq+1];
 
+
+        /* Calculate mu and sigma */
         if (isOdd == TRUE) {
-          mu = (double)value;
+          mu_d = (double)value;
         } else {
           /* Permute x[0:qq-2] so that x[qq-1] is in the correct
              place with smaller values to the left, ... */
           X_PSORT(values, qq+1, qq);
-          mu = ((double)values[qq] + value)/2;
+          mu_d = ((double)values[qq] + (double)value)/2;
         }
 
-        if (X_ISNAN(mu)) {
-          ans[ii] = R_NaReal;
+        /* (a) Subtract mu and square, i.e. x <- (x-mu)^2 */
+        for (jj=0; jj < kk; jj++) {
+          value_d = ((double)values[jj] - mu_d);
+          value_d = fabs(value_d);
+          values_d[jj] =  fabs(value_d);
+        }
+
+        /* (b) Calculate median */
+        /* Permute x[0:kk-1] so that x[qq] is in the correct
+           place with smaller values to the left, ... */
+        rPsort(values_d, kk, qq+1);
+        value_d = values_d[qq+1];
+
+        if (isOdd == TRUE) {
+          ans[ii] = scale * value_d;
         } else {
-          /* Calculate the spread */
-          /* (a) Subtract mu and square, i.e. x <- (x-mu)^2 */
-          for (jj=0; jj < kk; jj++) {
-            tmp_d = ((double)values[jj] - mu);
-            values_d[jj] =  abs(tmp_d);
-          }
-
-          /* (b) Calculate median */
-          /* Permute x[0:kk-1] so that x[qq] is in the correct
+          /* Permute x[0:qq-2] so that x[qq-1] is in the correct
              place with smaller values to the left, ... */
-          rPsort(values_d, kk, qq+1);
-          tmp_d = values_d[qq+1];
-
-          if (isOdd == TRUE) {
-            ans[ii] = scale * (double)tmp_d;
-          } else {
-            /* Permute x[0:qq-2] so that x[qq-1] is in the correct
-               place with smaller values to the left, ... */
-            X_PSORT(values, qq+1, qq);
-            ans[ii] = scale * ((double)values[qq] + tmp_d)/2;
-          }
- 	} /* if (X_ISNAN(mu)) */
+          rPsort(values_d, qq+1, qq);
+          ans[ii] = scale * (values_d[qq] + value_d)/2;
+        }
       } /* if (kk == 0) */
     } /* for (ii ...) */
   } else {
