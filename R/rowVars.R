@@ -42,6 +42,14 @@
 # @keyword univar
 #*/###########################################################################
 rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
+  if (is.null(center)) {
+    na.rm <- as.logical(na.rm)
+    hasNAs <- TRUE
+    byRow <- TRUE
+    sigma2 <- .Call("rowVars", x, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+    return(sigma2)
+  }
+
   ncol <- ncol(x);
 
   # Nothing to do?
@@ -86,6 +94,14 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
 
 colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
+  if (is.null(center)) {
+    na.rm <- as.logical(na.rm)
+    hasNAs <- TRUE
+    byRow <- FALSE
+    sigma2 <- .Call("rowVars", x, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+    return(sigma2)
+  }
+
   nrow <- nrow(x);
 
   # Nothing to do?

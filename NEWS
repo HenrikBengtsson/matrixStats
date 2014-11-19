@@ -2,7 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.11.7 [2014-11-18]
-o SPEEDUP: Implemented (col|row)Mads() in native code.
+o SPEEDUP: Implemented (col|row)Mads(), (col|row)Sds() and
+  (col|row)Vars() in native code.
 o BUG FIX: (col|row)Medians(x) when 'x' is integer would give
   invalid median values in case (a) it was calculated as the mean
   of two values ("ties"), and (b) the sum of those values where

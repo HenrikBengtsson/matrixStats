@@ -3,8 +3,8 @@
   void rowMads_<Integer|Real>(...)
 
  GENERATES:
-  void rowMads_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
-  void rowMads_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
+  void rowMads_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int narm, int hasna, int byrow, double *ans)
+  void rowMads_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int narm, int hasna, int byrow, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the
