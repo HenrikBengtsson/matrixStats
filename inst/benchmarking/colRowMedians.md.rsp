@@ -64,7 +64,7 @@ rowStats <- microbenchmark(
 
 <% } # for (dataLabel ...) %>
 
-<% } # for (dataLabel ...) %>
+<% } # for (mode ...) %>
 
 <%@include file="${footer}"%>
 

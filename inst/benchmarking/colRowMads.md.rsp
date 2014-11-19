@@ -71,9 +71,9 @@ rowStats <- microbenchmark(
 
 <% crBenchmarkResults(colStats, rowStats, tags=c(mode, dataLabel)) %>
 
-<% } # for (mode ...) %>
-
 <% } # for (dataLabel ...) %>
+
+<% } # for (mode ...) %>
 
 
 <%@include file="${footer}"%>
