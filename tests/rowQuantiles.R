@@ -4,6 +4,17 @@ rowQuantiles_R <- function(x, probs, na.rm=FALSE) {
   t(apply(x, MARGIN=1L, FUN=quantile, probs=probs, na.rm=na.rm))
 }
 
+
+# Intial small test
+x <- matrix(1:100, nrow=10, ncol=10)
+probs <- c(0,0.5,1)
+q0 <- rowQuantiles_R(x, probs=probs)
+print(q0)
+q1 <- rowQuantiles(x, probs=probs)
+print(q1)
+stopifnot(all.equal(q1, q0))
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Consistency checks
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
