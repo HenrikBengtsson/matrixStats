@@ -1,6 +1,11 @@
 library("matrixStats")
 library("stats")
 
+rowOrderStats_R <- function(x, probs) {
+  apply(x, MARGIN=1L, FUN=quantile, probs=probs, type=3L)
+} # rowOrderStats_R()
+
+
 set.seed(1)
 
 K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 5 else 3
@@ -13,7 +18,7 @@ dim(x) <- c(nrow, ncol)
 probs <- 0.3
 which <- round(probs*ncol)
 
-y0 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, type=3L)
+y0 <- rowOrderStats_R(x, probs=probs)
 y1 <- rowOrderStats(x, which=which)
 stopifnot(all.equal(y1,y0))
 y2 <- colOrderStats(t(x), which=which)
@@ -37,7 +42,7 @@ for (kk in 1:K) {
   probs <- runif(1)
   which <- round(probs*ncol)
 
-  y0 <- apply(x, MARGIN=1L, FUN=quantile, probs=probs, type=3L)
+  y0 <- rowOrderStats_R(x, probs=probs)
   y1 <- rowOrderStats(x, which=which)
   stopifnot(all.equal(y1,y0))
   y2 <- colOrderStats(t(x), which=which)
