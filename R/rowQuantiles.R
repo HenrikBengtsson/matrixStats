@@ -70,6 +70,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 
       xp <- apply(x, MARGIN=1L, FUN=sort, partial=partial)
       q <- apply(xp, MARGIN=2L, FUN=.subset, idxs_lo)
+      if (is.null(dim(q))) dim(q) <- c(1L, length(q))
 
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
@@ -104,10 +105,10 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   # Add names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100*probs)
-
   # Drop singleton dimensions?
   if (drop) {
     q <- drop(q)
+    str(q)
   }
 
   q
