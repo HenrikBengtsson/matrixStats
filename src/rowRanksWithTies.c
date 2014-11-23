@@ -101,7 +101,7 @@
  * tiesMethod: 1: maximum, 2: average, 3:minimum
  * The returned rank is a REAL matrix to accomodate average ranks
  */
-SEXP rowRanksWithTies(SEXP x, SEXP tiesMethod, SEXP byRow) {
+SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
   int tiesmethod, byrow;
   SEXP dim, ans = NILSXP;
   int nrow, ncol;

@@ -109,8 +109,9 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
+  dim <- dim(x)
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, tiesMethod, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanksWithTies", x, dim, tiesMethod, TRUE, PACKAGE="matrixStats")
 })
 
 
@@ -134,8 +135,9 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
+  dim <- dim(x)
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, tiesMethod, FALSE, PACKAGE="matrixStats")
+  y <- .Call("rowRanksWithTies", x, dim, tiesMethod, FALSE, PACKAGE="matrixStats")
   if (!preserveShape) y <- t(y)
   y
 })

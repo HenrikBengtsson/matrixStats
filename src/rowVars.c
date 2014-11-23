@@ -21,7 +21,7 @@
 #undef METHOD 
 
 
-SEXP rowVars(SEXP x, SEXP naRm, SEXP hasNA, SEXP byRow) {
+SEXP rowVars(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
   SEXP dim, ans;
   R_xlen_t nrow, ncol;

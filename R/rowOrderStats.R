@@ -59,7 +59,8 @@ setGeneric("rowOrderStats", function(x, which, ...) {
 })
 
 setMethod("rowOrderStats", signature(x="matrix"), function(x, which, ...) {
-  .Call("rowOrderStats", x, which, PACKAGE="matrixStats");
+  dim <- dim(x)
+  .Call("rowOrderStats", x, dim, which, PACKAGE="matrixStats");
 })
 
 
@@ -68,7 +69,8 @@ setGeneric("colOrderStats", function(x, which, ...) {
 })
 
 setMethod("colOrderStats", signature(x="matrix"), function(x, which, ...) {
-  .Call("colOrderStats", x, which, PACKAGE="matrixStats");
+  dim <- dim(x)
+  .Call("colOrderStats", x, dim, which, PACKAGE="matrixStats");
 })
 
 

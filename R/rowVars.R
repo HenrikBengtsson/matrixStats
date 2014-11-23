@@ -43,10 +43,11 @@
 #*/###########################################################################
 rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
   if (is.null(center)) {
+    dim <- dim(x)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
     byRow <- TRUE
-    sigma2 <- .Call("rowVars", x, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+    sigma2 <- .Call("rowVars", x, dim, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
     return(sigma2)
   }
 
@@ -95,10 +96,11 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 
 colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
   if (is.null(center)) {
+    dim <- dim(x)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
     byRow <- FALSE
-    sigma2 <- .Call("rowVars", x, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+    sigma2 <- .Call("rowVars", x, dim, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
     return(sigma2)
   }
 

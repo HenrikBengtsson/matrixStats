@@ -23,7 +23,7 @@
 
 
 
-SEXP rowOrderStats(SEXP x, SEXP which) {
+SEXP rowOrderStats(SEXP x, SEXP dim, SEXP which) {
   SEXP dim, ans = NILSXP;
   R_xlen_t nrow, ncol, qq;
 

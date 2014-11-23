@@ -21,7 +21,7 @@
 
 
 
-SEXP rowRanges(SEXP x, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP rowRanges(SEXP x, SEXP dim, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP dim, ans = NILSXP, ans2;
   int *mins, *maxs;
   double *mins2, *maxs2;
