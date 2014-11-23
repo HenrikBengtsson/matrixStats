@@ -45,16 +45,10 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP what, SEXP naRm, SEXP hasNA) {
     error("Invalid value of 'what': %d", what2);
 
   /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-  narm = asLogical(naRm);
-  if (narm != TRUE && narm != FALSE)
-    error("Argument 'naRm' must be either TRUE or FALSE.");
+  narm = asLogicalNoNA(naRm, "na.rm");
 
   /* Argument 'hasNA': */
-  hasna = asLogical(hasNA);
+  hasna = asLogicalNoNA(hasNA, "hasNA");
 
   is_counted = (int *) R_alloc(nrow, sizeof(int));
 

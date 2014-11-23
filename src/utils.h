@@ -40,3 +40,20 @@ inline void assertArgMatrix(SEXP x, SEXP dim, int type) {
     error("Argument 'dim' does not match length of argument 'x': %g * %g != %g", nrow, ncol, (double)xlength(x));
   }
 } /* assertArgMatrix() */ 
+
+
+
+inline int asLogicalNoNA(SEXP x, char *label) {
+  int value;
+
+  if (!isLogical(x))
+    error("Argument '%s' must be a logical.", label);
+  if (length(x) != 1)
+    error("Argument '%s' must be a single value.", label);
+  value = asLogical(x);
+  if (value != TRUE && value != FALSE)
+    error("Argument '%s' must be either TRUE or FALSE.", label); 
+  
+  return value;
+} /* asLogicalNoNA() */
+

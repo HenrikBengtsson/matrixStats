@@ -6,6 +6,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD meanOver
 
@@ -45,26 +46,10 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   }
 
   /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-  narm = asLogical(naRm);
-  if (narm != TRUE && narm != FALSE) {
-    error("Argument 'naRm' must be either TRUE or FALSE.");
-  }
+  narm = asLogicalNoNA(naRm, "na.rm");
 
   /* Argument 'refine': */
-  if (!isLogical(refine))
-    error("Argument 'refine' must be a single logical.");
-
-  if (length(refine) != 1)
-    error("Argument 'refine' must be a single logical.");
-
-  refine2 = asLogical(refine);
-  if (refine2 != TRUE && refine2 != FALSE) {
-    error("Argument 'refine' must be either TRUE or FALSE.");
-  }
+  refine2 = asLogicalNoNA(refine, "refine");
 
 
   /* Double matrices are more common to use. */

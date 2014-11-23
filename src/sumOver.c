@@ -7,6 +7,7 @@
 #include <Rdefines.h>
 #include <R_ext/Constants.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD sumOver
 
@@ -46,14 +47,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   }
 
   /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-  narm = asLogical(naRm);
-  if (narm != TRUE && narm != FALSE) {
-    error("Argument 'naRm' must be either TRUE or FALSE.");
-  }
+  narm = asLogicalNoNA(naRm, "na.rm");
 
   /* Argument 'mode': */
   if (!isInteger(mode)) {
