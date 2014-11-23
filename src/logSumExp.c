@@ -221,7 +221,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   double *x, *xx, *ans_ptr;
 
   /* Argument 'lx' and 'dim': */
-  assertArgMatrix(lx, dim, (R_TYPE_REAL));
+  assertArgMatrix(lx, dim, (R_TYPE_REAL), "lx");
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -232,7 +232,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
   /* Argument 'byRow': */
-  byrow = asInteger(byRow);
+  byrow = asLogical(byRow);
 
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */ 

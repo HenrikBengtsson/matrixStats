@@ -4,8 +4,7 @@ rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    byRow <- TRUE
-    x <- .Call("rowMads", x, dim, constant, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+    x <- .Call("rowMads", x, dim, constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
   } else {
     x <- x - centers
     x <- abs(x)
@@ -22,8 +21,7 @@ colMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    byRow <- FALSE
-    x <- .Call("rowMads", x, dim, constant, na.rm, hasNAs, byRow, PACKAGE="matrixStats");
+    x <- .Call("rowMads", x, dim, constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
   } else {
     for (cc in seq(length=ncol(x))) {
       x[,cc] <- x[,cc] - centers[cc]

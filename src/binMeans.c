@@ -49,12 +49,10 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
     count_ptr = INTEGER(count);
   }
 
-  if (closedRight == 0) {
-    binMeans_L(REAL(y), ny, REAL(x), nx, REAL(bx), nbins, REAL(ans), count_ptr);
-  } else if (closedRight == 1) {
+  if (closedRight) {
     binMeans_R(REAL(y), ny, REAL(x), nx, REAL(bx), nbins, REAL(ans), count_ptr);
   } else {
-    error("Unknown value of argument 'right': %d", closedRight);
+    binMeans_L(REAL(y), ny, REAL(x), nx, REAL(bx), nbins, REAL(ans), count_ptr);
   }
 
   if (retcount) {

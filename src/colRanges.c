@@ -31,7 +31,7 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP what, SEXP naRm, SEXP hasNA) {
   R_xlen_t nrow, ncol, jj;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 

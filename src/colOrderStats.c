@@ -29,7 +29,7 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP which) {
   R_xlen_t nrow, ncol, qq;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 

@@ -28,7 +28,7 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -39,8 +39,7 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
   /* Argument 'byRow': */
-  byrow = asInteger(byRow);
-
+  byrow = asLogical(byRow);
 
   /* Get dimensions of 'x'. */
   if (byrow) {
