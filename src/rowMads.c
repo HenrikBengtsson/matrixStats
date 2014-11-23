@@ -23,7 +23,7 @@
 
 SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
-  SEXP dim, ans;
+  SEXP ans;
   R_xlen_t nrow, ncol;
   double scale;
 

@@ -230,8 +230,8 @@ SEXP logSumExp(SEXP lx, SEXP naRm, SEXP hasNA) {
 
 
 
-SEXP rowLogSumExps(SEXP lx, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  SEXP dim, ans;
+SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
+  SEXP ans;
   int narm, hasna, byrow;
   R_xlen_t nrow, ncol, len, ii;
   double *x, *xx, *ans_ptr;

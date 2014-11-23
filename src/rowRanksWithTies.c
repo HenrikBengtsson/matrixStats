@@ -103,7 +103,7 @@
  */
 SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
   int tiesmethod, byrow;
-  SEXP dim, ans = NILSXP;
+  SEXP ans = NILSXP;
   int nrow, ncol;
 
   /* Argument 'x': */

@@ -24,7 +24,7 @@
 
 
 SEXP colOrderStats(SEXP x, SEXP dim, SEXP which) {
-  SEXP dim, ans = NILSXP;
+  SEXP ans = NILSXP;
   R_xlen_t nrow, ncol, qq;
 
   /* Argument 'x': */
