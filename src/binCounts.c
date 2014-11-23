@@ -6,6 +6,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 #include <R_ext/Error.h>
 
 #define BIN_BY 'L'
@@ -20,12 +21,10 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   R_xlen_t nx, nbins;
 
   /* Argument 'x': */
-  if (!isVector(x))
-    error("Argument 'x' must be a vector.");
+  assertArgVector(x, (R_TYPE_REAL), "x");
 
   /* Argument 'bx': */
-  if (!isVector(bx))
-    error("Argument 'bx' must be a vector.");
+  assertArgVector(bx, (R_TYPE_REAL), "bx");
 
   nx = xlength(x);
   nbins = xlength(bx)-1;

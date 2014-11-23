@@ -14,6 +14,7 @@
 #include <Rdefines.h>
 #include <R_ext/Utils.h>
 #include "types.h"
+#include "utils.h"
 
 
 void psortKM_C(double *x, R_xlen_t nx, R_xlen_t k, R_xlen_t m, double *ans) {
@@ -56,9 +57,7 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   R_xlen_t nx, kk, mm;
 
   /* Argument 'x': */
-  if (!isReal(x)) {
-    error("Argument 'x' must be a numeric vector."); 
-  }
+  assertArgVector(x, (R_TYPE_REAL), "x");
   nx = xlength(x);
   if (nx == 0) {
     error("Argument 'x' must not be empty."); 

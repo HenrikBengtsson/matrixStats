@@ -199,34 +199,17 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
 
 SEXP logSumExp(SEXP lx, SEXP naRm, SEXP hasNA) {
   int narm, hasna;
-  double *x;
-  R_xlen_t nx;
 
   /* Argument 'lx': */
-  if (!isReal(lx)) {
-    error("Argument 'lx' must be a numeric vector.");
-  }
+  assertArgVector(lx, (R_TYPE_REAL), "lx");
 
   /* Argument 'naRm': */
-  if (!isLogical(naRm))
-    error("Argument 'naRm' must be a single logical.");
-
-  if (length(naRm) != 1)
-    error("Argument 'naRm' must be a single logical.");
-
-  narm = LOGICAL(naRm)[0];
-  if (narm != TRUE && narm != FALSE)
-    error("Argument 'naRm' must be either TRUE or FALSE.");
+  narm = asLogicalNoNA(naRm, "na.rm");
 
   /* Argument 'hasNA': */
-  hasna = LOGICAL(hasNA)[0];
+  hasna = asLogicalNoNA(hasNA, "hasNA");
 
-
-  /* Get the values */
-  x = REAL(lx);
-  nx = xlength(lx);
-
-  return(Rf_ScalarReal(logSumExp_double(x, nx, narm, hasna)));
+  return(Rf_ScalarReal(logSumExp_double(REAL(lx), xlength(lx), narm, hasna)));
 } /* logSumExp() */
 
 

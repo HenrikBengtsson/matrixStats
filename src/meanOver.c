@@ -27,8 +27,7 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   double avg;
 
   /* Argument 'x': */
-  if (!isVector(x))
-    error("Argument 'x' must be a vector.");
+  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
   nx = xlength(x);
 
   /* Argument 'idxs': */
@@ -57,11 +56,6 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
     avg = meanOver_Real(REAL(x), nx, idxs_ptr, nidxs, narm, refine2);
   } else if (isInteger(x)) {
     avg = meanOver_Integer(INTEGER(x), nx, idxs_ptr, nidxs, narm, refine2);
-  } else {
-    /* To please compiler */
-    ans = NILSXP;
-    avg = 0;
-    error("Argument 'x' must be numeric.");
   }
 
 

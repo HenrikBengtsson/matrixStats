@@ -27,8 +27,7 @@ SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
   R_xlen_t nx;
 
   /* Argument 'x': */
-  if (!isVector(x))
-    error("Argument 'x' must be a vector.");
+  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
   nx = xlength(x);
 
   /* Argument 'naRm': */
@@ -42,10 +41,6 @@ SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
     res = productExpSumLog_Real(REAL(x), nx, narm, hasna);
   } else if (isInteger(x)) {
     res = productExpSumLog_Integer(INTEGER(x), nx, narm, hasna);
-  } else {
-    /* To please compiler */
-    res = 0;
-    error("Argument 'x' must be numeric.");
   }
 
   /* Return results */

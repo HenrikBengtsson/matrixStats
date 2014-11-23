@@ -45,8 +45,6 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
-  /* Get dimensions of 'x'. */
-
   /* R allocate a double vector of length 'ncol' */
   PROTECT(ans = allocVector(INTSXP, ncol));
 

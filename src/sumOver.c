@@ -28,8 +28,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   double sum;
 
   /* Argument 'x': */
-  if (!isVector(x))
-    error("Argument 'x' must be a vector.");
+  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
   nx = xlength(x);
 
   /* Argument 'idxs': */

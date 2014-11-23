@@ -6,6 +6,7 @@
  **************************************************************************/
 #include <Rdefines.h> 
 #include "types.h"
+#include "utils.h"
 #include <R_ext/Error.h>
 
 #define BIN_BY 'L'
@@ -22,35 +23,25 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   int *count_ptr = NULL;
 
   /* Argument 'y': */
-  if (!isVector(y))
-    error("Argument 'y' must be a vector.");
+  assertArgVector(y, (R_TYPE_REAL), "y");
   ny = xlength(y);
 
   /* Argument 'x': */
-  if (!isVector(x))
-    error("Argument 'x' must be a vector.");
+  assertArgVector(x, (R_TYPE_REAL), "x");
   nx = xlength(x);
   if (nx != ny) {
     error("Argument 'y' and 'x' are of different lengths: %d != %d", ny, nx);
   }
 
   /* Argument 'bx': */
-  if (!isVector(bx))
-    error("Argument 'bx' must be a vector.");
+  assertArgVector(bx, (R_TYPE_REAL), "bx");
   nbins = xlength(bx)-1;
 
   /* Argument 'right': */
-  if (!isLogical(right))
-    error("Argument 'right' must be logical.");
-  closedRight = asLogical(right);
+  closedRight = asLogicalNoNA(right, "right");
 
   /* Argument 'retCount': */
-  if (!isLogical(retCount))
-    error("Argument 'right' must be logical.");
-  retcount = asLogical(retCount);
-  if (retcount != TRUE && retcount != FALSE) {
-    error("Argument 'retCount' must be either TRUE or FALSE.");
-  } 
+  retcount = asLogicalNoNA(retCount, "retCount");
 
   PROTECT(ans = allocVector(REALSXP, nbins));
   if (retcount) {

@@ -4,6 +4,31 @@
 #define R_TYPE_INT  2 /* 0b0010 */
 #define R_TYPE_REAL 4 /* 0b0100 */
 
+
+inline void assertArgVector(SEXP x, int type, char *xlabel) {
+  /* Argument 'x': */
+  if (!isVector(x)) {
+    error("Argument '%s' must be a matrix or a vector.", xlabel);
+  }
+  switch (TYPEOF(x)) {
+    case LGLSXP:
+      if (!(type & R_TYPE_LGL))
+        error("Argument '%s' cannot be logical.", xlabel);
+      break;
+
+    case INTSXP:
+      if (!(type & R_TYPE_INT))
+        error("Argument '%s' cannot be integer.", xlabel);
+      break;
+
+    case REALSXP:
+      if (!(type & R_TYPE_REAL))
+        error("Argument '%s' cannot be numeric.", xlabel);
+      break;
+  } /* switch */
+} /* assertArgVector() */
+
+
 inline void assertArgMatrix(SEXP x, SEXP dim, int type) {
   double nrow, ncol;
 
@@ -43,16 +68,16 @@ inline void assertArgMatrix(SEXP x, SEXP dim, int type) {
 
 
 
-inline int asLogicalNoNA(SEXP x, char *label) {
+inline int asLogicalNoNA(SEXP x, char *xlabel) {
   int value;
 
   if (!isLogical(x))
-    error("Argument '%s' must be a logical.", label);
+    error("Argument '%s' must be a logical.", xlabel);
   if (length(x) != 1)
-    error("Argument '%s' must be a single value.", label);
+    error("Argument '%s' must be a single value.", xlabel);
   value = asLogical(x);
   if (value != TRUE && value != FALSE)
-    error("Argument '%s' must be either TRUE or FALSE.", label); 
+    error("Argument '%s' must be either TRUE or FALSE.", xlabel); 
   
   return value;
 } /* asLogicalNoNA() */
