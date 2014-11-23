@@ -21,11 +21,8 @@
 #undef METHOD
 
 
-
-SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
-  SEXP ans;
-  int narm, hasna;
-  R_xlen_t nrow, ncol;
+inline void assertArgMatrix(SEXP x, SEXP dim) {
+  int nrow, ncol;
 
   /* Argument 'x': */
   if (isMatrix(x)) {
@@ -43,6 +40,18 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   if (nrow * ncol != xlength(x)) {
     error("Argument 'dim' does not match length of argument 'x': %d * %d != %d", nrow, ncol, xlength(x));
   }
+} /* assertArgMatrix() */ 
+
+
+SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
+  SEXP ans;
+  int narm, hasna;
+  R_xlen_t nrow, ncol;
+
+  /* Argument 'x' and 'dim': */
+  assertArgMatrix(x, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Argument 'value': */
   if (length(value) != 1)
