@@ -21,20 +21,18 @@
 
 SEXP signTabulate(SEXP x) {
   SEXP ans;
-  R_xlen_t nx;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nx = xlength(x);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, 6));
-    signTabulate_Real(REAL(x), nx, REAL(ans));
+    signTabulate_Real(REAL(x), xlength(x), REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(REALSXP, 4));
-    signTabulate_Integer(INTEGER(x), nx, REAL(ans));
+    signTabulate_Integer(INTEGER(x), xlength(x), REAL(ans));
     UNPROTECT(1);
   }
 
