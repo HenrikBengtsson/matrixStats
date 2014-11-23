@@ -22,13 +22,12 @@
 SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   SEXP ans;
   int *idxs_ptr;
-  R_xlen_t nx, nidxs;
+  R_xlen_t nidxs;
   int narm, refine2;
   double avg;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nx = xlength(x);
 
   /* Argument 'idxs': */
   if (isNull(idxs)) {
@@ -53,9 +52,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    avg = meanOver_Real(REAL(x), nx, idxs_ptr, nidxs, narm, refine2);
+    avg = meanOver_Real(REAL(x), xlength(x), idxs_ptr, nidxs, narm, refine2);
   } else if (isInteger(x)) {
-    avg = meanOver_Integer(INTEGER(x), nx, idxs_ptr, nidxs, narm, refine2);
+    avg = meanOver_Integer(INTEGER(x), xlength(x), idxs_ptr, nidxs, narm, refine2);
   }
 
 

@@ -24,11 +24,9 @@ SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
   SEXP ans = NILSXP;
   double res;
   int narm, hasna;
-  R_xlen_t nx;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nx = xlength(x);
 
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
@@ -38,9 +36,9 @@ SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    res = productExpSumLog_Real(REAL(x), nx, narm, hasna);
+    res = productExpSumLog_Real(REAL(x), xlength(x), narm, hasna);
   } else if (isInteger(x)) {
-    res = productExpSumLog_Integer(INTEGER(x), nx, narm, hasna);
+    res = productExpSumLog_Integer(INTEGER(x), xlength(x), narm, hasna);
   }
 
   /* Return results */

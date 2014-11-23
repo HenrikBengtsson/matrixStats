@@ -29,6 +29,25 @@ inline void assertArgVector(SEXP x, int type, char *xlabel) {
 } /* assertArgVector() */
 
 
+inline void assertArgDim(SEXP dim, double max, char *maxlabel) {
+  double nrow, ncol;
+
+  /* Argument 'dim': */
+  if (!isVector(dim) || xlength(dim) != 2 || !isInteger(dim)) {
+    error("Argument 'dim' must be an integer vector of length two.");
+  }
+  nrow = (double)INTEGER(dim)[0];
+  ncol = (double)INTEGER(dim)[1];
+  if (nrow < 0) {
+    error("Argument 'dim' specifies a negative number of rows (dim[1]): %d", nrow); 
+  } else if (ncol < 0) {
+    error("Argument 'dim' specifies a negative number of columns (dim[2]): %d", ncol); 
+  } else if (nrow * ncol != max) {
+    error("Argument 'dim' does not match length of argument '%s': %g * %g != %g", maxlabel, nrow, ncol, max);
+  }
+} /* assertArgDim() */
+
+
 inline void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
   double nrow, ncol;
 
@@ -56,14 +75,7 @@ inline void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
   } /* switch */
 
   /* Argument 'dim': */
-  if (!isVector(dim) || xlength(dim) != 2 || !isInteger(dim)) {
-    error("Argument 'dim' must be an integer vector of length two.");
-  }
-  nrow = (double)INTEGER(dim)[0];
-  ncol = (double)INTEGER(dim)[1];
-  if (nrow * ncol != (double) xlength(x)) {
-    error("Argument 'dim' does not match length of argument '%s': %g * %g != %g", xlabel, nrow, ncol, (double)xlength(x));
-  }
+  assertArgDim(dim, xlength(x), "x");
 } /* assertArgMatrix() */ 
 
 

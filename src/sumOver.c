@@ -23,13 +23,12 @@
 SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
   int *idxsp;
-  R_xlen_t nx, nidxs;
+  R_xlen_t nidxs;
   int narm, mode2;
   double sum;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nx = xlength(x);
 
   /* Argument 'idxs': */
   if (isNull(idxs)) {
@@ -57,9 +56,9 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    sum = sumOver_Real(REAL(x), nx, idxsp, nidxs, narm, mode2);
+    sum = sumOver_Real(REAL(x), xlength(x), idxsp, nidxs, narm, mode2);
   } else if (isInteger(x)) {
-    sum = sumOver_Integer(INTEGER(x), nx, idxsp, nidxs, narm, mode2);
+    sum = sumOver_Integer(INTEGER(x), xlength(x), idxsp, nidxs, narm, mode2);
   } else {
     error("Argument 'x' must be numeric.");
   }
