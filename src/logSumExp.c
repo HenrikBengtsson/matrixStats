@@ -16,6 +16,7 @@
 #include <Rdefines.h>
 #include <Rmath.h>
 #include "types.h"
+#include "utils.h"
 
 /* 
  logSumExp_double(x):
@@ -236,10 +237,10 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   R_xlen_t nrow, ncol, len, ii;
   double *x, *xx, *ans_ptr;
 
-  /* Argument 'lx': */
-  if (!isMatrix(lx)) {
-    error("Argument 'lx' must be a matrix.");
-  }
+  /* Argument 'lx' and 'dim': */
+  assertArgMatrix(lx, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
   if (!isReal(lx)) {
     error("Argument 'lx' must be a numeric vector.");
   }
@@ -260,12 +261,6 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
 
   /* Argument 'byRow': */
   byrow = asInteger(byRow);
-
-
-  /* Get dimensions of 'lx'. */
-  dim = getAttrib(lx, R_DimSymbol);
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
 
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */ 

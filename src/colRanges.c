@@ -8,6 +8,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD colRanges
 
@@ -29,9 +30,10 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP what, SEXP naRm, SEXP hasNA) {
   int what2, narm, hasna;
   R_xlen_t nrow, ncol, jj;
 
-  /* Argument 'x': */
-  if (!isMatrix(x))
-    error("Argument 'x' must be a matrix.");
+  /* Argument 'x' and 'dim': */
+  assertArgMatrix(x, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Argument 'what': */
   if (length(what) != 1)
@@ -53,11 +55,6 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP what, SEXP naRm, SEXP hasNA) {
 
   /* Argument 'hasNA': */
   hasna = asLogical(hasNA);
-
-  /* Get dimensions of 'x'. */
-  dim = getAttrib(x, R_DimSymbol);
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
 
   is_counted = (int *) R_alloc(ncol, sizeof(int));
 

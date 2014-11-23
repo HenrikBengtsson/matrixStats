@@ -6,6 +6,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD rowCounts
 

@@ -9,6 +9,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD rowMads
 
@@ -27,9 +28,10 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
   R_xlen_t nrow, ncol;
   double scale;
 
-  /* Argument 'x': */
-  if (!isMatrix(x))
-    error("Argument 'x' must be a matrix.");
+  /* Argument 'x' and 'dim': */
+  assertArgMatrix(x, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Argument 'constant': */
   if (!isNumeric(constant))
@@ -55,7 +57,6 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
 
 
   /* Get dimensions of 'x'. */
-  dim = getAttrib(x, R_DimSymbol);
   if (byrow) {
     nrow = INTEGER(dim)[0];
     ncol = INTEGER(dim)[1];

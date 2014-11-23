@@ -7,7 +7,7 @@
  TO DO: Add support for missing values.
  **************************************************************************/
 #include <Rdefines.h>
-
+#include "utils.h"
 
 /* Template <col|row>Ranks_<Integer|Real>_ties<Min|Max|Average>() */
 
@@ -106,9 +106,10 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
   SEXP ans = NILSXP;
   int nrow, ncol;
 
-  /* Argument 'x': */
-  if (!isMatrix(x))
-    error("Argument 'x' must be a matrix.");
+  /* Argument 'x' and 'dim': */
+  assertArgMatrix(x, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Argument 'tiesMethod': */
   tiesmethod = asInteger(tiesMethod);
@@ -118,13 +119,6 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
-
-
-  /* Get dimensions for 'ans' (from 'x') */
-  dim = getAttrib(x, R_DimSymbol);
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
-
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {

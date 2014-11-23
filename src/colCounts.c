@@ -6,6 +6,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD colCounts
 
@@ -19,28 +20,6 @@
 #include "colCounts_TYPE-template.h"
 
 #undef METHOD
-
-
-inline void assertArgMatrix(SEXP x, SEXP dim) {
-  int nrow, ncol;
-
-  /* Argument 'x': */
-  if (isMatrix(x)) {
-  } else if (isVector(x)) {
-  } else {
-    error("Argument 'x' must be a matrix or a vector.");
-  }
-
-  /* Argument 'dim': */
-  if (!isVector(dim) || !isInteger(dim) || xlength(dim) != 2) {
-    error("Argument 'dim' must be an integer vector of length two.");
-  }
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
-  if (nrow * ncol != xlength(x)) {
-    error("Argument 'dim' does not match length of argument 'x': %d * %d != %d", nrow, ncol, xlength(x));
-  }
-} /* assertArgMatrix() */ 
 
 
 SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {

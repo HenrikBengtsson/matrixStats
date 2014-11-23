@@ -9,6 +9,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD rowVars
 
@@ -26,9 +27,10 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP ans;
   R_xlen_t nrow, ncol;
 
-  /* Argument 'x': */
-  if (!isMatrix(x))
-    error("Argument 'x' must be a matrix.");
+  /* Argument 'x' and 'dim': */
+  assertArgMatrix(x, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Argument 'naRm': */
   if (!isLogical(naRm))
@@ -49,7 +51,6 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
 
 
   /* Get dimensions of 'x'. */
-  dim = getAttrib(x, R_DimSymbol);
   if (byrow) {
     nrow = INTEGER(dim)[0];
     ncol = INTEGER(dim)[1];

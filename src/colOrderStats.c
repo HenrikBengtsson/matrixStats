@@ -10,6 +10,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 #define METHOD colOrderStats
 
@@ -27,9 +28,10 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP which) {
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol, qq;
 
-  /* Argument 'x': */
-  if (!isMatrix(x))
-    error("Argument 'x' must be a matrix.");
+  /* Argument 'x' and 'dim': */
+  assertArgMatrix(x, dim);
+  nrow = INTEGER(dim)[0];
+  ncol = INTEGER(dim)[1];
 
   /* Argument 'which': */
   if (length(which) != 1)
@@ -37,12 +39,6 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP which) {
 
   if (!isNumeric(which))
     error("Argument 'which' must be a numeric number.");
-
-
-  /* Get dimensions of 'x'. */
-  dim = getAttrib(x, R_DimSymbol);
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
 
   /* Subtract one here, since rPsort does zero based addressing */
   qq = asInteger(which) - 1;
