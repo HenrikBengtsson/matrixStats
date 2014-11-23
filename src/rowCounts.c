@@ -28,22 +28,10 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   int narm, hasna;
   R_xlen_t nrow, ncol;
 
-  /* Argument 'x': */
-  if (isMatrix(x)) {
-  } else if (isVector(x)) {
-  } else {
-    error("Argument 'x' must be a matrix or a vector.");
-  }
-
-  /* Argument 'dim': */
-  if (!isVector(dim) || !isInteger(dim) || xlength(dim) != 2) {
-    error("Argument 'dim' must be an integer vector of length two.");
-  }
+  /* Argument 'x' & 'dim': */
+  assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
-  if (nrow * ncol != xlength(x)) {
-    error("Argument 'dim' does not match length of argument 'x': %d * %d != %d", nrow, ncol, xlength(x));
-  }
 
   /* Argument 'value': */
   if (length(value) != 1)
@@ -78,8 +66,6 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
     rowCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
     rowCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), narm, hasna, INTEGER(ans));
-  } else {
-    error("Argument 'x' must be numeric.");
   }
 
   UNPROTECT(1);

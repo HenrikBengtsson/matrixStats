@@ -107,7 +107,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
   int nrow, ncol;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim);
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -197,8 +197,6 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
           break;
       } /* switch */
     }
-  } else {
-    error("Argument 'x' must be numeric.");
   }
 
   return(ans);

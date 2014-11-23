@@ -28,7 +28,7 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim);
+  assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -65,8 +65,6 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
     colCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
     colCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), narm, hasna, INTEGER(ans));
-  } else {
-    error("Argument 'x' must be numeric.");
   }
 
   UNPROTECT(1);

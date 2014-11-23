@@ -28,7 +28,7 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim);
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -68,9 +68,6 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
     rowMedians_Real(REAL(x), nrow, ncol, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
     rowMedians_Integer(INTEGER(x), nrow, ncol, narm, hasna, byrow, REAL(ans));
-  } else {
-    UNPROTECT(1);
-    error("Argument 'x' must be a numeric.");
   }
 
   UNPROTECT(1);

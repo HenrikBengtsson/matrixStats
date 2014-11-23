@@ -238,12 +238,9 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   double *x, *xx, *ans_ptr;
 
   /* Argument 'lx' and 'dim': */
-  assertArgMatrix(lx, dim);
+  assertArgMatrix(lx, dim, (R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
-  if (!isReal(lx)) {
-    error("Argument 'lx' must be a numeric vector.");
-  }
 
   /* Argument 'naRm': */
   if (!isLogical(naRm))

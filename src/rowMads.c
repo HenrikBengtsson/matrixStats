@@ -29,7 +29,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
   double scale;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim);
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -74,9 +74,6 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
     rowMads_Real(REAL(x), nrow, ncol, scale, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
     rowMads_Integer(INTEGER(x), nrow, ncol, scale, narm, hasna, byrow, REAL(ans));
-  } else {
-    UNPROTECT(1);
-    error("Argument 'x' must be a numeric.");
   }
 
   UNPROTECT(1);

@@ -29,7 +29,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP which) {
   R_xlen_t nrow, ncol, qq;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim);
+  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL));
   nrow = INTEGER(dim)[0];
   ncol = INTEGER(dim)[1];
 
@@ -57,8 +57,6 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP which) {
     PROTECT(ans = allocVector(INTSXP, nrow));
     rowOrderStats_Integer(INTEGER(x), nrow, ncol, qq, INTEGER(ans));
     UNPROTECT(1);
-  } else {
-    error("Argument 'x' must be numeric.");
   }
 
   return(ans);
