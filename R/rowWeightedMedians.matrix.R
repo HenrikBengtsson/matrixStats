@@ -74,9 +74,8 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
   if (hasWeights) {
     # Allocate results
     m <- nrow(x);
-    res <- double(m);
     if (m == 0L)
-      return(res);
+      return(double(0L));
 
     # Standardize weights to sum to one.
     w <- w / sum(w, na.rm=na.rm);
@@ -117,9 +116,8 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
   if (hasWeights) {
     # Allocate results
     m <- ncol(x);
-    res <- double(m);
     if (m == 0L)
-      return(res);
+      return(double(0L));
 
     # Standardize weights to sum to one.
     w <- w / sum(w, na.rm=na.rm);
