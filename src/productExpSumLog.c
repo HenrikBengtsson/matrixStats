@@ -22,7 +22,7 @@
 
 SEXP productExpSumLog(SEXP x, SEXP naRm, SEXP hasNA) {
   SEXP ans = NILSXP;
-  double res;
+  double res = NA_REAL;
   int narm, hasna;
 
   /* Argument 'x': */

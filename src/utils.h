@@ -49,8 +49,6 @@ inline void assertArgDim(SEXP dim, double max, char *maxlabel) {
 
 
 inline void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
-  double nrow, ncol;
-
   /* Argument 'x': */
   if (isMatrix(x)) {
   } else if (isVector(x)) {

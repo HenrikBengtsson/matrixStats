@@ -24,7 +24,7 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   int *idxs_ptr;
   R_xlen_t nidxs;
   int narm, refine2;
-  double avg;
+  double avg = NA_REAL;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");

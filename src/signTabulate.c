@@ -20,7 +20,7 @@
 
 
 SEXP signTabulate(SEXP x) {
-  SEXP ans;
+  SEXP ans = NILSXP;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
