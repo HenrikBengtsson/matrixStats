@@ -5,7 +5,7 @@
 #define R_TYPE_REAL 4 /* 0b0100 */
 
 
-R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
+static R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
   /* Argument 'x': */
   if (!isVector(x)) {
     error("Argument '%s' must be a matrix or a vector.", xlabel);
@@ -29,7 +29,7 @@ R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
 } /* assertArgVector() */
 
 
-R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
+static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
   double nrow, ncol;
 
   /* Argument 'dim': */
@@ -48,7 +48,7 @@ R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
 } /* assertArgDim() */
 
 
-R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
+static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
   /* Argument 'x': */
   if (isMatrix(x)) {
   } else if (isVector(x)) {
@@ -78,7 +78,7 @@ R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
 
 
 
-R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
+static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
   int value;
 
   if (length(x) != 1)
