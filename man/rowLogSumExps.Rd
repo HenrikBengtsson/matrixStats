@@ -20,14 +20,16 @@
 }
 
 \usage{
- rowLogSumExps(lx, na.rm=FALSE, ...)
- colLogSumExps(lx, na.rm=FALSE, ...)
+ rowLogSumExps(lx, na.rm=FALSE, lxdim=dim(lx), ...)
+ colLogSumExps(lx, na.rm=FALSE, lxdim=dim(lx), ...)
 }
 
 \arguments{
  \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
   Typically \code{lx} are \eqn{log(x)} values.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are ignored, otherwise not.}
+ \item{lxdim}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Not used.}
 }
 

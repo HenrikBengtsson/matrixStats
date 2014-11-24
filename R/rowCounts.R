@@ -29,10 +29,10 @@
 #
 # \arguments{
 #  \item{x}{An NxK @matrix or an N*K @vector.}
-#  \item{dim}{An @integer @vector of length two, specifying the
-#   dimension of \code{x} when not a @matrix.}
 #  \item{value}{A value to search for.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
+#  \item{xdim}{An @integer @vector of length two specifying the
+#              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Not used.}
 # }
 #
@@ -55,7 +55,7 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=base::dim(x), ...) {
+setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -63,8 +63,8 @@ setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
     stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
   }
 
-  # Argument 'dim':
-  dim <- as.integer(dim)
+  # Argument 'xdim':
+  xdim <- as.integer(xdim)
 
   # Argument 'value':
   if (length(value) != 1L) {
@@ -80,9 +80,9 @@ setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("rowCounts", x, dim, value, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call("rowCounts", x, xdim, value, na.rm, hasNAs, PACKAGE="matrixStats")
   } else {
-    if (is.vector(x)) dim(x) <- dim
+    if (is.vector(x)) dim(x) <- xdim
     if (is.na(value)) {
       counts <- apply(x, MARGIN=1L, FUN=function(x) sum(is.na(x)))
     } else {
@@ -94,7 +94,7 @@ setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
 }) # rowCounts()
 
 
-setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=base::dim(x), ...) {
+setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -102,8 +102,8 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
     stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
   }
 
-  # Argument 'dim':
-  dim <- as.integer(dim)
+  # Argument 'xdim':
+  xdim <- as.integer(xdim)
 
   # Argument 'value':
   if (length(value) != 1L) {
@@ -118,13 +118,12 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
-    if (is.vector(x)) dim(x) <- dim
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("colCounts", x, dim, value, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call("colCounts", x, xdim, value, na.rm, hasNAs, PACKAGE="matrixStats")
     x <- NULL # Not needed anymore
   } else {
-    if (is.vector(x)) dim(x) <- dim
+    if (is.vector(x)) dim(x) <- xdim
     if (is.na(value)) {
       counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.na(x)))
     } else {
@@ -137,23 +136,23 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim=bas
 
 
 
-setMethodS3("rowAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim=base::dim(x), ...) {
-  counts <- rowCounts(x, dim=dim, value=value, na.rm=na.rm, ...)
-  (counts == dim[2L])
+setMethodS3("rowAlls", "default", function(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...) {
+  counts <- rowCounts(x, xdim=xdim, value=value, na.rm=na.rm, ...)
+  (counts == xdim[2L])
 })
 
-setMethodS3("colAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim=base::dim(x), ...) {
-  counts <- colCounts(x, dim=dim, value=value, na.rm=na.rm, ...)
-  (counts == dim[1L])
+setMethodS3("colAlls", "default", function(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...) {
+  counts <- colCounts(x, xdim=xdim, value=value, na.rm=na.rm, ...)
+  (counts == xdim[1L])
 })
 
-setMethodS3("rowAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim=base::dim(x), ...) {
-  counts <- rowCounts(x, dim=dim, value=value, na.rm=na.rm, ...)
+setMethodS3("rowAnys", "default", function(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...) {
+  counts <- rowCounts(x, xdim=xdim, value=value, na.rm=na.rm, ...)
   (counts > 0L)
 })
 
-setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim=base::dim(x), ...) {
-  counts <- colCounts(x, dim=dim, value=value, na.rm=na.rm, ...)
+setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...) {
+  counts <- colCounts(x, xdim=xdim, value=value, na.rm=na.rm, ...)
   (counts > 0L)
 })
 

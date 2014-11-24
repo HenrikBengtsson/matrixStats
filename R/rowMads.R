@@ -1,10 +1,10 @@
-rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
+rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, xdim=dim(x), ...) {
   if (is.null(centers)) {
-    dim <- dim(x)
+    xdim <- as.integer(xdim)
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim, constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
+    x <- .Call("rowMads", x, xdim, constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
   } else {
     x <- x - centers
     x <- abs(x)
@@ -15,13 +15,13 @@ rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
 } # rowMads()
 
 
-colMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, ...) {
+colMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, xdim=dim(x), ...) {
   if (is.null(centers)) {
-    dim <- dim(x)
+    xdim <- as.integer(xdim)
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim, constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
+    x <- .Call("rowMads", x, xdim, constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
   } else {
     for (cc in seq(length=ncol(x))) {
       x[,cc] <- x[,cc] - centers[cc]

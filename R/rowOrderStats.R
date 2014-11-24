@@ -19,6 +19,8 @@
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{which}{An @integer index in [1,K] ([1,N]) indicating which
 #               order statistic to be returned.}
+#  \item{xdim}{An @integer @vector of length two specifying the
+#              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Not used.}
 # }
 #
@@ -54,23 +56,25 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowOrderStats", function(x, which, ...) {
+setGeneric("rowOrderStats", function(x, which, xdim=dim(x), ...) {
   standardGeneric("rowOrderStats");
 })
 
-setMethod("rowOrderStats", signature(x="matrix"), function(x, which, ...) {
-  dim <- dim(x)
-  .Call("rowOrderStats", x, dim, which, PACKAGE="matrixStats");
+setMethod("rowOrderStats", signature(x="matrix"), function(x, which, xdim=dim(x), ...) {
+  xdim <- as.integer(xdim)
+  which <- as.integer(which)
+  .Call("rowOrderStats", x, xdim, which, PACKAGE="matrixStats");
 })
 
 
-setGeneric("colOrderStats", function(x, which, ...) {
+setGeneric("colOrderStats", function(x, which, xdim=dim(x), ...) {
   standardGeneric("colOrderStats");
 })
 
-setMethod("colOrderStats", signature(x="matrix"), function(x, which, ...) {
-  dim <- dim(x)
-  .Call("colOrderStats", x, dim, which, PACKAGE="matrixStats");
+setMethod("colOrderStats", signature(x="matrix"), function(x, which, xdim=dim(x), ...) {
+  xdim <- as.integer(xdim)
+  which <- as.integer(which)
+  .Call("colOrderStats", x, xdim, which, PACKAGE="matrixStats");
 })
 
 

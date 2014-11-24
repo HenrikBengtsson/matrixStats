@@ -20,6 +20,8 @@
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{center}{(optional) The center, defaults to the row means.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
+#  \item{xdim}{An @integer @vector of length two specifying the
+#              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Additional arguments passed to \code{rowMeans()} and
 #     \code{rowSums()}.}
 # }
@@ -41,12 +43,12 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
+rowVars <- function(x, na.rm=TRUE, center=NULL, xdim=dim(x), ...) {
   if (is.null(center)) {
-    dim <- dim(x)
+    xdim <- as.integer(xdim)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    sigma2 <- .Call("rowVars", x, dim, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
+    sigma2 <- .Call("rowVars", x, xdim, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
     return(sigma2)
   }
 
@@ -93,12 +95,12 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, ...) {
 }
 
 
-colVars <- function(x, na.rm=TRUE, center=NULL, ...) {
+colVars <- function(x, na.rm=TRUE, center=NULL, xdim=dim(x), ...) {
   if (is.null(center)) {
-    dim <- dim(x)
+    xdim <- as.integer(xdim)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    sigma2 <- .Call("rowVars", x, dim, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
+    sigma2 <- .Call("rowVars", x, xdim, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
     return(sigma2)
   }
 
