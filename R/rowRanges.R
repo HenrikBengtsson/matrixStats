@@ -26,7 +26,7 @@
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
-#  \item{xdim}{An @integer @vector of length two specifying the
+#  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Not used.}
 # }
@@ -56,22 +56,22 @@ setGeneric("rowRanges", function(x, na.rm=FALSE, ...) {
   standardGeneric("rowRanges")
 })
 
-setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, xdim=dim(x), ...) {
-  xdim <- as.integer(xdim)
+setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, xdim, 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
 })
 
-rowMins <- function(x, na.rm=FALSE, xdim=dim(x), ...) {
-  xdim <- as.integer(xdim)
+rowMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, xdim, 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-rowMaxs <- function(x, na.rm=FALSE, xdim=dim(x), ...) {
-  xdim <- as.integer(xdim)
+rowMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, xdim, 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 
@@ -79,22 +79,22 @@ setGeneric("colRanges", function(x, na.rm=FALSE, ...) {
   standardGeneric("colRanges")
 })
 
-setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, xdim=dim(x), ...) {
-  xdim <- as.integer(xdim)
+setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, xdim, 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("colRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
 })
 
-colMins <- function(x, na.rm=FALSE, xdim=dim(x), ...) {
-  xdim <- as.integer(xdim)
+colMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, xdim, 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("colRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-colMaxs <- function(x, na.rm=FALSE, xdim=dim(x), ...) {
-  xdim <- as.integer(xdim)
+colMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, xdim, 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("colRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 

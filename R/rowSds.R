@@ -26,7 +26,7 @@
 #     By default, they are calculated using @see "rowMedians".}
 #  \item{constant}{A scale factor.  See @see "stats::mad" for details.}
 #  \item{na.rm}{If @TRUE, missing values are removed first, otherwise not.}
-#  \item{xdim}{An @integer @vector of length two specifying the
+#  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Additional arguments passed to @see "rowVars" and
 #     @see "rowMedians", respectively.}

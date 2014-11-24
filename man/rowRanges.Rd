@@ -26,16 +26,16 @@
 \usage{
   rowRanges(x, na.rm=FALSE, ...)
   colRanges(x, na.rm=FALSE, ...)
-  rowMins(x, na.rm=FALSE, xdim=dim(x), ...)
-  colMins(x, na.rm=FALSE, xdim=dim(x), ...)
-  rowMaxs(x, na.rm=FALSE, xdim=dim(x), ...)
-  colMaxs(x, na.rm=FALSE, xdim=dim(x), ...)
+  rowMins(x, na.rm=FALSE, dim.=dim(x), ...)
+  colMins(x, na.rm=FALSE, dim.=dim(x), ...)
+  rowMaxs(x, na.rm=FALSE, dim.=dim(x), ...)
+  colMaxs(x, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
- \item{xdim}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+ \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Not used.}
 }

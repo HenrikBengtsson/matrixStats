@@ -20,7 +20,7 @@
 #   \item{x}{An NxK @matrix.}
 #   \item{idxs}{An index @vector of (maximum) length N (K) specifying the
 #    columns (rows) to be extracted.}
-#  \item{xdim}{An @integer @vector of length two specifying the
+#  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
 #   \item{...}{Not used.}
 # }
@@ -40,31 +40,31 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setMethodS3("rowCollapse", "matrix", function(x, idxs, xdim=dim(x), ...) {
+setMethodS3("rowCollapse", "matrix", function(x, idxs, dim.=dim(x), ...) {
   # Argument 'idxs':
-  idxs <- rep(idxs, length.out=xdim[1L])
+  idxs <- rep(idxs, length.out=dim.[1L])
 
   # Columns of interest
-  cols <- 0:(xdim[2L]-1L)
+  cols <- 0:(dim.[2L]-1L)
   cols <- cols[idxs]
 
   # Calculate column-based indices
-  idxs <- xdim[1L] * cols + seq_len(xdim[1L])
+  idxs <- dim.[1L] * cols + seq_len(dim.[1L])
   cols <- NULL # Not needed anymore
 
   x[idxs]
 })
 
-setMethodS3("colCollapse", "matrix", function(x, idxs, xdim=dim(x), ...) {
+setMethodS3("colCollapse", "matrix", function(x, idxs, dim.=dim(x), ...) {
   # Argument 'idxs':
-  idxs <- rep(idxs, length.out=xdim[2L])
+  idxs <- rep(idxs, length.out=dim.[2L])
 
   # Rows of interest
-  rows <- seq_len(xdim[1L])
+  rows <- seq_len(dim.[1L])
   rows <- rows[idxs]
 
   # Calculate column-based indices
-  idxs <- xdim[1L] * 0:(xdim[2L]-1L) + rows
+  idxs <- dim.[1L] * 0:(dim.[2L]-1L) + rows
   rows <- NULL # Not needed anymore
 
   x[idxs]

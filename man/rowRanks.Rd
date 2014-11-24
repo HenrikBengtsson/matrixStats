@@ -20,8 +20,8 @@
 }
 
 \usage{
- rowRanks(x, ties.method=c("max", "average", "min"), xdim=dim(x), ...)
- colRanks(x, ties.method=c("max", "average", "min"), xdim=dim(x), preserveShape=FALSE,
+ rowRanks(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...)
+ colRanks(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE,
   ...)
 }
 
@@ -29,7 +29,7 @@
  \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK \code{\link[base]{matrix}}.}
  \item{ties.method}{A \code{\link[base]{character}} string specifying how ties are treated.
     For details, see below.}
- \item{xdim}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+ \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{preserveShape}{A \code{\link[base]{logical}} specifying whether the \code{\link[base]{matrix}}
     returned should preserve the input shape of \code{x}, or not.}

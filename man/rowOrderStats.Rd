@@ -20,15 +20,15 @@
 }
 
 \usage{
- rowOrderStats(x, which, xdim=dim(x), ...)
- colOrderStats(x, which, xdim=dim(x), ...)
+ rowOrderStats(x, which, dim.=dim(x), ...)
+ colOrderStats(x, which, dim.=dim(x), ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
  \item{which}{An \code{\link[base]{integer}} index in [1,K] ([1,N]) indicating which
               order statistic to be returned.}
- \item{xdim}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+ \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Not used.}
 }

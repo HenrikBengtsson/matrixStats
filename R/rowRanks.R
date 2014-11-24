@@ -19,7 +19,7 @@
 #  \item{x}{A @numeric or @integer NxK @matrix.}
 #  \item{ties.method}{A @character string specifying how ties are treated.
 #     For details, see below.}
-#  \item{xdim}{An @integer @vector of length two specifying the
+#  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
 #  \item{preserveShape}{A @logical specifying whether the @matrix
 #     returned should preserve the input shape of \code{x}, or not.}
@@ -94,11 +94,11 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowRanks", function(x, ties.method=c("max", "average", "min"), xdim=dim(x), ...) {
+setGeneric("rowRanks", function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
   standardGeneric("rowRanks")
 })
 
-setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), xdim=dim(x), ...) {
+setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -111,17 +111,17 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
-  xdim <- as.integer(xdim)
+  dim. <- as.integer(dim.)
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, xdim, tiesMethod, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanksWithTies", x, dim., tiesMethod, TRUE, PACKAGE="matrixStats")
 })
 
 
-setGeneric("colRanks", function(x, ties.method=c("max", "average", "min"), xdim=dim(x), preserveShape=FALSE, ...) {
+setGeneric("colRanks", function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
   standardGeneric("colRanks")
 })
 
-setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), xdim=dim(x), preserveShape=FALSE, ...) {
+setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -137,9 +137,9 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
-  xdim <- as.integer(xdim)
+  dim. <- as.integer(dim.)
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, xdim, tiesMethod, FALSE, PACKAGE="matrixStats")
+  y <- .Call("rowRanksWithTies", x, dim., tiesMethod, FALSE, PACKAGE="matrixStats")
   if (!preserveShape) y <- t(y)
   y
 })

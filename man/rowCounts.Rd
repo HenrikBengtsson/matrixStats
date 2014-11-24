@@ -28,19 +28,19 @@
 }
 
 \usage{
-  \method{rowCounts}{default}(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...)
-  \method{colCounts}{default}(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...)
-  \method{rowAlls}{default}(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...)
-  \method{colAlls}{default}(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...)
-  \method{rowAnys}{default}(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...)
-  \method{colAnys}{default}(x, value=TRUE, na.rm=FALSE, xdim=dim(x), ...)
+  \method{rowCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  \method{colCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  \method{rowAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  \method{colAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  \method{rowAnys}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  \method{colAnys}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{
  \item{x}{An NxK \code{\link[base]{matrix}} or an N*K \code{\link[base]{vector}}.}
  \item{value}{A value to search for.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
- \item{xdim}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+ \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Not used.}
 }

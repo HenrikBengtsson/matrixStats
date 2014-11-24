@@ -19,7 +19,7 @@
 #  \item{lx}{A @numeric NxK @matrix.
 #   Typically \code{lx} are \eqn{log(x)} values.}
 #  \item{na.rm}{If @TRUE, any missing values are ignored, otherwise not.}
-#  \item{lxdim}{An @integer @vector of length two specifying the
+#  \item{dim.}{An @integer @vector of length two specifying the
 #               dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Not used.}
 # }
@@ -44,11 +44,11 @@
 #
 # @keyword array
 #*/###########################################################################
-rowLogSumExps <- function(lx, na.rm=FALSE, lxdim=dim(lx), ...) {
-  lxdim <- as.integer(lxdim)
+rowLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
+  dim. <- as.integer(dim.)
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
-               lx, lxdim,
+               lx, dim.,
                as.logical(na.rm), as.logical(hasNA), TRUE,
                PACKAGE="matrixStats");
 
@@ -62,11 +62,11 @@ rowLogSumExps <- function(lx, na.rm=FALSE, lxdim=dim(lx), ...) {
 } # rowLogSumExps()
 
 
-colLogSumExps <- function(lx, na.rm=FALSE, lxdim=dim(lx), ...) {
-  lxdim <- as.integer(lxdim)
+colLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
+  dim. <- as.integer(dim.)
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
-               lx, lxdim,
+               lx, dim.,
                as.logical(na.rm), as.logical(hasNA), FALSE,
                PACKAGE="matrixStats");
 

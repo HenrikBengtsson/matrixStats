@@ -25,8 +25,8 @@
 \usage{
  rowSds(x, ...)
  colSds(x, ...)
- rowMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, xdim=dim(x), ...)
- colMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, xdim=dim(x), ...)
+ rowMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
+ colMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{
@@ -35,7 +35,7 @@
     By default, they are calculated using \code{\link{rowMedians}}().}
  \item{constant}{A scale factor.  See \code{\link[stats]{mad}} for details.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are removed first, otherwise not.}
- \item{xdim}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+ \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Additional arguments passed to \code{\link{rowVars}}() and
     \code{\link{rowMedians}}(), respectively.}
