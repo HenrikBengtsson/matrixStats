@@ -18,7 +18,7 @@
 
 SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   SEXP counts = NILSXP;
-  R_xlen_t nx, nbins;
+  R_xlen_t nbins;
   int closedRight;
 
   /* Argument 'x': */
@@ -30,14 +30,13 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   /* Argument 'right': */
   closedRight = asLogicalNoNA(right, "right");
 
-  nx = xlength(x);
   nbins = xlength(bx)-1;
   PROTECT(counts = allocVector(INTSXP, nbins));
 
   if (closedRight) {
-    binCounts_R(REAL(x), nx, REAL(bx), nbins, INTEGER(counts));
+    binCounts_R(REAL(x), xlength(x), REAL(bx), nbins, INTEGER(counts));
   } else {
-    binCounts_L(REAL(x), nx, REAL(bx), nbins, INTEGER(counts));
+    binCounts_L(REAL(x), xlength(x), REAL(bx), nbins, INTEGER(counts));
   }
 
   UNPROTECT(1);

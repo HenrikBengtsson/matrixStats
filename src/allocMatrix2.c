@@ -86,7 +86,7 @@ void fillWithValue(SEXP ans, SEXP value) {
 SEXP allocVector2(SEXP length, SEXP value, SEXP set) {
   SEXP ans;
   SEXPTYPE type;
-  R_xlen_t n;
+  R_xlen_t n = 0;
 
   /* Argument 'length': */
   if (isInteger(length) && xlength(length) == 1) {

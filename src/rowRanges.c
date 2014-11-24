@@ -21,9 +21,8 @@
 #undef METHOD
 
 
-
 SEXP rowRanges(SEXP x, SEXP dim, SEXP what, SEXP naRm, SEXP hasNA) {
-  SEXP ans = NILSXP, ans2;
+  SEXP ans = NILSXP, ans2 = NILSXP;
   int *mins, *maxs;
   double *mins2, *maxs2;
   int *is_counted, all_counted = 0;

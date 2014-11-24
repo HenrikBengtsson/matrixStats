@@ -79,7 +79,7 @@ static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
 
 
 static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
-  int value;
+  int value = 0;
 
   if (length(x) != 1)
     error("Argument '%s' must be a single value.", xlabel);
