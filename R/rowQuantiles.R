@@ -108,7 +108,6 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   # Drop singleton dimensions?
   if (drop) {
     q <- drop(q)
-    str(q)
   }
 
   q
