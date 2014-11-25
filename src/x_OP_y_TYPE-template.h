@@ -2,35 +2,57 @@
 #include "templates-types.h"
 
 #if OP == '+'
-  #define FUN(x,y) (double)x + (double)y
-  #define FUN_no_y(x,y) (double)x
-  #define FUN_no_x(x,y) (double)y
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Add)
+  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
+      if (narm) {
+        if (X_ISNAN(x)) {
+          return (double)y;
+        } else if (Y_ISNAN(y)) {
+          return (double)x;
+        } else {
+          return (double)x + (double)y;
+        }
+      } else {
+        return (double)x + (double)y;
+      }
+  }
 #elif OP == '-'
-  #define FUN(x,y) (double)x - (double)y
-  #define FUN_no_y(x,y) (double)x
-  #define FUN_no_x(x,y) -(double)y
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Sub)
+  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
+    return (double)x - (double)y;
+  }
 #elif OP == '*'
-  #define FUN(x,y) (double)x * (double)y
-  #define FUN_no_y(x,y) (double)x
-  #define FUN_no_x(x,y) (double)y
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Mul)
+  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
+      if (narm) {
+        if (X_ISNAN(x)) {
+          return (double)y;
+        } else if (Y_ISNAN(y)) {
+          return (double)x;
+        } else {
+          return (double)x * (double)y;
+        }
+      } else {
+        return (double)x * (double)y;
+      }
+  }
 #elif OP == '/'
-  #define FUN(x,y) (double)x / (double)y
-  #define FUN_no_y(x,y) (double)x
-  #define FUN_no_x(x,y) 1 / (double)y
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Div)
+  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
+    return (double)x / (double)y;
+  }
 #else
-  #error "INTERNAL ERROR: Failed to set C macro FUN(x,y): Unknown OP"
+  #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y, narm): Unknown OP"
 #endif
 
 void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nx, 
                    Y_C_TYPE *y, R_xlen_t ny, 
                    int narm, int hasna, 
                    ANS_C_TYPE *ans, R_xlen_t n) {
-  X_C_TYPE xvalue;
-  Y_C_TYPE yvalue;
   double value;
   R_xlen_t kk, xi, yi;
 
@@ -38,20 +60,7 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nx,
   yi = 0;
 
   for (kk=0; kk < n; kk++) {
-    xvalue = x[xi];
-    yvalue = y[yi];
-
-    if (narm) {
-      if (X_ISNAN(xvalue)) {
-        value = FUN_no_x(xvalue, yvalue);
-      } else if (Y_ISNAN(yvalue)) {
-        value = FUN_no_y(xvalue, tvalue);
-      } else {
-        value = FUN(xvalue, yvalue);
-      }
-    } else {
-      value = FUN(xvalue, yvalue);
-    }
+    value = FUN(x[xi], y[yi], narm);
 
     /* Rprintf("xvalue=%g, yvalue=%g, value=%g\n", xvalue, yvalue, value); */
     ans[kk] = (ANS_C_TYPE) value;
