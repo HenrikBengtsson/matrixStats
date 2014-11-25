@@ -7,9 +7,9 @@ x_OP_y_R <- function(x, y, FUN, na.rm=FALSE) {
     anok <- xnok & ynok
     unit <- switch(FUN,
       "+" = 0,
-      "-" = 0,
+      "-" = NA_real_,
       "*" = 1,
-      "/" = 1,
+      "/" = NA_real_,
       stop("Unknown 'FUN' operator: ", FUN)
     )
     x[xnok] <- unit
@@ -32,6 +32,13 @@ x_OP_y_R <- function(x, y, FUN, na.rm=FALSE) {
 } # x_OP_y_R()
 
 
+
+t_tx_OP_y_R <- function(x, y, FUN, na.rm=FALSE) {
+  t(x_OP_y_R(t(x), y, FUN=FUN, na.rm=na.rm))
+}
+
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # No missing values
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -44,6 +51,11 @@ for (FUN in c("+", "-", "*", "/")) {
     cat(sprintf("FUN='%s', na.rm=%s\n", FUN, na.rm))
     a0 <- x_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
     a1 <- x_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+    str(a1)
+    stopifnot(all.equal(a1, a0))
+
+    a0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+    a1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
     str(a1)
     stopifnot(all.equal(a1, a0))
   }
@@ -71,6 +83,11 @@ for (which in c("x", "y", "both")) {
       cat(sprintf("FUN='%s', na.rm=%s\n", FUN, na.rm))
       a0 <- x_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
       a1 <- x_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+      str(a1)
+      stopifnot(all.equal(a1, a0))
+
+      a0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+      a1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
       str(a1)
       stopifnot(all.equal(a1, a0))
     }
