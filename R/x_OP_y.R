@@ -1,6 +1,8 @@
 x_OP_y <- function(x, y, FUN, na.rm=FALSE) {
   na.rm <- as.logical(na.rm)
-  .Call("x_OP_y", x, y, dim(x), na.rm, TRUE, package="matrixStats")
+  op <- charmatch(FUN, c("+", "-", "*", "/"), nomatch=0L)
+  stopifnot(op > 0L)
+  .Call("x_OP_y", x, y, dim(x), na.rm, TRUE, op, package="matrixStats")
 } # x_OP_y()
 
 

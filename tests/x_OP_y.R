@@ -39,13 +39,15 @@ x <- matrix(1:12, nrow=4, ncol=3)
 y <- 1:4
 storage.mode(y) <- storage.mode(x)
 
-for (na.rm in c(FALSE, TRUE)) {
-  a0 <- x_OP_y_R(x,y, FUN="*", na.rm=na.rm)
-  a1 <- x_OP_y(x,y, FUN="*", na.rm=na.rm)
-  str(a1)
-  stopifnot(all.equal(a1, a0))
+for (FUN in c("+", "-", "*", "/")) {
+  for (na.rm in c(FALSE, TRUE)) {
+    cat(sprintf("FUN='%s', na.rm=%s\n", FUN, na.rm))
+    a0 <- x_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+    a1 <- x_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+    str(a1)
+    stopifnot(all.equal(a1, a0))
+  }
 }
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Missing values in x, y, or both.
@@ -64,11 +66,14 @@ for (which in c("x", "y", "both")) {
     y[c(1,3)] <- NA_real_
   }
 
-  for (na.rm in c(FALSE, TRUE)) {
-    a0 <- x_OP_y_R(x,y, FUN="*", na.rm=na.rm)
-    a1 <- x_OP_y(x,y, FUN="*", na.rm=na.rm)
-    str(a1)
-    stopifnot(all.equal(a1, a0))
+  for (FUN in c("+", "-", "*", "/")) {
+    for (na.rm in c(FALSE, TRUE)) {
+      cat(sprintf("FUN='%s', na.rm=%s\n", FUN, na.rm))
+      a0 <- x_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+      a1 <- x_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+      str(a1)
+      stopifnot(all.equal(a1, a0))
+    }
   }
 }
 

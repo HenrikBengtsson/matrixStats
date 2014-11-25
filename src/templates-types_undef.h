@@ -29,3 +29,5 @@
 #undef ANS_TYPE
 
 #undef MARGIN
+#undef OP
+
