@@ -42,22 +42,23 @@ t_tx_OP_y_R <- function(x, y, FUN, na.rm=FALSE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # No missing values
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(1:12, nrow=4, ncol=3)
-y <- 1:4
+x <- matrix(1:16, nrow=4, ncol=4)
+y <- 1:nrow(x)
 storage.mode(y) <- storage.mode(x)
 
 for (FUN in c("+", "-", "*", "/")) {
   for (na.rm in c(FALSE, TRUE)) {
     cat(sprintf("FUN='%s', na.rm=%s\n", FUN, na.rm))
+
     a0 <- x_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
     a1 <- x_OP_y(x,y, FUN=FUN, na.rm=na.rm)
     str(a1)
     stopifnot(all.equal(a1, a0))
 
-    a0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
-    a1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
-    str(a1)
-    stopifnot(all.equal(a1, a0))
+    b0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+    b1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+    str(b1)
+    stopifnot(all.equal(b1, b0))
   }
 }
 
@@ -65,8 +66,8 @@ for (FUN in c("+", "-", "*", "/")) {
 # Missing values in x, y, or both.
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (which in c("x", "y", "both")) {
-  x <- matrix(1:12, nrow=4, ncol=3)
-  y <- 1:4
+  x <- matrix(1:16, nrow=4, ncol=4)
+  y <- 1:nrow(x)
   storage.mode(y) <- storage.mode(x)
  
   if (which == "x") {
@@ -86,10 +87,10 @@ for (which in c("x", "y", "both")) {
       str(a1)
       stopifnot(all.equal(a1, a0))
 
-      a0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
-      a1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
-      str(a1)
-      stopifnot(all.equal(a1, a0))
+      b0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+      b1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+      str(b1)
+      stopifnot(all.equal(b1, b0))
     }
   }
 }

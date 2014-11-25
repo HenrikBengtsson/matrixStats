@@ -50,7 +50,7 @@
 #endif
 
 void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nx, 
-                   Y_C_TYPE *y, R_xlen_t ny, 
+                   Y_C_TYPE *y, R_xlen_t ny, R_xlen_t step,
                    int narm, int hasna, 
                    ANS_C_TYPE *ans, R_xlen_t n) {
   double value;
@@ -59,23 +59,36 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nx,
   xi = 0;
   yi = 0;
 
-  for (kk=0; kk < n; kk++) {
-    value = FUN(x[xi], y[yi], narm);
-
-    /* Rprintf("xvalue=%g, yvalue=%g, value=%g\n", xvalue, yvalue, value); */
-    ans[kk] = (ANS_C_TYPE) value;
-
-    /* Next x and y values */
-    xi++;
-    yi++;
-    if (xi >= nx) xi = 0;
-    if (yi >= ny) yi = 0;
-  } /* for (kk ...) */
+  if (step >= 2) {
+    for (kk=0; kk < n; kk++) {
+      value = FUN(x[xi], y[yi], narm);
+  
+      /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
+      ans[kk] = (ANS_C_TYPE) value;
+  
+      /* Next x and y values */
+      xi++;
+      if (xi >= nx) xi = 0;
+      yi = xi / step;
+      yi %= ny;
+    } /* for (kk ...) */
+  } else {
+    for (kk=0; kk < n; kk++) {
+      value = FUN(x[xi], y[yi], narm);
+  
+      /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
+      ans[kk] = (ANS_C_TYPE) value;
+  
+      /* Next x and y values */
+      xi++;
+      if (xi >= nx) xi = 0;
+      yi++;
+      if (yi >= ny) yi = 0;
+    } /* for (kk ...) */
+  }
 }
 
 #undef FUN
-#undef FUN_no_x
-#undef FUN_no_y
 #undef METHOD_NAME_T
 
 /* Undo template macros */
