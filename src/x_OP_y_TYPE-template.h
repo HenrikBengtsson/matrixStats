@@ -57,7 +57,9 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
   double value;
   R_xlen_t kk, xi, yi, nx = nrow * ncol;
   R_xlen_t row, col, txi;
+
   xi = 0;
+  row = col = 0;
   yi = 0;
 
   if (byrow) {
@@ -72,10 +74,19 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         xi++;
         if (xi >= nx) xi = 0;
   
-        /* Current ndex in t(x) */
-        row = xi % nrow;
-        col = xi / nrow;
-        txi = row*ncol + col;
+        /* Current index in t(x) :
+           col = xi / nrow;
+           row = xi % nrow; 
+           txi = row * ncol + col;
+        */
+        row++;
+        if (row >= nrow) {
+          row = 0;
+          col++;
+          txi = col;
+	} else {
+          txi += ncol;
+	}
         yi = txi % ny;
       } /* for (kk ...) */
     } else {
