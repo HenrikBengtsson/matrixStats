@@ -9,12 +9,14 @@
 \name{xUNDERSCOREOPUNDERSCOREy}
 \alias{xUNDERSCOREOPUNDERSCOREy}
 
+\alias{x_OP_y}
 \alias{t_tx_OP_y}
 
 \title{Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y'}
 
 \usage{
-x_OP_y(x, y, FUN, na.rm=FALSE)
+ x_OP_y(x, y, FUN, na.rm=FALSE)
+ t_tx_OP_y(x, y, FUN, na.rm=FALSE)
 }
 
 \description{
@@ -26,12 +28,21 @@ x_OP_y(x, y, FUN, na.rm=FALSE)
   \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
   \item{y}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length L.}
   \item{FUN}{A \code{\link[base]{character}} specifying which operator to use.}
-  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are skipped, otherwise not.}
+  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are ignored, otherwise not.}
   \item{...}{Not used.}
 }
 
 \value{
   Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+}
+
+\section{Missing values}{
+  If \code{na.rm=TRUE}, then missing values are "dropped" before applying
+  the operator to each pair of values.  For instance, if \code{x[1,1]} is
+  a missing value, then the result of \code{x[1,1] + y[1]} equals
+  \code{y[1]}.  If also \code{y[1]} is a missing value, then the result
+  is a missing value.  This only applies to additions and multiplications.
+  For subtractions and divisions, argument \code{na.rm} is ignored.
 }
 
 \examples{
