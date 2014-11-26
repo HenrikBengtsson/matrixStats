@@ -1,12 +1,13 @@
 Package: matrixStats
 ====================
 
-Version: 0.11.7 [2014-11-20]
+Version: 0.11.8 [2014-11-25]
 o SPEEDUP: Implemented (col|row)Mads(), (col|row)Sds() and
   (col|row)Vars() in native code.
 o SPEEDUP: Made (col|row)Quantiles(x) faster for 'x' without
   missing values (and default type=7L quantiles).  It should
   still be implemented in native code.
+o SPEEDUP: Made colWeightedMeans() faster.
 o BUG FIX: (col|row)Medians(x) when 'x' is integer would give
   invalid median values in case (a) it was calculated as the mean
   of two values ("ties"), and (b) the sum of those values where
@@ -36,13 +37,11 @@ o (col|row)Prods() now uses default method="direct" (was "expSumLog").
 
 
 Version: 0.11.4 [2014-11-14]
-o Added support for vector input to some of the row- and column methods
+o Added support for vector input to several of the row- and column methods
   as long as the "intended" matrix dimension is specified via argument
   'dim'.  For instance, rowCounts(x, dim=c(nrow, ncol)) is the same
   as rowCounts(matrix(x, nrow, ncol)), but more efficient since it
-  avoids creating/allocating a temporary matrix.  Currently the
-  following row- and column methods supports vectors as well:
-  (col|row)Counts(), (col|row)Anys(), (col|row)Alls().
+  avoids creating/allocating a temporary matrix.
 o SPEEDUP: Now colCounts() is implemented in native code.  Moreover,
   (col|row)Counts() are now also implemented in native code for
   logical input (previously only for integer and double input).
