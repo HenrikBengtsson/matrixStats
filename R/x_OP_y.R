@@ -18,7 +18,7 @@
 # \arguments{
 #   \item{x}{A @numeric NxK @matrix.}
 #   \item{y}{A @numeric @vector of length L.}
-#   \item{FUN}{A @character specifying which operator to use.}
+#   \item{OP}{A @character specifying which operator to use.}
 #   \item{commute}{If @TRUE, 'y OP x' ('t(y OP t(x))') is calculated,
 #       otherwise 'x OP y' ('t(t(x) OP y)').}
 #   \item{na.rm}{If @TRUE, missing values are ignored, otherwise not.}
@@ -44,19 +44,19 @@
 #
 # @keyword internal
 #*/############################################################################
-x_OP_y <- function(x, y, FUN, commute=FALSE, na.rm=FALSE) {
+x_OP_y <- function(x, y, OP, commute=FALSE, na.rm=FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
-  op <- charmatch(FUN, c("+", "-", "*", "/"), nomatch=0L)
+  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
   .Call("x_OP_y", x, y, dim(x), op, commute, na.rm, TRUE, FALSE, package="matrixStats")
 } # x_OP_y()
 
 
-t_tx_OP_y <- function(x, y, FUN, commute=FALSE, na.rm=FALSE) {
+t_tx_OP_y <- function(x, y, OP, commute=FALSE, na.rm=FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
-  op <- charmatch(FUN, c("+", "-", "*", "/"), nomatch=0L)
+  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
   .Call("x_OP_y", x, y, dim(x), op, commute, na.rm, TRUE, TRUE, package="matrixStats")
 } # t_tx_OP_y()

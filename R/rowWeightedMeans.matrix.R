@@ -118,9 +118,9 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
       # Standardize weights summing to one.
       w <- w / wS;
 
-      for (rr in 1:m) {
-        x[rr,] <- w * x[rr,,drop=TRUE];
-      }
+      # Weighted values
+      ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop=TRUE];
+      x <- t_tx_OP_y(x, w, OP="*", na.rm=FALSE)
 
       w <- NULL; # Not needed anymore
     }

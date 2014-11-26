@@ -112,10 +112,10 @@
 
 
 SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP commute, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  SEXP ans;
+  SEXP ans = NILSXP;
   int narm, hasna, byrow, commute2;
   int op;
-  R_xlen_t nrow, ncol, step;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
@@ -146,16 +146,16 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP commute, SEXP naRm, SE
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
       if (isReal(x) && isReal(y)) {
-        x_OP_y_Real_Real_Add(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Real_Real_Add(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && isInteger(y)) {
-        x_OP_y_Real_Integer_Add(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Real_Integer_Add(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isInteger(x) && isReal(y)) {
-        x_OP_y_Integer_Real_Add(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Integer_Real_Add(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-      x_OP_y_Integer_Integer_Add(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, INTEGER(ans), xlength(ans));
+      x_OP_y_Integer_Integer_Add(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
   } if (op == 2) {
@@ -163,16 +163,16 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP commute, SEXP naRm, SE
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
       if (isReal(x) && isReal(y)) {
-        x_OP_y_Real_Real_Sub(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Real_Real_Sub(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && isInteger(y)) {
-        x_OP_y_Real_Integer_Sub(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Real_Integer_Sub(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isInteger(x) && isReal(y)) {
-        x_OP_y_Integer_Real_Sub(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Integer_Real_Sub(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-      x_OP_y_Integer_Integer_Sub(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, INTEGER(ans), xlength(ans));
+      x_OP_y_Integer_Integer_Sub(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
   } else if (op == 3) {
@@ -180,29 +180,29 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP commute, SEXP naRm, SE
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
       if (isReal(x) && isReal(y)) {
-        x_OP_y_Real_Real_Mul(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Real_Real_Mul(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && isInteger(y)) {
-        x_OP_y_Real_Integer_Mul(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Real_Integer_Mul(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isInteger(x) && isReal(y)) {
-        x_OP_y_Integer_Real_Mul(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+        x_OP_y_Integer_Real_Mul(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-      x_OP_y_Integer_Integer_Mul(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, INTEGER(ans), xlength(ans));
+      x_OP_y_Integer_Integer_Mul(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
   } else if (op == 4) {
     /* Division */  
     PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
     if (isReal(x) && isReal(y)) {
-      x_OP_y_Real_Real_Div(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+      x_OP_y_Real_Real_Div(REAL(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isReal(x) && isInteger(y)) {
-      x_OP_y_Real_Integer_Div(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+      x_OP_y_Real_Integer_Div(REAL(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isInteger(x) && isReal(y)) {
-      x_OP_y_Integer_Real_Div(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+      x_OP_y_Integer_Real_Div(INTEGER(x), nrow, ncol, REAL(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isInteger(x) && isInteger(y)) {
-      x_OP_y_Integer_Integer_Div(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, FALSE, REAL(ans), xlength(ans));
+      x_OP_y_Integer_Integer_Div(INTEGER(x), nrow, ncol, INTEGER(y), xlength(y), byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     }
     UNPROTECT(1);
   }
