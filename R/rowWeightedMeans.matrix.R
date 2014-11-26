@@ -73,15 +73,14 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
   if (hasWeights) {
     # Allocate results
     m <- nrow(x);
-    res <- double(m);
     if (m == 0L)
-      return(res);
+      return(double(0L));
 
     # Drop entries with zero weight?
     idxs <- which(w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
-      return(res);
+      return(double(0L));
     } else if (nw < n) {
       w <- w[idxs];
       x <- x[,idxs,drop=FALSE];
@@ -158,15 +157,14 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
   if (hasWeights) {
     # Allocate results
     m <- ncol(x);
-    res <- double(m);
     if (m == 0L)
-      return(res);
+      return(double(0L));
 
     # Drop entries with zero weight?
     idxs <- which(w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
-      return(res);
+      return(double(0L));
     } else if (nw < n) {
       w <- w[idxs];
       x <- x[idxs,,drop=FALSE];
@@ -208,6 +206,8 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
 
       # Weighted values
       x <- w*x;
+      ## SLIGHTLY SLOWER: x <- x_OP_y(x, w, OP="*");
+
       w <- NULL; # Not needed anymore
     }
 
