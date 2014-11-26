@@ -49,17 +49,17 @@
   #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y, narm): Unknown OP"
 #endif
 
-void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nx, 
-                   Y_C_TYPE *y, R_xlen_t ny, R_xlen_t step,
-                   int narm, int hasna, 
+void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
+                   Y_C_TYPE *y, R_xlen_t ny,
+                   int byrow, int narm, int hasna, 
                    ANS_C_TYPE *ans, R_xlen_t n) {
   double value;
-  R_xlen_t kk, xi, yi;
-
+  R_xlen_t kk, xi, yi, nx = nrow * ncol;
+  R_xlen_t row, col, txi;
   xi = 0;
   yi = 0;
 
-  if (step >= 2) {
+  if (byrow) {
     for (kk=0; kk < n; kk++) {
       value = FUN(x[xi], y[yi], narm);
   
@@ -69,8 +69,12 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nx,
       /* Next x and y values */
       xi++;
       if (xi >= nx) xi = 0;
-      yi = xi / step;
-      yi %= ny;
+
+      /* Current ndex in t(x) */
+      row = xi % nrow;
+      col = xi / nrow;
+      txi = row*ncol + col;
+      yi = txi % ny;
     } /* for (kk ...) */
   } else {
     for (kk=0; kk < n; kk++) {

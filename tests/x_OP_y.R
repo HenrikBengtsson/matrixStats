@@ -97,4 +97,28 @@ for (which in c("x", "y", "both")) {
 
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Length differences
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(1:8, nrow=2, ncol=4)
+y <- 1:ncol(x)
+storage.mode(y) <- storage.mode(x)
+
+for (FUN in c("+", "-", "*", "/")) {
+  for (na.rm in c(FALSE, TRUE)) {
+    cat(sprintf("FUN='%s', na.rm=%s\n", FUN, na.rm))
+
+    a0 <- x_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+    a1 <- x_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+    str(a1)
+    stopifnot(all.equal(a1, a0))
+
+    b0 <- t_tx_OP_y_R(x,y, FUN=FUN, na.rm=na.rm)
+    b1 <- t_tx_OP_y(x,y, FUN=FUN, na.rm=na.rm)
+    str(b1)
+    stopifnot(all.equal(b1, b0))
+  }
+}
+
+
 
