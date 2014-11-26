@@ -56,7 +56,7 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                    ANS_C_TYPE *ans, R_xlen_t n) {
   double value;
   R_xlen_t kk, xi, yi, nx = nrow * ncol;
-  R_xlen_t row, col, txi;
+  R_xlen_t row, col, txi = 0;
 
   xi = 0;
   row = col = 0;
