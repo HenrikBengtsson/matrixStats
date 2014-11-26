@@ -3,50 +3,58 @@
 
 #if OP == '+'
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Add)
-  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
-  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
-      if (narm) {
-        if (X_ISNAN(x)) {
-          return (double)y;
-        } else if (Y_ISNAN(y)) {
-          return (double)x;
-        } else {
-          return (double)x + (double)y;
-        }
-      } else {
-        return (double)x + (double)y;
-      }
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+    return (double)x + (double)y;
+  }
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
+    if (X_ISNAN(x)) {
+      return (double)y;
+    } else if (Y_ISNAN(y)) {
+      return (double)x;
+    } else {
+      return (double)x + (double)y;
+    }
   }
 #elif OP == '-'
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Sub)
-  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
-  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+    return (double)x - (double)y;
+  }
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
     return (double)x - (double)y;
   }
 #elif OP == '*'
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Mul)
-  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
-  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
-      if (narm) {
-        if (X_ISNAN(x)) {
-          return (double)y;
-        } else if (Y_ISNAN(y)) {
-          return (double)x;
-        } else {
-          return (double)x * (double)y;
-        }
-      } else {
-        return (double)x * (double)y;
-      }
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+    return (double)x * (double)y;
+  }
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
+    if (X_ISNAN(x)) {
+      return (double)y;
+    } else if (Y_ISNAN(y)) {
+      return (double)x;
+    } else {
+      return (double)x * (double)y;
+    }
   }
 #elif OP == '/'
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Div)
-  #define FUN CONCAT_MACROS(FUN, METHOD_NAME_T)
-  static R_INLINE double FUN(X_C_TYPE x, Y_C_TYPE y, int narm) {
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+    return (double)x / (double)y;
+  }
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
+  static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
     return (double)x / (double)y;
   }
 #else
-  #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y, narm): Unknown OP"
+  #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y): Unknown OP"
 #endif
 
 void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
@@ -54,95 +62,100 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                    int byrow, int commute,
                    int narm, int hasna, 
                    ANS_C_TYPE *ans, R_xlen_t n) {
-  double value;
   R_xlen_t kk, xi, yi, nx = nrow * ncol;
-  R_xlen_t row, col, txi = 0;
+  R_xlen_t row, col, txi;
 
   xi = 0;
-  row = col = 0;
+  txi = row = col = 0;
   yi = 0;
 
   if (byrow) {
     if (commute) {
-      for (kk=0; kk < n; kk++) {
-        value = FUN(y[yi], x[xi], narm);
-    
-        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
-        ans[kk] = (ANS_C_TYPE) value;
-    
-        /* Next x and y values */
-        xi++;
-        if (xi >= nx) xi = 0;
-  
-        /* Current index in t(x) :
-           col = xi / nrow;
-           row = xi % nrow; 
-           txi = row * ncol + col;
-        */
-        row++;
-        if (row >= nrow) {
-          row = 0;
-          col++;
-          txi = col;
-	} else {
-          txi += ncol;
-	}
-        yi = txi % ny;
-      } /* for (kk ...) */
+      if (narm) {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_narm(y[yi], x[xi]);
+          if (++xi >= nx) xi = 0;
+          if (++row >= nrow) {         /* Current index in t(x):  */
+            row = 0;                   /* col = xi / nrow;        */
+            col++;                     /* row = xi % nrow;        */
+            txi = col;                 /* txi = row * ncol + col; */
+          } else {
+            txi += ncol;
+          }
+          yi = txi % ny;
+        }
+      } else {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_no_NA(y[yi], x[xi]);
+          if (++xi >= nx) xi = 0;
+          if (++row >= nrow) {         /* Current index in t(x):  */
+            row = 0;                   /* col = xi / nrow;        */
+            col++;                     /* row = xi % nrow;        */
+            txi = col;                 /* txi = row * ncol + col; */
+          } else {
+            txi += ncol;
+          }
+          yi = txi % ny;
+        }
+      }
     } else {
-      for (kk=0; kk < n; kk++) {
-        value = FUN(x[xi], y[yi], narm);
-    
-        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
-        ans[kk] = (ANS_C_TYPE) value;
-    
-        /* Next x and y values */
-        xi++;
-        if (xi >= nx) xi = 0;
-  
-        /* Current index in t(x) :
-           col = xi / nrow;
-           row = xi % nrow; 
-           txi = row * ncol + col;
-        */
-        row++;
-        if (row >= nrow) {
-          row = 0;
-          col++;
-          txi = col;
-	} else {
-          txi += ncol;
-	}
-        yi = txi % ny;
-      } /* for (kk ...) */
+      if (narm) {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_narm(x[xi], y[yi]);
+          if (++xi >= nx) xi = 0;
+          if (++row >= nrow) {         /* Current index in t(x):  */
+            row = 0;                   /* col = xi / nrow;        */
+            col++;                     /* row = xi % nrow;        */
+            txi = col;                 /* txi = row * ncol + col; */
+          } else {
+            txi += ncol;
+          }
+          yi = txi % ny;
+        }
+      } else {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_no_NA(x[xi], y[yi]);
+          if (++xi >= nx) xi = 0;
+          if (++row >= nrow) {         /* Current index in t(x):  */
+            row = 0;                   /* col = xi / nrow;        */
+            col++;                     /* row = xi % nrow;        */
+            txi = col;                 /* txi = row * ncol + col; */
+          } else {
+            txi += ncol;
+          }
+          yi = txi % ny;
+        }
+      }
     }
   } else {
     if (commute) {
-      for (kk=0; kk < n; kk++) {
-        value = FUN(y[yi], x[xi], narm);
-    
-        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
-        ans[kk] = (ANS_C_TYPE) value;
-    
-        /* Next x and y values */
-        xi++;
-        if (xi >= nx) xi = 0;
-        yi++;
-        if (yi >= ny) yi = 0;
-      } /* for (kk ...) */
+      if (narm) {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_narm(y[yi], x[xi]);
+          if (++xi >= nx) xi = 0;
+          if (++yi >= ny) yi = 0;
+        }
+      } else {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_no_NA(y[yi], x[xi]);
+          if (++xi >= nx) xi = 0;
+          if (++yi >= ny) yi = 0;
+        }
+      }
     } else {
-      for (kk=0; kk < n; kk++) {
-        value = FUN(x[xi], y[yi], narm);
-    
-        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
-        ans[kk] = (ANS_C_TYPE) value;
-    
-        /* Next x and y values */
-        xi++;
-        if (xi >= nx) xi = 0;
-        yi++;
-        if (yi >= ny) yi = 0;
-      } /* for (kk ...) */
+      if (narm) {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_narm(x[xi], y[yi]);
+          if (++xi >= nx) xi = 0;
+          if (++yi >= ny) yi = 0;
+        }
+      } else {
+        for (kk=0; kk < n; kk++) {
+          ans[kk] = (ANS_C_TYPE) FUN_no_NA(x[xi], y[yi]);
+          if (++xi >= nx) xi = 0;
+          if (++yi >= ny) yi = 0;
+        }
+      }
     }
   }
 }
