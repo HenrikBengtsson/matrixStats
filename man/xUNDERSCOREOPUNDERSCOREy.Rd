@@ -15,8 +15,8 @@
 \title{Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)'}
 
 \usage{
- x_OP_y(x, y, FUN, commute=FALSE, na.rm=FALSE)
- t_tx_OP_y(x, y, FUN, commute=FALSE, na.rm=FALSE)
+ x_OP_y(x, y, OP, commute=FALSE, na.rm=FALSE)
+ t_tx_OP_y(x, y, OP, commute=FALSE, na.rm=FALSE)
 }
 
 \description{
@@ -27,7 +27,7 @@
 \arguments{
   \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
   \item{y}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length L.}
-  \item{FUN}{A \code{\link[base]{character}} specifying which operator to use.}
+  \item{OP}{A \code{\link[base]{character}} specifying which operator to use.}
   \item{commute}{If \code{\link[base:logical]{TRUE}}, 'y OP x' ('t(y OP t(x))') is calculated,
       otherwise 'x OP y' ('t(t(x) OP y)').}
   \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are ignored, otherwise not.}
@@ -53,7 +53,7 @@ x <- matrix(c(1,2,3,NA,5,6), nrow=3, ncol=2)
 # Add 'y' to each column
 y <- 1:2
 z0 <- x + y
-z1 <- x_OP_y(x, y, FUN="+")
+z1 <- x_OP_y(x, y, OP="+")
 print(z1)
 stopifnot(all.equal(z1, z0))
 
@@ -61,7 +61,7 @@ stopifnot(all.equal(z1, z0))
 # Add 'y' to each row
 y <- 1:3
 z0 <- t(t(x) + y)
-z1 <- t_tx_OP_y(x, y, FUN="+")
+z1 <- t_tx_OP_y(x, y, OP="+")
 print(z1)
 stopifnot(all.equal(z1, z0))
 
