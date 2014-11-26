@@ -51,7 +51,8 @@
 
 void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                    Y_C_TYPE *y, R_xlen_t ny,
-                   int byrow, int narm, int hasna, 
+                   int byrow, int commute,
+                   int narm, int hasna, 
                    ANS_C_TYPE *ans, R_xlen_t n) {
   double value;
   R_xlen_t kk, xi, yi, nx = nrow * ncol;
@@ -60,35 +61,69 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
   yi = 0;
 
   if (byrow) {
-    for (kk=0; kk < n; kk++) {
-      value = FUN(x[xi], y[yi], narm);
+    if (commute) {
+      for (kk=0; kk < n; kk++) {
+        value = FUN(y[yi], x[xi], narm);
+    
+        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
+        ans[kk] = (ANS_C_TYPE) value;
+    
+        /* Next x and y values */
+        xi++;
+        if (xi >= nx) xi = 0;
   
-      /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
-      ans[kk] = (ANS_C_TYPE) value;
+        /* Current ndex in t(x) */
+        row = xi % nrow;
+        col = xi / nrow;
+        txi = row*ncol + col;
+        yi = txi % ny;
+      } /* for (kk ...) */
+    } else {
+      for (kk=0; kk < n; kk++) {
+        value = FUN(x[xi], y[yi], narm);
+    
+        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
+        ans[kk] = (ANS_C_TYPE) value;
+    
+        /* Next x and y values */
+        xi++;
+        if (xi >= nx) xi = 0;
   
-      /* Next x and y values */
-      xi++;
-      if (xi >= nx) xi = 0;
-
-      /* Current ndex in t(x) */
-      row = xi % nrow;
-      col = xi / nrow;
-      txi = row*ncol + col;
-      yi = txi % ny;
-    } /* for (kk ...) */
+        /* Current ndex in t(x) */
+        row = xi % nrow;
+        col = xi / nrow;
+        txi = row*ncol + col;
+        yi = txi % ny;
+      } /* for (kk ...) */
+    }
   } else {
-    for (kk=0; kk < n; kk++) {
-      value = FUN(x[xi], y[yi], narm);
-  
-      /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
-      ans[kk] = (ANS_C_TYPE) value;
-  
-      /* Next x and y values */
-      xi++;
-      if (xi >= nx) xi = 0;
-      yi++;
-      if (yi >= ny) yi = 0;
-    } /* for (kk ...) */
+    if (commute) {
+      for (kk=0; kk < n; kk++) {
+        value = FUN(y[yi], x[xi], narm);
+    
+        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
+        ans[kk] = (ANS_C_TYPE) value;
+    
+        /* Next x and y values */
+        xi++;
+        if (xi >= nx) xi = 0;
+        yi++;
+        if (yi >= ny) yi = 0;
+      } /* for (kk ...) */
+    } else {
+      for (kk=0; kk < n; kk++) {
+        value = FUN(x[xi], y[yi], narm);
+    
+        /*      Rprintf("x[%d]=%g, y[%d]=%g & step=%d => ans[%d]=%g\n", xi, (double)x[xi],  yi, (double)y[yi], step, kk, value); */
+        ans[kk] = (ANS_C_TYPE) value;
+    
+        /* Next x and y values */
+        xi++;
+        if (xi >= nx) xi = 0;
+        yi++;
+        if (yi >= ny) yi = 0;
+      } /* for (kk ...) */
+    }
   }
 }
 
