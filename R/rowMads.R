@@ -23,9 +23,11 @@ colMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), 
     hasNAs <- TRUE
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
   } else {
-    for (cc in seq(length=ncol(x))) {
-      x[,cc] <- x[,cc] - centers[cc]
-    }
+    ## SLOW:
+    ## for (cc in seq(length=ncol(x))) {
+    #    x[,cc] <- x[,cc] - centers[cc]
+    #  }
+    x <- t_tx_OP_y(x, centers, OP="-", na.rm=FALSE)
     x <- abs(x)
     x <- colMedians(x, na.rm=na.rm, ...)
     x <- constant*x
