@@ -3,8 +3,8 @@
   void rowCummins_<Integer|Real>(...)
 
  GENERATES:
-  void rowCummins_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
-  void rowCummins_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
+  void rowCummins_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, double *ans)
+  void rowCummins_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -14,10 +14,9 @@
   - X_TYPE: 'i' or 'r'
 
  Authors:
-  Adopted from rowQuantiles.c by R. Gentleman.
-  Template by Henrik Bengtsson.
+  Henrik Bengtsson.
 
- Copyright: Henrik Bengtsson, 2007-2013
+ Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
 #include <R_ext/Memory.h>
 #include <Rmath.h>
