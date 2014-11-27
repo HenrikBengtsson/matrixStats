@@ -64,6 +64,12 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                    ANS_C_TYPE *ans, R_xlen_t n) {
   R_xlen_t kk, xi, yi, nx = nrow * ncol;
   R_xlen_t row, col, txi;
+  double value;
+#if ANS_TYPE == 'i'
+  int ok = 1; /* OK, i.e. no integer overflow yet? */
+  double R_INT_MIN_d = (double)R_INT_MIN, 
+         R_INT_MAX_d = (double)R_INT_MAX;
+#endif
 
   xi = 0;
   txi = row = col = 0;
@@ -73,7 +79,14 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     if (commute) {
       if (narm) {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_narm(y[yi], x[xi]);
+          value = FUN_narm(y[yi], x[xi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -86,7 +99,14 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_no_NA(y[yi], x[xi]);
+          value = FUN_no_NA(y[yi], x[xi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -101,7 +121,14 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     } else {
       if (narm) {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_narm(x[xi], y[yi]);
+          value = FUN_narm(x[xi], y[yi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -114,7 +141,14 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_no_NA(x[xi], y[yi]);
+          value = FUN_no_NA(x[xi], y[yi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -131,13 +165,27 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     if (commute) {
       if (narm) {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_narm(y[yi], x[xi]);
+          value = FUN_narm(y[yi], x[xi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
       } else {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_no_NA(y[yi], x[xi]);
+          value = FUN_no_NA(y[yi], x[xi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
@@ -145,19 +193,40 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     } else {
       if (narm) {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_narm(x[xi], y[yi]);
+          value = FUN_narm(x[xi], y[yi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
       } else {
         for (kk=0; kk < n; kk++) {
-          ans[kk] = (ANS_C_TYPE) FUN_no_NA(x[xi], y[yi]);
+          value = FUN_no_NA(x[xi], y[yi]);
+#if ANS_TYPE == 'i'
+          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+            ok = 0;
+            value = NA_REAL;
+          }
+#endif
+          ans[kk] = (ANS_C_TYPE) value;
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
       }
     }
+  } /* if (byrow) */
+
+#if ANS_TYPE == 'i'
+  /* Warn on integer overflow? */
+  if (!ok) {
+    warning("Integer overflow. Detected one or more elements whose absolute values were out of the range [%d,%d] that can be used to for integers. Such values are set to NA_integer_.", R_INT_MIN, R_INT_MAX);
   }
+#endif
 }
 
 #undef FUN
