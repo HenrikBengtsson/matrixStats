@@ -1,14 +1,26 @@
 library("matrixStats")
 
-rowCumsums_R <- function(x) {
+rowCummins_R <- function(x) {
   suppressWarnings({
-    t(apply(x, MARGIN=1L, FUN=cumsum))
+    t(apply(x, MARGIN=1L, FUN=cummin))
   })
 }
 
-colCumsums_R <- function(x) {
+colCummins_R <- function(x) {
   suppressWarnings({
-    apply(x, MARGIN=2L, FUN=cumsum)
+    apply(x, MARGIN=2L, FUN=cummin)
+  })
+}
+
+rowCummaxs_R <- function(x) {
+  suppressWarnings({
+    t(apply(x, MARGIN=1L, FUN=cummax))
+  })
+}
+
+colCummaxs_R <- function(x) {
+  suppressWarnings({
+    apply(x, MARGIN=2L, FUN=cummax)
   })
 }
 
@@ -25,9 +37,16 @@ for (addNA in c(FALSE, TRUE)) {
   }
 
   # Row/column ranges
-  r0 <- rowCumsums_R(x)
-  r1 <- rowCumsums(x)
-  r2 <- t(colCumsums(t(x)))
+  r0 <- rowCummins_R(x)
+  r1 <- rowCummins(x)
+  r2 <- t(colCummins(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+
+  r0 <- rowCummaxs_R(x)
+  r1 <- rowCummaxs(x)
+  r2 <- t(colCummaxs(t(x)))
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
@@ -38,22 +57,35 @@ for (addNA in c(FALSE, TRUE)) {
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(NA_real_, nrow=20, ncol=5)
-r0 <- rowCumsums_R(x)
-r1 <- rowCumsums(x)
-r2 <- t(colCumsums(t(x)))
+r0 <- rowCummins_R(x)
+r1 <- rowCummins(x)
+r2 <- t(colCummins(t(x)))
 stopifnot(all.equal(r1, r2))
 stopifnot(all.equal(r1, r0))
 stopifnot(all.equal(r2, r0))
 
+r0 <- rowCummaxs_R(x)
+r1 <- rowCummaxs(x)
+r2 <- t(colCummaxs(t(x)))
+stopifnot(all.equal(r1, r2))
+stopifnot(all.equal(r1, r0))
+stopifnot(all.equal(r2, r0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(0, nrow=1, ncol=1)
-r0 <- rowCumsums_R(x)
-r1 <- rowCumsums(x)
-r2 <- t(colCumsums(t(x)))
+r0 <- rowCummins_R(x)
+r1 <- rowCummins(x)
+r2 <- t(colCummins(t(x)))
+stopifnot(all.equal(r1, r2))
+stopifnot(all.equal(r1, r0))
+stopifnot(all.equal(r2, r0))
+
+r0 <- rowCummaxs_R(x)
+r1 <- rowCummaxs(x)
+r2 <- t(colCummaxs(t(x)))
 stopifnot(all.equal(r1, r2))
 stopifnot(all.equal(r1, r0))
 stopifnot(all.equal(r2, r0))

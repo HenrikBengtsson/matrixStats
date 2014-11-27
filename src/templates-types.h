@@ -77,16 +77,21 @@
 #if ANS_TYPE == 'i'
   #define ANS_SXP INTSXP
   #define ANS_NA NA_INTEGER
+  #define ANS_ISNAN(x) (x == NA_INTEGER)
+  #define ANS_ISNA(x) (x == NA_INTEGER)
   #define ANS_C_TYPE int
   #define ANS_IN_C INTEGER
 #elif ANS_TYPE == 'r'
   #define ANS_SXP REALSXP
   #define ANS_NA NA_REAL
+  #define ANS_ISNAN(x) ISNAN(x) /* NA or NaN */
+  #define ANS_ISNA(x) ISNA(x) /* NA only */
   #define ANS_C_TYPE double
   #define ANS_IN_C REAL
 #elif ANS_TYPE == 'l'
   #define ANS_SXP LGLSXP
   #define ANS_NA NA_LOGICAL
+  #define ANS_ISNAN(x) (x == NA_LOGICAL)
   #define ANS_C_TYPE int
   #define ANS_IN_C LOGICAL
 #else

@@ -1,7 +1,7 @@
 /***************************************************************************
  Public methods:
- SEXP rowCumsums(SEXP x, ...)
- SEXP colCumsums(SEXP x, ...)
+ SEXP rowCumprods(SEXP x, SEXP naRm, SEXP hasNA)
+ SEXP colCumprods(SEXP x, SEXP naRm, SEXP hasNA)
 
  Authors: Henrik Bengtsson
 
@@ -11,18 +11,18 @@
 #include "types.h"
 #include "utils.h"
 
-#define METHOD rowCumsums
+#define METHOD rowCumprods
 
 #define X_TYPE 'i'
-#include "rowCumsums_TYPE-template.h"
+#include "rowCumprods_TYPE-template.h"
 
 #define X_TYPE 'r'
-#include "rowCumsums_TYPE-template.h"
+#include "rowCumprods_TYPE-template.h"
 
 #undef METHOD 
 
 
-SEXP rowCumsums(SEXP x, SEXP dim, SEXP byRow) {
+SEXP rowCumprods(SEXP x, SEXP dim, SEXP byRow) {
   int byrow;
   SEXP ans;
   R_xlen_t nrow, ncol;
@@ -38,16 +38,16 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP byRow) {
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-    rowCumsums_Real(REAL(x), nrow, ncol, byrow, REAL(ans));
+    rowCumprods_Real(REAL(x), nrow, ncol, byrow, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-    rowCumsums_Integer(INTEGER(x), nrow, ncol, byrow, INTEGER(ans));
+    rowCumprods_Integer(INTEGER(x), nrow, ncol, byrow, INTEGER(ans));
     UNPROTECT(1);
   }
 
   return(ans);
-} /* rowCumsums() */
+} /* rowCumprods() */
 
 
 /***************************************************************************

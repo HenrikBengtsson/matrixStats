@@ -21,6 +21,8 @@
 
 #undef ANS_SXP
 #undef ANS_NA
+#undef ANS_ISNAN
+#undef ANS_ISNA
 #undef ANS_C_TYPE
 #undef ANS_IN_C
 

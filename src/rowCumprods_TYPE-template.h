@@ -1,10 +1,10 @@
 /***********************************************************************
  TEMPLATE:
-  void rowCumsums_<Integer|Real>(...)
+  void rowCumprods_<Integer|Real>(...)
 
  GENERATES:
-  void rowCumsums_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
-  void rowCumsums_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
+  void rowCumprods_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
+  void rowCumprods_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -51,7 +51,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
           R_CheckUserInterrupt();
  #if ANS_TYPE == 'i'
         if (ok) {
-          value = (LDOUBLE) ans[kk_prev] + (LDOUBLE) x[kk];
+          value = (LDOUBLE) ans[kk_prev] * (LDOUBLE) x[kk];
           /* Integer overflow? */
           if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
             ok = 0;
@@ -61,7 +61,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
           value = NA_REAL;
 	}
 #else
-        value = (LDOUBLE) ans[kk_prev] + (LDOUBLE) x[kk];
+        value = (LDOUBLE) ans[kk_prev] * (LDOUBLE) x[kk];
 #endif
         ans[kk] = (ANS_C_TYPE) value;
 
@@ -72,13 +72,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
   } else {
     kk = 0;
     for (jj=0; jj < ncol; jj++) {
-      value = 0;
+      value = 1;
       for (ii=0; ii < nrow; ii++) {
         if (kk % 1000 == 0)
           R_CheckUserInterrupt();
  #if ANS_TYPE == 'i'
         if (ok) {
-          value += (LDOUBLE) x[kk];
+          value *= (LDOUBLE) x[kk];
           /* Integer overflow? */
           if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
             ok = 0;
@@ -88,7 +88,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
           value = NA_REAL;
 	}
 #else
-        value += x[kk];
+        value *= x[kk];
 #endif
         ans[kk] = (ANS_C_TYPE) value;
 

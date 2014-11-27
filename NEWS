@@ -2,7 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.11.9 [2014-11-26]
-o Added (col|row)Cumsums().
+o Added (col|row)Cumsums(), (col|row)Cumprods(), (col|row)Cummins(), 
+  and (col|row)Cummaxs().
 
 
 Version: 0.11.8 [2014-11-25]

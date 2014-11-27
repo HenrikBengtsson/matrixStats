@@ -11,16 +11,28 @@
 
 \alias{rowCumsums}
 \alias{colCumsums}
+\alias{rowCumprods}
+\alias{colCumprods}
+\alias{rowCummins}
+\alias{colCummins}
+\alias{rowCummaxs}
+\alias{colCummaxs}
 
-\title{Cumulative sum for each row (column) in a matrix}
+\title{Cumulative sums, products, minima and maxima for each row (column) in a matrix}
 
 \description{
-  Cumulative sum for each row (column) in a matrix.
+  Cumulative sums, products, minima and maxima for each row (column) in a matrix.
 }
 
 \usage{
  rowCumsums(x, dim.=dim(x), ...)
  colCumsums(x, dim.=dim(x), ...)
+ rowCumprods(x, dim.=dim(x), ...)
+ colCumprods(x, dim.=dim(x), ...)
+ rowCummins(x, dim.=dim(x), ...)
+ colCummins(x, dim.=dim(x), ...)
+ rowCummaxs(x, dim.=dim(x), ...)
+ colCummaxs(x, dim.=dim(x), ...)
 }
 
 \arguments{
@@ -43,12 +55,31 @@ print(yr)
 
 yc <- colCumsums(x)
 print(yc)
+
+yr <- rowCumprods(x)
+print(yr)
+
+yc <- colCumprods(x)
+print(yc)
+
+yr <- rowCummaxs(x)
+print(yr)
+
+yc <- colCummaxs(x)
+print(yc)
+
+yr <- rowCummins(x)
+print(yr)
+
+yc <- colCummins(x)
+print(yc)
 }
 
 \author{Henrik Bengtsson}
 
 \seealso{
-  See \code{\link[base]{cumsum}}().
+  See \code{\link[base]{cumsum}}(), \code{\link[base]{cumprod}}(),
+      \code{\link[base]{cummin}}(), and \code{\link[base]{cummax}}().
 }
 
 

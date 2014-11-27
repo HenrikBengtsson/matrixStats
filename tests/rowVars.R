@@ -2,13 +2,13 @@ library("matrixStats")
 
 rowVars_R <- function(x, na.rm=FALSE) {
   suppressWarnings({
-    r0 <- apply(x, MARGIN=1L, FUN=var, na.rm=na.rm)
+    apply(x, MARGIN=1L, FUN=var, na.rm=na.rm)
   })
 }
 
 colVars_R <- function(x, na.rm=FALSE) {
   suppressWarnings({
-    r0 <- apply(x, MARGIN=2L, FUN=var, na.rm=na.rm)
+    apply(x, MARGIN=2L, FUN=var, na.rm=na.rm)
   })
 }
 
