@@ -21,11 +21,11 @@
 #include "rowCumMinMaxs_TYPE-template.h"
 
 #undef COMP
-#undef METHOD 
+#undef METHOD
 
 SEXP rowCummins(SEXP x, SEXP dim, SEXP byRow) {
   int byrow;
-  SEXP ans;
+  SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
@@ -62,12 +62,12 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP byRow) {
 #include "rowCumMinMaxs_TYPE-template.h"
 
 #undef COMP
-#undef METHOD 
+#undef METHOD
 
 
 SEXP rowCummaxs(SEXP x, SEXP dim, SEXP byRow) {
   int byrow;
-  SEXP ans;
+  SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */

@@ -19,12 +19,12 @@
 #define X_TYPE 'r'
 #include "rowCumprods_TYPE-template.h"
 
-#undef METHOD 
+#undef METHOD
 
 
 SEXP rowCumprods(SEXP x, SEXP dim, SEXP byRow) {
   int byrow;
-  SEXP ans;
+  SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
