@@ -80,7 +80,7 @@ void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
   } // if (nbins > 0)
 
   if (warn) {
-    warning("Integer overflow. Detected one of more bins with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d). The bin mean is still correct.", R_INT_MAX);
+    warning("Integer overflow. Detected one or more bins with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d). The bin mean is still correct.", R_INT_MAX);
   }
 }
 
