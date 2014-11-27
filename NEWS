@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.11.9 [2014-11-26]
+o Added (col|row)Cumsums().
+
+
 Version: 0.11.8 [2014-11-25]
 o SPEEDUP: Implemented (col|row)Mads(), (col|row)Sds() and
   (col|row)Vars() in native code.
