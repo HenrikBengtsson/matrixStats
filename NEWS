@@ -2,8 +2,10 @@ Package: matrixStats
 ====================
 
 Version: 0.11.9 [2014-11-26]
-o Added (col|row)Cumsums(), (col|row)Cumprods(), (col|row)Cummins(), 
+o Added (col|row)Cumsums(), (col|row)Cumprods(), (col|row)Cummins(),
   and (col|row)Cummaxs().
+o BUG FIX: (col|row)WeightedMeans() with all zero weights gave
+  an invalid result.
 
 
 Version: 0.11.8 [2014-11-25]

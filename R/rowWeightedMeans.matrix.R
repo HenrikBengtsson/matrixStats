@@ -80,7 +80,7 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
     idxs <- which(w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
-      return(double(0L));
+      return(rep(NaN, times=m));
     } else if (nw < n) {
       w <- w[idxs];
       x <- x[,idxs,drop=FALSE];
@@ -164,7 +164,7 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
     idxs <- which(w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
-      return(double(0L));
+      return(rep(NaN, times=m));
     } else if (nw < n) {
       w <- w[idxs];
       x <- x[idxs,,drop=FALSE];
@@ -223,6 +223,9 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
 
 ##############################################################################
 # HISTORY:
+# 2013-11-29
+# o BUG FIX: (col|row)WeightedMeans() with all zero weights gave an
+#   invalid result.
 # 2013-11-23
 # o MEMORY: Now (col|row)WeightedMeans() clean out allocated objects sooner.
 # 2010-02-03
