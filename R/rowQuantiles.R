@@ -140,6 +140,7 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 
       xp <- apply(x, MARGIN=2L, FUN=sort, partial=partial)
       q <- apply(xp, MARGIN=2L, FUN=.subset, idxs_lo)
+      if (is.null(dim(q))) dim(q) <- c(1L, length(q))
 
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)

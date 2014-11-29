@@ -17,6 +17,9 @@ print(q0)
 q1 <- rowQuantiles(x, probs=probs)
 print(q1)
 stopifnot(all.equal(q1, q0))
+q2 <- colQuantiles(t(x), probs=probs)
+stopifnot(all.equal(q2, q0))
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with a single quantile
@@ -28,6 +31,8 @@ print(q0)
 q1 <- rowQuantiles(x, probs=probs)
 print(q1)
 stopifnot(all.equal(q1, q0))
+q2 <- colQuantiles(t(x), probs=probs)
+stopifnot(all.equal(q2, q0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,9 +71,9 @@ for (kk in 1:K) {
   str(x)
 
   # rowQuantiles():
-  y0 <- rowQuantiles_R(x, probs=probs, na.rm=hasNA)
-  y1 <- rowQuantiles(x, probs=probs, na.rm=hasNA)
-  stopifnot(all.equal(y1, y0))
-  y2 <- colQuantiles(t(x), probs=probs, na.rm=hasNA)
-  stopifnot(all.equal(y2, y0))
+  q0 <- rowQuantiles_R(x, probs=probs, na.rm=hasNA)
+  q1 <- rowQuantiles(x, probs=probs, na.rm=hasNA)
+  stopifnot(all.equal(q1, q0))
+  q2 <- colQuantiles(t(x), probs=probs, na.rm=hasNA)
+  stopifnot(all.equal(q2, q0))
 } # for (kk ...)
