@@ -4,10 +4,16 @@ library("utils")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Local functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-psortKM0 <- function(x, k, m) {
+psortKM_R <- function(x, k, m) {
   x <- sort(x)
   x[(k-m+1):k]
-} # psortKM0()
+} # psortKM_R()
+
+psortKM_R2 <- function(x, k, m) {
+  partial <- (k-m+1):k
+  x <- sort.int(x, partial=partial)
+  x[partial]
+} # psortKM_R2()
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,17 +32,21 @@ str(y)
 
 for (k in c(1, 2, 500, 501, length(x))) {
   for (m in 1:min(5,k)) {
-    px0 <- psortKM0(x, k=k, m=m)
-    px <- matrixStats:::.psortKM(x, k=k, m=m)
+    px0 <- psortKM_R(x, k=k, m=m)
+    px0b <- psortKM_R2(x, k=k, m=m)
+    stopifnot(identical(px0b, px0))
+    px1 <- matrixStats:::.psortKM(x, k=k, m=m)
     cat(sprintf(".psortKM(x, k=%d, m=%d):\n", k, m))
-    print(px)
-    stopifnot(identical(px, px0))
+    print(px1)
+    stopifnot(identical(px1, px0))
 
-    py0 <- psortKM0(y, k=k, m=m)
-    py <- matrixStats:::.psortKM(y, k=k, m=m)
+    py0 <- psortKM_R(y, k=k, m=m)
+    py0b <- psortKM_R2(y, k=k, m=m)
+    stopifnot(identical(py0b, py0))
+    py1 <- matrixStats:::.psortKM(y, k=k, m=m)
     cat(sprintf(".psortKM(y, k=%d, m=%d):\n", k, m))
-    print(py)
-    stopifnot(identical(py, py0))
-    stopifnot(identical(py, px))
+    print(py1)
+    stopifnot(identical(py1, py0))
+    stopifnot(identical(py1, px1))
   } # for (m ...)
 } # for (k ...)
