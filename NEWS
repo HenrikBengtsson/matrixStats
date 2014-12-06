@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.12.0 [2014-12-05]
+o Submitted to CRAN.
+
+
 Version: 0.11.9 [2014-11-26]
 o Added (col|row)Cumsums(), (col|row)Cumprods(), (col|row)Cummins(),
   and (col|row)Cummaxs().
@@ -161,7 +165,7 @@ o SPEEDUP: Now rowCounts(), rowAnys(), rowAlls() and corresponding
   column methods can search for any value in addition to the
   default TRUE.  The search for a matching integer or double value
   is done in native code, which is significantly faster (and more
-  memory efficent because it avoids creating any new objects).
+  memory efficient because it avoids creating any new objects).
 o SPEEDUP: Made colVars() and colSds() significantly faster and
   rowVars() and rowSds() a slightly bit faster.
 o SPEEDUP: Turned more S4 methods into S3 methods, e.g. rowCounts(),

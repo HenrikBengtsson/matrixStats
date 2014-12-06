@@ -63,7 +63,8 @@ R_CHECK_OPTS = --as-cran --timings $(shell if test "$(_R_CHECK_USE_VALGRIND_)" =
 R_RD4PDF = $(shell $(R_SCRIPT) -e "if (getRversion() < 3) cat('times,hyper')")
 R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
-HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !is.na(utils:::aspell_find_program('aspell'))))")
+HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !inherits(try(aspell('DESCRIPTION', control=c('--master=en_US', '--add-extra-dicts=en_GB'), dictionaries='en_stats', program='aspell'), silent=TRUE), 'try-error')))")
+
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

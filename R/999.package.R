@@ -24,10 +24,10 @@
 #   This is the reason why some methods are based on S4 and some on S3.
 #   The ones using S3 rely on the \pkg{R.methodsS3} package to define the
 #   methods.
-#   There are also dependancies on other packages.  The plan
-#   is to remove all such dependancies as soon as the API settles, but
-#   until then, we keep the dependencies for conveniency and in order to
-#   avoid reduncancy of available implementations of identical methods.
+#   There are also dependencies on other packages.  The plan
+#   is to remove all such dependencies  as soon as the API settles, but
+#   until then, we keep the dependencies for convenience and in order to
+#   avoid redundancy of available implementations of identical methods.
 # }
 #
 # \section{How to cite this package}{

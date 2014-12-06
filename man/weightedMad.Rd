@@ -29,7 +29,7 @@ weightedMad(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...)
   \item{na.rm}{a logical value indicating whether \code{\link[base]{NA}} values in
            \code{x} should be stripped before the computation proceeds,
            or not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s is done.
-           Default value is \code{\link[base]{NA}} (for effiency).}
+           Default value is \code{\link[base]{NA}} (for efficiency).}
   \item{constant}{A \code{\link[base]{numeric}} scale factor, cf. \code{\link[stats]{mad}}.}
   \item{center}{Optional \code{\link[base]{numeric}} scalar specifying the center
            location of the data.  If \code{\link[base]{NULL}}, it is estimated from data.}
