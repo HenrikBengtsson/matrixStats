@@ -28,48 +28,59 @@ colCummaxs_R <- function(x) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (addNA in c(FALSE, TRUE)) {
-  cat("addNA=", addNA, "\n", sep="")
+for (mode in c("integer", "double")) {
+  for (addNA in c(FALSE, TRUE)) {
+    cat("addNA=", addNA, "\n", sep="")
+  
+    x <- matrix(1:100, nrow=20, ncol=5)
+    if (addNA) {
+      x[13:17,c(2,4)] <- NA_real_
+    }
+    cat("mode: ", mode, "\n", sep="")
+    storage.mode(x) <- mode 
+    str(x)
+  
+    # Row/column ranges
+    r0 <- rowCummins_R(x)
+    r1 <- rowCummins(x)
+    r2 <- t(colCummins(t(x)))
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+  
+    r0 <- rowCummaxs_R(x)
+    r1 <- rowCummaxs(x)
+    r2 <- t(colCummaxs(t(x)))
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+  } # for (addNA ...)
+} # for (mode ...)
 
-  x <- matrix(1:100, nrow=20, ncol=5)
-  if (addNA) {
-    x[13:17,c(2,4)] <- NA_real_
-  }
 
-  # Row/column ranges
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# All NAs
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+for (mode in c("integer", "double")) {
+  x <- matrix(NA_real_, nrow=20, ncol=5)
+  cat("mode: ", mode, "\n", sep="")
+  storage.mode(x) <- mode 
+  str(x)
+
   r0 <- rowCummins_R(x)
   r1 <- rowCummins(x)
   r2 <- t(colCummins(t(x)))
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
-
+  
   r0 <- rowCummaxs_R(x)
   r1 <- rowCummaxs(x)
   r2 <- t(colCummaxs(t(x)))
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
-} # for (addNA ...)
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# All NAs
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(NA_real_, nrow=20, ncol=5)
-r0 <- rowCummins_R(x)
-r1 <- rowCummins(x)
-r2 <- t(colCummins(t(x)))
-stopifnot(all.equal(r1, r2))
-stopifnot(all.equal(r1, r0))
-stopifnot(all.equal(r2, r0))
-
-r0 <- rowCummaxs_R(x)
-r1 <- rowCummaxs(x)
-r2 <- t(colCummaxs(t(x)))
-stopifnot(all.equal(r1, r2))
-stopifnot(all.equal(r1, r0))
-stopifnot(all.equal(r2, r0))
+} # for (mode ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

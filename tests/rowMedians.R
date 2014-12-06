@@ -14,7 +14,7 @@ colMedians_R <- function(x, na.rm=FALSE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Non-ties:\n")
 for (mode in c("integer", "double")) {
-  x <- matrix(1:9, nrow=3, ncol=3)
+  x <- matrix(1:9+0.1, nrow=3, ncol=3)
   storage.mode(x) <- mode
 
   y0 <- rowMedians_R(x, na.rm=FALSE)
@@ -32,7 +32,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Ties:\n")
 for (mode in c("integer", "double")) {
-  x <- matrix(1:16, nrow=4, ncol=4)
+  x <- matrix(1:16+0.1, nrow=4, ncol=4)
   storage.mode(x) <- mode
 
   y0 <- rowMedians_R(x, na.rm=FALSE)
