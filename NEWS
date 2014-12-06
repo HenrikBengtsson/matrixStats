@@ -4,15 +4,17 @@ Package: matrixStats
 Version: 0.12.1 [2014-12-06]
 o ROBUSTNESS: Updated package tests to check methods in more 
   scenarios, especially with both integer and numeric input data.
+o BUG FIX: (col|row)Cumsums(x) where 'x' is integer would return
+  garbage for columns (rows) containing missing values.
 o BUG FIX: rowMads(x) where 'x' is numeric (not integer) would give
   incorrect results for rows that had an *odd* number of values
-  (no ties).  Added package tests for such cases too.  Thanks to
-  Brian Ripley and the CRAN check tools for (yet again) catching
-  another coding mistake.  Details: This was because the C-level
-  calculation of the absolute value of residuals toward the median
-  would use integer-based abs() rather than double-based fabs().
-  Now it fabs() is used when the values are double and abs() when
-  they are integers.
+  (no ties).  Analogously issues with colMads(). Added package tests
+  for such cases too.  Thanks to Brian Ripley and the CRAN check tools
+  for (yet again) catching another coding mistake.  Details: This was 
+  because the C-level calculation of the absolute value of residuals
+  toward the median would use integer-based abs() rather than double-
+  based fabs(). Now it fabs() is used when the values are double and
+  abs() when they are integers.
 
 
 Version: 0.12.0 [2014-12-05]
