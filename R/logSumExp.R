@@ -40,7 +40,7 @@
 #  less likely that the computation of \eqn{1 + exp(lb - la)} will
 #  not underflow/overflow numerically.  Because of this, the overall
 #  result from this function should be more accurate.
-#  Analoguously to this, the implementation of this function finds the
+#  Analogously to this, the implementation of this function finds the
 #  maximum value of \code{lx} and subtracts it from the remaining values
 #  in \code{lx}.
 # }

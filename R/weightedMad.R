@@ -18,7 +18,7 @@
 #   \item{na.rm}{a logical value indicating whether @NA values in
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.
-#            Default value is @NA (for effiency).}
+#            Default value is @NA (for efficiency).}
 #   \item{constant}{A @numeric scale factor, cf. @see "stats::mad".}
 #   \item{center}{Optional @numeric scalar specifying the center
 #            location of the data.  If @NULL, it is estimated from data.}

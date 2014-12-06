@@ -20,7 +20,7 @@
 #   \item{na.rm}{a logical value indicating whether @NA values in
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.
-#            Default value is @NA (for effiency).}
+#            Default value is @NA (for efficiency).}
 #   \item{interpolate}{If @TRUE, linear interpolation is used to get a
 #            consistent estimate of the weighted median.}
 #   \item{ties}{If \code{interpolate == FALSE},
