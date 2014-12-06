@@ -2,8 +2,8 @@ library("matrixStats")
 
 set.seed(1)
 
-for (mode in c("integer", "numeric")) {
-  cat("mode: ", mode, "\n", sep="")
+x <- matrix(rnorm(20), nrow=5, ncol=4)
+print(x)
 
 # Non-weighted row averages
 xM0 <- rowMeans(x)
