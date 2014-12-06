@@ -35,11 +35,11 @@
 # }
 #
 # \seealso{
-#   An alternative for counting occurances within bins is
+#   An alternative for counting occurrences within bins is
 #   @see "graphics::hist", e.g. \code{hist(x, breaks=bx, plot=FALSE)$counts}.
 #   That approach is ~30-60\% slower than \code{binCounts(..., right=TRUE)}.
 #
-#   To count occurances of indices \code{x} (positive @integers) in
+#   To count occurrences of indices \code{x} (positive @integers) in
 #   \code{[1,B]}, use \code{tabulate(x, nbins=B)}, where \code{x} does
 #   \emph{not} have to be sorted first.
 #   For details, see @see "base::tabulate".

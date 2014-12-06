@@ -32,7 +32,7 @@ weightedMedian(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
   \item{na.rm}{a logical value indicating whether \code{\link[base]{NA}} values in
            \code{x} should be stripped before the computation proceeds,
            or not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s is done.
-           Default value is \code{\link[base]{NA}} (for effiency).}
+           Default value is \code{\link[base]{NA}} (for efficiency).}
   \item{interpolate}{If \code{\link[base:logical]{TRUE}}, linear interpolation is used to get a
            consistent estimate of the weighted median.}
   \item{ties}{If \code{interpolate == FALSE},
