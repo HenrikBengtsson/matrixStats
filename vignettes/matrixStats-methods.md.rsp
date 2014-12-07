@@ -1,7 +1,7 @@
 <%@meta language="R-vignette" content="--------------------------------
   DIRECTIVES FOR R:
 
-  %\VignetteIndexEntry{matrixStats: All functions}
+  %\VignetteIndexEntry{matrixStats: Summary of functions}
   %\VignetteAuthor{Henrik Bengtsson}
   %\VignetteKeyword{matrix, vector, memory, fast}
   %\VignetteEngine{R.rsp::rsp}
