@@ -17,7 +17,6 @@
  ***********************************************************************/ 
 #include <R_ext/Constants.h>
 #include "types.h" 
-#include <stdlib.h> /* abs() */
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
@@ -45,6 +44,7 @@ LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
       break;
     } else if (t < 0) {
       isneg = !isneg;
+      t = -t;
     } else if (t == 0) {
       y = R_NegInf;
       break;
@@ -52,9 +52,9 @@ LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
 #elif X_TYPE == 'r'
     if (t < 0) {
       isneg = !isneg;
+      t = -t;
     }
 #endif
-    t = fabs(t);
     t = log(t);
     y += t;
     /*
