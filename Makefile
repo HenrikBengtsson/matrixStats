@@ -43,7 +43,7 @@ DIR_VIGNS := $(wildcard vignettes inst/doc)
 # R MACROS
 R = R
 R_SCRIPT = Rscript
-R_HOME := $(shell echo "$(R_HOME)" | tr "\\\\" "/")
+R_HOME := $(shell $(R_SCRIPT) -e "cat(R.home())")
 
 ## R_USE_CRAN := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('R_USE_CRAN', 'FALSE'))")
 R_NO_INIT := --no-init-file
