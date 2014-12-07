@@ -33,30 +33,35 @@ LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
   /* Calculate sum(log(abs(x))) */
   for (ii = 0 ; ii < nx; ii++) {
     t = x[ii];
-    /* Skip missing values? */
+    /* Missing values? */
     if (narm) {
       if (X_ISNAN(t)) continue;
     }
 
 #if X_TYPE == 'i'
     /* Early stopping? */
-    if (t < 0) {
+    if (X_ISNAN(t)) {
+      y = NA_REAL;
+      break;
+    } else if (t < 0) {
       isneg = !isneg;
     } else if (t == 0) {
       y = R_NegInf;
       break;
     }
 #elif X_TYPE == 'r'
-    if (t < 0) isneg = !isneg;
+    if (t < 0) {
+      isneg = !isneg;
+    }
 #endif
-    t = X_ABS(t);
+    t = fabs(t);
     t = log(t);
     y += t;
     /*
       Rprintf("#%d: x=%g, is.nan(x)=%d, abs(x)=%g, is.nan(abs(x))=%d, log(abs(x))=%g, is.nan(log(abs(x)))=%d, sum=%g, is.nan(sum)=%d\n", ii, x[ii], R_IsNaN(x[ii]), X_ABS(x[ii]), R_IsNaN(abs(x[ii])), t, R_IsNaN(y), y, R_IsNaN(y));  */
   }
 
-  if (X_ISNAN(y)) {
+  if (ISNAN(y)) {
     /* If there where NA and/or NaN elements, then 'y' will at this
        point be NaN. The information on an NA value is lost when 
        calculating fabs(NA), which returns NaN. For consistency with

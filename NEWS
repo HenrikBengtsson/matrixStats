@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.12.2 [2014-12-07]
+o BUG FIX: product(x, na.rm=FALSE) for integer 'x' with missing 
+  values would give garbage results.  Again, thanks to Brian Ripley
+  for reports on an invalid integer-double coersion at the C level,
+  which in turn helped identifying this bug.
+
+
 Version: 0.12.1 [2014-12-06]
 o ROBUSTNESS: Updated package tests to check methods in more 
   scenarios, especially with both integer and numeric input data.
