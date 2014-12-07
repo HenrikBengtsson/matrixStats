@@ -29,22 +29,28 @@ stopifnot(all.equal(y2,y0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Consistency checks
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Consistency checks without NAs:\n")
-for (kk in 1:K) {
-  cat("Random test #", kk, "\n", sep="")
+for (mode in c("integer", "double")) {
+  cat("Consistency checks without NAs:\n")
+  for (kk in 1:K) {
+    cat("Random test #", kk, "\n", sep="")
+  
+    # Simulate data in a matrix of any shape
+    nrow <- sample(1000, size=1)
+    ncol <- sample(1000, size=1)
+    x <- rnorm(nrow*ncol)
+    dim(x) <- c(nrow, ncol)
 
-  # Simulate data in a matrix of any shape
-  nrow <- sample(1000, size=1)
-  ncol <- sample(1000, size=1)
-  x <- rnorm(nrow*ncol)
-  dim(x) <- c(nrow, ncol)
-
-  probs <- runif(1)
-  which <- round(probs*ncol)
-
-  y0 <- rowOrderStats_R(x, probs=probs)
-  y1 <- rowOrderStats(x, which=which)
-  stopifnot(all.equal(y1,y0))
-  y2 <- colOrderStats(t(x), which=which)
-  stopifnot(all.equal(y2,y0))
-} # for (kk in ...)
+    cat("mode: ", mode, "\n", sep="")
+    storage.mode(x) <- mode 
+    str(x)
+  
+    probs <- runif(1)
+    which <- round(probs*ncol)
+  
+    y0 <- rowOrderStats_R(x, probs=probs)
+    y1 <- rowOrderStats(x, which=which)
+    stopifnot(all.equal(y1,y0))
+    y2 <- colOrderStats(t(x), which=which)
+    stopifnot(all.equal(y2,y0))
+  } # for (kk in ...)
+} # for (mode ...)

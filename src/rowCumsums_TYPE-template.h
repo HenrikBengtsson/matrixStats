@@ -47,7 +47,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
     for (kk=0; kk < nrow; kk++) {
       ans[kk] = (ANS_C_TYPE) x[kk];
 #if ANS_TYPE == 'i'
-      oks[kk] = 1;
+      oks[kk] = !X_ISNA(x[kk]);
 #endif
     }
 
@@ -58,15 +58,21 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
           R_CheckUserInterrupt();
 #if ANS_TYPE == 'i'
         if (oks[ii]) {
-          value = (LDOUBLE) ans[kk_prev] + (LDOUBLE) x[kk];
-          /* Integer overflow? */
-          if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
+          /* Missing value? */
+          if (X_ISNA(x[kk])) {
             oks[ii] = 0;
-            warn = 1;
             ans[kk] = ANS_NA;
           } else {
-            ans[kk] = (ANS_C_TYPE) value;
-	  }
+            value = (LDOUBLE) ans[kk_prev] + (LDOUBLE) x[kk];
+            /* Integer overflow? */
+            if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
+              oks[ii] = 0;
+              warn = 1;
+              ans[kk] = ANS_NA;
+            } else {
+              ans[kk] = (ANS_C_TYPE) value;
+	    }
+  	  }
 	} else {
           ans[kk] = ANS_NA;
 	}
@@ -90,15 +96,21 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
           R_CheckUserInterrupt();
 #if ANS_TYPE == 'i'
         if (ok) {
-          value += (LDOUBLE) x[kk];
-          /* Integer overflow? */
-          if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
+          /* Missing value? */
+          if (X_ISNA(x[kk])) {
             ok = 0;
-            warn = 1;
             ans[kk] = ANS_NA;
           } else {
-            ans[kk] = (ANS_C_TYPE) value;
-	  }
+            value += (LDOUBLE) x[kk];
+            /* Integer overflow? */
+            if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
+              ok = 0;
+              warn = 1;
+              ans[kk] = ANS_NA;
+            } else {
+              ans[kk] = (ANS_C_TYPE) value;
+	    }
+  	  }
 	} else {
           ans[kk] = ANS_NA;
 	}
