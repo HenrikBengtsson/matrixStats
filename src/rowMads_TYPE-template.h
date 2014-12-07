@@ -126,7 +126,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           /* (a) Subtract mu and absolute value, i.e. x <- |x-mu| */
           for (jj=0; jj < kk; jj++) {
             value = (values[jj] - mu);
-            values[jj] =  abs(value);
+            values[jj] =  X_ABS(value);
           }
 
           /* (b) Calculate median of |x-mu| */
@@ -155,7 +155,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
             /* (a) Subtract mu and absolute value, i.e. x <- |x-mu| */
             for (jj=0; jj < kk; jj++) {
               value = (values[jj] - mu);
-              values[jj] =  abs(value);
+              values[jj] =  X_ABS(value);
             }
 
             /* (b) Calculate median of |x-mu| */
