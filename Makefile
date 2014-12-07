@@ -225,6 +225,10 @@ check_force:
 	$(RM) -r $(R_CHECK_OUTDIR)
 	$(MAKE) check
 
+clang:
+	clang -c -pedantic -I$(R_HOME)/include/ src/*.c
+	$(RM) *.o
+
 valgrind:
 	export _R_CHECK_USE_VALGRIND_=TRUE;\
 	$(MAKE) check_force
