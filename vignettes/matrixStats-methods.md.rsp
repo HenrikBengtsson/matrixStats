@@ -1,0 +1,220 @@
+<%@meta language="R-vignette" content="--------------------------------
+  DIRECTIVES FOR R:
+
+  %\VignetteIndexEntry{matrixStats: All functions}
+  %\VignetteAuthor{Henrik Bengtsson}
+  %\VignetteKeyword{matrix, vector, memory, fast}
+  %\VignetteEngine{R.rsp::rsp}
+  %\VignetteTangle{FALSE}
+--------------------------------------------------------------------"%>
+<% t0 <- Sys.time() %>
+<%
+kable <- function(...) print(knitr::kable(..., format="markdown"))
+
+pkgName <- "matrixStats"
+library(pkgName, character.only=TRUE)
+ns <- getNamespace(pkgName)
+env <- as.environment(sprintf("package:%s", pkgName))
+
+# Find all functions
+all <- ls(envir=env)
+keep <- sapply(all, FUN=function(name) {
+  is.function(get(name, envir=env))
+})
+all <- all[keep]
+keep <- !grepl("[.]([^.]*)$", all)
+all <- all[keep]
+
+# Hidden functions
+skip <- c("rowAvgsPerColSet", "colAvgsPerRowSet")
+skip <- c(skip, "allocArray", "allocMatrix", "allocVector")
+all <- setdiff(all, skip)
+
+# Column and row functions
+crfcns <- grep("^(col|row)", all, value=TRUE)
+
+# Vector functions
+vfcns <- setdiff(all, crfcns)
+%>
+
+# <%@meta name="title"%>
+
+<% pkg <- R.oo::Package(pkgName) %>
+<%@meta name="author"%> on <%=format(as.Date(pkg$date), format="%B %d, %Y")%>
+
+## Functions that apply to column and rows of matrices
+<%
+fcns <- crfcns
+base <- gsub("^(col|row)", "", fcns)
+groups <- tapply(fcns, base, FUN=list)
+stopifnot(all(sapply(groups, FUN=length) == 2L))
+groups <- matrix(unlist(groups, use.names=FALSE), nrow=2L)
+%>
+```
+<% print(fcns) %>
+```
+
+## Functions that apply to vectors
+<%
+fcns <- vfcns
+%>
+```
+<% print(fcns) %>
+```
+
+
+## Location and scale estimators
+<%
+tbl <- NULL
+
+row <- data.frame(
+  "Estimator"   = "Weighted sample mean",
+  "Functions"   = c("`colWeightedMeans()`, `rowWeighedMeans()`"),
+  "Example"     = "rowWeightedMeans(x, w)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Median",
+  "Functions"   = c("`colMedians()`, `rowMedians()`"),
+  "Example"     = "rowMedians(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Weighted median",
+  "Functions"   = c("`weightedMedian()`, `colWeightedMedians()`, `rowWeighedMedians()`"),
+  "Example"     = "weightedMedian(x, w); rowWeightedMedians(x, w)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Sample variance",
+  "Functions"   = c("`colVars()`, `rowVars()`"),
+  "Example"     = "rowVars(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Weighted sample variance",
+  "Functions"    = c("`weightedVar()`"),
+  "Example"     = "weightedVar(x, w)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Sample variance by differences",
+  "Functions"    = c("`varDiff()`"),
+  "Example"     = "varDiff(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Sample standard deviation",
+  "Functions"   = c("`colSds()`, `rowSds()`"),
+  "Example"     = "rowSds(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Weighted sample deviation",
+  "Functions"    = c("`weightedSd()`"),
+  "Example"     = "weightedSd(x, w)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Sample standard deviation by differences",
+  "Functions"    = c("`sdDiff()`"),
+  "Example"     = "sdDiff(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Median absolute deviation (MAD)",
+  "Functions"   = c("`colMads()`, `rowMads()`"),
+  "Example"     = "rowMads(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Weighted median absolute deviation (MAD)",
+  "Functions"    = c("`weightedMad()`"),
+  "Example"     = "weightedMad(x, w)"
+)
+tbl <- rbind(tbl, row)
+
+
+row <- data.frame(
+  "Estimator"   = "Median absolute deviation (MAD) by differences",
+  "Functions"    = c("`madDiff()`"),
+  "Example"     = "madDiff(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Quantile",
+  "Functions"   = c("`colQuantiles()`, `rowQuantiles()`"),
+  "Example"     = "rowQuantiles(x, probs=c(0.25, 0.75))"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Interquartile range (IQR)",
+  "Functions"   = c("`colIQRs()`, `rowIQRs()`"),
+  "Example"     = "rowIQRs(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Range",
+  "Functions"   = c("`colRanges()`, `rowRanges()`"),
+  "Example"     = "rowRanges(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Minimum",
+  "Functions"   = c("`colMins()`, `rowMins()`"),
+  "Example"     = "rowMins(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Maximum",
+  "Functions"   = c("`colMaxs()`, `rowMaxs()`"),
+  "Example"     = "rowMaxs(x)"
+)
+tbl <- rbind(tbl, row)
+
+tbl$Example <- sprintf("`%s`", tbl$Example)
+%>
+<% kable(tbl) %>
+
+
+## Binning
+
+<%
+tbl <- NULL
+
+row <- data.frame(
+  "Estimator"   = "Counts in disjoint bins",
+  "Functions"    = c("`binCounts()`"),
+  "Example"     = "binCounts(x, bx)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Sample means (and counts) in disjoint bins",
+  "Functions"    = c("`binMeans()`"),
+  "Example"     = "binMeans(y, x, bx)"
+)
+tbl <- rbind(tbl, row)
+
+tbl$Example <- sprintf("`%s`", tbl$Example)
+%>
+<% kable(tbl) %>
+
+
+-------------------------------------------------------------
+The <%=pkgName%> v<%=getVersion(pkg)%>.  Release: [CRAN](http://cran.r-project.org/package=<%=pkgName%>), Development: [GitHub](<%=getUrl(pkg)%>).
