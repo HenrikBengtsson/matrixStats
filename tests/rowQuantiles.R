@@ -10,7 +10,7 @@ rowQuantiles_R <- function(x, probs, na.rm=FALSE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with multiple quantiles
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
   x <- matrix(1:100+0.1, nrow=10, ncol=10)
   storage.mode(x) <- mode
@@ -30,7 +30,7 @@ for (mode in c("integer", "numeric")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with a single quantile
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
   x <- matrix(1:100, nrow=10, ncol=10)
   storage.mode(x) <- mode

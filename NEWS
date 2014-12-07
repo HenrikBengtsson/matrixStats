@@ -2,10 +2,13 @@ Package: matrixStats
 ====================
 
 Version: 0.12.2 [2014-12-07]
-o BUG FIX: product(x, na.rm=FALSE) for integer 'x' with missing 
-  values would give garbage results.  Again, thanks to Brian Ripley
-  for reports on an invalid integer-double coersion at the C level,
-  which in turn helped identifying this bug.
+o CODE FIX: The native code for product() on integer vector 
+  incorrectly used C-level abs() on intermediate values despite
+  those being doubles requiring fabs().  Despite this, the calculated
+  product would still be correct (at least when validated on several
+  local setups as well as on the CRAN servers).  Again, thanks to 
+  Brian Ripley for pointing out another invalid integer-double 
+  coersion at the C level.
 
 
 Version: 0.12.1 [2014-12-06]

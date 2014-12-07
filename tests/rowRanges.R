@@ -22,23 +22,23 @@ rowRanges_R <- function(x, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
 
   for (addNA in c(FALSE, TRUE)) {
     cat("addNA=", addNA, "\n", sep="")
-  
+
     x <- matrix(1:100+0.1, nrow=20, ncol=5)
     if (addNA) {
       x[13:17,c(2,4)] <- NA_real_
     }
     storage.mode(x) <- mode
     str(x)
-  
+
     # Row/column extremes
     for (na.rm in c(FALSE, TRUE)) {
       cat("na.rm=", na.rm, "\n", sep="")
-  
+
       # Ranges
       cat("range:\n")
       r0 <- rowRanges_R(x, na.rm=na.rm)
@@ -46,7 +46,7 @@ for (mode in c("integer", "numeric")) {
       r2 <- colRanges(t(x), na.rm=na.rm)
       stopifnot(all.equal(r1, r2))
       stopifnot(all.equal(r1, r0))
-  
+
       # Min
       cat("min:\n")
       m0 <- rowMins_R(x, na.rm=na.rm)
@@ -54,7 +54,7 @@ for (mode in c("integer", "numeric")) {
       m2 <- colMins(t(x), na.rm=na.rm)
       stopifnot(all.equal(m1, m2))
       stopifnot(all.equal(m1, m0))
-  
+
       # Max
       cat("max:\n")
       m0 <- rowMaxs_R(x, na.rm=na.rm)
@@ -70,7 +70,7 @@ for (mode in c("integer", "numeric")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
   x <- matrix(NA_real_, nrow=20, ncol=5)
   storage.mode(x) <- mode

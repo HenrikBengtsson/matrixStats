@@ -3,7 +3,7 @@ library("stats")
 
 ## R-help thread \emph{'[R] Beyond double-precision?'} on May 9, 2009.
 
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
 
   set.seed(1)
