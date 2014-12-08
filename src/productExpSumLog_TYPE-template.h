@@ -24,7 +24,7 @@
 #include "templates-types.h" 
 
 
-LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
+double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
   LDOUBLE y = 0.0, t;
   R_xlen_t ii;
   int isneg = 0;
@@ -83,7 +83,7 @@ LDOUBLE METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
     }
   }
 
-  return(y);
+  return (double)y;
 }
 
 /* Undo template macros */

@@ -69,7 +69,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
     } /* for (i ...) */
   }
 
-  return(sum);
+  return (double)sum;
 }
 
 /* Undo template macros */
