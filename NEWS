@@ -1,6 +1,16 @@
 Package: matrixStats
 ====================
 
+Version: 0.12.2 [2014-12-07]
+o CODE FIX: The native code for product() on integer vector 
+  incorrectly used C-level abs() on intermediate values despite
+  those being doubles requiring fabs().  Despite this, the calculated
+  product would still be correct (at least when validated on several
+  local setups as well as on the CRAN servers).  Again, thanks to 
+  Brian Ripley for pointing out another invalid integer-double 
+  coersion at the C level.
+
+
 Version: 0.12.1 [2014-12-06]
 o ROBUSTNESS: Updated package tests to check methods in more 
   scenarios, especially with both integer and numeric input data.

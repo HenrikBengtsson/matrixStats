@@ -3,12 +3,12 @@ library("matrixStats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
 
   for (addNA in c(FALSE, TRUE)) {
     cat("addNA=", addNA, "\n", sep="")
-  
+
     x <- matrix(1:100+0.1, nrow=20, ncol=5)
     if (addNA) {
       x[13:17,c(2,4)] <- NA_real_
@@ -33,7 +33,7 @@ for (mode in c("integer", "numeric")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
   x <- matrix(NA_real_, nrow=20, ncol=5)
   storage.mode(x) <- mode
