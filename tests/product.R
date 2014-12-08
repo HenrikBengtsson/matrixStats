@@ -1,6 +1,6 @@
 library("matrixStats")
 
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
 
   # Empty vector
@@ -11,7 +11,7 @@ for (mode in c("integer", "numeric")) {
   z <- product(x, na.rm=TRUE)
   print(z)
   stopifnot(all.equal(z, y))
-  
+
   # Test negative values
   x <- c(1,-4,2)
   storage.mode(x) <- mode
@@ -20,7 +20,7 @@ for (mode in c("integer", "numeric")) {
   z <- product(x, na.rm=TRUE)
   print(z)
   stopifnot(all.equal(z, y))
-  
+
   # Test missing values
   x <- c(1,NA,NaN,2)
   storage.mode(x) <- mode
@@ -29,7 +29,7 @@ for (mode in c("integer", "numeric")) {
   z <- product(x, na.rm=TRUE)
   print(z)
   stopifnot(all.equal(z, y))
-  
+
   x <- c(1,NA,NaN,2)
   storage.mode(x) <- mode
   y <- prod(x, na.rm=FALSE)
@@ -37,7 +37,7 @@ for (mode in c("integer", "numeric")) {
   z <- product(x, na.rm=FALSE)
   print(z)
   stopifnot(all(is.na(z), is.na(y)))
-  
+
   x <- c(1,NaN,2)
   storage.mode(x) <- mode
   y <- prod(x, na.rm=FALSE)

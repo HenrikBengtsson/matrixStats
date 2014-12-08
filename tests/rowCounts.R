@@ -61,7 +61,7 @@ for (na.rm in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: integer and numeric
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "numeric")) {
+for (mode in c("integer", "double")) {
   x <- matrix(runif(20*5, min=-3, max=3), nrow=20, ncol=5)
   x[sample.int(length(x), size=7)] <- 0
   storage.mode(x) <- mode
