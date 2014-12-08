@@ -44,7 +44,7 @@
 }
 
 \section{How to cite this package}{
-  Henrik Bengtsson (2014). matrixStats: Methods that Apply to Rows and Columns of a Matrix. R package version 0.12.2. https://github.com/HenrikBengtsson/matrixStats
+  Henrik Bengtsson (2014). matrixStats: Methods that Apply to Rows and Columns of a Matrix. R package version 0.12.2-1. https://github.com/HenrikBengtsson/matrixStats
 }
 
 \author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder}
