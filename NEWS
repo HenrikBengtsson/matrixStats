@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+o Added weightedMean(), which is ~10 times faster than weighted.mean()
+  in the 'stats' package.
+
+
 Version: 0.12.2 [2014-12-07]
 o CODE FIX: The native code for product() on integer vector 
   incorrectly used C-level abs() on intermediate values despite
