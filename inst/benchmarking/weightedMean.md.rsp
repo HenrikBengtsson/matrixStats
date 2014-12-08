@@ -7,7 +7,10 @@
 <%@meta date="2014-12-09"%>
 
 <%@include file="${header}"%>
-<% library("stats") %>
+<%
+library("stats")
+weighted.mean.default <- stats:::weighted.mean.default
+%>
 
 # <%@meta name="title"%>
 
@@ -51,7 +54,7 @@ gc()
 stats <- microbenchmark(
  "weightedMean"                  = weightedMean(x, w=w, na.rm=FALSE),
  "stats::weighted.mean"          = weighted.mean(x, w=w, na.rm=FALSE),
- "stats:::weighted.mean.default" = stats:::weighted.mean.default(x, w=w, na.rm=FALSE),
+ "stats:::weighted.mean.default" = weighted.mean.default(x, w=w, na.rm=FALSE),
   unit = "ms"
 )
 })%>

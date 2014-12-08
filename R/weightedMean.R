@@ -39,39 +39,13 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMean <- function(x, w, na.rm=FALSE, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Validate arguments
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Argument 'x':
-  n <- length(x)
-  x <- as.numeric(x)
+weightedMean <- function(x, w, na.rm=FALSE, refine=FALSE, ...) {
+  # Argument 'refine':
+  refine <- as.logical(refine)
 
-  # Argument 'w':
-  if (length(w) != n) {
-    throw("Argument 'x' and 'w' are of different lengths: ", n, " != ", length(w))
-  }
-
-  # Argument 'na.rm':
-  if (na.rm) {
-    ok <- !is.na(x)
-    w <- w[ok]
-    x <- x[ok]
-  }
-
-  # Drop zero weights
-  ok <- (w != 0)
-  x <- x[ok]
-  w <- w[ok]
-
-  # Coerce weights do numeric (to avoid integer overflow in the sum)
-  w <- as.double(w)
-
-  # Calculate weighted mean
-  sum((x*w)) / sum(w)
+  w <- as.numeric(w)
+  .Call("weightedMean", x, w, na.rm, refine, PACKAGE="matrixStats")
 } # weightedMean()
-
-weightedMean <- compiler::cmpfun(weightedMean)
 
 ###############################################################################
 # HISTORY:
