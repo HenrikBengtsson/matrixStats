@@ -69,8 +69,8 @@ tbl <- NULL
 
 row <- data.frame(
   "Estimator"   = "Weighted sample mean",
-  "Functions"   = c("`colWeightedMeans()`, `rowWeighedMeans()`"),
-  "Example"     = "rowWeightedMeans(x, w)"
+  "Functions"   = c("`weightedMean()`, `colWeightedMeans()`, `rowWeighedMeans()`"),
+  "Example"     = "weightedMean(x, w); rowWeightedMeans(x, w)"
 )
 tbl <- rbind(tbl, row)
 
