@@ -40,16 +40,17 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(cT + cF == nrow(x))
 }
 
-# Row/column all/any
+# Row/column all
 for (na.rm in c(FALSE, TRUE)) {
-  # all
   m0 <- rowAlls_R(x, na.rm=na.rm)
   m1 <- rowAlls(x, na.rm=na.rm)
   m2 <- colAlls(t(x), na.rm=na.rm)
   stopifnot(identical(m1, m0))
   stopifnot(identical(m2, m0))
+}
 
-  # any
+# Row/column any
+for (na.rm in c(FALSE, TRUE)) {
   m0 <- rowAnys_R(x, na.rm=na.rm)
   m1 <- rowAnys(x, na.rm=na.rm)
   m2 <- colAnys(t(x), na.rm=na.rm)

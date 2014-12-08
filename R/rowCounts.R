@@ -120,7 +120,7 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=di
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("colCounts", x, dim., value, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call("colCounts", x, dim., value, FALSE, na.rm, hasNAs, PACKAGE="matrixStats")
     x <- NULL # Not needed anymore
   } else {
     if (is.vector(x)) dim(x) <- dim.
@@ -152,8 +152,18 @@ setMethodS3("rowAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
 })
 
 setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
-  counts <- colCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
-  (counts > 0L)
+  if (is.numeric(x) || is.logical(x)) {
+    na.rm <- as.logical(na.rm)
+    hasNAs <- TRUE
+    counts <- .Call("colCounts", x, dim., value, FALSE, na.rm, hasNAs, PACKAGE="matrixStats")
+    print(counts)
+    counts <- .Call("colCounts", x, dim., value, TRUE, na.rm, hasNAs, PACKAGE="matrixStats")
+    print(counts)
+    as.logical(counts)
+  } else {
+    counts <- colCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
+    (counts > 0L)
+  }
 })
 
 

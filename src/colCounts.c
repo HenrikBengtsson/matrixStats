@@ -22,9 +22,9 @@
 #undef METHOD
 
 
-SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
+SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP firstOnly, SEXP naRm, SEXP hasNA) {
   SEXP ans;
-  int narm, hasna;
+  int narm, hasna, firstonly;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
@@ -39,6 +39,9 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   if (!isNumeric(value))
     error("Argument 'value' must be a numeric value.");
 
+  /* Argument 'firstOnly': */
+  firstonly = asLogicalNoNA(firstOnly, "firstOnly");
+
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
@@ -50,11 +53,11 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    colCounts_Real(REAL(x), nrow, ncol, asReal(value), narm, hasna, INTEGER(ans));
+    colCounts_Real(REAL(x), nrow, ncol, asReal(value), firstonly, narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    colCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
+    colCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), firstonly, narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
-    colCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), narm, hasna, INTEGER(ans));
+    colCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), firstonly, narm, hasna, INTEGER(ans));
   }
 
   UNPROTECT(1);
