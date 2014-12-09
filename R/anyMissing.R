@@ -20,8 +20,8 @@
 #
 # \usage{
 #  anyMissing(x, ...)
-#  colAnyMissing(x, ...)
-#  rowAnyMissing(x, ...)
+#  colAnyMissings(x, ...)
+#  rowAnyMissings(x, ...)
 # }
 #
 # \arguments{

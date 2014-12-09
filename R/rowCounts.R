@@ -1,6 +1,7 @@
 ###########################################################################/**
 # @RdocFunction rowCounts
 # @alias colCounts
+# @alias count
 # @alias rowAnys
 # @alias colAnys
 # @alias rowAlls
@@ -19,6 +20,7 @@
 # }
 #
 # \usage{
+#   @usage count
 #   @usage rowCounts,default
 #   @usage colCounts,default
 #   @usage rowAlls,default
@@ -121,7 +123,6 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=di
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
     counts <- .Call("colCounts", x, dim., value, 2L, na.rm, hasNAs, PACKAGE="matrixStats")
-    x <- NULL # Not needed anymore
   } else {
     if (is.vector(x)) dim(x) <- dim.
     if (is.na(value)) {
@@ -133,6 +134,41 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=di
 
   as.integer(counts)
 }) # colCounts()
+
+
+
+count <- function(x, value=TRUE, na.rm=FALSE, ...) {
+  # Argument 'x':
+  if (!is.vector(x)) {
+    stop("Argument 'x' must be a vector: ", mode(x)[1L])
+  }
+
+  # Argument 'value':
+  if (length(value) != 1L) {
+    stop("Argument 'value' has to be a single value: ", length(value))
+  }
+
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x)
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Count
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.numeric(x) || is.logical(x)) {
+    na.rm <- as.logical(na.rm)
+    hasNAs <- TRUE
+    counts <- .Call("count", x, value, 2L, na.rm, hasNAs, PACKAGE="matrixStats")
+  } else {
+    if (is.na(value)) {
+      counts <- sum(is.na(x))
+    } else {
+      counts <- sum(x == value, na.rm=na.rm)
+    }
+  }
+
+  as.integer(counts)
+} # count()
 
 
 

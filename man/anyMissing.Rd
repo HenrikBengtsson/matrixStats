@@ -18,6 +18,8 @@
 \alias{anyMissing,list-method}
 \alias{anyMissing,NULL-method}
 \alias{anyMissing,raw-method}
+\alias{colAnyMissings}
+\alias{rowAnyMissings}
 
 \title{Checks if there are any missing values in an object or not}
 
@@ -27,6 +29,8 @@
 
 \usage{
  anyMissing(x, ...)
+ colAnyMissings(x, ...)
+ rowAnyMissings(x, ...)
 }
 
 \arguments{

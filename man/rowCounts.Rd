@@ -10,6 +10,7 @@
 \alias{rowCounts}
 
 \alias{colCounts}
+\alias{count}
 \alias{rowAnys}
 \alias{colAnys}
 \alias{rowAlls}
@@ -28,6 +29,7 @@
 }
 
 \usage{
+  count(x, value=TRUE, na.rm=FALSE, ...)
   \method{rowCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
   \method{colCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
   \method{rowAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
