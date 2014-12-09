@@ -10,29 +10,41 @@ rowQuantiles_R <- function(x, probs, na.rm=FALSE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with multiple quantiles
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(1:100, nrow=10, ncol=10)
-probs <- c(0,0.5,1)
-q0 <- rowQuantiles_R(x, probs=probs)
-print(q0)
-q1 <- rowQuantiles(x, probs=probs)
-print(q1)
-stopifnot(all.equal(q1, q0))
-q2 <- colQuantiles(t(x), probs=probs)
-stopifnot(all.equal(q2, q0))
+for (mode in c("integer", "double")) {
+  cat("mode: ", mode, "\n", sep="")
+  x <- matrix(1:100+0.1, nrow=10, ncol=10)
+  storage.mode(x) <- mode
+  str(x)
+
+  probs <- c(0,0.5,1)
+  q0 <- rowQuantiles_R(x, probs=probs)
+  print(q0)
+  q1 <- rowQuantiles(x, probs=probs)
+  print(q1)
+  stopifnot(all.equal(q1, q0))
+  q2 <- colQuantiles(t(x), probs=probs)
+  stopifnot(all.equal(q2, q0))
+} # for (mode ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with a single quantile
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(1:100, nrow=10, ncol=10)
-probs <- c(0.5)
-q0 <- rowQuantiles_R(x, probs=probs)
-print(q0)
-q1 <- rowQuantiles(x, probs=probs)
-print(q1)
-stopifnot(all.equal(q1, q0))
-q2 <- colQuantiles(t(x), probs=probs)
-stopifnot(all.equal(q2, q0))
+for (mode in c("integer", "double")) {
+  cat("mode: ", mode, "\n", sep="")
+  x <- matrix(1:100, nrow=10, ncol=10)
+  storage.mode(x) <- mode
+  str(x)
+
+  probs <- c(0.5)
+  q0 <- rowQuantiles_R(x, probs=probs)
+  print(q0)
+  q1 <- rowQuantiles(x, probs=probs)
+  print(q1)
+  stopifnot(all.equal(q1, q0))
+  q2 <- colQuantiles(t(x), probs=probs)
+  stopifnot(all.equal(q2, q0))
+} # for (mode ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
