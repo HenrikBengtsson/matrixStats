@@ -216,5 +216,56 @@ tbl$Example <- sprintf("`%s`", tbl$Example)
 <% kable(tbl) %>
 
 
+## Testing for and counting values
+<%
+tbl <- NULL
+
+row <- data.frame(
+  "Estimator"   = "Are there any missing values?",
+  "Functions"   = c("`anyMissing()`, `colAnyMissing()`, `rowAnyMissing()`"),
+  "Example"     = "anyMissing(x); rowAnyMissing(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Does TRUE exists?",
+  "Functions"   = c("`any()`, `colAnys()`, `rowAnys()`"),
+  "Example"     = "any(x); rowAnys(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Are all values TRUE?",
+  "Functions"   = c("`all()`, `colAll()`, `rowAlls()`"),
+  "Example"     = "all(x); rowAlls(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Does value exists?",
+  "Functions"   = c("`any()`, `colAnys()`, `rowAnys()`"),
+  "Example"     = "any(x == value); rowAnys(x, value)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Do all element have the a given value?",
+  "Functions"   = c("`all()`, `colAll()`, `rowAlls()`"),
+  "Example"     = "all(x == value); rowAlls(x, value)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Number of occurrences of a value?",
+  "Functions"   = c("`sum()`, `colCounts()`, `rowCounts()`"),
+  "Example"     = "sum(x == value); rowCounts(x, value)"
+)
+tbl <- rbind(tbl, row)
+
+tbl$Example <- sprintf("`%s`", tbl$Example)
+%>
+<% kable(tbl) %>
+
+
 -------------------------------------------------------------
 The <%=pkgName%> v<%=getVersion(pkg)%>.  Release: [CRAN](http://cran.r-project.org/package=<%=pkgName%>), Development: [GitHub](<%=getUrl(pkg)%>).
