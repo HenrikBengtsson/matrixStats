@@ -21,6 +21,9 @@
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.
 #            Default value is @NA (for efficiency).}
+#   \item{refine}{If @TRUE and \code{x} is @numeric, then extra effort is
+#      used to calculate the average with greater numerical precision,
+#      otherwise not.}
 #   \item{...}{Not used.}
 # }
 #
@@ -31,7 +34,7 @@
 # @examples "../incl/weightedMean.Rex"
 #
 # \seealso{
-#   @see "stats::mean", @see "base::mean" and @see "stats::weighted.mean".
+#   @see "base::mean" and @see "stats::weighted.mean".
 # }
 #
 # @author

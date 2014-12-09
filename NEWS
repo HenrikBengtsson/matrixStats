@@ -1,6 +1,8 @@
 Package: matrixStats
 ====================
 
+o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now significantly
+  faster compared to previous versions.
 o Added weightedMean(), which is ~10 times faster than weighted.mean()
   in the 'stats' package.
 
