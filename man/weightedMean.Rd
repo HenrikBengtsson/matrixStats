@@ -32,6 +32,9 @@ weightedMean(x, w, na.rm=FALSE, refine=FALSE, ...)
            \code{x} should be stripped before the computation proceeds,
            or not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s is done.
            Default value is \code{\link[base]{NA}} (for efficiency).}
+  \item{refine}{If \code{\link[base:logical]{TRUE}} and \code{x} is \code{\link[base]{numeric}}, then extra effort is
+     used to calculate the average with greater numerical precision,
+     otherwise not.}
   \item{...}{Not used.}
 }
 
@@ -81,7 +84,7 @@ stopifnot(identical(m1,m0))
 }
 
 \seealso{
-  \code{\link[stats]{mean}}(), \code{\link[base]{mean}}() and \code{\link[stats]{weighted.mean}}.
+  \code{\link[base]{mean}}() and \code{\link[stats]{weighted.mean}}.
 }
 
 \author{Henrik Bengtsson}
