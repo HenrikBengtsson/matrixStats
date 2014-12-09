@@ -9,6 +9,8 @@
 # \alias{anyMissing,list-method}
 # \alias{anyMissing,NULL-method}
 # \alias{anyMissing,raw-method}
+# \alias{colAnyMissings}
+# \alias{rowAnyMissings}
 #
 # @title "Checks if there are any missing values in an object or not"
 #
@@ -18,6 +20,8 @@
 #
 # \usage{
 #  anyMissing(x, ...)
+#  colAnyMissing(x, ...)
+#  rowAnyMissing(x, ...)
 # }
 #
 # \arguments{
@@ -100,8 +104,19 @@ setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
 })
 
 
+colAnyMissings <- function(x, ...) {
+  colAnys.default(x, value=NA, ...)
+}
+
+rowAnyMissings <- function(x, ...) {
+  rowAnys.default(x, value=NA, ...)
+}
+
+
 ############################################################################
 # HISTORY:
+# 2014-12-08
+# o Added (col|row)AnyMissings().
 # 2013-09-26
 # o Added help reference to base::anyNA().
 # 2013-01-13

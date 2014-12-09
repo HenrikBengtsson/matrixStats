@@ -8,6 +8,10 @@ rowAnys_R <- function(x, na.rm=FALSE, ...) {
   apply(x, MARGIN=1L, FUN=any, na.rm=na.rm)
 }
 
+rowAnyMissings_R <- function(x, ...) {
+  apply(x, MARGIN=1L, FUN=anyMissing)
+}
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # all() and any()
@@ -36,7 +40,7 @@ for (kk in 1:3) {
     stopifnot(identical(m1, m0))
     stopifnot(identical(m2, m0))
   }
-  
+
   # Row/column any
   for (na.rm in c(FALSE, TRUE)) {
     m0 <- rowAnys_R(x, na.rm=na.rm)
@@ -45,5 +49,13 @@ for (kk in 1:3) {
     str(list("any()", m0=m0, m1=m1, m2=m2))
     stopifnot(identical(m1, m0))
     stopifnot(identical(m2, m0))
+
+    m0 <- rowAnyMissings_R(x)
+    m1 <- rowAnyMissings(x)
+    m2 <- colAnyMissings(t(x))
+    str(list("anyMissing()", m0=m0, m1=m1, m2=m2))
+    stopifnot(identical(m1, m0))
+    stopifnot(identical(m2, m0))
+
   }
 } # for (kk ...)
