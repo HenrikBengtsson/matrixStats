@@ -2,6 +2,8 @@
 # @RdocFunction rowCounts
 # @alias colCounts
 # @alias count
+# @alias allValue
+# @alias anyValue
 # @alias rowAnys
 # @alias colAnys
 # @alias rowAlls
@@ -196,6 +198,21 @@ setMethodS3("colAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
   }
 })
 
+
+allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
+  if (is.numeric(x) || is.logical(x)) {
+    na.rm <- as.logical(na.rm)
+    hasNAs <- TRUE
+    counts <- .Call("count", x, value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
+    as.logical(counts)
+  } else {
+    counts <- counts(x, dim.=dim., value=value, na.rm=na.rm, ...)
+    (counts == sum(x, na.rm=TRUE))
+  }
+}
+
+
+
 setMethodS3("rowAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
@@ -217,6 +234,18 @@ setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
   }
   as.logical(counts)
 })
+
+
+anyValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
+  if (is.numeric(x) || is.logical(x)) {
+    na.rm <- as.logical(na.rm)
+    hasNAs <- TRUE
+    counts <- .Call("count", x, value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+  } else {
+    counts <- counts(x, dim.=dim., value=value, na.rm=na.rm, ...)
+  }
+  as.logical(counts)
+}
 
 
 

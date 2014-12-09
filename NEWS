@@ -1,8 +1,10 @@
 Package: matrixStats
 ====================
 
-o Added count(x, value) which is a significantly faster than 
+o Added count(x, value) which is a significantly faster than
   sum(x == value).  Can also be used to count missing values etc.
+  Also added allValue() and anyValue() for all(x == value) and
+  any(x == value).
 o Added (col|row)AnyMissings().
 o Added weightedMean(), which is ~10 times faster than weighted.mean()
   in the 'stats' package.
@@ -11,17 +13,17 @@ o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now significantly
 
 
 Version: 0.12.2 [2014-12-07]
-o CODE FIX: The native code for product() on integer vector 
+o CODE FIX: The native code for product() on integer vector
   incorrectly used C-level abs() on intermediate values despite
   those being doubles requiring fabs().  Despite this, the calculated
   product would still be correct (at least when validated on several
-  local setups as well as on the CRAN servers).  Again, thanks to 
-  Brian Ripley for pointing out another invalid integer-double 
+  local setups as well as on the CRAN servers).  Again, thanks to
+  Brian Ripley for pointing out another invalid integer-double
   coersion at the C level.
 
 
 Version: 0.12.1 [2014-12-06]
-o ROBUSTNESS: Updated package tests to check methods in more 
+o ROBUSTNESS: Updated package tests to check methods in more
   scenarios, especially with both integer and numeric input data.
 o BUG FIX: (col|row)Cumsums(x) where 'x' is integer would return
   garbage for columns (rows) containing missing values.
@@ -29,7 +31,7 @@ o BUG FIX: rowMads(x) where 'x' is numeric (not integer) would give
   incorrect results for rows that had an *odd* number of values
   (no ties).  Analogously issues with colMads(). Added package tests
   for such cases too.  Thanks to Brian Ripley and the CRAN check tools
-  for (yet again) catching another coding mistake.  Details: This was 
+  for (yet again) catching another coding mistake.  Details: This was
   because the C-level calculation of the absolute value of residuals
   toward the median would use integer-based abs() rather than double-
   based fabs(). Now it fabs() is used when the values are double and
