@@ -244,7 +244,7 @@ tbl <- rbind(tbl, row)
 row <- data.frame(
   "Estimator"   = "Does value exists?",
   "Functions"   = c("`any()`, `colAnys()`, `rowAnys()`"),
-  "Example"     = "any(x == value); rowAnys(x, value)"
+  "Example"     = "count(x, value, na.rm=TRUE) > 0; rowAnys(x, value)"
 )
 tbl <- rbind(tbl, row)
 
@@ -257,8 +257,8 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Number of occurrences of a value?",
-  "Functions"   = c("`sum()`, `colCounts()`, `rowCounts()`"),
-  "Example"     = "sum(x == value); rowCounts(x, value)"
+  "Functions"   = c("`count()`, `colCounts()`, `rowCounts()`"),
+  "Example"     = "count(x, value); rowCounts(x, value)"
 )
 tbl <- rbind(tbl, row)
 
