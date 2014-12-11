@@ -19,6 +19,12 @@ before_install:
   - ./travis-tool.sh bootstrap
 ##  - (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash)
 
+after_success:
+  - ./travis-tool.sh dump_logs_by_extension out
+
+after_failure:
+  - ./travis-tool.sh dump_logs
+
 install:
 #  - ./travis-tool.sh github_package testthat
 #  - ./travis-tool.sh github_package assertthat
