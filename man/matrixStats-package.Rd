@@ -15,7 +15,7 @@
 
 
 \description{
-  Methods operating on rows and columns of matrices, e.g. col/rowMedians(), col/rowRanks() and col/rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
+  Methods operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
 }
 
 \section{Installation}{

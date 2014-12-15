@@ -15,7 +15,7 @@ Authors@R: c(
   person("Peter", "Langfelder", role="ctb"))
 Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Peter Langfelder [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
-Description: Methods operating on rows and columns of matrices, e.g. col/rowMedians(), col/rowRanks() and col/rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
+Description: Methods operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
 License: Artistic-2.0
 LazyLoad: TRUE
 NeedsCompilation: yes

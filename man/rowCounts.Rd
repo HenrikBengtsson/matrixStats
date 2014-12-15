@@ -11,6 +11,8 @@
 
 \alias{colCounts}
 \alias{count}
+\alias{allValue}
+\alias{anyValue}
 \alias{rowAnys}
 \alias{colAnys}
 \alias{rowAlls}
