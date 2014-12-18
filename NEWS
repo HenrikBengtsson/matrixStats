@@ -1,6 +1,8 @@
 Package: matrixStats
 ====================
 
+o Turned binCounts() and binMeans() into plain functions (were 
+  default S3 methods).
 o Added count(x, value) which is a significantly faster than
   sum(x == value).  Can also be used to count missing values etc.
   Also added allValue() and anyValue() for all(x == value) and

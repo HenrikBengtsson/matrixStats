@@ -1,5 +1,5 @@
 ############################################################################/**
-# @RdocDefault binMeans
+# @RdocFunction binMeans
 #
 # @title "Fast mean calculations in non-overlapping bins"
 #
@@ -63,7 +63,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
+binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -149,7 +149,7 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
   bx <- as.numeric(bx);
   count <- as.logical(count);
   .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats");
-}) # binMeans()
+} # binMeans()
 
 
 ############################################################################

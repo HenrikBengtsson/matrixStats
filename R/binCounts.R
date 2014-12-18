@@ -1,5 +1,5 @@
 ############################################################################/**
-# @RdocDefault binCounts
+# @RdocFunction binCounts
 #
 # @title "Fast element counting in non-overlapping bins"
 #
@@ -51,7 +51,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
+binCounts <- function(x, bx, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -99,7 +99,7 @@ setMethodS3("binCounts", "default", function(x, bx, right=FALSE, ...) {
   x <- as.numeric(x);
   bx <- as.numeric(bx);
   .Call("binCounts", x, bx, right, PACKAGE="matrixStats");
-}) # binCounts()
+} # binCounts()
 
 
 ############################################################################

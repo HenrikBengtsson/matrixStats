@@ -99,10 +99,6 @@ export("weightedVar")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Vector methods
-S3method("binCounts", "default")
-S3method("binMeans", "default")
-
 # Matrix methods
 S3method("rowAvgsPerColSet", "matrix")
 S3method("colAvgsPerRowSet", "matrix")
