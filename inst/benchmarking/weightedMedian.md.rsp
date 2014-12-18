@@ -8,6 +8,10 @@
 
 <%@include file="${header}"%>
 
+## 'ergm' could be hard to install, because it imports
+## 'Rglpk', which requires GLPK library on the system.
+<%@string test_ergm="FALSE"%>
+
 <%
 use("limma")
 limma_weighted.median <- limma::weighted.median
@@ -15,11 +19,13 @@ limma_weighted.median <- limma::weighted.median
 use("cwhmisc")
 cwhmisc_w.median <- cwhmisc::w.median
 
-use("ergm")
-ergm_wtd.median <- ergm::wtd.median
-
 use("laeken")
 laeken_weightedMedian <- laeken::weightedMedian
+
+<%@if test_ergm="TRUE"%>
+use("ergm")
+ergm_wtd.median <- ergm::wtd.median
+<%@endif%>
 
 weightedMedian <- matrixStats::weightedMedian
 %>
@@ -33,8 +39,10 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 * apply() + weightedMedian(..., method="shell")  [default is method="quick"]
 * apply() + limma::weighted.median()
 * apply() + cwhmisc::w.median()
-* apply() + ergm::wtd.median()
 * apply() + laeken::weightedMedian()
+<%@if test_ergm="TRUE"%>
+* apply() + ergm::wtd.median() --%>
+<%@endif%>
 
 
 ## Data
@@ -68,8 +76,10 @@ stats <- microbenchmark(
  "weightedMedian/shell"   = weightedMedian(x, w=w, ties="mean", method="shell", na.rm=FALSE),
  "limma::weighted.median" = limma_weighted.median(x, w=w, na.rm=FALSE),
  "cwhmisc::w.median"      = cwhmisc_w.median(x, w=w),
- "ergm::wtd.median"       = ergm_wtd.median(x, w=w),
  "laeken::weightedMedian" = laeken_weightedMedian(x, w=w),
+<%@if test_ergm="TRUE"%>
+ "ergm::wtd.median"       = ergm_wtd.median(x, w=w),
+<%@endif%>
   unit = "ms"
 )
 })%>
@@ -84,6 +94,8 @@ stats <- microbenchmark(
 
 <%---------------------------------------------------------------------------
 HISTORY:
+2014-12-17
+o Made 'ergm::wtd.median' optional.
 2014-06-03
 o Created using benchmark snippet in incl/weightedMedian.Rex.
 ---------------------------------------------------------------------------%>
