@@ -10,8 +10,6 @@
 \alias{rowRanks}
 
 \alias{colRanks}
-\alias{rowRanks,matrix-method}
-\alias{colRanks,matrix-method}
 
 \title{Gets the rank of each row (column) of a matrix}
 

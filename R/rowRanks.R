@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction rowRanks
 # @alias colRanks
-# \alias{rowRanks,matrix-method}
-# \alias{colRanks,matrix-method}
 #
 # @title "Gets the rank of each row (column) of a matrix"
 #
@@ -94,11 +92,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowRanks", function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
-  standardGeneric("rowRanks")
-})
-
-setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
+rowRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -114,14 +108,10 @@ setMethod("rowRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
   dim. <- as.integer(dim.)
   # byrow=TRUE
   .Call("rowRanksWithTies", x, dim., tiesMethod, TRUE, PACKAGE="matrixStats")
-})
+}
 
 
-setGeneric("colRanks", function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
-  standardGeneric("colRanks")
-})
-
-setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
+colRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -142,11 +132,13 @@ setMethod("colRanks", signature(x="matrix"), function(x, ties.method=c("max", "a
   y <- .Call("rowRanksWithTies", x, dim., tiesMethod, FALSE, PACKAGE="matrixStats")
   if (!preserveShape) y <- t(y)
   y
-})
+}
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-17 [HB]
+# o CLEANUP: Made col- and rowRanks() plain R functions.
 # 2014-11-15 [HB]
 # o SPEEDUP: No longer using match.arg() due to its overhead.
 # 2013-04-23 [HB]
