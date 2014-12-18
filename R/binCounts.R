@@ -104,6 +104,8 @@ binCounts <- function(x, bx, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-12-17 [HB]
+# o CLEANUP: Made binCounts() and binMeans() plain R functions.
 # 2013-11-24 [HB]
 # o DOCUMENTATION: Added reference to base::tabulate().
 # 2013-11-23 [HB]

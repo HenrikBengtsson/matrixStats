@@ -1,8 +1,8 @@
 Package: matrixStats
 ====================
 
-o Turned binCounts() and binMeans() into plain functions (were 
-  default S3 methods).
+o Turned functions binCounts() and binMeans() (used to be S3 methods)
+  and col- and rowRanges() (used to be S4 methods) into plain functions.
 o Added count(x, value) which is a significantly faster than
   sum(x == value).  Can also be used to count missing values etc.
   Also added allValue() and anyValue() for all(x == value) and

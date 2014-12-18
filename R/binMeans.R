@@ -154,6 +154,8 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-12-17 [HB]
+# o CLEANUP: Made binCounts() and binMeans() plain R functions.
 # 2013-11-23 [HB]
 # o MEMORY: binMeans() cleans out more temporary variables as soon as
 #   possible such that the garbage collector can remove them sooner.
