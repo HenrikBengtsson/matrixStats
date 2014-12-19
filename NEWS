@@ -1,11 +1,11 @@
 Package: matrixStats
 ====================
 
-o Turned several S3 and S4 methods into plain R functions:
-  Were S3: binCounts() and binMeans(), col- and rowAvgsPerColSet(),
-  col- and rowCollapse(), col- and rowTabulates(),
-  col- and rowWeightedMeans(), and col- and rowWeightedMedians().
-  Were S4: col- and rowRanges(), and col- and rowRanks().
+o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R 
+  functions, which decreases the overhead of calling the functions.
+  After this there are no longer any S3 methods, and there this 
+  package no longer needs to import the R.methodsS3 package.  Remaining
+  S4 methods are anyMissing(), rowMedians() and rowOrderStats().
 o Added (col|row)(Var|Sd|Mad)Diffs() for completeness, cf. varDiff(),
   sdDiff() and madDiff() for vectors.
 o Added iqr() for completeness, cf. (col|row)IQRs() for matrices.

@@ -101,19 +101,3 @@ export("weightedMean")
 export("weightedMedian")
 export("weightedSd")
 export("weightedVar")
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# DECLARATIONS
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Matrix and vector methods
-# These are implemented as "default" methods for the purpose
-# of transitioning them to plain functions in a future version
-# as soon as we know there are no packages relying on them
-# being generic functions.
-S3method("rowCounts", "default")
-S3method("colCounts", "default")
-S3method("rowAnys", "default")
-S3method("colAnys", "default")
-S3method("rowAlls", "default")
-S3method("colAlls", "default")

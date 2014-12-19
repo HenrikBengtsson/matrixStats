@@ -1,9 +1,9 @@
 Package: matrixStats
 Version: 0.12.2-1
 Depends: R (>= 2.9.0)
-Imports: methods, R.methodsS3 (>= 1.6.1)
+Imports: methods
 Suggests: R.rsp
-Date: 2014-12-18
+Date: 2014-12-19
 Title: Methods that Apply to Rows and Columns of a Matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),

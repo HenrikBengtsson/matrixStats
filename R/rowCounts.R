@@ -8,12 +8,6 @@
 # @alias colAnys
 # @alias rowAlls
 # @alias colAlls
-# @alias rowCounts.default
-# @alias colCounts.default
-# @alias rowAnys.default
-# @alias colAnys.default
-# @alias rowAlls.default
-# @alias colAlls.default
 #
 # @title "Counts the number of TRUE values in each row (column) of a matrix"
 #
@@ -23,12 +17,12 @@
 #
 # \usage{
 #   @usage count
-#   @usage rowCounts,default
-#   @usage colCounts,default
-#   @usage rowAlls,default
-#   @usage colAlls,default
-#   @usage rowAnys,default
-#   @usage colAnys,default
+#   @usage rowCounts
+#   @usage colCounts
+#   @usage rowAlls
+#   @usage colAlls
+#   @usage rowAnys
+#   @usage colAnys
 # }
 #
 # \arguments{
@@ -59,7 +53,7 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -95,10 +89,10 @@ setMethodS3("rowCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=di
   }
 
   as.integer(counts)
-}) # rowCounts()
+} # rowCounts()
 
 
-setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -135,7 +129,7 @@ setMethodS3("colCounts", "default", function(x, value=TRUE, na.rm=FALSE, dim.=di
   }
 
   as.integer(counts)
-}) # colCounts()
+} # colCounts()
 
 
 
@@ -174,7 +168,7 @@ count <- function(x, value=TRUE, na.rm=FALSE, ...) {
 
 
 
-setMethodS3("rowAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -184,9 +178,9 @@ setMethodS3("rowAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
     counts <- rowCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
     (counts == dim.[2L])
   }
-})
+}
 
-setMethodS3("colAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -196,7 +190,7 @@ setMethodS3("colAlls", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
     counts <- colCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
     (counts == dim.[1L])
   }
-})
+}
 
 
 allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
@@ -213,7 +207,7 @@ allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
 
 
 
-setMethodS3("rowAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -222,9 +216,9 @@ setMethodS3("rowAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
     counts <- rowCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
   }
   as.logical(counts)
-})
+}
 
-setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -233,7 +227,7 @@ setMethodS3("colAnys", "default", function(x, value=TRUE, na.rm=FALSE, dim.=dim(
     counts <- colCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
   }
   as.logical(counts)
-})
+}
 
 
 anyValue <- function(x, value=TRUE, na.rm=FALSE, ...) {

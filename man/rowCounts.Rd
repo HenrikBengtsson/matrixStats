@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  rowCounts.S3.R
+%  rowCounts.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,12 +17,6 @@
 \alias{colAnys}
 \alias{rowAlls}
 \alias{colAlls}
-\alias{rowCounts.default}
-\alias{colCounts.default}
-\alias{rowAnys.default}
-\alias{colAnys.default}
-\alias{rowAlls.default}
-\alias{colAlls.default}
 
 \title{Counts the number of TRUE values in each row (column) of a matrix}
 
@@ -32,12 +26,12 @@
 
 \usage{
   count(x, value=TRUE, na.rm=FALSE, ...)
-  \method{rowCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{colCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{rowAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{colAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{rowAnys}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{colAnys}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowCounts(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colCounts(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowAlls(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colAlls(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowAnys(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colAnys(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{

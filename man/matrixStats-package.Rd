@@ -25,24 +25,6 @@
   }
 }
 
-\section{How to contribute}{
-  This is an open-source project which embraces collaborations.
-  If you have improvements on code and/or documentation, or
-  new function, please consider contributing them to this package.
-}
-
-\section{For developers}{
-  It is currently not decided whether the methods should be S4 or S3
-  methods.
-  This is the reason why some methods are based on S4 and some on S3.
-  The ones using S3 rely on the \pkg{R.methodsS3} package to define the
-  methods.
-  There are also dependencies on other packages.  The plan
-  is to remove all such dependencies  as soon as the API settles, but
-  until then, we keep the dependencies for convenience and in order to
-  avoid redundancy of available implementations of identical methods.
-}
-
 \section{How to cite this package}{
   Henrik Bengtsson (2014). matrixStats: Methods that Apply to Rows and Columns of a Matrix. R package version 0.12.2-1. https://github.com/HenrikBengtsson/matrixStats
 }
