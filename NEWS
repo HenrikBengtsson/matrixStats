@@ -5,16 +5,17 @@ o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
   functions, which decreases the overhead of calling the functions.
   After this there are no longer any S3 methods.  Remaining
   S4 methods are anyMissing() and rowMedians().
-o Added (col|row)(Var|Sd|Mad)Diffs() for completeness, cf. varDiff(),
-  sdDiff() and madDiff() for vectors.
-o Added iqr() for completeness, cf. (col|row)IQRs() for matrices.
-o Added count(x, value) which is a significantly faster than
-  sum(x == value).  Can also be used to count missing values etc.
-  Also added allValue() and anyValue() for all(x == value) and
-  any(x == value).
-o Added (col|row)AnyMissings().
-o Added weightedMean(), which is ~10 times faster than weighted.mean()
-  in the 'stats' package.
+o COMPLETENESS: Added corresponding "missing" vector functions for
+  already existing column and row functions.  Similarly, added
+  "missing" column and row functions for already existing vector
+  functions, e.g. added iqr() and count() to complement already
+  existing (col|row)IQRs() and (col|row)Counts() functions.
+o SPEEDUP: Added count(x, value) which is a significantly faster
+  than sum(x == value).  This can also be used to count missing
+  values etc.  Also, added allValue() and anyValue() for
+  all(x == value) and any(x == value).
+o SPEEDUP: Added weightedMean(), which is ~10 times faster than
+  stats::weighted.mean().
 o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now significantly
   faster compared to previous versions.
 
