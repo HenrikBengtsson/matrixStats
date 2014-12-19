@@ -56,7 +56,6 @@ vfcns <- setdiff(all, crfcns)
 <% pkg <- R.oo::Package(pkgName) %>
 <%@meta name="author"%> on <%=format(as.Date(pkg$date), format="%B %d, %Y")%>
 
-## Functions that apply to column and rows of matrices
 <%
 fcns <- crfcns
 base <- gsub("^(col|row)", "", fcns)
@@ -65,16 +64,19 @@ stopifnot(all(sapply(groups, FUN=length) == 2L))
 groups <- matrix(unlist(groups, use.names=FALSE), nrow=2L)
 %>
 <%---
+## Functions that apply to column and rows of matrices
+
 ```
 <% print(fcns) %>
 ```
 ---%>
 
-## Functions that apply to vectors
 <%
 fcns <- vfcns
 %>
 <%---
+## Functions that apply to vectors
+
 ```
 <% print(fcns) %>
 ```
