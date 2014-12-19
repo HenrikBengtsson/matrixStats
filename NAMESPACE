@@ -100,8 +100,6 @@ export("weightedVar")
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Matrix methods
-S3method("rowAvgsPerColSet", "matrix")
-S3method("colAvgsPerRowSet", "matrix")
 S3method("rowWeightedMeans", "matrix")
 S3method("colWeightedMeans", "matrix")
 S3method("rowWeightedMedians", "matrix")
