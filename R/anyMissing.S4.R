@@ -105,11 +105,11 @@ setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
 
 
 colAnyMissings <- function(x, ...) {
-  colAnys.default(x, value=NA, ...)
+  colAnys(x, value=NA, ...)
 }
 
 rowAnyMissings <- function(x, ...) {
-  rowAnys.default(x, value=NA, ...)
+  rowAnys(x, value=NA, ...)
 }
 
 

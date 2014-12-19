@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction rowOrderStats
 # @alias colOrderStats
-# \alias{rowOrderStats,matrix-method}
-# \alias{colOrderStats,matrix-method}
 #
 # @title "Gets an order statistic for each row (column) in a matrix"
 #
@@ -56,30 +54,24 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowOrderStats", function(x, which, dim.=dim(x), ...) {
-  standardGeneric("rowOrderStats");
-})
-
-setMethod("rowOrderStats", signature(x="matrix"), function(x, which, dim.=dim(x), ...) {
+rowOrderStats <- function(x, which, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   which <- as.integer(which)
   .Call("rowOrderStats", x, dim., which, PACKAGE="matrixStats");
-})
+}
 
 
-setGeneric("colOrderStats", function(x, which, dim.=dim(x), ...) {
-  standardGeneric("colOrderStats");
-})
-
-setMethod("colOrderStats", signature(x="matrix"), function(x, which, dim.=dim(x), ...) {
+colOrderStats <- function(x, which, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   which <- as.integer(which)
   .Call("colOrderStats", x, dim., which, PACKAGE="matrixStats");
-})
+}
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-19 [HB]
+# o CLEANUP: Made col- and rowOrderStats() plain R functions.
 # 2014-11-16
 # o SPEEDUP: Now colOrderStats() also is implemented in native code.
 # 2008-03-25

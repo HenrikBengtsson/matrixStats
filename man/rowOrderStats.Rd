@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  rowOrderStats.S4.R
+%  rowOrderStats.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,8 +10,6 @@
 \alias{rowOrderStats}
 
 \alias{colOrderStats}
-\alias{rowOrderStats,matrix-method}
-\alias{colOrderStats,matrix-method}
 
 \title{Gets an order statistic for each row (column) in a matrix}
 
