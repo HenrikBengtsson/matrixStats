@@ -10,6 +10,7 @@
 \alias{rowIQRs}
 
 \alias{colIQRs}
+\alias{iqr}
 
 \title{Estimates of the interquartile range for each row (column) in a matrix}
 
@@ -20,6 +21,7 @@
 \usage{
  rowIQRs(x, ...)
  colIQRs(x, ...)
+ iqr(x, ...)
 }
 
 \arguments{

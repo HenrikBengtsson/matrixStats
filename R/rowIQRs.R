@@ -1,6 +1,7 @@
 ###########################################################################/**
 # @RdocFunction rowIQRs
 # @alias colIQRs
+# @alias iqr
 #
 # @title "Estimates of the interquartile range for each row (column) in a matrix"
 #
@@ -11,6 +12,7 @@
 # \usage{
 #  @usage rowIQRs
 #  @usage colIQRs
+#  @usage iqr
 # }
 #
 # \arguments{
@@ -38,19 +40,26 @@
 # @keyword univar
 #*/###########################################################################
 rowIQRs <- function(x, ...) {
-  Q <- rowQuantiles(x, probs=c(0.25, 0.75), ...);
-  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE];
+  Q <- rowQuantiles(x, probs=c(0.25, 0.75), ...)
+  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
 }
 
 
 colIQRs <- function(x, ...) {
-  Q <- colQuantiles(x, probs=c(0.25, 0.75), ...);
-  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE];
+  Q <- colQuantiles(x, probs=c(0.25, 0.75), ...)
+  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+}
+
+iqr <- function(x, ...) {
+  q <- quantiles(x, probs=c(0.25, 0.75), ...)
+  q[2L] - q[1L]
 }
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-19
+# o Added iqr().
 # 2011-11-25
 # o Added help and example to rowIQRs() and colIQRs().
 # o BUG FIX: rowIQRs() and colIQRs() would return the 25% and the 75%
