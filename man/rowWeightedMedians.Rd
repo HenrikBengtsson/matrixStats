@@ -6,11 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\name{rowWeightedMedians.matrix}
-\alias{rowWeightedMedians.matrix}
+\name{rowWeightedMedians}
 \alias{rowWeightedMedians}
+
 \alias{colWeightedMedians}
+\alias{rowWeightedMedians.matrix}
 \alias{colWeightedMedians.matrix}
 
 \title{Calculates the weighted medians for each row (column) in a matrix}
@@ -88,7 +88,6 @@ stopifnot(all.equal(xM2, xM1))
 
 
 
-\keyword{methods}
 \keyword{array}
 \keyword{iteration}
 \keyword{robust}

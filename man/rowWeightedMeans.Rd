@@ -6,11 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\name{rowWeightedMeans.matrix}
-\alias{rowWeightedMeans.matrix}
+\name{rowWeightedMeans}
 \alias{rowWeightedMeans}
+
 \alias{colWeightedMeans}
+\alias{rowWeightedMeans.matrix}
 \alias{colWeightedMeans.matrix}
 
 \title{Calculates the weighted means for each row (column) in a matrix}
@@ -88,7 +88,6 @@ stopifnot(all.equal(xM2, xM1))
 
 
 
-\keyword{methods}
 \keyword{array}
 \keyword{iteration}
 \keyword{robust}

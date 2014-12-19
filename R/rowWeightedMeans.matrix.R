@@ -1,8 +1,7 @@
 ###########################################################################/**
-# @set "class=matrix"
-# @RdocMethod rowWeightedMeans
-# @alias rowWeightedMeans
+# @RdocFunction rowWeightedMeans
 # @alias colWeightedMeans
+# @alias rowWeightedMeans.matrix
 # @alias colWeightedMeans.matrix
 #
 # @title "Calculates the weighted means for each row (column) in a matrix"

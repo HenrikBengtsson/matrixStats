@@ -1,8 +1,7 @@
 ###########################################################################/**
-# @set "class=matrix"
-# @RdocMethod rowWeightedMedians
-# @alias rowWeightedMedians
+# @RdocFunction rowWeightedMedians
 # @alias colWeightedMedians
+# @alias rowWeightedMedians.matrix
 # @alias colWeightedMedians.matrix
 #
 # @title "Calculates the weighted medians for each row (column) in a matrix"
