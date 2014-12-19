@@ -104,10 +104,6 @@ S3method("rowWeightedMeans", "matrix")
 S3method("colWeightedMeans", "matrix")
 S3method("rowWeightedMedians", "matrix")
 S3method("colWeightedMedians", "matrix")
-S3method("rowTabulates", "matrix")
-S3method("colTabulates", "matrix")
-S3method("rowCollapse", "matrix")
-S3method("colCollapse", "matrix")
 
 # Matrix and vector methods
 # These are implemented as "default" methods for the purpose

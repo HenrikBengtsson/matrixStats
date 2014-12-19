@@ -1,9 +1,10 @@
 Package: matrixStats
 ====================
 
-o Turned functions binCounts() and binMeans(), col- and
-  rowAvgsPerColSet() (used to be S3 methods), col- and rowRanges(),
-  and col- and rowRanks() (used to be S4 methods) into plain functions.
+o Turned several S3 and S4 methods into plain R functions:
+  Were S3: binCounts() and binMeans(), col- and rowAvgsPerColSet(),
+  col- and rowCollapse(), and col- and rowTabulates().
+  Were S4: col- and rowRanges(), and col- and rowRanks().
 o Added count(x, value) which is a significantly faster than
   sum(x == value).  Can also be used to count missing values etc.
   Also added allValue() and anyValue() for all(x == value) and
