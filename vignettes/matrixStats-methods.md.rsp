@@ -97,15 +97,15 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted sample variance",
-  "Functions"    = c("`weightedVar()`"),
+  "Functions"    = c("`weightedVar()`, ~~colWeightedVars()~~, ~~rowWeightedVars()~~"),
   "Example"     = "weightedVar(x, w)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample variance by n-order differences",
-  "Functions"    = c("`varDiff()`"),
-  "Example"     = "varDiff(x)"
+  "Functions"    = c("`varDiff()`, `colVarDiffs()`, `rowVarDiffs()`"),
+  "Example"     = "varDiff(x), rowVarDiffs(x)"
 )
 tbl <- rbind(tbl, row)
 
@@ -118,15 +118,15 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted sample deviation",
-  "Functions"    = c("`weightedSd()`"),
+  "Functions"    = c("`weightedSd()`, ~~colWeightedSds()~~, ~~rowWeightedSds()~~"),
   "Example"     = "weightedSd(x, w)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample standard deviation by n-order differences",
-  "Functions"    = c("`sdDiff()`"),
-  "Example"     = "sdDiff(x)"
+  "Functions"    = c("`sdDiff()`, `colSdDiffs()`, `rowSdDiffs()`"),
+  "Example"     = "sdDiff(x), rowSdDiffs(x)"
 )
 tbl <- rbind(tbl, row)
 
@@ -139,7 +139,7 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted median absolute deviation (MAD)",
-  "Functions"    = c("`weightedMad()`"),
+  "Functions"    = c("`weightedMad()`, ~~colWeightedMads()~~, ~~rowWeightedMads()~~"),
   "Example"     = "weightedMad(x, w)"
 )
 tbl <- rbind(tbl, row)
@@ -147,8 +147,8 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Median absolute deviation (MAD) by n-order differences",
-  "Functions"    = c("`madDiff()`"),
-  "Example"     = "madDiff(x)"
+  "Functions"    = c("`madDiff()`, `colMadDiffs()`, `rowMadDiffs()`"),
+  "Example"     = "madDiff(x), rowMadDiffs()"
 )
 tbl <- rbind(tbl, row)
 
@@ -161,8 +161,8 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Interquartile range (IQR)",
-  "Functions"   = c("`colIQRs()`, `rowIQRs()`"),
-  "Example"     = "rowIQRs(x)"
+  "Functions"   = c("`iqr()`, `colIQRs()`, `rowIQRs()`"),
+  "Example"     = "iqr(x), rowIQRs(x)"
 )
 tbl <- rbind(tbl, row)
 
