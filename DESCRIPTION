@@ -2,7 +2,8 @@ Package: matrixStats
 Version: 0.12.2-1
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3
-Suggests: R.rsp
+Suggests: R.rsp, knitr
+VignetteBuilder: R.rsp
 Date: 2014-12-19
 Title: Methods that Apply to Rows and Columns of a Matrix
 Authors@R: c(

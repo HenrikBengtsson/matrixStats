@@ -9,12 +9,26 @@
 --------------------------------------------------------------------"%>
 <% t0 <- Sys.time() %>
 <%
-kable <- function(...) print(knitr::kable(..., format="markdown"))
-
 pkgName <- "matrixStats"
 library(pkgName, character.only=TRUE)
 ns <- getNamespace(pkgName)
 env <- as.environment(sprintf("package:%s", pkgName))
+
+use("R.utils")
+kable <- function(df, ...) {
+  fcns <- as.character(df$Functions)
+  fcns <- strsplit(fcns, split=",")
+  fcns <- sapply(fcns, FUN=function(names) {
+    names <- trim(names)
+	ok <- sapply(names, FUN=exists, envir=ns, mode="function")
+	names[ok] <- sprintf("%s()", names[ok])
+	names[!ok] <- sprintf("~~%s()~~", names[!ok])
+	names <- paste(names, collapse=", ")
+  })
+  df$Functions <- fcns
+  print(knitr::kable(df, ..., format="markdown"))
+}
+
 
 # Find all functions
 all <- ls(envir=env)
@@ -50,18 +64,21 @@ groups <- tapply(fcns, base, FUN=list)
 stopifnot(all(sapply(groups, FUN=length) == 2L))
 groups <- matrix(unlist(groups, use.names=FALSE), nrow=2L)
 %>
+<%---
 ```
 <% print(fcns) %>
 ```
+---%>
 
 ## Functions that apply to vectors
 <%
 fcns <- vfcns
 %>
+<%---
 ```
 <% print(fcns) %>
 ```
-
+---%>
 
 ## Location and scale estimators
 <%
@@ -69,77 +86,77 @@ tbl <- NULL
 
 row <- data.frame(
   "Estimator"   = "Weighted sample mean",
-  "Functions"   = c("`weightedMean()`, `colWeightedMeans()`, `rowWeighedMeans()`"),
+  "Functions"   = "weightedMean, colWeightedMeans, rowWeightedMeans",
   "Example"     = "weightedMean(x, w); rowWeightedMeans(x, w)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Median",
-  "Functions"   = c("`median()`, `colMedians()`, `rowMedians()`"),
-  "Example"     = "median(x), rowMedians(x)"
+  "Functions"   = "median, colMedians, rowMedians",
+  "Example"     = "median(x); rowMedians(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted median",
-  "Functions"   = c("`weightedMedian()`, `colWeightedMedians()`, `rowWeighedMedians()`"),
+  "Functions"   = "weightedMedian, colWeightedMedians, rowWeightedMedians",
   "Example"     = "weightedMedian(x, w); rowWeightedMedians(x, w)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample variance",
-  "Functions"   = c("`var()`, `colVars()`, `rowVars()`"),
-  "Example"     = "var(x), rowVars(x)"
+  "Functions"   = "var, colVars, rowVars",
+  "Example"     = "var(x); rowVars(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted sample variance",
-  "Functions"    = c("`weightedVar()`, ~~colWeightedVars()~~, ~~rowWeightedVars()~~"),
+  "Functions"   = "weightedVar, colWeightedVars, owWeightedVars",
   "Example"     = "weightedVar(x, w)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample variance by n-order differences",
-  "Functions"    = c("`varDiff()`, `colVarDiffs()`, `rowVarDiffs()`"),
-  "Example"     = "varDiff(x), rowVarDiffs(x)"
+  "Functions"   = "varDiff, colVarDiffs, rowVarDiffs",
+  "Example"     = "varDiff(x); rowVarDiffs(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample standard deviation",
-  "Functions"   = c("`sd(), colSds()`, `rowSds()`"),
-  "Example"     = "sd(x), rowSds(x)"
+  "Functions"   = "sd, colSds, rowSds",
+  "Example"     = "sd(x); rowSds(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted sample deviation",
-  "Functions"    = c("`weightedSd()`, ~~colWeightedSds()~~, ~~rowWeightedSds()~~"),
+  "Functions"   = "weightedSd, colWeightedSds, rowWeightedSds",
   "Example"     = "weightedSd(x, w)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample standard deviation by n-order differences",
-  "Functions"    = c("`sdDiff()`, `colSdDiffs()`, `rowSdDiffs()`"),
-  "Example"     = "sdDiff(x), rowSdDiffs(x)"
+  "Functions"   = "sdDiff, colSdDiffs, rowSdDiffs",
+  "Example"     = "sdDiff(x); rowSdDiffs(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Median absolute deviation (MAD)",
-  "Functions"   = c("`mad()`, `colMads()`, `rowMads()`"),
-  "Example"     = "mad(x), rowMads(x)"
+  "Functions"   = "mad, colMads, rowMads",
+  "Example"     = "mad(x); rowMads(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted median absolute deviation (MAD)",
-  "Functions"    = c("`weightedMad()`, ~~colWeightedMads()~~, ~~rowWeightedMads()~~"),
+  "Functions"   = "weightedMad, colWeightedMads, rowWeightedMads",
   "Example"     = "weightedMad(x, w)"
 )
 tbl <- rbind(tbl, row)
@@ -147,43 +164,43 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Median absolute deviation (MAD) by n-order differences",
-  "Functions"    = c("`madDiff()`, `colMadDiffs()`, `rowMadDiffs()`"),
-  "Example"     = "madDiff(x), rowMadDiffs()"
+  "Functions"   = "madDiff, colMadDiffs, rowMadDiffs",
+  "Example"     = "madDiff(x); rowMadDiffs()"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Quantile",
-  "Functions"   = c("`quantile(), colQuantiles()`, `rowQuantiles()`"),
+  "Functions"   = "quantile, colQuantiles, rowQuantiles",
   "Example"     = "quantile(x, probs=c(0.25, 0.75); rowQuantiles(x, probs=c(0.25, 0.75))"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Interquartile range (IQR)",
-  "Functions"   = c("`iqr()`, `colIQRs()`, `rowIQRs()`"),
-  "Example"     = "iqr(x), rowIQRs(x)"
+  "Functions"   = "iqr, colIQRs, rowIQRs",
+  "Example"     = "iqr(x); rowIQRs(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Range",
-  "Functions"   = c("`range(x), colRanges()`, `rowRanges()`"),
-  "Example"     = "range(x), rowRanges(x)"
+  "Functions"   = "range, colRanges, rowRanges",
+  "Example"     = "range(x); rowRanges(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Minimum",
-  "Functions"   = c("`min(), colMins()`, `rowMins()`"),
-  "Example"     = "min(x), rowMins(x)"
+  "Functions"   = "min, colMins, rowMins",
+  "Example"     = "min(x); rowMins(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Maximum",
-  "Functions"   = c("`max(), colMaxs()`, `rowMaxs()`"),
-  "Example"     = "max(x), rowMaxs(x)"
+  "Functions"   = "max, colMaxs, rowMaxs",
+  "Example"     = "max(x); rowMaxs(x)"
 )
 tbl <- rbind(tbl, row)
 
@@ -199,14 +216,14 @@ tbl <- NULL
 
 row <- data.frame(
   "Estimator"   = "Counts in disjoint bins",
-  "Functions"    = c("`binCounts()`"),
+  "Functions"   = "binCounts",
   "Example"     = "binCounts(x, bx)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Sample means (and counts) in disjoint bins",
-  "Functions"    = c("`binMeans()`"),
+  "Functions"   = "binMeans",
   "Example"     = "binMeans(y, x, bx)"
 )
 tbl <- rbind(tbl, row)
@@ -222,42 +239,42 @@ tbl <- NULL
 
 row <- data.frame(
   "Estimator"   = "Are there any missing values?",
-  "Functions"   = c("`anyMissing()`, `colAnyMissing()`, `rowAnyMissing()`"),
+  "Functions"   = "anyMissing, colAnyMissing, rowAnyMissing",
   "Example"     = "anyMissing(x); rowAnyMissing(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Does TRUE exists?",
-  "Functions"   = c("`any()`, `colAnys()`, `rowAnys()`"),
+  "Functions"   = "any, colAnys, rowAnys",
   "Example"     = "any(x); rowAnys(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Are all values TRUE?",
-  "Functions"   = c("`all()`, `colAll()`, `rowAlls()`"),
+  "Functions"   = "all, colAll, rowAlls",
   "Example"     = "all(x); rowAlls(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Does value exists?",
-  "Functions"   = c("`anyValue()`, `colAnys()`, `rowAnys()`"),
+  "Functions"   = "anyValue, colAnys, rowAnys",
   "Example"     = "anyValue(x, value); rowAnys(x, value)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Estimator"   = "Do all element have the a given value?",
-  "Functions"   = c("`allValue()`, `colAll()`, `rowAlls()`"),
+  "Estimator"   = "Do all element have a given value?",
+  "Functions"   = "allValue, colAll, rowAlls",
   "Example"     = "allValue(x, value); rowAlls(x, value)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Number of occurrences of a value?",
-  "Functions"   = c("`count()`, `colCounts()`, `rowCounts()`"),
+  "Functions"   = "count, colCounts, rowCounts",
   "Example"     = "count(x, value); rowCounts(x, value)"
 )
 tbl <- rbind(tbl, row)
