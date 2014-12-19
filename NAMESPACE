@@ -106,10 +106,6 @@ export("weightedVar")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Matrix methods
-S3method("rowWeightedMeans", "matrix")
-S3method("colWeightedMeans", "matrix")
-
 # Matrix and vector methods
 # These are implemented as "default" methods for the purpose
 # of transitioning them to plain functions in a future version

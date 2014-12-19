@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  rowWeightedMeans.S3.R
+%  rowWeightedMeans.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,8 +10,6 @@
 \alias{rowWeightedMeans}
 
 \alias{colWeightedMeans}
-\alias{rowWeightedMeans.matrix}
-\alias{colWeightedMeans.matrix}
 
 \title{Calculates the weighted means for each row (column) in a matrix}
 
@@ -20,8 +18,8 @@
 }
 
 \usage{
- \method{rowWeightedMeans}{matrix}(x, w=NULL, na.rm=FALSE, ...)
- \method{colWeightedMeans}{matrix}(x, w=NULL, na.rm=FALSE, ...)
+ rowWeightedMeans(x, w=NULL, na.rm=FALSE, ...)
+ colWeightedMeans(x, w=NULL, na.rm=FALSE, ...)
 }
 
 \arguments{

@@ -3,8 +3,8 @@ Package: matrixStats
 
 o Turned several S3 and S4 methods into plain R functions:
   Were S3: binCounts() and binMeans(), col- and rowAvgsPerColSet(),
-  col- and rowCollapse(), col- and rowTabulates(), and
-  col- and rowWeightedMedians().
+  col- and rowCollapse(), col- and rowTabulates(),
+  col- and rowWeightedMeans(), and col- and rowWeightedMedians().
   Were S4: col- and rowRanges(), and col- and rowRanks().
 o Added (col|row)(Var|Sd|Mad)Diffs() for completeness, cf. varDiff(),
   sdDiff() and madDiff() for vectors.
