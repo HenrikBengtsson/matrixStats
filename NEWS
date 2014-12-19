@@ -4,7 +4,7 @@ Package: matrixStats
 o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
   functions, which decreases the overhead of calling the functions.
   After this there are no longer any S3 methods.  Remaining
-  S4 methods are anyMissing(), rowMedians() and rowOrderStats().
+  S4 methods are anyMissing() and rowMedians().
 o Added (col|row)(Var|Sd|Mad)Diffs() for completeness, cf. varDiff(),
   sdDiff() and madDiff() for vectors.
 o Added iqr() for completeness, cf. (col|row)IQRs() for matrices.
