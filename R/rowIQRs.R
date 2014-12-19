@@ -51,7 +51,7 @@ colIQRs <- function(x, ...) {
 }
 
 iqr <- function(x, ...) {
-  q <- quantiles(x, probs=c(0.25, 0.75), ...)
+  q <- quantile(x, probs=c(0.25, 0.75), ...)
   q[2L] - q[1L]
 }
 

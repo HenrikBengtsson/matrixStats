@@ -11,6 +11,12 @@
 
 \alias{sdDiff}
 \alias{madDiff}
+\alias{colSdDiffs}
+\alias{rowSdDiffs}
+\alias{colMadDiffs}
+\alias{rowMadDiffs}
+\alias{colVarDiffs}
+\alias{rowVarDiffs}
 
 \title{Estimation of discrepancies based on sequential order differences in a vector}
 
@@ -20,12 +26,20 @@
 
 \usage{
  varDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ colVarDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowVarDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+
  sdDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ colSdDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowSdDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+
  madDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ colMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
 }
 
 \arguments{
- \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N.}
+ \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded, otherwise not.}
  \item{diff}{The positional distance of elements for which the
     difference should be calculated.}
@@ -37,7 +51,7 @@
 }
 
 \value{
-  Returns a \code{\link[base]{numeric}} scalar.
+  Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of length 1, length N, or length K.
 }
 
 \author{Henrik Bengtsson}
