@@ -3,7 +3,8 @@ Package: matrixStats
 
 o Turned several S3 and S4 methods into plain R functions:
   Were S3: binCounts() and binMeans(), col- and rowAvgsPerColSet(),
-  col- and rowCollapse(), and col- and rowTabulates().
+  col- and rowCollapse(), col- and rowTabulates(), and
+  col- and rowWeightedMedians().
   Were S4: col- and rowRanges(), and col- and rowRanks().
 o Added count(x, value) which is a significantly faster than
   sum(x == value).  Can also be used to count missing values etc.

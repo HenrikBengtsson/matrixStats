@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  rowWeightedMedians.matrix.R
+%  rowWeightedMedians.S3.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,8 +10,6 @@
 \alias{rowWeightedMedians}
 
 \alias{colWeightedMedians}
-\alias{rowWeightedMedians.matrix}
-\alias{colWeightedMedians.matrix}
 
 \title{Calculates the weighted medians for each row (column) in a matrix}
 
@@ -20,8 +18,8 @@
 }
 
 \usage{
- \method{rowWeightedMedians}{matrix}(x, w=NULL, na.rm=FALSE, ...)
- \method{colWeightedMedians}{matrix}(x, w=NULL, na.rm=FALSE, ...)
+ rowWeightedMedians(x, w=NULL, na.rm=FALSE, ...)
+ colWeightedMedians(x, w=NULL, na.rm=FALSE, ...)
 }
 
 \arguments{

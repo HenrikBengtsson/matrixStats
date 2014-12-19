@@ -102,8 +102,6 @@ export("weightedVar")
 # Matrix methods
 S3method("rowWeightedMeans", "matrix")
 S3method("colWeightedMeans", "matrix")
-S3method("rowWeightedMedians", "matrix")
-S3method("colWeightedMedians", "matrix")
 
 # Matrix and vector methods
 # These are implemented as "default" methods for the purpose
