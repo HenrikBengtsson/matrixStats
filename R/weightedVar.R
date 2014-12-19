@@ -52,7 +52,7 @@ weightedVar <- function(x, w, na.rm=FALSE, center=NULL, ...) {
     # By default use weights that are one.
     w <- rep(1, times=n);
   } else if (length(w) != n) {
-    throw("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
   }
 
   # Argument 'na.rm':

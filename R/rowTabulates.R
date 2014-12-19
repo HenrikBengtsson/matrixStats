@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction rowTabulates
-# @alias rowTabulates.matrix
 # @alias colTabulates
-# @alias colTabulates.matrix
 #
 # @title "Tabulates the values in a matrix by row (column)"
 #
@@ -11,8 +9,8 @@
 # }
 #
 # \usage{
-#   @usage rowTabulates,matrix
-#   @usage colTabulates,matrix
+#   @usage rowTabulates
+#   @usage colTabulates
 # }
 #
 # \arguments{
@@ -34,7 +32,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setMethodS3("rowTabulates", "matrix", function(x, values=NULL, ...) {
+rowTabulates <- function(x, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -80,10 +78,10 @@ setMethodS3("rowTabulates", "matrix", function(x, values=NULL, ...) {
   }
 
   counts;
-})
+}
 
 
-setMethodS3("colTabulates", "matrix", function(x, values=NULL, ...) {
+colTabulates <- function(x, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -137,12 +135,14 @@ setMethodS3("colTabulates", "matrix", function(x, values=NULL, ...) {
     }
   }
   counts;
-})
+}
 
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-19 [HB]
+# o CLEANUP: Made col- and rowTabulates() plain R functions.
 # 2014-11-16
 # o Now colTabulates(x) no longer calls rowTabulates(t(x)).
 # 2014-06-02

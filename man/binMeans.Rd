@@ -7,13 +7,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{binMeans}
-\alias{binMeans.default}
 \alias{binMeans}
+
 
 \title{Fast mean calculations in non-overlapping bins}
 
 \usage{
-\method{binMeans}{default}(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
+binMeans(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 }
 
 \description{
