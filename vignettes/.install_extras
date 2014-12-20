@@ -1,0 +1,8 @@
+vignettes/[^/]+[.](Rnw)$
+vignettes/[^/]+[.](rsp)$
+vignettes/[^/]+[.](Rasciidoc|Rhtml|Rmd|Rrst|Rtex)$
+vignettes/[^/]+[.](brew)$
+vignettes/[^/]+[.](asciidoc|md|str|tex)$
+vignettes/[^/]+[.](r|R)$
+vignettes/[^/]+[.](pdf|PDF|html|HTML)$
+vignettes/dummy[.](Rnw|pdf)$
