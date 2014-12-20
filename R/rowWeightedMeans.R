@@ -1,9 +1,6 @@
 ###########################################################################/**
-# @set "class=matrix"
-# @RdocMethod rowWeightedMeans
-# @alias rowWeightedMeans
+# @RdocFunction rowWeightedMeans
 # @alias colWeightedMeans
-# @alias colWeightedMeans.matrix
 #
 # @title "Calculates the weighted means for each row (column) in a matrix"
 #
@@ -12,8 +9,8 @@
 # }
 #
 # \usage{
-#  @usage rowWeightedMeans,matrix
-#  @usage colWeightedMeans,matrix
+#  @usage rowWeightedMeans
+#  @usage colWeightedMeans
 # }
 #
 # \arguments{
@@ -50,7 +47,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {
+rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -131,11 +128,11 @@ setMethodS3("rowWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
   }
 
   res;
-}) # rowWeightedMeans()
+} # rowWeightedMeans()
 
 
 
-setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {
+colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -218,11 +215,13 @@ setMethodS3("colWeightedMeans", "matrix", function(x, w=NULL, na.rm=FALSE, ...) 
   }
 
   res;
-}) # colWeightedMeans()
+} # colWeightedMeans()
 
 
 ##############################################################################
 # HISTORY:
+# 2014-12-19 [HB]
+# o CLEANUP: Made col- and rowWeightedMeans() plain R functions.
 # 2013-11-29
 # o BUG FIX: (col|row)WeightedMeans() with all zero weights gave an
 #   invalid result.

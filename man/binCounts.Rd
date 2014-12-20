@@ -7,13 +7,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{binCounts}
-\alias{binCounts.default}
 \alias{binCounts}
+
 
 \title{Fast element counting in non-overlapping bins}
 
 \usage{
-\method{binCounts}{default}(x, bx, right=FALSE, ...)
+binCounts(x, bx, right=FALSE, ...)
 }
 
 \description{

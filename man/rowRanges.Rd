@@ -14,8 +14,6 @@
 \alias{rowMaxs}
 \alias{colMins}
 \alias{colMaxs}
-\alias{rowRanges,matrix-method}
-\alias{colRanges,matrix-method}
 
 \title{Gets the range of values in each row (column) of a matrix}
 
@@ -24,8 +22,8 @@
 }
 
 \usage{
-  rowRanges(x, na.rm=FALSE, ...)
-  colRanges(x, na.rm=FALSE, ...)
+  rowRanges(x, na.rm=FALSE, dim.=dim(x), ...)
+  colRanges(x, na.rm=FALSE, dim.=dim(x), ...)
   rowMins(x, na.rm=FALSE, dim.=dim(x), ...)
   colMins(x, na.rm=FALSE, dim.=dim(x), ...)
   rowMaxs(x, na.rm=FALSE, dim.=dim(x), ...)

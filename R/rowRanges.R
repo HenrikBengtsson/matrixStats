@@ -5,8 +5,6 @@
 # @alias rowMaxs
 # @alias colMins
 # @alias colMaxs
-# \alias{rowRanges,matrix-method}
-# \alias{colRanges,matrix-method}
 #
 # @title "Gets the range of values in each row (column) of a matrix"
 #
@@ -52,15 +50,11 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowRanges", function(x, na.rm=FALSE, ...) {
-  standardGeneric("rowRanges")
-})
-
-setMethod("rowRanges", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+rowRanges <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
-})
+}
 
 rowMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
@@ -75,15 +69,11 @@ rowMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
 }
 
 
-setGeneric("colRanges", function(x, na.rm=FALSE, ...) {
-  standardGeneric("colRanges")
-})
-
-setMethod("colRanges", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+colRanges <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
-})
+}
 
 colMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
@@ -100,6 +90,8 @@ colMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-12-17 [HB]
+# o CLEANUP: Made col- and rowRanges() plain R functions.
 # 2014-11-16
 # o SPEEDUP: Implemented in native code.
 # 2013-07-28

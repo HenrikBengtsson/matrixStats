@@ -6,14 +6,9 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\name{rowAvgsPerColSet.matrix}
-\alias{rowAvgsPerColSet.matrix}
-\alias{matrix.colAvgsPerRowSet}
-\alias{colAvgsPerRowSet.matrix}
-\alias{colAvgsPerRowSet,matrix-method}
-
+\name{rowAvgsPerColSet}
 \alias{rowAvgsPerColSet}
+
 \alias{colAvgsPerRowSet}
 
 \title{Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows)}
@@ -24,7 +19,7 @@
 }
 
 \usage{
-\method{rowAvgsPerColSet}{matrix}(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
+rowAvgsPerColSet(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
 }
 
 \arguments{
@@ -127,6 +122,5 @@ stopifnot(identical(drop(Z), Z0))
 
 
 
-\keyword{methods}
 \keyword{internal}
 \keyword{utilities}

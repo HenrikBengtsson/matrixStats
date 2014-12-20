@@ -10,8 +10,6 @@
 \alias{rowOrderStats}
 
 \alias{colOrderStats}
-\alias{rowOrderStats,matrix-method}
-\alias{colOrderStats,matrix-method}
 
 \title{Gets an order statistic for each row (column) in a matrix}
 

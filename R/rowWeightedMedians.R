@@ -1,9 +1,6 @@
 ###########################################################################/**
-# @set "class=matrix"
-# @RdocMethod rowWeightedMedians
-# @alias rowWeightedMedians
+# @RdocFunction rowWeightedMedians
 # @alias colWeightedMedians
-# @alias colWeightedMedians.matrix
 #
 # @title "Calculates the weighted medians for each row (column) in a matrix"
 #
@@ -12,8 +9,8 @@
 # }
 #
 # \usage{
-#  @usage rowWeightedMedians,matrix
-#  @usage colWeightedMedians,matrix
+#  @usage rowWeightedMedians
+#  @usage colWeightedMedians
 # }
 #
 # \arguments{
@@ -51,7 +48,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {
+rowWeightedMedians <- function(x, w=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -90,10 +87,10 @@ setMethodS3("rowWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
   }
 
   res;
-}) # rowWeightedMedians()
+} # rowWeightedMedians()
 
 
-setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...) {
+colWeightedMedians <- function(x, w=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -132,11 +129,13 @@ setMethodS3("colWeightedMedians", "matrix", function(x, w=NULL, na.rm=FALSE, ...
   }
 
   res;
-}) # colWeightedMedians()
+}
 
 
 ##############################################################################
 # HISTORY:
+# 2014-12-19 [HB]
+# o CLEANUP: Made col- and rowWeightedMedians() plain R functions.
 # 2013-11-23
 # o MEMORY: Now (col|row)WeightedMedians() clean out allocated objects sooner.
 # 2012-04-16

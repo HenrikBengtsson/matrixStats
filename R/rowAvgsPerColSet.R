@@ -1,8 +1,5 @@
 ###########################################################################/**
-# @set "class=matrix"
-# @RdocMethod rowAvgsPerColSet
-# @aliasmethod colAvgsPerRowSet
-# @alias rowAvgsPerColSet
+# @RdocFunction rowAvgsPerColSet
 # @alias colAvgsPerRowSet
 #
 # @title "Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows)"
@@ -48,7 +45,7 @@
 # @keyword internal
 # @keyword utilities
 #*/###########################################################################
-setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
+rowAvgsPerColSet <- function(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -130,10 +127,10 @@ setMethodS3("rowAvgsPerColSet", "matrix", function(X, W=NULL, S, FUN=rowMeans, .
   colnames(Z) <- setNames;
 
   Z;
-}) # rowAvgsPerColSet()
+} # rowAvgsPerColSet()
 
 
-setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
+colAvgsPerRowSet <- function(X, W=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -179,11 +176,13 @@ setMethodS3("colAvgsPerRowSet", "matrix", function(X, W=NULL, S, FUN=colMeans, t
   tZ <- NULL; # Not needed anymore
 
   Z;
-}) # colAvgsPerRowSet()
+} # colAvgsPerRowSet()
 
 
 ##############################################################################
 # HISTORY:
+# 2014-12-17 [HB]
+# o CLEANUP: Made col- and rowAvgsPerColSet() plain R functions.
 # 2013-11-23
 # o MEMORY: rowAvgsPerColSet() and colAvgsPerRowSet() do a better job
 #   cleaning out allocated objects sooner.

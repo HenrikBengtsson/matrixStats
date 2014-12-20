@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction rowCollapse
-# @alias rowCollapse.matrix
 # @alias colCollapse
-# @alias colCollapse.matrix
 #
 # @title "Extracts one cell per row (column) from a matrix"
 #
@@ -12,8 +10,8 @@
 # }
 #
 # \usage{
-#   @usage rowCollapse,matrix
-#   @usage colCollapse,matrix
+#   @usage rowCollapse
+#   @usage colCollapse
 # }
 #
 # \arguments{
@@ -40,7 +38,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setMethodS3("rowCollapse", "matrix", function(x, idxs, dim.=dim(x), ...) {
+rowCollapse <- function(x, idxs, dim.=dim(x), ...) {
   # Argument 'idxs':
   idxs <- rep(idxs, length.out=dim.[1L])
 
@@ -53,9 +51,9 @@ setMethodS3("rowCollapse", "matrix", function(x, idxs, dim.=dim(x), ...) {
   cols <- NULL # Not needed anymore
 
   x[idxs]
-})
+}
 
-setMethodS3("colCollapse", "matrix", function(x, idxs, dim.=dim(x), ...) {
+colCollapse <- function(x, idxs, dim.=dim(x), ...) {
   # Argument 'idxs':
   idxs <- rep(idxs, length.out=dim.[2L])
 
@@ -68,11 +66,13 @@ setMethodS3("colCollapse", "matrix", function(x, idxs, dim.=dim(x), ...) {
   rows <- NULL # Not needed anymore
 
   x[idxs]
-})
+}
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-19 [HB]
+# o CLEANUP: Made col- and rowCollapse() plain R functions.
 # 2014-11-15
 # o SPEEDUP: Made calculation of colOffsets faster.
 # o SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).
