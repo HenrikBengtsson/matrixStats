@@ -174,7 +174,7 @@ tbl <- rbind(tbl, row)
 row <- data.frame(
   "Estimator"   = "Quantile",
   "Functions"   = "quantile, colQuantiles, rowQuantiles",
-  "Example"     = "quantile(x, probs=c(0.25, 0.75); rowQuantiles(x, probs=c(0.25, 0.75))"
+  "Example"     = "quantile(x, probs); rowQuantiles(x, probs)"
 )
 tbl <- rbind(tbl, row)
 

@@ -1,10 +1,7 @@
 Package: matrixStats
 ====================
 
-o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
-  functions, which decreases the overhead of calling the functions.
-  After this there are no longer any S3 methods.  Remaining
-  S4 methods are anyMissing() and rowMedians().
+o DOCUMENTATION: Added vignette summarizing available functions.
 o COMPLETENESS: Added corresponding "missing" vector functions for
   already existing column and row functions.  Similarly, added
   "missing" column and row functions for already existing vector
@@ -18,6 +15,10 @@ o SPEEDUP: Added weightedMean(), which is ~10 times faster than
   stats::weighted.mean().
 o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now significantly
   faster compared to previous versions.
+o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
+  functions, which decreases the overhead of calling the functions.
+  After this there are no longer any S3 methods.  Remaining
+  S4 methods are anyMissing() and rowMedians().
 
 
 Version: 0.12.2 [2014-12-07]
