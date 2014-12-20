@@ -116,8 +116,8 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Weighted sample variance",
-  "Functions"   = "weightedVar, colWeightedVars, owWeightedVars",
-  "Example"     = "weightedVar(x, w)"
+  "Functions"   = "weightedVar, colWeightedVars, rowWeightedVars",
+  "Example"     = "weightedVar(x, w), rowWeightedVars(x, w)"
 )
 tbl <- rbind(tbl, row)
 
@@ -138,7 +138,7 @@ tbl <- rbind(tbl, row)
 row <- data.frame(
   "Estimator"   = "Weighted sample deviation",
   "Functions"   = "weightedSd, colWeightedSds, rowWeightedSds",
-  "Example"     = "weightedSd(x, w)"
+  "Example"     = "weightedSd(x, w), rowWeightedSds(x, w)"
 )
 tbl <- rbind(tbl, row)
 
@@ -159,7 +159,7 @@ tbl <- rbind(tbl, row)
 row <- data.frame(
   "Estimator"   = "Weighted median absolute deviation (MAD)",
   "Functions"   = "weightedMad, colWeightedMads, rowWeightedMads",
-  "Example"     = "weightedMad(x, w)"
+  "Example"     = "weightedMad(x, w), rowWeightedMads(x, w)"
 )
 tbl <- rbind(tbl, row)
 
@@ -241,8 +241,8 @@ tbl <- NULL
 
 row <- data.frame(
   "Estimator"   = "Are there any missing values?",
-  "Functions"   = "anyMissing, colAnyMissing, rowAnyMissing",
-  "Example"     = "anyMissing(x); rowAnyMissing(x)"
+  "Functions"   = "anyMissing, colAnyMissings, rowAnyMissings",
+  "Example"     = "anyMissing(x); rowAnyMissings(x)"
 )
 tbl <- rbind(tbl, row)
 
@@ -255,7 +255,7 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Are all values TRUE?",
-  "Functions"   = "all, colAll, rowAlls",
+  "Functions"   = "all, colAlls, rowAlls",
   "Example"     = "all(x); rowAlls(x)"
 )
 tbl <- rbind(tbl, row)
@@ -269,7 +269,7 @@ tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Estimator"   = "Do all element have a given value?",
-  "Functions"   = "allValue, colAll, rowAlls",
+  "Functions"   = "allValue, colAlls, rowAlls",
   "Example"     = "allValue(x, value); rowAlls(x, value)"
 )
 tbl <- rbind(tbl, row)
