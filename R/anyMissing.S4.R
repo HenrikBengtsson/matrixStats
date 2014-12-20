@@ -79,11 +79,11 @@ setMethod("anyMissing", signature(x="matrix"), function(x, ...) {
 })
 
 setMethod("anyMissing", signature(x="raw"), function(x, ...) {
-  FALSE;
+  .Call("anyMissing", x, PACKAGE="matrixStats");
 })
 
 setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
-  FALSE;
+  .Call("anyMissing", x, PACKAGE="matrixStats");
 })
 
 setMethod("anyMissing", signature(x="data.frame"), function(x, ...) {
