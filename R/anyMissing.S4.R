@@ -58,31 +58,7 @@ setGeneric("anyMissing", function(x, ...) {
   standardGeneric("anyMissing");
 })
 
-setMethod("anyMissing", signature(x="numeric"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
-})
-
-setMethod("anyMissing", signature(x="complex"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
-})
-
-setMethod("anyMissing", signature(x="logical"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
-})
-
-setMethod("anyMissing", signature(x="character"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
-})
-
-setMethod("anyMissing", signature(x="matrix"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
-})
-
-setMethod("anyMissing", signature(x="raw"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
-})
-
-setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
+setMethod("anyMissing", signature(x="ANY"), function(x, ...) {
   .Call("anyMissing", x, PACKAGE="matrixStats");
 })
 
