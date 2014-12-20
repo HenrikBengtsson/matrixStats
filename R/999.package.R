@@ -12,6 +12,13 @@
 #   }
 # }
 #
+# \section{Vignettes}{
+#   For an overview of the package, see the '\href{../doc/index.html}{vignettes}';
+#   \enumerate{
+#     \item Summary of functions.
+#   }
+# }
+#
 # \section{How to cite this package}{
 #   @eval "x <- citation('matrixStats'); format(x, 'textVersion')"
 # }

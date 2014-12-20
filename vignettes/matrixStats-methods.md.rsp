@@ -7,7 +7,6 @@
   %\VignetteEngine{R.rsp::rsp}
   %\VignetteTangle{FALSE}
 --------------------------------------------------------------------"%>
-<% t0 <- Sys.time() %>
 <%
 pkgName <- "matrixStats"
 library(pkgName, character.only=TRUE)
