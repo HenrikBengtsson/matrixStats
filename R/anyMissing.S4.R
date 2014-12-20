@@ -2,6 +2,7 @@
 # @RdocFunction anyMissing
 # \alias{anyMissing,ANY-method}
 # \alias{anyMissing,data.frame-method}
+# \alias{anyMissing,list-method}
 # \alias{colAnyMissings}
 # \alias{rowAnyMissings}
 #
