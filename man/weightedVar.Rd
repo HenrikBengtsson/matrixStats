@@ -10,15 +10,27 @@
 \alias{weightedVar}
 
 \alias{weightedSd}
+\alias{colWeightedVars}
+\alias{rowWeightedVars}
+\alias{colWeightedSds}
+\alias{rowWeightedSds}
 
-\title{Weighted variance}
+\title{Weighted variance and weighted standard deviation}
 
 \usage{
-weightedVar(x, w, na.rm=FALSE, center=NULL, ...)
+ weightedVar(x, w, na.rm=FALSE, center=NULL, ...)
+ colWeightedVars(x, w=NULL, na.rm=FALSE, ...)
+ rowWeightedVars(x, w=NULL, na.rm=FALSE, ...)
+
+ weightedSd(...)
+ colWeightedSds(x, w=NULL, na.rm=FALSE, ...)
+ rowWeightedSds(x, w=NULL, na.rm=FALSE, ...)
 }
 
+
 \description{
-  Computes a weighted variance of a numeric vector.
+  Computes a weighted variance / standard deviation of a numeric
+  vector or across rows or columns of a matrix.
 }
 
 \arguments{

@@ -1,14 +1,7 @@
 ###########################################################################/**
 # @RdocFunction anyMissing
-# \alias{anyMissing,numeric-method}
-# \alias{anyMissing,complex-method}
-# \alias{anyMissing,logical-method}
-# \alias{anyMissing,character-method}
-# \alias{anyMissing,matrix-method}
+# \alias{anyMissing,ANY-method}
 # \alias{anyMissing,data.frame-method}
-# \alias{anyMissing,list-method}
-# \alias{anyMissing,NULL-method}
-# \alias{anyMissing,raw-method}
 # \alias{colAnyMissings}
 # \alias{rowAnyMissings}
 #
