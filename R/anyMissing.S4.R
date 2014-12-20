@@ -75,8 +75,15 @@ setMethod("anyMissing", signature(x="character"), function(x, ...) {
 })
 
 setMethod("anyMissing", signature(x="matrix"), function(x, ...) {
-  x <- as.vector(x);
-  anyMissing(x, ...);
+  .Call("anyMissing", x, PACKAGE="matrixStats");
+})
+
+setMethod("anyMissing", signature(x="raw"), function(x, ...) {
+  FALSE;
+})
+
+setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
+  FALSE;
 })
 
 setMethod("anyMissing", signature(x="data.frame"), function(x, ...) {
@@ -94,15 +101,6 @@ setMethod("anyMissing", signature(x="list"), function(x, ...) {
   }
   FALSE;
 })
-
-setMethod("anyMissing", signature(x="raw"), function(x, ...) {
-  FALSE;
-})
-
-setMethod("anyMissing", signature(x="NULL"), function(x, ...) {
-  FALSE;
-})
-
 
 colAnyMissings <- function(x, ...) {
   colAnys(x, value=NA, ...)
