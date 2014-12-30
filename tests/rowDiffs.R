@@ -19,10 +19,10 @@ set.seed(0x42)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")[1]) {
+for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
 
-  for (addNA in c(FALSE, TRUE)[1]) {
+  for (addNA in c(FALSE, TRUE)) {
     cat("addNA=", addNA, "\n", sep="")
 
     x <- matrix(sample(20*8)+0.1, nrow=20, ncol=8)
@@ -41,7 +41,7 @@ for (mode in c("integer", "double")[1]) {
         r2 <- t(colDiffs(t(x), lag=lag, differences=differences))
         stopifnot(all.equal(r1, r0))
         stopifnot(all.equal(r2, r0))
-#        stopifnot(all.equal(r1, r2))
+        stopifnot(all.equal(r1, r2))
       }
     }
   } # for (addNA ...)
