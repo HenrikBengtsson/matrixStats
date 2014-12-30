@@ -29,7 +29,7 @@
 # @author "HB"
 #
 # \seealso{
-#   Internally @see "diff2" is used.
+#   See also @see "diff2".
 # }
 #
 # @keyword array
@@ -38,23 +38,11 @@
 # @keyword univar
 #*/###########################################################################
 rowDiffs <- function(x, lag=1L, differences=1L, ...) {
-  naValue <- NA_real_;
-  storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x) - lag * differences);
-  for (rr in seq(length=nrow(x))) {
-    d[rr,] <- diff2(x[rr,], lag=lag, differences=differences, ...);
-  }
-  d;
+  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
 }
 
 colDiffs <- function(x, lag=1L, differences=1L, ...) {
-  naValue <- NA_real_;
-  storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x) - lag * differences, ncol=ncol(x));
-  for (cc in seq(length=ncol(x))) {
-    d[,cc] <- diff2(x[,cc], lag=lag, differences=differences, ...);
-  }
-  d;
+  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
 }
 
 

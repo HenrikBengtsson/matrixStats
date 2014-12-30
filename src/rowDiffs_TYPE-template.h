@@ -50,7 +50,7 @@ static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byro
     ss = 0;
     for (jj=0; jj < ncol_y; jj++) {
       for (ii=0; ii < nrow_y; ii++) {
-	/*        Rprintf("y[%d] = x[%d] - x[%d] = %g - %g = %g\n", ss, uu, tt, x[uu], x[tt], X_DIFF(x[uu], x[tt])); */
+	/*	Rprintf("y[%d] = x[%d] - x[%d] = %g - %g = %g\n", ss, uu, tt, (double)x[uu], (double)x[tt], (double)X_DIFF(x[uu], x[tt]));  */
         y[ss++] = X_DIFF(x[uu++], x[tt++]);
       }
       tt += lag;
@@ -84,10 +84,20 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t 
 
     /* (a) First order of differences */ 
     DIFF_X_MATRIX(x, nrow, ncol, byrow, lag, tmp, nrow_tmp, ncol_tmp, 0);
+    if (byrow) {
+      ncol_tmp = ncol_tmp - lag;
+    } else {
+      nrow_tmp = nrow_tmp - lag;
+    }
 
     /* (a) Intermediate orders of differences */
     while (--differences > 1) {
       DIFF_X_MATRIX(tmp, nrow_tmp, ncol_tmp, byrow, lag, tmp, nrow_tmp, ncol_tmp, 1);
+      if (byrow) {
+        ncol_tmp = ncol_tmp - lag;
+      } else {
+        nrow_tmp = nrow_tmp - lag;
+      }
     }
 
     /* (c) Last order of differences */

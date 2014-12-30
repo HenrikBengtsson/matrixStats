@@ -1,32 +1,28 @@
 library("matrixStats")
 
 rowDiffs_R <- function(x, lag=1L, differences=1L, ...) {
-  if (lag*differences >= ncol(x)) {
+  ncol2 <- ncol(x) - lag*differences
+  if (ncol2 <= 0) {
     return(matrix(x[integer(0L)], nrow=nrow(x), ncol=0L))
   }
   suppressWarnings({
-    t(apply(x, MARGIN=1L, FUN=diff, lag=lag, differences=differences))
+    y <- apply(x, MARGIN=1L, FUN=diff, lag=lag, differences=differences)
   })
+  y <- t(y)
+  dim(y) <- c(nrow(x), ncol2)
+  y
 }
 
-
-rowDiffs <- function(x, lag=1L, differences=1L, ...) {
-  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
-}
-
-colDiffs <- function(x, lag=1L, differences=1L, ...) {
-  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
-}
 
 set.seed(0x42)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "double")[1]) {
   cat("mode: ", mode, "\n", sep="")
 
-  for (addNA in c(FALSE, TRUE)) {
+  for (addNA in c(FALSE, TRUE)[1]) {
     cat("addNA=", addNA, "\n", sep="")
 
     x <- matrix(sample(20*8)+0.1, nrow=20, ncol=8)
@@ -42,9 +38,9 @@ for (mode in c("integer", "double")) {
         # Row/column ranges
         r0 <- rowDiffs_R(x, lag=lag, differences=differences)
         r1 <- rowDiffs(x, lag=lag, differences=differences)
-#        r2 <- t(colDiffs(t(x), lag=lag, differences=differences))
+        r2 <- t(colDiffs(t(x), lag=lag, differences=differences))
         stopifnot(all.equal(r1, r0))
-#        stopifnot(all.equal(r2, r0))
+        stopifnot(all.equal(r2, r0))
 #        stopifnot(all.equal(r1, r2))
       }
     }

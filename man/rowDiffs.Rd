@@ -46,7 +46,7 @@ stopifnot(all.equal(d2, d1))
 \author{Henrik Bengtsson}
 
 \seealso{
-  Internally \code{\link{diff2}}() is used.
+  See also \code{\link{diff2}}().
 }
 
 

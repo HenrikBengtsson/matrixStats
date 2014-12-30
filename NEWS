@@ -1,8 +1,9 @@
 Package: matrixStats
 ====================
 
-o Added diff2(), which is notably faster than base::diff() for
-  vectors, which it is designed for.
+o SPEEDUP: (col|row)Diffs() are now implemented in native code.
+o SPEEDUP: Added diff2(), which is notably faster than base::diff()
+  for vectors, which it is designed for.
 o DOCUMENTATION: Added vignette summarizing available functions.
 o COMPLETENESS: Added corresponding "missing" vector functions for
   already existing column and row functions.  Similarly, added
