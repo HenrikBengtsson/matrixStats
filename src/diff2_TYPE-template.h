@@ -47,7 +47,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     }
   } else {
     /* Allocate temporary work vector (to hold intermediate differences) */
-    tmp = Calloc(nx-lag, X_C_TYPE);
+    tmp = Calloc(nx - lag, X_C_TYPE);
 
     /* (a) First order of differences */
     uu = lag;
