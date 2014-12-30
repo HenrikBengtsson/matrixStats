@@ -9,6 +9,7 @@ o COMPLETENESS: Added corresponding "missing" vector functions for
   "missing" column and row functions for already existing vector
   functions, e.g. added iqr() and count() to complement already
   existing (col|row)IQRs() and (col|row)Counts() functions.
+o SPEEDUP: Made binCounts() and binMeans() a bit faster.
 o SPEEDUP: Added count(x, value) which is a notably faster
   than sum(x == value).  This can also be used to count missing
   values etc.  Also, added allValue() and anyValue() for

@@ -67,11 +67,9 @@ binCounts <- function(x, bx, right=FALSE, ...) {
   if (any(is.infinite(bx))) {
     stop("Argument 'bx' must not contain Inf values.");
   }
-  o <- order(bx);
-  if (any(diff2(o) != 1L)) {
+  if (is.unsorted(bx)) {
     stop("Argument 'bx' is not ordered.");
   }
-  o <- NULL; # Not needed anymoreo
 
   # Argument 'right':
   right <- as.logical(right);
@@ -104,6 +102,9 @@ binCounts <- function(x, bx, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-12-29 [HB]
+# o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
+#   of o <- order(); any(diff(o) != 1L).
 # 2014-12-17 [HB]
 # o CLEANUP: Made binCounts() and binMeans() plain R functions.
 # 2013-11-24 [HB]

@@ -18,8 +18,8 @@
 }
 
 \usage{
- rowDiffs(x, ...)
- colDiffs(x, ...)
+ rowDiffs(x, lag=1L, differences=1L, ...)
+ colDiffs(x, lag=1L, differences=1L, ...)
 }
 
 \arguments{

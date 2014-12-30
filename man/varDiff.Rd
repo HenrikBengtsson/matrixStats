@@ -57,7 +57,7 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  See \code{\link[base]{diff}}().
+  See \code{\link{diff2}}().
 }
 
 \references{
