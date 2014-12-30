@@ -50,10 +50,11 @@ static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byro
     ss = 0;
     for (jj=0; jj < ncol_y; jj++) {
       for (ii=0; ii < nrow_y; ii++) {
+	/*        Rprintf("y[%d] = x[%d] - x[%d] = %g - %g = %g\n", ss, uu, tt, x[uu], x[tt], X_DIFF(x[uu], x[tt])); */
         y[ss++] = X_DIFF(x[uu++], x[tt++]);
       }
-      tt++;
-      uu++;
+      tt += lag;
+      uu += lag;
     }
   }
 }

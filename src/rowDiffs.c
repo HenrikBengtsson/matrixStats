@@ -72,7 +72,7 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP lag, SEXP differences, SEXP byRow) {
   }
 
   return(ans);
-} /* rowCumsums() */
+} /* rowDiffs() */
 
 
 /***************************************************************************

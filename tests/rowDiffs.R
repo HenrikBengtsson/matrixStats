@@ -1,5 +1,13 @@
 library("matrixStats")
 
+rowDiffs <- function(x, lag=1L, differences=1L, ...) {
+  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
+}
+
+colDiffs <- function(x, lag=1L, differences=1L, ...) {
+  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -16,13 +24,18 @@ for (mode in c("integer", "double")) {
     storage.mode(x) <- mode
     str(x)
 
-    # Row/column ranges
-    r0 <- t(apply(x, MARGIN=1L, FUN=diff))
-    r1 <- rowDiffs(x)
-    r2 <- t(colDiffs(t(x)))
-    stopifnot(all.equal(r1, r2))
-    stopifnot(all.equal(r1, r0))
-    stopifnot(all.equal(r2, r0))
+    for (lag in 1:3) {
+      for (differences in 1:1) {
+        cat(sprintf("mode: %s, lag=%d, differences=%d\n", mode, lag, differences))
+        # Row/column ranges
+        r0 <- t(apply(x, MARGIN=1L, FUN=diff, lag=lag, differences=differences))
+        r1 <- rowDiffs(x, lag=lag, differences=differences)
+        r2 <- t(colDiffs(t(x), lag=lag, differences=differences))
+        stopifnot(all.equal(r1, r2))
+        stopifnot(all.equal(r1, r0))
+        stopifnot(all.equal(r2, r0))
+      }
+    }
   } # for (addNA ...)
 } # for (mode ...)
 
