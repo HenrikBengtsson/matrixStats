@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void diff2_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans)
+  void rowDiffs_<Integer|Real>(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans)
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -30,51 +30,53 @@
   #define X_DIFF(a,b) a-b
 #endif
 
+static R_INLINE void diff_matrix(X_C_TYPE x, int nrow_x, int ncol_x, int byrow, int lag, X_C_TYPE y, int nrow_y, int ncol_y) {
+  int ss = 0, tt = 0, uu;
+  if (byrow) {
+    uu = lag * nrow_x;
+    tt = 0;
+    ss = 0;
+    for (jj=0; jj < ncol_y; jj++) {
+      for (ii=0; ii < nrow_y; ii++) {
+        y[ss++] = X_DIFF(x[uu++], x[tt++]);
+      }
+    }
+  } else {
+    uu = lag;
+    tt = 0;
+    ss = 0;
+    for (jj=0; jj < ncol_y jj++) {
+      for (ii=0; ii < nrow_y; ii++) {
+        y[ss++] = X_DIFF(x[uu++], x[tt++]);
+      }
+      tt++;
+      uu++;
+    }
+  }
+}
 
-void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans) {
-  int ii, tt, uu;
+
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
+  R_xlen_t nans;
+  int ii, jj, ss, tt, uu;
   X_C_TYPE *tmp = NULL;
 
   /* Nothing to do? */
-  if (nans <= 0) return;
+  if ((byrow && ncol_ans <= 0) || (!byrow && nrow_ans <= 0)) return;
 
   /* Special case (difference == 1) */
   if (differences == 1) {
-    uu = lag;
-    tt = 0;
-    for (ii=0; ii < nans; ii++) {
-      ans[ii] = X_DIFF(x[uu++], x[tt++]);
-    }
+    diff_matrix(x, nrow, ncol, byrow, lag, ans, nrow_ans, ncol_ans);
   } else {
     /* Allocate temporary work vector (to hold intermediate differences) */
-    tmp = Calloc(nx-lag, X_C_TYPE);
+/*    tmp = Calloc(nans, X_C_TYPE); */
 
-    /* (a) First order of differences */
-    uu = lag;
-    tt = 0;
-    for (ii=0; ii < nx-lag; ii++) {
-      tmp[ii] = X_DIFF(x[uu++], x[tt++]);
-    }
-
-    /* (b) All other orders of differences but the last */
-    while (--differences > 1) {
-      uu = lag;
-      tt = 0;
-      for (ii=0; ii < nx-lag; ii++) {
-        tmp[ii] = X_DIFF(tmp[uu++], tmp[tt++]);
-      }
-      nx--;
-    }
+    /* (a) First order of differences */ 
 
     /* (c) Last order of differences */
-    uu = lag;
-    tt = 0;
-    for (ii=0; ii < nans; ii++) {
-      ans[ii] = X_DIFF(tmp[uu++], tmp[tt++]);
-    }
+/*    diff_matrix(tmp, nrow, ncol, byrow, lag, ans, nrow_ans, ncol_ans);
 
-    /* Deallocate temorary work vector */
-    Free(tmp);
+      Free(tmp); */
   } /* if (differences ...) */
 }
 

@@ -34,7 +34,7 @@ SEXP diff2(SEXP x, SEXP lag, SEXP differences) {
     error("Argument 'lag' must be a positive integer.");
   }
 
-  /* Argument 'lag': */
+  /* Argument 'differences': */
   diff = asInteger(differences);
   if (diff < 1) {
     error("Argument 'differences' must be a positive integer.");
