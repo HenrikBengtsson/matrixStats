@@ -19,6 +19,17 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
+#if X_C_TYPE == 'i'
+  static R_INLINE X_C_TYPE X_DIFF(int a, int b) {
+    if (X_ISNA(a) || X_ISNA(b)) return(NA_INTEGER);
+    return a-b;
+  }
+#elif X_C_TYPE == 'r'
+  static R_INLINE X_C_TYPE X_DIFF(double a, double b) {
+    return a-b;
+  }
+#endif
+
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans) {
   int ii, tt, uu;
   X_C_TYPE *tmp = NULL;
@@ -31,7 +42,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     uu = lag;
     tt = 0;
     for (ii=0; ii < nans; ii++) {
-      ans[ii] = x[uu++] - x[tt++];
+      ans[ii] = X_DIFF(x[uu++], x[tt++]);
     }
   } else {
     /* Allocate temporary work vector (to hold intermediate differences) */
@@ -41,7 +52,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     uu = lag;
     tt = 0;
     for (ii=0; ii < nx-lag; ii++) {
-      tmp[ii] = x[uu++] - x[tt++];
+      tmp[ii] = X_DIFF(x[uu++], x[tt++]);
     }
 
     /* (b) All other orders of differences but the last */
@@ -49,7 +60,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
       uu = lag;
       tt = 0;
       for (ii=0; ii < nx-lag; ii++) {
-        tmp[ii] = tmp[uu++] - tmp[tt++];
+        tmp[ii] = X_DIFF(tmp[uu++], tmp[tt++]);
       }
       nx--;
     }
@@ -58,7 +69,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     uu = lag;
     tt = 0;
     for (ii=0; ii < nans; ii++) {
-      ans[ii] = tmp[uu++] - tmp[tt++];
+      ans[ii] = X_DIFF(tmp[uu++], tmp[tt++]);
     }
 
     /* Deallocate temorary work vector */
