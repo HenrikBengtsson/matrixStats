@@ -26,12 +26,15 @@
     return a-b;
   }
   #define X_DIFF diff_int
+  #define DIFF_X_MATRIX diff_matrix_int
 #elif X_TYPE == 'r'
   #define X_DIFF(a,b) a-b
+  #define DIFF_X_MATRIX diff_matrix_double
 #endif
 
-static R_INLINE void diff_matrix(X_C_TYPE x, int nrow_x, int ncol_x, int byrow, int lag, X_C_TYPE y, int nrow_y, int ncol_y) {
-  int ss = 0, tt = 0, uu;
+
+static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byrow, int lag, X_C_TYPE *y, int nrow_y, int ncol_y) {
+  int ii, jj, ss = 0, tt = 0, uu;
   if (byrow) {
     uu = lag * nrow_x;
     tt = 0;
@@ -45,7 +48,7 @@ static R_INLINE void diff_matrix(X_C_TYPE x, int nrow_x, int ncol_x, int byrow, 
     uu = lag;
     tt = 0;
     ss = 0;
-    for (jj=0; jj < ncol_y jj++) {
+    for (jj=0; jj < ncol_y; jj++) {
       for (ii=0; ii < nrow_y; ii++) {
         y[ss++] = X_DIFF(x[uu++], x[tt++]);
       }
@@ -66,7 +69,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t 
 
   /* Special case (difference == 1) */
   if (differences == 1) {
-    diff_matrix(x, nrow, ncol, byrow, lag, ans, nrow_ans, ncol_ans);
+    DIFF_X_MATRIX(x, nrow, ncol, byrow, lag, ans, nrow_ans, ncol_ans);
   } else {
     /* Allocate temporary work vector (to hold intermediate differences) */
 /*    tmp = Calloc(nans, X_C_TYPE); */
@@ -82,6 +85,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t 
 
 
 #undef X_DIFF
+#undef DIFF_X_MATRIX
 
 /* Undo template macros */
 #include "templates-types_undef.h"

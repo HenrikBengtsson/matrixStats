@@ -22,7 +22,7 @@
 #undef METHOD
 
 
-SEXP rowDiffs(SEXP x, SEXP lag, SEXP differences, SEXP byRow) {
+SEXP rowDiffs(SEXP x, SEXP dim, SEXP lag, SEXP differences, SEXP byRow) {
   int byrow;
   SEXP ans = NILSXP;
   R_xlen_t lagg, diff;
