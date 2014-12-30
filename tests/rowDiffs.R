@@ -17,15 +17,12 @@ for (mode in c("integer", "double")) {
     str(x)
 
     # Row/column ranges
-    for (na.rm in c(FALSE, TRUE)) {
-      cat("na.rm=", na.rm, "\n", sep="")
-      r0 <- t(apply(x, MARGIN=1L, FUN=diff, na.rm=na.rm))
-      r1 <- rowDiffs(x, na.rm=na.rm)
-      r2 <- t(colDiffs(t(x), na.rm=na.rm))
-      stopifnot(all.equal(r1, r2))
-      stopifnot(all.equal(r1, r0))
-      stopifnot(all.equal(r2, r0))
-    }
+    r0 <- t(apply(x, MARGIN=1L, FUN=diff))
+    r1 <- rowDiffs(x)
+    r2 <- t(colDiffs(t(x)))
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
   } # for (addNA ...)
 } # for (mode ...)
 
@@ -39,31 +36,25 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
   str(x)
 
-  for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm=", na.rm, "\n", sep="")
-    suppressWarnings({
-      r0 <- t(apply(x, MARGIN=1L, FUN=diff, na.rm=na.rm))
-    })
-    r1 <- rowDiffs(x, na.rm=na.rm)
-    r2 <- t(colDiffs(t(x), na.rm=na.rm))
-    stopifnot(all.equal(r1, r2))
-    stopifnot(all.equal(r1, r0))
-    stopifnot(all.equal(r2, r0))
-  }
+  suppressWarnings({
+    r0 <- t(apply(x, MARGIN=1L, FUN=diff))
+  })
+  r1 <- rowDiffs(x)
+  r2 <- t(colDiffs(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
 } # for (mode ...)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(0, nrow=1, ncol=1)
-for (na.rm in c(FALSE, TRUE)) {
-  cat("na.rm=", na.rm, "\n", sep="")
-  suppressWarnings({
-    r0 <- t(apply(x, MARGIN=1L, FUN=diff, na.rm=na.rm))
-  })
-  r1 <- rowDiffs(x, na.rm=na.rm)
-  r2 <- t(colDiffs(t(x), na.rm=na.rm))
-  stopifnot(all.equal(r1, r2))
-  stopifnot(all.equal(r1, r0))
-  stopifnot(all.equal(r2, r0))
-}
+suppressWarnings({
+  r0 <- t(apply(x, MARGIN=1L, FUN=diff))
+})
+r1 <- rowDiffs(x)
+r2 <- t(colDiffs(t(x)))
+stopifnot(all.equal(r1, r2))
+stopifnot(all.equal(r1, r0))
+stopifnot(all.equal(r2, r0))
