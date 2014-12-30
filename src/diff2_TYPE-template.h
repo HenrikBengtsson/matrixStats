@@ -19,16 +19,17 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
-#if X_C_TYPE == 'i'
-  static R_INLINE X_C_TYPE X_DIFF(int a, int b) {
+
+#if X_TYPE == 'i'
+  static R_INLINE int diff_int(int a, int b) {
     if (X_ISNA(a) || X_ISNA(b)) return(NA_INTEGER);
     return a-b;
   }
-#elif X_C_TYPE == 'r'
-  static R_INLINE X_C_TYPE X_DIFF(double a, double b) {
-    return a-b;
-  }
+  #define X_DIFF diff_int
+#elif X_TYPE == 'r'
+  #define X_DIFF(a,b) a-b
 #endif
+
 
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans) {
   int ii, tt, uu;
@@ -46,7 +47,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     }
   } else {
     /* Allocate temporary work vector (to hold intermediate differences) */
-    tmp = Calloc(nx-lag, double);
+    tmp = Calloc(nx-lag, X_C_TYPE);
 
     /* (a) First order of differences */
     uu = lag;
@@ -76,6 +77,9 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     Free(tmp);
   } /* if (differences ...) */
 }
+
+
+#undef X_DIFF
 
 /* Undo template macros */
 #include "templates-types_undef.h"
