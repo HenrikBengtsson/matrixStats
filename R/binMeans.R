@@ -92,7 +92,7 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
     stop("Argument 'bx' must not contain Inf values.");
   }
   o <- order(bx);
-  if (any(diff(o) != 1L)) {
+  if (any(diff2(o) != 1L)) {
     stop("Argument 'bx' is not ordered.");
   }
   o <- NULL; # Not needed anymore
