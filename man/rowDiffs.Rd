@@ -24,6 +24,8 @@
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{lag}{An \code{\link[base]{integer}} specifying the lag.}
+ \item{differences}{An \code{\link[base]{integer}} specifying the order of difference.}
  \item{...}{Not used.}
 }
 
@@ -44,7 +46,7 @@ stopifnot(all.equal(d2, d1))
 \author{Henrik Bengtsson}
 
 \seealso{
-  Internally \code{\link[base]{diff}}() is used.
+  Internally \code{\link{diff2}}() is used.
 }
 
 

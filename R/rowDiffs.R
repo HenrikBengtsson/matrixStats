@@ -15,6 +15,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{lag}{An @integer specifying the lag.}
+#  \item{differences}{An @integer specifying the order of difference.}
 #  \item{...}{Not used.}
 # }
 #
@@ -27,7 +29,7 @@
 # @author "HB"
 #
 # \seealso{
-#   Internally @see "base::diff" is used.
+#   Internally @see "diff2" is used.
 # }
 #
 # @keyword array
@@ -36,7 +38,7 @@
 # @keyword univar
 #*/###########################################################################
 rowDiffs <- function(x, lag=1L, differences=1L, ...) {
-  naValue <- NA;
+  naValue <- NA_real_;
   storage.mode(naValue) <- storage.mode(x);
   d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x) - lag * differences);
   for (rr in seq(length=nrow(x))) {
@@ -46,7 +48,7 @@ rowDiffs <- function(x, lag=1L, differences=1L, ...) {
 }
 
 colDiffs <- function(x, lag=1L, differences=1L, ...) {
-  naValue <- NA;
+  naValue <- NA_real_;
   storage.mode(naValue) <- storage.mode(x);
   d <- matrix(naValue, nrow=nrow(x) - lag * differences, ncol=ncol(x));
   for (cc in seq(length=ncol(x))) {
