@@ -35,22 +35,22 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowDiffs <- function(x, ...) {
+rowDiffs <- function(x, lag=1L, differences=1L, ...) {
   naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x)-1L);
+  d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x) - lag * differences);
   for (rr in seq(length=nrow(x))) {
-    d[rr,] <- diff(x[rr,], ...);
+    d[rr,] <- diff2(x[rr,], lag=lag, differences=differences, ...);
   }
   d;
 }
 
-colDiffs <- function(x, ...) {
+colDiffs <- function(x, lag=1L, differences=1L, ...) {
   naValue <- NA;
   storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x)-1L, ncol=ncol(x));
+  d <- matrix(naValue, nrow=nrow(x) - lag * differences, ncol=ncol(x));
   for (cc in seq(length=ncol(x))) {
-    d[,cc] <- diff(x[,cc], ...);
+    d[,cc] <- diff2(x[,cc], lag=lag, differences=differences, ...);
   }
   d;
 }

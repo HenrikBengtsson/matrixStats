@@ -48,7 +48,7 @@
 # @author "HB"
 #
 # \seealso{
-#   See @see "base::diff".
+#   See @see "diff2".
 # }
 #
 # \references{
@@ -71,7 +71,7 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
   # Calculate differences?
   if (diff > 0L) {
-    x <- diff(x, differences=diff)
+    x <- diff2(x, differences=diff)
 
     # Nothing to do?
     n <- length(x)
