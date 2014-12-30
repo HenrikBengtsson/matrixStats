@@ -33,7 +33,7 @@
 #endif
 
 
-static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byrow, int lag, X_C_TYPE *y, int nrow_y, int ncol_y) {
+static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byrow, int lag, X_C_TYPE *y, int nrow_y, int ncol_y, int skip) {
   int ii, jj, ss = 0, tt = 0, uu;
   if (byrow) {
     uu = lag * nrow_x;
@@ -70,7 +70,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t 
 
   /* Special case (difference == 1) */
   if (differences == 1) {
-    DIFF_X_MATRIX(x, nrow, ncol, byrow, lag, ans, nrow_ans, ncol_ans);
+    DIFF_X_MATRIX(x, nrow, ncol, byrow, lag, ans, nrow_ans, ncol_ans, 0);
   } else {
     /* Allocate temporary work matrix (to hold intermediate differences) */
     if (byrow) {
@@ -83,10 +83,15 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t 
     tmp = Calloc(nrow_tmp*ncol_tmp, X_C_TYPE);
 
     /* (a) First order of differences */ 
-    DIFF_X_MATRIX(x, nrow, ncol, byrow, lag, tmp, nrow_tmp, ncol_tmp);
+    DIFF_X_MATRIX(x, nrow, ncol, byrow, lag, tmp, nrow_tmp, ncol_tmp, 0);
+
+    /* (a) Intermediate orders of differences */
+    while (--differences > 1) {
+      DIFF_X_MATRIX(tmp, nrow_tmp, ncol_tmp, byrow, lag, tmp, nrow_tmp, ncol_tmp, 1);
+    }
 
     /* (c) Last order of differences */
-    DIFF_X_MATRIX(tmp, nrow_tmp, ncol_tmp, byrow, lag, ans, nrow_ans, ncol_ans);
+    DIFF_X_MATRIX(tmp, nrow_tmp, ncol_tmp, byrow, lag, ans, nrow_ans, ncol_ans, 0);
 
     /* Deallocate temporary work matrix */
     Free(tmp);
