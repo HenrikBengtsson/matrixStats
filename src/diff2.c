@@ -41,7 +41,7 @@ SEXP diff2(SEXP x, SEXP lag, SEXP differences) {
   }
 
   /* Length of result vector */
-  nans = (R_xlen_t)((double)n - ((double)differences*(double)lag));
+  nans = (R_xlen_t)((double)nx - ((double)diff*(double)lagg));
   if (nans < 0) nans = 0;
 
   /* Dispatch to low-level C function */
@@ -51,7 +51,7 @@ SEXP diff2(SEXP x, SEXP lag, SEXP differences) {
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nans));
-    diff2_Integer(REAL(x), nx, lagg, diff, INTEGER(ans), nans);
+    diff2_Integer(INTEGER(x), nx, lagg, diff, INTEGER(ans), nans);
     UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");

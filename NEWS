@@ -1,19 +1,21 @@
 Package: matrixStats
 ====================
 
+o Added diff2(), which is notably faster than base::diff() for
+  vectors, which it is designed for.
 o DOCUMENTATION: Added vignette summarizing available functions.
 o COMPLETENESS: Added corresponding "missing" vector functions for
   already existing column and row functions.  Similarly, added
   "missing" column and row functions for already existing vector
   functions, e.g. added iqr() and count() to complement already
   existing (col|row)IQRs() and (col|row)Counts() functions.
-o SPEEDUP: Added count(x, value) which is a significantly faster
+o SPEEDUP: Added count(x, value) which is a notably faster
   than sum(x == value).  This can also be used to count missing
   values etc.  Also, added allValue() and anyValue() for
   all(x == value) and any(x == value).
 o SPEEDUP: Added weightedMean(), which is ~10 times faster than
   stats::weighted.mean().
-o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now significantly
+o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now notably
   faster compared to previous versions.
 o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
   functions, which decreases the overhead of calling the functions.
@@ -143,7 +145,7 @@ o BUG FIX: Package incorrectly redefined R_xlen_t on R (>= 3.0.0) systems
 
 
 Version: 0.11.0 [2014-11-02]
-o Added sumOver() and meanOver(), which are significantly faster versions
+o Added sumOver() and meanOver(), which are notably faster versions
   of sum(x[idxs]) and mean(x[idxs]).  Moreover, instead of having to do
   sum(as.numeric(x)) to avoid integer overflow when 'x' is an integer
   vector, one can do sumOver(x, mode="numeric"), which avoids the extra
@@ -206,13 +208,13 @@ o Added argument 'method' to col- and rowProds() for controlling how
   the product is calculated.
 o SPEEDUP: Package is now byte compiled.
 o SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
-o SPEEDUP: Made rowProds() and rowTabulates() significantly faster.
+o SPEEDUP: Made rowProds() and rowTabulates() notably faster.
 o SPEEDUP: Now rowCounts(), rowAnys(), rowAlls() and corresponding
   column methods can search for any value in addition to the
   default TRUE.  The search for a matching integer or double value
-  is done in native code, which is significantly faster (and more
+  is done in native code, which is notably faster (and more
   memory efficient because it avoids creating any new objects).
-o SPEEDUP: Made colVars() and colSds() significantly faster and
+o SPEEDUP: Made colVars() and colSds() notably faster and
   rowVars() and rowSds() a slightly bit faster.
 o SPEEDUP: Turned more S4 methods into S3 methods, e.g. rowCounts(),
   rowAlls(), rowAnys(), rowTabulates() and rowCollapse().
