@@ -16,4 +16,4 @@ To benchmark most of the functions of 'matrixStats' on your local system, do:
 html <- matrixStats:::benchmark('index')
 browseURL(html)
 ```
-This will take several minutes to complete.
+This may take several minutes per report to complete.

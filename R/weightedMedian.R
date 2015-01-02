@@ -31,7 +31,7 @@
 #            is returned and when it is \code{"max"}, the larger value is
 #            returned.
 #            If \code{ties} is \code{"mean"}, the mean of the two values is
-#            returned and if it is \code{"both"}, both values are returned.
+#            returned.
 #            Finally, if \code{ties} is \code{"weighted"} (or @NULL) a
 #            weighted average of the two are returned, where the weights are
 #            weights of all values \code{x[i] <= x[k]} and \code{x[i] >= x[k]},
@@ -52,15 +52,11 @@
 #  is less or equal to \code{S/2} (c.f. [1]).
 #
 #  If \code{w} is missing then all elements of \code{x} are given the same
-#  positive weight. If all weights are zero, \code{NA} is returned.
+#  positive weight. If all weights are zero, @NA_real_ is returned.
 #
 #  If one or more weights are \code{Inf}, it is the same as these weights
 #  have the same weight and the others has zero. This makes things easier for
-#  cases where the weights are result of a division with zero. In this case
-#  \code{median()} is used internally.
-#
-#  When all the weights are the same (after values with weight zero are excluded
-#  and \code{Inf}'s are taken care of), \code{median} is used internally.
+#  cases where the weights are result of a division with zero.
 #
 #  The weighted median solves the following optimization problem:
 #
@@ -70,18 +66,10 @@
 #  each individual \eqn{x} value.
 # }
 #
-# \section{Benchmarks}{
-#  When implementing this function speed has been highly prioritized and
-#  it also making use of the internal quick sort algorithm (from \R v1.5.0).
-#  The result is that \code{weightedMedian(x)} is about half as slow as
-#  \code{median(x)}.
-#  See examples below for some simple benchmarking tests.
-# }
-#
 # @examples "../incl/weightedMedian.Rex"
 #
 # \seealso{
-#   @see "stats::median", @see "base::mean" and @see "stats::weighted.mean".
+#   @see "stats::median", @see "base::mean" and @see "weightedMean".
 # }
 #
 # \references{
@@ -125,7 +113,7 @@ weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolat
     } else if (ties == "mean") {
       tiesC <- 8L
     } else if (ties == "both") {
-      stop("weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported.");
+      .Deprecated("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported. Use ties=\"min\" and then ties=\"max\" to achieve the same result.")
     } else {
       stop("Unknown value on 'ties': ", ties)
     }
@@ -142,7 +130,7 @@ weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolat
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
-  n <- length(x);
+  n <- length(x)
   if (missing(w)) {
     # By default use weights that are one.
     w <- rep(1, times=n);
