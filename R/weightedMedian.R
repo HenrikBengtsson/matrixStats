@@ -107,7 +107,7 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
+.weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -316,7 +316,7 @@ weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
   } else if (ties == "both") {
     .subset(x, k:(k+1L));
   }
-} # weightedMedian()
+} # .weightedMedian()
 
 
 # Used by weightedMedian()
@@ -324,6 +324,44 @@ qsort <- function(x) {
   ## .Internal(qsort(x, TRUE));  # index.return=TRUE
   sort.int(x, index.return=TRUE, method="quick");
 } # qsort()
+
+
+
+
+weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
+  # Argument 'x':
+
+  # Argument 'w':
+  w <- as.double(w)
+
+  # Argument 'na.rm':
+  na.rm <- as.logical(na.rm)
+  if (is.na(na.rm)) na.rm <- FALSE
+
+  # Argument 'interpolate':
+  interpolate <- as.logical(interpolate)
+
+  # Argument 'ties':
+  if (is.null(ties)) {
+    tiesC <- 1L
+  } else {
+    if (ties == "weighted") {
+      tiesC <- 1L
+    } else if (ties == "min") {
+      tiesC <- 2L
+    } else if (ties == "max") {
+      tiesC <- 4L
+    } else if (ties == "mean") {
+      tiesC <- 8L
+    } else if (ties == "both") {
+      stop("weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported.");
+    } else {
+      stop("Unknown value on 'ties': ", ties)
+    }
+  }
+
+  .Call("weightedMedian", x, w, na.rm, interpolate, tiesC, package="matrixStats")
+} # weightedMedian()
 
 
 

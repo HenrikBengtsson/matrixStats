@@ -38,7 +38,6 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* apply() + weightedMedian(..., method="shell")  [default is method="quick"]
 * apply() + limma::weighted.median()
 * apply() + cwhmisc::w.median()
 * apply() + laeken::weightedMedian()
@@ -75,7 +74,6 @@ gc()
 
 stats <- microbenchmark(
  "weightedMedian"         = weightedMedian(x, w=w, ties="mean", na.rm=FALSE),
- "weightedMedian/shell"   = weightedMedian(x, w=w, ties="mean", method="shell", na.rm=FALSE),
  "limma::weighted.median" = limma_weighted.median(x, w=w, na.rm=FALSE),
  "cwhmisc::w.median"      = cwhmisc_w.median(x, w=w),
  "laeken::weightedMedian" = laeken_weightedMedian(x, w=w),

@@ -16,6 +16,8 @@ o SPEEDUP: Added count(x, value) which is a notably faster
   than sum(x == value).  This can also be used to count missing
   values etc.  Also, added allValue() and anyValue() for
   all(x == value) and any(x == value).
+o SPEEDUP: Implemented weightedMedian() in native code, which made
+  it ~3-10 times faster.
 o SPEEDUP: Added weightedMean(), which is ~10 times faster than
   stats::weighted.mean().
 o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now notably
