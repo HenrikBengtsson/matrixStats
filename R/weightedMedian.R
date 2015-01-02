@@ -314,7 +314,7 @@ weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
   } else if (ties == "mean") {
     (.subset(x, k)+.subset(x, k+1L))/2;
   } else if (ties == "both") {
-    .subset(x, k, k+1L);
+    .subset(x, k:(k+1L));
   }
 } # weightedMedian()
 
@@ -329,6 +329,10 @@ qsort <- function(x) {
 
 ###############################################################################
 # HISTORY:
+# 2015-01-01
+# o BUG FIX:  weightedMedian(..., ties="both") would give "Error in
+#   .subset(x, k, k + 1L) : incorrect number of dimensions" if there
+#   was a tie.
 # 2014-06-03
 # o SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
 # 2013-11-23

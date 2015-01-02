@@ -24,6 +24,8 @@ o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
   functions, which decreases the overhead of calling the functions.
   After this there are no longer any S3 methods.  Remaining
   S4 methods are anyMissing() and rowMedians().
+o BUG FIX: weightedMedian(..., ties="both") would give an error
+  if there was a tie.  Added package test for this case.
 
 
 Version: 0.12.2 [2014-12-07]
