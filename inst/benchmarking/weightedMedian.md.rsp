@@ -8,8 +8,10 @@
 
 <%@include file="${header}"%>
 
-## 'ergm' could be hard to install, because it imports
-## 'Rglpk', which requires GLPK library on the system.
+<%---
+ 'ergm' could be hard to install, because it imports
+ 'Rglpk', which requires GLPK library on the system.
+ ---%>
 <%@string test_ergm="FALSE"%>
 
 <%
@@ -50,7 +52,7 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
 data <- rvectors(mode="double")
-data <- data[1:2]
+data <- data[1:3]
 })%>
 ```
 
