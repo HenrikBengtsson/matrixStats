@@ -36,8 +36,6 @@
 #            weighted average of the two are returned, where the weights are
 #            weights of all values \code{x[i] <= x[k]} and \code{x[i] >= x[k]},
 #            respectively.}
-#   \item{method}{If \code{"shell"}, then \code{order()} is used and when
-#            \code{method="quick"}, then internal \code{qsort()} is used.}
 #   \item{...}{Not used.}
 # }
 #
@@ -77,12 +75,6 @@
 #  it also making use of the internal quick sort algorithm (from \R v1.5.0).
 #  The result is that \code{weightedMedian(x)} is about half as slow as
 #  \code{median(x)}.
-#
-#  Initial test also indicates that \code{method="shell"}, which uses
-#  \code{order()} is slower than \code{method="quick"}, which uses internal
-#  \code{qsort()}.  Non-weighted median can use partial sorting which is
-#  faster because all values do not have to be sorted.
-#
 #  See examples below for some simple benchmarking tests.
 # }
 #
@@ -107,6 +99,44 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
+weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
+  # Argument 'x':
+
+  # Argument 'w':
+  w <- as.double(w)
+
+  # Argument 'na.rm':
+  na.rm <- as.logical(na.rm)
+  if (is.na(na.rm)) na.rm <- FALSE
+
+  # Argument 'interpolate':
+  interpolate <- as.logical(interpolate)
+
+  # Argument 'ties':
+  if (is.null(ties)) {
+    tiesC <- 1L
+  } else {
+    if (ties == "weighted") {
+      tiesC <- 1L
+    } else if (ties == "min") {
+      tiesC <- 2L
+    } else if (ties == "max") {
+      tiesC <- 4L
+    } else if (ties == "mean") {
+      tiesC <- 8L
+    } else if (ties == "both") {
+      stop("weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported.");
+    } else {
+      stop("Unknown value on 'ties': ", ties)
+    }
+  }
+
+  .Call("weightedMedian", x, w, na.rm, interpolate, tiesC, package="matrixStats")
+} # weightedMedian()
+
+
+
+## weightedMedian() as inplemented in plain R (2002-02-07 -- 2015-01-01)
 .weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -327,47 +357,10 @@ qsort <- function(x) {
 
 
 
-
-weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
-  # Argument 'x':
-
-  # Argument 'w':
-  w <- as.double(w)
-
-  # Argument 'na.rm':
-  na.rm <- as.logical(na.rm)
-  if (is.na(na.rm)) na.rm <- FALSE
-
-  # Argument 'interpolate':
-  interpolate <- as.logical(interpolate)
-
-  # Argument 'ties':
-  if (is.null(ties)) {
-    tiesC <- 1L
-  } else {
-    if (ties == "weighted") {
-      tiesC <- 1L
-    } else if (ties == "min") {
-      tiesC <- 2L
-    } else if (ties == "max") {
-      tiesC <- 4L
-    } else if (ties == "mean") {
-      tiesC <- 8L
-    } else if (ties == "both") {
-      stop("weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported.");
-    } else {
-      stop("Unknown value on 'ties': ", ties)
-    }
-  }
-
-  .Call("weightedMedian", x, w, na.rm, interpolate, tiesC, package="matrixStats")
-} # weightedMedian()
-
-
-
 ###############################################################################
 # HISTORY:
 # 2015-01-01
+# o Dropped support for weightedMedian(..., ties="both").
 # o BUG FIX:  weightedMedian(..., ties="both") would give "Error in
 #   .subset(x, k, k + 1L) : incorrect number of dimensions" if there
 #   was a tie.

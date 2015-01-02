@@ -17,7 +17,10 @@ o SPEEDUP: Added count(x, value) which is a notably faster
   values etc.  Also, added allValue() and anyValue() for
   all(x == value) and any(x == value).
 o SPEEDUP: Implemented weightedMedian() in native code, which made
-  it ~3-10 times faster.
+  it ~3-10 times faster.   Dropped support for ties="both", because
+  it would have to return two values in case of ties, which made
+  the API unnecessarily complicated.  If really needed, then call
+  the function twice with ties="min" and ties="max".
 o SPEEDUP: Added weightedMean(), which is ~10 times faster than
   stats::weighted.mean().
 o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now notably

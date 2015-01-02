@@ -15,8 +15,8 @@
 \title{Weighted Median Value}
 
 \usage{
-weightedMedian(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
-  method=c("quick", "shell"), ...)
+weightedMedian(x, w=rep(1, times = length(x)), na.rm=FALSE, interpolate=is.null(ties),
+  ties=NULL, ...)
 }
 
 \description{
@@ -48,8 +48,6 @@ weightedMedian(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
            weighted average of the two are returned, where the weights are
            weights of all values \code{x[i] <= x[k]} and \code{x[i] >= x[k]},
            respectively.}
-  \item{method}{If \code{"shell"}, then \code{order()} is used and when
-           \code{method="quick"}, then internal \code{qsort()} is used.}
   \item{...}{Not used.}
 }
 
@@ -89,12 +87,6 @@ weightedMedian(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
  it also making use of the internal quick sort algorithm (from \R v1.5.0).
  The result is that \code{weightedMedian(x)} is about half as slow as
  \code{median(x)}.
-
- Initial test also indicates that \code{method="shell"}, which uses
- \code{order()} is slower than \code{method="quick"}, which uses internal
- \code{qsort()}.  Non-weighted median can use partial sorting which is
- faster because all values do not have to be sorted.
-
  See examples below for some simple benchmarking tests.
 }
 
