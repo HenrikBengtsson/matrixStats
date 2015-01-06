@@ -1,5 +1,5 @@
 benchmark <- function(fcn, tags=NULL, path=NULL, workdir="reports", envir=parent.frame(), ...) {
-  require("R.rsp", character.only=TRUE) || stop("R.rsp not installed.")
+  requireNamespace("R.rsp") || stop("R.rsp not installed.")
 
   if (is.function(fcn)) {
     fcn <- deparse(substitute(fcn))
