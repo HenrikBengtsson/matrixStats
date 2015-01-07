@@ -39,7 +39,7 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
   if (isNull(idxs)) {
     idxs_ptr = NULL;
     nidxs = 0;
-  } else if (isVector(idxs)) {
+  } else if (isVectorAtomic(idxs)) {
     idxs_ptr = INTEGER(idxs);
     nidxs = xlength(idxs);
   } else {

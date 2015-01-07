@@ -8,7 +8,7 @@
 
 static R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
   /* Argument 'x': */
-  if (!isVector(x)) {
+  if (!isVectorAtomic(x)) {
     error("Argument '%s' must be a matrix or a vector.", xlabel);
   }
   switch (TYPEOF(x)) {
@@ -34,7 +34,7 @@ static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
   double nrow, ncol;
 
   /* Argument 'dim': */
-  if (!isVector(dim) || xlength(dim) != 2 || !isInteger(dim)) {
+  if (!isVectorAtomic(dim) || xlength(dim) != 2 || !isInteger(dim)) {
     error("Argument 'dim' must be an integer vector of length two.");
   }
   nrow = (double)INTEGER(dim)[0];
@@ -52,7 +52,7 @@ static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
 static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
   /* Argument 'x': */
   if (isMatrix(x)) {
-  } else if (isVector(x)) {
+  } else if (isVectorAtomic(x)) {
   } else {
     error("Argument '%s' must be a matrix or a vector.", xlabel);
   }
