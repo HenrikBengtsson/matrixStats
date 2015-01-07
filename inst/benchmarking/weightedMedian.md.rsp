@@ -15,17 +15,17 @@
 <%@string test_ergm="FALSE"%>
 
 <%
-use("limma")
+use("limma", how="load")
 limma_weighted.median <- limma::weighted.median
 
-use("cwhmisc")
+use("cwhmisc", how="load")
 cwhmisc_w.median <- cwhmisc::w.median
 
-use("laeken")
+use("laeken", how="load")
 laeken_weightedMedian <- laeken::weightedMedian
 
 <%@ifeq test_ergm="TRUE"%>
-use("ergm")
+use("ergm", how="load")
 ergm_wtd.median <- ergm::wtd.median
 <%@endif%>
 

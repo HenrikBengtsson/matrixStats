@@ -10,7 +10,7 @@
 <%@include file="${header}"%>
 
 <%
-use("Biobase")
+use("Biobase", how="load")
 rowQ <- Biobase::rowQ
 %>
 

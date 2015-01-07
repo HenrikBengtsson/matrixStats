@@ -5,10 +5,19 @@
 <% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-11-23"%>
+<%@meta date="2015-01-06"%>
 
 <%@include file="${header}"%>
 
+<%@string test_genefilter="TRUE"%>
+
+<%@ifeq test_genefilter="TRUE"%>
+<%
+use("genefilter", how="load")
+genefilter_rowVars <- genefilter::rowVars
+genefilter_colVars <- function(x, ...) genefilter_rowVars(t(x), ...)
+%>
+<%@endif%> 
 
 # <%@meta name="title"%>
 
@@ -18,6 +27,9 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 
 * apply() + var()
 * colVarColMeans() and rowVarColMeans()
+<%@ifeq test_genefilter="TRUE"%>
+* genefilter::rowVars(t(.)) and genefilter::rowVars()
+<%@endif%> 
 
 where
 
@@ -80,6 +92,9 @@ colStats <- microbenchmark(
  colVars        = colVars(X, na.rm=FALSE),
  colVarColMeans = colVarColMeans(X, na.rm=FALSE),
  "apply+var"    = apply(X, MARGIN=2L, FUN=var, na.rm=FALSE),
+<%@ifeq test_genefilter="TRUE"%>
+ "genefilter::rowVars(t(.))" = genefilter_colVars(X, na.rm=FALSE),
+<%@endif%>
  unit = "ms"
 )
 
@@ -90,6 +105,9 @@ rowStats <- microbenchmark(
  rowVars        = rowVars(X, na.rm=FALSE),
  rowVarRowMeans = rowVarRowMeans(X, na.rm=FALSE),
 "apply+var"     = apply(X, MARGIN=1L, FUN=var, na.rm=FALSE),
+<%@ifeq test_genefilter="TRUE"%>
+ "genefilter::rowVars" = genefilter_rowVars(X, na.rm=FALSE),
+<%@endif%>
  unit = "ms"
 )
 })%>
@@ -107,6 +125,8 @@ rowStats <- microbenchmark(
 
 <%---------------------------------------------------------------------------
 HISTORY:
+2015-01-06
+o Now benchmarking 'genefilter' functions too.
 2014-11-23
 o Now benchmarking rowVars() instead of rowSds() since the latter uses
   the former.
