@@ -25,6 +25,7 @@ kable <- function(df, ...) {
 	names <- paste(names, collapse=", ")
   })
   df$Functions <- fcns
+  df$Example <- sprintf("`%s`", df$Example)
   print(knitr::kable(df, ..., format="markdown"))
 }
 
@@ -205,7 +206,6 @@ row <- data.frame(
 )
 tbl <- rbind(tbl, row)
 
-tbl$Example <- sprintf("`%s`", tbl$Example)
 %>
 <% kable(tbl) %>
 
@@ -229,7 +229,6 @@ row <- data.frame(
 )
 tbl <- rbind(tbl, row)
 
-tbl$Example <- sprintf("`%s`", tbl$Example)
 %>
 <% kable(tbl) %>
 
@@ -239,48 +238,64 @@ tbl$Example <- sprintf("`%s`", tbl$Example)
 tbl <- NULL
 
 row <- data.frame(
-  "Estimator"   = "Are there any missing values?",
+  "Operator"   = "Are there any missing values?",
   "Functions"   = "anyMissing, colAnyMissings, rowAnyMissings",
   "Example"     = "anyMissing(x); rowAnyMissings(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Estimator"   = "Does TRUE exists?",
+  "Operator"   = "Does TRUE exists?",
   "Functions"   = "any, colAnys, rowAnys",
   "Example"     = "any(x); rowAnys(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Estimator"   = "Are all values TRUE?",
+  "Operator"   = "Are all values TRUE?",
   "Functions"   = "all, colAlls, rowAlls",
   "Example"     = "all(x); rowAlls(x)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Estimator"   = "Does value exists?",
+  "Operator"   = "Does value exists?",
   "Functions"   = "anyValue, colAnys, rowAnys",
   "Example"     = "anyValue(x, value); rowAnys(x, value)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Estimator"   = "Do all element have a given value?",
+  "Operator"   = "Do all element have a given value?",
   "Functions"   = "allValue, colAlls, rowAlls",
   "Example"     = "allValue(x, value); rowAlls(x, value)"
 )
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Estimator"   = "Number of occurrences of a value?",
+  "Operator"   = "Number of occurrences of a value?",
   "Functions"   = "count, colCounts, rowCounts",
   "Example"     = "count(x, value); rowCounts(x, value)"
 )
 tbl <- rbind(tbl, row)
 
-tbl$Example <- sprintf("`%s`", tbl$Example)
+%>
+<% kable(tbl) %>
+
+
+
+## Miscellaneous
+
+<%
+tbl <- NULL
+
+row <- data.frame(
+  "Operation"   = "Lagged differences",
+  "Functions"   = c("diff2, colDiffs, rowDiffs"),
+  "Example"     = "diff2(x), rowDiffs(x)"
+)
+tbl <- rbind(tbl, row)
+
 %>
 <% kable(tbl) %>
 
