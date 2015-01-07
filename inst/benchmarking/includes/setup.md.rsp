@@ -20,6 +20,8 @@ kable <- function(...) {
   t <- knitr::kable(..., format="markdown")
   print(t)
 }
+%>
+
 
 <%--------------------------------------------------------------
  Report/package specific
