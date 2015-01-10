@@ -1,3 +1,20 @@
+#----------------------------
+# Git and SVN related
+#----------------------------
+^.svn
+^.git
+README.md
+
+#----------------------------
+# Travis-CI related
+#----------------------------
+^.travis.yml$
+^travis-tool.sh$
+^pkg-build.sh$
+
+#----------------------------
+# R related
+#----------------------------
 ^vignettes/.*[.](pdf|PDF)$
 ^vignettes/.*[.](r|R)$
 ^vignettes/[.]install_extras$
@@ -5,9 +22,6 @@
 ^incl
 ^NAMESPACE,.*[.]txt$
 ^nohup.*$
-^.travis.yml$
-^.svn
-^.git
-^.check
+^.devel
 ^.test
-README.md
+^.check

@@ -1,41 +1,60 @@
-# travis config, based on https://github.com/craigcitro/r-travis
-
+#----------------------------------------------------------------
+# Travis-CI configuration for R packages
+#
+# REFERENCES:
+# [1] r-travis: https://github.com/craigcitro/r-travis
+# [2] r-builder: https://github.com/metacran/r-builder
+#
+# Validate your .travis.yml file at http://lint.travis-ci.org/
+#----------------------------------------------------------------
 language: c
 
 env:
   global:
-    - R_BUILD_ARGS="--no-build-vignettes --no-manual"
-    - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
-    - BOOTSTRAP_LATEX=""
-##    - R_BUILD_ARGS="--no-manual"
-##    - R_CHECK_ARGS="--no-manual --as-cran"
-##    - BOOTSTRAP_LATEX="true"
+    # Use r-travis [1] or r-builder [2]?
+#   - PKGR="./travis-tool.sh"  # r-travis
+    - PKGR="./pkg-build.sh"    # r-builder
+    - R_BUILD_ARGS="--no-manual"
+    - R_CHECK_ARGS="--no-manual --as-cran"
+    # Need LaTeX?
+    - BOOTSTRAP_LATEX=""  ## Very time consuming!
+    # Skip building vignettes, which iff LaTeX-based are very
+    # time consuming because LaTeX needs to be installed
+    - R_BUILD_ARGS="--no-build-vignettes ${R_BUILD_ARGS}"
+    - R_CHECK_ARGS="--no-build-vignettes ${R_CHECK_ARGS}"
 
-script: ./travis-tool.sh run_tests
+  # R versions r-builder [2] should test on (ignored by r-travis)
+  matrix:
+    - RVERSION=3.1.2
+    - RVERSION=devel
+
 
 before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-##  - (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash)
-
-after_success:
-  - ./travis-tool.sh dump_logs_by_extension out
-
-after_failure:
-  - ./travis-tool.sh dump_logs
+  - echo PKGR=$PKGR
+  - if [ "$PKGR" == "./travis-tool.sh" ]; then
+      curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh;
+    elif [ "$PKGR" == "./pkg-build.sh" ]; then
+      curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
+    fi
+  - chmod 755 $PKGR
+  - $PKGR bootstrap
+  - if [ "BOOTSTRAP_LATEX" == "true" ]; then
+      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash)
+    fi
 
 install:
-#  - ./travis-tool.sh github_package testthat
-#  - ./travis-tool.sh github_package assertthat
-#  - ./travis-tool.sh install_r_binary r.methodss3 r.oo r.utils
-  - ./travis-tool.sh install_deps
+#  - $PKGR github_package testthat
+#  - $PKGR github_package assertthat
+#  - $PKGR install_r_binary r.methodss3 r.oo r.utils
+  - $PKGR install_deps
+
+script: $PKGR run_tests
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
 
 branches:
   except:
    - /-expt$/
-
-notifications:
-  email:
-    on_success: travis_report@aroma-project.org
-    on_failure: travis_report@aroma-project.org
