@@ -51,13 +51,15 @@ colIQRs <- function(x, ...) {
 }
 
 iqr <- function(x, ...) {
-  q <- quantile(x, probs=c(0.25, 0.75), ...)
+  q <- quantile(x, probs=c(0.25, 0.75), names=FALSE, ...)
   q[2L] - q[1L]
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-01-11
+# o Now iqr() no longer returns a named value.
 # 2014-12-19
 # o Added iqr().
 # 2011-11-25
