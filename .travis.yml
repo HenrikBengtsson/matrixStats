@@ -2,8 +2,11 @@
 # Travis-CI configuration for R packages
 #
 # REFERENCES:
-# [1] r-travis: https://github.com/craigcitro/r-travis
-# [2] r-builder: https://github.com/metacran/r-builder
+# * Travis CI: https://travis-ci.org/
+# * r-travis: https://github.com/craigcitro/r-travis
+# * r-builder: https://github.com/metacran/r-builder
+# * covr: https://github.com/jimhester/covr
+# * Coveralls: https://coveralls.io/
 #
 # Validate your .travis.yml file at http://lint.travis-ci.org/
 #----------------------------------------------------------------
@@ -11,7 +14,7 @@ language: c
 
 env:
   global:
-    # Use r-travis [1] or r-builder [2]?
+    # Use r-travis or r-builder?
 #   - PKGR="./travis-tool.sh"  # r-travis
     - PKGR="./pkg-build.sh"    # r-builder
     - R_BUILD_ARGS="--no-manual"
@@ -23,7 +26,7 @@ env:
     - R_BUILD_ARGS="--no-build-vignettes ${R_BUILD_ARGS}"
     - R_CHECK_ARGS="--no-build-vignettes ${R_CHECK_ARGS}"
 
-  # R versions r-builder [2] should test on (ignored by r-travis)
+  # R versions r-builder should test on (ignored by r-travis)
   matrix:
     - RVERSION=3.1.2
     - RVERSION=devel
@@ -45,10 +48,20 @@ before_install:
 install:
 #  - $PKGR github_package testthat
 #  - $PKGR github_package assertthat
-#  - $PKGR install_r_binary r.methodss3 r.oo r.utils
+  - $PKGR install_r_binary r.methodss3 r.oo r.utils base64enc
+  - $PKGR install_r_binary digest Cairo R.rsp
+#  - $PKGR github_package jimhester/covr
+  - $PKGR github_package HenrikBengtsson/covr
   - $PKGR install_deps
 
 script: $PKGR run_tests
+
+after_success:
+  - if [ "$PKGR" == "./travis-tool.sh" ]; then
+      Rscript -e 'covr::coveralls()';
+    elif [ "$PKGR" == "./pkg-build.sh" ]; then
+      $PKGR run_script -e 'covr::coveralls()';
+    fi
 
 notifications:
   email:
