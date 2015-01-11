@@ -58,9 +58,9 @@ script: $PKGR run_tests
 
 after_success:
   - if [ "$PKGR" == "./travis-tool.sh" ]; then
-      Rscript -e 'covr::coveralls()';
+      Rscript -e 'library(methods); covr::coveralls()';
     elif [ "$PKGR" == "./pkg-build.sh" ]; then
-      $PKGR run_script -e 'covr::coveralls()';
+      $PKGR run_script -e 'library(methods); covr::coveralls()';
     fi
 
 notifications:
