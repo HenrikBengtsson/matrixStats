@@ -50,7 +50,7 @@ install:
 #  - $PKGR github_package assertthat
   - $PKGR install_r_binary r.methodss3 r.oo r.utils base64enc
   - $PKGR install_r_binary digest Cairo R.rsp
-#  - $PKGR github_package jimhester/covr
+#  - $PKGR github_package jimhester/covr 
   - $PKGR github_package HenrikBengtsson/covr
   - $PKGR install_deps
 
