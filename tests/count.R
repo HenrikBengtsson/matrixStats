@@ -1,7 +1,12 @@
 library("matrixStats")
 
 count_R <- function(x, value=TRUE, na.rm=FALSE, ...) {
-  as.integer(sum(x == value, na.rm=na.rm))
+  if (is.na(value)) {
+    counts <- sum(is.na(x))
+  } else {
+    counts <- sum(x == value, na.rm=na.rm)
+  }
+  as.integer(counts)
 } # count_R()
 
 
@@ -18,6 +23,15 @@ for (mode in c("integer", "double")) {
     n0 <- count_R(x, value=0, na.rm=na.rm)
     n1 <- count(x, value=0, na.rm=na.rm)
     stopifnot(identical(n1, n0))
+    all <- allValue(x, value=0, na.rm=na.rm)
+    any <- anyValue(x, value=0, na.rm=na.rm)
+
+    # Count NAs
+    n0 <- count_R(x, value=NA, na.rm=na.rm)
+    n1 <- count(x, value=NA, na.rm=na.rm)
+    stopifnot(identical(n1, n0))
+    all <- allValue(x, value=NA, na.rm=na.rm)
+    any <- anyValue(x, value=NA, na.rm=na.rm)
 
     if (mode == "integer") {
       ux <- unique(as.vector(x))
@@ -29,6 +43,7 @@ for (mode in c("integer", "double")) {
       }
       stopifnot(all(n0 == ncol(x)))
     } # if (mode == "integer")
+
   } # for (na.rm ...)
 } # for (mode ...)
 
@@ -40,6 +55,15 @@ for (naValue in naList) {
     n0 <- count_R(x, na.rm=na.rm)
     n1 <- count(x, na.rm=na.rm)
     stopifnot(identical(n1, n0))
+
+    # Count NAs
+    n0 <- count_R(x, value=NA, na.rm=na.rm)
+    n1 <- count(x, value=NA, na.rm=na.rm)
+    stopifnot(identical(n1, n0))
+    any <- anyValue(x, value=NA, na.rm=na.rm)
+    all <- allValue(x, value=NA, na.rm=na.rm)
+    stopifnot(any)
+    stopifnot(all)
   }
 } # for (naValue ...)
 
@@ -59,4 +83,9 @@ for (na.rm in c(FALSE, TRUE)) {
   nT <- count(x, value=TRUE, na.rm=na.rm)
   nF <- count(x, value=FALSE, na.rm=na.rm)
   stopifnot(nT + nF == ncol(x))
+
+  # Count NAs
+  n0 <- count_R(x, value=NA, na.rm=na.rm)
+  n1 <- count(x, value=NA, na.rm=na.rm)
+  stopifnot(identical(n1, n0))
 }
