@@ -80,11 +80,6 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...) {
     n <- ncol;
   }
 
-  # Center
-  if (is.null(center)) {
-    center <- rowMeans(x, na.rm=na.rm);
-  }
-
   # Spread
   x <- x*x;
   x <- rowMeans(x, na.rm=na.rm);
@@ -130,11 +125,6 @@ colVars <- function(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...) {
   } else {
     # Assuming no missing values
     n <- nrow;
-  }
-
-  # Center
-  if (is.null(center)) {
-    center <- colMeans(x, na.rm=na.rm);
   }
 
   # Spread
