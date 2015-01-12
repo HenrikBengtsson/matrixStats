@@ -151,7 +151,7 @@ weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolat
       n <- length(x);
     }
     tmp <- NULL; # Not needed anymore
-  } else if (anyMissing(x)) {
+  } else if (anyMissing(x) || anyMissing(w)) {
     return(naValue);
   }
 

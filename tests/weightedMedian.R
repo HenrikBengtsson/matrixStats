@@ -1,7 +1,8 @@
 library("matrixStats")
 
 weightedMedian_old <- function(...) {
-  y <- matrixStats:::.weightedMedian(...)
+##  .weightedMedian <- matrixStats:::.weightedMedian
+  y <- .weightedMedian(...)
   as.double(y)
 }
 
@@ -9,8 +10,15 @@ weightedMedian_old <- function(...) {
 x <- 1:5
 y <- weightedMedian(x)
 y <- weightedMedian(x, w=c(NA,Inf,NA,Inf,NA), na.rm=TRUE)
-cat("\n")
 print(y)
+y2 <- weightedMedian_old(x, w=c(NA,Inf,NA,Inf,NA), na.rm=TRUE)
+stopifnot(all.equal(y2, y))
+
+y <- weightedMedian(x, w=c(NA,Inf,NA,Inf,NA), na.rm=FALSE)
+print(y)
+stopifnot(is.na(y))
+y2 <- weightedMedian_old(x, w=c(NA,Inf,NA,Inf,NA), na.rm=FALSE)
+stopifnot(all.equal(y2, y))
 
 x <- 1:10
 n <- length(x)
@@ -38,6 +46,10 @@ stopifnot(all.equal(y4c, y2c))
 y3 <- weightedMedian(x, w)                # 5.5 (default)
 y4 <- weightedMedian_old(x, w)
 stopifnot(all.equal(y4, y3))
+# Obsolete
+y4b <- weightedMedian_old(x, w, method="quick")
+stopifnot(all.equal(y4b, y3))
+
 
 # Pull the median towards zero
 w[1] <- 5
@@ -110,3 +122,16 @@ for (mode in c("integer", "double")) {
     stopifnot(all.equal(y2, y))
   }
 }
+
+
+# A large vector
+n <- 1e5
+x <- runif(n)
+w <- runif(n, min=0, max=1)
+y <- weightedMedian(x, w)
+y2 <- weightedMedian_old(x, w)
+stopifnot(all.equal(y2, y))
+
+y <- weightedMedian(x, w, ties="min")
+y2 <- weightedMedian_old(x, w, ties="min")
+stopifnot(all.equal(y2, y))
