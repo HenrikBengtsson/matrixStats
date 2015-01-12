@@ -17,19 +17,24 @@ for (mode in modes) {
   y <- rowTabulates(x)
   print(y)
   stopifnot(identical(dim(y), c(N,J)))
-  
+
   y <- colTabulates(x)
   print(y)
   stopifnot(identical(dim(y), c(K,J)))
-  
+
   # Count only certain values
   y <- rowTabulates(x, values=1:3)
   print(y)
   stopifnot(identical(dim(y), c(N,3L)))
-  
+
   y <- colTabulates(x, values=1:3)
   print(y)
   stopifnot(identical(dim(y), c(K,3L)))
+
+  # Raw
+  y <- rowTabulates(x, values=as.raw(1:3))
+  print(y)
+  stopifnot(identical(dim(y), c(N,3L)))
 
   cat(sprintf("Mode: %s...done\n", mode))
 } # for (mode ...)
