@@ -120,12 +120,12 @@ colTabulates <- function(x, values=NULL, ...) {
 
   transpose <- FALSE
   if (transpose) {
-    nbrOfValues <- length(values);
-    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x));
-    rownames(counts) <- names;
-    for (kk in seq(length=nbrOfValues)) {
-      counts[kk,] <- colCounts(x, value=values[kk], ...);
-    }
+##    nbrOfValues <- length(values);
+##    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x));
+##    rownames(counts) <- names;
+##    for (kk in seq(length=nbrOfValues)) {
+##      counts[kk,] <- colCounts(x, value=values[kk], ...);
+##    }
   } else {
     nbrOfValues <- length(values);
     counts <- matrix(0L, nrow=ncol(x), ncol=nbrOfValues);
