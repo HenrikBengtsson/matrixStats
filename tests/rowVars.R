@@ -13,19 +13,30 @@ colVars_R <- function(x, na.rm=FALSE) {
 }
 
 
+rowVars_center <- function(x, na.rm=FALSE) {
+  center <- rowMeans(x, na.rm=na.rm)
+  rowVars(x, center=center, na.rm=na.rm)
+}
+
+colVars_center <- function(x, na.rm=FALSE) {
+  center <- colMeans(x, na.rm=na.rm)
+  colVars(x, center=center, na.rm=na.rm)
+}
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   for (addNA in c(FALSE, TRUE)) {
     cat("addNA=", addNA, "\n", sep="")
-  
+
     x <- matrix(1:100+0.1, nrow=20, ncol=5)
     if (addNA) {
       x[13:17,c(2,4)] <- NA_real_
     }
     cat("mode: ", mode, "\n", sep="")
-    storage.mode(x) <- mode 
+    storage.mode(x) <- mode
     str(x)
 
     # Row/column ranges
@@ -33,10 +44,14 @@ for (mode in c("integer", "double")) {
       cat("na.rm=", na.rm, "\n", sep="")
       r0 <- rowVars_R(x, na.rm=na.rm)
       r1 <- rowVars(x, na.rm=na.rm)
+      r1b <- rowVars_center(x, na.rm=na.rm)
       r2 <- colVars(t(x), na.rm=na.rm)
+      r2b <- colVars_center(t(x), na.rm=na.rm)
       stopifnot(all.equal(r1, r2))
       stopifnot(all.equal(r1, r0))
       stopifnot(all.equal(r2, r0))
+      stopifnot(all.equal(r1b, r1))
+      stopifnot(all.equal(r2b, r2))
     }
   } # for (addNA ...)
 }
@@ -48,17 +63,21 @@ for (mode in c("integer", "double")) {
 for (mode in c("integer", "double")) {
   x <- matrix(NA_real_, nrow=20, ncol=5)
   cat("mode: ", mode, "\n", sep="")
-  storage.mode(x) <- mode 
+  storage.mode(x) <- mode
   str(x)
 
   for (na.rm in c(FALSE, TRUE)) {
     cat("na.rm=", na.rm, "\n", sep="")
     r0 <- rowVars_R(x, na.rm=na.rm)
     r1 <- rowVars(x, na.rm=na.rm)
+    r1b <- rowVars_center(x, na.rm=na.rm)
     r2 <- colVars(t(x), na.rm=na.rm)
+    r2b <- colVars_center(t(x), na.rm=na.rm)
     stopifnot(all.equal(r1, r2))
     stopifnot(all.equal(r1, r0))
     stopifnot(all.equal(r2, r0))
+    stopifnot(all.equal(r1b, r1))
+    stopifnot(all.equal(r2b, r2))
   }
 }
 
@@ -71,8 +90,12 @@ for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
   r0 <- rowVars_R(x, na.rm=na.rm)
   r1 <- rowVars(x, na.rm=na.rm)
+  r1b <- rowVars_center(x, na.rm=na.rm)
   r2 <- colVars(t(x), na.rm=na.rm)
+  r2b <- colVars_center(t(x), na.rm=na.rm)
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  stopifnot(all.equal(r1b, r1))
+  stopifnot(all.equal(r2b, r2))
 }
