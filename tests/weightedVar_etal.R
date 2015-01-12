@@ -18,7 +18,7 @@ for (fcn in names(FUNs)) {
     str(x)
 
     for (addNA in c(FALSE, TRUE)) {
-      cat("addNA: ", na.rm, "\n", sep="")
+      cat("addNA: ", addNA, "\n", sep="")
       if (addNA) {
         x[c(5,7)] <- NA
       }
