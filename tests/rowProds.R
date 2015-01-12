@@ -57,6 +57,13 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal.na(y1, y0))
   stopifnot(all.equal(y2, y1))
   stopifnot(length(y1) == 0L)
+
+  # Using product()
+  y1 <- rowProds(x, method="expSumLog", na.rm=FALSE)
+  print(y1)
+  y2 <- colProds(t(x), method="expSumLog", na.rm=FALSE)
+  print(y2)
+  stopifnot(all.equal(y2, y1))
 } # for (mode ...)
 
 
