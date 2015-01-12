@@ -88,7 +88,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
       q <- t(q)
     } else {
       # Allocate result
-      naValue <- NA
+      naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
       q <- matrix(naValue, nrow=nrow, ncol=length(probs))
       # For each row...
@@ -97,7 +97,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
       }
     } # if (type ...)
   } else {
-    naValue <- NA
+    naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
     q <- matrix(naValue, nrow=0L, ncol=length(probs))
   }
@@ -158,7 +158,7 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
       q <- t(q)
     } else {
       # Allocate result
-      naValue <- NA
+      naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
       q <- matrix(naValue, nrow=ncol, ncol=length(probs))
       # For each row...
@@ -167,7 +167,7 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
       }
     } # if (type ...)
   } else {
-    naValue <- NA
+    naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
     q <- matrix(naValue, nrow=0L, ncol=length(probs))
   }
