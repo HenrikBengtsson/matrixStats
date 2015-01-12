@@ -100,3 +100,22 @@ idxs <- 1:5
 s1 <- mean(x[idxs], na.rm=TRUE)
 s2 <- meanOver(x, idxs=idxs, na.rm=TRUE)
 stopifnot(identical(s1, s2))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Argument 'idxs'
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- 1:10
+idxsList <- list(
+  integer=1:5,
+  double=as.double(1:5),
+  logical=(x <= 5)
+)
+
+for (idxs in idxsList) {
+  cat("idxs:\n")
+  str(idxs)
+  s1 <- mean(x[idxs], na.rm=TRUE)
+  s2 <- meanOver(x, idxs=idxs, na.rm=TRUE)
+  stopifnot(identical(s1, s2))
+}
