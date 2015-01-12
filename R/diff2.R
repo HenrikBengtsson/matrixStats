@@ -35,11 +35,6 @@ diff2 <- function(x, lag=1L, differences=1L, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Argument 'x':
-  if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
-  }
-
   # Argument 'lag':
   if (length(lag) != 1L) {
     stop("Argument 'lag' is not a scalar: ", length(lag))
