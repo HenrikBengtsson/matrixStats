@@ -116,4 +116,3 @@ yS0 <- binMeans0(y, x=x, bx=bx)
 yS <- binMeans(y, x=x, bx=bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
-
