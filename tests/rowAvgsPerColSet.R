@@ -66,3 +66,19 @@ print(Z)
 
 Z0 <- colMeans(X)
 stopifnot(identical(drop(Z), Z0))
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Use weights
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
+nbrOfSets <- 3
+S <- matrix(1:ncol(X), ncol=nbrOfSets)
+colnames(S) <- sprintf("s%d", 1:nbrOfSets)
+print(S)
+
+W <- matrix(runif(length(X)), nrow=nrow(X), ncol=ncol(X))
+Z1 <- rowAvgsPerColSet(X, W=W, S=S, FUN=rowWeightedMeans)
+print(Z1)
+Z2 <- colAvgsPerRowSet(X, W=W, S=S, FUN=colWeightedMeans)
+print(Z2)
