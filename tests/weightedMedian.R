@@ -1,7 +1,7 @@
 library("matrixStats")
 
 weightedMedian_old <- function(...) {
-##  .weightedMedian <- matrixStats:::.weightedMedian
+  .weightedMedian <- matrixStats:::.weightedMedian
   y <- .weightedMedian(...)
   as.double(y)
 }
