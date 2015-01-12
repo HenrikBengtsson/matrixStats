@@ -1,7 +1,12 @@
 library("matrixStats")
 
 rowCounts_R <- function(x, value=TRUE, na.rm=FALSE, ...) {
-  as.integer(apply(x, MARGIN=1L, FUN=function(x) sum(x == value, na.rm=na.rm)))
+  if (is.na(value)) {
+    counts <- apply(x, MARGIN=1L, FUN=function(x) sum(is.na(x)))
+  } else {
+    counts <- apply(x, MARGIN=1L, FUN=function(x) sum(x == value, na.rm=na.rm))
+  }
+  as.integer(counts)
 } # rowCounts_R()
 
 
@@ -20,7 +25,14 @@ for (mode in c("integer", "double")) {
     r2 <- colCounts(t(x), value=0, na.rm=na.rm)
     stopifnot(identical(r1, r0))
     stopifnot(identical(r2, r0))
-  
+
+    # Count NAs
+    r0 <- rowCounts_R(x, value=NA, na.rm=na.rm)
+    r1 <- rowCounts(x, value=NA, na.rm=na.rm)
+    r2 <- colCounts(t(x), value=NA, na.rm=na.rm)
+    stopifnot(identical(r1, r0))
+    stopifnot(identical(r2, r0))
+
     if (mode == "integer") {
       ux <- unique(as.vector(x))
       r0 <- r1 <- r2 <- integer(nrow(x))
@@ -44,6 +56,14 @@ for (naValue in naList) {
     r0 <- rowCounts_R(x, na.rm=na.rm)
     r1 <- rowCounts(x, na.rm=na.rm)
     r2 <- colCounts(t(x), na.rm=na.rm)
+    stopifnot(identical(r1, r0))
+    stopifnot(identical(r2, r0))
+
+    # Count NAs
+    r0 <- rowCounts_R(x, value=NA, na.rm=na.rm)
+    r1 <- rowCounts(x, value=NA, na.rm=na.rm)
+    r2 <- colCounts(t(x), value=NA, na.rm=na.rm)
+    stopifnot(all(r0 == ncol(x)))
     stopifnot(identical(r1, r0))
     stopifnot(identical(r2, r0))
   }
@@ -75,4 +95,11 @@ for (na.rm in c(FALSE, TRUE)) {
   cT <- colCounts(x, value=TRUE, na.rm=na.rm)
   cF <- colCounts(x, value=FALSE, na.rm=na.rm)
   stopifnot(cT + cF == nrow(x))
+
+  # Count NAs
+  r0 <- rowCounts_R(x, value=NA, na.rm=na.rm)
+  r1 <- rowCounts(x, value=NA, na.rm=na.rm)
+  r2 <- colCounts(t(x), value=NA, na.rm=na.rm)
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r0))
 }
