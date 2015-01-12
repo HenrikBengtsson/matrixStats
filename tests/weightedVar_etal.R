@@ -1,9 +1,9 @@
 library("matrixStats")
 
 FUNs <- list(
-  weightedMad=weightedMad,
+  weightedVar=weightedVar,
   weightedSd=weightedSd,
-  weightedVar=weightedVar
+  weightedMad=weightedMad
 )
 
 for (fcn in names(FUNs)) {
