@@ -114,7 +114,6 @@ bx <- c(0.5,50.5,100.5,150.5,200.5)
 
 yS0 <- binMeans0(y, x=x, bx=bx)
 yS <- binMeans(y, x=x, bx=bx)
-nS <- binCounts(x, bx=bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
-##stopifnot(all.equal(attr(yS, "count"), nS))
+
