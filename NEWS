@@ -1,6 +1,7 @@
 Package: matrixStats
 ====================
 
+o Added iqrDiff() and (col|row)IqrDiffs().
 o SPEEDUP: (col|row)Diffs() are now implemented in native code
   and notably faster than diff() for matrices.
 o SPEEDUP: Added diff2(), which is notably faster than base::diff()

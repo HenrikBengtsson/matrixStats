@@ -2,12 +2,15 @@
 # @RdocFunction varDiff
 # @alias sdDiff
 # @alias madDiff
+# @alias iqrDiff
+# @alias colVarDiffs
+# @alias rowVarDiffs
 # @alias colSdDiffs
 # @alias rowSdDiffs
 # @alias colMadDiffs
 # @alias rowMadDiffs
-# @alias colVarDiffs
-# @alias rowVarDiffs
+# @alias colIQRDiffs
+# @alias rowIQRDiffs
 #
 # @title "Estimation of discrepancies based on sequential order differences in a vector"
 #
@@ -27,6 +30,10 @@
 #  @usage madDiff
 #  @usage colMadDiffs
 #  @usage rowMadDiffs
+#
+#  @usage iqrDiff
+#  @usage colIQRDiffs
+#  @usage rowIQRDiffs
 # }
 #
 # \arguments{
@@ -98,106 +105,158 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
 sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
-    x <- x[!is.na(x)];
+    x <- x[!is.na(x)]
 
   # Nothing to do?
-  n <- length(x);
+  n <- length(x)
   if (n == 0L)
-    return(NA_real_);
+    return(NA_real_)
 
   # Calculate differences?
   if (diff > 0L) {
-    x <- diff2(x, differences=diff);
+    x <- diff2(x, differences=diff)
 
     # Nothing to do?
-    n <- length(x);
+    n <- length(x)
     if (n == 0L)
-      return(NA_real_);
+      return(NA_real_)
   }
 
   # Trim?
   if (trim > 0 && n > 0L) {
-    if (anyMissing(x)) return(NA_real_);
-    lo <- floor(n*trim)+1;
-    hi <- (n+1)-lo;
+    if (anyMissing(x)) return(NA_real_)
+    lo <- floor(n*trim)+1
+    hi <- (n+1)-lo
     partial <- unique(c(lo, hi))
-    x <- sort.int(x, partial=partial);
-    x <- x[lo:hi];
+    x <- sort.int(x, partial=partial)
+    x <- x[lo:hi]
   }
 
   # Estimate
-  sd <- sd(x, na.rm=FALSE);
-  x <- NULL; # Not needed anymore
-  sd/(sqrt(2)^diff);
+  sd <- sd(x, na.rm=FALSE)
+  x <- NULL # Not needed anymore
+  sd/(sqrt(2)^diff)
 } # sdDiff()
 
 
 madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   if (na.rm)
-    x <- x[!is.na(x)];
+    x <- x[!is.na(x)]
 
   # Nothing to do?
-  n <- length(x);
+  n <- length(x)
   if (n == 0L)
-    return(NA_real_);
+    return(NA_real_)
 
   # Calculate differences?
   if (diff > 0L) {
-    x <- diff2(x, differences=diff);
+    x <- diff2(x, differences=diff)
 
     # Nothing to do?
-    n <- length(x);
+    n <- length(x)
     if (n == 0L)
-      return(NA_real_);
+      return(NA_real_)
   }
 
   # Trim?
   if (trim > 0 && n > 0L) {
-    if (anyMissing(x)) return(NA_real_);
-    lo <- floor(n*trim)+1;
-    hi <- (n+1)-lo;
+    if (anyMissing(x)) return(NA_real_)
+    lo <- floor(n*trim)+1
+    hi <- (n+1)-lo
     partial <- unique(c(lo, hi))
-    x <- sort.int(x, partial=partial);
-    x <- x[lo:hi];
+    x <- sort.int(x, partial=partial)
+    x <- x[lo:hi]
   }
 
   # Estimate
-  sd <- mad(x, na.rm=FALSE, ...);
-  x <- NULL; # Not needed anymore
-  sd / (sqrt(2)^diff);
+  sd <- mad(x, na.rm=FALSE, ...)
+  x <- NULL # Not needed anymore
+  sd / (sqrt(2)^diff)
 } # madDiff()
+
+
+iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+  if (na.rm)
+    x <- x[!is.na(x)]
+
+  # Nothing to do?
+  n <- length(x)
+  if (n == 0L)
+    return(NA_real_)
+
+  # Calculate differences?
+  if (diff > 0L) {
+    x <- diff2(x, differences=diff)
+
+    # Nothing to do?
+    n <- length(x)
+    if (n == 0L)
+      return(NA_real_)
+  }
+
+  # Trim?
+  if (trim > 0 && n > 0L) {
+    if (anyMissing(x)) return(NA_real_)
+    lo <- floor(n*trim)+1
+    hi <- (n+1)-lo
+    partial <- unique(c(lo, hi))
+    x <- sort.int(x, partial=partial)
+    x <- x[lo:hi]
+  }
+
+  # Estimate
+  qs <- quantile(x, probs=c(0.25, 0.75), na.rm=FALSE, names=FALSE, ...)
+  x <- NULL # Not needed anymore
+  iqr <- (qs[2L] - qs[1L])
+  # Standard deviation estimate under N(0,1) for
+  # non-differentiated observations
+  sd <- iqr / (2 * qnorm((1 + 0.5)/2))
+  # Further correction for the differentiation
+  sd / (sqrt(2)^diff)
+} # iqrDiff()
 
 
 rowVarDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   apply(x, MARGIN=1L, FUN=varDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
-} # rowVarDiffs()
+}
 
 colVarDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   apply(x, MARGIN=2L, FUN=varDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
-} # rowVarDiffs()
+}
 
 
 rowSdDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   apply(x, MARGIN=1L, FUN=sdDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
-} # rowSdDiffs()
+}
 
 colSdDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   apply(x, MARGIN=2L, FUN=sdDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
-} # rowSdDiffs()
+}
 
 
 rowMadDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   apply(x, MARGIN=1L, FUN=madDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
-} # rowMadDiffs()
+}
 
 colMadDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   apply(x, MARGIN=2L, FUN=madDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
-} # rowMadDiffs()
+}
+
+
+rowIQRDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+  apply(x, MARGIN=1L, FUN=iqrDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
+}
+
+colIQRDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+  apply(x, MARGIN=2L, FUN=iqrDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
+}
 
 
 ############################################################################
 # HISTORY:
-# 2014-14-19 [HB]
+# 2015-01-16
+# o Added iqrDiff() and (col|row)IQRDiffs().
+# 2014-14-19
 # o Added (col|row)(Var|Sd|Mad)Diffs() for completeness.
 # 2014-11-10
 # o Turned *Diff() into a function.

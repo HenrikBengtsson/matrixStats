@@ -36,13 +36,24 @@ stopifnot(abs(sigma2A - sigmaA^2) < 1e-9)
 stopifnot(abs(sigma2B - sigmaB^2) < 1e-9)
 
 
-sigmaAr <- mad(x)
-cat(sprintf("mad(x)=%g\n", sigmaAr))
+sigmaA2 <- mad(x)
+cat(sprintf("mad(x)=%g\n", sigmaA2))
 
-sigmaBr <- madDiff(x)
-cat(sprintf("madDiff(x)=%g\n", sigmaBr))
+sigmaB2 <- madDiff(x)
+cat(sprintf("madDiff(x)=%g\n", sigmaB2))
 
-d <- abs(sigmaBr - sigmaAr)
+d <- abs(sigmaB2 - sigmaA2)
+cat(sprintf("Absolute difference=%g\n", d))
+stopifnot(d < 5e-3)
+
+
+sigmaA3 <- IQR(x) / (2 * qnorm((1 + 0.5)/2))
+cat(sprintf("IQR(x)=%g\n", sigmaA3))
+
+sigmaB3 <- iqrDiff(x)
+cat(sprintf("iqrDiff(x)=%g\n", sigmaB3))
+
+d <- abs(sigmaB3 - sigmaA3)
 cat(sprintf("Absolute difference=%g\n", d))
 stopifnot(d < 5e-3)
 
@@ -76,7 +87,8 @@ cat(sprintf("Absolute difference=%g\n", d))
 FUNs <- list(
   varDiff=varDiff,
   sdDiff=sdDiff,
-  madDiff=madDiff
+  madDiff=madDiff,
+  iqrDiff=iqrDiff
 )
 
 for (fcn in names(FUNs)) {
@@ -91,13 +103,9 @@ for (fcn in names(FUNs)) {
     str(x)
   } # for (mode ...)
 
-  # Non-trimmed
   y <- FUN(x)
-  str(list(y=y))
-
-  # Trimmed
-  y <- FUN(x, trim=0.1)
-  str(list(y=y))
+  yt <- FUN(x, trim=0.1)
+  str(list("non-trimmed"=y, trimmed=yt))
 
   cat(sprintf("%s()...DONE\n", fcn))
 } # for (fcn ...)

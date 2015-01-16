@@ -11,12 +11,15 @@
 
 \alias{sdDiff}
 \alias{madDiff}
+\alias{iqrDiff}
+\alias{colVarDiffs}
+\alias{rowVarDiffs}
 \alias{colSdDiffs}
 \alias{rowSdDiffs}
 \alias{colMadDiffs}
 \alias{rowMadDiffs}
-\alias{colVarDiffs}
-\alias{rowVarDiffs}
+\alias{colIQRDiffs}
+\alias{rowIQRDiffs}
 
 \title{Estimation of discrepancies based on sequential order differences in a vector}
 
@@ -36,6 +39,10 @@
  madDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
  colMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
  rowMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+
+ iqrDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ colIQRDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowIQRDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
 }
 
 \arguments{
