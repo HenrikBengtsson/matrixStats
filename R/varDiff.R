@@ -12,10 +12,12 @@
 # @alias colIQRDiffs
 # @alias rowIQRDiffs
 #
-# @title "Estimation of discrepancies based on sequential order differences in a vector"
+# @title "Estimation of scale based on sequential-order differences"
 #
 # \description{
-#   @get "title".
+#   @get "title", corresponding to the scale estimates provided by
+#   @see "stats::var", @see "stats::sd", @see "stats::mad" and
+#   @see "stats::IQR".
 # }
 #
 # \usage{
@@ -43,8 +45,7 @@
 #     difference should be calculated.}
 #  \item{trim}{A @double in [0,1/2] specifying the fraction of
 #     observations to be trimmed from each end of (sorted) \code{x}
-#     before estimation.  If \code{trim=1}, then all data points
-#     are trimmed.}
+#     before estimation.}
 #  \item{constant}{A scale factor adjusting for asymptotically
 #     normal consistency.}
 #  \item{...}{Not used.}
@@ -57,7 +58,11 @@
 # @author "HB"
 #
 # \seealso{
-#   See @see "diff2".
+#   For the corresponding non-differentiated estimates, see
+#   @see "stats::var", @see "stats::sd", @see "stats::mad" and
+#   @see "stats::IQR".
+#   Internally, @see "diff2" is used which is a faster version
+#   of @see "base::diff".
 # }
 #
 # \details{

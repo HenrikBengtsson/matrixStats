@@ -21,10 +21,12 @@
 \alias{colIQRDiffs}
 \alias{rowIQRDiffs}
 
-\title{Estimation of discrepancies based on sequential order differences in a vector}
+\title{Estimation of scale based on sequential-order differences}
 
 \description{
-  Estimation of discrepancies based on sequential order differences in a vector.
+  Estimation of scale based on sequential-order differences, corresponding to the scale estimates provided by
+  \code{\link[stats]{var}}, \code{\link[stats]{sd}}, \code{\link[stats]{mad}} and
+  \code{\link[stats]{IQR}}.
 }
 
 \usage{
@@ -52,8 +54,7 @@
     difference should be calculated.}
  \item{trim}{A \code{\link[base]{double}} in [0,1/2] specifying the fraction of
     observations to be trimmed from each end of (sorted) \code{x}
-    before estimation.  If \code{trim=1}, then all data points
-    are trimmed.}
+    before estimation.}
  \item{constant}{A scale factor adjusting for asymptotically
     normal consistency.}
  \item{...}{Not used.}
@@ -66,7 +67,11 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  See \code{\link{diff2}}().
+  For the corresponding non-differentiated estimates, see
+  \code{\link[stats]{var}}, \code{\link[stats]{sd}}, \code{\link[stats]{mad}} and
+  \code{\link[stats]{IQR}}.
+  Internally, \code{\link{diff2}}() is used which is a faster version
+  of \code{\link[base]{diff}}().
 }
 
 \details{
