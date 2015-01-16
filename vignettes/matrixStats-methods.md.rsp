@@ -186,6 +186,13 @@ row <- data.frame(
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
+  "Estimator"   = "Interquartile range (IQR) by n-order differences",
+  "Functions"   = "iqrDiff, colIQRDiffs, rowIQRDiffs",
+  "Example"     = "iqrDiff(x); rowIQRDiffs(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
   "Estimator"   = "Range",
   "Functions"   = "range, colRanges, rowRanges",
   "Example"     = "range(x); rowRanges(x)"
