@@ -45,6 +45,8 @@
 #     observations to be trimmed from each end of (sorted) \code{x}
 #     before estimation.  If \code{trim=1}, then all data points
 #     are trimmed.}
+#  \item{constant}{A scale factor adjusting for asymptotically
+#     normal consistency.}
 #  \item{...}{Not used.}
 # }
 #
@@ -56,6 +58,21 @@
 #
 # \seealso{
 #   See @see "diff2".
+# }
+#
+# \details{
+#   Note that n-order difference MAD estimates, just like the ordinary
+#   MAD estimate by @see "stats::mad", apply a correction factor such
+#   that the estimates are consistent with the standard deviation
+#   under Gaussian distributions.
+#
+#   The interquartile range (IQR) estimates does \emph{not} apply such
+#   a correction factor.  If asymptotically normal consistency is wanted,
+#   the correction factor for IQR estimate is \code{1 / (2 * qnorm(3/4))},
+#   which is half of that used for MAD estimates, which is
+#   \code{1 / qnorm(3/4)}.  This correction factor needs to be applied
+#   manually, i.e. there is no \code{constant} argument for the IQR
+#   functions.
 # }
 #
 # \references{
@@ -99,7 +116,8 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Estimate
   var <- var(x, na.rm=FALSE)
   x <- NULL # Not needed anymore
-  var/(2^diff)
+  # Correction for the differentiation
+  var / (2^diff)
 } # varDiff()
 
 
@@ -135,11 +153,12 @@ sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Estimate
   sd <- sd(x, na.rm=FALSE)
   x <- NULL # Not needed anymore
-  sd/(sqrt(2)^diff)
+  # Correction for the differentiation
+  sd / (sqrt(2)^diff)
 } # sdDiff()
 
 
-madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -169,8 +188,9 @@ madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   }
 
   # Estimate
-  sd <- mad(x, na.rm=FALSE, ...)
+  sd <- mad(x, na.rm=FALSE, constant=constant, ...)
   x <- NULL # Not needed anymore
+  # Correction for the differentiation
   sd / (sqrt(2)^diff)
 } # madDiff()
 
@@ -208,11 +228,9 @@ iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
   qs <- quantile(x, probs=c(0.25, 0.75), na.rm=FALSE, names=FALSE, ...)
   x <- NULL # Not needed anymore
   iqr <- (qs[2L] - qs[1L])
-  # Standard deviation estimate under N(0,1) for
-  # non-differentiated observations
-  sd <- iqr / (2 * qnorm((1 + 0.5)/2))
-  # Further correction for the differentiation
-  sd / (sqrt(2)^diff)
+
+  # Correction for the differentiation
+  iqr / (sqrt(2)^diff)
 } # iqrDiff()
 
 

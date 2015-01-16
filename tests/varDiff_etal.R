@@ -47,7 +47,7 @@ cat(sprintf("Absolute difference=%g\n", d))
 stopifnot(d < 5e-3)
 
 
-sigmaA3 <- IQR(x) / (2 * qnorm((1 + 0.5)/2))
+sigmaA3 <- IQR(x)
 cat(sprintf("IQR(x)=%g\n", sigmaA3))
 
 sigmaB3 <- iqrDiff(x)

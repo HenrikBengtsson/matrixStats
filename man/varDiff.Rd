@@ -36,7 +36,7 @@
  colSdDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
  rowSdDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
 
- madDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ madDiff(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...)
  colMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
  rowMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
 
@@ -54,6 +54,8 @@
     observations to be trimmed from each end of (sorted) \code{x}
     before estimation.  If \code{trim=1}, then all data points
     are trimmed.}
+ \item{constant}{A scale factor adjusting for asymptotically
+    normal consistency.}
  \item{...}{Not used.}
 }
 
@@ -65,6 +67,21 @@
 
 \seealso{
   See \code{\link{diff2}}().
+}
+
+\details{
+  Note that n-order difference MAD estimates, just like the ordinary
+  MAD estimate by \code{\link[stats]{mad}}, apply a correction factor such
+  that the estimates are consistent with the standard deviation
+  under Gaussian distributions.
+
+  The interquartile range (IQR) estimates does \emph{not} apply such
+  a correction factor.  If asymptotically normal consistency is wanted,
+  the correction factor for IQR estimate is \code{1 / (2 * qnorm(3/4))},
+  which is half of that used for MAD estimates, which is
+  \code{1 / qnorm(3/4)}.  This correction factor needs to be applied
+  manually, i.e. there is no \code{constant} argument for the IQR
+  functions.
 }
 
 \references{
