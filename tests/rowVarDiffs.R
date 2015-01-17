@@ -3,7 +3,8 @@ library("matrixStats")
 FUNs <- list(
   rowVarDiffs=list(rowVarDiffs, colVarDiffs),
   rowSdDiffs=list(rowSdDiffs, colSdDiffs),
-  rowMadDiffs=list(rowMadDiffs, colMadDiffs)
+  rowMadDiffs=list(rowMadDiffs, colMadDiffs),
+  rowIQRDiffs=list(rowIQRDiffs, colIQRDiffs)
 )
 
 for (fcn in names(FUNs)) {

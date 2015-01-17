@@ -201,13 +201,21 @@ madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
 
 
 iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
-  if (na.rm)
+  if(na.rm) {
     x <- x[!is.na(x)]
+  } else if (anyMissing(x)) {
+    return(NA_real_)
+  }
+
+  # At this point, there should be no missing values
 
   # Nothing to do?
   n <- length(x)
-  if (n == 0L)
+  if (n == 0L) {
     return(NA_real_)
+  } else if (n == 1L) {
+    return(0)
+  }
 
   # Calculate differences?
   if (diff > 0L) {
@@ -215,13 +223,15 @@ iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
     # Nothing to do?
     n <- length(x)
-    if (n == 0L)
+    if (n == 0L) {
       return(NA_real_)
+    } else if (n == 1L) {
+      return(0)
+    }
   }
 
   # Trim?
   if (trim > 0 && n > 0L) {
-    if (anyMissing(x)) return(NA_real_)
     lo <- floor(n*trim)+1
     hi <- (n+1)-lo
     partial <- unique(c(lo, hi))
