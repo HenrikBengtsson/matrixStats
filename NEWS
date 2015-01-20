@@ -36,6 +36,15 @@ o SPEEDUP/CLEANUP: Turned several S3 and S4 methods into plain R
   S4 methods are anyMissing() and rowMedians().
 o ROBUSTNESS: Now column and row methods give slightly more informative
   error messages if a data.frame is passed instead of a matrix.
+o CLEANUP: In the effort of migrating anyMissing() into a plain R
+  function, the specific anyMissing() implementations for data.frame:s
+  and and list:s were dropped and is now handled by anyMissing()
+  for "ANY", which is the only S4 method remaining now.  In a near
+  future release, this remaining "ANY" method will turned into a plain
+  R function and the current S4 generic will be dropped.  We know of
+  know CRAN and Bioconductor packages that relies on it being a generic
+  function.  Note also that since R (>= 3.1.0) there is a base::anyNA()
+  function that does the exact same thing making anyMissing() obsolete.
 o BUG FIX: weightedMedian(..., ties="both") would give an error
   if there was a tie.  Added package test for this case.
 

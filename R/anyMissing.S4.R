@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction anyMissing
 # \alias{anyMissing,ANY-method}
-# \alias{anyMissing,data.frame-method}
-# \alias{anyMissing,list-method}
 # \alias{colAnyMissings}
 # \alias{rowAnyMissings}
 #
@@ -49,28 +47,22 @@
 # @keyword logic
 #*/###########################################################################
 setGeneric("anyMissing", function(x, ...) {
-  standardGeneric("anyMissing");
+  standardGeneric("anyMissing")
 })
 
 setMethod("anyMissing", signature(x="ANY"), function(x, ...) {
-  .Call("anyMissing", x, PACKAGE="matrixStats");
+  if (is.list(x)) {
+    ## Handles lists and data.frame:s
+    for (kk in seq(along=x)) {
+      if (.Call("anyMissing", x[[kk]], PACKAGE="matrixStats")) {
+        return(TRUE)
+      }
+    }
+  } else {
+    .Call("anyMissing", x, PACKAGE="matrixStats")
+  }
 })
 
-setMethod("anyMissing", signature(x="data.frame"), function(x, ...) {
-  for (kk in seq(along=x)) {
-    if (anyMissing(x[[kk]]))
-      return(TRUE);
-  }
-  FALSE;
-})
-
-setMethod("anyMissing", signature(x="list"), function(x, ...) {
-  for (kk in seq(along=x)) {
-    if (anyMissing(x[[kk]]))
-      return(TRUE);
-  }
-  FALSE;
-})
 
 colAnyMissings <- function(x, ...) {
   colAnys(x, value=NA, ...)
@@ -83,6 +75,10 @@ rowAnyMissings <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-01-20
+# o CLEANUP: In the effort of migrating anyMissing() into a plain R
+#   function, specific anyMissing() implementations for data.frame:s and
+#   and list:s were dropped and is now handled by anyMissing() for "ANY".
 # 2014-12-08
 # o Added (col|row)AnyMissings().
 # 2013-09-26
