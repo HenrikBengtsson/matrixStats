@@ -47,8 +47,7 @@ before_install:
     fi
 
 install:
-  - $RENV install_r_binary r.methodss3
-  - $RENV install_r_binary R.rsp knitr
+  - $RENV install_deps
 
 script: $RENV run_tests
 
