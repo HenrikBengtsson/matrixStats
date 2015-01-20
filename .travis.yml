@@ -15,12 +15,12 @@ language: c
 env:
   global:
     # Use r-travis or r-builder?
-#   - PKGR="./travis-tool.sh"  # r-travis
-    - PKGR="./pkg-build.sh"    # r-builder
+#   - RENV="./travis-tool.sh"  # r-travis
+    - RENV="./pkg-build.sh"    # r-builder
     - R_BUILD_ARGS="--no-manual"
     - R_CHECK_ARGS="--no-manual --as-cran"
-    # Need LaTeX?
-    - BOOTSTRAP_LATEX=""  ## Very time consuming!
+    # Need LaTeX? (very time consuming!)
+    - BOOTSTRAP_LATEX=""
     # Skip building vignettes, which iff LaTeX-based are very
     # time consuming because LaTeX needs to be installed
     - R_BUILD_ARGS="--no-build-vignettes ${R_BUILD_ARGS}"
@@ -28,39 +28,37 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
+    - RVERSION=3.0.3
     - RVERSION=3.1.2
     - RVERSION=devel
 
 
 before_install:
-  - echo PKGR=$PKGR
-  - if [ "$PKGR" == "./travis-tool.sh" ]; then
+  - echo RENV=$RENV
+  - if [ "$RENV" == "./travis-tool.sh" ]; then
       curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh;
-    elif [ "$PKGR" == "./pkg-build.sh" ]; then
+    elif [ "$RENV" == "./pkg-build.sh" ]; then
       curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
     fi
-  - chmod 755 $PKGR
-  - $PKGR bootstrap
+  - chmod 755 $RENV
+  - $RENV bootstrap
   - if [ "BOOTSTRAP_LATEX" == "true" ]; then
       (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash)
     fi
 
 install:
-#  - $PKGR github_package testthat
-#  - $PKGR github_package assertthat
-  - $PKGR install_r_binary r.methodss3 r.oo r.utils base64enc
-  - $PKGR install_r_binary digest Cairo R.rsp
-#  - $PKGR github_package jimhester/covr 
-  - $PKGR github_package HenrikBengtsson/covr
-  - $PKGR install_deps
+  - $RENV install_r_binary r.methodss3
+  - $RENV install_r_binary R.rsp knitr
 
-script: $PKGR run_tests
+script: $RENV run_tests
 
 after_success:
-  - if [ "$PKGR" == "./travis-tool.sh" ]; then
+#  - $RENV github_package jimhester/covr 
+  - $RENV github_package HenrikBengtsson/covr
+  - if [ "$RENV" == "./travis-tool.sh" ]; then
       Rscript -e 'library(methods); covr::coveralls()';
-    elif [ "$PKGR" == "./pkg-build.sh" ]; then
-      $PKGR run_script -e 'library(methods); covr::coveralls()';
+    elif [ "$RENV" == "./pkg-build.sh" ]; then
+      $RENV run_script -e 'library(methods); covr::coveralls()';
     fi
 
 notifications:
