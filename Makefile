@@ -229,9 +229,13 @@ clang:
 	clang -c -pedantic -Wall -I$(R_HOME)/include/ src/*.c
 	$(RM) *.o
 
+valgrind_scan:
+	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors"
+
 valgrind:
 	export _R_CHECK_USE_VALGRIND_=TRUE;\
 	$(MAKE) check_force
+	$(MAKE) valgrind_scan
 
 # Check the line width of incl/*.(R|Rex) files [max 100 chars in R devel]
 check_Rex:
