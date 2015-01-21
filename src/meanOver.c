@@ -33,7 +33,7 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   if (isNull(idxs)) {
     idxs_ptr = NULL;
     nidxs = 0;
-  } else if (isVector(idxs)) {
+  } else if (isVectorAtomic(idxs)) {
     idxs_ptr = INTEGER(idxs);
     nidxs = xlength(idxs);
   } else {

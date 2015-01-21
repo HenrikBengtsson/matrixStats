@@ -10,16 +10,13 @@
 \alias{rowCounts}
 
 \alias{colCounts}
+\alias{count}
+\alias{allValue}
+\alias{anyValue}
 \alias{rowAnys}
 \alias{colAnys}
 \alias{rowAlls}
 \alias{colAlls}
-\alias{rowCounts.default}
-\alias{colCounts.default}
-\alias{rowAnys.default}
-\alias{colAnys.default}
-\alias{rowAlls.default}
-\alias{colAlls.default}
 
 \title{Counts the number of TRUE values in each row (column) of a matrix}
 
@@ -28,12 +25,13 @@
 }
 
 \usage{
-  \method{rowCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{colCounts}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{rowAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{colAlls}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{rowAnys}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  \method{colAnys}{default}(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  count(x, value=TRUE, na.rm=FALSE, ...)
+  rowCounts(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colCounts(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowAlls(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colAlls(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowAnys(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colAnys(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{

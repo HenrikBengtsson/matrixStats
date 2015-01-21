@@ -4,10 +4,16 @@ library("stats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Naive R implementation of binMeans()
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-binMeans0 <- function(y, x, bx, count=TRUE, right=FALSE) {
+binMeans0 <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE) {
   B <- length(bx)-1L
   res <- double(B)
   counts <- rep(NaN, times=B)
+
+  if (na.rm) {
+    keep <- !is.na(x) & !is.na(y)
+    x <- x[keep]
+    y <- y[keep]
+  }
 
   # For each bin...
   for (kk in seq(length=B)) {
@@ -29,7 +35,7 @@ binMeans0 <- function(y, x, bx, count=TRUE, right=FALSE) {
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Example #1
+# Case #1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- 1:200
 nx <- length(x)
@@ -56,7 +62,7 @@ stopifnot(all.equal(ySr, yS0r))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Example #2
+# Case #2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 nx <- 1e5
 x <- runif(nx)
@@ -78,7 +84,7 @@ stopifnot(all.equal(ySr, yS, check.attributes=FALSE))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Example #3 (empty bins)
+# Empty bins
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- c(6:8, 16:19)
 nx <- length(x)
@@ -88,4 +94,25 @@ yS0 <- binMeans0(y, x=x, bx=bx)
 yS <- binMeans(y, x=x, bx=bx)
 nS <- binCounts(x, bx=bx)
 stopifnot(all.equal(attr(yS, "count"), nS))
+stopifnot(all.equal(yS, yS0))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Missing values
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- 1:200
+x[100] <- NA_integer_
+nx <- length(x)
+y <- double(nx)
+y[1:50] <- 5
+y[101:150] <- -5
+y[123:125] <- NA_real_
+y <- y + rnorm(nx)
+
+# Bins
+bx <- c(0.5,50.5,100.5,150.5,200.5)
+
+yS0 <- binMeans0(y, x=x, bx=bx)
+yS <- binMeans(y, x=x, bx=bx)
+# Sanity check
 stopifnot(all.equal(yS, yS0))

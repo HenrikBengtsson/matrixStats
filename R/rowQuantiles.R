@@ -45,10 +45,6 @@
 #*/###########################################################################
 rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'x':
-  hasNA <- anyMissing(x)
-  if (hasNA && !na.rm) {
-    stop("Argument 'na.rm' is FALSE and 'x' contains missing values")
-  }
   nrow <- nrow(x)
 
   # Argument 'probs':
@@ -61,6 +57,10 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   }
 
   if (nrow > 0L) {
+    naRows <- rowAnyMissings(x)
+    hasNA <- any(naRows)
+    if (!hasNA) na.rm <- FALSE
+
     if (!hasNA && type == 7L) {
       n <- ncol(x)
       idxs <- 1 + (n-1) * probs
@@ -88,16 +88,24 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
       q <- t(q)
     } else {
       # Allocate result
-      naValue <- NA
+      naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
       q <- matrix(naValue, nrow=nrow, ncol=length(probs))
+
       # For each row...
-      for (rr in seq_len(nrow)) {
-        q[rr,] <- quantile(x[rr,], probs=probs, na.rm=na.rm, type=type, ...)
+      rows <- seq_len(nrow)
+
+      # Rows with NAs should return all NAs (so skip those)
+      if (hasNA && !na.rm) rows <- rows[!naRows]
+
+      for (kk in rows) {
+        xkk <- x[kk,]
+        if (na.rm) xkk <- xkk[!is.na(xkk)]
+        q[kk,] <- quantile(xkk, probs=probs, na.rm=FALSE, type=type, ...)
       }
     } # if (type ...)
   } else {
-    naValue <- NA
+    naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
     q <- matrix(naValue, nrow=0L, ncol=length(probs))
   }
@@ -115,10 +123,6 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 
 colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'x':
-  hasNA <- anyMissing(x)
-  if (hasNA && !na.rm) {
-    stop("Argument 'na.rm' is FALSE and 'x' contains missing values")
-  }
   ncol <- ncol(x)
 
   # Argument 'probs':
@@ -131,6 +135,10 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   }
 
   if (ncol > 0L) {
+    naCols <- colAnyMissings(x)
+    hasNA <- any(naCols)
+    if (!hasNA) na.rm <- FALSE
+
     if (!hasNA && type == 7L) {
       n <- nrow(x)
       idxs <- 1 + (n-1) * probs
@@ -158,16 +166,24 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
       q <- t(q)
     } else {
       # Allocate result
-      naValue <- NA
+      naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
       q <- matrix(naValue, nrow=ncol, ncol=length(probs))
-      # For each row...
-      for (cc in seq_len(ncol)) {
-        q[cc,] <- quantile(x[,cc], probs=probs, na.rm=na.rm, type=type, ...)
+
+      # For each column...
+      cols <- seq_len(ncol)
+
+      # Columns with NAs should return all NAs (so skip those)
+      if (hasNA && !na.rm) cols <- cols[!naCols]
+
+      for (kk in cols) {
+        xkk <- x[,kk]
+        if (na.rm) xkk <- xkk[!is.na(xkk)]
+        q[kk,] <- quantile(xkk, probs=probs, na.rm=FALSE, type=type, ...)
       }
     } # if (type ...)
   } else {
-    naValue <- NA
+    naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
     q <- matrix(naValue, nrow=0L, ncol=length(probs))
   }
@@ -187,6 +203,10 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 
 ############################################################################
 # HISTORY:
+# 2015-01-26
+# o CONSISTENCY: Now rowQuantiles(x, na.rm=TRUE) returns all NAs for rows
+#   with missing values.  Analogously for colQuantiles().  Previously, an
+#   error was thrown saying missing values are not allowed.
 # 2014-11-18 [HB]
 # o SPEEDUP: Made (col|row)Quantiles(x) faster for 'x' without missing
 #   values (and default type=7L quantiles).

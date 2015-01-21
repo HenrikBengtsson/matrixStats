@@ -1,5 +1,5 @@
 ############################################################################/**
-# @RdocDefault binMeans
+# @RdocFunction binMeans
 #
 # @title "Fast mean calculations in non-overlapping bins"
 #
@@ -63,7 +63,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
+binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -91,11 +91,9 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
   if (any(is.infinite(bx))) {
     stop("Argument 'bx' must not contain Inf values.");
   }
-  o <- order(bx);
-  if (any(diff(o) != 1L)) {
+  if (is.unsorted(bx)) {
     stop("Argument 'bx' is not ordered.");
   }
-  o <- NULL; # Not needed anymore
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
@@ -149,11 +147,16 @@ setMethodS3("binMeans", "default", function(y, x, bx, na.rm=TRUE, count=TRUE, ri
   bx <- as.numeric(bx);
   count <- as.logical(count);
   .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats");
-}) # binMeans()
+} # binMeans()
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-29 [HB]
+# o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
+#   of o <- order(); any(diff(o) != 1L).
+# 2014-12-17 [HB]
+# o CLEANUP: Made binCounts() and binMeans() plain R functions.
 # 2013-11-23 [HB]
 # o MEMORY: binMeans() cleans out more temporary variables as soon as
 #   possible such that the garbage collector can remove them sooner.

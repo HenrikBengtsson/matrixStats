@@ -47,7 +47,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       }
 #elif X_TYPE == 'r'
       if (!narm || !ISNAN(value)) {
-        sum += value;
+        sum += (LDOUBLE)value;
         ++count;
       }
 #endif
@@ -66,7 +66,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
         for (i=0; i < nx; i++) {
           value = x[i];
           if (!narm || !ISNAN(value)) {
-            rsum += (value - avg);
+            rsum += (LDOUBLE)(value - avg);
           }
         }
         avg += (rsum / count);
@@ -92,7 +92,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       }
 #elif X_TYPE == 'r'
       if (!narm || !ISNAN(value)) {
-        sum += value;
+        sum += (LDOUBLE)value;
         ++count;
       }
 #endif
@@ -112,7 +112,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
           idx = idxs[i];
           value = x[idx-1];
           if (!narm || !ISNAN(value)) {
-            rsum += (value - avg);
+            rsum += (LDOUBLE)(value - avg);
           }
         }
         avg += (rsum / count);
@@ -121,7 +121,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
     }
   }
 
-  return(avg);
+  return (double)avg;
 }
 
 /* Undo template macros */

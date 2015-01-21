@@ -10,6 +10,7 @@
 \alias{rowIQRs}
 
 \alias{colIQRs}
+\alias{iqr}
 
 \title{Estimates of the interquartile range for each row (column) in a matrix}
 
@@ -18,18 +19,26 @@
 }
 
 \usage{
- rowIQRs(x, ...)
- colIQRs(x, ...)
+ rowIQRs(x, na.rm=FALSE, ...)
+ colIQRs(x, na.rm=FALSE, ...)
+ iqr(x, na.rm=FALSE, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are dropped first, otherwise not.}
  \item{...}{Additional arguments passed to \code{\link{rowQuantiles}}()
     (\code{colQuantiles()}).}
 }
 
 \value{
   Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K).
+}
+
+\section{Missing values}{
+ Contrary to \code{\link[stats]{IQR}}, which gives an error if there are missing
+ values and \code{na.rm=FALSE}, \code{iqr()} and its corresponding row and
+ column-specific functions return \code{\link[base]{NA}}_real_.
 }
 
 \examples{

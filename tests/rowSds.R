@@ -2,15 +2,27 @@ library("matrixStats")
 
 rowSds_R <- function(x, na.rm=FALSE) {
   suppressWarnings({
-    r0 <- apply(x, MARGIN=1L, FUN=sd, na.rm=na.rm)
+    apply(x, MARGIN=1L, FUN=sd, na.rm=na.rm)
   })
 }
 
 colSds_R <- function(x, na.rm=FALSE) {
   suppressWarnings({
-    r0 <- apply(x, MARGIN=2L, FUN=sd, na.rm=na.rm)
+    apply(x, MARGIN=2L, FUN=sd, na.rm=na.rm)
   })
 }
+
+
+rowSds_center <- function(x, na.rm=FALSE) {
+  center <- rowMeans(x, na.rm=na.rm)
+  rowSds(x, center=center, na.rm=na.rm)
+}
+
+colSds_center <- function(x, na.rm=FALSE) {
+  center <- colMeans(x, na.rm=na.rm)
+  colSds(x, center=center, na.rm=na.rm)
+}
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
@@ -18,24 +30,28 @@ colSds_R <- function(x, na.rm=FALSE) {
 for (mode in c("integer", "double")) {
   for (addNA in c(FALSE, TRUE)) {
     cat("addNA=", addNA, "\n", sep="")
-  
+
     x <- matrix(1:100+0.1, nrow=20, ncol=5)
     if (addNA) {
       x[13:17,c(2,4)] <- NA_real_
     }
     cat("mode: ", mode, "\n", sep="")
-    storage.mode(x) <- mode 
+    storage.mode(x) <- mode
     str(x)
-  
+
     # Row/column ranges
     for (na.rm in c(FALSE, TRUE)) {
       cat("na.rm=", na.rm, "\n", sep="")
       r0 <- rowSds_R(x, na.rm=na.rm)
       r1 <- rowSds(x, na.rm=na.rm)
+      r1b <- rowSds_center(x, na.rm=na.rm)
       r2 <- colSds(t(x), na.rm=na.rm)
+      r2b <- colSds_center(t(x), na.rm=na.rm)
       stopifnot(all.equal(r1, r2))
       stopifnot(all.equal(r1, r0))
       stopifnot(all.equal(r2, r0))
+      stopifnot(all.equal(r1b, r1))
+      stopifnot(all.equal(r2b, r2))
     }
   } # for (addNA ...)
 }
@@ -47,17 +63,21 @@ for (mode in c("integer", "double")) {
 for (mode in c("integer", "double")) {
   x <- matrix(NA_real_, nrow=20, ncol=5)
   cat("mode: ", mode, "\n", sep="")
-  storage.mode(x) <- mode 
+  storage.mode(x) <- mode
   str(x)
 
   for (na.rm in c(FALSE, TRUE)) {
     cat("na.rm=", na.rm, "\n", sep="")
     r0 <- rowSds_R(x, na.rm=na.rm)
     r1 <- rowSds(x, na.rm=na.rm)
+    r1b <- rowSds_center(x, na.rm=na.rm)
     r2 <- colSds(t(x), na.rm=na.rm)
+    r2b <- colSds_center(t(x), na.rm=na.rm)
     stopifnot(all.equal(r1, r2))
     stopifnot(all.equal(r1, r0))
     stopifnot(all.equal(r2, r0))
+    stopifnot(all.equal(r1b, r1))
+    stopifnot(all.equal(r2b, r2))
   }
 }
 
@@ -70,8 +90,12 @@ for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm=", na.rm, "\n", sep="")
   r0 <- rowSds_R(x, na.rm=na.rm)
   r1 <- rowSds(x, na.rm=na.rm)
+  r1b <- rowSds_center(x, na.rm=na.rm)
   r2 <- colSds(t(x), na.rm=na.rm)
+  r2b <- colSds_center(t(x), na.rm=na.rm)
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  stopifnot(all.equal(r1b, r1))
+  stopifnot(all.equal(r2b, r2))
 }

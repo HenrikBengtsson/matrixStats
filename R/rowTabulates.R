@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction rowTabulates
-# @alias rowTabulates.matrix
 # @alias colTabulates
-# @alias colTabulates.matrix
 #
 # @title "Tabulates the values in a matrix by row (column)"
 #
@@ -11,8 +9,8 @@
 # }
 #
 # \usage{
-#   @usage rowTabulates,matrix
-#   @usage colTabulates,matrix
+#   @usage rowTabulates
+#   @usage colTabulates
 # }
 #
 # \arguments{
@@ -34,7 +32,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-setMethodS3("rowTabulates", "matrix", function(x, values=NULL, ...) {
+rowTabulates <- function(x, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -80,10 +78,10 @@ setMethodS3("rowTabulates", "matrix", function(x, values=NULL, ...) {
   }
 
   counts;
-})
+}
 
 
-setMethodS3("colTabulates", "matrix", function(x, values=NULL, ...) {
+colTabulates <- function(x, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -122,12 +120,12 @@ setMethodS3("colTabulates", "matrix", function(x, values=NULL, ...) {
 
   transpose <- FALSE
   if (transpose) {
-    nbrOfValues <- length(values);
-    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x));
-    rownames(counts) <- names;
-    for (kk in seq(length=nbrOfValues)) {
-      counts[kk,] <- colCounts(x, value=values[kk], ...);
-    }
+##    nbrOfValues <- length(values);
+##    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x));
+##    rownames(counts) <- names;
+##    for (kk in seq(length=nbrOfValues)) {
+##      counts[kk,] <- colCounts(x, value=values[kk], ...);
+##    }
   } else {
     nbrOfValues <- length(values);
     counts <- matrix(0L, nrow=ncol(x), ncol=nbrOfValues);
@@ -137,12 +135,14 @@ setMethodS3("colTabulates", "matrix", function(x, values=NULL, ...) {
     }
   }
   counts;
-})
+}
 
 
 
 ############################################################################
 # HISTORY:
+# 2014-12-19 [HB]
+# o CLEANUP: Made col- and rowTabulates() plain R functions.
 # 2014-11-16
 # o Now colTabulates(x) no longer calls rowTabulates(t(x)).
 # 2014-06-02

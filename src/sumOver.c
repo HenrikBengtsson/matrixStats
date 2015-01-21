@@ -34,7 +34,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   if (isNull(idxs)) {
     idxsp = NULL;
     nidxs = 0;
-  } else if (isVector(idxs)) {
+  } else if (isVectorAtomic(idxs)) {
     idxsp = INTEGER(idxs);
     nidxs = xlength(idxs);
   } else {

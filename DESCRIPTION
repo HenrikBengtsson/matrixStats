@@ -1,9 +1,10 @@
 Package: matrixStats
-Version: 0.12.2
+Version: 0.13.0
 Depends: R (>= 2.9.0)
-Imports: methods, R.methodsS3 (>= 1.6.1)
-Suggests: R.rsp
-Date: 2014-12-07
+Imports: methods, R.methodsS3
+Suggests: R.rsp, knitr
+VignetteBuilder: R.rsp
+Date: 2015-01-20
 Title: Methods that Apply to Rows and Columns of a Matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
@@ -15,7 +16,7 @@ Authors@R: c(
   person("Peter", "Langfelder", role="ctb"))
 Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Peter Langfelder [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
-Description: Methods operating on rows and columns of matrices, e.g. col/rowMedians(), col/rowRanks() and col/rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
+Description: Methods operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
 License: Artistic-2.0
 LazyLoad: TRUE
 NeedsCompilation: yes

@@ -35,7 +35,7 @@ SEXP anyMissing(SEXP x) {
       for (ii=0; ii < nx; ii++) {
         if ISNAN(xdp[ii]) {
           LOGICAL(ans)[0] = 1;
-          break; 
+          break;
         }
       }
       break;
@@ -45,7 +45,7 @@ SEXP anyMissing(SEXP x) {
       for (ii=0; ii < nx; ii++) {
         if (xip[ii] == NA_INTEGER) {
           LOGICAL(ans)[0] = 1;
-          break; 
+          break;
         }
       }
       break;
@@ -55,7 +55,7 @@ SEXP anyMissing(SEXP x) {
       for (ii=0; ii < nx; ii++) {
         if (xlp[ii] == NA_LOGICAL) {
           LOGICAL(ans)[0] = 1;
-          break; 
+          break;
         }
       }
       break;
@@ -65,7 +65,7 @@ SEXP anyMissing(SEXP x) {
       for (ii=0; ii < nx; ii++) {
         if (ISNAN(xcp[ii].r) || ISNAN(xcp[ii].i)) {
           LOGICAL(ans)[0] = 1;
-          break; 
+          break;
         }
       }
       break;
@@ -74,16 +74,17 @@ SEXP anyMissing(SEXP x) {
       for (ii=0; ii < nx; ii++) {
         if (STRING_ELT(x, ii) == NA_STRING) {
           LOGICAL(ans)[0] = 1;
-          break; 
+          break;
         }
       }
       break; 
 
     case RAWSXP: 
-      /* no such thing as a raw NA */
-      break; 
+      /* no such thing as a raw NA; always FALSE */
+      break;
+
     default:
-      break; 
+      break;
   } /* switch() */
 
   UNPROTECT(1); /* ans */

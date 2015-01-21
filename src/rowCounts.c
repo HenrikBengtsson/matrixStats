@@ -23,9 +23,9 @@
 
 
 
-SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
+SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans;
-  int narm, hasna;
+  int narm, hasna, what2;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' & 'dim': */
@@ -40,6 +40,9 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
   if (!isNumeric(value))
     error("Argument 'value' must be a numeric value.");
 
+  /* Argument 'what': */
+  what2 = asInteger(what);
+
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
@@ -51,11 +54,11 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP value, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowCounts_Real(REAL(x), nrow, ncol, asReal(value), narm, hasna, INTEGER(ans));
+    rowCounts_Real(REAL(x), nrow, ncol, asReal(value), what2, narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    rowCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), narm, hasna, INTEGER(ans));
+    rowCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), what2, narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
-    rowCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), narm, hasna, INTEGER(ans));
+    rowCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), what2, narm, hasna, INTEGER(ans));
   }
 
   UNPROTECT(1);

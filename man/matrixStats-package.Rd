@@ -15,7 +15,7 @@
 
 
 \description{
-  This packages provides methods operating on rows and columns of matrices, e.g. col/rowMedians() and col/rowRanks().  There are also some vector-based methods, e.g. anyMissing(), weightedMedians(), and binMeans().  The objective is to have all methods being optimized for speed and memory usage.
+  Methods operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
 }
 
 \section{Installation}{
@@ -25,26 +25,15 @@
   }
 }
 
-\section{How to contribute}{
-  This is an open-source project which embraces collaborations.
-  If you have improvements on code and/or documentation, or
-  new function, please consider contributing them to this package.
-}
-
-\section{For developers}{
-  It is currently not decided whether the methods should be S4 or S3
-  methods.
-  This is the reason why some methods are based on S4 and some on S3.
-  The ones using S3 rely on the \pkg{R.methodsS3} package to define the
-  methods.
-  There are also dependencies on other packages.  The plan
-  is to remove all such dependencies  as soon as the API settles, but
-  until then, we keep the dependencies for convenience and in order to
-  avoid redundancy of available implementations of identical methods.
+\section{Vignettes}{
+  For an overview of the package, see the '\href{../doc/index.html}{vignettes}';
+  \enumerate{
+    \item Summary of functions.
+  }
 }
 
 \section{How to cite this package}{
-  Henrik Bengtsson (2014). matrixStats: Methods that apply to rows and columns of a matrix. R package version 0.11.9. https://github.com/HenrikBengtsson/matrixStats
+  Henrik Bengtsson (2015). matrixStats: Methods that Apply to Rows and Columns of a Matrix. R package version 0.13.0. https://github.com/HenrikBengtsson/matrixStats
 }
 
 \author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder}

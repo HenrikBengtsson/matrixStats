@@ -122,3 +122,22 @@ stopifnot(identical(s1, s3))
 s1 <- sum(x)                              # 1L
 s2 <- sumOver(x)                          # 1L
 stopifnot(identical(s1, s2))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Argument 'idxs'
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- 1:10
+idxsList <- list(
+  integer=1:5,
+  double=as.double(1:5),
+  logical=(x <= 5)
+)
+
+for (idxs in idxsList) {
+  cat("idxs:\n")
+  str(idxs)
+  s1 <- sum(x[idxs], na.rm=TRUE)
+  s2 <- sumOver(x, idxs=idxs, na.rm=TRUE)
+  stopifnot(identical(s1, s2))
+}

@@ -1,0 +1,11 @@
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% To build non-Sweave vignettes, place this dummy.Rnw in vignettes/
+% together with the custom Makefile (also from R.rsp).  That will
+% trigger R to build all non-Sweave vignettes.  The two files
+% dummy.Rnw and the Makefile will not be the package installation.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%\VignetteIndexEntry{Dummy vignette to trigger the use of the Makefile}
+%\VignetteEngine{R.rsp::dummy_Rnw}
+\documentclass{article}
+\begin{document}
+\end{document}

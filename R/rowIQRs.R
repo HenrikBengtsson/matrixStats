@@ -1,6 +1,7 @@
 ###########################################################################/**
 # @RdocFunction rowIQRs
 # @alias colIQRs
+# @alias iqr
 #
 # @title "Estimates of the interquartile range for each row (column) in a matrix"
 #
@@ -11,16 +12,24 @@
 # \usage{
 #  @usage rowIQRs
 #  @usage colIQRs
+#  @usage iqr
 # }
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{na.rm}{If @TRUE, missing values are dropped first, otherwise not.}
 #  \item{...}{Additional arguments passed to @see "rowQuantiles"
 #     (\code{colQuantiles()}).}
 # }
 #
 # \value{
 #   Returns a @numeric @vector of length N (K).
+# }
+#
+# \section{Missing values}{
+#  Contrary to @see "stats::IQR", which gives an error if there are missing
+#  values and \code{na.rm=FALSE}, \code{iqr()} and its corresponding row and
+#  column-specific functions return @NA_real_.
 # }
 #
 # @examples "../incl/rowIQRs.Rex"
@@ -37,20 +46,48 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowIQRs <- function(x, ...) {
-  Q <- rowQuantiles(x, probs=c(0.25, 0.75), ...);
-  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE];
+rowIQRs <- function(x, na.rm=FALSE, ...) {
+  Q <- rowQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, ...)
+  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
 }
 
 
-colIQRs <- function(x, ...) {
-  Q <- colQuantiles(x, probs=c(0.25, 0.75), ...);
-  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE];
+colIQRs <- function(x, na.rm=FALSE, ...) {
+  Q <- colQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, ...)
+  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+}
+
+iqr <- function(x, na.rm=FALSE, ...) {
+  if(na.rm) {
+    x <- x[!is.na(x)]
+  } else if (anyMissing(x)) {
+    return(NA_real_)
+  }
+
+  # At this point, there should be no missing values
+
+  # Nothing to do?
+  n <- length(x)
+  if (n == 0L) {
+    return(NA_real_)
+  } else if (n == 1L) {
+    return(0)
+  }
+
+  q <- quantile(x, probs=c(0.25, 0.75), names=FALSE, na.rm=FALSE, ...)
+
+  q[2L] - q[1L]
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-01-16
+# o Now iqr(..., na.rm=FALSE) returns NA_real_ if there are missing values.
+# 2015-01-11
+# o Now iqr() no longer returns a named value.
+# 2014-12-19
+# o Added iqr().
 # 2011-11-25
 # o Added help and example to rowIQRs() and colIQRs().
 # o BUG FIX: rowIQRs() and colIQRs() would return the 25% and the 75%

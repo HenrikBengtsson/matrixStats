@@ -12,6 +12,17 @@ colMads_R <- function(x, na.rm=FALSE) {
   })
 }
 
+rowMads_center <- function(x, na.rm=FALSE) {
+  center <- rowMedians(x, na.rm=na.rm)
+  rowMads(x, centers=center, na.rm=na.rm)
+}
+
+colMads_center <- function(x, na.rm=FALSE) {
+  center <- colMedians(x, na.rm=na.rm)
+  colMads(x, centers=center, na.rm=na.rm)
+}
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 3x3 matrix (no ties)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -24,18 +35,26 @@ for (mode in c("integer", "double")) {
   cat("rowMads():\n")
   r0 <- rowMads_R(x, na.rm=TRUE)
   r1 <- rowMads(x, na.rm=TRUE)
+  r1b <- rowMads_center(x, na.rm=TRUE)
   r2 <- colMads(t(x), na.rm=TRUE)
+  r2b <- colMads_center(t(x), na.rm=TRUE)
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  stopifnot(all.equal(r1b, r1))
+  stopifnot(all.equal(r2b, r2))
 
   cat("colMads():\n")
   r0 <- colMads_R(x, na.rm=TRUE)
   r1 <- colMads(x, na.rm=TRUE)
+  r1b <- colMads_center(x, na.rm=TRUE)
   r2 <- rowMads(t(x), na.rm=TRUE)
+  r2b <- rowMads_center(t(x), na.rm=TRUE)
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  stopifnot(all.equal(r1b, r1))
+  stopifnot(all.equal(r2b, r2))
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

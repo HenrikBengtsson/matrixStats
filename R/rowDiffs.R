@@ -15,6 +15,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{lag}{An @integer specifying the lag.}
+#  \item{differences}{An @integer specifying the order of difference.}
 #  \item{...}{Not used.}
 # }
 #
@@ -27,7 +29,7 @@
 # @author "HB"
 #
 # \seealso{
-#   Internally @see "base::diff" is used.
+#   See also @see "diff2".
 # }
 #
 # @keyword array
@@ -35,25 +37,14 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowDiffs <- function(x, ...) {
-  naValue <- NA;
-  storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x), ncol=ncol(x)-1L);
-  for (rr in seq(length=nrow(x))) {
-    d[rr,] <- diff(x[rr,], ...);
-  }
-  d;
+rowDiffs <- function(x, lag=1L, differences=1L, ...) {
+  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
 }
 
-colDiffs <- function(x, ...) {
-  naValue <- NA;
-  storage.mode(naValue) <- storage.mode(x);
-  d <- matrix(naValue, nrow=nrow(x)-1L, ncol=ncol(x));
-  for (cc in seq(length=ncol(x))) {
-    d[,cc] <- diff(x[,cc], ...);
-  }
-  d;
+colDiffs <- function(x, lag=1L, differences=1L, ...) {
+  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
 }
+
 
 ############################################################################
 # HISTORY:

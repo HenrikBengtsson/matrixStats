@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  anyMissing.R
+%  anyMissing.S4.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,15 +9,9 @@
 \name{anyMissing}
 \alias{anyMissing}
 
-\alias{anyMissing,numeric-method}
-\alias{anyMissing,complex-method}
-\alias{anyMissing,logical-method}
-\alias{anyMissing,character-method}
-\alias{anyMissing,matrix-method}
-\alias{anyMissing,data.frame-method}
-\alias{anyMissing,list-method}
-\alias{anyMissing,NULL-method}
-\alias{anyMissing,raw-method}
+\alias{anyMissing,ANY-method}
+\alias{colAnyMissings}
+\alias{rowAnyMissings}
 
 \title{Checks if there are any missing values in an object or not}
 
@@ -27,6 +21,8 @@
 
 \usage{
  anyMissing(x, ...)
+ colAnyMissings(x, ...)
+ rowAnyMissings(x, ...)
 }
 
 \arguments{

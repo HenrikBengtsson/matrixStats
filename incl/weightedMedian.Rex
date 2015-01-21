@@ -39,17 +39,18 @@ weightedMedian(x, w)                # NA
 # Simple benchmarking
 bench <- function(N=1e5, K=10) {
   x <- rnorm(N)
+  gc()
   t <- c()
   t[1] <- system.time(for (k in 1:K) median(x))[3]
-  t[2] <- system.time(for (k in 1:K) weightedMedian(x, method="quick"))[3]
-  t[3] <- system.time(for (k in 1:K) weightedMedian(x, method="shell"))[3]
+  t[2] <- system.time(for (k in 1:K) weightedMedian(x))[3]
   t <- t / t[1]
-  t[4] <- t[2]/t[3]
-  names(t) <- c("median", "wMed-quick", "wMed-shell", "quick/shell")
+  names(t) <- c("median", "weightedMedian")
   t
 }
 
-print(bench(N=  5, K=500))
-print(bench(N= 50, K=500))
-print(bench(N=200, K=200))
-print(bench(N=1e5, K=5))
+print(bench(N=    5, K=100))
+print(bench(N=   50, K=100))
+print(bench(N=  200, K=100))
+print(bench(N= 1000, K=100))
+print(bench(N= 10e3, K= 20))
+print(bench(N=100e3, K= 20))

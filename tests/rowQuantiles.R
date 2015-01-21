@@ -89,3 +89,14 @@ for (kk in 1:K) {
   q2 <- colQuantiles(t(x), probs=probs, na.rm=hasNA)
   stopifnot(all.equal(q2, q0))
 } # for (kk ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Empty matrices
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(NA_real_, nrow=0L, ncol=0L)
+probs <- c(0, 0.25, 0.75, 1)
+q <- rowQuantiles(x, probs=probs)
+stopifnot(identical(dim(q), c(nrow(x), length(probs))))
+q <- colQuantiles(x, probs=probs)
+stopifnot(identical(dim(q), c(ncol(x), length(probs))))

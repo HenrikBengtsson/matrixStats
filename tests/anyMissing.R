@@ -30,11 +30,12 @@ cat("raw...done\n")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in modes) {
   cat(sprintf("Mode: %s...\n", mode))
-  values <- data[mode]
+  values <- data[[mode]]
 
   # Scalars
   cat(" scalar\n")
   x <- values[1L]
+  print(x)
   stopifnot(anyMissing(x) == FALSE)
   is.na(x) <- TRUE
   print(x)
@@ -43,6 +44,7 @@ for (mode in modes) {
   # Vectors
   cat(" vector\n")
   x <- values
+  print(x)
   stopifnot(anyMissing(x) == FALSE)
   is.na(x)[2L] <- TRUE
   print(x)
@@ -50,7 +52,8 @@ for (mode in modes) {
 
   # Matrices
   cat(" matrix\n")
-  x <- cbind(values, values)
+  x <- matrix(c(values, values), ncol=2L)
+  print(x)
   stopifnot(anyMissing(x) == FALSE)
   is.na(x)[2L] <- TRUE
   print(x)

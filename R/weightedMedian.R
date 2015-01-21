@@ -31,13 +31,11 @@
 #            is returned and when it is \code{"max"}, the larger value is
 #            returned.
 #            If \code{ties} is \code{"mean"}, the mean of the two values is
-#            returned and if it is \code{"both"}, both values are returned.
+#            returned.
 #            Finally, if \code{ties} is \code{"weighted"} (or @NULL) a
 #            weighted average of the two are returned, where the weights are
 #            weights of all values \code{x[i] <= x[k]} and \code{x[i] >= x[k]},
 #            respectively.}
-#   \item{method}{If \code{"shell"}, then \code{order()} is used and when
-#            \code{method="quick"}, then internal \code{qsort()} is used.}
 #   \item{...}{Not used.}
 # }
 #
@@ -54,15 +52,11 @@
 #  is less or equal to \code{S/2} (c.f. [1]).
 #
 #  If \code{w} is missing then all elements of \code{x} are given the same
-#  positive weight. If all weights are zero, \code{NA} is returned.
+#  positive weight. If all weights are zero, @NA_real_ is returned.
 #
 #  If one or more weights are \code{Inf}, it is the same as these weights
 #  have the same weight and the others has zero. This makes things easier for
-#  cases where the weights are result of a division with zero. In this case
-#  \code{median()} is used internally.
-#
-#  When all the weights are the same (after values with weight zero are excluded
-#  and \code{Inf}'s are taken care of), \code{median} is used internally.
+#  cases where the weights are result of a division with zero.
 #
 #  The weighted median solves the following optimization problem:
 #
@@ -72,24 +66,10 @@
 #  each individual \eqn{x} value.
 # }
 #
-# \section{Benchmarks}{
-#  When implementing this function speed has been highly prioritized and
-#  it also making use of the internal quick sort algorithm (from \R v1.5.0).
-#  The result is that \code{weightedMedian(x)} is about half as slow as
-#  \code{median(x)}.
-#
-#  Initial test also indicates that \code{method="shell"}, which uses
-#  \code{order()} is slower than \code{method="quick"}, which uses internal
-#  \code{qsort()}.  Non-weighted median can use partial sorting which is
-#  faster because all values do not have to be sorted.
-#
-#  See examples below for some simple benchmarking tests.
-# }
-#
 # @examples "../incl/weightedMedian.Rex"
 #
 # \seealso{
-#   @see "stats::median", @see "base::mean" and @see "stats::weighted.mean".
+#   @see "stats::median", @see "base::mean" and @see "weightedMean".
 # }
 #
 # \references{
@@ -107,12 +87,50 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
+weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
+  # Argument 'x':
+
+  # Argument 'w':
+  w <- as.double(w)
+
+  # Argument 'na.rm':
+  na.rm <- as.logical(na.rm)
+  if (is.na(na.rm)) na.rm <- FALSE
+
+  # Argument 'interpolate':
+  interpolate <- as.logical(interpolate)
+
+  # Argument 'ties':
+  if (is.null(ties)) {
+    tiesC <- 1L
+  } else {
+    if (ties == "weighted") {
+      tiesC <- 1L
+    } else if (ties == "min") {
+      tiesC <- 2L
+    } else if (ties == "max") {
+      tiesC <- 4L
+    } else if (ties == "mean") {
+      tiesC <- 8L
+    } else if (ties == "both") {
+      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported. Use ties=\"min\" and then ties=\"max\" to achieve the same result.")
+    } else {
+      stop("Unknown value on 'ties': ", ties)
+    }
+  }
+
+  .Call("weightedMedian", x, w, na.rm, interpolate, tiesC, package="matrixStats")
+} # weightedMedian()
+
+
+
+## weightedMedian() as inplemented in plain R (2002-02-07 -- 2015-01-01)
+.weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL, method=c("quick", "shell"), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
-  n <- length(x);
+  n <- length(x)
   if (missing(w)) {
     # By default use weights that are one.
     w <- rep(1, times=n);
@@ -133,7 +151,7 @@ weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
       n <- length(x);
     }
     tmp <- NULL; # Not needed anymore
-  } else if (anyMissing(x)) {
+  } else if (anyMissing(x) || anyMissing(w)) {
     return(naValue);
   }
 
@@ -314,9 +332,9 @@ weightedMedian <- function(x, w, na.rm=NA, interpolate=is.null(ties), ties=NULL,
   } else if (ties == "mean") {
     (.subset(x, k)+.subset(x, k+1L))/2;
   } else if (ties == "both") {
-    .subset(x, k, k+1L);
+    .subset(x, k:(k+1L));
   }
-} # weightedMedian()
+} # .weightedMedian()
 
 
 # Used by weightedMedian()
@@ -329,6 +347,11 @@ qsort <- function(x) {
 
 ###############################################################################
 # HISTORY:
+# 2015-01-01
+# o Dropped support for weightedMedian(..., ties="both").
+# o BUG FIX:  weightedMedian(..., ties="both") would give "Error in
+#   .subset(x, k, k + 1L) : incorrect number of dimensions" if there
+#   was a tie.
 # 2014-06-03
 # o SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
 # 2013-11-23

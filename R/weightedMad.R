@@ -1,9 +1,15 @@
 ############################################################################/**
 # @RdocFunction weightedMad
+# @alias rowWeightedMads
+# @alias colWeightedMads
 #
 # @title "Weighted Median Absolute Deviation (MAD)"
 #
-# @synopsis
+# \usage{
+#  @usage weightedMad
+#  @usage colWeightedMads
+#  @usage rowWeightedMads
+# }
 #
 # \description{
 #   Computes a weighted MAD of a numeric vector.
@@ -56,7 +62,7 @@ weightedMad <- function(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
     # By default use weights that are one.
     w <- rep(1, times=n);
   } else if (length(w) != n) {
-    throw("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
   }
 
   # Argument 'na.rm':
@@ -128,10 +134,20 @@ weightedMad <- function(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
 } # weightedMad()
 
 
+rowWeightedMads <- function(x, w=NULL, na.rm=FALSE, ...) {
+  apply(x, MARGIN=1L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
+} # rowWeightedMads()
+
+colWeightedMads <- function(x, w=NULL, na.rm=FALSE, ...) {
+  apply(x, MARGIN=2L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
+} # colWeightedMads()
+
+
+
 ############################################################################
 # HISTORY:
 # 2014-11-10
-# o Turned weightedMad( into a plain function.
+# o Turned weightedMad() into a plain function.
 # 2013-11-23
 # o MEMORY: Now weightedMad() cleans out allocated objects sooner.
 # 2013-09-26

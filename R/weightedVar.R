@@ -1,13 +1,27 @@
 ############################################################################/**
 # @RdocFunction weightedVar
 # @alias weightedSd
+# @alias colWeightedVars
+# @alias rowWeightedVars
+# @alias colWeightedSds
+# @alias rowWeightedSds
 #
-# @title "Weighted variance"
+# @title "Weighted variance and weighted standard deviation"
 #
-# @synopsis
+# \usage{
+#  @usage weightedVar
+#  @usage colWeightedVars
+#  @usage rowWeightedVars
+#
+#  @usage weightedSd
+#  @usage colWeightedSds
+#  @usage rowWeightedSds
+# }
+#
 #
 # \description{
-#   Computes a weighted variance of a numeric vector.
+#   Computes a weighted variance / standard deviation of a numeric
+#   vector or across rows or columns of a matrix.
 # }
 #
 # \arguments{
@@ -52,7 +66,7 @@ weightedVar <- function(x, w, na.rm=FALSE, center=NULL, ...) {
     # By default use weights that are one.
     w <- rep(1, times=n);
   } else if (length(w) != n) {
-    throw("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
   }
 
   # Argument 'na.rm':
@@ -128,6 +142,24 @@ weightedVar <- function(x, w, na.rm=FALSE, center=NULL, ...) {
 weightedSd <- function(...) {
   sqrt(weightedVar(...))
 } # weightedSd()
+
+
+rowWeightedVars <- function(x, w=NULL, na.rm=FALSE, ...) {
+  apply(x, MARGIN=1L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
+} # rowWeightedVars()
+
+colWeightedVars <- function(x, w=NULL, na.rm=FALSE, ...) {
+  apply(x, MARGIN=2L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
+} # colWeightedVars()
+
+
+rowWeightedSds <- function(x, w=NULL, na.rm=FALSE, ...) {
+  sqrt(rowWeightedVars(x=x, w=w, na.rm=na.rm, ...))
+} # rowWeightedSds()
+
+colWeightedSds <- function(x, w=NULL, na.rm=FALSE, ...) {
+  sqrt(colWeightedVars(x=x, w=w, na.rm=na.rm, ...))
+} # colWeightedSds()
 
 
 ############################################################################

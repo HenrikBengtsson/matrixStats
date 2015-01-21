@@ -5,7 +5,7 @@
 <% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-06-09"%>
+<%@meta date="2014-12-30"%>
 
 <%@include file="${header}"%>
 
@@ -17,6 +17,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ## Alternative methods
 
 * apply() + diff()
+* apply() + diff2()
 * diff()
 
 <% for (mode in c("integer", "double")) { %>
@@ -44,9 +45,10 @@ X <- data[[.dataLabel.]]
 gc()
 
 colStats <- microbenchmark(
- colDiffs     = colDiffs(X, na.rm=FALSE),
- "apply+diff" = apply(X, MARGIN=2L, FUN=diff, na.rm=FALSE),
- diff         = diff(X, na.rm=FALSE),
+ colDiffs      = colDiffs(X),
+ "apply+diff"  = apply(X, MARGIN=2L, FUN=diff),
+ "apply+diff2" = apply(X, MARGIN=2L, FUN=diff2),
+ diff          = diff(X),
  unit = "ms"
 )
 
@@ -54,9 +56,10 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowDiffs     = rowDiffs(X, na.rm=FALSE),
- "apply+diff" = apply(X, MARGIN=1L, FUN=diff, na.rm=FALSE),
- "diff + t"   = diff(t(X), na.rm=FALSE),
+ rowDiffs      = rowDiffs(X),
+ "apply+diff"  = apply(X, MARGIN=1L, FUN=diff),
+ "apply+diff2" = apply(X, MARGIN=1L, FUN=diff2),
+ "diff + t"    = diff(t(X)),
  unit = "ms"
 )
 })%>

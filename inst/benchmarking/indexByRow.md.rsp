@@ -8,18 +8,28 @@
 
 <%@include file="${header}"%>
 
+<%
+lfun <- local({
+  locals <- list()
+  function(txt=NULL) {
+    if (is.null(txt)) return(locals)
+    local <- list(txt)
+    locals <<- c(locals, local)
+  }	 
+})
+%>
 
 # <%@meta name="title"%>
 
-This report benchmark the performance of <%=fcnname%>() against alternative methods.
+This report benchmark the performance of `<%=fcnname%>()` against alternative methods:
 
-## Alternative methods
+* `indexByRow_R1()` based in `matrix(..., byrow=TRUE)`
+* `indexByRow_R2()` is a modified version of `indexByRow_R1()`
 
-* matrix(..., byrow=TRUE)
+where `indexByRow_R1()` and `indexByRow_R2()` are defined as in the Appendix.
 
-where
-```r
-<%=withCapture({
+<%
+lfun(withCapture({
 indexByRow_R1 <- function(dim, idxs=NULL, ...) {
   n <- prod(dim)
   x <- matrix(seq_len(n), nrow=dim[2L], ncol=dim[1L], byrow=TRUE)
@@ -27,11 +37,9 @@ indexByRow_R1 <- function(dim, idxs=NULL, ...) {
     x <- x[idxs]
   as.vector(x)
 } # indexByRow_R1()
-})%>
-```
-and
-```r
-<%=withCapture({
+}))
+
+lfun(withCapture({
 indexByRow_R2 <- function(dim, idxs=NULL, ...) {
   n <- prod(dim)
   if (is.null(idxs)) {
@@ -44,17 +52,25 @@ indexByRow_R2 <- function(dim, idxs=NULL, ...) {
     cols + dim[1L]*rows + 1L
   }
 } # indexByRow_R2()
-})%>
-```
+}))
+%>
 
 
 ## Data
+<% lfun(withCapture({
+<%@include file="R/random-matrices.R"%>
+})) %>
+
 ```r
 <%=withCapture({
-<%@include file="R/random-matrices.R"%>
 data <- rmatrices(mode="index")
 })%>
 ```
+where `rmatrices()` is defined in the Appendix.
+
+<%
+# data <- data[1:2]
+%>
 
 ## Results
 
@@ -68,15 +84,17 @@ data <- rmatrices(mode="index")
 X <- data[[.dataLabel.]]
 dim <- dim(X)
 idxsList <- list(
-  all  = NULL,
-  all2 = seq_len(prod(dim)),
-  odd  = seq(from=1, to=prod(dim), by=2L)
+  'all-by-NULL'  = NULL,
+  all            = seq_len(prod(dim)),
+  odd            = seq(from=1, to=prod(dim), by=2L)
 )
 str(idxsList)
 })%>
 ```
 
 <% for (ii in seq_along(idxsList)) { %>
+
+#### Index set '<%=names(idxsList)[ii]%>'
 <%
 idxs <- idxsList[[ii]]
 idxsTag <- names(idxsList)[ii]
@@ -108,8 +126,18 @@ stats <- microbenchmark(
 
 <% } # for (dataLabel ...) %>
 
-
 <%@include file="${footer}"%>
+
+### Local functions
+```r
+<%=lfun()[[1]]%>
+```
+```r
+<%=lfun()[[2]]%>
+```
+```r
+<%=lfun()[[3]]%>
+```
 
 
 <%---------------------------------------------------------------------------

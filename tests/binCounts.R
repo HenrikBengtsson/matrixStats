@@ -36,3 +36,19 @@ for (kk in 1:2) {
   # Retry with a sorted vector
   x <- sort(x)
 } # for (kk in 1:2)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Missing values
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- 1:200
+x[100] <- NA_integer_
+nx <- length(x)
+
+# Bins
+bx <- c(0.5,50.5,100.5,150.5,200.5)
+
+yS0 <- binCounts(x, bx=bx)
+yS <- binCounts(x, bx=bx)
+# Sanity check
+stopifnot(all.equal(yS, yS0))
