@@ -226,7 +226,7 @@ check_force:
 	$(MAKE) check
 
 clang:
-	clang -c -pedantic -I$(R_HOME)/include/ src/*.c
+	clang -c -pedantic -Wall -I$(R_HOME)/include/ src/*.c
 	$(RM) *.o
 
 valgrind:

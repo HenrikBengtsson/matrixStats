@@ -308,4 +308,4 @@ tbl <- rbind(tbl, row)
 
 
 -------------------------------------------------------------
-The <%=pkgName%> v<%=getVersion(pkg)%>.  Release: [CRAN](http://cran.r-project.org/package=<%=pkgName%>), Development: [GitHub](<%=getUrl(pkg)%>).
+<%=pkgName%> v<%=getVersion(pkg)%>.  Release: [CRAN](http://cran.r-project.org/package=<%=pkgName%>), Development: [GitHub](<%=getUrl(pkg)%>).

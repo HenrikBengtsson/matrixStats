@@ -278,6 +278,8 @@ printf("x[half+(-1:1)]=c(%g, %g, %g)\n", x[half-1-1], x[half-1], x[half-1+1]);
       res = (double)x[half];
     } else if (ties == 8) { /* mean */
       res = ((double)x[half-1] + (double)x[half]) / 2;
+    } else {
+      error("Unknown value of argument 'ties': %d", ties);
     }
   }
 
