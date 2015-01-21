@@ -28,8 +28,8 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-    - RVERSION=3.0.3
-    - RVERSION=3.1.2
+#    - RVERSION=3.0.3
+#    - RVERSION=3.1.2
     - RVERSION=devel
 
 
@@ -52,6 +52,7 @@ install:
 script: $RENV run_tests
 
 after_success:
+  - $RENV dump_logs_by_extension out 
 #  - $RENV github_package jimhester/covr 
   - $RENV github_package HenrikBengtsson/covr
   - if [ "$RENV" == "./travis-tool.sh" ]; then
@@ -59,6 +60,9 @@ after_success:
     elif [ "$RENV" == "./pkg-build.sh" ]; then
       $RENV run_script -e 'library(methods); covr::coveralls()';
     fi
+
+after_failure:
+  - $RENV dump_logs
 
 notifications:
   email:
