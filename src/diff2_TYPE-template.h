@@ -55,6 +55,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
     for (ii=0; ii < nx-lag; ii++) {
       tmp[ii] = X_DIFF(x[uu++], x[tt++]);
     }
+    nx -= lag;
 
     /* (b) All other orders of differences but the last */
     while (--differences > 1) {
@@ -63,8 +64,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, R_xlen_t lag, R_xlen_t differences, X
       for (ii=0; ii < nx-lag; ii++) {
         tmp[ii] = X_DIFF(tmp[uu++], tmp[tt++]);
       }
-      nx--;
+      nx -= lag;
     }
+
+    /* Sanity check */
+    /* if (nx-lag != nans) error("nx != nans: %d != %d\n", nx, nans); */
 
     /* (c) Last order of differences */
     uu = lag;
