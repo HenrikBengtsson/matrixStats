@@ -38,7 +38,7 @@ before_install:
   - if [ "$RENV" == "./travis-tool.sh" ]; then
       curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh;
     elif [ "$RENV" == "./pkg-build.sh" ]; then
-      curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
+      curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
     fi
   - chmod 755 $RENV
   - $RENV bootstrap
