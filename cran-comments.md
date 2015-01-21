@@ -13,6 +13,10 @@ For the latter `R CMD check --as-cran --use-valgrind` was also used.  The native
 
 I have also verified the package using the <http://win-builder.r-project.org/> service.
 
+This submission contains changes that are related to updates in R and/or CRAN;
+
+ * Package now uses `requireNamespace()` instead of `require()`.
+
 
 Thank you,
 
