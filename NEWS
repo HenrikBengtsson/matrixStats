@@ -1,6 +1,7 @@
 Package: matrixStats
 ====================
 
+Version: 0.13.0 [2015-01-20]
 o Added iqrDiff() and (col|row)IqrDiffs().
 o CONSISTENCY: Now rowQuantiles(x, na.rm=TRUE) returns all NAs for rows
   with missing values.  Analogously for colQuantiles(), colIQRs(),
