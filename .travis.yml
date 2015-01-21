@@ -28,8 +28,8 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-#    - RVERSION=3.0.3
-#    - RVERSION=3.1.2
+    - RVERSION=3.0.3
+    - RVERSION=3.1.2
     - RVERSION=devel
 
 
