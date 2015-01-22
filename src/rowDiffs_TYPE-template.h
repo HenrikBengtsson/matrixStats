@@ -34,7 +34,7 @@
 
 
 static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byrow, int lag, X_C_TYPE *y, int nrow_y, int ncol_y) {
-  int ii, jj, ss = 0, tt = 0, uu;
+  int ii, jj, ss, tt, uu;
   if (byrow) {
     uu = lag * nrow_x;
     tt = 0;
@@ -62,7 +62,6 @@ static R_INLINE void DIFF_X_MATRIX(X_C_TYPE *x, int nrow_x, int ncol_x, int byro
 
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t nrow_tmp, ncol_tmp;
-  int ii, jj, ss, tt, uu;
   X_C_TYPE *tmp = NULL;
 
   /* Nothing to do? */

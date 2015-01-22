@@ -38,7 +38,7 @@ before_install:
   - if [ "$RENV" == "./travis-tool.sh" ]; then
       curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh;
     elif [ "$RENV" == "./pkg-build.sh" ]; then
-      curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
+      curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
     fi
   - chmod 755 $RENV
   - $RENV bootstrap
@@ -52,6 +52,7 @@ install:
 script: $RENV run_tests
 
 after_success:
+  - $RENV dump_logs_by_extension out 
 #  - $RENV github_package jimhester/covr 
   - $RENV github_package HenrikBengtsson/covr
   - if [ "$RENV" == "./travis-tool.sh" ]; then
@@ -59,6 +60,9 @@ after_success:
     elif [ "$RENV" == "./pkg-build.sh" ]; then
       $RENV run_script -e 'library(methods); covr::coveralls()';
     fi
+
+after_failure:
+  - $RENV dump_logs
 
 notifications:
   email:

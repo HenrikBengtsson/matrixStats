@@ -226,12 +226,17 @@ check_force:
 	$(MAKE) check
 
 clang:
-	clang -c -pedantic -I$(R_HOME)/include/ src/*.c
+	clang -c -pedantic -Wall -I$(R_HOME)/include/ src/*.c
 	$(RM) *.o
+
+valgrind_scan:
+	grep -E "^==.*==[ ]+(at|by) 0x" $(R_CHECK_OUTDIR)/tests/*.Rout | cat
+	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors" | cat
 
 valgrind:
 	export _R_CHECK_USE_VALGRIND_=TRUE;\
 	$(MAKE) check_force
+	$(MAKE) valgrind_scan
 
 # Check the line width of incl/*.(R|Rex) files [max 100 chars in R devel]
 check_Rex:

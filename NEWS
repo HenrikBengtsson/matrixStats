@@ -1,6 +1,14 @@
 Package: matrixStats
 ====================
 
+Version: 0.13.1 [2015-01-21]
+o BUG FIX: diff2() with differences >= 3 would *read* spurious values
+  beyond the allocated memory.  This error, introduced in 0.13.0, was
+  harmless in the sense that the returned value was unaffected and still
+  correct.  Thanks to Brian Ripley and the CRAN check tools for catching
+  this.  I could reproduce it locally with 'valgrind'.
+
+
 Version: 0.13.0 [2015-01-20]
 o Added iqrDiff() and (col|row)IqrDiffs().
 o CONSISTENCY: Now rowQuantiles(x, na.rm=TRUE) returns all NAs for rows
