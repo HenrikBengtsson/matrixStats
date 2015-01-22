@@ -230,8 +230,8 @@ clang:
 	$(RM) *.o
 
 valgrind_scan:
-	grep -E "^==.*==[ ]+(at|by) 0x" $(R_CHECK_OUTDIR)/tests/*.Rout
-	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors"
+	grep -E "^==.*==[ ]+(at|by) 0x" $(R_CHECK_OUTDIR)/tests/*.Rout | cat
+	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors" | cat
 
 valgrind:
 	export _R_CHECK_USE_VALGRIND_=TRUE;\

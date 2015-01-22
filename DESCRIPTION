@@ -1,5 +1,5 @@
 Package: matrixStats
-Version: 0.13.0-9000
+Version: 0.13.1
 Depends: R (>= 2.9.0)
 Imports: methods, R.methodsS3
 Suggests: R.rsp, knitr
