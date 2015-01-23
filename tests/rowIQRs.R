@@ -33,7 +33,7 @@ for (mode in c("integer", "double")) {
       q2 <- colIQRs(t(x), na.rm=na.rm)
       stopifnot(all.equal(q2, q0))
 
-      q <- iqr(x[1,], na.rm=na.rm)
+      q <- iqr(x[3,], na.rm=na.rm)
       print(q)
     } # for (na.rm ...)
   } # for (addNA ...)
