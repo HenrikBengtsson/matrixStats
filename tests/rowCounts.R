@@ -113,15 +113,17 @@ x[2:3,3:4] <- NA_character_
 
 # Row/column counts
 for (na.rm in c(FALSE, TRUE)) {
-  r0 <- rowCounts_R(x, na.rm=na.rm)
-  r1 <- rowCounts(x, na.rm=na.rm)
-  r2 <- colCounts(t(x), na.rm=na.rm)
-  stopifnot(identical(r1, r0))
-  stopifnot(identical(r2, r0))
+  for (value in c("g", NA_character_)) {
+    r0 <- rowCounts_R(x, value=value, na.rm=na.rm)
+    r1 <- rowCounts(x, value=value, na.rm=na.rm)
+    r2 <- colCounts(t(x), value=value, na.rm=na.rm)
+    stopifnot(identical(r1, r0))
+    stopifnot(identical(r2, r0))
 
-  c <- count(x[1,], na.rm=na.rm)
-  stopifnot(identical(c,r1[1]))
+    c <- count(x[1,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[1]))
 
-  c <- count(x[2,], na.rm=na.rm)
-  stopifnot(identical(c,r1[2]))
+    c <- count(x[2,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[2]))
+  }
 }
