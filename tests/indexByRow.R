@@ -62,3 +62,10 @@ stopifnot(all(idxs_R1 == idxsByRows))
 
 idxs_R2 <- indexByRow_R2(dim, idxs=idxsByCols)
 stopifnot(all(idxs_R2 == idxsByRows))
+
+
+## DEPRECATED: Backward compatibility
+idxs0 <- indexByRow(dim)
+idxs1 <- indexByRow(X)
+stopifnot(identical(idxs1, idxs0))
+
