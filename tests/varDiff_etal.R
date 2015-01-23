@@ -83,6 +83,12 @@ d <- abs(sigmaBot - sigmaA)
 cat(sprintf("Absolute difference=%g\n", d))
 #stopifnot(d < 1e-3)
 
+sigmaCot <- madDiff(y, trim=0.05)
+cat(sprintf("madDiff(y, trim=0.05)=%g\n", sigmaCot))
+
+sigmaDot <- iqrDiff(y, trim=0.05)
+cat(sprintf("iqrDiff(y, trim=0.05)=%g\n", sigmaDot))
+
 
 FUNs <- list(
   varDiff=varDiff,
