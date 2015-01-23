@@ -53,4 +53,12 @@ for (mode in c("integer", "double")) {
 
   y3 <- log(nrow(X)) - rowLogSumExps(t(nlX))
   stopifnot(all.equal(y3,y0))
+
+  # Testing names
+  rownames(nlX) <- seq_len(nrow(X))
+  colnames(nlX) <- seq_len(ncol(X))
+  y2 <- rowLogSumExps(nlX)
+  stopifnot(identical(names(y2), rownames(nlX)))
+  y3 <- colLogSumExps(t(nlX))
+  stopifnot(identical(names(y3), rownames(nlX)))
 } # for (mode ...)
