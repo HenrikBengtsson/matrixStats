@@ -49,7 +49,9 @@ before_install:
 install:
   - $RENV install_deps
 
-script: $RENV run_tests
+script:
+  - $RENV run_build
+  - $RENV run_check
 
 after_success:
   - $RENV dump_logs_by_extension out

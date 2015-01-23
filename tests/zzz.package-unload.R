@@ -8,7 +8,7 @@ cat("2. Unloading package\n")
 unloadNamespace("matrixStats")
 stopifnot(!"matrixStats" %in% loadedNamespaces())
 
-if (TRUE) {
+if (FALSE) {
   ## 'covr' gives "Error in library("matrixStats") :
   ## there is no package called 'matrixStats'" here, cf.
   ## https://travis-ci.org/HenrikBengtsson/matrixStats/builds/48015577
@@ -37,4 +37,3 @@ if (TRUE) {
 }
 
 cat("7. DONE\n")
-
