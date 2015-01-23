@@ -13,7 +13,7 @@ benchmark <- function(fcn, tags=NULL, path=NULL, workdir="reports", envir=parent
   filename <- sprintf("%s.md.rsp", fullname)
   pathname <- file.path(path, filename)
 
-  R.rsp::rfile(pathname,workdir=workdir, envir=envir, ...)
+  R.rsp::rfile(pathname, workdir=workdir, envir=envir, ...)
 } # benchmark()
 
 ############################################################################
