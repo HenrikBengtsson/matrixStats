@@ -59,3 +59,40 @@ for (kk in 1:3) {
 
   }
 } # for (kk ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Data type: character (not sure if this should be supported)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(rep(letters, length.out=20*5), nrow=20, ncol=5)
+x[2:3,3:4] <- NA_character_
+
+# Row/column counts
+value <- "g"
+for (na.rm in c(FALSE, TRUE)) {
+  ## All
+  r0 <- rowAlls_R((x == value), na.rm=na.rm)
+  r1 <- rowAlls((x == value), na.rm=na.rm)
+  r2 <- colAlls(t((x == value)), na.rm=na.rm)
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r0))
+
+  c <- allValue((x[1,] == value), na.rm=na.rm)
+  stopifnot(identical(c,r1[1]))
+
+  c <- allValue((x[2,] == value), na.rm=na.rm)
+  stopifnot(identical(c,r1[2]))
+
+  ## Any
+  r0 <- rowAnys_R((x == value), na.rm=na.rm)
+  r1 <- rowAnys((x == value), na.rm=na.rm)
+  r2 <- colAnys(t((x == value)), na.rm=na.rm)
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r0))
+
+  c <- anyValue((x[1,] == value), na.rm=na.rm)
+  stopifnot(identical(c,r1[1]))
+
+  c <- anyValue((x[2,] == value), na.rm=na.rm)
+  stopifnot(identical(c,r1[2]))
+}
