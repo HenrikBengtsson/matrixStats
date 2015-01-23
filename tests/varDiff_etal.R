@@ -103,15 +103,16 @@ for (fcn in names(FUNs)) {
 
   for (mode in c("integer", "double")) {
     cat("mode: ", mode, "", sep="")
-    n <- 2L
-    x <- runif(n, min=-5, max=5)
-    storage.mode(x) <- mode
-    str(x)
-  } # for (mode ...)
+    for (n in 0:3) {
+      x <- runif(n, min=-5, max=5)
+      storage.mode(x) <- mode
+      str(x)
 
-  y <- FUN(x)
-  yt <- FUN(x, trim=0.1)
-  str(list("non-trimmed"=y, trimmed=yt))
+      y <- FUN(x)
+      yt <- FUN(x, trim=0.1)
+      str(list("non-trimmed"=y, trimmed=yt))
+    } # for (mode ...)
+  }
 
   cat(sprintf("%s()...DONE\n", fcn))
 } # for (fcn ...)

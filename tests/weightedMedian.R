@@ -20,6 +20,9 @@ stopifnot(is.na(y))
 y2 <- weightedMedian_old(x, w=c(NA,Inf,NA,Inf,NA), na.rm=FALSE)
 stopifnot(all.equal(y2, y))
 
+y3 <- weightedMedian_old(x[1])
+stopifnot(all.equal(y3, x[1]))
+
 x <- 1:10
 n <- length(x)
 
