@@ -57,8 +57,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
     kk_prev = 0;
     for (jj=1; jj < ncol; jj++) {
       for (ii=0; ii < nrow; ii++) {
-        if (kk % 1000 == 0)
-          R_CheckUserInterrupt();
+        if (kk % 1000 == 0) R_CheckUserInterrupt();
         if (oks[ii]) {
           value = (ANS_C_TYPE) x[kk];
           if (ANS_ISNAN(value)) {
@@ -94,8 +93,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
       kk++;
 
       for (ii=1; ii < nrow; ii++) {
-        if (kk % 1000 == 0)
-          R_CheckUserInterrupt();
+        if (kk % 1000 == 0) R_CheckUserInterrupt();
         if (ok) {
           value = (ANS_C_TYPE) x[kk];
           if (ANS_ISNAN(value)) {

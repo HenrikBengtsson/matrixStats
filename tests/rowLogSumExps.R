@@ -62,3 +62,69 @@ for (mode in c("integer", "double")) {
   y3 <- colLogSumExps(t(nlX))
   stopifnot(identical(names(y3), rownames(nlX)))
 } # for (mode ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Corner cases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Zero-size matrices
+lX <- matrix(numeric(0L), nrow=0L, ncol=0L)
+y <- rowLogSumExps(lX)
+print(y)
+stopifnot(length(y) == nrow(lX))
+
+Y <- colLogSumExps(lX)
+print(Y)
+stopifnot(length(y) == ncol(lX))
+
+## Zero-height matrices
+lX <- matrix(numeric(0L), nrow=0L, ncol=10L)
+y <- rowLogSumExps(lX)
+print(y)
+stopifnot(length(y) == nrow(lX))
+
+## Zero-width matrices
+lX <- matrix(numeric(0L), nrow=10L, ncol=0L)
+y <- colLogSumExps(lX)
+print(y)
+stopifnot(length(y) == ncol(lX))
+
+
+## Matrices with one element
+lX <- matrix(1.0, nrow=1L, ncol=1L)
+y <- rowLogSumExps(lX)
+print(y)
+stopifnot(length(y) == nrow(lX))
+stopifnot(all(y == lX))
+
+y <- colLogSumExps(lX)
+print(y)
+stopifnot(length(y) == ncol(lX))
+stopifnot(all(y == lX))
+
+## All missing values
+lX <- matrix(NA_real_, nrow=1L, ncol=1L)
+y <- rowLogSumExps(lX, na.rm=TRUE)
+print(y)
+stopifnot(length(y) == nrow(lX))
+stopifnot(identical(y, -Inf))
+
+lX <- matrix(NA_real_, nrow=1L, ncol=1L)
+y <- colLogSumExps(lX, na.rm=TRUE)
+print(y)
+stopifnot(length(y) == ncol(lX))
+stopifnot(identical(y, -Inf))
+
+lX <- matrix(NA_real_, nrow=2L, ncol=2L)
+y <- rowLogSumExps(lX, na.rm=TRUE)
+print(y)
+stopifnot(length(y) == nrow(lX))
+## FIXME: Shouldn't this also return -Inf?  Now it returns NA_real_
+stopifnot(identical(y, rep(NA_real_, nrow(lX))))
+
+lX <- matrix(NA_real_, nrow=2L, ncol=2L)
+y <- colLogSumExps(lX, na.rm=TRUE)
+print(y)
+stopifnot(length(y) == ncol(lX))
+## FIXME: Shouldn't this also return -Inf?  Now it returns NA_real_
+stopifnot(identical(y, rep(NA_real_, ncol(lX))))

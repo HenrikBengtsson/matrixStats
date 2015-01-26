@@ -73,8 +73,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   hasna = TRUE;
   if (hasna == TRUE) {
     for (ii=0; ii < nrow; ii++) {
-      if (ii % 1000 == 0)
-        R_CheckUserInterrupt();
+      if (ii % 1000 == 0) R_CheckUserInterrupt();
 
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
@@ -191,8 +190,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
     } /* for (ii ...) */
   } else {
     for (ii=0; ii < nrow; ii++) {
-      if (ii % 1000 == 0)
-        R_CheckUserInterrupt();
+      if (ii % 1000 == 0) R_CheckUserInterrupt();
 
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
