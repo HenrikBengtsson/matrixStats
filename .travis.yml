@@ -45,7 +45,7 @@ before_install:
 
 install:
   - $RENV install_r R.methodsS3
-  - $RENV install_r R.rsp, microbenchmark, R.devices, base64enc, ggplot2, knitr 
+  - $RENV install_r R.rsp microbenchmark R.devices base64enc ggplot2 knitr 
 #  - $RENV install_deps
 
 script:
