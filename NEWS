@@ -1,6 +1,15 @@
 Package: matrixStats
 ====================
 
+Version: 0.13.2 [2015-01-26]
+ o SPEEDUP: logSumExp(x) is now faster if 'x' does not contain any
+   missing values.  It is also faster if all values are missing or
+   the maximum value is +Inf - in both cases it can skip the actual
+   summation step.
+ o BUG FIX: Now logSumExp(x, na.rm=TRUE) would return NA if all values
+  were NA and length(x) > 1.  Now it returns -Inf for all length(x):s.
+  
+
 Version: 0.13.1 [2015-01-21]
 o BUG FIX: diff2() with differences >= 3 would *read* spurious values
   beyond the allocated memory.  This error, introduced in 0.13.0, was

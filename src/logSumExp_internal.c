@@ -15,6 +15,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   R_xlen_t ii, iMax;
   double xii, xMax;
   LDOUBLE sum;
+  int hasna2 = FALSE;
 
   /* Quick return? */
   if (nx == 0) {
@@ -36,6 +37,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
 
     if (hasna && ISNAN(xii)) {
       if (narm) {
+        hasna2 = TRUE;
         continue;
       } else {
         return(R_NaReal);
@@ -50,6 +52,17 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
     if (ii % 1000000 == 0) R_CheckUserInterrupt();
   } /* for (ii ...) */
 
+
+  /* Early stopping? */
+  if (ISNAN(xMax)) {
+    /* Found only missing values? */
+    return(R_NegInf);
+  } else if (xMax == R_PosInf) {
+    /* Found +Inf? */
+    return(R_PosInf);
+  }
+
+
   /* Sum differences */
   sum = 0.0;
   for (ii=0; ii < nx; ii++) {
@@ -60,13 +73,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
     /* Get the ii:th value */
     xii = x[ii];
 
-    if (hasna && ISNAN(xii)) {
-      if (narm) {
-        continue;
-      } else {
-        return(R_NaReal);
-      }
-    } else {
+    if (!hasna2 || !ISNAN(xii)) {
       sum += exp(xii - xMax);
     }
 
@@ -96,6 +103,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
+  int hasna2 = FALSE;
 
   /* Quick return? */
   if (nx == 0) {
@@ -129,6 +137,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
 
     if (hasna && ISNAN(xii)) {
       if (narm) {
+        hasna2 = TRUE;
         continue;
       } else {
         return(R_NaReal);
@@ -144,6 +153,16 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
   } /* for (ii ...) */
 
 
+  /* Early stopping? */
+  if (ISNAN(xMax)) {
+    /* Found only missing values? */
+    return(R_NegInf);
+  } else if (xMax == R_PosInf) {
+    /* Found +Inf? */
+    return(R_PosInf);
+  }
+
+
   /* Sum differences */
   sum = 0.0;
   for (ii=0; ii < nx; ii++) {
@@ -154,13 +173,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
     /* Get the ii:th value */
     xii = xx[ii];
 
-    if (hasna && ISNAN(xii)) {
-      if (narm) {
-        continue;
-      } else {
-        return(R_NaReal);
-      }
-    } else {
+    if (!hasna || !ISNAN(xii)) {
       sum += exp(xii - xMax);
     }
 
@@ -175,7 +188,14 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
 
 /***************************************************************************
  HISTORY:
- 2013-05-02 [HB]
+ 2015-01-26 [HB]
+ o SPEEDUP: Now step 2 ("summing") only checks where NAs if NAs were
+   detected in step 1 ("max value"), which should be noticibly faster
+   since testing for NA is expensive for double values.
+ o SPEEDUP: Now function returns early after step 1 ("max value") if
+   the maximum value found is +Inf, or if all values where NAs.
+ o BUG FIX: Now logSumExp(<all NAs>, na.rm=TRUE) also returns -Inf.
+2013-05-02 [HB]
  o BUG FIX: Incorrectly used ISNAN() on an int variable as caught by the
    'cc' compiler on Solaris.  Reported by Brian Ripley upon CRAN submission.
  2013-04-30 [HB]

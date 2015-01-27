@@ -74,6 +74,4 @@ stopifnot(identical(y, -Inf))
 lx <- c(NA_real_, NA_real_)
 y <- logSumExp(lx, na.rm=TRUE)
 print(y)
-## FIXME: Shouldn't this also return -Inf?  Now it returns NA_real_
-## stopifnot(identical(y, -Inf))
-stopifnot(identical(y, NA_real_))
+stopifnot(identical(y, -Inf))
