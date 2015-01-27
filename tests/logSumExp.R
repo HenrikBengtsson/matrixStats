@@ -75,3 +75,9 @@ lx <- c(NA_real_, NA_real_)
 y <- logSumExp(lx, na.rm=TRUE)
 print(y)
 stopifnot(identical(y, -Inf))
+
+## +Inf values
+lx <- c(1, 2, +Inf)
+y <- logSumExp(lx)
+print(y)
+stopifnot(identical(y, +Inf))

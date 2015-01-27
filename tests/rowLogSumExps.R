@@ -73,8 +73,8 @@ y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))
 
-Y <- colLogSumExps(lX)
-print(Y)
+y <- colLogSumExps(lX)
+print(y)
 stopifnot(length(y) == ncol(lX))
 
 ## Zero-height matrices
@@ -83,11 +83,21 @@ y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))
 
+y <- colLogSumExps(lX)
+print(y)
+stopifnot(length(y) == ncol(lX))
+stopifnot(all(y == -Inf))
+
 ## Zero-width matrices
 lX <- matrix(numeric(0L), nrow=10L, ncol=0L)
 y <- colLogSumExps(lX)
 print(y)
 stopifnot(length(y) == ncol(lX))
+
+y <- rowLogSumExps(lX)
+print(y)
+stopifnot(length(y) == nrow(lX))
+stopifnot(all(y == -Inf))
 
 
 ## Matrices with one element
@@ -126,3 +136,10 @@ y <- colLogSumExps(lX, na.rm=TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == -Inf))
+
+## +Inf values
+lX <- matrix(c(1, 2, +Inf), nrow=3L, ncol=2L)
+y <- colLogSumExps(lX, na.rm=TRUE)
+print(y)
+stopifnot(length(y) == ncol(lX))
+stopifnot(all(y == +Inf))
