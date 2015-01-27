@@ -119,12 +119,10 @@ lX <- matrix(NA_real_, nrow=2L, ncol=2L)
 y <- rowLogSumExps(lX, na.rm=TRUE)
 print(y)
 stopifnot(length(y) == nrow(lX))
-## FIXME: Shouldn't this also return -Inf?  Now it returns NA_real_
-stopifnot(identical(y, rep(NA_real_, nrow(lX))))
+stopifnot(all(y == -Inf))
 
 lX <- matrix(NA_real_, nrow=2L, ncol=2L)
 y <- colLogSumExps(lX, na.rm=TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
-## FIXME: Shouldn't this also return -Inf?  Now it returns NA_real_
-stopifnot(identical(y, rep(NA_real_, ncol(lX))))
+stopifnot(all(y == -Inf))
