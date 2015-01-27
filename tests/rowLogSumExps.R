@@ -131,11 +131,21 @@ print(y)
 stopifnot(length(y) == nrow(lX))
 stopifnot(all(y == -Inf))
 
+y <- rowLogSumExps(lX, na.rm=FALSE)
+print(y)
+stopifnot(length(y) == nrow(lX))
+stopifnot(all(is.na(y) & !is.nan(y)))
+
 lX <- matrix(NA_real_, nrow=2L, ncol=2L)
 y <- colLogSumExps(lX, na.rm=TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == -Inf))
+
+y <- colLogSumExps(lX, na.rm=FALSE)
+print(y)
+stopifnot(length(y) == ncol(lX))
+stopifnot(all(is.na(y) & !is.nan(y)))
 
 ## +Inf values
 lX <- matrix(c(1, 2, +Inf), nrow=3L, ncol=2L)
