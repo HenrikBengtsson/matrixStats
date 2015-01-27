@@ -6,7 +6,10 @@ o SPEEDUP: The check for user interrupts at the C level is now done less
   frequently of the functions.  It does every k:th iteration, where
   k = 2^20, which is tested for using (iter % k == 0).  It turns out, at
   least with the default compiler optimization settings that I use, that
-  this test is 3 times faster if k = 2^n where n is an integer.
+  this test is 3 times faster if k = 2^n where n is an integer.  The
+  following functions checks for user interrupts: logSumExp(),
+  (col|row)LogSumExps(), (col|row)Medians(),, (col|row)Mads(),
+  (col|row)Vars(), and (col|row)Cum(Min|Max|prod|sum)s().
 o SPEEDUP: logSumExp(x) is now faster if 'x' does not contain any
   missing values.  It is also faster if all values are missing or
   the maximum value is +Inf - in both cases it can skip the actual
