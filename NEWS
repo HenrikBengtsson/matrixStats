@@ -2,13 +2,18 @@ Package: matrixStats
 ====================
 
 Version: 0.13.2 [2015-01-26]
- o SPEEDUP: logSumExp(x) is now faster if 'x' does not contain any
-   missing values.  It is also faster if all values are missing or
-   the maximum value is +Inf - in both cases it can skip the actual
-   summation step.
- o BUG FIX: Now logSumExp(x, na.rm=TRUE) would return NA if all values
-   were NA and length(x) > 1.  Now it returns -Inf for all length(x):s.
-  
+o SPEEDUP: The check for user interrupts at the C level is now done less
+  frequently of the functions.  It does every k:th iteration, where
+  k = 2^20, which is tested for using (iter % k == 0).  It turns out, at
+  least with the default compiler optimization settings that I use, that
+  this test is 3 times faster if k = 2^n where n is an integer.
+o SPEEDUP: logSumExp(x) is now faster if 'x' does not contain any
+  missing values.  It is also faster if all values are missing or
+  the maximum value is +Inf - in both cases it can skip the actual
+  summation step.
+o BUG FIX: Now logSumExp(x, na.rm=TRUE) would return NA if all values
+  were NA and length(x) > 1.  Now it returns -Inf for all length(x):s.
+
 
 Version: 0.13.1 [2015-01-21]
 o BUG FIX: diff2() with differences >= 3 would *read* spurious values

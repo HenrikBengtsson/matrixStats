@@ -49,7 +49,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
       xMax = xii;
     }
 
-    if (ii % 1000000 == 0) R_CheckUserInterrupt();
+    R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 
 
@@ -77,7 +77,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
       sum += exp(xii - xMax);
     }
 
-    if (ii % 1000000 == 0) R_CheckUserInterrupt();
+    R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 
   sum = xMax + log1p(sum);
@@ -149,7 +149,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
       xMax = xii;
     }
 
-    if (ii % 1000000 == 0) R_CheckUserInterrupt();
+    R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 
 
@@ -177,7 +177,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
       sum += exp(xii - xMax);
     }
 
-    if (ii % 1000000 == 0) R_CheckUserInterrupt();
+    R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 
   sum = xMax + log1p(sum);

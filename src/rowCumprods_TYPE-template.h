@@ -54,7 +54,6 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
     kk_prev = 0;
     for (jj=1; jj < ncol; jj++) {
       for (ii=0; ii < nrow; ii++) {
-        if (kk % 1000 == 0) R_CheckUserInterrupt();
 #if ANS_TYPE == 'i'
 	if (oks[ii]) {
           value = (LDOUBLE) ans[kk_prev] * (LDOUBLE) x[kk];
@@ -74,7 +73,9 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
 #endif
 
         kk++;        
-        kk_prev++;        
+        kk_prev++;
+
+        R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
     } /* for (jj ...) */
   } else {
@@ -85,7 +86,6 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
       ok = 1;
 #endif
       for (ii=0; ii < nrow; ii++) {
-        if (kk % 1000 == 0) R_CheckUserInterrupt();
 #if ANS_TYPE == 'i'
         if (ok) {
           value *= (LDOUBLE) x[kk];
@@ -105,6 +105,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
         ans[kk] = (ANS_C_TYPE) value;
 #endif
         kk++;        
+
+        R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
     } /* for (jj ...) */
   } /* if (byrow) */

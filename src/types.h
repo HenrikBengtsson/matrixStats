@@ -24,3 +24,7 @@
     #define xlength length
   #endif
 #endif
+
+
+/* Macro to check for user interrupts every 2^20 iteration */
+#define R_CHECK_USER_INTERRUPT(i) if (i % 1048576 == 0) R_CheckUserInterrupt()
