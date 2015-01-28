@@ -13,7 +13,7 @@ library(pkgName, character.only=TRUE)
 ns <- getNamespace(pkgName)
 env <- as.environment(sprintf("package:%s", pkgName))
 
-use("R.utils")
+R.utils::use("R.utils")
 kable <- function(df, ...) {
   fcns <- as.character(df$Functions)
   fcns <- strsplit(fcns, split=",")
