@@ -1,10 +1,10 @@
 Package: matrixStats
 Version: 0.13.1-9000
 Depends: R (>= 2.9.0)
-Imports: methods, R.methodsS3
+Imports: methods
 Suggests: R.rsp, microbenchmark, R.devices, base64enc, ggplot2, knitr
 VignetteBuilder: R.rsp
-Date: 2015-01-26
+Date: 2015-01-27
 Title: Methods that Apply to Rows and Columns of a Matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),

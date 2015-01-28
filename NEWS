@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.13.2 [2015-01-26]
+Version: 0.13.2 [2015-01-27]
 o SPEEDUP: The check for user interrupts at the C level is now done less
   frequently of the functions.  It does every k:th iteration, where
   k = 2^20, which is tested for using (iter % k == 0).  It turns out, at
@@ -16,6 +16,7 @@ o SPEEDUP: logSumExp(x) is now faster if 'x' does not contain any
   summation step.
 o BUG FIX: Now logSumExp(x, na.rm=TRUE) would return NA if all values
   were NA and length(x) > 1.  Now it returns -Inf for all length(x):s.
+o CLEANUP: Package no longer depends on R.methodsS3.
 
 
 Version: 0.13.1 [2015-01-21]

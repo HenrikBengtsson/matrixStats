@@ -8,8 +8,6 @@ importFrom("methods", "setGeneric")
 importFrom("methods", "loadMethod")
 importFrom("methods", "signature")
 
-importFrom("R.methodsS3", "pkgStartupMessage")
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
