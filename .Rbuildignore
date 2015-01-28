@@ -12,6 +12,8 @@ README[.]md
 ^travis-tool[.]sh$
 ^pkg-build[.]sh$
 ^appveyor[.]yml$
+^covr-utils.R$
+^[.]coveralls[.]R$
 
 #----------------------------
 # R related
