@@ -217,28 +217,6 @@ tbl <- rbind(tbl, row)
 <% kable(tbl) %>
 
 
-## Binning
-
-<%
-tbl <- NULL
-
-row <- data.frame(
-  "Estimator"   = "Counts in disjoint bins",
-  "Functions"   = "binCounts",
-  "Example"     = "binCounts(x, bx)"
-)
-tbl <- rbind(tbl, row)
-
-row <- data.frame(
-  "Estimator"   = "Sample means (and counts) in disjoint bins",
-  "Functions"   = "binMeans",
-  "Example"     = "binMeans(y, x, bx)"
-)
-tbl <- rbind(tbl, row)
-
-%>
-<% kable(tbl) %>
-
 
 ## Testing for and counting values
 <%
@@ -289,6 +267,64 @@ tbl <- rbind(tbl, row)
 %>
 <% kable(tbl) %>
 
+
+## Cumulative functions
+<%
+tbl <- NULL
+
+row <- data.frame(
+  "Operator"   = "Cumulative sum",
+  "Functions"   = "cumsum, colCumsums, rowCumsums",
+  "Example"     = "cumsum(x); rowCumsums(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Operator"   = "Cumulative product",
+  "Functions"   = "cumprod, colCumprods, rowCumprods",
+  "Example"     = "cumprod(x); rowCumprods(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Operator"   = "Cumulative minimum",
+  "Functions"   = "cummin, colCummins, rowCummins",
+  "Example"     = "cummin(x); rowCummins(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Operator"   = "Cumulative maximum",
+  "Functions"   = "cummax, colCummaxs, rowCummaxs",
+  "Example"     = "cummax(x); rowCummaxs(x)"
+)
+tbl <- rbind(tbl, row)
+
+%>
+<% kable(tbl) %>
+
+
+## Binning
+
+<%
+tbl <- NULL
+
+row <- data.frame(
+  "Estimator"   = "Counts in disjoint bins",
+  "Functions"   = "binCounts",
+  "Example"     = "binCounts(x, bx)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
+  "Estimator"   = "Sample means (and counts) in disjoint bins",
+  "Functions"   = "binMeans",
+  "Example"     = "binMeans(y, x, bx)"
+)
+tbl <- rbind(tbl, row)
+
+%>
+<% kable(tbl) %>
 
 
 ## Miscellaneous
