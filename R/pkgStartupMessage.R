@@ -1,3 +1,5 @@
+## covr: skip=all
+
 pkgStartupMessage <- function(..., quietly=NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Infer 'quietly' from argument 'argument' in library() call?
