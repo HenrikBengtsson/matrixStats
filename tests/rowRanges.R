@@ -172,6 +172,9 @@ for (na.rm in c(FALSE, TRUE)) {
     y1 <- rowMins(na, na.rm=na.rm)
     str(y1)
     stopifnot(all.equal(y1, y0))
+    y1c <- colMins(t(na), na.rm=na.rm)
+    str(y1c)
+    stopifnot(all.equal(y1c, y1))
 
     cat("  max:\n")
     y0 <- rowMaxs_R(na, na.rm=na.rm)
@@ -179,6 +182,9 @@ for (na.rm in c(FALSE, TRUE)) {
     y1 <- rowMaxs(na, na.rm=na.rm)
     str(y1)
     stopifnot(all.equal(y1, y0))
+    y1c <- colMaxs(t(na), na.rm=na.rm)
+    str(y1c)
+    stopifnot(all.equal(y1c, y1))
 
     cat("  range:\n")
     y0 <- rowRanges_R(na, na.rm=na.rm)
@@ -186,5 +192,8 @@ for (na.rm in c(FALSE, TRUE)) {
     y1 <- rowRanges(na, na.rm=na.rm)
     str(y1)
     stopifnot(all.equal(y1, y0))
+    y1c <- colRanges(t(na), na.rm=na.rm)
+    str(y1c)
+    stopifnot(all.equal(y1c, y1))
   } # for (name ...)
 } # for (na.rm ...)
