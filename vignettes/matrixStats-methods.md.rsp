@@ -3,7 +3,13 @@
 
   %\VignetteIndexEntry{matrixStats: Summary of functions}
   %\VignetteAuthor{Henrik Bengtsson}
-  %\VignetteKeyword{matrix, vector, memory, fast}
+  %\VignetteKeyword{matrix}
+  %\VignetteKeyword{vector}
+  %\VignetteKeyword{apply}
+  %\VignetteKeyword{rows}
+  %\VignetteKeyword{columns}
+  %\VignetteKeyword{memory}
+  %\VignetteKeyword{speed}
   %\VignetteEngine{R.rsp::rsp}
   %\VignetteTangle{FALSE}
 --------------------------------------------------------------------"%>
