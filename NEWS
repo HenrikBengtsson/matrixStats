@@ -26,6 +26,14 @@ o BUG FIX: all() and any() flavored methods on non-numeric and
   col- and rowAnys().  Added more package tests to cover these cases.
 o BUG FIX: Now logSumExp(x, na.rm=TRUE) would return NA if all values
   were NA and length(x) > 1.  Now it returns -Inf for all length(x):s.
+o CLEANUP: anyMissing() is no longer an S4 generic.  This was done as
+  part of the migration of making all functions of matrixStats plain
+  R functions, which minimizes calling overhead and it will also allow
+  us to drop 'methods' from the package dependencies.  I've scanned
+  all CRAN and Bioconductor packages depending on matrixStats and
+  none of them relied on anyMissing() dispatching on class, so
+  hopefully this move has little impact. The only remaining S4 methods
+  are now colMedians() and rowMedians().
 o CLEANUP: Package no longer depends on R.methodsS3.
 
 
