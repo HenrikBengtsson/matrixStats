@@ -117,31 +117,27 @@ for (na.rm in c(FALSE, TRUE)) {
   r0 <- rowAlls_R(x, value=value, na.rm=na.rm)
   r1 <- rowAlls(x, value=value, na.rm=na.rm)
   r2 <- colAlls(t(x), value=value, na.rm=na.rm)
-  ## FIXME:
-##  stopifnot(identical(r1, r0))
-##  stopifnot(identical(r2, r1))
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r1))
 
-  ## FIXME: allValue() does not work on characters, cf. Issue #6.
   for (rr in seq_len(nrow(x))) {
     c0 <- all((x[rr,] == value), na.rm=na.rm)
     c <- allValue(x[rr,], value=value, na.rm=na.rm)
-##    stopifnot(identical(c,r1[rr]))
-##    stopifnot(identical(c,c0))
+    stopifnot(identical(c,r1[rr]))
+    stopifnot(identical(c,c0))
   }
 
   ## Any
   r0 <- rowAnys_R(x, value=value, na.rm=na.rm)
   r1 <- rowAnys(x, value=value, na.rm=na.rm)
   r2 <- colAnys(t(x), value=value, na.rm=na.rm)
-  ## FIXME:
-##  stopifnot(identical(r1, r0))
-##  stopifnot(identical(r2, r1))
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r1))
 
-  ## FIXME: anyValue() does not work on characters, cf. Issue #6.
   for (rr in seq_len(nrow(x))) {
     c0 <- any((x[rr,] == value), na.rm=na.rm)
     c <- anyValue(x[rr,], value=value, na.rm=na.rm)
-##    stopifnot(identical(c,c0))
-##    stopifnot(identical(c,r1[rr]))
+    stopifnot(identical(c,c0))
+    stopifnot(identical(c,r1[rr]))
   }
 }

@@ -4,7 +4,7 @@ Depends: R (>= 2.9.0)
 Imports: methods
 Suggests: R.rsp, microbenchmark, R.devices, base64enc, ggplot2, knitr
 VignetteBuilder: R.rsp
-Date: 2015-02-09
+Date: 2015-02-10
 Title: Methods that Apply to Rows and Columns of a Matrix
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
