@@ -2,6 +2,8 @@ Package: matrixStats
 ====================
 
 Version: 0.13.2 [2015-02-10]
+o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to
+  'center'.  This is consistent with col- and rowVars().
 o CONSISTENCY: col- and rowVars() now using na.rm=FALSE as the default
   (na.rm=TRUE was mistakenly introduced as the default in v0.9.7).
 o SPEEDUP: The check for user interrupts at the C level is now done less

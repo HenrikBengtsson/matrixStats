@@ -25,8 +25,8 @@
 \usage{
  rowSds(x, ...)
  colSds(x, ...)
- rowMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
- colMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
+ rowMads(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
+ colMads(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{
