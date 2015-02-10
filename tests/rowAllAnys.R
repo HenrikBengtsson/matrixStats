@@ -14,7 +14,7 @@ rowAnyMissings_R <- function(x, ...) {
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# all() and any()
+# Data type: logical
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(FALSE, nrow=20, ncol=5)
 x[13:17,c(2,4)] <- TRUE
@@ -22,6 +22,8 @@ x[2:4,] <- TRUE
 x[,1] <- TRUE
 x[5,] <- FALSE
 x[,5] <- FALSE
+x[3,] <- FALSE
+x[4,] <- TRUE
 
 for (kk in 1:3) {
   if (kk == 2) {
@@ -56,9 +58,49 @@ for (kk in 1:3) {
     str(list("anyMissing()", m0=m0, m1=m1, m2=m2))
     stopifnot(identical(m1, m0))
     stopifnot(identical(m2, m0))
-
   }
 } # for (kk ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Data type: integer
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(rep(1:28, length.out=20*5), nrow=20, ncol=5)
+x[2,] <- 7L
+x[3,1] <- 7L
+x[2:3,3:4] <- NA_integer_
+
+# Row/column counts
+value <- 7L
+for (na.rm in c(FALSE, TRUE)) {
+  ## All
+  r0 <- rowAlls_R(x, value=value, na.rm=na.rm)
+  r1 <- rowAlls(x, value=value, na.rm=na.rm)
+  r2 <- colAlls(t(x), value=value, na.rm=na.rm)
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r1))
+
+  for (rr in seq_len(nrow(x))) {
+    c <- allValue(x[rr,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[rr]))
+    c <- allValue(x[rr,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[rr]))
+  }
+
+  ## Any
+  r0 <- rowAnys_R(x, value=value, na.rm=na.rm)
+  r1 <- rowAnys(x, value=value, na.rm=na.rm)
+  r2 <- colAnys(t(x), value=value, na.rm=na.rm)
+  stopifnot(identical(r1, r0))
+  stopifnot(identical(r2, r1))
+
+  for (rr in seq_len(nrow(x))) {
+    c <- anyValue(x[rr,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[rr]))
+    c <- anyValue(x[rr,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[rr]))
+  }
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -74,10 +116,9 @@ for (na.rm in c(FALSE, TRUE)) {
   r0 <- rowAlls_R(x, value=value, na.rm=na.rm)
   r1 <- rowAlls(x, value=value, na.rm=na.rm)
   r2 <- colAlls(t(x), value=value, na.rm=na.rm)
-## FIXME: col/rowAlls() on character incorrectly returns NA
-## instead of FALSE here, cf. Issue #5.
+  ## FIXME:
 ##  stopifnot(identical(r1, r0))
-  stopifnot(identical(r2, r1))
+##  stopifnot(identical(r2, r1))
 
 ## FIXME: anyValue() and allValue() does not work on characters, cf. Issue #6.
 ##  c <- allValue(x[1,], value=value, na.rm=na.rm)
