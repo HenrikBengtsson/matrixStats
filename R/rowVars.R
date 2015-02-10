@@ -43,7 +43,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowVars <- function(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...) {
+rowVars <- function(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -90,7 +90,7 @@ rowVars <- function(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...) {
 }
 
 
-colVars <- function(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...) {
+colVars <- function(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -139,6 +139,8 @@ colVars <- function(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-02-09 [HB]
+# o Now using na.rm=FALSE as the default.
 # 2014-06-02 [HB]
 # o Now rowVars() are utilizing rowCounts() instead of rowSums().
 # o SPEEDUP: Made colVars() and colSds() significantly faster and

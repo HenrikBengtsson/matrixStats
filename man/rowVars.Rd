@@ -21,8 +21,8 @@
 }
 
 \usage{
- rowVars(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...)
- colVars(x, na.rm=TRUE, center=NULL, dim.=dim(x), ...)
+ rowVars(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...)
+ colVars(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...)
 }
 
 \arguments{
