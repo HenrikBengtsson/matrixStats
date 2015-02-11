@@ -22,7 +22,7 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
-#  \item{centers}{A optional @numeric @vector of length N (K) with centers.
+#  \item{center}{A optional @numeric @vector of length N (K) with centers.
 #     By default, they are calculated using @see "rowMedians".}
 #  \item{constant}{A scale factor.  See @see "stats::mad" for details.}
 #  \item{na.rm}{If @TRUE, missing values are removed first, otherwise not.}
@@ -30,6 +30,7 @@
 #              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Additional arguments passed to @see "rowVars" and
 #     @see "rowMedians", respectively.}
+#  \item{centers}{(deprectated) use \code{center} instead.}
 # }
 #
 # \value{
