@@ -51,43 +51,75 @@
 # @keyword univar
 #*/###########################################################################
 rowCumsums <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }   
   dim <- as.integer(dim.);
   .Call("rowCumsums", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
 colCumsums <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCumsums", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
 
 rowCumprods <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCumprods", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
 colCumprods <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCumprods", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
 
 rowCummins <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCummins", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
 colCummins <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCummins", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
 rowCummaxs <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCummaxs", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
 colCummaxs <- function(x, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim <- as.integer(dim.);
   .Call("rowCummaxs", x, dim, FALSE, PACKAGE="matrixStats")
 }

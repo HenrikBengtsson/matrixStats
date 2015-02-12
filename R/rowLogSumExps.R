@@ -45,6 +45,10 @@
 # @keyword array
 #*/###########################################################################
 rowLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
+  if (is.data.frame(lx)){
+    warning("Argument 'lx' is a data.frame, coercing to matrix")
+    x = as.matrix(lx)
+  }    
   dim. <- as.integer(dim.)
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
@@ -63,6 +67,10 @@ rowLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
 
 
 colLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
+  if (is.data.frame(lx)){
+    warning("Argument 'lx' is a data.frame, coercing to matrix")
+    x = as.matrix(lx)
+  }  
   dim. <- as.integer(dim.)
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",

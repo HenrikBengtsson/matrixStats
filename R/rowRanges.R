@@ -51,18 +51,30 @@
 # @keyword univar
 #*/###########################################################################
 rowRanges <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 rowMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 rowMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
@@ -70,18 +82,30 @@ rowMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
 
 
 colRanges <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 colMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 colMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")

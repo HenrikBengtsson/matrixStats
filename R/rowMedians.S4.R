@@ -3,6 +3,8 @@
 # @alias colMedians
 # \alias{rowMedians,matrix-method}
 # \alias{colMedians,matrix-method}
+# \alias{rowMedians,data.frame-method}
+# \alias{colMedians,data.frame-method}
 #
 # @title "Calculates the median for each row (column) in a matrix"
 #
@@ -61,12 +63,28 @@ setMethod("rowMedians", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim
   .Call("rowMedians", x, dim., na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
 })
 
+setMethod("rowMedians", signature(x="data.frame"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  x = as.matrix(x)
+  dim. <- as.integer(dim.)
+  na.rm <- as.logical(na.rm);
+  hasNAs <- TRUE;  # Add as an argument? /2007-08-24
+  .Call("rowMedians", x, dim., na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
+})
+
 
 setGeneric("colMedians", function(x, na.rm=FALSE, dim.=dim(x), ...) {
   standardGeneric("colMedians");
 })
 
 setMethod("colMedians", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
+  na.rm <- as.logical(na.rm);
+  hasNAs <- TRUE;  # Add as an argument? /2007-08-24
+  .Call("rowMedians", x, dim., na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
+})
+
+setMethod("colMedians", signature(x="data.frame"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+  x = as.matrix(x)
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24

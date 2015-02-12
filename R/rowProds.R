@@ -53,6 +53,10 @@
 # @keyword univar
 #*/###########################################################################
 rowProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   # Preallocate result (zero:ed by default)
   n <- nrow(x)
   y <- double(length=n)

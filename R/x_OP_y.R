@@ -45,6 +45,11 @@
 # @keyword internal
 #*/############################################################################
 x_OP_y <- function(x, y, OP, commute=FALSE, na.rm=FALSE) {
+  # Argument 'x':
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }      
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
@@ -54,6 +59,11 @@ x_OP_y <- function(x, y, OP, commute=FALSE, na.rm=FALSE) {
 
 
 t_tx_OP_y <- function(x, y, OP, commute=FALSE, na.rm=FALSE) {
+  # Argument 'x':
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }      
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
