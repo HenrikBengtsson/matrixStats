@@ -29,3 +29,4 @@ README[.]md
 ^[.]devel
 ^[.]test
 ^[.]check
+^*[.]tar[.]gz$
