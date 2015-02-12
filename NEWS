@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.13.2 [2015-02-10]
+Version: 0.13.2 [2015-02-11]
 o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to
   'center'.  This is consistent with col- and rowVars().
 o CONSISTENCY: col- and rowVars() now using na.rm=FALSE as the default
