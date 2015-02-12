@@ -29,6 +29,10 @@
 # @keyword internal
 #*/############################################################################
 signTabulate <- function(x, ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   res <- .Call("signTabulate", x, PACKAGE="matrixStats");
   names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)];
   res;

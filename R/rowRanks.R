@@ -93,6 +93,10 @@
 # @keyword univar
 #*/###########################################################################
 rowRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -112,6 +116,10 @@ rowRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...
 
 
 colRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 

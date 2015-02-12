@@ -44,6 +44,10 @@
 # @keyword univar
 #*/###########################################################################
 rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }
   # Argument 'x':
   nrow <- nrow(x)
 
@@ -122,6 +126,10 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 } # rowQuantiles()
 
 colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   # Argument 'x':
   ncol <- ncol(x)
 

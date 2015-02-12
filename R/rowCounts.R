@@ -55,6 +55,11 @@
 #*/###########################################################################
 rowCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }
+  
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
   } else {
@@ -94,6 +99,10 @@ rowCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
 
 colCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
   } else {

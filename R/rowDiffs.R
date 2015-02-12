@@ -38,10 +38,18 @@
 # @keyword univar
 #*/###########################################################################
 rowDiffs <- function(x, lag=1L, differences=1L, ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }   
   .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
 }
 
 colDiffs <- function(x, lag=1L, differences=1L, ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }    
   .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
 }
 

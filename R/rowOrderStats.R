@@ -55,6 +55,10 @@
 # @keyword univar
 #*/###########################################################################
 rowOrderStats <- function(x, which, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }    
   dim. <- as.integer(dim.)
   which <- as.integer(which)
   .Call("rowOrderStats", x, dim., which, PACKAGE="matrixStats");
@@ -62,6 +66,10 @@ rowOrderStats <- function(x, which, dim.=dim(x), ...) {
 
 
 colOrderStats <- function(x, which, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }    
   dim. <- as.integer(dim.)
   which <- as.integer(which)
   .Call("colOrderStats", x, dim., which, PACKAGE="matrixStats");

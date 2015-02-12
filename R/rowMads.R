@@ -1,4 +1,8 @@
 rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   if (is.null(centers)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -16,6 +20,10 @@ rowMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), 
 
 
 colMads <- function(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...) {
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }  
   if (is.null(centers)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)

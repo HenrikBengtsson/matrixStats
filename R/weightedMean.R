@@ -43,6 +43,11 @@
 # @keyword "robust"
 #*/############################################################################
 weightedMean <- function(x, w, na.rm=FALSE, refine=FALSE, ...) {
+  # Argument 'x':
+  if (is.data.frame(x)){
+    warning("Argument 'x' is a data.frame, coercing to matrix")
+    x = as.matrix(x)
+  }    
   # Argument 'refine':
   refine <- as.logical(refine)
 
