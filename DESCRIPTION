@@ -18,7 +18,6 @@ Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gen
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: Methods operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
 License: Artistic-2.0
-Encoding: latin1
 LazyLoad: TRUE
 NeedsCompilation: yes
 ByteCompile: TRUE
