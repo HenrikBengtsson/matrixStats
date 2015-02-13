@@ -2,7 +2,7 @@ Package: matrixStats
 ====================
 
 Version: 0.14.0 [2015-02-13]
-o ROBUSTNESS/TESTS: Package tests covers 97% of the code (was 91%).
+o ROBUSTNESS/TESTS: Package tests cover 96% of the code (was 91%).
 o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to
   'center'.  This is consistent with col- and rowVars().
 o CONSISTENCY: col- and rowVars() now using na.rm=FALSE as the default
