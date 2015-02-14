@@ -17,6 +17,27 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ## Alternative methods
 
 * apply() + mad()
+* colMads2() and rowMads2()
+
+where `rowMads2()` and `colMads2()` are:
+
+```r
+<%=withCapture({
+rowMads2 <- function(x, const=1.4826, na.rm=FALSE) {
+  mu <- rowMedians(x, na.rm=na.rm)
+  x <- abs(x - mu)
+  mad <- rowMedians(x, na.rm=FALSE)
+  const * mad
+}
+
+colMads2 <- function(x, const=1.4826, na.rm=FALSE) {
+  mu <- colMedians(x, na.rm=na.rm)
+  x <- abs(x - mu)
+  mad <- colMedians(x, na.rm=FALSE)
+  const * mad
+}
+})%>
+```
 
 <%
 rowMads_R <- function(x, na.rm=FALSE) {
@@ -54,6 +75,7 @@ gc()
 
 colStats <- microbenchmark(
  colMads     = colMads(X, na.rm=FALSE),
+ colMads2    = colMads2(X, na.rm=FALSE),
  "apply+mad" = apply(X, MARGIN=2L, FUN=mad, na.rm=FALSE),
  unit = "ms"
 )
@@ -63,6 +85,7 @@ gc()
 
 rowStats <- microbenchmark(
  rowMads     = rowMads(X, na.rm=FALSE),
+ rowMads2    = rowMads2(X, na.rm=FALSE),
  "apply+mad" = apply(X, MARGIN=1L, FUN=mad, na.rm=FALSE),
  unit = "ms"
 )

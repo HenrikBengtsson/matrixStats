@@ -23,3 +23,67 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(y1, y0))
 
 } # for (mode ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Missing values
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## NA values
+lx <- c(1,2,3)
+lx[2] <- NA_real_
+y <- logSumExp(lx, na.rm=FALSE)
+print(y)
+stopifnot(identical(y, NA_real_))
+
+y <- logSumExp(lx, na.rm=TRUE)
+print(y)
+
+## NaN values
+lx <- c(1,2,3)
+lx[2] <- NaN
+y <- logSumExp(lx, na.rm=FALSE)
+print(y)
+stopifnot(identical(y, NA_real_))
+
+y <- logSumExp(lx, na.rm=TRUE)
+print(y)
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Corner cases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Zero-length vectors
+lx <- numeric(0L)
+y <- logSumExp(lx)
+print(y)
+stopifnot(identical(y, -Inf))
+
+## Vectors of length one
+lx <- 1.0
+y <- logSumExp(lx)
+print(y)
+stopifnot(identical(y, lx))
+
+lx <- NA_real_
+y <- logSumExp(lx, na.rm=TRUE)
+print(y)
+stopifnot(identical(y, -Inf))
+
+## All missing values
+lx <- c(NA_real_, NA_real_)
+y <- logSumExp(lx, na.rm=TRUE)
+print(y)
+stopifnot(identical(y, -Inf))
+
+lx <- c(NA_real_, NA_real_)
+y <- logSumExp(lx, na.rm=FALSE)
+print(y)
+stopifnot(identical(y, NA_real_))
+
+
+## +Inf values
+lx <- c(1, 2, +Inf)
+y <- logSumExp(lx)
+print(y)
+stopifnot(identical(y, +Inf))

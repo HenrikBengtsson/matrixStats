@@ -1,16 +1,9 @@
-# CRAN submission matrixStats 0.13.1
-on 2015-01-21
+# CRAN submission matrixStats 0.14.0
+on 2015-02-13
 
-This submission corrects memory-access error detected by CRAN's
-ASAN/UBSAN/valgrind checks on yesterday's matrixStats 0.13.0
-submission.  From the NEWS file:
+Changes related to updates in R / CRAN Policies:
 
-o BUG FIX: diff2() with differences >= 3 would *read* spurious values
-  beyond the allocated memory.  This error, introduced in 0.13.0, was
-  harmless in the sense that the returned value was unaffected and still
-  correct.  Thanks to Brian Ripley and the CRAN check tools for catching
-  this.  I could reproduce it locally with 'valgrind'.
+* Dropped a single non-ASCII (=latin1) character in one R source
+  comment; avoids 'R CMD check --as-cran' NOTE on "No package encoding
+  and non-ASCII characters in the following R files".
 
-Thank you,
-
-Henrik

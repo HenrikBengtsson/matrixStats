@@ -95,8 +95,9 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
   # Nothing to do?
   n <- length(x)
-  if (n == 0L)
+  if (n <= 1L)
     return(NA_real_)
+
 
   # Calculate differences?
   if (diff > 0L) {
@@ -104,7 +105,7 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
     # Nothing to do?
     n <- length(x)
-    if (n == 0L)
+    if (n == 1L)
       return(NA_real_)
   }
 
@@ -132,7 +133,7 @@ sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
   # Nothing to do?
   n <- length(x)
-  if (n == 0L)
+  if (n <= 1L)
     return(NA_real_)
 
   # Calculate differences?
@@ -141,7 +142,7 @@ sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
     # Nothing to do?
     n <- length(x)
-    if (n == 0L)
+    if (n == 1L)
       return(NA_real_)
   }
 
@@ -169,7 +170,7 @@ madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
 
   # Nothing to do?
   n <- length(x)
-  if (n == 0L)
+  if (n <= 0L)
     return(NA_real_)
 
   # Calculate differences?
@@ -178,7 +179,7 @@ madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
 
     # Nothing to do?
     n <- length(x)
-    if (n == 0L)
+    if (n == 1L)
       return(NA_real_)
   }
 
@@ -223,11 +224,8 @@ iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 
     # Nothing to do?
     n <- length(x)
-    if (n == 0L) {
-      return(NA_real_)
-    } else if (n == 1L) {
+    if (n == 1L)
       return(0)
-    }
   }
 
   # Trim?

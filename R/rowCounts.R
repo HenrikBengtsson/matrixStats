@@ -175,8 +175,7 @@ rowAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     counts <- .Call("rowCounts", x, dim., value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    counts <- rowCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
-    (counts == dim.[2L])
+    rowAlls(x == value, na.rm=na.rm, dim.=dim., ...)
   }
 }
 
@@ -187,8 +186,7 @@ colAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     counts <- .Call("colCounts", x, dim., value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    counts <- colCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
-    (counts == dim.[1L])
+    colAlls(x == value, na.rm=na.rm, dim.=dim., ...)
   }
 }
 
@@ -200,8 +198,7 @@ allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
     counts <- .Call("count", x, value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    counts <- counts(x, value=value, na.rm=na.rm, ...)
-    (counts == sum(x, na.rm=TRUE))
+    allValue(x == value, na.rm=na.rm, ...)
   }
 }
 
@@ -212,10 +209,10 @@ rowAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
     counts <- .Call("rowCounts", x, dim., value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+    as.logical(counts)
   } else {
-    counts <- rowCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
+    rowAnys(x == value, na.rm=na.rm, dim.=dim., ...)
   }
-  as.logical(counts)
 }
 
 colAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
@@ -223,10 +220,10 @@ colAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
     counts <- .Call("colCounts", x, dim., value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+    as.logical(counts)
   } else {
-    counts <- colCounts(x, dim.=dim., value=value, na.rm=na.rm, ...)
+    colAnys(x == value, na.rm=na.rm, dim.=dim., ...)
   }
-  as.logical(counts)
 }
 
 
@@ -235,10 +232,10 @@ anyValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
     counts <- .Call("count", x, value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+    as.logical(counts)
   } else {
-    counts <- counts(x, value=value, na.rm=na.rm, ...)
+    anyValue(x == value, na.rm=na.rm, ...)
   }
-  as.logical(counts)
 }
 
 

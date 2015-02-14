@@ -103,3 +103,27 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(identical(r1, r0))
   stopifnot(identical(r2, r0))
 }
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Data type: character (not sure if this should be supported)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(rep(letters, length.out=20*5), nrow=20, ncol=5)
+x[2:3,3:4] <- NA_character_
+
+# Row/column counts
+for (na.rm in c(FALSE, TRUE)) {
+  for (value in c("g", NA_character_)) {
+    r0 <- rowCounts_R(x, value=value, na.rm=na.rm)
+    r1 <- rowCounts(x, value=value, na.rm=na.rm)
+    r2 <- colCounts(t(x), value=value, na.rm=na.rm)
+    stopifnot(identical(r1, r0))
+    stopifnot(identical(r2, r0))
+
+    c <- count(x[1,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[1]))
+
+    c <- count(x[2,], value=value, na.rm=na.rm)
+    stopifnot(identical(c,r1[2]))
+  }
+}

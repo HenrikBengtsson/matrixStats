@@ -1,6 +1,5 @@
 ###########################################################################/**
 # @RdocFunction anyMissing
-# \alias{anyMissing,ANY-method}
 # \alias{colAnyMissings}
 # \alias{rowAnyMissings}
 #
@@ -46,22 +45,18 @@
 # @keyword iteration
 # @keyword logic
 #*/###########################################################################
-setGeneric("anyMissing", function(x, ...) {
-  standardGeneric("anyMissing")
-})
-
-setMethod("anyMissing", signature(x="ANY"), function(x, ...) {
+anyMissing <- function(x, ...) {
+  ## All list or a data.frame?
   if (is.list(x)) {
-    ## Handles lists and data.frame:s
     for (kk in seq(along=x)) {
-      if (.Call("anyMissing", x[[kk]], PACKAGE="matrixStats")) {
+      if (.Call("anyMissing", x[[kk]], PACKAGE="matrixStats"))
         return(TRUE)
-      }
     }
   } else {
+    ## All other data types
     .Call("anyMissing", x, PACKAGE="matrixStats")
   }
-})
+}
 
 
 colAnyMissings <- function(x, ...) {
@@ -75,6 +70,8 @@ rowAnyMissings <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-02-10
+# o CLEANUP: anyMissing() is no longer an S4 generic, cf. base::anyNA().
 # 2015-01-20
 # o CLEANUP: In the effort of migrating anyMissing() into a plain R
 #   function, specific anyMissing() implementations for data.frame:s and

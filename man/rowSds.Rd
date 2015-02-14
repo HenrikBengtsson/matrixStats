@@ -25,13 +25,13 @@
 \usage{
  rowSds(x, ...)
  colSds(x, ...)
- rowMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
- colMads(x, centers=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), ...)
+ rowMads(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...)
+ colMads(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
- \item{centers}{A optional \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K) with centers.
+ \item{center}{A optional \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K) with centers.
     By default, they are calculated using \code{\link{rowMedians}}().}
  \item{constant}{A scale factor.  See \code{\link[stats]{mad}} for details.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are removed first, otherwise not.}
@@ -39,6 +39,7 @@
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Additional arguments passed to \code{\link{rowVars}}() and
     \code{\link{rowMedians}}(), respectively.}
+ \item{centers}{(deprectated) use \code{center} instead.}
 }
 
 \value{

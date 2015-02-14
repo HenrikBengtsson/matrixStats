@@ -73,9 +73,6 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   hasna = TRUE;
   if (hasna == TRUE) {
     for (ii=0; ii < nrow; ii++) {
-      if (ii % 1000 == 0)
-        R_CheckUserInterrupt();
-
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
@@ -188,12 +185,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           ans[ii] = scale * (values_d[qq] + values_d[qq+1])/2;
 	}
       } /* if (kk == 0) */
+
+      R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } else {
     for (ii=0; ii < nrow; ii++) {
-      if (ii % 1000 == 0)
-        R_CheckUserInterrupt();
-
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for (jj=0; jj < ncol; jj++)
@@ -213,6 +209,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
         ans[ii] = ((double)values[qq] + value)/2;
       }
 
+      R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } /* if (hasna ...) */
 }

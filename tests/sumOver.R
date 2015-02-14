@@ -54,6 +54,25 @@ for (kk in 1:K) {
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# All missing values
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+for (n in 0:2) {
+  for (na.rm in c(FALSE, TRUE)) {
+    x <- rep(NA_real_, times=n)
+    y0 <- sum(x, na.rm=na.rm)
+    y <- sumOver(x, na.rm=na.rm)
+    stopifnot(all.equal(y, y0))
+
+    x <- rep(NA_integer_, times=n)
+    y0 <- sum(x, na.rm=na.rm)
+    y <- sumOver(x, na.rm=na.rm)
+    stopifnot(all.equal(y, y0))
+  }
+}
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Summing of zero elements
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- integer(0)
@@ -124,6 +143,28 @@ s2 <- sumOver(x)                          # 1L
 stopifnot(identical(s1, s2))
 
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Summing of large doubles
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Double overflow
+x <- rep(.Machine$double.xmax, times=2L)
+y0 <- sum(x)
+print(y0)
+y <- sumOver(x)
+print(y)
+stopifnot(is.infinite(y) && y > 0)
+stopifnot(identical(y, y0))
+
+x <- rep(-.Machine$double.xmax, times=2L)
+y0 <- sum(x)
+print(y0)
+y <- sumOver(x)
+print(y)
+stopifnot(is.infinite(y) && y < 0)
+stopifnot(identical(y, y0))
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Argument 'idxs'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -141,3 +182,5 @@ for (idxs in idxsList) {
   s2 <- sumOver(x, idxs=idxs, na.rm=TRUE)
   stopifnot(identical(s1, s2))
 }
+
+

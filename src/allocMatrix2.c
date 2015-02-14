@@ -20,6 +20,7 @@ int memset_zero_ok_double() {
 }
 
 /* For debugging purposes */
+/*
 SEXP memsetZeroable() {
   SEXP ans;
   PROTECT(ans = allocVector(LGLSXP, 2));
@@ -28,6 +29,7 @@ SEXP memsetZeroable() {
   UNPROTECT(1);
   return(ans);
 }
+*/
 
 void fillWithValue(SEXP ans, SEXP value) {
   R_xlen_t i, n;

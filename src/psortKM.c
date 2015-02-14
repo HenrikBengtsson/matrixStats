@@ -27,8 +27,6 @@ void psortKM_C(double *x, R_xlen_t nx, R_xlen_t k, R_xlen_t m, double *ans) {
 
   /* Create a local copy 'xx' of 'x'. */
   for (ii=0; ii < nx; ii++) {
-    if (ii % 1000 == 0)
-      R_CheckUserInterrupt(); 
     xx[ii] = x[ii];
   }
 

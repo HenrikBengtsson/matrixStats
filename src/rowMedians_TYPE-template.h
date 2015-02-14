@@ -69,9 +69,6 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
 
   if (hasna == TRUE) {
     for (ii=0; ii < nrow; ii++) {
-      if (ii % 1000 == 0)
-        R_CheckUserInterrupt();
-
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
@@ -116,12 +113,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
           ans[ii] = ((double)values[qq] + (double)value)/2;
         }
       }
-    }
+
+      R_CHECK_USER_INTERRUPT(ii);
+    } /* for (ii ...) */
   } else {
     for (ii=0; ii < nrow; ii++) {
-      if (ii % 1000 == 0)
-        R_CheckUserInterrupt();
-
       R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
 
       for (jj=0; jj < ncol; jj++)
@@ -141,7 +137,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
         ans[ii] = ((double)values[qq] + (double)value)/2;
       }
 
-    }
+      R_CHECK_USER_INTERRUPT(ii);
+    } /* for (ii ...) */
   } /* if (hasna ...) */
 }
 

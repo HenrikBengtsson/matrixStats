@@ -83,6 +83,12 @@ d <- abs(sigmaBot - sigmaA)
 cat(sprintf("Absolute difference=%g\n", d))
 #stopifnot(d < 1e-3)
 
+sigmaCot <- madDiff(y, trim=0.05)
+cat(sprintf("madDiff(y, trim=0.05)=%g\n", sigmaCot))
+
+sigmaDot <- iqrDiff(y, trim=0.05)
+cat(sprintf("iqrDiff(y, trim=0.05)=%g\n", sigmaDot))
+
 
 FUNs <- list(
   varDiff=varDiff,
@@ -97,15 +103,16 @@ for (fcn in names(FUNs)) {
 
   for (mode in c("integer", "double")) {
     cat("mode: ", mode, "", sep="")
-    n <- 2L
-    x <- runif(n, min=-5, max=5)
-    storage.mode(x) <- mode
-    str(x)
-  } # for (mode ...)
+    for (n in 0:3) {
+      x <- runif(n, min=-5, max=5)
+      storage.mode(x) <- mode
+      str(x)
 
-  y <- FUN(x)
-  yt <- FUN(x, trim=0.1)
-  str(list("non-trimmed"=y, trimmed=yt))
+      y <- FUN(x)
+      yt <- FUN(x, trim=0.1)
+      str(list("non-trimmed"=y, trimmed=yt))
+    } # for (mode ...)
+  }
 
   cat(sprintf("%s()...DONE\n", fcn))
 } # for (fcn ...)

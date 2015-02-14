@@ -3,7 +3,6 @@
 #
 # REFERENCES:
 # * Travis CI: https://travis-ci.org/
-# * r-travis: https://github.com/craigcitro/r-travis
 # * r-builder: https://github.com/metacran/r-builder
 # * covr: https://github.com/jimhester/covr
 # * Coveralls: https://coveralls.io/
@@ -15,10 +14,10 @@ language: c
 env:
   global:
     # Use r-travis or r-builder?
-#   - RENV="./travis-tool.sh"  # r-travis
     - RENV="./pkg-build.sh"    # r-builder
     - R_BUILD_ARGS="--no-manual"
     - R_CHECK_ARGS="--no-manual --as-cran"
+    - _R_CHECK_FORCE_SUGGESTS_=false
     # Need LaTeX? (very time consuming!)
     - BOOTSTRAP_LATEX=""
     # Skip building vignettes, which iff LaTeX-based are very
@@ -28,38 +27,39 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-    - RVERSION=3.0.3
-    - RVERSION=3.1.2
+#    - RVERSION=3.0.3
+#    - RVERSION=3.1.2
     - RVERSION=devel
 
 
 before_install:
   - echo RENV=$RENV
-  - if [ "$RENV" == "./travis-tool.sh" ]; then
-      curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh;
-    elif [ "$RENV" == "./pkg-build.sh" ]; then
-      curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
-    fi
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
   - chmod 755 $RENV
   - $RENV bootstrap
   - if [ "BOOTSTRAP_LATEX" == "true" ]; then
-      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash)
+      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash);
+    else
+      export R_RSP_COMPILELATEX_FALLBACK="copy-force";
     fi
 
 install:
-  - $RENV install_deps
+  - $RENV install_r R.devices R.rsp
+  - $RENV install_r base64enc knitr
+  - $RENV install_r ggplot2 microbenchmark
+#  - $RENV install_deps
 
-script: $RENV run_tests
+script:
+  - $RENV run_build
+  - $RENV run_check
 
 after_success:
-  - $RENV dump_logs_by_extension out 
-#  - $RENV github_package jimhester/covr 
-  - $RENV github_package HenrikBengtsson/covr
-  - if [ "$RENV" == "./travis-tool.sh" ]; then
-      Rscript -e 'library(methods); covr::coveralls()';
-    elif [ "$RENV" == "./pkg-build.sh" ]; then
-      $RENV run_script -e 'library(methods); covr::coveralls()';
-    fi
+  - $RENV dump_logs_by_extension out
+  - $RENV install_devtools
+  - $RENV install_github HenrikBengtsson/R.methodsS3@develop
+  - $RENV install_github HenrikBengtsson/covr
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
+  - $RENV run_script .coveralls.R
 
 after_failure:
   - $RENV dump_logs

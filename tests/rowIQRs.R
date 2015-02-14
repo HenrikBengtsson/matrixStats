@@ -1,7 +1,12 @@
 library("matrixStats")
 
 rowIQRs_R <- function(x, na.rm=FALSE) {
-  Q <- apply(x, MARGIN=1L, FUN=quantile, probs=c(0.25, 0.75), na.rm=na.rm)
+  quantileNA <- function(x, ..., na.rm=FALSE) {
+    if (!na.rm && anyMissing(x))
+      return(c(NA_real_, NA_real_))
+    quantile(x, ..., na.rm=na.rm)
+  }
+  Q <- apply(x, MARGIN=1L, FUN=quantileNA, probs=c(0.25, 0.75), na.rm=na.rm)
   Q[2L,,drop=TRUE] - Q[1L,,drop=TRUE]
 }
 
@@ -14,15 +19,45 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
   str(x)
 
-  probs <- c(0,0.5,1)
-  q0 <- rowIQRs_R(x)
-  print(q0)
-  q1 <- rowIQRs(x)
-  print(q1)
-  stopifnot(all.equal(q1, q0))
-  q2 <- colIQRs(t(x))
-  stopifnot(all.equal(q2, q0))
+  for (addNA in c(FALSE, TRUE)) {
+    if (addNA) {
+      x[3:5,6:9] <- NA
+    }
+    for (na.rm in c(FALSE, TRUE)) {
+      probs <- c(0,0.5,1)
+      q0 <- rowIQRs_R(x, na.rm=na.rm)
+      print(q0)
+      q1 <- rowIQRs(x, na.rm=na.rm)
+      print(q1)
+      stopifnot(all.equal(q1, q0))
+      q2 <- colIQRs(t(x), na.rm=na.rm)
+      stopifnot(all.equal(q2, q0))
 
-  q <- iqr(x[1,])
-  print(q)
+      q <- iqr(x[3,], na.rm=na.rm)
+      print(q)
+    } # for (na.rm ...)
+  } # for (addNA ...)
 } # for (mode ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Test corner cases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+for (mode in c("integer", "double")) {
+  cat("mode: ", mode, "\n", sep="")
+  # Empty vectors
+  x <- integer(0L)
+  storage.mode(x) <- mode
+  str(x)
+  q <- iqr(x)
+  print(q)
+  stopifnot(identical(q, NA_real_))
+
+  # Scalar
+  x <- 1L
+  storage.mode(x) <- mode
+  str(x)
+  q <- iqr(x)
+  str(q)
+  stopifnot(identical(q, 0))
+}

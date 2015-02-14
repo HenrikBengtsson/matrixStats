@@ -1,6 +1,45 @@
 Package: matrixStats
 ====================
 
+Version: 0.14.0 [2015-02-13]
+o ROBUSTNESS/TESTS: Package tests cover 96% of the code (was 91%).
+o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to
+  'center'.  This is consistent with col- and rowVars().
+o CONSISTENCY: col- and rowVars() now using na.rm=FALSE as the default
+  (na.rm=TRUE was mistakenly introduced as the default in v0.9.7).
+o SPEEDUP: The check for user interrupts at the C level is now done less
+  frequently of the functions.  It does every k:th iteration, where
+  k = 2^20, which is tested for using (iter % k == 0).  It turns out, at
+  least with the default compiler optimization settings that I use, that
+  this test is 3 times faster if k = 2^n where n is an integer.  The
+  following functions checks for user interrupts: logSumExp(),
+  (col|row)LogSumExps(), (col|row)Medians(),, (col|row)Mads(),
+  (col|row)Vars(), and (col|row)Cum(Min|Max|prod|sum)s().
+o SPEEDUP: logSumExp(x) is now faster if 'x' does not contain any
+  missing values.  It is also faster if all values are missing or
+  the maximum value is +Inf - in both cases it can skip the actual
+  summation step.
+o BUG FIX: all() and any() flavored methods on non-numeric and
+  non-logical (e.g. character) vectors and matrices with na.rm=FALSE
+  did not give results consistent with all() and any() if there were
+  missing values.  For example, with x <- c("a", NA, "b") we have
+  all(x == "a") == FALSE and any(x == "a") == TRUE whereas our
+  corresponding methods would return NA in those cases.  The methods
+  fixed are allValue(), anyValue(), col- and rowAlls(), and
+  col- and rowAnys().  Added more package tests to cover these cases.
+o BUG FIX: Now logSumExp(x, na.rm=TRUE) would return NA if all values
+  were NA and length(x) > 1.  Now it returns -Inf for all length(x):s.
+o CLEANUP: anyMissing() is no longer an S4 generic.  This was done as
+  part of the migration of making all functions of matrixStats plain
+  R functions, which minimizes calling overhead and it will also allow
+  us to drop 'methods' from the package dependencies.  I've scanned
+  all CRAN and Bioconductor packages depending on matrixStats and
+  none of them relied on anyMissing() dispatching on class, so
+  hopefully this move has little impact. The only remaining S4 methods
+  are now colMedians() and rowMedians().
+o CLEANUP: Package no longer depends on R.methodsS3.
+
+
 Version: 0.13.1 [2015-01-21]
 o BUG FIX: diff2() with differences >= 3 would *read* spurious values
   beyond the allocated memory.  This error, introduced in 0.13.0, was
