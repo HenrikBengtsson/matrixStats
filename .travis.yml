@@ -13,10 +13,10 @@ language: c
 
 env:
   global:
-    # Use r-travis or r-builder?
     - RENV="./pkg-build.sh"    # r-builder
     - R_BUILD_ARGS="--no-manual"
     - R_CHECK_ARGS="--no-manual --as-cran"
+    - _R_CHECK_CRAN_INCOMING_=TRUE
     - _R_CHECK_FORCE_SUGGESTS_=false
     # Need LaTeX? (very time consuming!)
     - BOOTSTRAP_LATEX=""
@@ -27,9 +27,9 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-#    - RVERSION=3.0.3
-#    - RVERSION=3.1.2
-    - RVERSION=devel
+    - RVERSION=3.0.3
+    - RVERSION=3.1.2
+    - RVERSION=devel _R_CHECK_FULL_=TRUE
 
 
 before_install:
@@ -44,10 +44,10 @@ before_install:
     fi
 
 install:
-  - $RENV install_r R.devices R.rsp
-  - $RENV install_r base64enc knitr
-  - $RENV install_r ggplot2 microbenchmark
-#  - $RENV install_deps
+
+
+
+ - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 script:
   - $RENV run_build
@@ -56,9 +56,8 @@ script:
 after_success:
   - $RENV dump_logs_by_extension out
   - $RENV install_devtools
-  - $RENV install_github HenrikBengtsson/R.methodsS3@develop
   - $RENV install_github HenrikBengtsson/covr
-  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R
   - $RENV run_script .coveralls.R
 
 after_failure:
