@@ -1,5 +1,3 @@
-# R package: matrixStats
-
 The matrixStats package provides highly optimized functions for
 computing common summaries over rows and columns of matrices,
 e.g. `rowQuantiles()`. There are also functions that operate on vectors,
@@ -30,18 +28,3 @@ html <- matrixStats:::benchmark('index')
 browseURL(html)
 ```
 One report per function will be generated.  Some functions take several minutes to benchmark.
-
-## Installation
-Package is available on [CRAN](http://cran.r-project.org/package=matrixStats).  Install in R as:
-```r
-install.packages('matrixStats')
-```
-
-
-## Software quality
-
-| Resource:     | CRAN        | Travis CI        | Appveyor         |
-| ------------- | ------------------- | ---------------- | ---------------- |
-| _Platforms:_  | _Multiple_          | _Linux_          | _Windows_        |
-| R CMD check   | [status](http://cran.r-project.org/web/checks/check_results_matrixStats.html) | <a href="https://travis-ci.org/HenrikBengtsson/matrixStats"><img src="https://travis-ci.org/HenrikBengtsson/matrixStats.svg" alt="Build status"></a>    |  |
-| Test coverage |                     | <a href="https://coveralls.io/r/HenrikBengtsson/matrixStats"><img src="https://coveralls.io/repos/HenrikBengtsson/matrixStats/badge.png?branch=develop" alt="Coverage Status"/></a> |                  |
