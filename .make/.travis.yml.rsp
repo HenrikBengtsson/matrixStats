@@ -1,0 +1,153 @@
+<%------------------------------------------------------------------------
+ Usage:
+ yml <- R.rsp::rfile(".travis.yml.rsp")
+ ------------------------------------------------------------------------%>
+<%
+pd <- local({
+  pd <- NULL
+  function() {
+    if (is.null(pd)) {
+      pd <<- as.list(as.data.frame(read.dcf("DESCRIPTION"), stringsAsFactors=FALSE))
+    }
+    pd
+  }
+})
+
+pkg <- function() pd()$Package
+
+deps <- function(what=c("Depends", "Imports", "Suggests")) {
+  deps <- unlist(pd()[what], use.names=FALSE)
+  if (length(deps) == 0) return("")
+  deps <- unlist(strsplit(deps, split=","), use.names=FALSE)
+  deps <- gsub("[(].*[)]", "", deps)
+  deps <- gsub("[ \n\t]", "", deps)
+  deps <- setdiff(deps, c("R", "base", "datasets", "graphics", "grDevices", "methods", "parallel", "stats", "tcltk", "tools", "utils"))
+  sort(deps)
+}
+
+cran <- local({
+  pkgs <- NULL
+  function() {
+    if (is.null(pkgs)) {
+      repos <- "http://cran.r-project.org"
+      data <- available.packages(contriburl=contrib.url(repos, "source"))
+      pkgs <<- rownames(data)
+    }
+    pkgs
+  }
+})
+
+bioc <- local({
+  pkgs <- NULL
+  function() {
+    if (is.null(pkgs)) {
+      repos <- "http://www.bioconductor.org/packages/devel/bioc/"
+      data <- available.packages(contriburl=contrib.url(repos, "source"))
+      pkgs <<- rownames(data)
+    }
+    pkgs
+  }
+})
+
+deps_on_cran <- function(...) {
+  deps <- deps(...)
+  deps[deps %in% cran()]
+}
+
+deps_on_bioc <- function(...) {
+  deps <- deps(...)
+  deps[deps %in% bioc()]
+}
+
+deps_elsewhere <- function(...) {
+  deps <- deps(...)
+  deps[!deps %in% c(cran(), bioc())]
+}
+
+install_cran <- function(...) {
+  pkgs <- deps_on_cran(...)
+  if (length(pkgs) > 0L) {
+    sprintf(" - $RENV install_r %s", paste(pkgs, collapse=" "))
+  } else ""
+}
+
+install_bioc <- function(...) {
+  pkgs <- deps_on_bioc(...)
+  if (length(pkgs) > 0L) {
+    sprintf(" - $RENV install_bioc %s", paste(pkgs, collapse=" "))
+  } else ""
+}
+%>
+#----------------------------------------------------------------
+# Travis-CI configuration for R packages
+#
+# REFERENCES:
+# * Travis CI: https://travis-ci.org/
+# * r-builder: https://github.com/metacran/r-builder
+# * covr: https://github.com/jimhester/covr
+# * Coveralls: https://coveralls.io/
+#
+# Validate your .travis.yml file at http://lint.travis-ci.org/
+#----------------------------------------------------------------
+language: c
+
+env:
+  global:
+    - RENV="./pkg-build.sh"    # r-builder
+    - R_BUILD_ARGS="--no-manual"
+    - R_CHECK_ARGS="--no-manual --as-cran"
+    - _R_CHECK_CRAN_INCOMING_=TRUE
+    - _R_CHECK_FORCE_SUGGESTS_=false
+    # Need LaTeX? (very time consuming!)
+    - BOOTSTRAP_LATEX=""
+    # Skip building vignettes, which iff LaTeX-based are very
+    # time consuming because LaTeX needs to be installed
+#    - R_BUILD_ARGS="--no-build-vignettes ${R_BUILD_ARGS}"
+#    - R_CHECK_ARGS="--no-build-vignettes ${R_CHECK_ARGS}"
+
+  # R versions r-builder should test on (ignored by r-travis)
+  matrix:
+    - RVERSION=3.0.3
+    - RVERSION=3.1.2
+    - RVERSION=devel _R_CHECK_FULL_=TRUE
+
+
+before_install:
+  - echo RENV=$RENV
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
+  - chmod 755 $RENV
+  - $RENV bootstrap
+  - if [ "BOOTSTRAP_LATEX" == "true" ]; then
+      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash);
+    else
+      export R_RSP_COMPILELATEX_FALLBACK="copy-force";
+    fi
+
+install:
+<%= install_bioc(c("Depends", "Imports")) %>
+<%= install_bioc("Suggests") %>
+<%= install_cran(c("Depends", "Imports")) %>
+<%= install_cran("Suggests") %>
+
+script:
+  - $RENV run_build
+  - $RENV run_check
+
+after_success:
+  - $RENV dump_logs_by_extension out
+  - $RENV install_devtools
+  - $RENV install_github HenrikBengtsson/covr
+  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R
+  - $RENV run_script .coveralls.R
+
+after_failure:
+  - $RENV dump_logs
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+branches:
+  except:
+   - /-expt$/
