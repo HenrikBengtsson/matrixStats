@@ -1,4 +1,4 @@
-# matrixStats: Methods that Apply to Rows and Columns of a Matrix (and to Vectors)
+# matrixStats: Methods that Apply to Rows and Columns of Matrices (and to Vectors)
 
 The matrixStats package provides highly optimized functions for
 computing common summaries over rows and columns of matrices,
