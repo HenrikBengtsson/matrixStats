@@ -19,7 +19,7 @@ calculate medians column by column using
 ```
 compared with
 ```r
-> mu <- apply(X, MARGIN=2, FUN=colMedians)
+> mu <- apply(X, MARGIN=2, FUN=medians)
 ```
 
 For formal benchmarking of `colMedians()` and other 'matrixStats' functions, run:

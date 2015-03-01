@@ -1,4 +1,4 @@
-# R package: matrixStats
+# matrixStats: Methods that Apply to Rows and Columns of a Matrix
 
 The matrixStats package provides highly optimized functions for
 computing common summaries over rows and columns of matrices,
@@ -21,7 +21,7 @@ calculate medians column by column using
 ```
 compared with
 ```r
-> mu <- apply(X, MARGIN=2, FUN=colMedians)
+> mu <- apply(X, MARGIN=2, FUN=medians)
 ```
 
 For formal benchmarking of `colMedians()` and other 'matrixStats' functions, run:
@@ -32,7 +32,7 @@ browseURL(html)
 One report per function will be generated.  Some functions take several minutes to benchmark.
 
 ## Installation
-Package is available on [CRAN](http://cran.r-project.org/package=matrixStats).  Install in R as:
+R package matrixStats is available on [CRAN](http://cran.r-project.org/package=matrixStats) and can be installed in R as:
 ```r
 install.packages('matrixStats')
 ```
