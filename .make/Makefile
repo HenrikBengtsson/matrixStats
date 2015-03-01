@@ -374,8 +374,8 @@ refresh_%:
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # GitHub, Travis CI, ...
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-README.md: .utils/README.md.rsp
+README.md: .make/README.md.rsp
 	$(R_SCRIPT) -e "R.rsp::rfile('$<', postprocess=FALSE)"
 
-.travis.yml: .utils/.travis.yml.rsp
+.travis.yml: .make/.travis.yml.rsp
 	$(R_SCRIPT) -e "R.rsp::rfile('$<', postprocess=FALSE)"

@@ -14,6 +14,17 @@ pkg <- local({
   }
 })
 
+pkg_title <- local({
+  title <- NULL
+  function() {
+    if (is.null(title)) {
+      pd <- as.list(as.data.frame(read.dcf("DESCRIPTION"), stringsAsFactors=FALSE))
+      title <<- pd$Title
+    }
+	title
+  }
+})
+
 cran <- local({
   available <- NULL
   function() {
@@ -80,25 +91,25 @@ coveralls <- function() {
   sprintf('<a href="https://coveralls.io/r/%s"><img src="https://coveralls.io/repos/%s/badge.png?branch=develop" alt="Coverage Status"/></a>', github_repos(), github_repos())
 }
 %>
-# R package: <%=pkg()%>
+# <%=pkg()%>: <%=pkg_title()%>
 
 <% if (file.exists("OVERVIEW.md")) { R.rsp::rcat(file="OVERVIEW.md") } %>
 
 ## Installation
 <% if (cran()) { %>
-Package is available on [CRAN](http://cran.r-project.org/package=<%=pkg()%>).  Install in R as:
+R package <%=pkg()%> is available on [CRAN](http://cran.r-project.org/package=<%=pkg()%>) and can be installed in R as:
 ```r
 install.packages('<%=pkg()%>')
 ```
 <% } else if (bioc()) { %>
-Package is available on [Bioconductor](http://www.bioconductor.org/packages/devel/bioc/html/<%=pkg()%>.html).  Install in R as:
+R package <%=pkg()%> is available on [Bioconductor](http://www.bioconductor.org/packages/devel/bioc/html/<%=pkg()%>.html) and can be installed in R as:
 
 ```r
-source('http://bioconductor.org/biocLite.html')
+source('http://bioconductor.org/biocLite.R')
 biocLite('<%=pkg()%>')
 ```
 <% } else { %>
-Package is only available via [GitHub](https://github.com/<%=github_repos()%>).  Install in R as:
+R package <%=pkg()%> is only available via [GitHub](https://github.com/<%=github_repos()%>) and can be installed in R as:
 ```r
 source('http://callr.org/install#<%=github_repos()%>')
 ```
