@@ -25,8 +25,8 @@ compared with
 ```
 
 ## Benchmarks
-For formal benchmark reports, see the [Wiki
-Pages](https://github.com/HenrikBengtsson/matrixStats/wiki/) of matrixStats.
+For formal benchmarking of matrixStats functions relative to
+alternatives, see the [Benchmark reports](https://github.com/HenrikBengtsson/matrixStats/wiki/Benchmark-reports).
 
 ## Installation
 R package matrixStats is available on [CRAN](http://cran.r-project.org/package=matrixStats) and can be installed in R as:

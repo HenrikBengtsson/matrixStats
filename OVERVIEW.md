@@ -23,5 +23,5 @@ compared with
 ```
 
 ## Benchmarks
-For formal benchmark reports, see the [Wiki
-Pages](https://github.com/HenrikBengtsson/matrixStats/wiki/) of matrixStats.
+For formal benchmarking of matrixStats functions relative to
+alternatives, see the [Benchmark reports](https://github.com/HenrikBengtsson/matrixStats/wiki/Benchmark-reports).
