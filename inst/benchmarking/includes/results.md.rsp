@@ -28,10 +28,24 @@
 })%>)
 <% } # toImage() %>
 
-<% toTable <- function(stats, tags=NULL, order="median", ...) { %>
-<% kable({ s <- summary(stats); s[order(s[[order]]),] }) %>
-<% kable({ s <- summary(stats, unit="relative"); s[order(s[[order]]),] }) %>
-<% } %>
+<%
+toTable <- function(stats, tags=NULL, order="median", ...) {
+  kable({
+    s <- summary(stats)
+	s$neval <- NULL
+	s$cld <- NULL
+    s <- s[order(s[[order]]),]
+	s
+  })
+  kable({
+    s <- summary(stats, unit="relative")
+	s$neval <- NULL
+	s$cld <- NULL
+    s <- s[order(s[[order]]),]
+	s
+  })
+}
+%>
 
 
 <%--------------------------------------------------------------
