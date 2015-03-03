@@ -24,12 +24,9 @@ compared with
 > mu <- apply(X, MARGIN=2, FUN=medians)
 ```
 
-For formal benchmarking of `colMedians()` and other 'matrixStats' functions, run:
-```r
-html <- matrixStats:::benchmark('index')
-browseURL(html)
-```
-One report per function will be generated.  Some functions take several minutes to benchmark.
+## Benchmarks
+For formal benchmarking of matrixStats functions relative to
+alternatives, see the [Benchmark reports](https://github.com/HenrikBengtsson/matrixStats/wiki/Benchmark-reports).
 
 ## Installation
 R package matrixStats is available on [CRAN](http://cran.r-project.org/package=matrixStats) and can be installed in R as:
