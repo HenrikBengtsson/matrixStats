@@ -20,6 +20,8 @@
 \usage{
  rowMins_R(x, cols=1:dim(x)[2], ...)
  colMins_R(x, rows=1:dim(x)[1], ...)
+ rowMins_C(x, cols=dim(x)[2], ...)
+ colMins_C(x, rows=1:dim(x)[1], ...)
 }
 
 \arguments{
@@ -31,6 +33,11 @@
 
 \value{
   Returns a \code{\link[base]{vector}} of length N.
+}
+
+\details{
+  The implementation of \code{rowMins_C()} is optimized for both speed
+  and memory by using C.
 }
 
 \author{Dongcan Jiang}
