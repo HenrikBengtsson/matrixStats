@@ -47,6 +47,7 @@ install:
   - $RENV install_r R.devices R.rsp
   - $RENV install_r base64enc knitr
   - $RENV install_r ggplot2 microbenchmark
+  - $RENV install_r inline
 #  - $RENV install_deps
 
 script:

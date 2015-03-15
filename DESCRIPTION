@@ -2,7 +2,7 @@ Package: matrixStats
 Version: 0.14.0
 Depends: R (>= 2.9.0)
 Imports: methods
-Suggests: R.rsp, microbenchmark, R.devices, base64enc, ggplot2, knitr
+Suggests: R.rsp, microbenchmark, R.devices, base64enc, ggplot2, knitr, inline
 VignetteBuilder: R.rsp
 Date: 2015-02-13
 Title: Methods that Apply to Rows and Columns of a Matrix

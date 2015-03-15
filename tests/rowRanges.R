@@ -1,10 +1,10 @@
 library("matrixStats")
 
-rowMins_R <- function(x, ...) {
+rowMins_RT <- function(x, ...) {
   suppressWarnings({
     apply(x, MARGIN=1L, FUN=min, ...)
   })
-} # rowMins_R()
+} # rowMins_RT()
 
 rowMaxs_R <- function(x, ...) {
   suppressWarnings({
@@ -49,7 +49,7 @@ for (mode in c("integer", "double")) {
 
       # Min
       cat("min:\n")
-      m0 <- rowMins_R(x, na.rm=na.rm)
+      m0 <- rowMins_RT(x, na.rm=na.rm)
       m1 <- rowMins(x, na.rm=na.rm)
       m2 <- colMins(t(x), na.rm=na.rm)
       stopifnot(all.equal(m1, m2))
@@ -167,7 +167,7 @@ for (na.rm in c(FALSE, TRUE)) {
     print(na)
 
     cat("  min:\n")
-    y0 <- rowMins_R(na, na.rm=na.rm)
+    y0 <- rowMins_RT(na, na.rm=na.rm)
     str(y0)
     y1 <- rowMins(na, na.rm=na.rm)
     str(y1)

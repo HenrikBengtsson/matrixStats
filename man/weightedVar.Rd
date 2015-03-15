@@ -19,6 +19,7 @@
 
 \usage{
  weightedVar(x, w, na.rm=FALSE, center=NULL, ...)
+ weightedVar_C(x, w=NULL, na.rm=FALSE, center=NULL, ...)
  colWeightedVars(x, w=NULL, na.rm=FALSE, ...)
  rowWeightedVars(x, w=NULL, na.rm=FALSE, ...)
 
@@ -50,6 +51,11 @@
 
 \value{
   Returns a \code{\link[base]{numeric}} scalar.
+}
+
+\details{
+  The implementation of \code{weightedVar_C()} is optimized for both speed
+  and memory by using C.
 }
 
 \section{Missing values}{

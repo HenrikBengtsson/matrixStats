@@ -10,6 +10,7 @@
 #
 # \usage{
 #  @usage weightedVar
+#  @usage weightedVar_C
 #  @usage colWeightedVars
 #  @usage rowWeightedVars
 #
@@ -41,6 +42,11 @@
 #
 # \value{
 #   Returns a @numeric scalar.
+# }
+#
+# \details{
+#   The implementation of \code{weightedVar_C()} is optimized for both speed
+#   and memory by using C.
 # }
 #
 # \section{Missing values}{
@@ -162,10 +168,24 @@ colWeightedSds <- function(x, w=NULL, na.rm=FALSE, ...) {
 } # colWeightedSds()
 
 
+weightedVar_C <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
+  res <- .Call("weightedVar", x, w, na.rm, center, PACKAGE="matrixStats")
+  storage.mode(res) <- storage.mode(x)
+  res
+} # weightedVar()
+
+###############################################################################
+# HISTORY:
+# 2014-12-08
+# o Created.
+###############################################################################
+
 ############################################################################
 # HISTORY:
 # 2014-11-10
 # o Turned weightedSd() and weightedVar() into plain function.
 # 2014-03-26
 # o Created from weightedMad.R.
+# 2015-03-15
+# o Create weightedVar_C().
 ############################################################################

@@ -2,6 +2,7 @@ library("matrixStats")
 
 FUNs <- list(
   weightedVar=weightedVar,
+  weightedVar_C=weightedVar_C,
   weightedSd=weightedSd,
   weightedMad=weightedMad
 )
