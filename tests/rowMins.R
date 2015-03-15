@@ -29,3 +29,11 @@ stopifnot(all.equal(m0, m2))
 stopifnot(all.equal(m0, m3))
 stopifnot(all.equal(m0, m4))
 
+# Test with sapply
+X <- matrix(1:50, nrow = 5, ncol = 10)
+factors <- as.factor(c(3,1,1,2,2,1,1,2,3,1))
+groups <- split(seq(along=factors), factors)
+Y0 <- sapply(groups, FUN=function(idxs) rowMins(X[,idxs]))
+Y1 <- sapply(groups, FUN=function(idxs) rowMins_C(X, cols=idxs))
+stopifnot(all.equal(Y0, Y1))
+
