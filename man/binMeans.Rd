@@ -13,7 +13,7 @@
 \title{Fast mean calculations in non-overlapping bins}
 
 \usage{
-binMeans(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
+binMeans(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 }
 
 \description{
@@ -23,6 +23,7 @@ binMeans(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 \arguments{
   \item{y}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K values to calculate means on.}
   \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K positions for to be binned.}
+  \item{w}{(optional) A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K non-negative weights.}
   \item{bx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B+1 ordered positions specifying
      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
      \code{[bx[B],bx[B+1])}.}
@@ -62,14 +63,26 @@ mu <- double(length(x))
 mu[1:50] <- 5
 mu[101:150] <- -5
 y <- mu + rnorm(length(x))
+outliers <- c(25:30,175:180)
+y[outliers] <- y[outliers] - 5
 
 # Binning
 bx <- c(0,50,100,150,200)+0.5
 yS <- binMeans(y, x=x, bx=bx)
 
+# Plot
 plot(x,y)
 for (kk in seq(along=yS)) {
   lines(bx[c(kk,kk+1)], yS[c(kk,kk)], col="blue", lwd=2)
+}
+
+# Weighted binning
+w <- rep(1, times=length(x))
+w[outliers] <- 0.1  # Down-weight outliers
+ySw <- binMeans(y, w=w, x=x, bx=bx)
+
+for (kk in seq(along=yS)) {
+  lines(bx[c(kk,kk+1)], ySw[c(kk,kk)], col="red", lwd=2)
 }
 }
 

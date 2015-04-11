@@ -147,7 +147,7 @@ print(bench(N=100e3, K= 20))
 }
 
 \author{
-  Henrik Bengtsson and Ola \enc{Hössjer}{Hossjer}, Centre for Mathematical
+  Henrik Bengtsson and Ola Hossjer, Centre for Mathematical
   Sciences, Lund University.
   Thanks to Roger Koenker, Econometrics, University of Illinois, for
   the initial ideas.
