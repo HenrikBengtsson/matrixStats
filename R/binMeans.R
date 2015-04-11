@@ -12,6 +12,7 @@
 # \arguments{
 #   \item{y}{A @numeric @vector of K values to calculate means on.}
 #   \item{x}{A @numeric @vector of K positions for to be binned.}
+#   \item{w}{(optional) A @numeric @vector of K non-negative weights.}
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
 #      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
@@ -63,7 +64,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
+binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,6 +83,22 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   }
   if (length(x) != n) {
     stop("Argument 'y' and 'x' are of different lengths: ", length(y), " != ", length(x));
+  }
+
+  # Argument 'w':
+  if (!is.null(w)) {
+    if (!is.numeric(w)) {
+      stop("Argument 'w' is not numeric: ", mode(w))
+    }
+    if (length(x) != n) {
+      stop("Argument 'y' and 'w' are of different lengths: ", length(y), " != ", length(w))
+    }
+    if (any(w < 0)) {
+      stop("Argument 'w' must not contain negative weights.")
+    }
+    if (any(is.infinite(w))) {
+      stop("Argument 'w' must not contain infinite weights.")
+    }
   }
 
   # Argument 'bx':
@@ -117,25 +134,39 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   if (length(keep) < n) {
     x <- x[keep];
     y <- y[keep];
+    if (!is.null(w)) w <- w[keep]
     n <- length(y);
   }
   keep <- NULL; # Not needed anymore
 
-  # Drop missing values in 'y'?
   if (na.rm) {
+    # Drop missing values in 'y'?
     keep <- which(!is.na(y));
     if (length(keep) < n) {
       x <- x[keep];
       y <- y[keep];
+      if (!is.null(w)) w <- w[keep]
     }
     keep <- NULL; # Not needed anymore
+
+    # Drop missing values in 'z'?
+    if (!is.null(w)) {
+      keep <- which(!is.na(w))
+      if (length(keep) < n) {
+        x <- x[keep]
+        y <- y[keep]
+        w <- w[keep]
+      }
+      keep <- NULL  # Not needed anymore
+    }
   }
 
-  # Order (x,y) by increasing x.
+  # Order (x,y,w) by increasing x.
   # If 'x' is already sorted, the overhead of (re)sorting is
   # relatively small.
   x <- sort.int(x, method="quick", index.return=TRUE);
   y <- y[x$ix];
+  if (!is.null(w)) w <- w[x$ix]
   x <- x$x;
 
 
@@ -146,12 +177,31 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   x <- as.numeric(x);
   bx <- as.numeric(bx);
   count <- as.logical(count);
-  .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats");
+
+  if (is.null(w)) {
+    .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats")
+  } else {
+    w <- as.numeric(w)
+
+    # Total weight per bin
+    bw <- .Call("binMeans", w, x, bx, FALSE, right, PACKAGE="matrixStats")
+
+    # Total weighted sum per bin
+    y <- w*y
+    w <- NULL  # Not needed anymore
+    bwy <- .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats")
+    x <- y <- bx <- NULL  # Not needed anymore
+
+    # Weighted mean per bin
+    bwy / bw
+  }
 } # binMeans()
 
 
 ############################################################################
 # HISTORY:
+# 2015-04-11 [HB]
+# o binMeans() also accepts weights.
 # 2014-12-29 [HB]
 # o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
 #   of o <- order(); any(diff(o) != 1L).

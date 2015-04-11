@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.14.0-9000 [2015-04-11]
+o binMeans() gained optional argument 'w' for weighted bin means.
+
+
 Version: 0.14.0 [2015-02-13]
 o ROBUSTNESS/TESTS: Package tests cover 96% of the code (was 91%).
 o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to
