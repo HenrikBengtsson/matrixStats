@@ -70,23 +70,24 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'y':
   if (!is.numeric(y)) {
-    stop("Argument 'y' is not numeric: ", mode(y));
+    stop("Argument 'y' is not numeric: ", mode(y))
   }
   if (any(is.infinite(y))) {
-    stop("Argument 'y' must not contain Inf values.");
+    stop("Argument 'y' must not contain Inf values.")
   }
-  n <- length(y);
+  n <- length(y)
 
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x));
+    stop("Argument 'x' is not numeric: ", mode(x))
   }
   if (length(x) != n) {
-    stop("Argument 'y' and 'x' are of different lengths: ", length(y), " != ", length(x));
+    stop("Argument 'y' and 'x' are of different lengths: ", length(y), " != ", length(x))
   }
 
   # Argument 'w':
-  if (!is.null(w)) {
+  hasWeights <- !is.null(w)
+  if (hasWeights) {
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w))
     }
@@ -103,54 +104,54 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 
   # Argument 'bx':
   if (!is.numeric(bx)) {
-    stop("Argument 'bx' is not numeric: ", mode(bx));
+    stop("Argument 'bx' is not numeric: ", mode(bx))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values.");
+    stop("Argument 'bx' must not contain Inf values.")
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered.");
+    stop("Argument 'bx' is not ordered.")
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop("Argument 'na.rm' is not logical: ", mode(na.rm));
+    stop("Argument 'na.rm' is not logical: ", mode(na.rm))
   }
 
   # Argument 'count':
   if (!is.logical(count)) {
-    stop("Argument 'count' is not logical: ", mode(count));
+    stop("Argument 'count' is not logical: ", mode(count))
   }
 
   # Argument 'right':
-  right <- as.logical(right);
+  right <- as.logical(right)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Preprocessing of (x,y)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Drop missing values in 'x'
-  keep <- which(!is.na(x));
+  keep <- which(!is.na(x))
   if (length(keep) < n) {
-    x <- x[keep];
-    y <- y[keep];
-    if (!is.null(w)) w <- w[keep]
-    n <- length(y);
+    x <- x[keep]
+    y <- y[keep]
+    if (hasWeights) w <- w[keep]
+    n <- length(y)
   }
-  keep <- NULL; # Not needed anymore
+  keep <- NULL # Not needed anymore
 
   if (na.rm) {
     # Drop missing values in 'y'?
-    keep <- which(!is.na(y));
+    keep <- which(!is.na(y))
     if (length(keep) < n) {
-      x <- x[keep];
-      y <- y[keep];
-      if (!is.null(w)) w <- w[keep]
+      x <- x[keep]
+      y <- y[keep]
+      if (hasWeights) w <- w[keep]
     }
-    keep <- NULL; # Not needed anymore
+    keep <- NULL # Not needed anymore
 
     # Drop missing values in 'z'?
-    if (!is.null(w)) {
+    if (hasWeights) {
       keep <- which(!is.na(w))
       if (length(keep) < n) {
         x <- x[keep]
@@ -164,23 +165,21 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
   # Order (x,y,w) by increasing x.
   # If 'x' is already sorted, the overhead of (re)sorting is
   # relatively small.
-  x <- sort.int(x, method="quick", index.return=TRUE);
-  y <- y[x$ix];
-  if (!is.null(w)) w <- w[x$ix]
-  x <- x$x;
+  x <- sort.int(x, method="quick", index.return=TRUE)
+  y <- y[x$ix]
+  if (hasWeights) w <- w[x$ix]
+  x <- x$x
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Bin
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  y <- as.numeric(y);
-  x <- as.numeric(x);
-  bx <- as.numeric(bx);
-  count <- as.logical(count);
+  y <- as.numeric(y)
+  x <- as.numeric(x)
+  bx <- as.numeric(bx)
+  count <- as.logical(count)
 
-  if (is.null(w)) {
-    .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats")
-  } else {
+  if (hasWeights) {
     w <- as.numeric(w)
 
     # Total weight per bin
@@ -194,6 +193,8 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 
     # Weighted mean per bin
     bwy / bw
+  } else {
+    .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats")
   }
 } # binMeans()
 
