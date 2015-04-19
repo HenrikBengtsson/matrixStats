@@ -2,7 +2,6 @@
 
 <%@string colname="colDiffs"%>
 <%@string rowname="rowDiffs"%>
-<% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
 <%@meta date="2014-12-30"%>

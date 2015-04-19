@@ -2,7 +2,6 @@
 
 <%@string colname="colProds"%>
 <%@string rowname="rowProds"%>
-<% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
 <%@meta date="2014-11-15"%>
