@@ -12,7 +12,6 @@
 # \arguments{
 #   \item{y}{A @numeric @vector of K values to calculate means on.}
 #   \item{x}{A @numeric @vector of K positions for to be binned.}
-#   \item{w}{(optional) A @numeric @vector of K non-negative weights.}
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
 #      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
@@ -64,7 +63,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
+binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -140,6 +139,7 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
   }
   keep <- NULL # Not needed anymore
 
+  # Drop missing values in 'y'?
   if (na.rm) {
     # Drop missing values in 'y'?
     keep <- which(!is.na(y))
@@ -162,7 +162,7 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
     }
   }
 
-  # Order (x,y,w) by increasing x.
+  # Order (x,y) by increasing x.
   # If 'x' is already sorted, the overhead of (re)sorting is
   # relatively small.
   x <- sort.int(x, method="quick", index.return=TRUE)
@@ -201,8 +201,6 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 
 ############################################################################
 # HISTORY:
-# 2015-04-11 [HB]
-# o binMeans() also accepts weights.
 # 2014-12-29 [HB]
 # o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
 #   of o <- order(); any(diff(o) != 1L).
@@ -222,3 +220,4 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
 #   Martin Morgan, Fred Hutchinson Cancer Research Center, Seattle.
 # o Created.
 ############################################################################
+
