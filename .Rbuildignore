@@ -5,6 +5,7 @@
 ^.git
 ^.make
 README[.]md
+OVERVIEW[.]md
 
 #----------------------------
 # Travis-CI et al.
