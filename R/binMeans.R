@@ -94,7 +94,7 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
     if (length(x) != n) {
       stop("Argument 'y' and 'w' are of different lengths: ", length(y), " != ", length(w))
     }
-    if (any(w < 0)) {
+    if (any(w < 0, na.rm=TRUE)) {
       stop("Argument 'w' must not contain negative weights.")
     }
     if (any(is.infinite(w))) {
@@ -130,7 +130,7 @@ binMeans <- function(y, x, w=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Preprocessing of (x,y,w)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Drop missing values in 'x'
+  # Always drop missing values in 'x'
   keep <- which(!is.na(x));
   if (length(keep) < n) {
     x <- x[keep];
