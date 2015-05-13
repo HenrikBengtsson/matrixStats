@@ -141,3 +141,15 @@ for (na.rm in c(FALSE, TRUE)) {
     stopifnot(identical(c,r1[rr]))
   }
 }
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# NA 0 test
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(0, nrow=3, ncol=3)
+x[1,] <- c(NA, NA, 0)
+x[3,] <- c(1, 0, 1)
+
+r0 <- rowAnys_R(x, value=0)
+r1 <- rowAnys(x, value=0)
+stopifnot(identical(r0, r1))
