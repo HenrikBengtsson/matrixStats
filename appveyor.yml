@@ -30,6 +30,8 @@ build_script:
 
 
 
+
+
  - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 test_script:

@@ -27,8 +27,8 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-    - RVERSION=3.0.3
-    - RVERSION=3.1.2
+    - RVERSION=3.1.3
+    - RVERSION=3.2.0
     - RVERSION=devel _R_CHECK_FULL_=TRUE
 
 
@@ -47,6 +47,8 @@ install:
 
 
 
+
+
  - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 script:
@@ -55,10 +57,12 @@ script:
 
 after_success:
   - $RENV dump_logs_by_extension out
-  - $RENV install_devtools
-  - $RENV install_github HenrikBengtsson/covr
-  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R
-  - $RENV run_script .coveralls.R
+  - if [ -f ".coveralls.R" ]; then
+      $RENV install_devtools;
+      $RENV install_github HenrikBengtsson/covr;
+      curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
+      $RENV run_script .coveralls.R;
+    fi
 
 after_failure:
   - $RENV dump_logs

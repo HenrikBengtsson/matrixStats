@@ -15,13 +15,13 @@ pd <- local({
 
 pkg <- function() pd()$Package
 
-deps <- function(what=c("Depends", "Imports", "Suggests")) {
+deps <- function(what=c("Depends", "Imports", "Suggests", "SuggestsNote")) {
   deps <- unlist(pd()[what], use.names=FALSE)
   if (length(deps) == 0) return("")
-  deps <- unlist(strsplit(deps, split=","), use.names=FALSE)
+  deps <- unlist(strsplit(deps, split="[,:]"), use.names=FALSE)
   deps <- gsub("[(].*[)]", "", deps)
   deps <- gsub("[ \n\t]", "", deps)
-  deps <- setdiff(deps, c("R", "base", "datasets", "graphics", "grDevices", "methods", "parallel", "stats", "tcltk", "tools", "utils"))
+  deps <- setdiff(deps, c("R", "base", "datasets", "graphics", "grDevices", "methods", "parallel", "splines", "stats", "tcltk", "tools", "utils", "Recommended"))
   sort(deps)
 }
 
@@ -43,7 +43,14 @@ bioc <- local({
     if (is.null(pkgs)) {
       repos <- "http://www.bioconductor.org/packages/devel/bioc/"
       data <- available.packages(contriburl=contrib.url(repos, "source"))
-      pkgs <<- rownames(data)
+      pkgsA <- rownames(data)
+      repos <- "http://www.bioconductor.org/packages/devel/data/annotation/"
+      data <- available.packages(contriburl=contrib.url(repos, "source"))
+      pkgsB <- rownames(data)
+      repos <- "http://www.bioconductor.org/packages/devel/data/experiment/"
+      data <- available.packages(contriburl=contrib.url(repos, "source"))
+      pkgsC <- rownames(data)
+      pkgs <<- c(pkgsA, pkgsB, pkgsC)
     }
     pkgs
   }
@@ -107,10 +114,12 @@ install:
 # Adapt as necessary starting from here
 
 build_script:
+<%= install_bioc(c("SuggestsNote")) %>
+<%= install_cran(c("SuggestsNote")) %>
 <%= install_bioc(c("Depends", "Imports")) %>
-<%= install_bioc("Suggests") %>
 <%= install_cran(c("Depends", "Imports")) %>
-<%= install_cran("Suggests") %>
+<%= install_bioc(c("Suggests")) %>
+<%= install_cran(c("Suggests")) %>
 
 test_script:
   - travis-tool.sh run_tests

@@ -15,14 +15,37 @@ pd <- local({
 
 pkg <- function() pd()$Package
 
-deps <- function(what=c("Depends", "Imports", "Suggests")) {
+deps <- function(what=c("Depends", "Imports", "Suggests", "SuggestsNote")) {
   deps <- unlist(pd()[what], use.names=FALSE)
   if (length(deps) == 0) return("")
-  deps <- unlist(strsplit(deps, split=","), use.names=FALSE)
-  deps <- gsub("[(].*[)]", "", deps)
+  deps <- unlist(strsplit(deps, split="[,:]"), use.names=FALSE)
   deps <- gsub("[ \n\t]", "", deps)
-  deps <- setdiff(deps, c("R", "base", "datasets", "graphics", "grDevices", "methods", "parallel", "stats", "tcltk", "tools", "utils"))
+  deps <- gsub("[(].*[)]", "", deps)
+  deps <- setdiff(deps, c("R", "base", "datasets", "graphics", "grDevices", "methods", "parallel", "splines", "stats", "tcltk", "tools", "utils", "Recommended"))
   sort(deps)
+}
+
+deps_on_R <- function() {
+  deps <- unlist(pd(), use.names=FALSE)
+  if (length(deps) == 0) return("")
+  deps <- unlist(strsplit(deps, split="[,:]"), use.names=FALSE)
+  deps <- gsub("^([ \n\t]+|[ \n\t]+$)", "", deps)
+  deps <- grep("^R[ ]*[(].*[)]$", deps, value=TRUE)
+  if (length(deps) == 0) {
+    op <- ">="
+    ver <- "0.0"
+  } else {
+    pattern <- ".*[(][ ]*([^0-9 ]*)[ ]*(.*)[)]$"
+    op <- gsub(pattern, "\\1", deps)
+    if (nchar(op) == 0L) op <- "=="
+    ver <- gsub(pattern, "\\2", deps)
+  }
+  comp <- eval(parse(text=sprintf("function(ver) { package_version(ver) %s package_version('%s') }", op, ver)))
+  list(op=op, ver=ver, comp=comp)
+}
+
+support_R <- function(ver) {
+  deps_on_R()$comp(ver)
 }
 
 cran <- local({
@@ -43,7 +66,14 @@ bioc <- local({
     if (is.null(pkgs)) {
       repos <- "http://www.bioconductor.org/packages/devel/bioc/"
       data <- available.packages(contriburl=contrib.url(repos, "source"))
-      pkgs <<- rownames(data)
+      pkgsA <- rownames(data)
+      repos <- "http://www.bioconductor.org/packages/devel/data/annotation/"
+      data <- available.packages(contriburl=contrib.url(repos, "source"))
+      pkgsB <- rownames(data)
+      repos <- "http://www.bioconductor.org/packages/devel/data/experiment/"
+      data <- available.packages(contriburl=contrib.url(repos, "source"))
+      pkgsC <- rownames(data)
+      pkgs <<- c(pkgsA, pkgsB, pkgsC)
     }
     pkgs
   }
@@ -107,9 +137,15 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-    - RVERSION=3.0.3
-    - RVERSION=3.1.2
-    - RVERSION=devel _R_CHECK_FULL_=TRUE
+<% 
+rversion <- c(
+  "3.1.3" = "3.1.3",
+  "3.2.0" = "3.2.0",
+  "3.3.0" = "devel _R_CHECK_FULL_=TRUE"
+)
+for (v in names(rversion))
+  if (support_R(v)) cat(sprintf("    - RVERSION=%s\n", rversion[v]))
+%>
 
 
 before_install:
@@ -124,10 +160,12 @@ before_install:
     fi
 
 install:
+<%= install_bioc(c("SuggestsNote")) %>
+<%= install_cran(c("SuggestsNote")) %>
 <%= install_bioc(c("Depends", "Imports")) %>
-<%= install_bioc("Suggests") %>
 <%= install_cran(c("Depends", "Imports")) %>
-<%= install_cran("Suggests") %>
+<%= install_bioc(c("Suggests")) %>
+<%= install_cran(c("Suggests")) %>
 
 script:
   - $RENV run_build
@@ -135,10 +173,12 @@ script:
 
 after_success:
   - $RENV dump_logs_by_extension out
-  - $RENV install_devtools
-  - $RENV install_github HenrikBengtsson/covr
-  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R
-  - $RENV run_script .coveralls.R
+  - if [ -f ".coveralls.R" ]; then
+      $RENV install_devtools;
+      $RENV install_github HenrikBengtsson/covr;
+      curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
+      $RENV run_script .coveralls.R;
+    fi
 
 after_failure:
   - $RENV dump_logs
