@@ -172,7 +172,7 @@ for (value in c("g", NA_character_)) {
 # NA 0 test
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(0, nrow=3, ncol=3)
-x[1,] <- c(NA, NA, 0)
+x[1,] <- c(NA_real_, NA_real_, 0)
 x[3,] <- c(1, 0, 1)
 
 r0 <- rowAnys_R(x, value=0)
