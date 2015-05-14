@@ -1,6 +1,7 @@
 # matrixStats: Methods that Apply to Rows and Columns of a Matrix
 
-_UPDATE: Students, please see  our Google Summer of Code 2015 project **[Subsetted and parallel computations in matrixStats](https://github.com/rstats-gsoc/gsoc2015/wiki/matrixStats)** for further enhancements of the matrixStats package.  Application deadline is **March 27, 2015**._
+_UPDATE (May, 2015): Our project **[Subsetted and parallel computations in matrixStats](https://github.com/rstats-gsoc/gsoc2015/wiki/matrixStats)** 
+was selected for Google Summer of Code (GSoC) 2015._
 
 The matrixStats package provides highly optimized functions for
 computing common summaries over rows and columns of matrices,
