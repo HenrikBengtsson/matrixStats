@@ -2,12 +2,18 @@ Package: matrixStats
 ====================
 
 Version: 0.14.0-9000 [2015-05-13]
+o BUG FIX: rowCumprods(x) and colCumprods(x), with 'x' being an
+  integer (not double), did not handle missing values properly;
+  now a missing value on a row (column) will cause all following
+  cumulative products to be missing values, cf. base::cumprod().
+  Thanks to Dongcan Jiang (Peking University, China) for the bug
+  fixes and corrsponding package tests.
 o BUG FIX: rowAnys(x, value, na.rm=FALSE) did not handle missing
   values in a numeric 'x' properly.  Similarly, for non-numeric
   and non-logical 'x', row- and colAnys(), row- and colAlls(),
   anyValue() and allValue() did not handle when 'value' was a
   missing value.  Thanks to Dongcan Jiang (Peking University,
-  China) for these bug fixes and corrsponding package tests.
+  China) for the bug fixes and corrsponding package tests.
 
 
 Version: 0.14.0 [2015-02-13]

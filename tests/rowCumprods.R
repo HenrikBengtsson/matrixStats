@@ -19,15 +19,15 @@ colCumprods_R <- function(x) {
 for (mode in c("integer", "double")) {
   for (addNA in c(FALSE, TRUE)) {
     cat("addNA=", addNA, "\n", sep="")
-  
+
     x <- matrix(1:100, nrow=20, ncol=5)
     if (addNA) {
       x[13:17,c(2,4)] <- NA_real_
     }
     cat("mode: ", mode, "\n", sep="")
-    storage.mode(x) <- mode 
+    storage.mode(x) <- mode
     str(x)
-  
+
     # Row/column ranges
     r0 <- rowCumprods_R(x)
     r1 <- rowCumprods(x)
@@ -45,7 +45,7 @@ for (mode in c("integer", "double")) {
 for (mode in c("integer", "double")) {
   x <- matrix(NA_real_, nrow=20, ncol=5)
   cat("mode: ", mode, "\n", sep="")
-  storage.mode(x) <- mode 
+  storage.mode(x) <- mode
   str(x)
 
   r0 <- rowCumprods_R(x)
@@ -60,26 +60,36 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(0, nrow=1, ncol=1)
+for (mode in c("integer", "double")) {
+  x <- matrix(0, nrow=1, ncol=1)
+  cat("mode: ", mode, "\n", sep="")
+  storage.mode(x) <- mode
+  str(x)
+
   r0 <- rowCumprods_R(x)
   r1 <- rowCumprods(x)
   r2 <- t(colCumprods(t(x)))
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
-
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # NA 0
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(NA, nrow=3, ncol=2)
-x[1,2] <- 0
-x[2,2] <- 1
-x[3,1] <- 0
-storage.mode(x) <- "integer"
-r0 <- rowCumprods_R(x)
-r1 <- rowCumprods(x)
-r2 <- t(colCumprods(t(x)))
-stopifnot(all.equal(r1, r2))
-stopifnot(all.equal(r1, r0))
-stopifnot(all.equal(r2, r0))
+for (mode in c("integer", "double")) {
+  x <- matrix(NA_real_, nrow=3, ncol=2)
+  x[1,2] <- 0
+  x[2,2] <- 1
+  x[3,1] <- 0
+  storage.mode(x) <- mode
+  cat("mode: ", mode, "\n", sep="")
+  str(x)
+
+  r0 <- rowCumprods_R(x)
+  r1 <- rowCumprods(x)
+  r2 <- t(colCumprods(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+}
