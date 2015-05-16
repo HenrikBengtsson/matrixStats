@@ -75,7 +75,7 @@ for (mode in c("integer", "double")) {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# BUG FIX TEST: Make zeros do not trump NAs in integer matrices
+# BUG FIX TEST: Assert zeros don't trump NAs in integer matrices
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   x <- matrix(NA_real_, nrow=3, ncol=2)
