@@ -68,3 +68,18 @@ x <- matrix(0, nrow=1, ncol=1)
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# NA 0
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(NA, nrow=3, ncol=2)
+x[1,2] <- 0
+x[2,2] <- 1
+x[3,1] <- 0
+storage.mode(x) <- "integer"
+r0 <- rowCumprods_R(x)
+r1 <- rowCumprods(x)
+r2 <- t(colCumprods(t(x)))
+stopifnot(all.equal(r1, r2))
+stopifnot(all.equal(r1, r0))
+stopifnot(all.equal(r2, r0))
