@@ -23,6 +23,10 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{rows}{A @vector indicating sub-@matrix's rows.
+#     If @NULL, all rows are considered.}
+#  \item{cols}{A @vector indicating sub-@matrix's cols.
+#     If @NULL, all cols are considered.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
@@ -50,38 +54,62 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowRanges <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-rowMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-rowMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 
-colRanges <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-colMins <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-colMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
+colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
@@ -90,6 +118,8 @@ colMaxs <- function(x, na.rm=FALSE, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-25 [DJ]
+# o Supported subsetted computation.
 # 2014-12-17 [HB]
 # o CLEANUP: Made col- and rowRanges() plain R functions.
 # 2014-11-16
