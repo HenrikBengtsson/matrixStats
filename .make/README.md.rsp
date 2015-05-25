@@ -65,8 +65,10 @@ repos_status <- function() {
   if (cran()) {
     sprintf("[status](http://cran.r-project.org/web/checks/check_results_%s.html)", pkg())
   } else if (bioc()) {
-    biocURL <- function(type) sprintf("[%s](http://master.bioconductor.org/checkResults/%s/bioc-LATEST/%s)", type, type, pkg())
-    paste("status:", paste(biocURL(c("release", "devel")), collapse=", "))
+    biocURL <- function(type) {
+      sprintf('<a href="http://bioconductor.org/checkResults/%s/bioc-LATEST/%s/"><img border="0" src="http://bioconductor.org/shields/build/%s/bioc/%s.svg" alt="Build status"></a> (%s)', type, pkg(), type, pkg(), type)
+	}
+    paste(biocURL(c("release", "devel")), collapse="</br>")
   } else {
     ""
   }
@@ -86,8 +88,8 @@ appveyor <- function() {
   sprintf('<a href="https://ci.appveyor.com/project/%s"><img src="https://ci.appveyor.com/api/projects/status/github/%s" alt="Build status"></a>', repos, github_repos())
 }
 
-coveralls <- function() {
-  if (!file.exists(".coveralls.R")) return("")
+covr <- function() {
+  if (!file.exists(".covr.R")) return("")
   sprintf('<a href="https://coveralls.io/r/%s"><img src="https://coveralls.io/repos/%s/badge.png?branch=develop" alt="Coverage Status"/></a>', github_repos(), github_repos())
 }
 %>
@@ -118,8 +120,8 @@ source('http://callr.org/install#<%=github_repos()%>')
 
 ## Software quality
 
-| Resource:     | <%=repos()%>        | Travis CI        | Appveyor         |
-| ------------- | ------------------- | ---------------- | ---------------- |
-| _Platforms:_  | _Multiple_          | _Linux_          | _Windows_        |
-| R CMD check   | <%=repos_status()%> | <%=travis()%>    | <%=appveyor() %> |
-| Test coverage |                     | <%=coveralls()%> |                  |
+| Resource:     | <%=repos()%>        | Travis CI     | Appveyor         |
+| ------------- | ------------------- | ------------- | ---------------- |
+| _Platforms:_  | _Multiple_          | _Linux_       | _Windows_        |
+| R CMD check   | <%=repos_status()%> | <%=travis()%> | <%=appveyor() %> |
+| Test coverage |                     | <%=covr()%>   |                  |

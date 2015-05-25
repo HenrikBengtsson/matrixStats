@@ -15,7 +15,7 @@ README[.]md
 ^pkg-build[.]sh$
 ^appveyor[.]yml$
 ^covr-utils.R$
-^[.]coveralls[.]R$
+^[.]covr[.]R$
 
 #----------------------------
 # R related

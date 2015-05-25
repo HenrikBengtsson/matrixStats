@@ -23,4 +23,4 @@ str(excl)
 
 # Run through tests, record source code coverage, and
 # publish to Coveralls
-covr_package(exclusions=excl, quiet=FALSE)
+covr <- covr_package(exclusions=excl, quiet=FALSE)

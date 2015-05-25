@@ -5,7 +5,6 @@
 # * Travis CI: https://travis-ci.org/
 # * r-builder: https://github.com/metacran/r-builder
 # * covr: https://github.com/jimhester/covr
-# * Coveralls: https://coveralls.io/
 #
 # Validate your .travis.yml file at http://lint.travis-ci.org/
 #----------------------------------------------------------------
@@ -29,7 +28,7 @@ env:
   matrix:
     - RVERSION=3.1.3
     - RVERSION=3.2.0
-    - RVERSION=devel _R_CHECK_FULL_=TRUE
+    - RVERSION=devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE
 
 
 before_install:
@@ -57,11 +56,13 @@ script:
 
 after_success:
   - $RENV dump_logs_by_extension out
-  - if [ -f ".coveralls.R" ]; then
+  - if [[ "$_R_COVR_" == "TRUE" && -f ".covr.R" ]]; then
       $RENV install_devtools;
-      $RENV install_github HenrikBengtsson/covr;
+      $RENV install_github jimhester/covr;
       curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
-      $RENV run_script .coveralls.R;
+    fi
+  - if [[ "$_R_COVR_" == "TRUE" && -f ".covr.R" ]]; then
+      $RENV run_script .covr.R;
     fi
 
 after_failure:
