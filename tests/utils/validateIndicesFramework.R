@@ -2,7 +2,6 @@ library("matrixStats")
 
 validateIndicesTestVector <- function(x, idxs, ftest, fsure, debug=FALSE, ...) {
   if (debug) cat(sprintf("idxs=%s, type=%s\n", toString(idxs), toString(typeof(idxs))))
-  if (identical(idxs, "NULL")) idxs <- NULL
 
   suppressWarnings({
     actual <- tryCatch(ftest(x,idxs=idxs,...), error=function(c) "error")
@@ -16,7 +15,6 @@ validateIndicesTestVector <- function(x, idxs, ftest, fsure, debug=FALSE, ...) {
 
 validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure, debug=FALSE, ...) {
   if (debug) cat(sprintf("idxs=%s, type=%s\n", toString(idxs), toString(typeof(idxs))))
-  if (identical(idxs, "NULL")) idxs <- NULL
 
   suppressWarnings({
     actual <- tryCatch(ftest(x,w,idxs=idxs,...), error=function(c) "error")
@@ -31,8 +29,6 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure, debug=FALSE, .
 validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure, debug=FALSE, ...) {
   if (debug) cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
   if (debug) cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
-  if (identical(rows, "NULL")) rows <- NULL
-  if (identical(cols, "NULL")) cols <- NULL
 
   suppressWarnings({
     if (missing(fcolTest)) {
@@ -109,4 +105,4 @@ indexCases[[length(indexCases)+1]] <- c(FALSE, TRUE, NA)
 indexCases[[length(indexCases)+1]] <- c(FALSE, TRUE, NA, FALSE)
 
 # NULL
-indexCases[[length(indexCases)+1]] <- "NULL"
+indexCases[length(indexCases)+1] <- list(NULL)
