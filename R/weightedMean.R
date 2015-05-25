@@ -17,6 +17,8 @@
 #   \item{w}{a vector of weights the same length as \code{x} giving the weights
 #            to use for each element of \code{x}. Negative weights are treated
 #            as zero weights. Default value is equal weight to all values.}
+#   \item{idxs}{A @vector indicating sub-@vector's elements.
+#      If @NULL, all elements are considered.}
 #   \item{na.rm}{a logical value indicating whether @NA values in
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.
@@ -42,7 +44,12 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMean <- function(x, w, na.rm=FALSE, refine=FALSE, ...) {
+weightedMean <- function(x, w, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
+  if (!is.null(idxs)) {
+    x <- x[idxs]
+    w <- w[idxs]
+  }
+
   # Argument 'refine':
   refine <- as.logical(refine)
 
@@ -52,6 +59,8 @@ weightedMean <- function(x, w, na.rm=FALSE, refine=FALSE, ...) {
 
 ###############################################################################
 # HISTORY:
+# 2015-05-25 [DJ]
+# o Supported subsetted computation.
 # 2014-12-08
 # o Created.
 ###############################################################################
