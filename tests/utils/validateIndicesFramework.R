@@ -5,7 +5,7 @@ validateIndicesTestVector <- function(x, idxs, ftest, fsure, debug=FALSE, ...) {
 
   suppressWarnings({
     actual <- tryCatch(ftest(x,idxs=idxs,...), error=function(c) "error")
-    if (is.null(idxs)) idxs <- 1:length(x)
+    if (is.null(idxs)) idxs <- seq_len(length(x))
     expect <- tryCatch(fsure(x[idxs],...), error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
@@ -18,7 +18,7 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure, debug=FALSE, .
 
   suppressWarnings({
     actual <- tryCatch(ftest(x,w,idxs=idxs,...), error=function(c) "error")
-    if (is.null(idxs)) idxs <- 1:length(x)
+    if (is.null(idxs)) idxs <- seq_len(length(x))
     expect <- tryCatch(fsure(x[idxs],w[idxs],...), error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
@@ -37,8 +37,8 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure, deb
       actual <- tryCatch(fcolTest(t(x),rows=cols,cols=rows,...), error=function(c) "error")
     }
 
-    if (is.null(rows)) rows <- 1:dim(x)[1]
-    if (is.null(cols)) cols <- 1:dim(x)[2]
+    if (is.null(rows)) rows <- seq_len(dim(x)[1])
+    if (is.null(cols)) cols <- seq_len(dim(x)[2])
     expect <- tryCatch(fsure(x[rows,cols,drop=FALSE],...), error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
