@@ -25,17 +25,23 @@
 }
 
 \usage{
-  count(x, value=TRUE, na.rm=FALSE, ...)
-  rowCounts(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  colCounts(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  rowAlls(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  colAlls(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  rowAnys(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
-  colAnys(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  count(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...)
+  rowCounts(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colCounts(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowAlls(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colAlls(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  rowAnys(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
+  colAnys(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...)
 }
 
 \arguments{
  \item{x}{An NxK \code{\link[base]{matrix}} or an N*K \code{\link[base]{vector}}.}
+ \item{idxs}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{vector}}'s elements.
+    If \code{\link[base]{NULL}}, all elements are considered.}
+ \item{rows}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{matrix}}'s rows.
+    If \code{\link[base]{NULL}}, all rows are considered.}
+ \item{cols}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{matrix}}'s cols.
+    If \code{\link[base]{NULL}}, all cols are considered.}
  \item{value}{A value to search for.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
