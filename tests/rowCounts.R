@@ -127,3 +127,10 @@ for (na.rm in c(FALSE, TRUE)) {
     stopifnot(identical(c,r1[2]))
   }
 }
+
+# NA row
+x <- matrix(0, nrow=2, ncol=2)
+x[1,] <- NA_integer_
+r0 <- rowCounts(x, value=0)
+r1 <- rowCounts_R(x, value=0)
+stopifnot(identical(r0,r1))
