@@ -52,6 +52,7 @@ anyMissing <- function(x, ...) {
       if (.Call("anyMissing", x[[kk]], PACKAGE="matrixStats"))
         return(TRUE)
     }
+    return(FALSE)
   } else {
     ## All other data types
     .Call("anyMissing", x, PACKAGE="matrixStats")
