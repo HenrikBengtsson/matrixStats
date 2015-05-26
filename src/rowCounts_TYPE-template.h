@@ -138,11 +138,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
       kk = 0;
       for (jj=0; jj < ncol; jj++) {
         for (ii=0; ii < nrow; ii++) {
-          xvalue = x[kk++];
           count = ans[ii];
           /* Nothing more to do on this row? */
-          if (count == NA_INTEGER) continue;
+          if (count == NA_INTEGER) {
+            kk++;
+            continue;
+	  }
   
+          xvalue = x[kk++];
           if (xvalue == value) {
             ans[ii] = count + 1;
           } else {
