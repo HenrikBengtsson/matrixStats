@@ -11,8 +11,8 @@
 #
 # \arguments{
 #   \item{x}{A @numeric @vector of length N.}
-#   \item{idxs}{A @vector indicating sub-@vector's elements.
-#      If @NULL, all elements are considered.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{lag}{An @integer specifying the lag.}
 #   \item{differences}{An @integer specifying the order of difference.}
 #   \item{...}{Not used.}

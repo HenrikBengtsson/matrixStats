@@ -26,12 +26,8 @@
 
 \arguments{
  \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or \code{\link[base]{NULL}}.}
- \item{idxs}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{vector}}'s elements.
-    If \code{\link[base]{NULL}}, all elements are considered.}
- \item{rows}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{matrix}}'s rows.
-    If \code{\link[base]{NULL}}, all rows are considered.}
- \item{cols}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{matrix}}'s cols.
-    If \code{\link[base]{NULL}}, all cols are considered.}
+ \item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{...}{Not used.}
 }
 

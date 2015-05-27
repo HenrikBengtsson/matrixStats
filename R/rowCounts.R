@@ -27,12 +27,8 @@
 #
 # \arguments{
 #  \item{x}{An NxK @matrix or an N*K @vector.}
-#  \item{idxs}{A @vector indicating sub-@vector's elements.
-#     If @NULL, all elements are considered.}
-#  \item{rows}{A @vector indicating sub-@matrix's rows.
-#     If @NULL, all rows are considered.}
-#  \item{cols}{A @vector indicating sub-@matrix's cols.
-#     If @NULL, all cols are considered.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{value}{A value to search for.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the

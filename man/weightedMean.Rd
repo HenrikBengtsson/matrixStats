@@ -28,8 +28,8 @@ weightedMean(x, w, idxs=NULL, na.rm=FALSE, refine=FALSE, ...)
   \item{w}{a vector of weights the same length as \code{x} giving the weights
            to use for each element of \code{x}. Negative weights are treated
            as zero weights. Default value is equal weight to all values.}
-  \item{idxs}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{vector}}'s elements.
-     If \code{\link[base]{NULL}}, all elements are considered.}
+  \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements
+     to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{na.rm}{a logical value indicating whether \code{\link[base]{NA}} values in
            \code{x} should be stripped before the computation proceeds,
            or not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s is done.

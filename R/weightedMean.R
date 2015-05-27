@@ -17,8 +17,8 @@
 #   \item{w}{a vector of weights the same length as \code{x} giving the weights
 #            to use for each element of \code{x}. Negative weights are treated
 #            as zero weights. Default value is equal weight to all values.}
-#   \item{idxs}{A @vector indicating sub-@vector's elements.
-#      If @NULL, all elements are considered.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{na.rm}{a logical value indicating whether @NA values in
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.

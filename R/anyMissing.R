@@ -17,12 +17,8 @@
 #
 # \arguments{
 #  \item{x}{A @vector, a @list, a @matrix, a @data.frame, or @NULL.}
-#  \item{idxs}{A @vector indicating sub-@vector's elements.
-#     If @NULL, all elements are considered.}
-#  \item{rows}{A @vector indicating sub-@matrix's rows.
-#     If @NULL, all rows are considered.}
-#  \item{cols}{A @vector indicating sub-@matrix's cols.
-#     If @NULL, all cols are considered.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{...}{Not used.}
 # }
 #

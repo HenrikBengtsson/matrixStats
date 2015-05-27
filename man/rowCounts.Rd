@@ -36,12 +36,8 @@
 
 \arguments{
  \item{x}{An NxK \code{\link[base]{matrix}} or an N*K \code{\link[base]{vector}}.}
- \item{idxs}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{vector}}'s elements.
-    If \code{\link[base]{NULL}}, all elements are considered.}
- \item{rows}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{matrix}}'s rows.
-    If \code{\link[base]{NULL}}, all rows are considered.}
- \item{cols}{A \code{\link[base]{vector}} indicating sub-\code{\link[base]{matrix}}'s cols.
-    If \code{\link[base]{NULL}}, all cols are considered.}
+ \item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{value}{A value to search for.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
