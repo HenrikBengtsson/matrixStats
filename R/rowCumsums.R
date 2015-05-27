@@ -28,6 +28,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
 #  \item{...}{Not used.}
@@ -50,51 +52,117 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-rowCumsums <- function(x, dim.=dim(x), ...) {
+rowCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCumsums", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
-colCumsums <- function(x, dim.=dim(x), ...) {
+colCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCumsums", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
 
-rowCumprods <- function(x, dim.=dim(x), ...) {
+rowCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCumprods", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
-colCumprods <- function(x, dim.=dim(x), ...) {
+colCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCumprods", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
 
-rowCummins <- function(x, dim.=dim(x), ...) {
+rowCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCummins", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
-colCummins <- function(x, dim.=dim(x), ...) {
+colCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCummins", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
-rowCummaxs <- function(x, dim.=dim(x), ...) {
+rowCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCummaxs", x, dim, TRUE, PACKAGE="matrixStats")
 }
 
-colCummaxs <- function(x, dim.=dim(x), ...) {
+colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim <- dim(x)
+
   .Call("rowCummaxs", x, dim, FALSE, PACKAGE="matrixStats")
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-05-27 [DJ]
+# o Supported subsetted computation.
 # 2014-11-26 [HB]
 # o Created.
 ############################################################################
