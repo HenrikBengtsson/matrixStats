@@ -48,6 +48,7 @@
 # @keyword logic
 #*/###########################################################################
 anyMissing <- function(x, idxs=NULL, ...) {
+  # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
 
   ## All list or a data.frame?
