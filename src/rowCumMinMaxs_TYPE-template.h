@@ -39,6 +39,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int byrow, ANS_C_TYP
   int ok;
   int *oks = NULL;
 
+  if (nrow == 0 || ncol == 0) return;
+
   if (byrow) {
     oks = (int *) R_alloc(nrow, sizeof(int));
 
