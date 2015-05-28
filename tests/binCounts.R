@@ -52,3 +52,16 @@ yS0 <- binCounts(x, bx=bx)
 yS <- binCounts(x, bx=bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Subsetted tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source("utils/validateIndicesFramework.R")
+x <- runif(6, min=-6, max=6)
+storage.mode(x) <- "integer"
+bx <- c(-6, 0, 3, 4, 10)
+for (idxs in indexCases) {
+  validateIndicesTestVector(x, idxs, ftest=binCounts, fsure=binCounts_hist, bx=bx, right=FALSE)
+  validateIndicesTestVector(x, idxs, ftest=binCounts, fsure=binCounts_hist, bx=bx, right=TRUE)
+}
