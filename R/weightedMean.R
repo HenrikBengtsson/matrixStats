@@ -45,6 +45,7 @@
 # @keyword "robust"
 #*/############################################################################
 weightedMean <- function(x, w, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
+  # Apply subset
   if (!is.null(idxs)) {
     x <- x[idxs]
     w <- w[idxs]
