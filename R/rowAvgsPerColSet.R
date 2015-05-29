@@ -14,6 +14,8 @@
 # \arguments{
 #   \item{X}{A @numeric NxM @matrix.}
 #   \item{W}{An optional @numeric NxM @matrix of weights.}
+#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #   \item{S}{An @integer KxJ @matrix specifying the J subsets.  Each
 #     column holds K column (row) indices for the corresponding subset.}
 #   \item{FUN}{The row-by-row (column-by-column) @function used to average
@@ -45,7 +47,7 @@
 # @keyword internal
 # @keyword utilities
 #*/###########################################################################
-rowAvgsPerColSet <- function(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
+rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -79,6 +81,13 @@ rowAvgsPerColSet <- function(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
   # Argument 'FUN':
   if (!is.function(FUN)) {
     stop("Argument 'FUN' is not a function: ", mode(S));
+  }
+
+  # Apply subset
+  if (!is.null(rows)) {
+    X <- X[rows,,drop=FALSE]
+    if (hasW) W <- W[rows,,drop=FALSE]
+    dimX <- dim(X)
   }
 
   # Argument 'tFUN':
@@ -130,7 +139,7 @@ rowAvgsPerColSet <- function(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
 } # rowAvgsPerColSet()
 
 
-colAvgsPerRowSet <- function(X, W=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
+colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -149,6 +158,12 @@ colAvgsPerRowSet <- function(X, W=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
   # Argument 'FUN':
   if (!is.function(FUN)) {
     stop("Argument 'FUN' is not a function: ", mode(S));
+  }
+
+  # Apply subset
+  if (!is.null(cols)) {
+    X <- X[,cols,drop=FALSE]
+    if (is.null(W)) W <- W[,cols,drop=FALSE]
   }
 
   # Argument 'tFUN':
@@ -181,6 +196,8 @@ colAvgsPerRowSet <- function(X, W=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2015-05-28 [DJ]
+# o Supported subsetted computation.
 # 2014-12-17 [HB]
 # o CLEANUP: Made col- and rowAvgsPerColSet() plain R functions.
 # 2013-11-23
