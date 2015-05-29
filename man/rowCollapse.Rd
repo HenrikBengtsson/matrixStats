@@ -19,15 +19,17 @@
 }
 
 \usage{
-  rowCollapse(x, idxs, dim.=dim(x), ...)
-  colCollapse(x, idxs, dim.=dim(x), ...)
+  rowCollapse(x, idxs, rows=NULL, dim.=dim(x), ...)
+  colCollapse(x, idxs, cols=NULL, dim.=dim(x), ...)
 }
 
 \arguments{
   \item{x}{An NxK \code{\link[base]{matrix}}.}
   \item{idxs}{An index \code{\link[base]{vector}} of (maximum) length N (K) specifying the
    columns (rows) to be extracted.}
- \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
+  \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+   to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
   \item{...}{Not used.}
 }
