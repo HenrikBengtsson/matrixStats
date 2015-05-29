@@ -19,7 +19,8 @@
 }
 
 \usage{
-rowAvgsPerColSet(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
+  rowAvgsPerColSet(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
+  colAvgsPerRowSet(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, ...)
 }
 
 \arguments{

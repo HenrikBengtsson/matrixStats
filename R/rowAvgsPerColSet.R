@@ -9,7 +9,10 @@
 #  Each subset is averaged independently of the others.
 # }
 #
-# @synopsis
+# \usage{
+#   @usage rowAvgsPerColSet
+#   @usage colAvgsPerRowSet
+# }
 #
 # \arguments{
 #   \item{X}{A @numeric NxM @matrix.}
