@@ -36,6 +36,9 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   /* Argument 'bx': */
   assertArgVector(bx, (R_TYPE_REAL), "bx");
   nbins = xlength(bx)-1;
+  if (nbins <= 0) {
+    error("Argument 'bx' must specify at least two bin boundaries (= one bin): %d", xlength(bx));
+  }
 
   /* Argument 'right': */
   closedRight = asLogicalNoNA(right, "right");
@@ -71,6 +74,8 @@ SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
 
 /***************************************************************************
  HISTORY:
+ 2015-05-30 [HB]
+  o Added protected against 'bx' too short.
  2014-10-06 [HB]
   o CLEANUP: All argument validation is now done by the high-level C API.
  2014-06-02 [HB]
