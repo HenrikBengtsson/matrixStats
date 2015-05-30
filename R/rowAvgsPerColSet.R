@@ -50,7 +50,7 @@ rowAvgsPerColSet <- function(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
-  if (!is.matrix(S)) {
+  if (!is.matrix(X)) {
     stop("Argument 'X' is not a matrix: ", class(X)[1L]);
   }
   dimX <- dim(X);
@@ -135,7 +135,7 @@ colAvgsPerRowSet <- function(X, W=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
-  if (!is.matrix(S)) {
+  if (!is.matrix(X)) {
     stop("Argument 'X' is not a matrix: ", class(X)[1L]);
   }
 

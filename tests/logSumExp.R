@@ -87,3 +87,14 @@ lx <- c(1, 2, +Inf)
 y <- logSumExp(lx)
 print(y)
 stopifnot(identical(y, +Inf))
+
+
+## begin with missing value
+lx <- c(NA_real_, 1)
+y <- logSumExp(lx, na.rm=FALSE)
+print(y)
+stopifnot(identical(y, NA_real_))
+
+y <- logSumExp(lx, na.rm=TRUE)
+print(y)
+stopifnot(identical(y, 1))

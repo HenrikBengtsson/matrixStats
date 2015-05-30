@@ -100,3 +100,23 @@ q <- rowQuantiles(x, probs=probs)
 stopifnot(identical(dim(q), c(nrow(x), length(probs))))
 q <- colQuantiles(x, probs=probs)
 stopifnot(identical(dim(q), c(ncol(x), length(probs))))
+
+x <- matrix(NA_real_, nrow=2L, ncol=0L)
+q <- rowQuantiles(x, probs=probs)
+stopifnot(identical(dim(q), c(nrow(x), length(probs))))
+
+x <- matrix(NA_real_, nrow=0L, ncol=2L)
+q <- colQuantiles(x, probs=probs)
+stopifnot(identical(dim(q), c(ncol(x), length(probs))))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Single column matrices
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(1, nrow=2L, ncol=1L)
+q <- rowQuantiles(x, probs=probs)
+print(q)
+
+x <- matrix(1, nrow=1L, ncol=2L)
+q <- colQuantiles(x, probs=probs)
+print(q)
