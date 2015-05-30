@@ -46,6 +46,26 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure, deb
   stopifnot(all.equal(actual, expect))
 }
 
+validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest, fcolTest, fsure, debug=FALSE, ...) {
+  if (debug) cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
+  if (debug) cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
+
+  suppressWarnings({
+    if (missing(fcolTest)) {
+      actual <- tryCatch(ftest(x,w,rows=rows,cols=cols,...), error=function(c) "error")
+    } else {
+      actual <- tryCatch(fcolTest(t(x),w,rows=cols,cols=rows,...), error=function(c) "error")
+    }
+
+    if (is.null(rows)) rows <- seq_len(dim(x)[1])
+    if (is.null(cols)) cols <- seq_len(dim(x)[2])
+    expect <- tryCatch(fsure(x[rows,cols,drop=FALSE], w[cols], ...), error=function(c) "error")
+  })
+  if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
+
+  stopifnot(all.equal(actual, expect))
+}
+
 
 indexCases <- list()
 # mixed positive and negative indices

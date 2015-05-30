@@ -16,6 +16,8 @@
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
 #  \item{w}{A @numeric @vector of length K (N).}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#    to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, missing values are excluded from the calculation,
 #    otherwise not.}
 #  \item{...}{Not used.}
@@ -47,7 +49,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
+rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,6 +68,13 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     }
   }
 
+  # Apply subset on x
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
+  # Apply subset on w
+  if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
   if (hasWeights) {
     # Allocate results
@@ -134,7 +143,7 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
 
 
 
-colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
+colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -152,6 +161,14 @@ colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
       stop("Argument 'w' has negative weights.");
     }
   }
+
+  # Apply subset on x
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
+  # Apply subset on w
+  if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
   if (hasWeights) {
     # Allocate results
@@ -222,6 +239,8 @@ colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2015-05-31 [DJ]
+# o Supported subsetted computation.
 # 2014-12-19 [HB]
 # o CLEANUP: Made col- and rowWeightedMeans() plain R functions.
 # 2013-11-29
