@@ -44,9 +44,6 @@
 # @keyword univar
 #*/###########################################################################
 rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
-  # Argument 'x':
-  nrow <- nrow(x)
-
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -56,19 +53,25 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
     stop("Argument 'probs' is out of range [0-eps,1+eps]")
   }
 
-  if (nrow > 0L) {
+  # Argument 'x':
+  nrow <- nrow(x)
+  ncol <- ncol(x)
+
+  if (nrow > 0L && ncol > 0L) {
     naRows <- rowAnyMissings(x)
     hasNA <- any(naRows)
     if (!hasNA) na.rm <- FALSE
 
     if (!hasNA && type == 7L) {
-      n <- ncol(x)
+      n <- ncol
       idxs <- 1 + (n-1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
       partial <- sort(unique(c(idxs_lo, idxs_hi)))
 
       xp <- apply(x, MARGIN=1L, FUN=sort, partial=partial)
+      if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
+
       q <- apply(xp, MARGIN=2L, FUN=.subset, idxs_lo)
       if (is.null(dim(q))) dim(q) <- c(1L, length(q))
 
@@ -107,7 +110,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   } else {
     naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
-    q <- matrix(naValue, nrow=0L, ncol=length(probs))
+    q <- matrix(naValue, nrow=nrow, ncol=length(probs))
   }
 
   # Add names
@@ -122,9 +125,6 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 } # rowQuantiles()
 
 colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
-  # Argument 'x':
-  ncol <- ncol(x)
-
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -134,19 +134,25 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
     stop("Argument 'probs' is out of range [0-eps,1+eps]")
   }
 
-  if (ncol > 0L) {
+  # Argument 'x':
+  nrow <- nrow(x)
+  ncol <- ncol(x)
+
+  if (nrow > 0L && ncol > 0L) {
     naCols <- colAnyMissings(x)
     hasNA <- any(naCols)
     if (!hasNA) na.rm <- FALSE
 
     if (!hasNA && type == 7L) {
-      n <- nrow(x)
+      n <- nrow
       idxs <- 1 + (n-1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
       partial <- sort(unique(c(idxs_lo, idxs_hi)))
 
       xp <- apply(x, MARGIN=2L, FUN=sort, partial=partial)
+      if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
+
       q <- apply(xp, MARGIN=2L, FUN=.subset, idxs_lo)
       if (is.null(dim(q))) dim(q) <- c(1L, length(q))
 
@@ -185,7 +191,7 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   } else {
     naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
-    q <- matrix(naValue, nrow=0L, ncol=length(probs))
+    q <- matrix(naValue, nrow=ncol, ncol=length(probs))
   }
 
   # Add names
