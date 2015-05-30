@@ -55,6 +55,28 @@ stopifnot(all.equal(yS, yS0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Border cases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- 1:10
+bx <- min(x) - c(10,1)
+yS <- binCounts(x, bx=bx)
+stopifnot(all.equal(yS, 0L))
+bx <- range(x)
+yS <- binCounts(x, bx=bx)
+stopifnot(all.equal(yS, length(x)-1L))
+bx <- max(x) + c(1,10)
+yS <- binCounts(x, bx=bx)
+stopifnot(all.equal(yS, 0L))
+
+# Every second empty
+x <- 1:10
+bx <- rep(x, each=2L)
+yS <- binCounts(x, bx=bx)
+stopifnot(all.equal(yS, rep(c(0L,1L), length.out=length(bx)-1L)))
+## NOTE: binCounts_hist() does not give the same last bin count
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Exception handling
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Zero bin bounderies (invalid bin definition)
