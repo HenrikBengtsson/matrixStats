@@ -18,12 +18,14 @@
 }
 
 \usage{
- rowDiffs(x, lag=1L, differences=1L, ...)
- colDiffs(x, lag=1L, differences=1L, ...)
+ rowDiffs(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...)
+ colDiffs(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{lag}{An \code{\link[base]{integer}} specifying the lag.}
  \item{differences}{An \code{\link[base]{integer}} specifying the order of difference.}
  \item{...}{Not used.}

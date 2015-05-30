@@ -75,3 +75,23 @@ r2 <- t(colDiffs(t(x)))
 stopifnot(all.equal(r1, r2))
 stopifnot(all.equal(r1, r0))
 stopifnot(all.equal(r2, r0))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Subsetted tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source("utils/validateIndicesFramework.R")
+x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
+storage.mode(x) <- "integer"
+for (rows in indexCases) {
+  for (cols in indexCases) {
+    for (lag in 1:2) {
+      for (differences in 1:2) {
+        validateIndicesTestMatrix(x, rows, cols, ftest=rowDiffs, fsure=rowDiffs_R, lag=lag, differences=differences)
+        validateIndicesTestMatrix(x, rows, cols, ftest=function(x, rows, cols, ...) {
+          t(colDiffs(t(x), rows=cols, cols=rows, ...))
+        }, fsure=rowDiffs_R, lag=lag, differences=differences)
+      }
+    }
+  }
+}
