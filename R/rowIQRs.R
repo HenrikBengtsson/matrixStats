@@ -17,6 +17,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, missing values are dropped first, otherwise not.}
 #  \item{...}{Additional arguments passed to @see "rowQuantiles"
 #     (\code{colQuantiles()}).}
@@ -46,8 +48,8 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowIQRs <- function(x, na.rm=FALSE, ...) {
-  Q <- rowQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
+rowIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+  Q <- rowQuantiles(x, rows=rows, cols=cols, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
   ans <- Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
 
   # Remove attributes
@@ -56,8 +58,8 @@ rowIQRs <- function(x, na.rm=FALSE, ...) {
 }
 
 
-colIQRs <- function(x, na.rm=FALSE, ...) {
-  Q <- colQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
+colIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+  Q <- colQuantiles(x, rows=rows, cols=cols, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
   ans <- Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
 
   # Remove attributes
@@ -65,7 +67,10 @@ colIQRs <- function(x, na.rm=FALSE, ...) {
   ans
 }
 
-iqr <- function(x, na.rm=FALSE, ...) {
+iqr <- function(x, idxs=NULL, na.rm=FALSE, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if(na.rm) {
     x <- x[!is.na(x)]
   } else if (anyMissing(x)) {
@@ -90,6 +95,8 @@ iqr <- function(x, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-30 [DJ]
+# o Supported subsetted computation.
 # 2015-01-16
 # o Now iqr(..., na.rm=FALSE) returns NA_real_ if there are missing values.
 # 2015-01-11
