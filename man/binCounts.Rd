@@ -23,7 +23,7 @@ binCounts(x, bx, right=FALSE, ...)
 \arguments{
   \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K positions for to be binned and counted.}
   \item{bx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B+1 ordered positions specifying
-     the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
+     the B > 0 bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
      \code{[bx[B],bx[B+1])}.}
   \item{right}{If \code{\link[base:logical]{TRUE}}, the bins are right-closed (left open),
      otherwise left-closed (right open).}

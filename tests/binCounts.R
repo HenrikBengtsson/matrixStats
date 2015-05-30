@@ -52,3 +52,17 @@ yS0 <- binCounts_hist(x, bx=bx)
 yS <- binCounts(x, bx=bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Exception handling
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Zero bin bounderies (invalid bin definition)
+bx <- double(0L)
+res <- try(yS <- binCounts(1:10, bx=bx), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+# One bin boundery (invalid bin definition)
+bx <- double(1L)
+res <- try(yS <- binCounts(1:10, bx=bx), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
