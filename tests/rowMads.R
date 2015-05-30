@@ -12,12 +12,26 @@ colMads_R <- function(x, na.rm=FALSE) {
   })
 }
 
-rowMads_center <- function(x, na.rm=FALSE) {
+rowMads_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
+  if (length(x) == 0) return(rep(NA_real_, nrow(x)))
+
   center <- rowMedians(x, na.rm=na.rm)
   rowMads(x, center=center, na.rm=na.rm)
 }
 
-colMads_center <- function(x, na.rm=FALSE) {
+colMads_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
+  if (length(x) == 0) return(rep(NA_real_, ncol(x)))
+
   center <- colMedians(x, na.rm=na.rm)
   colMads(x, center=center, na.rm=na.rm)
 }
@@ -194,4 +208,23 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+}
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Subsetted tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source("utils/validateIndicesFramework.R")
+x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
+storage.mode(x) <- "integer"
+for (rows in indexCases) {
+  for (cols in indexCases) {
+    for (na.rm in c(TRUE, FALSE)) {
+      validateIndicesTestMatrix(x, rows, cols, ftest=rowMads, fsure=rowMads_R, na.rm=na.rm)
+      validateIndicesTestMatrix(x, rows, cols, ftest=rowMads_center, fsure=rowMads_R, na.rm=na.rm)
+
+      validateIndicesTestMatrix(x, rows, cols, fcolTest=colMads, fsure=rowMads_R, na.rm=na.rm)
+      validateIndicesTestMatrix(x, rows, cols, fcolTest=colMads_center, fsure=rowMads_R, na.rm=na.rm)
+    }
+  }
 }
