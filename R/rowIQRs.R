@@ -47,14 +47,22 @@
 # @keyword univar
 #*/###########################################################################
 rowIQRs <- function(x, na.rm=FALSE, ...) {
-  Q <- rowQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, ...)
-  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+  Q <- rowQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
+  ans <- Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+
+  # Remove attributes
+  attributes(ans) <- NULL
+  ans
 }
 
 
 colIQRs <- function(x, na.rm=FALSE, ...) {
-  Q <- colQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, ...)
-  Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+  Q <- colQuantiles(x, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
+  ans <- Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+
+  # Remove attributes
+  attributes(ans) <- NULL
+  ans
 }
 
 iqr <- function(x, na.rm=FALSE, ...) {

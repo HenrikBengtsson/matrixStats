@@ -61,3 +61,15 @@ for (mode in c("integer", "double")) {
   str(q)
   stopifnot(identical(q, 0))
 }
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Single row matrices
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(1, nrow=1L, ncol=2L)
+q <- rowIQRs(x)
+stopifnot(identical(q, 0))
+
+x <- matrix(1, nrow=2L, ncol=1L)
+q <- colIQRs(x)
+stopifnot(identical(q, 0))
