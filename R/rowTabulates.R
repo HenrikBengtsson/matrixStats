@@ -15,6 +15,8 @@
 #
 # \arguments{
 #   \item{x}{An @integer or @raw NxK @matrix.}
+#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#    to operate over. If @NULL, no subsetting is done.}
 #   \item{values}{An @vector of J values of count. If @NULL, all (unique)
 #    values are counted.}
 #   \item{...}{Not used.}
@@ -32,7 +34,7 @@
 #
 # @keyword utilities
 #*/###########################################################################
-rowTabulates <- function(x, values=NULL, ...) {
+rowTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -42,6 +44,11 @@ rowTabulates <- function(x, values=NULL, ...) {
   } else {
     stop("Argument 'x' is not of type integer or raw: ", class(x)[1]);
   }
+
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
 
   # Argument 'values':
   if (is.null(values)) {
@@ -81,7 +88,7 @@ rowTabulates <- function(x, values=NULL, ...) {
 }
 
 
-colTabulates <- function(x, values=NULL, ...) {
+colTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -91,6 +98,11 @@ colTabulates <- function(x, values=NULL, ...) {
   } else {
     stop("Argument 'x' is not of type integer or raw: ", class(x)[1]);
   }
+
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
 
   # Argument 'values':
   if (is.null(values)) {
@@ -141,6 +153,8 @@ colTabulates <- function(x, values=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-30 [DJ]
+# o Supported subsetted computation.
 # 2014-12-19 [HB]
 # o CLEANUP: Made col- and rowTabulates() plain R functions.
 # 2014-11-16
