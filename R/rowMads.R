@@ -54,11 +54,11 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
   } else {
     ## SLOW:
-    for (cc in seq(length=ncol(x))) {
-      x[,cc] <- x[,cc] - center[cc]
-    }
-    ## FAST but has some bugs
-    # x <- t_tx_OP_y(x, center, OP="-", na.rm=FALSE)
+    # for (cc in seq(length=ncol(x))) {
+    #   x[,cc] <- x[,cc] - center[cc]
+    # }
+    ## FAST:
+    x <- t_tx_OP_y(x, center, OP="-", na.rm=FALSE)
     x <- abs(x)
     x <- colMedians(x, na.rm=na.rm, ...)
     x <- constant*x
