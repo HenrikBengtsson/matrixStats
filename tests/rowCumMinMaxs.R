@@ -116,6 +116,16 @@ for (mode in c("integer", "double")) {
   value <- 0
   storage.mode(value) <- mode
 
+  # A 0x0 matrix
+  x <- matrix(value, nrow=0L, ncol=0L)
+  str(x)
+  r0 <- matrix(value, nrow=nrow(x), ncol=ncol(x))
+  r1 <- rowCummins(x)
+  r2 <- t(colCummins(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+
   # A 0xK matrix
   x <- matrix(value, nrow=0L, ncol=5L)
   str(x)
@@ -128,16 +138,6 @@ for (mode in c("integer", "double")) {
 
   # A Nx0 matrix
   x <- matrix(value, nrow=5L, ncol=0L)
-  str(x)
-  r0 <- matrix(value, nrow=nrow(x), ncol=ncol(x))
-  r1 <- rowCummins(x)
-  r2 <- t(colCummins(t(x)))
-  stopifnot(all.equal(r1, r2))
-  stopifnot(all.equal(r1, r0))
-  stopifnot(all.equal(r2, r0))
-
-  # A 0x0 matrix
-  x <- matrix(value, nrow=0L, ncol=0L)
   str(x)
   r0 <- matrix(value, nrow=nrow(x), ncol=ncol(x))
   r1 <- rowCummins(x)
