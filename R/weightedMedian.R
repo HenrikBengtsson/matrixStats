@@ -17,6 +17,8 @@
 #   \item{w}{a vector of weights the same length as \code{x} giving the weights
 #            to use for each element of \code{x}. Negative weights are treated
 #            as zero weights. Default value is equal weight to all values.}
+#   \item{idxs}{A @vector indicating subset of elements
+#            to operate over. If @NULL, no subsetting is done.}
 #   \item{na.rm}{a logical value indicating whether @NA values in
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.
@@ -87,7 +89,7 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
+weightedMedian <- function(x, w=rep(1, times=length(x)), idxs=NULL, na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
   # Argument 'x':
 
   # Argument 'w':
@@ -119,6 +121,12 @@ weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolat
     }
   }
 
+  # Apply subset
+  if (!is.null(idxs)) {
+    x <- x[idxs]
+    w <- w[idxs]
+  }
+
   .Call("weightedMedian", x, w, na.rm, interpolate, tiesC, package="matrixStats")
 } # weightedMedian()
 
@@ -126,6 +134,8 @@ weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolat
 
 ###############################################################################
 # HISTORY:
+# 2015-05-31 [DJ]
+# o Supported subsetted computation.
 # 2015-01-26
 # o CLEANUP: Drop old internally-renamed .weightedMedian().
 # 2015-01-01
