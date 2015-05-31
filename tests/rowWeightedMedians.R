@@ -64,3 +64,12 @@ w <- 1:4
 xM1 <- rowWeightedMedians(x, w=w, na.rm=TRUE)
 xM2 <- colWeightedMedians(t(x), w=w, na.rm=TRUE)
 stopifnot(all.equal(xM2, xM1))
+
+
+# Inf weight
+x <- matrix(1:2, nrow=1, ncol=2)
+w <- c(7, Inf)
+xM1 <- rowWeightedMedians(x, w=w)
+xM2 <- colWeightedMedians(t(x), w=w)
+stopifnot(identical(2, xM1))
+stopifnot(identical(2, xM2))

@@ -74,9 +74,6 @@ rowWeightedMedians <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (m == 0L)
       return(double(0L));
 
-    # Standardize weights to sum to one.
-    w <- w / sum(w, na.rm=na.rm);
-
     res <- apply(x, MARGIN=1L, FUN=function(x) {
       weightedMedian(x, w=w, na.rm=na.rm, ...);
     });
@@ -115,9 +112,6 @@ colWeightedMedians <- function(x, w=NULL, na.rm=FALSE, ...) {
     m <- ncol(x);
     if (m == 0L)
       return(double(0L));
-
-    # Standardize weights to sum to one.
-    w <- w / sum(w, na.rm=na.rm);
 
     res <- apply(x, MARGIN=2L, FUN=function(x) {
       weightedMedian(x, w=w, na.rm=na.rm, ...);
