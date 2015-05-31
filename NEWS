@@ -1,7 +1,11 @@
 Package: matrixStats
 ====================
 
-Version: 0.14.0-9000 [2015-05-26]
+Version: 0.14.0-9000 [2015-05-30]
+o BUG FIX: rowCumsums(), rowCumprods() rowCummins(), and rowCummaxs(), 
+  accessed out-of-bound elements for Nx0 matrices where N > 0.  
+  The corresponding column methods has similar memory errors for
+  0xK matrices where K > 0.
 o BUG FIX: anyMissing(list(NULL)) returned NULL; now FALSE.
 o BUG FIX: rowCounts() resulted in garbage if a previous column had NAs
 (because forgot to update index kk in such cases).
