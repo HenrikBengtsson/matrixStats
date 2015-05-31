@@ -65,7 +65,7 @@ meanOver <- function(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...) {
     stop("Argument 'na.rm' is not logical: ", mode(na.rm));
   }
 
-  # Although meanOver.c can handle idxs, it does not feet the indexing requirements.
+  # Although meanOver.c can handle idxs, it does not fit the indexing requirements.
   # Thus, subsetted mockup implementation is used here.
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
