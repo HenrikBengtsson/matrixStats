@@ -15,7 +15,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   R_xlen_t ii, iMax;
   double xii, xMax;
   LDOUBLE sum;
-  int hasna2 = FALSE;
+  int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
 
   /* Quick return? */
   if (nx == 0) {
@@ -105,7 +105,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
-  int hasna2 = FALSE;
+  int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
 
   /* Quick return? */
   if (nx == 0) {

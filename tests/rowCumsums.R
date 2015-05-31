@@ -72,6 +72,46 @@ for (mode in c("integer", "double")) {
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Corner cases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+for (mode in c("integer", "double")) {
+  cat("mode: ", mode, "\n", sep="")
+  value <- 0
+  storage.mode(value) <- mode
+
+  # A 0x0 matrix
+  x <- matrix(value, nrow=0L, ncol=0L)
+  str(x)
+  r0 <- matrix(value, nrow=nrow(x), ncol=ncol(x))
+  r1 <- rowCumsums(x)
+  r2 <- t(colCumsums(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+
+  # A 0xK matrix
+  x <- matrix(value, nrow=0L, ncol=5L)
+  str(x)
+  r0 <- matrix(value, nrow=nrow(x), ncol=ncol(x))
+  r1 <- rowCumsums(x)
+  r2 <- t(colCumsums(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+
+  # A Nx0 matrix
+  x <- matrix(value, nrow=5L, ncol=0L)
+  str(x)
+  r0 <- matrix(value, nrow=nrow(x), ncol=ncol(x))
+  r1 <- rowCumsums(x)
+  r2 <- t(colCumsums(t(x)))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+} # for (mode ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")

@@ -119,6 +119,20 @@ stopifnot(all.equal(yS, yS0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Exception handling
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Zero bin bounderies (invalid bin definition)
+bx <- double(0L)
+res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+# One bin boundery (invalid bin definition)
+bx <- double(1L)
+res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")

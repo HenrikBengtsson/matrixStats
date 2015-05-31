@@ -15,7 +15,7 @@
 #   \item{idxs}{A @vector indicating subset of elements
 #      to operate over. If @NULL, no subsetting is done.}
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
-#      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
+#      the B > 0 bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
 #   \item{na.rm}{If @TRUE, missing values in \code{y} are dropped
 #      before calculating the mean, otherwise not.}
