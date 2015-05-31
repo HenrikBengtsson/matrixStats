@@ -56,3 +56,17 @@ for (mode in c("integer", "double")) {
   str(list(m0=m0, m1=m1))
   stopifnot(identical(m1,m0))
 } # for (mode ...)
+
+
+# NA tests
+w <- 1:2
+x <- 1:2
+x[1] <- NA_integer_
+m0 <- weighted.mean(x, w, na.rm=TRUE)
+m1 <- weightedMean(x, w, na.rm=TRUE)
+stopifnot(identical(m1,m0))
+
+w[1] <- NA_integer_
+m0 <- weighted.mean(x, w, na.rm=TRUE)
+m1 <- weightedMean(x, w, na.rm=TRUE)
+stopifnot(identical(m1,m0))
