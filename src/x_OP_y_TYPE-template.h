@@ -9,7 +9,7 @@
     if (X_ISNAN(x)) return NA_REAL;
 #endif
 #if Y_TYPE == 'i'
-    if (Y_ISNAN(x)) return NA_REAL;
+    if (Y_ISNAN(y)) return NA_REAL;
 #endif
     return (double)x + (double)y;
   }
@@ -31,7 +31,7 @@
     if (X_ISNAN(x)) return NA_REAL;
 #endif
 #if Y_TYPE == 'i'
-    if (Y_ISNAN(x)) return NA_REAL;
+    if (Y_ISNAN(y)) return NA_REAL;
 #endif
     return (double)x - (double)y;
   }
@@ -47,7 +47,7 @@
     if (X_ISNAN(x)) return NA_REAL;
 #endif
 #if Y_TYPE == 'i'
-    if (Y_ISNAN(x)) return NA_REAL;
+    if (Y_ISNAN(y)) return NA_REAL;
 #endif
     return (double)x * (double)y;
   }
@@ -69,7 +69,7 @@
     if (X_ISNAN(x)) return NA_REAL;
 #endif
 #if Y_TYPE == 'i'
-    if (Y_ISNAN(x)) return NA_REAL;
+    if (Y_ISNAN(y)) return NA_REAL;
 #endif
     return (double)x / (double)y;
   }
