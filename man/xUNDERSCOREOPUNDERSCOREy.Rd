@@ -15,8 +15,8 @@
 \title{Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)'}
 
 \usage{
- x_OP_y(x, y, OP, commute=FALSE, na.rm=FALSE)
- t_tx_OP_y(x, y, OP, commute=FALSE, na.rm=FALSE)
+ x_OP_y(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE)
+ t_tx_OP_y(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE)
 }
 
 \description{
@@ -28,6 +28,10 @@
   \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
   \item{y}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length L.}
   \item{OP}{A \code{\link[base]{character}} specifying which operator to use.}
+  \item{xrows, xcols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+      to operate over 'x'. If \code{\link[base]{NULL}}, no subsetting is done.}
+  \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements
+      to operate over 'y'. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{commute}{If \code{\link[base:logical]{TRUE}}, 'y OP x' ('t(y OP t(x))') is calculated,
       otherwise 'x OP y' ('t(t(x) OP y)').}
   \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are ignored, otherwise not.}
