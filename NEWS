@@ -1,9 +1,18 @@
 Package: matrixStats
 ====================
 
-Version: 0.14.0-9000 [2015-05-30]
+Version: 0.14.0-9000 [2015-05-31]
+o BUG FIX: weightedMean(x, w, na.rm=TRUE) did not handle missing
+  values in 'x' properly, if it was an integer.  It would also
+  return NaN if there were weights 'w' with missing values, whereas
+  stats::weighted.mean() would skip such data points.  Now
+  weightedMean() does the same.
+o BUG FIX: (col|row)WeightedMedians() did not handle infinite weights
+  as weightedMedian() does.
 o BUG FIX: x_OP_y(x, y, OP, na.rm=FALSE) returned garbage iff
   'x' or 'y' had missing values of type integer.
+o BUG FIX: rowQuantiles() and rowIQRs() did not work for single-row
+  matrices.  Analogously for the corresponding column functions.
 o BUG FIX: rowCumsums(), rowCumprods() rowCummins(), and rowCummaxs(), 
   accessed out-of-bound elements for Nx0 matrices where N > 0.  
   The corresponding column methods has similar memory errors for

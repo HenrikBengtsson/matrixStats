@@ -14,7 +14,7 @@ data <- data.frame(
 modes <- names(data)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Special: NULL and raw
+# Special cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("NULL...\n")
 stopifnot(identical(anyMissing(NULL), FALSE))
@@ -23,6 +23,10 @@ cat("NULL...done\n")
 cat("raw...\n")
 stopifnot(identical(anyMissing(as.raw(0:3)), FALSE))
 cat("raw...done\n")
+
+cat("list(NULL)...\n")
+stopifnot(identical(anyMissing(list(NULL)), FALSE))
+cat("list(NULL)...done\n")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

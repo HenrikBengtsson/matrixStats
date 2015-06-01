@@ -29,22 +29,25 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
     }
 
     value = x[i];
-    /* Skip or early stopping? */
+#if X_TYPE == 'i'
     if (X_ISNAN(value)) {
+      /* Skip or early stopping? */
       if (narm) {
         continue;
       } else {
         sum = R_NaReal;
         break;
       }
-    } else if (ISNAN(weight)) {
-      sum = R_NaReal;
-      break;
-
     } else {
       sum += (LDOUBLE)weight * (LDOUBLE)value;
       wtotal += weight;
     }
+#elif X_TYPE == 'r'
+    if (!narm || !X_ISNAN(value)) {
+      sum += (LDOUBLE)weight * (LDOUBLE)value;
+      wtotal += weight;
+    }
+#endif
   } /* for (i ...) */
 
   if (wtotal > DOUBLE_XMAX || wtotal < -DOUBLE_XMAX) {
@@ -65,7 +68,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
         /* Skip? */
         if (weight == 0) {
           continue;
-        }
+	}
 
         value = (LDOUBLE)x[i];
         if (!narm || !ISNAN(value)) {
