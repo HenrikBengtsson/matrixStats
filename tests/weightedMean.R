@@ -58,21 +58,28 @@ for (mode in c("integer", "double")) {
 } # for (mode ...)
 
 
+message("*** Testing for missing values")
 # NA tests
-for (mode in c("integer", "double")) {
-  cat("mode: ", mode, "\n", sep="")
-  x <- c(NA_integer_, 3L)
-  storage.mode(x) <- mode
-
-  w <- c(1, 2)
-  str(list(x=x, w=w))
-  m0 <- weighted.mean(x, w, na.rm=TRUE)
-  m1 <- weightedMean(x, w, na.rm=TRUE)
-  stopifnot(identical(m1,m0))
-
-  w[1] <- NA_real_
-  str(list(x=x, w=w))
-  m0 <- weighted.mean(x, w, na.rm=TRUE)
-  m1 <- weightedMean(x, w, na.rm=TRUE)
-  stopifnot(identical(m1,m0))
-} # for (mode ...)
+xs <- list(A=c(1, 2, 3), B=c(NA, 2, 3), C=c(NA, 2, 3))
+ws <- list(A=c(1, 1, 1), B=c(NA, 1, 1), C=c(1, NA, 1))
+## NOTE: The (B,B) case with na.rm=TRUE is interesting because
+## even if NAs in 'w' are not dropped by na.rm=TRUE, this one
+## is because 'x' is dropped and therefore that first element
+## is skipped in the computation.  It basically does
+##   keep <- !is.na(x); x <- x[keep]; w <- w[keep]
+## without looking at 'w'.
+for (x in xs) {
+  for (mode in c("integer", "double")) {
+    storage.mode(x) <- mode
+    for (w in ws) {
+      for (na.rm in c(FALSE, TRUE)) {
+        cat(sprintf("mode: %s, na.rm=%s\n", mode, na.rm))
+        str(list(x=x, w=w))
+        m0 <- weighted.mean(x, w, na.rm=na.rm)
+        m1 <- weightedMean(x, w, na.rm=na.rm)
+        str(m1)
+        stopifnot(identical(m1,m0))
+      }
+    }
+  }
+}
