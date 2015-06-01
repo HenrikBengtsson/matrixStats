@@ -56,3 +56,23 @@ for (mode in c("integer", "double")) {
   str(list(m0=m0, m1=m1))
   stopifnot(identical(m1,m0))
 } # for (mode ...)
+
+
+# NA tests
+for (mode in c("integer", "double")) {
+  cat("mode: ", mode, "\n", sep="")
+  x <- c(NA_integer_, 3L)
+  storage.mode(x) <- mode
+
+  w <- c(1, 2)
+  str(list(x=x, w=w))
+  m0 <- weighted.mean(x, w, na.rm=TRUE)
+  m1 <- weightedMean(x, w, na.rm=TRUE)
+  stopifnot(identical(m1,m0))
+
+  w[1] <- NA_real_
+  str(list(x=x, w=w))
+  m0 <- weighted.mean(x, w, na.rm=TRUE)
+  m1 <- weightedMean(x, w, na.rm=TRUE)
+  stopifnot(identical(m1,m0))
+} # for (mode ...)
