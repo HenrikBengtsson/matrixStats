@@ -82,9 +82,6 @@ for (fcn in names(FUNs)) {
 cat("=== subsetted tests ===\n")
 source("utils/validateIndicesFramework.R")
 for (fcn in names(FUNs)) {
-  # TODO: can remove it when all functions' subsetted features are supported
-  if (is.element(fcn, c("weightedVar", "weightedSd"))) next
-
   cat(sprintf("subsetted tests on %s()...\n", fcn))
   FUN <- FUNs[[fcn]]
 

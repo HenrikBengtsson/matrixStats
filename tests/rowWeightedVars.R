@@ -114,15 +114,12 @@ cat("=== subsetted tests ===\n")
 
 FUNs <- list(
   weightedVar=c(rowWeightedVars, colWeightedVars),
-  weightedSd=c(rowWeightedSds, colWeightedVars),
+  weightedSd=c(rowWeightedSds, colWeightedSds),
   weightedMad=c(rowWeightedMads, colWeightedMads)
 )
 
 source("utils/validateIndicesFramework.R")
 for (fcn in names(FUNs)) {
-  # TODO: can remove it when all functions' subsetted features are supported
-  if (is.element(fcn, c("weightedVar", "weightedSd"))) next
-
   cat(sprintf("subsetted tests on matrix %s()...\n", fcn))
   rowFUN <- FUNs[[fcn]][[1]]
   colFUN <- FUNs[[fcn]][[2]]
