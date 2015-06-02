@@ -143,8 +143,10 @@ for (x in xs) {
       for (OP in c("+", "-", "*", "/")) {
         for (na.rm in c(FALSE, TRUE)) {
           cat(sprintf("mode='%s', OP='%s', na.rm=%s\n", mode, OP, na.rm))
-          z0 <- x_OP_y_R(x, y, OP)
-          z <- x_OP_y(x, y, OP)
+          suppressWarnings({
+            z0 <- x_OP_y_R(x, y, OP, na.rm=na.rm)
+            z <- x_OP_y(x, y, OP, na.rm=na.rm)
+          })
           str(z)
           stopifnot(all.equal(z, z0))
         }
