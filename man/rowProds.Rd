@@ -22,7 +22,7 @@
 \usage{
  rowProds(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
  colProds(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
- product(x, na.rm=FALSE, ...)
+ product(x, idxs=NULL, na.rm=FALSE, ...)
 }
 
 \arguments{
