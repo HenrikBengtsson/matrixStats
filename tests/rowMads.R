@@ -13,27 +13,13 @@ colMads_R <- function(x, na.rm=FALSE) {
 }
 
 rowMads_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
-  # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-
-  if (length(x) == 0) return(rep(NA_real_, nrow(x)))
-
-  center <- rowMedians(x, na.rm=na.rm)
-  rowMads(x, center=center, na.rm=na.rm)
+  center <- rowMedians(x, rows=rows, cols=cols, na.rm=na.rm)
+  rowMads(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 
 colMads_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
-  # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-
-  if (length(x) == 0) return(rep(NA_real_, ncol(x)))
-
-  center <- colMedians(x, na.rm=na.rm)
-  colMads(x, center=center, na.rm=na.rm)
+  center <- colMedians(x, rows=rows, cols=cols, na.rm=na.rm)
+  colMads(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 
 

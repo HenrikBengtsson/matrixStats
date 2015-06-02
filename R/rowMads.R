@@ -22,6 +22,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
   } else {
     x <- x - center
+    if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
     x <- rowMedians(x, na.rm=na.rm, ...)
     x <- constant*x
