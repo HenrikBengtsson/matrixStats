@@ -176,7 +176,6 @@ for (OP in c("+", "-", "*", "/")) {
 
         for (yidxs in list(xrows,xcols)) {
           for (na.rm in c(TRUE, FALSE)) {
-            if (is.element(OP, c("-", "/"))) next
 
             suppressWarnings({
               actual <- tryCatch(
