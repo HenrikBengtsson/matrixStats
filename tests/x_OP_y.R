@@ -124,23 +124,36 @@ for (OP in c("+", "-", "*", "/")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All missing values
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
-  x <- matrix(NA_integer_, nrow=2, ncol=2)
-  y <- 1L
-  storage.mode(x) <- mode
-  storage.mode(y) <- mode
-  str(list(x=x, y=y))
+xs <- list(
+  A=matrix(1:2, nrow=2, ncol=2),
+  B=matrix(NA_integer_, nrow=2, ncol=2)
+)
+ys <- list(
+  A=1L,
+  B=NA_integer_
+)
 
-  for (OP in c("+", "-", "*", "/")) {
-    for (na.rm in c(FALSE, TRUE)) {
-      cat(sprintf("mode='%s', OP='%s', na.rm=%s\n", mode, OP, na.rm))
-      z0 <- x_OP_y_R(x, y, OP)
-      z <- x_OP_y(x, y, OP)
-      str(z)
-      stopifnot(all.equal(z, z0))
-    }
-  }
-} # for (mode ...)
+for (x in xs) {
+  for (y in ys) {
+    for (mode in c("integer", "double")) {
+      storage.mode(x) <- mode
+      storage.mode(y) <- mode
+      str(list(x=x, y=y))
+
+      for (OP in c("+", "-", "*", "/")) {
+        for (na.rm in c(FALSE, TRUE)) {
+          cat(sprintf("mode='%s', OP='%s', na.rm=%s\n", mode, OP, na.rm))
+          suppressWarnings({
+            z0 <- x_OP_y_R(x, y, OP, na.rm=na.rm)
+            z <- x_OP_y(x, y, OP, na.rm=na.rm)
+          })
+          str(z)
+          stopifnot(all.equal(z, z0))
+        }
+      }
+    } # for (mode ...)
+  } # for (y ...)
+} # for (x ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
