@@ -40,6 +40,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric @vector of length N or a @numeric NxK @matrix.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded, otherwise not.}
 #  \item{diff}{The positional distance of elements for which the
 #     difference should be calculated.}
@@ -89,7 +91,10 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+varDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -127,7 +132,10 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 } # varDiff()
 
 
-sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -164,7 +172,10 @@ sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 } # sdDiff()
 
 
-madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
+madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -201,7 +212,10 @@ madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
 } # madDiff()
 
 
-iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if(na.rm) {
     x <- x[!is.na(x)]
   } else if (anyMissing(x)) {
