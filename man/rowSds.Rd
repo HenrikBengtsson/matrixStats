@@ -23,8 +23,8 @@
 }
 
 \usage{
- rowSds(x, ...)
- colSds(x, ...)
+ rowSds(x, rows=NULL, cols=NULL, ...)
+ colSds(x, rows=NULL, cols=NULL, ...)
  rowMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
   centers=NULL, ...)
  colMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),

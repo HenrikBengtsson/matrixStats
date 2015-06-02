@@ -51,14 +51,14 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowSds <- function(x, ...) {
-  x <- rowVars(x, ...);
+rowSds <- function(x, rows=NULL, cols=NULL, ...) {
+  x <- rowVars(x, rows=rows, cols=cols, ...);
   sqrt(x);
 }
 
 
-colSds <- function(x, ...) {
-  x <- colVars(x, ...);
+colSds <- function(x, rows=NULL, cols=NULL, ...) {
+  x <- colVars(x, rows=rows, cols=cols, ...);
   sqrt(x);
 }
 
