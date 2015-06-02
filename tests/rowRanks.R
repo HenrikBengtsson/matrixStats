@@ -71,7 +71,7 @@ x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
 storage.mode(x) <- "integer"
 for (rows in indexCases) {
   for (cols in indexCases) {
-    validateIndicesTestMatrix(x, rows, cols, ftest=rowRanks, fsure=rowRanks, ties.method="average")
+    validateIndicesTestMatrix(x, rows, cols, ftest=rowRanks, fsure=rowRanks_R, ties.method="average")
 
     validateIndicesTestMatrix(x, rows, cols, ftest=function(x, rows, cols, ...) {
       t(colRanks(t(x), rows=cols, cols=rows, preserveShape=TRUE, ...))
