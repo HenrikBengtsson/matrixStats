@@ -130,3 +130,19 @@ stopifnot(inherits(res, "try-error"))
 bx <- double(1L)
 res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
 stopifnot(inherits(res, "try-error"))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Subsetted tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source("utils/validateIndicesFramework.R")
+y <- runif(6, min=-6, max=6)
+x <- runif(6, min=-6, max=6)
+storage.mode(x) <- "integer"
+bx <- c(-6, 0, 3, 4, 10)
+for (idxs in indexCases) {
+  for (na.rm in c(TRUE, FALSE)) {
+    validateIndicesTestVector_w(y, x, idxs, ftest=binMeans, fsure=binMeans0, bx=bx, na.rm=na.rm, count=TRUE, right=FALSE)
+    validateIndicesTestVector_w(y, x, idxs, ftest=binMeans, fsure=binMeans0, bx=bx, na.rm=na.rm, count=TRUE, right=TRUE)
+  }
+}

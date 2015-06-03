@@ -40,6 +40,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric @vector of length N or a @numeric NxK @matrix.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded, otherwise not.}
 #  \item{diff}{The positional distance of elements for which the
 #     difference should be calculated.}
@@ -89,7 +91,10 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+varDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -127,7 +132,10 @@ varDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 } # varDiff()
 
 
-sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -164,7 +172,10 @@ sdDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 } # sdDiff()
 
 
-madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
+madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (na.rm)
     x <- x[!is.na(x)]
 
@@ -201,7 +212,10 @@ madDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
 } # madDiff()
 
 
-iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if(na.rm) {
     x <- x[!is.na(x)]
   } else if (anyMissing(x)) {
@@ -247,44 +261,86 @@ iqrDiff <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
 } # iqrDiff()
 
 
-rowVarDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+rowVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=1L, FUN=varDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
-colVarDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+colVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=2L, FUN=varDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
 
-rowSdDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+rowSdDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=1L, FUN=sdDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
-colSdDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+colSdDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=2L, FUN=sdDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
 
-rowMadDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+rowMadDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=1L, FUN=madDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
-colMadDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+colMadDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=2L, FUN=madDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
 
-rowIQRDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+rowIQRDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=1L, FUN=iqrDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
-colIQRDiffs <- function(x, na.rm=FALSE, diff=1L, trim=0, ...) {
+colIQRDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   apply(x, MARGIN=2L, FUN=iqrDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-06-03 [DJ]
+# o Supported subsetted computation.
 # 2015-01-16
 # o Added iqrDiff() and (col|row)IQRDiffs().
 # 2014-14-19

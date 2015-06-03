@@ -13,6 +13,8 @@
 #
 # \arguments{
 #   \item{x}{a @numeric @vector.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{...}{Not used.}
 # }
 #
@@ -28,7 +30,10 @@
 #
 # @keyword internal
 #*/############################################################################
-signTabulate <- function(x, ...) {
+signTabulate <- function(x, idxs=NULL, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   res <- .Call("signTabulate", x, PACKAGE="matrixStats");
   names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)];
   res;
@@ -37,6 +42,8 @@ signTabulate <- function(x, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-31 [DJ]
+# o Supported subsetted computation.
 # 2014-06-04 [HB]
 # o Created.
 ############################################################################

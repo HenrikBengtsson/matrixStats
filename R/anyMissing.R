@@ -10,13 +10,15 @@
 # }
 #
 # \usage{
-#  anyMissing(x, ...)
-#  colAnyMissings(x, ...)
-#  rowAnyMissings(x, ...)
+#  @usage anyMissing
+#  @usage colAnyMissings
+#  @usage rowAnyMissings
 # }
 #
 # \arguments{
 #  \item{x}{A @vector, a @list, a @matrix, a @data.frame, or @NULL.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{...}{Not used.}
 # }
 #
@@ -45,7 +47,10 @@
 # @keyword iteration
 # @keyword logic
 #*/###########################################################################
-anyMissing <- function(x, ...) {
+anyMissing <- function(x, idxs=NULL, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   ## All list or a data.frame?
   if (is.list(x)) {
     for (kk in seq(along=x)) {
@@ -60,17 +65,19 @@ anyMissing <- function(x, ...) {
 }
 
 
-colAnyMissings <- function(x, ...) {
-  colAnys(x, value=NA, ...)
+colAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
+  colAnys(x, rows, cols, value=NA, ...)
 }
 
-rowAnyMissings <- function(x, ...) {
-  rowAnys(x, value=NA, ...)
+rowAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
+  rowAnys(x, rows, cols, value=NA, ...)
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-05-26 [DJ]
+# o Supported subsetted computation.
 # 2015-02-10
 # o CLEANUP: anyMissing() is no longer an S4 generic, cf. base::anyNA().
 # 2015-01-20

@@ -18,13 +18,15 @@
 }
 
 \usage{
- rowWeightedMeans(x, w=NULL, na.rm=FALSE, ...)
- colWeightedMeans(x, w=NULL, na.rm=FALSE, ...)
+ rowWeightedMeans(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...)
+ colWeightedMeans(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
  \item{w}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length K (N).}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+   to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are excluded from the calculation,
    otherwise not.}
  \item{...}{Not used.}

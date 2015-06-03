@@ -18,6 +18,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, missing values are ignored, otherwise not.}
 #  \item{method}{A @character string specifying how each product
 #   is calculated.}
@@ -52,7 +54,12 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
+rowProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   # Preallocate result (zero:ed by default)
   n <- nrow(x)
   y <- double(length=n)
@@ -78,7 +85,12 @@ rowProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
   y;
 } # rowProds()
 
-colProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
+colProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
   # Preallocate result (zero:ed by default)
   n <- ncol(x)
   y <- double(length=n)
@@ -107,6 +119,8 @@ colProds <- function(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-06-03 [DJ]
+# o Supported subsetted computation.
 # 2014-11-15 [HB]
 # o SPEEDUP: No longer using match.arg() due to its overhead.
 # 2014-06-04 [HB]

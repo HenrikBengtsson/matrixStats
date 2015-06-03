@@ -19,12 +19,15 @@
 }
 
 \usage{
-rowAvgsPerColSet(X, W=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
+  rowAvgsPerColSet(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FALSE)
+  colAvgsPerRowSet(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, ...)
 }
 
 \arguments{
   \item{X}{A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.}
   \item{W}{An optional \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}} of weights.}
+  \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{S}{An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}} specifying the J subsets.  Each
     column holds K column (row) indices for the corresponding subset.}
   \item{FUN}{The row-by-row (column-by-column) \code{\link[base]{function}} used to average

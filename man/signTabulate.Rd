@@ -14,7 +14,7 @@
 \title{Calculates the number of negative, zero, positive and missing values}
 
 \usage{
-signTabulate(x, ...)
+signTabulate(x, idxs=NULL, ...)
 }
 
 \description{
@@ -24,6 +24,8 @@ signTabulate(x, ...)
 
 \arguments{
   \item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}}.}
+  \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements
+     to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{...}{Not used.}
 }
 

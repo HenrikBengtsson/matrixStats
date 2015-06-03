@@ -11,6 +11,8 @@
 #
 # \arguments{
 #   \item{x}{A @numeric @vector of length N.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{lag}{An @integer specifying the lag.}
 #   \item{differences}{An @integer specifying the order of difference.}
 #   \item{...}{Not used.}
@@ -31,7 +33,7 @@
 # @keyword univar
 # @keyword internal
 #*/############################################################################
-diff2 <- function(x, lag=1L, differences=1L, ...) {
+diff2 <- function(x, idxs=NULL, lag=1L, differences=1L, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -45,14 +47,20 @@ diff2 <- function(x, lag=1L, differences=1L, ...) {
     stop("Argument 'differences' is not a scalar: ", length(differences))
   }
 
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   lag <- as.integer(lag)
   differences <- as.integer(differences)
+
   .Call("diff2", x, lag, differences, PACKAGE="matrixStats");
 } # diff2()
 
 
 ############################################################################
 # HISTORY:
+# 2015-05-26 [DJ]
+# o Supported subsetted computation.
 # 2014-12-29
 # o Created.
 ############################################################################

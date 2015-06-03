@@ -18,6 +18,8 @@
 # \arguments{
 #  \item{lx}{A @numeric @vector.
 #    Typically \code{lx} are \eqn{log(x)} values.}
+#  \item{idxs}{A @vector indicating subset of elements
+#    to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, any missing values are ignored, otherwise not.}
 #  \item{...}{Not used.}
 # }
@@ -76,7 +78,10 @@
 # }
 #
 #*/###########################################################################
-logSumExp <- function(lx, na.rm=FALSE, ...) {
+logSumExp <- function(lx, idxs=NULL, na.rm=FALSE, ...) {
+  # Apply subset
+  if (!is.null(idxs)) lx <- lx[idxs]
+
   hasNA <- TRUE;
   .Call("logSumExp", as.numeric(lx), as.logical(na.rm), as.logical(hasNA),
                                                      PACKAGE="matrixStats");
@@ -85,6 +90,8 @@ logSumExp <- function(lx, na.rm=FALSE, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2015-05-28 [DJ]
+# o Supported subsetted computation.
 # 2013-04-30 [HB]
 # o Added native implementation.
 # o Renamed to logSumExp(), because that seems to be the naming convention

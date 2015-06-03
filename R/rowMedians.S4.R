@@ -17,6 +17,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
@@ -50,24 +52,40 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowMedians", function(x, na.rm=FALSE, dim.=dim(x), ...) {
+setGeneric("rowMedians", function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   standardGeneric("rowMedians");
 })
 
-setMethod("rowMedians", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+setMethod("rowMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
   .Call("rowMedians", x, dim., na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
 })
 
 
-setGeneric("colMedians", function(x, na.rm=FALSE, dim.=dim(x), ...) {
+setGeneric("colMedians", function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   standardGeneric("colMedians");
 })
 
-setMethod("colMedians", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim(x), ...) {
+setMethod("colMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
   .Call("rowMedians", x, dim., na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
@@ -76,6 +94,8 @@ setMethod("colMedians", signature(x="matrix"), function(x, na.rm=FALSE, dim.=dim
 
 ############################################################################
 # HISTORY:
+# 2015-05-28 [DJ]
+# o Supported subsetted computation.
 # 2011-10-13 [HJ]
 # o In the past, colMedians(x) was accomplished as rowMedians(t(x));
 #   it is now done directly.

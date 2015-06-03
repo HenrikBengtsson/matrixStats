@@ -2,14 +2,10 @@ library("matrixStats")
 
 rowCumprods_R <- function(x) {
   suppressWarnings({
-    t(apply(x, MARGIN=1L, FUN=cumprod))
+    y <- t(apply(x, MARGIN=1L, FUN=cumprod))
   })
-}
-
-colCumprods_R <- function(x) {
-  suppressWarnings({
-    apply(x, MARGIN=2L, FUN=cumprod)
-  })
+  dim(y) <- dim(x)
+  y
 }
 
 
@@ -133,3 +129,19 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
 } # for (mode ...)
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Subsetted tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source("utils/validateIndicesFramework.R")
+x <- matrix(runif(6*6, min=-3, max=3), nrow=6, ncol=6)
+storage.mode(x) <- "integer"
+for (rows in indexCases) {
+  for (cols in indexCases) {
+    validateIndicesTestMatrix(x, rows, cols, ftest=rowCumprods, fsure=rowCumprods_R)
+    validateIndicesTestMatrix(x, rows, cols, ftest=function(x, rows, cols, ...) {
+      t(colCumprods(t(x), rows=cols, cols=rows))
+    }, fsure=rowCumprods_R)
+  }
+}

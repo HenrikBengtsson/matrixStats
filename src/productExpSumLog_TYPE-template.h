@@ -28,6 +28,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
   LDOUBLE y = 0.0, t;
   R_xlen_t ii;
   int isneg = 0;
+  int hasZero = 0;
 
   /* Calculate sum(log(abs(x))) */
   for (ii = 0 ; ii < nx; ii++) {
@@ -46,8 +47,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
       isneg = !isneg;
       t = -t;
     } else if (t == 0) {
-      y = R_NegInf;
-      break;
+      hasZero = 1;
     }
 #elif X_TYPE == 'r'
     if (t < 0) {
@@ -67,6 +67,9 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
        calculating fabs(NA), which returns NaN. For consistency with
        integers, we return NA in all cases. */
     y = NA_REAL;
+  } else if (hasZero) {
+    /* no NA in 'x' and 'x' contains zero */
+    y = 0;
   } else {
     y = exp(y);
   

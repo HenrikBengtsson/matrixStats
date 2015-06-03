@@ -11,6 +11,8 @@
 #
 # \arguments{
 #   \item{x}{A @numeric @vector of K positions for to be binned and counted.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
 #      the B > 0 bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
@@ -51,7 +53,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-binCounts <- function(x, bx, right=FALSE, ...) {
+binCounts <- function(x, idxs=NULL, bx, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -70,6 +72,9 @@ binCounts <- function(x, bx, right=FALSE, ...) {
   if (is.unsorted(bx)) {
     stop("Argument 'bx' is not ordered.");
   }
+
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
 
   # Argument 'right':
   right <- as.logical(right);
@@ -102,6 +107,8 @@ binCounts <- function(x, bx, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-28 [DJ]
+# o Supported subsetted computation.
 # 2014-12-29 [HB]
 # o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
 #   of o <- order(); any(diff(o) != 1L).

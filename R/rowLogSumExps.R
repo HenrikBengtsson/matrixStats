@@ -18,6 +18,8 @@
 # \arguments{
 #  \item{lx}{A @numeric NxK @matrix.
 #   Typically \code{lx} are \eqn{log(x)} values.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#   to operate over. If @NULL, no subsetting is done.}
 #  \item{na.rm}{If @TRUE, any missing values are ignored, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #               dimension of \code{x}, also when not a @matrix.}
@@ -44,8 +46,16 @@
 #
 # @keyword array
 #*/###########################################################################
-rowLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
+rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
   dim. <- as.integer(dim.)
+
+  # Apply subset
+  if (is.vector(lx)) dim(lx) <- dim.
+  if (!is.null(rows) && !is.null(cols)) lx <- lx[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) lx <- lx[rows,,drop=FALSE]
+  else if (!is.null(cols)) lx <- lx[,cols,drop=FALSE]
+  dim. <- dim(lx)
+
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
                lx, dim.,
@@ -62,8 +72,16 @@ rowLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
 } # rowLogSumExps()
 
 
-colLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
+colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
   dim. <- as.integer(dim.)
+
+  # Apply subset
+  if (is.vector(lx)) dim(lx) <- dim.
+  if (!is.null(rows) && !is.null(cols)) lx <- lx[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) lx <- lx[rows,,drop=FALSE]
+  else if (!is.null(cols)) lx <- lx[,cols,drop=FALSE]
+  dim. <- dim(lx)
+
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
                lx, dim.,
@@ -83,6 +101,8 @@ colLogSumExps <- function(lx, na.rm=FALSE, dim.=dim(lx), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-28 [DJ]
+# o Supported subsetted computation.
 # 2013-04-30 [HB]
 # o SPEEDUP: (col|row)LogSumExps() are now implemented natively.
 # o Renamed to (col|row)LogSumExps().

@@ -18,12 +18,14 @@
 }
 
 \usage{
-  rowTabulates(x, values=NULL, ...)
-  colTabulates(x, values=NULL, ...)
+  rowTabulates(x, rows=NULL, cols=NULL, values=NULL, ...)
+  colTabulates(x, rows=NULL, cols=NULL, values=NULL, ...)
 }
 
 \arguments{
   \item{x}{An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
+  \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+   to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{values}{An \code{\link[base]{vector}} of J values of count. If \code{\link[base]{NULL}}, all (unique)
    values are counted.}
   \item{...}{Not used.}

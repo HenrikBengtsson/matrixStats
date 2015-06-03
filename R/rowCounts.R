@@ -27,6 +27,8 @@
 #
 # \arguments{
 #  \item{x}{An NxK @matrix or an N*K @vector.}
+#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{value}{A value to search for.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
@@ -53,7 +55,7 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-rowCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -68,6 +70,13 @@ rowCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (length(value) != 1L) {
     stop("Argument 'value' has to be a single value: ", length(value))
   }
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
 
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
@@ -92,7 +101,7 @@ rowCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
 } # rowCounts()
 
 
-colCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -108,9 +117,15 @@ colCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     stop("Argument 'value' has to be a single value: ", length(value))
   }
 
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
-
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Count
@@ -133,7 +148,7 @@ colCounts <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
 
 
 
-count <- function(x, value=TRUE, na.rm=FALSE, ...) {
+count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   # Argument 'x':
   if (!is.vector(x)) {
     stop("Argument 'x' must be a vector: ", mode(x)[1L])
@@ -144,9 +159,11 @@ count <- function(x, value=TRUE, na.rm=FALSE, ...) {
     stop("Argument 'value' has to be a single value: ", length(value))
   }
 
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
-
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Count
@@ -168,7 +185,14 @@ count <- function(x, value=TRUE, na.rm=FALSE, ...) {
 
 
 
-rowAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -183,7 +207,14 @@ rowAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   }
 }
 
-colAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -199,7 +230,10 @@ colAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
 }
 
 
-allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
+allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -216,7 +250,14 @@ allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
 
 
 
-rowAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -231,7 +272,14 @@ rowAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   }
 }
 
-colAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -247,7 +295,10 @@ colAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
 }
 
 
-anyValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
+anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
+  # Apply subset
+  if (!is.null(idxs)) x <- x[idxs]
+
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -266,6 +317,8 @@ anyValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-26 [DJ]
+# o Supported subsetted computation.
 # 2014-11-14 [HB]
 # o SPEEDUP: Now colCounts() is implemented in native code.
 # o CLEANUP: Now (col|row)Count(x) when x is logical utilizes the

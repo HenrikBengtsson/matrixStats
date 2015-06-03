@@ -18,6 +18,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{center}{(optional) The center, defaults to the row means.}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
@@ -43,7 +45,16 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowVars <- function(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -90,7 +101,16 @@ rowVars <- function(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
 }
 
 
-colVars <- function(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+  dim. <- as.integer(dim.)
+
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)

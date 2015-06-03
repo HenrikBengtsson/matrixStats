@@ -21,12 +21,14 @@
 }
 
 \usage{
- rowVars(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...)
- colVars(x, na.rm=FALSE, center=NULL, dim.=dim(x), ...)
+ rowVars(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...)
+ colVars(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{center}{(optional) The center, defaults to the row means.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
@@ -70,12 +72,12 @@ print(colIQRs(x))
 # Row ranges
 print(rowRanges(x))
 print(cbind(rowMins(x), rowMaxs(x)))
-print(cbind(rowOrderStats(x, 1), rowOrderStats(x, ncol(x))))
+print(cbind(rowOrderStats(x, which=1), rowOrderStats(x, which=ncol(x))))
 
 # Column ranges
 print(colRanges(x))
 print(cbind(colMins(x), colMaxs(x)))
-print(cbind(colOrderStats(x, 1), colOrderStats(x, nrow(x))))
+print(cbind(colOrderStats(x, which=1), colOrderStats(x, which=nrow(x))))
 
 
 x <- matrix(rnorm(2400), nrow=50, ncol=40)

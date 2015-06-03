@@ -5,3 +5,5 @@
 .test
 .o
 .dll
+*.Rout
+.RData

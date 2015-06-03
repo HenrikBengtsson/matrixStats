@@ -13,14 +13,14 @@ colVars_R <- function(x, na.rm=FALSE) {
 }
 
 
-rowVars_center <- function(x, na.rm=FALSE) {
-  center <- rowMeans(x, na.rm=na.rm)
-  rowVars(x, center=center, na.rm=na.rm)
+rowVars_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
+  center <- rowWeightedMeans(x, rows=rows, cols=cols, na.rm=na.rm)
+  rowVars(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 
-colVars_center <- function(x, na.rm=FALSE) {
-  center <- colMeans(x, na.rm=na.rm)
-  colVars(x, center=center, na.rm=na.rm)
+colVars_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
+  center <- colWeightedMeans(x, rows=rows, cols=cols, na.rm=na.rm)
+  colVars(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 
 
@@ -98,4 +98,23 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(all.equal(r2, r0))
   stopifnot(all.equal(r1b, r1))
   stopifnot(all.equal(r2b, r2))
+}
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Subsetted tests
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+source("utils/validateIndicesFramework.R")
+x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
+storage.mode(x) <- "integer"
+for (rows in indexCases) {
+  for (cols in indexCases) {
+    for (na.rm in c(TRUE, FALSE)) {
+      validateIndicesTestMatrix(x, rows, cols, ftest=rowVars, fsure=rowVars_R, na.rm=na.rm)
+      validateIndicesTestMatrix(x, rows, cols, ftest=rowVars_center, fsure=rowVars_R, na.rm=na.rm)
+
+      validateIndicesTestMatrix(x, rows, cols, fcolTest=colVars, fsure=rowVars_R, na.rm=na.rm)
+      validateIndicesTestMatrix(x, rows, cols, fcolTest=colVars_center, fsure=rowVars_R, na.rm=na.rm)
+    }
+  }
 }

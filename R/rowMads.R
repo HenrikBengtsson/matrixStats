@@ -1,4 +1,11 @@
-rowMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Remove in matrixStats (>= 0.15.0)
@@ -15,6 +22,7 @@ rowMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), c
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
   } else {
     x <- x - center
+    if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
     x <- rowMedians(x, na.rm=na.rm, ...)
     x <- constant*x
@@ -23,7 +31,14 @@ rowMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), c
 } # rowMads()
 
 
-colMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  dim. <- dim(x)
+
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Remove in matrixStats (>= 0.15.0)
@@ -40,9 +55,10 @@ colMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), c
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
   } else {
     ## SLOW:
-    ## for (cc in seq(length=ncol(x))) {
-    #    x[,cc] <- x[,cc] - center[cc]
-    #  }
+    # for (cc in seq(length=ncol(x))) {
+    #   x[,cc] <- x[,cc] - center[cc]
+    # }
+    ## FAST:
     x <- t_tx_OP_y(x, center, OP="-", na.rm=FALSE)
     x <- abs(x)
     x <- colMedians(x, na.rm=na.rm, ...)
@@ -54,6 +70,8 @@ colMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), c
 
 ############################################################################
 # HISTORY:
+# 2015-05-30 [DJ]
+# o Supported subsetted computation.
 # 2015-02-10 [HB]
 # o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to
 #   'center'.  This is consistent with col- and rowVars().  Added
