@@ -47,25 +47,13 @@ for (mode in c("integer", "double")) {
   print(z)
   stopifnot(is.na(z))
 
+  # NAs following 0s should return NA
+  x <- c(0L, NA_integer_)
+  storage.mode(x) <- mode
+  y <- prod(x, na.rm=FALSE)
+  print(y)
+  stopifnot(is.na(y))
+  z <- product(x, na.rm=FALSE)
+  print(z)
+  stopifnot(is.na(z))
 } # for (mode ...)
-
-
-# NAs following 0s
-x <- c(0L, NA_integer_)
-y <- prod(x, na.rm=FALSE)
-print(y)
-z <- product(x, na.rm=FALSE)
-print(z)
-stopifnot(identical(z, y))
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source("utils/validateIndicesFramework.R")
-x <- runif(6, min=-6, max=6)
-storage.mode(x) <- "integer"
-for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest=product, fsure=prod, na.rm=TRUE)
-  validateIndicesTestVector(x, idxs, ftest=product, fsure=prod, na.rm=FALSE)
-}
