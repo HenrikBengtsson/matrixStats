@@ -33,7 +33,7 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
   int warn = 0;
 
   // Count?
-  if (nbins > 1) {
+  if (nbins > 0) {
 
     // Skip to the first bin
     while ((iStart < nx) && IS_PART_OF_FIRST_BIN(x[iStart], bx[0])) {
@@ -103,7 +103,7 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
       }
     }
 
-  } // if (nbins > 1)
+  } // if (nbins > 0)
 
   if (warn) {
     warning("Integer overflow. Detected one or more bins with a count that is greater than what can be represented by the integer data type. Setting count to the maximum integer possible (.Machine$integer.max = %d). The bin mean is still correct.", R_INT_MAX);
