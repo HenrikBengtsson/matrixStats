@@ -10,9 +10,9 @@
 # }
 #
 # \usage{
-#  anyMissing(x, ...)
-#  colAnyMissings(x, ...)
-#  rowAnyMissings(x, ...)
+#  @usage anyMissing
+#  @usage colAnyMissings
+#  @usage rowAnyMissings
 # }
 #
 # \arguments{
