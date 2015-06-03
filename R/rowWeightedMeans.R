@@ -116,6 +116,7 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
 
       # Weighted values
       ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop=TRUE];
+      ## FAST:
       x <- t_tx_OP_y(x, w, OP="*", na.rm=FALSE)
 
       w <- NULL; # Not needed anymore
