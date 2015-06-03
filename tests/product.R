@@ -48,3 +48,12 @@ for (mode in c("integer", "double")) {
   stopifnot(is.na(z))
 
 } # for (mode ...)
+
+
+# NAs following 0s
+x <- c(0L, NA_integer_)
+y <- prod(x, na.rm=FALSE)
+print(y)
+z <- product(x, na.rm=FALSE)
+print(z)
+stopifnot(identical(z, y))
