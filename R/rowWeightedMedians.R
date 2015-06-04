@@ -62,7 +62,7 @@ rowWeightedMedians <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w));
     }
-    if (any(w < 0)) {
+    if (any(!is.na(w) & w < 0)) {
       stop("Argument 'w' has negative weights.");
     }
   }
@@ -101,7 +101,7 @@ colWeightedMedians <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w));
     }
-    if (any(w < 0)) {
+    if (any(!is.na(w) & w < 0)) {
       stop("Argument 'w' has negative weights.");
     }
   }
