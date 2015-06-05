@@ -1,5 +1,5 @@
 rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
-  # Apply subset
+  # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
   else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
@@ -21,6 +21,9 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     hasNAs <- TRUE
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
   } else {
+    # Apply subset on 'center'
+    if (!is.null(rows)) center <- center[rows]
+
     x <- x - center
     if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
@@ -32,7 +35,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
 
 
 colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
-  # Apply subset
+  # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
   else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
@@ -54,6 +57,9 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     hasNAs <- TRUE
     x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
   } else {
+    # Apply subset on 'center'
+    if (!is.null(cols)) center <- center[cols]
+
     ## SLOW:
     # for (cc in seq(length=ncol(x))) {
     #   x[,cc] <- x[,cc] - center[cc]

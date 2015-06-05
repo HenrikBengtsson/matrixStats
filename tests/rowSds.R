@@ -14,12 +14,12 @@ colSds_R <- function(x, na.rm=FALSE) {
 
 
 rowSds_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
-  center <- rowWeightedMeans(x, rows=rows, cols=cols, na.rm=na.rm)
+  center <- rowWeightedMeans(x, cols=cols, na.rm=na.rm)
   rowSds(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 
 colSds_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
-  center <- colWeightedMeans(x, rows=rows, cols=cols, na.rm=na.rm)
+  center <- colWeightedMeans(x, rows=rows, na.rm=na.rm)
   colSds(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 

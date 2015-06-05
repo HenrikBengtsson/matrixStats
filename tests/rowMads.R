@@ -13,12 +13,12 @@ colMads_R <- function(x, na.rm=FALSE) {
 }
 
 rowMads_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
-  center <- rowMedians(x, rows=rows, cols=cols, na.rm=na.rm)
+  center <- rowMedians(x, cols=cols, na.rm=na.rm)
   rowMads(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 
 colMads_center <- function(x, rows=NULL, cols=NULL, na.rm=FALSE) {
-  center <- colMedians(x, rows=rows, cols=cols, na.rm=na.rm)
+  center <- colMedians(x, rows=rows, na.rm=na.rm)
   colMads(x, rows=rows, cols=cols, center=center, na.rm=na.rm)
 }
 

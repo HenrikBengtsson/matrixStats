@@ -48,7 +48,7 @@
 rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
 
-  # Apply subset
+  # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
   else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
@@ -62,6 +62,9 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
     sigma2 <- .Call("rowVars", x, dim., na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
     return(sigma2)
   }
+
+  # Apply subset on 'center'
+  if (!is.null(rows)) center <- center[rows]
 
   ncol <- ncol(x);
 
@@ -104,7 +107,7 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
 
-  # Apply subset
+  # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
   else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
@@ -118,6 +121,9 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
     sigma2 <- .Call("rowVars", x, dim., na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
     return(sigma2)
   }
+
+  # Apply subset on 'center'
+  if (!is.null(cols)) center <- center[cols]
 
   nrow <- nrow(x);
 
