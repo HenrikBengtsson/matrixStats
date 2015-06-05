@@ -73,8 +73,8 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (m == 0L)
       return(double(0L));
 
-    # Drop entries with zero weight?
-    idxs <- which(w != 0);
+    # Drop entries with zero weight? ...but keep NAs
+    idxs <- which(is.na(w) | w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
       return(rep(NaN, times=m));
@@ -158,8 +158,8 @@ colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (m == 0L)
       return(double(0L));
 
-    # Drop entries with zero weight?
-    idxs <- which(w != 0);
+    # Drop entries with zero weight? ...but keep NAs
+    idxs <- which(is.na(w) | w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
       return(rep(NaN, times=m));
