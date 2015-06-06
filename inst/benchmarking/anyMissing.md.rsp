@@ -45,8 +45,6 @@ data <- rvectors(mode=mode)
 <%
 dataLabel <- names(data)[ii]
 mprintf("%s: %s\n", mode, dataLabel)
-x <- data[[dataLabel]]
-gc()
 %>
 ### <%=dataLabel%> vector
 
