@@ -78,7 +78,6 @@ static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
 } /* assertArgMatrix() */ 
 
 
-
 static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
   int value = 0;
 
@@ -97,3 +96,18 @@ static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
   return value;
 } /* asLogicalNoNA() */
 
+
+/* Retrieve the 'i'th element of 'x' as R_xlen_t */
+static R_INLINE R_xlen_t asR_xlen_t(SEXP x, R_xlen_t i) {
+  int mode = TYPEOF(x);
+  switch (mode) {
+    case INTSXP: return INTEGER(x)[i];
+    case REALSXP: return REAL(x)[i];
+    default: error("only integer and numeric are supported.");
+  }
+  return 0;
+} /* asR_xlen_t() */
+
+
+/* Specified in validateIndices.c */
+void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type);
