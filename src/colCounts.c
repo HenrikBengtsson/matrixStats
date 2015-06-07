@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP colCounts(SEXP x, SEXP value, SEXP naRm, SEXP hasNA)
+ SEXP colCounts(SEXP x, ...)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
@@ -8,29 +8,26 @@
 #include "types.h"
 #include "utils.h"
 
+
 #define METHOD colCounts
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
 
-#define X_TYPE 'i'
-#include "colCounts_TYPE-template.h"
-
-#define X_TYPE 'r'
-#include "colCounts_TYPE-template.h"
-
-#define X_TYPE 'l'
-#include "colCounts_TYPE-template.h"
-
-#undef METHOD
+#define X_TYPE_I
+#define X_TYPE_R
+#define X_TYPE_L
+#include "templates-gen.h"
 
 
-SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans;
   int narm, hasna, what2;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
 
   /* Argument 'value': */
   if (length(value) != 1)
@@ -38,6 +35,11 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
 
   if (!isNumeric(value))
     error("Argument 'value' must be a numeric value.");
+
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* Argument 'what': */
   what2 = asInteger(what);
@@ -49,14 +51,14 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
   /* R allocate an integer vector of length 'ncol' */
-  PROTECT(ans = allocVector(INTSXP, ncol));
+  PROTECT(ans = allocVector(INTSXP, ncols));
 
   if (isReal(x)) {
-    colCounts_Real(REAL(x), nrow, ncol, asReal(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    colCounts_Integer(INTEGER(x), nrow, ncol, asInteger(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
-    colCounts_Logical(LOGICAL(x), nrow, ncol, asLogical(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_Logical[rowsType][colsType](LOGICAL(x), nrow, ncol, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans));
   }
 
   UNPROTECT(1);
@@ -65,7 +67,7 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
 } // colCounts()
 
 
-SEXP count(SEXP x, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans;
   int narm, hasna, what2;
   R_xlen_t nx;
@@ -81,6 +83,11 @@ SEXP count(SEXP x, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   if (!isNumeric(value))
     error("Argument 'value' must be a numeric value.");
 
+  R_xlen_t nrows, ncols = 1;
+  int rowsType, colsType = SUBSETTED_ALL;
+  void *crows = validateIndices(idxs, nx, 1, &nrows, &rowsType);
+  void *ccols = NULL;
+
   /* Argument 'what': */
   what2 = asInteger(what);
 
@@ -94,11 +101,11 @@ SEXP count(SEXP x, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   PROTECT(ans = allocVector(INTSXP, 1));
 
   if (isReal(x)) {
-    colCounts_Real(REAL(x), nx, 1, asReal(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_Real[rowsType][colsType](REAL(x), nx, 1, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    colCounts_Integer(INTEGER(x), nx, 1, asInteger(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_Integer[rowsType][colsType](INTEGER(x), nx, 1, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
-    colCounts_Logical(LOGICAL(x), nx, 1, asLogical(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_Logical[rowsType][colsType](LOGICAL(x), nx, 1, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans));
   }
 
   UNPROTECT(1);
@@ -109,6 +116,8 @@ SEXP count(SEXP x, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
 
 /***************************************************************************
  HISTORY:
+ 2015-04-21 [DJ]
+  o Supported subsetted computation.
  2014-11-14 [HB]
   o Created from rowCounts.c.
  **************************************************************************/
