@@ -65,28 +65,12 @@ colCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
 
 rowCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim <- dim(x)
-
-  .Call("rowCumprods", x, dim, TRUE, PACKAGE="matrixStats")
+  .Call("rowCumprods", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
 }
 
 colCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim <- dim(x)
-
-  .Call("rowCumprods", x, dim, FALSE, PACKAGE="matrixStats")
+  .Call("rowCumprods", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
 }
 
 
