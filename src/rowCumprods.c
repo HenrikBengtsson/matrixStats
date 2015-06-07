@@ -15,9 +15,10 @@
 #define RETURN_TYPE void
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
 
-#define X_TYPE_I
-#define X_TYPE_R
-#include "templates-gen.h"
+#define X_TYPE 'i'
+#include "templates-gen-matrix.h"
+#define X_TYPE 'r'
+#include "templates-gen-matrix.h"
 
 
 SEXP rowCumprods(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {

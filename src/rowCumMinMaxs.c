@@ -16,10 +16,11 @@
 
 #define METHOD rowCummins
 #define COMP '<'
-#define X_TYPE_I
-#define X_TYPE_R
 #define METHOD_TEMPLATE_H "rowCumMinMaxs_TYPE-template.h"
-#include "templates-gen.h"
+#define X_TYPE 'i'
+#include "templates-gen-matrix.h"
+#define X_TYPE 'r'
+#include "templates-gen-matrix.h"
 
 
 SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
@@ -56,6 +57,7 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 #undef COMP
 #undef METHOD
+#undef METHOD_TEMPLATE_H
 
 
 
@@ -64,10 +66,11 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 #define METHOD rowCummaxs
 #define COMP '>'
-#define X_TYPE_I
-#define X_TYPE_R
 #define METHOD_TEMPLATE_H "rowCumMinMaxs_TYPE-template.h"
-#include "templates-gen.h"
+#define X_TYPE 'i'
+#include "templates-gen-matrix.h"
+#define X_TYPE 'r'
+#include "templates-gen-matrix.h"
 
 
 SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
