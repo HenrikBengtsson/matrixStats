@@ -54,87 +54,39 @@
 #*/###########################################################################
 rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 
 colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, dim., 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("colRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, dim., 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("colRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, dim., 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("colRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 
