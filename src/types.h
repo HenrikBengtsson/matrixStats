@@ -43,5 +43,13 @@
 #endif
 
 
+/* define NA_R_XLEN_T */
+#ifdef LONG_VECTOR_SUPPORT
+  #define NA_R_XLEN_T -4503599627370497
+#else
+  #define NA_R_XLEN_T NA_INTEGER
+#endif
+
+
 /* Macro to check for user interrupts every 2^20 iteration */
 #define R_CHECK_USER_INTERRUPT(i) if (i % 1048576 == 0) R_CheckUserInterrupt()
