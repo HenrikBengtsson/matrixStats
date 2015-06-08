@@ -1,32 +1,18 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="anyMissing"%>
-<% fcnname <- "<%@string name="fcnname"%>" %>
-<%@meta title="${fcnname}() benchmarks"%>
-<%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-11-01"%>
+<%@string fcnname="madDiff_subset"%>
+<%@string subname="madDiff"%>
+<%@meta title="${subname}() benchmarks on subsetted computation"%>
+<%@meta author="Dongcan Jiang"%>
+<%@meta date="2015-06-07"%>
 
 <%@include file="${header}"%>
 
 
 # <%@meta name="title"%>
 
-This report benchmark the performance of <%=fcnname%>() against alternative methods.
+This report benchmark the performance of <%=subname%>() on subsetted computation.
 
-## Alternative methods
-
-* anyNA()
-* any() + is.na()
-
-as below
-
-```r
-<%=withCapture({
-any_is.na <- function(x) {
-  any(is.na(x))
-}
-})%>
-```
 
 <% for (mode in c("integer", "double")) { %>
 
@@ -48,15 +34,19 @@ mprintf("%s: %s\n", mode, dataLabel)
 %>
 ### <%=dataLabel%> vector
 
+
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
+idxs <- sample.int(length(x), size=length(x)*0.7)
+x_S <- x[idxs]
 gc()
 
+
 stats <- microbenchmark(
- "anyMissing"         = anyMissing(x),
- "anyNA"              = anyNA(x),
- "any_is.na"          = any_is.na(x),
+ "madDiff_x_S"      = madDiff(x_S),
+ "madDiff(x,idxs)"  = madDiff(x, idxs=idxs),
+ "madDiff(x[idxs])" = madDiff(x[idxs]),
   unit = "ms"
 )
 })%>
@@ -73,6 +63,6 @@ stats <- microbenchmark(
 
 <%---------------------------------------------------------------------------
 HISTORY:
-2014-11-01
+2015-06-07
 o Created.
 ---------------------------------------------------------------------------%>

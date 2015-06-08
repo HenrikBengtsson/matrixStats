@@ -3,7 +3,9 @@
 **/*~
 .check
 .test
-.o
-.dll
+*.o
+*.dll
 *.Rout
 .RData
+*.Rproj*
+*.swp
