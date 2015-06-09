@@ -97,7 +97,7 @@ for (mode in c("numeric", "integer")) {
   if (mode == "numeric") w[1] <- Inf
 
   for (idxs in indexCases) {
-    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=TRUE)
-    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=FALSE)
+    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=TRUE, refine=TRUE)
+    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=FALSE, refine=TRUE)
   }
 }

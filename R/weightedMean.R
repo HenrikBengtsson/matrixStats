@@ -60,17 +60,11 @@
 # @keyword "robust"
 #*/############################################################################
 weightedMean <- function(x, w, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
-  # Apply subset
-  if (!is.null(idxs)) {
-    x <- x[idxs]
-    w <- w[idxs]
-  }
-
   # Argument 'refine':
   refine <- as.logical(refine)
 
   w <- as.numeric(w)
-  .Call("weightedMean", x, w, na.rm, refine, PACKAGE="matrixStats")
+  .Call("weightedMean", x, w, idxs, na.rm, refine, PACKAGE="matrixStats")
 } # weightedMean()
 
 ###############################################################################
