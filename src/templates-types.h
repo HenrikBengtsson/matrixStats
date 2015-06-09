@@ -163,7 +163,7 @@
 
 
 /*
- Subsetted indexing
+ Subsetted indexing: matrix
  */
 #undef ROW_INDEX_NONA
 #undef ROW_INDEX
@@ -240,3 +240,40 @@
 #define METHOD_NAME_realRows_noCols CONCAT_MACROS(METHOD_NAME_realRows, noCols)
 #define METHOD_NAME_realRows_intCols CONCAT_MACROS(METHOD_NAME_realRows, intCols)
 #define METHOD_NAME_realRows_realCols CONCAT_MACROS(METHOD_NAME_realRows, realCols)
+
+
+/*
+ Subsetted indexing: vector
+ */
+#undef IDX_INDEX_NONA
+#undef IDX_INDEX
+#undef IDXS_C_TYPE
+#undef METHOD_NAME_IDXS
+
+#ifdef IDXS_TYPE
+  #define IDX_INDEX_NONA(idxs, ii) ((R_xlen_t)idxs[ii]-1)
+  #if IDXS_TYPE == 'i'
+    #define IDXS_C_TYPE int
+    #define IDX_INDEX(idxs, ii) (idxs[ii] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
+    #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, intIdxs)
+  #elif IDXS_TYPE == 'r'
+    #define IDXS_C_TYPE double
+    #define IDX_INDEX(idxs, ii) (ISNAN(idxs[ii]) ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
+    #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, realIdxs)
+  #else
+    #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown IDXS_TYPE"
+  #endif
+#else
+  #define IDX_INDEX_NONA(idxs, ii) ii
+  #define IDX_INDEX(idxs, ii) ii
+  #define IDXS_C_TYPE void
+  #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, noIdxs)
+#endif
+
+#undef METHOD_NAME_noIdxs
+#undef METHOD_NAME_intIdxs
+#undef METHOD_NAME_realIdxs
+
+#define METHOD_NAME_noIdxs CONCAT_MACROS(METHOD_NAME, noIdxs)
+#define METHOD_NAME_intIdxs CONCAT_MACROS(METHOD_NAME, intIdxs)
+#define METHOD_NAME_realIdxs CONCAT_MACROS(METHOD_NAME, realIdxs)
