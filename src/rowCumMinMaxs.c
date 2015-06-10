@@ -57,7 +57,6 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 #undef COMP
 #undef METHOD
-#undef METHOD_TEMPLATE_H
 
 
 
@@ -66,7 +65,6 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 #define METHOD rowCummaxs
 #define COMP '>'
-#define METHOD_TEMPLATE_H "rowCumMinMaxs_TYPE-template.h"
 #define X_TYPE 'i'
 #include "templates-gen-matrix.h"
 #define X_TYPE 'r'

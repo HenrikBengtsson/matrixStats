@@ -29,6 +29,7 @@
 #undef COLS_TYPE
 #undef ROWS_TYPE
 
+
 RETURN_TYPE (*METHOD_NAME[3][3])(ARGUMENTS_LIST) = {
   {METHOD_NAME_noRows_noCols, METHOD_NAME_noRows_intCols, METHOD_NAME_noRows_realCols},
   {METHOD_NAME_intRows_noCols, METHOD_NAME_intRows_intCols, METHOD_NAME_intRows_realCols},
