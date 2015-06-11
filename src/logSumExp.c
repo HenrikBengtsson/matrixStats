@@ -31,7 +31,7 @@ SEXP logSumExp(SEXP lx, SEXP naRm, SEXP hasNA) {
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
-  return(Rf_ScalarReal(logSumExp_double(REAL(lx), xlength(lx), narm, hasna)));
+  return(Rf_ScalarReal(logSumExp_double(REAL(lx), xlength(lx), narm, hasna, 0, NULL)));
 } /* logSumExp() */
 
 

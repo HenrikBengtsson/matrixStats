@@ -47,13 +47,13 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
     xx = (double *) R_alloc(ncol, sizeof(double));
 
     for (ii=0; ii < nrow; ii++) {
-      ans_ptr[ii] = logSumExp_double_by(x, ncol, narm, hasna, nrow, xx);
+      ans_ptr[ii] = logSumExp_double(x, ncol, narm, hasna, nrow, xx);
       /* Move to the beginning next row */
       x++;
     }
   } else {
     for (ii=0; ii < ncol; ii++) {
-      ans_ptr[ii] = logSumExp_double(x, nrow, narm, hasna);
+      ans_ptr[ii] = logSumExp_double(x, nrow, narm, hasna, 0, NULL);
       /* Move to the beginning next column */
       x += nrow;
     }

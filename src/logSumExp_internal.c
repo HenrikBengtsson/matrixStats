@@ -3,15 +3,29 @@
 #include "types.h"
 #include "utils.h"
 
-/* 
- logSumExp_double(x):
+
+/*
+ logSumExp_double(x, by=0, xx=NULL):
 
   1. Scans for the maximum value of x=(x[0], x[1], ..., x[n-1])
   2. Computes result from 'x'.
 
   NOTE: The above sweeps the "contiguous" 'x' vector twice.
+
+ ---
+
+ logSumExp_double(x, by=by, xx=xx):
+
+  1. Scans for the maximum value of x=(x[0], x[by], ..., x[(n-1)*by])
+     and copies the values to xx = (xx[0], xx[1], xx[2], ..., xx[n-1]),
+     which *must* be preallocated.
+  2. Computes result from 'xx'.
+
+  NOTE: The above sweeps the "scattered" 'x' vector only once, and then
+  the "contigous" 'xx' vector once.  This is more likely to create
+  cache hits.
 */
-double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
+double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna, int by, double *xx) {
   R_xlen_t ii, iMax;
   double xii, xMax;
   LDOUBLE sum;
@@ -33,27 +47,62 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   xMax = x[0];
   if (ISNAN(xMax)) hasna2 = TRUE;
 
-  for (ii=1; ii < nx; ii++) {
-    /* Get the ii:th value */
-    xii = x[ii];
+  if (by) {
+    /* To increase the chances for cache hits below, which
+       sweeps through the data twice, we copy data into a
+       temporary contigous vector while scanning for the
+       maximum value. */
+    xx[0] = xMax;
+    R_xlen_t idx = 0;
+    for (ii=1; ii < nx; ii++) {
+      /* Get the ii:th value */
+      idx = idx + by;
+      xii = x[idx];
 
-    if (hasna && ISNAN(xii)) {
-      if (narm) {
-        hasna2 = TRUE;
-        continue;
-      } else {
-        return(R_NaReal);
+      /* Copy */
+      xx[ii] = xii;
+
+      if (hasna && ISNAN(xii)) {
+        if (narm) {
+          hasna2 = TRUE;
+          continue;
+        } else {
+          return(R_NaReal);
+        }
       }
-    }
 
-    if (xii > xMax || (narm && ISNAN(xMax))) {
-      iMax = ii;
-      xMax = xii;
-    }
+      if (xii > xMax || (narm && ISNAN(xMax))) {
+        iMax = ii;
+        xMax = xii;
+      }
 
-    R_CHECK_USER_INTERRUPT(ii);
-  } /* for (ii ...) */
+      R_CHECK_USER_INTERRUPT(ii);
+    } /* for (ii ...) */
 
+    /* take 'xx' as 'x' below */
+    x = xx;
+  } else {
+    for (ii=1; ii < nx; ii++) {
+      /* Get the ii:th value */
+      xii = x[ii];
+
+      if (hasna && ISNAN(xii)) {
+        if (narm) {
+          hasna2 = TRUE;
+          continue;
+        } else {
+          return(R_NaReal);
+        }
+      }
+
+      if (xii > xMax || (narm && ISNAN(xMax))) {
+        iMax = ii;
+        xMax = xii;
+      }
+
+      R_CHECK_USER_INTERRUPT(ii);
+    } /* for (ii ...) */
+  }
 
   /* Early stopping? */
   if (ISNAN(xMax)) {
@@ -88,110 +137,10 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
 } /* logSumExp_double() */
 
 
-
-/* 
- logSumExp_double_by(x):
-
-  1. Scans for the maximum value of x=(x[0], x[by], ..., x[(n-1)*by])
-     and copies the values to xx = (xx[0], xx[1], xx[2], ..., xx[n-1]),
-     which *must* be preallocated.
-  2. Computes result from 'xx'.
-
-  NOTE: The above sweeps the "scattered" 'x' vector only once, and then 
-  the "contigous" 'xx' vector once.  This is more likely to create 
-  cache hits.
-*/
-double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, double *xx) {
-  R_xlen_t ii, iMax, idx;
-  double xii, xMax;
-  LDOUBLE sum;
-  int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
-
-  /* Quick return? */
-  if (nx == 0) {
-    return(R_NegInf);
-  } else if (nx == 1) {
-    if (narm && ISNAN(x[0])) {
-      return(R_NegInf);
-    } else {
-      return(x[0]);
-    }
-  }
-
-
-  /* To increase the chances for cache hits below, which 
-     sweeps through the data twice, we copy data into a
-     temporary contigous vector while scanning for the
-     maximum value. */
-
-  /* Find the maximum value (and copy) */
-  iMax = 0;
-  xMax = x[0];
-  if (ISNAN(xMax)) hasna2 = TRUE;
-
-  xx[0] = xMax;
-  idx = 0;
-  for (ii=1; ii < nx; ii++) {
-    /* Get the ii:th value */
-    idx = idx + by;
-    xii = x[idx];
-
-    /* Copy */
-    xx[ii] = xii;
-
-    if (hasna && ISNAN(xii)) {
-      if (narm) {
-        hasna2 = TRUE;
-        continue;
-      } else {
-        return(R_NaReal);
-      }
-    }
-
-    if (xii > xMax || (narm && ISNAN(xMax))) {
-      iMax = ii;
-      xMax = xii;
-    }
-
-    R_CHECK_USER_INTERRUPT(ii);
-  } /* for (ii ...) */
-
-
-  /* Early stopping? */
-  if (ISNAN(xMax)) {
-    /* Found only missing values? */
-    return narm ? R_NegInf : R_NaReal;
-  } else if (xMax == R_PosInf) {
-    /* Found +Inf? */
-    return(R_PosInf);
-  }
-
-
-  /* Sum differences */
-  sum = 0.0;
-  for (ii=0; ii < nx; ii++) {
-    if (ii == iMax) {
-      continue;
-    }
-
-    /* Get the ii:th value */
-    xii = xx[ii];
-
-    if (!hasna2 || !ISNAN(xii)) {
-      sum += exp(xii - xMax);
-    }
-
-    R_CHECK_USER_INTERRUPT(ii);
-  } /* for (ii ...) */
-
-  sum = xMax + log1p(sum);
-
-  return(sum);
-} /* logSumExp_double_by() */
-
-
 /***************************************************************************
  HISTORY:
+ 2015-06-07 [DJ]
+  o Merge 'logSumExp_double_by' to 'logSumExp_double'
  2015-01-26 [HB]
  o SPEEDUP: Now step 2 ("summing") only checks where NAs if NAs were
    detected in step 1 ("max value"), which should be noticibly faster
