@@ -31,31 +31,33 @@
 /*
  Data type macros for argument 'x'
  */
-#if X_TYPE == 'i'
-  #define X_C_TYPE int
-  #define X_IN_C INTEGER
-  #define X_ISNAN(x) (x == NA_INTEGER)
-  #define X_ISNA(x) (x == NA_INTEGER)
-  #define X_ABS(x) abs(x)
-  #define X_PSORT iPsort
-  #define X_QSORT_I R_qsort_int_I
-  #define X_NA NA_INTEGER
-#elif X_TYPE == 'r'
-  #define X_C_TYPE double
-  #define X_IN_C REAL
-  #define X_ISNAN(x) ISNAN(x) /* NA or NaN */
-  #define X_ISNA(x) ISNA(x) /* NA only */
-  #define X_ABS(x) fabs(x)
-  #define X_PSORT rPsort
-  #define X_QSORT_I R_qsort_I
-  #define X_NA NA_REAL
-#elif X_TYPE == 'l'
-  #define X_C_TYPE int
-  #define X_IN_C LOGICAL
-  #define X_ISNAN(x) (x == NA_LOGICAL)
-  #define X_NA NA_LOGICAL
-#else
-  #error "INTERNAL ERROR: Failed to set C macro X_C_TYPE etc.: Unknown X_TYPE"
+#ifdef X_TYPE
+  #if X_TYPE == 'i'
+    #define X_C_TYPE int
+    #define X_IN_C INTEGER
+    #define X_ISNAN(x) (x == NA_INTEGER)
+    #define X_ISNA(x) (x == NA_INTEGER)
+    #define X_ABS(x) abs(x)
+    #define X_PSORT iPsort
+    #define X_QSORT_I R_qsort_int_I
+    #define X_NA NA_INTEGER
+  #elif X_TYPE == 'r'
+    #define X_C_TYPE double
+    #define X_IN_C REAL
+    #define X_ISNAN(x) ISNAN(x) /* NA or NaN */
+    #define X_ISNA(x) ISNA(x) /* NA only */
+    #define X_ABS(x) fabs(x)
+    #define X_PSORT rPsort
+    #define X_QSORT_I R_qsort_I
+    #define X_NA NA_REAL
+  #elif X_TYPE == 'l'
+    #define X_C_TYPE int
+    #define X_IN_C LOGICAL
+    #define X_ISNAN(x) (x == NA_LOGICAL)
+    #define X_NA NA_LOGICAL
+  #else
+    #error "INTERNAL ERROR: Failed to set C macro X_C_TYPE etc.: Unknown X_TYPE"
+  #endif
 #endif
 
 
@@ -96,33 +98,37 @@
  Data type macros for result ('ans')
  */
 #ifndef ANS_TYPE
-  /* Default to same as 'x' */
-  #define ANS_TYPE X_TYPE
+  #ifdef X_TYPE
+    /* Default to same as 'x' */
+    #define ANS_TYPE X_TYPE
+  #endif
 #endif
 
 
-#if ANS_TYPE == 'i'
-  #define ANS_SXP INTSXP
-  #define ANS_NA NA_INTEGER
-  #define ANS_ISNAN(x) (x == NA_INTEGER)
-  #define ANS_ISNA(x) (x == NA_INTEGER)
-  #define ANS_C_TYPE int
-  #define ANS_IN_C INTEGER
-#elif ANS_TYPE == 'r'
-  #define ANS_SXP REALSXP
-  #define ANS_NA NA_REAL
-  #define ANS_ISNAN(x) ISNAN(x) /* NA or NaN */
-  #define ANS_ISNA(x) ISNA(x) /* NA only */
-  #define ANS_C_TYPE double
-  #define ANS_IN_C REAL
-#elif ANS_TYPE == 'l'
-  #define ANS_SXP LGLSXP
-  #define ANS_NA NA_LOGICAL
-  #define ANS_ISNAN(x) (x == NA_LOGICAL)
-  #define ANS_C_TYPE int
-  #define ANS_IN_C LOGICAL
-#else
-  #error "INTERNAL ERROR: Failed to set C macro ANS_C_TYPE: Unknown ANS_TYPE"
+#ifdef ANS_TYPE
+  #if ANS_TYPE == 'i'
+    #define ANS_SXP INTSXP
+    #define ANS_NA NA_INTEGER
+    #define ANS_ISNAN(x) (x == NA_INTEGER)
+    #define ANS_ISNA(x) (x == NA_INTEGER)
+    #define ANS_C_TYPE int
+    #define ANS_IN_C INTEGER
+  #elif ANS_TYPE == 'r'
+    #define ANS_SXP REALSXP
+    #define ANS_NA NA_REAL
+    #define ANS_ISNAN(x) ISNAN(x) /* NA or NaN */
+    #define ANS_ISNA(x) ISNA(x) /* NA only */
+    #define ANS_C_TYPE double
+    #define ANS_IN_C REAL
+  #elif ANS_TYPE == 'l'
+    #define ANS_SXP LGLSXP
+    #define ANS_NA NA_LOGICAL
+    #define ANS_ISNAN(x) (x == NA_LOGICAL)
+    #define ANS_C_TYPE int
+    #define ANS_IN_C LOGICAL
+  #else
+    #error "INTERNAL ERROR: Failed to set C macro ANS_C_TYPE: Unknown ANS_TYPE"
+  #endif
 #endif
 
 
