@@ -42,16 +42,17 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   if (what2 < 0 || what2 > 2)
     error("Invalid value of 'what': %d", what2);
 
-  R_xlen_t nrows, ncols;
-  int rowsType, colsType;
-  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
-  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
-
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   is_counted = (int *) R_alloc(nrows, sizeof(int));
 

@@ -140,12 +140,6 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
   assertArgVector(y, (R_TYPE_INT | R_TYPE_REAL), "y");
   ny = xlength(y);
 
-  R_xlen_t nxrows, nxcols, nyidxs;
-  int xrowsType, xcolsType, yidxsType;
-  void *cxrows = validateIndices(xrows, nrow, 0, &nxrows, &xrowsType);
-  void *cxcols = validateIndices(xcols, ncol, 0, &nxcols, &xcolsType);
-  void *cyidxs = validateIndices(yidxs, ny, 1, &nyidxs, &yidxsType);
-
   /* Argument 'byRow': */
   byrow = asLogicalNoNA(byRow, "byrow");
 
@@ -157,6 +151,13 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+
+  /* Argument 'xrows', 'xcols' and 'yidxs': */
+  R_xlen_t nxrows, nxcols, nyidxs;
+  int xrowsType, xcolsType, yidxsType;
+  void *cxrows = validateIndices(xrows, nrow, 0, &nxrows, &xrowsType);
+  void *cxcols = validateIndices(xcols, ncol, 0, &nxcols, &xcolsType);
+  void *cyidxs = validateIndices(yidxs, ny, 1, &nyidxs, &yidxsType);
 
   /* Argument 'operator': */
   op = asInteger(operator);

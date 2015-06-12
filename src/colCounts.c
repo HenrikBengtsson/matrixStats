@@ -38,11 +38,6 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   if (!isNumeric(value))
     error("Argument 'value' must be a numeric value.");
 
-  R_xlen_t nrows, ncols;
-  int rowsType, colsType;
-  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
-  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
-
   /* Argument 'what': */
   what2 = asInteger(what);
 
@@ -51,6 +46,12 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* R allocate an integer vector of length 'ncol' */
   PROTECT(ans = allocVector(INTSXP, ncols));
@@ -85,11 +86,6 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   if (!isNumeric(value))
     error("Argument 'value' must be a numeric value.");
 
-  R_xlen_t nrows, ncols = 1;
-  int rowsType, colsType = SUBSETTED_ALL;
-  void *crows = validateIndices(idxs, nx, 1, &nrows, &rowsType);
-  void *ccols = NULL;
-
   /* Argument 'what': */
   what2 = asInteger(what);
 
@@ -98,6 +94,12 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+
+  /* Argument 'idxs': */
+  R_xlen_t nrows, ncols = 1;
+  int rowsType, colsType = SUBSETTED_ALL;
+  void *crows = validateIndices(idxs, nx, 1, &nrows, &rowsType);
+  void *ccols = NULL;
 
   /* R allocate a integer scalar */
   PROTECT(ans = allocVector(INTSXP, 1));
