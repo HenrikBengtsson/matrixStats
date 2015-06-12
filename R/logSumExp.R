@@ -79,11 +79,8 @@
 #
 #*/###########################################################################
 logSumExp <- function(lx, idxs=NULL, na.rm=FALSE, ...) {
-  # Apply subset
-  if (!is.null(idxs)) lx <- lx[idxs]
-
   hasNA <- TRUE;
-  .Call("logSumExp", as.numeric(lx), as.logical(na.rm), as.logical(hasNA),
+  .Call("logSumExp", as.numeric(lx), idxs, as.logical(na.rm), as.logical(hasNA),
                                                      PACKAGE="matrixStats");
 } # logSumExp()
 

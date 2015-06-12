@@ -1,7 +1,15 @@
+/***********************************************************************
+ TEMPLATE:
+  double logSumExp_double[idxsType](ARGUMENTS_LIST)
+
+ ARGUMENTS_LIST:
+  double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx
+ ***********************************************************************/
 #include <Rdefines.h>
 #include <Rmath.h>
 #include "types.h"
-#include "utils.h"
+
+#include "templates-types.h"
 
 
 /*
@@ -25,26 +33,38 @@
   the "contigous" 'xx' vector once.  This is more likely to create
   cache hits.
 */
-double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna, int by, double *xx) {
-  R_xlen_t ii, iMax;
+RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
+  R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
   int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
 
+#ifdef IDXS_TYPE
+  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
+#endif
+
   /* Quick return? */
-  if (nx == 0) {
+  if (nidxs == 0) {
     return(R_NegInf);
-  } else if (nx == 1) {
-    if (narm && ISNAN(x[0])) {
-      return(R_NegInf);
-    } else {
-      return(x[0]);
-    }
   }
 
   /* Find the maximum value */
   iMax = 0;
-  xMax = x[0];
+  if (by) {
+    idx = R_INDEX_OP(IDX_INDEX(cidxs,0), *, by);
+    xMax = R_INDEX_GET(x, idx, NA_REAL);
+  } else {
+    xMax = R_INDEX_GET(x, IDX_INDEX(cidxs,0), NA_REAL);
+  }
+
+  if (nidxs == 1) {
+    if (narm && ISNAN(xMax)) {
+      return(R_NegInf);
+    } else {
+      return(xMax);
+    }
+  }
+
   if (ISNAN(xMax)) hasna2 = TRUE;
 
   if (by) {
@@ -53,11 +73,10 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna, int by, dou
        temporary contigous vector while scanning for the
        maximum value. */
     xx[0] = xMax;
-    R_xlen_t idx = 0;
-    for (ii=1; ii < nx; ii++) {
+    for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      idx = idx + by;
-      xii = x[idx];
+      idx = R_INDEX_OP(IDX_INDEX(cidxs,ii), *, by);
+      xii = R_INDEX_GET(x, idx, NA_REAL);
 
       /* Copy */
       xx[ii] = xii;
@@ -78,13 +97,10 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna, int by, dou
 
       R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
-
-    /* take 'xx' as 'x' below */
-    x = xx;
   } else {
-    for (ii=1; ii < nx; ii++) {
+    for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      xii = x[ii];
+      xii = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), NA_REAL);
 
       if (hasna && ISNAN(xii)) {
         if (narm) {
@@ -102,7 +118,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna, int by, dou
 
       R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
-  }
+  } /* by */
 
   /* Early stopping? */
   if (ISNAN(xMax)) {
@@ -116,30 +132,49 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna, int by, dou
 
   /* Sum differences */
   sum = 0.0;
-  for (ii=0; ii < nx; ii++) {
-    if (ii == iMax) {
-      continue;
-    }
+  if (by) {
+    for (ii=0; ii < nidxs; ii++) {
+      if (ii == iMax) {
+        continue;
+      }
 
-    /* Get the ii:th value */
-    xii = x[ii];
+      /* Get the ii:th value */
+      xii = xx[ii];
 
-    if (!hasna2 || !ISNAN(xii)) {
-      sum += exp(xii - xMax);
-    }
+      if (!hasna2 || !ISNAN(xii)) {
+        sum += exp(xii - xMax);
+      }
 
-    R_CHECK_USER_INTERRUPT(ii);
-  } /* for (ii ...) */
+      R_CHECK_USER_INTERRUPT(ii);
+    } /* for (ii ...) */
+  } else {
+    for (ii=0; ii < nidxs; ii++) {
+      if (ii == iMax) {
+        continue;
+      }
+
+      /* Get the ii:th value */
+      xii = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), NA_REAL);
+
+      if (!hasna2 || !ISNAN(xii)) {
+        sum += exp(xii - xMax);
+      }
+
+      R_CHECK_USER_INTERRUPT(ii);
+    } /* for (ii ...) */
+  } /* if (by) */
 
   sum = xMax + log1p(sum);
 
   return(sum);
-} /* logSumExp_double() */
+}
 
 
 /***************************************************************************
  HISTORY:
- 2015-06-07 [DJ]
+ 2015-06-11 [DJ]
+  o Supported subsetted computation.
+ 2015-06-10 [DJ]
   o Merge 'logSumExp_double_by' to 'logSumExp_double'
  2015-01-26 [HB]
  o SPEEDUP: Now step 2 ("summing") only checks where NAs if NAs were
