@@ -22,7 +22,7 @@
 SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP ans;
   int narm, hasna, byrow;
-  R_xlen_t nrow, ncol, len;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'lx' and 'dim': */
   assertArgMatrix(lx, dim, (R_TYPE_REAL), "lx");
