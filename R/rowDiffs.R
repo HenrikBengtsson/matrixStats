@@ -40,21 +40,11 @@
 # @keyword univar
 #*/###########################################################################
 rowDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
-  # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-
-  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
+  .Call("rowDiffs", x, dim(x), rows, cols, as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
 }
 
 colDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
-  # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-
-  .Call("rowDiffs", x, dim(x), as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
+  .Call("rowDiffs", x, dim(x), rows, cols, as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
 }
 
 
