@@ -1,11 +1,4 @@
 rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
-  # Apply subset on 'x'
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Remove in matrixStats (>= 0.15.0)
@@ -19,8 +12,15 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
+    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
   } else {
+    # Apply subset on 'x'
+    if (is.vector(x)) dim(x) <- dim.
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    dim. <- dim(x)
+
     # Apply subset on 'center'
     if (!is.null(rows)) center <- center[rows]
 
@@ -35,13 +35,6 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
 
 
 colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
-  # Apply subset on 'x'
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Remove in matrixStats (>= 0.15.0)
@@ -55,8 +48,15 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim., constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
+    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
   } else {
+    # Apply subset on 'x'
+    if (is.vector(x)) dim(x) <- dim.
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    dim. <- dim(x)
+
     # Apply subset on 'center'
     if (!is.null(cols)) center <- center[cols]
 
