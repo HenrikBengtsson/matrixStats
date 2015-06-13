@@ -199,8 +199,8 @@
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown ROWS_TYPE"
   #endif
 #else
-  #define ROW_INDEX_NONA(rows, ii) ii
-  #define ROW_INDEX(rows, ii) ii
+  #define ROW_INDEX_NONA(rows, ii) (ii)
+  #define ROW_INDEX(rows, ii) (ii)
   #define ROWS_C_TYPE void
   #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, noRows)
 #endif
@@ -219,8 +219,8 @@
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown ROWS_TYPE"
   #endif
 #else
-  #define COL_INDEX_NONA(cols, jj) jj
-  #define COL_INDEX(cols, jj) jj
+  #define COL_INDEX_NONA(cols, jj) (jj)
+  #define COL_INDEX(cols, jj) (jj)
   #define COLS_C_TYPE void
   #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, noCols)
 #endif
@@ -274,8 +274,8 @@
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown IDXS_TYPE"
   #endif
 #else
-  #define IDX_INDEX_NONA(idxs, ii) ii
-  #define IDX_INDEX(idxs, ii) ii
+  #define IDX_INDEX_NONA(idxs, ii) (ii)
+  #define IDX_INDEX(idxs, ii) (ii)
   #define IDXS_C_TYPE void
   #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, noIdxs)
 #endif
