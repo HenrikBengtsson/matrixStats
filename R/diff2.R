@@ -47,13 +47,10 @@ diff2 <- function(x, idxs=NULL, lag=1L, differences=1L, ...) {
     stop("Argument 'differences' is not a scalar: ", length(differences))
   }
 
-  # Apply subset
-  if (!is.null(idxs)) x <- x[idxs]
-
   lag <- as.integer(lag)
   differences <- as.integer(differences)
 
-  .Call("diff2", x, lag, differences, PACKAGE="matrixStats");
+  .Call("diff2", x, idxs, lag, differences, PACKAGE="matrixStats");
 } # diff2()
 
 
