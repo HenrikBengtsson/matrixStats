@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.14.0-9000 [2015-06-02]
+Version: 0.14.1 [2015-06-17]
 o BUG FIX: product(x, na.rm=FALSE) for integer 'x' with both zeros
   and NAs returned zero rather than NA.
 o BUG FIX: weightedMean(x, w, na.rm=TRUE) did not handle missing
