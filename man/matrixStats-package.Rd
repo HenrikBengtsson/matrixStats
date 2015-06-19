@@ -37,5 +37,5 @@
 Vectors). R package version 0.14.1. https://github.com/HenrikBengtsson/matrixStats
 }
 
-\author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder}
+\author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Dongcan Jiang, Peter Langfelder}
 \keyword{package}
