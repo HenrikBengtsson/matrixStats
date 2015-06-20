@@ -44,8 +44,8 @@ before_install:
     fi
   - if [[ "$_R_VALGRIND_" == "TRUE" ]]; then
       echo "VALGRINDING...";
-      export R_CHECK_ARGS="--use-valgrind $(R_CHECK_ARGS)";
-      echo "R_CHECK_ARGS=$(R_CHECK_ARGS)";
+      export R_CHECK_ARGS="--use-valgrind ${R_CHECK_ARGS}";
+      echo "R_CHECK_ARGS=${R_CHECK_ARGS}";
     fi
 
 
