@@ -44,7 +44,7 @@ before_install:
     fi
   - if [[ "$_R_CHECK_USE_VALGRIND_" == "TRUE" ]]; then
       export R_BUILD_ARGS="--no-manual --no-build-vignettes";
-      export R_CHECK_ARGS="--no-manual --no-build-vignettes --use-valgrind";
+      export R_CHECK_ARGS="--no-manual --no-build-vignettes --no-codoc --no-examples --use-valgrind";
       export VALGRIND_OPTS="--leak-check=full --track-origins=yes";
       ## Just as with --as-cran
       export _R_CHECK_TIMINGS_=10;
