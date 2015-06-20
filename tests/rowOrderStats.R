@@ -31,9 +31,9 @@ stopifnot(all.equal(y2,y0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("Consistency checks without NAs:\n")
-  for (kk in 1:K) {
+  for (kk in seq_len(K)) {
     cat("Random test #", kk, "\n", sep="")
-  
+
     # Simulate data in a matrix of any shape
     nrow <- sample(1000, size=1)
     ncol <- sample(1000, size=1)
@@ -41,12 +41,12 @@ for (mode in c("integer", "double")) {
     dim(x) <- c(nrow, ncol)
 
     cat("mode: ", mode, "\n", sep="")
-    storage.mode(x) <- mode 
+    storage.mode(x) <- mode
     str(x)
-  
+
     probs <- runif(1)
     which <- round(probs*ncol)
-  
+
     y0 <- rowOrderStats_R(x, probs=probs)
     y1 <- rowOrderStats(x, which=which)
     stopifnot(all.equal(y1,y0))
