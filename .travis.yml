@@ -50,8 +50,8 @@ before_install:
 
 
 install:
-# - $RENV install_r R.rsp
-# - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
+  - $RENV install_r R.rsp
+  - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 script:
   - $RENV run_build
