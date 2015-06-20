@@ -46,6 +46,8 @@ before_install:
       export R_BUILD_ARGS="--no-manual --no-build-vignettes";
       export R_CHECK_ARGS="--no-manual --no-build-vignettes --use-valgrind";
       export VALGRIND_OPTS="--leak-check=full --track-origins=yes";
+      ## Just as with --as-cran
+      export _R_CHECK_TIMINGS_=10;
       sudo apt-get install valgrind;
       valgrind --version;
     fi
