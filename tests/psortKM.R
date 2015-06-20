@@ -22,15 +22,15 @@ psortKM_R2 <- function(x, k, m) {
 set.seed(1)
 
 cat("Consistency checks:\n")
-x <- 1:1000
-x[498:500] <- 500
+x <- 1:500
+x[298:300] <- 300
 y <- sample(x)
 cat("x:\n")
 str(x)
 cat("sample(x):\n")
 str(y)
 
-for (k in c(1, 2, 500, 501, length(x))) {
+for (k in c(1, 2, 300, 301, length(x))) {
   for (m in 1:min(5,k)) {
     px0 <- psortKM_R(x, k=k, m=m)
     px0b <- psortKM_R2(x, k=k, m=m)
