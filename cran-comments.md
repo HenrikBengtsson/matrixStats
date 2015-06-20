@@ -1,5 +1,5 @@
 # CRAN submission matrixStats 0.14.1
-on 2015-06-19
+on 2015-06-20
 
 Thanks in advance
 
@@ -14,13 +14,16 @@ matrixStats 0.14.1 and its 54 reverse-dependent packages(*) have been verified u
 
 R CMD check --as-cran on the package itself (not the reverse dependencies) was also done on:
 
+* R version 2.15.3 (2013-03-01) [Platform: x86_64-unknown-linux-gnu (64-bit)]
+* R version 3.0.3 (2014-03-06) [Platform: x86_64-unknown-linux-gnu (64-bit)]
 * R version 3.2.1 (2015-06-18) [Platform: x86_64-unknown-linux-gnu (64-bit)]
 * R Under development (unstable) (2015-06-18 r68542) [Platform: x86_64-w64-mingw32/x64 (64-bit)]
 * R release and R devel by the <http://win-builder.r-project.org/> service.
 
 
-and R CMD check --as-cran --use-valgrind on:
+and R CMD check --use-valgrind on:
 
+* R version 3.2.0 (2015-06-18) [Platform: x86_64-unknown-linux-gnu (64-bit)]
 * R version 3.2.1 (2015-06-18) [Platform: x86_64-unknown-linux-gnu (64-bit)]
 
 
