@@ -181,7 +181,13 @@ set.seed(1)
 
 cat("Consistency checks:\n")
 K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 10
-for (kk in 1:K) {
+
+## The test script runs more than 10 minutes with
+## --use-valgrind causing Travis CI to abort due to
+## it not seeing any output and thinking it stalled.
+if (Sys.getenv("_R_USE_VALGRIND_") != "") K <- 0
+
+for (kk in seq_len(K)) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
