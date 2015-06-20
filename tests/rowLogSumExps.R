@@ -10,12 +10,12 @@ logSumExp0 <- function(lx) {
 } # logSumExp0()
 
 
-n <- 1e5
+n <- 1e3
 set.seed(1)
 
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
-  X <- matrix(runif(n, min=1.0, max=3.0), nrow=100L)
+  X <- matrix(runif(n, min=1.0, max=3.0), nrow=50L)
   storage.mode(X) <- mode
   str(X)
 

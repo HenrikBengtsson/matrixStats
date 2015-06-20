@@ -11,8 +11,8 @@ set.seed(1)
 K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 5 else 3
 
 # Simulate data in a matrix of any shape
-nrow <- 1000
-ncol <- 500
+nrow <- 300
+ncol <- 100
 x <- rnorm(nrow*ncol)
 dim(x) <- c(nrow, ncol)
 probs <- 0.3
@@ -35,8 +35,8 @@ for (mode in c("integer", "double")) {
     cat("Random test #", kk, "\n", sep="")
 
     # Simulate data in a matrix of any shape
-    nrow <- sample(1000, size=1)
-    ncol <- sample(1000, size=1)
+    nrow <- sample(100, size=1)
+    ncol <- sample(100, size=1)
     x <- rnorm(nrow*ncol)
     dim(x) <- c(nrow, ncol)
 

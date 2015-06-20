@@ -20,7 +20,7 @@ for (kk in seq_len(K)) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  n <- sample(10e3, size=1L)
+  n <- sample(1e3, size=1L)
   x <- rnorm(n, sd=100)
 
   # Add NAs?
