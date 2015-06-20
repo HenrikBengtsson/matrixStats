@@ -77,8 +77,8 @@ for (x in xs) {
         str(list(x=x, w=w))
         m0 <- weighted.mean(x, w, na.rm=na.rm)
         m1 <- weightedMean(x, w, na.rm=na.rm)
-        str(m1)
-        stopifnot(identical(m1,m0))
+        str(list(m0=m0, m1=m1))
+        stopifnot(all.equal(m1,m0))
       }
     }
   }

@@ -1,13 +1,11 @@
 library("matrixStats")
 
 rowProds_R <- function(x, na.rm=FALSE) {
-  y <- apply(x, MARGIN=1L, FUN=prod, na.rm=na.rm)
-  y
+  apply(x, MARGIN=1L, FUN=prod, na.rm=na.rm)
 }
 
 colProds_R <- function(x, na.rm=FALSE) {
-  y <- apply(x, MARGIN=2L, FUN=prod, na.rm=na.rm)
-  y
+  apply(x, MARGIN=2L, FUN=prod, na.rm=na.rm)
 }
 
 all.equal.na <- function(target, current, ...) {
