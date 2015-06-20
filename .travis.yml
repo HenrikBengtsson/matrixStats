@@ -46,6 +46,8 @@ before_install:
       echo "VALGRINDING...";
       export R_CHECK_ARGS="--use-valgrind ${R_CHECK_ARGS}";
       echo "R_CHECK_ARGS=${R_CHECK_ARGS}";
+      sudo apt-get install valgrind;
+      valgrind --version;
     fi
 
 
