@@ -47,4 +47,13 @@ for (mode in c("integer", "double")) {
   print(z)
   stopifnot(is.na(z))
 
+  # NAs following 0s should return NA
+  x <- c(0L, NA_integer_)
+  storage.mode(x) <- mode
+  y <- prod(x, na.rm=FALSE)
+  print(y)
+  stopifnot(is.na(y))
+  z <- product(x, na.rm=FALSE)
+  print(z)
+  stopifnot(is.na(z))
 } # for (mode ...)

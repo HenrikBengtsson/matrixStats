@@ -1,6 +1,41 @@
 Package: matrixStats
 ====================
 
+Version: 0.14.1 [2015-06-17]
+o BUG FIX: product(x, na.rm=FALSE) for integer 'x' with both zeros
+  and NAs returned zero rather than NA.
+o BUG FIX: weightedMean(x, w, na.rm=TRUE) did not handle missing
+  values in 'x' properly, if it was an integer.  It would also
+  return NaN if there were weights 'w' with missing values, whereas
+  stats::weighted.mean() would skip such data points.  Now
+  weightedMean() does the same.
+o BUG FIX: (col|row)WeightedMedians() did not handle infinite weights
+  as weightedMedian() does.
+o BUG FIX: x_OP_y(x, y, OP, na.rm=FALSE) returned garbage iff
+  'x' or 'y' had missing values of type integer.
+o BUG FIX: rowQuantiles() and rowIQRs() did not work for single-row
+  matrices.  Analogously for the corresponding column functions.
+o BUG FIX: rowCumsums(), rowCumprods() rowCummins(), and rowCummaxs(), 
+  accessed out-of-bound elements for Nx0 matrices where N > 0.  
+  The corresponding column methods has similar memory errors for
+  0xK matrices where K > 0.
+o BUG FIX: anyMissing(list(NULL)) returned NULL; now FALSE.
+o BUG FIX: rowCounts() resulted in garbage if a previous column had NAs
+(because forgot to update index kk in such cases).
+o BUG FIX: rowCumprods(x) handled missing values and zeros incorrectly
+  for integer 'x (not double); a zero would trump an existing missing
+  value causing the following cumulative products to become zero.
+  It was only a zero that trumped NAs; any other integer would work
+  as expected.  Also, this bug was not in colCumprods().
+o BUG FIX: rowAnys(x, value, na.rm=FALSE) did not handle missing
+  values in a numeric 'x' properly.  Similarly, for non-numeric
+  and non-logical 'x', row- and colAnys(), row- and colAlls(),
+  anyValue() and allValue() did not handle when 'value' was a
+  missing value.
+o All of the above bugs were identified and fixed by Dongcan Jiang
+  (Peking University, China), who also added corresponding unit tests.
+
+
 Version: 0.14.0 [2015-02-13]
 o ROBUSTNESS/TESTS: Package tests cover 96% of the code (was 91%).
 o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to

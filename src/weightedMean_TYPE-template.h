@@ -26,22 +26,19 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
     /* Skip or early stopping? */
     if (weight == 0) {
       continue;
-    } else if (ISNAN(weight)) {
-      sum = R_NaReal;
-      break;
     }
 
     value = x[i];
 #if X_TYPE == 'i'
-    /* Skip or early stopping? */
     if (X_ISNAN(value)) {
+      /* Skip or early stopping? */
       if (narm) {
         continue;
       } else {
         sum = R_NaReal;
         break;
-	}
-    } else if (!narm) {
+      }
+    } else {
       sum += (LDOUBLE)weight * (LDOUBLE)value;
       wtotal += weight;
     }

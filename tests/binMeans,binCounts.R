@@ -64,11 +64,11 @@ stopifnot(all.equal(ySr, yS0r))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Case #2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-nx <- 1e5
+nx <- 1e4
 x <- runif(nx)
 y <- runif(nx)
 
-nb <- 50
+nb <- 20
 bx <- do.call(seq, c(as.list(range(x)), length.out=nb))
 bx1 <- c(bx[-1], bx[nb] + 1)
 
@@ -116,3 +116,17 @@ yS0 <- binMeans0(y, x=x, bx=bx)
 yS <- binMeans(y, x=x, bx=bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Exception handling
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Zero bin bounderies (invalid bin definition)
+bx <- double(0L)
+res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
+# One bin boundery (invalid bin definition)
+bx <- double(1L)
+res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
+stopifnot(inherits(res, "try-error"))

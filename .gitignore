@@ -3,3 +3,5 @@
 **/*~
 .check
 .test
+.o
+.dll

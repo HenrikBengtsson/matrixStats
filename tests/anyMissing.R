@@ -14,15 +14,19 @@ data <- data.frame(
 modes <- names(data)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Special: NULL and raw
+# Special cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("NULL...\n")
-stopifnot(anyMissing(NULL) == FALSE)
+stopifnot(identical(anyMissing(NULL), FALSE))
 cat("NULL...done\n")
 
 cat("raw...\n")
-stopifnot(anyMissing(as.raw(0:3)) == FALSE)
+stopifnot(identical(anyMissing(as.raw(0:3)), FALSE))
 cat("raw...done\n")
+
+cat("list(NULL)...\n")
+stopifnot(identical(anyMissing(list(NULL)), FALSE))
+cat("list(NULL)...done\n")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -36,28 +40,28 @@ for (mode in modes) {
   cat(" scalar\n")
   x <- values[1L]
   print(x)
-  stopifnot(anyMissing(x) == FALSE)
+  stopifnot(identical(anyMissing(x), FALSE))
   is.na(x) <- TRUE
   print(x)
-  stopifnot(anyMissing(x) == TRUE)
+  stopifnot(identical(anyMissing(x), TRUE))
 
   # Vectors
   cat(" vector\n")
   x <- values
   print(x)
-  stopifnot(anyMissing(x) == FALSE)
+  stopifnot(identical(anyMissing(x), FALSE))
   is.na(x)[2L] <- TRUE
   print(x)
-  stopifnot(anyMissing(x) == TRUE)
+  stopifnot(identical(anyMissing(x), TRUE))
 
   # Matrices
   cat(" matrix\n")
   x <- matrix(c(values, values), ncol=2L)
   print(x)
-  stopifnot(anyMissing(x) == FALSE)
+  stopifnot(identical(anyMissing(x), FALSE))
   is.na(x)[2L] <- TRUE
   print(x)
-  stopifnot(anyMissing(x) == TRUE)
+  stopifnot(identical(anyMissing(x), TRUE))
 
   cat(sprintf("Mode: %s...done\n", mode))
 } # for (mode ...)
@@ -68,12 +72,12 @@ for (mode in modes) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("data.frame...\n")
 x <- data
-stopifnot(anyMissing(x) == FALSE)
+stopifnot(identical(anyMissing(x), FALSE))
 for (mode in modes) {
   x <- data
   is.na(x[[mode]])[2L] <- TRUE
   print(x)
-  stopifnot(anyMissing(x) == TRUE)
+  stopifnot(identical(anyMissing(x), TRUE))
 } # for (mode ...)
 cat("data.frame...done\n")
 
@@ -83,11 +87,11 @@ cat("data.frame...done\n")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("list...\n")
 x <- as.list(data)
-stopifnot(anyMissing(x) == FALSE)
+stopifnot(identical(anyMissing(x), FALSE))
 for (mode in modes) {
   x <- as.list(data)
   is.na(x[[mode]])[2L] <- TRUE
   print(x)
-  stopifnot(anyMissing(x) == TRUE)
+  stopifnot(identical(anyMissing(x), TRUE))
 } # for (mode ...)
 cat("list...done\n")

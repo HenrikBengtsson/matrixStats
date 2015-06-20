@@ -175,7 +175,11 @@ rowAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     counts <- .Call("rowCounts", x, dim., value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    rowAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+    if (is.na(value)) {
+      rowAlls(is.na(x), na.rm=na.rm, dim.=dim., ...)
+    } else {
+      rowAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+    }
   }
 }
 
@@ -186,7 +190,11 @@ colAlls <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     counts <- .Call("colCounts", x, dim., value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    colAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+    if (is.na(value)) {
+      colAlls(is.na(x), na.rm=na.rm, dim.=dim., ...)
+    } else {
+      colAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+    }
   }
 }
 
@@ -198,7 +206,11 @@ allValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
     counts <- .Call("count", x, value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    allValue(x == value, na.rm=na.rm, ...)
+    if (is.na(value)) {
+      allValue(is.na(x), na.rm=na.rm, ...)
+    } else {
+      allValue(x == value, na.rm=na.rm, ...)
+    }
   }
 }
 
@@ -211,7 +223,11 @@ rowAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     counts <- .Call("rowCounts", x, dim., value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    rowAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+    if (is.na(value)) {
+      rowAnys(is.na(x), na.rm=na.rm, dim.=dim., ...)
+    } else {
+      rowAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+    }
   }
 }
 
@@ -222,7 +238,11 @@ colAnys <- function(x, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
     counts <- .Call("colCounts", x, dim., value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    colAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+    if (is.na(value)) {
+      colAnys(is.na(x), na.rm=na.rm, dim.=dim., ...)
+    } else {
+      colAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+    }
   }
 }
 
@@ -234,7 +254,11 @@ anyValue <- function(x, value=TRUE, na.rm=FALSE, ...) {
     counts <- .Call("count", x, value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
     as.logical(counts)
   } else {
-    anyValue(x == value, na.rm=na.rm, ...)
+    if (is.na(value)) {
+      anyValue(is.na(x), na.rm=na.rm, ...)
+    } else {
+      anyValue(x == value, na.rm=na.rm, ...)
+    }
   }
 }
 

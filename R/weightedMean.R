@@ -29,9 +29,24 @@
 #
 # \value{
 #   Returns a @numeric scalar.
+#   If \code{x} is of zero length, then \code{NaN} is returned,
+#   which is consistent with @see "base::mean".
 # }
 #
 # @examples "../incl/weightedMean.Rex"
+#
+# \section{Missing values}{
+#   This function handles missing values consistently
+#   @see "stats::weighted.mean".  More precisely,
+#   if \code{na.rm=FALSE}, then any missing values in either \code{x}
+#   or \code{w} will give result \code{NA_real_}.
+#   If \code{na.rm=TRUE}, then all \code{(x,w)} data points for which
+#   \code{x} is missing are skipped.  Note that if both \code{x} and
+#   \code{w} are missing for a data points, then it is also skipped
+#   (by the same rule).  However, if only \code{w} is missing, then
+#   the final results will always be \code{NA_real_} regardless of
+#   \code{na.rm}.
+# }
 #
 # \seealso{
 #   @see "base::mean" and @see "stats::weighted.mean".

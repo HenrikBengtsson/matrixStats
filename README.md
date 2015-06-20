@@ -1,7 +1,4 @@
-# matrixStats: Methods that Apply to Rows and Columns of a Matrix
-
-_UPDATE (May, 2015): Our project **[Subsetted and parallel computations in matrixStats](https://github.com/rstats-gsoc/gsoc2015/wiki/matrixStats)** 
-was selected for Google Summer of Code (GSoC) 2015._
+# matrixStats: Methods that Apply to Rows and Columns of Matrices (and to Vectors)
 
 The matrixStats package provides highly optimized functions for
 computing common summaries over rows and columns of matrices,
@@ -38,10 +35,10 @@ install.packages('matrixStats')
 ```
 
 
-## Software quality
+## Software status
 
-| Resource:     | CRAN        | Travis CI        | Appveyor         |
-| ------------- | ------------------- | ---------------- | ---------------- |
-| _Platforms:_  | _Multiple_          | _Linux_          | _Windows_        |
-| R CMD check   | [status](http://cran.r-project.org/web/checks/check_results_matrixStats.html) | <a href="https://travis-ci.org/HenrikBengtsson/matrixStats"><img src="https://travis-ci.org/HenrikBengtsson/matrixStats.svg" alt="Build status"></a>    |  |
-| Test coverage |                     | <a href="https://coveralls.io/r/HenrikBengtsson/matrixStats"><img src="https://coveralls.io/repos/HenrikBengtsson/matrixStats/badge.png?branch=develop" alt="Coverage Status"/></a> |                  |
+| Resource:     | CRAN        | Travis CI     | Appveyor         |
+| ------------- | ------------------- | ------------- | ---------------- |
+| _Platforms:_  | _Multiple_          | _Linux_       | _Windows_        |
+| R CMD check   | <a href="http://cran.r-project.org/web/checks/check_results_matrixStats.html"><img border="0" src="http://www.r-pkg.org/badges/version/matrixStats" alt="CRAN version"></a> | <a href="https://travis-ci.org/HenrikBengtsson/matrixStats"><img src="https://travis-ci.org/HenrikBengtsson/matrixStats.svg" alt="Build status"></a> | <a href="https://ci.appveyor.com/project/HenrikBengtsson/matrixstats"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/matrixStats?svg=true" alt="Build status"></a> |
+| Test coverage |                     | <a href="https://coveralls.io/r/HenrikBengtsson/matrixStats"><img src="https://coveralls.io/repos/HenrikBengtsson/matrixStats/badge.svg?branch=develop" alt="Coverage Status"/></a>   |                  |

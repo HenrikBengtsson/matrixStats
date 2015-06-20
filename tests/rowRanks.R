@@ -7,7 +7,7 @@ for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  dim <- sample(300:600, size=2L)
+  dim <- sample(40:80, size=2L)
   n <- prod(dim)
   x <- rnorm(n, sd=10)
   dim(x) <- dim
@@ -46,3 +46,14 @@ for (kk in 1:4) {
     stopifnot(identical(y1,y3))
   }
 } # for (kk ...)
+
+
+## Exception handling
+x <- matrix(1:12, nrow=3L)
+y <- try(rowRanks(x, ties.method="unknown"), silent=TRUE)
+stopifnot(inherits(y, "try-error"))
+
+y <- try(colRanks(x, ties.method="unknown"), silent=TRUE)
+stopifnot(inherits(y, "try-error"))
+
+

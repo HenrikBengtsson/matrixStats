@@ -5,6 +5,12 @@
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Add)
   #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+#if X_TYPE == 'i'
+    if (X_ISNAN(x)) return NA_REAL;
+#endif
+#if Y_TYPE == 'i'
+    if (Y_ISNAN(y)) return NA_REAL;
+#endif
     return (double)x + (double)y;
   }
   #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
@@ -21,16 +27,25 @@
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Sub)
   #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+#if X_TYPE == 'i'
+    if (X_ISNAN(x)) return NA_REAL;
+#endif
+#if Y_TYPE == 'i'
+    if (Y_ISNAN(y)) return NA_REAL;
+#endif
     return (double)x - (double)y;
   }
-  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
-  static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
-    return (double)x - (double)y;
-  }
+  #define FUN_narm FUN_no_NA
 #elif OP == '*'
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Mul)
   #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+#if X_TYPE == 'i'
+    if (X_ISNAN(x)) return NA_REAL;
+#endif
+#if Y_TYPE == 'i'
+    if (Y_ISNAN(y)) return NA_REAL;
+#endif
     return (double)x * (double)y;
   }
   #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
@@ -47,12 +62,15 @@
   #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Div)
   #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
+#if X_TYPE == 'i'
+    if (X_ISNAN(x)) return NA_REAL;
+#endif
+#if Y_TYPE == 'i'
+    if (Y_ISNAN(y)) return NA_REAL;
+#endif
     return (double)x / (double)y;
   }
-  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
-  static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
-    return (double)x / (double)y;
-  }
+  #define FUN_narm FUN_no_NA
 #else
   #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y): Unknown OP"
 #endif
@@ -230,6 +248,7 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
 }
 
 #undef FUN
+#undef FUN_narm
 #undef METHOD_NAME_T
 
 /* Undo template macros */

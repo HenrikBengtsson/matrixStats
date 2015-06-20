@@ -40,6 +40,8 @@ weightedMean(x, w, na.rm=FALSE, refine=FALSE, ...)
 
 \value{
   Returns a \code{\link[base]{numeric}} scalar.
+  If \code{x} is of zero length, then \code{NaN} is returned,
+  which is consistent with \code{\link[base]{mean}}().
 }
 
 \examples{
@@ -81,6 +83,19 @@ w <- rep(0, n)
 m0 <- weighted.mean(x, w)
 m1 <- weightedMean(x, w)
 stopifnot(identical(m1,m0))
+}
+
+\section{Missing values}{
+  This function handles missing values consistently
+  \code{\link[stats]{weighted.mean}}.  More precisely,
+  if \code{na.rm=FALSE}, then any missing values in either \code{x}
+  or \code{w} will give result \code{NA_real_}.
+  If \code{na.rm=TRUE}, then all \code{(x,w)} data points for which
+  \code{x} is missing are skipped.  Note that if both \code{x} and
+  \code{w} are missing for a data points, then it is also skipped
+  (by the same rule).  However, if only \code{w} is missing, then
+  the final results will always be \code{NA_real_} regardless of
+  \code{na.rm}.
 }
 
 \seealso{

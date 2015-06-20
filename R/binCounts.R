@@ -12,7 +12,7 @@
 # \arguments{
 #   \item{x}{A @numeric @vector of K positions for to be binned and counted.}
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
-#      the B bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
+#      the B > 0 bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
 #   \item{right}{If @TRUE, the bins are right-closed (left open),
 #      otherwise left-closed (right open).}

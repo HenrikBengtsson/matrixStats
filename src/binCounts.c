@@ -26,11 +26,14 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
 
   /* Argument 'bx': */
   assertArgVector(bx, (R_TYPE_REAL), "bx");
+  nbins = xlength(bx)-1;
+  if (nbins <= 0) {
+    error("Argument 'bx' must specify at least two bin boundaries (= one bin): %d", xlength(bx));
+  }
 
   /* Argument 'right': */
   closedRight = asLogicalNoNA(right, "right");
-
-  nbins = xlength(bx)-1;
+ 
   PROTECT(counts = allocVector(INTSXP, nbins));
 
   if (closedRight) {
@@ -47,6 +50,8 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
 
 /***************************************************************************
  HISTORY:
+ 2015-05-30 [HB]
+  o Added protected against 'bx' too short.
  2014-06-03 [HB]
   o Dropped unused variable 'count'.
  2013-10-08 [HB]

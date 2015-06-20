@@ -15,7 +15,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   R_xlen_t ii, iMax;
   double xii, xMax;
   LDOUBLE sum;
-  int hasna2 = FALSE;
+  int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
 
   /* Quick return? */
   if (nx == 0) {
@@ -31,6 +31,8 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   /* Find the maximum value */
   iMax = 0;
   xMax = x[0];
+  if (ISNAN(xMax)) hasna2 = TRUE;
+
   for (ii=1; ii < nx; ii++) {
     /* Get the ii:th value */
     xii = x[ii];
@@ -44,7 +46,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
       }
     }
 
-    if (xii > xMax) {
+    if (xii > xMax || (narm && ISNAN(xMax))) {
       iMax = ii;
       xMax = xii;
     }
@@ -56,7 +58,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
   /* Early stopping? */
   if (ISNAN(xMax)) {
     /* Found only missing values? */
-    return(R_NegInf);
+    return narm ? R_NegInf : R_NaReal;
   } else if (xMax == R_PosInf) {
     /* Found +Inf? */
     return(R_PosInf);
@@ -103,7 +105,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
-  int hasna2 = FALSE;
+  int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
 
   /* Quick return? */
   if (nx == 0) {
@@ -125,6 +127,8 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
   /* Find the maximum value (and copy) */
   iMax = 0;
   xMax = x[0];
+  if (ISNAN(xMax)) hasna2 = TRUE;
+
   xx[0] = xMax;
   idx = 0;
   for (ii=1; ii < nx; ii++) {
@@ -144,7 +148,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
       }
     }
 
-    if (xii > xMax) {
+    if (xii > xMax || (narm && ISNAN(xMax))) {
       iMax = ii;
       xMax = xii;
     }
@@ -156,7 +160,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
   /* Early stopping? */
   if (ISNAN(xMax)) {
     /* Found only missing values? */
-    return(R_NegInf);
+    return narm ? R_NegInf : R_NaReal;
   } else if (xMax == R_PosInf) {
     /* Found +Inf? */
     return(R_PosInf);
@@ -173,7 +177,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
     /* Get the ii:th value */
     xii = xx[ii];
 
-    if (!hasna || !ISNAN(xii)) {
+    if (!hasna2 || !ISNAN(xii)) {
       sum += exp(xii - xMax);
     }
 

@@ -2,7 +2,6 @@
 
 <%@string colname="colWeightedMedians"%>
 <%@string rowname="rowWeightedMedians"%>
-<% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
 <%@meta date="2014-06-09"%>

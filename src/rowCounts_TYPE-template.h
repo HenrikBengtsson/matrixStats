@@ -101,7 +101,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
       for (jj=0; jj < ncol; jj++) {
         for (ii=0; ii < nrow; ii++) {
           /* Skip? */
-          if (ans[ii]) {
+          if (ans[ii] && ans[ii] != NA_INTEGER) {
             kk++;
 	  } else {
             xvalue = x[kk++];
@@ -140,7 +140,10 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
         for (ii=0; ii < nrow; ii++) {
           count = ans[ii];
           /* Nothing more to do on this row? */
-          if (count == NA_INTEGER) continue;
+          if (count == NA_INTEGER) {
+            kk++;
+            continue;
+	  }
   
           xvalue = x[kk++];
           if (xvalue == value) {

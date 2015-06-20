@@ -33,8 +33,9 @@
 }
 
 \section{How to cite this package}{
-  Henrik Bengtsson (2015). matrixStats: Methods that Apply to Rows and Columns of a Matrix. R package version 0.13.1-9000. https://github.com/HenrikBengtsson/matrixStats
+  Henrik Bengtsson (2015). matrixStats: Methods that Apply to Rows and Columns of Matrices (and to
+Vectors). R package version 0.14.1. https://github.com/HenrikBengtsson/matrixStats
 }
 
-\author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Peter Langfelder}
+\author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Dongcan Jiang, Peter Langfelder}
 \keyword{package}

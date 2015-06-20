@@ -100,7 +100,7 @@ rowRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...
     .Deprecated(old="Argument 'flavor' of rowRanks()", package="matrixStats")
   }
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"))
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch=0L)
   if (tiesMethod == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }

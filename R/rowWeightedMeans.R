@@ -61,7 +61,7 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w));
     }
-    if (any(w < 0)) {
+    if (any(!is.na(w) & w < 0)) {
       stop("Argument 'w' has negative weights.");
     }
   }
@@ -73,8 +73,8 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (m == 0L)
       return(double(0L));
 
-    # Drop entries with zero weight?
-    idxs <- which(w != 0);
+    # Drop entries with zero weight? ...but keep NAs
+    idxs <- which(is.na(w) | w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
       return(rep(NaN, times=m));
@@ -116,6 +116,7 @@ rowWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
 
       # Weighted values
       ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop=TRUE];
+      ## FAST:
       x <- t_tx_OP_y(x, w, OP="*", na.rm=FALSE)
 
       w <- NULL; # Not needed anymore
@@ -146,7 +147,7 @@ colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w));
     }
-    if (any(w < 0)) {
+    if (any(!is.na(w) & w < 0)) {
       stop("Argument 'w' has negative weights.");
     }
   }
@@ -157,8 +158,8 @@ colWeightedMeans <- function(x, w=NULL, na.rm=FALSE, ...) {
     if (m == 0L)
       return(double(0L));
 
-    # Drop entries with zero weight?
-    idxs <- which(w != 0);
+    # Drop entries with zero weight? ...but keep NAs
+    idxs <- which(is.na(w) | w != 0);
     nw <- length(idxs);
     if (nw == 0L) {
       return(rep(NaN, times=m));

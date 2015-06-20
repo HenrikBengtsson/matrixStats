@@ -243,6 +243,10 @@ check_Rex:
 	$(R_SCRIPT) -e "if (!file.exists('incl')) quit(status=0); setwd('incl/'); fs <- dir(pattern='[.](R|Rex)$$'); ns <- sapply(fs, function(f) max(nchar(readLines(f)))); ns <- ns[ns > 100]; print(ns); if (length(ns) > 0L) quit(status=1)"
 
 
+covr:
+	$(R_SCRIPT) -e "source('.covr.R'); covr::shine(covr)"
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Install and build binaries
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -367,8 +371,31 @@ Makefile: $(FILES_MAKEFILE)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Refresh
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-refresh_%:
-	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/templates/$*')"
+.make/Makefile:
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/Makefile', path='.make/')"
+
+.make/.travis.yml.rsp:
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/.travis.yml.rsp', path='.make/')"
+
+.make/appveyor.yml.rsp:
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/appveyor.yml.rsp', path='.make/')"
+
+.make/README.md.rsp:
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/README.md.rsp', path='.make/')"
+
+.covr.R:
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/.covr.R')"
+
+clean:
+	$(RM) .make/.travis.yml.rsp .make/appveyor.yml.rsp .make/README.md.rsp .covr.R
+	$(RM) covr-utils.R
+
+refresh: clean
+	$(MAKE) --silent .make/.travis.yml.rsp
+	$(MAKE) --silent .make/appveyor.yml.rsp
+	$(MAKE) --silent .make/README.md.rsp
+	$(MAKE) --silent .covr.R
+	$(R_SCRIPT) -e "R.utils::downloadFile('https://raw.githubusercontent.com/HenrikBengtsson/r-package-files/master/.make/Makefile', path='.make/', skip=FALSE)"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -379,3 +406,8 @@ README.md: .make/README.md.rsp
 
 .travis.yml: .make/.travis.yml.rsp
 	$(R_SCRIPT) -e "R.rsp::rfile('$<', postprocess=FALSE)"
+
+appveyor.yml: .make/appveyor.yml.rsp
+	$(R_SCRIPT) -e "R.rsp::rfile('$<', postprocess=FALSE)"
+
+config: .travis.yml appveyor.yml README.md

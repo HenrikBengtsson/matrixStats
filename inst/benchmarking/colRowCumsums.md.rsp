@@ -2,7 +2,6 @@
 
 <%@string colname="colCumsums"%>
 <%@string rowname="rowCumsums"%>
-<% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
 <%@meta date="2014-11-26"%>

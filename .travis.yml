@@ -5,7 +5,6 @@
 # * Travis CI: https://travis-ci.org/
 # * r-builder: https://github.com/metacran/r-builder
 # * covr: https://github.com/jimhester/covr
-# * Coveralls: https://coveralls.io/
 #
 # Validate your .travis.yml file at http://lint.travis-ci.org/
 #----------------------------------------------------------------
@@ -13,10 +12,10 @@ language: c
 
 env:
   global:
-    # Use r-travis or r-builder?
     - RENV="./pkg-build.sh"    # r-builder
     - R_BUILD_ARGS="--no-manual"
     - R_CHECK_ARGS="--no-manual --as-cran"
+    - _R_CHECK_CRAN_INCOMING_=TRUE
     - _R_CHECK_FORCE_SUGGESTS_=false
     # Need LaTeX? (very time consuming!)
     - BOOTSTRAP_LATEX=""
@@ -27,9 +26,10 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
-#    - RVERSION=3.0.3
-#    - RVERSION=3.1.2
-    - RVERSION=devel
+    - RVERSION=3.1.3
+    - RVERSION=3.2.0
+    - RVERSION=devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE
+    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE
 
 
 before_install:
@@ -42,12 +42,23 @@ before_install:
     else
       export R_RSP_COMPILELATEX_FALLBACK="copy-force";
     fi
+  - if [[ "$_R_CHECK_USE_VALGRIND_" == "TRUE" ]]; then
+      export R_BUILD_ARGS="--no-manual --no-build-vignettes";
+      export R_CHECK_ARGS="--no-manual --no-build-vignettes --no-codoc --no-examples --use-valgrind";
+      export _R_CHECK_TIMINGS_=10;
+      sudo apt-get install valgrind;
+      valgrind --version;
+    fi
 
 install:
-  - $RENV install_r R.devices R.rsp
-  - $RENV install_r base64enc knitr
-  - $RENV install_r ggplot2 microbenchmark
-#  - $RENV install_deps
+
+
+
+ - $RENV install_r R.rsp
+
+
+
+ - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 script:
   - $RENV run_build
@@ -55,11 +66,14 @@ script:
 
 after_success:
   - $RENV dump_logs_by_extension out
-  - $RENV install_devtools
-  - $RENV install_github HenrikBengtsson/R.methodsS3@develop
-  - $RENV install_github HenrikBengtsson/covr
-  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
-  - $RENV run_script .coveralls.R
+  - if [[ "$_R_COVR_" == "TRUE" && -f ".covr.R" ]]; then
+      $RENV install_devtools;
+      $RENV install_github jimhester/covr;
+      curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
+    fi
+  - if [[ "$_R_COVR_" == "TRUE" && -f ".covr.R" ]]; then
+      $RENV run_script .covr.R;
+    fi
 
 after_failure:
   - $RENV dump_logs

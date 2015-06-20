@@ -2,7 +2,6 @@
 
 <%@string colname="colVars"%>
 <%@string rowname="rowVars"%>
-<% rowname <- "<%@string name="rowname"%>" %>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
 <%@meta date="2015-01-06"%>
