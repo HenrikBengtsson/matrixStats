@@ -103,8 +103,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -123,8 +125,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -145,8 +149,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -165,8 +171,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++row >= nrow) {         /* Current index in t(x):  */
             row = 0;                   /* col = xi / nrow;        */
@@ -189,8 +197,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
@@ -202,8 +212,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
@@ -217,8 +229,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
@@ -230,8 +244,10 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
             ok = 0;
             value = NA_REAL;
           }
-#endif
+          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
           ans[kk] = (ANS_C_TYPE) value;
+#endif
           if (++xi >= nx) xi = 0;
           if (++yi >= ny) yi = 0;
         }
