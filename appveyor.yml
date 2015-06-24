@@ -37,6 +37,9 @@ build_script:
 test_script:
   - travis-tool.sh run_tests
 
+after_test:
+  - 7z a all-Rout.zip *.Rcheck\**\*.Rout *.Rcheck\**\*.fail
+
 artifacts:
   - path: '*.Rcheck\**\*.log'
     name: Logs
@@ -44,11 +47,8 @@ artifacts:
   - path: '*.Rcheck\**\*.out'
     name: Logs
 
-  - path: '*.Rcheck\**\*.fail'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.Rout'
-    name: Logs
+  - path: all-Rout.zip
+    name: AllRout
 
   - path: '\*_*.tar.gz'
     name: Bits

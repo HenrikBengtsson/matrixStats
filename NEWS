@@ -1,6 +1,12 @@
 Package: matrixStats
 ====================
 
+Version: 0.14.2 [2015-06-23]
+o BUG FIX: x_OP_y() and t_tx_OP_y() would return garbage on 
+  Solaris SPARC (and possibly other architectures as well) when
+  input was integer and had missing values.
+
+
 Version: 0.14.1 [2015-06-17]
 o BUG FIX: product(x, na.rm=FALSE) for integer 'x' with both zeros
   and NAs returned zero rather than NA.
