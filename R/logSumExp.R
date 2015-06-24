@@ -69,7 +69,7 @@
 #     \emph{Hyper-Textbook: Optimization Models and Applications},
 #     University of California at Berkeley, August 2012.
 #     (Chapter 'Log-Sum-Exp (LSE) Function and Properties',
-#     \url{https://inst.eecs.berkeley.edu/~ee127a/book/login/def_lse_fcn.html})
+#     \url{http://inst.eecs.berkeley.edu/~ee127a/book/login/def_lse_fcn.html})
 #     \cr
 # [3] R-help thread \emph{logsumexp function in R}, 2011-02-17.
 #     \url{https://stat.ethz.ch/pipermail/r-help/2011-February/269205.html}\cr
