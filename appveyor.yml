@@ -25,30 +25,30 @@ install:
 # Adapt as necessary starting from here
 
 build_script:
+
+
+
  - travis-tool.sh install_r R.rsp
+
+
+
  - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 test_script:
   - travis-tool.sh run_tests
 
 after_test:
-  - 7z a all-Rout.zip *.Rcheck\**\*.Rout
+  - 7z a all-Rout.zip *.Rcheck\**\*.Rout *.Rcheck\**\*.fail
 
 artifacts:
-  - path: all-Rout.zip
-    name: AllRout
-
   - path: '*.Rcheck\**\*.log'
     name: Logs
- 
+
   - path: '*.Rcheck\**\*.out'
     name: Logs
 
-  - path: '*.Rcheck\**\*.fail'
-    name: Logs
-
-##   - path: '*.Rcheck\**\*.Rout'
-##     name: Logs
+  - path: all-Rout.zip
+    name: AllRout
 
   - path: '\*_*.tar.gz'
     name: Bits
