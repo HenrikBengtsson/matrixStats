@@ -14,6 +14,13 @@ Behaviour Sanitizer' in WRE.
 Thank you
 
 
+Resubmission on 2015-06-24:
+
+o HTTP instead of HTTPS for one URL with failed server certificate.
+
+Thanks
+
+
 ## Notes not sent to CRAN
 matrixStats 0.14.2 have been verified using `R CMD check --as-cran` on:
 
