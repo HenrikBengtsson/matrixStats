@@ -64,11 +64,11 @@ stopifnot(all.equal(ySr, yS0r))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Case #2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-nx <- 1e5
+nx <- 1e4
 x <- runif(nx)
 y <- runif(nx)
 
-nb <- 50
+nb <- 20
 bx <- do.call(seq, c(as.list(range(x)), length.out=nb))
 bx1 <- c(bx[-1], bx[nb] + 1)
 

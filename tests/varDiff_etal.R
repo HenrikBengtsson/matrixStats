@@ -1,7 +1,7 @@
 library("matrixStats")
 
 set.seed(1)
-x <- rnorm(1e6)
+x <- rnorm(1e4)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -15,7 +15,7 @@ cat(sprintf("varDiff(x)=%g\n", sigma2B))
 
 d <- abs(sigma2B - sigma2A)
 cat(sprintf("Absolute difference=%g\n", d))
-stopifnot(d < 1e-3)
+stopifnot(d < 0.02)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -29,7 +29,7 @@ cat(sprintf("sdDiff(x)=%g\n", sigmaB))
 
 d <- abs(sigmaB - sigmaA)
 cat(sprintf("Absolute difference=%g\n", d))
-stopifnot(d < 1e-3)
+stopifnot(d < 0.01)
 
 # Sanity checks
 stopifnot(abs(sigma2A - sigmaA^2) < 1e-9)
@@ -44,7 +44,7 @@ cat(sprintf("madDiff(x)=%g\n", sigmaB2))
 
 d <- abs(sigmaB2 - sigmaA2)
 cat(sprintf("Absolute difference=%g\n", d))
-stopifnot(d < 5e-3)
+stopifnot(d < 0.05)
 
 
 sigmaA3 <- IQR(x)
@@ -55,7 +55,7 @@ cat(sprintf("iqrDiff(x)=%g\n", sigmaB3))
 
 d <- abs(sigmaB3 - sigmaA3)
 cat(sprintf("Absolute difference=%g\n", d))
-stopifnot(d < 5e-3)
+stopifnot(d < 0.05)
 
 
 
@@ -74,7 +74,7 @@ cat(sprintf("sdDiff(y)=%g\n", sigmaBo))
 
 d <- abs(sigmaB - sigmaA)
 cat(sprintf("Absolute difference=%g\n", d))
-stopifnot(d < 1e-3)
+stopifnot(d < 0.01)
 
 sigmaBot <- sdDiff(y, trim=0.05)
 cat(sprintf("sdDiff(y, trim=0.05)=%g\n", sigmaBot))

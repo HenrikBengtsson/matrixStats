@@ -117,8 +117,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
@@ -140,8 +142,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
@@ -165,8 +169,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
@@ -188,8 +194,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
@@ -214,8 +222,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             if (++ yi >= nyidxs) yi = 0;
           }
@@ -236,8 +246,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             if (++ yi >= nyidxs) yi = 0;
           }
@@ -260,8 +272,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             if (++ yi >= nyidxs) yi = 0;
           }
@@ -282,8 +296,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
               ok = 0;
               value = NA_REAL;
             }
-#endif
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+#else
             ans[kk ++] = (ANS_C_TYPE) value;
+#endif
 
             if (++ yi >= nyidxs) yi = 0;
           }
