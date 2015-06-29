@@ -137,7 +137,10 @@ void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutO
   }
 
   *ansNidxs = count;
-  if (count == 0) return NULL;
+  if (count == 0) {
+    Free(filter);
+    return NULL;
+  }
 
   // find the biggest number 'upperBound'
   R_xlen_t upperBound;
