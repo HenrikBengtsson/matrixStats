@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.14.2-9000 [2015-06-30]
+o ROBUSTNESS: Importing 'stats' functions in namespace.
+
+
 Version: 0.14.2 [2015-06-23]
 o BUG FIX: x_OP_y() and t_tx_OP_y() would return garbage on 
   Solaris SPARC (and possibly other architectures as well) when
