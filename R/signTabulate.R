@@ -31,10 +31,7 @@
 # @keyword internal
 #*/############################################################################
 signTabulate <- function(x, idxs=NULL, ...) {
-  # Apply subset
-  if (!is.null(idxs)) x <- x[idxs]
-
-  res <- .Call("signTabulate", x, PACKAGE="matrixStats");
+  res <- .Call("signTabulate", x, idxs, PACKAGE="matrixStats");
   names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)];
   res;
 } # signTabulate()
