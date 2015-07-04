@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP diff2(SEXP x, SEXP lag, SEXP differences)
+ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
