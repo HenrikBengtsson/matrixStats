@@ -121,13 +121,7 @@ weightedMedian <- function(x, w=rep(1, times=length(x)), idxs=NULL, na.rm=FALSE,
     }
   }
 
-  # Apply subset
-  if (!is.null(idxs)) {
-    x <- x[idxs]
-    w <- w[idxs]
-  }
-
-  .Call("weightedMedian", x, w, na.rm, interpolate, tiesC, package="matrixStats")
+  .Call("weightedMedian", x, w, idxs, na.rm, interpolate, tiesC, package="matrixStats")
 } # weightedMedian()
 
 

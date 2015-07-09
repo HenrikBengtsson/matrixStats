@@ -1,6 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  double weightedMedian_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, int interpolate, int ties)
+  double weightedMedian_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
@@ -13,43 +16,53 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
-double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, int interpolate, int ties) {
+
+RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
+  X_C_TYPE value;
   X_C_TYPE *xtmp;
-  double res;
+  double weight, res;
   double dx, dy, Dy;
   double *wtmp, *wcum, wtotal, wlow, whigh, tmp_d, tmp_d2;
   R_xlen_t nxt, ii, jj, half;
-  int *idxs;
+  int *idxs_int;
   int equalweights = 0;
 
+#ifdef IDXS_TYPE
+  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
+#endif
 
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* Weights                                                             */
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-  wtmp = Calloc(nx, double);
+  wtmp = Calloc(nidxs, double);
 
   /* Check for missing, negative, and infite weights */
   nxt = 0;
-  for (ii=0; ii < nx; ii++) {
+  for (ii=0; ii < nidxs; ii++) {
     /* Assume negative or missing weight by default or
        that the signals is missing and should be dropped */
     wtmp[ii] = 0;
-    if (ISNAN(w[ii])) {
+
+    weight = R_INDEX_GET(w, IDX_INDEX(cidxs,ii), NA_REAL);
+    if (ISNAN(weight)) {
       if (!narm) {
         Free(wtmp);
         return NA_REAL;
       }
-    } else if (w[ii] <= 0) {
+    } else if (weight <= 0) {
       /* Drop non-positive weights */
-    } else if (isinf(w[ii])) {
+    } else if (isinf(weight)) {
       /* Detected a +Inf.  From now on, treat all +Inf
          weights equal and drop everything else */
       nxt = 0;
-      for (jj=0; jj < nx; jj++) {
+      for (jj=0; jj < nidxs; jj++) {
         /* Assume non-infinite weight by default */
         wtmp[jj] = 0;
-        if (isinf(w[jj])) {
-          if (X_ISNAN(x[ii])) {
+
+        weight = R_INDEX_GET(w, IDX_INDEX(cidxs,jj), NA_REAL);
+        if (isinf(weight)) {
+          value = R_INDEX_GET(x, IDX_INDEX(cidxs,jj), X_NA);
+          if (X_ISNAN(value)) {
             if (!narm) {
               Free(wtmp);
               return NA_REAL;
@@ -59,7 +72,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
             wtmp[jj] = 1;
             nxt++;
           }
-        } else if (ISNAN(w[jj])) {
+        } else if (ISNAN(weight)) {
           if (!narm) {
             Free(wtmp);
             return NA_REAL;
@@ -70,14 +83,15 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
       break;
     } else {
       /* A data points with a finite positive weight */
-      if (X_ISNAN(x[ii])) {
+      value = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
+      if (X_ISNAN(value)) {
         if (!narm) {
           Free(wtmp);
           return NA_REAL;
         }
       } else {
         /* A data point with a non-missing value */
-        wtmp[ii] = w[ii];
+        wtmp[ii] = weight;
         nxt++;
       }
     }
@@ -101,10 +115,10 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
   xtmp = Calloc(nxt, X_C_TYPE);
   jj = 0;
   wtotal = 0;
-  for (ii=0; ii < nx; ii++) {
+  for (ii=0; ii < nidxs; ii++) {
     if (wtmp[ii] > 0) {
       /*    printf("ii=%d, jj=%d, wtmp[%d]=%g\n", (int)ii, (int)jj, (int)ii, wtmp[ii]); */
-      xtmp[jj] = x[ii];
+      xtmp[jj] = x[IDX_INDEX(cidxs,ii)]; // sure that xvalue is not NA
       wtmp[jj] = wtmp[ii];
       wtotal += wtmp[jj];
       jj++;
@@ -113,7 +127,6 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
   x = xtmp;
   w = wtmp;
   nx = nxt;
-  nw = nx;
 
 
 /*
@@ -161,9 +174,9 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
   /* one) according to the reordered vector.                             */
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* (a) Sort x */
-  idxs = Calloc(nx, int);
-  for (ii = 0; ii < nx; ii++) idxs[ii] = ii;
-  X_QSORT_I(x, idxs, 1, nx);
+  idxs_int = Calloc(nx, int);
+  for (ii = 0; ii < nx; ii++) idxs_int[ii] = ii;
+  X_QSORT_I(x, idxs_int, 1, nx);
 
   /* (b) Normalized cumulative weights */
   wcum = Calloc(nx, double);
@@ -174,7 +187,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
   if (interpolate) {
     /* Adjust */
     for (ii = 0; ii < nx; ii++) {
-      tmp_d = w[idxs[ii]] / wtotal;
+      tmp_d = w[idxs_int[ii]] / wtotal;
       tmp_d2 += tmp_d;
       wcum[ii] = tmp_d2 - (tmp_d/2);
       if (wcum[ii] >= 0.5) {
@@ -185,7 +198,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
     }
   } else {
     for (ii = 0; ii < nx; ii++) {
-      tmp_d2 += w[idxs[ii]] / wtotal;
+      tmp_d2 += w[idxs_int[ii]] / wtotal;
       wcum[ii] = tmp_d2;
       if (tmp_d2 > 0.5) {
         half = ii;
@@ -195,7 +208,7 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
     }
   }
   Free(wtmp);
-  Free(idxs);
+  Free(idxs_int);
 
 
   /* Two special cases where more than half of the total weight is at
@@ -281,11 +294,11 @@ printf("x[half+(-1:1)]=c(%g, %g, %g)\n", x[half-1-1], x[half-1], x[half-1+1]);
   return res;
 }
 
-/* Undo template macros */
-#include "templates-types_undef.h"
 
 /***************************************************************************
  HISTORY:
+ 2015-07-09 [DJ]
+  o Supported subsetted computation.
  2015-01-01 [HB]
  o Created.
  **************************************************************************/
