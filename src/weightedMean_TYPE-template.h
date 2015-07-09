@@ -29,14 +29,14 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 #endif
 
   for (i=0; i < nidxs; i++) {
-    weight = R_INDEX_GET(w, IDX_INDEX(cidxs, i), NA_REAL);
+    weight = R_INDEX_GET(w, IDX_INDEX(cidxs,i), NA_REAL);
 
     /* Skip or early stopping? */
     if (weight == 0) {
       continue;
     }
 
-    value = R_INDEX_GET(x, IDX_INDEX(cidxs, i), X_NA);
+    value = R_INDEX_GET(x, IDX_INDEX(cidxs,i), X_NA);
 #if X_TYPE == 'i'
     if (X_ISNAN(value)) {
       /* Skip or early stopping? */
@@ -72,13 +72,13 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     if (refine && R_FINITE(avg)) {
       sum = 0;
       for (i=0; i < nidxs; i++) {
-        weight = R_INDEX_GET(w, IDX_INDEX(cidxs, i), NA_REAL);
+        weight = R_INDEX_GET(w, IDX_INDEX(cidxs,i), NA_REAL);
         /* Skip? */
         if (weight == 0) {
           continue;
         }
 
-        value = R_INDEX_GET(x, IDX_INDEX(cidxs, i), X_NA);
+        value = R_INDEX_GET(x, IDX_INDEX(cidxs,i), X_NA);
         if (!narm || !ISNAN(value)) {
           sum += (LDOUBLE)weight * (value - avg);
         }
