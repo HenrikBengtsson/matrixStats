@@ -93,3 +93,16 @@ w <- runif(n, min=0, max=1)
 y <- weightedMedian(x, w)
 
 y <- weightedMedian(x, w, ties="min")
+
+
+# Single Number
+xs <- c(1, NA_integer_)
+ws <- c(1, NA_integer_)
+for (x in xs) {
+  for (w in ws) {
+    y <- weightedMedian(x=x, w=w)
+    if (is.na(w)) z <- NA_real_
+    else z <- x[1]
+    stopifnot(all.equal(y, z))
+  }
+}
