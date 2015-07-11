@@ -2,6 +2,7 @@
 *~
 **/*~
 .R
+.benchmark
 .check
 .test
 .o
