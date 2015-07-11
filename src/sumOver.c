@@ -10,39 +10,24 @@
 #include "utils.h"
 
 #define METHOD sumOver
+#define RETURN_TYPE double
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode
 
 #define X_TYPE 'i'
-#include "sumOver_TYPE-template.h"
-
+#include "templates-gen-vector.h"
 #define X_TYPE 'r'
-#include "sumOver_TYPE-template.h"
-
-#undef METHOD 
+#include "templates-gen-vector.h"
 
 
 SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
-  int *idxsp;
-  R_xlen_t nidxs;
+  R_xlen_t nx;
   int narm, mode2;
   double sum;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
-
-  /* Argument 'idxs': */
-  if (isNull(idxs)) {
-    idxsp = NULL;
-    nidxs = 0;
-  } else if (isVectorAtomic(idxs)) {
-    idxsp = INTEGER(idxs);
-    nidxs = xlength(idxs);
-  } else {
-    /* To please compiler */
-    idxsp = NULL;
-    nidxs = 0;
-    error("Argument 'idxs' must be NULL or a vector.");
-  }
+  nx = xlength(x);
 
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
@@ -53,12 +38,16 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   }
   mode2 = asInteger(mode);
 
+  /* Argument 'idxs': */
+  R_xlen_t nidxs;
+  int idxsType;
+  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    sum = sumOver_Real(REAL(x), xlength(x), idxsp, nidxs, narm, mode2);
+    sum = sumOver_Real[idxsType](REAL(x), nx, cidxs, nidxs, narm, mode2);
   } else if (isInteger(x)) {
-    sum = sumOver_Integer(INTEGER(x), xlength(x), idxsp, nidxs, narm, mode2);
+    sum = sumOver_Integer[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, mode2);
   } else {
     error("Argument 'x' must be numeric.");
   }
@@ -103,6 +92,8 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
 /***************************************************************************
  HISTORY:
+ 2015-07-11 [DJ]
+  o Supported subsetted computation.
  2014-11-06 [HB]
   o Moved validation of arguments and construction of return object
     to this function.

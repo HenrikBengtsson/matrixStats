@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow)
+ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow)
 
  Authors: Henrik Bengtsson
 
@@ -9,19 +9,25 @@
 #include <Rdefines.h>
 #include "types.h"
 #include "utils.h"
-#include "logSumExp_internal.h"
 
 
-SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
+#define METHOD rowLogSumExp
+#define METHOD_NAME rowLogSumExps_double
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, int rowsType, void *cols, R_xlen_t ncols, int colsType, int narm, int hasna, R_xlen_t byrow, double *ans
+
+#include "templates-gen-vector.h"
+
+
+SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP ans;
   int narm, hasna, byrow;
-  R_xlen_t nrow, ncol, len, ii;
-  double *x, *xx, *ans_ptr;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'lx' and 'dim': */
   assertArgMatrix(lx, dim, (R_TYPE_REAL), "lx");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
 
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
@@ -29,45 +35,33 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP naRm, SEXP hasNA, SEXP byRow) {
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
-  /* R allocate a double vector of length 'nrow'
-     Note that 'nrow' means 'ncol' if byrow=FALSE. */ 
-  if (byrow) { len = nrow; } else { len = ncol; }
-  PROTECT(ans = allocVector(REALSXP, len));
-  ans_ptr = REAL(ans);
-
-  /* Get the values */
-  x = REAL(lx);
-
   if (byrow) {
-    /* R allocate memory for row-vector 'xx' of length 'ncol'. 
-       This will be taken care of by the R garbage collector later on. */
-    xx = (double *) R_alloc(ncol, sizeof(double));
-
-    for (ii=0; ii < nrow; ii++) {
-      ans_ptr[ii] = logSumExp_double_by(x, ncol, narm, hasna, nrow, xx);
-      /* Move to the beginning next row */
-      x++;
-    }
+    ans = PROTECT(allocVector(REALSXP, nrows));
+    rowLogSumExps_double[rowsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 1, REAL(ans));
   } else {
-    for (ii=0; ii < ncol; ii++) {
-      ans_ptr[ii] = logSumExp_double(x, nrow, narm, hasna);
-      /* Move to the beginning next column */
-      x += nrow;
-    }
+    ans = PROTECT(allocVector(REALSXP, ncols));
+    rowLogSumExps_double[colsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 0, REAL(ans));
   }
 
-  UNPROTECT(1); /* PROTECT(ans = ...) */
+  UNPROTECT(1); /* ans = PROTECT(...) */
 
   return(ans);
 } /* rowLogSumExps() */
 
 
-
 /***************************************************************************
  HISTORY:
+ 2015-06-12 [DJ]
+  o Supported subsetted computation.
  2013-05-02 [HB]
  o BUG FIX: Incorrectly used ISNAN() on an int variable as caught by the
    'cc' compiler on Solaris.  Reported by Brian Ripley upon CRAN submission.

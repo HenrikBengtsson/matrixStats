@@ -1,7 +1,7 @@
 /***************************************************************************
  Public methods:
- SEXP rowCummins(SEXP x, SEXP naRm, SEXP hasNA)
- SEXP colCummins(SEXP x, SEXP naRm, SEXP hasNA)
+ SEXP rowCummins(SEXP x, ...)
+ SEXP colCummins(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -11,90 +11,107 @@
 #include "types.h"
 #include "utils.h"
 
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
+
 #define METHOD rowCummins
 #define COMP '<'
-
+#define METHOD_TEMPLATE_H "rowCumMinMaxs_TYPE-template.h"
 #define X_TYPE 'i'
-#include "rowCumMinMaxs_TYPE-template.h"
-
+#include "templates-gen-matrix.h"
 #define X_TYPE 'r'
-#include "rowCumMinMaxs_TYPE-template.h"
+#include "templates-gen-matrix.h"
 
-#undef COMP
-#undef METHOD
 
-SEXP rowCummins(SEXP x, SEXP dim, SEXP byRow) {
+SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   int byrow;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
+
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-    rowCummins_Real(REAL(x), nrow, ncol, byrow, REAL(ans));
+    PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+    rowCummins_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
-    PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-    rowCummins_Integer(INTEGER(x), nrow, ncol, byrow, INTEGER(ans));
+    PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+    rowCummins_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
     UNPROTECT(1);
   }
 
   return(ans);
 } /* rowCummins() */
 
-
-
-#define METHOD rowCummaxs
-#define COMP '>'
-
-#define X_TYPE 'i'
-#include "rowCumMinMaxs_TYPE-template.h"
-
-#define X_TYPE 'r'
-#include "rowCumMinMaxs_TYPE-template.h"
-
 #undef COMP
 #undef METHOD
 
 
-SEXP rowCummaxs(SEXP x, SEXP dim, SEXP byRow) {
+
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
+
+#define METHOD rowCummaxs
+#define COMP '>'
+#define X_TYPE 'i'
+#include "templates-gen-matrix.h"
+#define X_TYPE 'r'
+#include "templates-gen-matrix.h"
+
+
+SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   int byrow;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
+
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-    rowCummaxs_Real(REAL(x), nrow, ncol, byrow, REAL(ans));
+    PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+    rowCummaxs_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
-    PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-    rowCummaxs_Integer(INTEGER(x), nrow, ncol, byrow, INTEGER(ans));
+    PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+    rowCummaxs_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
     UNPROTECT(1);
   }
 
   return(ans);
 } /* rowCummaxs() */
 
+#undef COMP
+
 
 /***************************************************************************
  HISTORY:
+ 2015-06-07 [DJ]
+  o Supported subsetted computation.
  2014-11-26 [HB]
  o Created from rowVars.c.
  **************************************************************************/

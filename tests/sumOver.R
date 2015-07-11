@@ -16,11 +16,11 @@ sumOver_R <- function(x, na.rm=FALSE, idxs=NULL) {
 
 cat("Consistency checks:\n")
 K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 20
-for (kk in 1:K) {
+for (kk in seq_len(K)) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  n <- sample(10e3, size=1L)
+  n <- sample(1e3, size=1L)
   x <- rnorm(n, sd=100)
 
   # Add NAs?

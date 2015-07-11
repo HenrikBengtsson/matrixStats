@@ -48,19 +48,16 @@
 # @keyword logic
 #*/###########################################################################
 anyMissing <- function(x, idxs=NULL, ...) {
-  # Apply subset
-  if (!is.null(idxs)) x <- x[idxs]
-
   ## All list or a data.frame?
   if (is.list(x)) {
     for (kk in seq(along=x)) {
-      if (.Call("anyMissing", x[[kk]], PACKAGE="matrixStats"))
+      if (.Call("anyMissing", x[[kk]], idxs, PACKAGE="matrixStats"))
         return(TRUE)
     }
     return(FALSE)
   } else {
     ## All other data types
-    .Call("anyMissing", x, PACKAGE="matrixStats")
+    .Call("anyMissing", x, idxs, PACKAGE="matrixStats")
   }
 }
 

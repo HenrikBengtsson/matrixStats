@@ -48,17 +48,9 @@
 #*/###########################################################################
 rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(lx)) dim(lx) <- dim.
-  if (!is.null(rows) && !is.null(cols)) lx <- lx[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) lx <- lx[rows,,drop=FALSE]
-  else if (!is.null(cols)) lx <- lx[,cols,drop=FALSE]
-  dim. <- dim(lx)
-
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
-               lx, dim.,
+               lx, dim., rows, cols,
                as.logical(na.rm), as.logical(hasNA), TRUE,
                PACKAGE="matrixStats");
 
@@ -74,17 +66,9 @@ rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
 
 colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(lx)) dim(lx) <- dim.
-  if (!is.null(rows) && !is.null(cols)) lx <- lx[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) lx <- lx[rows,,drop=FALSE]
-  else if (!is.null(cols)) lx <- lx[,cols,drop=FALSE]
-  dim. <- dim(lx)
-
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
-               lx, dim.,
+               lx, dim., rows, cols,
                as.logical(na.rm), as.logical(hasNA), FALSE,
                PACKAGE="matrixStats");
 

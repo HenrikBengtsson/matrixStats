@@ -121,14 +121,14 @@ y0 <- logSumExp_R(lx)
 print(y0)
 y <- logSumExp(lx, na.rm=FALSE)
 print(y)
-stopifnot(identical(y0, NA_real_))
+stopifnot(identical(y, NA_real_))
 stopifnot(all.equal(y, y0))
 
 y0 <- logSumExp_R(lx, na.rm=TRUE)
 print(y0)
 y <- logSumExp(lx, na.rm=TRUE)
 print(y)
-stopifnot(identical(y0, 1))
+stopifnot(identical(y, 1))
 stopifnot(all.equal(y, y0))
 
 

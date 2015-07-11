@@ -59,40 +59,26 @@
 rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
 
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   # Check missing values
   if (anyMissing(x)) {
     stop("Argument 'x' must not contain missing value");
   }
 
   which <- as.integer(which)
-  .Call("rowOrderStats", x, dim., which, PACKAGE="matrixStats");
+  .Call("rowOrderStats", x, dim., rows, cols, which, PACKAGE="matrixStats");
 }
 
 
 colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
 
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   # Check missing values
   if (anyMissing(x)) {
     stop("Argument 'x' must not contain missing value");
   }
 
   which <- as.integer(which)
-  .Call("colOrderStats", x, dim., which, PACKAGE="matrixStats");
+  .Call("colOrderStats", x, dim., rows, cols, which, PACKAGE="matrixStats");
 }
 
 

@@ -64,11 +64,6 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
     stop("Argument 'na.rm' is not logical: ", mode(na.rm));
   }
 
-  # Although meanOver.c can handle idxs, it does not fit the indexing requirements.
-  # Thus, subsetted mockup implementation is used here.
-  # Apply subset
-  if (!is.null(idxs)) x <- x[idxs]
-
   # Argument 'mode':
   mode <- mode[1L]
   modeI <- charmatch(mode, c("integer", "double"), nomatch=0L)
@@ -79,7 +74,7 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call("sumOver", x, NULL, na.rm, modeI, PACKAGE="matrixStats");
+  .Call("sumOver", x, idxs, na.rm, modeI, PACKAGE="matrixStats");
 } # sumOver()
 
 

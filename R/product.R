@@ -1,7 +1,5 @@
 product <- function(x, idxs=NULL, na.rm=FALSE, ...) {
-  if (!is.null(idxs)) x <- x[idxs]
-
-  .Call("productExpSumLog", x, as.logical(na.rm), TRUE, PACKAGE="matrixStats");
+  .Call("productExpSumLog", x, idxs, as.logical(na.rm), TRUE, PACKAGE="matrixStats");
 } # product()
 
 

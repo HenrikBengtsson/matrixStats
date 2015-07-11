@@ -95,13 +95,6 @@
 # @keyword univar
 #*/###########################################################################
 rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -116,18 +109,11 @@ rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
 
   dim. <- as.integer(dim.)
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, dim., tiesMethod, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanksWithTies", x, dim., rows, cols, tiesMethod, TRUE, PACKAGE="matrixStats")
 }
 
 
 colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -145,7 +131,7 @@ colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
 
   dim. <- as.integer(dim.)
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, dim., tiesMethod, FALSE, PACKAGE="matrixStats")
+  y <- .Call("rowRanksWithTies", x, dim., rows, cols, tiesMethod, FALSE, PACKAGE="matrixStats")
   if (!preserveShape) y <- t(y)
   y
 }

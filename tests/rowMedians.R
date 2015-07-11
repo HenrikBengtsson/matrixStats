@@ -180,12 +180,13 @@ stopifnot(all.equal(y1,y0))
 set.seed(1)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 10
-for (kk in 1:K) {
+K <- if (Sys.getenv("_R_CHECK_FULL_") == "" || Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4 else 10
+
+for (kk in seq_len(K)) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  dim <- sample(500:2000, size=2)
+  dim <- sample(50:200, size=2)
   n <- prod(dim)
   x <- rnorm(n, sd=100)
   dim(x) <- dim

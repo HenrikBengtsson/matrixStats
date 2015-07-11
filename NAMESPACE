@@ -8,6 +8,9 @@ importFrom("methods", "setGeneric")
 importFrom("methods", "loadMethod")
 importFrom("methods", "signature")
 
+importFrom("stats", "mad")
+importFrom("stats", "quantile")
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
@@ -108,3 +111,4 @@ export("weightedMean")
 export("weightedMedian")
 export("weightedSd")
 export("weightedVar")
+export("validateIndices")

@@ -77,8 +77,8 @@ for (x in xs) {
         str(list(x=x, w=w))
         m0 <- weighted.mean(x, w, na.rm=na.rm)
         m1 <- weightedMean(x, w, na.rm=na.rm)
-        str(m1)
-        stopifnot(identical(m1,m0))
+        str(list(m0=m0, m1=m1))
+        stopifnot(all.equal(m1,m0))
       }
     }
   }
@@ -97,7 +97,7 @@ for (mode in c("numeric", "integer")) {
   if (mode == "numeric") w[1] <- Inf
 
   for (idxs in indexCases) {
-    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=TRUE)
-    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=FALSE)
+    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=TRUE, refine=TRUE)
+    validateIndicesTestVector_w(x, w, idxs, ftest=weightedMean, fsure=weighted.mean, na.rm=FALSE, refine=TRUE)
   }
 }

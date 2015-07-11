@@ -28,7 +28,7 @@ rowQuantiles_R <- function(x, probs, na.rm=FALSE, drop=TRUE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
-  x <- matrix(1:100+0.1, nrow=10, ncol=10)
+  x <- matrix(1:40+0.1, nrow=8, ncol=5)
   storage.mode(x) <- mode
   str(x)
 
@@ -48,7 +48,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep="")
-  x <- matrix(1:100, nrow=10, ncol=10)
+  x <- matrix(1:40, nrow=8, ncol=5)
   storage.mode(x) <- mode
   str(x)
 
@@ -71,12 +71,12 @@ set.seed(1)
 probs <- seq(from=0, to=1, by=0.25)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 4 else 20
-for (kk in 1:K) {
+K <- if (Sys.getenv("_R_CHECK_FULL_") == "" || Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4 else 20
+for (kk in seq_len(K)) {
   cat("Random test #", kk, "\n", sep="")
 
   # Simulate data in a matrix of any shape
-  dim <- sample(50:200, size=2L)
+  dim <- sample(20:60, size=2L)
   n <- prod(dim)
   x <- rnorm(n, sd=100)
   dim(x) <- dim

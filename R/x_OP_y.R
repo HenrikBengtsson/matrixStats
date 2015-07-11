@@ -49,36 +49,20 @@
 # @keyword internal
 #*/############################################################################
 x_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE) {
-  # Apply subset on x
-  if (!is.null(xrows) && !is.null(xcols)) x <- x[xrows,xcols,drop=FALSE]
-  else if (!is.null(xrows)) x <- x[xrows,,drop=FALSE]
-  else if (!is.null(xcols)) x <- x[,xcols,drop=FALSE]
-
-  # Apply subset on y
-  if (!is.null(yidxs)) y <- y[yidxs]
-
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
-  .Call("x_OP_y", x, y, dim(x), op, commute, na.rm, TRUE, FALSE, package="matrixStats")
+  .Call("x_OP_y", x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, FALSE, package="matrixStats")
 } # x_OP_y()
 
 
 t_tx_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE) {
-  # Apply subset on x
-  if (!is.null(xrows) && !is.null(xcols)) x <- x[xrows,xcols,drop=FALSE]
-  else if (!is.null(xrows)) x <- x[xrows,,drop=FALSE]
-  else if (!is.null(xcols)) x <- x[,xcols,drop=FALSE]
-
-  # Apply subset on y
-  if (!is.null(yidxs)) y <- y[yidxs]
-
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
-  .Call("x_OP_y", x, y, dim(x), op, commute, na.rm, TRUE, TRUE, package="matrixStats")
+  .Call("x_OP_y", x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE, package="matrixStats")
 } # t_tx_OP_y()
 
 

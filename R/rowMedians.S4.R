@@ -58,17 +58,9 @@ setGeneric("rowMedians", function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim
 
 setMethod("rowMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
-  .Call("rowMedians", x, dim., na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
+  .Call("rowMedians", x, dim., rows, cols, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
 })
 
 
@@ -78,17 +70,9 @@ setGeneric("colMedians", function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim
 
 setMethod("colMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
-
-  # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
-  dim. <- dim(x)
-
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
-  .Call("rowMedians", x, dim., na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
+  .Call("rowMedians", x, dim., rows, cols, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
 })
 
 
