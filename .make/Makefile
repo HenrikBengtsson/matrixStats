@@ -68,6 +68,7 @@ HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !inherits(try
 
 ## Git related
 GIT_BRANCH := $(shell $(GIT) symbolic-ref --short HEAD)
+GIT_BRANCH := $(subst /,-,$(GIT_BRANCH))
 R_LIBS_BRANCH := $(CURDIR)/.R/$(GIT_BRANCH)
 
 
@@ -215,8 +216,6 @@ $(R_LIBS_BRANCH)/$(PKG_NAME)/DESCRIPTION: $(R_OUTDIR)/$(PKG_TARBALL) build_fix
 
 install_branch: $(R_LIBS_BRANCH)/$(PKG_NAME)/DESCRIPTION
 
-R_branch:
-	R_LIBS="$(R_LIBS_USER_X):$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -331,6 +330,23 @@ test_full: $(R_OUTDIR)/tests/%.R
 	$(CD) $(R_OUTDIR)/tests;\
 	export _R_CHECK_FULL_=TRUE;\
 	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { print(f); source(f, echo=TRUE) }"
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Benchmarking
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+R_branch:
+	R_LIBS="$(R_LIBS_USER_X):$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R)
+
+benchmark:
+	$(MKDIR) .benchmark/$(PKG_VERSION);\
+	$(CD) .benchmark/$(PKG_VERSION);\
+	$(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
+
+benchmark_branch:
+	$(MKDIR) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH);\
+	$(CD) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH);\
+	R_LIBS="$(R_LIBS_USER_X):$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
