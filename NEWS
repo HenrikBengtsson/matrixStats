@@ -1,8 +1,10 @@
 Package: matrixStats
 ====================
 
-Version: 0.14.2-9000 [2015-06-30]
+Version: 0.14.2-9000 [2015-07-11]
 o ROBUSTNESS: Importing 'stats' functions in namespace.
+o BUG FIX: weightedMedian(x, w=NA_real_) returned 'x' rather
+  than NA_real_. This only happened for length(w) = 1.
 
 
 Version: 0.14.2 [2015-06-23]
