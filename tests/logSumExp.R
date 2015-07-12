@@ -130,18 +130,3 @@ y <- logSumExp(lx, na.rm=TRUE)
 print(y)
 stopifnot(identical(y, 1))
 stopifnot(all.equal(y, y0))
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-logSumExp_R <- function(x, na.rm=FALSE, ...) {
-  log(sum(exp(x), na.rm=na.rm, ...))
-}
-
-source("utils/validateIndicesFramework.R")
-x <- runif(6, min=-6, max=6)
-for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest=logSumExp, fsure=logSumExp_R, na.rm=FALSE)
-  validateIndicesTestVector(x, idxs, ftest=logSumExp, fsure=logSumExp_R, na.rm=TRUE)
-}

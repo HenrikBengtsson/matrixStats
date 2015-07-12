@@ -57,15 +57,3 @@ print(y)
 z <- product(x, na.rm=FALSE)
 print(z)
 stopifnot(identical(z, y))
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source("utils/validateIndicesFramework.R")
-x <- runif(6, min=-6, max=6)
-storage.mode(x) <- "integer"
-for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest=product, fsure=prod, na.rm=TRUE)
-  validateIndicesTestVector(x, idxs, ftest=product, fsure=prod, na.rm=FALSE)
-}

@@ -88,16 +88,3 @@ stopifnot(inherits(res, "try-error"))
 bx <- double(1L)
 res <- try(yS <- binCounts(1:10, bx=bx), silent=TRUE)
 stopifnot(inherits(res, "try-error"))
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source("utils/validateIndicesFramework.R")
-x <- runif(6, min=-6, max=6)
-storage.mode(x) <- "integer"
-bx <- c(-6, 0, 3, 4, 10)
-for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest=binCounts, fsure=binCounts_hist, bx=bx, right=FALSE)
-  validateIndicesTestVector(x, idxs, ftest=binCounts, fsure=binCounts_hist, bx=bx, right=TRUE)
-}

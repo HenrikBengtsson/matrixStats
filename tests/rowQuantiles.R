@@ -136,18 +136,3 @@ print(q)
 x <- matrix(1, nrow=1L, ncol=2L)
 q <- colQuantiles(x, probs=probs)
 print(q)
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source("utils/validateIndicesFramework.R")
-x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
-for (rows in indexCases) {
-  for (cols in indexCases) {
-    for (na.rm in c(TRUE, FALSE)) {
-      validateIndicesTestMatrix(x, rows, cols, ftest=rowQuantiles, fsure=rowQuantiles_R, probs=probs, na.rm=na.rm, drop=FALSE)
-      validateIndicesTestMatrix(x, rows, cols, fcolTest=colQuantiles, fsure=rowQuantiles_R, probs=probs, na.rm=na.rm, drop=FALSE)
-    }
-  }
-}
