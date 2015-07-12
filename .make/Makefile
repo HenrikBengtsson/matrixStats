@@ -69,6 +69,7 @@ HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !inherits(try
 ## Git related
 GIT_BRANCH := $(shell $(GIT) symbolic-ref --short HEAD)
 GIT_BRANCH := $(subst /,-,$(GIT_BRANCH))
+GIT_COMMIT := $(shell $(GIT) log -1 --format="%h")
 R_LIBS_BRANCH := $(CURDIR)/.R/$(GIT_BRANCH)
 
 
@@ -134,6 +135,7 @@ debug_full: debug
 	@echo dirname\(DIR_VIGNS\)=\'$(shell dirname $(DIR_VIGNS))\'
 	@echo
 	@echo GIT_BRANCH=\'$(GIT_BRANCH)\'
+	@echo GIT_COMMIT=\'$(GIT_COMMIT)\'
 	@echo R_LIBS_BRANCH=\'$(R_LIBS_BRANCH)\'
 
 
@@ -344,8 +346,8 @@ benchmark:
 	$(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
 
 benchmark_branch:
-	$(MKDIR) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH);\
-	$(CD) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH);\
+	$(MKDIR) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH)_$(GIT_COMMIT);\
+	$(CD) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH)_$(GIT_COMMIT);\
 	R_LIBS="$(R_LIBS_USER_X):$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
 
 
