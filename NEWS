@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.14.9-9000 [2015-07-11]
+o Add subsetting arguments 'idxs', 'rows' and 'cols' to all
+  functions such that the calculations are performed on the
+  requested subset while avoiding creating a subsetted copy,
+  e.g. compare rowVars(x, cols=4:6) and rowVars(x[,4:6]).
+  
+
 Version: 0.14.2-9000 [2015-07-11]
 o ROBUSTNESS: Importing 'stats' functions in namespace.
 o BUG FIX: weightedMedian(x, w=NA_real_) returned 'x' rather
