@@ -129,4 +129,3 @@ for (mode in c("numeric", "integer")) {
     }
   }
 }
-

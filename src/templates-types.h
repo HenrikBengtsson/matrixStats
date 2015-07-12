@@ -360,3 +360,18 @@
 #define METHOD_NAME_realRows_realCols_noIdxs CONCAT_MACROS(METHOD_NAME_realRows_realCols, noIdxs)
 #define METHOD_NAME_realRows_realCols_intIdxs CONCAT_MACROS(METHOD_NAME_realRows_realCols, intIdxs)
 #define METHOD_NAME_realRows_realCols_realIdxs CONCAT_MACROS(METHOD_NAME_realRows_realCols, realIdxs)
+
+
+/*
+ Subsetted indexing: whether to check NA according to indexing
+ */
+#undef R_INDEX_OP
+#undef R_INDEX_GET
+
+#if !defined(ROWS_TYPE) && !defined(COLS_TYPE) && !defined(IDXS_TYPE)
+  #define R_INDEX_OP(a, OP, b) (a OP b)
+  #define R_INDEX_GET(x, i, NA) x[i]
+#else
+  #define R_INDEX_OP(a, OP, b) (a == NA_R_XLEN_T || b == NA_R_XLEN_T ? NA_R_XLEN_T : a OP b)
+  #define R_INDEX_GET(x, i, NA) (i == NA_R_XLEN_T ? NA : x[i])
+#endif

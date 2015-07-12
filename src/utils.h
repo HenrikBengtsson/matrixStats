@@ -126,9 +126,6 @@ static R_INLINE double RealFromInteger(int x) {
 } /* RealFromInteger() */
 
 
-#define R_INDEX_OP(a, OP, b) (a == NA_R_XLEN_T || b == NA_R_XLEN_T ? NA_R_XLEN_T : a OP b)
-#define R_INDEX_GET(x, i, NA) (i == NA_R_XLEN_T ? NA : x[i])
-
 #define SWAP(type, x, y) { \
 type tmp = x;              \
 x = y;                     \
