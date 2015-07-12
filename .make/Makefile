@@ -3,7 +3,7 @@
 # CORE MACROS
 ifeq ($(OS), Windows_NT)
 CD=cd
-CURDIR=$(subst \,/,"$(shell cmd.exe /C cd)")
+CURDIR=$(subst \,/,$(shell cmd.exe /C cd))
 else
 CD=cd -P "$(CURDIR)"; cd   # This handles the case when CURDIR is a softlink
 endif
