@@ -1,8 +1,8 @@
 library("matrixStats")
 
 FUNs <- list(
-  varDiffs=c(rowVarDiffs, colVarDiffs),
-  sdDiff=c(rowSdDiffs, colSdDiffs)
+  madDiff=c(rowMadDiffs, colMadDiffs),
+  iqrDiff=c(rowIQRDiffs, colIQRDiffs)
 )
 
 
