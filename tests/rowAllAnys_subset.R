@@ -49,8 +49,8 @@ source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6*6, min=-3, max=3), nrow=6, ncol=6)
 storage.mode(x) <- "integer"
 x[2:3,] <- NA_integer_
-x[2,1] <- 0
-x[4:5,] <- 0
+x[2,1] <- 0L
+x[4:5,] <- 0L
 x[4,6] <- NA_integer_
 
 for (rows in indexCases) {
