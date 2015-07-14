@@ -1,3 +1,5 @@
+if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
+
 library("matrixStats")
 
 indexByRow_R1 <- function(dim, idxs=NULL, ...) {

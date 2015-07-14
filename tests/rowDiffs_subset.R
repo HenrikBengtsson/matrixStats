@@ -1,3 +1,5 @@
+if (Sys.getenv("_R_TEST_", "SUBSET") != "SUBSET") quit("no")
+
 library("matrixStats")
 
 rowDiffs_R <- function(x, lag=1L, differences=1L, ...) {

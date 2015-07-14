@@ -1,3 +1,5 @@
+if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
+
 library("matrixStats")
 
 rowCumsums_R <- function(x) {

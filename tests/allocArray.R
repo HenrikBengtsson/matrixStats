@@ -1,3 +1,5 @@
+if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
+
 library("matrixStats")
 
 allocArray_R <- function(nrow, ncol, value=NA) {

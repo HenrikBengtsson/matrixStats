@@ -1,3 +1,5 @@
+if (Sys.getenv("_R_TEST_", "SUBSET") != "SUBSET") quit("no")
+
 library("matrixStats")
 
 rowOrderStats_R <- function(x, probs, ...) {

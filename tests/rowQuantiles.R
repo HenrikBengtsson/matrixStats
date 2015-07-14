@@ -1,3 +1,5 @@
+if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
+
 library("matrixStats")
 
 rowQuantiles_R <- function(x, probs, na.rm=FALSE, drop=TRUE, ...) {
