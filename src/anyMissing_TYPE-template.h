@@ -32,51 +32,34 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   switch (TYPEOF(x)) {
     case REALSXP:
       xdp = REAL(x);
-      CHECK_MISSING(
-#ifdef IDXS_C_TYPE
-          IDX_INDEX(cidxs,ii) == NA_R_XLEN_T ||
-#endif
-          ISNAN(R_INDEX_GET(xdp, IDX_INDEX(cidxs,ii), NA_REAL))
-      );
+      CHECK_MISSING(ISNAN(R_INDEX_GET(xdp, IDX_INDEX(cidxs,ii), NA_REAL)));
       break;
 
     case INTSXP:
       xip = INTEGER(x);
-      CHECK_MISSING(
-#ifdef IDXS_C_TYPE
-          IDX_INDEX(cidxs,ii) == NA_R_XLEN_T ||
-#endif
-          xip[IDX_INDEX(cidxs,ii)] == NA_INTEGER
-      );
+      CHECK_MISSING(R_INDEX_GET(xip, IDX_INDEX(cidxs,ii), NA_INTEGER) == NA_INTEGER);
       break;
 
     case LGLSXP:
       xlp = LOGICAL(x);
-      CHECK_MISSING(
-#ifdef IDXS_C_TYPE
-          IDX_INDEX(cidxs,ii) == NA_R_XLEN_T ||
-#endif
-          xlp[IDX_INDEX(cidxs,ii)] == NA_LOGICAL
-      );
+      CHECK_MISSING(R_INDEX_GET(xlp, IDX_INDEX(cidxs,ii), NA_LOGICAL) == NA_LOGICAL);
       break;
 
     case CPLXSXP:
       xcp = COMPLEX(x);
-      CHECK_MISSING(
-#ifdef IDXS_C_TYPE
-          IDX_INDEX(cidxs,ii) == NA_R_XLEN_T ||
+#ifdef IDXS_TYPE
+      CHECK_MISSING(IDX_INDEX(cidxs,ii) == NA_R_XLEN_T || ISNAN(xcp[IDX_INDEX_NONA(cidxs,ii)].r) || ISNAN(xcp[IDX_INDEX_NONA(cidxs,ii)].i));
+#else
+      CHECK_MISSING(ISNAN(xcp[ii].r) || ISNAN(xcp[ii].i));
 #endif
-          ISNAN(xcp[IDX_INDEX(cidxs,ii)].r) || ISNAN(xcp[IDX_INDEX(cidxs,ii)].i)
-      );
       break;
 
     case STRSXP:
-      CHECK_MISSING(
-#ifdef IDXS_C_TYPE
-          IDX_INDEX(cidxs,ii) == NA_R_XLEN_T ||
+#ifdef IDXS_TYPE
+      CHECK_MISSING(IDX_INDEX(cidxs,ii) == NA_R_XLEN_T || STRING_ELT(x, IDX_INDEX_NONA(cidxs,ii)) == NA_STRING);
+#else
+      CHECK_MISSING(STRING_ELT(x, ii) == NA_STRING);
 #endif
-          STRING_ELT(x, IDX_INDEX(cidxs,ii)) == NA_STRING
-      );
       break;
 
     case RAWSXP:
@@ -93,6 +76,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 
 /***************************************************************************
  HISTORY:
+ 2015-07-15 [DJ]
+  o Avoid 'embedding a directive within macro arguments'.
  2015-06-15 [DJ]
   o Created.
  **************************************************************************/
