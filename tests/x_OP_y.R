@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
-
 library("matrixStats")
 
 x_OP_y_R <- function(x, y, OP, na.rm=FALSE) {

@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
-
 # Test inspired by the harmonic mean example in R-help
 # thread '[R] Beyond double-precision?' on May 9, 2009.
 

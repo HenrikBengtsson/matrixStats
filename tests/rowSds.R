@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
-
 library("matrixStats")
 
 rowSds_R <- function(x, na.rm=FALSE) {

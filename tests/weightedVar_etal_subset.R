@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "SUBSET2") != "SUBSET2") quit("no")
-
 library("matrixStats")
 
 FUNs <- list(

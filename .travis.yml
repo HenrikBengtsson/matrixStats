@@ -31,7 +31,6 @@ env:
     - RVERSION=devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE
     - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=BASE
     - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET2
 
 
 before_install:
@@ -50,6 +49,12 @@ before_install:
       export _R_CHECK_TIMINGS_=10;
       sudo apt-get install valgrind;
       valgrind --version;
+    fi
+  - if [ "$_R_TEST_" == "BASE" ]; then
+      find tests/* -prune -type f -name "*_*.R" | xargs rm;
+    fi
+  - if [ "$_R_TEST_" == "SUBSET" ]; then
+      find tests/* -prune -type f ! -name "*_subset*.R" | xargs rm;
     fi
 
 install:

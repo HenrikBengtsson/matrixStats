@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
-
 ## These tests need to be last of all tests, otherwise
 ## covr::package_coverage() gives an error.
 cat("1. Loading package\n")

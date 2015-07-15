@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
-
 library("matrixStats")
 
 X <- matrix(rnorm(20*6), nrow=20, ncol=6)

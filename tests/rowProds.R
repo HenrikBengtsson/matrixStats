@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "BASE") != "BASE") quit("no")
-
 library("matrixStats")
 
 rowProds_R <- function(x, FUN=prod, na.rm=FALSE, ...) {

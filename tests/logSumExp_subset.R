@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "SUBSET") != "SUBSET") quit("no")
-
 library("matrixStats")
 
 logSumExp_R <- function(lx, na.rm=FALSE) {

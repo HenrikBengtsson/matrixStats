@@ -1,5 +1,3 @@
-if (Sys.getenv("_R_TEST_", "SUBSET2") != "SUBSET2") quit("no")
-
 library("matrixStats")
 
 rowWeightedMedians_R <- function(x, w, na.rm=FALSE, ...) {
