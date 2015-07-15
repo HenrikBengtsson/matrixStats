@@ -2,7 +2,6 @@ library(matrixStats)
 
 source("utils/validateIndicesFramework.R")
 x <- 1:6
-
 for (idxs in indexCases) {
   for (mode in c("integer", "numeric", "logical")) {
     if (!is.null(idxs)) {
@@ -11,13 +10,17 @@ for (idxs in indexCases) {
 
     validateIndicesTestVector(x, idxs, ftest=function(x, idxs) {
       validateIndices(idxs, length(x))
-
     }, fsure=function(x) x)
   }
 }
 
-x <- matrix(1:36, 6, 6)
+for (idxs in indexErrorCases) {
+  validateIndicesTestVector(x, idxs, ftest=function(x, idxs) {
+    validateIndices(idxs, length(x))
+  }, fsure=function(x) x)
+}
 
+x <- matrix(1:36, 6, 6)
 for (rows in indexCases) {
   for (cols in indexCases) {
 
