@@ -74,28 +74,3 @@ stopifnot(identical(q, 0))
 x <- matrix(1, nrow=2L, ncol=1L)
 q <- colIQRs(x)
 stopifnot(identical(q, 0))
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source("utils/validateIndicesFramework.R")
-x <- runif(6, min=-6, max=6)
-for (idxs in indexCases) {
-  for (na.rm in c(TRUE, FALSE)) {
-    validateIndicesTestVector(x, idxs, ftest=iqr, fsure=function(x, na.rm) {
-      dim(x) <- c(1L, length(x))
-      rowIQRs_R(x, na.rm=na.rm)
-    }, na.rm=na.rm)
-  }
-}
-
-x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
-for (rows in indexCases) {
-  for (cols in indexCases) {
-    for (na.rm in c(TRUE, FALSE)) {
-      validateIndicesTestMatrix(x, rows, cols, ftest=rowIQRs, fsure=rowIQRs_R, na.rm=na.rm)
-      validateIndicesTestMatrix(x, rows, cols, fcolTest=colIQRs, fsure=rowIQRs_R, na.rm=na.rm)
-    }
-  }
-}

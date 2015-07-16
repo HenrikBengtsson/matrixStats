@@ -40,15 +40,3 @@ print(counts0)
 counts1 <- signTabulate(x)
 print(counts1)
 stopifnot(identical(counts1, counts0))
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source("utils/validateIndicesFramework.R")
-x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
-x[2:3,4:5] <- +Inf
-x[4:5,1:2] <- -Inf
-for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest=signTabulate, fsure=signTabulate0)
-}
