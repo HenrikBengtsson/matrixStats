@@ -28,6 +28,8 @@
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -52,38 +54,38 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("rowRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
 
-colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
 }
 
-colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call("colRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
@@ -92,6 +94,8 @@ colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-07-17 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-25 [DJ]
 # o Supported subsetted computation.
 # 2014-12-17 [HB]
