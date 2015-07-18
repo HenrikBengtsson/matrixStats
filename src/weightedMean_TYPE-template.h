@@ -51,7 +51,12 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       wtotal += weight;
     }
 #elif X_TYPE == 'r'
-    if (!narm || !X_ISNAN(value)) {
+    if (!narm) {
+      sum += (LDOUBLE)weight * (LDOUBLE)value;
+      wtotal += weight;
+      /* Early stopping? Special for long LDOUBLE vectors */
+      if (i % 1048576 == 0 && ISNAN(sum)) break;
+    } else if (!X_ISNAN(value)) {
       sum += (LDOUBLE)weight * (LDOUBLE)value;
       wtotal += weight;
     }
@@ -79,7 +84,11 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         }
 
         value = R_INDEX_GET(x, IDX_INDEX(cidxs,i), X_NA);
-        if (!narm || !ISNAN(value)) {
+        if (!narm) {
+          sum += (LDOUBLE)weight * (value - avg);
+          /* Early stopping? Special for long LDOUBLE vectors */
+          if (i % 1048576 == 0 && ISNAN(sum)) break;
+	} else if (!ISNAN(value)) {
           sum += (LDOUBLE)weight * (value - avg);
         }
       }
