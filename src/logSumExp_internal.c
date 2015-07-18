@@ -79,7 +79,11 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
       sum += exp(xii - xMax);
     }
 
-    R_CHECK_USER_INTERRUPT(ii);
+    /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
+    if (ii % 1048576 == 0) {
+      if (!R_FINITE(sum)) break;
+      R_CheckUserInterrupt();
+    }
   } /* for (ii ...) */
 
   sum = xMax + log1p(sum);
@@ -181,7 +185,11 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
       sum += exp(xii - xMax);
     }
 
-    R_CHECK_USER_INTERRUPT(ii);
+    /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
+    if (ii % 1048576 == 0) {
+      if (!R_FINITE(sum)) break;
+      R_CheckUserInterrupt();
+    }
   } /* for (ii ...) */
 
   sum = xMax + log1p(sum);
