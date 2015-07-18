@@ -51,6 +51,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       t = -t;
     } else if (t == 0) {
       hasZero = 1;
+      /* Early stopping? */
+      if (narm) break;
     }
 #elif X_TYPE == 'r'
     if (t < 0) {
@@ -62,6 +64,11 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     y += t;
     /*
       Rprintf("#%d: x=%g, is.nan(x)=%d, abs(x)=%g, is.nan(abs(x))=%d, log(abs(x))=%g, is.nan(log(abs(x)))=%d, sum=%g, is.nan(sum)=%d\n", ii, x[ii], R_IsNaN(x[ii]), X_ABS(x[ii]), R_IsNaN(abs(x[ii])), t, R_IsNaN(y), y, R_IsNaN(y));  */
+
+#if X_TYPE == 'r'
+    /* Early stopping? Special for long LDOUBLE vectors */
+    if (ii % 1048576 == 0 && ISNAN(y)) break;
+#endif
   }
 
   if (ISNAN(y)) {
