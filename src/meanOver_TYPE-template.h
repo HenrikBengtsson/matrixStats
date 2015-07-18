@@ -48,7 +48,11 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         break;
     }
 #elif X_TYPE == 'r'
-    if (!narm || !ISNAN(value)) {
+    if (!narm) {
+      sum += (LDOUBLE)value;
+      ++count;
+      if (ii % 1048576 == 0 && !R_FINITE(sum)) break;
+    } else if (!ISNAN(value)) {
       sum += (LDOUBLE)value;
       ++count;
     }
@@ -67,7 +71,10 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     if (refine && R_FINITE(avg)) {
       for (ii=0; ii < nidxs; ++ii) {
         value = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
-        if (!narm || !ISNAN(value)) {
+        if (!narm) {
+          rsum += (LDOUBLE)(value - avg);
+          if (ii % 1048576 == 0 && !R_FINITE(rsum)) break;
+        } else if(!ISNAN(value)) {
           rsum += (LDOUBLE)(value - avg);
         }
       }

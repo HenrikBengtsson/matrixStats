@@ -42,7 +42,10 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         break;
     }
 #elif X_TYPE == 'r'
-    if (!narm || !ISNAN(value)) {
+    if (!narm) {
+      sum += (LDOUBLE)value;
+      if (ii % 1048576 == 0 && !R_FINITE(sum)) break;
+    } else if (!ISNAN(value)) {
       sum += (LDOUBLE)value;
     }
 #endif

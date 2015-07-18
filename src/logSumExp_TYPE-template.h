@@ -145,7 +145,11 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         sum += exp(xii - xMax);
       }
 
-      R_CHECK_USER_INTERRUPT(ii);
+      /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
+      if (ii % 1048576 == 0) {
+        if (!R_FINITE(sum)) break;
+        R_CheckUserInterrupt();
+      }
     } /* for (ii ...) */
   } else {
     for (ii=0; ii < nidxs; ii++) {
@@ -160,7 +164,11 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         sum += exp(xii - xMax);
       }
 
-      R_CHECK_USER_INTERRUPT(ii);
+      /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
+      if (ii % 1048576 == 0) {
+        if (!R_FINITE(sum)) break;
+        R_CheckUserInterrupt();
+      }
     } /* for (ii ...) */
   } /* if (by) */
 
