@@ -19,12 +19,12 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
 
   /* Quick return? */
   if (nx == 0) {
-    return(R_NegInf);
+    return R_NegInf;
   } else if (nx == 1) {
     if (narm && ISNAN(x[0])) {
-      return(R_NegInf);
+      return R_NegInf;
     } else {
-      return(x[0]);
+      return x[0];
     }
   }
 
@@ -42,7 +42,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
         hasna2 = TRUE;
         continue;
       } else {
-        return(R_NaReal);
+        return R_NaReal;
       }
     }
 
@@ -61,7 +61,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
     return narm ? R_NegInf : R_NaReal;
   } else if (xMax == R_PosInf) {
     /* Found +Inf? */
-    return(R_PosInf);
+    return R_PosInf;
   }
 
 
@@ -84,7 +84,7 @@ double logSumExp_double(double *x, R_xlen_t nx, int narm, int hasna) {
 
   sum = xMax + log1p(sum);
 
-  return(sum);
+  return (double) sum;
 } /* logSumExp_double() */
 
 
@@ -109,12 +109,12 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
 
   /* Quick return? */
   if (nx == 0) {
-    return(R_NegInf);
+    return R_NegInf;
   } else if (nx == 1) {
     if (narm && ISNAN(x[0])) {
-      return(R_NegInf);
+      return R_NegInf;
     } else {
-      return(x[0]);
+      return x[0];
     }
   }
 
@@ -144,7 +144,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
         hasna2 = TRUE;
         continue;
       } else {
-        return(R_NaReal);
+        return R_NaReal;
       }
     }
 
@@ -163,7 +163,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
     return narm ? R_NegInf : R_NaReal;
   } else if (xMax == R_PosInf) {
     /* Found +Inf? */
-    return(R_PosInf);
+    return R_PosInf;
   }
 
 
@@ -186,7 +186,7 @@ double logSumExp_double_by(double *x, R_xlen_t nx, int narm, int hasna, int by, 
 
   sum = xMax + log1p(sum);
 
-  return(sum);
+  return (double) sum;
 } /* logSumExp_double_by() */
 
 
