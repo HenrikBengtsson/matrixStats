@@ -4,8 +4,10 @@
 ifeq ($(OS), Windows_NT)
 CD=cd
 CURDIR=$(subst \,/,$(shell cmd.exe /C cd))
+FSEP=;
 else
 CD=cd -P "$(CURDIR)"; cd   # This handles the case when CURDIR is a softlink
+FSEP=:
 endif
 CP=cp
 MAKE=make
@@ -342,7 +344,7 @@ test_full: $(R_OUTDIR)/tests/%.R
 # Benchmarking
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 R_branch:
-	R_LIBS="$(R_LIBS_USER_X):$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R)
+	R_LIBS="$(R_LIBS_USER_X)$(FSEP)$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R)
 
 benchmark:
 	$(MKDIR) .benchmark/$(PKG_VERSION);\
@@ -352,7 +354,7 @@ benchmark:
 benchmark_branch:
 	$(MKDIR) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH)_$(GIT_COMMIT);\
 	$(CD) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH)_$(GIT_COMMIT);\
-	R_LIBS="$(R_LIBS_USER_X):$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
+	R_LIBS="$(R_LIBS_USER_X)$(FSEP)$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
