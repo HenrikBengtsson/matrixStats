@@ -37,7 +37,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
-  int hasna2 = FALSE;  /* Indicates whether NAs where detected or not */
+  int hasna2 = FALSE; /* Indicates whether NAs where detected or not */
+  int xMaxIsNA;
 
 #ifdef IDXS_TYPE
   IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
@@ -56,16 +57,17 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   } else {
     xMax = R_INDEX_GET(x, IDX_INDEX(cidxs,0), NA_REAL);
   }
+  xMaxIsNA = ISNAN(xMax);
 
   if (nidxs == 1) {
-    if (narm && ISNAN(xMax)) {
+    if (narm && xMaxIsNA) {
       return(R_NegInf);
     } else {
       return(xMax);
     }
   }
 
-  if (ISNAN(xMax)) hasna2 = TRUE;
+  if (xMaxIsNA) hasna2 = TRUE;
 
   if (by) {
     /* To increase the chances for cache hits below, which
@@ -90,9 +92,10 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         }
       }
 
-      if (xii > xMax || (narm && ISNAN(xMax))) {
+      if (xii > xMax || (narm && xMaxIsNA)) {
         iMax = ii;
         xMax = xii;
+        xMaxIsNA = ISNAN(xMax);
       }
 
       R_CHECK_USER_INTERRUPT(ii);
@@ -111,9 +114,10 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         }
       }
 
-      if (xii > xMax || (narm && ISNAN(xMax))) {
+      if (xii > xMax || (narm && xMaxIsNA)) {
         iMax = ii;
         xMax = xii;
+        xMaxIsNA = ISNAN(xMax);
       }
 
       R_CHECK_USER_INTERRUPT(ii);
@@ -121,7 +125,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   } /* by */
 
   /* Early stopping? */
-  if (ISNAN(xMax)) {
+  if (xMaxIsNA) {
     /* Found only missing values? */
     return narm ? R_NegInf : R_NaReal;
   } else if (xMax == R_PosInf) {
