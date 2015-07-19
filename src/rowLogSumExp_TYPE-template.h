@@ -17,6 +17,7 @@ extern double (*logSumExp_double[3])(double *x, void *idxs, R_xlen_t nidxs, int 
 RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   R_xlen_t ii, idx;
   double navalue;
+  double (*logsumexp)(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx);
 
 #ifdef IDXS_TYPE
   IDXS_C_TYPE *crows = (IDXS_C_TYPE*) rows;
@@ -29,24 +30,26 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     double *xx = (double *) R_alloc(ncols, sizeof(double));
 
     navalue = (narm || ncols == 0) ? R_NegInf : NA_REAL;
+    logsumexp = logSumExp_double[colsType];
 
     for (ii=0; ii < nrows; ++ii) {
       idx = IDX_INDEX(crows,ii);
       if (idx == NA_R_XLEN_T) {
         ans[ii] = navalue;
       } else {
-        ans[ii] = logSumExp_double[colsType](x+idx, cols, ncols, narm, hasna, nrow, xx);
+        ans[ii] = logsumexp(x+idx, cols, ncols, narm, hasna, nrow, xx);
       }
     }
   } else {
     navalue = (narm || nrows == 0) ? R_NegInf : NA_REAL;
+    logsumexp = logSumExp_double[rowsType];
 
     for (ii=0; ii < ncols; ++ii) {
       idx = R_INDEX_OP(IDX_INDEX(ccols,ii), *, nrow);
       if (idx == NA_R_XLEN_T) {
         ans[ii] = navalue;
       } else {
-        ans[ii] = logSumExp_double[rowsType](x+idx, rows, nrows, narm, hasna, 0, NULL);
+        ans[ii] = logsumexp(x+idx, rows, nrows, narm, hasna, 0, NULL);
       }
     }
   } /* if (byrow) */
