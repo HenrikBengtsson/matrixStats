@@ -32,10 +32,10 @@
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   R_xlen_t ii, jj;
-  R_xlen_t *colOffset;
+  R_xlen_t *colOffset, rowIdx;
   X_C_TYPE *values;
 
-  #ifdef ROWS_TYPE
+#ifdef ROWS_TYPE
   ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
   // Check missing rows
   for (ii=0; ii < nrows; ++ii) {
@@ -66,8 +66,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     colOffset[jj] = COL_INDEX(ccols,jj) * nrow;
 
   for (ii=0; ii < nrows; ii++) {
+    rowIdx = ROW_INDEX(crows,ii);
     for (jj=0; jj < ncols; jj++)
-      values[jj] = x[ROW_INDEX(crows,ii) + colOffset[jj]];
+      values[jj] = x[rowIdx + colOffset[jj]];
 
     /* Sort vector of length 'ncol' up to position 'qq'.
        "...partial sorting: they permute x so that x[qq] is in the
