@@ -5,8 +5,10 @@ validateIndicesTestVector <- function(x, idxs, ftest, fsure, debug=FALSE, ...) {
 
   suppressWarnings({
     actual <- tryCatch(ftest(x,idxs=idxs,...), error=function(c) "error")
-    if (is.null(idxs)) idxs <- seq_len(length(x))
-    expect <- tryCatch(fsure(x[idxs],...), error=function(c) "error")
+    expect <- tryCatch({
+      if (!is.null(idxs)) x <- x[idxs]
+      fsure(x,...)
+    }, error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
 
@@ -18,8 +20,13 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure, debug=FALSE, .
 
   suppressWarnings({
     actual <- tryCatch(ftest(x,w,idxs=idxs,...), error=function(c) "error")
-    if (is.null(idxs)) idxs <- seq_len(length(x))
-    expect <- tryCatch(fsure(x[idxs],w[idxs],...), error=function(c) "error")
+    expect <- tryCatch({
+      if (!is.null(idxs)) {
+        x <- x[idxs]
+        w <- w[idxs]
+      }
+      fsure(x,w,...)
+    }, error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
 
@@ -27,8 +34,10 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure, debug=FALSE, .
 }
 
 validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure, debug=FALSE, ...) {
-  if (debug) cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
-  if (debug) cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
+  if (debug) {
+    cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
+    cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
+  }
 
   suppressWarnings({
     if (missing(fcolTest)) {
@@ -37,9 +46,16 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure, deb
       actual <- tryCatch(fcolTest(t(x),rows=cols,cols=rows,...), error=function(c) "error")
     }
 
-    if (is.null(rows)) rows <- seq_len(dim(x)[1])
-    if (is.null(cols)) cols <- seq_len(dim(x)[2])
-    expect <- tryCatch(fsure(x[rows,cols,drop=FALSE],...), error=function(c) "error")
+    expect <- tryCatch({
+      if (!is.null(rows) && !is.null(cols)) {
+        x <- x[rows,cols,drop=FALSE]
+      } else if (!is.null(rows)) {
+        x <- x[rows,,drop=FALSE]
+      } else if (!is.null(cols)) {
+        x <- x[,cols,drop=FALSE]
+      }
+      fsure(x,...)
+    }, error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
 
@@ -47,8 +63,10 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure, deb
 }
 
 validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest, fcolTest, fsure, debug=FALSE, ...) {
-  if (debug) cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
-  if (debug) cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
+  if (debug) {
+    cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
+    cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
+  }
 
   suppressWarnings({
     if (missing(fcolTest)) {
@@ -57,9 +75,18 @@ validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest, fcolTest, fsure
       actual <- tryCatch(fcolTest(t(x),w,rows=cols,cols=rows,...), error=function(c) "error")
     }
 
-    if (is.null(rows)) rows <- seq_len(dim(x)[1])
-    if (is.null(cols)) cols <- seq_len(dim(x)[2])
-    expect <- tryCatch(fsure(x[rows,cols,drop=FALSE], w[cols], ...), error=function(c) "error")
+    expect <- tryCatch({
+      if (!is.null(rows) && !is.null(cols)) {
+        x <- x[rows,cols,drop=FALSE]
+        w <- w[cols]
+      } else if (!is.null(rows)) {
+        x <- x[rows,,drop=FALSE]
+      } else if (!is.null(cols)) {
+        x <- x[,cols,drop=FALSE]
+        w <- w[cols]
+      }
+      fsure(x, w, ...)
+    }, error=function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n", toString(actual), toString(expect)))
 
@@ -95,13 +122,13 @@ indexCases[[length(indexCases)+1]] <- 0
 indexCases[[length(indexCases)+1]] <- integer()
 
 # NA in idxs
-indexCases[[length(indexCases)+1]] <- c(NA, 0, 2)
+indexCases[[length(indexCases)+1]] <- c(NA_real_, 0, 2)
 
 # Inf in idxs
 indexCases[[length(indexCases)+1]] <- c(-Inf, -1)
-indexCases[[length(indexCases)+1]] <- c(NA, 0, 2, Inf)
+indexCases[[length(indexCases)+1]] <- c(NA_real_, 0, 2, Inf)
 
-# single Logical
+# single logical
 indexCases[[length(indexCases)+1]] <- NA
 indexCases[[length(indexCases)+1]] <- TRUE
 indexCases[[length(indexCases)+1]] <- FALSE
@@ -129,4 +156,4 @@ indexErrorCases[[length(indexCases)+1]] <- 1:-1
 indexErrorCases[[length(indexCases)+1]] <- c(-4, 0, 0, 1)
 
 # NA in idxs
-indexErrorCases[[length(indexCases)+1]] <- c(NA, -2)
+indexErrorCases[[length(indexCases)+1]] <- c(NA_real_, -2)
