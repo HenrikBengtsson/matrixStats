@@ -18,7 +18,7 @@ for (fcn in names(FUNs)) {
   for (mode in c("numeric", "integer")) {
     x <- matrix(runif(6*6, min=-6, max=6), nrow=6L, ncol=6L)
     trim <- runif(1, min=0, max=0.5)
-    if (mode == "numeric") x[0] <- Inf
+    if (mode == "numeric") x[1:2,3:4] <- Inf
 
     for (diff in 1:2) {
       for (rows in indexCases) {

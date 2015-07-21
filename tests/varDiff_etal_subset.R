@@ -19,7 +19,7 @@ for (fcn in names(FUNs)) {
   for (mode in c("numeric", "integer")) {
     x <- runif(6, min=-6, max=6)
     trim <- runif(1, min=0, max=0.5)
-    if (mode == "numeric") x[0] <- Inf
+    if (mode == "numeric") x[1] <- Inf
 
     for (diff in 1:2) {
       for (idxs in indexCases) {
