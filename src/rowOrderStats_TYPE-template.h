@@ -63,10 +63,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   /* Pre-calculate the column offsets */
   colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
   for (jj=0; jj < ncols; jj++)
-    colOffset[jj] = COL_INDEX(ccols,jj) * nrow;
+    colOffset[jj] = COL_INDEX_NONA(ccols,jj) * nrow;
 
   for (ii=0; ii < nrows; ii++) {
-    rowIdx = ROW_INDEX(crows,ii);
+    rowIdx = ROW_INDEX_NONA(crows,ii);
     for (jj=0; jj < ncols; jj++)
       values[jj] = x[rowIdx + colOffset[jj]];
 
