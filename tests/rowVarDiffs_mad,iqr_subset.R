@@ -17,6 +17,7 @@ for (fcn in names(FUNs)) {
 
   for (mode in c("numeric", "integer")) {
     x <- matrix(runif(6*6, min=-6, max=6), nrow=6L, ncol=6L)
+    storage.mode(x) <- mode
     trim <- runif(1, min=0, max=0.5)
     if (mode == "numeric") x[1:2,3:4] <- Inf
 
