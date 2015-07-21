@@ -60,9 +60,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   values = (X_C_TYPE *) R_alloc(nrows, sizeof(X_C_TYPE));
 
   for (jj=0; jj < ncols; jj++) {
-    offset = COL_INDEX(ccols,jj) * nrow;
+    offset = COL_INDEX_NONA(ccols,jj) * nrow;
     for (ii=0; ii < nrows; ii++)
-      values[ii] = x[ROW_INDEX(crows,ii) + offset];
+      values[ii] = x[ROW_INDEX_NONA(crows,ii) + offset];
 
     /* Sort vector of length 'nrows' up to position 'qq'.
        "...partial sorting: they permute x so that x[qq] is in the
