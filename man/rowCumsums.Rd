@@ -25,14 +25,14 @@
 }
 
 \usage{
- rowCumsums(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- colCumsums(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- rowCumprods(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- colCumprods(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- rowCummins(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- colCummins(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- rowCummaxs(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
- colCummaxs(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ rowCumsums(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ colCumsums(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ rowCumprods(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ colCumprods(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ rowCummins(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ colCummins(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ rowCummaxs(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
+ colCummaxs(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...)
 }
 
 \arguments{
@@ -41,6 +41,8 @@
     to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+    threads will be run simultaneously.}
  \item{...}{Not used.}
 }
 

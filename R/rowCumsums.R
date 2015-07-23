@@ -32,6 +32,8 @@
 #     to operate over. If @NULL, no subsetting is done.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -52,44 +54,44 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-rowCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+rowCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCumsums", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
 }
 
-colCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+colCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCumsums", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
 }
 
 
-rowCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+rowCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCumprods", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
 }
 
-colCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+colCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCumprods", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
 }
 
 
-rowCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+rowCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCummins", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
 }
 
-colCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+colCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCummins", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
 }
 
-rowCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+rowCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCummaxs", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
 }
 
-colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
+colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
   .Call("rowCummaxs", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
 }
@@ -97,6 +99,8 @@ colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-07-23 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-27 [DJ]
 # o Supported subsetted computation.
 # 2014-11-26 [HB]
