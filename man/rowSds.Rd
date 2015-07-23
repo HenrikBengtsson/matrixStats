@@ -23,8 +23,8 @@
 }
 
 \usage{
- rowSds(x, rows=NULL, cols=NULL, ...)
- colSds(x, rows=NULL, cols=NULL, ...)
+ rowSds(x, rows=NULL, cols=NULL, mc.cores=1L, ...)
+ colSds(x, rows=NULL, cols=NULL, mc.cores=1L, ...)
  rowMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
   centers=NULL, ...)
  colMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
@@ -41,6 +41,8 @@
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are removed first, otherwise not.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+    threads will be run simultaneously.}
  \item{...}{Additional arguments passed to \code{\link{rowVars}}() and
     \code{\link{rowMedians}}(), respectively.}
  \item{centers}{(deprectated) use \code{center} instead.}

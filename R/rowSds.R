@@ -30,6 +30,8 @@
 #  \item{na.rm}{If @TRUE, missing values are removed first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Additional arguments passed to @see "rowVars" and
 #     @see "rowMedians", respectively.}
 #  \item{centers}{(deprectated) use \code{center} instead.}
@@ -51,20 +53,22 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowSds <- function(x, rows=NULL, cols=NULL, ...) {
-  x <- rowVars(x, rows=rows, cols=cols, ...);
+rowSds <- function(x, rows=NULL, cols=NULL, mc.cores=1L, ...) {
+  x <- rowVars(x, rows=rows, cols=cols, mc.cores=mc.cores, ...);
   sqrt(x);
 }
 
 
-colSds <- function(x, rows=NULL, cols=NULL, ...) {
-  x <- colVars(x, rows=rows, cols=cols, ...);
+colSds <- function(x, rows=NULL, cols=NULL, mc.cores=1L, ...) {
+  x <- colVars(x, rows=rows, cols=cols, mc.cores=mc.cores, ...);
   sqrt(x);
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-07-23 [DJ]
+# o Provided multicore processing APIs.
 # 2012-03-19 [HC]
 # o Changed description of centers argument to rowMads and colMads
 # 2008-03-26 [HB]
