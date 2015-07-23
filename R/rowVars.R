@@ -24,6 +24,8 @@
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Additional arguments passed to \code{rowMeans()} and
 #     \code{rowSums()}.}
 # }
@@ -45,7 +47,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -103,7 +105,7 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 }
 
 
-colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -164,6 +166,8 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
 ############################################################################
 # HISTORY:
+# 2015-07-23 [DJ]
+# o Provided multicore processing APIs.
 # 2015-02-09 [HB]
 # o Now using na.rm=FALSE as the default.
 # 2014-06-02 [HB]
