@@ -26,9 +26,9 @@
  rowSds(x, rows=NULL, cols=NULL, mc.cores=1L, ...)
  colSds(x, rows=NULL, cols=NULL, mc.cores=1L, ...)
  rowMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
-  centers=NULL, ...)
+  centers=NULL, mc.cores=1L, ...)
  colMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
-  centers=NULL, ...)
+  centers=NULL, mc.cores=1L, ...)
 }
 
 \arguments{
