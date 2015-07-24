@@ -19,6 +19,8 @@
 #     to operate over. If @NULL, no subsetting is done.}
 #  \item{lag}{An @integer specifying the lag.}
 #  \item{differences}{An @integer specifying the order of difference.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -39,17 +41,19 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
+rowDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, mc.cores=1L, ...) {
   .Call("rowDiffs", x, dim(x), rows, cols, as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
 }
 
-colDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
+colDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, mc.cores=1L, ...) {
   .Call("rowDiffs", x, dim(x), rows, cols, as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-07-24 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-30 [DJ]
 # o Supported subsetted computation.
 # 2014-11-15 [HB]
