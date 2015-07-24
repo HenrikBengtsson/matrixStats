@@ -29,12 +29,12 @@ x <- matrix(runif(6*6, min=-3, max=3), nrow=6, ncol=6)
 storage.mode(x) <- "integer"
 for (rows in indexCases) {
   for (cols in indexCases) {
-    validateIndicesTestMatrix(x, rows, cols, ftest=rowCummins, fsure=rowCummins_R)
+    validateIndicesTestMatrix(x, rows, cols, ftest=rowCummins, fsure=rowCummins_R, mc.cores=2L)
     validateIndicesTestMatrix(x, rows, cols, ftest=function(x, rows, cols, ...) {
       t(colCummins(t(x), rows=cols, cols=rows))
     }, fsure=rowCummins_R, mc.cores=2L)
 
-    validateIndicesTestMatrix(x, rows, cols, ftest=rowCummaxs, fsure=rowCummaxs_R)
+    validateIndicesTestMatrix(x, rows, cols, ftest=rowCummaxs, fsure=rowCummaxs_R, mc.cores=2L)
     validateIndicesTestMatrix(x, rows, cols, ftest=function(x, rows, cols, ...) {
       t(colCummaxs(t(x), rows=cols, cols=rows))
     }, fsure=rowCummaxs_R, mc.cores=2L)

@@ -8,7 +8,7 @@ rowSds_R <- function(x, na.rm=FALSE) {
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Subsetted tests
+# Multicore tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
