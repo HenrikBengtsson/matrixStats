@@ -32,8 +32,10 @@
   ...)
   rowAlls(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
   colAlls(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  allValue(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...)
   rowAnys(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
   colAnys(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  anyValue(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...)
 }
 
 \arguments{
