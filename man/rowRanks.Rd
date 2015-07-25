@@ -19,9 +19,9 @@
 
 \usage{
  rowRanks(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x),
-  ...)
+  mc.cores=1L, ...)
  colRanks(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x),
-  preserveShape=FALSE, ...)
+  preserveShape=FALSE, mc.cores=1L, ...)
 }
 
 \arguments{
@@ -34,6 +34,8 @@
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{preserveShape}{A \code{\link[base]{logical}} specifying whether the \code{\link[base]{matrix}}
     returned should preserve the input shape of \code{x}, or not.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+    threads will be run simultaneously.}
  \item{...}{Not used.}
 }
 

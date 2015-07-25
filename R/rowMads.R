@@ -1,4 +1,4 @@
-rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, mc.cores=1L, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Remove in matrixStats (>= 0.15.0)
@@ -34,7 +34,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
 } # rowMads()
 
 
-colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, mc.cores=1L, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Remove in matrixStats (>= 0.15.0)

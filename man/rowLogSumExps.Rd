@@ -20,8 +20,8 @@
 }
 
 \usage{
- rowLogSumExps(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...)
- colLogSumExps(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...)
+ rowLogSumExps(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), mc.cores=1L, ...)
+ colLogSumExps(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), mc.cores=1L, ...)
 }
 
 \arguments{
@@ -32,6 +32,8 @@
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are ignored, otherwise not.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
               dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+  threads will be run simultaneously.}
  \item{...}{Not used.}
 }
 

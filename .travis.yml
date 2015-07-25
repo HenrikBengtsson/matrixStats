@@ -32,6 +32,7 @@ env:
     - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=BASE
     - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET
     - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET _R_SUBSET_TEST_=ROW_PREFIX
+    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=PARALLEL
 
 
 before_install:
@@ -61,6 +62,9 @@ before_install:
       else
         find tests/* -prune -type f -name "row*_subset.R" | xargs rm;
       fi;
+    fi
+  - if [ "$_R_TEST_" == "PARALLEL" ]; then
+      find tests/* -prune -type f ! -name "*_parallel.R" | xargs rm;
     fi
 
 install:

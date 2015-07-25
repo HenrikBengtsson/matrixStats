@@ -22,12 +22,12 @@
 }
 
 \usage{
-  rowRanges(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...)
-  colRanges(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...)
-  rowMins(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...)
-  colMins(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...)
-  rowMaxs(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...)
-  colMaxs(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...)
+  rowRanges(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  colRanges(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  rowMins(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  colMins(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  rowMaxs(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
+  colMaxs(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...)
 }
 
 \arguments{
@@ -37,6 +37,8 @@
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+    threads will be run simultaneously.}
  \item{...}{Not used.}
 }
 

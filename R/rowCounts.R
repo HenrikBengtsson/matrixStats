@@ -21,8 +21,10 @@
 #   @usage colCounts
 #   @usage rowAlls
 #   @usage colAlls
+#   @usage allValue
 #   @usage rowAnys
 #   @usage colAnys
+#   @usage anyValue
 # }
 #
 # \arguments{
@@ -33,6 +35,8 @@
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -55,7 +59,7 @@
 # @keyword iteration
 # @keyword univar
 #*/###########################################################################
-rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -101,7 +105,7 @@ rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
 } # rowCounts()
 
 
-colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -185,7 +189,7 @@ count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 
 
 
-rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -201,14 +205,14 @@ rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     dim. <- dim(x)
 
     if (is.na(value)) {
-      rowAlls(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      rowAlls(is.na(x), na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     } else {
-      rowAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+      rowAlls(x == value, na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     }
   }
 }
 
-colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -224,9 +228,9 @@ colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     dim. <- dim(x)
 
     if (is.na(value)) {
-      colAlls(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      colAlls(is.na(x), na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     } else {
-      colAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+      colAlls(x == value, na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     }
   }
 }
@@ -252,7 +256,7 @@ allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 
 
 
-rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -268,14 +272,14 @@ rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     dim. <- dim(x)
 
     if (is.na(value)) {
-      rowAnys(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      rowAnys(is.na(x), na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     } else {
-      rowAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+      rowAnys(x == value, na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     }
   }
 }
 
-colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -291,9 +295,9 @@ colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     dim. <- dim(x)
 
     if (is.na(value)) {
-      colAnys(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      colAnys(is.na(x), na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     } else {
-      colAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+      colAnys(x == value, na.rm=na.rm, dim.=dim., mc.cores=mc.cores, ...)
     }
   }
 }
@@ -321,6 +325,8 @@ anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-07-24 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-26 [DJ]
 # o Supported subsetted computation.
 # 2014-11-14 [HB]

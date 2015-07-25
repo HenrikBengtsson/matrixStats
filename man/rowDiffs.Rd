@@ -18,8 +18,8 @@
 }
 
 \usage{
- rowDiffs(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...)
- colDiffs(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...)
+ rowDiffs(x, rows=NULL, cols=NULL, lag=1L, differences=1L, mc.cores=1L, ...)
+ colDiffs(x, rows=NULL, cols=NULL, lag=1L, differences=1L, mc.cores=1L, ...)
 }
 
 \arguments{
@@ -28,6 +28,8 @@
     to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{lag}{An \code{\link[base]{integer}} specifying the lag.}
  \item{differences}{An \code{\link[base]{integer}} specifying the order of difference.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+    threads will be run simultaneously.}
  \item{...}{Not used.}
 }
 

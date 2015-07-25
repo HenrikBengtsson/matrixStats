@@ -19,6 +19,8 @@
 #  \item{x}{A @vector, a @list, a @matrix, a @data.frame, or @NULL.}
 #  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
 #     to operate over. If @NULL, no subsetting is done.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -62,17 +64,19 @@ anyMissing <- function(x, idxs=NULL, ...) {
 }
 
 
-colAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
-  colAnys(x, rows, cols, value=NA, ...)
+colAnyMissings <- function(x, rows=NULL, cols=NULL, mc.cores=1L, ...) {
+  colAnys(x, rows, cols, value=NA, mc.cores=mc.cores, ...)
 }
 
-rowAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
-  rowAnys(x, rows, cols, value=NA, ...)
+rowAnyMissings <- function(x, rows=NULL, cols=NULL, mc.cores=1L, ...) {
+  rowAnys(x, rows, cols, value=NA, mc.cores=mc.cores, ...)
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-07-24 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-26 [DJ]
 # o Supported subsetted computation.
 # 2015-02-10

@@ -18,8 +18,8 @@
 }
 
 \usage{
- rowOrderStats(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...)
- colOrderStats(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...)
+ rowOrderStats(x, rows=NULL, cols=NULL, which, dim.=dim(x), mc.cores=1L, ...)
+ colOrderStats(x, rows=NULL, cols=NULL, which, dim.=dim(x), mc.cores=1L, ...)
 }
 
 \arguments{
@@ -30,6 +30,8 @@
               order statistic to be returned.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
+ \item{mc.cores}{The number of cores to use, i.e. at most how many child
+    threads will be run simultaneously.}
  \item{...}{Not used.}
 }
 

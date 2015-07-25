@@ -21,6 +21,8 @@
 #               order statistic to be returned.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -56,7 +58,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
+rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -69,7 +71,7 @@ rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
 }
 
 
-colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
+colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -84,6 +86,8 @@ colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-07-24 [DJ]
+# o Provided multicore processing APIs.
 # 2015-06-03 [DJ]
 # o Supported subsetted computation.
 # 2014-12-19 [HB]

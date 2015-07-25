@@ -23,6 +23,8 @@
 #  \item{na.rm}{If @TRUE, any missing values are ignored, otherwise not.}
 #  \item{dim.}{An @integer @vector of length two specifying the
 #               dimension of \code{x}, also when not a @matrix.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#   threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -46,7 +48,7 @@
 #
 # @keyword array
 #*/###########################################################################
-rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
+rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
@@ -64,7 +66,7 @@ rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
 } # rowLogSumExps()
 
 
-colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
+colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   hasNA <- TRUE;
   res <- .Call("rowLogSumExps",
@@ -85,6 +87,8 @@ colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
 
 ############################################################################
 # HISTORY:
+# 2015-07-23 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-28 [DJ]
 # o Supported subsetted computation.
 # 2013-04-30 [HB]
