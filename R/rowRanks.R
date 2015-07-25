@@ -23,6 +23,8 @@
 #              dimension of \code{x}, also when not a @matrix.}
 #  \item{preserveShape}{A @logical specifying whether the @matrix
 #     returned should preserve the input shape of \code{x}, or not.}
+#  \item{mc.cores}{The number of cores to use, i.e. at most how many child
+#     threads will be run simultaneously.}
 #  \item{...}{Not used.}
 # }
 #
@@ -94,7 +96,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
+rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), mc.cores=1L, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -113,7 +115,7 @@ rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
 }
 
 
-colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
+colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, mc.cores=1L, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -139,6 +141,8 @@ colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
 
 ############################################################################
 # HISTORY:
+# 2015-07-24 [DJ]
+# o Provided multicore processing APIs.
 # 2015-05-30 [DJ]
 # o Supported subsetted computation.
 # 2014-12-17 [HB]
