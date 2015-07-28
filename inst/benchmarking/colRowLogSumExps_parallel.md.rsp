@@ -1,0 +1,67 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colLogSumExps"%>
+<%@string rowname="rowLogSumExps"%>
+<%@string fcnname="colRowLogSumExps_parallel"%>
+<%@meta title="${colname}() and ${rowname}() benchmarks on multicore processing"%>
+<%@meta author="Dongcan Jiang"%>
+<%@meta date="2015-07-27"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() on multicore processing.
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="double")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+gc()
+
+colStats <- microbenchmark(
+ "colLogSumExps"              = colLogSumExps(X, na.rm=FALSE),
+ "colLogSumExps(mc.cores=2L)" = colLogSumExps(X, na.rm=FALSE, mc.cores=2L),
+ unit = "ms"
+)
+
+X <- t(X)
+gc()
+
+rowStats <- microbenchmark(
+ "rowLogSumExps"              = rowLogSumExps(X, na.rm=FALSE),
+ "rowLogSumExps(mc.cores=2L)" = rowLogSumExps(X, na.rm=FALSE, mc.cores=2L),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2015-07-27
+o Created.
+---------------------------------------------------------------------------%>
