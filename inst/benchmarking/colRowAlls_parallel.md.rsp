@@ -1,0 +1,67 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colAlls"%>
+<%@string rowname="rowAlls"%>
+<%@string fcnname="colRowAlls_parallel"%>
+<%@meta title="${colname}() and ${rowname}() benchmarks on multicore processing"%>
+<%@meta author="Dongcan Jiang"%>
+<%@meta date="2015-07-27"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() on multicore processing.
+
+
+## Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode="logical")
+})%>
+```
+
+## Results
+
+<% for (dataLabel in names(data)) { %>
+<% message(dataLabel) %>
+### <%=dataLabel%> matrix
+
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+gc()
+
+colStats <- microbenchmark(
+ "colAlls"              = colAlls(X),
+ "colAlls(mc.cores=2L)" = colAlls(X, mc.cores=2L),
+ unit = "ms"
+)
+
+X <- t(X)
+gc()
+
+rowStats <- microbenchmark(
+ "rowAlls"              = rowAlls(X),
+ "rowAlls(mc.cores=2L)" = rowAlls(X, mc.cores=2L),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=dataLabel) %>
+
+<% } # for (dataLabel ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2015-07-27
+o Created.
+---------------------------------------------------------------------------%>
