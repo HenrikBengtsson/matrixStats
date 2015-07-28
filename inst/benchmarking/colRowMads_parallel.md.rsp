@@ -1,0 +1,72 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string colname="colMads"%>
+<%@string rowname="rowMads"%>
+<%@string fcnname="colRowMads_parallel"%>
+<%@meta title="${colname}() and ${rowname}() benchmarks on multicore processing"%>
+<%@meta author="Dongcan Jiang"%>
+<%@meta date="2015-07-27"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=colname%>() and <%=rowname%>() on multicore processing.
+
+
+<% for (mode in c("integer", "double")) { %>
+
+## Data type "<%=mode%>"
+
+### Data
+```r
+<%=withCapture({
+<%@include file="R/random-matrices.R"%>
+data <- rmatrices(mode=mode)
+})%>
+```
+
+### Results
+
+<% for (dataLabel in names(data)) { %>
+<% mprintf("%s: %s\n", mode, dataLabel)  %>
+#### <%=dataLabel%> <%=mode%> matrix
+
+```r
+<%=withCapture({
+X <- data[[.dataLabel.]]
+gc()
+
+colStats <- microbenchmark(
+ "colMads"              = colMads(X, na.rm=FALSE),
+ "colMads(mc.cores=2L)" = colMads(X, na.rm=FALSE, mc.cores=2L),
+ unit = "ms"
+)
+
+X <- t(X)
+gc()
+
+rowStats <- microbenchmark(
+ "rowMads"              = rowMads(X, na.rm=FALSE),
+ "rowMads(mc.cores=2L)" = rowMads(X, na.rm=FALSE, mc.cores=2L),
+ unit = "ms"
+)
+})%>
+```
+
+<% crBenchmarkResults(colStats, rowStats, tags=c(mode, dataLabel)) %>
+
+<% } # for (dataLabel ...) %>
+
+<% } # for (mode ...) %>
+
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2015-07-27
+o Created.
+---------------------------------------------------------------------------%>
