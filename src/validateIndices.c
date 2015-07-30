@@ -224,3 +224,25 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
   UNPROTECT(1);
   return ans;
 }
+
+
+/*************************************************************
+  * Used to generate indices begin+1:end.
+  * `subsettedType` is used for returning the new idxs array's datatype.
+  ************************************************************/
+void *indicesFromRange(R_xlen_t begin, R_xlen_t end, int *subsettedType) {
+  R_xlen_t ii, kk;
+
+  ii = 0;
+  if (end > R_INT_MAX) {
+    double *ans = Calloc(end - begin, double);
+    for (kk = begin + 1; kk <= end; ++ kk) ans[ii ++] = kk;
+    *subsettedType = SUBSETTED_REAL;
+    return ans;
+  }
+
+  int *ans = Calloc(end - begin, int);
+  for (kk = begin + 1; kk <= end; ++ kk) ans[ii ++] = kk;
+  *subsettedType = SUBSETTED_INTEGER;
+  return ans;
+}
