@@ -3,7 +3,7 @@
   void colCounts_<Integer|Real|Logical>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans, int cores
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -14,6 +14,8 @@
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
+#include <pthread.h>
+#include <stdint.h>
 #include "types.h"
 
 /* Expand arguments:
@@ -22,7 +24,100 @@
 #include "templates-types.h"
 
 
+/** Wrapper is used to call `METHOD_NAME`, as pthread worker. **/
+static void *WRAPPER_METHOD_NAME_ROWS_COLS(void *args) {
+  uint8_t *buffer = (uint8_t*) args;
+  int ii = 0;
+  POP_ARGUMENT(buffer, ii, uint8_t*, buffer0);
+  POP_ARGUMENT(buffer, ii, R_xlen_t, begin);
+  POP_ARGUMENT(buffer, ii, R_xlen_t, end);
+
+  ii = 0;
+  POP_ARGUMENT(buffer0, ii, X_C_TYPE*, x);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrow);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncol);
+  POP_ARGUMENT(buffer0, ii, void*, rows);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrows);
+  POP_ARGUMENT(buffer0, ii, void*, cols);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncols);
+  POP_ARGUMENT(buffer0, ii, X_C_TYPE, value);
+  POP_ARGUMENT(buffer0, ii, int, what);
+  POP_ARGUMENT(buffer0, ii, int, narm);
+  POP_ARGUMENT(buffer0, ii, int, hasna);
+  POP_ARGUMENT(buffer0, ii, int*, ans);
+
+  ans += begin;
+
+  ncols = end - begin;
+  int colsType;
+#ifdef COLS_TYPE
+  cols = (COLS_C_TYPE*) cols + begin;
+  colsType = COLS_TYPE_CODE;
+#else
+  cols = indicesFromRange(begin, end, &colsType);
+#endif
+
+  extern RETURN_TYPE (*METHOD_NAME[3][3])(ARGUMENTS_LIST);
+  METHOD_NAME[ROWS_TYPE_CODE][colsType](x, nrow, ncol, rows, nrows, cols, ncols, value, what, narm, hasna, ans, 1);
+
+#ifndef COLS_TYPE
+  Free(cols);
+#endif
+  return NULL;
+}
+
+
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+  // Apply pthread
+  if (cores > 1 && ncols > 1) {
+    const static int memSize0 = sizeof(x) + sizeof(nrow) + sizeof(ncol)
+      + sizeof(rows) + sizeof(nrows) + sizeof(cols) + sizeof(ncols)
+      + sizeof(value) + sizeof(what) + sizeof(narm) + sizeof(hasna) + sizeof(ans);
+    const static int memSize1 = sizeof(uint8_t*) + sizeof(R_xlen_t) + sizeof(R_xlen_t);
+
+    cores = MIN(cores, ncols);
+    uint8_t buffer[memSize0 + memSize1 * cores];
+
+    int ii = 0;
+    PUSH_ARGUMENT(buffer, ii, x);
+    PUSH_ARGUMENT(buffer, ii, nrow);
+    PUSH_ARGUMENT(buffer, ii, ncol);
+    PUSH_ARGUMENT(buffer, ii, rows);
+    PUSH_ARGUMENT(buffer, ii, nrows);
+    PUSH_ARGUMENT(buffer, ii, cols);
+    PUSH_ARGUMENT(buffer, ii, ncols);
+    PUSH_ARGUMENT(buffer, ii, value);
+    PUSH_ARGUMENT(buffer, ii, what);
+    PUSH_ARGUMENT(buffer, ii, narm);
+    PUSH_ARGUMENT(buffer, ii, hasna);
+    PUSH_ARGUMENT(buffer, ii, ans);
+
+    pthread_t threads[cores];
+
+    R_xlen_t begin = 0;
+    R_xlen_t gap = (ncols + cores - 1) / cores;
+    int jj = 0;
+    while (begin < ncols) {
+      uint8_t *buffer0 = buffer;
+      uint8_t *args = buffer + ii;
+      R_xlen_t end = MIN(begin + gap, ncols);
+
+      PUSH_ARGUMENT(buffer, ii, buffer0);
+      PUSH_ARGUMENT(buffer, ii, begin);
+      PUSH_ARGUMENT(buffer, ii, end);
+
+      pthread_create(threads+(jj++), NULL, &WRAPPER_METHOD_NAME_ROWS_COLS, args);
+
+      begin = end;
+    }
+
+    for (jj = 0; jj < cores; ++jj) {
+      pthread_join(threads[jj], NULL);
+    }
+    return;
+  }
+
+
   R_xlen_t ii, jj;
   R_xlen_t colBegin, idx;
   int count;
@@ -150,14 +245,14 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         ans[jj] = count;
       } /* for (jj ...) */
     } /* if (X_ISNAN(value)) */
-  } else {
-    error("INTERNAL ERROR: Unknown value of 'what' for colCounts: %d", what);
   } /* if (what) */
 }
 
 
 /***************************************************************************
  HISTORY:
+ 2015-07-31 [DJ]
+  o Pthread processing.
  2015-04-18 [DJ]
   o Supported subsetted computation.
  2014-11-14 [HB]
