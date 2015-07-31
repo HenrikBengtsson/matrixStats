@@ -11,7 +11,7 @@
 
 #define METHOD rowCounts
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans, int cores
 
 #define X_TYPE 'i'
 #include "templates-gen-matrix.h"
@@ -21,9 +21,9 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA, SEXP cores) {
   SEXP ans;
-  int narm, hasna, what2;
+  int narm, hasna, what2, cores2;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' & 'dim': */
@@ -40,12 +40,17 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Argument 'what': */
   what2 = asInteger(what);
+  if (what2 < 0 || what2 > 2)
+    error("INTERNAL ERROR: Unknown value of 'what' for rowCounts: %d", what2);
 
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
@@ -58,11 +63,11 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowCounts_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans));
+    rowCounts_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans), cores2);
   } else if (isInteger(x)) {
-    rowCounts_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans));
+    rowCounts_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans), cores2);
   } else if (isLogical(x)) {
-    rowCounts_Logical[rowsType][colsType](LOGICAL(x), nrow, ncol, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans));
+    rowCounts_Logical[rowsType][colsType](LOGICAL(x), nrow, ncol, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans), cores2);
   }
 
   UNPROTECT(1);
@@ -73,6 +78,8 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
 /***************************************************************************
  HISTORY:
+ 2015-07-30 [DJ]
+  o Pthread processing.
  2015-04-13 [DJ]
   o Supported subsetted computation.
  2014-06-02 [HB]
