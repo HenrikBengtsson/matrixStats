@@ -73,7 +73,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     const static int memSize0 = sizeof(x) + sizeof(nrow) + sizeof(ncol)
       + sizeof(rows) + sizeof(nrows) + sizeof(cols) + sizeof(ncols)
       + sizeof(value) + sizeof(what) + sizeof(narm) + sizeof(hasna) + sizeof(ans);
-    const static int memSize1 = sizeof(uint8_t*) + sizeof(R_xlen_t) + sizeof(R_xlen_t);
+    uint8_t *buffer0;
+    R_xlen_t begin, end;
+    const static int memSize1 = sizeof(buffer0) + sizeof(begin) + sizeof(end);
 
     cores = MIN(cores, nrows);
     uint8_t buffer[memSize0 + memSize1 * cores];
@@ -94,13 +96,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
     pthread_t threads[cores];
 
-    R_xlen_t begin = 0;
     R_xlen_t gap = (nrows + cores - 1) / cores;
     int jj = 0;
+    begin = 0;
     while (begin < nrows) {
-      uint8_t *buffer0 = buffer;
       uint8_t *args = buffer + ii;
-      R_xlen_t end = MIN(begin + gap, nrows);
+      buffer0 = buffer;
+      end = MIN(begin + gap, nrows);
 
       PUSH_ARGUMENT(buffer, ii, buffer0);
       PUSH_ARGUMENT(buffer, ii, begin);

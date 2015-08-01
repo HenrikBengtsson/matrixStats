@@ -49,14 +49,14 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
-  /* Argument 'cores': */
-  cores2 = asInteger(cores);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
 
   /* R allocate an integer vector of length 'ncol' */
   PROTECT(ans = allocVector(INTSXP, ncols));
