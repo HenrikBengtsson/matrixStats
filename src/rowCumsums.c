@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowCumsums(SEXP x, ...)
- SEXP colCumsums(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -13,7 +12,7 @@
 
 #define METHOD rowCumsums
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans, R_xlen_t nrow_ans, int *oks, int cores
 
 #define X_TYPE 'i'
 #include "templates-gen-matrix.h"
@@ -21,8 +20,8 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
-  int byrow;
+SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP cores) {
+  int byrow, cores2;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
@@ -40,14 +39,19 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+
+  int *oks = NULL;
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-    rowCumsums_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
+    rowCumsums_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans), nrows, oks, cores2);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-    rowCumsums_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
+    if (byrow) oks = (int*)R_alloc(nrows, sizeof(int));
+    rowCumsums_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans), nrows, oks, cores2);
     UNPROTECT(1);
   }
 
@@ -57,6 +61,8 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 /***************************************************************************
  HISTORY:
+ 2015-08-01 [DJ]
+  o Pthread processing.
  2015-06-07 [DJ]
   o Supported subsetted computation.
  2014-11-26 [HB]
