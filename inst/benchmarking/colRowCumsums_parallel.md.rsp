@@ -23,7 +23,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() on mu
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode=mode, scale=20)
 })%>
 ```
 
