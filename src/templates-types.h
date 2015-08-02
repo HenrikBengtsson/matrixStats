@@ -264,6 +264,9 @@
 /*
  WRAPPER used for pthread parameter passing
  */
+#undef WRAPPER_METHOD_NAME_IDXS
+#define WRAPPER_METHOD_NAME_IDXS CONCAT_MACROS(WRAPPER, METHOD_NAME_IDXS)
+
 #undef WRAPPER_METHOD_NAME_ROWS_COLS
 #define WRAPPER_METHOD_NAME_ROWS_COLS CONCAT_MACROS(WRAPPER, METHOD_NAME_ROWS_COLS)
 
@@ -273,16 +276,19 @@
  */
 #undef IDX_INDEX_NONA
 #undef IDX_INDEX
+#undef IDXS_TYPE_CODE
 #undef IDXS_C_TYPE
 #undef METHOD_NAME_IDXS
 
 #ifdef IDXS_TYPE
   #define IDX_INDEX_NONA(idxs, ii) ((R_xlen_t)idxs[ii]-1)
   #if IDXS_TYPE == 'i'
+    #define IDXS_TYPE_CODE SUBSETTED_INTEGER
     #define IDXS_C_TYPE int
     #define IDX_INDEX(idxs, ii) (idxs[ii] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
     #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, intIdxs)
   #elif IDXS_TYPE == 'r'
+    #define IDXS_TYPE_CODE SUBSETTED_REAL
     #define IDXS_C_TYPE double
     #define IDX_INDEX(idxs, ii) (ISNAN(idxs[ii]) ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
     #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, realIdxs)
@@ -292,6 +298,7 @@
 #else
   #define IDX_INDEX_NONA(idxs, ii) (ii)
   #define IDX_INDEX(idxs, ii) (ii)
+  #define IDXS_TYPE_CODE SUBSETTED_ALL
   #define IDXS_C_TYPE void
   #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, noIdxs)
 #endif
