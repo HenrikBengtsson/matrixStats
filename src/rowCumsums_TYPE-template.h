@@ -256,13 +256,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     } /* for (jj ...) */
   } /* if (byrow) */
 
-// TODO: warning under pthread
-// #if ANS_TYPE == 'i'
-//   /* Warn on integer overflow? */
-//   if (warn) {
-//     warning("Integer overflow. Detected one or more elements whose absolute values were out of the range [%d,%d] that can be used to for integers. Such values are set to NA_integer_.", R_INT_MIN, R_INT_MAX);
-//   }
-// #endif
+#if ANS_TYPE == 'i'
+  /* Warn on integer overflow? */
+  if (warn) {
+    // TODO: warning under pthread
+    // warning("Integer overflow. Detected one or more elements whose absolute values were out of the range [%d,%d] that can be used to for integers. Such values are set to NA_integer_.", R_INT_MIN, R_INT_MAX);
+  }
+#endif
 }
 
 
