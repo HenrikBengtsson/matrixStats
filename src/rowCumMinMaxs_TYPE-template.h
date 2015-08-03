@@ -75,7 +75,7 @@ static void *WRAPPER_METHOD_NAME_ROWS_COLS(void *args) {
 #endif
 
   } else {
-    ans += begin * nrows;
+    ans += begin * nrow_ans;
     ncols = end - begin;
 #ifdef COLS_TYPE
     cols = (COLS_C_TYPE*) cols + begin;
