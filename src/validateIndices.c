@@ -36,10 +36,12 @@ for (ii = 0; ii < n; ++ ii) {             \
 
 
 /** idxs must not be NULL, which should be checked before calling this function. **/
-void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType) {
+void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna) {
   R_xlen_t ii, jj, kk;
   R_xlen_t count1 = 0, count2 = 0;
 
+  // set default as no NA.
+  *hasna = FALSE;
   // set default type as SUBSETTED_INTEGER
   *subsettedType = SUBSETTED_INTEGER;
   if (nidxs == 0) {
@@ -51,6 +53,7 @@ void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int al
     if (!allowOutOfBound) {
       error("logical subscript too long");
     }
+    *hasna = TRUE; // out-of-bound index is NA
 
     // count how many idx items
     for (ii = 0; ii < maxIdx; ++ ii) {
@@ -114,6 +117,7 @@ void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int al
     *subsettedType = SUBSETTED_ALL;
     return NULL;
   }
+  if (naCount) *hasna = TRUE;
 
   *ansNidxs = maxIdx / nidxs * count + count1;
   if (*subsettedType == SUBSETTED_INTEGER) {
@@ -154,17 +158,20 @@ void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int al
   * `allowOutOfBound` indicates whether to allow positve out of bound indexing.
   * `ansNidxs` is used for returning the new idxs array's length.
   * `subsettedType` is used for returning the new idxs array's datatype.
+  * `hasna` is TRUE, if NA is included in returned result.
   ************************************************************/
-void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType) {
+void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna) {
   R_xlen_t nidxs = xlength(idxs);
   int mode = TYPEOF(idxs);
+  // Set no NA as default.
+  *hasna = FALSE;
   switch (mode) {
     case INTSXP:
-      return validateIndices_Integer(INTEGER(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType);
+      return validateIndices_Integer(INTEGER(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
     case REALSXP:
-      return validateIndices_Real(REAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType);
+      return validateIndices_Real(REAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
     case LGLSXP:
-      return validateIndices_Logical(LOGICAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType);
+      return validateIndices_Logical(LOGICAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
     case NILSXP:
       *subsettedType = SUBSETTED_ALL;
       *ansNidxs = maxIdx;
@@ -192,16 +199,18 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
   int callowOutOfBound = asLogicalNoNA(allowOutOfBound, "allowOutOfBound");
   void *cidxs;
 
+  // Set no NA as default.
+  int hasna = FALSE;
   int mode = TYPEOF(idxs);
   switch (mode) {
     case INTSXP:
-      cidxs = validateIndices_Integer(INTEGER(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType);
+      cidxs = validateIndices_Integer(INTEGER(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
       break;
     case REALSXP:
-      cidxs = validateIndices_Real(REAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType);
+      cidxs = validateIndices_Real(REAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
       break;
     case LGLSXP:
-      cidxs = validateIndices_Logical(LOGICAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType);
+      cidxs = validateIndices_Logical(LOGICAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
       break;
     case NILSXP:
       return R_NilValue;

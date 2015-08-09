@@ -110,8 +110,13 @@ static R_INLINE R_xlen_t asR_xlen_t(SEXP x, R_xlen_t i) {
 
 
 /* Specified in validateIndices.c */
-void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type);
+void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type, int *hasna);
 void *indicesFromRange(R_xlen_t begin, R_xlen_t end, int *subsettedType);
+
+static R_INLINE void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type) {
+  int hasna;
+  return validateIndicesCheckNA(idxs, maxIdx, allowOutOfBound, ansNidxs, type, &hasna);
+}
 
 
 static R_INLINE int IntegerFromReal(double x) {
