@@ -57,19 +57,19 @@
 rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., rows, cols, 2L, na.rm, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., rows, cols, 0L, na.rm, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), mc.cores=1L, ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanges", x, dim., rows, cols, 1L, na.rm, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 
