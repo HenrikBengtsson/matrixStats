@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which)
+ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP cores)
 
  Authors: Henrik Bengtsson. Adopted from rowQ() by R. Gentleman.
 
