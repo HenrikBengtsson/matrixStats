@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowMads(SEXP x, ...)
- SEXP colMads(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -14,7 +13,7 @@
 
 #define METHOD rowMads
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans, int cores
 
 #define X_TYPE 'i'
 #include "templates-gen-matrix.h"
@@ -22,8 +21,8 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  int narm, hasna, byrow;
+SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP cores) {
+  int narm, hasna, byrow, cores2;
   SEXP ans;
   R_xlen_t nrow, ncol;
   double scale;
@@ -53,6 +52,9 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);
     SWAP(void*, crows, ccols);
@@ -66,9 +68,9 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMads_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans), cores2);
   } else if (isInteger(x)) {
-    rowMads_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans), cores2);
   }
 
   UNPROTECT(1);
@@ -79,6 +81,8 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
 /***************************************************************************
  HISTORY:
+ 2015-08-13 [DJ]
+  o Pthread processing.
  2015-06-13 [DJ]
   o Supported subsetted computation.
  2014-11-17 [HB]
