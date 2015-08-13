@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow)
+ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP cores)
 
  Authors: Henrik Bengtsson
 
@@ -14,14 +14,14 @@
 #define METHOD rowLogSumExp
 #define METHOD_NAME rowLogSumExps_double
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, int rowsType, void *cols, R_xlen_t ncols, int colsType, int narm, int hasna, R_xlen_t byrow, double *ans
+#define ARGUMENTS_LIST double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, int rowsType, void *cols, R_xlen_t ncols, int colsType, int narm, int hasna, int byrow, double *ans, int cores
 
 #include "templates-gen-vector.h"
 
 
-SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
+SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP cores) {
   SEXP ans;
-  int narm, hasna, byrow;
+  int narm, hasna, byrow, cores2;
   R_xlen_t nrow, ncol;
 
   /* Argument 'lx' and 'dim': */
@@ -44,12 +44,15 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasN
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+
   if (byrow) {
     ans = PROTECT(allocVector(REALSXP, nrows));
-    rowLogSumExps_double[rowsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 1, REAL(ans));
+    rowLogSumExps_double[rowsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 1, REAL(ans), cores2);
   } else {
     ans = PROTECT(allocVector(REALSXP, ncols));
-    rowLogSumExps_double[colsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 0, REAL(ans));
+    rowLogSumExps_double[colsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 0, REAL(ans), cores2);
   }
 
   UNPROTECT(1); /* ans = PROTECT(...) */
@@ -60,6 +63,8 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasN
 
 /***************************************************************************
  HISTORY:
+ 2015-08-01 [DJ]
+  o Pthread processing.
  2015-06-12 [DJ]
   o Supported subsetted computation.
  2013-05-02 [HB]

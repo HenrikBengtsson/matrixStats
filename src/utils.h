@@ -110,7 +110,13 @@ static R_INLINE R_xlen_t asR_xlen_t(SEXP x, R_xlen_t i) {
 
 
 /* Specified in validateIndices.c */
-void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type);
+void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type, int *hasna);
+void *indicesFromRange(R_xlen_t begin, R_xlen_t end, int *subsettedType);
+
+static R_INLINE void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type) {
+  int hasna;
+  return validateIndicesCheckNA(idxs, maxIdx, allowOutOfBound, ansNidxs, type, &hasna);
+}
 
 
 static R_INLINE int IntegerFromReal(double x) {
@@ -131,3 +137,15 @@ type tmp = x;              \
 x = y;                     \
 y = tmp;                   \
 }
+
+#define MIN(x, y) (x < y ? x : y)
+#define MAX(x, y) (x < y ? y : x)
+
+#define PUSH_ARGUMENT(buffer, i, v) \
+memcpy(buffer+i, &v, sizeof(v));    \
+i += sizeof(v)
+
+#define POP_ARGUMENT(buffer, i, type, v) \
+type v;                                  \
+memcpy(&v, buffer+i, sizeof(v));         \
+i += sizeof(v)

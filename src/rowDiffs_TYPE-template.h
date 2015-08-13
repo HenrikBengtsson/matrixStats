@@ -3,7 +3,7 @@
   void rowDiffs_<Integer|Real>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans, int cores
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -14,6 +14,8 @@
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
+#include <pthread.h>
+#include <stdint.h>
 #include "types.h"
 
 /* Expand arguments:
@@ -49,15 +51,16 @@
       tt = 0;
       ss = 0;
       for (jj=0; jj < ncol_y; jj++) {
-        for (ii=0; ii < nrow_y; ii++) {
+        for (ii=0; ii < nrow_x; ii++) {
           y[ss++] = X_DIFF(x[uu++], x[tt++]);
         }
+        ss += nrow_y - nrow_x;
       }
     } else {
       uu = lag;
       tt = 0;
       ss = 0;
-      for (jj=0; jj < ncol_y; jj++) {
+      for (jj=0; jj < ncol_x; jj++) {
         for (ii=0; ii < nrow_y; ii++) {
           /*	Rprintf("y[%d] = x[%d] - x[%d] = %g - %g = %g\n", ss, uu, tt, (double)x[uu], (double)x[tt], (double)X_DIFF(x[uu], x[tt]));  */
           y[ss++] = X_DIFF(x[uu++], x[tt++]);
@@ -117,7 +120,7 @@ static R_INLINE void DIFF_X_MATRIX_ROWS_COLS(X_C_TYPE *x, R_xlen_t nrow, void *r
       colBegin1 = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
       colBegin2 = R_INDEX_OP(COL_INDEX(ccols,(jj+lag)), *, nrow);
 
-      for (ii=0; ii < nrow_ans; ii++) {
+      for (ii=0; ii < nrows; ii++) {
         idx = R_INDEX_OP(colBegin1, +, ROW_INDEX(crows,ii));
         xvalue1 = R_INDEX_GET(x, idx, X_NA);
         idx = R_INDEX_OP(colBegin2, +, ROW_INDEX(crows,ii));
@@ -125,9 +128,10 @@ static R_INLINE void DIFF_X_MATRIX_ROWS_COLS(X_C_TYPE *x, R_xlen_t nrow, void *r
 
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
       }
+      ss += nrow_ans - nrows;
     }
   } else {
-    for (jj=0; jj < ncol_ans; jj++) {
+    for (jj=0; jj < ncols; jj++) {
       colBegin1 = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
 
       for (ii=0; ii < nrow_ans; ii++) {
@@ -143,8 +147,120 @@ static R_INLINE void DIFF_X_MATRIX_ROWS_COLS(X_C_TYPE *x, R_xlen_t nrow, void *r
 }
 
 
+/** Wrapper is used to call `METHOD_NAME`, as pthread worker. **/
+static void *WRAPPER_METHOD_NAME_ROWS_COLS(void *args) {
+  uint8_t *buffer = (uint8_t*) args;
+  int ii = 0;
+  POP_ARGUMENT(buffer, ii, uint8_t*, buffer0);
+  POP_ARGUMENT(buffer, ii, R_xlen_t, begin);
+  POP_ARGUMENT(buffer, ii, R_xlen_t, end);
+
+  ii = 0;
+  POP_ARGUMENT(buffer0, ii, X_C_TYPE*, x);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrow);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncol);
+  POP_ARGUMENT(buffer0, ii, void*, rows);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrows);
+  POP_ARGUMENT(buffer0, ii, void*, cols);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncols);
+  POP_ARGUMENT(buffer0, ii, int, byrow);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, lag);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, differences);
+  POP_ARGUMENT(buffer0, ii, X_C_TYPE*, ans);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrow_ans);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncol_ans);
+
+  extern RETURN_TYPE (*METHOD_NAME[3][3])(ARGUMENTS_LIST);
+  int rowsType = ROWS_TYPE_CODE, colsType = COLS_TYPE_CODE;
+  if (byrow) {
+    ans += begin;
+    nrows = end - begin;
+#ifdef ROWS_TYPE
+    rows = (ROWS_C_TYPE*) rows + begin;
+#else
+    rows = indicesFromRange(begin, end, &rowsType);
+#endif
+
+    METHOD_NAME[rowsType][colsType](x, nrow, ncol, rows, nrows, cols, ncols, byrow, lag, differences, ans, nrow_ans, ncol_ans, 1);
+
+#ifndef ROWS_TYPE
+    Free(rows);
+#endif
+
+  } else {
+    ans += begin * nrow_ans;
+    ncols = end - begin;
+#ifdef COLS_TYPE
+    cols = (COLS_C_TYPE*) cols + begin;
+#else
+    cols = indicesFromRange(begin, end, &colsType);
+#endif
+
+    METHOD_NAME[rowsType][colsType](x, nrow, ncol, rows, nrows, cols, ncols, byrow, lag, differences, ans, nrow_ans, ncol_ans, 1);
+
+#ifndef COLS_TYPE
+    Free(cols);
+#endif
+  }
+  return NULL;
+}
+
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+  // Apply pthread
+  R_xlen_t nv = byrow ? nrows : ncols;
+  if (cores > 1 && nv > 1) {
+    const static int memSize0 = sizeof(x) + sizeof(nrow) + sizeof(ncol)
+      + sizeof(rows) + sizeof(nrows) + sizeof(cols) + sizeof(ncols)
+      + sizeof(byrow) + sizeof(lag) + sizeof(differences) + sizeof(ans) + sizeof(nrow_ans) + sizeof(ncol_ans);
+    uint8_t *buffer0;
+    R_xlen_t begin, end;
+    const static int memSize1 = sizeof(buffer0) + sizeof(begin) + sizeof(end);
+
+    cores = MIN(cores, nv);
+    uint8_t buffer[memSize0 + memSize1 * cores];
+
+    int ii = 0;
+    PUSH_ARGUMENT(buffer, ii, x);
+    PUSH_ARGUMENT(buffer, ii, nrow);
+    PUSH_ARGUMENT(buffer, ii, ncol);
+    PUSH_ARGUMENT(buffer, ii, rows);
+    PUSH_ARGUMENT(buffer, ii, nrows);
+    PUSH_ARGUMENT(buffer, ii, cols);
+    PUSH_ARGUMENT(buffer, ii, ncols);
+    PUSH_ARGUMENT(buffer, ii, byrow);
+    PUSH_ARGUMENT(buffer, ii, lag);
+    PUSH_ARGUMENT(buffer, ii, differences);
+    PUSH_ARGUMENT(buffer, ii, ans);
+    PUSH_ARGUMENT(buffer, ii, nrow_ans);
+    PUSH_ARGUMENT(buffer, ii, ncol_ans);
+
+    pthread_t threads[cores];
+
+    R_xlen_t gap = (nv + cores - 1) / cores;
+    int jj = 0;
+    begin = 0;
+    while (begin < nv) {
+      uint8_t *args = buffer + ii;
+      buffer0 = buffer;
+      end = MIN(begin + gap, nv);
+
+      PUSH_ARGUMENT(buffer, ii, buffer0);
+      PUSH_ARGUMENT(buffer, ii, begin);
+      PUSH_ARGUMENT(buffer, ii, end);
+
+      pthread_create(threads+(jj++), NULL, &WRAPPER_METHOD_NAME_ROWS_COLS, args);
+
+      begin = end;
+    }
+
+    for (jj = 0; jj < cores; ++jj) {
+      pthread_join(threads[jj], NULL);
+    }
+    return;
+  }
+
+
   R_xlen_t nrow_tmp, ncol_tmp;
   X_C_TYPE *tmp = NULL;
 
@@ -194,8 +310,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
 /***************************************************************************
  HISTORY:
+ 2015-08-02 [DJ]
+  o Pthread processing.
  2015-06-13 [DJ]
   o Supported subsetted computation.
  2014-12-29 [HB]
- o Created.
+  o Created.
  **************************************************************************/

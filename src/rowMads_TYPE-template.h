@@ -3,7 +3,7 @@
   void rowMads_<Integer|Real>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans, int cores
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -20,6 +20,8 @@
  ***********************************************************************/
 #include <R_ext/Memory.h>
 #include <Rmath.h>
+#include <pthread.h>
+#include <stdint.h>
 #include "types.h"
 #include <stdlib.h> /* abs() and fabs() */
 
@@ -29,7 +31,100 @@
 #include "templates-types.h"
 
 
+static void *WRAPPER_METHOD_NAME_ROWS_COLS(void *args) {
+  uint8_t *buffer = (uint8_t*) args;
+  int ii = 0;
+  POP_ARGUMENT(buffer, ii, uint8_t*, buffer0);
+  POP_ARGUMENT(buffer, ii, R_xlen_t, begin);
+  POP_ARGUMENT(buffer, ii, R_xlen_t, end);
+
+  ii = 0;
+  POP_ARGUMENT(buffer0, ii, X_C_TYPE *, x);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrow);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncol);
+  POP_ARGUMENT(buffer0, ii, void*, rows);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, nrows);
+  POP_ARGUMENT(buffer0, ii, void*, cols);
+  POP_ARGUMENT(buffer0, ii, R_xlen_t, ncols);
+  POP_ARGUMENT(buffer0, ii, double, scale);
+  POP_ARGUMENT(buffer0, ii, int, narm);
+  POP_ARGUMENT(buffer0, ii, int, hasna);
+  POP_ARGUMENT(buffer0, ii, int, byrow);
+  POP_ARGUMENT(buffer0, ii, double*, ans);
+
+  extern RETURN_TYPE (*METHOD_NAME[3][3])(ARGUMENTS_LIST);
+  int rowsType = ROWS_TYPE_CODE;
+
+  ans += begin;
+  nrows = end - begin;
+#ifdef ROWS_TYPE
+  rows = (ROWS_C_TYPE*) rows + begin;
+#else
+  rows = indicesFromRange(begin, end, &rowsType);
+#endif
+
+  METHOD_NAME[rowsType][COLS_TYPE_CODE](x, nrow, ncol, rows, nrows, cols, ncols, scale, narm, hasna, byrow, ans, 1);
+
+#ifndef ROWS_TYPE
+  Free(rows);
+#endif
+  return NULL;
+}
+
+
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+  // Apply pthread
+  if (cores > 1 && nrows > 1) {
+    const static int memSize0 = sizeof(x) + sizeof(nrow) + sizeof(ncol)
+      + sizeof(rows) + sizeof(nrows) + sizeof(cols) + sizeof(ncols)
+      + sizeof(scale) + sizeof(narm) + sizeof(hasna) + sizeof(byrow) + sizeof(ans);
+    uint8_t *buffer0;
+    R_xlen_t begin, end;
+    const static int memSize1 = sizeof(buffer0) + sizeof(begin) + sizeof(end);
+
+    cores = MIN(cores, nrows);
+    uint8_t buffer[memSize0 + memSize1 * cores];
+
+    int ii = 0;
+    PUSH_ARGUMENT(buffer, ii, x);
+    PUSH_ARGUMENT(buffer, ii, nrow);
+    PUSH_ARGUMENT(buffer, ii, ncol);
+    PUSH_ARGUMENT(buffer, ii, rows);
+    PUSH_ARGUMENT(buffer, ii, nrows);
+    PUSH_ARGUMENT(buffer, ii, cols);
+    PUSH_ARGUMENT(buffer, ii, ncols);
+    PUSH_ARGUMENT(buffer, ii, scale);
+    PUSH_ARGUMENT(buffer, ii, narm);
+    PUSH_ARGUMENT(buffer, ii, hasna);
+    PUSH_ARGUMENT(buffer, ii, byrow);
+    PUSH_ARGUMENT(buffer, ii, ans);
+
+    pthread_t threads[cores];
+
+    R_xlen_t gap = (nrows + cores - 1) / cores;
+    int jj = 0;
+    begin = 0;
+    while (begin < nrows) {
+      uint8_t *args = buffer + ii;
+      buffer0 = buffer;
+      end = MIN(begin + gap, nrows);
+
+      PUSH_ARGUMENT(buffer, ii, buffer0);
+      PUSH_ARGUMENT(buffer, ii, begin);
+      PUSH_ARGUMENT(buffer, ii, end);
+
+      pthread_create(threads+(jj++), NULL, &WRAPPER_METHOD_NAME_ROWS_COLS, args);
+
+      begin = end;
+    }
+
+    for (jj = 0; jj < cores; ++jj) {
+      pthread_join(threads[jj], NULL);
+    }
+    return;
+  }
+
+
   int isOdd;
   R_xlen_t ii, jj, kk, qq, idx;
   R_xlen_t *colOffset;
@@ -43,10 +138,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
 #endif
 
-  /* R allocate memory for the 'values'.  This will be
-     taken care of by the R garbage collector later on. */
-  values   = (X_C_TYPE *) R_alloc(ncols, sizeof(X_C_TYPE));
-  values_d = (double *) R_alloc(ncols, sizeof(double));
+  /* C allocate memory for the 'values'. Should be freed manually. */
+  values = Calloc(ncols, X_C_TYPE);
+  values_d = Calloc(ncols, double);
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
@@ -64,7 +158,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   value = 0;
 
   /* Pre-calculate the column offsets */
-  colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
+  colOffset = Calloc(ncols, R_xlen_t);
 
   // HJ begin
   if (byrow) {
@@ -192,8 +286,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
           ans[ii] = scale * (values_d[qq] + values_d[qq+1])/2;
         }
       } /* if (kk == 0) */
-
-      R_CHECK_USER_INTERRUPT(ii);
+      // TODO: interrupt under pthread
+      // R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } else {
     for (ii=0; ii < nrows; ii++) {
@@ -215,15 +309,21 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         X_PSORT(values, qq+1, qq);
         ans[ii] = ((double)values[qq] + value)/2;
       }
-
-      R_CHECK_USER_INTERRUPT(ii);
+      // TODO: interrupt under pthread
+      // R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } /* if (hasna ...) */
+
+  Free(values);
+  Free(values_d);
+  Free(colOffset);
 }
 
 
 /***************************************************************************
  HISTORY:
+ 2015-08-13 [DJ]
+  o Pthread processing.
  2015-06-13 [DJ]
   o Supported subsetted computation.
  2014-11-17 [HB]
