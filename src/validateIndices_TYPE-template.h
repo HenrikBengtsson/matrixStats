@@ -1,10 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void validateIndices_<Integer|Real>[ROWS_TYPE][COLS_TYPE](X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType)
-
- GENERATES:
-  void validateIndices_Real[ROWS_TYPE][COLS_TYPE](double *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType)
-  void validateIndices_Integer[ROWS_TYPE][COLS_TYPE](int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType)
+  void validateIndices_<Integer|Real>(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -51,7 +47,9 @@ static R_INLINE int RealFromIndex_TYPE(X_C_TYPE x, R_xlen_t maxIdx) {
 }
 
 /** idxs must not be NULL, which should be checked before calling this function. **/
-void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType) {
+void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna) {
+  // set default as no NA.
+  *hasna = FALSE;
   // For a un-full positive legal idxs array, we should use SUBSETTED_INTEGER as default.
   *subsettedType = SUBSETTED_INTEGER;
 
@@ -78,12 +76,15 @@ void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutO
       if (!X_ISNAN(idx)) {
         if (idx > maxIdx) {
           if (!allowOutOfBound) error("subscript out of bounds");
+          *hasna = TRUE; // out-of-bound index is NA
           needReAlloc = TRUE;
         }
 #if X_TYPE == 'r'
         if (idx > R_INT_MAX) *subsettedType = SUBSETTED_REAL;
 #endif
-      }// else error("NA index is not supported"); // NOTE: currently
+      } else {
+        *hasna = TRUE;
+      }
       state = 1;
       ++ count;
 
@@ -107,18 +108,10 @@ void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutO
   if (state >= 0) {
     if (*subsettedType == SUBSETTED_INTEGER) {
       // NOTE: braces is needed here, because of macro-defined function
-//#if X_TYPE == 'i'
       RETURN_VALIDATED_ANS(int, nidxs, idxs[ii], IntegerFromIndex_TYPE(idxs[ii],maxIdx),);
-//#else // X_TYPE == 'r'
-//      RETURN_VALIDATED_ANS(int, nidxs, idxs[ii], idxs[ii] > maxIdx || IS_INF(idxs[ii]) ? NA_INTEGER : IntegerFromReal(idxs[ii]),);
-//#endif
     }
     // *subsettedType == SUBSETTED_REAL
-//#if X_TYPE == 'i'
     RETURN_VALIDATED_ANS(double, nidxs, idxs[ii], RealFromIndex_TYPE(idxs[ii],maxIdx),);
-//#else // X_TYPE == 'r'
-//    RETURN_VALIDATED_ANS(double, nidxs, idxs[ii], idxs[ii] > maxIdx ? NA_REAL : idxs[ii],);
-//#endif
   }
 
   // state < 0

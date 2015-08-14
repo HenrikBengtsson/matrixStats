@@ -12,7 +12,7 @@
 
 #define METHOD rowMedians
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans, int cores
 
 #define X_TYPE 'i'
 #include "templates-gen-matrix.h"
@@ -20,8 +20,8 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  int narm, hasna, byrow;
+SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP cores) {
+  int narm, hasna, byrow, cores2;
   SEXP ans;
   R_xlen_t nrow, ncol;
 
@@ -46,6 +46,9 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);
     SWAP(void*, crows, ccols);
@@ -59,9 +62,9 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMedians_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowMedians_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans), cores2);
   } else if (isInteger(x)) {
-    rowMedians_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowMedians_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans), cores2);
   }
 
   UNPROTECT(1);
@@ -72,6 +75,8 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
 
 /***************************************************************************
  HISTORY:
+ 2015-08-13 [DJ]
+  o Pthread processing.
  2015-06-07 [DJ]
   o Supported subsetted computation.
  2013-01-13 [HB]

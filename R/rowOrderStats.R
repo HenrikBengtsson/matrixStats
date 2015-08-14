@@ -67,7 +67,7 @@ rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), mc.cores=
   }
 
   which <- as.integer(which)
-  .Call("rowOrderStats", x, dim., rows, cols, which, PACKAGE="matrixStats");
+  .Call("rowOrderStats", x, dim., rows, cols, which, mc.cores, PACKAGE="matrixStats");
 }
 
 
@@ -80,7 +80,7 @@ colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), mc.cores=
   }
 
   which <- as.integer(which)
-  .Call("colOrderStats", x, dim., rows, cols, which, PACKAGE="matrixStats");
+  .Call("colOrderStats", x, dim., rows, cols, which, mc.cores, PACKAGE="matrixStats");
 }
 
 

@@ -98,7 +98,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         xMaxIsNA = ISNAN(xMax);
       }
 
-      R_CHECK_USER_INTERRUPT(ii);
+      // TODO: interrupt under pthread
+      // R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } else {
     for (ii=1; ii < nidxs; ii++) {
@@ -120,7 +121,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         xMaxIsNA = ISNAN(xMax);
       }
 
-      R_CHECK_USER_INTERRUPT(ii);
+      // TODO: interrupt under pthread
+      // R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } /* by */
 
@@ -152,7 +154,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
       if (ii % 1048576 == 0) {
         if (!R_FINITE(sum)) break;
-        R_CheckUserInterrupt();
+        // TODO: interrupt under pthread
+        // R_CheckUserInterrupt();
       }
     } /* for (ii ...) */
   } else {
@@ -171,7 +174,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
       if (ii % 1048576 == 0) {
         if (!R_FINITE(sum)) break;
-        R_CheckUserInterrupt();
+        // TODO: interrupt under pthread
+        // R_CheckUserInterrupt();
       }
     } /* for (ii ...) */
   } /* if (by) */
