@@ -45,7 +45,7 @@ static void *WRAPPER_METHOD_NAME_IDXS(void *args) {
     rows = indicesFromRange(begin, end, &rowsType);
 #endif
 
-    METHOD_NAME[rowsType](x, nrow, ncol, rows, nrows, rowsType, cols, ncols, colsType, narm, hasna, byrow, ans, 1);
+    METHOD_NAME[rowsType](x, nrow, ncol, rows, nrows, rowsType, cols, ncols, colsType, narm, hasna, byrow, ans, 0);
 
 #ifndef IDXS_TYPE
     Free(rows);
@@ -59,7 +59,7 @@ static void *WRAPPER_METHOD_NAME_IDXS(void *args) {
     cols = indicesFromRange(begin, end, &colsType);
 #endif
 
-    METHOD_NAME[colsType](x, nrow, ncol, rows, nrows, rowsType, cols, ncols, colsType, narm, hasna, byrow, ans, 1);
+    METHOD_NAME[colsType](x, nrow, ncol, rows, nrows, rowsType, cols, ncols, colsType, narm, hasna, byrow, ans, 0);
 
 #ifndef IDXS_TYPE
     Free(cols);

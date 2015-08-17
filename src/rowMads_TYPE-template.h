@@ -63,7 +63,7 @@ static void *WRAPPER_METHOD_NAME_ROWS_COLS(void *args) {
   rows = indicesFromRange(begin, end, &rowsType);
 #endif
 
-  METHOD_NAME[rowsType][COLS_TYPE_CODE](x, nrow, ncol, rows, nrows, cols, ncols, scale, narm, hasna, byrow, ans, 1);
+  METHOD_NAME[rowsType][COLS_TYPE_CODE](x, nrow, ncol, rows, nrows, cols, ncols, scale, narm, hasna, byrow, ans, 0);
 
 #ifndef ROWS_TYPE
   Free(rows);

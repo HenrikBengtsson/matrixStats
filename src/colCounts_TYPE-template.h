@@ -58,7 +58,7 @@ static void *WRAPPER_METHOD_NAME_ROWS_COLS(void *args) {
 #endif
 
   extern RETURN_TYPE (*METHOD_NAME[3][3])(ARGUMENTS_LIST);
-  METHOD_NAME[ROWS_TYPE_CODE][colsType](x, nrow, ncol, rows, nrows, cols, ncols, value, what, narm, hasna, ans, 1);
+  METHOD_NAME[ROWS_TYPE_CODE][colsType](x, nrow, ncol, rows, nrows, cols, ncols, value, what, narm, hasna, ans, 0);
 
 #ifndef COLS_TYPE
   Free(cols);
