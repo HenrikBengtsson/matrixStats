@@ -50,12 +50,12 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
   byrow = asLogical(byRow);
 
 #ifdef _USE_PTHREAD_
-  cores2 = 1;
-#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
   if (cores2 <= 0)
-    error("Argument 'cores' must be a positive value.")
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
 #endif
 
   if (!byrow) {

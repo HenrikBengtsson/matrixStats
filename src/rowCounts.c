@@ -56,12 +56,12 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
 #ifdef _USE_PTHREAD_
-  cores2 = 1;
-#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
   if (cores2 <= 0)
-    error("Argument 'cores' must be a positive value.")
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
 #endif
 
   /* R allocate a double vector of length 'nrow' */

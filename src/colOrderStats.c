@@ -64,12 +64,12 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP core
   }
 
 #ifdef _USE_PTHREAD_
-  cores2 = 1;
-#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
   if (cores2 <= 0)
-    error("Argument 'cores' must be a positive value.")
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
 #endif
 
   /* Double matrices are more common to use. */

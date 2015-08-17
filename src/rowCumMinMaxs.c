@@ -42,12 +42,12 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP cores) 
   byrow = asLogical(byRow);
 
 #ifdef _USE_PTHREAD_
-  cores2 = 1;
-#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
   if (cores2 <= 0)
-    error("Argument 'cores' must be a positive value.")
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
 #endif
 
   int *oks = NULL;
@@ -99,12 +99,12 @@ SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP cores) 
   byrow = asLogical(byRow);
 
 #ifdef _USE_PTHREAD_
-  cores2 = 1;
-#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
   if (cores2 <= 0)
-    error("Argument 'cores' must be a positive value.")
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
 #endif
 
   int *oks = NULL;
