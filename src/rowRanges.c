@@ -54,8 +54,14 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
+#ifdef _USE_PTHREAD_
+  cores2 = 1;
+#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.")
+#endif
 
   is_counted = (int *) R_alloc(nrows, sizeof(int));
 

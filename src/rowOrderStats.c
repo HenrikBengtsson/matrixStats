@@ -63,8 +63,14 @@ SEXP rowOrderStats(SEXP x, SEXP dim,SEXP rows, SEXP cols, SEXP which, SEXP cores
     error("Argument 'which' is out of range.");
   }
 
+#ifdef _USE_PTHREAD_
+  cores2 = 1;
+#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.")
+#endif
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {

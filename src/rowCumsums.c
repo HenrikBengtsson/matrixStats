@@ -39,8 +39,14 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP cores) 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+#ifdef _USE_PTHREAD_
+  cores2 = 1;
+#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.")
+#endif
 
   int *oks = NULL;
   /* Double matrices are more common to use. */

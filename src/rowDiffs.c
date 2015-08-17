@@ -53,8 +53,14 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+#ifdef _USE_PTHREAD_
+  cores2 = 1;
+#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.")
+#endif
 
   /* Dimension of result matrix */
   if (byrow) {

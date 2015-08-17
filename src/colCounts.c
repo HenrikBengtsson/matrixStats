@@ -55,8 +55,14 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
+#ifdef _USE_PTHREAD_
+  cores2 = 1;
+#else
   /* Argument 'cores': */
   cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.")
+#endif
 
   /* R allocate an integer vector of length 'ncol' */
   PROTECT(ans = allocVector(INTSXP, ncols));
