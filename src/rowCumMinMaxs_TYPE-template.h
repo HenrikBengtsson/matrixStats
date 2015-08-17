@@ -199,8 +199,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         kk++;
         kk_prev++;
 
-        // TODO: interrupt under pthread
-        // R_CHECK_USER_INTERRUPT(kk);
+        // TODO: interrupt subthreads
+        if (cores) R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
     } /* for (jj ...) */
   } else {
@@ -242,8 +242,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
           kk++;
         }
 
-        // TODO: interrupt under pthread
-        // R_CHECK_USER_INTERRUPT(kk);
+        // TODO: interrupt subthreads
+        if (cores) R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
     } /* for (jj ...) */
   } /* if (byrow) */

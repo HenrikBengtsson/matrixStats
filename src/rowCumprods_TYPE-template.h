@@ -207,8 +207,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         kk++;
         kk_prev++;
 
-        // TODO: interrupt under pthread
-        // R_CHECK_USER_INTERRUPT(kk);
+        // TODO: interrupt subthreads
+        if (cores) R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
     } /* for (jj ...) */
   } else {
@@ -247,8 +247,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 #endif
         kk++;
 
-        // TODO: interrupt under pthread
-        // R_CHECK_USER_INTERRUPT(kk);
+        // TODO: interrupt subthreads
+        if (cores) R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
     } /* for (jj ...) */
   } /* if (byrow) */
@@ -256,8 +256,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 #if ANS_TYPE == 'i'
   /* Warn on integer overflow? */
   if (warn) {
-    // TODO: warning under pthread
-    warning("Integer overflow. Detected one or more elements whose absolute values were out of the range [%d,%d] that can be used to for integers. Such values are set to NA_integer_.", R_INT_MIN, R_INT_MAX);
+    // TODO: warning in subthreads
+    if (cores) warning("Integer overflow. Detected one or more elements whose absolute values were out of the range [%d,%d] that can be used to for integers. Such values are set to NA_integer_.", R_INT_MIN, R_INT_MAX);
   }
 #endif
 }
