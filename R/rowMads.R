@@ -1,10 +1,10 @@
 rowMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
-  ## - Remove in matrixStats (>= 0.15.0)
+  ## - Defunct in matrixStats (>= 0.15.0)
   if (!is.null(centers)) {
     center <- centers
-    .Deprecated(msg="Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")
+    .Defunct(msg="Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")
   }
 
   if (is.null(center)) {
@@ -26,10 +26,10 @@ rowMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), c
 colMads <- function(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
-  ## - Remove in matrixStats (>= 0.15.0)
+  ## - Defunct in matrixStats (>= 0.15.0)
   if (!is.null(centers)) {
     center <- centers
-    .Deprecated(msg="Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")
+    .Defunct(msg="Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")
   }
 
   if (is.null(center)) {
