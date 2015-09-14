@@ -53,7 +53,12 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMad <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, constant=1.4826, center=NULL, ...) {
+weightedMad <- function(x, w=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
+  # No weights? Fall back to non-weighted method.
+  if (is.null(w)) {
+    mad(x, center=center, constant=constant, na.rm=na.rm, ...)
+  }
+
   # Argument 'x':
   n <- length(x);
 

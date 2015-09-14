@@ -15,8 +15,7 @@
 \title{Weighted Median Value}
 
 \usage{
-weightedMedian(x, w=rep(1, times = length(x)), na.rm=FALSE, interpolate=is.null(ties),
-  ties=NULL, ...)
+weightedMedian(x, w=NULL, na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...)
 }
 
 \description{

@@ -87,11 +87,15 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMedian <- function(x, w=rep(1, times=length(x)), na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
+weightedMedian <- function(x, w=NULL, na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
   # Argument 'x':
 
   # Argument 'w':
-  w <- as.double(w)
+  if (is.null(w)) {
+    w <- rep(1, times=length(x))
+  } else {
+    w <- as.double(w)
+  }
 
   # Argument 'na.rm':
   na.rm <- as.logical(na.rm)
