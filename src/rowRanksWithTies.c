@@ -13,7 +13,7 @@
 
 #define METHOD_TEMPLATE_H "rowRanksWithTies_TYPE_TIES-template.h"
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, int nrow, int ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
 
 
 /*****************************************************************
@@ -103,7 +103,7 @@
 SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, SEXP byRow) {
   int tiesmethod, byrow;
   SEXP ans = NILSXP;
-  int nrow, ncol;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
