@@ -257,10 +257,6 @@ clang-ubsan:
 	clang -fsanitize=undefined -I$(R_INCLUDE) -c src/*.c
 	$(RM) *.o
 
-clang-ubsan:
-	clang -fsanitize=undefined -c -pedantic -Wall -I$(R_HOME)/include/ src/*.c
-	$(RM) *.o
-
 valgrind_scan:
 	grep -E "^==.*==[ ]+(at|by) 0x" $(R_CHECK_OUTDIR)/tests/*.Rout | cat
 	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors" | cat
