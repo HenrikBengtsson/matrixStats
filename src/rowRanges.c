@@ -12,7 +12,7 @@
 
 #define METHOD rowRanges
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, R_xlen_t nans, int *is_counted, int cores
 
 #define X_TYPE 'i'
 #include "templates-gen-matrix.h"
@@ -20,12 +20,12 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA, SEXP cores) {
   SEXP ans = NILSXP, ans2 = NILSXP;
   int *mins, *maxs;
   double *mins2, *maxs2;
   int *is_counted, all_counted = 0;
-  int what2, narm, hasna;
+  int what2, narm, hasna, cores2;
   R_xlen_t nrow, ncol, ii;
 
   /* Argument 'x' and 'dim': */
@@ -54,6 +54,15 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
+#ifdef _USE_PTHREAD_
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
+#endif
+
   is_counted = (int *) R_alloc(nrows, sizeof(int));
 
   if (isReal(x)) {
@@ -62,7 +71,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     } else {
       PROTECT(ans = allocVector(REALSXP, nrows));
     }
-    rowRanges_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
+    rowRanges_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), nrows, is_counted, cores2);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     if (what2 == 2) {
@@ -70,7 +79,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     } else {
       PROTECT(ans = allocVector(INTSXP, nrows));
     }
-    rowRanges_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, INTEGER(ans), is_counted);
+    rowRanges_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, INTEGER(ans), nrows, is_counted, cores2);
 
     /* Any entries with zero non-missing values? */
     all_counted = 1;
@@ -138,6 +147,8 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
 
 /***************************************************************************
  HISTORY:
+ 2015-08-10 [DJ]
+  o Pthread processing.
  2015-06-07 [DJ]
   o Supported subsetted computation.
  2014-11-16 [HB]

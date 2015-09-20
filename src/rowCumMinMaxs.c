@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowCummins(SEXP x, ...)
- SEXP colCummins(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -12,7 +11,7 @@
 #include "utils.h"
 
 #define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans, R_xlen_t nrow_ans, int *oks, int cores
 
 #define METHOD rowCummins
 #define COMP '<'
@@ -23,8 +22,8 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
-  int byrow;
+SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP cores) {
+  int byrow, cores2;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
@@ -42,14 +41,25 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+#ifdef _USE_PTHREAD_
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
+#endif
+
+  int *oks = NULL;
+  if (byrow) oks = (int *) R_alloc(nrows, sizeof(int));
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-    rowCummins_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
+    rowCummins_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans), nrows, oks, cores2);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-    rowCummins_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
+    rowCummins_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans), nrows, oks, cores2);
     UNPROTECT(1);
   }
 
@@ -61,9 +71,6 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 
 
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
-
 #define METHOD rowCummaxs
 #define COMP '>'
 #define X_TYPE 'i'
@@ -72,8 +79,8 @@ SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 #include "templates-gen-matrix.h"
 
 
-SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
-  int byrow;
+SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP cores) {
+  int byrow, cores2;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
@@ -91,14 +98,25 @@ SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
+#ifdef _USE_PTHREAD_
+  /* Argument 'cores': */
+  cores2 = asInteger(cores);
+  if (cores2 <= 0)
+    error("Argument 'cores' must be a positive value.");
+#else
+  cores2 = 1;
+#endif
+
+  int *oks = NULL;
+  if (byrow) oks = (int *) R_alloc(nrows, sizeof(int));
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-    rowCummaxs_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
+    rowCummaxs_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans), nrows, oks, cores2);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-    rowCummaxs_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
+    rowCummaxs_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans), nrows, oks, cores2);
     UNPROTECT(1);
   }
 
@@ -110,6 +128,8 @@ SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
 /***************************************************************************
  HISTORY:
+ 2015-08-01 [DJ]
+  o Pthread processing.
  2015-06-07 [DJ]
   o Supported subsetted computation.
  2014-11-26 [HB]

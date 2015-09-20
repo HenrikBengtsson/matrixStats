@@ -1,4 +1,5 @@
 #include <Rinternals.h>
+#include "types.h"
 #include "macros.h"
 
 
@@ -177,21 +178,25 @@
  */
 #undef ROW_INDEX_NONA
 #undef ROW_INDEX
+#undef ROWS_TYPE_CODE
 #undef ROWS_C_TYPE
 #undef METHOD_NAME_ROWS
 
 #undef COL_INDEX_NONA
 #undef COL_INDEX
+#undef COLS_TYPE_CODE
 #undef COLS_C_TYPE
 #undef METHOD_NAME_ROWS_COLS
 
 #ifdef ROWS_TYPE
   #define ROW_INDEX_NONA(rows, ii) ((R_xlen_t)rows[ii]-1)
   #if ROWS_TYPE == 'i'
+    #define ROWS_TYPE_CODE SUBSETTED_INTEGER
     #define ROWS_C_TYPE int
     #define ROW_INDEX(rows, ii) (rows[ii] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)rows[ii]-1)
     #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, intRows)
   #elif ROWS_TYPE == 'r'
+    #define ROWS_TYPE_CODE SUBSETTED_REAL
     #define ROWS_C_TYPE double
     #define ROW_INDEX(rows, ii) (ISNAN(rows[ii]) ? NA_R_XLEN_T : (R_xlen_t)rows[ii]-1)
     #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, realRows)
@@ -201,6 +206,7 @@
 #else
   #define ROW_INDEX_NONA(rows, ii) (ii)
   #define ROW_INDEX(rows, ii) (ii)
+  #define ROWS_TYPE_CODE SUBSETTED_ALL
   #define ROWS_C_TYPE void
   #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, noRows)
 #endif
@@ -208,10 +214,12 @@
 #ifdef COLS_TYPE
   #define COL_INDEX_NONA(cols, jj) ((R_xlen_t)cols[jj]-1)
   #if COLS_TYPE == 'i'
+    #define COLS_TYPE_CODE SUBSETTED_INTEGER
     #define COLS_C_TYPE int
     #define COL_INDEX(cols, jj) (cols[jj] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)cols[jj]-1)
     #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, intCols)
   #elif COLS_TYPE == 'r'
+    #define COLS_TYPE_CODE SUBSETTED_REAL
     #define COLS_C_TYPE double
     #define COL_INDEX(cols, jj) (ISNAN(cols[jj]) ? NA_R_XLEN_T : (R_xlen_t)cols[jj]-1)
     #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, realCols)
@@ -221,6 +229,7 @@
 #else
   #define COL_INDEX_NONA(cols, jj) (jj)
   #define COL_INDEX(cols, jj) (jj)
+  #define COLS_TYPE_CODE SUBSETTED_ALL
   #define COLS_C_TYPE void
   #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, noCols)
 #endif
@@ -253,20 +262,33 @@
 
 
 /*
+ WRAPPER used for pthread parameter passing
+ */
+#undef WRAPPER_METHOD_NAME_IDXS
+#define WRAPPER_METHOD_NAME_IDXS CONCAT_MACROS(WRAPPER, METHOD_NAME_IDXS)
+
+#undef WRAPPER_METHOD_NAME_ROWS_COLS
+#define WRAPPER_METHOD_NAME_ROWS_COLS CONCAT_MACROS(WRAPPER, METHOD_NAME_ROWS_COLS)
+
+
+/*
  Subsetted indexing: vector
  */
 #undef IDX_INDEX_NONA
 #undef IDX_INDEX
+#undef IDXS_TYPE_CODE
 #undef IDXS_C_TYPE
 #undef METHOD_NAME_IDXS
 
 #ifdef IDXS_TYPE
   #define IDX_INDEX_NONA(idxs, ii) ((R_xlen_t)idxs[ii]-1)
   #if IDXS_TYPE == 'i'
+    #define IDXS_TYPE_CODE SUBSETTED_INTEGER
     #define IDXS_C_TYPE int
     #define IDX_INDEX(idxs, ii) (idxs[ii] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
     #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, intIdxs)
   #elif IDXS_TYPE == 'r'
+    #define IDXS_TYPE_CODE SUBSETTED_REAL
     #define IDXS_C_TYPE double
     #define IDX_INDEX(idxs, ii) (ISNAN(idxs[ii]) ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
     #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, realIdxs)
@@ -276,6 +298,7 @@
 #else
   #define IDX_INDEX_NONA(idxs, ii) (ii)
   #define IDX_INDEX(idxs, ii) (ii)
+  #define IDXS_TYPE_CODE SUBSETTED_ALL
   #define IDXS_C_TYPE void
   #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, noIdxs)
 #endif
