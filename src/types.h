@@ -18,10 +18,9 @@
 /* Subsetting index mode */
 #ifndef SUBSETTED_MODE_INDEX
 #define SUBSETTED_MODE_INDEX
-#define SUBSETTED_ALL 0
-#define SUBSETTED_INTEGER 1
-#define SUBSETTED_REAL 2
-#define SUBSETTED_NA 3
+  #define SUBSETTED_ALL 0
+  #define SUBSETTED_INTEGER 1
+  #define SUBSETTED_REAL 2
 #endif
 
 
@@ -53,3 +52,12 @@
 
 /* Macro to check for user interrupts every 2^20 iteration */
 #define R_CHECK_USER_INTERRUPT(i) if (i % 1048576 == 0) R_CheckUserInterrupt()
+
+/* Detect OS */
+#if !defined(_WIN32) && (defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)))
+#define _UNIX_STYLE_OS_
+#endif
+
+#ifdef _UNIX_STYLE_OS_
+#define _USE_PTHREAD_
+#endif

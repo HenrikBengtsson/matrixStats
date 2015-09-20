@@ -12,7 +12,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
+    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, TRUE, mc.cores, PACKAGE="matrixStats")
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
@@ -27,7 +27,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     x <- x - center
     if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
-    x <- rowMedians(x, na.rm=na.rm, ...)
+    x <- rowMedians(x, na.rm=na.rm, mc.cores=mc.cores, ...)
     x <- constant*x
   }
   x
@@ -48,7 +48,7 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
+    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, FALSE, mc.cores, PACKAGE="matrixStats")
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
@@ -67,7 +67,7 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     ## FAST:
     x <- t_tx_OP_y(x, center, OP="-", na.rm=FALSE)
     x <- abs(x)
-    x <- colMedians(x, na.rm=na.rm, ...)
+    x <- colMedians(x, na.rm=na.rm, mc.cores=mc.cores, ...)
     x <- constant*x
   }
   x

@@ -56,44 +56,44 @@
 #*/###########################################################################
 rowCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumsums", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call("rowCumsums", x, dim, rows, cols, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 colCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumsums", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call("rowCumsums", x, dim, rows, cols, FALSE, mc.cores, PACKAGE="matrixStats")
 }
 
 
 rowCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumprods", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call("rowCumprods", x, dim, rows, cols, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 colCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumprods", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call("rowCumprods", x, dim, rows, cols, FALSE, mc.cores, PACKAGE="matrixStats")
 }
 
 
 rowCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummins", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call("rowCummins", x, dim, rows, cols, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 colCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummins", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call("rowCummins", x, dim, rows, cols, FALSE, mc.cores, PACKAGE="matrixStats")
 }
 
 rowCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummaxs", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call("rowCummaxs", x, dim, rows, cols, TRUE, mc.cores, PACKAGE="matrixStats")
 }
 
 colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), mc.cores=1L, ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummaxs", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call("rowCummaxs", x, dim, rows, cols, FALSE, mc.cores, PACKAGE="matrixStats")
 }
 
 
