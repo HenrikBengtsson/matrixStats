@@ -21,7 +21,7 @@
 #define METHOD logSumExp
 #define METHOD_NAME logSumExp_double
 #define RETURN_TYPE double
-#define ARGUMENTS_LIST double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx
+#define ARGUMENTS_LIST double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx
 
 #include "templates-gen-vector.h"
 
