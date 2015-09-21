@@ -40,6 +40,8 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Argument 'what': */
   what2 = asInteger(what);
+  if (what2 < 0 || what2 > 2)
+    error("INTERNAL ERROR: Unknown value of 'what' for rowCounts: %d", what2);
 
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
