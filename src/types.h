@@ -21,7 +21,6 @@
 #define SUBSETTED_ALL 0
 #define SUBSETTED_INTEGER 1
 #define SUBSETTED_REAL 2
-#define SUBSETTED_NA 3
 #endif
 
 
