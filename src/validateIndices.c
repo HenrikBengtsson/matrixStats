@@ -160,12 +160,6 @@ void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int al
   * `subsettedType` is used for returning the new idxs array's datatype.
   * `hasna` is TRUE, if NA is included in returned result.
   ************************************************************/
-R_INLINE void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType) {
-  int hasna;
-  return validateIndicesCheckNA(idxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, &hasna);
-}
-
-
 void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna) {
   R_xlen_t nidxs = xlength(idxs);
   int mode = TYPEOF(idxs);
