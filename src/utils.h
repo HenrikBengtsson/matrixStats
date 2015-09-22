@@ -113,7 +113,7 @@ static R_INLINE R_xlen_t asR_xlen_t(SEXP x, R_xlen_t i) {
 void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type, int *hasna);
 
 
-static R_INLINE void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type) {
+void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type) {
   int hasna;
   return validateIndicesCheckNA(idxs, maxIdx, allowOutOfBound, ansNidxs, type, &hasna);
 }
