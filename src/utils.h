@@ -113,7 +113,7 @@ void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_
 
 
 /* Specified in validateIndices.c */
-void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type);
+R_INLINE void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type);
 
 
 static R_INLINE int IntegerFromReal(double x) {
