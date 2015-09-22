@@ -41,8 +41,18 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which) {
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
-  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
-  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  int rowsHasna, colsHasna;
+  void *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsType, &rowsHasna);
+  void *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsType, &colsHasna);
+
+  // Check missing rows
+  if (rowsHasna && ncols > 0) {
+    error("Argument 'rows' must not contain missing value");
+  }
+  // Check missing cols
+  if (colsHasna && nrows > 0) {
+    error("Argument 'cols' must not contain missing value");
+  }
 
   /* Subtract one here, since rPsort does zero based addressing */
   qq = asInteger(which) - 1;
