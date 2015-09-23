@@ -93,7 +93,6 @@ validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest, fcolTest, fsure
   stopifnot(all.equal(actual, expect))
 }
 
-
 indexCases <- list()
 # negative indices with duplicates
 indexCases[[length(indexCases)+1]] <- c(-4, 0, 0, -3, -1, -3, -1)
