@@ -10,14 +10,11 @@
 #include "templates-types.h"
 
 
-/* extern 1-D function 'logSumExp' */
-extern double (*logSumExp_double[3])(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx);
-
-
 RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   R_xlen_t ii, idx;
   double navalue;
-  double (*logsumexp)(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx);
+  /* extern 1-D function 'logSumExp' */
+  extern double (*logsumexp)(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx);
 
 #ifdef IDXS_TYPE
   IDXS_C_TYPE *crows = (IDXS_C_TYPE*) rows;
