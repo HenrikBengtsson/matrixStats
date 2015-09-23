@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowDiffs(SEXP x, ...)
- SEXP colDiffs(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -59,10 +58,10 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   if (byrow) {
     nrow_ans = nrows;
     ncol_ans = (R_xlen_t)((double)ncols - ((double)diff*(double)lagg));
-    if (ncol_ans < 0) ncol_ans = 0; 
+    if (ncol_ans < 0) ncol_ans = 0;
   } else {
     nrow_ans = (R_xlen_t)((double)nrows - ((double)diff*(double)lagg));
-    if (nrow_ans < 0) nrow_ans = 0; 
+    if (nrow_ans < 0) nrow_ans = 0;
     ncol_ans = ncols;
   }
 
@@ -85,5 +84,5 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
  2015-06-13 [DJ]
   o Supported subsetted computation.
  2014-12-29 [HB]
- o Created.
+  o Created.
  **************************************************************************/

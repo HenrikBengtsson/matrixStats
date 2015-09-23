@@ -6,20 +6,20 @@
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
   - X_TYPE: 'i', 'r', or 'l'
 
  Copyright: Henrik Bengtsson, 2014
- ***********************************************************************/ 
+ ***********************************************************************/
 #include "types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
  */
-#include "templates-types.h" 
+#include "templates-types.h"
 
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
@@ -144,7 +144,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
           count = ans[ii];
           /* Nothing more to do on this row? */
           if (count == NA_INTEGER) continue;
-  
+
           idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
           xvalue = R_INDEX_GET(x, idx, X_NA);
           if (xvalue == value) {
@@ -158,7 +158,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         } /* for (ii ...) */
       } /* for (jj ...) */
     }
-  } /* if (what ...) */
+  } /* if (what) */
 }
 
 

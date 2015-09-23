@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowCumprods(SEXP x, ...)
- SEXP colCumprods(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 

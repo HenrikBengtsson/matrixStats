@@ -21,7 +21,7 @@
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
 
-#undef METHOD 
+#undef METHOD
 
 
 SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {

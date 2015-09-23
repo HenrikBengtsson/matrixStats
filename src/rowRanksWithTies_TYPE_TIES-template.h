@@ -6,7 +6,7 @@
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
@@ -130,26 +130,26 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
    /*
 
     Rprintf("Swapped vector:\n");
-    for (jj=0; jj < nvalues; jj++) 
-    { 
+    for (jj=0; jj < nvalues; jj++)
+    {
       Rprintf(" %8.4f,", values[jj]);
       if (((jj+1) % 5==0) || (jj==nvalues-1)) Rprintf("\n");
     }
     Rprintf("Index vector:\n");
-    for (jj=0; jj<nvalues; jj++) 
-    { 
+    for (jj=0; jj<nvalues; jj++)
+    {
       Rprintf(" %d,", I[jj]);
       if (((jj+1) % 5==0) || (jj==nvalues-1)) Rprintf("\n");
     }
     */
-    
+
 
     // This will sort the data in increasing order and use the I vector to keep track of the original
     // indices. it only makes sense to do sort if there are at least 2 finite values.
     //
     if (lastFinite > 0) X_QSORT_I(values, I, 1, lastFinite + 1);
 
-    // Calculate the ranks. 
+    // Calculate the ranks.
     for (jj=0; jj <= lastFinite;) {
       firstTie = jj;
       current = values[jj];

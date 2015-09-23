@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowMads(SEXP x, ...)
- SEXP colMads(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 

@@ -213,5 +213,5 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
  2015-06-12 [DJ]
   o Supported subsetted computation.
  2013-01-13 [HB]
- o Added argument 'tiesMethod' to rowRanks().
+  o Added argument 'tiesMethod' to rowRanks().
  **************************************************************************/

@@ -197,5 +197,5 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
  2015-06-13 [DJ]
   o Supported subsetted computation.
  2014-12-29 [HB]
- o Created.
+  o Created.
  **************************************************************************/

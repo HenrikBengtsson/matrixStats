@@ -41,7 +41,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 #endif
 
 #if ANS_TYPE == 'i'
-  double R_INT_MIN_d = (double)R_INT_MIN, 
+  double R_INT_MIN_d = (double)R_INT_MIN,
          R_INT_MAX_d = (double)R_INT_MAX;
   /* OK, i.e. no integer overflow yet? */
   int warn = 0, ok, *oks = NULL;
@@ -94,8 +94,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         ans[kk] = (ANS_C_TYPE) ((LDOUBLE) ans[kk_prev] + (LDOUBLE) xvalue);
 #endif
 
-        kk++;        
-        kk_prev++;        
+        kk++;
+        kk_prev++;
 
         R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
@@ -136,7 +136,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         ans[kk] = (ANS_C_TYPE) value;
 #endif
 
-        kk++;        
+        kk++;
 
         R_CHECK_USER_INTERRUPT(kk);
       } /* for (ii ...) */
@@ -148,7 +148,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   if (warn) {
     warning("Integer overflow. Detected one or more elements whose absolute values were out of the range [%d,%d] that can be used to for integers. Such values are set to NA_integer_.", R_INT_MIN, R_INT_MAX);
   }
-#endif 
+#endif
 }
 
 

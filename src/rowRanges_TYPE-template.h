@@ -6,7 +6,7 @@
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
@@ -17,7 +17,7 @@
   Henrik Bengtsson.
 
  Copyright: Henrik Bengtsson, 2014
- ***********************************************************************/ 
+ ***********************************************************************/
 #include <R_ext/Memory.h>
 #include "types.h"
 
@@ -25,7 +25,7 @@
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
     ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
-#include "templates-types.h" 
+#include "templates-types.h"
 
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
@@ -99,7 +99,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     } else if (what == 1) {
       /* rowMaxs() */
       maxs = ans;
-  
+
       for (jj=0; jj < ncols; jj++) {
         colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
 
@@ -141,7 +141,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
       /* rowRanges() */
       mins = ans;
       maxs = &ans[nrows];
-  
+
       for (jj=0; jj < ncols; jj++) {
         colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
 
@@ -190,12 +190,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     if (what == 0) {
       /* rowMins() */
       mins = ans;
-  
+
       /* Initiate results */
       for (ii=0; ii < nrows; ii++) {
         mins[ii] = x[ii];
       }
-  
+
       for (jj=1; jj < ncols; jj++) {
         colBegin = COL_INDEX_NONA(ccols,jj) * nrow;
         for (ii=0; ii < nrows; ii++) {
@@ -206,12 +206,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     } else if (what == 1) {
       /* rowMax() */
       maxs = ans;
-  
+
       /* Initiate results */
       for (ii=0; ii < nrows; ii++) {
         maxs[ii] = x[ii];
       }
-  
+
       for (jj=1; jj < ncols; jj++) {
         colBegin = COL_INDEX_NONA(ccols,jj) * nrow;
         for (ii=0; ii < nrows; ii++) {
@@ -223,13 +223,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
       /* rowRanges()*/
       mins = ans;
       maxs = &ans[nrows];
-  
+
       /* Initiate results */
       for (ii=0; ii < nrows; ii++) {
         mins[ii] = x[ii];
         maxs[ii] = x[ii];
       }
-  
+
       for (jj=1; jj < ncols; jj++) {
         colBegin = COL_INDEX_NONA(ccols,jj) * nrow;
         for (ii=0; ii < nrows; ii++) {

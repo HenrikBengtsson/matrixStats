@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowCumsums(SEXP x, ...)
- SEXP colCumsums(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 

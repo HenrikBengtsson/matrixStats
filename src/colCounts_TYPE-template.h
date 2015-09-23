@@ -150,8 +150,6 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         ans[jj] = count;
       } /* for (jj ...) */
     } /* if (X_ISNAN(value)) */
-  } else {
-    error("INTERNAL ERROR: Unknown value of 'what' for colCounts: %d", what);
   } /* if (what) */
 }
 

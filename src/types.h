@@ -17,10 +17,10 @@
 
 /* Subsetting index mode */
 #ifndef SUBSETTED_MODE_INDEX
-#define SUBSETTED_MODE_INDEX
-#define SUBSETTED_ALL 0
-#define SUBSETTED_INTEGER 1
-#define SUBSETTED_REAL 2
+  #define SUBSETTED_MODE_INDEX
+  #define SUBSETTED_ALL 0
+  #define SUBSETTED_INTEGER 1
+  #define SUBSETTED_REAL 2
 #endif
 
 
