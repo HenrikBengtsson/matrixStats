@@ -21,8 +21,10 @@
 #   @usage colCounts
 #   @usage rowAlls
 #   @usage colAlls
+#   @usage allValue
 #   @usage rowAnys
 #   @usage colAnys
+#   @usage anyValue
 # }
 #
 # \arguments{
