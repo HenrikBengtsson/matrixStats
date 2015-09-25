@@ -31,7 +31,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 #if X_TYPE == 'r'
   LDOUBLE rsum = 0;
 #endif
-  int count = 0;
+  R_xlen_t count = 0;
 
 #ifdef IDXS_TYPE
   IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
