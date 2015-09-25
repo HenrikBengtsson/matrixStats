@@ -44,7 +44,7 @@
 
 /* define NA_R_XLEN_T */
 #ifdef LONG_VECTOR_SUPPORT
-  #define R_XLEN_T_MIN R_XLEN_T_MAX-1
+  #define R_XLEN_T_MIN -R_XLEN_T_MAX-1
   #define NA_R_XLEN_T R_XLEN_T_MIN
 #else
   #define NA_R_XLEN_T NA_INTEGER
