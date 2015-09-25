@@ -71,10 +71,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     if (refine && R_FINITE(avg)) {
       for (ii=0; ii < nidxs; ++ii) {
         value = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
-        if (!narm) {
-          rsum += (LDOUBLE)(value - avg);
-          if (ii % 1048576 == 0 && !R_FINITE(rsum)) break;
-        } else if(!ISNAN(value)) {
+        if (!narm || !ISNAN(value)) {
           rsum += (LDOUBLE)(value - avg);
         }
       }
