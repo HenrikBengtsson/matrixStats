@@ -20,9 +20,12 @@ calculate medians column by column using
 > mu <- colMedians(X)
 ```
 compared with
+```r
+> mu <- apply(X, MARGIN=2, FUN=median)
+```
 
-Moreover, if performing calculations only on a subset of the rows
-and/or columns, using
+Moreover, if performing calculations on a subset of rows and/or
+columns, using
 ```r
 > mu <- colMedians(X, rows=33:158, cols=1001:3000)
 ```
