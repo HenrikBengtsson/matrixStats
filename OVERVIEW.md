@@ -14,13 +14,22 @@ faster](http://www.jottr.org/2015/01/matrixStats-0.13.1.html) to
 calculate medians column by column using
 ```r
 > library("matrixStats")
-> X <- matrix(rnorm(20 * 500), nrow = 20, ncol = 500)
+> X <- matrix(rnorm(200 * 5000), nrow = 200, ncol = 5000)
 > mu <- colMedians(X)
 ```
 compared with
+
+Moreover, if performing calculations only on a subset of the rows
+and/or columns, using
 ```r
-> mu <- apply(X, MARGIN=2, FUN=median)
+> mu <- colMedians(X, rows=33:158, cols=1001:3000)
 ```
+is much faster and more memory efficient than
+```r
+> mu <- apply(X[33:158,1001:3000], MARGIN=2, FUN=median)
+```
+
+
 
 ## Benchmarks
 For formal benchmarking of matrixStats functions relative to
