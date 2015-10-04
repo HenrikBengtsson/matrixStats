@@ -26,13 +26,6 @@ install:
 
 build_script:
   - echo Current directory=%CD%
-
-
-
-  - travis-tool.sh install_r R.rsp
-
-
-
   - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 test_script:
@@ -40,10 +33,6 @@ test_script:
 
 after_test:
   - 7z a all-Rout.zip *.Rcheck\**\*.Rout *.Rcheck\**\*.fail
-
-on_failure:
-  - appveyor PushArtifact *.Rcheck\**\*.out
-  - appveyor PushArtifact *.Rcheck\**\*.log
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
@@ -60,3 +49,7 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+on_failure:
+  - 7z a all-out.zip *.Rcheck\*.out *.Rcheck\*.log *.Rcheck\*.Rout
+  - appveyor PushArtifact all-out.zip
