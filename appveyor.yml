@@ -51,5 +51,5 @@ artifacts:
     name: Bits
 
 on_failure:
-  - 7z a all-out.zip *.Rcheck\*.out *.Rcheck\*.log *.Rcheck\*.Rout
-  - appveyor PushArtifact all-out.zip
+  - 7z a failure.zip *.Rcheck\*
+  - appveyor PushArtifact failure.zip
