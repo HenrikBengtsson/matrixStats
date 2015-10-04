@@ -41,6 +41,10 @@ test_script:
 after_test:
   - 7z a all-Rout.zip *.Rcheck\**\*.Rout *.Rcheck\**\*.fail
 
+on_failure:
+  - appveyor PushArtifact '*.Rcheck\**\*.out'
+  - appveyor PushArtifact '*.Rcheck\**\*.log'
+
 artifacts:
   - path: '*.Rcheck\**\*.log'
     name: Logs
