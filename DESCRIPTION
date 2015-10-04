@@ -1,5 +1,5 @@
 Package: matrixStats
-Version: 0.14.9-9000
+Version: 0.49.9-9000
 Depends:
   R (>= 2.9.0)
 Imports:
@@ -12,8 +12,8 @@ Suggests:
   R.devices,
   R.rsp
 VignetteBuilder: R.rsp
-Date: 2015-07-11
-Title: Methods that Apply to Rows and Columns of Matrices (and to Vectors)
+Date: 2015-10-04
+Title: Functions that Apply to Rows and Columns of Matrices (and to Vectors)
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                  email="henrikb@braju.com"),
@@ -25,7 +25,7 @@ Authors@R: c(
   person("Peter", "Langfelder", role="ctb"))
 Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
-Description: Methods operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  There are also some vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().  All methods have been optimized for speed and memory usage.
+Description: High-performing functions operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  Functions optimized per data type and for subsetted calculations such that both memory usage and processing time is minimized.  There are also optimized vector-based methods, e.g. binMeans(), madDiff() and weightedMedians().
 License: Artistic-2.0
 LazyLoad: TRUE
 NeedsCompilation: yes
