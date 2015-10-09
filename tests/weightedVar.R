@@ -1,5 +1,10 @@
 library("matrixStats")
 
+weightedVar_R <- function(x, w) {
+  sum(w * (x - mu)^2) / (sum(w) - 1)
+}
+
+
 n <- 10
 x <- as.double(1:n)
 
@@ -19,9 +24,17 @@ str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))
 
 
-message("- Uniform weights")
+message("- Uniform weights (all w=1)")
 m0 <- var(x)
 w <- rep(1, times=n)
+m1 <- weightedVar(x, w=w)
+str(list(m0=m0, m1=m1))
+stopifnot(all.equal(m1, m0))
+
+
+message("- Uniform weights (all w=3)")
+m0 <- var(rep(x, each=3))
+w <- rep(3, times=n)
 m1 <- weightedVar(x, w=w)
 str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))
@@ -62,23 +75,28 @@ str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))
 
 
-message("- 10 times the weight on first element")
-y <- c(rep(x[1], times=10L), x[-1])
-m0 <- var(y)
-w <- rep(1, times=n); w[1] <- 10
-m1 <- weightedVar(x, w=w)
+message("- Frequency weights")
+
+## From https://en.wikipedia.org/wiki/Weighted_arithmetic_mean
+y <-  c(2, 2, 4, 5, 5, 5)
+x <- unique(y)
+w <- table(y)
+stopifnot(names(w) == x)
+
+m0 <- weightedVar(x, w=w)
+m1 <- var(y)
+stopifnot(all.equal(m1, m0))
+m2 <- weightedVar(x, w=w)
+str(list(m0=m0, m1=m1, m2=m2))
+stopifnot(all.equal(m2, m0))
+
+## From https://github.com/HenrikBengtsson/matrixStats/issues/72
+large <- c(21, 8, 26, 1, 15, 33, 12, 25, 0, 84)
+years <- c(41706, 9301, 33678, 3082, 27040, 44188, 10049, 30591, 2275, 109831)
+
+m0 <- weightedVar(large, w=years)
+m1 <- weightedVar(large, w=years)
 str(list(m0=m0, m1=m1))
-## stopifnot(all.equal(m1, m0)) ## FIXME: Issue #72
-
-
-message("- Double weight on first five elements")
-idxs <- 1:5
-y <- c(rep(x[idxs], times=2L), x[-idxs])
-m0 <- var(y)
-w <- rep(1, times=n); w[idxs] <- 2
-m1 <- weightedVar(x, w=w)
-str(list(m0=m0, m1=m1))
-## stopifnot(all.equal(m1, m0)) ## FIXME: Issue #72
-
+stopifnot(all.equal(m1, m0))
 
 message("*** weightedVar() ... DONE")

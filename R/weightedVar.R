@@ -48,6 +48,15 @@
 #   \code{na.rm} is @TRUE, otherwise not.
 # }
 #
+# \section{Weighted variance}{
+#   The weights used by the weighted variance (and standard deviation)
+#   estimator should be consider so called \emph{frequency weights} such
+#   that \code{weightedVar(c(2,4,5), w=c(2,1,3)) == var(c(2, 2, 4, 5, 5, 5))}.
+#   Note that this means that the estimate is \emph{not} invariant
+#   to a scale factor on the weights, e.g. passing normalized weights
+#   will not give the same estimate as non-normalized weights.
+# }
+#
 # \seealso{
 #   For the non-weighted variance, see @see "stats::var".
 # }
@@ -69,6 +78,13 @@ weightedVar <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
   }
 
   # Argument 'na.rm':
+
+  # Argument 'method':
+  method <- list(...)$method
+
+  ## Backward compatible but incorrect estimate?
+  ## See https://github.com/HenrikBengtsson/matrixStats/issues/72
+  use_0.14.2 <- (identical(method, "0.14.2"))
 
 
   naValue <- NA;
@@ -115,7 +131,8 @@ weightedVar <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
   if (n <= 1L) return(naValue)
 
   # Standardize weights to sum to one
-  w <- w / sum(w);
+  wsum <- sum(w)
+  w <- w / wsum
 
   # Estimate the mean?
   if (is.null(center)) {
@@ -125,7 +142,12 @@ weightedVar <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
   # Estimate the variance
   x <- x - center; # Residuals
   x <- x^2;        # Squared residuals
-  sigma2 <- sum(w*x) * (n / (n-1L))
+
+  ## Correction factor
+  lambda <- wsum / (wsum - 1)
+  if (use_0.14.2) lambda <- n / (n-1L)
+
+  sigma2 <- lambda * sum(w*x)
 
   x <- w <- NULL; # Not needed anymore
 
