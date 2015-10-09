@@ -9,6 +9,7 @@ importFrom("methods", "loadMethod")
 importFrom("methods", "signature")
 
 importFrom("stats", "mad")
+importFrom("stats", "median")
 importFrom("stats", "quantile")
 
 

@@ -26,6 +26,16 @@ install:
 
 build_script:
   - echo Current directory=%CD%
+<<<<<<< HEAD
+=======
+
+
+
+  - travis-tool.sh install_r R.rsp
+
+
+
+>>>>>>> develop
   - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 test_script:

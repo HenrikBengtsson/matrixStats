@@ -59,12 +59,20 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedMean <- function(x, w, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
+weightedMean <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
   # Argument 'refine':
   refine <- as.logical(refine)
 
-  w <- as.numeric(w)
-  .Call("weightedMean", x, w, idxs, na.rm, refine, PACKAGE="matrixStats")
+  # Argument 'w':
+  if (is.null(w)) {
+    ## We won't fall back to stats::mean(), because it's has some overhead
+    ## and it doesn't support refine=FALSE.
+    w <- rep(1, times=length(x))
+  } else {
+    w <- as.numeric(w)
+  }
+
+  .Call("weightedMean", x, w, na.rm, refine, PACKAGE="matrixStats")
 } # weightedMean()
 
 ###############################################################################
