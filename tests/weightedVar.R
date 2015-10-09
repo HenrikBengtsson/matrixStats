@@ -16,7 +16,7 @@ message("- One elements")
 m0 <- var(1)
 m1 <- weightedVar(1)
 str(list(m0=m0, m1=m1))
-##stopifnot(all.equal(m1, m0))  ## FIXME: Issue #73
+stopifnot(all.equal(m1, m0))
 
 
 message("- Uniform weights")
@@ -59,7 +59,7 @@ m0 <- var(x[idxs])
 w <- rep(0, times=n); w[idxs] <- Inf
 m1 <- weightedVar(x, w=w)
 str(list(m0=m0, m1=m1))
-## stopifnot(all.equal(m1, m0)) ## FIXME: Issue #73?
+stopifnot(all.equal(m1, m0))
 
 
 message("- 10 times the weight on first element")
