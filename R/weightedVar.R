@@ -59,7 +59,7 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedVar <- function(x, w, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
+weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   # Argument 'x':
   n <- length(x);
 
