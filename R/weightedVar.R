@@ -121,15 +121,9 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   tmp <- NULL; # Not needed anymore
 
 
-  # Are there any values left to calculate the weighted median of?
-  # This is consistent with how stats::mad() works.
-  if (n == 0L) {
-    return(naValue);
-  } else if (n == 1L) {
-    zeroValue <- 0;
-    storage.mode(zeroValue) <- storage.mode(x);
-    return(zeroValue);
-  }
+  # Are there any values left to calculate the weighted variance of?
+  # This is consistent with how stats::var() works.
+  if (n <= 1L) return(naValue)
 
   # Standardize weights to sum to one
   w <- w / sum(w);
