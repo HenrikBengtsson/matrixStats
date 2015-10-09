@@ -72,7 +72,7 @@ weightedVar <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
 
   # Argument 'w':
   if (is.null(w)) {
-    w <- rep(1, times=length(x))
+    w <- rep(1, times=n)
   } else if (length(w) != n) {
     stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
   }
