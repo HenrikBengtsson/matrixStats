@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.14.2-9000 [2015-10-09]
+Version: 0.15.0 [2015-10-26]
 o CONSISTENCY: Now all weight arguments ('w' and 'W') default
   to NULL, which corresponds to uniform weights.
 o ROBUSTNESS: Importing 'stats' functions in namespace.
