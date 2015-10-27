@@ -1,7 +1,10 @@
 .Rhistory
 *~
 **/*~
+.R
+.benchmark
 .check
+.devel
 .test
 .o
 .dll

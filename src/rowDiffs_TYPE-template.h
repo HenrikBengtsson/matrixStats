@@ -22,7 +22,7 @@
 
 #if X_TYPE == 'i'
   static R_INLINE int diff_int(int a, int b) {
-    if (X_ISNA(a) || X_ISNA(b)) return(NA_INTEGER);
+    if (X_ISNA(a) || X_ISNA(b)) return NA_INTEGER;
     return a-b;
   }
   #define X_DIFF diff_int

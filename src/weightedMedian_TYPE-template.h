@@ -23,14 +23,6 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
   int equalweights = 0;
 
 
-  /* Quick results? */
-  if (nx == 0) {
-    return NA_REAL;
-  } else if (nx == 1) {
-    return (double)x[0];
-  }
-
-
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* Weights                                                             */
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -25,14 +25,8 @@ install:
 # Adapt as necessary starting from here
 
 build_script:
-
-
-
- - travis-tool.sh install_r R.rsp
-
-
-
- - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
+  - echo Current directory=%CD%
+  - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 test_script:
   - travis-tool.sh run_tests
@@ -55,3 +49,7 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+on_failure:
+  - 7z a failure.zip *.Rcheck\*
+  - appveyor PushArtifact failure.zip

@@ -5,6 +5,7 @@ set.seed(1)
 x <- matrix(rnorm(20), nrow=5L, ncol=4L)
 print(x)
 
+# Weighted row variances (uniform weights - all w=1)
 # Non-weighted row variances
 xM0 <- rowVars(x)
 w <- rep(1, times=ncol(x))
@@ -15,8 +16,10 @@ xM2 <- colWeightedVars(t(x), w=w)
 stopifnot(all.equal(xM2, xM0))
 
 
-# Weighted row variances (uniform weights)
-w <- rep(2.5, ncol(x))
+# Weighted row variances (uniform weights - all w=3)
+x3 <- cbind(x, x, x)
+xM0 <- rowVars(x3)
+w <- rep(3, times=ncol(x))
 xM1 <- rowWeightedVars(x, w=w)
 print(xM1)
 stopifnot(all.equal(xM1, xM0))

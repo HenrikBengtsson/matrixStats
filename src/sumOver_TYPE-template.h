@@ -40,7 +40,10 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
           break;
       }
 #elif X_TYPE == 'r'
-      if (!narm || !X_ISNAN(value)) {
+      if (!narm) {
+        sum += (LDOUBLE)value;
+        if (i % 1048576 == 0 && !R_FINITE(sum)) break;
+      } else if (!X_ISNAN(value)) {
         sum += (LDOUBLE)value;
       }
 #endif
@@ -62,7 +65,10 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
           break;
       }
 #elif X_TYPE == 'r'
-      if (!narm || !X_ISNAN(value)) {
+      if (!narm) {
+        sum += (LDOUBLE)value;
+        if (i % 1048576 == 0 && !R_FINITE(sum)) break;
+      } else if (!X_ISNAN(value)) {
         sum += (LDOUBLE)value;
       }
 #endif

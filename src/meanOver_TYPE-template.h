@@ -46,7 +46,11 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
           break;
       }
 #elif X_TYPE == 'r'
-      if (!narm || !ISNAN(value)) {
+      if (!narm) {
+        sum += (LDOUBLE)value;
+        ++count;
+        if (i % 1048576 == 0 && !R_FINITE(sum)) break;
+      } else if (!ISNAN(value)) {
         sum += (LDOUBLE)value;
         ++count;
       }
@@ -65,7 +69,10 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
       if (refine && R_FINITE(avg)) {
         for (i=0; i < nx; i++) {
           value = x[i];
-          if (!narm || !ISNAN(value)) {
+          if (!narm) {
+            rsum += (LDOUBLE)(value - avg);
+            if (i % 1048576 == 0 && !R_FINITE(rsum)) break;
+          } else if (!ISNAN(value)) {
             rsum += (LDOUBLE)(value - avg);
           }
         }
@@ -91,7 +98,11 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
           break;
       }
 #elif X_TYPE == 'r'
-      if (!narm || !ISNAN(value)) {
+      if (!narm) {
+        sum += (LDOUBLE)value;
+        ++count;
+        if (i % 1048576 == 0 && !R_FINITE(sum)) break;
+      } else if (!ISNAN(value)) {
         sum += (LDOUBLE)value;
         ++count;
       }
@@ -111,7 +122,10 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
         for (i=0; i < nidxs; i++) {
           idx = idxs[i];
           value = x[idx-1];
-          if (!narm || !ISNAN(value)) {
+          if (!narm) {
+            rsum += (LDOUBLE)(value - avg);
+            if (i % 1048576 == 0 && !R_FINITE(rsum)) break;
+	  } else if (!ISNAN(value)) {
             rsum += (LDOUBLE)(value - avg);
           }
         }

@@ -1,8 +1,24 @@
 Package: matrixStats
 ====================
 
+Version: 0.15.0 [2015-10-26]
+o CONSISTENCY: Now all weight arguments ('w' and 'W') default
+  to NULL, which corresponds to uniform weights.
+o ROBUSTNESS: Importing 'stats' functions in namespace.
+o CLEANUP: Defunct argument 'centers' for col-/rowMads(); use 'center'.
+o BUG FIX: weightedVar(x, w) used the wrong bias correction factor
+  resulting in an estimate that was tau too large, where
+  tau = ((sum(w) - 1) / sum(w)) / ((length(w) - 1) / length(w)).
+  Thanks to Wolfgang Abele for reporting and troubleshooting on this.
+o BUG FIX: weightedVar(x) with length(x) = 1 returned 0 no NA.
+  Same for weightedSd().
+o BUG FIX: weightedMedian(x, w=NA_real_) returned 'x' rather
+  than NA_real_. This only happened for length(w) = 1.
+o BUG FIX: allocArray(dim) failed for prod(dim) >= .Machine$integer.max.
+
+
 Version: 0.14.2 [2015-06-23]
-o BUG FIX: x_OP_y() and t_tx_OP_y() would return garbage on 
+o BUG FIX: x_OP_y() and t_tx_OP_y() would return garbage on
   Solaris SPARC (and possibly other architectures as well) when
   input was integer and had missing values.
 
@@ -21,8 +37,8 @@ o BUG FIX: x_OP_y(x, y, OP, na.rm=FALSE) returned garbage iff
   'x' or 'y' had missing values of type integer.
 o BUG FIX: rowQuantiles() and rowIQRs() did not work for single-row
   matrices.  Analogously for the corresponding column functions.
-o BUG FIX: rowCumsums(), rowCumprods() rowCummins(), and rowCummaxs(), 
-  accessed out-of-bound elements for Nx0 matrices where N > 0.  
+o BUG FIX: rowCumsums(), rowCumprods() rowCummins(), and rowCummaxs(),
+  accessed out-of-bound elements for Nx0 matrices where N > 0.
   The corresponding column methods has similar memory errors for
   0xK matrices where K > 0.
 o BUG FIX: anyMissing(list(NULL)) returned NULL; now FALSE.

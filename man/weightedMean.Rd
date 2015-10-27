@@ -15,7 +15,7 @@
 \title{Weighted Arithmetic Mean}
 
 \usage{
-weightedMean(x, w, na.rm=FALSE, refine=FALSE, ...)
+weightedMean(x, w=NULL, na.rm=FALSE, refine=FALSE, ...)
 }
 
 \description{

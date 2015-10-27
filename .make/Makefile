@@ -3,9 +3,11 @@
 # CORE MACROS
 ifeq ($(OS), Windows_NT)
 CD=cd
-CURDIR=$(subst \,/,"$(shell cmd.exe /C cd)")
+CURDIR=$(subst \,/,$(shell cmd.exe /C cd))
+FSEP=;
 else
 CD=cd -P "$(CURDIR)"; cd   # This handles the case when CURDIR is a softlink
+FSEP=:
 endif
 CP=cp
 MAKE=make
@@ -13,6 +15,7 @@ MV=mv
 RM=rm -f
 MKDIR=mkdir -p
 RMDIR=$(RM) -r
+GIT=git
 
 # PACKAGE MACROS
 PKG_VERSION := $(shell grep -i ^version DESCRIPTION | cut -d : -d \  -f 2)
@@ -31,6 +34,8 @@ FILES_INCL := $(wildcard incl/*)
 FILES_INST := $(wildcard inst/* inst/*/* inst/*/*/* inst/*/*/*/*)
 FILES_VIGNETTES := $(wildcard vignettes/* vignettes/.install_extras)
 FILES_SRC := $(wildcard src/* src/*/* src/*/*/* src/*/*/*/* src/*/*/*/*/* src/*/*/*/*/*/* src/*/*/*/*/*/*/* src/*/*/*/*/*/*/*/*)
+FILES_SRC_C := $(wildcard src/*.c)
+FILES_SRC_H := $(wildcard src/*.h)
 FILES_TESTS := $(wildcard tests/*.R)
 FILES_NEWS := $(wildcard NEWS inst/NEWS)
 FILES_ROOT := DESCRIPTION NAMESPACE $(wildcard .Rbuildignore .Rinstignore)
@@ -52,6 +57,7 @@ R_VERSION_X_Y := $(shell $(R_SCRIPT) -e "cat(gsub('[.][0-9]+$$', '', getRversion
 R_VERSION := $(shell $(R_SCRIPT) -e "cat(as.character(getRversion()))")
 R_VERSION_FULL := $(R_VERSION)$(R_VERSION_STATUS)
 R_LIBS_USER_X := $(shell $(R_SCRIPT) -e "cat(.libPaths()[1])")
+R_INCLUDE := $(shell $(R_SCRIPT) -e "cat(R.home('include'))")
 R_OUTDIR := ../_R-$(R_VERSION_FULL)
 ## R_BUILD_OPTS :=
 ## R_BUILD_OPTS := $(R_BUILD_OPTS) --no-build-vignettes
@@ -65,6 +71,11 @@ R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
 HAS_ASPELL := $(shell $(R_SCRIPT) -e "cat(Sys.getenv('HAS_ASPELL', !inherits(try(aspell('DESCRIPTION', control=c('--master=en_US', '--add-extra-dicts=en_GB'), dictionaries='en_stats', program='aspell'), silent=TRUE), 'try-error')))")
 
+## Git related
+GIT_BRANCH := $(shell $(GIT) symbolic-ref --short HEAD)
+GIT_BRANCH := $(subst /,-,$(GIT_BRANCH))
+GIT_COMMIT := $(shell $(GIT) log -1 --format="%h")
+R_LIBS_BRANCH := $(CURDIR)/.R/$(GIT_BRANCH)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -96,6 +107,7 @@ debug:
 	@echo R_VERSION_STATUS=\'$(R_VERSION_STATUS)\'
 	@echo R_VERSION_FULL=\'$(R_VERSION_FULL)\'
 	@echo R_LIBS_USER_X=\'$(R_LIBS_USER_X)\'
+	@echo R_INCLUDE=\'$(R_INCLUDE)\'
 	@echo R_OUTDIR=\'$(R_OUTDIR)\'
 	@echo
 	@echo "Default packages:" $(shell $(R) --slave -e "cat(paste(getOption('defaultPackages'), collapse=', '))")
@@ -127,7 +139,10 @@ debug_full: debug
 	@echo
 	@echo DIR_VIGNS=\'$(DIR_VIGNS)\'
 	@echo dirname\(DIR_VIGNS\)=\'$(shell dirname $(DIR_VIGNS))\'
-
+	@echo
+	@echo GIT_BRANCH=\'$(GIT_BRANCH)\'
+	@echo GIT_COMMIT=\'$(GIT_COMMIT)\'
+	@echo R_LIBS_BRANCH=\'$(R_LIBS_BRANCH)\'
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -202,6 +217,15 @@ install_fast:
 	$(R) --no-init-file CMD INSTALL --no-docs --no-multiarch --no-byte-compile --no-test-load $(PKG_TARBALL)
 
 
+$(R_LIBS_BRANCH)/$(PKG_NAME)/DESCRIPTION: $(R_OUTDIR)/$(PKG_TARBALL) build_fix
+	$(CD) $(R_OUTDIR);\
+	$(MKDIR) $(R_LIBS_BRANCH);\
+	$(R) --no-init-file CMD INSTALL --library=$(R_LIBS_BRANCH) $(PKG_TARBALL)
+
+install_branch: $(R_LIBS_BRANCH)/$(PKG_NAME)/DESCRIPTION
+
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Check source tarball
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -226,12 +250,16 @@ check_force:
 	$(MAKE) check
 
 clang:
-	clang -c -pedantic -Wall -I$(R_HOME)/include/ src/*.c
+	clang -c -pedantic -Wall -I$(R_INCLUDE) src/*.c
+	$(RM) *.o
+
+clang-ubsan:
+	clang -fsanitize=undefined -I$(R_INCLUDE) -c src/*.c
 	$(RM) *.o
 
 valgrind_scan:
-	grep -E "^==.*==[ ]+(at|by) 0x" $(R_CHECK_OUTDIR)/tests/*.Rout | cat
-	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors" | cat
+	grep -E "^==.*==[ ]+(at|by) 0x" $(R_CHECK_OUTDIR)/tests*/*.Rout | cat
+	grep "^==.* ERROR SUMMARY:" $(R_CHECK_OUTDIR)/tests*/*.Rout | grep -v -F "ERROR SUMMARY: 0 errors" | cat
 
 valgrind:
 	export _R_CHECK_USE_VALGRIND_=TRUE;\
@@ -314,6 +342,38 @@ test_full: $(R_OUTDIR)/tests/%.R
 	$(CD) $(R_OUTDIR)/tests;\
 	export _R_CHECK_FULL_=TRUE;\
 	$(R_SCRIPT) -e "for (f in list.files(pattern='[.]R$$')) { print(f); source(f, echo=TRUE) }"
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Benchmarking
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+R_branch:
+	R_LIBS="$(R_LIBS_USER_X)$(FSEP)$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R)
+
+benchmark:
+	$(MKDIR) .benchmark/$(PKG_VERSION);\
+	$(CD) .benchmark/$(PKG_VERSION);\
+	$(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
+
+benchmark_branch:
+	$(MKDIR) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH)_$(GIT_COMMIT);\
+	$(CD) .benchmark/$(PKG_VERSION)_$(GIT_BRANCH)_$(GIT_COMMIT);\
+	R_LIBS="$(R_LIBS_USER_X)$(FSEP)$(R_LIBS)" R_LIBS_USER="$(R_LIBS_BRANCH)" $(R_SCRIPT) -e "$(PKG_NAME):::benchmark('index')"
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Miscellaneous development tools
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Fully expanded src/*.c files
+.devel/src/%: src/% $(FILES_SRC)
+	$(MKDIR) .devel/src/;\
+	gcc -I$(R_INCLUDE) -E $< | sed -e '/./b' -e :n -e 'N;s/\n$$//;tn' > .devel/$<
+
+.devel/src/all: $(FILES_SRC)
+	for f in $(FILES_SRC_C); do\
+	  echo $$f;\
+	  $(MAKE) .devel/$$f;\
+	done
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

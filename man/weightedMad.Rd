@@ -15,7 +15,7 @@
 \title{Weighted Median Absolute Deviation (MAD)}
 
 \usage{
- weightedMad(x, w, na.rm=FALSE, constant=1.4826, center=NULL, ...)
+ weightedMad(x, w=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...)
  colWeightedMads(x, w=NULL, na.rm=FALSE, ...)
  rowWeightedMads(x, w=NULL, na.rm=FALSE, ...)
 }

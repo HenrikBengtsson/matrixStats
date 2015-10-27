@@ -27,8 +27,7 @@ for (fcn in names(FUNs)) {
       for (na.rm in c(FALSE, TRUE)) {
         cat("na.rm: ", na.rm, "\n", sep="")
 
-        cat("Weights are specified (all are 1)\n")
-        w <- rep(1, times=n)
+        cat("Weights are not specified (all are 1)\n")
         m1 <- FUN(x, na.rm=na.rm)
         str(list(m1=m1))
 

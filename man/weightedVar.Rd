@@ -18,7 +18,7 @@
 \title{Weighted variance and weighted standard deviation}
 
 \usage{
- weightedVar(x, w, na.rm=FALSE, center=NULL, ...)
+ weightedVar(x, w=NULL, na.rm=FALSE, center=NULL, ...)
  colWeightedVars(x, w=NULL, na.rm=FALSE, ...)
  rowWeightedVars(x, w=NULL, na.rm=FALSE, ...)
 
@@ -55,6 +55,15 @@
 \section{Missing values}{
   Missing values are dropped at the very beginning, if argument
   \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.
+}
+
+\section{Weighted variance}{
+  The weights used by the weighted variance (and standard deviation)
+  estimator should be consider so called \emph{frequency weights} such
+  that \code{weightedVar(c(2,4,5), w=c(2,1,3)) == var(c(2, 2, 4, 5, 5, 5))}.
+  Note that this means that the estimate is \emph{not} invariant
+  to a scale factor on the weights, e.g. passing normalized weights
+  will not give the same estimate as non-normalized weights.
 }
 
 \seealso{

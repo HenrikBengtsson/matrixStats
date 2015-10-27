@@ -43,7 +43,12 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
       wtotal += weight;
     }
 #elif X_TYPE == 'r'
-    if (!narm || !X_ISNAN(value)) {
+    if (!narm) {
+      sum += (LDOUBLE)weight * (LDOUBLE)value;
+      wtotal += weight;
+      /* Early stopping? Special for long LDOUBLE vectors */
+      if (i % 1048576 == 0 && ISNAN(sum)) break;
+    } else if (!X_ISNAN(value)) {
       sum += (LDOUBLE)weight * (LDOUBLE)value;
       wtotal += weight;
     }
@@ -71,7 +76,11 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
 	}
 
         value = (LDOUBLE)x[i];
-        if (!narm || !ISNAN(value)) {
+        if (!narm) {
+          sum += (LDOUBLE)weight * (value - avg);
+          /* Early stopping? Special for long LDOUBLE vectors */
+          if (i % 1048576 == 0 && ISNAN(sum)) break;
+        } else if (!ISNAN(value)) {
           sum += (LDOUBLE)weight * (value - avg);
         }
       }

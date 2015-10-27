@@ -166,7 +166,7 @@ SEXP allocArray2(SEXP dim, SEXP value, SEXP set) {
     }
 #endif
   }
-  n = (int)nd;
+  n = (R_xlen_t)nd;
 
   /* Argument 'value': */
   if (!isVectorAtomic(value) || xlength(value) != 1) {

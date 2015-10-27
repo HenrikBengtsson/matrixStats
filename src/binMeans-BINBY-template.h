@@ -79,6 +79,9 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
       // Sum and count
       sum += y[ii];
       ++n;
+
+      /* Early LDOUBLE stopping? */
+      if (n % 1048576 == 0 && !R_FINITE(sum)) break;
     }
 
     // Update statistic of the last bin?
