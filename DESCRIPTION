@@ -12,7 +12,6 @@ Suggests:
   R.devices,
   R.rsp
 VignetteBuilder: R.rsp
-Date: 2015-10-04
 Title: Functions that Apply to Rows and Columns of Matrices (and to Vectors)
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),

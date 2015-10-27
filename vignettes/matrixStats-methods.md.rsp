@@ -257,7 +257,7 @@ row <- data.frame(
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
-  "Operator"   = "Do all element have a given value?",
+  "Operator"   = "Do all elements have a given value?",
   "Functions"   = "allValue, colAlls, rowAlls",
   "Example"     = "allValue(x, value); rowAlls(x, value)"
 )

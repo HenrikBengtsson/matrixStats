@@ -8,9 +8,9 @@ o MAJOR FEATURE UPDATE: Subsetting arguments 'idxs', 'rows' and
   a subsetted copy, i.e. rowVars(x, cols=4:6) is a much faster
   and more memory efficient version than rowVars(x[,4:6]) and
   even yet more efficient than apply(x, MARGIN=1L, FUN=var).
-  
 
-Version: 0.14.2-9000 [2015-10-09]
+
+Version: 0.15.0 [2015-10-26]
 o CONSISTENCY: Now all weight arguments ('w' and 'W') default
   to NULL, which corresponds to uniform weights.
 o ROBUSTNESS: Importing 'stats' functions in namespace.
