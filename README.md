@@ -11,15 +11,17 @@ plain R. The package installs out-of-the-box on all common operating
 systems, including Linux, OS X and Windows.
 
 ## Example
-It is [many times
+With a matrix
+```r
+> X <- matrix(rnorm(20 * 500), nrow = 20, ncol = 500)
+```
+it is [many times
 faster](http://www.jottr.org/2015/01/matrixStats-0.13.1.html) to
 calculate medians column by column using
 ```r
-> library("matrixStats")
-> X <- matrix(rnorm(20 * 500), nrow = 20, ncol = 500)
-> mu <- colMedians(X)
+> mu <- matrixStats::colMedians(X)
 ```
-compared with
+than using
 ```r
 > mu <- apply(X, MARGIN=2, FUN=medians)
 ```
@@ -33,14 +35,6 @@ R package matrixStats is available on [CRAN](http://cran.r-project.org/package=m
 ```r
 install.packages('matrixStats')
 ```
-
-### Pre-release version
-
-To install the pre-release version that is available in branch `develop`, use:
-```r
-source('http://callr.org/install#HenrikBengtsson/matrixStats@develop')
-```
-This will install the package from source.  Because of this and because this package also compiles native code, Windows users need to have [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed and OS X users need to have [Xcode](https://developer.apple.com/xcode/) installed.
 
 
 
