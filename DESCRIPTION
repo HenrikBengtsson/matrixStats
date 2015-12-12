@@ -1,7 +1,7 @@
 Package: matrixStats
 Version: 0.15.0-9000
 Depends:
-  R (>= 2.9.0)
+  R (>= 2.12.0)
 Imports:
   methods
 Suggests:
@@ -12,7 +12,7 @@ Suggests:
   R.devices,
   R.rsp
 VignetteBuilder: R.rsp
-Date: 2015-10-27
+Date: 2015-12-12
 Title: Methods that Apply to Rows and Columns of Matrices (and to Vectors)
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
