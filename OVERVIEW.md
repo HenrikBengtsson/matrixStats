@@ -21,7 +21,7 @@ calculate medians column by column using
 ```
 than using
 ```r
-> mu <- apply(X, MARGIN=2, FUN=medians)
+> mu <- apply(X, MARGIN=2, FUN=median)
 ```
 
 ## Benchmarks
