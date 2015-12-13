@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.0-9000 [2015-12-13]
+o ...
+
+
 Version: 0.50.0 [2015-12-13]
 o MAJOR FEATURE UPDATE: Subsetting arguments 'idxs', 'rows' and
   'cols' were added to all functions such that the calculations 
