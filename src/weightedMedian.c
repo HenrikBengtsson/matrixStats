@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP weightedMedian(SEXP x, SEXP w, SEXP naRm, SEXP interpolate, SEXP ties)
+ SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP ties)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
@@ -10,17 +10,16 @@
 #include <R_ext/Error.h>
 
 #define METHOD weightedMedian
+#define RETURN_TYPE double
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties
 
 #define X_TYPE 'i'
-#include "weightedMedian_TYPE-template.h"
-
+#include "templates-gen-vector.h"
 #define X_TYPE 'r'
-#include "weightedMedian_TYPE-template.h"
-
-#undef METHOD 
+#include "templates-gen-vector.h"
 
 
-SEXP weightedMedian(SEXP x, SEXP w, SEXP naRm, SEXP interpolate, SEXP ties) {
+SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP ties) {
   SEXP ans;
   int narm, interpolate2, ties2;
   double mu = NA_REAL;
@@ -43,15 +42,19 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP naRm, SEXP interpolate, SEXP ties) {
   /* Argument 'interpolate': */
   interpolate2 = asLogicalNoNA(interpolate, "interpolate");
 
+  /* Argument 'idxs': */
+  R_xlen_t nidxs;
+  int idxsType;
+  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+
   /* Argument 'ties': */
   ties2 = asInteger(ties);
 
-
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    mu = weightedMedian_Real(REAL(x), nx, REAL(w), nw, narm, interpolate2, ties2);
+    mu = weightedMedian_Real[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
   } else if (isInteger(x)) {
-    mu = weightedMedian_Integer(INTEGER(x), nx, REAL(w), nw, narm, interpolate2, ties2);
+    mu = weightedMedian_Integer[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
   }
 
   /* Return results */
@@ -65,6 +68,8 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP naRm, SEXP interpolate, SEXP ties) {
 
 /***************************************************************************
  HISTORY:
+ 2015-07-09 [DJ]
+  o Supported subsetted computation.
  2015-01-01 [HB]
   o Created.
  **************************************************************************/

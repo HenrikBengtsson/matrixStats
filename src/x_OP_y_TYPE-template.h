@@ -1,9 +1,9 @@
 #include "types.h"
 #include "templates-types.h"
 
+
 #if OP == '+'
-  #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Add)
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -13,7 +13,7 @@
 #endif
     return (double)x + (double)y;
   }
-  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_ROWS_COLS_IDXS)
   static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
     if (X_ISNAN(x)) {
       return (double)y;
@@ -24,8 +24,7 @@
     }
   }
 #elif OP == '-'
-  #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Sub)
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -37,8 +36,7 @@
   }
   #define FUN_narm FUN_no_NA
 #elif OP == '*'
-  #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Mul)
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -48,7 +46,7 @@
 #endif
     return (double)x * (double)y;
   }
-  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_T)
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_ROWS_COLS_IDXS)
   static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
     if (X_ISNAN(x)) {
       return (double)y;
@@ -59,8 +57,7 @@
     }
   }
 #elif OP == '/'
-  #define METHOD_NAME_T CONCAT_MACROS(METHOD_NAME, Div)
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_T)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -75,13 +72,12 @@
   #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y): Unknown OP"
 #endif
 
-void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
-                   Y_C_TYPE *y, R_xlen_t ny,
-                   int byrow, int commute,
-                   int narm, int hasna, 
-                   ANS_C_TYPE *ans, R_xlen_t n) {
-  R_xlen_t kk, xi, yi, nx = nrow * ncol;
-  R_xlen_t row, col, txi;
+
+RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
+  R_xlen_t ii, jj, kk, idx, colBegin;
+  R_xlen_t txi, yi;
+  X_C_TYPE xvalue;
+  Y_C_TYPE yvalue;
   double value;
 #if ANS_TYPE == 'i'
   int ok = 1; /* OK, i.e. no integer overflow yet? */
@@ -89,167 +85,224 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
          R_INT_MAX_d = (double)R_INT_MAX;
 #endif
 
-  xi = 0;
-  txi = row = col = 0;
+#ifdef ROWS_TYPE
+  ROWS_C_TYPE *cxrows = (ROWS_C_TYPE*) xrows;
+#endif
+#ifdef COLS_TYPE
+  COLS_C_TYPE *cxcols = (COLS_C_TYPE*) xcols;
+#endif
+#ifdef IDXS_TYPE
+  IDXS_C_TYPE *cyidxs = (IDXS_C_TYPE*) yidxs;
+#endif
+
   yi = 0;
+  kk = 0;
 
   if (byrow) {
     if (commute) {
       if (narm) {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_narm(y[yi], x[xi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          txi = jj;
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_narm(yvalue, xvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++row >= nrow) {         /* Current index in t(x):  */
-            row = 0;                   /* col = xi / nrow;        */
-            col++;                     /* row = xi % nrow;        */
-            txi = col;                 /* txi = row * ncol + col; */
-          } else {
-            txi += ncol;
+
+            txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
-          yi = txi % ny;
         }
       } else {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_no_NA(y[yi], x[xi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          txi = jj;
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_no_NA(yvalue, xvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++row >= nrow) {         /* Current index in t(x):  */
-            row = 0;                   /* col = xi / nrow;        */
-            col++;                     /* row = xi % nrow;        */
-            txi = col;                 /* txi = row * ncol + col; */
-          } else {
-            txi += ncol;
+
+            txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
-          yi = txi % ny;
         }
       }
     } else {
       if (narm) {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_narm(x[xi], y[yi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          txi = jj;
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_narm(xvalue, yvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++row >= nrow) {         /* Current index in t(x):  */
-            row = 0;                   /* col = xi / nrow;        */
-            col++;                     /* row = xi % nrow;        */
-            txi = col;                 /* txi = row * ncol + col; */
-          } else {
-            txi += ncol;
+
+            txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
-          yi = txi % ny;
         }
       } else {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_no_NA(x[xi], y[yi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          txi = jj;
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_no_NA(xvalue, yvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++row >= nrow) {         /* Current index in t(x):  */
-            row = 0;                   /* col = xi / nrow;        */
-            col++;                     /* row = xi % nrow;        */
-            txi = col;                 /* txi = row * ncol + col; */
-          } else {
-            txi += ncol;
+
+            txi += nxcols;  /* txi = ii * nxcols + jj; */
           }
-          yi = txi % ny;
         }
       }
     }
   } else {
     if (commute) {
       if (narm) {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_narm(y[yi], x[xi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, yi);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_narm(yvalue, xvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++yi >= ny) yi = 0;
+
+            if (++ yi >= nyidxs) yi = 0;
+          }
         }
       } else {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_no_NA(y[yi], x[xi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, yi);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_no_NA(yvalue, xvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++yi >= ny) yi = 0;
+
+            if (++ yi >= nyidxs) yi = 0;
+          }
         }
       }
     } else {
       if (narm) {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_narm(x[xi], y[yi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, yi);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_narm(xvalue, yvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++yi >= ny) yi = 0;
+
+            if (++ yi >= nyidxs) yi = 0;
+          }
         }
       } else {
-        for (kk=0; kk < n; kk++) {
-          value = FUN_no_NA(x[xi], y[yi]);
+        for (jj=0; jj < nxcols; ++jj) {
+          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          for (ii=0; ii < nxrows; ++ii) {
+            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            xvalue = R_INDEX_GET(x, idx, X_NA);
+
+            idx = IDX_INDEX(cyidxs, yi);
+            yvalue = R_INDEX_GET(y, idx, Y_NA);
+
+            value = FUN_no_NA(xvalue, yvalue);
 #if ANS_TYPE == 'i'
-          if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
-            ok = 0;
-            value = NA_REAL;
-          }
-          ans[kk] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
+            if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
+              ok = 0;
+              value = NA_REAL;
+            }
+            ans[kk ++] = ISNAN(value) ? NA_INTEGER : (ANS_C_TYPE) value;
 #else
-          ans[kk] = (ANS_C_TYPE) value;
+            ans[kk ++] = (ANS_C_TYPE) value;
 #endif
-          if (++xi >= nx) xi = 0;
-          if (++yi >= ny) yi = 0;
+
+            if (++ yi >= nyidxs) yi = 0;
+          }
         }
       }
     }
@@ -263,10 +316,6 @@ void METHOD_NAME_T(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
 #endif
 }
 
+
 #undef FUN
 #undef FUN_narm
-#undef METHOD_NAME_T
-
-/* Undo template macros */
-#include "templates-types_undef.h"
-

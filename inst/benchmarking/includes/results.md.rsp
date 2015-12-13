@@ -36,14 +36,14 @@ toTable <- function(stats, tags=NULL, order="median", ...) {
 	s$cld <- NULL
     s <- s[order(s[[order]]),]
 	s
-  })
+  }, row.names=TRUE)
   kable({
     s <- summary(stats, unit="relative")
 	s$neval <- NULL
 	s$cld <- NULL
     s <- s[order(s[[order]]),]
 	s
-  })
+  }, row.names=TRUE)
 }
 %>
 

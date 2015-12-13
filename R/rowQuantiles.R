@@ -15,6 +15,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix with N >= 0.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#    to operate over. If @NULL, no subsetting is done.}
 #  \item{probs}{A @numeric @vector of J probabilities in [0,1].}
 #  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
 #  \item{type}{An @integer specify the type of estimator.
@@ -43,7 +45,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
+rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -52,6 +54,11 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   if (any((probs < -eps | probs > 1 + eps))) {
     stop("Argument 'probs' is out of range [0-eps,1+eps]")
   }
+
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -124,7 +131,7 @@ rowQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   q
 } # rowQuantiles()
 
-colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
+colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -133,6 +140,11 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
   if (any((probs < -eps | probs > 1 + eps))) {
     stop("Argument 'probs' is out of range [0-eps,1+eps]")
   }
+
+  # Apply subset
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -209,6 +221,8 @@ colQuantiles <- function(x, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=
 
 ############################################################################
 # HISTORY:
+# 2015-05-29 [DJ]
+# o Supported subsetted computation.
 # 2015-01-26
 # o CONSISTENCY: Now rowQuantiles(x, na.rm=TRUE) returns all NAs for rows
 #   with missing values.  Analogously for colQuantiles().  Previously, an

@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowMads(SEXP x, SEXP constant, SEXP naRm, SEXP hasNA)
- SEXP colMads(SEXP x, SEXP constant, SEXP naRm, SEXP hasNA)
+ SEXP rowMads(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -11,18 +10,18 @@
 #include "types.h"
 #include "utils.h"
 
+
 #define METHOD rowMads
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
 
 #define X_TYPE 'i'
-#include "rowMads_TYPE-template.h"
-
+#include "templates-gen-matrix.h"
 #define X_TYPE 'r'
-#include "rowMads_TYPE-template.h"
-
-#undef METHOD 
+#include "templates-gen-matrix.h"
 
 
-SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow) {
+SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
   SEXP ans;
   R_xlen_t nrow, ncol;
@@ -30,6 +29,8 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
 
   /* Argument 'constant': */
   if (!isNumeric(constant))
@@ -42,28 +43,31 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
-
-  /* Get dimensions of 'x'. */
-  if (byrow) {
-    nrow = INTEGER(dim)[0];
-    ncol = INTEGER(dim)[1];
-  } else {
-    nrow = INTEGER(dim)[1];
-    ncol = INTEGER(dim)[0];
+  if (!byrow) {
+    SWAP(R_xlen_t, nrow, ncol);
+    SWAP(void*, crows, ccols);
+    SWAP(R_xlen_t, nrows, ncols);
+    SWAP(int, rowsType, colsType);
   }
 
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */
-  PROTECT(ans = allocVector(REALSXP, nrow));
+  PROTECT(ans = allocVector(REALSXP, nrows));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMads_Real(REAL(x), nrow, ncol, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowMads_Integer(INTEGER(x), nrow, ncol, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
   }
 
   UNPROTECT(1);
@@ -74,6 +78,8 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow)
 
 /***************************************************************************
  HISTORY:
+ 2015-06-13 [DJ]
+  o Supported subsetted computation.
  2014-11-17 [HB]
  o Created from rowMedians.c.
  **************************************************************************/

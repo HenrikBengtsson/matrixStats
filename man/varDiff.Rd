@@ -30,25 +30,27 @@
 }
 
 \usage{
- varDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
- colVarDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
- rowVarDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ varDiff(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ colVarDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowVarDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
 
- sdDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
- colSdDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
- rowSdDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ sdDiff(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ colSdDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowSdDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
 
- madDiff(x, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...)
- colMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
- rowMadDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ madDiff(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...)
+ colMadDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowMadDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
 
- iqrDiff(x, na.rm=FALSE, diff=1L, trim=0, ...)
- colIQRDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
- rowIQRDiffs(x, na.rm=FALSE, diff=1L, trim=0, ...)
+ iqrDiff(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ colIQRDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
+ rowIQRDiffs(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded, otherwise not.}
  \item{diff}{The positional distance of elements for which the
     difference should be calculated.}

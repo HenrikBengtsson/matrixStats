@@ -182,5 +182,3 @@ for (idxs in idxsList) {
   s2 <- sumOver(x, idxs=idxs, na.rm=TRUE)
   stopifnot(identical(s1, s2))
 }
-
-

@@ -20,13 +20,15 @@
 }
 
 \usage{
- rowProds(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
- colProds(x, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
- product(x, na.rm=FALSE, ...)
+ rowProds(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
+ colProds(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "expSumLog"), ...)
+ product(x, idxs=NULL, na.rm=FALSE, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are ignored, otherwise not.}
  \item{method}{A \code{\link[base]{character}} string specifying how each product
   is calculated.}

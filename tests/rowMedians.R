@@ -221,6 +221,3 @@ for (kk in seq_len(K)) {
   y2 <- rowMedians(t(x), na.rm=na.rm)
   stopifnot(all.equal(y2,y0))
 } # for (kk ...)
-
-
-

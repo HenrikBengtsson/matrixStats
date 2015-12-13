@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowCumsums(SEXP x, ...)
- SEXP colCumsums(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -12,37 +11,42 @@
 #include "utils.h"
 
 #define METHOD rowCumsums
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans
 
 #define X_TYPE 'i'
-#include "rowCumsums_TYPE-template.h"
-
+#include "templates-gen-matrix.h"
 #define X_TYPE 'r'
-#include "rowCumsums_TYPE-template.h"
-
-#undef METHOD
+#include "templates-gen-matrix.h"
 
 
-SEXP rowCumsums(SEXP x, SEXP dim, SEXP byRow) {
+SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   int byrow;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
+
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-    rowCumsums_Real(REAL(x), nrow, ncol, byrow, REAL(ans));
+    PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+    rowCumsums_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
-    PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-    rowCumsums_Integer(INTEGER(x), nrow, ncol, byrow, INTEGER(ans));
+    PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+    rowCumsums_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
     UNPROTECT(1);
   }
 
@@ -52,6 +56,8 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP byRow) {
 
 /***************************************************************************
  HISTORY:
+ 2015-06-07 [DJ]
+  o Supported subsetted computation.
  2014-11-26 [HB]
  o Created from rowVars.c.
  **************************************************************************/

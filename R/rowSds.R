@@ -22,6 +22,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{center}{A optional @numeric @vector of length N (K) with centers.
 #     By default, they are calculated using @see "rowMedians".}
 #  \item{constant}{A scale factor.  See @see "stats::mad" for details.}
@@ -49,14 +51,14 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowSds <- function(x, ...) {
-  x <- rowVars(x, ...);
+rowSds <- function(x, rows=NULL, cols=NULL, ...) {
+  x <- rowVars(x, rows=rows, cols=cols, ...);
   sqrt(x);
 }
 
 
-colSds <- function(x, ...) {
-  x <- colVars(x, ...);
+colSds <- function(x, rows=NULL, cols=NULL, ...) {
+  x <- colVars(x, rows=rows, cols=cols, ...);
   sqrt(x);
 }
 

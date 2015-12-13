@@ -8,6 +8,22 @@
 #define R_INT_MAX  INT_MAX
 #endif
 
+
+/* inf */
+#ifndef IS_INF
+#define IS_INF(x) (x == R_PosInf || x == R_NegInf)
+#endif
+
+
+/* Subsetting index mode */
+#ifndef SUBSETTED_MODE_INDEX
+  #define SUBSETTED_MODE_INDEX
+  #define SUBSETTED_ALL 0
+  #define SUBSETTED_INTEGER 1
+  #define SUBSETTED_REAL 2
+#endif
+
+
 /* As in <R>/src/include/Defn.h */
 #ifdef HAVE_LONG_DOUBLE
 #define LDOUBLE long double
@@ -23,6 +39,15 @@
   #ifndef xlength
     #define xlength length
   #endif
+#endif
+
+
+/* define NA_R_XLEN_T */
+#ifdef LONG_VECTOR_SUPPORT
+  #define R_XLEN_T_MIN -R_XLEN_T_MAX-1
+  #define NA_R_XLEN_T R_XLEN_T_MIN
+#else
+  #define NA_R_XLEN_T NA_INTEGER
 #endif
 
 

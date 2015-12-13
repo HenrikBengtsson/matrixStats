@@ -18,7 +18,9 @@
 #   \item{x}{An NxK @matrix.}
 #   \item{idxs}{An index @vector of (maximum) length N (K) specifying the
 #    columns (rows) to be extracted.}
-#  \item{dim.}{An @integer @vector of length two specifying the
+#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#    to operate over. If @NULL, no subsetting is done.}
+#   \item{dim.}{An @integer @vector of length two specifying the
 #              dimension of \code{x}, also when not a @matrix.}
 #   \item{...}{Not used.}
 # }
@@ -38,7 +40,15 @@
 #
 # @keyword utilities
 #*/###########################################################################
-rowCollapse <- function(x, idxs, dim.=dim(x), ...) {
+rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(rows)) {
+    x <- x[rows,,drop=FALSE]
+    idxs <- idxs[rows]
+  }
+  dim. <- dim(x)
+
   # Argument 'idxs':
   idxs <- rep(idxs, length.out=dim.[1L])
 
@@ -53,7 +63,15 @@ rowCollapse <- function(x, idxs, dim.=dim(x), ...) {
   x[idxs]
 }
 
-colCollapse <- function(x, idxs, dim.=dim(x), ...) {
+colCollapse <- function(x, idxs, cols=NULL, dim.=dim(x), ...) {
+  # Apply subset
+  if (is.vector(x)) dim(x) <- dim.
+  if (!is.null(cols)) {
+    x <- x[,cols,drop=FALSE]
+    idxs <- idxs[cols]
+  }
+  dim. <- dim(x)
+
   # Argument 'idxs':
   idxs <- rep(idxs, length.out=dim.[2L])
 
@@ -71,6 +89,8 @@ colCollapse <- function(x, idxs, dim.=dim(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-29 [DJ]
+# o Supported subsetted computation.
 # 2014-12-19 [HB]
 # o CLEANUP: Made col- and rowCollapse() plain R functions.
 # 2014-11-15

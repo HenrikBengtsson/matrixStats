@@ -1,11 +1,8 @@
 library("matrixStats")
 
-rowProds_R <- function(x, na.rm=FALSE) {
-  apply(x, MARGIN=1L, FUN=prod, na.rm=na.rm)
-}
-
-colProds_R <- function(x, na.rm=FALSE) {
-  apply(x, MARGIN=2L, FUN=prod, na.rm=na.rm)
+rowProds_R <- function(x, FUN=prod, na.rm=FALSE, ...) {
+  y <- apply(x, MARGIN=1L, FUN=FUN, na.rm=na.rm)
+  y
 }
 
 all.equal.na <- function(target, current, ...) {

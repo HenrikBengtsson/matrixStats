@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowDiffs(SEXP x, ...)
- SEXP colDiffs(SEXP x, ...)
 
  Authors: Henrik Bengtsson
 
@@ -12,17 +11,16 @@
 #include "utils.h"
 
 #define METHOD rowDiffs
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans
 
 #define X_TYPE 'i'
-#include "rowDiffs_TYPE-template.h"
-
+#include "templates-gen-matrix.h"
 #define X_TYPE 'r'
-#include "rowDiffs_TYPE-template.h"
-
-#undef METHOD
+#include "templates-gen-matrix.h"
 
 
-SEXP rowDiffs(SEXP x, SEXP dim, SEXP lag, SEXP differences, SEXP byRow) {
+SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences, SEXP byRow) {
   int byrow;
   SEXP ans = NILSXP;
   R_xlen_t lagg, diff;
@@ -31,8 +29,8 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP lag, SEXP differences, SEXP byRow) {
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
 
   /* Argument 'lag': */
   lagg = asInteger(lag);
@@ -46,28 +44,34 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP lag, SEXP differences, SEXP byRow) {
     error("Argument 'differences' must be a positive integer.");
   }
 
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
 
   /* Dimension of result matrix */
   if (byrow) {
-    nrow_ans = nrow;
-    ncol_ans = (R_xlen_t)((double)ncol - ((double)diff*(double)lagg));
-    if (ncol_ans < 0) ncol_ans = 0; 
+    nrow_ans = nrows;
+    ncol_ans = (R_xlen_t)((double)ncols - ((double)diff*(double)lagg));
+    if (ncol_ans < 0) ncol_ans = 0;
   } else {
-    nrow_ans = (R_xlen_t)((double)nrow - ((double)diff*(double)lagg));
-    if (nrow_ans < 0) nrow_ans = 0; 
-    ncol_ans = ncol;
+    nrow_ans = (R_xlen_t)((double)nrows - ((double)diff*(double)lagg));
+    if (nrow_ans < 0) nrow_ans = 0;
+    ncol_ans = ncols;
   }
 
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrow_ans, ncol_ans));
-    rowDiffs_Real(REAL(x), nrow, ncol, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
+    rowDiffs_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrow_ans, ncol_ans));
-    rowDiffs_Integer(INTEGER(x), nrow, ncol, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
+    rowDiffs_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
     UNPROTECT(1);
   }
 
@@ -77,6 +81,8 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP lag, SEXP differences, SEXP byRow) {
 
 /***************************************************************************
  HISTORY:
+ 2015-06-13 [DJ]
+  o Supported subsetted computation.
  2014-12-29 [HB]
- o Created.
+  o Created.
  **************************************************************************/

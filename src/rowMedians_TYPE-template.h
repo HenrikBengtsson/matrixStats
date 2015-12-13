@@ -1,10 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  void rowMedians_<Integer|Real>(...)
+  void rowMedians_<Integer|Real>[rowsType][colsType](ARGUMENTS_LIST)
 
- GENERATES:
-  void rowMedians_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
-  void rowMedians_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans)
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -29,15 +28,22 @@
 #include "templates-types.h"
 
 
-void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna, int byrow, double *ans) {
+RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   int isOdd;
-  R_xlen_t ii, jj, kk, qq;
+  R_xlen_t ii, jj, kk, qq, idx;
   R_xlen_t *colOffset;
   X_C_TYPE *values, value;
 
+#ifdef ROWS_TYPE
+  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
+#endif
+#ifdef COLS_TYPE
+  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
+#endif
+
   /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
-  values = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
+  values = (X_C_TYPE *) R_alloc(ncols, sizeof(X_C_TYPE));
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
@@ -45,8 +51,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
 
   /* When narm == FALSE, isOdd and qq are the same for all rows */
   if (narm == FALSE) {
-    isOdd = (ncol % 2 == 1);
-    qq = (R_xlen_t)(ncol/2) - 1;
+    isOdd = (ncols % 2 == 1);
+    qq = (R_xlen_t)(ncols/2) - 1;
   } else {
     isOdd = FALSE;
     qq = 0;
@@ -55,25 +61,26 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   value = 0;
 
   /* Pre-calculate the column offsets */
-  colOffset = (R_xlen_t *) R_alloc(ncol, sizeof(R_xlen_t));
+  colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
 
   // HJ begin
   if (byrow) {
-    for (jj=0; jj < ncol; jj++)
-      colOffset[jj] = (R_xlen_t)jj*nrow;
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
   } else {
-    for (jj=0; jj < ncol; jj++)
-      colOffset[jj] = (R_xlen_t)jj;
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = COL_INDEX(ccols,jj);
   }
   // HJ end
 
   if (hasna == TRUE) {
-    for (ii=0; ii < nrow; ii++) {
-      R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
+    for (ii=0; ii < nrows; ii++) {
+      R_xlen_t rowIdx = byrow ? ROW_INDEX(crows,ii) : R_INDEX_OP(ROW_INDEX(crows,ii), *, ncol); //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
-      for (jj=0; jj < ncol; jj++) {
-        value = x[rowIdx+colOffset[jj]]; //HJ
+      for (jj=0; jj < ncols; jj++) {
+        idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+        value = R_INDEX_GET(x, idx, X_NA); //HJ
 
         if (X_ISNAN(value)) {
           if (narm == FALSE) {
@@ -117,15 +124,15 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
       R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } else {
-    for (ii=0; ii < nrow; ii++) {
-      R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
+    for (ii=0; ii < nrows; ii++) {
+      R_xlen_t rowIdx = byrow ? ROW_INDEX_NONA(crows,ii) : ROW_INDEX_NONA(crows,ii) * ncol; //HJ
 
-      for (jj=0; jj < ncol; jj++)
+      for (jj=0; jj < ncols; jj++)
         values[jj] = x[rowIdx+colOffset[jj]]; //HJ
 
-      /* Permute x[0:ncol-1] so that x[qq] is in the correct
+      /* Permute x[0:ncols-1] so that x[qq] is in the correct
          place with smaller values to the left, ... */
-      X_PSORT(values, ncol, qq+1);
+      X_PSORT(values, ncols, qq+1);
       value = values[qq+1];
 
       if (isOdd == TRUE) {
@@ -142,12 +149,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, int narm, int hasna,
   } /* if (hasna ...) */
 }
 
-/* Undo template macros */
-#include "templates-types_undef.h"
-
 
 /***************************************************************************
  HISTORY:
+ 2015-06-07 [DJ]
+  o Supported subsetted computation.
  2014-11-06 [HB]
   o CLEANUP: Moving away from R data types in low-level C functions.
  2014-11-01 [HB]

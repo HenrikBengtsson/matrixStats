@@ -1,6 +1,18 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.0 [2015-12-13]
+o MAJOR FEATURE UPDATE: Subsetting arguments 'idxs', 'rows' and
+  'cols' were added to all functions such that the calculations 
+  are performed on the requested subset while avoiding creating 
+  a subsetted copy, i.e. rowVars(x, cols=4:6) is a much faster
+  and more memory efficient version than rowVars(x[,4:6]) and
+  even yet more efficient than apply(x, MARGIN=1L, FUN=var).
+  These features were added by Dongcan Jiang, Peking University,
+  with support from the Google Summer of Code program.  A great
+  thank you to Dongcan and to Google for making this possible.
+
+
 Version: 0.15.0 [2015-10-26]
 o CONSISTENCY: Now all weight arguments ('w' and 'W') default
   to NULL, which corresponds to uniform weights.

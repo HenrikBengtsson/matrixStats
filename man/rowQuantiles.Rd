@@ -18,14 +18,16 @@
 }
 
 \usage{
- rowQuantiles(x, probs=seq(from = 0, to = 1, by = 0.25), na.rm=FALSE, type=7L, ...,
-  drop=TRUE)
- colQuantiles(x, probs=seq(from = 0, to = 1, by = 0.25), na.rm=FALSE, type=7L, ...,
-  drop=TRUE)
+ rowQuantiles(x, rows=NULL, cols=NULL, probs=seq(from = 0, to = 1, by = 0.25),
+  na.rm=FALSE, type=7L, ..., drop=TRUE)
+ colQuantiles(x, rows=NULL, cols=NULL, probs=seq(from = 0, to = 1, by = 0.25),
+  na.rm=FALSE, type=7L, ..., drop=TRUE)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with N >= 0.}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+   to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{probs}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J probabilities in [0,1].}
  \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s are excluded first, otherwise not.}
  \item{type}{An \code{\link[base]{integer}} specify the type of estimator.

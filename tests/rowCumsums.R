@@ -2,14 +2,10 @@ library("matrixStats")
 
 rowCumsums_R <- function(x) {
   suppressWarnings({
-    t(apply(x, MARGIN=1L, FUN=cumsum))
+    y <- t(apply(x, MARGIN=1L, FUN=cumsum))
   })
-}
-
-colCumsums_R <- function(x) {
-  suppressWarnings({
-    apply(x, MARGIN=2L, FUN=cumsum)
-  })
+  dim(y) <- dim(x)
+  y
 }
 
 

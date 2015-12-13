@@ -15,6 +15,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric or @integer NxK @matrix.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{ties.method}{A @character string specifying how ties are treated.
 #     For details, see below.}
 #  \item{dim.}{An @integer @vector of length two specifying the
@@ -92,7 +94,7 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
+rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -107,11 +109,11 @@ rowRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...
 
   dim. <- as.integer(dim.)
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, dim., tiesMethod, TRUE, PACKAGE="matrixStats")
+  .Call("rowRanksWithTies", x, dim., rows, cols, tiesMethod, TRUE, PACKAGE="matrixStats")
 }
 
 
-colRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
+colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -129,7 +131,7 @@ colRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), pre
 
   dim. <- as.integer(dim.)
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, dim., tiesMethod, FALSE, PACKAGE="matrixStats")
+  y <- .Call("rowRanksWithTies", x, dim., rows, cols, tiesMethod, FALSE, PACKAGE="matrixStats")
   if (!preserveShape) y <- t(y)
   y
 }
@@ -137,6 +139,8 @@ colRanks <- function(x, ties.method=c("max", "average", "min"), dim.=dim(x), pre
 
 ############################################################################
 # HISTORY:
+# 2015-05-30 [DJ]
+# o Supported subsetted computation.
 # 2014-12-17 [HB]
 # o CLEANUP: Made col- and rowRanks() plain R functions.
 # 2014-11-15 [HB]

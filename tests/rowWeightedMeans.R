@@ -86,3 +86,14 @@ w <- 1:4
 xM1 <- rowWeightedMeans(x, w=w, na.rm=TRUE)
 xM2 <- colWeightedMeans(t(x), w=w, na.rm=TRUE)
 stopifnot(all.equal(xM2, xM1))
+
+
+# w contains missing value
+w[1] <- NA_integer_
+xM1 <- rowWeightedMeans(x, w=w, na.rm=TRUE)
+xM2 <- colWeightedMeans(t(x), w=w, na.rm=TRUE)
+stopifnot(all.equal(xM2, xM1))
+
+xM1 <- rowWeightedMeans(x, w=w, na.rm=FALSE)
+xM2 <- colWeightedMeans(t(x), w=w, na.rm=FALSE)
+stopifnot(all.equal(xM2, xM1))

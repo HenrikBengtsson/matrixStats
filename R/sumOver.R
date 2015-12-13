@@ -11,8 +11,8 @@
 #
 # \arguments{
 #   \item{x}{A @numeric @vector of length N.}
-#   \item{idxs}{A @numeric index @vector in [1,N] of elements to sum over.
-#      If @NULL, all elements are considered.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{na.rm}{If @TRUE, missing values are skipped, otherwise not.}
 #   \item{mode}{A @character string specifying the data type of the
 #      return value.  Default is to use the same mode as argument
@@ -64,18 +64,6 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
     stop("Argument 'na.rm' is not logical: ", mode(na.rm));
   }
 
-  # Argument 'idxs':
-  if (is.null(idxs)) {
-  } else if (is.integer(idxs)) {
-  } else if (is.logical(idxs)) {
-    if (length(idxs) != n) {
-      stop(sprintf("Lengths of arguments 'idxs' and 'x' do not match: %d != %d", length(idxs), n));
-    }
-    idxs <- which(idxs);
-  } else {
-    idxs <- as.integer(idxs);
-  }
-
   # Argument 'mode':
   mode <- mode[1L]
   modeI <- charmatch(mode, c("integer", "double"), nomatch=0L)
@@ -92,6 +80,8 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-31 [DJ]
+# o Supported subsetted computation.
 # 2014-11-15 [HB]
 # o SPEEDUP: No longer using match.arg() due to its overhead.
 # 2014-11-02 [HB]

@@ -15,9 +15,9 @@
 \title{Weighted Median Absolute Deviation (MAD)}
 
 \usage{
- weightedMad(x, w=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...)
- colWeightedMads(x, w=NULL, na.rm=FALSE, ...)
- rowWeightedMads(x, w=NULL, na.rm=FALSE, ...)
+ weightedMad(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...)
+ colWeightedMads(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...)
+ rowWeightedMads(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...)
 }
 
 \description{
@@ -30,6 +30,8 @@
   \item{w}{a vector of weights the same length as \code{x} giving the weights
            to use for each element of \code{x}. Negative weights are treated
            as zero weights. Default value is equal weight to all values.}
+  \item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+           to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{na.rm}{a logical value indicating whether \code{\link[base]{NA}} values in
            \code{x} should be stripped before the computation proceeds,
            or not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s is done.

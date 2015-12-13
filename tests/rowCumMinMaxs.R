@@ -4,24 +4,20 @@ rowCummins_R <- function(x) {
   suppressWarnings({
     y <- t(apply(x, MARGIN=1L, FUN=cummin))
   })
-}
-
-colCummins_R <- function(x) {
-  suppressWarnings({
-    y <- apply(x, MARGIN=2L, FUN=cummin)
-  })
+  dim(y) <- dim(x)
+  y
 }
 
 rowCummaxs_R <- function(x) {
+  mode <- storage.mode(x)
+  # Change mode because a bug is detected on cummax for integer in R-3.2.0
+  storage.mode(x) <- "numeric"
   suppressWarnings({
     y <- t(apply(x, MARGIN=1L, FUN=cummax))
   })
-}
-
-colCummaxs_R <- function(x) {
-  suppressWarnings({
-    y <- apply(x, MARGIN=2L, FUN=cummax)
-  })
+  dim(y) <- dim(x)
+  storage.mode(y) <- mode
+  y
 }
 
 

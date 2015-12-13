@@ -1,6 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  double weightedMean_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, int refine)
+  double weightedMean_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
@@ -13,22 +16,27 @@
 #include "templates-types.h"
 #include <R_ext/Error.h>
 
-double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, int refine) {
+
+RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   X_C_TYPE value;
   double weight;
   R_xlen_t i;
   LDOUBLE sum = 0, wtotal = 0;
   LDOUBLE avg = R_NaN;
 
-  for (i=0; i < nx; i++) {
-    weight = w[i];
+#ifdef IDXS_TYPE
+  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
+#endif
+
+  for (i=0; i < nidxs; i++) {
+    weight = R_INDEX_GET(w, IDX_INDEX(cidxs,i), NA_REAL);
 
     /* Skip or early stopping? */
     if (weight == 0) {
       continue;
     }
 
-    value = x[i];
+    value = R_INDEX_GET(x, IDX_INDEX(cidxs,i), X_NA);
 #if X_TYPE == 'i'
     if (X_ISNAN(value)) {
       /* Skip or early stopping? */
@@ -68,19 +76,19 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
     /* Extra precision by summing over residuals? */
     if (refine && R_FINITE(avg)) {
       sum = 0;
-      for (i=0; i < nx; i++) {
-        weight = w[i];
+      for (i=0; i < nidxs; i++) {
+        weight = R_INDEX_GET(w, IDX_INDEX(cidxs,i), NA_REAL);
         /* Skip? */
         if (weight == 0) {
           continue;
-	}
+        }
 
-        value = (LDOUBLE)x[i];
+        value = R_INDEX_GET(x, IDX_INDEX(cidxs,i), X_NA);
         if (!narm) {
           sum += (LDOUBLE)weight * (value - avg);
           /* Early stopping? Special for long LDOUBLE vectors */
           if (i % 1048576 == 0 && ISNAN(sum)) break;
-        } else if (!ISNAN(value)) {
+	} else if (!ISNAN(value)) {
           sum += (LDOUBLE)weight * (value - avg);
         }
       }
@@ -92,11 +100,11 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t nw, int narm, i
   return (double)avg;
 }
 
-/* Undo template macros */
-#include "templates-types_undef.h"
 
 /***************************************************************************
  HISTORY:
+ 2015-06-07 [DJ]
+  o Supported subsetted computation.
  2014-12-08 [HB]
  o Created.
  **************************************************************************/

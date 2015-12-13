@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- anyMissing(SEXP x)
+ anyMissing(SEXP x, SEXP idxs)
 
  TO DO: Support list():s too.
 
@@ -8,84 +8,39 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include "types.h"
+#include "utils.h"
 
 
-SEXP anyMissing(SEXP x) {
+#define METHOD anyMissing
+#define METHOD_NAME anyMissing_internal
+#define RETURN_TYPE int
+#define ARGUMENTS_LIST SEXP x, void *idxs, R_xlen_t nidxs
+
+#include "templates-gen-vector.h"
+
+
+SEXP anyMissing(SEXP x, SEXP idxs) {
   SEXP ans;
-  R_xlen_t nx, ii;
-  double *xdp;
-  int *xip, *xlp;
-  Rcomplex *xcp;
+  R_xlen_t nx;
+
+  nx = xlength(x);
+
+  /* Argument 'idxs': */
+  R_xlen_t nidxs;
+  int idxsType;
+  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
 
   PROTECT(ans = allocVector(LGLSXP, 1));
   LOGICAL(ans)[0] = 0;
 
-  nx = xlength(x);
-
   /* anyMissing() on zero-length objects should always return FALSE,
      just like any(double(0)). */
-  if (nx == 0) {
+  if (nidxs == 0) {
     UNPROTECT(1);
     return(ans);
   }
 
-  switch (TYPEOF(x)) {
-    case REALSXP:
-      xdp = REAL(x);
-      for (ii=0; ii < nx; ii++) {
-        if ISNAN(xdp[ii]) {
-          LOGICAL(ans)[0] = 1;
-          break;
-        }
-      }
-      break;
-
-    case INTSXP:
-      xip = INTEGER(x);
-      for (ii=0; ii < nx; ii++) {
-        if (xip[ii] == NA_INTEGER) {
-          LOGICAL(ans)[0] = 1;
-          break;
-        }
-      }
-      break;
-
-    case LGLSXP:
-      xlp = LOGICAL(x);
-      for (ii=0; ii < nx; ii++) {
-        if (xlp[ii] == NA_LOGICAL) {
-          LOGICAL(ans)[0] = 1;
-          break;
-        }
-      }
-      break;
-
-    case CPLXSXP:
-      xcp = COMPLEX(x);
-      for (ii=0; ii < nx; ii++) {
-        if (ISNAN(xcp[ii].r) || ISNAN(xcp[ii].i)) {
-          LOGICAL(ans)[0] = 1;
-          break;
-        }
-      }
-      break;
-
-    case STRSXP:
-      for (ii=0; ii < nx; ii++) {
-        if (STRING_ELT(x, ii) == NA_STRING) {
-          LOGICAL(ans)[0] = 1;
-          break;
-        }
-      }
-      break; 
-
-    case RAWSXP: 
-      /* no such thing as a raw NA; always FALSE */
-      break;
-
-    default:
-      break;
-  } /* switch() */
+  LOGICAL(ans)[0] = anyMissing_internal[idxsType](x, cidxs, nidxs);
 
   UNPROTECT(1); /* ans */
 
@@ -95,6 +50,8 @@ SEXP anyMissing(SEXP x) {
 
 /***************************************************************************
  HISTORY:
+ 2015-06-14 [DJ]
+  o Supported subsetted computation.
  2007-08-14 [HB]
   o Created using do_isna() in src/main/coerce.c as a template.
  **************************************************************************/

@@ -1,11 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  void colCounts_<Integer|Real|Logical>(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int narm, int hasna, int *ans)
+  void colCounts_<Integer|Real|Logical>[rowsType][colsType](ARGUMENTS_LIST)
 
- GENERATES:
-  void colCounts_Real(double *x, R_xlen_t nrow, R_xlen_t ncol, double value, int narm, int hasna, int *ans)
-  void colCounts_Integer(int *x, R_xlen_t nrow, R_xlen_t ncol, int value, int narm, int hasna, int *ans)
-  void colCounts_Logical(int *x, R_xlen_t nrow, R_xlen_t ncol, int value, int narm, int hasna, int *ans)
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -24,33 +22,42 @@
 #include "templates-types.h"
 
 
-void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int what, int narm, int hasna, int *ans) {
-  R_xlen_t ii, jj, kk;
+RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+  R_xlen_t ii, jj;
+  R_xlen_t colBegin, idx;
   int count;
   X_C_TYPE xvalue;
+
+#ifdef ROWS_TYPE
+  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
+#endif
+#ifdef COLS_TYPE
+  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
+#endif
 
   if (what == 0L) {  /* all */
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
-      kk = 0;
-      for (jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncols; jj++) {
+        colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
         count = 1;
-        for (ii=0; ii < nrow; ii++) {
-          if (!X_ISNAN(x[kk++])) {
+        for (ii=0; ii < nrows; ii++) {
+          idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
+          if (!X_ISNAN(R_INDEX_GET(x, idx, X_NA))) {
             count = 0;
             /* Found another value! Early stopping */
-            kk += nrow - ii - 1;
             break;
           }
         }
         ans[jj] = count;
       }
     } else {
-      kk = 0;
-      for (jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncols; jj++) {
+        colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
         count = 1;
-        for (ii=0; ii < nrow; ii++) {
-          xvalue = x[kk++];
+        for (ii=0; ii < nrows; ii++) {
+          idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
+          xvalue = R_INDEX_GET(x, idx, X_NA);
           if (xvalue == value) {
           } else if (narm && X_ISNAN(xvalue)) {
             /* Skip */
@@ -64,7 +71,6 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
             } else {
             count = 0;
             /* Found another value! Early stopping */
-            kk += nrow - ii - 1;
             break;
           }
         } /* for (ii ...) */
@@ -74,29 +80,29 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
   } else if (what == 1L) {  /* any */
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
-      kk = 0;
-      for (jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncols; jj++) {
+        colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
         count = 0;
-        for (ii=0; ii < nrow; ii++) {
-          if (X_ISNAN(x[kk++])) {
+        for (ii=0; ii < nrows; ii++) {
+          idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
+          if (X_ISNAN(R_INDEX_GET(x, idx, X_NA))) {
             count = 1;
             /* Found value! Early stopping */
-            kk += nrow - ii - 1;
             break;
           }
         }
         ans[jj] = count;
       }
     } else {
-      kk = 0;
-      for (jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncols; jj++) {
+        colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
         count = 0;
-        for (ii=0; ii < nrow; ii++) {
-          xvalue = x[kk++];
+        for (ii=0; ii < nrows; ii++) {
+          idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
+          xvalue = R_INDEX_GET(x, idx, X_NA);
           if (xvalue == value) {
             count = 1;
             /* Found value! Early stopping */
-            kk += nrow - ii - 1;
             break;
           } else if (narm && X_ISNAN(xvalue)) {
             /* Skipping */
@@ -115,45 +121,43 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, X_C_TYPE value, int 
   } else if (what == 2L) {  /* count */
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
-      kk = 0;
-      for (jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncols; jj++) {
+        colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
         count = 0;
-        for (ii=0; ii < nrow; ii++) {
-          if (X_ISNAN(x[kk++])) {
+        for (ii=0; ii < nrows; ii++) {
+          idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
+          if (X_ISNAN(R_INDEX_GET(x, idx, X_NA))) {
             ++count;
           }
         }
         ans[jj] = count;
       }
     } else {
-      kk = 0;
-      for (jj=0; jj < ncol; jj++) {
+      for (jj=0; jj < ncols; jj++) {
+        colBegin = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
         count = 0;
-        for (ii=0; ii < nrow; ii++) {
-          xvalue = x[kk++];
+        for (ii=0; ii < nrows; ii++) {
+          idx = R_INDEX_OP(colBegin, +, ROW_INDEX(crows,ii));
+          xvalue = R_INDEX_GET(x, idx, X_NA);
           if (xvalue == value) {
             ++count;
           } else if (!narm && X_ISNAN(xvalue)) {
             count = NA_INTEGER;
             /* Early stopping */
-            kk += nrow - ii - 1;
             break;
           }
         } /* for (ii ...) */
         ans[jj] = count;
       } /* for (jj ...) */
     } /* if (X_ISNAN(value)) */
-  } else {
-    error("INTERNAL ERROR: Unknown value of 'what' for colCounts: %d", what);
   } /* if (what) */
 }
-
-/* Undo template macros */
-#include "templates-types_undef.h"
 
 
 /***************************************************************************
  HISTORY:
+ 2015-04-18 [DJ]
+  o Supported subsetted computation.
  2014-11-14 [HB]
   o Created colCounts() templates from rowCounts() templates.
  **************************************************************************/
