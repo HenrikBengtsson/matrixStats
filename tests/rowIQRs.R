@@ -7,6 +7,7 @@ rowIQRs_R <- function(x, na.rm=FALSE) {
     quantile(x, ..., na.rm=na.rm)
   }
   Q <- apply(x, MARGIN=1L, FUN=quantileNA, probs=c(0.25, 0.75), na.rm=na.rm)
+  dim(Q) <- c(2L, nrow(x))
   Q[2L,,drop=TRUE] - Q[1L,,drop=TRUE]
 }
 

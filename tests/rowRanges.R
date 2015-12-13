@@ -14,8 +14,10 @@ rowMaxs_R <- function(x, ...) {
 
 rowRanges_R <- function(x, ...) {
   suppressWarnings({
-    t(apply(x, MARGIN=1L, FUN=range, ...))
+    ans <- t(apply(x, MARGIN=1L, FUN=range, ...))
   })
+  dim(ans) <- c(dim(x)[1], 2)
+  ans
 } # rowRanges_R()
 
 

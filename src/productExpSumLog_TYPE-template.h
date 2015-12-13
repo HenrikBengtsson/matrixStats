@@ -1,10 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  LDOUBLE productExpSumLog_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna)
+  double productExpSumLog_<Integer|Real>[idxsType](ARGUMENTS_LIST)
 
- GENERATES:
-  LDOUBLE productExpSumLog_Real(double *x, R_xlen_t nx, int narm, int hasna)
-  LDOUBLE productExpSumLog_Integer(int *x, R_xlen_t nx, int narm, int hasna)
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -24,15 +23,19 @@
 #include "templates-types.h" 
 
 
-double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
+RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   LDOUBLE y = 0.0, t;
   R_xlen_t ii;
   int isneg = 0;
   int hasZero = 0;
 
+#ifdef IDXS_TYPE
+  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
+#endif
+
   /* Calculate sum(log(abs(x))) */
-  for (ii = 0 ; ii < nx; ii++) {
-    t = x[ii];
+  for (ii = 0 ; ii < nidxs; ii++) {
+    t = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
     /* Missing values? */
     if (narm) {
       if (X_ISNAN(t)) continue;
@@ -96,12 +99,11 @@ double METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, int narm, int hasna) {
   return (double)y;
 }
 
-/* Undo template macros */
-#include "templates-types_undef.h" 
-
 
 /***************************************************************************
  HISTORY:
+ 2015-07-04 [DJ]
+  o Supported subsetted computation.
  2014-11-06 [HB]
   o CLEANUP: Moving away from R data types in low-level C functions.
  2014-06-04 [HB]

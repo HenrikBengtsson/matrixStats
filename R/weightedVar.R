@@ -30,6 +30,8 @@
 #   \item{w}{a vector of weights the same length as \code{x} giving the weights
 #            to use for each element of \code{x}. Negative weights are treated
 #            as zero weights. Default value is equal weight to all values.}
+#   \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
+#            to operate over. If @NULL, no subsetting is done.}
 #   \item{na.rm}{a logical value indicating whether @NA values in
 #            \code{x} should be stripped before the computation proceeds,
 #            or not.  If @NA, no check at all for @NAs is done.
@@ -66,7 +68,7 @@
 # @keyword "univar"
 # @keyword "robust"
 #*/############################################################################
-weightedVar <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
+weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   # Argument 'x':
   n <- length(x);
 
@@ -75,6 +77,15 @@ weightedVar <- function(x, w=NULL, na.rm=FALSE, center=NULL, ...) {
     w <- rep(1, times=n)
   } else if (length(w) != n) {
     stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+  } else if (!is.null(idxs)) {
+    # Apply subset on 'w'
+    w <- w[idxs]
+  }
+
+  # Apply subset on 'x'
+  if (!is.null(idxs)) {
+    x <- x[idxs]
+    n <- length(x)
   }
 
   # Argument 'na.rm':
@@ -159,26 +170,44 @@ weightedSd <- function(...) {
 } # weightedSd()
 
 
-rowWeightedVars <- function(x, w=NULL, na.rm=FALSE, ...) {
+rowWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+  # Apply subset on 'x'
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
+  # Apply subset on 'w'
+  if (!is.null(w) && !is.null(cols)) w <- w[cols]
+
   apply(x, MARGIN=1L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
 } # rowWeightedVars()
 
-colWeightedVars <- function(x, w=NULL, na.rm=FALSE, ...) {
+colWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+  # Apply subset on 'x'
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+
+  # Apply subset on 'w'
+  if (!is.null(w) && !is.null(rows)) w <- w[rows]
+
   apply(x, MARGIN=2L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
 } # colWeightedVars()
 
 
-rowWeightedSds <- function(x, w=NULL, na.rm=FALSE, ...) {
-  sqrt(rowWeightedVars(x=x, w=w, na.rm=na.rm, ...))
+rowWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+  sqrt(rowWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
 } # rowWeightedSds()
 
-colWeightedSds <- function(x, w=NULL, na.rm=FALSE, ...) {
-  sqrt(colWeightedVars(x=x, w=w, na.rm=na.rm, ...))
+colWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+  sqrt(colWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
 } # colWeightedSds()
 
 
 ############################################################################
 # HISTORY:
+# 2015-06-03 [DJ]
+# o Supported subsetted computation.
 # 2014-11-10
 # o Turned weightedSd() and weightedVar() into plain function.
 # 2014-03-26

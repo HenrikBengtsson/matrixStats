@@ -1,10 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  void rowMads_<Integer|Real>(...)
+  void rowMads_<Integer|Real>(ARGUMENTS_LIST)
 
- GENERATES:
-  void rowMads_Integer(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int narm, int hasna, int byrow, double *ans)
-  void rowMads_Real(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int narm, int hasna, int byrow, double *ans)
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -30,17 +29,24 @@
 #include "templates-types.h"
 
 
-void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int narm, int hasna, int byrow, double *ans) {
+RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   int isOdd;
-  R_xlen_t ii, jj, kk, qq;
+  R_xlen_t ii, jj, kk, qq, idx;
   R_xlen_t *colOffset;
   X_C_TYPE *values, value, mu;
   double *values_d, value_d, mu_d;
 
+#ifdef ROWS_TYPE
+  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
+#endif
+#ifdef COLS_TYPE
+  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
+#endif
+
   /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
-  values   = (X_C_TYPE *) R_alloc(ncol, sizeof(X_C_TYPE));
-  values_d = (double *) R_alloc(ncol, sizeof(double));
+  values   = (X_C_TYPE *) R_alloc(ncols, sizeof(X_C_TYPE));
+  values_d = (double *) R_alloc(ncols, sizeof(double));
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
@@ -48,8 +54,8 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
 
   /* When narm == FALSE, isOdd and qq are the same for all rows */
   if (narm == FALSE) {
-    isOdd = (ncol % 2 == 1);
-    qq = (R_xlen_t)(ncol/2) - 1;
+    isOdd = (ncols % 2 == 1);
+    qq = (R_xlen_t)(ncols/2) - 1;
   } else {
     isOdd = FALSE;
     qq = 0;
@@ -58,26 +64,27 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   value = 0;
 
   /* Pre-calculate the column offsets */
-  colOffset = (R_xlen_t *) R_alloc(ncol, sizeof(R_xlen_t));
+  colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
 
   // HJ begin
   if (byrow) {
-    for (jj=0; jj < ncol; jj++)
-      colOffset[jj] = (R_xlen_t)jj*nrow;
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
   } else {
-    for (jj=0; jj < ncol; jj++)
-      colOffset[jj] = (R_xlen_t)jj;
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = COL_INDEX(ccols,jj);
   }
   // HJ end
 
   hasna = TRUE;
   if (hasna == TRUE) {
-    for (ii=0; ii < nrow; ii++) {
-      R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
+    for (ii=0; ii < nrows; ii++) {
+      R_xlen_t rowIdx = byrow ? ROW_INDEX(crows,ii) : R_INDEX_OP(ROW_INDEX(crows,ii), *, ncol); //HJ
 
       kk = 0;  /* The index of the last non-NA value detected */
-      for (jj=0; jj < ncol; jj++) {
-        value = x[rowIdx+colOffset[jj]]; //HJ
+      for (jj=0; jj < ncols; jj++) {
+        idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+        value = R_INDEX_GET(x, idx, X_NA); //HJ
 
         if (X_ISNAN(value)) {
           if (narm == FALSE) {
@@ -165,7 +172,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
 
             /* Done, continue to next vector */
             continue;
-	  }
+          }
 #endif
 
           mu_d = ((double)values[qq] + (double)value)/2;
@@ -183,21 +190,21 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
           rPsort(values_d, qq+1, qq);
 
           ans[ii] = scale * (values_d[qq] + values_d[qq+1])/2;
-	}
+        }
       } /* if (kk == 0) */
 
       R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
   } else {
-    for (ii=0; ii < nrow; ii++) {
-      R_xlen_t rowIdx = byrow ? ii : ncol*ii; //HJ
+    for (ii=0; ii < nrows; ii++) {
+      R_xlen_t rowIdx = byrow ? ROW_INDEX_NONA(crows,ii) : ROW_INDEX_NONA(crows,ii)*ncol; //HJ
 
-      for (jj=0; jj < ncol; jj++)
+      for (jj=0; jj < ncols; jj++)
         values[jj] = x[rowIdx+colOffset[jj]]; //HJ
 
-      /* Permute x[0:ncol-1] so that x[qq] is in the correct
+      /* Permute x[0:ncols-1] so that x[qq] is in the correct
          place with smaller values to the left, ... */
-      X_PSORT(values, ncol, qq+1);
+      X_PSORT(values, ncols, qq+1);
       value = values[qq+1];
 
       if (isOdd == TRUE) {
@@ -214,12 +221,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, double scale, int na
   } /* if (hasna ...) */
 }
 
-/* Undo template macros */
-#include "templates-types_undef.h"
-
 
 /***************************************************************************
  HISTORY:
+ 2015-06-13 [DJ]
+  o Supported subsetted computation.
  2014-11-17 [HB]
   o Created from rowMedians_TYPE-template.h.
  **************************************************************************/

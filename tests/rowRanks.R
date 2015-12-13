@@ -55,5 +55,3 @@ stopifnot(inherits(y, "try-error"))
 
 y <- try(colRanks(x, ties.method="unknown"), silent=TRUE)
 stopifnot(inherits(y, "try-error"))
-
-

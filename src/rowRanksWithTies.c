@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowRanksWithTies(SEXP x, SEXP tiesMethod, SEXP byRow)
+ SEXP rowRanksWithTies(SEXP x, SEXP rows, SEXP cols, SEXP tiesMethod, SEXP byRow)
 
  Authors: Hector Corrada Bravo, Peter Langfelder and Henrik Bengtsson
 
@@ -11,88 +11,87 @@
 
 /* Template <col|row>Ranks_<Integer|Real>_ties<Min|Max|Average>() */
 
+#define METHOD_TEMPLATE_H "rowRanksWithTies_TYPE_TIES-template.h"
+#define RETURN_TYPE void
+#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
+
+
 /*****************************************************************
  * ties.method = "min"
  *****************************************************************/
-#define METHOD_NAME rowRanks_Real_tiesMin
+#define TIESMETHOD '0' /* min */
+#define METHOD rowRanks_tiesMin
 #define MARGIN 'r'
 #define X_TYPE 'r'
-#define TIESMETHOD '0' /* min */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
 
-#define METHOD_NAME rowRanks_Integer_tiesMin
 #define MARGIN 'r'
 #define X_TYPE 'i'
-#define TIESMETHOD '0' /* min */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
+#undef METHOD
 
-#define METHOD_NAME colRanks_Real_tiesMin
+#define METHOD colRanks_tiesMin
 #define MARGIN 'c'
 #define X_TYPE 'r'
-#define TIESMETHOD '0' /* min */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
 
-#define METHOD_NAME colRanks_Integer_tiesMin
 #define MARGIN 'c'
 #define X_TYPE 'i'
-#define TIESMETHOD '0' /* min */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
 
 
 /*****************************************************************
  * ties.method = "max"
  *****************************************************************/
-#define METHOD_NAME rowRanks_Real_tiesMax
+#define TIESMETHOD '1' /* max */
+#define METHOD rowRanks_tiesMax
 #define MARGIN 'r'
 #define X_TYPE 'r'
-#define TIESMETHOD '1' /* max */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
 
-#define METHOD_NAME rowRanks_Integer_tiesMax
 #define MARGIN 'r'
 #define X_TYPE 'i'
-#define TIESMETHOD '1' /* max */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
+#undef METHOD
 
-#define METHOD_NAME colRanks_Real_tiesMax
+#define METHOD colRanks_tiesMax
 #define MARGIN 'c'
 #define X_TYPE 'r'
-#define TIESMETHOD '1' /* max */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
 
-#define METHOD_NAME colRanks_Integer_tiesMax
 #define MARGIN 'c'
 #define X_TYPE 'i'
-#define TIESMETHOD '1' /* max */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
 
 
 /*****************************************************************
  * ties.method = "average"
  *****************************************************************/
-#define METHOD_NAME rowRanks_Real_tiesAverage
+#define TIESMETHOD 'a' /* average */
+#define METHOD rowRanks_tiesAverage
 #define MARGIN 'r'
 #define X_TYPE 'r'
-#define TIESMETHOD 'a' /* average */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
 
-#define METHOD_NAME rowRanks_Integer_tiesAverage
 #define MARGIN 'r'
 #define X_TYPE 'i'
-#define TIESMETHOD 'a' /* average */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
+#undef METHOD
 
-#define METHOD_NAME colRanks_Real_tiesAverage
+#define METHOD colRanks_tiesAverage
 #define MARGIN 'c'
 #define X_TYPE 'r'
-#define TIESMETHOD 'a' /* average */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
 
-#define METHOD_NAME colRanks_Integer_tiesAverage
 #define MARGIN 'c'
 #define X_TYPE 'i'
-#define TIESMETHOD 'a' /* average */
-#include "rowRanksWithTies_TYPE_TIES-template.h"
+#include "templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
 
 
 
@@ -101,21 +100,27 @@
  * tiesMethod: 1: maximum, 2: average, 3:minimum
  * The returned rank is a REAL matrix to accomodate average ranks
  */
-SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
+SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, SEXP byRow) {
   int tiesmethod, byrow;
   SEXP ans = NILSXP;
-  int nrow, ncol;
+  R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
-  nrow = INTEGER(dim)[0];
-  ncol = INTEGER(dim)[1];
+  nrow = asR_xlen_t(dim, 0);
+  ncol = asR_xlen_t(dim, 1);
 
   /* Argument 'tiesMethod': */
   tiesmethod = asInteger(tiesMethod);
   if (tiesmethod < 1 || tiesmethod > 3) {
     error("Argument 'tiesMethod' is out of range [1,3]: %d", tiesmethod);
   }
+
+  /* Argument 'rows' and 'cols': */
+  R_xlen_t nrows, ncols;
+  int rowsType, colsType;
+  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
+  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
@@ -125,36 +130,36 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
     if (byrow) {
       switch (tiesmethod) {
         case 1:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          rowRanks_Real_tiesMax(REAL(x), nrow, ncol, 1, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          rowRanks_tiesMax_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
-          PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-          rowRanks_Real_tiesAverage(REAL(x), nrow, ncol, 1, REAL(ans));
+          PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+          rowRanks_tiesAverage_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          rowRanks_Real_tiesMin(REAL(x), nrow, ncol, 1, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          rowRanks_tiesMin_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
     } else {
       switch (tiesmethod) {
         case 1:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          colRanks_Real_tiesMax(REAL(x), nrow, ncol, 0, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          colRanks_tiesMax_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
-          PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-          colRanks_Real_tiesAverage(REAL(x), nrow, ncol, 0, REAL(ans));
+          PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+          colRanks_tiesAverage_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          colRanks_Real_tiesMin(REAL(x), nrow, ncol, 0, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          colRanks_tiesMin_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
@@ -163,36 +168,36 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
     if (byrow) {
       switch (tiesmethod) {
         case 1:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          rowRanks_Integer_tiesMax(INTEGER(x), nrow, ncol, 1, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          rowRanks_tiesMax_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
-          PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-          rowRanks_Integer_tiesAverage(INTEGER(x), nrow, ncol, 1, REAL(ans));
+          PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+          rowRanks_tiesAverage_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          rowRanks_Integer_tiesMin(INTEGER(x), nrow, ncol, 1, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          rowRanks_tiesMin_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
     } else {
       switch (tiesmethod) {
         case 1:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          colRanks_Integer_tiesMax(INTEGER(x), nrow, ncol, 0, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          colRanks_tiesMax_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
-          PROTECT(ans = allocMatrix(REALSXP, nrow, ncol));
-          colRanks_Integer_tiesAverage(INTEGER(x), nrow, ncol, 0, REAL(ans));
+          PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
+          colRanks_tiesAverage_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
-          PROTECT(ans = allocMatrix(INTSXP, nrow, ncol));
-          colRanks_Integer_tiesMin(INTEGER(x), nrow, ncol, 0, INTEGER(ans));
+          PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
+          colRanks_tiesMin_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
@@ -205,6 +210,8 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP tiesMethod, SEXP byRow) {
 
 /***************************************************************************
  HISTORY:
+ 2015-06-12 [DJ]
+  o Supported subsetted computation.
  2013-01-13 [HB]
- o Added argument 'tiesMethod' to rowRanks().
+  o Added argument 'tiesMethod' to rowRanks().
  **************************************************************************/

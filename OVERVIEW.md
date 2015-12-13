@@ -24,6 +24,18 @@ than using
 > mu <- apply(X, MARGIN=2, FUN=median)
 ```
 
+Moreover, if performing calculations on a subset of rows and/or
+columns, using
+```r
+> mu <- colMedians(X, rows=33:158, cols=1001:3000)
+```
+is much faster and more memory efficient than
+```r
+> mu <- apply(X[33:158,1001:3000], MARGIN=2, FUN=median)
+```
+
+
+
 ## Benchmarks
 For formal benchmarking of matrixStats functions relative to
 alternatives, see the [Benchmark reports](https://github.com/HenrikBengtsson/matrixStats/wiki/Benchmark-reports).

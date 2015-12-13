@@ -18,13 +18,16 @@
 }
 
 \usage{
- rowRanks(x, ties.method=c("max", "average", "min"), dim.=dim(x), ...)
- colRanks(x, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE,
+ rowRanks(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x),
   ...)
+ colRanks(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x),
+  preserveShape=FALSE, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK \code{\link[base]{matrix}}.}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{ties.method}{A \code{\link[base]{character}} string specifying how ties are treated.
     For details, see below.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the

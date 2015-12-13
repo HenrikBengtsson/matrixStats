@@ -4,7 +4,9 @@ rowAlls_R <- function(x, value=TRUE, na.rm=FALSE, ...) {
   if (is.na(value)) {
     apply(is.na(x), MARGIN=1L, FUN=all, na.rm=na.rm)
   } else {
-    apply((x == value), MARGIN=1L, FUN=all, na.rm=na.rm)
+    y <- x == value
+    dim(y) <- dim(x) # for 0×N and M×0 cases
+    apply(y, MARGIN=1L, FUN=all, na.rm=na.rm)
   }
 }
 
@@ -12,7 +14,9 @@ rowAnys_R <- function(x, value=TRUE, na.rm=FALSE, ...) {
   if (is.na(value)) {
     apply(is.na(x), MARGIN=1L, FUN=any, na.rm=na.rm)
   } else {
-    apply((x == value), MARGIN=1L, FUN=any, na.rm=na.rm)
+    y <- x == value
+    dim(y) <- dim(x) # for 0×N and M×0 cases
+    apply(y, MARGIN=1L, FUN=any, na.rm=na.rm)
   }
 }
 

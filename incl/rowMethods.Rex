@@ -28,12 +28,12 @@ print(colIQRs(x))
 # Row ranges
 print(rowRanges(x))
 print(cbind(rowMins(x), rowMaxs(x)))
-print(cbind(rowOrderStats(x, 1), rowOrderStats(x, ncol(x))))
+print(cbind(rowOrderStats(x, which=1), rowOrderStats(x, which=ncol(x))))
 
 # Column ranges
 print(colRanges(x))
 print(cbind(colMins(x), colMaxs(x)))
-print(cbind(colOrderStats(x, 1), colOrderStats(x, nrow(x))))
+print(cbind(colOrderStats(x, which=1), colOrderStats(x, which=nrow(x))))
 
 
 x <- matrix(rnorm(2400), nrow=50, ncol=40)

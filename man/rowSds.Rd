@@ -23,14 +23,18 @@
 }
 
 \usage{
- rowSds(x, ...)
- colSds(x, ...)
- rowMads(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...)
- colMads(x, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...)
+ rowSds(x, rows=NULL, cols=NULL, ...)
+ colSds(x, rows=NULL, cols=NULL, ...)
+ rowMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
+  centers=NULL, ...)
+ colMads(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x),
+  centers=NULL, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows (and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{center}{A optional \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K) with centers.
     By default, they are calculated using \code{\link{rowMedians}}().}
  \item{constant}{A scale factor.  See \code{\link[stats]{mad}} for details.}

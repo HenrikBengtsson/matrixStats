@@ -22,8 +22,8 @@ sumOver(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...)
 
 \arguments{
   \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N.}
-  \item{idxs}{A \code{\link[base]{numeric}} index \code{\link[base]{vector}} in [1,N] of elements to sum over.
-     If \code{\link[base]{NULL}}, all elements are considered.}
+  \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements
+     to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
   \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are skipped, otherwise not.}
   \item{mode}{A \code{\link[base]{character}} string specifying the data type of the
      return value.  Default is to use the same mode as argument

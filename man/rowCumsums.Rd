@@ -25,18 +25,20 @@
 }
 
 \usage{
- rowCumsums(x, dim.=dim(x), ...)
- colCumsums(x, dim.=dim(x), ...)
- rowCumprods(x, dim.=dim(x), ...)
- colCumprods(x, dim.=dim(x), ...)
- rowCummins(x, dim.=dim(x), ...)
- colCummins(x, dim.=dim(x), ...)
- rowCummaxs(x, dim.=dim(x), ...)
- colCummaxs(x, dim.=dim(x), ...)
+ rowCumsums(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ colCumsums(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ rowCumprods(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ colCumprods(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ rowCummins(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ colCummins(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ rowCummaxs(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
+ colCummaxs(x, rows=NULL, cols=NULL, dim.=dim(x), ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+ \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of length two specifying the
              dimension of \code{x}, also when not a \code{\link[base]{matrix}}.}
  \item{...}{Not used.}

@@ -15,6 +15,8 @@
 #
 # \arguments{
 #  \item{x}{A @numeric NxK @matrix.}
+#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
+#     to operate over. If @NULL, no subsetting is done.}
 #  \item{which}{An @integer index in [1,K] ([1,N]) indicating which
 #               order statistic to be returned.}
 #  \item{dim.}{An @integer @vector of length two specifying the
@@ -54,22 +56,36 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-rowOrderStats <- function(x, which, dim.=dim(x), ...) {
+rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
+
+  # Check missing values
+  if (anyMissing(x)) {
+    stop("Argument 'x' must not contain missing value");
+  }
+
   which <- as.integer(which)
-  .Call("rowOrderStats", x, dim., which, PACKAGE="matrixStats");
+  .Call("rowOrderStats", x, dim., rows, cols, which, PACKAGE="matrixStats");
 }
 
 
-colOrderStats <- function(x, which, dim.=dim(x), ...) {
+colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
+
+  # Check missing values
+  if (anyMissing(x)) {
+    stop("Argument 'x' must not contain missing value");
+  }
+
   which <- as.integer(which)
-  .Call("colOrderStats", x, dim., which, PACKAGE="matrixStats");
+  .Call("colOrderStats", x, dim., rows, cols, which, PACKAGE="matrixStats");
 }
 
 
 ############################################################################
 # HISTORY:
+# 2015-06-03 [DJ]
+# o Supported subsetted computation.
 # 2014-12-19 [HB]
 # o CLEANUP: Made col- and rowOrderStats() plain R functions.
 # 2014-11-16

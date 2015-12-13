@@ -19,13 +19,15 @@
 }
 
 \usage{
- anyMissing(x, ...)
- colAnyMissings(x, ...)
- rowAnyMissings(x, ...)
+ anyMissing(x, idxs=NULL, ...)
+ colAnyMissings(x, rows=NULL, cols=NULL, ...)
+ rowAnyMissings(x, rows=NULL, cols=NULL, ...)
 }
 
 \arguments{
  \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or \code{\link[base]{NULL}}.}
+ \item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of elements (or rows and/or columns)
+    to operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
  \item{...}{Not used.}
 }
 

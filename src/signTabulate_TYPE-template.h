@@ -1,10 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  void signTabulate_<Integer|Real>(X_C_TYPE *x, R_xlen_t nx, double *ans)
+  void signTabulate_<Integer|Real>[idxsType](ARGUMENTS_LIST)
 
- GENERATES:
-  void signTabulate_Real(double *x, R_xlen_t nx, double *ans)
-  void signTabulate_Integer(int *x, R_xlen_t nx, double *ans)
+ ARGUMENTS_LIST:
+  X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -23,7 +22,7 @@
 #include "templates-types.h" 
 
 
-void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *ans) {
+RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   X_C_TYPE xi;
   R_xlen_t ii;
   R_xlen_t nNeg = 0, nZero = 0, nPos = 0, nNA=0;
@@ -31,8 +30,12 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *ans) {
   R_xlen_t nPosInf=0, nNegInf=0;
 #endif
 
-  for (ii = 0; ii < nx; ii++) { 
-    xi = x[ii];
+#ifdef IDXS_TYPE
+  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
+#endif
+
+  for (ii = 0; ii < nidxs; ii++) { 
+    xi = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
     if (X_ISNAN(xi)) {
       nNA++;
     } else if (xi > 0) {
@@ -60,12 +63,11 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nx, double *ans) {
 #endif
 }
 
-/* Undo template macros */
-#include "templates-types_undef.h" 
-
 
 /***************************************************************************
  HISTORY:
+ 2015-07-04 [DJ]
+  o Supported subsetted computation.
  2014-11-06 [HB]
   o CLEANUP: Moving away from R data types in low-level C functions.
  2014-06-04 [HB]

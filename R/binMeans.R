@@ -12,6 +12,8 @@
 # \arguments{
 #   \item{y}{A @numeric @vector of K values to calculate means on.}
 #   \item{x}{A @numeric @vector of K positions for to be binned.}
+#   \item{idxs}{A @vector indicating subset of elements
+#      to operate over. If @NULL, no subsetting is done.}
 #   \item{bx}{A @numeric @vector of B+1 ordered positions specifying
 #      the B > 0 bins \code{[bx[1],bx[2])}, \code{[bx[2],bx[3])}, ...,
 #      \code{[bx[B],bx[B+1])}.}
@@ -63,7 +65,7 @@
 #
 # @keyword "univar"
 #*/############################################################################
-binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
+binMeans <- function(y, x, idxs=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -103,6 +105,12 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
   # Argument 'count':
   if (!is.logical(count)) {
     stop("Argument 'count' is not logical: ", mode(count));
+  }
+
+  # Apply subset
+  if (!is.null(idxs)) {
+    x <- x[idxs]
+    y <- y[idxs]
   }
 
   # Argument 'right':
@@ -152,6 +160,8 @@ binMeans <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-05-28 [DJ]
+# o Supported subsetted computation.
 # 2014-12-29 [HB]
 # o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
 #   of o <- order(); any(diff(o) != 1L).

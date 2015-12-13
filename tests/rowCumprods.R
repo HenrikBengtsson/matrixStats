@@ -2,14 +2,10 @@ library("matrixStats")
 
 rowCumprods_R <- function(x) {
   suppressWarnings({
-    t(apply(x, MARGIN=1L, FUN=cumprod))
+    y <- t(apply(x, MARGIN=1L, FUN=cumprod))
   })
-}
-
-colCumprods_R <- function(x) {
-  suppressWarnings({
-    apply(x, MARGIN=2L, FUN=cumprod)
-  })
+  dim(y) <- dim(x)
+  y
 }
 
 
