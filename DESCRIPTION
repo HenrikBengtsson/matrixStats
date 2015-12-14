@@ -12,7 +12,7 @@ Suggests:
   R.devices,
   R.rsp
 VignetteBuilder: R.rsp
-Date: 2015-12-13
+Date: 2015-12-14
 Title: Functions that Apply to Rows and Columns of Matrices (and to Vectors)
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
