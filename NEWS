@@ -1,6 +1,10 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.1-9000 [2015-12-15]
+o ...
+
+
 Version: 0.50.1 [2015-12-14]
 o BUG FIX: The Undefined Behavior Sanitizer (UBsan) reported on
   a memcall(src, dest, 0) call where dest == null.  Thanks to
