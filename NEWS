@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.1 [2015-12-14]
+o BUG FIX: The Undefined Behavior Sanitizer (UBsan) reported on
+  a memcall(src, dest, 0) call where dest == null.  Thanks to
+  Brian Ripley and the CRAN check tools for catching this. We
+  could reproduce this with gcc 5.1.1 but not with gcc 4.9.2.
+
+
 Version: 0.50.0 [2015-12-13]
 o MAJOR FEATURE UPDATE: Subsetting arguments 'idxs', 'rows' and
   'cols' were added to all functions such that the calculations 

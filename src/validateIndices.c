@@ -230,13 +230,17 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
 
   if (subsettedType == SUBSETTED_INTEGER) {
     ans = PROTECT(allocVector(INTSXP, ansNidxs));
-    memcpy(INTEGER(ans), cidxs, ansNidxs*sizeof(int));
+    if (cidxs && ansNidxs > 0) {
+      memcpy(INTEGER(ans), cidxs, ansNidxs*sizeof(int));
+    }
     UNPROTECT(1);
     return ans;
   }
   // else: subsettedType == SUBSETTED_REAL
   ans = PROTECT(allocVector(REALSXP, ansNidxs));
-  memcpy(REAL(ans), cidxs, ansNidxs*sizeof(double));
+  if (cidxs && ansNidxs > 0) {
+    memcpy(REAL(ans), cidxs, ansNidxs*sizeof(double));
+  }
   UNPROTECT(1);
   return ans;
 }
