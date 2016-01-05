@@ -12,3 +12,4 @@
 .RData
 *.Rproj*
 *.swp
+.covr.rds
