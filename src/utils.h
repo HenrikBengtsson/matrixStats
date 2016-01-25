@@ -1,4 +1,4 @@
-#include <Rinternals.h>
+#include <R.h>
 #include "types.h"
 
 #define R_TYPE_LGL  1 /* 0b0001 */
