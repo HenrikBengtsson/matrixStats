@@ -61,7 +61,7 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     if (!is.null(cols)) center <- center[cols]
 
     ## SLOW:
-    # for (cc in seq(length=ncol(x))) {
+    # for (cc in seq_len(ncol(x))) {
     #   x[,cc] <- x[,cc] - center[cc]
     # }
     ## FAST:

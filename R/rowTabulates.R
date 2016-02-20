@@ -80,7 +80,7 @@ rowTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   counts <- matrix(0L, nrow=nrow(x), ncol=nbrOfValues);
   colnames(counts) <- names;
 
-  for (kk in seq(length=nbrOfValues)) {
+  for (kk in seq_len(nbrOfValues)) {
     counts[,kk] <- rowCounts(x, value=values[kk], ...);
   }
 
@@ -135,14 +135,14 @@ colTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
 ##    nbrOfValues <- length(values);
 ##    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x));
 ##    rownames(counts) <- names;
-##    for (kk in seq(length=nbrOfValues)) {
+##    for (kk in seq_len(nbrOfValues)) {
 ##      counts[kk,] <- colCounts(x, value=values[kk], ...);
 ##    }
   } else {
     nbrOfValues <- length(values);
     counts <- matrix(0L, nrow=ncol(x), ncol=nbrOfValues);
     colnames(counts) <- names;
-    for (kk in seq(length=nbrOfValues)) {
+    for (kk in seq_len(nbrOfValues)) {
       counts[,kk] <- colCounts(x, value=values[kk], ...);
     }
   }

@@ -26,7 +26,7 @@ indexByRow_R2 <- function(dim, idxs=NULL, ...) {
 dim <- c(5L, 4L)
 X <- matrix(NA_integer_, nrow=dim[1L], ncol=dim[2L])
 Y <- t(X)
-idxsByCols <- seq(along=X)
+idxsByCols <- seq_along(X)
 
 # Assign by columns
 X[idxsByCols] <- idxsByCols
