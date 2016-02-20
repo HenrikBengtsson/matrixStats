@@ -1,8 +1,10 @@
 Package: matrixStats
 ====================
 
-Version: 0.50.1-9000 [2015-12-15]
-o ... 
+Version: 0.50.1-9000 [2016-01-25]
+o Package now installs on R (>= 2.12.0) as claimed.  Thanks to
+  Mikko Korpela at Aalto University School of Science, Finland,
+  for troubleshooting and providing a fix.
 
 
 Version: 0.50.1 [2015-12-14]
