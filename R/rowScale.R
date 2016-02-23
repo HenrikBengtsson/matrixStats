@@ -34,6 +34,13 @@
 # \seealso{
 #   See \code{rowMeans()} and \code{rowSds()}..
 # }
+# \note{
+#  The \code{\link[base]{scale}} function will have different behavior 
+# if \code{center = FALSE}
+# and \code{scale = TRUE} compared to \code{colScale} as \code{colScale} always
+# scales by the standard deviation, and \code{\link[base]{scale}} does not depending
+# on the options.
+# }
 #
 #*/###########################################################################
 rowScale = function(x, 
