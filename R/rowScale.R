@@ -23,6 +23,8 @@
 #  \item{add_attr}{Should the center/scale attributes be added to the matrix}
 #  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
 #     to operate over. If @NULL, no subsetting is done.}
+#  \item{na.rm} Remove NAs before getting the mean/sd.
+#  \item{...} Arguments passed to \code{\link{rowSds}} or \code{\link{colSds}}
 # }
 #
 # \value{
@@ -48,7 +50,8 @@ rowScale = function(x,
                     scale = TRUE,
                     add_attr = TRUE, 
                     rows = NULL, 
-                    cols = NULL) {
+                    cols = NULL,
+                    na.rm = TRUE, ...) {
   
   if (!is.null(rows) && !is.null(cols)) {
     x <- x[rows, cols, drop = FALSE]
@@ -61,12 +64,12 @@ rowScale = function(x,
   ################
   # Get the row means
   ################  
-  cm = rowMeans(x, na.rm = TRUE)
+  cm = rowMeans(x, na.rm = na.rm)
   ################
   # Get the row sd
   ################      
   if (scale) {
-    csd = rowSds(x, center = cm)
+    csd = rowSds(x, center = cm, na.rm = na.rm, ...)
   } else {
     # just divide by 1 if not
     csd = rep(1, length = length(cm))
@@ -92,7 +95,8 @@ colScale = function(x,
                     scale = TRUE,
                     add_attr = TRUE, 
                     rows = NULL, 
-                    cols = NULL) {
+                    cols = NULL,
+                    na.rm = TRUE, ...) {
   
   if (!is.null(rows) && !is.null(cols)) {
     x <- x[rows, cols, drop = FALSE]
@@ -105,12 +109,12 @@ colScale = function(x,
   ################
   # Get the column means
   ################  
-  cm = colMeans(x, na.rm = TRUE)
+  cm = colMeans(x, na.rm = na.rm)
   ################
   # Get the column sd
   ################      
   if (scale) {
-    csd = colSds(x, center = cm)
+    csd = colSds(x, center = cm, na.rm = na.rm, ...)
   } else {
     # just divide by 1 if not
     csd = rep(1, length = length(cm))
