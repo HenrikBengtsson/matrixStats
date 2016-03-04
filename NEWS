@@ -399,7 +399,7 @@ o BUG FIX: The native code of binMeans(x, bx) would try to access
 Version: 0.9.1 [2014-03-31]
 o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
   be an array of at least two dimensions" on matrices where all rows
-  contained at least on zero.  Thanks to Roel Verbelen at KU Leuven
+  contained at least one zero.  Thanks to Roel Verbelen at KU Leuven
   for the report.
 
 
