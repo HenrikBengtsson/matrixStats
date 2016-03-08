@@ -17,7 +17,7 @@ environment:
 init:
   ps: |
         $ErrorActionPreference = "Stop"
-        Invoke-WebRequest http://raw.github.com/HenrikBengtsson/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
+        Invoke-WebRequest http://raw.github.com/hb-slash/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
 install:
   ps: Bootstrap
@@ -41,14 +41,17 @@ artifacts:
   - path: '*.Rcheck\**\*.out'
     name: Logs
 
-  - path: all-Rout.zip
-    name: AllRout
+  - path: '*.Rcheck\**\*.fail'
+    name: Logs
 
   - path: '\*_*.tar.gz'
     name: Bits
 
   - path: '\*_*.zip'
     name: Bits
+
+  - path: all-Rout.zip
+    name: AllRout
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
