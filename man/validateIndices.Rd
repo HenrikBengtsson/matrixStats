@@ -38,3 +38,5 @@ idxs <- validateIndices(c(4, 4, 8, 2, 3), 8)     # [4, 4, 8, 2, 3]
 
 }
 
+
+\keyword{internal}

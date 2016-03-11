@@ -34,7 +34,7 @@
 
 \section{How to cite this package}{
   Henrik Bengtsson (2015). matrixStats: Functions that Apply to Rows and Columns of Matrices (and to
-Vectors). R package version 0.50.1. https://github.com/HenrikBengtsson/matrixStats
+Vectors). R package version 0.50.1. https://CRAN.R-project.org/package=matrixStats
 }
 
 \author{Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola Hossjer, Harris Jaffee, Dongcan Jiang, Peter Langfelder}

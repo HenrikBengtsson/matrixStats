@@ -22,6 +22,8 @@
 # }
 #
 # @examples "../incl/validateIndices.Rex"
+#
+# @keyword internal
 #*/############################################################################
 validateIndices <- function(idxs=NULL, maxIdx, allowOutOfBound=TRUE) {
   ans <- .Call('validate', idxs, maxIdx, allowOutOfBound, PACKAGE='matrixStats')
