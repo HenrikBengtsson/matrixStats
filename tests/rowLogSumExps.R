@@ -153,3 +153,16 @@ y <- colLogSumExps(lX, na.rm=TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == +Inf))
+
+## multiple -Inf values
+lX <- matrix(c(-Inf, -Inf), nrow=2L, ncol=3L)
+y <- rowLogSumExps(lX)
+print(y)
+stopifnot(length(y) == nrow(lX))
+stopifnot(all(y == -Inf))
+
+lX <- matrix(c(-Inf, 5, -Inf), nrow=2L, ncol=3L, byrow=1)
+y <- rowLogSumExps(lX)
+print(y)
+stopifnot(length(y) == nrow(lX))
+stopifnot(all(y == 5))
