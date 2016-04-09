@@ -51,9 +51,7 @@ before_install:
     fi
 
 install:
- - $RENV install_deps
-
-
+ - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
 
 script:
   - $RENV run_build
