@@ -1,7 +1,11 @@
 Package: matrixStats
 ====================
 
-Version: 0.50.1-9000 [2016-01-25]
+Version: 0.50.1-9000 [2016-04-08]
+o BUG FIX: logSumExp(c(-Inf, -Inf, ...)) would return NaN rather
+  than -Inf (Issue #48).  Thanks to Jason Xu (University of
+  Washington) for reporting and Brennan Vincent for troubleshooting
+  and contributing a fix.
 o Package now installs on R (>= 2.12.0) as claimed.  Thanks to
   Mikko Korpela at Aalto University School of Science, Finland,
   for troubleshooting and providing a fix.

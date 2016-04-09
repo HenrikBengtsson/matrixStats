@@ -131,6 +131,9 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   } else if (xMax == R_PosInf) {
     /* Found +Inf? */
     return(R_PosInf);
+  } else if (xMax == R_NegInf) {
+    /* all values are -Inf */
+    return(R_NegInf);
   }
 
 
