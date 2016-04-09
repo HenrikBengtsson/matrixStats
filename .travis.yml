@@ -27,18 +27,14 @@ env:
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
     - RVERSION=3.1.3
-    - RVERSION=3.2.2
-#    - RVERSION=3.2.3
+    - RVERSION=3.2.4
     - RVERSION=devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=BASE
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET _R_SUBSET_TEST_=ROW_PREFIX
-#    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=PARALLEL
+    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE
 
 
 before_install:
   - echo RENV=$RENV
-  - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/r-builder/master/pkg-build.sh;
+  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
   - chmod 755 $RENV
   - $RENV bootstrap
   - if [ "BOOTSTRAP_LATEX" == "true" ]; then
@@ -53,23 +49,11 @@ before_install:
       sudo apt-get install valgrind;
       valgrind --version;
     fi
-  - if [ "$_R_TEST_" == "BASE" ]; then
-      find tests/* -prune -type f -name "*_*.R" | xargs rm;
-    fi
-  - if [ "$_R_TEST_" == "SUBSET" ]; then
-      find tests/* -prune -type f ! -name "*_subset.R" | xargs rm;
-      if [ "$_R_SUBSET_TEST_" == "ROW_PREFIX" ]; then
-        find tests/* -prune -type f ! -name "row*_subset.R" | xargs rm;
-      else
-        find tests/* -prune -type f -name "row*_subset.R" | xargs rm;
-      fi;
-    fi
-  - if [ "$_R_TEST_" == "PARALLEL" ]; then
-      find tests/* -prune -type f ! -name "*_parallel.R" | xargs rm;
-    fi
 
 install:
- - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
+ - $RENV install_deps
+
+
 
 script:
   - $RENV run_build
