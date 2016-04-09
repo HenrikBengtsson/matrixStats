@@ -1,6 +1,13 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.1-1 [2016-04-08]
+o BUG FIX: logSumExp(c(-Inf, -Inf, ...)) would return NaN rather
+  than -Inf (Issue #48).  Thanks to Jason Xu (University of
+  Washington) for reporting and Brennan Vincent for troubleshooting
+  and contributing a fix.
+
+
 Version: 0.50.1 [2015-12-14]
 o BUG FIX: The Undefined Behavior Sanitizer (UBsan) reported on
   a memcall(src, dest, 0) call where dest == null.  Thanks to
