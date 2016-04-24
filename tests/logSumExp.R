@@ -130,3 +130,18 @@ y <- logSumExp(lx, na.rm=TRUE)
 print(y)
 stopifnot(identical(y, 1))
 stopifnot(all.equal(y, y0))
+
+## Multiple -Inf values, cf. issue #84
+lx <- c(-Inf, -Inf)
+y0 <- logSumExp_R(lx)
+y <- logSumExp(lx)
+print(y)
+stopifnot(identical(y, -Inf))
+stopifnot(all.equal(y, y0))
+
+lx <- c(-Inf, 5, -Inf)
+y0 <- logSumExp_R(lx)
+y <- logSumExp(lx)
+print(y)
+stopifnot(identical(y, 5))
+stopifnot(all.equal(y, y0))

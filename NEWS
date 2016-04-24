@@ -1,6 +1,16 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.2 [2016-04-24]
+o BUG FIX: logSumExp(c(-Inf, -Inf, ...)) would return NaN rather
+  than -Inf (Issue #48).  Thanks to Jason Xu (University of
+  Washington) for reporting and Brennan Vincent for troubleshooting
+  and contributing a fix.
+o Package now installs on R (>= 2.12.0) as claimed.  Thanks to
+  Mikko Korpela at Aalto University School of Science, Finland,
+  for troubleshooting and providing a fix.
+
+
 Version: 0.50.1 [2015-12-14]
 o BUG FIX: The Undefined Behavior Sanitizer (UBsan) reported on
   a memcall(src, dest, 0) call where dest == null.  Thanks to
@@ -393,7 +403,7 @@ o BUG FIX: The native code of binMeans(x, bx) would try to access
 Version: 0.9.1 [2014-03-31]
 o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
   be an array of at least two dimensions" on matrices where all rows
-  contained at least on zero.  Thanks to Roel Verbelen at KU Leuven
+  contained at least one zero.  Thanks to Roel Verbelen at KU Leuven
   for the report.
 
 

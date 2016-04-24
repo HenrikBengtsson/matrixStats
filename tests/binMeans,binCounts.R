@@ -16,7 +16,7 @@ binMeans0 <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE) {
   }
 
   # For each bin...
-  for (kk in seq(length=B)) {
+  for (kk in seq_len(B)) {
     if (right) {
       idxs <- which(bx[kk] <  x & x <= bx[kk+1L])
     } else {
