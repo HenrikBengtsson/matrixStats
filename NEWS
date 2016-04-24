@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.50.1-9000 [2016-04-08]
+Version: 0.50.2 [2016-04-24]
 o BUG FIX: logSumExp(c(-Inf, -Inf, ...)) would return NaN rather
   than -Inf (Issue #48).  Thanks to Jason Xu (University of
   Washington) for reporting and Brennan Vincent for troubleshooting
