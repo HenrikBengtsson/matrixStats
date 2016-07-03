@@ -60,7 +60,7 @@ setMethod("rowMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL,
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
-  .Call("rowMedians", x, dim., rows, cols, na.rm, hasNAs, TRUE);
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, hasNAs, TRUE);
 })
 
 
@@ -72,7 +72,7 @@ setMethod("colMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL,
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
-  .Call("rowMedians", x, dim., rows, cols, na.rm, hasNAs, FALSE);
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, hasNAs, FALSE);
 })
 
 

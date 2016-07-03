@@ -73,7 +73,7 @@ meanOver <- function(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Averaging
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call("meanOver", x, idxs, na.rm, refine);
+  .Call(C_meanOver, x, idxs, na.rm, refine);
 } # meanOver()
 
 

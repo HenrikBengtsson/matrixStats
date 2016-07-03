@@ -1,4 +1,4 @@
-useDynLib("matrixStats")
+useDynLib("matrixStats", .registration=TRUE, .fixes="C_")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS

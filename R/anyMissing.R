@@ -51,13 +51,13 @@ anyMissing <- function(x, idxs=NULL, ...) {
   ## All list or a data.frame?
   if (is.list(x)) {
     for (kk in seq_along(x)) {
-      if (.Call("anyMissing", x[[kk]], idxs))
+      if (.Call(C_anyMissing, x[[kk]], idxs))
         return(TRUE)
     }
     return(FALSE)
   } else {
     ## All other data types
-    .Call("anyMissing", x, idxs)
+    .Call(C_anyMissing, x, idxs)
   }
 }
 
