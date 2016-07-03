@@ -85,7 +85,7 @@ void fillWithValue(SEXP ans, SEXP value) {
 } /* fillWithValue() */
 
 
-SEXP allocVector2(SEXP length, SEXP value, SEXP set) {
+SEXP allocVector2(SEXP length, SEXP value) {
   SEXP ans;
   SEXPTYPE type;
   R_xlen_t n = 0;
@@ -114,7 +114,7 @@ SEXP allocVector2(SEXP length, SEXP value, SEXP set) {
 } /* allocVector2() */
 
 
-SEXP allocMatrix2(SEXP nrow, SEXP ncol, SEXP value, SEXP set) {
+SEXP allocMatrix2(SEXP nrow, SEXP ncol, SEXP value) {
   SEXP ans;
   SEXPTYPE type;
   int nc, nr;
@@ -145,7 +145,7 @@ SEXP allocMatrix2(SEXP nrow, SEXP ncol, SEXP value, SEXP set) {
 } /* allocMatrix2() */
 
 
-SEXP allocArray2(SEXP dim, SEXP value, SEXP set) {
+SEXP allocArray2(SEXP dim, SEXP value) {
   SEXP ans;
   SEXPTYPE type;
   int i, d;
