@@ -1,5 +1,5 @@
 product <- function(x, idxs=NULL, na.rm=FALSE, ...) {
-  .Call("productExpSumLog", x, idxs, as.logical(na.rm), TRUE, PACKAGE="matrixStats");
+  .Call("productExpSumLog", x, idxs, as.logical(na.rm), TRUE);
 } # product()
 
 

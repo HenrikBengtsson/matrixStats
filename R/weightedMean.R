@@ -72,7 +72,7 @@ weightedMean <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
     w <- as.numeric(w)
   }
 
-  .Call("weightedMean", x, w, idxs, na.rm, refine, PACKAGE="matrixStats")
+  .Call("weightedMean", x, w, idxs, na.rm, refine)
 } # weightedMean()
 
 ###############################################################################

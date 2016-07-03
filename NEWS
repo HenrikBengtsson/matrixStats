@@ -1,6 +1,11 @@
 Package: matrixStats
 ====================
 
+Version: 0.50.2-9000 [2016-07-03]
+o SPEEDUP: Now native API is formally registered allowing for
+  faster lookup of routines from R.
+
+
 Version: 0.50.2 [2016-04-24]
 o BUG FIX: logSumExp(c(-Inf, -Inf, ...)) would return NaN rather
   than -Inf (Issue #48).  Thanks to Jason Xu (University of
