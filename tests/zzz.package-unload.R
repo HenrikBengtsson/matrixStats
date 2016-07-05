@@ -1,7 +1,7 @@
 ## These tests need to be last of all tests, otherwise
 ## covr::package_coverage() gives an error.
 cat("1. Loading package\n")
-requireNamespace("matrixStats")
+loadNamespace("matrixStats")
 stopifnot("matrixStats" %in% loadedNamespaces())
 
 cat("2. Unloading package\n")

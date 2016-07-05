@@ -50,7 +50,7 @@
 anyMissing <- function(x, idxs=NULL, ...) {
   ## All list or a data.frame?
   if (is.list(x)) {
-    for (kk in seq(along=x)) {
+    for (kk in seq_along(x)) {
       if (.Call("anyMissing", x[[kk]], idxs, PACKAGE="matrixStats"))
         return(TRUE)
     }
