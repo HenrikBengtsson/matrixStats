@@ -30,6 +30,5 @@ License: Artistic-2.0
 LazyLoad: TRUE
 NeedsCompilation: yes
 ByteCompile: TRUE
-biocViews: Infrastructure, Statistics
 URL: https://github.com/HenrikBengtsson/matrixStats
 BugReports: https://github.com/HenrikBengtsson/matrixStats/issues
