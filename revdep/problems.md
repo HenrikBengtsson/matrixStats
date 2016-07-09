@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |C                            |
 |tz       |NA                           |
-|date     |2016-07-08                   |
+|date     |2016-07-09                   |
 
 ## Packages
 
@@ -24,7 +24,7 @@
 |matrixStats |   |0.50.2-9000 |2016-07-09 |local (HenrikBengtsson/matrixStats@NA) |
 
 # Check results
-19 packages with problems
+20 packages with problems
 
 ## BatchQC (1.0.17)
 Maintainer: Solaiappan Manimaran <manimaran_1975@hotmail.com>  
@@ -304,6 +304,77 @@ Consider adding
 to your NAMESPACE file.
 ```
 
+## QDNAseq (1.8.0)
+Maintainer: Daoud Sie <d.sie@vumc.nl>  
+Bug reports: https://github.com/ccagc/QDNAseq/issues
+
+2 errors | 1 warning  | 1 note 
+
+```
+checking examples ... ERROR
+Running examples in 'QDNAseq-Ex.R' failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: callBins
+> ### Title: Call aberrations from segmented copy number data
+> ### Aliases: callBins callBins,QDNAseqCopyNumbers-method
+> ### Keywords: manip
+> 
+... 9 lines ...
+33,347	final bins
+> readCountsFiltered <- estimateCorrection(readCountsFiltered)
+Calculating correction for GC content and mappability
+    Calculating fit for sample LGG150 (1 of 1) ...
+Done.
+> copyNumbers <- correctBins(readCountsFiltered)
+> copyNumbersNormalized <- normalizeBins(copyNumbers)
+Applying median normalization ...Error in normalizeBins(copyNumbers) : 
+  could not find function "colMedians"
+Calls: normalizeBins -> normalizeBins
+Execution halted
+
+checking tests ... ERROR
+Running the tests in 'tests/QDNAseq,reproducibility.R' failed.
+Last 13 lines of output:
+      Calculating fit for sample LGG150 (1 of 1) ...
+  Done.
+  > dataCr <- correctBins(dataF)
+  Calculating correction for GC content and mappability
+      Calculating fit for sample LGG150 (1 of 1) ...
+  Done.
+  > stopifnot(all.equal(dataCr, dataC))
+  > 
+  > # Normalize binned read counts to have diploid normal copy number
+  > dataN <- normalizeBins(dataC)
+  Applying median normalization ...Error in normalizeBins(dataC) : could not find function "colMedians"
+  Calls: normalizeBins -> normalizeBins
+  Execution halted
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+No methods found in "matrixStats" for requests: colMedians
+
+Error: processing vignette 'QDNAseq.Rnw' failed with diagnostics:
+ chunk 17 
+Error in normalizeBins(copyNumbers) : 
+  could not find function "colMedians"
+Execution halted
+
+
+checking R code for possible problems ... NOTE
+estimateCorrection,QDNAseqReadCounts : calculateFits: no visible global
+  function definition for 'formula'
+normalizeBins,QDNAseqCopyNumbers: no visible global function definition
+  for 'colMedians'
+Undefined global functions or variables:
+  colMedians formula
+Consider adding
+  importFrom("stats", "formula")
+to your NAMESPACE file.
+```
+
 ## RnBeads (1.4.0)
 Maintainer: Fabian Mueller <rnbeads@mpi-inf.mpg.de>
 
@@ -527,8 +598,8 @@ checking a package with encoding  'latin1'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
                     user system elapsed
-normalizeCurveFit 11.265  0.008  11.282
-normalizeAffine   11.010  0.006  11.025
+normalizeCurveFit 11.533  0.008  11.549
+normalizeAffine   11.218  0.006  11.233
 
 checking for hidden files and directories ... NOTE
 Found the following hidden files and directories:
@@ -540,7 +611,7 @@ structure' in the 'Writing R Extensions' manual.
 ## diffloop (1.0.2)
 Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>
 
-1 error  | 1 warning  | 1 note 
+1 error  | 1 warning  | 2 notes
 
 ```
 checking examples ... ERROR
@@ -548,23 +619,19 @@ Running examples in 'diffloop-Ex.R' failed
 The error most likely occurred in:
 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: loopsMake
-> ### Title: Read preprocessed ChiA-PET data
-> ### Aliases: loopsMake loopsMake,ANY-method
+> ### Name: calcLDSizeFactors
+> ### Title: Compute normalizing factors for each sample
+> ### Aliases: calcLDSizeFactors calcLDSizeFactors,loops-method
 > 
 > ### ** Examples
 > 
-> # Reading in all samples, no mergegap, all loops
-> bd<- system.file('extdata', 'esc_jurkat', package='diffloopdata')
-> # loops <- loopsMake(bd) #standard call
-> 
-> # Reading in a subset of samples, 1kb mergegap, only intrachromosomal
-> # looping
-> samples <- c('naive_esc_1', 'naive_esc_2')
-> naive.intra <- loopsMake(bd, samples, 1000, 'intra')
-Error in { : 
-  task 1 failed - "length of 'dimnames' [2] not equal to array extent"
-Calls: loopsMake -> loopsMake -> .loopsMake -> %do% -> <Anonymous>
+> # Computing normalizing factors from the full ChIA-PET Data
+> rda<-paste(system.file('rda',package='diffloop'),'loops.small.rda',sep='/')
+> load(rda)
+> loops.small <- calcLDSizeFactors(loops.small)
+Error in calcLDSizeFactors(loops.small) : 
+  could not find function "colMedians"
+Calls: calcLDSizeFactors -> calcLDSizeFactors
 Execution halted
 
 checking re-building of vignette outputs ... WARNING
@@ -594,6 +661,12 @@ checking installed package size ... NOTE
   installed size is 1026.7Mb
   sub-directories of 1Mb or more:
     rda  1025.2Mb
+
+checking R code for possible problems ... NOTE
+calcLDSizeFactors,loops: no visible global function definition for
+  'colMedians'
+Undefined global functions or variables:
+  colMedians
 ```
 
 ## dplR (1.6.4)
@@ -623,10 +696,10 @@ checking examples ... WARNING
 checking a package with encoding  'UTF-8'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
-                    user system elapsed
-redfit            11.753  0.066  12.160
-rwi.stats.running  8.311  0.008   8.331
-wavelet.plot       7.698  0.009   7.783
+                   user system elapsed
+redfit            9.361  0.003   9.370
+rwi.stats.running 7.256  0.015   7.282
+wavelet.plot      5.722  0.012   5.739
 ```
 
 ## genomation (1.4.2)
@@ -641,7 +714,7 @@ checking a package with encoding  'latin1'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
                      user system elapsed
-ScoreMatrix-methods 6.919  0.128   7.061
+ScoreMatrix-methods 6.278  0.089   6.382
 ** found \donttest examples: check also with --run-donttest
 
 checking re-building of vignette outputs ... WARNING
