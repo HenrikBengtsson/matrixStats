@@ -984,14 +984,7 @@ to your NAMESPACE file.
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/PSCBS/issues
 
-0 errors | 0 warnings | 1 note 
-
-```
-checking installed package size ... NOTE
-  installed size is 1025.7Mb
-  sub-directories of 1Mb or more:
-    data-ex  1024.0Mb
-```
+0 errors | 0 warnings | 0 notes
 
 ## QDNAseq (1.8.0)
 Maintainer: Daoud Sie <d.sie@vumc.nl>  
@@ -1393,8 +1386,8 @@ checking a package with encoding  'latin1'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
                     user system elapsed
-normalizeCurveFit 14.332  0.013  14.357
-normalizeAffine   13.752  0.009  13.771
+normalizeCurveFit 11.265  0.008  11.282
+normalizeAffine   11.010  0.006  11.025
 
 checking for hidden files and directories ... NOTE
 Found the following hidden files and directories:
@@ -1454,7 +1447,7 @@ checking installed package size ... NOTE
 ## bumphunter (1.12.0)
 Maintainer: Rafael A. Irizarry <rafa@jimmy.harvard.edu>
 
-0 errors | 0 warnings | 6 notes
+0 errors | 0 warnings | 5 notes
 
 ```
 checking package dependencies ... NOTE
@@ -1463,11 +1456,6 @@ Depends: includes the non-default packages:
   'iterators' 'parallel' 'locfit'
 Adding so many packages to the search path is excessive and importing
 selectively is preferable.
-
-checking installed package size ... NOTE
-  installed size is 1024.4Mb
-  sub-directories of 1Mb or more:
-    data  1024.0Mb
 
 checking DESCRIPTION meta-information ... NOTE
 Malformed Description field: should contain one or more complete sentences.
@@ -1676,10 +1664,9 @@ checking a package with encoding  'UTF-8'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
                     user system elapsed
-redfit            11.789  0.005  11.812
-rwi.stats.running  8.495  0.003   8.510
-wavelet.plot       7.416  0.006   7.430
-write.tridas       4.474  0.562   5.045
+redfit            11.753  0.066  12.160
+rwi.stats.running  8.311  0.008   8.331
+wavelet.plot       7.698  0.009   7.783
 ```
 
 ## fslr (1.6.4.0)
@@ -1700,7 +1687,7 @@ checking a package with encoding  'latin1'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
                      user system elapsed
-ScoreMatrix-methods 5.397  0.087     5.5
+ScoreMatrix-methods 6.919  0.128   7.061
 ** found \donttest examples: check also with --run-donttest
 
 checking re-building of vignette outputs ... WARNING
@@ -2098,7 +2085,7 @@ These lines will be truncated in the PDF manual.
 Maintainer: Simon Gert Coetzee <Simon.Coetzee@cshs.org>  
 Bug reports: https://github.com/Simon-Coetzee/motifbreakR/issues
 
-0 errors | 1 warning  | 2 notes
+0 errors | 1 warning  | 3 notes
 
 ```
 checking re-building of vignette outputs ... WARNING
@@ -2123,6 +2110,12 @@ Error in re-building vignettes:
 29: tryCatch({    engine$weave(file, quiet = quiet, encoding = enc)    setwd(startdir)    find_vignette_product(name, by = "weave", engine = engine)}, error = function(e) {    stop(gettextf("processing vignette '%s' failed with diagnostics:\n%s",         file, conditionMessage(e)), domain = NA, call. = FALSE)})
 30: buildVignettes(dir = "/cbc/henrik/repositories/matrixStats/revdep/checks/motifbreakR.Rcheck/vign_test/motifbreakR")
 An irrecoverable exception occurred. R is aborting now ...
+
+checking installed package size ... NOTE
+  installed size is 1026.0Mb
+  sub-directories of 1Mb or more:
+    data     1.7Mb
+    doc   1024.0Mb
 
 checking dependencies in R code ... NOTE
 Packages in Depends field not imported from:
