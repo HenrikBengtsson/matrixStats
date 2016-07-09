@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  rowMedians.S4.R
+%  rowMedians.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,8 +10,6 @@
 \alias{rowMedians}
 
 \alias{colMedians}
-\alias{rowMedians,matrix-method}
-\alias{colMedians,matrix-method}
 
 \title{Calculates the median for each row (column) in a matrix}
 
