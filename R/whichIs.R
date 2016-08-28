@@ -36,9 +36,6 @@
 #   \code{whichIs(x, op, y)}.
 # }
 #
-# \seealso{
-# }
-#
 # @author "HB"
 #
 # @keyword "univar"

@@ -47,9 +47,6 @@ whichIs(x, op=c("==", "!=", "<", "<=", ">", ">="), y, ...)
   \code{whichIs(x, op, y)}.
 }
 
-\seealso{
-}
-
 \author{Henrik Bengtsson}
 
 
