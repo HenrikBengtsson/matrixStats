@@ -1,7 +1,9 @@
 Package: matrixStats
 ====================
 
-Version: 0.50.2-9000 [2016-07-03]
+Version: 0.50.2-9000 [2016-08-28]
+o Added whichIs(x, y, op) for scalar 'y' - a faster and more
+  memory efficient version of which(x OP y).
 o SPEEDUP: Now native API is formally registered allowing for
   faster lookup of routines from R.
 
