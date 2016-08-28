@@ -55,27 +55,27 @@ SEXP whichIs_int_int(int *x, R_xlen_t nx, int value, int op) {
   nans = 0;
   if (op == 1) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] == value) nans++;
+      if (x[ii] == value && x[ii] != NA_INTEGER) nans++;
     }
   } else if (op == 2) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] != value) nans++;
+      if (x[ii] != value && x[ii] != NA_INTEGER) nans++;
     }
   } else if (op == 3) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] <  value) nans++;
+      if (x[ii] <  value && x[ii] != NA_INTEGER) nans++;
     }
   } else if (op == 4) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] <= value) nans++;
+      if (x[ii] <= value && x[ii] != NA_INTEGER) nans++;
     }
   } else if (op == 5) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] >  value) nans++;
+      if (x[ii] >  value && x[ii] != NA_INTEGER) nans++;
     }
   } else if (op == 6) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] >= value) nans++;
+      if (x[ii] >= value && x[ii] != NA_INTEGER) nans++;
     }
   }
 
@@ -91,27 +91,27 @@ SEXP whichIs_int_int(int *x, R_xlen_t nx, int value, int op) {
   aa = 0;
   if (op == 1) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] == value) aans[aa++] = ii + 1;
+      if (x[ii] == value && x[ii] != NA_INTEGER) aans[aa++] = ii + 1;
     }
   } else if (op == 2) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] != value) aans[aa++] = ii + 1;
+      if (x[ii] != value && x[ii] != NA_INTEGER) aans[aa++] = ii + 1;
     }
   } else if (op == 3) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] <  value) aans[aa++] = ii + 1;
+      if (x[ii] <  value && x[ii] != NA_INTEGER) aans[aa++] = ii + 1;
     }
   } else if (op == 4) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] <= value) aans[aa++] = ii + 1;
+      if (x[ii] <= value && x[ii] != NA_INTEGER) aans[aa++] = ii + 1;
     }
   } else if (op == 5) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] >  value) aans[aa++] = ii + 1;
+      if (x[ii] >  value && x[ii] != NA_INTEGER) aans[aa++] = ii + 1;
     }
   } else if (op == 6) {
     for (ii = 0; ii < nx; ii++) {
-      if (x[ii] != NA_INTEGER && x[ii] >= value) aans[aa++] = ii + 1;
+      if (x[ii] >= value && x[ii] != NA_INTEGER) aans[aa++] = ii + 1;
     }
   }
   
@@ -174,34 +174,64 @@ SEXP whichIs_double_double(double *x, R_xlen_t nx, double value, int op) {
   /* Pass 2: Record occurances */
   aa = 0;
   if (op == 1) {
-    for (ii = 0; ii < nx; ii++) {
-      if (hasNA && ISNAN(x[ii])) continue;
-      if (x[ii] == value) aans[aa++] = ii + 1;
+    if (hasNA) {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] == value && !ISNAN(x[ii])) aans[aa++] = ii + 1;
+      }
+    } else {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] == value) aans[aa++] = ii + 1;
+      }
     }
   } else if (op == 2) {
-    for (ii = 0; ii < nx; ii++) {
-      if (hasNA && ISNAN(x[ii])) continue;
-      if (x[ii] != value) aans[aa++] = ii + 1;
+    if (hasNA) {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] != value && !ISNAN(x[ii])) aans[aa++] = ii + 1;
+      }
+    } else {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] != value) aans[aa++] = ii + 1;
+      }
     }
   } else if (op == 3) {
-    for (ii = 0; ii < nx; ii++) {
-      if (hasNA && ISNAN(x[ii])) continue;
-      if (x[ii] <  value) aans[aa++] = ii + 1;
+    if (hasNA) {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] <  value && !ISNAN(x[ii])) aans[aa++] = ii + 1;
+      }
+    } else {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] <  value) aans[aa++] = ii + 1;
+      }
     }
   } else if (op == 4) {
-    for (ii = 0; ii < nx; ii++) {
-      if (hasNA && ISNAN(x[ii])) continue;
-      if (x[ii] <= value) aans[aa++] = ii + 1;
+    if (hasNA) {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] <= value && !ISNAN(x[ii])) aans[aa++] = ii + 1;
+      }
+    } else {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] <= value) aans[aa++] = ii + 1;
+      }
     }
   } else if (op == 5) {
-    for (ii = 0; ii < nx; ii++) {
-      if (hasNA && ISNAN(x[ii])) continue;
-      if (x[ii] >  value) aans[aa++] = ii + 1;
+    if (hasNA) {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] >  value && !ISNAN(x[ii])) aans[aa++] = ii + 1;
+      }
+    } else {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] >  value) aans[aa++] = ii + 1;
+      }
     }
   } else if (op == 6) {
-    for (ii = 0; ii < nx; ii++) {
-      if (hasNA && ISNAN(x[ii])) continue;
-      if (x[ii] >= value) aans[aa++] = ii + 1;
+    if (hasNA) {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] >= value && !ISNAN(x[ii])) aans[aa++] = ii + 1;
+      }
+    } else {
+      for (ii = 0; ii < nx; ii++) {
+        if (x[ii] >= value) aans[aa++] = ii + 1;
+      }
     }
   }
   

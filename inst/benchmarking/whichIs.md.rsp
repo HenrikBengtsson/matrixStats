@@ -1,0 +1,112 @@
+<%@include file="includes/setup.md.rsp"%>
+
+<%@string fcnname="whichIs"%>
+<% fcnname <- "<%@string name="fcnname"%>" %>
+<%@meta title="${fcnname}() benchmarks"%>
+<%@meta author="Henrik Bengtsson"%>
+<%@meta date="2018-08-28"%>
+
+<%@include file="${header}"%>
+
+
+# <%@meta name="title"%>
+
+This report benchmark the performance of <%=fcnname%>() against alternative methods.
+
+## Alternative methods
+
+*whichIs_R()
+
+as below
+
+```r
+<%=withCapture({
+whichIs_R <- function(x, op=c("==", "!=", "<", "<=", ">", ">="), y, ...) {
+  switch(op,
+    "==" = which(x == y),
+    "!=" = which(x != y),
+    "<"  = which(x <  y),
+    "<=" = which(x <= y),
+    ">"  = which(x >  y),
+    ">=" = which(x >= y)
+  )
+} # whichIs_R()
+})%>
+```
+
+
+<% for (mode in c("integer", "double")) { %>
+
+## Data type "<%=mode%>"
+### Data
+```r
+<%=withCapture({
+<%@include file="R/random-vectors.R"%>
+data <- rvectors(mode=mode, naProb=0)
+})%>
+```
+
+### Results
+
+<% for (ii in seq_along(data)) { %>
+<%
+dataLabel <- names(data)[ii]
+mprintf("%s: %s\n", mode, dataLabel)
+x <- data[[dataLabel]]
+gc()
+%>
+### <%=dataLabel%> vector
+
+#### All elements
+```r
+<%=withCapture({
+x <- data[[.dataLabel.]]
+str(x)
+})%>
+```
+
+<% for (ymode in c("integer", "double")) { %>
+```r
+<%=withCapture({
+y <- 1.0
+storage.mode(y) <- ymode
+str(y)
+})%>
+```
+
+<% for (op in c("==", "!=", "<", "<=", ">", ">=")[c(1,3,4)]) { %>
+<%
+opTag <- c("=="="eq", "!="="neq", "<"="lt", "<="="leq", ">"="gt", ">="="geq")[op]
+gc()
+%>
+```r
+<%=withCapture({
+op
+stats <- microbenchmark(
+ "whichIs"   = whichIs(x, op, y),
+ "whichIs_R" = whichIs_R(x, op, y),
+  unit = "ms"
+)
+
+gc()
+})%>
+```
+
+<% benchmarkResults(stats, tags=c(mode, dataLabel, opTag)) %>
+
+<% } # for (op ...) %>
+
+<% } # for (ymode ...) %>
+
+<% } # for (ii ...) %>
+
+<% } # for (mode ...) %>
+
+<%@include file="${footer}"%>
+
+
+<%---------------------------------------------------------------------------
+HISTORY:
+2016-08-28
+o Created.
+---------------------------------------------------------------------------%>
