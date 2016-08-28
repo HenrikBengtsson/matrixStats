@@ -39,6 +39,7 @@ static R_CallMethodDef callMethods[]  = {
   CALLDEF(validate, 3),
   CALLDEF(weightedMean, 5),
   CALLDEF(weightedMedian, 6),
+  CALLDEF(whichIs, 3),
   CALLDEF(x_OP_y, 11),
   {NULL, NULL, 0}
 };

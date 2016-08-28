@@ -33,4 +33,5 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode);
 SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound);
 SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine);
 SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP ties);
+SEXP whichIs(SEXP x, SEXP y, SEXP operator);
 SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEXP yidxs, SEXP commute, SEXP naRm, SEXP hasNA, SEXP byRow);

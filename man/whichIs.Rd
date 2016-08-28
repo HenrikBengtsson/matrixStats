@@ -13,7 +13,7 @@
 \title{Identifying vector elements based on comparision to a scalar}
 
 \usage{
-whichIs(x, value, op=c("==", "!=", "<", "<=", ">", ">="), ...)
+whichIs(x, op=c("==", "!=", "<", "<=", ">", ">="), y, ...)
 }
 
 \description{
@@ -21,8 +21,10 @@ whichIs(x, value, op=c("==", "!=", "<", "<=", ">", ">="), ...)
 }
 
 \arguments{
-  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length K.}
-  \item{value}{A \code{\link[base]{numeric}} scalar.}
+  \item{x, y}{A \code{\link[base]{vector}} of length K and a scalar
+    (either of \code{x} and \code{y} have to be a scalar).
+    These arguments may be of type logical, integer or numeric.
+  }
   \item{op}{A \code{\link[base]{character}} string specifying the comparison to use.}
   \item{...}{Not used.}
 }
@@ -32,12 +34,20 @@ whichIs(x, value, op=c("==", "!=", "<", "<=", ">", ">="), ...)
 }
 
 \details{
-  \code{which(x, value, op)} is more memory efficient than the corresponding
-  \code{which(x OP value)} call, because the latter allocates a temporary
-  logical vector of length K whereas the former does not.  Moreover,
-  if the types of \code{x} and \code{value} are such that \code{x} needs to
-  be coerced to that of \code{value}, then another temporary vector of type
-  \code{typeof(value)} and length K needs to be allocated.
+  The function is consistent with
+  \code{\link[base]{which}(x op y, arr.ind=FALSE, useNames=FALSE)}
+  and either one of \code{x} and \code{y} is a scalar.
+  \code{which(x, op, y)} is more memory efficient than the corresponding
+  \code{which(x op y)} call, because the latter allocates a temporary
+  logical vector of length K whereas the former does not.
+  Moreover, if the types of \code{x} and \code{y} are such that the
+  non-scalar one needs to be coerced to the type of the scalar, then
+  another temporary vector of length K needs to be allocated in the case
+  of using \code{which(x op y)} whereas this is not the case for
+  \code{whichIs(x, op, y)}.
+}
+
+\seealso{
 }
 
 \author{Henrik Bengtsson}

@@ -1,6 +1,6 @@
 library("matrixStats")
 
-whichIs_R <- function(x, y, op=c("==", "!=", "<", "<=", ">", ">=")) {
+whichIs_R <- function(x, op=c("==", "!=", "<", "<=", ">", ">="), y, ...) {
   stopifnot(length(y) == 1)
   op <- match.arg(op)
 
@@ -13,29 +13,50 @@ whichIs_R <- function(x, y, op=c("==", "!=", "<", "<=", ">", ">=")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Consistency checks
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-set.seed(1)
+ops <- eval(formals(whichIs_R)$op)
 
-ops <- c("==", "!=", "<", "<=", ">", ">=")
+## Vectors to be scanned
+xs <- list(
+  c(TRUE, FALSE, NA),
+  c(-3:3, NA_integer_),
+  c(-3:3, NA_real_, NaN, -Inf, +Inf)
+)
 
-cat("Consistency checks:\n")
-for (kk in 1:4) {
-  cat("Random test #", kk, "\n", sep="")
+for (x in xs) {
+  n <- length(x)
 
-  # Simulate data in a matrix of any shape
-  n <- sample(1e3, size=1L)
-  x <- rnorm(n, sd=100)
-  ys <- c(-Inf, -1, -1/2, 0, +1/2, +1, Inf, NA_real_, NaN, x[n/2], x[n/3])
+  ## Scalars to compare to
+  ys <- list(
+    TRUE, FALSE, NA,
+    -1L, 0L, +1L, NA_integer_,
+    -Inf, -1, -1/2, 0, +1/2, +1, Inf, NA_real_, NaN,
+    x[n/2], x[n/3]
+  )
+  
+  xmin <- min(x, na.rm=TRUE)
+  xmax <- max(x, na.rm=TRUE)
+  if (is.finite(xmin) && is.finite(xmax)) {
+    ys <- c(ys, xmin:xmax)
+    ys <- c(ys, (xmin-1L):(xmax+1L))
+    ys <- c(ys, seq(from=xmin, to=xmax, by=0.1))
+    ys <- c(ys, seq(from=xmin-1, to=xmax+1, by=0.1))
+  }
+  
   for (y in ys) {
-    cat("Compare to value (y): ", y, "\n", sep="")
     for (op in ops) {
-      cat("Comparision: x ", op, " ", y, "\n", sep="")
-      idxs_R <- whichIs_R(x, y, op=op)
-      idxs <- whichIs(x, y, op=op)
-      str(idxs)
+      cat(sprintf("Comparision: x %s %g (x: %s, y: %s)\n", op, y, typeof(x), typeof(y)))
+      idxs_R <- whichIs_R(x, op, y)
+      idxs <- whichIs(x, op, y)
+      str(list(idxs=idxs, "x[idxs]"=x[idxs]))
       if (!identical(idxs, idxs_R)) {
-        str(idxs_R)
+        str(list(idxs_R=idxs_R, "x[idxs_R]"=x[idxs_R]))
         stopifnot(identical(idxs, idxs_R))
       }
+        idxs_yx <- whichIs(y, op, x)
+        if (!identical(idxs_yx, idxs)) {
+          str(list(idxs=idxs_yx, "x[idxs_yx]"=x[idxs_yx]))
+          stopifnot(identical(idxs_yx, idxs))
+        }
     }
   }
-} # for (kk ...)
+}

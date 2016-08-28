@@ -2,8 +2,10 @@ Package: matrixStats
 ====================
 
 Version: 0.50.2-9000 [2016-08-28]
-o Added whichIs(x, y, op) for scalar 'y' - a faster and more
-  memory efficient version of which(x OP y).
+o Added whichIs(x, op, y) where either 'x' or 'y' is a scalar
+  and they are both of types logical, integer or double.
+  This is consistent with base::which(x OP y) while being
+  both faster and more memory efficient.
 o SPEEDUP: Now native API is formally registered allowing for
   faster lookup of routines from R.
 
