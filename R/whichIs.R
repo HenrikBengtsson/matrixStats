@@ -98,7 +98,7 @@ whichIs_integer_double <- function(x, y, op) {
   if (op == "==") {
     if (y %% 1 != 0) return(integer(0L))
   } else if (op == "!=") {
-    if (y %% 1 == 0) return(seq_len(nx))
+    if (y %% 1 != 0) return(seq_len(nx))
   }
 
   fcn <- get(op, mode="function", envir=baseenv())
