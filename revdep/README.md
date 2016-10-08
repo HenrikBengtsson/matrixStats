@@ -10,54 +10,123 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |SystemV/PST8PDT              |
-|date     |2016-10-07                   |
+|date     |2016-10-08                   |
 
 ## Packages
 
-|package     |*  |version     |date       |source                                 |
-|:-----------|:--|:-----------|:----------|:--------------------------------------|
-|base64enc   |   |0.1-3       |2015-07-28 |CRAN (R 3.3.1)                         |
-|ggplot2     |   |2.1.0       |2016-03-01 |CRAN (R 3.3.1)                         |
-|knitr       |   |1.14        |2016-08-13 |cran (@1.14)                           |
-|matrixStats |   |0.50.2-9000 |2016-10-07 |local (HenrikBengtsson/matrixStats@NA) |
-|R.devices   |   |2.14.0      |2016-03-09 |CRAN (R 3.3.1)                         |
-|R.rsp       |   |0.30.0      |2016-05-15 |CRAN (R 3.3.1)                         |
+|package        |*  |version |date       |source          |
+|:--------------|:--|:-------|:----------|:---------------|
+|base64enc      |   |0.1-3   |2015-07-28 |CRAN (R 3.3.1)  |
+|ggplot2        |   |2.1.0   |2016-03-01 |CRAN (R 3.3.1)  |
+|knitr          |   |1.14    |2016-08-13 |cran (@1.14)    |
+|matrixStats    |   |0.50.2  |2016-04-24 |CRAN (R 3.3.1)  |
+|microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
+|R.devices      |   |2.14.0  |2016-03-09 |CRAN (R 3.3.1)  |
+|R.rsp          |   |0.30.0  |2016-05-15 |CRAN (R 3.3.1)  |
 
 # Check results
-85 packages
+
+89 packages
+
+|package                |version | errors| warnings| notes|
+|:----------------------|:-------|------:|--------:|-----:|
+|ACNE                   |0.8.1   |      0|        0|     0|
+|antiProfiles           |1.13.0  |      0|        0|     1|
+|aroma.affymetrix       |3.0.0   |      0|        0|     0|
+|aroma.cn               |1.6.1   |      0|        0|     0|
+|aroma.core             |3.0.0   |      0|        0|     1|
+|aroma.light            |3.3.2   |      0|        0|     1|
+|aSPU                   |1.44    |      0|        0|     0|
+|BatchQC                |1.1.22  |      0|        0|     0|
+|bdynsys                |1.3     |      0|        0|     1|
+|bingat                 |1.2.2   |      0|        0|     0|
+|bsseq                  |1.9.2   |      0|        1|     0|
+|bumphunter             |1.13.1  |      0|        0|     5|
+|calmate                |0.12.1  |      0|        0|     0|
+|carx                   |0.6.2   |      0|        0|     0|
+|ChAMP                  |2.0.1   |      0|        0|     3|
+|Chicago                |1.1.7   |      0|        0|     3|
+|ChIPpeakAnno           |3.7.9   |      0|        1|     2|
+|Clomial                |1.9.4   |      0|        0|     1|
+|clusterExperiment      |0.99.3  |      0|        2|     0|
+|CNPBayes               |1.3.2   |      0|        0|     2|
+|cointmonitoR           |0.1.0   |      0|        0|     0|
+|cointReg               |0.2.0   |      0|        0|     0|
+|CopywriteR             |2.5.0   |      0|        0|     1|
+|crlmm                  |1.31.2  |      0|        1|     4|
+|crossmeta              |0.99.13 |      0|        0|     1|
+|DAMOCLES               |1.1     |      0|        0|     1|
+|diffloop               |1.1.99  |      1|        0|     0|
+|dplR                   |1.6.4   |      0|        0|     0|
+|EasyqpcR               |1.15.0  |      1|        0|     1|
+|EMDomics               |2.3.2   |      0|        0|     3|
+|EnrichedHeatmap        |1.3.5   |      0|        0|     4|
+|FADA                   |1.3.2   |      0|        0|     0|
+|FastHCS                |0.0.5   |      0|        0|     2|
+|FastPCS                |0.1.2   |      0|        0|     3|
+|FastRCS                |0.0.7   |      0|        0|     1|
+|flowCore               |1.39.11 |      0|        0|     9|
+|fslr                   |2.0     |      0|        0|     0|
+|GAD                    |1.1.1   |      0|        0|     0|
+|genomation             |1.5.6   |      0|        1|     3|
+|GenRank                |1.1.3   |      0|        0|     1|
+|GUIDEseq               |1.3.17  |      1|        1|     3|
+|Gviz                   |1.17.7  |      0|        1|     4|
+|localgauss             |0.35    |      0|        0|     0|
+|loo                    |0.1.6   |      0|        0|     0|
+|LS2Wstat               |2.0-3   |      0|        1|     2|
+|Luminescence           |0.6.4   |      0|        0|     0|
+|metagene               |2.5.3   |      0|        0|     1|
+|metagenomeSeq          |1.15.5  |      0|        1|     0|
+|MetaQC                 |0.1.13  |      0|        0|     3|
+|MethylAid              |1.7.2   |      0|        0|     1|
+|methylumi              |2.19.3  |      0|        1|     8|
+|MFHD                   |0.0.1   |      0|        0|     1|
+|minfi                  |1.19.15 |      0|        3|     4|
+|MinimumDistance        |1.17.1  |      0|        0|     1|
+|mmtfa                  |0.1     |      0|        0|     1|
+|monocle                |1.7.2   |      0|        0|     6|
+|motifbreakR            |1.3.2   |      0|        0|     2|
+|MPAgenomics            |1.1.2   |      0|        0|     2|
+|MultiBD                |0.2.0   |      0|        0|     1|
+|NanoStringDiff         |1.3.0   |      0|        0|     1|
+|neurobase              |1.1.1.1 |      0|        0|     0|
+|NSA                    |0.0.32  |      0|        0|     6|
+|pandaR                 |1.5.8   |      0|        0|     4|
+|pcaMethods             |1.65.0  |      0|        0|     2|
+|peakPick               |0.11    |      0|        0|     0|
+|Pigengene              |0.99.25 |      0|        0|     2|
+|PSCBS                  |0.61.0  |      0|        0|     0|
+|QDNAseq                |1.9.2   |      0|        0|     0|
+|r2dRue                 |1.0.4   |      0|        0|     2|
+|randomizationInference |1.0.3   |      0|        0|     1|
+|RnBeads                |1.5.1   |      0|        7|     6|
+|samr                   |2.0     |      0|        0|     5|
+|scater                 |1.1.14  |      1|        0|     0|
+|SemiParBIVProbit       |3.8     |      0|        0|     0|
+|SemiParSampleSel       |1.4     |      0|        0|     0|
+|SGP                    |1.5-0.0 |      0|        0|     0|
+|shinyMethyl            |1.8.3   |      0|        0|     2|
+|SICtools               |1.3.2   |      0|        1|     4|
+|sizeMat                |0.2.0   |      0|        0|     0|
+|statar                 |0.6.2   |      0|        0|     0|
+|stm                    |1.1.3   |      0|        0|     0|
+|tmlenet                |0.1.0   |      0|        0|     0|
+|topGO                  |2.25.0  |      0|        0|     4|
+|ttScreening            |1.5     |      0|        0|     2|
+|VanillaICE             |1.35.1  |      0|        0|     3|
+|visualFields           |0.4.3   |      0|        0|     0|
+|wateRmelon             |1.17.1  |      0|        0|     6|
+|WGCNA                  |1.51    |      0|        0|     0|
+|XBSeq                  |1.2.4   |      0|        0|     3|
 
 ## ACNE (0.8.1)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/ACNE/issues
 
-0 errors | 1 warning  | 0 notes
+0 errors | 0 warnings | 0 notes
 
-```
-checking loading without being on the library search path ... WARNING
-Loading required package: aroma.affymetrix
-Loading required package: R.utils
-Loading required package: R.oo
-Loading required package: R.methodsS3
-R.methodsS3 v1.7.1 (2016-02-15) successfully loaded. See ?R.methodsS3 for help.
-R.oo v1.20.0 (2016-02-17) successfully loaded. See ?R.oo for help.
-
-Attaching package: ‘R.oo’
-
-... 72 lines ...
-The following object is masked from ‘package:affxparser’:
-
-    writeCdf
-
-ACNE v0.8.1 (2015-10-26) successfully loaded. See ?ACNE for help.
-Warning message:
-In .requireBiocPackage("aroma.light", neededBy = getName(pkg)) :
-  Package 'aroma.light' could not be loaded. Without it aroma.affymetrix will not work. Please install it from Bioconductor, cf. http://www.bioconductor.org/
-
-It looks like this package has a loading problem when not on .libPaths:
-see the messages for details.
-```
-
-## antiProfiles (1.12.0)
+## antiProfiles (1.13.0)
 Maintainer: Hector Corrada Bravo <hcorrada@gmail.com>
 
 0 errors | 0 warnings | 1 note 
@@ -80,63 +149,13 @@ to your NAMESPACE file.
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/aroma.affymetrix/issues
 
-0 errors | 1 warning  | 0 notes
-
-```
-checking loading without being on the library search path ... WARNING
-Loading required package: R.utils
-Loading required package: R.oo
-Loading required package: R.methodsS3
-R.methodsS3 v1.7.1 (2016-02-15) successfully loaded. See ?R.methodsS3 for help.
-R.oo v1.20.0 (2016-02-17) successfully loaded. See ?R.oo for help.
-
-Attaching package: ‘R.oo’
-
-The following objects are masked from ‘package:methods’:
-... 70 lines ...
-
-The following object is masked from ‘package:affxparser’:
-
-    writeCdf
-
-Warning message:
-In .requireBiocPackage("aroma.light", neededBy = getName(pkg)) :
-  Package 'aroma.light' could not be loaded. Without it aroma.affymetrix will not work. Please install it from Bioconductor, cf. http://www.bioconductor.org/
-
-It looks like this package has a loading problem when not on .libPaths:
-see the messages for details.
-```
+0 errors | 0 warnings | 0 notes
 
 ## aroma.cn (1.6.1)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/aroma.cn/issues
 
-0 errors | 1 warning  | 0 notes
-
-```
-checking loading without being on the library search path ... WARNING
-Loading required package: R.utils
-Loading required package: R.oo
-Loading required package: R.methodsS3
-R.methodsS3 v1.7.1 (2016-02-15) successfully loaded. See ?R.methodsS3 for help.
-R.oo v1.20.0 (2016-02-17) successfully loaded. See ?R.oo for help.
-
-Attaching package: ‘R.oo’
-
-The following objects are masked from ‘package:methods’:
-... 43 lines ...
-
-Loading required package: aroma.light
-Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
-  namespace ‘R.utils’ 2.3.0-9000 is already loaded, but >= 2.4.0 is required
-aroma.cn v1.6.1 (2015-10-27) successfully loaded. See ?aroma.cn for help.
-Warning message:
-In .requireBiocPackage("aroma.light", neededBy = getName(pkg)) :
-  Package 'aroma.light' could not be loaded. Without it aroma.cn will not work. Please install it from Bioconductor, cf. http://www.bioconductor.org/
-
-It looks like this package has a loading problem when not on .libPaths:
-see the messages for details.
-```
+0 errors | 0 warnings | 0 notes
 
 ## aroma.core (3.0.0)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
@@ -150,7 +169,7 @@ Packages suggested but not available for checking:
   ‘expectile’ ‘HaarSeg’ ‘mpcbs’
 ```
 
-## aroma.light (3.2.0)
+## aroma.light (3.3.2)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/aroma.light/issues
 
@@ -169,7 +188,7 @@ Maintainer: Il-Youp Kwak <ikwak@umn.edu>
 
 0 errors | 0 warnings | 0 notes
 
-## BatchQC (1.0.22)
+## BatchQC (1.1.22)
 Maintainer: Solaiappan Manimaran <manimaran_1975@hotmail.com>  
 Bug reports: https://github.com/mani2012/BatchQC/issues
 
@@ -210,13 +229,25 @@ Maintainer: Berkley Shands <rpackages@biorankings.com>
 
 0 errors | 0 warnings | 0 notes
 
-## bsseq (1.8.2)
+## bsseq (1.9.2)
 Maintainer: Kasper Daniel Hansen <kasperdanielhansen@gmail.com>  
 Bug reports: https://github.com/kasperdanielhansen/bsseq/issues
 
-0 errors | 0 warnings | 0 notes
+0 errors | 1 warning  | 0 notes
 
-## bumphunter (1.12.0)
+```
+checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'BSseqStat,ANY,ANY,ANY'
+  generic '[' and siglist 'BSseqTstat,ANY,ANY,ANY'
+  generic '[' and siglist 'hasGRanges,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+```
+
+## bumphunter (1.13.1)
 Maintainer: Rafael A. Irizarry <rafa@jimmy.harvard.edu>
 
 0 errors | 0 warnings | 5 notes
@@ -271,10 +302,53 @@ Maintainer: Chao Wang <chao-wang@uiowa.edu>
 
 0 errors | 0 warnings | 0 notes
 
-## Chicago (1.0.4)
+## ChAMP (2.0.1)
+Maintainer: Yuan Tian  <champ450k@gmail.com>
+
+0 errors | 0 warnings | 3 notes
+
+```
+checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
+  ‘IlluminaHumanMethylationEPICmanifest’
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+
+checking installed package size ... NOTE
+  installed size is 11.6Mb
+  sub-directories of 1Mb or more:
+    doc       9.5Mb
+    extdata   1.9Mb
+
+checking R code for possible problems ... NOTE
+Found the following calls to data() loading into the global environment:
+File ‘ChAMP/R/Block.GUI.R’:
+  data(probe.features.epic)
+  data(probe.features)
+File ‘ChAMP/R/CpG.GUI.R’:
+  data(probe.features.epic)
+  data(probe.features)
+File ‘ChAMP/R/DMR.GUI.R’:
+  data(probe.features.epic)
+... 27 lines ...
+  data(probe.features.epic)
+  data(probe.features)
+File ‘ChAMP/R/champ.norm.R’:
+  data(probeInfoALL.epic.lv)
+  data(probeInfoALL.lv)
+  data(probeInfoALL.epic.lv)
+  data(probeInfoALL.lv)
+File ‘ChAMP/R/champ.refbase.R’:
+  data(CellTypeMeans27K)
+  data(CellTypeMeans450K)
+See section ‘Good practice’ in ‘?data’.
+```
+
+## Chicago (1.1.7)
 Maintainer: Mikhail Spivakov <spivakov@babraham.ac.uk>
 
-0 errors | 0 warnings | 4 notes
+0 errors | 0 warnings | 3 notes
 
 ```
 checking for hidden files and directories ... NOTE
@@ -286,29 +360,6 @@ structure’ in the ‘Writing R Extensions’ manual.
 checking top-level files ... NOTE
 Non-standard file/directory found at top level:
   ‘session.txt’
-
-checking R code for possible problems ... NOTE
-.addTLB: no visible global function definition for ‘quantile’
-.binning: no visible binding for global variable ‘dist’
-.estimateDispersion: no visible binding for global variable ‘dist’
-.getAvgFragLength: no visible binding for global variable ‘end’
-.getNoOfHypotheses: no visible binding for global variable ‘end’
-.getSampleScalingFactors: no visible global function definition for
-  ‘median’
-.getWeights: no visible binding for global variable ‘end’
-.normaliseFragmentSets: no visible global function definition for
-... 52 lines ...
-  abline arrows barplot boxplot density dev.off dist end legend lines
-  lm loess median par pdf pgamma plot pnbinom ppois predict quantile
-  read.table sd write.table
-Consider adding
-  importFrom("grDevices", "dev.off", "pdf")
-  importFrom("graphics", "abline", "arrows", "barplot", "boxplot",
-             "legend", "lines", "par", "plot")
-  importFrom("stats", "density", "dist", "end", "lm", "loess", "median",
-             "pgamma", "pnbinom", "ppois", "predict", "quantile", "sd")
-  importFrom("utils", "read.table", "write.table")
-to your NAMESPACE file.
 
 checking Rd line widths ... NOTE
 Rd file 'mergeSamples.Rd':
@@ -322,11 +373,11 @@ Rd file 'peakEnrichment4Features.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## ChIPpeakAnno (3.6.5)
+## ChIPpeakAnno (3.7.9)
 Maintainer: Lihua Julie Zhu <julie.zhu@umassmed.edu>,
  Jianhong Ou <Jianhong.ou@umassmed.edu>
 
-0 errors | 1 warning  | 4 notes
+0 errors | 1 warning  | 2 notes
 
 ```
 checking re-building of vignette outputs ... WARNING
@@ -347,40 +398,14 @@ Adding so many packages to the search path is excessive and importing
 selectively is preferable.
 
 checking installed package size ... NOTE
-  installed size is 19.4Mb
+  installed size is 19.5Mb
   sub-directories of 1Mb or more:
     data     12.7Mb
     extdata   5.2Mb
-
-checking R code for possible problems ... NOTE
-BED2RangedData: no visible global function definition for 'read.delim'
-GFF2RangedData: no visible global function definition for 'read.delim'
-addGeneIDs : is.installed: no visible global function definition for
-  'installed.packages'
-binOverFeature: no visible global function definition for 'par'
-binOverFeature : plotErrBar: no visible global function definition for
-  'segments'
-binOverFeature : plotErrBar: no visible global function definition for
-  'par'
-... 69 lines ...
-Consider adding
-  importFrom("grDevices", "as.graphicsAnnot", "boxplot.stats", "col2rgb",
-             "colorRampPalette", "dev.flush", "dev.hold", "rgb")
-  importFrom("graphics", "abline", "axis", "hist", "legend", "lines",
-             "matplot", "par", "plot", "plot.new", "plot.window",
-             "polygon", "segments", "text", "title")
-  importFrom("stats", "as.dendrogram", "hclust", "kmeans", "nobs",
-             "rexp", "setNames")
-  importFrom("utils", "adist", "combn", "data", "installed.packages",
-             "read.delim", "read.table", "write.table")
-to your NAMESPACE file.
-
-checking for unstated dependencies in vignettes ... NOTE
-'library' or 'require' call not declared from: ‘trackViewer’
 ```
 
-## Clomial (1.8.0)
-Maintainer: Habil Zare <zare@u.washington.edu>
+## Clomial (1.9.4)
+Maintainer: Habil Zare <zare@txstate.edu>
 
 0 errors | 0 warnings | 1 note 
 
@@ -408,7 +433,30 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## CNPBayes (1.2.2)
+## clusterExperiment (0.99.3)
+Maintainer: Elizabeth Purdom <epurdom@stat.berkeley.edu>  
+Bug reports: https://github.com/epurdom/clusterExperiment/issues
+
+0 errors | 2 warnings | 0 notes
+
+```
+checking whether the namespace can be unloaded cleanly ... WARNING
+---- unloading
+Error in .getClassFromCache(what, resolve.confl = "all") : 
+  argument "where" is missing, with no default
+Calls: unloadNamespace ... <Anonymous> -> .removeSuperclassBackRefs -> .getClassFromCache
+Execution halted
+
+checking Rd cross-references ... WARNING
+Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
+Missing link or links in documentation object 'seqCluster.Rd':
+  ‘tightClust’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+
+```
+
+## CNPBayes (1.3.2)
 Maintainer: Jacob Carey <jcarey15@jhu.edu>  
 Bug reports: https://github.com/scristia/CNPBayes/issues
 
@@ -418,7 +466,6 @@ Bug reports: https://github.com/scristia/CNPBayes/issues
 checking installed package size ... NOTE
   installed size is 11.6Mb
   sub-directories of 1Mb or more:
-    doc    1.0Mb
     libs   9.5Mb
 
 checking DESCRIPTION meta-information ... NOTE
@@ -439,7 +486,7 @@ Bug reports: https://github.com/aschersleben/cointReg/issues
 
 0 errors | 0 warnings | 0 notes
 
-## CopywriteR (2.4.0)
+## CopywriteR (2.5.0)
 Maintainer: Thomas Kuilman <t.kuilman@nki.nl>
 
 0 errors | 0 warnings | 1 note 
@@ -455,44 +502,44 @@ checking R code for possible problems ... NOTE
 .tng: no visible global function definition for ‘predict’
 .tng: no visible global function definition for ‘points’
 .tng: no visible global function definition for ‘rgb’
-... 32 lines ...
-Undefined global functions or variables:
-  abline axis dev.off dpois ecdf lines loess packageVersion par pdf
-  plot png points ppois predict read.table rgb segments text
+... 41 lines ...
+  par pdf plot png points ppois predict read.table rgb segments text
   write.table
 Consider adding
   importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
   importFrom("graphics", "abline", "axis", "lines", "par", "plot",
              "points", "segments", "text")
+  importFrom("methods", "as", "getClass")
   importFrom("stats", "dpois", "ecdf", "loess", "ppois", "predict")
   importFrom("utils", "packageVersion", "read.table", "write.table")
-to your NAMESPACE file.
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
 ```
 
-## crlmm (1.30.0)
+## crlmm (1.31.2)
 Maintainer: Benilton S Carvalho <benilton@unicamp.br>,
  Robert Scharpf <rscharpf@jhsph.edu>, Matt Ritchie
  <mritchie@wehi.EDU.AU>
 
-0 errors | 0 warnings | 5 notes
+0 errors | 1 warning  | 4 notes
 
 ```
+checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘limma’
+'library' or 'require' calls in package code:
+  ‘RUnit’ ‘limma’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Unexported object imported by a ':::' call: ‘Biobase:::assayDataEnvLock’
+  See the note in ?`:::` about the use of this operator.
+
 checking installed package size ... NOTE
   installed size is  5.1Mb
   sub-directories of 1Mb or more:
     data   2.7Mb
 
 checking DESCRIPTION meta-information ... NOTE
-Malformed Title field: should not end in a period.
-Malformed Description field: should contain one or more complete sentences.
 Versioned 'LinkingTo' value for ‘preprocessCore’ is only usable in R >= 3.0.2
-
-checking dependencies in R code ... NOTE
-'library' or 'require' call to ‘RUnit’ in package code.
-  Please use :: or requireNamespace() instead.
-  See section 'Suggested packages' in the 'Writing R Extensions' manual.
-Unexported object imported by a ':::' call: ‘Biobase:::assayDataEnvLock’
-  See the note in ?`:::` about the use of this operator.
 
 checking R code for possible problems ... NOTE
 .test: no visible global function definition for ‘defineTestSuite’
@@ -506,22 +553,26 @@ constructBafLrrSetListFrom: no visible global function definition for
   ‘genomeBuild’
 constructOligoSetListFrom: no visible global function definition for
   ‘genomeBuild’
+genotypeInf: no visible binding for global variable ‘anno’
+plotSamples: no visible global function definition for ‘delete’
+quantilenormalization: no visible global function definition for
+  ‘delete’
 snprmaAffy: no visible global function definition for ‘celfileName’
 Undefined global functions or variables:
-  celfileName defineTestSuite genomeBuild position printTextProtocol
-  runTestSuite
+  anno celfileName defineTestSuite delete genomeBuild position
+  printTextProtocol runTestSuite
 
 checking Rd line widths ... NOTE
 Rd file 'constructInf.Rd':
   \usage lines wider than 90 characters:
             arrayInfoColNames = list(barcode="SentrixBarcode_A",position="SentrixPosition_A"), highDensity = FALSE, sep = "_",
-            fileExt = list(green = "Grn.idat", red = "Red.idat"), XY, cdfName, verbose = FALSE, batch=NULL, saveDate = TRUE)
+            fileExt = list(green = "Grn.idat", red = "Red.idat"), XY, cdfName, anno, genome, verbose = FALSE, batch=NULL, saveDate = TRUE)
 
-Rd file 'crlmmIlluminaV2.Rd':
-  \examples lines wider than 100 characters:
-     ## crlmmOut = crlmmIlluminaV2(samples,path=path,arrayInfoColNames=list(barcode="Chip",position="Section"),
-
-... 15 lines ...
+Rd file 'genotype.Illumina.Rd':
+  \usage lines wider than 90 characters:
+           highDensity=FALSE, sep="_", fileExt=list(green="Grn.idat", red="Red.idat"), XY=NULL, anno, genome, 
+           call.method="crlmm", trueCalls=NULL, cdfName, copynumber=TRUE, batch=NULL, saveDate=FALSE, stripNorm=TRUE, 
+... 20 lines ...
 Rd file 'readGenCallOutput.Rd':
   \usage lines wider than 90 characters:
      readGenCallOutput(filenames, path=".", cdfName, colnames=list("SampleID"="Sample ID", "SNPID"="SNP Name", "XRaw"="X Raw", "YRaw"="Y Raw ... [TRUNCATED]
@@ -533,6 +584,16 @@ Rd file 'snprma.Rd':
      snprma2(filenames, mixtureSampleSize = 10^5, fitMixture = FALSE, eps = 0.1, verbose = TRUE, seed = 1, cdfName, sns)
 
 These lines will be truncated in the PDF manual.
+```
+
+## crossmeta (0.99.13)
+Maintainer: Alex Pickering <alexvpickering@gmail.com>
+
+0 errors | 0 warnings | 1 note 
+
+```
+checking Rd cross-references ... NOTE
+Package unavailable to check Rd xrefs: ‘GeneMeta’
 ```
 
 ## DAMOCLES (1.1)
@@ -567,10 +628,11 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## diffloop (1.0.2)
-Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>
+## diffloop (1.1.99)
+Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>  
+Bug reports: https://github.com/aryeelab/diffloop/issues
 
-1 error  | 1 warning  | 2 notes
+1 error  | 0 warnings | 0 notes
 
 ```
 checking examples ... ERROR
@@ -578,54 +640,24 @@ Running examples in ‘diffloop-Ex.R’ failed
 The error most likely occurred in:
 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: calcLDSizeFactors
-> ### Title: Compute normalizing factors for each sample
-> ### Aliases: calcLDSizeFactors calcLDSizeFactors,loops-method
+> ### Name: manyLoopPlots
+> ### Title: Plot several loop regions
+> ### Aliases: manyLoopPlots manyLoopPlots,loops,GRanges-method
 > 
 > ### ** Examples
 > 
-> # Computing normalizing factors from the full ChIA-PET Data
 > rda<-paste(system.file('rda',package='diffloop'),'loops.small.rda',sep='/')
 > load(rda)
-> loops.small <- calcLDSizeFactors(loops.small)
-Error in calcLDSizeFactors(loops.small) : 
-  could not find function "colMedians"
-Calls: calcLDSizeFactors -> calcLDSizeFactors
+> jpn.u <- removeSelfLoops(loops.small)
+> jpn_loopfit <- loopFit(jpn.u)
+The coefficients of the fitted GLM object are:
+(Intercept) groupsnaive groupsprimedWarning in fitFDistRobustly(var, df1 = df, covariate = covariate, winsor.tail.p = winsor.tail.p) :
+  small x values have been offset away from zero
+> assoc_jn <- loopTest(jpn_loopfit, coef = 2)
+Error in object[[a]][i, , drop = FALSE] : 
+  (subscript) logical subscript too long
+Calls: loopTest ... loopTest -> glmQLFTest -> [ -> [.DGEGLM -> subsetListOfArrays
 Execution halted
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-
-The following objects are masked from 'package:base':
-
-    Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-    as.data.frame, cbind, colnames, do.call, duplicated, eval,
-    evalq, get, grep, grepl, intersect, is.unsorted, lapply,
-    lengths, mapply, match, mget, order, paste, pmax, pmax.int,
-... 8 lines ...
-
-The following objects are masked from 'package:base':
-
-    colMeans, colSums, expand.grid, rowMeans, rowSums
-
-Loading required package: IRanges
-Loading required package: GenomeInfoDb
-Quitting from lines 58-62 (diffloop.Rmd) 
-Error: processing vignette 'diffloop.Rmd' failed with diagnostics:
-task 1 failed - "length of 'dimnames' [2] not equal to array extent"
-Execution halted
-
-checking installed package size ... NOTE
-  installed size is  6.0Mb
-  sub-directories of 1Mb or more:
-    rda   4.5Mb
-
-checking R code for possible problems ... NOTE
-calcLDSizeFactors,loops: no visible global function definition for
-  ‘colMedians’
-Undefined global functions or variables:
-  colMedians
 ```
 
 ## dplR (1.6.4)
@@ -633,7 +665,7 @@ Maintainer: Andy Bunn <andy.bunn@wwu.edu>
 
 0 errors | 0 warnings | 0 notes
 
-## EasyqpcR (1.14.0)
+## EasyqpcR (1.15.0)
 Maintainer: Le Pape Sylvain <sylvain.le.pape@univ-poitiers.fr>
 
 1 error  | 0 warnings | 1 note 
@@ -647,7 +679,7 @@ checking package namespace information ... NOTE
   Namespace with empty importFrom: ‘gWidgetsRGtk2’
 ```
 
-## EMDomics (2.2.2)
+## EMDomics (2.3.2)
 Maintainer: Sadhika Malladi <contact@sadhikamalladi.com> and Daniel Schmolze <emd@schmolze.com>
 
 0 errors | 0 warnings | 3 notes
@@ -687,7 +719,7 @@ The following directory looks like a leftover from 'knitr':
 Please remove from your package.
 ```
 
-## EnrichedHeatmap (1.2.2)
+## EnrichedHeatmap (1.3.5)
 Maintainer: Zuguang Gu <z.gu@dkfz.de>
 
 0 errors | 0 warnings | 4 notes
@@ -704,21 +736,33 @@ See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
 manual.
 
 checking R code for possible problems ... NOTE
++.AdditiveUnit: no visible global function definition for ‘new’
+EnrichedHeatmapList: no visible global function definition for ‘new’
 anno_enriched : <anonymous>: no visible global function definition for
   ‘col2rgb’
 anno_enriched : <anonymous>: no visible global function definition for
   ‘rgb’
-default_smooth_fun: no visible global function definition for ‘predict’
-default_smooth_fun: no visible global function definition for
-  ‘loess.control’
+changeClassName: no visible global function definition for ‘new’
+changeClassName: no visible global function definition for ‘slotNames’
+changeClassName: no visible global function definition for ‘slot<-’
+... 7 lines ...
+  ‘selectMethod’
 Undefined global functions or variables:
-  col2rgb loess.control predict rgb
+  col2rgb loess.control new predict rgb selectMethod slot slot<-
+  slotNames
 Consider adding
   importFrom("grDevices", "col2rgb", "rgb")
+  importFrom("methods", "new", "selectMethod", "slot", "slot<-",
+             "slotNames")
   importFrom("stats", "loess.control", "predict")
-to your NAMESPACE file.
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
 
 checking Rd line widths ... NOTE
+Rd file 'anno_enriched.rd':
+  \usage lines wider than 90 characters:
+         yaxis = TRUE, ylim = NULL, value = c("mean", "sum", "abs_mean", "abs_sum"), yaxis_side = "right",
+
 Rd file 'normalizeToMatrix.rd':
   \usage lines wider than 90 characters:
          mean_mode = c("absolute", "weighted", "w0", "coverage"), include_target = any(width(target) > 1),
@@ -810,7 +854,7 @@ checking installed package size ... NOTE
     libs  14.2Mb
 ```
 
-## flowCore (1.38.2)
+## flowCore (1.39.11)
 Maintainer: M.Jiang <wjiang2@fhcrc.org>
 
 0 errors | 0 warnings | 9 notes
@@ -830,13 +874,12 @@ Found the following apparent object files/libraries:
 Object files/libraries should not be included in a source package.
 
 checking installed package size ... NOTE
-  installed size is 34.4Mb
+  installed size is 33.7Mb
   sub-directories of 1Mb or more:
     data      5.0Mb
-    doc       1.3Mb
     extdata   1.1Mb
     lib      20.4Mb
-    libs      5.1Mb
+    libs      5.2Mb
 
 checking DESCRIPTION meta-information ... NOTE
 Versioned 'LinkingTo' value for ‘BH’ is only usable in R >= 3.0.2
@@ -888,8 +931,8 @@ Rd file 'biexponentialTransform.Rd':
   \usage lines wider than 90 characters:
      biexponentialTransform(transformationId="defaultBiexponentialTransform", a = 0.5, b = 1, c = 0.5, d = 1, f = 0, w = 0, tol = .Machine$d ... [TRUNCATED]
 
-Rd file 'fcReference-class.Rd':
-... 6 lines ...
+Rd file 'compensation-class.Rd':
+... 10 lines ...
                  decades=0, ncdf = FALSE, min.limit=NULL, truncate_max_range = TRUE, dataset=NULL, emptyValue=TRUE, ...)
 
 Rd file 'spillover-flowSet.Rd':
@@ -917,62 +960,32 @@ Maintainer: Leonardo Sandrini-Neto <leonardosandrini@gmail.com>
 
 0 errors | 0 warnings | 0 notes
 
-## genomation (1.4.2)
-Maintainer: Altuna Akalin <aakalin@gmail.com>, Vedran Franke <vedran.franke@gmail.com>  
+## genomation (1.5.6)
+Maintainer: Altuna Akalin <aakalin@gmail.com>, Vedran Franke
+ <vedran.franke@gmail.com>  
 Bug reports: https://github.com/BIMSBbioinfo/genomation/issues
 
-0 errors | 0 warnings | 4 notes
+0 errors | 1 warning  | 3 notes
 
 ```
-checking for portable file names ... NOTE
-Found the following non-portable file paths:
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixBinExample_89ac1d0baf3bd67d0cff0a80fb7d0117.RData
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixBinExample_89ac1d0baf3bd67d0cff0a80fb7d0117.rdb
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixBinExample_89ac1d0baf3bd67d0cff0a80fb7d0117.rdx
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixExample_28219a46afc7075c7975af15b770c79d.RData
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixExample_28219a46afc7075c7975af15b770c79d.rdb
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixExample_28219a46afc7075c7975af15b770c79d.rdx
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixList_e5babc5869ffeae22076a0bdf8545c4f.RData
-  genomation/vignettes/GenomationManual-knitr_cache/html/ScoreMatrixList_e5babc5869ffeae22076a0bdf8545c4f.rdb
-... 82 lines ...
-  genomation/vignettes/GenomationManual-knitr_cache/html/unnamed-chunk-1_025550c0b512f17c70c89e1fb6ebe189.RData
-  genomation/vignettes/GenomationManual-knitr_cache/html/unnamed-chunk-1_025550c0b512f17c70c89e1fb6ebe189.rdb
-  genomation/vignettes/GenomationManual-knitr_cache/html/unnamed-chunk-1_025550c0b512f17c70c89e1fb6ebe189.rdx
-  genomation/vignettes/GenomationManual-knitr_cache/html/visualizeFeatureComb_d811218d9f741f8eaf8820eecbd5e6bb.RData
-  genomation/vignettes/GenomationManual-knitr_cache/html/visualizeFeatureComb_d811218d9f741f8eaf8820eecbd5e6bb.rdb
-  genomation/vignettes/GenomationManual-knitr_cache/html/visualizeFeatureComb_d811218d9f741f8eaf8820eecbd5e6bb.rdx
+checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'ScoreMatrix,ANY,ANY,ANY'
+  generic '[' and siglist 'ScoreMatrixList,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
 
-Tarballs are only required to store paths of up to 100 bytes and cannot
-store those of more than 256 bytes, with restrictions including to 100
-bytes for the final component.
-See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+checking installed package size ... NOTE
+  installed size is  6.3Mb
+  sub-directories of 1Mb or more:
+    doc       3.6Mb
+    extdata   1.2Mb
 
 checking dependencies in R code ... NOTE
 Unexported object imported by a ':::' call: ‘BiocGenerics:::testPackage’
   See the note in ?`:::` about the use of this operator.
-
-checking R code for possible problems ... NOTE
-.dispersion2: no visible global function definition for ‘polygon’
-.heatLegendX: no visible global function definition for ‘rgb’
-.heatLegendX: no visible global function definition for ‘colorRamp’
-.heatLegendY: no visible global function definition for ‘rgb’
-.heatLegendY: no visible global function definition for ‘colorRamp’
-.plotLab: no visible global function definition for ‘plot.new’
-.plotLab: no visible global function definition for ‘plot.window’
-.plotLab: no visible global function definition for ‘text’
-.rowSideCol: no visible global function definition for ‘rainbow’
-... 39 lines ...
-  SampleName a axis barplot colorRamp dist download.file hcl hclust
-  image legend lines par pie plot plot.new plot.window pnorm polygon
-  rainbow read.table rgb runif text unzip value
-Consider adding
-  importFrom("grDevices", "colorRamp", "hcl", "rainbow", "rgb")
-  importFrom("graphics", "axis", "barplot", "image", "legend", "lines",
-             "par", "pie", "plot", "plot.new", "plot.window", "polygon",
-             "text")
-  importFrom("stats", "dist", "hclust", "pnorm", "runif")
-  importFrom("utils", "download.file", "read.table", "unzip")
-to your NAMESPACE file.
 
 checking files in ‘vignettes’ ... NOTE
 The following directory looks like a leftover from 'knitr':
@@ -980,7 +993,7 @@ The following directory looks like a leftover from 'knitr':
 Please remove from your package.
 ```
 
-## GenRank (1.0.2)
+## GenRank (1.1.3)
 Maintainer: Chakravarthi Kanduri <chakra.kanduri@gmail.com>  
 Bug reports: https://github.com/chakri9/GenRank/issues
 
@@ -1001,27 +1014,50 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## GUIDEseq (1.2.1)
+## GUIDEseq (1.3.17)
 Maintainer: Lihua Julie Zhu <julie.zhu@umassmed.edu>
 
-0 errors | 1 warning  | 2 notes
+1 error  | 1 warning  | 3 notes
 
 ```
+checking examples ... ERROR
+Running examples in ‘GUIDEseq-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: GUIDEseqAnalysis
+> ### Title: Analysis pipeline for GUIDE-seq dataset
+> ### Aliases: GUIDEseqAnalysis
+> ### Keywords: misc
+> 
+... 45 lines ...
+>>> DONE searching
+finish off-target search in sequence 2
+finish off-target search in sequence 1
+finish feature vector building
+finish score calculation
+[1] "Done!"
+Warning in if (!is.na(TS2)) { :
+  the condition has length > 1 and only the first element will be used
+Error in .check_ncores(length(names)) : 3 simultaneous processes spawned
+Calls: GUIDEseqAnalysis ... offTargetAnalysisOfPeakRegions -> makeCluster -> makePSOCKcluster -> .check_ncores
+Execution halted
+
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
-
-Attaching package: ‘S4Vectors’
-
-The following objects are masked from ‘package:base’:
-
-    colMeans, colSums, expand.grid, rowMeans, rowSums
-
+            sure you are using the right genome. You can also alter your 
+            search criteria such as increasing max.mismatch!
+Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
+  No matching found, please check your input sequence, and make
+            sure you are using the right genome. You can also alter your 
+            search criteria such as increasing max.mismatch!
+Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
 ... 8 lines ...
-Loading required package: BSgenome
-Loading required package: Biostrings
-Loading required package: XVector
-Loading required package: rtracklayer
+Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
+  No matching found, please check your input sequence, and make
+            sure you are using the right genome. You can also alter your 
+            search criteria such as increasing max.mismatch!
 Warning in if (!is.na(TS2)) { :
   the condition has length > 1 and only the first element will be used
 
@@ -1031,35 +1067,39 @@ Error in .check_ncores(length(names)) : 3 simultaneous processes spawned
 Execution halted
 
 checking installed package size ... NOTE
-  installed size is 11.0Mb
+  installed size is 11.1Mb
   sub-directories of 1Mb or more:
-    extdata  10.5Mb
+    extdata  10.6Mb
 
 checking R code for possible problems ... NOTE
-GUIDEseqAnalysis : <anonymous>: no visible global function definition
-  for 'write.table'
-GUIDEseqAnalysis: no visible global function definition for
-  'write.table'
-combineOfftargets: no visible global function definition for
-  'read.table'
-combineOfftargets: no visible global function definition for
-  'write.table'
-getPeaks: no visible global function definition for 'ppois'
-... 27 lines ...
-  for 'write.table'
-rbind_dodge : naDF: no visible global function definition for
-  'setNames'
+annotateOffTargets: no visible binding for global variable
+  'offTarget_Start'
+annotateOffTargets: no visible global function definition for 'exons'
+annotateOffTargets: no visible global function definition for
+  'seqlevelsStyle<-'
+annotateOffTargets: no visible global function definition for 'genes'
+annotateOffTargets: no visible global function definition for 'toTable'
+getPeaks: no visible binding for global variable 'adjusted.p.value'
+getPeaks: no visible binding for global variable 'SNratio'
+... 8 lines ...
+  'strand.first'
+getUniqueCleavageEvents: no visible binding for global variable
+  'readName'
+offTargetAnalysisOfPeakRegions: no visible binding for global variable
+  'gRNAPlusPAM'
+offTargetAnalysisOfPeakRegions: no visible binding for global variable
+  'offTarget'
 Undefined global functions or variables:
-  SNratio adjusted.p.value gRNAPlusPAM offTarget p.adjust pnbinom ppois
-  qwidth.first qwidth.last read.table readName setNames strand.first
-  strand.last write.table
-Consider adding
-  importFrom("stats", "p.adjust", "pnbinom", "ppois", "setNames")
-  importFrom("utils", "read.table", "write.table")
-to your NAMESPACE file.
+  SNratio adjusted.p.value exons gRNAPlusPAM genes offTarget
+  offTarget_Start qwidth.first qwidth.last readName seqlevelsStyle<-
+  strand.first strand.last toTable
+
+checking Rd files ... NOTE
+prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
+prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
 ```
 
-## Gviz (1.16.5)
+## Gviz (1.17.7)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
 0 errors | 1 warning  | 4 notes
@@ -1079,9 +1119,9 @@ See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 
 checking installed package size ... NOTE
-  installed size is  5.9Mb
+  installed size is  5.8Mb
   sub-directories of 1Mb or more:
-    doc       1.7Mb
+    doc       1.6Mb
     extdata   2.1Mb
 
 checking top-level files ... NOTE
@@ -1112,7 +1152,7 @@ Consider adding
 to your NAMESPACE file.
 
 checking Rd line widths ... NOTE
-Rd file 'AlignmentsTrack.Rd':
+Rd file 'AlignmentsTrack-class.Rd':
   \usage lines wider than 90 characters:
                      stacking="squish", id, cigar, mapq, flag, isize, groupid, status, md, seqs,
                      name="AlignmentsTrack", isPaired=TRUE, importFunction, referenceSequence, ...)
@@ -1176,7 +1216,7 @@ Maintainer: Sebastian Kreutzer <sebastian.kreutzer@u-bordeaux-montaigne.fr>
 
 0 errors | 0 warnings | 0 notes
 
-## metagene (2.4.4)
+## metagene (2.5.3)
 Maintainer: Charles Joly Beauparlant <charles.joly-beauparlant@crchul.ulaval.ca>  
 Bug reports: https://github.com/CharlesJB/metagene/issues
 
@@ -1185,52 +1225,32 @@ Bug reports: https://github.com/CharlesJB/metagene/issues
 ```
 checking R code for possible problems ... NOTE
 get_demo_design: no visible global function definition for ‘read.table’
+get_promoters_txdb: no visible global function definition for ‘is’
 plot_metagene: no visible binding for global variable ‘position’
 plot_metagene: no visible binding for global variable ‘value’
 plot_metagene: no visible binding for global variable ‘qinf’
 plot_metagene: no visible binding for global variable ‘qsup’
 plot_metagene: no visible binding for global variable ‘group’
 Undefined global functions or variables:
-  group position qinf qsup read.table value
+  group is position qinf qsup read.table value
 Consider adding
+  importFrom("methods", "is")
   importFrom("utils", "read.table")
-to your NAMESPACE file.
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
 ```
 
-## metagenomeSeq (1.14.2)
+## metagenomeSeq (1.15.5)
 Maintainer: Joseph N. Paulson <jpaulson@jimmy.harvard.edu>  
 Bug reports: https://github.com/nosson/metagenomeSeq/issues
 
-0 errors | 1 warning  | 1 note 
+0 errors | 1 warning  | 0 notes
 
 ```
 checking sizes of PDF files under ‘inst/doc’ ... WARNING
   ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘metagenomeSeq.pdf’ from 1026Kb to 669Kb
+     compacted ‘metagenomeSeq.pdf’ from 974Kb to 673Kb
   consider running tools::compactPDF(gs_quality = "ebook") on these files
-
-checking R code for possible problems ... NOTE
-MRcoefs: no visible global function definition for ‘quantile’
-MRcoefs: no visible global function definition for ‘p.adjust’
-MRexperiment2biom: no visible global function definition for
-  ‘packageVersion’
-MRfulltable: no visible global function definition for ‘quantile’
-MRfulltable: no visible global function definition for ‘p.adjust’
-MRtable: no visible global function definition for ‘quantile’
-MRtable: no visible global function definition for ‘p.adjust’
-calcPosComponent: no visible global function definition for
-... 89 lines ...
-  importFrom("graphics", "abline", "axis", "lines", "plot", "points",
-             "polygon")
-  importFrom("stats", "approx", "approxfun", "binomial", "cmdscale",
-             "coefficients", "cor", "cor.test", "density", "dist",
-             "dnorm", "fisher.test", "glm.fit", "hclust", "lm.fit",
-             "median", "model.matrix", "p.adjust", "plogis", "pnorm",
-             "prcomp", "predict", "qlogis", "quantile", "residuals",
-             "sd", "var")
-  importFrom("utils", "packageVersion", "read.delim", "read.table",
-             "tail")
-to your NAMESPACE file.
 ```
 
 ## MetaQC (0.1.13)
@@ -1278,7 +1298,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## MethylAid (1.6.2)
+## MethylAid (1.7.2)
 Maintainer: M. van Iterson <mviterson@gmail.com>  
 Bug reports: https://github.com/mvaniterson/methylaid/issues
 
@@ -1300,7 +1320,7 @@ File ‘MethylAid/R/util.R’:
   assign("outliers", out, envir = globalenv())
 ```
 
-## methylumi (2.18.2)
+## methylumi (2.19.3)
 Maintainer: Sean Davis <sdavis2@mail.nih.gov>  
 Bug reports: https://github.com/seandavi/methylumi/issues/new
 
@@ -1426,18 +1446,37 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## minfi (1.18.6)
+## minfi (1.19.15)
 Maintainer: Kasper Daniel Hansen <kasperdanielhansen@gmail.com>  
 Bug reports: https://github.com/kasperdanielhansen/minfi/issues
 
-0 errors | 1 warning  | 3 notes
+0 errors | 3 warnings | 4 notes
 
 ```
+checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘subsetByLoci’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
+checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'IlluminaMethylationAnnotation-class'
+  ‘packageName’
+Documented arguments not in \usage in documentation object 'IlluminaMethylationAnnotation-class':
+  ‘PackageName’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
 Warning: It seems you should call rmarkdown::render() instead of knitr::knit2html() because minfi.Rmd appears to be an R Markdown v2 document.
-Quitting from lines 2-92 (minfi.Rmd) 
+Quitting from lines 2-41 (minfi.Rmd) 
 Error: processing vignette 'minfi.Rmd' failed with diagnostics:
 could not find function "doc_date"
 Execution halted
@@ -1462,36 +1501,30 @@ Found the following calls to data() loading into the global environment:
 File ‘minfi/R/estimateCellCounts.R’:
   data(list = referencePkg)
 See section ‘Good practice’ in ‘?data’.
+
+checking Rd line widths ... NOTE
+Rd file 'estimateCellCounts.Rd':
+  \usage lines wider than 90 characters:
+                        referencePlatform = c("IlluminaHumanMethylation450k", "IlluminaHumanMethylationEPIC", "IlluminaHumanMethylation27k") ... [TRUNCATED]
+
+These lines will be truncated in the PDF manual.
 ```
 
-## MinimumDistance (1.16.0)
+## MinimumDistance (1.17.1)
 Maintainer: Robert B Scharpf <rscharpf@jhu.edu>
 
 0 errors | 0 warnings | 1 note 
 
 ```
 checking R code for possible problems ... NOTE
-.compute_trio_posterior: no visible global function definition for
-  ‘rowRanges’
-.constructMDE: no visible global function definition for
-  ‘SummarizedExperiment’
-.dnacopy2granges: no visible global function definition for ‘GRanges’
-.filter_mdexperiment: no visible global function definition for
-  ‘rowRanges’
-.pedigreeId: no visible global function definition for ‘colData’
-MDRanges: no visible global function definition for ‘GRanges’
-... 71 lines ...
-  GRanges GRangesList SummarizedExperiment assays colData data elt
-  granges rowRanges rowRanges<-
-Consider adding
-  importFrom("utils", "data")
-to your NAMESPACE file.
-
-Found the following calls to data() loading into the global environment:
-File ‘MinimumDistance/R/functions.R’:
-  data(chromosomeAnnotation, package = "SNPchip")
-  data(trioSetListExample)
-See section ‘Good practice’ in ‘?data’.
+callDenovoSegments: no visible global function definition for
+  ‘read.bsfiles’
+read.bsfiles2: no visible binding for global variable ‘read.bsfiles’
+GenomeAnnotatedDataFrameFrom,character: no visible global function
+  definition for ‘read.bsfiles’
+calculateMindist,list: no visible binding for global variable ‘elt’
+Undefined global functions or variables:
+  elt read.bsfiles
 ```
 
 ## mmtfa (0.1)
@@ -1524,7 +1557,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## monocle (1.6.2)
+## monocle (1.7.2)
 Maintainer: Cole Trapnell <coletrap@uw.edu>
 
 0 errors | 0 warnings | 6 notes
@@ -1583,7 +1616,7 @@ Rd file 'plot_clusters.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## motifbreakR (1.2.2)
+## motifbreakR (1.3.2)
 Maintainer: Simon Gert Coetzee <Simon.Coetzee@cshs.org>  
 Bug reports: https://github.com/Simon-Coetzee/motifbreakR/issues
 
@@ -1663,7 +1696,7 @@ checking installed package size ... NOTE
     libs   7.7Mb
 ```
 
-## NanoStringDiff (1.2.0)
+## NanoStringDiff (1.3.0)
 Maintainer: hong wang <hong.wang@uky.edu>
 
 0 errors | 0 warnings | 1 note 
@@ -1702,32 +1735,9 @@ Bug reports: https://github.com/muschellij2/nifti/issues
 ## NSA (0.0.32)
 Maintainer: Maria Ortiz-Estevez <mortizest@gmail.com>
 
-0 errors | 1 warning  | 6 notes
+0 errors | 0 warnings | 6 notes
 
 ```
-checking loading without being on the library search path ... WARNING
-Loading required package: R.methodsS3
-R.methodsS3 v1.7.1 (2016-02-15) successfully loaded. See ?R.methodsS3 for help.
-Loading required package: MASS
-Loading required package: matrixStats
-matrixStats v0.50.2-9000 (2016-07-09) successfully loaded. See ?matrixStats for help.
-Loading required package: R.oo
-R.oo v1.20.0 (2016-02-17) successfully loaded. See ?R.oo for help.
-
-Attaching package: ‘R.oo’
-... 82 lines ...
-
-The following object is masked from ‘package:base’:
-
-    cat
-
-Warning message:
-In .requireBiocPackage("aroma.light", neededBy = getName(pkg)) :
-  Package 'aroma.light' could not be loaded. Without it aroma.affymetrix will not work. Please install it from Bioconductor, cf. http://www.bioconductor.org/
-
-It looks like this package has a loading problem when not on .libPaths:
-see the messages for details.
-
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
   ‘R.methodsS3’ ‘MASS’ ‘matrixStats’ ‘R.oo’ ‘R.utils’ ‘aroma.core’
@@ -1800,7 +1810,7 @@ Rd file 'NSANormalization.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## pandaR (1.4.2)
+## pandaR (1.5.8)
 Maintainer: Joseph N. Paulson <jpaulson@jimmy.harvard.edu>, Dan Schlauch <dschlauch@fas.harvard.edu>
 
 0 errors | 0 warnings | 4 notes
@@ -1847,7 +1857,7 @@ See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 ```
 
-## pcaMethods (1.64.0)
+## pcaMethods (1.65.0)
 Maintainer: Henning Redestig <henning.red@gmail.com>  
 Bug reports: https://github.com/hredestig/pcamethods/issues
 
@@ -1887,82 +1897,43 @@ Maintainer: Paal O. Westermark <pal-olof.westermark@charite.de>
 
 0 errors | 0 warnings | 0 notes
 
+## Pigengene (0.99.25)
+Maintainer: Habil Zare <zare@txstate.edu>
+
+0 errors | 0 warnings | 2 notes
+
+```
+checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘AnnotationDbi’ ‘biomaRt’ ‘energy’ ‘org.Hs.eg.db’ ‘org.Mm.eg.db’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+
+checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘Pigengene/R/bn.calculation.R’:
+  assignInNamespace("supported.clusters", fixArgs, "bnlearn")
+
+welch.pvalue: no visible global function definition for ‘as.formula’
+welch.pvalue: no visible global function definition for ‘oneway.test’
+Undefined global functions or variables:
+  as.formula oneway.test
+Consider adding
+  importFrom("stats", "as.formula", "oneway.test")
+to your NAMESPACE file.
+```
+
 ## PSCBS (0.61.0)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/PSCBS/issues
 
 0 errors | 0 warnings | 0 notes
 
-## QDNAseq (1.8.0)
+## QDNAseq (1.9.2)
 Maintainer: Daoud Sie <d.sie@vumc.nl>  
 Bug reports: https://github.com/ccagc/QDNAseq/issues
 
-2 errors | 1 warning  | 1 note 
-
-```
-checking examples ... ERROR
-Running examples in ‘QDNAseq-Ex.R’ failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: callBins
-> ### Title: Call aberrations from segmented copy number data
-> ### Aliases: callBins callBins,QDNAseqCopyNumbers-method
-> ### Keywords: manip
-> 
-... 9 lines ...
-33,347	final bins
-> readCountsFiltered <- estimateCorrection(readCountsFiltered)
-Calculating correction for GC content and mappability
-    Calculating fit for sample LGG150 (1 of 1) ...
-Done.
-> copyNumbers <- correctBins(readCountsFiltered)
-> copyNumbersNormalized <- normalizeBins(copyNumbers)
-Applying median normalization ...Error in normalizeBins(copyNumbers) : 
-  could not find function "colMedians"
-Calls: normalizeBins -> normalizeBins
-Execution halted
-
-checking tests ... ERROR
-Running the tests in ‘tests/QDNAseq,reproducibility.R’ failed.
-Last 13 lines of output:
-      Calculating fit for sample LGG150 (1 of 1) ...
-  Done.
-  > dataCr <- correctBins(dataF)
-  Calculating correction for GC content and mappability
-      Calculating fit for sample LGG150 (1 of 1) ...
-  Done.
-  > stopifnot(all.equal(dataCr, dataC))
-  > 
-  > # Normalize binned read counts to have diploid normal copy number
-  > dataN <- normalizeBins(dataC)
-  Applying median normalization ...Error in normalizeBins(dataC) : could not find function "colMedians"
-  Calls: normalizeBins -> normalizeBins
-  Execution halted
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-No methods found in "matrixStats" for requests: colMedians
-
-Error: processing vignette 'QDNAseq.Rnw' failed with diagnostics:
- chunk 17 
-Error in normalizeBins(copyNumbers) : 
-  could not find function "colMedians"
-Execution halted
-
-
-checking R code for possible problems ... NOTE
-estimateCorrection,QDNAseqReadCounts : calculateFits: no visible global
-  function definition for ‘formula’
-normalizeBins,QDNAseqCopyNumbers: no visible global function definition
-  for ‘colMedians’
-Undefined global functions or variables:
-  colMedians formula
-Consider adding
-  importFrom("stats", "formula")
-to your NAMESPACE file.
-```
+0 errors | 0 warnings | 0 notes
 
 ## r2dRue (1.0.4)
 Maintainer: Alberto Ruiz Moreno <aruiz@eeza.csic.es>
@@ -2025,7 +1996,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## RnBeads (1.4.0)
+## RnBeads (1.5.1)
 Maintainer: Fabian Mueller <rnbeads@mpi-inf.mpg.de>
 
 0 errors | 7 warnings | 6 notes
@@ -2102,7 +2073,7 @@ Extensions’ manual.
 
 checking sizes of PDF files under ‘inst/doc’ ... WARNING
   ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘RnBeads.pdf’ from 2.9Mb to 1.5Mb
+     compacted ‘RnBeads.pdf’ from 2.8Mb to 1.5Mb
   consider running tools::compactPDF(gs_quality = "ebook") on these files
 
 checking package dependencies ... NOTE
@@ -2117,7 +2088,7 @@ checking installed package size ... NOTE
   installed size is  6.1Mb
   sub-directories of 1Mb or more:
     bin   1.0Mb
-    doc   3.2Mb
+    doc   3.1Mb
 
 checking top-level files ... NOTE
 Non-standard file/directory found at top level:
@@ -2142,7 +2113,7 @@ BMIQ: no visible global function definition for ‘pbeta’
 BMIQ: no visible global function definition for ‘qbeta’
 MethyLumiSet2RnBeadSet: no visible global function definition for
   ‘phenoData’
-... 683 lines ...
+... 718 lines ...
              "cutree", "dbeta", "density", "dist", "ecdf", "fisher.test",
              "hclust", "knots", "kruskal.test", "lm", "model.matrix",
              "optim", "order.dendrogram", "p.adjust", "pbeta", "pchisq",
@@ -2236,11 +2207,30 @@ See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 ```
 
-## scater (1.0.4)
+## scater (1.1.14)
 Maintainer: Davis McCarthy <davis@ebi.ac.uk>  
 Bug reports: https://github.com/davismcc/scater/issues
 
-0 errors | 0 warnings | 0 notes
+1 error  | 0 warnings | 0 notes
+
+```
+checking tests ... ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  library sizes should be finite positive values
+  1: normaliseExprs(example_sceset, method = "upperquartile", feature_set = 1:200) at testthat/test-normalisation.R:52
+  2: edgeR::cpm.default(exprs_mat, lib.size = (size_factors * mean(lib_size)/mean(size_factors)), 
+         prior.count = object@logExprsOffset, log = FALSE)
+  3: stop(err)
+  
+  Collapsing expression to 500 features.Kallisto log not provided - assuming all runs successfultestthat results ================================================================
+  OK: 76 SKIPPED: 0 FAILED: 1
+  1. Error: we can compute normalised expression values with upperquartile 
+            method (@test-normalisation.R#52) 
+  
+  Error: testthat unit tests failed
+  Execution halted
+```
 
 ## SemiParBIVProbit (3.8)
 Maintainer: Giampiero Marra <giampiero.marra@ucl.ac.uk>
@@ -2258,25 +2248,17 @@ Bug reports: https://github.com/CenterForAssessment/SGP/issues
 
 0 errors | 0 warnings | 0 notes
 
-## shinyMethyl (1.6.2)
+## shinyMethyl (1.8.3)
 Maintainer: Jean-Philippe Fortin <jfortin@jhsph.edu>
 
-0 errors | 1 warning  | 3 notes
+0 errors | 0 warnings | 2 notes
 
 ```
-checking sizes of PDF files under ‘inst/doc’ ... WARNING
-  ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘shinyMethyl.pdf’ from 4.4Mb to 3.9Mb
-  consider running tools::compactPDF(gs_quality = "ebook") on these files
-
 checking for hidden files and directories ... NOTE
 Found the following hidden files and directories:
   .travis.yml
 These were most likely included in error. See section ‘Package
 structure’ in the ‘Writing R Extensions’ manual.
-
-checking DESCRIPTION meta-information ... NOTE
-Malformed Description field: should contain one or more complete sentences.
 
 checking R code for possible problems ... NOTE
 addHoverDensity: no visible global function definition for ‘lines’
@@ -2302,7 +2284,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## SICtools (1.2.2)
+## SICtools (1.3.2)
 Maintainer: Xiaobin Xing <xiaobinxing0316@gmail.com>
 
 0 errors | 1 warning  | 4 notes
@@ -2375,17 +2357,12 @@ Bug reports: https://github.com/osofr/tmlenet/issues
 
 0 errors | 0 warnings | 0 notes
 
-## topGO (2.24.0)
+## topGO (2.25.0)
 Maintainer: Adrian Alexa <adrian.alexa@gmail.com>
 
-0 errors | 1 warning  | 4 notes
+0 errors | 0 warnings | 4 notes
 
 ```
-checking sizes of PDF files under ‘inst/doc’ ... WARNING
-  ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘topGO.pdf’ from 904Kb to 644Kb
-  consider running tools::compactPDF(gs_quality = "ebook") on these files
-
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
   ‘BiocGenerics’ ‘graph’ ‘Biobase’ ‘GO.db’ ‘AnnotationDbi’ ‘SparseM’
@@ -2478,7 +2455,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## VanillaICE (1.34.0)
+## VanillaICE (1.35.1)
 Maintainer: Robert Scharpf <rscharpf@jhsph.edu>
 
 0 errors | 0 warnings | 3 notes
@@ -2502,7 +2479,7 @@ Maintainer: Ivan Marin-Franch <ivan.marin@uv.es>
 
 0 errors | 0 warnings | 0 notes
 
-## wateRmelon (1.17.0)
+## wateRmelon (1.17.1)
 Maintainer: Leo <lschal@essex.ac.uk>
 
 0 errors | 0 warnings | 6 notes
@@ -2531,8 +2508,7 @@ Packages in Depends field not imported from:
   ‘limma’ ‘lumi’ ‘matrixStats’ ‘methods’ ‘methylumi’
   These packages need to be imported from (in the NAMESPACE file)
   for when this namespace is loaded but not attached.
-Unexported object imported by a ':::' call: ‘minfi:::.isRG’
-  See the note in ?`:::` about the use of this operator.
+Missing object imported by a ':::' call: ‘minfi:::.isRG’
 
 checking R code for possible problems ... NOTE
 DataToNChannelSet2: no visible global function definition for ‘is’
@@ -2575,7 +2551,7 @@ Maintainer: Peter Langfelder <Peter.Langfelder@gmail.com>
 
 0 errors | 0 warnings | 0 notes
 
-## XBSeq (1.2.2)
+## XBSeq (1.2.4)
 Maintainer: Yuanhang Liu <liuy12@uthscsa.edu>
 
 0 errors | 0 warnings | 3 notes
@@ -2600,11 +2576,11 @@ XBSeqDataSet: no visible global function definition for ‘DataFrame’
 XBSeqDataSet: no visible global function definition for
   ‘SummarizedExperiment’
 XBSeqDataSet: no visible global function definition for ‘formula’
-... 42 lines ...
-Consider adding
+... 45 lines ...
   importFrom("stats", "Gamma", "coefficients", "complete.cases", "cor",
              "dnbinom", "dpois", "formula", "glm", "median", "optim",
-             "p.adjust", "predict", "quantile", "rnbinom")
+             "p.adjust", "pbeta", "predict", "qbeta", "quantile",
+             "rnbinom")
   importFrom("utils", "data")
 to your NAMESPACE file.
 
@@ -2614,6 +2590,10 @@ File ‘XBSeq/R/methods.R’:
 See section ‘Good practice’ in ‘?data’.
 
 checking Rd line widths ... NOTE
+Rd file 'XBSeq.Rd':
+  \usage lines wider than 90 characters:
+        sharingMode = "maximum", fitType = "local", pvals_only = FALSE, paraMethod='NP', big_count = 900)
+
 Rd file 'XBplot.Rd':
   \usage lines wider than 90 characters:
      XBplot(XB, Samplenum = NULL, unit = c('counts', 'LogTPM'), Libsize = NULL, Genelength = NULL, xlab = 'log2 TPM', ylab = 'Frequencies',  ... [TRUNCATED]
