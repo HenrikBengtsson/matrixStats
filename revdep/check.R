@@ -15,6 +15,10 @@ availableCores <- function() {
   1L
 }
 
-revdep_check(threads = availableCores())
+try(BiocInstaller::useDevel())
+
+ignore <- "LSAmitR"
+
+revdep_check(bioconductor = TRUE, ignore = ignore, threads = availableCores())
 revdep_check_save_summary()
 revdep_check_print_problems()
