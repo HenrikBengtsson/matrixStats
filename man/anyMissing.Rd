@@ -50,7 +50,7 @@
 
 \seealso{
   Starting with R v3.1.0, there is \code{anyNA()} in the \pkg{base},
-  which provides the same functionality as this function.
+  which provides the same functionality as \code{anyMissing()}.
 }
 
 
