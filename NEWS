@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.50.2-9000 [2016-07-09]
+Version: 0.51.0 [2016-10-08]
 o SPEEDUP / CLEANUP: rowMedians() and colMedians() are now plain
   functions. They were previously S4 methods (due to a Bioconductor
   legacy).  The package no longer imports the methods package.
