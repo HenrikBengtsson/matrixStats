@@ -26,7 +26,7 @@
 # @keyword internal
 #*/############################################################################
 validateIndices <- function(idxs=NULL, maxIdx, allowOutOfBound=TRUE) {
-  ans <- .Call('validate', idxs, maxIdx, allowOutOfBound, PACKAGE='matrixStats')
-  if (is.null(ans)) ans <- 1:maxIdx
+  ans <- .Call(C_validate, idxs, maxIdx, allowOutOfBound)
+  if (is.null(ans)) ans <- seq_len(maxIdx)
   ans
 }

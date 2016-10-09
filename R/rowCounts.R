@@ -82,7 +82,7 @@ rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("rowCounts", x, dim., rows, cols, value, 2L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, hasNAs)
   } else {
     if (is.vector(x)) dim(x) <- dim.
 
@@ -128,7 +128,7 @@ colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("colCounts", x, dim., rows, cols, value, 2L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, hasNAs)
   } else {
     if (is.vector(x)) dim(x) <- dim.
 
@@ -170,7 +170,7 @@ count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("count", x, idxs, value, 2L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_count, x, idxs, value, 2L, na.rm, hasNAs)
   } else {
     # Apply subset
     if (!is.null(idxs)) x <- x[idxs]
@@ -191,7 +191,7 @@ rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("rowCounts", x, dim., rows, cols, value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 0L, na.rm, hasNAs)
     as.logical(counts)
   } else {
     if (is.vector(x)) dim(x) <- dim.
@@ -214,7 +214,7 @@ colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("colCounts", x, dim., rows, cols, value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 0L, na.rm, hasNAs)
     as.logical(counts)
   } else {
     if (is.vector(x)) dim(x) <- dim.
@@ -238,7 +238,7 @@ allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("count", x, idxs, value, 0L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_count, x, idxs, value, 0L, na.rm, hasNAs)
     as.logical(counts)
   } else {
     # Apply subset
@@ -258,7 +258,7 @@ rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("rowCounts", x, dim., rows, cols, value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 1L, na.rm, hasNAs)
     as.logical(counts)
   } else {
     if (is.vector(x)) dim(x) <- dim.
@@ -281,7 +281,7 @@ colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("colCounts", x, dim., rows, cols, value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 1L, na.rm, hasNAs)
     as.logical(counts)
   } else {
     if (is.vector(x)) dim(x) <- dim.
@@ -305,7 +305,7 @@ anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    counts <- .Call("count", x, idxs, value, 1L, na.rm, hasNAs, PACKAGE="matrixStats")
+    counts <- .Call(C_count, x, idxs, value, 1L, na.rm, hasNAs)
     as.logical(counts)
   } else {
     # Apply subset

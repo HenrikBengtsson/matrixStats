@@ -53,7 +53,7 @@ x_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, 
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
-  .Call("x_OP_y", x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, FALSE, package="matrixStats")
+  .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, FALSE)
 } # x_OP_y()
 
 
@@ -62,7 +62,7 @@ t_tx_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALS
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
-  .Call("x_OP_y", x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE, package="matrixStats")
+  .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE)
 } # t_tx_OP_y()
 
 

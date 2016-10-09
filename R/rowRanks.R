@@ -109,7 +109,7 @@ rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
 
   dim. <- as.integer(dim.)
   # byrow=TRUE
-  .Call("rowRanksWithTies", x, dim., rows, cols, tiesMethod, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowRanksWithTies, x, dim., rows, cols, tiesMethod, TRUE)
 }
 
 
@@ -131,7 +131,7 @@ colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
 
   dim. <- as.integer(dim.)
   # byrow=FALSE
-  y <- .Call("rowRanksWithTies", x, dim., rows, cols, tiesMethod, FALSE, PACKAGE="matrixStats")
+  y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, tiesMethod, FALSE)
   if (!preserveShape) y <- t(y)
   y
 }

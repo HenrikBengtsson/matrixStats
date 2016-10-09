@@ -22,7 +22,7 @@
 #include "templates-gen-matrix.h"
 
 
-SEXP rowOrderStats(SEXP x, SEXP dim,SEXP rows, SEXP cols, SEXP which) {
+SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which) {
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol, qq;
 

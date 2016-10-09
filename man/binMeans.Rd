@@ -70,7 +70,7 @@ bx <- c(0,50,100,150,200)+0.5
 yS <- binMeans(y, x=x, bx=bx)
 
 plot(x,y)
-for (kk in seq(along=yS)) {
+for (kk in seq_along(yS)) {
   lines(bx[c(kk,kk+1)], yS[c(kk,kk)], col="blue", lwd=2)
 }
 }

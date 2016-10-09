@@ -51,7 +51,7 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
   if (is.null(center)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    sigma2 <- .Call("rowVars", x, dim., rows, cols, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, TRUE);
     return(sigma2)
   }
 
@@ -110,7 +110,7 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    sigma2 <- .Call("rowVars", x, dim., rows, cols, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, FALSE);
     return(sigma2)
   }
 

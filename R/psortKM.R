@@ -1,5 +1,5 @@
 .psortKM <- function(x, k=length(x), m=1L, ...) {
-  .Call("psortKM", as.numeric(x), k=as.integer(k), m=as.integer(m), PACKAGE="matrixStats"); 
+  .Call(C_psortKM, as.numeric(x), k=as.integer(k), m=as.integer(m)); 
 } # .psortKM()
 
 

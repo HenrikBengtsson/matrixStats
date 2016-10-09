@@ -40,11 +40,11 @@
 # @keyword univar
 #*/###########################################################################
 rowDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
-  .Call("rowDiffs", x, dim(x), rows, cols, as.integer(lag), as.integer(differences), TRUE, PACKAGE="matrixStats")
+  .Call(C_rowDiffs, x, dim(x), rows, cols, as.integer(lag), as.integer(differences), TRUE)
 }
 
 colDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
-  .Call("rowDiffs", x, dim(x), rows, cols, as.integer(lag), as.integer(differences), FALSE, PACKAGE="matrixStats")
+  .Call(C_rowDiffs, x, dim(x), rows, cols, as.integer(lag), as.integer(differences), FALSE)
 }
 
 

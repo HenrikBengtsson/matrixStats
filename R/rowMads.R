@@ -12,7 +12,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, TRUE, PACKAGE="matrixStats")
+    x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, hasNAs, TRUE)
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
@@ -48,7 +48,7 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     na.rm <- as.logical(na.rm)
     constant = as.numeric(constant)
     hasNAs <- TRUE
-    x <- .Call("rowMads", x, dim., rows, cols, constant, na.rm, hasNAs, FALSE, PACKAGE="matrixStats")
+    x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, hasNAs, FALSE)
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.

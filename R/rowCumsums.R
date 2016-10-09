@@ -54,44 +54,44 @@
 #*/###########################################################################
 rowCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumsums", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowCumsums, x, dim, rows, cols, TRUE)
 }
 
 colCumsums <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumsums", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call(C_rowCumsums, x, dim, rows, cols, FALSE)
 }
 
 
 rowCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumprods", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowCumprods, x, dim, rows, cols, TRUE)
 }
 
 colCumprods <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCumprods", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call(C_rowCumprods, x, dim, rows, cols, FALSE)
 }
 
 
 rowCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummins", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowCummins, x, dim, rows, cols, TRUE)
 }
 
 colCummins <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummins", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call(C_rowCummins, x, dim, rows, cols, FALSE)
 }
 
 rowCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummaxs", x, dim, rows, cols, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowCummaxs, x, dim, rows, cols, TRUE)
 }
 
 colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
-  .Call("rowCummaxs", x, dim, rows, cols, FALSE, PACKAGE="matrixStats")
+  .Call(C_rowCummaxs, x, dim, rows, cols, FALSE)
 }
 
 

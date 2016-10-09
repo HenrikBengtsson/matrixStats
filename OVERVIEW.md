@@ -6,7 +6,7 @@ usage and processing time. They are often remarkably faster compared
 to good old `apply()` solutions. The calculations are mostly implemented
 in C, which allow us to optimize beyond what is possible to do in
 plain R. The package installs out-of-the-box on all common operating
-systems, including Linux, OS X and Windows.
+systems, including Linux, macOS and Windows.
 
 ## Example
 With a matrix

@@ -50,7 +50,7 @@ diff2 <- function(x, idxs=NULL, lag=1L, differences=1L, ...) {
   lag <- as.integer(lag)
   differences <- as.integer(differences)
 
-  .Call("diff2", x, idxs, lag, differences, PACKAGE="matrixStats");
+  .Call(C_diff2, x, idxs, lag, differences);
 } # diff2()
 
 

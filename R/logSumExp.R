@@ -80,8 +80,7 @@
 #*/###########################################################################
 logSumExp <- function(lx, idxs=NULL, na.rm=FALSE, ...) {
   hasNA <- TRUE;
-  .Call("logSumExp", as.numeric(lx), idxs, as.logical(na.rm), as.logical(hasNA),
-                                                     PACKAGE="matrixStats");
+  .Call(C_logSumExp, as.numeric(lx), idxs, as.logical(na.rm), as.logical(hasNA));
 } # logSumExp()
 
 

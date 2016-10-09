@@ -154,7 +154,7 @@ binMeans <- function(y, x, idxs=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, .
   x <- as.numeric(x);
   bx <- as.numeric(bx);
   count <- as.logical(count);
-  .Call("binMeans", y, x, bx, count, right, PACKAGE="matrixStats");
+  .Call(C_binMeans, y, x, bx, count, right);
 } # binMeans()
 
 

@@ -31,7 +31,7 @@
 # @keyword internal
 #*/############################################################################
 signTabulate <- function(x, idxs=NULL, ...) {
-  res <- .Call("signTabulate", x, idxs, PACKAGE="matrixStats");
+  res <- .Call(C_signTabulate, x, idxs);
   names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)];
   res;
 } # signTabulate()

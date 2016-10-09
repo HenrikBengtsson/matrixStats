@@ -55,38 +55,38 @@
 rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
 }
 
 rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
 }
 
 rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("rowRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
 }
 
 
 colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, dim., rows, cols, 2L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
 }
 
 colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, dim., rows, cols, 0L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
 }
 
 colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call("colRanges", x, dim., rows, cols, 1L, na.rm, TRUE, PACKAGE="matrixStats")
+  .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
 }
 
 

@@ -41,7 +41,7 @@
 #
 # \seealso{
 #   Starting with R v3.1.0, there is \code{anyNA()} in the \pkg{base},
-#   which provides the same functionality as this function.
+#   which provides the same functionality as \code{anyMissing()}.
 # }
 #
 # @keyword iteration
@@ -51,13 +51,13 @@ anyMissing <- function(x, idxs=NULL, ...) {
   ## All list or a data.frame?
   if (is.list(x)) {
     for (kk in seq_along(x)) {
-      if (.Call("anyMissing", x[[kk]], idxs, PACKAGE="matrixStats"))
+      if (.Call(C_anyMissing, x[[kk]], idxs))
         return(TRUE)
     }
     return(FALSE)
   } else {
     ## All other data types
-    .Call("anyMissing", x, idxs, PACKAGE="matrixStats")
+    .Call(C_anyMissing, x, idxs)
   }
 }
 

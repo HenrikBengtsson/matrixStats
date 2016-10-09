@@ -1,8 +1,6 @@
 ###########################################################################/**
 # @RdocFunction rowMedians
 # @alias colMedians
-# \alias{rowMedians,matrix-method}
-# \alias{colMedians,matrix-method}
 #
 # @title "Calculates the median for each row (column) in a matrix"
 #
@@ -52,32 +50,25 @@
 # @keyword robust
 # @keyword univar
 #*/###########################################################################
-setGeneric("rowMedians", function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
-  standardGeneric("rowMedians");
-})
-
-setMethod("rowMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowMedians <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
-  .Call("rowMedians", x, dim., rows, cols, na.rm, hasNAs, TRUE, PACKAGE="matrixStats");
-})
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, hasNAs, TRUE);
+}
 
-
-setGeneric("colMedians", function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
-  standardGeneric("colMedians");
-})
-
-setMethod("colMedians", signature(x="matrix"), function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colMedians <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm);
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
-  .Call("rowMedians", x, dim., rows, cols, na.rm, hasNAs, FALSE, PACKAGE="matrixStats");
-})
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, hasNAs, FALSE);
+}
 
 
 ############################################################################
 # HISTORY:
+# 2015-07-09
+# o Turned into plain functions.
 # 2015-05-28 [DJ]
 # o Supported subsetted computation.
 # 2011-10-13 [HJ]

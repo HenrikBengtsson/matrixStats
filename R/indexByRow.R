@@ -38,7 +38,7 @@ indexByRow <- function(dim, idxs=NULL, ...) {
     dim <- as.integer(dim)
   }
   if (!is.null(idxs)) idxs <- as.integer(idxs)
-  .Call("indexByRow", dim, idxs, package="matrixStats")
+  .Call(C_indexByRow, dim, idxs)
 }
 
 

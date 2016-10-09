@@ -101,7 +101,7 @@ binCounts <- function(x, idxs=NULL, bx, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   x <- as.numeric(x);
   bx <- as.numeric(bx);
-  .Call("binCounts", x, bx, right, PACKAGE="matrixStats");
+  .Call(C_binCounts, x, bx, right);
 } # binCounts()
 
 

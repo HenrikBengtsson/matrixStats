@@ -1,6 +1,14 @@
 Package: matrixStats
 ====================
 
+Version: 0.51.0 [2016-10-08]
+o SPEEDUP / CLEANUP: rowMedians() and colMedians() are now plain
+  functions. They were previously S4 methods (due to a Bioconductor
+  legacy).  The package no longer imports the methods package.
+o SPEEDUP: Now native API is formally registered allowing for
+  faster lookup of routines from R.
+
+
 Version: 0.50.2 [2016-04-24]
 o BUG FIX: logSumExp(c(-Inf, -Inf, ...)) would return NaN rather
   than -Inf (Issue #48).  Thanks to Jason Xu (University of

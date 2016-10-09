@@ -1,13 +1,8 @@
-useDynLib("matrixStats")
+useDynLib("matrixStats", .registration=TRUE, .fixes="C_")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-importFrom("methods", "setMethod")
-importFrom("methods", "setGeneric")
-importFrom("methods", "loadMethod")
-importFrom("methods", "signature")
-
 importFrom("stats", "mad")
 importFrom("stats", "median")
 importFrom("stats", "quantile")
