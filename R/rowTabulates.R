@@ -1,39 +1,29 @@
-###########################################################################/**
-# @RdocFunction rowTabulates
-# @alias colTabulates
-#
-# @title "Tabulates the values in a matrix by row (column)"
-#
-# \description{
-#  @get "title".
-# }
-#
-# \usage{
-#   @usage rowTabulates
-#   @usage colTabulates
-# }
-#
-# \arguments{
-#   \item{x}{An @integer or @raw NxK @matrix.}
-#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#    to operate over. If @NULL, no subsetting is done.}
-#   \item{values}{An @vector of J values of count. If @NULL, all (unique)
-#    values are counted.}
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a NxJ (KxJ) @matrix where
-#   N (K) is the number of row (column) @vectors tabulated and
-#   J is the number of values counted.
-# }
-#
-# @examples "../incl/rowTabulates.Rex"
-#
-# @author "HB"
-#
-# @keyword utilities
-#*/###########################################################################
+#' Tabulates the values in a matrix by row (column)
+#' 
+#' Tabulates the values in a matrix by row (column).
+#' 
+#' 
+#' @param x An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK
+#' \code{\link[base]{matrix}}.
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param values An \code{\link[base]{vector}} of J values of count. If
+#' \code{\link[base]{NULL}}, all (unique) values are counted.
+#' 
+#' @param ... Not used.
+#' 
+#' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the
+#' number of row (column) \code{\link[base]{vector}}s tabulated and J is the
+#' number of values counted.
+#'
+#' @example incl/rowTabulates.Rex
+#'
+#' @author Henrik Bengtsson
+#' @keywords utilities
+#' @export
 rowTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -88,6 +78,8 @@ rowTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
 }
 
 
+#' @rdname rowTabulates
+#' @export
 colTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments

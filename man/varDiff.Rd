@@ -5,17 +5,6 @@
 \alias{sdDiff}
 \alias{madDiff}
 \alias{iqrDiff}
-\alias{colVarDiffs}
-\alias{rowVarDiffs}
-\alias{colSdDiffs}
-\alias{rowSdDiffs}
-\alias{colMadDiffs}
-\alias{rowMadDiffs}
-\alias{colIQRDiffs}
-\alias{rowIQRDiffs}
-\alias{sdDiff}
-\alias{madDiff}
-\alias{iqrDiff}
 \alias{rowVarDiffs}
 \alias{colVarDiffs}
 \alias{rowSdDiffs}

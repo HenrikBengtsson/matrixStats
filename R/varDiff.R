@@ -17,9 +17,6 @@
 #' correction factor needs to be applied manually, i.e. there is no
 #' \code{constant} argument for the IQR functions.
 #' 
-#' @aliases varDiff sdDiff madDiff iqrDiff colVarDiffs rowVarDiffs colSdDiffs
-#' rowSdDiffs colMadDiffs rowMadDiffs colIQRDiffs rowIQRDiffs
-#' 
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 #' 

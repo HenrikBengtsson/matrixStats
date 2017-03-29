@@ -1,3 +1,5 @@
+#' @rdname rowSds
+#' @export
 rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
@@ -34,6 +36,8 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
 }
 
 
+#' @rdname rowSds
+#' @export
 colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.

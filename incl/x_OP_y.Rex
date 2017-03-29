@@ -14,8 +14,3 @@ z0 <- t(t(x) + y)
 z1 <- t_tx_OP_y(x, y, OP="+")
 print(z1)
 stopifnot(all.equal(z1, z0))
-
-
-
-
-
