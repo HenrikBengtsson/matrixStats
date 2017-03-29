@@ -137,6 +137,7 @@ sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
 }
 
 
+#' @importFrom stats mad
 #' @rdname varDiff
 #' @export
 madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
@@ -179,6 +180,7 @@ madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826,
 }
 
 
+#' @importFrom stats quantile
 #' @rdname varDiff
 #' @export
 iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {

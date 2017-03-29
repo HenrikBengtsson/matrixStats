@@ -40,6 +40,7 @@
 #' @seealso For the non-weighted MAD, see \code{\link[stats]{mad}}.  Internally
 #' \code{\link{weightedMedian}}() is used to calculate the weighted median.
 #' 
+#' @importFrom stats mad median
 #' @keywords univar robust
 #' @export
 weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...) {

@@ -28,6 +28,8 @@
 #' @author Henrik Bengtsson
 #' @seealso See \code{\link[stats]{IQR}}.  See \code{\link{rowSds}}().
 #' @keywords array iteration robust univar
+#' 
+#' @importFrom stats quantile
 #' @export
 rowIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   Q <- rowQuantiles(x, rows=rows, cols=cols, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)

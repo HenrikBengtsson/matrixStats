@@ -33,6 +33,7 @@
 #' @seealso \code{\link[stats]{quantile}}.
 #' @keywords array iteration robust univar
 #' 
+#' @importFrom stats quantile
 #' @export
 rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'probs':
@@ -120,6 +121,7 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
   q
 }
 
+#' @importFrom stats quantile
 #' @rdname rowQuantiles
 #' @export
 colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
