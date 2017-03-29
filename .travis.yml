@@ -39,7 +39,7 @@ matrix:
       env:
         - NB='w/ valgrind' ## Just a label
         - _R_TEST_=BASE
-	- _R_CHECK_USE_VALGRIND_=TRUE
+        - _R_CHECK_USE_VALGRIND_=TRUE
     - os: linux
       r: release
       addons:
