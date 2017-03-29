@@ -5,6 +5,9 @@ Version: 0.51.0-9000 [2017-03-28]
 
 SOFTWARE QUALITY:
 
+ o Continuous-integration testing is now also done on macOS, in addition to
+   Linux and Windows.
+   
  o ROBUSTNESS: Package now registers the native API using also
    R_useDynamicSymbols().
    
