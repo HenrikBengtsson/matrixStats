@@ -35,9 +35,9 @@ print(Z)
 
 # Validation
 Z0 <- rbind(s1 = colMeans(X[  1:4, ]),
-            s2 = colMeans(X[  5:8, ]), 
+            s2 = colMeans(X[  5:8, ]),
             s3 = colMeans(X[ 9:12, ]),
-	    s4 = colMeans(X[13:16, ]),
+            s4 = colMeans(X[13:16, ]),
             s5 = colMeans(X[17:20, ]))
 stopifnot(identical(drop(Z), Z0))
 

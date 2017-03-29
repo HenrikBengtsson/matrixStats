@@ -19,7 +19,7 @@ stopifnot(all.equal(mu, mu_0))
 
 # Weighted row averages (excluding some columns)
 w <- c(0, 1, 0, 0)
-mu_0 <- rowMedians(x[,(w == 1), drop = FALSE])
+mu_0 <- rowMedians(x[, (w == 1), drop = FALSE])
 mu <- rowWeightedMedians(x, w = w)
 stopifnot(all.equal(mu, mu_0))
 
