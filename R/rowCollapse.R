@@ -1,45 +1,33 @@
-###########################################################################/**
-# @RdocFunction rowCollapse
-# @alias colCollapse
-#
-# @title "Extracts one cell per row (column) from a matrix"
-#
-# \description{
-#  @get "title".
-#  The implementation is optimized for memory and speed.
-# }
-#
-# \usage{
-#   @usage rowCollapse
-#   @usage colCollapse
-# }
-#
-# \arguments{
-#   \item{x}{An NxK @matrix.}
-#   \item{idxs}{An index @vector of (maximum) length N (K) specifying the
-#    columns (rows) to be extracted.}
-#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#    to operate over. If @NULL, no subsetting is done.}
-#   \item{dim.}{An @integer @vector of length two specifying the
-#              dimension of \code{x}, also when not a @matrix.}
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a @vector of length N (K).
-# }
-#
-# @examples "../incl/rowCollapse.Rex"
-#
-# @author "HB"
-#
-# \seealso{
-#   \emph{Matrix indexing} to index elements in matrices and arrays,
-#   cf. @see "base::[".
-# }
-#
-# @keyword utilities
-#*/###########################################################################
+#' Extracts one cell per row (column) from a matrix
+#' 
+#' Extracts one cell per row (column) from a matrix.  The implementation is
+#' optimized for memory and speed.
+#' 
+#' @param x An NxK \code{\link[base]{matrix}}.
+#' 
+#' @param idxs An index \code{\link[base]{vector}} of (maximum) length N (K)
+#' specifying the columns (rows) to be extracted.
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
+#' length two specifying the dimension of \code{x}, also when not a
+#' \code{\link[base]{matrix}}.
+#' 
+#' @param ... Not used.
+#' 
+#' @return Returns a \code{\link[base]{vector}} of length N (K).
+#'
+#' @example incl/rowCollapse.Rex
+#'
+#' @author Henrik Bengtsson
+#' 
+#' @seealso \emph{Matrix indexing} to index elements in matrices and arrays,
+#' cf. \code{\link[base]{[}}().
+#' @keywords utilities
+#' @export
 rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
@@ -63,6 +51,8 @@ rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
   x[idxs]
 }
 
+#' @rdname rowCollapse
+#' @export
 colCollapse <- function(x, idxs, cols=NULL, dim.=dim(x), ...) {
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
