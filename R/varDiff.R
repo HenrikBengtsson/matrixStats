@@ -335,30 +335,3 @@ colIQRDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, .
 
   apply(x, MARGIN=2L, FUN=iqrDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-06-03 [DJ]
-# o Supported subsetted computation.
-# 2015-01-16
-# o Added iqrDiff() and (col|row)IQRDiffs().
-# 2014-14-19
-# o Added (col|row)(Var|Sd|Mad)Diffs() for completeness.
-# 2014-11-10
-# o Turned *Diff() into a function.
-# 2014-05-24
-# o Turned *Diff() into an S3 method (was S4).
-# 2014-04-26
-# o Added argument 'trim' to madDiff(), sdDiff() and varDiff().
-# 2013-11-23
-# o MEMORY: Now *Diff() cleans out allocated objects sooner.
-# 2012-07-17
-# o Added the reference to von Neumann et al. (1941).
-# 2009-02-02
-# o Added Rdoc comments.
-# 2008-04-13
-# o Added varDiff(), sdDiff() and madDiff().
-# 2008-04-10 [on UA930 SFO-LHR]
-# o Created.
-############################################################################

@@ -318,23 +318,3 @@ anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
     }
   }
 }
-
-
-
-############################################################################
-# HISTORY:
-# 2015-05-26 [DJ]
-# o Supported subsetted computation.
-# 2014-11-14 [HB]
-# o SPEEDUP: Now colCounts() is implemented in native code.
-# o CLEANUP: Now (col|row)Count(x) when x is logical utilizes the
-#   same code as as.integer(x).
-# o As a part of transitioning to plain functions, rowCounts() for matrix
-#   was turned into a default method that understands matrix inputs.
-#   It also understand vector input, if argument 'dim' is given.
-# 2014-06-02 [HB]
-# o Made rowCounts() an S3 method (was S4).
-# o Added argument 'value' to col- and rowCounts().
-# 2008-03-25 [HB]
-# o Created.
-############################################################################

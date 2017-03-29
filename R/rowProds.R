@@ -115,36 +115,3 @@ colProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "e
 
   y
 } # colProds()
-
-
-############################################################################
-# HISTORY:
-# 2015-06-03 [DJ]
-# o Supported subsetted computation.
-# 2014-11-15 [HB]
-# o SPEEDUP: No longer using match.arg() due to its overhead.
-# 2014-06-04 [HB]
-# o Now col- and rowProds() utilizes new product() function.
-# o Added argument 'method' to col- and rowProds().
-# 2014-06-02 [HB]
-# o Now rowProds() uses rowCounts(x) when 'x' is logical.
-# o Now rowProds() avoids subsetting rows unless needed.
-# 2014-03-31 [HB]
-# o BUG FIX: rowProds() would throw "Error in rowSums(isNeg) : 'x' must
-#   be an array of at least two dimensions" on matrices where all rows
-#   contained at least on zero.  Thanks to Roel Verbelen at KU Leuven
-#   for the report.
-# 2013-11-23 [HB]
-# o MEMORY: rowProbs() does a better job cleaning out allocated
-#   objects sooner.
-# 2012-06-25 [HB]
-# o GENERALIZATION: Now row- and colProds() handles missing values.
-# o BUG FIX: In certain cases, row- and colProds() would return NA instead
-#   of 0 for some elements.  Thanks Brenton Kenkel at University of
-#   Rochester for reporting on this.
-# 2008-07-30 [HB]
-# o Now it is only rows without zeros for which the calculation is
-#   actually performed.
-# 2008-03-26 [HB]
-# o Created.
-############################################################################

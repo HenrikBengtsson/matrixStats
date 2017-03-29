@@ -91,23 +91,3 @@ iqr <- function(x, idxs=NULL, na.rm=FALSE, ...) {
 
   q[2L] - q[1L]
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-30 [DJ]
-# o Supported subsetted computation.
-# 2015-01-16
-# o Now iqr(..., na.rm=FALSE) returns NA_real_ if there are missing values.
-# 2015-01-11
-# o Now iqr() no longer returns a named value.
-# 2014-12-19
-# o Added iqr().
-# 2011-11-25
-# o Added help and example to rowIQRs() and colIQRs().
-# o BUG FIX: rowIQRs() and colIQRs() would return the 25% and the 75%
-#   quantiles, not the difference between them.  Thanks Pierre Neuvial
-#   at CNRS, Evry, France for the report.
-# 2008-03-26 [HB]
-# o Created.
-############################################################################

@@ -46,14 +46,3 @@ rowDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
 colDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
   .Call(C_rowDiffs, x, dim(x), rows, cols, as.integer(lag), as.integer(differences), FALSE)
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-30 [DJ]
-# o Supported subsetted computation.
-# 2014-11-15 [HB]
-# o SPEEDUP: Now colDiffs(x) no longer uses rowDiffs(t(x)).
-# 2008-03-26 [HB]
-# o Created.
-############################################################################

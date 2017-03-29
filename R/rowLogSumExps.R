@@ -78,21 +78,3 @@ colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
 
   res;
 } # rowLogSumExps()
-
-
-
-############################################################################
-# HISTORY:
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2013-04-30 [HB]
-# o SPEEDUP: (col|row)LogSumExps() are now implemented natively.
-# o Renamed to (col|row)LogSumExps().
-# 2013-04-29 [HB]
-# o Added rowSumsInLogspace().
-# o Renamed to colSumsInLogspace() which utilizes logSumExp().
-# 2013-04-24 [HB]
-# o Added colSumsP() adopted from log.colSums.exp() code contributed
-#   by Nakayama ??? (Japan) on 2013-01-08.
-# o Created.
-############################################################################

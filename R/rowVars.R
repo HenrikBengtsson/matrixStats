@@ -160,18 +160,3 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
   x <- (x - center^2);
   x * (n/(n-1));
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-02-09 [HB]
-# o Now using na.rm=FALSE as the default.
-# 2014-06-02 [HB]
-# o Now rowVars() are utilizing rowCounts() instead of rowSums().
-# o SPEEDUP: Made colVars() and colSds() significantly faster and
-#   rowVars() and rowSds() a slightly bit faster.
-# o Now using NA_integer_ instead of NA.
-# 2008-03-26 [HB]
-# o Added argument 'center=NULL', cf. base::mad().
-# o Created from genefilter::rowVars() by Wolfgang Huber.
-############################################################################

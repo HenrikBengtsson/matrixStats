@@ -75,12 +75,3 @@ meanOver <- function(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .Call(C_meanOver, x, idxs, na.rm, refine);
 } # meanOver()
-
-
-############################################################################
-# HISTORY:
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2014-11-02 [HB]
-# o Created.
-############################################################################

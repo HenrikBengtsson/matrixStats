@@ -35,12 +35,3 @@ signTabulate <- function(x, idxs=NULL, ...) {
   names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)];
   res;
 } # signTabulate()
-
-
-############################################################################
-# HISTORY:
-# 2015-05-31 [DJ]
-# o Supported subsetted computation.
-# 2014-06-04 [HB]
-# o Created.
-############################################################################

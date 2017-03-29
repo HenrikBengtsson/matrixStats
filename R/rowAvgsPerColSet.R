@@ -195,18 +195,3 @@ colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, 
 
   Z;
 } # colAvgsPerRowSet()
-
-
-##############################################################################
-# HISTORY:
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2014-12-17 [HB]
-# o CLEANUP: Made col- and rowAvgsPerColSet() plain R functions.
-# 2013-11-23
-# o MEMORY: rowAvgsPerColSet() and colAvgsPerRowSet() do a better job
-#   cleaning out allocated objects sooner.
-# 2011-11-29
-# o Added rowAvgsPerColSet() and colAvgsPerRowSet().
-# o Created from blockAvg() in the aroma.cn.eval package.
-##############################################################################

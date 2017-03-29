@@ -171,29 +171,3 @@ colWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
 
   apply(x, MARGIN=2L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
 } # colWeightedMads()
-
-
-
-############################################################################
-# HISTORY:
-# 2015-05-31 [DJ]
-# o Supported subsetted computation.
-# 2014-11-10
-# o Turned weightedMad() into a plain function.
-# 2013-11-23
-# o MEMORY: Now weightedMad() cleans out allocated objects sooner.
-# 2013-09-26
-# o Now utilizing anyMissing().
-# 2012-03-22
-# o Added an Rdoc example, which also serves as a redundancy test.
-# o SPEEDUP: Now weightedMad() lets weightedMedian() know that there are
-#   now missing values remaining.
-# o Now weightedMad() is smarter about returning early, e.g. if missing
-#   values are not removed, there are none or only one value left.
-# o Added validation of argument 'w' for weightedMad().
-# o Added Rdoc comments to weightedMad().
-# o Made weightedMad() into a default method.
-# 2009-05-13
-# o Added weightedMad().
-# o Created.
-############################################################################

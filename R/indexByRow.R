@@ -40,15 +40,3 @@ indexByRow <- function(dim, idxs=NULL, ...) {
   if (!is.null(idxs)) idxs <- as.integer(idxs)
   .Call(C_indexByRow, dim, idxs)
 }
-
-
-##############################################################################
-# HISTORY:
-# 2014-11-09
-# o Now indexByRow() is a plain R function (was a generic function).
-# o Implemented in C.
-# 2014-05-23
-# o CLEANUP: Made indexByRow() an S3 rather than S4 generic.
-# 2007-04-12
-# o Created.
-##############################################################################

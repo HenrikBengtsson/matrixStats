@@ -217,28 +217,3 @@ colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
 
   q
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-29 [DJ]
-# o Supported subsetted computation.
-# 2015-01-26
-# o CONSISTENCY: Now rowQuantiles(x, na.rm=TRUE) returns all NAs for rows
-#   with missing values.  Analogously for colQuantiles().  Previously, an
-#   error was thrown saying missing values are not allowed.
-# 2014-11-18 [HB]
-# o SPEEDUP: Made (col|row)Quantiles(x) faster for 'x' without missing
-#   values (and default type=7L quantiles).
-# 2014-11-16 [HB]
-# o SPEEDUP: colQuantiles(x) is no longer using colQuantiles(t(x)).
-# 2013-07-29 [HB]
-# o DOCUMENTATION: The dimension of the return value was swapped
-#   in help("rowQuantiles").  Noticed by PL.
-# 2011-11-29 [HB]
-# o Added an Rdoc example.
-# 2010-10-06 [HB]
-# o Now the result of {row|col}Quantiles() contains column names.
-# 2008-03-26 [HB]
-# o Created.
-############################################################################

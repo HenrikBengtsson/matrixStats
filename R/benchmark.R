@@ -15,9 +15,3 @@ benchmark <- function(fcn, tags=NULL, path=NULL, workdir="reports", envir=parent
 
   R.rsp::rfile(pathname, workdir=workdir, envir=envir, ...)
 } # benchmark()
-
-############################################################################
-# HISTORY:
-# 2014-06-02
-# o Created.
-############################################################################

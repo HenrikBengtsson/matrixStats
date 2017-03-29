@@ -135,25 +135,3 @@ colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "m
   if (!preserveShape) y <- t(y)
   y
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-30 [DJ]
-# o Supported subsetted computation.
-# 2014-12-17 [HB]
-# o CLEANUP: Made col- and rowRanks() plain R functions.
-# 2014-11-15 [HB]
-# o SPEEDUP: No longer using match.arg() due to its overhead.
-# 2013-04-23 [HB]
-# o Added argument 'preserveShape' to colRanks(), cf. private email
-#   'row- and colRanks in package matrixStats' on 2012-10-05 until
-#   2013-02-28.
-# 2013-01-14 [HB]
-# o Added internal support for rowRanks() with ties "max", "min" and
-#   "average".
-# 2011-11-11 [HB]
-# o Added '...' to generic functions rowRanks() and colRanks().
-# 2011-10-17 [HJ]
-# o Added rowRanks and colRanks().
-############################################################################

@@ -74,11 +74,3 @@ weightedMean <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
 
   .Call(C_weightedMean, x, w, idxs, na.rm, refine)
 } # weightedMean()
-
-###############################################################################
-# HISTORY:
-# 2015-05-25 [DJ]
-# o Supported subsetted computation.
-# 2014-12-08
-# o Created.
-###############################################################################

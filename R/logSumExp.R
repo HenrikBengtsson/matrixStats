@@ -81,17 +81,3 @@ logSumExp <- function(lx, idxs=NULL, na.rm=FALSE, ...) {
   hasNA <- TRUE;
   .Call(C_logSumExp, as.numeric(lx), idxs, as.logical(na.rm), as.logical(hasNA));
 } # logSumExp()
-
-
-##############################################################################
-# HISTORY:
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2013-04-30 [HB]
-# o Added native implementation.
-# o Renamed to logSumExp(), because that seems to be the naming convention
-#   elsewhere, e.g. Python.
-# 2013-04-29 [HB]
-# o Added sumInLogspace().
-# o Created.
-##############################################################################

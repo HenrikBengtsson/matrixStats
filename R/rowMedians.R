@@ -63,22 +63,3 @@ colMedians <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   hasNAs <- TRUE;  # Add as an argument? /2007-08-24
   .Call(C_rowMedians, x, dim., rows, cols, na.rm, hasNAs, FALSE);
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-07-09
-# o Turned into plain functions.
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2011-10-13 [HJ]
-# o In the past, colMedians(x) was accomplished as rowMedians(t(x));
-#   it is now done directly.
-# 2008-03-25
-# o Added colMedians() - a wrapper around rowMedians() for now.
-# o Turned into a S4 method as it used to be in Biobase.
-# 2007-08-14
-# o Added argument 'hasNA'.
-# 2005-11-25
-# o Created.
-############################################################################

@@ -69,28 +69,3 @@ colAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
 rowAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
   rowAnys(x, rows, cols, value=NA, ...)
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-26 [DJ]
-# o Supported subsetted computation.
-# 2015-02-10
-# o CLEANUP: anyMissing() is no longer an S4 generic, cf. base::anyNA().
-# 2015-01-20
-# o CLEANUP: In the effort of migrating anyMissing() into a plain R
-#   function, specific anyMissing() implementations for data.frame:s and
-#   and list:s were dropped and is now handled by anyMissing() for "ANY".
-# 2014-12-08
-# o Added (col|row)AnyMissings().
-# 2013-09-26
-# o Added help reference to base::anyNA().
-# 2013-01-13
-# o Added anyMissing() for raw, which always returns FALSE.
-# 2008-03-25
-# o Added anyMissing() for matrices, data.frames, lists and NULL.
-# o Added anyMissing() for numeric, logical, complex and character.
-# o Made anyMissing() into an S4 method.
-# 2007-08-14
-# o Created. See also R-devel thread "hasNA()/anyNA()?" on 2007-08-13.
-############################################################################

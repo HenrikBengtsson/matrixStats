@@ -156,28 +156,3 @@ binMeans <- function(y, x, idxs=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, .
   count <- as.logical(count);
   .Call(C_binMeans, y, x, bx, count, right);
 } # binMeans()
-
-
-############################################################################
-# HISTORY:
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2014-12-29 [HB]
-# o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
-#   of o <- order(); any(diff(o) != 1L).
-# 2014-12-17 [HB]
-# o CLEANUP: Made binCounts() and binMeans() plain R functions.
-# 2013-11-23 [HB]
-# o MEMORY: binMeans() cleans out more temporary variables as soon as
-#   possible such that the garbage collector can remove them sooner.
-# 2013-05-10 [HB]
-# o SPEEDUP: Now binMeans() and binCounts() use Hoare's Quicksort
-#   method for sorting 'x'.
-# 2012-10-04 [HB in Anahola]
-# o Added argument 'na.rm' to binMeans().
-# o Updated Rdocs.
-# 2012-10-03 [HB]
-# o Added binMeans() based on native code adopted from code by
-#   Martin Morgan, Fred Hutchinson Cancer Research Center, Seattle.
-# o Created.
-############################################################################

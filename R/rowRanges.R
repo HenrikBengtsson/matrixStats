@@ -88,25 +88,3 @@ colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-25 [DJ]
-# o Supported subsetted computation.
-# 2014-12-17 [HB]
-# o CLEANUP: Made col- and rowRanges() plain R functions.
-# 2014-11-16
-# o SPEEDUP: Implemented in native code.
-# 2013-07-28
-# o SPEEDUP: Made (col|row)Mins() and (col|row)Maxs() faster.
-# o BUG FIX: rowRanges(x) on an Nx0 matrix 'x' would give an error.
-#   Ditto for colRanges(x).
-# 2009-02-01
-# o BUG FIX: colRanges(x) would give an error if nrow(x) == 0.
-# 2008-03-25
-# o Since colOrderStats() cannot handle missing values we use the slower
-#   colRanges() for the case when na.rm=TRUE.
-# o Added {row|col}{Min|Max}s().
-# o Created {row|col}Ranges() for scratch. Handles NAs.
-############################################################################

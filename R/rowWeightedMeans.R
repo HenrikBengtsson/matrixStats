@@ -234,24 +234,3 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
 
   res;
 } # colWeightedMeans()
-
-
-##############################################################################
-# HISTORY:
-# 2015-05-31 [DJ]
-# o Supported subsetted computation.
-# 2014-12-19 [HB]
-# o CLEANUP: Made col- and rowWeightedMeans() plain R functions.
-# 2013-11-29
-# o BUG FIX: (col|row)WeightedMeans() with all zero weights gave an
-#   invalid result.
-# 2013-11-23
-# o MEMORY: Now (col|row)WeightedMeans() clean out allocated objects sooner.
-# 2010-02-03
-# o BUG FIX: (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly treat
-#   missing values as zeros.  Thanks Pierre Neuvial for reporting this.
-# 2008-02-01
-# o Added special implementation for column version.
-# o Added Rdoc comments.
-# o Created.
-##############################################################################

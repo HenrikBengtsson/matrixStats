@@ -64,10 +64,3 @@ t_tx_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALS
   stopifnot(op > 0L)
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE)
 } # t_tx_OP_y()
-
-
-############################################################################
-# HISTORY:
-# 2014-11-24 [HB]
-# o Created.
-############################################################################

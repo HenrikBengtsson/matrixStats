@@ -80,19 +80,3 @@ colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
   which <- as.integer(which)
   .Call(C_colOrderStats, x, dim., rows, cols, which);
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-06-03 [DJ]
-# o Supported subsetted computation.
-# 2014-12-19 [HB]
-# o CLEANUP: Made col- and rowOrderStats() plain R functions.
-# 2014-11-16
-# o SPEEDUP: Now colOrderStats() also is implemented in native code.
-# 2008-03-25
-# o Added colOrderStats().
-# o Renamed from rowQuantiles() to rowOrderStats(), especially because it
-#   is not returning quantiles like quantile().
-# o Created (again?)
-############################################################################

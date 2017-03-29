@@ -61,12 +61,3 @@ colSds <- function(x, rows=NULL, cols=NULL, ...) {
   x <- colVars(x, rows=rows, cols=cols, ...);
   sqrt(x);
 }
-
-
-############################################################################
-# HISTORY:
-# 2012-03-19 [HC]
-# o Changed description of centers argument to rowMads and colMads
-# 2008-03-26 [HB]
-# o Created from genefilter::rowVars() by Wolfgang Huber.
-############################################################################

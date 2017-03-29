@@ -202,14 +202,3 @@ rowWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
 colWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   sqrt(colWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
 } # colWeightedSds()
-
-
-############################################################################
-# HISTORY:
-# 2015-06-03 [DJ]
-# o Supported subsetted computation.
-# 2014-11-10
-# o Turned weightedSd() and weightedVar() into plain function.
-# 2014-03-26
-# o Created from weightedMad.R.
-############################################################################

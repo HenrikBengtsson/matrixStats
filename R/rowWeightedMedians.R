@@ -141,23 +141,3 @@ colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
 
   res;
 }
-
-
-##############################################################################
-# HISTORY:
-# 2015-05-31 [DJ]
-# o Supported subsetted computation.
-# 2014-12-19 [HB]
-# o CLEANUP: Made col- and rowWeightedMedians() plain R functions.
-# 2013-11-23
-# o MEMORY: Now (col|row)WeightedMedians() clean out allocated objects sooner.
-# 2012-04-16
-# o Now {col|row}WeightedMedians() no longer require aroma.light, because
-#   weightedMedian() is now in this package.
-# 2009-06-17
-# o Updated the Rdoc example to run conditionally on aroma.light, which is
-#   only a suggested package - not a required one.  This in order to prevent
-#   R CMD check to fail on CRAN (as currently done on their OSX servers).
-# 2008-02-02
-# o Created from rowWeightedMeans.matrix.R.
-##############################################################################

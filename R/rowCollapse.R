@@ -85,27 +85,3 @@ colCollapse <- function(x, idxs, cols=NULL, dim.=dim(x), ...) {
 
   x[idxs]
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-29 [DJ]
-# o Supported subsetted computation.
-# 2014-12-19 [HB]
-# o CLEANUP: Made col- and rowCollapse() plain R functions.
-# 2014-11-15
-# o SPEEDUP: Made calculation of colOffsets faster.
-# o SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).
-# 2014-06-02
-# o Made rowCollapse() an S3 method (was S4).
-# 2013-11-23
-# o MEMORY: rowCollapse() does a better job cleaning out allocated
-#   objects sooner.
-# 2008-06-13
-# o BUG FIX: rowCollapse(x) was broken and returned the wrong elements.
-# 2008-04-13
-# o Added Rdocs.
-# o Added colCollapse().
-# 2007-10-21
-# o Created.
-############################################################################

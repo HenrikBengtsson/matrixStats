@@ -46,9 +46,3 @@ pkgStartupMessage <- function(..., quietly=NA) {
     packageStartupMessage(...)
   }
 }
-
-############################################################################
-# HISTORY:
-# 2015-01-27
-# o Copied from R.methodsS3.  Here it will only be used internally.
-############################################################################

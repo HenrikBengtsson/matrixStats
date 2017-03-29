@@ -76,14 +76,3 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .Call(C_sumOver, x, idxs, na.rm, modeI);
 } # sumOver()
-
-
-############################################################################
-# HISTORY:
-# 2015-05-31 [DJ]
-# o Supported subsetted computation.
-# 2014-11-15 [HB]
-# o SPEEDUP: No longer using match.arg() due to its overhead.
-# 2014-11-02 [HB]
-# o Created.
-############################################################################

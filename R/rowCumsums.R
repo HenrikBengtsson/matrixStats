@@ -93,12 +93,3 @@ colCummaxs <- function(x, rows=NULL, cols=NULL, dim.=dim(x), ...) {
   dim <- as.integer(dim.);
   .Call(C_rowCummaxs, x, dim, rows, cols, FALSE)
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-27 [DJ]
-# o Supported subsetted computation.
-# 2014-11-26 [HB]
-# o Created.
-############################################################################

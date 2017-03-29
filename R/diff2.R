@@ -52,12 +52,3 @@ diff2 <- function(x, idxs=NULL, lag=1L, differences=1L, ...) {
 
   .Call(C_diff2, x, idxs, lag, differences);
 } # diff2()
-
-
-############################################################################
-# HISTORY:
-# 2015-05-26 [DJ]
-# o Supported subsetted computation.
-# 2014-12-29
-# o Created.
-############################################################################

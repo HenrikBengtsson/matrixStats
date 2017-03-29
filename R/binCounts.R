@@ -103,27 +103,3 @@ binCounts <- function(x, idxs=NULL, bx, right=FALSE, ...) {
   bx <- as.numeric(bx);
   .Call(C_binCounts, x, bx, right);
 } # binCounts()
-
-
-############################################################################
-# HISTORY:
-# 2015-05-28 [DJ]
-# o Supported subsetted computation.
-# 2014-12-29 [HB]
-# o SPEEDUP: Now binCounts() and binMeans() uses is.unsorted() instead
-#   of o <- order(); any(diff(o) != 1L).
-# 2014-12-17 [HB]
-# o CLEANUP: Made binCounts() and binMeans() plain R functions.
-# 2013-11-24 [HB]
-# o DOCUMENTATION: Added reference to base::tabulate().
-# 2013-11-23 [HB]
-# o MEMORY: binCounts() cleans out more temporary variables as soon as
-#   possible such that the garbage collector can remove them sooner.
-# 2012-05-10 [HB]
-# o DOCUMENTATION: Now help(binCounts) cross references hist(), which is
-#   almost as fast. Thanks Ilari Scheinin (Finland) for pointing this out.
-# o SPEEDUP: Now binMeans() and binCounts() use Hoare's Quicksort
-#   method for sorting 'x'.
-# 2012-10-03 [HB]
-# o Created.
-############################################################################

@@ -148,26 +148,3 @@ colTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   }
   counts;
 }
-
-
-
-############################################################################
-# HISTORY:
-# 2015-05-30 [DJ]
-# o Supported subsetted computation.
-# 2014-12-19 [HB]
-# o CLEANUP: Made col- and rowTabulates() plain R functions.
-# 2014-11-16
-# o Now colTabulates(x) no longer calls rowTabulates(t(x)).
-# 2014-06-02
-# o Made rowTabulates() an S3 method (was S4).
-# o SPEEDUP: Now rowTabulates() utilizes rowCounts().
-# 2009-06-20
-# WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column
-# names of the result matrix.  It gav an error OSX with R v2.9.0 devel
-# (2009-01-13 r47593b) current the OSX server at R-forge.
-# 2009-02-02
-# o Fixed Rdoc comments.
-# 2008-07-01
-# o Created.
-############################################################################
