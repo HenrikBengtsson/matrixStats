@@ -1,62 +1,42 @@
-###########################################################################/**
-# @RdocFunction rowCounts
-# @alias colCounts
-# @alias count
-# @alias allValue
-# @alias anyValue
-# @alias rowAnys
-# @alias colAnys
-# @alias rowAlls
-# @alias colAlls
-#
-# @title "Counts the number of TRUE values in each row (column) of a matrix"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#   @usage count
-#   @usage rowCounts
-#   @usage colCounts
-#   @usage rowAlls
-#   @usage colAlls
-#   @usage allValue
-#   @usage rowAnys
-#   @usage colAnys
-#   @usage anyValue
-# }
-#
-# \arguments{
-#  \item{x}{An NxK @matrix or an N*K @vector.}
-#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
-#     to operate over. If @NULL, no subsetting is done.}
-#  \item{value}{A value to search for.}
-#  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
-#  \item{dim.}{An @integer @vector of length two specifying the
-#              dimension of \code{x}, also when not a @matrix.}
-#  \item{...}{Not used.}
-# }
-#
-# \value{
-#   \code{rowCounts()} (\code{colCounts()}) returns an @integer @vector
-#   of length N (K).
-#   The other methods returns a @logical @vector of length N (K).
-# }
-#
-# \details{
-#   @include "../incl/rowNNN_by_vector.Rd"
-# }
-#
-# @examples "../incl/rowCounts.Rex"
-#
-# @author "HB"
-#
-# @keyword array
-# @keyword logic
-# @keyword iteration
-# @keyword univar
-#*/###########################################################################
+#' Counts the number of TRUE values in each row (column) of a matrix
+#' 
+#' Counts the number of TRUE values in each row (column) of a matrix.
+#' 
+#' These functions takes either a @matrix or a @vector as input. If a @vector,
+#' then argument \code{dim} must be specified and fulfill \code{prod(dim) ==
+#' length(x)}.  The result will be identical to the results obtained when
+#' passing \code{matrix(x, nrow=dim[1L], ncol=dim[2L])}, but avoids having to
+#' temporarily create/allocate a @matrix, if only such is needed only for these
+#' calculations.
+#' 
+#' @param x An NxK \code{\link[base]{matrix}} or an N*K
+#' \code{\link[base]{vector}}.
+#' 
+#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
+#' elements (or rows and/or columns) to operate over. If
+#' \code{\link[base]{NULL}}, no subsetting is done.
+#' 
+#' @param value A value to search for.
+#' 
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' are excluded first, otherwise not.
+#' 
+#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
+#' length two specifying the dimension of \code{x}, also when not a
+#' \code{\link[base]{matrix}}.
+#' 
+#' @param ... Not used.
+#' 
+#' @return \code{rowCounts()} (\code{colCounts()}) returns an
+#' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).  The
+#' other methods returns a \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of length N (K).
+#'
+#' @example incl/rowCounts.Rex
+#' 
+#' @author Henrik Bengtsson
+#' @keywords array logic iteration univar
+#' @export
 rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
@@ -103,6 +83,8 @@ rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
 }
 
 
+#' @rdname rowCounts
+#' @export
 colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
@@ -149,7 +131,8 @@ colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
 }
 
 
-
+#' @rdname rowCounts
+#' @export
 count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   # Argument 'x':
   if (!is.vector(x)) {
@@ -186,7 +169,8 @@ count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 }
 
 
-
+#' @rdname rowCounts
+#' @export
 rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
@@ -210,6 +194,9 @@ rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
   }
 }
 
+
+#' @rdname rowCounts
+#' @export
 colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
@@ -234,6 +221,8 @@ colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
 }
 
 
+#' @rdname rowCounts
+#' @export
 allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
@@ -253,7 +242,8 @@ allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 }
 
 
-
+#' @rdname rowCounts
+#' @export
 rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
@@ -277,6 +267,9 @@ rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
   }
 }
 
+
+#' @rdname rowCounts
+#' @export
 colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
@@ -301,6 +294,8 @@ colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
 }
 
 
+#' @rdname rowCounts
+#' @export
 anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
