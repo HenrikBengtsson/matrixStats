@@ -71,7 +71,7 @@ set.seed(1)
 probs <- seq(from=0, to=1, by=0.25)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "" || Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4 else 20
+K <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4L else 20L
 for (kk in seq_len(K)) {
   cat("Random test #", kk, "\n", sep="")
 
