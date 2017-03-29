@@ -23,7 +23,7 @@ for (kk in 1:20) {
   x <- rnorm(n, sd = 100)
 
   # Add NAs?
-  if ((kk %% 4) %in% c(3,0)) {
+  if ((kk %% 4) %in% c(3, 0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1L)
     naValues <- c(NA_real_, NaN)
@@ -31,24 +31,24 @@ for (kk in 1:20) {
   }
 
   # Integer or double?
-  if ((kk %% 4) %in% c(2,0)) {
+  if ((kk %% 4) %in% c(2, 0)) {
     cat("Coercing to integers\n")
     storage.mode(x) <- "integer"
   }
 
-  na.rm <- sample(c(TRUE,FALSE), size = 1L)
+  na.rm <- sample(c(TRUE, FALSE), size = 1L)
 
   # Sum over all
   y0 <- meanOver_R(x, na.rm = na.rm)
   y1 <- meanOver(x, na.rm = na.rm)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   # Sum over subset
   nidxs <- sample(n, size = 1L)
   idxs <- sample(n, size = nidxs)
   y0 <- meanOver_R(x, na.rm = na.rm, idxs = idxs)
   y1 <- meanOver(x, na.rm = na.rm, idxs = idxs)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 } # for (kk ...)
 
 

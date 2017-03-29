@@ -15,7 +15,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6*6, min = -3, max = 3), nrow = 6, ncol = 6)
-x[2:3,3:4] <- NA_real_
+x[2:3, 3:4] <- NA_real_
 storage.mode(x) <- "integer"
 for (rows in indexCases) {
   for (cols in indexCases) {
@@ -29,7 +29,7 @@ for (rows in indexCases) {
 }
 
 x <- matrix(rep(letters, length.out = 6*6), nrow = 6, ncol = 6)
-x[2:3,3:4] <- NA_character_
+x[2:3, 3:4] <- NA_character_
 for (rows in indexCases) {
   for (cols in indexCases) {
     validateIndicesTestMatrix(x, rows, cols, ftest = rowCounts, fsure = rowCounts_R, value = "g", na.rm = TRUE)

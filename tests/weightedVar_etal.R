@@ -20,7 +20,7 @@ for (fcn in names(FUNs)) {
     for (addNA in c(FALSE, TRUE)) {
       cat("addNA: ", addNA, "\n", sep = "")
       if (addNA) {
-        x[c(5,7)] <- NA
+        x[c(5, 7)] <- NA
       }
       str(x)
 

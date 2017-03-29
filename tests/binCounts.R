@@ -46,7 +46,7 @@ x[100] <- NA_integer_
 nx <- length(x)
 
 # Bins
-bx <- c(0.5,50.5,100.5,150.5,200.5)
+bx <- c(0.5, 50.5, 100.5,150.5,200.5)
 
 yS0 <- binCounts_hist(x, bx = bx)
 yS <- binCounts(x, bx = bx)
@@ -58,13 +58,13 @@ stopifnot(all.equal(yS, yS0))
 # Border cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- 1:10
-bx <- min(x) - c(10,1)
+bx <- min(x) - c(10, 1)
 yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, 0L))
 bx <- range(x)
 yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, length(x)-1L))
-bx <- max(x) + c(1,10)
+bx <- max(x) + c(1, 10)
 yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, 0L))
 

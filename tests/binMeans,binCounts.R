@@ -45,7 +45,7 @@ y[101:150] <- -5
 y <- y + rnorm(nx)
 
 # Bins
-bx <- c(0.5,50.5,100.5,150.5,200.5)
+bx <- c(0.5, 50.5, 100.5,150.5,200.5)
 
 yS0 <- binMeans0(y, x = x, bx = bx)
 yS <- binMeans(y, x = x, bx = bx)
@@ -89,7 +89,7 @@ stopifnot(all.equal(ySr, yS, check.attributes = FALSE))
 x <- c(6:8, 16:19)
 nx <- length(x)
 y <- runif(nx)
-bx <- c(0,5,10,15,20,25)
+bx <- c(0, 5, 10,15,20,25)
 yS0 <- binMeans0(y, x = x, bx = bx)
 yS <- binMeans(y, x = x, bx = bx)
 nS <- binCounts(x, bx = bx)
@@ -110,7 +110,7 @@ y[123:125] <- NA_real_
 y <- y + rnorm(nx)
 
 # Bins
-bx <- c(0.5,50.5,100.5,150.5,200.5)
+bx <- c(0.5, 50.5, 100.5,150.5,200.5)
 
 yS0 <- binMeans0(y, x = x, bx = bx)
 yS <- binMeans(y, x = x, bx = bx)

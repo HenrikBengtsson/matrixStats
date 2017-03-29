@@ -18,7 +18,7 @@ for (mode in c("integer", "double")) {
 
     x <- matrix(1:100, nrow = 20, ncol = 5)
     if (addNA) {
-      x[13:17,c(2,4)] <- NA_real_
+      x[13:17, c(2, 4)] <- NA_real_
     }
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode
@@ -75,9 +75,9 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   x <- matrix(NA_real_, nrow = 3, ncol = 2)
-  x[1,2] <- 0
-  x[2,2] <- 1
-  x[3,1] <- 0
+  x[1, 2] <- 0
+  x[2, 2] <- 1
+  x[3, 1] <- 0
   storage.mode(x) <- mode
   cat("mode: ", mode, "\n", sep = "")
   str(x)

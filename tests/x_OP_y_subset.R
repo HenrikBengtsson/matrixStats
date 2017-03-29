@@ -54,7 +54,7 @@ for (OP in c("+", "-", "*", "/")) {
         if (is.null(xrows)) xrows <- seq_len(nrow(x))
         if (is.null(xcols)) xcols <- seq_len(ncol(x))
 
-        for (yidxs in list(xrows,xcols)) {
+        for (yidxs in list(xrows, xcols)) {
           for (na.rm in c(TRUE, FALSE)) {
 
             suppressWarnings({
@@ -64,7 +64,7 @@ for (OP in c("+", "-", "*", "/")) {
               )
 
               expect <- tryCatch(
-                x_OP_y_R(x[xrows,xcols,drop = FALSE], y[yidxs], OP, na.rm = na.rm),
+                x_OP_y_R(x[xrows, xcols, drop = FALSE], y[yidxs], OP, na.rm = na.rm),
                 error = function(c) "error"
               )
             })
@@ -77,7 +77,7 @@ for (OP in c("+", "-", "*", "/")) {
               )
 
               expect <- tryCatch(
-                t_tx_OP_y_R(x[xrows,xcols,drop = FALSE], y[yidxs], OP, na.rm = na.rm),
+                t_tx_OP_y_R(x[xrows, xcols, drop = FALSE], y[yidxs], OP, na.rm = na.rm),
                 error = function(c) "error"
               )
             })

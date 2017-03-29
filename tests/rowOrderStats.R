@@ -23,9 +23,9 @@ which <- round(probs*ncol)
 
 y0 <- rowOrderStats_R(x, probs = probs)
 y1 <- rowOrderStats(x, which = which)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 y2 <- colOrderStats(t(x), which = which)
-stopifnot(all.equal(y2,y0))
+stopifnot(all.equal(y2, y0))
 
 
 
@@ -52,8 +52,8 @@ for (mode in c("integer", "double")) {
 
     y0 <- rowOrderStats_R(x, probs = probs)
     y1 <- rowOrderStats(x, which = which)
-    stopifnot(all.equal(y1,y0))
+    stopifnot(all.equal(y1, y0))
     y2 <- colOrderStats(t(x), which = which)
-    stopifnot(all.equal(y2,y0))
+    stopifnot(all.equal(y2, y0))
   } # for (kk in ...)
 } # for (mode ...)

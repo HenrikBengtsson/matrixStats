@@ -22,7 +22,7 @@ for (rows in indexCases) {
     else {
       xxrows <- rows
       suppressWarnings({
-        xx <- tryCatch(x[,cols,drop = FALSE], error = function(c) "error")
+        xx <- tryCatch(x[, cols, drop = FALSE], error = function(c) "error")
         if (identical(xx, "error")) which <- 0
         else which <- round(probs*ncol(xx))
       })

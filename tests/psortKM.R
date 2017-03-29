@@ -31,7 +31,7 @@ cat("sample(x):\n")
 str(y)
 
 for (k in c(1, 2, 300, 301, length(x))) {
-  for (m in 1:min(5,k)) {
+  for (m in 1:min(5, k)) {
     px0 <- psortKM_R(x, k = k, m = m)
     px0b <- psortKM_R2(x, k = k, m = m)
     stopifnot(identical(px0b, px0))

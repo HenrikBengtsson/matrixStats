@@ -26,16 +26,16 @@ for (mode in c("integer", "double")) {
   nlX <- -log(X)
 
   y0 <- log(ncol(X)) - apply(nlX, MARGIN = 1L, FUN = logSumExp0)
-  stopifnot(all.equal(y0,yH))
+  stopifnot(all.equal(y0, yH))
 
   y1 <- log(ncol(X)) - apply(nlX, MARGIN = 1L, FUN = logSumExp)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y2 <- log(ncol(X)) - rowLogSumExps(nlX)
-  stopifnot(all.equal(y2,y0))
+  stopifnot(all.equal(y2, y0))
 
   y3 <- log(ncol(X)) - colLogSumExps(t(nlX))
-  stopifnot(all.equal(y3,y0))
+  stopifnot(all.equal(y3, y0))
 
 
   # The logarithm of the harmonic mean by columns
@@ -43,16 +43,16 @@ for (mode in c("integer", "double")) {
   str(yH)
 
   y0 <- log(nrow(X)) - apply(nlX, MARGIN = 2L, FUN = logSumExp0)
-  stopifnot(all.equal(y0,yH))
+  stopifnot(all.equal(y0, yH))
 
   y1 <- log(nrow(X)) - apply(nlX, MARGIN = 2L, FUN = logSumExp)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y2 <- log(nrow(X)) - colLogSumExps(nlX)
-  stopifnot(all.equal(y2,y0))
+  stopifnot(all.equal(y2, y0))
 
   y3 <- log(nrow(X)) - rowLogSumExps(t(nlX))
-  stopifnot(all.equal(y3,y0))
+  stopifnot(all.equal(y3, y0))
 
   # Testing names
   rownames(nlX) <- seq_len(nrow(X))

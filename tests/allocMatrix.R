@@ -16,6 +16,6 @@ for (value in values) {
   X0 <- allocMatrix_R(nrow, ncol, value = value)
   X <- allocMatrix(nrow, ncol, value = value)
   str(list(nrow = nrow, ncol = ncol, value = value, X = X, X0 = X0))
-  stopifnot(identical(X,X0))
+  stopifnot(identical(X, X0))
 }
 

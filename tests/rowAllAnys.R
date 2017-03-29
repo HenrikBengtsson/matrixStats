@@ -29,20 +29,20 @@ rowAnyMissings_R <- function(x, ...) {
 # Data type: logical
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(FALSE, nrow = 20, ncol = 5)
-x[13:17,c(2,4)] <- TRUE
-x[2:4,] <- TRUE
-x[,1] <- TRUE
-x[5,] <- FALSE
-x[,5] <- FALSE
-x[3,] <- FALSE
-x[4,] <- TRUE
+x[13:17, c(2, 4)] <- TRUE
+x[2:4, ] <- TRUE
+x[, 1] <- TRUE
+x[5, ] <- FALSE
+x[, 5] <- FALSE
+x[3, ] <- FALSE
+x[4, ] <- TRUE
 
 for (kk in 1:3) {
   if (kk == 2) {
-    x[2,2] <- NA
+    x[2, 2] <- NA
   } else if (kk == 3) {
-    x[,2] <- NA
-    x[2,] <- NA
+    x[, 2] <- NA
+    x[2, ] <- NA
   }
 
   # Row/column all
@@ -78,9 +78,9 @@ for (kk in 1:3) {
 # Data type: integer
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(rep(1:28, length.out = 20*5), nrow = 20, ncol = 5)
-x[2,] <- 7L
-x[3,1] <- 7L
-x[2:3,3:4] <- NA_integer_
+x[2, ] <- 7L
+x[3, 1] <- 7L
+x[2:3, 3:4] <- NA_integer_
 
 # Row/column counts
 value <- 7L
@@ -93,10 +93,10 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(identical(r2, r1))
 
   for (rr in seq_len(nrow(x))) {
-    c <- allValue(x[rr,], value = value, na.rm = na.rm)
-    stopifnot(identical(c,r1[rr]))
-    c <- allValue(x[rr,], value = value, na.rm = na.rm)
-    stopifnot(identical(c,r1[rr]))
+    c <- allValue(x[rr, ], value = value, na.rm = na.rm)
+    stopifnot(identical(c, r1[rr]))
+    c <- allValue(x[rr, ], value = value, na.rm = na.rm)
+    stopifnot(identical(c, r1[rr]))
   }
 
   ## Any
@@ -107,10 +107,10 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(identical(r2, r1))
 
   for (rr in seq_len(nrow(x))) {
-    c <- anyValue(x[rr,], value = value, na.rm = na.rm)
-    stopifnot(identical(c,r1[rr]))
-    c <- anyValue(x[rr,], value = value, na.rm = na.rm)
-    stopifnot(identical(c,r1[rr]))
+    c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
+    stopifnot(identical(c, r1[rr]))
+    c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
+    stopifnot(identical(c, r1[rr]))
   }
 }
 
@@ -135,8 +135,8 @@ any_R <- function(x, value = TRUE, ...) {
 # Data type: character (not sure if this should be supported)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(rep(letters, length.out = 20*5), nrow = 20, ncol = 5)
-x[2,] <- "g"
-x[2:4,3:4] <- NA_character_
+x[2, ] <- "g"
+x[2:4, 3:4] <- NA_character_
 
 # Row/column counts
 for (value in c("g", NA_character_)) {
@@ -149,10 +149,10 @@ for (value in c("g", NA_character_)) {
     stopifnot(identical(r2, r1))
 
     for (rr in seq_len(nrow(x))) {
-      c0 <- all_R(x[rr,], value, na.rm = na.rm)
-      c <- allValue(x[rr,], value = value, na.rm = na.rm)
-      stopifnot(identical(c,r1[rr]))
-      stopifnot(identical(c,c0))
+      c0 <- all_R(x[rr, ], value, na.rm = na.rm)
+      c <- allValue(x[rr, ], value = value, na.rm = na.rm)
+      stopifnot(identical(c, r1[rr]))
+      stopifnot(identical(c, c0))
     }
 
     ## Any
@@ -163,10 +163,10 @@ for (value in c("g", NA_character_)) {
     stopifnot(identical(r2, r1))
 
     for (rr in seq_len(nrow(x))) {
-      c0 <- any_R(x[rr,], value, na.rm = na.rm)
-      c <- anyValue(x[rr,], value = value, na.rm = na.rm)
-      stopifnot(identical(c,c0))
-      stopifnot(identical(c,r1[rr]))
+      c0 <- any_R(x[rr, ], value, na.rm = na.rm)
+      c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
+      stopifnot(identical(c, c0))
+      stopifnot(identical(c, r1[rr]))
     }
   }
 }
@@ -176,8 +176,8 @@ for (value in c("g", NA_character_)) {
 # NA 0 test
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(0, nrow = 3, ncol = 3)
-x[1,] <- c(NA_real_, NA_real_, 0)
-x[3,] <- c(1, 0, 1)
+x[1, ] <- c(NA_real_, NA_real_, 0)
+x[3, ] <- c(1, 0, 1)
 
 r0 <- rowAnys_R(x, value = 0)
 r1 <- rowAnys(x, value = 0)

@@ -74,11 +74,11 @@ for (naValue in naList) {
 # Data type: logical
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(FALSE, nrow = 20, ncol = 5)
-x[13:17,c(2,4)] <- TRUE
-x[2:4,] <- TRUE
-x[,1] <- TRUE
-x[5,] <- FALSE
-x[,5] <- FALSE
+x[13:17, c(2, 4)] <- TRUE
+x[2:4, ] <- TRUE
+x[, 1] <- TRUE
+x[5, ] <- FALSE
+x[, 5] <- FALSE
 
 # Row/column counts
 for (na.rm in c(FALSE, TRUE)) {
@@ -109,7 +109,7 @@ for (na.rm in c(FALSE, TRUE)) {
 # Data type: character (not sure if this should be supported)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(rep(letters, length.out = 20*5), nrow = 20, ncol = 5)
-x[2:3,3:4] <- NA_character_
+x[2:3, 3:4] <- NA_character_
 
 # Row/column counts
 for (na.rm in c(FALSE, TRUE)) {
@@ -120,17 +120,17 @@ for (na.rm in c(FALSE, TRUE)) {
     stopifnot(identical(r1, r0))
     stopifnot(identical(r2, r0))
 
-    c <- count(x[1,], value = value, na.rm = na.rm)
-    stopifnot(identical(c,r1[1]))
+    c <- count(x[1, ], value = value, na.rm = na.rm)
+    stopifnot(identical(c, r1[1]))
 
-    c <- count(x[2,], value = value, na.rm = na.rm)
-    stopifnot(identical(c,r1[2]))
+    c <- count(x[2, ], value = value, na.rm = na.rm)
+    stopifnot(identical(c, r1[2]))
   }
 }
 
 # NA row
 x <- matrix(0, nrow = 2, ncol = 2)
-x[1,] <- NA_integer_
+x[1, ] <- NA_integer_
 r0 <- rowCounts(x, value = 0)
 r1 <- rowCounts_R(x, value = 0)
-stopifnot(identical(r0,r1))
+stopifnot(identical(r0, r1))

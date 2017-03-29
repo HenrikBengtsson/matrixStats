@@ -32,7 +32,7 @@ for (mode in c("integer", "double")) {
 
     x <- matrix(1:100+0.1, nrow = 20, ncol = 5)
     if (addNA) {
-      x[13:17,c(2,4)] <- NA_real_
+      x[13:17, c(2, 4)] <- NA_real_
     }
     storage.mode(x) <- mode
     str(x)
@@ -96,24 +96,24 @@ for (mode in c("integer", "double")) {
 x <- matrix(double(0L), nrow = 5L, ncol = 0L)
 r0 <- rowRanges_R(x)
 #r1 <- rowRanges(x)
-#rT <- matrix(c(Inf,-Inf), nrow = nrow(x), ncol = 2L, byrow = TRUE)
-#stopifnot(all.equal(r1,rT))
+#rT <- matrix(c(Inf, -Inf), nrow = nrow(x), ncol = 2L, byrow = TRUE)
+#stopifnot(all.equal(r1, rT))
 
 # 0xN matrix
 x <- t(x)
 #r1 <- colRanges(x)
-#stopifnot(all.equal(r1,rT))
+#stopifnot(all.equal(r1, rT))
 
 # Nx1 matrix
 x <- matrix(1:5, nrow = 5L, ncol = 1L)
 r1 <- rowRanges(x)
 rT <- matrix(1:5, nrow = nrow(x), ncol = 2L, byrow = FALSE)
-stopifnot(all.equal(r1,rT))
+stopifnot(all.equal(r1, rT))
 
 # 1xN matrix
 x <- t(x)
 r1 <- colRanges(x)
-stopifnot(all.equal(r1,rT))
+stopifnot(all.equal(r1, rT))
 
 
 
@@ -130,35 +130,35 @@ naList <- list(
 )
 
 na <- naList[["real"]]
-na[2,2] <- NA
+na[2, 2] <- NA
 naList[["real + NA cell"]] <- na
 
 na <- naList[["real"]]
-na[2,] <- NA
+na[2, ] <- NA
 naList[["real + NA row"]] <- na
 
 na <- naList[["real"]]
-na[2,] <- NaN
+na[2, ] <- NaN
 naList[["real + NaN row"]] <- na
 
 na <- naList[["real"]]
-na[2,2] <- Inf
+na[2, 2] <- Inf
 naList[["real + Inf cell"]] <- na
 
 na <- naList[["real"]]
-na[2,] <- Inf
+na[2, ] <- Inf
 naList[["real + Inf row"]] <- na
 
 na <- naList[["real"]]
-na[2,2] <- NaN
+na[2, 2] <- NaN
 naList[["real + NaN cell"]] <- na
 
 na <- naList[["real w/ NA"]]
-na[2,2] <- NaN
+na[2, 2] <- NaN
 naList[["real w/ NA + NaN cell"]] <- na
 
 na <- naList[["real w/ NA"]]
-na[2,] <- NaN
+na[2, ] <- NaN
 naList[["real w/ NA + NaN row"]] <- na
 
 

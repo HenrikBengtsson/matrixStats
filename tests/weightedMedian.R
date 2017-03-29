@@ -2,10 +2,10 @@ library("matrixStats")
 
 x <- 1:5
 y <- weightedMedian(x)
-y <- weightedMedian(x, w = c(NA,Inf,NA,Inf,NA), na.rm = TRUE)
+y <- weightedMedian(x, w = c(NA, Inf, NA,Inf,NA), na.rm = TRUE)
 print(y)
 
-y <- weightedMedian(x, w = c(NA,Inf,NA,Inf,NA), na.rm = FALSE)
+y <- weightedMedian(x, w = c(NA, Inf, NA,Inf,NA), na.rm = FALSE)
 print(y)
 stopifnot(is.na(y))
 
@@ -22,7 +22,7 @@ y1 <- weightedMedian(x, w)                 # 5.5 (default)
 y2a <- weightedMedian(x, ties = "weighted")  # 5.5 (default)
 y2b <- weightedMedian(x, ties = "min")       # 5
 y2c <- weightedMedian(x, ties = "max")       # 6
-stopifnot(all.equal(y2a,y1))
+stopifnot(all.equal(y2a, y1))
 
 y3 <- weightedMedian(x, w)                # 5.5 (default)
 
@@ -32,7 +32,7 @@ w[1] <- 5
 y1 <- weightedMedian(x, w)                # 3.5
 y <- c(rep(0, times = w[1]), x[-1])       # Only possible for integer weights
 y2 <- median(y)                           # 3.5
-stopifnot(all.equal(y1,y2))
+stopifnot(all.equal(y1, y2))
 
 # Put even more weight on the zero
 w[1] <- 8.5

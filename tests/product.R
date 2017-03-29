@@ -13,7 +13,7 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(z, y))
 
   # Test negative values
-  x <- c(1,-4,2)
+  x <- c(1, -4, 2)
   storage.mode(x) <- mode
   y <- prod(x, na.rm = TRUE)
   print(y)
@@ -22,7 +22,7 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(z, y))
 
   # Test missing values
-  x <- c(1,NA,NaN,2)
+  x <- c(1, NA, NaN,2)
   storage.mode(x) <- mode
   y <- prod(x, na.rm = TRUE)
   print(y)
@@ -30,7 +30,7 @@ for (mode in c("integer", "double")) {
   print(z)
   stopifnot(all.equal(z, y))
 
-  x <- c(1,NA,NaN,2)
+  x <- c(1, NA, NaN,2)
   storage.mode(x) <- mode
   y <- prod(x, na.rm = FALSE)
   print(y)
@@ -38,7 +38,7 @@ for (mode in c("integer", "double")) {
   print(z)
   stopifnot(all(is.na(z), is.na(y)))
 
-  x <- c(1,NaN,2)
+  x <- c(1, NaN, 2)
   storage.mode(x) <- mode
   y <- prod(x, na.rm = FALSE)
   print(y)

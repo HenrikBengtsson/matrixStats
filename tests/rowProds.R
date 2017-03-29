@@ -14,7 +14,7 @@ all.equal.na <- function(target, current, ...) {
 
 for (mode in c("integer", "double")) {
   # Missing values
-  x <- matrix(c(1,NA,NaN,1, 1,0,1,0), nrow = 4, ncol = 2)
+  x <- matrix(c(1, NA, NaN,1, 1, 0,1,0), nrow = 4, ncol = 2)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
@@ -26,7 +26,7 @@ for (mode in c("integer", "double")) {
   y2 <- colProds(t(x), na.rm = TRUE)
   print(y2)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(y1, x[,2]))
+  stopifnot(all.equal(y1, x[, 2]))
   stopifnot(all.equal(y2, y1))
 
   # Missing values
@@ -38,16 +38,16 @@ for (mode in c("integer", "double")) {
   print(y2)
   stopifnot(all.equal.na(y1, y0))
   stopifnot(all.equal(y2, y1))
-  y3 <- x[,1]*x[,2]
+  y3 <- x[, 1]*x[, 2]
   print(y3)
   stopifnot(all.equal.na(y1, y3))
 
   # "Empty" rows
-  y0 <- rowProds_R(x[integer(0),,drop = FALSE], na.rm = FALSE)
+  y0 <- rowProds_R(x[integer(0), , drop = FALSE], na.rm = FALSE)
   print(y0)
-  y1 <- rowProds(x[integer(0),,drop = FALSE], na.rm = FALSE)
+  y1 <- rowProds(x[integer(0), , drop = FALSE], na.rm = FALSE)
   print(y1)
-  y2 <- colProds(t(x[integer(0),,drop = FALSE]), na.rm = FALSE)
+  y2 <- colProds(t(x[integer(0), , drop = FALSE]), na.rm = FALSE)
   print(y2)
   stopifnot(all.equal.na(y1, y0))
   stopifnot(all.equal(y2, y1))
@@ -63,7 +63,7 @@ for (mode in c("integer", "double")) {
 
 
 # Bug report 2012-06-25
-x <- matrix(c(1,1,1,1, 1,0,1,0), nrow = 4, ncol = 2)
+x <- matrix(c(1, 1, 1,1, 1, 0,1,0), nrow = 4, ncol = 2)
 y0 <- rowProds_R(x)
 print(y0)
 y1 <- rowProds(x)
@@ -71,11 +71,11 @@ print(y1)
 y2 <- colProds(t(x))
 print(y2)
 stopifnot(all.equal.na(y1, y0))
-stopifnot(all.equal.na(y1, x[,1]*x[,2]))
+stopifnot(all.equal.na(y1, x[, 1]*x[, 2]))
 stopifnot(all.equal.na(y2, y1))
 
 # Bug report 2014-03-25 ("all rows contains a zero")
-x <- matrix(c(0,1,1,0), nrow = 2, ncol = 2)
+x <- matrix(c(0, 1, 1,0), nrow = 2, ncol = 2)
 y0 <- rowProds_R(x)
 print(y0)
 y1 <- rowProds(x)
@@ -83,5 +83,5 @@ print(y1)
 y2 <- colProds(t(x))
 print(y2)
 stopifnot(all.equal.na(y1, y0))
-stopifnot(all.equal.na(y1, c(0,0)))
+stopifnot(all.equal.na(y1, c(0, 0)))
 stopifnot(all.equal.na(y2, y1))

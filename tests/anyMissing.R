@@ -4,10 +4,10 @@ library("matrixStats")
 # Setup
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 data <- data.frame(
-  logical = c(TRUE, FALSE, TRUE, FALSE),
-  integer = 1:4,
-  double = seq(from = 1.0, to = 4.0, by = 1.0),
-  complex = seq(from = 1.0, to = 4.0, by = 1.0) + 1.0i,
+  logical = c(TRUE, FALSE, TRUE, FALSE), 
+  integer = 1:4, 
+  double = seq(from = 1.0, to = 4.0, by = 1.0), 
+  complex = seq(from = 1.0, to = 4.0, by = 1.0) + 1.0i, 
   character = I(letters[1:4])
 )
 

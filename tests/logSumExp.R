@@ -36,7 +36,7 @@ for (mode in c("integer", "double")) {
 # Missing values
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## NA values
-lx <- c(1,2,3)
+lx <- c(1, 2, 3)
 lx[2] <- NA_real_
 y0 <- logSumExp_R(lx, na.rm = FALSE)
 y <- logSumExp(lx, na.rm = FALSE)
@@ -50,7 +50,7 @@ print(y)
 stopifnot(all.equal(y, y0))
 
 ## NaN values
-lx <- c(1,2,3)
+lx <- c(1, 2, 3)
 lx[2] <- NaN
 y0 <- logSumExp_R(lx, na.rm = FALSE)
 y <- logSumExp(lx, na.rm = FALSE)

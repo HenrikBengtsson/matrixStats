@@ -32,7 +32,7 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
   str(x)
 
-  probs <- c(0,0.5,1)
+  probs <- c(0, 0.5, 1)
   q0 <- rowQuantiles_R(x, probs = probs)
   print(q0)
   q1 <- rowQuantiles(x, probs = probs)
@@ -82,7 +82,7 @@ for (kk in seq_len(K)) {
   dim(x) <- dim
 
   # Add NAs?
-  hasNA <- (kk %% 4) %in% c(3,0)
+  hasNA <- (kk %% 4) %in% c(3, 0)
   if (hasNA) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1)
@@ -91,7 +91,7 @@ for (kk in seq_len(K)) {
   }
 
   # Integer or double?
-  if ((kk %% 4) %in% c(2,0)) {
+  if ((kk %% 4) %in% c(2, 0)) {
     cat("Coercing to integers\n")
     storage.mode(x) <- "integer"
   }

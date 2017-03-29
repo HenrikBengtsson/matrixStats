@@ -8,7 +8,7 @@ rowIQRs_R <- function(x, na.rm = FALSE) {
   }
   Q <- apply(x, MARGIN = 1L, FUN = quantileNA, probs = c(0.25, 0.75), na.rm = na.rm)
   dim(Q) <- c(2L, nrow(x))
-  Q[2L,,drop = TRUE] - Q[1L,,drop = TRUE]
+  Q[2L, , drop = TRUE] - Q[1L, ,drop = TRUE]
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -22,10 +22,10 @@ for (mode in c("integer", "double")) {
 
   for (addNA in c(FALSE, TRUE)) {
     if (addNA) {
-      x[3:5,6:9] <- NA
+      x[3:5, 6:9] <- NA
     }
     for (na.rm in c(FALSE, TRUE)) {
-      probs <- c(0,0.5,1)
+      probs <- c(0, 0.5, 1)
       q0 <- rowIQRs_R(x, na.rm = na.rm)
       print(q0)
       q1 <- rowIQRs(x, na.rm = na.rm)
@@ -34,7 +34,7 @@ for (mode in c("integer", "double")) {
       q2 <- colIQRs(t(x), na.rm = na.rm)
       stopifnot(all.equal(q2, q0))
 
-      q <- iqr(x[3,], na.rm = na.rm)
+      q <- iqr(x[3, ], na.rm = na.rm)
       print(q)
     } # for (na.rm ...)
   } # for (addNA ...)

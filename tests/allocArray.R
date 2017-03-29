@@ -15,6 +15,6 @@ for (value in values) {
   X0 <- allocArray_R(dim, value = value)
   X <- allocArray(dim, value = value)
   str(list(dim = dim, value = value, X = X, X0 = X0))
-  stopifnot(identical(X,X0))
+  stopifnot(identical(X, X0))
 }
 

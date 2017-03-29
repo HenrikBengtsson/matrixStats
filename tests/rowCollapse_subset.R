@@ -4,7 +4,7 @@ rowCollapse_R <- function(x, idxs, ...) {
   ans <- c()
   storage.mode(ans) <- storage.mode(x)
   for (ii in seq_len(length(idxs))) {
-    ans[ii] <- x[ii,idxs[ii]]
+    ans[ii] <- x[ii, idxs[ii]]
   }
   ans
 }
@@ -22,7 +22,7 @@ for (rows in indexCases) {
 
   suppressWarnings({
     actual <- tryCatch(rowCollapse(x, idxs, rows = rows), error = function(c) "error")
-    expect <- tryCatch(rowCollapse_R(x[rows,,drop = FALSE], idxs[rows]), error = function(c) "error")
+    expect <- tryCatch(rowCollapse_R(x[rows, , drop = FALSE], idxs[rows]), error = function(c) "error")
   })
   stopifnot(all.equal(actual, expect))
 

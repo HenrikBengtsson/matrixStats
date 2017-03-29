@@ -13,14 +13,14 @@ for (kk in 1:4) {
   dim(x) <- dim
 
   # Add NAs?
-  if ((kk %% 4) %in% c(3,0)) {
+  if ((kk %% 4) %in% c(3, 0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1L)
     x[sample(length(x), size = nna)] <- NA_real_
   }
 
   # Integer or double?
-  if ((kk %% 4) %in% c(2,0)) {
+  if ((kk %% 4) %in% c(2, 0)) {
     cat("Coercing to integers\n")
     storage.mode(x) <- "integer"
   }
@@ -32,18 +32,18 @@ for (kk in 1:4) {
     # rowRanks():
     y1 <- matrixStats::rowRanks(x, ties.method = ties)
     y2 <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep", ties.method = ties))
-    stopifnot(identical(y1,y2))
+    stopifnot(identical(y1, y2))
 
     y3 <- matrixStats::colRanks(t(x), ties.method = ties)
-    stopifnot(identical(y1,y3))
+    stopifnot(identical(y1, y3))
 
     # colRanks():
     y1 <- matrixStats::colRanks(x, ties.method = ties)
     y2 <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties))
-    stopifnot(identical(y1,y2))
+    stopifnot(identical(y1, y2))
 
     y3 <- matrixStats::rowRanks(t(x), ties.method = ties)
-    stopifnot(identical(y1,y3))
+    stopifnot(identical(y1, y3))
   }
 } # for (kk ...)
 

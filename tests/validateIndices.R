@@ -30,7 +30,7 @@ for (rows in indexCases) {
 
       stopifnot(all((vr > 0 & vr <= dim(x)[1]) | is.na(vr)))
       stopifnot(all((vc > 0 & vc <= dim(x)[2]) | is.na(vc)))
-      suppressWarnings({x[vr,vc,drop = FALSE]})
+      suppressWarnings({x[vr, vc, drop = FALSE]})
 
     }, fsure = function(x) x)
   }

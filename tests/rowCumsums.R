@@ -18,7 +18,7 @@ for (mode in c("integer", "double")) {
 
     x <- matrix(1:100, nrow = 20, ncol = 5)
     if (addNA) {
-      x[13:17,c(2,4)] <- NA_real_
+      x[13:17, c(2, 4)] <- NA_real_
     }
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode

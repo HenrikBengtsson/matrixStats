@@ -19,11 +19,11 @@ for (mode in c("integer", "double")) {
 
   y0 <- rowMedians_R(x, na.rm = FALSE)
   y1 <- rowMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y0 <- colMedians_R(x, na.rm = FALSE)
   y1 <- colMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 }
 
 
@@ -37,11 +37,11 @@ for (mode in c("integer", "double")) {
 
   y0 <- rowMedians_R(x, na.rm = FALSE)
   y1 <- rowMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y0 <- colMedians_R(x, na.rm = FALSE)
   y1 <- colMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 }
 
 
@@ -55,11 +55,11 @@ for (mode in c("integer", "double")) {
 
   y0 <- rowMedians_R(x, na.rm = FALSE)
   y1 <- rowMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y0 <- colMedians_R(x, na.rm = FALSE)
   y1 <- colMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 }
 
 
@@ -73,11 +73,11 @@ for (mode in c("integer", "double")) {
 
   y0 <- rowMedians_R(x, na.rm = FALSE)
   y1 <- rowMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y0 <- colMedians_R(x, na.rm = FALSE)
   y1 <- colMedians(x, na.rm = FALSE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 }
 
 
@@ -91,11 +91,11 @@ for (mode in c("integer", "double")) {
 
   y0 <- rowMedians_R(x, na.rm = TRUE)
   y1 <- rowMedians(x, na.rm = TRUE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 
   y0 <- colMedians_R(x, na.rm = TRUE)
   y1 <- colMedians(x, na.rm = TRUE)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
 }
 
 
@@ -107,11 +107,11 @@ x <- matrix(NA_real_, nrow = 3, ncol = 3)
 
 y0 <- rowMedians_R(x, na.rm = TRUE)
 y1 <- rowMedians(x, na.rm = TRUE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 y0 <- colMedians_R(x, na.rm = TRUE)
 y1 <- colMedians(x, na.rm = TRUE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -122,11 +122,11 @@ x <- matrix(Inf, nrow = 3, ncol = 3)
 
 y0 <- rowMedians_R(x, na.rm = FALSE)
 y1 <- rowMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 y0 <- colMedians_R(x, na.rm = FALSE)
 y1 <- colMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -137,26 +137,26 @@ x <- matrix(-Inf, nrow = 3, ncol = 3)
 
 y0 <- rowMedians_R(x, na.rm = FALSE)
 y1 <- rowMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 y0 <- colMedians_R(x, na.rm = FALSE)
 y1 <- colMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: Infs and -Infs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Infs and -Infs:\n")
-x <- matrix(c(-Inf,+Inf), nrow = 4, ncol = 4)
+x <- matrix(c(-Inf, +Inf), nrow = 4, ncol = 4)
 
 y0 <- rowMedians_R(x, na.rm = FALSE)
 y1 <- rowMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 y0 <- colMedians_R(x, na.rm = FALSE)
 y1 <- colMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -167,11 +167,11 @@ x <- matrix(.Machine$integer.max, nrow = 4, ncol = 4)
 
 y0 <- rowMedians_R(x, na.rm = FALSE)
 y1 <- rowMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 y0 <- colMedians_R(x, na.rm = FALSE)
 y1 <- colMedians(x, na.rm = FALSE)
-stopifnot(all.equal(y1,y0))
+stopifnot(all.equal(y1, y0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -191,7 +191,7 @@ for (kk in seq_len(K)) {
   dim(x) <- dim
 
   # Add NAs?
-  if ((kk %% 4) %in% c(3,0)) {
+  if ((kk %% 4) %in% c(3, 0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1)
     naValues <- c(NA_real_, NaN)
@@ -199,24 +199,24 @@ for (kk in seq_len(K)) {
   }
 
   # Integer or double?
-  if ((kk %% 4) %in% c(2,0)) {
+  if ((kk %% 4) %in% c(2, 0)) {
     cat("Coercing to integers\n")
     storage.mode(x) <- "integer"
   }
 
-  na.rm <- sample(c(TRUE,FALSE), size = 1)
+  na.rm <- sample(c(TRUE, FALSE), size = 1)
 
   # rowMedians():
   y0 <- rowMedians_R(x, na.rm = na.rm)
   y1 <- rowMedians(x, na.rm = na.rm)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
   y2 <- colMedians(t(x), na.rm = na.rm)
-  stopifnot(all.equal(y2,y0))
+  stopifnot(all.equal(y2, y0))
 
   # colMedians():
   y0 <- colMedians_R(x, na.rm = na.rm)
   y1 <- colMedians(x, na.rm = na.rm)
-  stopifnot(all.equal(y1,y0))
+  stopifnot(all.equal(y1, y0))
   y2 <- rowMedians(t(x), na.rm = na.rm)
-  stopifnot(all.equal(y2,y0))
+  stopifnot(all.equal(y2, y0))
 } # for (kk ...)
