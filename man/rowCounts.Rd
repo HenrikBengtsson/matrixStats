@@ -37,7 +37,7 @@ colAnys(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
 anyValue(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 }
 \arguments{
-\item{x}{An NxK \code{\link[base]{matrix}} or an N*K
+\item{x}{An NxK \code{\link[base]{matrix}} or an N * K
 \code{\link[base]{vector}}.}
 
 \item{value}{A value to search for.}

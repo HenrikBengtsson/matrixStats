@@ -12,12 +12,24 @@ for (mode in c("numeric", "integer")) {
   if (mode == "numeric") w[1] <- Inf
 
   for (idxs in indexCases) {
-    validateIndicesTestVector_w(x, w, idxs, ftest = weightedMedian, fsure = weightedMedian, na.rm = TRUE)
-    validateIndicesTestVector_w(x, w, idxs, ftest = weightedMedian, fsure = weightedMedian, na.rm = FALSE)
+    validateIndicesTestVector_w(x, w, idxs,
+                                ftest = weightedMedian,
+                                fsure = weightedMedian,
+                                na.rm = TRUE)
+    validateIndicesTestVector_w(x, w, idxs,
+                                ftest = weightedMedian,
+                                fsure = weightedMedian,
+                                na.rm = FALSE)
 
     for (ties in c("weighted", "mean", "min", "max")) {
-      validateIndicesTestVector_w(x, w, idxs, ftest = weightedMedian, fsure = weightedMedian, na.rm = TRUE, ties = ties)
-      validateIndicesTestVector_w(x, w, idxs, ftest = weightedMedian, fsure = weightedMedian, na.rm = FALSE, ties = ties)
+      validateIndicesTestVector_w(x, w, idxs,
+                                  ftest = weightedMedian,
+                                  fsure = weightedMedian,
+                                  na.rm = TRUE, ties = ties)
+      validateIndicesTestVector_w(x, w, idxs,
+                                  ftest = weightedMedian,
+                                  fsure = weightedMedian,
+                                  na.rm = FALSE, ties = ties)
     }
   }
 }

@@ -42,7 +42,13 @@ storage.mode(x) <- "integer"
 bx <- c(-6, 0, 3, 4, 10)
 for (idxs in indexCases) {
   for (na.rm in c(TRUE, FALSE)) {
-    validateIndicesTestVector_w(y, x, idxs, ftest = binMeans, fsure = binMeans0, bx = bx, na.rm = na.rm, count = TRUE, right = FALSE)
-    validateIndicesTestVector_w(y, x, idxs, ftest = binMeans, fsure = binMeans0, bx = bx, na.rm = na.rm, count = TRUE, right = TRUE)
+    validateIndicesTestVector_w(y, x, idxs,
+                                ftest = binMeans, fsure = binMeans0,
+                                bx = bx, na.rm = na.rm,
+                                count = TRUE, right = FALSE)
+    validateIndicesTestVector_w(y, x, idxs,
+                                ftest = binMeans, fsure = binMeans0,
+                                bx = bx, na.rm = na.rm,
+                                count = TRUE, right = TRUE)
   }
 }

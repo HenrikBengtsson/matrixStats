@@ -14,7 +14,8 @@ for (mode in c("integer", "double")) {
 
     for (l in 1:3) {
       for (d in 1:4) {
-        cat(sprintf("%s: NAs = %s, lag = %d, differences = %d\n", mode, hasNA, l, d))
+        cat(sprintf("%s: NAs = %s, lag = %d, differences = %d\n",
+                    mode, hasNA, l, d))
         y0 <- diff(x, lag = l, differences = d)
         str(y0)
         y1 <- diff2(x, lag = l, differences = d)

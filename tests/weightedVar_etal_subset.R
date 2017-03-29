@@ -23,8 +23,12 @@ for (fcn in names(FUNs)) {
     if (mode == "numeric") w[1] <- Inf
 
     for (idxs in indexCases) {
-      validateIndicesTestVector_w(x, w, idxs, ftest = FUN, fsure = FUN, na.rm = TRUE)
-      validateIndicesTestVector_w(x, w, idxs, ftest = FUN, fsure = FUN, na.rm = FALSE)
+      validateIndicesTestVector_w(x, w, idxs,
+                                  ftest = FUN, fsure = FUN,
+                                  na.rm = TRUE)
+      validateIndicesTestVector_w(x, w, idxs,
+                                  ftest = FUN, fsure = FUN,
+                                  na.rm = FALSE)
     }
   }
   cat(sprintf("%s()...DONE\n", fcn))

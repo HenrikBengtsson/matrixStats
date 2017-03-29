@@ -1,5 +1,5 @@
 library("matrixStats")
-library("utils")
+library("utils")  ## utils::str
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Local functions

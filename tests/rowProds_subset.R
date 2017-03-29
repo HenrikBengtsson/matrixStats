@@ -1,8 +1,7 @@
 library("matrixStats")
 
 rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ...) {
-  y <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
-  y
+  apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
 }
 
 

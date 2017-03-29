@@ -34,7 +34,8 @@ for (mode in c("integer", "double")) {
 
     for (lag in 1:4) {
       for (differences in 1:3) {
-        cat(sprintf("mode: %s, lag = %d, differences = %d\n", mode, lag, differences))
+        cat(sprintf("mode: %s, lag = %d, differences = %d\n",
+                    mode, lag, differences))
         # Row/column ranges
         r0 <- rowDiffs_R(x, lag = lag, differences = differences)
         r1 <- rowDiffs(x, lag = lag, differences = differences)

@@ -11,6 +11,10 @@ logSumExp_R <- function(lx, na.rm = FALSE) {
 source("utils/validateIndicesFramework.R")
 x <- runif(6, min = -6, max = 6)
 for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest = logSumExp, fsure = logSumExp_R, na.rm = FALSE)
-  validateIndicesTestVector(x, idxs, ftest = logSumExp, fsure = logSumExp_R, na.rm = TRUE)
+  validateIndicesTestVector(x, idxs,
+                            ftest = logSumExp, fsure = logSumExp_R,
+                            na.rm = FALSE)
+  validateIndicesTestVector(x, idxs,
+                            ftest = logSumExp, fsure = logSumExp_R,
+                            na.rm = TRUE)
 }

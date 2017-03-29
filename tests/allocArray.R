@@ -6,7 +6,9 @@ allocArray_R <- function(nrow, ncol, value = NA) {
 
 values <- list(
   -1L, 0L, +1L, NA_integer_, .Machine$integer.max,
-  -1, 0, +1, NA_real_, NaN, -Inf, +Inf, .Machine$double.xmin, .Machine$double.xmax, .Machine$double.eps, .Machine$double.neg.eps,
+  -1, 0, +1, NA_real_, NaN, -Inf, +Inf,
+  .Machine$double.xmin, .Machine$double.xmax,
+  .Machine$double.eps, .Machine$double.neg.eps,
   FALSE, TRUE, NA
 )
 

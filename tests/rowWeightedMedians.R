@@ -51,7 +51,7 @@ stopifnot(all.equal(xM2, xM1))
 
 
 # Weighted row medians with missing values
-xM0 <- apply(x, MARGIN = 1, FUN = weightedMedian, w = w, na.rm = TRUE)
+xM0 <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = TRUE)
 print(xM0)
 xM1 <- rowWeightedMedians(x, w = w, na.rm = TRUE)
 print(xM1)

@@ -9,7 +9,8 @@ x[2] <- NA
 for (mode in c("integer", "numeric")) {
   storage.mode(x) <- mode
   for (idxs in indexCases) {
-    validateIndicesTestVector(x, idxs, ftest = anyMissing, fsure = function(x, ...) {
+    validateIndicesTestVector(x, idxs,
+                              ftest = anyMissing, fsure = function(x, ...) {
         anyValue(x, value = NA)
     })
   }

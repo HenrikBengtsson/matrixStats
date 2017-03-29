@@ -188,7 +188,7 @@ iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
 
-  if(na.rm) {
+  if (na.rm) {
     x <- x[!is.na(x)]
   } else if (anyMissing(x)) {
     return(NA_real_)

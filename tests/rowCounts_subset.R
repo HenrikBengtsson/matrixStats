@@ -2,9 +2,13 @@ library("matrixStats")
 
 rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
   if (is.na(value)) {
-    counts <- apply(x, MARGIN = 1L, FUN = function(x) sum(is.na(x)))
+    counts <- apply(x, MARGIN = 1L, FUN = function(x)
+      sum(is.na(x))
+    )
   } else {
-    counts <- apply(x, MARGIN = 1L, FUN = function(x) sum(x == value, na.rm = na.rm))
+    counts <- apply(x, MARGIN = 1L, FUN = function(x)
+      sum(x == value, na.rm = na.rm)
+    )
   }
   as.integer(counts)
 } # rowCounts_R()

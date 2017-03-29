@@ -24,8 +24,12 @@ for (fcn in names(FUNs)) {
 
     for (diff in 1:2) {
       for (idxs in indexCases) {
-        validateIndicesTestVector(x, idxs, ftest = FUN, fsure = FUN, na.rm = TRUE, diff = diff, trim = trim)
-        validateIndicesTestVector(x, idxs, ftest = FUN, fsure = FUN, na.rm = FALSE, diff = diff, trim = trim)
+        validateIndicesTestVector(x, idxs,
+                                  ftest = FUN, fsure = FUN,
+                                  na.rm = TRUE, diff = diff, trim = trim)
+        validateIndicesTestVector(x, idxs,
+                                  ftest = FUN, fsure = FUN,
+                                  na.rm = FALSE, diff = diff, trim = trim)
       }
     }
   }

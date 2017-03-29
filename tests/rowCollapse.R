@@ -23,7 +23,8 @@ stopifnot(identical(y2, y))
 idxs <- 1:3
 y <- rowCollapse(x, idxs)
 print(y)
-yT <- c(x[1, 1], x[2, 2], x[3, 3], x[4, 1], x[5, 2], x[6, 3], x[7, 1], x[8, 2], x[9, 3])
+yT <- c(x[1, 1], x[2, 2], x[3, 3], x[4, 1], x[5, 2],
+        x[6, 3], x[7, 1], x[8, 2], x[9, 3])
 stopifnot(identical(y, yT))
 y2 <- colCollapse(t(x), idxs)
 stopifnot(identical(y2, y))

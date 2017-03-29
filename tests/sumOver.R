@@ -27,7 +27,8 @@ for (kk in 1:20) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1L)
     naValues <- c(NA_real_, NaN)
-    x[sample(length(x), size = nna)] <- sample(naValues, size = nna, replace = TRUE)
+    t <- sample(naValues, size = nna, replace = TRUE)
+    x[sample(length(x), size = nna)] <- t
   }
 
   # Integer or double?

@@ -31,7 +31,8 @@ for (kk in 1:4) {
     cat(sprintf("ties.method = %s\n", ties))
     # rowRanks():
     y1 <- matrixStats::rowRanks(x, ties.method = ties)
-    y2 <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep", ties.method = ties))
+    y2 <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep",
+                  ties.method = ties))
     stopifnot(identical(y1, y2))
 
     y3 <- matrixStats::colRanks(t(x), ties.method = ties)
@@ -39,7 +40,8 @@ for (kk in 1:4) {
 
     # colRanks():
     y1 <- matrixStats::colRanks(x, ties.method = ties)
-    y2 <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties))
+    y2 <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep",
+                  ties.method = ties))
     stopifnot(identical(y1, y2))
 
     y3 <- matrixStats::rowRanks(t(x), ties.method = ties)

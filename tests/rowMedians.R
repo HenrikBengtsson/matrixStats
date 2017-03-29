@@ -195,7 +195,8 @@ for (kk in seq_len(K)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1)
     naValues <- c(NA_real_, NaN)
-    x[sample(length(x), size = nna)] <- sample(naValues, size = nna, replace = TRUE)
+    t <- sample(naValues, size = nna, replace = TRUE)
+    x[sample(length(x), size = nna)] <- t
   }
 
   # Integer or double?
