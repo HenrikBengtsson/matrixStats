@@ -1,55 +1,50 @@
-###########################################################################/**
-# @RdocFunction rowAvgsPerColSet
-# @alias colAvgsPerRowSet
-#
-# @title "Applies a row-by-row (column-by-column) averaging function to equally-sized subsets of matrix columns (rows)"
-#
-# \description{
-#  @get "title".
-#  Each subset is averaged independently of the others.
-# }
-#
-# \usage{
-#   @usage rowAvgsPerColSet
-#   @usage colAvgsPerRowSet
-# }
-#
-# \arguments{
-#   \item{X}{A @numeric NxM @matrix.}
-#   \item{W}{An optional @numeric NxM @matrix of weights.}
-#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#     to operate over. If @NULL, no subsetting is done.}
-#   \item{S}{An @integer KxJ @matrix specifying the J subsets.  Each
-#     column holds K column (row) indices for the corresponding subset.}
-#   \item{FUN}{The row-by-row (column-by-column) @function used to average
-#     over each subset of \code{X}.  This function must accept a @numeric
-#     NxK (KxM) @matrix and the @logical argument \code{na.rm} (which is
-#     automatically set), and return a @numeric @vector of length N (M).}
-#   \item{...}{Additional arguments passed to then \code{FUN} @function.}
-#   \item{tFUN}{If @TRUE, the NxK (KxM) @matrix passed to \code{FUN()}
-#     is transposed first.}
-# }
-#
-# \value{
-#   Returns a @numeric JxN (MxJ) @matrix,
-#   where row names equal \code{rownames(X)} (\code{colnames(S)})
-#   and column names \code{colnames(S)} (\code{colnames(X)}).
-# }
-#
-# \details{
-#   If argument \code{S} is a single column vector with indices
-#   \code{1:N}, then \code{rowAvgsPerColSet(X, S=S, FUN=rowMeans)}
-#   gives the same result as \code{rowMeans(X)}.
-#   Analogously, for \code{rowAvgsPerColSet()}.
-# }
-#
-# @examples "../incl/rowAvgsPerColSet.Rex"
-#
-# @author "HB"
-#
-# @keyword internal
-# @keyword utilities
-#*/###########################################################################
+#' Applies a row-by-row (column-by-column) averaging function to equally-sized
+#' subsets of matrix columns (rows)
+#' 
+#' Applies a row-by-row (column-by-column) averaging function to equally-sized
+#' subsets of matrix columns (rows).  Each subset is averaged independently of
+#' the others.
+#' 
+#' If argument \code{S} is a single column vector with indices \code{1:N}, then
+#' \code{rowAvgsPerColSet(X, S=S, FUN=rowMeans)} gives the same result as
+#' \code{rowMeans(X)}.  Analogously, for \code{rowAvgsPerColSet()}.
+#' 
+#' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
+#' 
+#' @param W An optional \code{\link[base]{numeric}} NxM
+#' \code{\link[base]{matrix}} of weights.
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param S An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}}
+#' specifying the J subsets.  Each column holds K column (row) indices for the
+#' corresponding subset.
+#' 
+#' @param FUN The row-by-row (column-by-column) \code{\link[base]{function}}
+#' used to average over each subset of \code{X}.  This function must accept a
+#' \code{\link[base]{numeric}} NxK (KxM) \code{\link[base]{matrix}} and the
+#' \code{\link[base]{logical}} argument \code{na.rm} (which is automatically
+#' set), and return a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length N (M).
+#' 
+#' @param ... Additional arguments passed to then \code{FUN}
+#' \code{\link[base]{function}}.
+#' 
+#' @param tFUN If \code{\link[base:logical]{TRUE}}, the NxK (KxM)
+#' \code{\link[base]{matrix}} passed to \code{FUN()} is transposed first.
+#' 
+#' @return Returns a \code{\link[base]{numeric}} JxN (MxJ)
+#' \code{\link[base]{matrix}}, where row names equal \code{rownames(X)}
+#' (\code{colnames(S)}) and column names \code{colnames(S)}
+#' (\code{colnames(X)}).
+#'
+#' @example incl/rowAvgsPerColSet.Rex
+#'
+#' @author Henrik Bengtsson
+#' @keywords internal utilities
+#' @export
 rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -141,7 +136,8 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
   Z;
 }
 
-
+#' @rdname rowAvgsPerColSet
+#' @export
 colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
