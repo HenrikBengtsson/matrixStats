@@ -6,7 +6,8 @@ rowIQRs_R <- function(x, na.rm = FALSE) {
       return(c(NA_real_, NA_real_))
     quantile(x, ..., na.rm = na.rm)
   }
-  Q <- apply(x, MARGIN = 1L, FUN = quantileNA, probs = c(0.25, 0.75), na.rm = na.rm)
+  Q <- apply(x, MARGIN = 1L, FUN = quantileNA,
+             probs = c(0.25, 0.75), na.rm = na.rm)
   dim(Q) <- c(2L, nrow(x))
   Q[2L, , drop = TRUE] - Q[1L, , drop = TRUE]
 }
@@ -16,7 +17,7 @@ rowIQRs_R <- function(x, na.rm = FALSE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
-  x <- matrix(1:100+0.1, nrow = 10, ncol = 10)
+  x <- matrix(1:100 + 0.1, nrow = 10, ncol = 10)
   storage.mode(x) <- mode
   str(x)
 

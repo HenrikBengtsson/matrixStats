@@ -35,7 +35,9 @@
 #'
 #' @importFrom stats quantile
 #' @export
-rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+rowQuantiles <- function(x, rows = NULL, cols = NULL,
+                         probs = seq(from = 0, to = 1, by = 0.25),
+                         na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -61,7 +63,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
 
     if (!hasNA && type == 7L) {
       n <- ncol
-      idxs <- 1 + (n-1) * probs
+      idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
       partial <- sort(unique(c(idxs_lo, idxs_hi)))
@@ -79,7 +81,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
         idxs_hi <- idxs_hi[idxs_adj]
         qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1-w)*qL + w*qH
+        q[idxs_adj, ] <- (1 - w) * qL + w * qH
         # Not needed anymore
         xp <- qL <- qH <- NULL
       }
@@ -112,7 +114,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
 
   # Add names
   digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100*probs)
+  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
   # Drop singleton dimensions?
   if (drop) {
     q <- drop(q)
@@ -124,7 +126,9 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
 #' @importFrom stats quantile
 #' @rdname rowQuantiles
 #' @export
-colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+colQuantiles <- function(x, rows = NULL, cols = NULL,
+                         probs = seq(from = 0, to = 1, by = 0.25),
+                         na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -150,7 +154,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
 
     if (!hasNA && type == 7L) {
       n <- nrow
-      idxs <- 1 + (n-1) * probs
+      idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
       partial <- sort(unique(c(idxs_lo, idxs_hi)))
@@ -168,7 +172,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
         idxs_hi <- idxs_hi[idxs_adj]
         qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1-w)*qL + w*qH
+        q[idxs_adj, ] <- (1 - w) * qL + w * qH
         # Not needed anymore
         xp <- qL <- qH <- NULL
       }
@@ -201,7 +205,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
 
   # Add names
   digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100*probs)
+  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
 
   # Drop singleton dimensions?
   if (drop) {

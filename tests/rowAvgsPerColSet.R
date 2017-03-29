@@ -1,6 +1,6 @@
 library("matrixStats")
 
-X <- matrix(rnorm(20*6), nrow = 20, ncol = 6)
+X <- matrix(rnorm(20 * 6), nrow = 20, ncol = 6)
 rownames(X) <- LETTERS[1:nrow(X)]
 colnames(X) <- letters[1:ncol(X)]
 print(X)

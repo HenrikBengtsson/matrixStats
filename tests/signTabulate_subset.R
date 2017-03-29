@@ -19,9 +19,10 @@ signTabulate0 <- function(x, ...) {
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
-x <- matrix(runif(6*6, min = -6, max = 6), nrow = 6, ncol = 6)
+x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 x[2:3, 4:5] <- +Inf
 x[4:5, 1:2] <- -Inf
 for (idxs in indexCases) {
-  validateIndicesTestVector(x, idxs, ftest = signTabulate, fsure = signTabulate0)
+  validateIndicesTestVector(x, idxs,
+                            ftest = signTabulate, fsure = signTabulate0)
 }

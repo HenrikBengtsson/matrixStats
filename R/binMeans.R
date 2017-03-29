@@ -14,9 +14,9 @@
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
-#' @param bx A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B+1
+#' @param bx A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B + 1
 #' ordered positions specifying the B > 0 bins \code{[bx[1], bx[2])},
-#' \code{[bx[2], bx[3])}, ..., \code{[bx[B], bx[B+1])}.
+#' \code{[bx[2], bx[3])}, ..., \code{[bx[B], bx[B + 1])}.
 #'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values in \code{y}
 #' are dropped before calculating the mean, otherwise not.
@@ -51,7 +51,8 @@
 #'
 #' @keywords univar
 #' @export
-binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE, right = FALSE, ...) {
+binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
+                     right = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -69,7 +70,8 @@ binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE, right = 
     stop("Argument 'x' is not numeric: ", mode(x))
   }
   if (length(x) != n) {
-    stop("Argument 'y' and 'x' are of different lengths: ", length(y), " != ", length(x))
+    stop("Argument 'y' and 'x' are of different lengths: ",
+         length(y), " != ", length(x))
   }
 
   # Argument 'bx':

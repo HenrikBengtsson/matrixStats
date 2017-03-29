@@ -41,7 +41,7 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
   idxs <- rep(idxs, length.out = dim.[1L])
 
   # Columns of interest
-  cols <- 0:(dim.[2L]-1L)
+  cols <- 0:(dim.[2L] - 1L)
   cols <- cols[idxs]
 
   # Calculate column-based indices
@@ -70,7 +70,7 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
   rows <- rows[idxs]
 
   # Calculate column-based indices
-  idxs <- dim.[1L] * 0:(dim.[2L]-1L) + rows
+  idxs <- dim.[1L] * 0:(dim.[2L] - 1L) + rows
   rows <- NULL # Not needed anymore
 
   x[idxs]

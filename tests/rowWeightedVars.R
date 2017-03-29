@@ -63,7 +63,7 @@ xM2 <- colWeightedVars(t(x), w = w)
 stopifnot(all.equal(xM2, xM1))
 
 
-x[sample(length(x), size = 0.3*length(x))] <- NA
+x[sample(length(x), size = 0.3 * length(x))] <- NA
 print(x)
 
 # Non-weighted row variances with missing values

@@ -19,7 +19,7 @@ for (fcn in names(FUNs)) {
     for (addNA in c(FALSE, TRUE)) {
       cat("addNA = ", addNA, "\n", sep = "")
 
-      x <- matrix(1:100+0.1, nrow = 20, ncol = 5)
+      x <- matrix(1:100 + 0.1, nrow = 20, ncol = 5)
       if (addNA) {
         x[13:17, c(2, 4)] <- NA_real_
       }

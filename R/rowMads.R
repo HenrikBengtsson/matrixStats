@@ -1,12 +1,14 @@
 #' @rdname rowSds
 #' @export
-rowMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826, na.rm = FALSE, dim. = dim(x), centers = NULL, ...) {
+rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
+                    constant = 1.4826, na.rm = FALSE,
+                    dim. = dim(x), centers = NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Defunct in matrixStats (>= 0.15.0)
   if (!is.null(centers)) {
     center <- centers
-    .Defunct(msg = "Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")
+    .Defunct(msg = "Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")  #nolint
   }
 
   if (is.null(center)) {
@@ -30,7 +32,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.482
     if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
     x <- rowMedians(x, na.rm = na.rm, ...)
-    x <- constant*x
+    x <- constant * x
   }
   x
 }
@@ -38,13 +40,15 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.482
 
 #' @rdname rowSds
 #' @export
-colMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826, na.rm = FALSE, dim. = dim(x), centers = NULL, ...) {
+colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
+                    constant = 1.4826, na.rm = FALSE,
+                    dim. = dim(x), centers = NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Defunct in matrixStats (>= 0.15.0)
   if (!is.null(centers)) {
     center <- centers
-    .Defunct(msg = "Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")
+    .Defunct(msg = "Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")  #nolint
   }
 
   if (is.null(center)) {
@@ -72,7 +76,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.482
     x <- t_tx_OP_y(x, center, OP = "-", na.rm = FALSE)
     x <- abs(x)
     x <- colMedians(x, na.rm = na.rm, ...)
-    x <- constant*x
+    x <- constant * x
   }
   x
 }

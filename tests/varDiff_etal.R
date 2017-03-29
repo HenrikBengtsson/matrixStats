@@ -63,8 +63,8 @@ stopifnot(d < 0.05)
 # Trimmed estimators
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 y <- x
-outliers <- sample(length(x), size = 0.1*length(x))
-y[outliers] <- 100*y[outliers]
+outliers <- sample(length(x), size = 0.1 * length(x))
+y[outliers] <- 100 * y[outliers]
 
 sigmaAo <- sd(y[-outliers])
 cat(sprintf("sd(y) = %g\n", sigmaAo))

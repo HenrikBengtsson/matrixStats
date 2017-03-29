@@ -6,11 +6,11 @@ library("utils")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 psortKM_R <- function(x, k, m) {
   x <- sort(x)
-  x[(k-m+1):k]
+  x[(k - m + 1):k]
 } # psortKM_R()
 
 psortKM_R2 <- function(x, k, m) {
-  partial <- (k-m+1):k
+  partial <- (k - m + 1):k
   x <- sort.int(x, partial = partial)
   x[partial]
 } # psortKM_R2()

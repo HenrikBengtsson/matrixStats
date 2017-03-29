@@ -1,7 +1,7 @@
 library("matrixStats")
 
 rowDiffs_R <- function(x, lag = 1L, differences = 1L, ...) {
-  ncol2 <- ncol(x) - lag*differences
+  ncol2 <- ncol(x) - lag * differences
   if (ncol2 <= 0) {
     return(matrix(x[integer(0L)], nrow = nrow(x), ncol = 0L))
   }
@@ -25,7 +25,7 @@ for (mode in c("integer", "double")) {
   for (addNA in c(FALSE, TRUE)) {
     cat("addNA = ", addNA, "\n", sep = "")
 
-    x <- matrix(sample(20*8)+0.1, nrow = 20, ncol = 8)
+    x <- matrix(sample(20 * 8) + 0.1, nrow = 20, ncol = 8)
     if (addNA) {
       x[13:17, c(2, 4)] <- NA_real_
     }

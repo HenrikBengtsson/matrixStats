@@ -16,7 +16,7 @@ for (mode in c("integer", "double")) {
   str(x)
 
   ## The logarithm of the harmonic mean
-  y0 <- log(1/mean(1/x))
+  y0 <- log(1 / mean(1 / x))
   print(y0)  ## -1.600885
 
   lx <- log(x)

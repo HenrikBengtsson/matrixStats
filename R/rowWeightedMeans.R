@@ -33,7 +33,8 @@
 #'
 #' @keywords array iteration robust univar
 #' @export
-rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
+                             na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -42,7 +43,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALS
   if (hasWeights) {
     n <- ncol(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)
+      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)  #nolint
     }
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w))
@@ -127,7 +128,8 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALS
 
 #' @rdname rowWeightedMeans
 #' @export
-colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
+                             na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -136,7 +138,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FAL
   if (hasWeights) {
     n <- nrow(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)
+      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)  #nolint
     }
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w))
@@ -205,7 +207,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FAL
       w <- w / wS
 
       # Weighted values
-      x <- w*x
+      x <- w * x
       ## SLIGHTLY SLOWER: x <- x_OP_y(x, w, OP = "*")
 
       w <- NULL  # Not needed anymore

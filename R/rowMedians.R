@@ -37,7 +37,8 @@
 #'
 #' @keywords array iteration robust univar
 #' @export
-rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
+rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
+                       dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   hasNAs <- TRUE  # Add as an argument? /2007-08-24
@@ -46,7 +47,8 @@ rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x)
 
 #' @rdname rowMedians
 #' @export
-colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
+colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
+                       dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   hasNAs <- TRUE  # Add as an argument? /2007-08-24

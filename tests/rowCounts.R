@@ -14,7 +14,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
 # Data type: integer and numeric
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- matrix(runif(20*5, min = -3, max = 3), nrow = 20, ncol = 5)
+  x <- matrix(runif(20 * 5, min = -3, max = 3), nrow = 20, ncol = 5)
   x[sample.int(length(x), size = 7)] <- 0
   storage.mode(x) <- mode
 
@@ -108,7 +108,7 @@ for (na.rm in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: character (not sure if this should be supported)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(rep(letters, length.out = 20*5), nrow = 20, ncol = 5)
+x <- matrix(rep(letters, length.out = 20 * 5), nrow = 20, ncol = 5)
 x[2:3, 3:4] <- NA_character_
 
 # Row/column counts

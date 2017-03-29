@@ -18,7 +18,7 @@ indexByRow_R2 <- function(dim, idxs = NULL, ...) {
     idxs <- idxs - 1
     cols <- idxs %/% dim[2L]
     rows <- idxs  %% dim[2L]
-    cols + dim[1L]*rows + 1L
+    cols + dim[1L] * rows + 1L
   }
 } # indexByRow_R2()
 

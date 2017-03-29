@@ -5,7 +5,7 @@ library("stats")
 # Naive R implementation of binMeans()
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 binMeans0 <- function(y, x, bx, na.rm = TRUE, count = TRUE, right = FALSE) {
-  B <- length(bx)-1L
+  B <- length(bx) - 1L
   res <- double(B)
   counts <- rep(NaN, times = B)
 
@@ -18,9 +18,9 @@ binMeans0 <- function(y, x, bx, na.rm = TRUE, count = TRUE, right = FALSE) {
   # For each bin...
   for (kk in seq_len(B)) {
     if (right) {
-      idxs <- which(bx[kk] <  x & x <= bx[kk+1L])
+      idxs <- which(bx[kk] <  x & x <= bx[kk + 1L])
     } else {
-      idxs <- which(bx[kk] <= x & x <  bx[kk+1L])
+      idxs <- which(bx[kk] <= x & x <  bx[kk + 1L])
     }
     yKK <- y[idxs]
     muKK <- mean(yKK)

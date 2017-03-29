@@ -62,12 +62,15 @@
 #' @keywords array iteration robust univar
 #'
 #' @export
-rowRanks <- function(x, rows = NULL, cols = NULL, ties.method = c("max", "average", "min"), dim. = dim(x), ...) {
+rowRanks <- function(x, rows = NULL, cols = NULL,
+                     ties.method = c("max", "average", "min"),
+                     dim. = dim(x), ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
   if (is.element("flavor", names(list(...)))) {
-    .Deprecated(old = "Argument 'flavor' of rowRanks()", package = "matrixStats")
+    .Deprecated(old = "Argument 'flavor' of rowRanks()",
+                package = "matrixStats")
   }
 
   tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch = 0L)
@@ -83,12 +86,15 @@ rowRanks <- function(x, rows = NULL, cols = NULL, ties.method = c("max", "averag
 
 #' @rdname rowRanks
 #' @export
-colRanks <- function(x, rows = NULL, cols = NULL, ties.method = c("max", "average", "min"), dim. = dim(x), preserveShape = FALSE, ...) {
+colRanks <- function(x, rows = NULL, cols = NULL,
+                     ties.method = c("max", "average", "min"),
+                     dim. = dim(x), preserveShape = FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
   if (is.element("flavor", names(list(...)))) {
-    .Deprecated(old = "Argument 'flavor' of rowRanks()", package = "matrixStats")
+    .Deprecated(old = "Argument 'flavor' of rowRanks()",
+                package = "matrixStats")
   }
 
   # Argument 'preserveShape'

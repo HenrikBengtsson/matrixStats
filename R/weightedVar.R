@@ -37,7 +37,8 @@
 #'
 #' @keywords univar robust
 #' @export
-weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, ...) {
+weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
+                        center = NULL, ...) {
   # Argument 'x':
   n <- length(x)
 
@@ -45,7 +46,8 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, 
   if (is.null(w)) {
     w <- rep(1, times = n)
   } else if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n)
+    stop("The number of elements in arguments 'w' and 'x' does not match: ",
+         length(w), " != ", n)
   } else if (!is.null(idxs)) {
     # Apply subset on 'w'
     w <- w[idxs]
@@ -116,7 +118,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, 
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- sum(w*x)
+    center <- sum(w * x)
   }
 
   # Estimate the variance
@@ -125,9 +127,9 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, 
 
   ## Correction factor
   lambda <- wsum / (wsum - 1)
-  if (use_0.14.2) lambda <- n / (n-1L)
+  if (use_0.14.2) lambda <- n / (n - 1L)
 
-  sigma2 <- lambda * sum(w*x)
+  sigma2 <- lambda * sum(w * x)
 
   x <- w <- NULL  # Not needed anymore
 
@@ -144,7 +146,8 @@ weightedSd <- function(...) {
 
 #' @rdname weightedVar
 #' @export
-rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
+                            na.rm = FALSE, ...) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -159,7 +162,8 @@ rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE
 
 #' @rdname weightedVar
 #' @export
-colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
+                            na.rm = FALSE, ...) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -174,13 +178,17 @@ colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE
 
 #' @rdname weightedVar
 #' @export
-rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
-  sqrt(rowWeightedVars(x = x, w = w, rows = rows, cols = cols, na.rm = na.rm, ...))
+rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
+                           na.rm = FALSE, ...) {
+  sqrt(rowWeightedVars(x = x, w = w, rows = rows, cols = cols,
+                       na.rm = na.rm, ...))
 }
 
 
 #' @rdname weightedVar
 #' @export
-colWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
-  sqrt(colWeightedVars(x = x, w = w, rows = rows, cols = cols, na.rm = na.rm, ...))
+colWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
+                           na.rm = FALSE, ...) {
+  sqrt(colWeightedVars(x = x, w = w, rows = rows, cols = cols,
+                       na.rm = na.rm, ...))
 }

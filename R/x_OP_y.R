@@ -43,21 +43,25 @@
 #'
 #' @keywords internal
 #' @export
-x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL, commute = FALSE, na.rm = FALSE) {
+x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
+                   commute = FALSE, na.rm = FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
   stopifnot(op > 0L)
-  .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, FALSE)
+  .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs,
+        commute, na.rm, TRUE, FALSE)
 }
 
 
 #' @rdname x_OP_y
 #' @export
-t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL, commute = FALSE, na.rm = FALSE) {
+t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
+                      commute = FALSE, na.rm = FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
   stopifnot(op > 0L)
-  .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE)
+  .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs,
+        commute, na.rm, TRUE, TRUE)
 }

@@ -16,7 +16,7 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
   else dim(q) <- c(nrow(x), length(probs))
 
   digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100*probs)
+  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
 
   if (drop) q <- drop(q)
   q
@@ -28,7 +28,7 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
-  x <- matrix(1:40+0.1, nrow = 8, ncol = 5)
+  x <- matrix(1:40 + 0.1, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
   str(x)
 

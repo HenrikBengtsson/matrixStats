@@ -43,7 +43,7 @@ t_tx_OP_y_R <- function(x, y, OP, na.rm = FALSE) {
 source("utils/validateIndicesFramework.R")
 for (OP in c("+", "-", "*", "/")) {
   for (mode in c("numeric", "integer")) {
-    x <- matrix(runif(6*6, min = -6, max = 6), nrow = 6L, ncol = 6L)
+    x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6L, ncol = 6L)
     y <- runif(6, min = 0, max = 6)
     storage.mode(x) <- mode
     storage.mode(y) <- mode
@@ -59,12 +59,14 @@ for (OP in c("+", "-", "*", "/")) {
 
             suppressWarnings({
               actual <- tryCatch(
-                x_OP_y(x, y, OP, xrows = xrows, xcols = xcols, yidxs = yidxs, na.rm = na.rm),
+                x_OP_y(x, y, OP, xrows = xrows, xcols = xcols, yidxs = yidxs,
+                       na.rm = na.rm),
                 error = function(c) "error"
               )
 
               expect <- tryCatch(
-                x_OP_y_R(x[xrows, xcols, drop = FALSE], y[yidxs], OP, na.rm = na.rm),
+                x_OP_y_R(x[xrows, xcols, drop = FALSE], y[yidxs], OP,
+                         na.rm = na.rm),
                 error = function(c) "error"
               )
             })
@@ -72,12 +74,14 @@ for (OP in c("+", "-", "*", "/")) {
 
             suppressWarnings({
               actual <- tryCatch(
-                t_tx_OP_y(x, y, OP, xrows = xrows, xcols = xcols, yidxs = yidxs, na.rm = na.rm),
+                t_tx_OP_y(x, y, OP, xrows = xrows, xcols = xcols, yidxs = yidxs,
+                          na.rm = na.rm),
                 error = function(c) "error"
               )
 
               expect <- tryCatch(
-                t_tx_OP_y_R(x[xrows, xcols, drop = FALSE], y[yidxs], OP, na.rm = na.rm),
+                t_tx_OP_y_R(x[xrows, xcols, drop = FALSE], y[yidxs], OP,
+                            na.rm = na.rm),
                 error = function(c) "error"
               )
             })

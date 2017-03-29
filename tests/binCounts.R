@@ -16,7 +16,7 @@ nx <- 1e5  # Number of data points
 nb <- 2e3  # Number of bins
 
 # Uniformely distributed bins
-bx <- seq(from = 0, to = 1, length.out = nb+1L)
+bx <- seq(from = 0, to = 1, length.out = nb + 1L)
 bx <- c(-1, bx, 2)
 
 # Sample data points
@@ -63,7 +63,7 @@ yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, 0L))
 bx <- range(x)
 yS <- binCounts(x, bx = bx)
-stopifnot(all.equal(yS, length(x)-1L))
+stopifnot(all.equal(yS, length(x) - 1L))
 bx <- max(x) + c(1, 10)
 yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, 0L))
@@ -72,7 +72,7 @@ stopifnot(all.equal(yS, 0L))
 x <- 1:10
 bx <- rep(x, each = 2L)
 yS <- binCounts(x, bx = bx)
-stopifnot(all.equal(yS, rep(c(0L, 1L), length.out = length(bx)-1L)))
+stopifnot(all.equal(yS, rep(c(0L, 1L), length.out = length(bx) - 1L)))
 ## NOTE: binCounts_hist() does not give the same last bin count
 
 

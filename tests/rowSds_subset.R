@@ -28,16 +28,24 @@ colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
-x <- matrix(runif(6*6, min = -6, max = 6), nrow = 6, ncol = 6)
+x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
 for (rows in indexCases) {
   for (cols in indexCases) {
     for (na.rm in c(TRUE, FALSE)) {
-      validateIndicesTestMatrix(x, rows, cols, ftest = rowSds, fsure = rowSds_R, na.rm = na.rm)
-      validateIndicesTestMatrix(x, rows, cols, ftest = rowSds_center, fsure = rowSds_R, na.rm = na.rm)
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowSds, fsure = rowSds_R,
+                                na.rm = na.rm)
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowSds_center, fsure = rowSds_R,
+                                na.rm = na.rm)
 
-      validateIndicesTestMatrix(x, rows, cols, fcolTest = colSds, fsure = rowSds_R, na.rm = na.rm)
-      validateIndicesTestMatrix(x, rows, cols, fcolTest = colSds_center, fsure = rowSds_R, na.rm = na.rm)
+      validateIndicesTestMatrix(x, rows, cols,
+                                fcolTest = colSds, fsure = rowSds_R,
+                                na.rm = na.rm)
+      validateIndicesTestMatrix(x, rows, cols,
+                                fcolTest = colSds_center, fsure = rowSds_R,
+                                na.rm = na.rm)
     }
   }
 }

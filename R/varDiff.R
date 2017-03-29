@@ -80,8 +80,8 @@ varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
   # Trim?
   if (trim > 0 && n > 0L) {
     if (anyMissing(x)) return(NA_real_)
-    lo <- floor(n*trim)+1
-    hi <- (n+1)-lo
+    lo <- floor(n * trim) + 1
+    hi <- (n + 1) - lo
     partial <- unique(c(lo, hi))
     x <- sort.int(x, partial = partial)
     x <- x[lo:hi]
@@ -122,8 +122,8 @@ sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
   # Trim?
   if (trim > 0 && n > 0L) {
     if (anyMissing(x)) return(NA_real_)
-    lo <- floor(n*trim)+1
-    hi <- (n+1)-lo
+    lo <- floor(n * trim) + 1
+    hi <- (n + 1)-lo
     partial <- unique(c(lo, hi))
     x <- sort.int(x, partial = partial)
     x <- x[lo:hi]
@@ -133,14 +133,15 @@ sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
   sd <- sd(x, na.rm = FALSE)
   x <- NULL # Not needed anymore
   # Correction for the differentiation
-  sd / (sqrt(2)^diff)
+  sd / (sqrt(2) ^ diff)
 }
 
 
 #' @importFrom stats mad
 #' @rdname varDiff
 #' @export
-madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, constant = 1.4826, ...) {
+madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
+                    constant = 1.4826, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
 
@@ -165,8 +166,8 @@ madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, constant
   # Trim?
   if (trim > 0 && n > 0L) {
     if (anyMissing(x)) return(NA_real_)
-    lo <- floor(n*trim)+1
-    hi <- (n+1)-lo
+    lo <- floor(n * trim) + 1
+    hi <- (n + 1) - lo
     partial <- unique(c(lo, hi))
     x <- sort.int(x, partial = partial)
     x <- x[lo:hi]
@@ -176,7 +177,7 @@ madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, constant
   sd <- mad(x, na.rm = FALSE, constant = constant, ...)
   x <- NULL # Not needed anymore
   # Correction for the differentiation
-  sd / (sqrt(2)^diff)
+  sd / (sqrt(2) ^ diff)
 }
 
 
@@ -215,8 +216,8 @@ iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 
   # Trim?
   if (trim > 0 && n > 0L) {
-    lo <- floor(n*trim)+1
-    hi <- (n+1)-lo
+    lo <- floor(n * trim) + 1
+    hi <- (n + 1) - lo
     partial <- unique(c(lo, hi))
     x <- sort.int(x, partial = partial)
     x <- x[lo:hi]
@@ -228,101 +229,117 @@ iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
   iqr <- (qs[2L] - qs[1L])
 
   # Correction for the differentiation
-  iqr / (sqrt(2)^diff)
+  iqr / (sqrt(2) ^ diff)
 }
 
 
 #' @rdname varDiff
 #' @export
-rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                        trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 1L, FUN = varDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 1L, FUN = varDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                        trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 2L, FUN = varDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 2L, FUN = varDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                       trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 1L, FUN = sdDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 1L, FUN = sdDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                       trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 2L, FUN = sdDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 2L, FUN = sdDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                        trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 1L, FUN = madDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 1L, FUN = madDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                        trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 2L, FUN = madDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 2L, FUN = madDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                        trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 1L, FUN = iqrDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 1L, FUN = iqrDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }
 
 
 #' @rdname varDiff
 #' @export
-colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
+colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
+                        trim = 0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  apply(x, MARGIN = 2L, FUN = iqrDiff, na.rm = na.rm, diff = diff, trim = trim, ...)
+  apply(x, MARGIN = 2L, FUN = iqrDiff,
+        na.rm = na.rm, diff = diff, trim = trim, ...)
 }

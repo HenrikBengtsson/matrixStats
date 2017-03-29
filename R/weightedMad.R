@@ -43,7 +43,8 @@
 #' @importFrom stats mad median
 #' @keywords univar robust
 #' @export
-weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.4826, center = NULL, ...) {
+weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
+                        constant = 1.4826, center = NULL, ...) {
   # No weights? Fall back to non-weighted method.
   if (is.null(w)) {
     if (is.null(center)) center <- median(x, na.rm = na.rm)
@@ -55,7 +56,8 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.48
 
   # Argument 'w':
   if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n)
+    stop("The number of elements in arguments 'w' and 'x' does not match: ",
+         length(w), " != ", n)
   } else if (!is.null(idxs)) {
     # Apply subset on w
     w <- w[idxs]
@@ -138,7 +140,8 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.48
 
 #' @rdname weightedMad
 #' @export
-rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
+                            na.rm = FALSE, ...) {
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -153,7 +156,8 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE
 
 #' @rdname weightedMad
 #' @export
-colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
+                            na.rm = FALSE, ...) {
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]

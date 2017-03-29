@@ -69,7 +69,8 @@
 #'
 #' @keywords univar robust
 #' @export
-weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, interpolate = is.null(ties), ties = NULL, ...) {
+weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
+                           interpolate = is.null(ties), ties = NULL, ...) {
   # Argument 'x':
 
   # Argument 'w':
@@ -99,7 +100,7 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, interpolate 
     } else if (ties == "mean") {
       tiesC <- 8L
     } else if (ties == "both") {
-      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate = FALSE, ties = \"both\") is no longer supported. Use ties = \"min\" and then ties = \"max\" to achieve the same result.")
+      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate = FALSE, ties = \"both\") is no longer supported. Use ties = \"min\" and then ties = \"max\" to achieve the same result.")  #nolint
     } else {
       stop("Unknown value on 'ties': ", ties)
     }

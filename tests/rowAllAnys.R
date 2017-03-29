@@ -77,7 +77,7 @@ for (kk in 1:3) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: integer
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(rep(1:28, length.out = 20*5), nrow = 20, ncol = 5)
+x <- matrix(rep(1:28, length.out = 20 * 5), nrow = 20, ncol = 5)
 x[2, ] <- 7L
 x[3, 1] <- 7L
 x[2:3, 3:4] <- NA_integer_
@@ -134,7 +134,7 @@ any_R <- function(x, value = TRUE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: character (not sure if this should be supported)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(rep(letters, length.out = 20*5), nrow = 20, ncol = 5)
+x <- matrix(rep(letters, length.out = 20 * 5), nrow = 20, ncol = 5)
 x[2, ] <- "g"
 x[2:4, 3:4] <- NA_character_
 

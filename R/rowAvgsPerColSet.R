@@ -45,7 +45,8 @@
 #' @author Henrik Bengtsson
 #' @keywords internal utilities
 #' @export
-rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S, FUN = rowMeans, ..., tFUN = FALSE) {
+rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
+                             FUN = rowMeans, ..., tFUN = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -138,7 +139,8 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S, FUN = rowMeans, ..., t
 
 #' @rdname rowAvgsPerColSet
 #' @export
-colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S, FUN = colMeans, tFUN = FALSE, ...) {
+colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
+                             FUN = colMeans, tFUN = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

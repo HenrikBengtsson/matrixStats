@@ -14,7 +14,7 @@ count_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
 # Data type: integer and numeric
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- runif(20*5, min = -3, max = 3)
+  x <- runif(20 * 5, min = -3, max = 3)
   x[sample.int(length(x), size = 7)] <- 0
   storage.mode(x) <- mode
 

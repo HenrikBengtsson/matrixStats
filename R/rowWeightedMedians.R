@@ -31,7 +31,8 @@
 #' non-weighted medians.  Internally, \code{\link{weightedMedian}}() is used.
 #' @keywords array iteration robust univar
 #' @export
-rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
+                               na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -40,7 +41,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FA
   if (hasWeights) {
     n <- ncol(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)
+      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)  #nolint
     }
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w))
@@ -80,7 +81,8 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FA
 
 #' @rdname rowWeightedMedians
 #' @export
-colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
+                               na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -89,7 +91,7 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FA
   if (hasWeights) {
     n <- nrow(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)
+      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)  #nolint
     }
     if (!is.numeric(w)) {
       stop("Argument 'w' is not numeric: ", mode(w))

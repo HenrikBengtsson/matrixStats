@@ -19,10 +19,10 @@ signTabulate0 <- function(x, ...) {
 set.seed(0xBEEF)
 n <- 1e3
 x <- runif(n)
-x[sample(n, size = 0.1*n)] <- 0
-x[sample(n, size = 0.1*n)] <- NA_real_
-x[sample(n, size = 0.1*n)] <- -Inf
-x[sample(n, size = 0.1*n)] <- +Inf
+x[sample(n, size = 0.1 * n)] <- 0
+x[sample(n, size = 0.1 * n)] <- NA_real_
+x[sample(n, size = 0.1 * n)] <- -Inf
+x[sample(n, size = 0.1 * n)] <- +Inf
 
 # Doubles
 message("Doubles:")

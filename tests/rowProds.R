@@ -38,7 +38,7 @@ for (mode in c("integer", "double")) {
   print(y2)
   stopifnot(all.equal.na(y1, y0))
   stopifnot(all.equal(y2, y1))
-  y3 <- x[, 1]*x[, 2]
+  y3 <- x[, 1] * x[, 2]
   print(y3)
   stopifnot(all.equal.na(y1, y3))
 
@@ -71,7 +71,7 @@ print(y1)
 y2 <- colProds(t(x))
 print(y2)
 stopifnot(all.equal.na(y1, y0))
-stopifnot(all.equal.na(y1, x[, 1]*x[, 2]))
+stopifnot(all.equal.na(y1, x[, 1] * x[, 2]))
 stopifnot(all.equal.na(y2, y1))
 
 # Bug report 2014-03-25 ("all rows contains a zero")

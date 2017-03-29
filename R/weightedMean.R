@@ -44,7 +44,8 @@
 #' @seealso \code{\link[base]{mean}}() and \code{\link[stats]{weighted.mean}}.
 #' @keywords univar robust
 #' @export
-weightedMean <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE, ...) {
+weightedMean <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
+                         refine = FALSE, ...) {
   # Argument 'refine':
   refine <- as.logical(refine)
 

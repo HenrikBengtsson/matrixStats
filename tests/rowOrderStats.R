@@ -16,10 +16,10 @@ set.seed(1)
 # Simulate data in a matrix of any shape
 nrow <- 300
 ncol <- 100
-x <- rnorm(nrow*ncol)
+x <- rnorm(nrow * ncol)
 dim(x) <- c(nrow, ncol)
 probs <- 0.3
-which <- round(probs*ncol)
+which <- round(probs * ncol)
 
 y0 <- rowOrderStats_R(x, probs = probs)
 y1 <- rowOrderStats(x, which = which)
@@ -40,7 +40,7 @@ for (mode in c("integer", "double")) {
     # Simulate data in a matrix of any shape
     nrow <- sample(100, size = 1)
     ncol <- sample(100, size = 1)
-    x <- rnorm(nrow*ncol)
+    x <- rnorm(nrow * ncol)
     dim(x) <- c(nrow, ncol)
 
     cat("mode: ", mode, "\n", sep = "")
@@ -48,7 +48,7 @@ for (mode in c("integer", "double")) {
     str(x)
 
     probs <- runif(1)
-    which <- round(probs*ncol)
+    which <- round(probs * ncol)
 
     y0 <- rowOrderStats_R(x, probs = probs)
     y1 <- rowOrderStats(x, which = which)

@@ -27,7 +27,7 @@ colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
 # A 3x3 matrix (no ties)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- matrix(c(1, 2, 3, 2, 3, 4, 3, 4, 5)+0.1, nrow = 3, ncol = 3)
+  x <- matrix(c(1, 2, 3, 2, 3, 4, 3, 4, 5) + 0.1, nrow = 3, ncol = 3)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
@@ -61,7 +61,7 @@ for (mode in c("integer", "double")) {
 # Ties: a 4x4 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- matrix(c(1:4, 2:5, 3:6, 4:7)+0.1, nrow = 4, ncol = 4)
+  x <- matrix(c(1:4, 2:5, 3:6, 4:7) + 0.1, nrow = 4, ncol = 4)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
@@ -87,7 +87,7 @@ for (mode in c("integer", "double")) {
 # No ties: a 3x3 matrix with an NA value
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- matrix(c(1, 2, 3, 2, 3, 4, 3, 4, 5)+0.1, nrow = 3, ncol = 3)
+  x <- matrix(c(1, 2, 3, 2, 3, 4, 3, 4, 5) + 0.1, nrow = 3, ncol = 3)
   x[2, 2] <- NA_real_
 
   cat("mode: ", mode, "\n", sep = "")

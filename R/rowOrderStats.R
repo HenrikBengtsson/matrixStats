@@ -37,7 +37,8 @@
 #'
 #' @keywords array iteration robust univar
 #' @export
-rowOrderStats <- function(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...) {
+rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
+                          dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -52,7 +53,8 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...
 
 #' @rdname rowOrderStats
 #' @export
-colOrderStats <- function(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...) {
+colOrderStats <- function(x, rows = NULL, cols = NULL, which,
+                          dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   # Check missing values

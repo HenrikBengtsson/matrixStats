@@ -37,7 +37,8 @@
 #'
 #' @keywords array iteration robust univar
 #' @export
-rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, method = c("direct", "expSumLog"), ...) {
+rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
+                     method = c("direct", "expSumLog"), ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -71,7 +72,8 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, method = c("dir
 
 #' @rdname rowProds
 #' @export
-colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, method = c("direct", "expSumLog"), ...) {
+colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
+                     method = c("direct", "expSumLog"), ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]

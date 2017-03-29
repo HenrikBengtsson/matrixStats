@@ -31,7 +31,8 @@
 #' \code{\link[base]{colSums}}().
 #' @keywords array iteration robust univar
 #' @export
-rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, dim. = dim(x), ...) {
+rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+                    dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -80,18 +81,19 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, d
   }
 
   # Spread
-  x <- x*x
+  x <- x * x
   x <- rowMeans(x, na.rm = na.rm)
 
   # Variance
   x <- (x - center^2)
-  x * (n/(n-1))
+  x * (n / (n - 1))
 }
 
 
 #' @rdname rowVars
 #' @export
-colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, dim. = dim(x), ...) {
+colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+                    dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -141,10 +143,10 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, d
   }
 
   # Spread
-  x <- x*x
+  x <- x * x
   x <- colMeans(x, na.rm = na.rm)
 
   # Variance
   x <- (x - center^2)
-  x * (n/(n-1))
+  x * (n / (n - 1))
 }

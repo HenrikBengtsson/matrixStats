@@ -32,7 +32,8 @@
 #' @importFrom stats quantile
 #' @export
 rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
-  Q <- rowQuantiles(x, rows = rows, cols = cols, probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+  Q <- rowQuantiles(x, rows = rows, cols = cols,
+                    probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
@@ -44,7 +45,8 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
 #' @rdname rowIQRs
 #' @export
 colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
-  Q <- colQuantiles(x, rows = rows, cols = cols, probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+  Q <- colQuantiles(x, rows = rows, cols = cols,
+                    probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes

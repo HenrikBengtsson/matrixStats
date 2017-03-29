@@ -59,7 +59,7 @@ xM2 <- colWeightedMeans(t(x), w = w)
 stopifnot(all.equal(xM2, xM1))
 
 
-x[sample(length(x), size = 0.3*length(x))] <- NA
+x[sample(length(x), size = 0.3 * length(x))] <- NA
 print(x)
 
 # Non-weighted row averages with missing values
@@ -72,7 +72,7 @@ stopifnot(all.equal(xM2, xM0))
 
 
 # Weighted row averages with missing values
-xM0 <- apply(x, MARGIN = 1, FUN = weighted.mean, w = w, na.rm = TRUE)
+xM0 <- apply(x, MARGIN = 1L, FUN = weighted.mean, w = w, na.rm = TRUE)
 print(xM0)
 xM1 <- rowWeightedMeans(x, w = w, na.rm = TRUE)
 print(xM1)
