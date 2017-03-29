@@ -2,94 +2,41 @@
 # Travis-CI configuration for R packages
 #
 # REFERENCES:
-# * Travis CI: https://travis-ci.org/
-# * r-builder: https://github.com/metacran/r-builder
+# * Travis CI: https://docs.travis-ci.com/user/languages/r
 # * covr: https://github.com/jimhester/covr
 #
 # Validate your .travis.yml file at http://lint.travis-ci.org/
 #----------------------------------------------------------------
-language: c
+language: r
+sudo: false
+cache: packages
+warnings_are_errors: false
+r_check_args: --as-cran
+latex: false
 
-env:
-  global:
-    - RENV="./pkg-build.sh"    # r-builder
-    - R_BUILD_ARGS="--no-manual"
-    - R_CHECK_ARGS="--no-manual --as-cran"
-    - _R_CHECK_CRAN_INCOMING_=TRUE
-    - _R_CHECK_FORCE_SUGGESTS_=false
-    # Need LaTeX? (very time consuming!)
-    - BOOTSTRAP_LATEX=""
-    # Skip building vignettes, which iff LaTeX-based are very
-    # time consuming because LaTeX needs to be installed
-#    - R_BUILD_ARGS="--no-build-vignettes ${R_BUILD_ARGS}"
-#    - R_CHECK_ARGS="--no-build-vignettes ${R_CHECK_ARGS}"
-
-  # R versions r-builder should test on (ignored by r-travis)
-  matrix:
-    - RVERSION=3.2.5
-    - RVERSION=3.3.3
-    - RVERSION=devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=BASE
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET
-    - RVERSION=devel _R_CHECK_USE_VALGRIND_=TRUE _R_CHECK_FULL_=TRUE _R_TEST_=SUBSET _R_SUBSET_TEST_=ROW_PREFIX
-
-
+matrix:
+  include:
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: release
+      r_github_packages:
+        - jimhester/covr
+      after_success:
+        - Rscript -e 'covr::codecov(quiet=FALSE)'
+      env: NB='w/ covr' ## Just a label
+    - os: linux
+      r: devel
+    - os: osx
+      r: oldrel
+    - os: osx
+      r: release
 
 before_install:
-  - echo RENV=$RENV
-  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh;
-  - chmod 755 $RENV
-  - $RENV bootstrap
-  - if [ "BOOTSTRAP_LATEX" == "true" ]; then
-      (cd /tmp && curl -OL http://mirrors.ctan.org/macros/latex/contrib/xcolor.zip && cd /usr/share/texmf/tex/latex && sudo unzip /tmp/xcolor.zip && cd xcolor && sudo latex xcolor.ins && sudo texhash);
-    else
-      export R_RSP_COMPILELATEX_FALLBACK="copy-force";
-    fi
-  - if [[ "$_R_CHECK_USE_VALGRIND_" == "TRUE" ]]; then
-      export R_BUILD_ARGS="--no-manual --no-build-vignettes";
-      export R_CHECK_ARGS="--no-manual --no-build-vignettes --no-codoc --no-examples --use-valgrind";
-      export _R_CHECK_TIMINGS_=10;
-      sudo apt-get install valgrind;
-      valgrind --version;
-    fi
-  - if [ "$_R_TEST_" == "BASE" ]; then
-      find tests/* -prune -type f -name "*_*.R" | xargs rm;
-    fi
-  - if [ "$_R_TEST_" == "SUBSET" ]; then
-      find tests/* -prune -type f ! -name "*_subset.R" | xargs rm;
-      if [ "$_R_SUBSET_TEST_" == "ROW_PREFIX" ]; then
-        find tests/* -prune -type f ! -name "row*_subset.R" | xargs rm;
-      else
-        find tests/* -prune -type f -name "row*_subset.R" | xargs rm;
-      fi;
-    fi
-  - if [ "$_R_TEST_" == "PARALLEL" ]; then
-      find tests/* -prune -type f ! -name "*_parallel.R" | xargs rm;
-    fi
+  - Rscript -e 'c(physical = parallel::detectCores(logical = FALSE), logical = parallel::detectCores())'
 
-install:
- - $RENV install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
-
-script:
-  - $RENV run_build
-  - $RENV run_check
-
-after_success:
-  - $RENV dump_logs_by_extension out
-  - if [[ "$_R_COVR_" == "TRUE" ]]; then
-      $RENV install_devtools;
-      $RENV install_github jimhester/covr;
-      $RENV run_script -e 'covr::codecov(quiet=FALSE)';
-    fi
-
-after_failure:
-  - $RENV dump_logs
 
 notifications:
   email:
     on_success: change
     on_failure: change
-
-branches:
-  except:
-   - /-expt$/
