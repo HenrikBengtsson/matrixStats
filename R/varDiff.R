@@ -129,7 +129,7 @@ varDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   x <- NULL # Not needed anymore
   # Correction for the differentiation
   var / (2^diff)
-} # varDiff()
+}
 
 
 sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
@@ -169,7 +169,7 @@ sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   x <- NULL # Not needed anymore
   # Correction for the differentiation
   sd / (sqrt(2)^diff)
-} # sdDiff()
+}
 
 
 madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
@@ -209,7 +209,7 @@ madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826,
   x <- NULL # Not needed anymore
   # Correction for the differentiation
   sd / (sqrt(2)^diff)
-} # madDiff()
+}
 
 
 iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
@@ -258,7 +258,7 @@ iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
 
   # Correction for the differentiation
   iqr / (sqrt(2)^diff)
-} # iqrDiff()
+}
 
 
 rowVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {

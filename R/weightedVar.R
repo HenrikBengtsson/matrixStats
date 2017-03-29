@@ -163,11 +163,11 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   x <- w <- NULL; # Not needed anymore
 
   sigma2;
-} # weightedVar()
+}
 
 weightedSd <- function(...) {
   sqrt(weightedVar(...))
-} # weightedSd()
+}
 
 
 rowWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
@@ -180,7 +180,7 @@ rowWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
   apply(x, MARGIN=1L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
-} # rowWeightedVars()
+}
 
 colWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # Apply subset on 'x'
@@ -192,13 +192,13 @@ colWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
   apply(x, MARGIN=2L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
-} # colWeightedVars()
+}
 
 
 rowWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   sqrt(rowWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
-} # rowWeightedSds()
+}
 
 colWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   sqrt(colWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
-} # colWeightedSds()
+}

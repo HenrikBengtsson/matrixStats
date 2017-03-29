@@ -39,15 +39,15 @@
 allocVector <- function(length, value=0.0, ...) {
   length <- as.integer(length)
   .Call(C_allocVector2, length, value)
-} # allocVector()
+}
 
 allocMatrix <- function(nrow, ncol, value=0.0, ...) {
   nrow <- as.integer(nrow)
   ncol <- as.integer(ncol)
   .Call(C_allocMatrix2, nrow, ncol, value)
-} # allocMatrix()
+}
 
 allocArray <- function(dim, value=0.0, ...) {
   dim <- as.integer(dim)
   .Call(C_allocArray2, dim, value)
-} # allocArray()
+}

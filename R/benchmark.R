@@ -14,4 +14,4 @@ benchmark <- function(fcn, tags=NULL, path=NULL, workdir="reports", envir=parent
   pathname <- file.path(path, filename)
 
   R.rsp::rfile(pathname, workdir=workdir, envir=envir, ...)
-} # benchmark()
+}

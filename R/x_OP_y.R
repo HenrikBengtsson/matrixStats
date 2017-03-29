@@ -54,7 +54,7 @@ x_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, 
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, FALSE)
-} # x_OP_y()
+}
 
 
 t_tx_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE) {
@@ -63,4 +63,4 @@ t_tx_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALS
   op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
   stopifnot(op > 0L)
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE)
-} # t_tx_OP_y()
+}

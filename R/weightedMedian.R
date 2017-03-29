@@ -126,4 +126,4 @@ weightedMedian <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, interpolate=is.nul
   }
 
   .Call(C_weightedMedian, x, w, idxs, na.rm, interpolate, tiesC)
-} # weightedMedian()
+}

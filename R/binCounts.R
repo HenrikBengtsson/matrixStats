@@ -102,4 +102,4 @@ binCounts <- function(x, idxs=NULL, bx, right=FALSE, ...) {
   x <- as.numeric(x);
   bx <- as.numeric(bx);
   .Call(C_binCounts, x, bx, right);
-} # binCounts()
+}

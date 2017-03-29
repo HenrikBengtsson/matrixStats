@@ -60,7 +60,7 @@ rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
   }
 
   res;
-} # rowLogSumExps()
+}
 
 
 colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
@@ -77,4 +77,4 @@ colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
   }
 
   res;
-} # rowLogSumExps()
+}

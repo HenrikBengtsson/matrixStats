@@ -31,7 +31,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     x <- constant*x
   }
   x
-} # rowMads()
+}
 
 
 colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
@@ -71,4 +71,4 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     x <- constant*x
   }
   x
-} # colMads()
+}

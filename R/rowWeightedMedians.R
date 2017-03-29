@@ -94,7 +94,7 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
   }
 
   res;
-} # rowWeightedMedians()
+}
 
 
 colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {

@@ -145,7 +145,7 @@ weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, cent
   sigma <- constant * sigma;
 
   sigma;
-} # weightedMad()
+}
 
 
 rowWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
@@ -158,7 +158,7 @@ rowWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
   apply(x, MARGIN=1L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
-} # rowWeightedMads()
+}
 
 colWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # Apply subset on x
@@ -170,4 +170,4 @@ colWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
   apply(x, MARGIN=2L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
-} # colWeightedMads()
+}

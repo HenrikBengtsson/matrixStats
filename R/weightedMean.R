@@ -73,4 +73,4 @@ weightedMean <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
   }
 
   .Call(C_weightedMean, x, w, idxs, na.rm, refine)
-} # weightedMean()
+}

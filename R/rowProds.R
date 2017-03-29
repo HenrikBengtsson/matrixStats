@@ -83,7 +83,7 @@ rowProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "e
   }
 
   y;
-} # rowProds()
+}
 
 colProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "expSumLog"), ...) {
   # Apply subset
@@ -114,4 +114,4 @@ colProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "e
   }
 
   y
-} # colProds()
+}

@@ -75,4 +75,4 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .Call(C_sumOver, x, idxs, na.rm, modeI);
-} # sumOver()
+}

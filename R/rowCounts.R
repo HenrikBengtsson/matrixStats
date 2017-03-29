@@ -100,7 +100,7 @@ rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
   }
 
   as.integer(counts)
-} # rowCounts()
+}
 
 
 colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
@@ -146,7 +146,7 @@ colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
   }
 
   as.integer(counts)
-} # colCounts()
+}
 
 
 
@@ -183,7 +183,7 @@ count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
   }
 
   as.integer(counts)
-} # count()
+}
 
 
 

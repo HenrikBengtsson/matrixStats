@@ -138,7 +138,7 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
   }
 
   res;
-} # rowWeightedMeans()
+}
 
 
 
@@ -233,4 +233,4 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
   }
 
   res;
-} # colWeightedMeans()
+}
