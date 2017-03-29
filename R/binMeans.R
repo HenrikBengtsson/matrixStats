@@ -2,8 +2,8 @@
 #' 
 #' Computes the sample means in non-overlapping bins
 #' 
-#' \code{binMeans(x, bx, right=TRUE)} gives equivalent results as
-#' \code{rev(binMeans(-x, bx=sort(-bx), right=FALSE))}, but is faster.
+#' \code{binMeans(x, bx, right = TRUE)} gives equivalent results as
+#' \code{rev(binMeans(-x, bx = sort(-bx), right = FALSE))}, but is faster.
 #' 
 #' @param y A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 #' values to calculate means on.
@@ -51,7 +51,7 @@
 #' 
 #' @keywords univar
 #' @export
-binMeans <- function(y, x, idxs=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, ...) {
+binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE, right = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -128,7 +128,7 @@ binMeans <- function(y, x, idxs=NULL, bx, na.rm=TRUE, count=TRUE, right=FALSE, .
   # Order (x,y) by increasing x.
   # If 'x' is already sorted, the overhead of (re)sorting is
   # relatively small.
-  x <- sort.int(x, method="quick", index.return=TRUE)
+  x <- sort.int(x, method = "quick", index.return = TRUE)
   y <- y[x$ix]
   x <- x$x
 

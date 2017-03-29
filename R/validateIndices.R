@@ -17,7 +17,7 @@
 #' 
 #' @keywords internal
 #' @export
-validateIndices <- function(idxs=NULL, maxIdx, allowOutOfBound=TRUE) {
+validateIndices <- function(idxs = NULL, maxIdx, allowOutOfBound = TRUE) {
   ans <- .Call(C_validate, idxs, maxIdx, allowOutOfBound)
   if (is.null(ans)) ans <- seq_len(maxIdx)
   ans

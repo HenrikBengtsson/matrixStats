@@ -4,8 +4,8 @@ library("matrixStats")
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
-X <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
-#W <- matrix(runif(6*6, min=-6, max=6), nrow=6, ncol=6)
+X <- matrix(runif(6*6, min = -6, max = 6), nrow = 6, ncol = 6)
+#W <- matrix(runif(6*6, min = -6, max = 6), nrow = 6, ncol = 6)
 for (rows in indexCases) {
   for (cols in indexCases) {
     if (is.null(rows)) {
@@ -23,14 +23,14 @@ for (rows in indexCases) {
     }
 
     suppressWarnings({
-      actual <- tryCatch(rowAvgsPerColSet(X, rows=rows, S=matrix(cols, ncol=1), FUN=rowMeans), error=function(c) "error")
-      expect <- tryCatch(rowMeans(X[rows,cols.,drop=FALSE], na.rm=TRUE), error=function(c) "error")
+      actual <- tryCatch(rowAvgsPerColSet(X, rows = rows, S = matrix(cols, ncol = 1), FUN = rowMeans), error = function(c) "error")
+      expect <- tryCatch(rowMeans(X[rows,cols.,drop = FALSE], na.rm = TRUE), error = function(c) "error")
     })
     stopifnot(all.equal(as.vector(actual), expect))
 
     suppressWarnings({
-      actual <- tryCatch(colAvgsPerRowSet(X, cols=cols, S=matrix(rows, ncol=1), FUN=colMeans), error=function(c) "error")
-      expect <- tryCatch(colMeans(X[rows.,cols,drop=FALSE], na.rm=TRUE), error=function(c) "error")
+      actual <- tryCatch(colAvgsPerRowSet(X, cols = cols, S = matrix(rows, ncol = 1), FUN = colMeans), error = function(c) "error")
+      expect <- tryCatch(colMeans(X[rows.,cols,drop = FALSE], na.rm = TRUE), error = function(c) "error")
     })
     stopifnot(all.equal(as.vector(actual), expect))
   }

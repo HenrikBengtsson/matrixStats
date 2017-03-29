@@ -33,7 +33,7 @@
 #' 
 #' @keywords array iteration robust univar
 #' @export
-rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -53,9 +53,9 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
@@ -70,10 +70,10 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
     idxs <- which(is.na(w) | w != 0)
     nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times=m))
+      return(rep(NaN, times = m))
     } else if (nw < n) {
       w <- w[idxs]
-      x <- x[,idxs,drop=FALSE]
+      x <- x[,idxs,drop = FALSE]
     }
     idxs <- NULL  # Not needed anymore
 
@@ -88,10 +88,10 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
       nas <- which(is.na(x))
 
       # Weight matrix
-      W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=TRUE)
+      W <- matrix(w, nrow = nrow(x), ncol = ncol(x), byrow = TRUE)
       w <- NULL  # Not needed anymore
       W[nas] <- NA
-      wS <- rowSums(W, na.rm=TRUE)
+      wS <- rowSums(W, na.rm = TRUE)
 
       # Standarized weights summing to one w/out missing values
       W[nas] <- 0
@@ -108,17 +108,17 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
       w <- w / wS
 
       # Weighted values
-      ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop=TRUE]
+      ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop = TRUE]
       ## FAST:
-      x <- t_tx_OP_y(x, w, OP="*", na.rm=FALSE)
+      x <- t_tx_OP_y(x, w, OP = "*", na.rm = FALSE)
 
       w <- NULL  # Not needed anymore
     }
 
     # Here we know there are no missing value in the new 'x'
-    res <- rowSums(x, na.rm=FALSE)
+    res <- rowSums(x, na.rm = FALSE)
   } else {
-    res <- rowMeans(x, na.rm=na.rm)
+    res <- rowMeans(x, na.rm = na.rm)
   }
 
   res
@@ -127,7 +127,7 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
 
 #' @rdname rowWeightedMeans
 #' @export
-colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -147,9 +147,9 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
@@ -164,10 +164,10 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
     idxs <- which(is.na(w) | w != 0)
     nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times=m))
+      return(rep(NaN, times = m))
     } else if (nw < n) {
       w <- w[idxs]
-      x <- x[idxs,,drop=FALSE]
+      x <- x[idxs,,drop = FALSE]
     }
     idxs <- NULL  # Not needed anymore
 
@@ -182,15 +182,15 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
       nas <- which(is.na(x))
 
       # Weight matrix
-      W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=FALSE)
+      W <- matrix(w, nrow = nrow(x), ncol = ncol(x), byrow = FALSE)
       w <- NULL  # Not needed anymore
       W[nas] <- NA
-      wS <- colSums(W, na.rm=TRUE)
+      wS <- colSums(W, na.rm = TRUE)
 
       # Standarized weights summing to one w/out missing values
       W[nas] <- 0
       for (cc in 1:m) {
-        W[,cc] <- W[,cc,drop=TRUE] / wS[cc]
+        W[,cc] <- W[,cc,drop = TRUE] / wS[cc]
       }
 
       x[nas] <- 0
@@ -206,15 +206,15 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
 
       # Weighted values
       x <- w*x
-      ## SLIGHTLY SLOWER: x <- x_OP_y(x, w, OP="*")
+      ## SLIGHTLY SLOWER: x <- x_OP_y(x, w, OP = "*")
 
       w <- NULL  # Not needed anymore
     }
 
     # Here we know there are no missing value in the new 'x'
-    res <- colSums(x, na.rm=FALSE)
+    res <- colSums(x, na.rm = FALSE)
   } else {
-    res <- colMeans(x, na.rm=na.rm)
+    res <- colMeans(x, na.rm = na.rm)
   }
 
   res

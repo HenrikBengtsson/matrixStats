@@ -39,9 +39,9 @@ Computes the weighted sample mean of a numeric vector.
 }
 \section{Missing values}{
  This function handles missing values consistently
-\code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm=FALSE},
+\code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm = FALSE},
 then any missing values in either \code{x} or \code{w} will give result
-\code{NA_real_}.  If \code{na.rm=TRUE}, then all \code{(x,w)} data points
+\code{NA_real_}.  If \code{na.rm = TRUE}, then all \code{(x,w)} data points
 for which \code{x} is missing are skipped.  Note that if both \code{x} and
 \code{w} are missing for a data points, then it is also skipped (by the same
 rule).  However, if only \code{w} is missing, then the final results will

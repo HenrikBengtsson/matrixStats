@@ -34,7 +34,7 @@ Estimates of the interquartile range for each row (column) in a matrix.
 }
 \section{Missing values}{
  Contrary to \code{\link[stats]{IQR}}, which gives
-an error if there are missing values and \code{na.rm=FALSE}, \code{iqr()}
+an error if there are missing values and \code{na.rm = FALSE}, \code{iqr()}
 and its corresponding row and column-specific functions return
 \code{\link[base]{NA}}_real_.
 }

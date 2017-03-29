@@ -6,7 +6,7 @@
 #' is faster and more memory efficient since it avoids the actual subsetting
 #' which requires copying of elements and garbage collection thereof.
 #' 
-#' Furthermore, \code{sumOver(x, mode="double")} is equivalent to
+#' Furthermore, \code{sumOver(x, mode = "double")} is equivalent to
 #' \code{sum(as.numeric(x))}, but is much more memory efficient when \code{x}
 #' is an \code{\link[base]{integer}} vector.
 #' 
@@ -25,7 +25,7 @@
 #' @param ... Not used.
 #' 
 #' @return Returns a scalar of the data type specified by argument \code{mode}.
-#' If \code{mode="integer"}, then integer overflow occurs if the \emph{sum} is
+#' If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum} is
 #' outside the range of defined integer values.
 #' 
 #' @example incl/sumOver.R
@@ -37,7 +37,7 @@
 #' 
 #' @keywords univar internal
 #' @export
-sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
+sumOver <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -54,7 +54,7 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
 
   # Argument 'mode':
   mode <- mode[1L]
-  modeI <- charmatch(mode, c("integer", "double"), nomatch=0L)
+  modeI <- charmatch(mode, c("integer", "double"), nomatch = 0L)
   if (modeI == 0L) {
     stop("Unknown value of argument 'mode': ", mode)
   }

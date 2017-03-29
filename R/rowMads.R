@@ -1,12 +1,12 @@
 #' @rdname rowSds
 #' @export
-rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+rowMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826, na.rm = FALSE, dim. = dim(x), centers = NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Defunct in matrixStats (>= 0.15.0)
   if (!is.null(centers)) {
     center <- centers
-    .Defunct(msg="Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")
+    .Defunct(msg = "Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")
   }
 
   if (is.null(center)) {
@@ -18,9 +18,9 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     # Apply subset on 'center'
@@ -29,7 +29,7 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     x <- x - center
     if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
-    x <- rowMedians(x, na.rm=na.rm, ...)
+    x <- rowMedians(x, na.rm = na.rm, ...)
     x <- constant*x
   }
   x
@@ -38,13 +38,13 @@ rowMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
 
 #' @rdname rowSds
 #' @export
-colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm=FALSE, dim.=dim(x), centers=NULL, ...) {
+colMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826, na.rm = FALSE, dim. = dim(x), centers = NULL, ...) {
   ## BACKWARD COMPATIBILITY:
   ## - Added to matrixStats 0.14.0.
   ## - Defunct in matrixStats (>= 0.15.0)
   if (!is.null(centers)) {
     center <- centers
-    .Defunct(msg="Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")
+    .Defunct(msg = "Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")
   }
 
   if (is.null(center)) {
@@ -56,9 +56,9 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     # Apply subset on 'center'
@@ -69,9 +69,9 @@ colMads <- function(x, rows=NULL, cols=NULL, center=NULL, constant=1.4826, na.rm
     #   x[,cc] <- x[,cc] - center[cc]
     # }
     ## FAST:
-    x <- t_tx_OP_y(x, center, OP="-", na.rm=FALSE)
+    x <- t_tx_OP_y(x, center, OP = "-", na.rm = FALSE)
     x <- abs(x)
-    x <- colMedians(x, na.rm=na.rm, ...)
+    x <- colMedians(x, na.rm = na.rm, ...)
     x <- constant*x
   }
   x

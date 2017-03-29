@@ -19,8 +19,8 @@
 #' 
 #' The weighted median solves the following optimization problem:
 #' 
-#' \deqn{\alpha^* = \arg_\alpha \min \sum_{k=1}{K} w_k |x_k-\alpha|} where
-#' \eqn{x=(x_1,x_2,\ldots,x_K)} are scalars and \eqn{w=(w_1,w_2,\ldots,w_K)}
+#' \deqn{\alpha^* = \arg_\alpha \min \sum_{k = 1}{K} w_k |x_k-\alpha|} where
+#' \eqn{x = (x_1,x_2,\ldots,x_K)} are scalars and \eqn{w = (w_1,w_2,\ldots,w_K)}
 #' are the corresponding "weights" for each individual \eqn{x} value.
 #' 
 #' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
@@ -69,12 +69,12 @@
 #' 
 #' @keywords univar robust
 #' @export
-weightedMedian <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, interpolate=is.null(ties), ties=NULL, ...) {
+weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, interpolate = is.null(ties), ties = NULL, ...) {
   # Argument 'x':
 
   # Argument 'w':
   if (is.null(w)) {
-    w <- rep(1, times=length(x))
+    w <- rep(1, times = length(x))
   } else {
     w <- as.double(w)
   }
@@ -99,7 +99,7 @@ weightedMedian <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, interpolate=is.nul
     } else if (ties == "mean") {
       tiesC <- 8L
     } else if (ties == "both") {
-      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate=FALSE, ties=\"both\") is no longer supported. Use ties=\"min\" and then ties=\"max\" to achieve the same result.")
+      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate = FALSE, ties = \"both\") is no longer supported. Use ties = \"min\" and then ties = \"max\" to achieve the same result.")
     } else {
       stop("Unknown value on 'ties': ", ties)
     }

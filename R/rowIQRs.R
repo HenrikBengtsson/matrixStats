@@ -19,7 +19,7 @@
 #' length N (K).
 #' 
 #' @section Missing values: Contrary to \code{\link[stats]{IQR}}, which gives
-#' an error if there are missing values and \code{na.rm=FALSE}, \code{iqr()}
+#' an error if there are missing values and \code{na.rm = FALSE}, \code{iqr()}
 #' and its corresponding row and column-specific functions return
 #' \code{\link[base]{NA}}_real_.
 #'
@@ -31,9 +31,9 @@
 #' 
 #' @importFrom stats quantile
 #' @export
-rowIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
-  Q <- rowQuantiles(x, rows=rows, cols=cols, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
-  ans <- Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+  Q <- rowQuantiles(x, rows = rows, cols = cols, probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+  ans <- Q[,2L,drop = TRUE] - Q[,1L,drop = TRUE]
 
   # Remove attributes
   attributes(ans) <- NULL
@@ -43,9 +43,9 @@ rowIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
 
 #' @rdname rowIQRs
 #' @export
-colIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
-  Q <- colQuantiles(x, rows=rows, cols=cols, probs=c(0.25, 0.75), na.rm=na.rm, drop=FALSE, ...)
-  ans <- Q[,2L,drop=TRUE] - Q[,1L,drop=TRUE]
+colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+  Q <- colQuantiles(x, rows = rows, cols = cols, probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+  ans <- Q[,2L,drop = TRUE] - Q[,1L,drop = TRUE]
 
   # Remove attributes
   attributes(ans) <- NULL
@@ -55,7 +55,7 @@ colIQRs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
 
 #' @rdname rowIQRs
 #' @export
-iqr <- function(x, idxs=NULL, na.rm=FALSE, ...) {
+iqr <- function(x, idxs = NULL, na.rm = FALSE, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
 
@@ -75,7 +75,7 @@ iqr <- function(x, idxs=NULL, na.rm=FALSE, ...) {
     return(0)
   }
 
-  q <- quantile(x, probs=c(0.25, 0.75), names=FALSE, na.rm=FALSE, ...)
+  q <- quantile(x, probs = c(0.25, 0.75), names = FALSE, na.rm = FALSE, ...)
 
   q[2L] - q[1L]
 }

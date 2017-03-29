@@ -28,17 +28,17 @@
 #' cf. \code{\link[base]{[}}().
 #' @keywords utilities
 #' @export
-rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
+rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows)) {
-    x <- x[rows,,drop=FALSE]
+    x <- x[rows,,drop = FALSE]
     idxs <- idxs[rows]
   }
   dim. <- dim(x)
 
   # Argument 'idxs':
-  idxs <- rep(idxs, length.out=dim.[1L])
+  idxs <- rep(idxs, length.out = dim.[1L])
 
   # Columns of interest
   cols <- 0:(dim.[2L]-1L)
@@ -53,17 +53,17 @@ rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
 
 #' @rdname rowCollapse
 #' @export
-colCollapse <- function(x, idxs, cols=NULL, dim.=dim(x), ...) {
+colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(cols)) {
-    x <- x[,cols,drop=FALSE]
+    x <- x[,cols,drop = FALSE]
     idxs <- idxs[cols]
   }
   dim. <- dim(x)
 
   # Argument 'idxs':
-  idxs <- rep(idxs, length.out=dim.[2L])
+  idxs <- rep(idxs, length.out = dim.[2L])
 
   # Rows of interest
   rows <- seq_len(dim.[1L])

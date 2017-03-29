@@ -41,8 +41,8 @@ length B.
 Computes the sample means in non-overlapping bins
 }
 \details{
-\code{binMeans(x, bx, right=TRUE)} gives equivalent results as
-\code{rev(binMeans(-x, bx=sort(-bx), right=FALSE))}, but is faster.
+\code{binMeans(x, bx, right = TRUE)} gives equivalent results as
+\code{rev(binMeans(-x, bx = sort(-bx), right = FALSE))}, but is faster.
 }
 \section{Missing and non-finite values}{
 

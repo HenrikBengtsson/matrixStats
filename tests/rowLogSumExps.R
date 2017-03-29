@@ -14,8 +14,8 @@ n <- 1e3
 set.seed(1)
 
 for (mode in c("integer", "double")) {
-  cat("mode: ", mode, "\n", sep="")
-  X <- matrix(runif(n, min=1.0, max=3.0), nrow=50L)
+  cat("mode: ", mode, "\n", sep = "")
+  X <- matrix(runif(n, min = 1.0, max = 3.0), nrow = 50L)
   storage.mode(X) <- mode
   str(X)
 
@@ -25,10 +25,10 @@ for (mode in c("integer", "double")) {
 
   nlX <- -log(X)
 
-  y0 <- log(ncol(X)) - apply(nlX, MARGIN=1L, FUN=logSumExp0)
+  y0 <- log(ncol(X)) - apply(nlX, MARGIN = 1L, FUN = logSumExp0)
   stopifnot(all.equal(y0,yH))
 
-  y1 <- log(ncol(X)) - apply(nlX, MARGIN=1L, FUN=logSumExp)
+  y1 <- log(ncol(X)) - apply(nlX, MARGIN = 1L, FUN = logSumExp)
   stopifnot(all.equal(y1,y0))
 
   y2 <- log(ncol(X)) - rowLogSumExps(nlX)
@@ -42,10 +42,10 @@ for (mode in c("integer", "double")) {
   yH <- log(1/colMeans(1/X))
   str(yH)
 
-  y0 <- log(nrow(X)) - apply(nlX, MARGIN=2L, FUN=logSumExp0)
+  y0 <- log(nrow(X)) - apply(nlX, MARGIN = 2L, FUN = logSumExp0)
   stopifnot(all.equal(y0,yH))
 
-  y1 <- log(nrow(X)) - apply(nlX, MARGIN=2L, FUN=logSumExp)
+  y1 <- log(nrow(X)) - apply(nlX, MARGIN = 2L, FUN = logSumExp)
   stopifnot(all.equal(y1,y0))
 
   y2 <- log(nrow(X)) - colLogSumExps(nlX)
@@ -68,7 +68,7 @@ for (mode in c("integer", "double")) {
 # Corner cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## Zero-size matrices
-lX <- matrix(numeric(0L), nrow=0L, ncol=0L)
+lX <- matrix(numeric(0L), nrow = 0L, ncol = 0L)
 y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))
@@ -78,7 +78,7 @@ print(y)
 stopifnot(length(y) == ncol(lX))
 
 ## Zero-height matrices
-lX <- matrix(numeric(0L), nrow=0L, ncol=10L)
+lX <- matrix(numeric(0L), nrow = 0L, ncol = 10L)
 y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))
@@ -89,7 +89,7 @@ stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == -Inf))
 
 ## Zero-width matrices
-lX <- matrix(numeric(0L), nrow=10L, ncol=0L)
+lX <- matrix(numeric(0L), nrow = 10L, ncol = 0L)
 y <- colLogSumExps(lX)
 print(y)
 stopifnot(length(y) == ncol(lX))
@@ -101,7 +101,7 @@ stopifnot(all(y == -Inf))
 
 
 ## Matrices with one element
-lX <- matrix(1.0, nrow=1L, ncol=1L)
+lX <- matrix(1.0, nrow = 1L, ncol = 1L)
 y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))
@@ -113,55 +113,55 @@ stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == lX))
 
 ## All missing values
-lX <- matrix(NA_real_, nrow=1L, ncol=1L)
-y <- rowLogSumExps(lX, na.rm=TRUE)
+lX <- matrix(NA_real_, nrow = 1L, ncol = 1L)
+y <- rowLogSumExps(lX, na.rm = TRUE)
 print(y)
 stopifnot(length(y) == nrow(lX))
 stopifnot(identical(y, -Inf))
 
-lX <- matrix(NA_real_, nrow=1L, ncol=1L)
-y <- colLogSumExps(lX, na.rm=TRUE)
+lX <- matrix(NA_real_, nrow = 1L, ncol = 1L)
+y <- colLogSumExps(lX, na.rm = TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(identical(y, -Inf))
 
-lX <- matrix(NA_real_, nrow=2L, ncol=2L)
-y <- rowLogSumExps(lX, na.rm=TRUE)
+lX <- matrix(NA_real_, nrow = 2L, ncol = 2L)
+y <- rowLogSumExps(lX, na.rm = TRUE)
 print(y)
 stopifnot(length(y) == nrow(lX))
 stopifnot(all(y == -Inf))
 
-y <- rowLogSumExps(lX, na.rm=FALSE)
+y <- rowLogSumExps(lX, na.rm = FALSE)
 print(y)
 stopifnot(length(y) == nrow(lX))
 stopifnot(all(is.na(y) & !is.nan(y)))
 
-lX <- matrix(NA_real_, nrow=2L, ncol=2L)
-y <- colLogSumExps(lX, na.rm=TRUE)
+lX <- matrix(NA_real_, nrow = 2L, ncol = 2L)
+y <- colLogSumExps(lX, na.rm = TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == -Inf))
 
-y <- colLogSumExps(lX, na.rm=FALSE)
+y <- colLogSumExps(lX, na.rm = FALSE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(all(is.na(y) & !is.nan(y)))
 
 ## +Inf values
-lX <- matrix(c(1, 2, +Inf), nrow=3L, ncol=2L)
-y <- colLogSumExps(lX, na.rm=TRUE)
+lX <- matrix(c(1, 2, +Inf), nrow = 3L, ncol = 2L)
+y <- colLogSumExps(lX, na.rm = TRUE)
 print(y)
 stopifnot(length(y) == ncol(lX))
 stopifnot(all(y == +Inf))
 
 ## multiple -Inf values
-lX <- matrix(c(-Inf, -Inf), nrow=2L, ncol=3L)
+lX <- matrix(c(-Inf, -Inf), nrow = 2L, ncol = 3L)
 y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))
 stopifnot(all(y == -Inf))
 
-lX <- matrix(c(-Inf, 5, -Inf), nrow=2L, ncol=3L, byrow=1)
+lX <- matrix(c(-Inf, 5, -Inf), nrow = 2L, ncol = 3L, byrow = 1)
 y <- rowLogSumExps(lX)
 print(y)
 stopifnot(length(y) == nrow(lX))

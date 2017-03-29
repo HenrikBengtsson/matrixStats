@@ -30,8 +30,8 @@ length B with non-negative integers.
 Counts the number of elements in non-overlapping bins
 }
 \details{
-\code{binCounts(x, bx, right=TRUE)} gives equivalent results as
-\code{rev(binCounts(-x, bx=rev(-bx), right=FALSE))}, but is faster and more
+\code{binCounts(x, bx, right = TRUE)} gives equivalent results as
+\code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster and more
 memory efficient.
 }
 \section{Missing and non-finite values}{
@@ -42,13 +42,13 @@ are not allowed and gives an error.
 
 \seealso{
 An alternative for counting occurrences within bins is
-\code{\link[graphics]{hist}}, e.g. \code{hist(x, breaks=bx,
-plot=FALSE)$counts}.  That approach is ~30-60\% slower than
-\code{binCounts(..., right=TRUE)}.
+\code{\link[graphics]{hist}}, e.g. \code{hist(x, breaks = bx,
+plot = FALSE)$counts}.  That approach is ~30-60\% slower than
+\code{binCounts(..., right = TRUE)}.
 
 To count occurrences of indices \code{x} (positive
 \code{\link[base]{integer}}s) in \code{[1,B]}, use \code{tabulate(x,
-nbins=B)}, where \code{x} does \emph{not} have to be sorted first.  For
+nbins = B)}, where \code{x} does \emph{not} have to be sorted first.  For
 details, see \code{\link[base]{tabulate}}().
 
 To average values within bins, see \code{\link{binMeans}}().

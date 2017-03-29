@@ -1,7 +1,7 @@
 library("matrixStats")
 
-allocMatrix_R <- function(nrow, ncol, value=NA) {
-  matrix(data=value, nrow=nrow, ncol=ncol)
+allocMatrix_R <- function(nrow, ncol, value = NA) {
+  matrix(data = value, nrow = nrow, ncol = ncol)
 } # allocMatrix_R()
 
 values <- list(
@@ -13,9 +13,9 @@ values <- list(
 nrow <- 5L
 ncol <- 10L
 for (value in values) {
-  X0 <- allocMatrix_R(nrow, ncol, value=value)
-  X <- allocMatrix(nrow, ncol, value=value)
-  str(list(nrow=nrow, ncol=ncol, value=value, X=X, X0=X0))
+  X0 <- allocMatrix_R(nrow, ncol, value = value)
+  X <- allocMatrix(nrow, ncol, value = value)
+  str(list(nrow = nrow, ncol = ncol, value = value, X = X, X0 = X0))
   stopifnot(identical(X,X0))
 }
 

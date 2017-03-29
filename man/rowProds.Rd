@@ -37,15 +37,15 @@ length N (K).
 Calculates the product for each row (column) in a matrix.
 }
 \details{
-If \code{method="expSumLog"}, then then \code{\link{product}}() function is
+If \code{method = "expSumLog"}, then then \code{\link{product}}() function is
 used, which calculates the produce via the logarithmic transform (treating
 negative values specially).  This improves the precision and lowers the risk
-for numeric overflow.  If \code{method="direct"}, the direct product is
+for numeric overflow.  If \code{method = "direct"}, the direct product is
 calculated via the \code{\link[base]{prod}}() function.
 }
 \section{Missing values}{
 
-Note, if \code{method="expSumLog"}, \code{na.rm=FALSE}, and \code{x} contains
+Note, if \code{method = "expSumLog"}, \code{na.rm = FALSE}, and \code{x} contains
 missing values (\code{\link[base]{NA}} or \code{\link[base:is.finite]{NaN}}),
 then the calculated value is also missing value.  Note that it depends on
 platform whether \code{\link[base:is.finite]{NaN}} or \code{\link[base]{NA}}

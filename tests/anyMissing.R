@@ -4,11 +4,11 @@ library("matrixStats")
 # Setup
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 data <- data.frame(
-  logical=c(TRUE, FALSE, TRUE, FALSE),
-  integer=1:4,
-  double=seq(from=1.0, to=4.0, by=1.0),
-  complex=seq(from=1.0, to=4.0, by=1.0) + 1.0i,
-  character=I(letters[1:4])
+  logical = c(TRUE, FALSE, TRUE, FALSE),
+  integer = 1:4,
+  double = seq(from = 1.0, to = 4.0, by = 1.0),
+  complex = seq(from = 1.0, to = 4.0, by = 1.0) + 1.0i,
+  character = I(letters[1:4])
 )
 
 modes <- names(data)
@@ -56,7 +56,7 @@ for (mode in modes) {
 
   # Matrices
   cat(" matrix\n")
-  x <- matrix(c(values, values), ncol=2L)
+  x <- matrix(c(values, values), ncol = 2L)
   print(x)
   stopifnot(identical(anyMissing(x), FALSE))
   is.na(x)[2L] <- TRUE

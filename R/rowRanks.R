@@ -10,8 +10,8 @@
 #' The implementation is optimized for both speed and memory.  To avoid
 #' coercing to \code{\link[base]{double}}s (and hence memory allocation), there
 #' is a unique implementation for \code{\link[base]{integer}} matrices.  It is
-#' more memory efficient to do \code{colRanks(x, preserveShape=TRUE)} than
-#' \code{t(colRanks(x, preserveShape=FALSE))}.
+#' more memory efficient to do \code{colRanks(x, preserveShape = TRUE)} than
+#' \code{t(colRanks(x, preserveShape = FALSE))}.
 #' 
 #' Any \code{\link[base]{names}} of \code{x} are ignored and absent in the
 #' result.
@@ -49,7 +49,7 @@
 #' \code{\link[base]{double}}.
 #' 
 #' @section Missing and non- values: These are ranked as \code{NA}, as with
-#' \code{na.last="keep"} in the \code{\link[base]{rank}}() function.
+#' \code{na.last = "keep"} in the \code{\link[base]{rank}}() function.
 #' 
 #' @author Hector Corrada Bravo and Harris Jaffee.  Peter Langfelder for adding
 #' 'ties.method' support.  Henrik Bengtsson adapted the original native
@@ -62,45 +62,45 @@
 #' @keywords array iteration robust univar
 #' 
 #' @export
-rowRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), ...) {
+rowRanks <- function(x, rows = NULL, cols = NULL, ties.method = c("max", "average", "min"), dim. = dim(x), ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
   if (is.element("flavor", names(list(...)))) {
-    .Deprecated(old="Argument 'flavor' of rowRanks()", package="matrixStats")
+    .Deprecated(old = "Argument 'flavor' of rowRanks()", package = "matrixStats")
   }
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch=0L)
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch = 0L)
   if (tiesMethod == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
   dim. <- as.integer(dim.)
-  # byrow=TRUE
+  # byrow = TRUE
   .Call(C_rowRanksWithTies, x, dim., rows, cols, tiesMethod, TRUE)
 }
 
 
 #' @rdname rowRanks
 #' @export
-colRanks <- function(x, rows=NULL, cols=NULL, ties.method=c("max", "average", "min"), dim.=dim(x), preserveShape=FALSE, ...) {
+colRanks <- function(x, rows = NULL, cols = NULL, ties.method = c("max", "average", "min"), dim. = dim(x), preserveShape = FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
   if (is.element("flavor", names(list(...)))) {
-    .Deprecated(old="Argument 'flavor' of rowRanks()", package="matrixStats")
+    .Deprecated(old = "Argument 'flavor' of rowRanks()", package = "matrixStats")
   }
 
   # Argument 'preserveShape'
   preserveShape <- as.logical(preserveShape)
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch=0L)
+  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch = 0L)
   if (tiesMethod == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
   dim. <- as.integer(dim.)
-  # byrow=FALSE
+  # byrow = FALSE
   y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, tiesMethod, FALSE)
   if (!preserveShape) y <- t(y)
   y

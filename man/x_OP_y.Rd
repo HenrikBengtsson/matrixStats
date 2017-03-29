@@ -40,10 +40,10 @@ Returns a \code{\link[base]{numeric}} NxK
 }
 \description{
 Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)', where OP can be
-+, -, *, and /.  For + and *, na.rm=TRUE will drop missing values first.
++, -, *, and /.  For + and *, na.rm = TRUE will drop missing values first.
 }
 \section{Missing values}{
- If \code{na.rm=TRUE}, then missing values are
+ If \code{na.rm = TRUE}, then missing values are
 "dropped" before applying the operator to each pair of values.  For
 instance, if \code{x[1,1]} is a missing value, then the result of
 \code{x[1,1] + y[1]} equals \code{y[1]}.  If also \code{y[1]} is a missing

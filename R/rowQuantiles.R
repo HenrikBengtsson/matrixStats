@@ -35,7 +35,7 @@
 #' 
 #' @importFrom stats quantile
 #' @export
-rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
+rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -46,9 +46,9 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
   }
 
   # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -66,18 +66,18 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
       idxs_hi <- ceiling(idxs)
       partial <- sort(unique(c(idxs_lo, idxs_hi)))
 
-      xp <- apply(x, MARGIN=1L, FUN=sort, partial=partial)
+      xp <- apply(x, MARGIN = 1L, FUN = sort, partial = partial)
       if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
 
-      q <- apply(xp, MARGIN=2L, FUN=.subset, idxs_lo)
+      q <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_lo)
       if (is.null(dim(q))) dim(q) <- c(1L, length(q))
 
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
       if (length(idxs_adj) > 0L) {
-        qL <- q[idxs_adj,,drop=FALSE]
+        qL <- q[idxs_adj,,drop = FALSE]
         idxs_hi <- idxs_hi[idxs_adj]
-        qH <- apply(xp, MARGIN=2L, FUN=.subset, idxs_hi)
+        qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
         q[idxs_adj,] <- (1-w)*qL + w*qH
         # Not needed anymore
@@ -90,7 +90,7 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
       # Allocate result
       naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
-      q <- matrix(naValue, nrow=nrow, ncol=length(probs))
+      q <- matrix(naValue, nrow = nrow, ncol = length(probs))
 
       # For each row...
       rows <- seq_len(nrow)
@@ -101,13 +101,13 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
       for (kk in rows) {
         xkk <- x[kk,]
         if (na.rm) xkk <- xkk[!is.na(xkk)]
-        q[kk,] <- quantile(xkk, probs=probs, na.rm=FALSE, type=type, ...)
+        q[kk,] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)
   } else {
     naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
-    q <- matrix(naValue, nrow=nrow, ncol=length(probs))
+    q <- matrix(naValue, nrow = nrow, ncol = length(probs))
   }
 
   # Add names
@@ -124,7 +124,7 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
 #' @importFrom stats quantile
 #' @rdname rowQuantiles
 #' @export
-colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
+colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -135,9 +135,9 @@ colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
   }
 
   # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -155,18 +155,18 @@ colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
       idxs_hi <- ceiling(idxs)
       partial <- sort(unique(c(idxs_lo, idxs_hi)))
 
-      xp <- apply(x, MARGIN=2L, FUN=sort, partial=partial)
+      xp <- apply(x, MARGIN = 2L, FUN = sort, partial = partial)
       if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
 
-      q <- apply(xp, MARGIN=2L, FUN=.subset, idxs_lo)
+      q <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_lo)
       if (is.null(dim(q))) dim(q) <- c(1L, length(q))
 
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
       if (length(idxs_adj) > 0L) {
-        qL <- q[idxs_adj,,drop=FALSE]
+        qL <- q[idxs_adj,,drop = FALSE]
         idxs_hi <- idxs_hi[idxs_adj]
-        qH <- apply(xp, MARGIN=2L, FUN=.subset, idxs_hi)
+        qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
         q[idxs_adj,] <- (1-w)*qL + w*qH
         # Not needed anymore
@@ -179,7 +179,7 @@ colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
       # Allocate result
       naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
-      q <- matrix(naValue, nrow=ncol, ncol=length(probs))
+      q <- matrix(naValue, nrow = ncol, ncol = length(probs))
 
       # For each column...
       cols <- seq_len(ncol)
@@ -190,13 +190,13 @@ colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
       for (kk in cols) {
         xkk <- x[,kk]
         if (na.rm) xkk <- xkk[!is.na(xkk)]
-        q[kk,] <- quantile(xkk, probs=probs, na.rm=FALSE, type=type, ...)
+        q[kk,] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)
   } else {
     naValue <- NA_real_
     storage.mode(naValue) <- storage.mode(x)
-    q <- matrix(naValue, nrow=ncol, ncol=length(probs))
+    q <- matrix(naValue, nrow = ncol, ncol = length(probs))
   }
 
   # Add names

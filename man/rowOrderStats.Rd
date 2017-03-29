@@ -40,7 +40,7 @@ allocation), there is a unique implementation for
 }
 \section{Missing values}{
  This method does \emph{not} handle missing values,
-that is, the result corresponds to having \code{na.rm=FALSE} (if such an
+that is, the result corresponds to having \code{na.rm = FALSE} (if such an
 argument would be available).
 }
 

@@ -36,8 +36,8 @@ The method will return \code{\link[base:logical]{TRUE}} as soon as a missing
 value is detected.
 }
 \examples{
- x <- rnorm(n=1000)
- x[seq(300,length(x),by=100)] <- NA
+ x <- rnorm(n = 1000)
+ x[seq(300,length(x),by = 100)] <- NA
  stopifnot(anyMissing(x) == any(is.na(x)))
 
 }

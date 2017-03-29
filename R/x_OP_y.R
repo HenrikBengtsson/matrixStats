@@ -1,7 +1,7 @@
 #' Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)'
 #' 
 #' Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)', where OP can be
-#' +, -, *, and /.  For + and *, na.rm=TRUE will drop missing values first.
+#' +, -, *, and /.  For + and *, na.rm = TRUE will drop missing values first.
 #' 
 #' 
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
@@ -31,7 +31,7 @@
 #' 
 #' @example incl/x_OP_y.R
 #' 
-#' @section Missing values: If \code{na.rm=TRUE}, then missing values are
+#' @section Missing values: If \code{na.rm = TRUE}, then missing values are
 #' "dropped" before applying the operator to each pair of values.  For
 #' instance, if \code{x[1,1]} is a missing value, then the result of
 #' \code{x[1,1] + y[1]} equals \code{y[1]}.  If also \code{y[1]} is a missing
@@ -43,10 +43,10 @@
 #' 
 #' @keywords internal
 #' @export
-x_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE) {
+x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL, commute = FALSE, na.rm = FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
-  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
+  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
   stopifnot(op > 0L)
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, FALSE)
 }
@@ -54,10 +54,10 @@ x_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, 
 
 #' @rdname x_OP_y
 #' @export
-t_tx_OP_y <- function(x, y, OP, xrows=NULL, xcols=NULL, yidxs=NULL, commute=FALSE, na.rm=FALSE) {
+t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL, commute = FALSE, na.rm = FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
-  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch=0L)
+  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
   stopifnot(op > 0L)
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs, commute, na.rm, TRUE, TRUE)
 }

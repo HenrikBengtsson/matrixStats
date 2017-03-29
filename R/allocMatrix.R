@@ -25,7 +25,7 @@
 #' @keywords internal programming
 #' 
 #' @export
-allocMatrix <- function(nrow, ncol, value=0.0, ...) {
+allocMatrix <- function(nrow, ncol, value = 0.0, ...) {
   nrow <- as.integer(nrow)
   ncol <- as.integer(ncol)
   .Call(C_allocMatrix2, nrow, ncol, value)
@@ -33,14 +33,14 @@ allocMatrix <- function(nrow, ncol, value=0.0, ...) {
 
 #' @rdname allocMatrix
 #' @export
-allocVector <- function(length, value=0.0, ...) {
+allocVector <- function(length, value = 0.0, ...) {
   length <- as.integer(length)
   .Call(C_allocVector2, length, value)
 }
 
 #' @rdname allocMatrix
 #' @export
-allocArray <- function(dim, value=0.0, ...) {
+allocArray <- function(dim, value = 0.0, ...) {
   dim <- as.integer(dim)
   .Call(C_allocArray2, dim, value)
 }

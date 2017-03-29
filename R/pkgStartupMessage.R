@@ -1,6 +1,6 @@
 ## covr: skip=all
 
-pkgStartupMessage <- function(..., quietly=NA) {
+pkgStartupMessage <- function(..., quietly = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Infer 'quietly' from argument 'argument' in library() call?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -22,16 +22,16 @@ pkgStartupMessage <- function(..., quietly=NA) {
         env <- sys.frame(ff)
 
         # Does the environment look like a library() environment?
-        exist <- sapply(argsToFind, FUN=exists, envir=env, inherits=FALSE)
+        exist <- sapply(argsToFind, FUN = exists, envir = env, inherits = FALSE)
         if (!all(exist)) {
           # Nope, then skip to the next one
           next
         }
 
         # Was argument 'quietly' specified?
-        missing <- eval(expression(missing(quietly)), envir=env)
+        missing <- eval(expression(missing(quietly)), envir = env)
         if (!missing) {
-          quietly <- get("quietly", envir=env, inherits=FALSE)
+          quietly <- get("quietly", envir = env, inherits = FALSE)
           break
         }
 

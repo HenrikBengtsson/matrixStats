@@ -52,7 +52,7 @@ the others.
 }
 \details{
 If argument \code{S} is a single column vector with indices \code{1:N}, then
-\code{rowAvgsPerColSet(X, S=S, FUN=rowMeans)} gives the same result as
+\code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
 \code{rowMeans(X)}.  Analogously, for \code{rowAvgsPerColSet()}.
 }
 \examples{

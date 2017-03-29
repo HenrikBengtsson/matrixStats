@@ -31,7 +31,7 @@
 #' non-weighted medians.  Internally, \code{\link{weightedMedian}}() is used.
 #' @keywords array iteration robust univar
 #' @export
-rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -51,9 +51,9 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
@@ -65,13 +65,13 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
     if (m == 0L)
       return(double(0L))
 
-    res <- apply(x, MARGIN=1L, FUN=function(x) {
-      weightedMedian(x, w=w, na.rm=na.rm, ...)
+    res <- apply(x, MARGIN = 1L, FUN = function(x) {
+      weightedMedian(x, w = w, na.rm = na.rm, ...)
     })
 
     w <- NULL  # Not needed anymore
   } else {
-    res <- rowMedians(x, na.rm=na.rm)
+    res <- rowMedians(x, na.rm = na.rm)
   }
 
   res
@@ -80,7 +80,7 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
 
 #' @rdname rowWeightedMedians
 #' @export
-colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -100,9 +100,9 @@ colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
@@ -113,13 +113,13 @@ colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
     if (m == 0L)
       return(double(0L))
 
-    res <- apply(x, MARGIN=2L, FUN=function(x) {
-      weightedMedian(x, w=w, na.rm=na.rm, ...)
+    res <- apply(x, MARGIN = 2L, FUN = function(x) {
+      weightedMedian(x, w = w, na.rm = na.rm, ...)
     })
 
     w <- NULL  # Not needed anymore
   } else {
-    res <- colMedians(x, na.rm=na.rm)
+    res <- colMedians(x, na.rm = na.rm)
   }
 
   res

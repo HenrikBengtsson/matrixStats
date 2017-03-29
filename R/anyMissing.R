@@ -19,8 +19,8 @@
 #' detected, otherwise \code{\link[base:logical]{FALSE}}.
 #' 
 #' @examples
-#'  x <- rnorm(n=1000)
-#'  x[seq(300,length(x),by=100)] <- NA
+#'  x <- rnorm(n = 1000)
+#'  x[seq(300,length(x),by = 100)] <- NA
 #'  stopifnot(anyMissing(x) == any(is.na(x)))
 #' 
 #' @author Henrik Bengtsson
@@ -30,7 +30,7 @@
 #' 
 #' @keywords iteration logic
 #' @export
-anyMissing <- function(x, idxs=NULL, ...) {
+anyMissing <- function(x, idxs = NULL, ...) {
   ## All list or a data.frame?
   if (is.list(x)) {
     for (kk in seq_along(x)) {
@@ -46,12 +46,12 @@ anyMissing <- function(x, idxs=NULL, ...) {
 
 #' @rdname anyMissing
 #' @export
-colAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
-  colAnys(x, rows, cols, value=NA, ...)
+colAnyMissings <- function(x, rows = NULL, cols = NULL, ...) {
+  colAnys(x, rows, cols, value = NA, ...)
 }
 
 #' @rdname anyMissing
 #' @export
-rowAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
-  rowAnys(x, rows, cols, value=NA, ...)
+rowAnyMissings <- function(x, rows = NULL, cols = NULL, ...) {
+  rowAnys(x, rows, cols, value = NA, ...)
 }

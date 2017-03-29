@@ -26,7 +26,7 @@
 #' length N (K).
 #' 
 #' @section Missing values: This method does \emph{not} handle missing values,
-#' that is, the result corresponds to having \code{na.rm=FALSE} (if such an
+#' that is, the result corresponds to having \code{na.rm = FALSE} (if such an
 #' argument would be available).
 #' 
 #' @author The native implementation of \code{rowOrderStats()} was adopted by
@@ -37,7 +37,7 @@
 #' 
 #' @keywords array iteration robust univar
 #' @export
-rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
+rowOrderStats <- function(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -52,7 +52,7 @@ rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
 
 #' @rdname rowOrderStats
 #' @export
-colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
+colOrderStats <- function(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   # Check missing values

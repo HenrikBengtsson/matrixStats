@@ -1,6 +1,6 @@
 library("matrixStats")
 
-x <- matrix(1:27, ncol=3)
+x <- matrix(1:27, ncol = 3)
 
 idxs <- 1L
 y <- rowCollapse(x, idxs)

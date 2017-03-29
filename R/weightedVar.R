@@ -37,13 +37,13 @@
 #' 
 #' @keywords univar robust
 #' @export
-weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
+weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, ...) {
   # Argument 'x':
   n <- length(x)
 
   # Argument 'w':
   if (is.null(w)) {
-    w <- rep(1, times=n)
+    w <- rep(1, times = n)
   } else if (length(w) != n) {
     stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n)
   } else if (!is.null(idxs)) {
@@ -100,7 +100,7 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
     keep <- tmp
     x <- .subset(x, keep)
     n <- length(x)
-    w <- rep(1, times=n)
+    w <- rep(1, times = n)
     keep <- NULL  # Not needed anymore
   }
   tmp <- NULL  # Not needed anymore
@@ -144,43 +144,43 @@ weightedSd <- function(...) {
 
 #' @rdname weightedVar
 #' @export
-rowWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # Apply subset on 'x'
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on 'w'
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  apply(x, MARGIN=1L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
+  apply(x, MARGIN = 1L, FUN = weightedVar, w = w, na.rm = na.rm, ...)
 }
 
 
 #' @rdname weightedVar
 #' @export
-colWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # Apply subset on 'x'
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on 'w'
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  apply(x, MARGIN=2L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
+  apply(x, MARGIN = 2L, FUN = weightedVar, w = w, na.rm = na.rm, ...)
 }
 
 
 #' @rdname weightedVar
 #' @export
-rowWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
-  sqrt(rowWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
+rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+  sqrt(rowWeightedVars(x = x, w = w, rows = rows, cols = cols, na.rm = na.rm, ...))
 }
 
 
 #' @rdname weightedVar
 #' @export
-colWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
-  sqrt(colWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
+colWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+  sqrt(colWeightedVars(x = x, w = w, rows = rows, cols = cols, na.rm = na.rm, ...))
 }

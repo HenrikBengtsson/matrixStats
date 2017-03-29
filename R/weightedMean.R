@@ -31,9 +31,9 @@
 #' @example incl/weightedMean.R
 #'
 #' @section Missing values: This function handles missing values consistently
-#' \code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm=FALSE},
+#' \code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm = FALSE},
 #' then any missing values in either \code{x} or \code{w} will give result
-#' \code{NA_real_}.  If \code{na.rm=TRUE}, then all \code{(x,w)} data points
+#' \code{NA_real_}.  If \code{na.rm = TRUE}, then all \code{(x,w)} data points
 #' for which \code{x} is missing are skipped.  Note that if both \code{x} and
 #' \code{w} are missing for a data points, then it is also skipped (by the same
 #' rule).  However, if only \code{w} is missing, then the final results will
@@ -44,15 +44,15 @@
 #' @seealso \code{\link[base]{mean}}() and \code{\link[stats]{weighted.mean}}.
 #' @keywords univar robust
 #' @export
-weightedMean <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, refine=FALSE, ...) {
+weightedMean <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE, ...) {
   # Argument 'refine':
   refine <- as.logical(refine)
 
   # Argument 'w':
   if (is.null(w)) {
     ## We won't fall back to stats::mean(), because it's has some overhead
-    ## and it doesn't support refine=FALSE.
-    w <- rep(1, times=length(x))
+    ## and it doesn't support refine = FALSE.
+    w <- rep(1, times = length(x))
   } else {
     w <- as.numeric(w)
   }

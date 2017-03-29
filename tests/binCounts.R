@@ -4,8 +4,8 @@ library("stats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Local functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-binCounts_hist <- function(x, bx, right=FALSE, ...) {
-  n0 <- graphics::hist(x, breaks=bx, right=right, include.lowest=TRUE, plot=FALSE)$counts
+binCounts_hist <- function(x, bx, right = FALSE, ...) {
+  n0 <- graphics::hist(x, breaks = bx, right = right, include.lowest = TRUE, plot = FALSE)$counts
 }
 
 
@@ -16,21 +16,21 @@ nx <- 1e5  # Number of data points
 nb <- 2e3  # Number of bins
 
 # Uniformely distributed bins
-bx <- seq(from=0, to=1, length.out=nb+1L)
+bx <- seq(from = 0, to = 1, length.out = nb+1L)
 bx <- c(-1, bx, 2)
 
 # Sample data points
 set.seed(0xBEEF)
-x <- runif(nx, min=0, max=1)
+x <- runif(nx, min = 0, max = 1)
 
 for (kk in 1:2) {
-  n0 <- binCounts_hist(x, bx=bx)
-  n1 <- binCounts(x, bx=bx)
+  n0 <- binCounts_hist(x, bx = bx)
+  n1 <- binCounts(x, bx = bx)
   # Sanity check
   stopifnot(identical(n1, n0))
 
   # Check reversed
-  n1r <- rev(binCounts(-x, bx=rev(-bx), right=TRUE))
+  n1r <- rev(binCounts(-x, bx = rev(-bx), right = TRUE))
   stopifnot(identical(n1r, n1))
 
   # Retry with a sorted vector
@@ -48,8 +48,8 @@ nx <- length(x)
 # Bins
 bx <- c(0.5,50.5,100.5,150.5,200.5)
 
-yS0 <- binCounts_hist(x, bx=bx)
-yS <- binCounts(x, bx=bx)
+yS0 <- binCounts_hist(x, bx = bx)
+yS <- binCounts(x, bx = bx)
 # Sanity check
 stopifnot(all.equal(yS, yS0))
 
@@ -59,20 +59,20 @@ stopifnot(all.equal(yS, yS0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- 1:10
 bx <- min(x) - c(10,1)
-yS <- binCounts(x, bx=bx)
+yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, 0L))
 bx <- range(x)
-yS <- binCounts(x, bx=bx)
+yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, length(x)-1L))
 bx <- max(x) + c(1,10)
-yS <- binCounts(x, bx=bx)
+yS <- binCounts(x, bx = bx)
 stopifnot(all.equal(yS, 0L))
 
 # Every second empty
 x <- 1:10
-bx <- rep(x, each=2L)
-yS <- binCounts(x, bx=bx)
-stopifnot(all.equal(yS, rep(c(0L, 1L), length.out=length(bx)-1L)))
+bx <- rep(x, each = 2L)
+yS <- binCounts(x, bx = bx)
+stopifnot(all.equal(yS, rep(c(0L, 1L), length.out = length(bx)-1L)))
 ## NOTE: binCounts_hist() does not give the same last bin count
 
 
@@ -81,10 +81,10 @@ stopifnot(all.equal(yS, rep(c(0L, 1L), length.out=length(bx)-1L)))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Zero bin bounderies (invalid bin definition)
 bx <- double(0L)
-res <- try(yS <- binCounts(1:10, bx=bx), silent=TRUE)
+res <- try(yS <- binCounts(1:10, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))
 
 # One bin boundery (invalid bin definition)
 bx <- double(1L)
-res <- try(yS <- binCounts(1:10, bx=bx), silent=TRUE)
+res <- try(yS <- binCounts(1:10, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))

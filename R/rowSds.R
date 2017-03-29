@@ -37,15 +37,15 @@
 #' @keywords array iteration robust univar
 #' 
 #' @export
-rowSds <- function(x, rows=NULL, cols=NULL, ...) {
-  x <- rowVars(x, rows=rows, cols=cols, ...)
+rowSds <- function(x, rows = NULL, cols = NULL, ...) {
+  x <- rowVars(x, rows = rows, cols = cols, ...)
   sqrt(x)
 }
 
 
 #' @rdname rowSds
 #' @export
-colSds <- function(x, rows=NULL, cols=NULL, ...) {
-  x <- colVars(x, rows=rows, cols=cols, ...)
+colSds <- function(x, rows = NULL, cols = NULL, ...) {
+  x <- colVars(x, rows = rows, cols = cols, ...)
   sqrt(x)
 }

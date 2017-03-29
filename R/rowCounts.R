@@ -5,7 +5,7 @@
 #' These functions takes either a matrix or a vector as input. If a vector,
 #' then argument \code{dim} must be specified and fulfill \code{prod(dim) ==
 #' length(x)}.  The result will be identical to the results obtained when
-#' passing \code{matrix(x, nrow=dim[1L], ncol=dim[2L])}, but avoids having to
+#' passing \code{matrix(x, nrow = dim[1L], ncol = dim[2L])}, but avoids having to
 #' temporarily create/allocate a matrix, if only such is needed only for these
 #' calculations.
 #' 
@@ -37,7 +37,7 @@
 #' @author Henrik Bengtsson
 #' @keywords array logic iteration univar
 #' @export
-rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE, dim. = dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -67,15 +67,15 @@ rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
     if (is.vector(x)) dim(x) <- dim.
 
     # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     if (is.na(value)) {
-      counts <- apply(x, MARGIN=1L, FUN=function(x) sum(is.na(x)))
+      counts <- apply(x, MARGIN = 1L, FUN = function(x) sum(is.na(x)))
     } else {
-      counts <- apply(x, MARGIN=1L, FUN=function(x) sum(x == value, na.rm=na.rm))
+      counts <- apply(x, MARGIN = 1L, FUN = function(x) sum(x == value, na.rm = na.rm))
     }
   }
 
@@ -85,7 +85,7 @@ rowCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
 
 #' @rdname rowCounts
 #' @export
-colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE, dim. = dim(x), ...) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -115,15 +115,15 @@ colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
     if (is.vector(x)) dim(x) <- dim.
 
     # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     if (is.na(value)) {
-      counts <- apply(x, MARGIN=2L, FUN=function(x) sum(is.na(x)))
+      counts <- apply(x, MARGIN = 2L, FUN = function(x) sum(is.na(x)))
     } else {
-      counts <- apply(x, MARGIN=2L, FUN=function(x) sum(x == value, na.rm=na.rm))
+      counts <- apply(x, MARGIN = 2L, FUN = function(x) sum(x == value, na.rm = na.rm))
     }
   }
 
@@ -133,7 +133,7 @@ colCounts <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim
 
 #' @rdname rowCounts
 #' @export
-count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
+count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   # Argument 'x':
   if (!is.vector(x)) {
     stop("Argument 'x' must be a vector: ", mode(x)[1L])
@@ -161,7 +161,7 @@ count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
     if (is.na(value)) {
       counts <- sum(is.na(x))
     } else {
-      counts <- sum(x == value, na.rm=na.rm)
+      counts <- sum(x == value, na.rm = na.rm)
     }
   }
 
@@ -171,7 +171,7 @@ count <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 
 #' @rdname rowCounts
 #' @export
-rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE, dim. = dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -181,15 +181,15 @@ rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     if (is.vector(x)) dim(x) <- dim.
 
     # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     if (is.na(value)) {
-      rowAlls(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      rowAlls(is.na(x), na.rm = na.rm, dim. = dim., ...)
     } else {
-      rowAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+      rowAlls(x == value, na.rm = na.rm, dim. = dim., ...)
     }
   }
 }
@@ -197,7 +197,7 @@ rowAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
 
 #' @rdname rowCounts
 #' @export
-colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE, dim. = dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -207,15 +207,15 @@ colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     if (is.vector(x)) dim(x) <- dim.
 
     # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     if (is.na(value)) {
-      colAlls(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      colAlls(is.na(x), na.rm = na.rm, dim. = dim., ...)
     } else {
-      colAlls(x == value, na.rm=na.rm, dim.=dim., ...)
+      colAlls(x == value, na.rm = na.rm, dim. = dim., ...)
     }
   }
 }
@@ -223,7 +223,7 @@ colAlls <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
 
 #' @rdname rowCounts
 #' @export
-allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
+allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -234,9 +234,9 @@ allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
     if (!is.null(idxs)) x <- x[idxs]
 
     if (is.na(value)) {
-      allValue(is.na(x), na.rm=na.rm, ...)
+      allValue(is.na(x), na.rm = na.rm, ...)
     } else {
-      allValue(x == value, na.rm=na.rm, ...)
+      allValue(x == value, na.rm = na.rm, ...)
     }
   }
 }
@@ -244,7 +244,7 @@ allValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
 
 #' @rdname rowCounts
 #' @export
-rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE, dim. = dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -254,15 +254,15 @@ rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     if (is.vector(x)) dim(x) <- dim.
 
     # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     if (is.na(value)) {
-      rowAnys(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      rowAnys(is.na(x), na.rm = na.rm, dim. = dim., ...)
     } else {
-      rowAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+      rowAnys(x == value, na.rm = na.rm, dim. = dim., ...)
     }
   }
 }
@@ -270,7 +270,7 @@ rowAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
 
 #' @rdname rowCounts
 #' @export
-colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x), ...) {
+colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE, dim. = dim(x), ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -280,15 +280,15 @@ colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
     if (is.vector(x)) dim(x) <- dim.
 
     # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
     dim. <- dim(x)
 
     if (is.na(value)) {
-      colAnys(is.na(x), na.rm=na.rm, dim.=dim., ...)
+      colAnys(is.na(x), na.rm = na.rm, dim. = dim., ...)
     } else {
-      colAnys(x == value, na.rm=na.rm, dim.=dim., ...)
+      colAnys(x == value, na.rm = na.rm, dim. = dim., ...)
     }
   }
 }
@@ -296,7 +296,7 @@ colAnys <- function(x, rows=NULL, cols=NULL, value=TRUE, na.rm=FALSE, dim.=dim(x
 
 #' @rdname rowCounts
 #' @export
-anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
+anyValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
@@ -307,9 +307,9 @@ anyValue <- function(x, idxs=NULL, value=TRUE, na.rm=FALSE, ...) {
     if (!is.null(idxs)) x <- x[idxs]
 
     if (is.na(value)) {
-      anyValue(is.na(x), na.rm=na.rm, ...)
+      anyValue(is.na(x), na.rm = na.rm, ...)
     } else {
-      anyValue(x == value, na.rm=na.rm, ...)
+      anyValue(x == value, na.rm = na.rm, ...)
     }
   }
 }

@@ -57,15 +57,15 @@ The column ranks of \code{x} are collected as \emph{rows} if
 The implementation is optimized for both speed and memory.  To avoid
 coercing to \code{\link[base]{double}}s (and hence memory allocation), there
 is a unique implementation for \code{\link[base]{integer}} matrices.  It is
-more memory efficient to do \code{colRanks(x, preserveShape=TRUE)} than
-\code{t(colRanks(x, preserveShape=FALSE))}.
+more memory efficient to do \code{colRanks(x, preserveShape = TRUE)} than
+\code{t(colRanks(x, preserveShape = FALSE))}.
 
 Any \code{\link[base]{names}} of \code{x} are ignored and absent in the
 result.
 }
 \section{Missing and non- values}{
  These are ranked as \code{NA}, as with
-\code{na.last="keep"} in the \code{\link[base]{rank}}() function.
+\code{na.last = "keep"} in the \code{\link[base]{rank}}() function.
 }
 
 \seealso{

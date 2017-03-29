@@ -32,7 +32,7 @@
 #' @keywords array iteration robust univar
 #'
 #' @export
-rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
@@ -41,7 +41,7 @@ rowRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
 
 #' @rdname rowRanges
 #' @export
-rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
@@ -50,7 +50,7 @@ rowMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
 
 #' @rdname rowRanges
 #' @export
-rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
@@ -59,7 +59,7 @@ rowMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
 
 #' @rdname rowRanges
 #' @export
-colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
@@ -68,7 +68,7 @@ colRanges <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
 
 #' @rdname rowRanges
 #' @export
-colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
@@ -77,7 +77,7 @@ colMins <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
 
 #' @rdname rowRanges
 #' @export
-colMaxs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(x), ...) {
+colMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)

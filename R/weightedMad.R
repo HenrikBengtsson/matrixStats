@@ -43,11 +43,11 @@
 #' @importFrom stats mad median
 #' @keywords univar robust
 #' @export
-weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
+weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.4826, center = NULL, ...) {
   # No weights? Fall back to non-weighted method.
   if (is.null(w)) {
-    if (is.null(center)) center <- median(x, na.rm=na.rm)
-    return(mad(x, center=center, constant=constant, na.rm=na.rm, ...))
+    if (is.null(center)) center <- median(x, na.rm = na.rm)
+    return(mad(x, center = center, constant = constant, na.rm = na.rm, ...))
   }
 
   # Argument 'x':
@@ -103,7 +103,7 @@ weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, cent
     keep <- tmp
     x <- .subset(x, keep)
     n <- length(x)
-    w <- rep(1, times=n)
+    w <- rep(1, times = n)
     keep <- NULL  # Not needed anymore
   }
   tmp <- NULL  # Not needed anymore
@@ -121,12 +121,12 @@ weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, cent
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- weightedMedian(x, w=w, na.rm=NA)
+    center <- weightedMedian(x, w = w, na.rm = NA)
   }
 
   # Estimate the standard deviation
   x <- abs(x - center)
-  sigma <- weightedMedian(x, w=w, na.rm=NA)
+  sigma <- weightedMedian(x, w = w, na.rm = NA)
   x <- w <- NULL  # Not needed anymore
 
   # Rescale for normal distributions
@@ -138,29 +138,29 @@ weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, cent
 
 #' @rdname weightedMad
 #' @export
-rowWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  apply(x, MARGIN=1L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
+  apply(x, MARGIN = 1L, FUN = weightedMad, w = w, na.rm = na.rm, ...)
 }
 
 
 #' @rdname weightedMad
 #' @export
-colWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  apply(x, MARGIN=2L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
+  apply(x, MARGIN = 2L, FUN = weightedMad, w = w, na.rm = na.rm, ...)
 }

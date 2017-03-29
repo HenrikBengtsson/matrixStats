@@ -18,7 +18,7 @@
 #' @author Henrik Bengtsson
 #' @keywords iteration logic
 #' @export
-indexByRow <- function(dim, idxs=NULL, ...) {
+indexByRow <- function(dim, idxs = NULL, ...) {
   if (is.matrix(dim)) {
     # BACKWARD COMPATIBILITY: Keep for a while, but deprecate
     # in the future.

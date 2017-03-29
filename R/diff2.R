@@ -27,7 +27,7 @@
 #' @keywords univar internal
 #' 
 #' @export
-diff2 <- function(x, idxs=NULL, lag=1L, differences=1L, ...) {
+diff2 <- function(x, idxs = NULL, lag = 1L, differences = 1L, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

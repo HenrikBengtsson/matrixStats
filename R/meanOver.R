@@ -7,13 +7,13 @@
 #' subsetting which requires copying of elements and garbage collection
 #' thereof.
 #' 
-#' If \code{x} is \code{\link[base]{numeric}} and \code{refine=TRUE}, then a
+#' If \code{x} is \code{\link[base]{numeric}} and \code{refine = TRUE}, then a
 #' two-pass scan is used to calculate the average.  The first scan calculates
 #' the total sum and divides by the number of (non-missing) values.  In the
 #' second scan, this average is refined by adding the residuals towards the
 #' first average.  The \code{\link[base]{mean}}() uses this approach.
-#' \code{meanOver(..., refine=FALSE)} is almost twice as fast as
-#' \code{meanOver(..., refine=TRUE)}.
+#' \code{meanOver(..., refine = FALSE)} is almost twice as fast as
+#' \code{meanOver(..., refine = TRUE)}.
 #' 
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' N.
@@ -40,7 +40,7 @@
 #' \code{\link{sumOver}}().
 #' @keywords univar internal
 #' @export
-meanOver <- function(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...) {
+meanOver <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

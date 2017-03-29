@@ -26,12 +26,12 @@
 #' @seealso See also \code{\link{diff2}}().
 #' @keywords array iteration robust univar
 #' @export
-rowDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
+rowDiffs <- function(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L, ...) {
   .Call(C_rowDiffs, x, dim(x), rows, cols, as.integer(lag), as.integer(differences), TRUE)
 }
 
 #' @rdname rowDiffs
 #' @export
-colDiffs <- function(x, rows=NULL, cols=NULL, lag=1L, differences=1L, ...) {
+colDiffs <- function(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L, ...) {
   .Call(C_rowDiffs, x, dim(x), rows, cols, as.integer(lag), as.integer(differences), FALSE)
 }

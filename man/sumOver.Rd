@@ -23,7 +23,7 @@ of the return value.  Default is to use the same mode as argument \code{x}.}
 }
 \value{
 Returns a scalar of the data type specified by argument \code{mode}.
-If \code{mode="integer"}, then integer overflow occurs if the \emph{sum} is
+If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum} is
 outside the range of defined integer values.
 }
 \description{
@@ -34,7 +34,7 @@ Computes the sum of all or a subset of values.
 is faster and more memory efficient since it avoids the actual subsetting
 which requires copying of elements and garbage collection thereof.
 
-Furthermore, \code{sumOver(x, mode="double")} is equivalent to
+Furthermore, \code{sumOver(x, mode = "double")} is equivalent to
 \code{sum(as.numeric(x))}, but is much more memory efficient when \code{x}
 is an \code{\link[base]{integer}} vector.
 }

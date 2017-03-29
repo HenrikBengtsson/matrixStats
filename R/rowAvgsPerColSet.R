@@ -6,7 +6,7 @@
 #' the others.
 #' 
 #' If argument \code{S} is a single column vector with indices \code{1:N}, then
-#' \code{rowAvgsPerColSet(X, S=S, FUN=rowMeans)} gives the same result as
+#' \code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
 #' \code{rowMeans(X)}.  Analogously, for \code{rowAvgsPerColSet()}.
 #' 
 #' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
@@ -45,7 +45,7 @@
 #' @author Henrik Bengtsson
 #' @keywords internal utilities
 #' @export
-rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FALSE) {
+rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S, FUN = rowMeans, ..., tFUN = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -62,7 +62,7 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
       stop("Argument 'W' is not a matrix: ", class(W)[1L])
     }
     if (any(dim(W) != dimX)) {
-      stop("Argument 'W' does not have the same dimension as 'X': ", paste(dim(W), collapse="x"), " != ", paste(dimX, collapse="x"))
+      stop("Argument 'W' does not have the same dimension as 'X': ", paste(dim(W), collapse = "x"), " != ", paste(dimX, collapse = "x"))
     }
     if (!is.numeric(W)) {
       stop("Argument 'W' is not numeric: ", mode(W))
@@ -83,8 +83,8 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
 
   # Apply subset
   if (!is.null(rows)) {
-    X <- X[rows,,drop=FALSE]
-    if (hasW) W <- W[rows,,drop=FALSE]
+    X <- X[rows,,drop = FALSE]
+    if (hasW) W <- W[rows,,drop = FALSE]
     dimX <- dim(X)
   }
 
@@ -100,10 +100,10 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
   dimnames(X) <- NULL
 
   # Average in sets of columns of X.
-  Z <- apply(S, MARGIN=2L, FUN=function(jj) {
+  Z <- apply(S, MARGIN = 2L, FUN = function(jj) {
     # Extract set of columns from X
     jj <- jj[is.finite(jj)]
-    Zjj <- X[,jj,drop=FALSE]
+    Zjj <- X[,jj,drop = FALSE]
     jj <- NULL  # Not needed anymore
 
     if (tFUN) {
@@ -112,11 +112,11 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
 
     # Average by weights
     if (hasW) {
-      Wjj <- W[,jj,drop=FALSE]
-      Zjj <- FUN(Zjj, W=Wjj, ..., na.rm=na.rm)
+      Wjj <- W[,jj,drop = FALSE]
+      Zjj <- FUN(Zjj, W = Wjj, ..., na.rm = na.rm)
       Wjj <- NULL  # Not needed anymore
     } else {
-      Zjj <- FUN(Zjj, ..., na.rm=na.rm)
+      Zjj <- FUN(Zjj, ..., na.rm = na.rm)
     }
 
     # Sanity check
@@ -138,7 +138,7 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
 
 #' @rdname rowAvgsPerColSet
 #' @export
-colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, ...) {
+colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S, FUN = colMeans, tFUN = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -161,8 +161,8 @@ colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, 
 
   # Apply subset
   if (!is.null(cols)) {
-    X <- X[,cols,drop=FALSE]
-    if (is.null(W)) W <- W[,cols,drop=FALSE]
+    X <- X[,cols,drop = FALSE]
+    if (is.null(W)) W <- W[,cols,drop = FALSE]
   }
 
   # Argument 'tFUN':
@@ -180,7 +180,7 @@ colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, 
   }
 
   # ...
-  tZ <- rowAvgsPerColSet(X=tX, W=tW, S=S, FUN=FUN, tFUN=!tFUN, ...)
+  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, tFUN = !tFUN, ...)
   tX <- tW <- NULL  # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

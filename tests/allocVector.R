@@ -1,7 +1,7 @@
 library("matrixStats")
 
-allocVector_R <- function(length, value=NA) {
-  x <- vector(mode=typeof(value), length=length)
+allocVector_R <- function(length, value = NA) {
+  x <- vector(mode = typeof(value), length = length)
   if (!is.finite(value) || value != 0) x[] <- value
   x
 } # allocVector_R()
@@ -14,9 +14,9 @@ values <- list(
 
 n <- 1e3
 for (value in values) {
-  x0 <- allocVector_R(n, value=value)
-  x <- allocVector(n, value=value)
-  str(list(n=n, value=value, x=x, x0=x0))
+  x0 <- allocVector_R(n, value = value)
+  x <- allocVector(n, value = value)
+  str(list(n = n, value = value, x = x, x0 = x0))
   stopifnot(identical(x,x0))
 }
 

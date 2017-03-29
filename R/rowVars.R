@@ -31,7 +31,7 @@
 #' \code{\link[base]{colSums}}().
 #' @keywords array iteration robust univar
 #' @export
-rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -43,9 +43,9 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
   # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
   dim. <- dim(x)
 
   # Apply subset on 'center'
@@ -55,13 +55,13 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
   # Nothing to do?
   if (ncol <= 1L) {
-    x <- rep(NA_real_, times=nrow(x))
+    x <- rep(NA_real_, times = nrow(x))
     return(x)
   }
 
   if (na.rm) {
     # Count number of missing values in each row
-    nNA <- rowCounts(x, value=NA_real_, na.rm=FALSE)
+    nNA <- rowCounts(x, value = NA_real_, na.rm = FALSE)
 
     # Number of non-missing values
     n <- ncol - nNA
@@ -81,7 +81,7 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
   # Spread
   x <- x*x
-  x <- rowMeans(x, na.rm=na.rm)
+  x <- rowMeans(x, na.rm = na.rm)
 
   # Variance
   x <- (x - center^2)
@@ -91,7 +91,7 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
 #' @rdname rowVars
 #' @export
-colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
+colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -104,9 +104,9 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
   # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
+  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
   dim. <- dim(x)
 
   # Apply subset on 'center'
@@ -116,13 +116,13 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
   # Nothing to do?
   if (nrow <= 1L) {
-    x <- rep(NA_real_, times=ncol(x))
+    x <- rep(NA_real_, times = ncol(x))
     return(x)
   }
 
   if (na.rm) {
     # Count number of missing values in each column
-    nNA <- colCounts(x, value=NA_real_, na.rm=FALSE)
+    nNA <- colCounts(x, value = NA_real_, na.rm = FALSE)
 
     # Number of non-missing values
     n <- nrow - nNA
@@ -142,7 +142,7 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 
   # Spread
   x <- x*x
-  x <- colMeans(x, na.rm=na.rm)
+  x <- colMeans(x, na.rm = na.rm)
 
   # Variance
   x <- (x - center^2)
