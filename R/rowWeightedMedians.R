@@ -1,55 +1,36 @@
-###########################################################################/**
-# @RdocFunction rowWeightedMedians
-# @alias colWeightedMedians
-#
-# @title "Calculates the weighted medians for each row (column) in a matrix"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage rowWeightedMedians
-#  @usage colWeightedMedians
-# }
-#
-# \arguments{
-#  \item{x}{A @numeric NxK @matrix.}
-#  \item{w}{A @numeric @vector of length K (N).}
-#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#    to operate over. If @NULL, no subsetting is done.}
-#  \item{na.rm}{If @TRUE, missing values are excluded from the calculation,
-#    otherwise not.}
-#  \item{...}{Additional arguments passed to @see "weightedMedian".}
-# }
-#
-# \value{
-#   Returns a @numeric @vector of length N (K).
-# }
-#
-# \details{
-#   The implementations of these methods are optimized for both speed
-#   and memory.
-#   If no weights are given, the corresponding
-#   @see "rowMedians"/\code{colMedians()} is used.
-# }
-#
-# \examples{
-#  @include "../incl/rowWeightedMedians.Rex"
-# }
-#
-# @author "HB"
-#
-# \seealso{
-#   See @see "rowMedians" and \code{colMedians()} for non-weighted medians.
-#   Internally, @see "weightedMedian" is used.
-# }
-#
-# @keyword array
-# @keyword iteration
-# @keyword robust
-# @keyword univar
-#*/###########################################################################
+#' Calculates the weighted medians for each row (column) in a matrix
+#' 
+#' Calculates the weighted medians for each row (column) in a matrix.
+#' 
+#' The implementations of these methods are optimized for both speed and
+#' memory.  If no weights are given, the corresponding
+#' \code{\link{rowMedians}}()/\code{colMedians()} is used.
+#' 
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' 
+#' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
+#' K (N).
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
+#' excluded from the calculation, otherwise not.
+#' 
+#' @param ... Additional arguments passed to \code{\link{weightedMedian}}().
+#' 
+#' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length N (K).
+#'
+#' @example incl/rowWeightedMedians.Rex
+#'
+#' @author Henrik Bengtsson
+#' 
+#' @seealso See \code{\link{rowMedians}}() and \code{colMedians()} for
+#' non-weighted medians.  Internally, \code{\link{weightedMedian}}() is used.
+#' @keywords array iteration robust univar
+#' @export
 rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -97,6 +78,8 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
 }
 
 
+#' @rdname rowWeightedMedians
+#' @export
 colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
