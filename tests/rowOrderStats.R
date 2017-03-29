@@ -12,7 +12,6 @@ rowOrderStats_R <- function(x, probs, ...) {
 
 set.seed(1)
 
-K <- if (Sys.getenv("_R_CHECK_FULL_") == "") 5 else 3
 
 # Simulate data in a matrix of any shape
 nrow <- 300
@@ -35,7 +34,7 @@ stopifnot(all.equal(y2,y0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("Consistency checks without NAs:\n")
-  for (kk in seq_len(K)) {
+  for (kk in 1:3) {
     cat("Random test #", kk, "\n", sep="")
 
     # Simulate data in a matrix of any shape

@@ -29,7 +29,6 @@ matrix:
         - Rscript -e 'covr::codecov(quiet=FALSE)'
       env:
         - NB='w/ covr' ## Just a label
-        - _R_CHECK_FULL_=TRUE
     - os: linux
       r: release
       addons:
@@ -39,7 +38,6 @@ matrix:
       r_check_args: --no-build-vignettes --no-codoc --no-examples --ignore-vignettes --use-valgrind
       env:
         - NB='w/ valgrind' ## Just a label
-        - _R_CHECK_FULL_=TRUE
         - _R_TEST_=BASE
 	- _R_CHECK_USE_VALGRIND_=TRUE
     - os: linux
@@ -51,10 +49,9 @@ matrix:
       r_check_args: --no-build-vignettes --no-codoc --no-examples --ignore-vignettes --use-valgrind
       env:
         - NB='w/ valgrind' ## Just a label
-        - _R_CHECK_FULL_=TRUE
         - _R_TEST_=SUBSET
         - _R_SUBSET_TEST_=ROW_PREFIX
-	- _R_CHECK_USE_VALGRIND_=TRUE
+        - _R_CHECK_USE_VALGRIND_=TRUE
     - os: linux
       r: release
       addons:
@@ -64,10 +61,9 @@ matrix:
       r_check_args: --no-build-vignettes --no-codoc --no-examples --ignore-vignettes --use-valgrind
       env:
         - NB='w/ valgrind' ## Just a label
-        - _R_CHECK_FULL_=TRUE
         - _R_TEST_=SUBSET
         - _R_SUBSET_TEST_=NOT_ROW_PREFIX
-	- _R_CHECK_USE_VALGRIND_=TRUE
+        - _R_CHECK_USE_VALGRIND_=TRUE
     - os: linux
       r: devel
     - os: osx
