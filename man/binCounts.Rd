@@ -14,8 +14,8 @@ positions for to be binned and counted.}
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{bx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B+1
-ordered positions specifying the B > 0 bins \code{[bx[1],bx[2])},
-\code{[bx[2],bx[3])}, ..., \code{[bx[B],bx[B+1])}.}
+ordered positions specifying the B > 0 bins \code{[bx[1], bx[2])},
+\code{[bx[2], bx[3])}, ..., \code{[bx[B], bx[B+1])}.}
 
 \item{right}{If \code{\link[base:logical]{TRUE}}, the bins are right-closed
 (left open), otherwise left-closed (right open).}
@@ -47,7 +47,7 @@ plot = FALSE)$counts}.  That approach is ~30-60\% slower than
 \code{binCounts(..., right = TRUE)}.
 
 To count occurrences of indices \code{x} (positive
-\code{\link[base]{integer}}s) in \code{[1,B]}, use \code{tabulate(x,
+\code{\link[base]{integer}}s) in \code{[1, B]}, use \code{tabulate(x,
 nbins = B)}, where \code{x} does \emph{not} have to be sorted first.  For
 details, see \code{\link[base]{tabulate}}().
 

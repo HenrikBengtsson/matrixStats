@@ -46,7 +46,7 @@ x[100] <- NA_integer_
 nx <- length(x)
 
 # Bins
-bx <- c(0.5, 50.5, 100.5,150.5,200.5)
+bx <- c(0.5, 50.5, 100.5, 150.5, 200.5)
 
 yS0 <- binCounts_hist(x, bx = bx)
 yS <- binCounts(x, bx = bx)

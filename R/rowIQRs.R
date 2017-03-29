@@ -1,23 +1,23 @@
 #' Estimates of the interquartile range for each row (column) in a matrix
-#' 
+#'
 #' Estimates of the interquartile range for each row (column) in a matrix.
-#' 
-#' 
+#'
+#'
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
 #' elements (or rows and/or columns) to operate over. If
 #' \code{\link[base]{NULL}}, no subsetting is done.
-#' 
+#'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are dropped
 #' first, otherwise not.
-#' 
+#'
 #' @param ... Additional arguments passed to \code{\link{rowQuantiles}}()
 #' (\code{colQuantiles()}).
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
-#' 
+#'
 #' @section Missing values: Contrary to \code{\link[stats]{IQR}}, which gives
 #' an error if there are missing values and \code{na.rm = FALSE}, \code{iqr()}
 #' and its corresponding row and column-specific functions return
@@ -28,12 +28,12 @@
 #' @author Henrik Bengtsson
 #' @seealso See \code{\link[stats]{IQR}}.  See \code{\link{rowSds}}().
 #' @keywords array iteration robust univar
-#' 
+#'
 #' @importFrom stats quantile
 #' @export
 rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   Q <- rowQuantiles(x, rows = rows, cols = cols, probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
-  ans <- Q[,2L,drop = TRUE] - Q[,1L,drop = TRUE]
+  ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
   attributes(ans) <- NULL
@@ -45,7 +45,7 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
 #' @export
 colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   Q <- colQuantiles(x, rows = rows, cols = cols, probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
-  ans <- Q[,2L,drop = TRUE] - Q[,1L,drop = TRUE]
+  ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
   attributes(ans) <- NULL

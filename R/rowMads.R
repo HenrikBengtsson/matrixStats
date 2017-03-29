@@ -18,9 +18,9 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.482
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
     dim. <- dim(x)
 
     # Apply subset on 'center'
@@ -56,9 +56,9 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.482
   } else {
     # Apply subset on 'x'
     if (is.vector(x)) dim(x) <- dim.
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-    else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
     dim. <- dim(x)
 
     # Apply subset on 'center'
@@ -66,7 +66,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL, constant = 1.482
 
     ## SLOW:
     # for (cc in seq_len(ncol(x))) {
-    #   x[,cc] <- x[,cc] - center[cc]
+    #   x[, cc] <- x[, cc] - center[cc]
     # }
     ## FAST:
     x <- t_tx_OP_y(x, center, OP = "-", na.rm = FALSE)

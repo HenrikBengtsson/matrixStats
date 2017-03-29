@@ -1,45 +1,45 @@
 #' Weighted Median Absolute Deviation (MAD)
-#' 
+#'
 #' Computes a weighted MAD of a numeric vector.
-#' 
-#' 
+#'
+#'
 #' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
 #' the values whose weighted MAD is to be computed.
-#' 
+#'
 #' @param w a vector of weights the same length as \code{x} giving the weights
 #' to use for each element of \code{x}. Negative weights are treated as zero
 #' weights. Default value is equal weight to all values.
-#' 
+#'
 #' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
 #' elements (or rows and/or columns) to operate over. If
 #' \code{\link[base]{NULL}}, no subsetting is done.
-#' 
+#'
 #' @param na.rm a logical value indicating whether \code{\link[base]{NA}}
 #' values in \code{x} should be stripped before the computation proceeds, or
 #' not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
 #' is done.  Default value is \code{\link[base]{NA}} (for efficiency).
-#' 
+#'
 #' @param constant A \code{\link[base]{numeric}} scale factor, cf.
 #' \code{\link[stats]{mad}}.
-#' 
+#'
 #' @param center Optional \code{\link[base]{numeric}} scalar specifying the
 #' center location of the data.  If \code{\link[base]{NULL}}, it is estimated
 #' from data.
-#' 
+#'
 #' @param ... Not used.
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
 #' @example incl/weightedMad.R
-#' 
+#'
 #' @section Missing values: Missing values are dropped at the very beginning,
 #' if argument \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.
-#' 
+#'
 #' @author Henrik Bengtsson
-#' 
+#'
 #' @seealso For the non-weighted MAD, see \code{\link[stats]{mad}}.  Internally
 #' \code{\link{weightedMedian}}() is used to calculate the weighted median.
-#' 
+#'
 #' @importFrom stats mad median
 #' @keywords univar robust
 #' @export
@@ -140,9 +140,9 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.48
 #' @export
 rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
@@ -155,9 +155,9 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE
 #' @export
 colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]

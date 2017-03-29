@@ -1,29 +1,29 @@
 #' Extracts one cell per row (column) from a matrix
-#' 
+#'
 #' Extracts one cell per row (column) from a matrix.  The implementation is
 #' optimized for memory and speed.
-#' 
+#'
 #' @param x An NxK \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param idxs An index \code{\link[base]{vector}} of (maximum) length N (K)
 #' specifying the columns (rows) to be extracted.
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
 #' \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param ... Not used.
-#' 
+#'
 #' @return Returns a \code{\link[base]{vector}} of length N (K).
 #'
 #' @example incl/rowCollapse.R
 #'
 #' @author Henrik Bengtsson
-#' 
+#'
 #' @seealso \emph{Matrix indexing} to index elements in matrices and arrays,
 #' cf. \code{\link[base]{[}}().
 #' @keywords utilities
@@ -32,7 +32,7 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows)) {
-    x <- x[rows,,drop = FALSE]
+    x <- x[rows, , drop = FALSE]
     idxs <- idxs[rows]
   }
   dim. <- dim(x)
@@ -57,7 +57,7 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(cols)) {
-    x <- x[,cols,drop = FALSE]
+    x <- x[, cols, drop = FALSE]
     idxs <- idxs[cols]
   }
   dim. <- dim(x)

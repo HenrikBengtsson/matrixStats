@@ -73,7 +73,7 @@ stopifnot(m  == 0)
 w[1:2] <- Inf
 m1 <- mad(x[1:2])
 m2 <- weightedMad(x, w)
-stopifnot(identical(m1,m2))
+stopifnot(identical(m1, m2))
 
 # All weights set to zero
 w <- rep(0, times = n)

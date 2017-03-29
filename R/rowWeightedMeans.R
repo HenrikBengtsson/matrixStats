@@ -1,36 +1,36 @@
 #' Calculates the weighted means for each row (column) in a matrix
-#' 
+#'
 #' Calculates the weighted means for each row (column) in a matrix.
-#' 
+#'
 #' The implementations of these methods are optimized for both speed and
 #' memory.  If no weights are given, the corresponding
 #' \code{rowMeans()}/\code{colMeans()} is used.
-#' 
+#'
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' K (N).
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
 #' excluded from the calculation, otherwise not.
-#' 
+#'
 #' @param ... Not used.
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'
 #' @example incl/rowWeightedMeans.R
 #'
 #' @author Henrik Bengtsson
-#' 
+#'
 #' @seealso See \code{rowMeans()} and \code{colMeans()} in
 #' \code{\link[base]{colSums}}() for non-weighted means.  See also
 #' \code{\link[stats]{weighted.mean}}.
-#' 
+#'
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
@@ -53,9 +53,9 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALS
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
@@ -73,7 +73,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALS
       return(rep(NaN, times = m))
     } else if (nw < n) {
       w <- w[idxs]
-      x <- x[,idxs,drop = FALSE]
+      x <- x[, idxs, drop = FALSE]
     }
     idxs <- NULL  # Not needed anymore
 
@@ -108,7 +108,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALS
       w <- w / wS
 
       # Weighted values
-      ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop = TRUE]
+      ## SLOW: for (rr in 1:m) x[rr, ] <- w * x[rr, , drop = TRUE]
       ## FAST:
       x <- t_tx_OP_y(x, w, OP = "*", na.rm = FALSE)
 
@@ -147,9 +147,9 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FAL
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
@@ -167,7 +167,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FAL
       return(rep(NaN, times = m))
     } else if (nw < n) {
       w <- w[idxs]
-      x <- x[idxs,,drop = FALSE]
+      x <- x[idxs, , drop = FALSE]
     }
     idxs <- NULL  # Not needed anymore
 
@@ -190,7 +190,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL, na.rm = FAL
       # Standarized weights summing to one w/out missing values
       W[nas] <- 0
       for (cc in 1:m) {
-        W[,cc] <- W[,cc,drop = TRUE] / wS[cc]
+        W[, cc] <- W[, cc, drop = TRUE] / wS[cc]
       }
 
       x[nas] <- 0

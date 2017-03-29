@@ -45,8 +45,8 @@ Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)', where OP can be
 \section{Missing values}{
  If \code{na.rm = TRUE}, then missing values are
 "dropped" before applying the operator to each pair of values.  For
-instance, if \code{x[1,1]} is a missing value, then the result of
-\code{x[1,1] + y[1]} equals \code{y[1]}.  If also \code{y[1]} is a missing
+instance, if \code{x[1, 1]} is a missing value, then the result of
+\code{x[1, 1] + y[1]} equals \code{y[1]}.  If also \code{y[1]} is a missing
 value, then the result is a missing value.  This only applies to additions
 and multiplications.  For subtractions and divisions, argument \code{na.rm}
 is ignored.

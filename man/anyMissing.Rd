@@ -37,7 +37,7 @@ value is detected.
 }
 \examples{
  x <- rnorm(n = 1000)
- x[seq(300,length(x),by = 100)] <- NA
+ x[seq(300, length(x), by = 100)] <- NA
  stopifnot(anyMissing(x) == any(is.na(x)))
 
 }

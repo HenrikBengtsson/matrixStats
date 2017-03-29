@@ -1,32 +1,32 @@
 #' Variance estimates for each row (column) in a matrix
-#' 
+#'
 #' Variance estimates for each row (column) in a matrix.
-#' 
+#'
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param center (optional) The center, defaults to the row means.
-#' 
+#'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 #' are excluded first, otherwise not.
-#' 
+#'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
 #' \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param ... Additional arguments passed to \code{rowMeans()} and
 #' \code{rowSums()}.
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'
 #' @example incl/rowMethods.R
 #'
 #' @author Henrik Bengtsson
-#' 
+#'
 #' @seealso See \code{rowMeans()} and \code{rowSums()} in
 #' \code{\link[base]{colSums}}().
 #' @keywords array iteration robust univar
@@ -43,9 +43,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, d
 
   # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   dim. <- dim(x)
 
   # Apply subset on 'center'
@@ -104,9 +104,9 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL, d
 
   # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   dim. <- dim(x)
 
   # Apply subset on 'center'

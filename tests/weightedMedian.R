@@ -2,10 +2,10 @@ library("matrixStats")
 
 x <- 1:5
 y <- weightedMedian(x)
-y <- weightedMedian(x, w = c(NA, Inf, NA,Inf,NA), na.rm = TRUE)
+y <- weightedMedian(x, w = c(NA, Inf, NA, Inf, NA), na.rm = TRUE)
 print(y)
 
-y <- weightedMedian(x, w = c(NA, Inf, NA,Inf,NA), na.rm = FALSE)
+y <- weightedMedian(x, w = c(NA, Inf, NA, Inf, NA), na.rm = FALSE)
 print(y)
 stopifnot(is.na(y))
 

@@ -28,7 +28,7 @@ stopifnot(all.equal(xM2, xM0))
 
 
 # Weighted row variances (excluding some columns)
-w <- c(1, 1, 0,1)
+w <- c(1, 1, 0, 1)
 xM0 <- rowVars(x[, (w == 1), drop = FALSE])
 xM1 <- rowWeightedVars(x, w = w)
 print(xM1)
@@ -38,7 +38,7 @@ stopifnot(all.equal(xM2, xM0))
 
 
 # Weighted row variances (excluding some columns)
-w <- c(0, 1, 0,0)
+w <- c(0, 1, 0, 0)
 xM0 <- rowVars(x[, (w == 1), drop = FALSE])
 xM1 <- rowWeightedVars(x, w = w)
 #stopifnot(all.equal(xM1, xM0))
@@ -47,7 +47,7 @@ stopifnot(all.equal(xM2, xM1))
 
 
 # Weighted row variances (all zero weights)
-w <- c(0, 0, 0,0)
+w <- c(0, 0, 0, 0)
 xM0 <- rowVars(x[, (w == 1), drop = FALSE])
 xM1 <- rowWeightedVars(x, w = w)
 stopifnot(all.equal(xM1, xM0))
@@ -90,7 +90,7 @@ stopifnot(all.equal(xM2, xM1))
 
 
 # Weighted row standard deviation (excluding some columns)
-w <- c(1, 1, 0,1)
+w <- c(1, 1, 0, 1)
 ## FIXME: rowVars()/rowSds() needs na.rm = FALSE (wrong default)
 xM0 <- rowSds(x[, (w == 1), drop = FALSE], na.rm = FALSE)
 xM1 <- rowWeightedSds(x, w = w)
@@ -101,7 +101,7 @@ stopifnot(all.equal(xM2, xM0))
 
 
 # Weighted row MADs (excluding some columns)
-w <- c(1, 1, 0,1)
+w <- c(1, 1, 0, 1)
 xM0 <- rowMads(x[, (w == 1), drop = FALSE])
 xM1 <- rowWeightedMads(x, w = w)
 print(xM1)

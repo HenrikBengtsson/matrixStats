@@ -1,32 +1,32 @@
 #' Calculates the weighted medians for each row (column) in a matrix
-#' 
+#'
 #' Calculates the weighted medians for each row (column) in a matrix.
-#' 
+#'
 #' The implementations of these methods are optimized for both speed and
 #' memory.  If no weights are given, the corresponding
 #' \code{\link{rowMedians}}()/\code{colMedians()} is used.
-#' 
+#'
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' K (N).
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
 #' excluded from the calculation, otherwise not.
-#' 
+#'
 #' @param ... Additional arguments passed to \code{\link{weightedMedian}}().
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'
 #' @example incl/rowWeightedMedians.R
 #'
 #' @author Henrik Bengtsson
-#' 
+#'
 #' @seealso See \code{\link{rowMedians}}() and \code{colMedians()} for
 #' non-weighted medians.  Internally, \code{\link{weightedMedian}}() is used.
 #' @keywords array iteration robust univar
@@ -51,9 +51,9 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FA
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
@@ -100,9 +100,9 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL, na.rm = FA
   }
 
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]

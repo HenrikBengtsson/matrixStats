@@ -1,28 +1,28 @@
 #' Estimates quantiles for each row (column) in a matrix
-#' 
+#'
 #' Estimates quantiles for each row (column) in a matrix.
-#' 
+#'
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with
 #' N >= 0.
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param probs A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J
-#' probabilities in [0,1].
-#' 
+#' probabilities in [0, 1].
+#'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 #' are excluded first, otherwise not.
-#' 
+#'
 #' @param type An \code{\link[base]{integer}} specify the type of estimator.
 #' See \code{\link[stats]{quantile}} for more details.
-#' 
+#'
 #' @param ... Additional arguments passed to \code{\link[stats]{quantile}}.
-#' 
+#'
 #' @param drop If TRUE, singleton dimensions in the result are dropped,
 #' otherwise not.
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} NxJ (KxJ)
 #' \code{\link[base]{matrix}}, where N (K) is the number of rows (columns) for
 #' which the J quantiles are calculated.
@@ -32,7 +32,7 @@
 #' @author Henrik Bengtsson
 #' @seealso \code{\link[stats]{quantile}}.
 #' @keywords array iteration robust univar
-#' 
+#'
 #' @importFrom stats quantile
 #' @export
 rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE) {
@@ -42,13 +42,13 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop("Argument 'probs' is out of range [0-eps,1+eps]")
+    stop("Argument 'probs' is out of range [0-eps, 1+eps]")
   }
 
   # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -75,11 +75,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
       if (length(idxs_adj) > 0L) {
-        qL <- q[idxs_adj,,drop = FALSE]
+        qL <- q[idxs_adj, , drop = FALSE]
         idxs_hi <- idxs_hi[idxs_adj]
         qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj,] <- (1-w)*qL + w*qH
+        q[idxs_adj, ] <- (1-w)*qL + w*qH
         # Not needed anymore
         xp <- qL <- qH <- NULL
       }
@@ -99,9 +99,9 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
       if (hasNA && !na.rm) rows <- rows[!naRows]
 
       for (kk in rows) {
-        xkk <- x[kk,]
+        xkk <- x[kk, ]
         if (na.rm) xkk <- xkk[!is.na(xkk)]
-        q[kk,] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
+        q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)
   } else {
@@ -131,13 +131,13 @@ colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop("Argument 'probs' is out of range [0-eps,1+eps]")
+    stop("Argument 'probs' is out of range [0-eps, 1+eps]")
   }
 
   # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -164,11 +164,11 @@ colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
       if (length(idxs_adj) > 0L) {
-        qL <- q[idxs_adj,,drop = FALSE]
+        qL <- q[idxs_adj, , drop = FALSE]
         idxs_hi <- idxs_hi[idxs_adj]
         qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj,] <- (1-w)*qL + w*qH
+        q[idxs_adj, ] <- (1-w)*qL + w*qH
         # Not needed anymore
         xp <- qL <- qH <- NULL
       }
@@ -188,9 +188,9 @@ colQuantiles <- function(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
       if (hasNA && !na.rm) cols <- cols[!naCols]
 
       for (kk in cols) {
-        xkk <- x[,kk]
+        xkk <- x[, kk]
         if (na.rm) xkk <- xkk[!is.na(xkk)]
-        q[kk,] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
+        q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)
   } else {

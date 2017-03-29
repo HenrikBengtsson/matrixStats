@@ -1,40 +1,40 @@
 #' Applies a row-by-row (column-by-column) averaging function to equally-sized
 #' subsets of matrix columns (rows)
-#' 
+#'
 #' Applies a row-by-row (column-by-column) averaging function to equally-sized
 #' subsets of matrix columns (rows).  Each subset is averaged independently of
 #' the others.
-#' 
+#'
 #' If argument \code{S} is a single column vector with indices \code{1:N}, then
 #' \code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
 #' \code{rowMeans(X)}.  Analogously, for \code{rowAvgsPerColSet()}.
-#' 
+#'
 #' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param W An optional \code{\link[base]{numeric}} NxM
 #' \code{\link[base]{matrix}} of weights.
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param S An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}}
 #' specifying the J subsets.  Each column holds K column (row) indices for the
 #' corresponding subset.
-#' 
+#'
 #' @param FUN The row-by-row (column-by-column) \code{\link[base]{function}}
 #' used to average over each subset of \code{X}.  This function must accept a
 #' \code{\link[base]{numeric}} NxK (KxM) \code{\link[base]{matrix}} and the
 #' \code{\link[base]{logical}} argument \code{na.rm} (which is automatically
 #' set), and return a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (M).
-#' 
+#'
 #' @param ... Additional arguments passed to then \code{FUN}
 #' \code{\link[base]{function}}.
-#' 
+#'
 #' @param tFUN If \code{\link[base:logical]{TRUE}}, the NxK (KxM)
 #' \code{\link[base]{matrix}} passed to \code{FUN()} is transposed first.
-#' 
+#'
 #' @return Returns a \code{\link[base]{numeric}} JxN (MxJ)
 #' \code{\link[base]{matrix}}, where row names equal \code{rownames(X)}
 #' (\code{colnames(S)}) and column names \code{colnames(S)}
@@ -83,8 +83,8 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S, FUN = rowMeans, ..., t
 
   # Apply subset
   if (!is.null(rows)) {
-    X <- X[rows,,drop = FALSE]
-    if (hasW) W <- W[rows,,drop = FALSE]
+    X <- X[rows, , drop = FALSE]
+    if (hasW) W <- W[rows, , drop = FALSE]
     dimX <- dim(X)
   }
 
@@ -103,7 +103,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S, FUN = rowMeans, ..., t
   Z <- apply(S, MARGIN = 2L, FUN = function(jj) {
     # Extract set of columns from X
     jj <- jj[is.finite(jj)]
-    Zjj <- X[,jj,drop = FALSE]
+    Zjj <- X[, jj, drop = FALSE]
     jj <- NULL  # Not needed anymore
 
     if (tFUN) {
@@ -112,7 +112,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S, FUN = rowMeans, ..., t
 
     # Average by weights
     if (hasW) {
-      Wjj <- W[,jj,drop = FALSE]
+      Wjj <- W[, jj, drop = FALSE]
       Zjj <- FUN(Zjj, W = Wjj, ..., na.rm = na.rm)
       Wjj <- NULL  # Not needed anymore
     } else {
@@ -161,8 +161,8 @@ colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S, FUN = colMeans, tFUN =
 
   # Apply subset
   if (!is.null(cols)) {
-    X <- X[,cols,drop = FALSE]
-    if (is.null(W)) W <- W[,cols,drop = FALSE]
+    X <- X[, cols, drop = FALSE]
+    if (is.null(W)) W <- W[, cols, drop = FALSE]
   }
 
   # Argument 'tFUN':

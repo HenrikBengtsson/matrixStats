@@ -14,7 +14,7 @@ all.equal.na <- function(target, current, ...) {
 
 for (mode in c("integer", "double")) {
   # Missing values
-  x <- matrix(c(1, NA, NaN,1, 1, 0,1,0), nrow = 4, ncol = 2)
+  x <- matrix(c(1, NA, NaN, 1, 1, 0, 1, 0), nrow = 4, ncol = 2)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
@@ -63,7 +63,7 @@ for (mode in c("integer", "double")) {
 
 
 # Bug report 2012-06-25
-x <- matrix(c(1, 1, 1,1, 1, 0,1,0), nrow = 4, ncol = 2)
+x <- matrix(c(1, 1, 1, 1, 1, 0, 1, 0), nrow = 4, ncol = 2)
 y0 <- rowProds_R(x)
 print(y0)
 y1 <- rowProds(x)
@@ -75,7 +75,7 @@ stopifnot(all.equal.na(y1, x[, 1]*x[, 2]))
 stopifnot(all.equal.na(y2, y1))
 
 # Bug report 2014-03-25 ("all rows contains a zero")
-x <- matrix(c(0, 1, 1,0), nrow = 2, ncol = 2)
+x <- matrix(c(0, 1, 1, 0), nrow = 2, ncol = 2)
 y0 <- rowProds_R(x)
 print(y0)
 y1 <- rowProds(x)

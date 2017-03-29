@@ -9,7 +9,7 @@ benchmark <- function(fcn, tags = NULL, path = NULL, workdir = "reports", envir 
     path <- system.file("benchmarking", package = "matrixStats")
   }
 
-  fullname <- paste(c(fcn, tags), collapse = ",")
+  fullname <- paste(c(fcn, tags), collapse = ", ")
   filename <- sprintf("%s.md.rsp", fullname)
   pathname <- file.path(path, filename)
 

@@ -1,20 +1,20 @@
 #' Tabulates the values in a matrix by row (column)
-#' 
+#'
 #' Tabulates the values in a matrix by row (column).
-#' 
-#' 
+#'
+#'
 #' @param x An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK
 #' \code{\link[base]{matrix}}.
-#' 
+#'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
-#' 
+#'
 #' @param values An \code{\link[base]{vector}} of J values of count. If
 #' \code{\link[base]{NULL}}, all (unique) values are counted.
-#' 
+#'
 #' @param ... Not used.
-#' 
+#'
 #' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the
 #' number of row (column) \code{\link[base]{vector}}s tabulated and J is the
 #' number of values counted.
@@ -36,9 +36,9 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   }
 
   # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Argument 'values':
   if (is.null(values)) {
@@ -71,7 +71,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   colnames(counts) <- names
 
   for (kk in seq_len(nbrOfValues)) {
-    counts[,kk] <- rowCounts(x, value = values[kk], ...)
+    counts[, kk] <- rowCounts(x, value = values[kk], ...)
   }
 
   counts
@@ -92,9 +92,9 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   }
 
   # Apply subset
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop = FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop = FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop = FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Argument 'values':
   if (is.null(values)) {
@@ -128,14 +128,14 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
 ##    counts <- matrix(0L, nrow = nbrOfValues, ncol = ncol(x))
 ##    rownames(counts) <- names
 ##    for (kk in seq_len(nbrOfValues)) {
-##      counts[kk,] <- colCounts(x, value = values[kk], ...)
+##      counts[kk, ] <- colCounts(x, value = values[kk], ...)
 ##    }
   } else {
     nbrOfValues <- length(values)
     counts <- matrix(0L, nrow = ncol(x), ncol = nbrOfValues)
     colnames(counts) <- names
     for (kk in seq_len(nbrOfValues)) {
-      counts[,kk] <- colCounts(x, value = values[kk], ...)
+      counts[, kk] <- colCounts(x, value = values[kk], ...)
     }
   }
   counts

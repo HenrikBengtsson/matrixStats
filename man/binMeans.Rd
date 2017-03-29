@@ -18,8 +18,8 @@ positions for to be binned.}
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{bx}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B+1
-ordered positions specifying the B > 0 bins \code{[bx[1],bx[2])},
-\code{[bx[2],bx[3])}, ..., \code{[bx[B],bx[B+1])}.}
+ordered positions specifying the B > 0 bins \code{[bx[1], bx[2])},
+\code{[bx[2], bx[3])}, ..., \code{[bx[B], bx[B+1])}.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values in \code{y}
 are dropped before calculating the mean, otherwise not.}
@@ -63,7 +63,7 @@ y <- mu + rnorm(length(x))
 bx <- c(0, 50, 100, 150, 200) + 0.5
 y_s <- binMeans(y, x = x, bx = bx)
 
-plot(x,y)
+plot(x, y)
 for (kk in seq_along(y_s)) {
   lines(bx[c(kk, kk + 1)], y_s[c(kk, kk)], col = "blue", lwd = 2)
 }

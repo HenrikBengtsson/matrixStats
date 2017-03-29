@@ -20,7 +20,7 @@ N >= 0.}
 is done.}
 
 \item{probs}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J
-probabilities in [0,1].}
+probabilities in [0, 1].}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 are excluded first, otherwise not.}
