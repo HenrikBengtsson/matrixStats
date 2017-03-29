@@ -27,7 +27,7 @@
 #' \code{\link[base]{matrix}}, where N (K) is the number of rows (columns) for
 #' which the J quantiles are calculated.
 #'
-#' @example incl/rowQuantiles.Rex
+#' @example incl/rowQuantiles.R
 #'
 #' @author Henrik Bengtsson
 #' @seealso \code{\link[stats]{quantile}}.

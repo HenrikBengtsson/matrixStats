@@ -13,7 +13,7 @@
 #' 
 #' @return Returns a validated integers list indicating the indices.
 #'
-#' @example incl/validateIndices.Rex
+#' @example incl/validateIndices.R
 #' 
 #' @keywords internal
 #' @export

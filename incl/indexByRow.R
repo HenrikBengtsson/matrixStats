@@ -1,5 +1,5 @@
 dim <- c(5, 4)
-X <- matrix(NA_integer_, nrow=dim[1], ncol=dim[2])
+X <- matrix(NA_integer_, nrow = dim[1], ncol = dim[2])
 Y <- t(X)
 idxs <- seq_along(X)
 

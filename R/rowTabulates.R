@@ -19,7 +19,7 @@
 #' number of row (column) \code{\link[base]{vector}}s tabulated and J is the
 #' number of values counted.
 #'
-#' @example incl/rowTabulates.Rex
+#' @example incl/rowTabulates.R
 #'
 #' @author Henrik Bengtsson
 #' @keywords utilities

@@ -28,7 +28,7 @@
 #' zero length, then \code{NaN} is returned, which is consistent with
 #' \code{\link[base]{mean}}().
 #'
-#' @example incl/weightedMean.Rex
+#' @example incl/weightedMean.R
 #'
 #' @section Missing values: This function handles missing values consistently
 #' \code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm=FALSE},

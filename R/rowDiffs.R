@@ -19,7 +19,7 @@
 #' @return Returns a \code{\link[base]{numeric}} Nx(K-1) or (N-1)xK
 #' \code{\link[base]{matrix}}.
 #'
-#' @example incl/rowDiffs.Rex
+#' @example incl/rowDiffs.R
 #' 
 #' @author Henrik Bengtsson
 #' 

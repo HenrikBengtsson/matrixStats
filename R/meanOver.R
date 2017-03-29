@@ -32,7 +32,7 @@
 #' 
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
-#' @example incl/meanOver.Rex
+#' @example incl/meanOver.R
 #'
 #' @author Henrik Bengtsson
 #' 

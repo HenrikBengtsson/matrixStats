@@ -39,7 +39,7 @@
 #' not allowed and gives an error.  Missing values in \code{bx} are not allowed
 #' and gives an error.
 #' 
-#' @example incl/binMeans.Rex
+#' @example incl/binMeans.R
 #' 
 #' @author Henrik Bengtsson with initial code contributions by Martin Morgan [1].
 #' 

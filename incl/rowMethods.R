@@ -1,6 +1,6 @@
 set.seed(1)
 
-x <- matrix(rnorm(20), nrow=5, ncol=4)
+x <- matrix(rnorm(20), nrow = 5, ncol = 4)
 print(x)
 
 # Row averages
@@ -28,24 +28,24 @@ print(colIQRs(x))
 # Row ranges
 print(rowRanges(x))
 print(cbind(rowMins(x), rowMaxs(x)))
-print(cbind(rowOrderStats(x, which=1), rowOrderStats(x, which=ncol(x))))
+print(cbind(rowOrderStats(x, which = 1), rowOrderStats(x, which = ncol(x))))
 
 # Column ranges
 print(colRanges(x))
 print(cbind(colMins(x), colMaxs(x)))
-print(cbind(colOrderStats(x, which=1), colOrderStats(x, which=nrow(x))))
+print(cbind(colOrderStats(x, which = 1), colOrderStats(x, which = nrow(x))))
 
 
-x <- matrix(rnorm(2400), nrow=50, ncol=40)
+x <- matrix(rnorm(2400), nrow = 50, ncol = 40)
 
 # Row standard deviations
 d <- rowDiffs(x)
-s1 <- rowSds(d)/sqrt(2)
+s1 <- rowSds(d) / sqrt(2)
 s2 <- rowSds(x)
-print(summary(s1-s2))
+print(summary(s1 - s2))
 
 # Column standard deviations
 d <- colDiffs(x)
-s1 <- colSds(d)/sqrt(2)
+s1 <- colSds(d) / sqrt(2)
 s2 <- colSds(x)
-print(summary(s1-s2))
+print(summary(s1 - s2))

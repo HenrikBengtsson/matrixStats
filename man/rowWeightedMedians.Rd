@@ -39,36 +39,36 @@ memory.  If no weights are given, the corresponding
 \code{\link{rowMedians}}()/\code{colMedians()} is used.
 }
 \examples{
-x <- matrix(rnorm(20), nrow=5, ncol=4)
+x <- matrix(rnorm(20), nrow = 5, ncol = 4)
 print(x)
 
 # Non-weighted row averages
-xM0 <- rowMedians(x)
-xM <- rowWeightedMedians(x)
-stopifnot(all.equal(xM, xM0))
+mu_0 <- rowMedians(x)
+mu <- rowWeightedMedians(x)
+stopifnot(all.equal(mu, mu_0))
 
 # Weighted row averages (uniform weights)
-w <- rep(2.5, ncol(x))
-xM <- rowWeightedMedians(x, w=w)
-stopifnot(all.equal(xM, xM0))
+w <- rep(2.5, times = ncol(x))
+mu <- rowWeightedMedians(x, w = w)
+stopifnot(all.equal(mu, mu_0))
 
 # Weighted row averages (excluding some columns)
-w <- c(1,1,0,1)
-xM0 <- rowMedians(x[,(w == 1),drop=FALSE]);
-xM <- rowWeightedMedians(x, w=w)
-stopifnot(all.equal(xM, xM0))
+w <- c(1, 1, 0, 1)
+mu_0 <- rowMedians(x[, (w == 1), drop = FALSE])
+mu <- rowWeightedMedians(x, w = w)
+stopifnot(all.equal(mu, mu_0))
 
 # Weighted row averages (excluding some columns)
-w <- c(0,1,0,0)
-xM0 <- rowMedians(x[,(w == 1),drop=FALSE]);
-xM <- rowWeightedMedians(x, w=w)
-stopifnot(all.equal(xM, xM0))
+w <- c(0, 1, 0, 0)
+mu_0 <- rowMedians(x[,(w == 1), drop = FALSE])
+mu <- rowWeightedMedians(x, w = w)
+stopifnot(all.equal(mu, mu_0))
 
 # Weighted averages by rows and columns
 w <- 1:4
-xM1 <- rowWeightedMedians(x, w=w)
-xM2 <- colWeightedMedians(t(x), w=w)
-stopifnot(all.equal(xM2, xM1))
+mu_1 <- rowWeightedMedians(x, w = w)
+mu_2 <- colWeightedMedians(t(x), w = w)
+stopifnot(all.equal(mu_2, mu_1))
 }
 \seealso{
 See \code{\link{rowMedians}}() and \code{colMedians()} for

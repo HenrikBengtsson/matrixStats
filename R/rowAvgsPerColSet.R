@@ -40,7 +40,7 @@
 #' (\code{colnames(S)}) and column names \code{colnames(S)}
 #' (\code{colnames(X)}).
 #'
-#' @example incl/rowAvgsPerColSet.Rex
+#' @example incl/rowAvgsPerColSet.R
 #'
 #' @author Henrik Bengtsson
 #' @keywords internal utilities

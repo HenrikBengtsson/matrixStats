@@ -1,9 +1,9 @@
-x <- matrix(FALSE, nrow=10, ncol=5)
-x[3:7,c(2,4)] <- TRUE
-x[2:4,] <- TRUE
-x[,1] <- TRUE
-x[5,] <- FALSE
-x[,5] <- FALSE
+x <- matrix(FALSE, nrow = 10, ncol = 5)
+x[3:7, c(2, 4)] <- TRUE
+x[2:4, ] <- TRUE
+x[, 1] <- TRUE
+x[5, ] <- FALSE
+x[, 5] <- FALSE
 
 print(x)
 

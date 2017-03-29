@@ -31,7 +31,7 @@ Returns a \code{\link[base]{numeric}} Nx(K-1) or (N-1)xK
 Calculates difference for each row (column) in a matrix.
 }
 \examples{
-x <- matrix(1:27, ncol=3)
+x <- matrix(1:27, ncol = 3)
 
 d1 <- rowDiffs(x)
 print(d1)

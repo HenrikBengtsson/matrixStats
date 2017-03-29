@@ -29,7 +29,7 @@
 #' @return Returns a \code{\link[base]{numeric}} NxK
 #' \code{\link[base]{matrix}}.
 #' 
-#' @example incl/x_OP_y.Rex
+#' @example incl/x_OP_y.R
 #' 
 #' @section Missing values: If \code{na.rm=TRUE}, then missing values are
 #' "dropped" before applying the operator to each pair of values.  For

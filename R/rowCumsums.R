@@ -19,7 +19,7 @@
 #' @return Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}
 #' of the same mode as \code{x}.
 #'
-#' @example incl/rowCumsums.Rex
+#' @example incl/rowCumsums.R
 #' 
 #' @author Henrik Bengtsson
 #' 

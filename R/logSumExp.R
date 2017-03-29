@@ -36,7 +36,7 @@
 #' avoiding underflowing.  It is implemented in native code that is optimized
 #' for speed and memory.
 #'
-#' @example incl/logSumExp.Rex
+#' @example incl/logSumExp.R
 #'
 #' @author Henrik Bengtsson
 #' 

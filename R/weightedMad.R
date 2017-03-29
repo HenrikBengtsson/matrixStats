@@ -30,7 +30,7 @@
 #' 
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
-#' @example incl/weightedMad.Rex
+#' @example incl/weightedMad.R
 #' 
 #' @section Missing values: Missing values are dropped at the very beginning,
 #' if argument \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.

@@ -32,7 +32,7 @@
 #' other methods returns a \code{\link[base]{logical}}
 #' \code{\link[base]{vector}} of length N (K).
 #'
-#' @example incl/rowCounts.Rex
+#' @example incl/rowCounts.R
 #' 
 #' @author Henrik Bengtsson
 #' @keywords array logic iteration univar

@@ -23,7 +23,7 @@
 #' and its corresponding row and column-specific functions return
 #' \code{\link[base]{NA}}_real_.
 #'
-#' @example incl/rowIQRs.Rex
+#' @example incl/rowIQRs.R
 #'
 #' @author Henrik Bengtsson
 #' @seealso See \code{\link[stats]{IQR}}.  See \code{\link{rowSds}}().

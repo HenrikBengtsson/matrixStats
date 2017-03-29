@@ -28,7 +28,7 @@
 #' If \code{mode="integer"}, then integer overflow occurs if the \emph{sum} is
 #' outside the range of defined integer values.
 #' 
-#' @example incl/sumOver.Rex
+#' @example incl/sumOver.R
 #'
 #' @author Henrik Bengtsson
 #' 

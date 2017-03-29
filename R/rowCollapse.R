@@ -20,7 +20,7 @@
 #' 
 #' @return Returns a \code{\link[base]{vector}} of length N (K).
 #'
-#' @example incl/rowCollapse.Rex
+#' @example incl/rowCollapse.R
 #'
 #' @author Henrik Bengtsson
 #' 

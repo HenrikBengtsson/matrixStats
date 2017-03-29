@@ -13,7 +13,7 @@
 #' @return Returns an \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' indices.
 #' 
-#' @example incl/indexByRow.Rex
+#' @example incl/indexByRow.R
 #'
 #' @author Henrik Bengtsson
 #' @keywords iteration logic

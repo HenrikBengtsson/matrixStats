@@ -70,23 +70,23 @@ are the corresponding "weights" for each individual \eqn{x} value.
 x <- 1:10
 n <- length(x)
 
-m1 <- median(x)                           # 5.5
-m2 <- weightedMedian(x)                   # 5.5
+m1 <- median(x)                             # 5.5
+m2 <- weightedMedian(x)                     # 5.5
 stopifnot(identical(m1, m2))
 
-w <- rep(1, n)
-m1 <- weightedMedian(x, w)                # 5.5 (default)
-m2 <- weightedMedian(x, ties="weighted")  # 5.5 (default)
-m3 <- weightedMedian(x, ties="min")       # 5
-m4 <- weightedMedian(x, ties="max")       # 6
-stopifnot(identical(m1,m2))
+w <- rep(1, times = n)
+m1 <- weightedMedian(x, w)                  # 5.5 (default)
+m2 <- weightedMedian(x, ties = "weighted")  # 5.5 (default)
+m3 <- weightedMedian(x, ties = "min")       # 5
+m4 <- weightedMedian(x, ties = "max")       # 6
+stopifnot(identical(m1, m2))
 
 # Pull the median towards zero
 w[1] <- 5
-m1 <- weightedMedian(x, w)                # 3.5
-y <- c(rep(0,w[1]), x[-1])                # Only possible for integer weights
-m2 <- median(y)                           # 3.5
-stopifnot(identical(m1,m2))
+m1 <- weightedMedian(x, w)                  # 3.5
+y <- c(rep(0, times = w[1]), x[-1])         # Only possible for integer weights
+m2 <- median(y)                             # 3.5
+stopifnot(identical(m1, m2))
 
 # Put even more weight on the zero
 w[1] <- 8.5
@@ -102,11 +102,11 @@ w[n] <- Inf
 weightedMedian(x, w)                # 10
 
 # All weights set to zero
-w <- rep(0, n)
+w <- rep(0, times = n)
 weightedMedian(x, w)                # NA
 
 # Simple benchmarking
-bench <- function(N=1e5, K=10) {
+bench <- function(N = 1e5, K = 10) {
   x <- rnorm(N)
   gc()
   t <- c()
@@ -117,12 +117,12 @@ bench <- function(N=1e5, K=10) {
   t
 }
 
-print(bench(N=    5, K=100))
-print(bench(N=   50, K=100))
-print(bench(N=  200, K=100))
-print(bench(N= 1000, K=100))
-print(bench(N= 10e3, K= 20))
-print(bench(N=100e3, K= 20))
+print(bench(N =     5, K = 100))
+print(bench(N =    50, K = 100))
+print(bench(N =   200, K = 100))
+print(bench(N =  1000, K = 100))
+print(bench(N =  10e3, K =  20))
+print(bench(N = 100e3, K =  20))
 }
 \references{
 [1] T.H. Cormen, C.E. Leiserson, R.L. Rivest, Introduction to

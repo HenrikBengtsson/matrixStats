@@ -23,7 +23,7 @@
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'
-#' @example incl/rowWeightedMedians.Rex
+#' @example incl/rowWeightedMedians.R
 #'
 #' @author Henrik Bengtsson
 #' 

@@ -55,7 +55,7 @@
 #' 
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #' 
-#' @example incl/weightedMedian.Rex
+#' @example incl/weightedMedian.R
 #' 
 #' @author Henrik Bengtsson and Ola Hossjer, Centre for Mathematical Sciences,
 #' Lund University.  Thanks to Roger Koenker, Econometrics, University of

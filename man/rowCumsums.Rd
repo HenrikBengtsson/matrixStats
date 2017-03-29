@@ -50,7 +50,7 @@ Cumulative sums, products, minima and maxima for each row (column) in a
 matrix.
 }
 \examples{
-x <- matrix(1:12, nrow=4, ncol=3)
+x <- matrix(1:12, nrow = 4, ncol = 3)
 print(x)
 
 yr <- rowCumsums(x)

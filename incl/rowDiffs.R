@@ -1,4 +1,4 @@
-x <- matrix(1:27, ncol=3)
+x <- matrix(1:27, ncol = 3)
 
 d1 <- rowDiffs(x)
 print(d1)
