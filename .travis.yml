@@ -20,11 +20,16 @@ matrix:
       r: oldrel
     - os: linux
       r: release
+    - os: linux
+      r: release
       r_github_packages:
         - jimhester/covr
+      r_check_args: --no-codoc --no-examples --no-tests --ignore-vignettes
       after_success:
         - Rscript -e 'covr::codecov(quiet=FALSE)'
-      env: NB='w/ covr' ## Just a label
+      env:
+        - NB='w/ covr' ## Just a label
+	- _R_CHECK_FULL_=TRUE
     - os: linux
       r: devel
     - os: osx
