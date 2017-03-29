@@ -37,7 +37,7 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
   if (is.null(center)) {
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, TRUE);
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, TRUE)
     return(sigma2)
   }
 
@@ -51,41 +51,41 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
   # Apply subset on 'center'
   if (!is.null(rows)) center <- center[rows]
 
-  ncol <- ncol(x);
+  ncol <- ncol(x)
 
   # Nothing to do?
   if (ncol <= 1L) {
-    x <- rep(NA_real_, times=nrow(x));
-    return(x);
+    x <- rep(NA_real_, times=nrow(x))
+    return(x)
   }
 
   if (na.rm) {
     # Count number of missing values in each row
-    nNA <- rowCounts(x, value=NA_real_, na.rm=FALSE);
+    nNA <- rowCounts(x, value=NA_real_, na.rm=FALSE)
 
     # Number of non-missing values
-    n <- ncol - nNA;
+    n <- ncol - nNA
 
-    hasNA <- any(nNA > 0L);
+    hasNA <- any(nNA > 0L)
     if (hasNA) {
       # Set NA estimates for rows with less than two observations
-      n[n <= 1L] <- NA_integer_;
+      n[n <= 1L] <- NA_integer_
     } else {
       # No need to check for missing values below
-      na.rm <- FALSE;
+      na.rm <- FALSE
     }
   } else {
     # Assuming no missing values
-    n <- ncol;
+    n <- ncol
   }
 
   # Spread
-  x <- x*x;
-  x <- rowMeans(x, na.rm=na.rm);
+  x <- x*x
+  x <- rowMeans(x, na.rm=na.rm)
 
   # Variance
-  x <- (x - center^2);
-  x * (n/(n-1));
+  x <- (x - center^2)
+  x * (n/(n-1))
 }
 
 
@@ -98,7 +98,7 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
     hasNAs <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, FALSE);
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, FALSE)
     return(sigma2)
   }
 
@@ -112,39 +112,39 @@ colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
   # Apply subset on 'center'
   if (!is.null(cols)) center <- center[cols]
 
-  nrow <- nrow(x);
+  nrow <- nrow(x)
 
   # Nothing to do?
   if (nrow <= 1L) {
-    x <- rep(NA_real_, times=ncol(x));
-    return(x);
+    x <- rep(NA_real_, times=ncol(x))
+    return(x)
   }
 
   if (na.rm) {
     # Count number of missing values in each column
-    nNA <- colCounts(x, value=NA_real_, na.rm=FALSE);
+    nNA <- colCounts(x, value=NA_real_, na.rm=FALSE)
 
     # Number of non-missing values
-    n <- nrow - nNA;
+    n <- nrow - nNA
 
-    hasNA <- any(nNA > 0L);
+    hasNA <- any(nNA > 0L)
     if (hasNA) {
       # Set NA estimates for rows with less than two observations
-      n[n <= 1L] <- NA_integer_;
+      n[n <= 1L] <- NA_integer_
     } else {
       # No need to check for missing values below
-      na.rm <- FALSE;
+      na.rm <- FALSE
     }
   } else {
     # Assuming no missing values
-    n <- nrow;
+    n <- nrow
   }
 
   # Spread
-  x <- x*x;
-  x <- colMeans(x, na.rm=na.rm);
+  x <- x*x
+  x <- colMeans(x, na.rm=na.rm)
 
   # Variance
-  x <- (x - center^2);
-  x * (n/(n-1));
+  x <- (x - center^2)
+  x * (n/(n-1))
 }

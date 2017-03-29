@@ -36,17 +36,17 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
-  hasWeights <- !is.null(w);
+  hasWeights <- !is.null(w)
   if (hasWeights) {
-    n <- ncol(x);
+    n <- ncol(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n);
+      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w));
+      stop("Argument 'w' is not numeric: ", mode(w))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.");
+      stop("Argument 'w' has negative weights.")
     }
   }
 
@@ -61,20 +61,20 @@ rowWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
 
   if (hasWeights) {
     # Allocate results
-    m <- nrow(x);
+    m <- nrow(x)
     if (m == 0L)
-      return(double(0L));
+      return(double(0L))
 
     res <- apply(x, MARGIN=1L, FUN=function(x) {
-      weightedMedian(x, w=w, na.rm=na.rm, ...);
-    });
+      weightedMedian(x, w=w, na.rm=na.rm, ...)
+    })
 
-    w <- NULL; # Not needed anymore
+    w <- NULL  # Not needed anymore
   } else {
-    res <- rowMedians(x, na.rm=na.rm);
+    res <- rowMedians(x, na.rm=na.rm)
   }
 
-  res;
+  res
 }
 
 
@@ -85,17 +85,17 @@ colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
-  hasWeights <- !is.null(w);
+  hasWeights <- !is.null(w)
   if (hasWeights) {
-    n <- nrow(x);
+    n <- nrow(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n);
+      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w));
+      stop("Argument 'w' is not numeric: ", mode(w))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.");
+      stop("Argument 'w' has negative weights.")
     }
   }
 
@@ -109,18 +109,18 @@ colWeightedMedians <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...
 
   if (hasWeights) {
     # Allocate results
-    m <- ncol(x);
+    m <- ncol(x)
     if (m == 0L)
-      return(double(0L));
+      return(double(0L))
 
     res <- apply(x, MARGIN=2L, FUN=function(x) {
-      weightedMedian(x, w=w, na.rm=na.rm, ...);
-    });
+      weightedMedian(x, w=w, na.rm=na.rm, ...)
+    })
 
-    w <- NULL; # Not needed anymore
+    w <- NULL  # Not needed anymore
   } else {
-    res <- colMedians(x, na.rm=na.rm);
+    res <- colMedians(x, na.rm=na.rm)
   }
 
-  res;
+  res
 }

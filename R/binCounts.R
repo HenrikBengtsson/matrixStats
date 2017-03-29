@@ -50,47 +50,47 @@ binCounts <- function(x, idxs=NULL, bx, right=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x));
+    stop("Argument 'x' is not numeric: ", mode(x))
   }
 
   # Argument 'bx':
   if (!is.numeric(bx)) {
-    stop("Argument 'bx' is not numeric: ", mode(bx));
+    stop("Argument 'bx' is not numeric: ", mode(bx))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values.");
+    stop("Argument 'bx' must not contain Inf values.")
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered.");
+    stop("Argument 'bx' is not ordered.")
   }
 
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
 
   # Argument 'right':
-  right <- as.logical(right);
+  right <- as.logical(right)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Preprocessing of x
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Drop missing values
-  keep <- which(!is.na(x));
+  keep <- which(!is.na(x))
   if (length(keep) < length(x)) {
-    x <- x[keep];
+    x <- x[keep]
   }
-  keep <- NULL; # Not needed anymore
+  keep <- NULL  # Not needed anymore
 
   # Order x (by increasing x).
   # If 'x' is already sorted, the overhead of (re)sorting is
   # relatively small.
-  x <- sort.int(x, method="quick");
+  x <- sort.int(x, method="quick")
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Bin
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  x <- as.numeric(x);
-  bx <- as.numeric(bx);
-  .Call(C_binCounts, x, bx, right);
+  x <- as.numeric(x)
+  bx <- as.numeric(bx)
+  .Call(C_binCounts, x, bx, right)
 }

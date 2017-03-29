@@ -51,11 +51,11 @@ weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, cent
   }
 
   # Argument 'x':
-  n <- length(x);
+  n <- length(x)
 
   # Argument 'w':
   if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n)
   } else if (!is.null(idxs)) {
     # Apply subset on w
     w <- w[idxs]
@@ -70,69 +70,69 @@ weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, cent
   # Argument 'na.rm':
 
 
-  naValue <- NA;
-  storage.mode(naValue) <- storage.mode(x);
+  naValue <- NA
+  storage.mode(naValue) <- storage.mode(x)
 
 
   # Remove values with zero (and negative) weight. This will:
   #  1) take care of the case when all weights are zero,
   #  2) it will most likely speed up the sorting.
-  tmp <- (w > 0);
+  tmp <- (w > 0)
   if (!all(tmp)) {
-    x <- .subset(x, tmp);
-    w <- .subset(w, tmp);
-    n <- length(x);
+    x <- .subset(x, tmp)
+    w <- .subset(w, tmp)
+    n <- length(x)
   }
-  tmp <- NULL; # Not needed anymore
+  tmp <- NULL  # Not needed anymore
 
   # Drop missing values?
   if (na.rm) {
-    keep <- which(!is.na(x) & !is.na(w));
-    x <- .subset(x, keep);
-    w <- .subset(w, keep);
-    n <- length(x);
-    keep <- NULL; # Not needed anymore
+    keep <- which(!is.na(x) & !is.na(w))
+    x <- .subset(x, keep)
+    w <- .subset(w, keep)
+    n <- length(x)
+    keep <- NULL  # Not needed anymore
   } else if (anyMissing(x)) {
-    return(naValue);
+    return(naValue)
   }
 
   # Are any weights Inf? Then treat them with equal weight and all others
   # with weight zero.
-  tmp <- is.infinite(w);
+  tmp <- is.infinite(w)
   if (any(tmp)) {
-    keep <- tmp;
-    x <- .subset(x, keep);
-    n <- length(x);
-    w <- rep(1, times=n);
-    keep <- NULL; # Not needed anymore
+    keep <- tmp
+    x <- .subset(x, keep)
+    n <- length(x)
+    w <- rep(1, times=n)
+    keep <- NULL  # Not needed anymore
   }
-  tmp <- NULL; # Not needed anymore
+  tmp <- NULL  # Not needed anymore
 
 
   # Are there any values left to calculate the weighted median of?
   # This is consistent with how stats::mad() works.
   if (n == 0L) {
-    return(naValue);
+    return(naValue)
   } else if (n == 1L) {
-    zeroValue <- 0;
-    storage.mode(zeroValue) <- storage.mode(x);
-    return(zeroValue);
+    zeroValue <- 0
+    storage.mode(zeroValue) <- storage.mode(x)
+    return(zeroValue)
   }
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- weightedMedian(x, w=w, na.rm=NA);
+    center <- weightedMedian(x, w=w, na.rm=NA)
   }
 
   # Estimate the standard deviation
-  x <- abs(x - center);
-  sigma <- weightedMedian(x, w=w, na.rm=NA);
-  x <- w <- NULL; # Not needed anymore
+  x <- abs(x - center)
+  sigma <- weightedMedian(x, w=w, na.rm=NA)
+  x <- w <- NULL  # Not needed anymore
 
   # Rescale for normal distributions
-  sigma <- constant * sigma;
+  sigma <- constant * sigma
 
-  sigma;
+  sigma
 }
 
 

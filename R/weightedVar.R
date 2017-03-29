@@ -39,13 +39,13 @@
 #' @export
 weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   # Argument 'x':
-  n <- length(x);
+  n <- length(x)
 
   # Argument 'w':
   if (is.null(w)) {
     w <- rep(1, times=n)
   } else if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n)
   } else if (!is.null(idxs)) {
     # Apply subset on 'w'
     w <- w[idxs]
@@ -67,43 +67,43 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   use_0.14.2 <- (identical(method, "0.14.2"))
 
 
-  naValue <- NA;
-  storage.mode(naValue) <- storage.mode(x);
+  naValue <- NA
+  storage.mode(naValue) <- storage.mode(x)
 
 
   # Remove values with zero (and negative) weight. This will:
   #  1) take care of the case when all weights are zero,
   #  2) it will most likely speed up the sorting.
-  tmp <- (w > 0);
+  tmp <- (w > 0)
   if (!all(tmp)) {
-    x <- .subset(x, tmp);
-    w <- .subset(w, tmp);
-    n <- length(x);
+    x <- .subset(x, tmp)
+    w <- .subset(w, tmp)
+    n <- length(x)
   }
-  tmp <- NULL; # Not needed anymore
+  tmp <- NULL  # Not needed anymore
 
   # Drop missing values?
   if (na.rm) {
-    keep <- which(!is.na(x) & !is.na(w));
-    x <- .subset(x, keep);
-    w <- .subset(w, keep);
-    n <- length(x);
-    keep <- NULL; # Not needed anymore
+    keep <- which(!is.na(x) & !is.na(w))
+    x <- .subset(x, keep)
+    w <- .subset(w, keep)
+    n <- length(x)
+    keep <- NULL  # Not needed anymore
   } else if (anyMissing(x)) {
-    return(naValue);
+    return(naValue)
   }
 
   # Are any weights Inf? Then treat them with equal weight and all others
   # with weight zero.
-  tmp <- is.infinite(w);
+  tmp <- is.infinite(w)
   if (any(tmp)) {
-    keep <- tmp;
-    x <- .subset(x, keep);
-    n <- length(x);
-    w <- rep(1, times=n);
-    keep <- NULL; # Not needed anymore
+    keep <- tmp
+    x <- .subset(x, keep)
+    n <- length(x)
+    w <- rep(1, times=n)
+    keep <- NULL  # Not needed anymore
   }
-  tmp <- NULL; # Not needed anymore
+  tmp <- NULL  # Not needed anymore
 
 
   # Are there any values left to calculate the weighted variance of?
@@ -116,12 +116,12 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- sum(w*x);
+    center <- sum(w*x)
   }
 
   # Estimate the variance
-  x <- x - center; # Residuals
-  x <- x^2;        # Squared residuals
+  x <- x - center  # Residuals
+  x <- x^2         # Squared residuals
 
   ## Correction factor
   lambda <- wsum / (wsum - 1)
@@ -129,9 +129,9 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
 
   sigma2 <- lambda * sum(w*x)
 
-  x <- w <- NULL; # Not needed anymore
+  x <- w <- NULL  # Not needed anymore
 
-  sigma2;
+  sigma2
 }
 
 

@@ -38,17 +38,17 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
-  hasWeights <- !is.null(w);
+  hasWeights <- !is.null(w)
   if (hasWeights) {
-    n <- ncol(x);
+    n <- ncol(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n);
+      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w));
+      stop("Argument 'w' is not numeric: ", mode(w))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.");
+      stop("Argument 'w' has negative weights.")
     }
   }
 
@@ -62,66 +62,66 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
 
   if (hasWeights) {
     # Allocate results
-    m <- nrow(x);
+    m <- nrow(x)
     if (m == 0L)
-      return(double(0L));
+      return(double(0L))
 
     # Drop entries with zero weight? ...but keep NAs
-    idxs <- which(is.na(w) | w != 0);
-    nw <- length(idxs);
+    idxs <- which(is.na(w) | w != 0)
+    nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times=m));
+      return(rep(NaN, times=m))
     } else if (nw < n) {
-      w <- w[idxs];
-      x <- x[,idxs,drop=FALSE];
+      w <- w[idxs]
+      x <- x[,idxs,drop=FALSE]
     }
-    idxs <- NULL; # Not needed anymore
+    idxs <- NULL  # Not needed anymore
 
     # Has missing values?
     if (na.rm) {
       # Really?
-      na.rm <- anyMissing(x);
+      na.rm <- anyMissing(x)
     }
 
     if (na.rm) {
       # Indices of missing values
-      nas <- which(is.na(x));
+      nas <- which(is.na(x))
 
       # Weight matrix
-      W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=TRUE);
-      w <- NULL; # Not needed anymore
-      W[nas] <- NA;
-      wS <- rowSums(W, na.rm=TRUE);
+      W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=TRUE)
+      w <- NULL  # Not needed anymore
+      W[nas] <- NA
+      wS <- rowSums(W, na.rm=TRUE)
 
       # Standarized weights summing to one w/out missing values
-      W[nas] <- 0;
-      W <- W / wS;
+      W[nas] <- 0
+      W <- W / wS
 
-      x[nas] <- 0;
-      nas <- NULL; # Not needed anymore
+      x[nas] <- 0
+      nas <- NULL  # Not needed anymore
 
-      x <- W * x;
-      W <- NULL; # Not needed anymore
+      x <- W * x
+      W <- NULL  # Not needed anymore
     } else {
-      wS <- sum(w);
+      wS <- sum(w)
       # Standardize weights summing to one.
-      w <- w / wS;
+      w <- w / wS
 
       # Weighted values
-      ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop=TRUE];
+      ## SLOW: for (rr in 1:m) x[rr,] <- w * x[rr,,drop=TRUE]
       ## FAST:
       x <- t_tx_OP_y(x, w, OP="*", na.rm=FALSE)
 
-      w <- NULL; # Not needed anymore
+      w <- NULL  # Not needed anymore
     }
 
     # Here we know there are no missing value in the new 'x'
-    res <- rowSums(x, na.rm=FALSE);
+    res <- rowSums(x, na.rm=FALSE)
   } else {
-    res <- rowMeans(x, na.rm=na.rm);
+    res <- rowMeans(x, na.rm=na.rm)
   }
 
-  res;
+  res
 }
 
 
@@ -132,17 +132,17 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'w':
-  hasWeights <- !is.null(w);
+  hasWeights <- !is.null(w)
   if (hasWeights) {
-    n <- nrow(x);
+    n <- nrow(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n);
+      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w));
+      stop("Argument 'w' is not numeric: ", mode(w))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.");
+      stop("Argument 'w' has negative weights.")
     }
   }
 
@@ -156,66 +156,66 @@ colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...)
 
   if (hasWeights) {
     # Allocate results
-    m <- ncol(x);
+    m <- ncol(x)
     if (m == 0L)
-      return(double(0L));
+      return(double(0L))
 
     # Drop entries with zero weight? ...but keep NAs
-    idxs <- which(is.na(w) | w != 0);
-    nw <- length(idxs);
+    idxs <- which(is.na(w) | w != 0)
+    nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times=m));
+      return(rep(NaN, times=m))
     } else if (nw < n) {
-      w <- w[idxs];
-      x <- x[idxs,,drop=FALSE];
+      w <- w[idxs]
+      x <- x[idxs,,drop=FALSE]
     }
-    idxs <- NULL; # Not needed anymore
+    idxs <- NULL  # Not needed anymore
 
     # Has missing values?
     if (na.rm) {
       # Really?
-      na.rm <- anyMissing(x);
+      na.rm <- anyMissing(x)
     }
 
     if (na.rm) {
       # Indices of missing values
-      nas <- which(is.na(x));
+      nas <- which(is.na(x))
 
       # Weight matrix
-      W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=FALSE);
-      w <- NULL; # Not needed anymore
-      W[nas] <- NA;
-      wS <- colSums(W, na.rm=TRUE);
+      W <- matrix(w, nrow=nrow(x), ncol=ncol(x), byrow=FALSE)
+      w <- NULL  # Not needed anymore
+      W[nas] <- NA
+      wS <- colSums(W, na.rm=TRUE)
 
       # Standarized weights summing to one w/out missing values
-      W[nas] <- 0;
+      W[nas] <- 0
       for (cc in 1:m) {
-        W[,cc] <- W[,cc,drop=TRUE] / wS[cc];
+        W[,cc] <- W[,cc,drop=TRUE] / wS[cc]
       }
 
-      x[nas] <- 0;
-      nas <- NULL; # Not needed anymore
+      x[nas] <- 0
+      nas <- NULL  # Not needed anymore
 
-      x <- W * x;
+      x <- W * x
 
-      W <- NULL; # Not needed anymore
+      W <- NULL  # Not needed anymore
     } else {
-      wS <- sum(w);
+      wS <- sum(w)
       # Standardize weights summing to one.
-      w <- w / wS;
+      w <- w / wS
 
       # Weighted values
-      x <- w*x;
-      ## SLIGHTLY SLOWER: x <- x_OP_y(x, w, OP="*");
+      x <- w*x
+      ## SLIGHTLY SLOWER: x <- x_OP_y(x, w, OP="*")
 
-      w <- NULL; # Not needed anymore
+      w <- NULL  # Not needed anymore
     }
 
     # Here we know there are no missing value in the new 'x'
-    res <- colSums(x, na.rm=FALSE);
+    res <- colSums(x, na.rm=FALSE)
   } else {
-    res <- colMeans(x, na.rm=na.rm);
+    res <- colMeans(x, na.rm=na.rm)
   }
 
-  res;
+  res
 }

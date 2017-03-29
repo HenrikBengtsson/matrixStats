@@ -43,13 +43,13 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x));
+    stop("Argument 'x' is not numeric: ", mode(x))
   }
-  n <- length(x);
+  n <- length(x)
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop("Argument 'na.rm' is not logical: ", mode(na.rm));
+    stop("Argument 'na.rm' is not logical: ", mode(na.rm))
   }
 
   # Argument 'mode':
@@ -62,5 +62,5 @@ sumOver <- function(x, idxs=NULL, na.rm=FALSE, mode=typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call(C_sumOver, x, idxs, na.rm, modeI);
+  .Call(C_sumOver, x, idxs, na.rm, modeI)
 }

@@ -37,18 +37,18 @@
 #' @export
 rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
   dim. <- as.integer(dim.)
-  hasNA <- TRUE;
+  hasNA <- TRUE
   res <- .Call(C_rowLogSumExps,
                lx, dim., rows, cols,
-               as.logical(na.rm), as.logical(hasNA), TRUE);
+               as.logical(na.rm), as.logical(hasNA), TRUE)
 
   # Preserve names
-  names <- rownames(lx);
+  names <- rownames(lx)
   if (!is.null(names)) {
-    names(res) <- names;
+    names(res) <- names
   }
 
-  res;
+  res
 }
 
 
@@ -56,16 +56,16 @@ rowLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), .
 #' @export
 colLogSumExps <- function(lx, rows=NULL, cols=NULL, na.rm=FALSE, dim.=dim(lx), ...) {
   dim. <- as.integer(dim.)
-  hasNA <- TRUE;
+  hasNA <- TRUE
   res <- .Call(C_rowLogSumExps,
                lx, dim., rows, cols,
-               as.logical(na.rm), as.logical(hasNA), FALSE);
+               as.logical(na.rm), as.logical(hasNA), FALSE)
 
   # Preserve names
-  names <- colnames(lx);
+  names <- colnames(lx)
   if (!is.null(names)) {
-    names(res) <- names;
+    names(res) <- names
   }
 
-  res;
+  res
 }

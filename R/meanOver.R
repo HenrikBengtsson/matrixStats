@@ -46,21 +46,21 @@ meanOver <- function(x, idxs=NULL, na.rm=FALSE, refine=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x));
+    stop("Argument 'x' is not numeric: ", mode(x))
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop("Argument 'na.rm' is not logical: ", mode(na.rm));
+    stop("Argument 'na.rm' is not logical: ", mode(na.rm))
   }
 
   # Argument 'refine':
   if (!is.logical(refine)) {
-    stop("Argument 'refine' is not logical: ", mode(refine));
+    stop("Argument 'refine' is not logical: ", mode(refine))
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Averaging
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call(C_meanOver, x, idxs, na.rm, refine);
+  .Call(C_meanOver, x, idxs, na.rm, refine)
 }

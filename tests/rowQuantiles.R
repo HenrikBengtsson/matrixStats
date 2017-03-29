@@ -82,7 +82,7 @@ for (kk in seq_len(K)) {
   dim(x) <- dim
 
   # Add NAs?
-  hasNA <- (kk %% 4) %in% c(3,0);
+  hasNA <- (kk %% 4) %in% c(3,0)
   if (hasNA) {
     cat("Adding NAs\n")
     nna <- sample(n, size=1)

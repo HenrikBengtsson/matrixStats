@@ -51,34 +51,34 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
   if (!is.matrix(X)) {
-    stop("Argument 'X' is not a matrix: ", class(X)[1L]);
+    stop("Argument 'X' is not a matrix: ", class(X)[1L])
   }
-  dimX <- dim(X);
+  dimX <- dim(X)
 
   # Argument 'W':
-  hasW <- !is.null(W);
+  hasW <- !is.null(W)
   if (hasW) {
     if (!is.matrix(W)) {
-      stop("Argument 'W' is not a matrix: ", class(W)[1L]);
+      stop("Argument 'W' is not a matrix: ", class(W)[1L])
     }
     if (any(dim(W) != dimX)) {
-      stop("Argument 'W' does not have the same dimension as 'X': ", paste(dim(W), collapse="x"), " != ", paste(dimX, collapse="x"));
+      stop("Argument 'W' does not have the same dimension as 'X': ", paste(dim(W), collapse="x"), " != ", paste(dimX, collapse="x"))
     }
     if (!is.numeric(W)) {
-      stop("Argument 'W' is not numeric: ", mode(W));
+      stop("Argument 'W' is not numeric: ", mode(W))
     }
   }
 
   # Argument 'S':
   if (!is.matrix(S)) {
-    stop("Argument 'S' is not a matrix: ", class(S)[1L]);
+    stop("Argument 'S' is not a matrix: ", class(S)[1L])
   }
-  nbrOfSets <- ncol(S);
-  setNames <- colnames(S);
+  nbrOfSets <- ncol(S)
+  setNames <- colnames(S)
 
   # Argument 'FUN':
   if (!is.function(FUN)) {
-    stop("Argument 'FUN' is not a function: ", mode(S));
+    stop("Argument 'FUN' is not a function: ", mode(S))
   }
 
   # Apply subset
@@ -89,51 +89,51 @@ rowAvgsPerColSet <- function(X, W=NULL, rows=NULL, S, FUN=rowMeans, ..., tFUN=FA
   }
 
   # Argument 'tFUN':
-  tFUN <- as.logical(tFUN);
+  tFUN <- as.logical(tFUN)
 
 
   # Check if missing values have to be excluded while averaging
-  na.rm <- (anyMissing(X) || anyMissing(S));
+  na.rm <- (anyMissing(X) || anyMissing(S))
 
   # Record names of dimension
-  rownamesX <- rownames(X);
-  dimnames(X) <- NULL;
+  rownamesX <- rownames(X)
+  dimnames(X) <- NULL
 
   # Average in sets of columns of X.
   Z <- apply(S, MARGIN=2L, FUN=function(jj) {
     # Extract set of columns from X
-    jj <- jj[is.finite(jj)];
-    Zjj <- X[,jj,drop=FALSE];
-    jj <- NULL; # Not needed anymore
+    jj <- jj[is.finite(jj)]
+    Zjj <- X[,jj,drop=FALSE]
+    jj <- NULL  # Not needed anymore
 
     if (tFUN) {
-      Zjj <- t(Zjj);
+      Zjj <- t(Zjj)
     }
 
     # Average by weights
     if (hasW) {
-      Wjj <- W[,jj,drop=FALSE];
-      Zjj <- FUN(Zjj, W=Wjj, ..., na.rm=na.rm);
-      Wjj <- NULL; # Not needed anymore
+      Wjj <- W[,jj,drop=FALSE]
+      Zjj <- FUN(Zjj, W=Wjj, ..., na.rm=na.rm)
+      Wjj <- NULL  # Not needed anymore
     } else {
-      Zjj <- FUN(Zjj, ..., na.rm=na.rm);
+      Zjj <- FUN(Zjj, ..., na.rm=na.rm)
     }
 
     # Sanity check
-    stopifnot(length(Zjj) == dimX[1L]);
+    stopifnot(length(Zjj) == dimX[1L])
 
     # Return set average
-    Zjj;
-  });
+    Zjj
+  })
 
   # Sanity check
-  stopifnot(dim(Z) == c(dimX[1L], nbrOfSets));
+  stopifnot(dim(Z) == c(dimX[1L], nbrOfSets))
 
   # Set names
-  rownames(Z) <- rownamesX;
-  colnames(Z) <- setNames;
+  rownames(Z) <- rownamesX
+  colnames(Z) <- setNames
 
-  Z;
+  Z
 }
 
 #' @rdname rowAvgsPerColSet
@@ -144,19 +144,19 @@ colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
   if (!is.matrix(X)) {
-    stop("Argument 'X' is not a matrix: ", class(X)[1L]);
+    stop("Argument 'X' is not a matrix: ", class(X)[1L])
   }
 
   # Argument 'W':
 
   # Argument 'S':
   if (!is.matrix(S)) {
-    stop("Argument 'S' is not a matrix: ", class(S)[1L]);
+    stop("Argument 'S' is not a matrix: ", class(S)[1L])
   }
 
   # Argument 'FUN':
   if (!is.function(FUN)) {
-    stop("Argument 'FUN' is not a function: ", mode(S));
+    stop("Argument 'FUN' is not a function: ", mode(S))
   }
 
   # Apply subset
@@ -166,28 +166,28 @@ colAvgsPerRowSet <- function(X, W=NULL, cols=NULL, S, FUN=colMeans, tFUN=FALSE, 
   }
 
   # Argument 'tFUN':
-  tFUN <- as.logical(tFUN);
+  tFUN <- as.logical(tFUN)
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Transpose
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  tX <- t(X);
+  tX <- t(X)
   if (is.null(W)) {
-    tW <- NULL;
+    tW <- NULL
   } else {
-    tW <- t(W);
+    tW <- t(W)
   }
 
   # ...
-  tZ <- rowAvgsPerColSet(X=tX, W=tW, S=S, FUN=FUN, tFUN=!tFUN, ...);
-  tX <- tW <- NULL; # Not needed anymore
+  tZ <- rowAvgsPerColSet(X=tX, W=tW, S=S, FUN=FUN, tFUN=!tFUN, ...)
+  tX <- tW <- NULL  # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Transpose back
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  Z <- t(tZ);
-  tZ <- NULL; # Not needed anymore
+  Z <- t(tZ)
+  tZ <- NULL  # Not needed anymore
 
-  Z;
+  Z
 }

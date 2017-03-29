@@ -32,7 +32,7 @@ rowTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   if (is.integer(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' is not of type integer or raw: ", class(x)[1]);
+    stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
   }
 
   # Apply subset
@@ -42,39 +42,39 @@ rowTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
 
   # Argument 'values':
   if (is.null(values)) {
-    values <- as.vector(x);
-    values <- unique(values);
+    values <- as.vector(x)
+    values <- unique(values)
     if (is.raw(values)) {
-      values <- as.integer(values);
-      values <- sort(values);
+      values <- as.integer(values)
+      values <- sort(values)
       # WORKAROUND: Cannot use "%#x" because it gives an error OSX with
       # R v2.9.0 devel (2009-01-13 r47593b) at R-forge. /HB 2009-06-20
-      names <- sprintf("%x", values);
-      names <- paste("0x", names, sep="");
-      values <- as.raw(values);
+      names <- sprintf("%x", values)
+      names <- paste("0x", names, sep="")
+      values <- as.raw(values)
     } else {
-      values <- sort(values);
-      names <- as.character(values);
+      values <- sort(values)
+      names <- as.character(values)
     }
   } else {
     if (is.raw(values)) {
-      names <- sprintf("%x", as.integer(values));
-      names <- paste("0x", names, sep="");
+      names <- sprintf("%x", as.integer(values))
+      names <- paste("0x", names, sep="")
     } else {
-      names <- as.character(values);
+      names <- as.character(values)
     }
   }
 
 
-  nbrOfValues <- length(values);
-  counts <- matrix(0L, nrow=nrow(x), ncol=nbrOfValues);
-  colnames(counts) <- names;
+  nbrOfValues <- length(values)
+  counts <- matrix(0L, nrow=nrow(x), ncol=nbrOfValues)
+  colnames(counts) <- names
 
   for (kk in seq_len(nbrOfValues)) {
-    counts[,kk] <- rowCounts(x, value=values[kk], ...);
+    counts[,kk] <- rowCounts(x, value=values[kk], ...)
   }
 
-  counts;
+  counts
 }
 
 
@@ -88,7 +88,7 @@ colTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
   if (is.integer(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' is not of type integer or raw: ", class(x)[1]);
+    stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
   }
 
   # Apply subset
@@ -98,45 +98,45 @@ colTabulates <- function(x, rows=NULL, cols=NULL, values=NULL, ...) {
 
   # Argument 'values':
   if (is.null(values)) {
-    values <- as.vector(x);
-    values <- unique(values);
+    values <- as.vector(x)
+    values <- unique(values)
     if (is.raw(values)) {
-      values <- as.integer(values);
-      values <- sort(values);
+      values <- as.integer(values)
+      values <- sort(values)
       # WORKAROUND: Cannot use "%#x" because it gives an error OSX with
       # R v2.9.0 devel (2009-01-13 r47593b) at R-forge. /HB 2009-06-20
-      names <- sprintf("%x", values);
-      names <- paste("0x", names, sep="");
-      values <- as.raw(values);
+      names <- sprintf("%x", values)
+      names <- paste("0x", names, sep="")
+      values <- as.raw(values)
     } else {
-      values <- sort(values);
-      names <- as.character(values);
+      values <- sort(values)
+      names <- as.character(values)
     }
   } else {
     if (is.raw(values)) {
-      names <- sprintf("%x", as.integer(values));
-      names <- paste("0x", names, sep="");
+      names <- sprintf("%x", as.integer(values))
+      names <- paste("0x", names, sep="")
     } else {
-      names <- as.character(values);
+      names <- as.character(values)
     }
   }
 
 
   transpose <- FALSE
   if (transpose) {
-##    nbrOfValues <- length(values);
-##    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x));
-##    rownames(counts) <- names;
+##    nbrOfValues <- length(values)
+##    counts <- matrix(0L, nrow=nbrOfValues, ncol=ncol(x))
+##    rownames(counts) <- names
 ##    for (kk in seq_len(nbrOfValues)) {
-##      counts[kk,] <- colCounts(x, value=values[kk], ...);
+##      counts[kk,] <- colCounts(x, value=values[kk], ...)
 ##    }
   } else {
-    nbrOfValues <- length(values);
-    counts <- matrix(0L, nrow=ncol(x), ncol=nbrOfValues);
-    colnames(counts) <- names;
+    nbrOfValues <- length(values)
+    counts <- matrix(0L, nrow=ncol(x), ncol=nbrOfValues)
+    colnames(counts) <- names
     for (kk in seq_len(nbrOfValues)) {
-      counts[,kk] <- colCounts(x, value=values[kk], ...);
+      counts[,kk] <- colCounts(x, value=values[kk], ...)
     }
   }
-  counts;
+  counts
 }

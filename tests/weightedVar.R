@@ -43,7 +43,8 @@ stopifnot(all.equal(m1, m0))
 message("- Uniform weights on the first five elements")
 idxs <- 1:5
 m0 <- var(x[1:5])
-w <- rep(0, times=n); w[idxs] <- 1
+w <- rep(0, times=n)
+w[idxs] <- 1
 m1 <- weightedVar(x, w=w)
 str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))
@@ -52,7 +53,8 @@ stopifnot(all.equal(m1, m0))
 message("- Uniform weights on every second elements")
 idxs <- seq(from=1, to=n, by=2)
 m0 <- var(x[idxs])
-w <- rep(0, times=n); w[idxs] <- 1
+w <- rep(0, times=n)
+w[idxs] <- 1
 m1 <- weightedVar(x, w=w)
 str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))
@@ -61,7 +63,8 @@ stopifnot(all.equal(m1, m0))
 message("- All weights are zero")
 idxs <- integer(0L)
 m0 <- var(x[idxs])
-w <- rep(0, times=n); w[idxs] <- 1
+w <- rep(0, times=n)
+w[idxs] <- 1
 m1 <- weightedVar(x, w=w)
 str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))
@@ -69,7 +72,8 @@ stopifnot(all.equal(m1, m0))
 message("- Infinite weights on first element")
 idxs <- 1L
 m0 <- var(x[idxs])
-w <- rep(0, times=n); w[idxs] <- Inf
+w <- rep(0, times=n)
+w[idxs] <- Inf
 m1 <- weightedVar(x, w=w)
 str(list(m0=m0, m1=m1))
 stopifnot(all.equal(m1, m0))

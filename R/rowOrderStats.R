@@ -42,11 +42,11 @@ rowOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
 
   # Check missing values
   if (anyMissing(x)) {
-    stop("Argument 'x' must not contain missing value");
+    stop("Argument 'x' must not contain missing value")
   }
 
   which <- as.integer(which)
-  .Call(C_rowOrderStats, x, dim., rows, cols, which);
+  .Call(C_rowOrderStats, x, dim., rows, cols, which)
 }
 
 
@@ -57,9 +57,9 @@ colOrderStats <- function(x, rows=NULL, cols=NULL, which, dim.=dim(x), ...) {
 
   # Check missing values
   if (anyMissing(x)) {
-    stop("Argument 'x' must not contain missing value");
+    stop("Argument 'x' must not contain missing value")
   }
 
   which <- as.integer(which)
-  .Call(C_colOrderStats, x, dim., rows, cols, which);
+  .Call(C_colOrderStats, x, dim., rows, cols, which)
 }

@@ -20,7 +20,7 @@
 #' @keywords internal
 #' @export
 signTabulate <- function(x, idxs=NULL, ...) {
-  res <- .Call(C_signTabulate, x, idxs);
-  names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)];
-  res;
+  res <- .Call(C_signTabulate, x, idxs)
+  names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")[1:length(res)]
+  res
 }

@@ -44,5 +44,5 @@ diff2 <- function(x, idxs=NULL, lag=1L, differences=1L, ...) {
   lag <- as.integer(lag)
   differences <- as.integer(differences)
 
-  .Call(C_diff2, x, idxs, lag, differences);
+  .Call(C_diff2, x, idxs, lag, differences)
 }

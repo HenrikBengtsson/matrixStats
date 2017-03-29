@@ -65,7 +65,7 @@ rowProds <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, method=c("direct", "e
     y[ii] <- prod(x[ii,,drop=TRUE], na.rm=na.rm)
   }
 
-  y;
+  y
 }
 
 

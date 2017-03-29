@@ -5,7 +5,7 @@ rmatrix <- function(nrow, ncol, mode=c("logical", "double", "integer", "index"),
     X <- sample(c(FALSE, TRUE), size=n, replace=TRUE)
   } else if (mode == "index") {
     X <- seq_len(n)
-    mode <- "integer";
+    mode <- "integer"
   } else {
     X <- runif(n, min=range[1], max=range[2])
   }
