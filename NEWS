@@ -29,9 +29,9 @@ BUG FIXES:
    at Aalto University School of Science, Finland, for troubleshooting and
    providing a fix.
 
- o logSumExp(c(-Inf, -Inf, ...)) would return NaN rather than -Inf (Issue #48).
-   Thanks to Jason Xu (University of Washington) for reporting and Brennan
-   Vincent for troubleshooting and contributing a fix.
+ o logSumExp(c(-Inf, -Inf, ...)) would return NaN rather than -Inf. Thanks to
+   Jason Xu (University of Washington) for reporting and Brennan Vincent for
+   troubleshooting and contributing a fix.
 
  
 Version: 0.50.1 [2015-12-14]
@@ -50,9 +50,9 @@ NEW FEATURES:
  o MAJOR FEATURE UPDATE: Subsetting arguments 'idxs', 'rows' and 'cols' were
    added to all functions such that the calculations are performed on the
    requested subset while avoiding creating a subsetted copy, i.e.
-   rowVars(x, cols=4:6) is a much faster and more memory efficient version
-   than rowVars(x[,4:6]) and even yet more efficient than
-   apply(x, MARGIN=1L, FUN=var). These features were added by Dongcan Jiang,
+   rowVars(x, cols = 4:6) is a much faster and more memory efficient version
+   than rowVars(x[, 4:6]) and even yet more efficient than
+   apply(x, MARGIN = 1L, FUN = var). These features were added by Dongcan Jiang,
    Peking University, with support from the Google Summer of Code program.
    A great thank you to Dongcan and to Google for making this possible.
  
@@ -77,8 +77,8 @@ BUG FIXES:
 
  o weightedVar(x) with length(x) = 1 returned 0 no NA. Same for weightedSd().
 
- o weightedMedian(x, w=NA_real_) returned 'x' rather than NA_real_. This only
-   happened for length(w) = 1.
+ o weightedMedian(x, w = NA_real_) returned 'x' rather than NA_real_. This
+   only happened for length(w) = 1.
 
  o allocArray(dim) failed for prod(dim) >= .Machine$integer.max.
 
@@ -99,10 +99,10 @@ Version: 0.14.1 [2015-06-17]
 
 BUG FIXES:
 
- o product(x, na.rm=FALSE) for integer 'x' with both zeros and NAs returned
+ o product(x, na.rm = FALSE) for integer 'x' with both zeros and NAs returned
    zero rather than NA.
 
- o weightedMean(x, w, na.rm=TRUE) did not handle missing values in 'x'
+ o weightedMean(x, w, na.rm = TRUE) did not handle missing values in 'x'
    properly, if it was an integer.  It would also return NaN if there were
    weights 'w' with missing values, whereas stats::weighted.mean() would skip
    such data points.  Now weightedMean() does the same.
@@ -110,8 +110,8 @@ BUG FIXES:
  o (col|row)WeightedMedians() did not handle infinite weights as
    weightedMedian() does.
 
- o x_OP_y(x, y, OP, na.rm=FALSE) returned garbage iff 'x' or 'y' had missing
-   values of type integer.
+ o x_OP_y(x, y, OP, na.rm = FALSE) returned garbage iff 'x' or 'y' had
+   missing values of type integer.
 
  o rowQuantiles() and rowIQRs() did not work for single-row matrices.
    Analogously for the corresponding column functions.
@@ -131,7 +131,7 @@ BUG FIXES:
    trumped NAs; any other integer would work as expected.  Note, this bug
    was not in colCumprods().
 
- o rowAnys(x, value, na.rm=FALSE) did not handle missing values in a numeric
+ o rowAnys(x, value, na.rm = FALSE) did not handle missing values in a numeric
    'x' properly.  Similarly, for non-numeric and non-logical 'x', row- and
    colAnys(), row- and colAlls(), anyValue() and allValue() did not handle
    when 'value' was a missing value.
@@ -157,8 +157,8 @@ NEW FEATURES:
  o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to 'center'.
    This is consistent with col- and rowVars().
 
- o CONSISTENCY: col- and rowVars() now use na.rm=FALSE as the default
-   (na.rm=TRUE was mistakenly introduced as the default in v0.9.7).
+ o CONSISTENCY: col- and rowVars() now use na.rm = FALSE as the default
+   (na.rm = TRUE was mistakenly introduced as the default in v0.9.7).
 
 PERFORMANCE AND MEMORY:
 
@@ -186,7 +186,7 @@ CODE REFACTORING:
 BUG FIXES:
 
  o all() and any() flavored methods on non-numeric and non-logical (e.g.
-   character) vectors and matrices with na.rm=FALSE did not give results
+   character) vectors and matrices with na.rm = FALSE did not give results
    consistent with all() and any() if there were missing values.  For
    example, with x <- c("a", NA, "b") we have all(x == "a") == FALSE and
    any(x == "a") == TRUE whereas our corresponding methods would return NA in
@@ -194,7 +194,7 @@ BUG FIXES:
    rowAlls(), and col- and rowAnys().  Added more package tests to cover
    these cases.
 
- o logSumExp(x, na.rm=TRUE) would return NA if all values were NA and
+ o logSumExp(x, na.rm = TRUE) would return NA if all values were NA and
    length(x) > 1.  Now it returns -Inf for all length(x):s.
  
  
@@ -232,10 +232,10 @@ NEW FEATURES:
 
  o Added iqrDiff() and (col|row)IqrDiffs().
 
- o CONSISTENCY: Now rowQuantiles(x, na.rm=TRUE) returns all NAs for rows with
-   missing values.  Analogously for colQuantiles(), colIQRs(), rowIQRs() and
-   iqr().  Previously, all these functions gave an error saying missing values
-   are not allowed.
+ o CONSISTENCY: Now rowQuantiles(x, na.rm = TRUE) returns all NAs for rows
+   with missing values.  Analogously for colQuantiles(), colIQRs(), rowIQRs()
+   and iqr().  Previously, all these functions gave an error saying missing
+   values are not allowed.
 
  o COMPLETENESS: Added corresponding "missing" vector functions for already
    existing column and row functions.  Similarly, added "missing" column and
@@ -258,10 +258,10 @@ PERFORMANCE AND MEMORY:
  o SPEEDUP: Made binCounts() and binMeans() a bit faster.
 
  o SPEEDUP: Implemented weightedMedian() in native code, which made it ~3-10
-   times faster.   Dropped support for ties="both", because it would have to
+   times faster.   Dropped support for ties = "both", because it would have to
    return two values in case of ties, which made the API unnecessarily
    complicated.  If really needed, then call the function twice with
-   ties="min" and ties="max".
+   ties = "min" and ties = "max".
 
  o SPEEDUP: (col|row)Anys() and (col|row)Alls() is now notably faster compared
    to previous versions.
@@ -280,7 +280,7 @@ CODE REFACTORING:
 
 BUG FIXES:
 
- o weightedMedian(..., ties="both") would give an error if there was a tie.
+ o weightedMedian(..., ties = "both") would give an error if there was a tie.
    Added package test for this case.
  
  
@@ -344,8 +344,8 @@ PERFORMANCE AND MEMORY:
    native code.
 
  o SPEEDUP: Made (col|row)Quantiles(x) faster for 'x' without missing values
-   (and default type=7L quantiles).  It should still be implemented in native
-   code though.
+   (and default type = 7L quantiles).  It should still be implemented in
+   native code though.
 
  o SPEEDUP: Made rowWeightedMeans() faster.
 
@@ -380,7 +380,7 @@ Version: 0.11.5 [2014-11-15]
 
 SIGNIFICANT CHANGES:
 
- o (col|row)Prods() now uses default method="direct" (was "expSumLog").
+ o (col|row)Prods() now uses default method = "direct" (was "expSumLog").
  
 PERFORMANCE AND MEMORY:
 
@@ -400,7 +400,7 @@ NEW FEATURES:
 
  o Added support for vector input to several of the row- and column methods
    as long as the "intended" matrix dimension is specified via argument 'dim'.
-   For instance, rowCounts(x, dim=c(nrow, ncol)) is the same as
+   For instance, rowCounts(x, dim = c(nrow, ncol)) is the same as
    rowCounts(matrix(x, nrow, ncol)), but more efficient since it avoids
    creating/allocating a temporary matrix.
 
@@ -459,7 +459,7 @@ SOFTWARE QUALITY:
 
  o ROBUSTNESS: Although unlikely, with long vectors support for binCounts()
    and binMeans() it is possible that a bin gets a higher count than what
-   can be represented by an R integer (.Machine$integer.max=2^31-1).  If
+   can be represented by an R integer (.Machine$integer.max = 2^31-1).  If
    that happens, an informative warning is generated and the bin count is
    set to .Machine$integer.max.  If this happens for binMeans(), the
    corresponding mean is still properly calculated and valid.
@@ -486,10 +486,10 @@ NEW FEATURES:
  o Added sumOver() and meanOver(), which are notably faster versions of
    sum(x[idxs]) and mean(x[idxs]).  Moreover, instead of having to do
    sum(as.numeric(x)) to avoid integer overflow when 'x' is an integer vector,
-   one can do sumOver(x, mode="numeric"), which avoids the extra copy created
-   when coercing to numeric (this numeric copy is also twice as large as the
-   integer vector).  Added package tests and benchmark reports for these
-   functions.
+   one can do sumOver(x, mode = "numeric"), which avoids the extra copy
+   created when coercing to numeric (this numeric copy is also twice as large
+   as the integer vector).  Added package tests and benchmark reports for
+   these functions.
  
  
 Version: 0.10.4 [2014-11-01]
@@ -499,7 +499,7 @@ PERFORMANCE AND MEMORY:
  o SPEEDUP: Made anyMissing(), logSumExp(), (col|row)Medians(),
    (col|row)Counts() slightly faster by making the native code assign
    the results directly to the native vector instead of to the R vector,
-   e.g. ansp[i] = v where ansp=REAL(ans) instead of REAL(ans)[i] = v.
+   e.g. ansp[i] = v where ansp = REAL(ans) instead of REAL(ans)[i] = v.
 
  o Added benchmark reports for anyMissing() and logSumExp().
  
@@ -761,7 +761,7 @@ PERFORMANCE AND MEMORY:
 
  o SPEEDUP: binCounts() and binMeans() now uses Hoare's Quicksort for
    presorting 'x' before counting/averaging.  They also no longer test in
-   every iteration (=for every data point) whether the last bin has been
+   every iteration (== for every data point) whether the last bin has been
    reached or not, but only after completing a bin.
  
  
@@ -795,7 +795,7 @@ Version: 0.7.1 [2013-04-23]
 NEW FEATURES:
 
  o Added argument 'preserveShape' to colRanks().  For backwardcompatibility
-   the default is preserveShape=FALSE, but it may change in the future.
+   the default is preserveShape = FALSE, but it may change in the future.
 
 BUG FIXES:
 
@@ -949,7 +949,7 @@ Version: 0.4.3 [2011-12-11]
 
 BUG FIXES:
 
- o rowMedians(..., na.rm=TRUE) did not handle NaN (only NA).  The reason for
+ o rowMedians(..., na.rm = TRUE) did not handle NaN (only NA).  The reason for
    this was the the native code used ISNA() to test for NA and NaN, but it
    should have been ISNAN(), which is opposite to how is.na() and is.nan() at
    the R level work.  Added system tests for this case.
@@ -1031,7 +1031,7 @@ Version: 0.1.9 [2010-02-03]
 
 BUG FIXES:
 
- o (col|row)WeightedMeans(..., na.rm=TRUE) would incorrectly treat missing
+ o (col|row)WeightedMeans(..., na.rm = TRUE) would incorrectly treat missing
    values as zeros.  Added corresponding redundancy tests (also for the median
    case).  Thanks Pierre Neuvial for reporting this.
  
