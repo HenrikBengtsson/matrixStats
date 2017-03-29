@@ -1,52 +1,35 @@
-###########################################################################/**
-# @RdocFunction anyMissing
-# \alias{colAnyMissings}
-# \alias{rowAnyMissings}
-#
-# @title "Checks if there are any missing values in an object or not"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage anyMissing
-#  @usage colAnyMissings
-#  @usage rowAnyMissings
-# }
-#
-# \arguments{
-#  \item{x}{A @vector, a @list, a @matrix, a @data.frame, or @NULL.}
-#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
-#     to operate over. If @NULL, no subsetting is done.}
-#  \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns @TRUE if a missing value was detected, otherwise @FALSE.
-# }
-#
-# \details{
-#   The implementation of this method is optimized for both speed and memory.
-#   The method will return @TRUE as soon as a missing value is detected.
-# }
-#
-# \examples{
-#  x <- rnorm(n=1000)
-#  x[seq(300,length(x),by=100)] <- NA
-#  stopifnot(anyMissing(x) == any(is.na(x)))
-# }
-#
-# @author "HB"
-#
-# \seealso{
-#   Starting with R v3.1.0, there is \code{anyNA()} in the \pkg{base},
-#   which provides the same functionality as \code{anyMissing()}.
-# }
-#
-# @keyword iteration
-# @keyword logic
-#*/###########################################################################
+#' Checks if there are any missing values in an object or not
+#' 
+#' Checks if there are any missing values in an object or not.
+#' 
+#' The implementation of this method is optimized for both speed and memory.
+#' The method will return \code{\link[base:logical]{TRUE}} as soon as a missing
+#' value is detected.
+#' 
+#' @param x A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a
+#' \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or
+#' \code{\link[base]{NULL}}.
+#' 
+#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
+#' elements (or rows and/or columns) to operate over. If
+#' \code{\link[base]{NULL}}, no subsetting is done.
+#' @param ... Not used.
+#' 
+#' @return Returns \code{\link[base:logical]{TRUE}} if a missing value was
+#' detected, otherwise \code{\link[base:logical]{FALSE}}.
+#' 
+#' @examples
+#'  x <- rnorm(n=1000)
+#'  x[seq(300,length(x),by=100)] <- NA
+#'  stopifnot(anyMissing(x) == any(is.na(x)))
+#' 
+#' @author Henrik Bengtsson
+#' 
+#' @seealso Starting with R v3.1.0, there is \code{anyNA()} in the \pkg{base},
+#' which provides the same functionality as \code{anyMissing()}.
+#' 
+#' @keywords iteration logic
+#' @export
 anyMissing <- function(x, idxs=NULL, ...) {
   ## All list or a data.frame?
   if (is.list(x)) {
@@ -61,11 +44,14 @@ anyMissing <- function(x, idxs=NULL, ...) {
   }
 }
 
-
+#' @rdname anyMissing
+#' @export
 colAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
   colAnys(x, rows, cols, value=NA, ...)
 }
 
+#' @rdname anyMissing
+#' @export
 rowAnyMissings <- function(x, rows=NULL, cols=NULL, ...) {
   rowAnys(x, rows, cols, value=NA, ...)
 }
