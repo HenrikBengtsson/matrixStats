@@ -10,7 +10,11 @@ SOFTWARE QUALITY:
    
  o ROBUSTNESS: Package now registers the native API using also
    R_useDynamicSymbols().
-   
+
+CODE REFACTORING:
+
+ o Now using roxygen for help and NAMESPACE (was R.oo::Rdoc).
+ 
  
 Version: 0.51.0 [2016-10-08]
 
