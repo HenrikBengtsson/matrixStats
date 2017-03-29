@@ -5,7 +5,7 @@ rowQuantiles_R <- function(x, probs, na.rm=FALSE, drop=TRUE, ...) {
     if (!na.rm && any(is.na(x))) {
       naValue <- NA_real_
       storage.mode(naValue) <- storage.mode(x)
-      rep(naValue, length(probs))
+      rep(naValue, times = length(probs))
 
     } else {
       as.vector(quantile(x, probs=probs, na.rm=na.rm, ...))

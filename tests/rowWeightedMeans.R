@@ -15,7 +15,7 @@ stopifnot(all.equal(xM2, xM0))
 
 
 # Weighted row averages (uniform weights)
-w <- rep(2.5, ncol(x))
+w <- rep(2.5, times = ncol(x))
 xM1 <- rowWeightedMeans(x, w=w)
 print(xM1)
 stopifnot(all.equal(xM1, xM0))

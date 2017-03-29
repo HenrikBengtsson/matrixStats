@@ -72,7 +72,7 @@ stopifnot(all.equal(yS, 0L))
 x <- 1:10
 bx <- rep(x, each=2L)
 yS <- binCounts(x, bx=bx)
-stopifnot(all.equal(yS, rep(c(0L,1L), length.out=length(bx)-1L)))
+stopifnot(all.equal(yS, rep(c(0L, 1L), length.out=length(bx)-1L)))
 ## NOTE: binCounts_hist() does not give the same last bin count
 
 

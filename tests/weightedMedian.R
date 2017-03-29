@@ -17,7 +17,7 @@ y2 <- weightedMedian(x)                   # 5.5
 stopifnot(all.equal(y1, y2))
 
 
-w <- rep(1, n)
+w <- rep(1, times = n)
 y1 <- weightedMedian(x, w)                 # 5.5 (default)
 y2a <- weightedMedian(x, ties="weighted")  # 5.5 (default)
 y2b <- weightedMedian(x, ties="min")       # 5
@@ -30,7 +30,7 @@ y3 <- weightedMedian(x, w)                # 5.5 (default)
 # Pull the median towards zero
 w[1] <- 5
 y1 <- weightedMedian(x, w)                # 3.5
-y <- c(rep(0,w[1]), x[-1])                # Only possible for integer weights
+y <- c(rep(0, times = w[1]), x[-1])       # Only possible for integer weights
 y2 <- median(y)                           # 3.5
 stopifnot(all.equal(y1,y2))
 
@@ -48,11 +48,11 @@ w[n] <- Inf
 y <- weightedMedian(x, w)                # 10
 
 # All weights set to zero
-w <- rep(0, n)
+w <- rep(0, times = n)
 y <- weightedMedian(x, w)                # NA
 
 x <- 1:4
-w <- rep(1, times=4)
+w <- rep(1, times = 4)
 for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
   for (ties in c("weighted", "mean", "min", "max")) {

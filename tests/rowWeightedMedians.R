@@ -13,7 +13,7 @@ xM2 <- colWeightedMedians(t(x))
 stopifnot(all.equal(xM2, xM0))
 
 # Weighted row medians (uniform weights)
-w <- rep(2.5, ncol(x))
+w <- rep(2.5, times = ncol(x))
 xM1 <- rowWeightedMedians(x, w=w)
 stopifnot(all.equal(xM1, xM0))
 xM2 <- colWeightedMedians(t(x), w=w)
