@@ -1,50 +1,39 @@
-###########################################################################/**
-# @RdocFunction rowQuantiles
-# @alias colQuantiles
-#
-# @title "Estimates quantiles for each row (column) in a matrix"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage rowQuantiles
-#  @usage colQuantiles
-# }
-#
-# \arguments{
-#  \item{x}{A @numeric NxK @matrix with N >= 0.}
-#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#    to operate over. If @NULL, no subsetting is done.}
-#  \item{probs}{A @numeric @vector of J probabilities in [0,1].}
-#  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
-#  \item{type}{An @integer specify the type of estimator.
-#    See @see "stats::quantile" for more details.}
-#  \item{...}{Additional arguments passed to @see "stats::quantile".}
-#  \item{drop}{If TRUE, singleton dimensions in the result are dropped,
-#    otherwise not.}
-# }
-#
-# \value{
-#   Returns a @numeric NxJ (KxJ) @matrix, where
-#   N (K) is the number of rows (columns) for which the J quantiles are
-#   calculated.
-# }
-#
-# @examples "../incl/rowQuantiles.Rex"
-#
-# @author "HB"
-#
-# \seealso{
-#   @see "stats::quantile".
-# }
-#
-# @keyword array
-# @keyword iteration
-# @keyword robust
-# @keyword univar
-#*/###########################################################################
+#' Estimates quantiles for each row (column) in a matrix
+#' 
+#' Estimates quantiles for each row (column) in a matrix.
+#' 
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with
+#' N >= 0.
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param probs A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J
+#' probabilities in [0,1].
+#' 
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' are excluded first, otherwise not.
+#' 
+#' @param type An \code{\link[base]{integer}} specify the type of estimator.
+#' See \code{\link[stats]{quantile}} for more details.
+#' 
+#' @param ... Additional arguments passed to \code{\link[stats]{quantile}}.
+#' 
+#' @param drop If TRUE, singleton dimensions in the result are dropped,
+#' otherwise not.
+#' 
+#' @return Returns a \code{\link[base]{numeric}} NxJ (KxJ)
+#' \code{\link[base]{matrix}}, where N (K) is the number of rows (columns) for
+#' which the J quantiles are calculated.
+#'
+#' @example incl/rowQuantiles.Rex
+#'
+#' @author Henrik Bengtsson
+#' @seealso \code{\link[stats]{quantile}}.
+#' @keywords array iteration robust univar
+#' 
+#' @export
 rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {
@@ -131,6 +120,8 @@ rowQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.2
   q
 }
 
+#' @rdname rowQuantiles
+#' @export
 colQuantiles <- function(x, rows=NULL, cols=NULL, probs=seq(from=0, to=1, by=0.25), na.rm=FALSE, type=7L, ..., drop=TRUE) {
   # Argument 'probs':
   if (anyMissing(probs)) {

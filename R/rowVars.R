@@ -1,50 +1,36 @@
-###########################################################################/**
-# @RdocFunction rowVars
-# @alias rowVars
-# @alias colVars
-# \alias{rowVars,matrix-method}
-# \alias{colVars,matrix-method}
-#
-# @title "Variance estimates for each row (column) in a matrix"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage rowVars
-#  @usage colVars
-# }
-#
-# \arguments{
-#  \item{x}{A @numeric NxK @matrix.}
-#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#     to operate over. If @NULL, no subsetting is done.}
-#  \item{center}{(optional) The center, defaults to the row means.}
-#  \item{na.rm}{If @TRUE, @NAs are excluded first, otherwise not.}
-#  \item{dim.}{An @integer @vector of length two specifying the
-#              dimension of \code{x}, also when not a @matrix.}
-#  \item{...}{Additional arguments passed to \code{rowMeans()} and
-#     \code{rowSums()}.}
-# }
-#
-# \value{
-#   Returns a @numeric @vector of length N (K).
-# }
-#
-# @examples "../incl/rowMethods.Rex"
-#
-# @author "HB"
-#
-# \seealso{
-#   See \code{rowMeans()} and \code{rowSums()} in @see "base::colSums".
-# }
-#
-# @keyword array
-# @keyword iteration
-# @keyword robust
-# @keyword univar
-#*/###########################################################################
+#' Variance estimates for each row (column) in a matrix
+#' 
+#' Variance estimates for each row (column) in a matrix.
+#' 
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param center (optional) The center, defaults to the row means.
+#' 
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' are excluded first, otherwise not.
+#' 
+#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
+#' length two specifying the dimension of \code{x}, also when not a
+#' \code{\link[base]{matrix}}.
+#' 
+#' @param ... Additional arguments passed to \code{rowMeans()} and
+#' \code{rowSums()}.
+#' 
+#' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length N (K).
+#'
+#' @example incl/rowMethods.Rex
+#'
+#' @author Henrik Bengtsson
+#' 
+#' @seealso See \code{rowMeans()} and \code{rowSums()} in
+#' \code{\link[base]{colSums}}().
+#' @keywords array iteration robust univar
+#' @export
 rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
 
@@ -103,6 +89,8 @@ rowVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(
 }
 
 
+#' @rdname rowVars
+#' @export
 colVars <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, center=NULL, dim.=dim(x), ...) {
   dim. <- as.integer(dim.)
 

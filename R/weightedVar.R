@@ -1,73 +1,42 @@
-############################################################################/**
-# @RdocFunction weightedVar
-# @alias weightedSd
-# @alias colWeightedVars
-# @alias rowWeightedVars
-# @alias colWeightedSds
-# @alias rowWeightedSds
-#
-# @title "Weighted variance and weighted standard deviation"
-#
-# \usage{
-#  @usage weightedVar
-#  @usage colWeightedVars
-#  @usage rowWeightedVars
-#
-#  @usage weightedSd
-#  @usage colWeightedSds
-#  @usage rowWeightedSds
-# }
-#
-#
-# \description{
-#   Computes a weighted variance / standard deviation of a numeric
-#   vector or across rows or columns of a matrix.
-# }
-#
-# \arguments{
-#   \item{x}{a @numeric @vector containing the values whose
-#            weighted variance is to be computed.}
-#   \item{w}{a vector of weights the same length as \code{x} giving the weights
-#            to use for each element of \code{x}. Negative weights are treated
-#            as zero weights. Default value is equal weight to all values.}
-#   \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
-#            to operate over. If @NULL, no subsetting is done.}
-#   \item{na.rm}{a logical value indicating whether @NA values in
-#            \code{x} should be stripped before the computation proceeds,
-#            or not.  If @NA, no check at all for @NAs is done.
-#            Default value is @NA (for efficiency).}
-#   \item{center}{Optional @numeric scalar specifying the center
-#            location of the data.  If @NULL, it is estimated from data.}
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a @numeric scalar.
-# }
-#
-# \section{Missing values}{
-#   Missing values are dropped at the very beginning, if argument
-#   \code{na.rm} is @TRUE, otherwise not.
-# }
-#
-# \section{Weighted variance}{
-#   The weights used by the weighted variance (and standard deviation)
-#   estimator should be consider so called \emph{frequency weights} such
-#   that \code{weightedVar(c(2,4,5), w=c(2,1,3)) == var(c(2, 2, 4, 5, 5, 5))}.
-#   Note that this means that the estimate is \emph{not} invariant
-#   to a scale factor on the weights, e.g. passing normalized weights
-#   will not give the same estimate as non-normalized weights.
-# }
-#
-# \seealso{
-#   For the non-weighted variance, see @see "stats::var".
-# }
-#
-# @author "HB"
-#
-# @keyword "univar"
-# @keyword "robust"
-#*/############################################################################
+#' Weighted variance and weighted standard deviation
+#' 
+#' Computes a weighted variance / standard deviation of a numeric vector or
+#' across rows or columns of a matrix.
+#' 
+#' 
+#' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
+#' the values whose weighted variance is to be computed.
+#' 
+#' @param w a vector of weights the same length as \code{x} giving the weights
+#' to use for each element of \code{x}. Negative weights are treated as zero
+#' weights. Default value is equal weight to all values.
+#' 
+#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
+#' elements (or rows and/or columns) to operate over. If
+#' \code{\link[base]{NULL}}, no subsetting is done.
+#' 
+#' @param na.rm a logical value indicating whether \code{\link[base]{NA}}
+#' values in \code{x} should be stripped before the computation proceeds, or
+#' not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
+#' is done.  Default value is \code{\link[base]{NA}} (for efficiency).
+#' 
+#' @param center Optional \code{\link[base]{numeric}} scalar specifying the
+#' center location of the data.  If \code{\link[base]{NULL}}, it is estimated
+#' from data.
+#' 
+#' @param ... Not used.
+#' 
+#' @return Returns a \code{\link[base]{numeric}} scalar.
+#' 
+#' @section Missing values: Missing values are dropped at the very beginning,
+#' if argument \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.
+#' 
+#' @author Henrik Bengtsson
+#' 
+#' @seealso For the non-weighted variance, see \code{\link[stats]{var}}.
+#' 
+#' @keywords univar robust
+#' @export
 weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   # Argument 'x':
   n <- length(x);
@@ -165,11 +134,16 @@ weightedVar <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, center=NULL, ...) {
   sigma2;
 }
 
+
+#' @rdname weightedVar
+#' @export
 weightedSd <- function(...) {
   sqrt(weightedVar(...))
 }
 
 
+#' @rdname weightedVar
+#' @export
 rowWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -182,6 +156,9 @@ rowWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   apply(x, MARGIN=1L, FUN=weightedVar, w=w, na.rm=na.rm, ...)
 }
 
+
+#' @rdname weightedVar
+#' @export
 colWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -195,10 +172,15 @@ colWeightedVars <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
 }
 
 
+#' @rdname weightedVar
+#' @export
 rowWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   sqrt(rowWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
 }
 
+
+#' @rdname weightedVar
+#' @export
 colWeightedSds <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   sqrt(colWeightedVars(x=x, w=w, rows=rows, cols=cols, na.rm=na.rm, ...))
 }
