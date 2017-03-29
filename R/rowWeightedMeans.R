@@ -1,54 +1,38 @@
-###########################################################################/**
-# @RdocFunction rowWeightedMeans
-# @alias colWeightedMeans
-#
-# @title "Calculates the weighted means for each row (column) in a matrix"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage rowWeightedMeans
-#  @usage colWeightedMeans
-# }
-#
-# \arguments{
-#  \item{x}{A @numeric NxK @matrix.}
-#  \item{w}{A @numeric @vector of length K (N).}
-#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#    to operate over. If @NULL, no subsetting is done.}
-#  \item{na.rm}{If @TRUE, missing values are excluded from the calculation,
-#    otherwise not.}
-#  \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a @numeric @vector of length N (K).
-# }
-#
-# \details{
-#   The implementations of these methods are optimized for both speed
-#   and memory.
-#   If no weights are given, the corresponding
-#   \code{rowMeans()}/\code{colMeans()} is used.
-# }
-#
-# @examples "../incl/rowWeightedMeans.Rex"
-#
-# @author "HB"
-#
-# \seealso{
-#   See \code{rowMeans()} and \code{colMeans()} in @see "base::colSums"
-#   for non-weighted means.
-#   See also @see "stats::weighted.mean".
-# }
-#
-# @keyword array
-# @keyword iteration
-# @keyword robust
-# @keyword univar
-#*/###########################################################################
+#' Calculates the weighted means for each row (column) in a matrix
+#' 
+#' Calculates the weighted means for each row (column) in a matrix.
+#' 
+#' The implementations of these methods are optimized for both speed and
+#' memory.  If no weights are given, the corresponding
+#' \code{rowMeans()}/\code{colMeans()} is used.
+#' 
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' 
+#' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
+#' K (N).
+#' 
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#' 
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
+#' excluded from the calculation, otherwise not.
+#' 
+#' @param ... Not used.
+#' 
+#' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length N (K).
+#'
+#' @example incl/rowWeightedMeans.Rex
+#'
+#' @author Henrik Bengtsson
+#' 
+#' @seealso See \code{rowMeans()} and \code{colMeans()} in
+#' \code{\link[base]{colSums}}() for non-weighted means.  See also
+#' \code{\link[stats]{weighted.mean}}.
+#' 
+#' @keywords array iteration robust univar
+#' @export
 rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -141,7 +125,8 @@ rowWeightedMeans <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) 
 }
 
 
-
+#' @rdname rowWeightedMeans
+#' @export
 colWeightedMeans <- function(x, w=NULL,  rows=NULL, cols=NULL, na.rm=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
