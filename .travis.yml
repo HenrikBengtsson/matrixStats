@@ -51,8 +51,8 @@ matrix:
       env:
         - NB='w/ valgrind' ## Just a label
         - _R_CHECK_FULL_=TRUE
-	- _R_TEST_=SUBSET
-	- _R_SUBSET_TEST_=ROW_PREFIX
+        - _R_TEST_=SUBSET
+        - _R_SUBSET_TEST_=ROW_PREFIX
     - os: linux
       r: release
       addons:
@@ -63,8 +63,8 @@ matrix:
       env:
         - NB='w/ valgrind' ## Just a label
         - _R_CHECK_FULL_=TRUE
-	- _R_TEST_=SUBSET
-	- _R_SUBSET_TEST_=NOT_ROW_PREFIX
+        - _R_TEST_=SUBSET
+        - _R_SUBSET_TEST_=NOT_ROW_PREFIX
     - os: linux
       r: devel
     - os: osx
