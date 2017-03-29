@@ -1,96 +1,62 @@
-###########################################################################/**
-# @RdocFunction varDiff
-# @alias sdDiff
-# @alias madDiff
-# @alias iqrDiff
-# @alias colVarDiffs
-# @alias rowVarDiffs
-# @alias colSdDiffs
-# @alias rowSdDiffs
-# @alias colMadDiffs
-# @alias rowMadDiffs
-# @alias colIQRDiffs
-# @alias rowIQRDiffs
-#
-# @title "Estimation of scale based on sequential-order differences"
-#
-# \description{
-#   @get "title", corresponding to the scale estimates provided by
-#   @see "stats::var", @see "stats::sd", @see "stats::mad" and
-#   @see "stats::IQR".
-# }
-#
-# \usage{
-#  @usage varDiff
-#  @usage colVarDiffs
-#  @usage rowVarDiffs
-#
-#  @usage sdDiff
-#  @usage colSdDiffs
-#  @usage rowSdDiffs
-#
-#  @usage madDiff
-#  @usage colMadDiffs
-#  @usage rowMadDiffs
-#
-#  @usage iqrDiff
-#  @usage colIQRDiffs
-#  @usage rowIQRDiffs
-# }
-#
-# \arguments{
-#  \item{x}{A @numeric @vector of length N or a @numeric NxK @matrix.}
-#  \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
-#     to operate over. If @NULL, no subsetting is done.}
-#  \item{na.rm}{If @TRUE, @NAs are excluded, otherwise not.}
-#  \item{diff}{The positional distance of elements for which the
-#     difference should be calculated.}
-#  \item{trim}{A @double in [0,1/2] specifying the fraction of
-#     observations to be trimmed from each end of (sorted) \code{x}
-#     before estimation.}
-#  \item{constant}{A scale factor adjusting for asymptotically
-#     normal consistency.}
-#  \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a @numeric @vector of length 1, length N, or length K.
-# }
-#
-# @author "HB"
-#
-# \seealso{
-#   For the corresponding non-differentiated estimates, see
-#   @see "stats::var", @see "stats::sd", @see "stats::mad" and
-#   @see "stats::IQR".
-#   Internally, @see "diff2" is used which is a faster version
-#   of @see "base::diff".
-# }
-#
-# \details{
-#   Note that n-order difference MAD estimates, just like the ordinary
-#   MAD estimate by @see "stats::mad", apply a correction factor such
-#   that the estimates are consistent with the standard deviation
-#   under Gaussian distributions.
-#
-#   The interquartile range (IQR) estimates does \emph{not} apply such
-#   a correction factor.  If asymptotically normal consistency is wanted,
-#   the correction factor for IQR estimate is \code{1 / (2 * qnorm(3/4))},
-#   which is half of that used for MAD estimates, which is
-#   \code{1 / qnorm(3/4)}.  This correction factor needs to be applied
-#   manually, i.e. there is no \code{constant} argument for the IQR
-#   functions.
-# }
-#
-# \references{
-#  [1] J. von Neumann et al., \emph{The mean square successive difference}.
-#      Annals of Mathematical Statistics, 1941, 12, 153-162.\cr
-# }
-#
-# @keyword iteration
-# @keyword robust
-# @keyword univar
-#*/###########################################################################
+#' Estimation of scale based on sequential-order differences
+#' 
+#' Estimation of scale based on sequential-order differences, corresponding to
+#' the scale estimates provided by \code{\link[stats]{var}},
+#' \code{\link[stats]{sd}}, \code{\link[stats]{mad}} and
+#' \code{\link[stats]{IQR}}.
+#' 
+#' Note that n-order difference MAD estimates, just like the ordinary MAD
+#' estimate by \code{\link[stats]{mad}}, apply a correction factor such that
+#' the estimates are consistent with the standard deviation under Gaussian
+#' distributions.
+#' 
+#' The interquartile range (IQR) estimates does \emph{not} apply such a
+#' correction factor.  If asymptotically normal consistency is wanted, the
+#' correction factor for IQR estimate is \code{1 / (2 * qnorm(3/4))}, which is
+#' half of that used for MAD estimates, which is \code{1 / qnorm(3/4)}.  This
+#' correction factor needs to be applied manually, i.e. there is no
+#' \code{constant} argument for the IQR functions.
+#' 
+#' @aliases varDiff sdDiff madDiff iqrDiff colVarDiffs rowVarDiffs colSdDiffs
+#' rowSdDiffs colMadDiffs rowMadDiffs colIQRDiffs rowIQRDiffs
+#' 
+#' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
+#' N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' 
+#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
+#' elements (or rows and/or columns) to operate over. If
+#' \code{\link[base]{NULL}}, no subsetting is done.
+#' 
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' are excluded, otherwise not.
+#' 
+#' @param diff The positional distance of elements for which the difference
+#' should be calculated.
+#' 
+#' @param trim A \code{\link[base]{double}} in [0,1/2] specifying the fraction
+#' of observations to be trimmed from each end of (sorted) \code{x} before
+#' estimation.
+#' 
+#' @param constant A scale factor adjusting for asymptotically normal
+#' consistency.
+#' 
+#' @param ... Not used.
+#' 
+#' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length 1, length N, or length K.
+#' 
+#' @author Henrik Bengtsson
+#' 
+#' @seealso For the corresponding non-differentiated estimates, see
+#' \code{\link[stats]{var}}, \code{\link[stats]{sd}}, \code{\link[stats]{mad}}
+#' and \code{\link[stats]{IQR}}.  Internally, \code{\link{diff2}}() is used
+#' which is a faster version of \code{\link[base]{diff}}().
+#' 
+#' @references [1] J. von Neumann et al., \emph{The mean square successive
+#' difference}.  Annals of Mathematical Statistics, 1941, 12, 153-162.\cr
+#' 
+#' @keywords iteration robust univar
+#' @export
 varDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -132,6 +98,8 @@ varDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
 }
 
 
+#' @rdname varDiff
+#' @export
 sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -172,6 +140,8 @@ sdDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
 }
 
 
+#' @rdname varDiff
+#' @export
 madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -212,6 +182,8 @@ madDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, constant=1.4826,
 }
 
 
+#' @rdname varDiff
+#' @export
 iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -261,6 +233,8 @@ iqrDiff <- function(x, idxs=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
 }
 
 
+#' @rdname varDiff
+#' @export
 rowVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -270,6 +244,9 @@ rowVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, .
   apply(x, MARGIN=1L, FUN=varDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
+
+#' @rdname varDiff
+#' @export
 colVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -280,6 +257,8 @@ colVarDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, .
 }
 
 
+#' @rdname varDiff
+#' @export
 rowSdDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -289,6 +268,9 @@ rowSdDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ..
   apply(x, MARGIN=1L, FUN=sdDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
+
+#' @rdname varDiff
+#' @export
 colSdDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -299,6 +281,8 @@ colSdDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ..
 }
 
 
+#' @rdname varDiff
+#' @export
 rowMadDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -308,6 +292,9 @@ rowMadDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, .
   apply(x, MARGIN=1L, FUN=madDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
+
+#' @rdname varDiff
+#' @export
 colMadDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -318,6 +305,8 @@ colMadDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, .
 }
 
 
+#' @rdname varDiff
+#' @export
 rowIQRDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
@@ -327,6 +316,9 @@ rowIQRDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, .
   apply(x, MARGIN=1L, FUN=iqrDiff, na.rm=na.rm, diff=diff, trim=trim, ...)
 }
 
+
+#' @rdname varDiff
+#' @export
 colIQRDiffs <- function(x, rows=NULL, cols=NULL, na.rm=FALSE, diff=1L, trim=0, ...) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
