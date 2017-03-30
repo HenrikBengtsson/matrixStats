@@ -68,7 +68,7 @@ void rowRanksWithTies_Average_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t nc
 void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
 */
 
-#define METHOD_TEMPLATE_H "rowRanksWithTies_TYPE_TIES-template.h"
+#define METHOD_TEMPLATE_H "rowRanksWithTies_lowlevel_template.h"
 #define RETURN_TYPE void
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
 

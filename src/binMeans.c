@@ -17,10 +17,10 @@ void binMeans_R(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xl
 */
 
 #define BIN_BY 'L'
-#include "binMeans-BINBY-template.h"
+#include "binMeans_lowlevel_template.h"
 
 #define BIN_BY 'R'
-#include "binMeans-BINBY-template.h"
+#include "binMeans_lowlevel_template.h"
 
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {

@@ -17,10 +17,10 @@ void binCounts_R(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
 */
 
 #define BIN_BY 'L'
-#include "binCounts-BINBY-template.h"
+#include "binCounts_lowlevel_template.h"
 
 #define BIN_BY 'R'
-#include "binCounts-BINBY-template.h"
+#include "binCounts_lowlevel_template.h"
 
 
 SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
