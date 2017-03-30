@@ -11,6 +11,14 @@
 #include "utils.h"
 
 
+/*
+Native API (dynamically generated via macros):
+
+int anyMissing_internal_noIdxs(SEXP x, void *idxs, R_xlen_t nidxs)
+int anyMissing_internal_intIdxs(SEXP x, void *idxs, R_xlen_t nidxs)
+int anyMissing_internal_realIdxs(SEXP x, void *idxs, R_xlen_t nidxs)
+*/
+
 #define METHOD anyMissing
 #define METHOD_NAME anyMissing_internal
 #define RETURN_TYPE int

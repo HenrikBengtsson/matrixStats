@@ -18,6 +18,14 @@
 #include "utils.h"
 
 
+/*
+Native API (dynamically generated via macros):
+
+double logSumExp_double_noIdxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
+double logSumExp_double_intIdxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
+double logSumExp_double_realIdxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
+*/
+
 #define METHOD logSumExp
 #define METHOD_NAME logSumExp_double
 #define RETURN_TYPE double

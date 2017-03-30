@@ -8,6 +8,16 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+double meanOver_Integer_noIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Integer_intIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Integer_realIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Real_noIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Real_intIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Real_realIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+*/
 
 #define METHOD meanOver
 #define RETURN_TYPE double

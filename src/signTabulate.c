@@ -8,6 +8,16 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+void signTabulate_Integer_noIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_Integer_intIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_Integer_realIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_Real_noIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_Real_intIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_Real_realIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+*/
 
 #define METHOD signTabulate
 #define RETURN_TYPE void

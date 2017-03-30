@@ -9,6 +9,17 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+double sumOver_Integer_noIdxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Integer_intIdxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Integer_realIdxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Real_noIdxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Real_intIdxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Real_realIdxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+*/
+
 #define METHOD sumOver
 #define RETURN_TYPE double
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode

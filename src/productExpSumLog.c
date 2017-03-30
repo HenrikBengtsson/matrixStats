@@ -8,6 +8,16 @@
 #include "types.h" 
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+double productExpSumLog_Integer_noIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Integer_intIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Integer_realIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Real_noIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Real_intIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Real_realIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+*/
 
 #define METHOD productExpSumLog
 #define RETURN_TYPE double

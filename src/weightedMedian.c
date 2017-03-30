@@ -9,6 +9,17 @@
 #include "utils.h"
 #include <R_ext/Error.h>
 
+/*
+Native API (dynamically generated via macros):
+
+double weightedMedian_Integer_noIdxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_Integer_intIdxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_Integer_realIdxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_Real_noIdxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_Real_intIdxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_Real_realIdxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+*/
+
 #define METHOD weightedMedian
 #define RETURN_TYPE double
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties

@@ -9,6 +9,17 @@
 #include "utils.h"
 #include <R_ext/Error.h>
 
+/*
+Native API (dynamically generated via macros):
+
+double weightedMean_Integer_noIdxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_Integer_intIdxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_Integer_realIdxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_Real_noIdxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_Real_intIdxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_Real_realIdxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+*/
+
 #define METHOD weightedMean
 #define RETURN_TYPE double
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine

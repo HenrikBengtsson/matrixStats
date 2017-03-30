@@ -9,6 +9,13 @@
 #include "utils.h"
 #include <R_ext/Error.h>
 
+/*
+Native API (dynamically generated via macros):
+
+void binCounts_L(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
+void binCounts_R(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
+*/
+
 #define BIN_BY 'L'
 #include "binCounts-BINBY-template.h"
 
