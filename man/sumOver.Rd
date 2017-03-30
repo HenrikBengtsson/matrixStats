@@ -23,8 +23,9 @@ of the return value.  Default is to use the same mode as argument \code{x}.}
 }
 \value{
 Returns a scalar of the data type specified by argument \code{mode}.
-If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum} is
-outside the range of defined integer values.
+If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}
+(or any of the intermediate sums \code{sum(x[1:n])}) is outside the range
+of defined integer values.
 }
 \description{
 Computes the sum of all or a subset of values.
