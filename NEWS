@@ -31,7 +31,8 @@ SOFTWARE QUALITY:
 
 CODE REFACTORING:
 
- o Cleanup native low-level function names.
+ o Cleaned up native low-level API and renamed native source code files
+   to make it easier to navigate the native API.
  
  o Now using roxygen for help and NAMESPACE (was R.oo::Rdoc).
 
