@@ -29,6 +29,11 @@
 #' @keywords utilities
 #' @export
 rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
+  # Argument 'x':
+  if (!is.matrix(x) && !is.vector(x)) {
+    stop("Argument 'x' is not a matrix or a vector: ", class(x)[1])
+  }
+  
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows)) {
@@ -54,6 +59,11 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
 #' @rdname rowCollapse
 #' @export
 colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
+  # Argument 'x':
+  if (!is.matrix(x) && !is.vector(x)) {
+    stop("Argument 'x' is not a matrix or a vector: ", class(x)[1])
+  }
+  
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(cols)) {

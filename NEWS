@@ -3,6 +3,17 @@ Package: matrixStats
 
 Version: 0.51.0-9000 [2017-03-29]
 
+SIGNIFICANT CHANGES:
+
+ o The package API is only intended for matrices and vectors of type
+   numeric, integer and logical.  However, a few functions would still
+   return if called with a data.frame.  This was never intended to work
+   and is now an error.  Specifically, functions colAlls(), colAnys(),
+   colProds(), colQuantiles(), colIQRs(), colWeightedMeans(),
+   colWeightedMedians(), and colCollapse() now produce errors an informative
+   error message if called with data.frames.  Same for the corresponding
+   row- functions.
+
 SOFTWARE QUALITY:
 
  o Continuous-integration testing is now also done on macOS, in addition to
@@ -22,6 +33,7 @@ BUG FIXES:
  o rowAnys(x) on numeric matrices 'x' would return rowAnys(x == 1) and
    not rowAnys(x != 0).  Same for colAnys(), rowAlls(), and colAlls().
    Thanks Richard Cotton for reporting on this.
+   
    
  
 Version: 0.51.0 [2016-10-08]

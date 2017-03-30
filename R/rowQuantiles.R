@@ -38,6 +38,11 @@
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+  # Argument 'x':
+  if (!is.matrix(x)) {
+    stop("Argument 'x' is not a matrix: ", class(x)[1])
+  }
+  
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -129,6 +134,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+  # Argument 'x':
+  if (!is.matrix(x)) {
+    stop("Argument 'x' is not a matrix: ", class(x)[1])
+  }
+  
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")

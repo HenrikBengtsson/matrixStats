@@ -39,6 +39,11 @@
 #' @export
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ...) {
+  # Argument 'x':
+  if (!is.matrix(x)) {
+    stop("Argument 'x' is not a matrix: ", class(x)[1])
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -74,6 +79,11 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ...) {
+  # Argument 'x':
+  if (!is.matrix(x)) {
+    stop("Argument 'x' is not a matrix: ", class(x)[1])
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]

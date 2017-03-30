@@ -58,7 +58,11 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 0L, na.rm, hasNAs)
     as.logical(counts)
   } else {
-    if (is.vector(x)) dim(x) <- dim.
+    if (is.vector(x)) {
+      dim(x) <- dim.
+    } else if (!is.matrix(x)) {
+      stop("Argument 'x' is not a matrix or a vector: ", class(x)[1])
+    }
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -92,7 +96,11 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 0L, na.rm, hasNAs)
     as.logical(counts)
   } else {
-    if (is.vector(x)) dim(x) <- dim.
+    if (is.vector(x)) {
+      dim(x) <- dim.
+    } else if (!is.matrix(x)) {
+      stop("Argument 'x' is not a matrix or a vector: ", class(x)[1])
+    }
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -154,7 +162,11 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 1L, na.rm, hasNAs)
     as.logical(counts)
   } else {
-    if (is.vector(x)) dim(x) <- dim.
+    if (is.vector(x)) {
+      dim(x) <- dim.
+    } else if (!is.matrix(x)) {
+      stop("Argument 'x' is not a matrix or a vector: ", class(x)[1])
+    }
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -188,7 +200,11 @@ colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 1L, na.rm, hasNAs)
     as.logical(counts)
   } else {
-    if (is.vector(x)) dim(x) <- dim.
+    if (is.vector(x)) {
+      dim(x) <- dim.
+    } else if (!is.matrix(x)) {
+      stop("Argument 'x' is not a matrix or a vector: ", class(x)[1])
+    }
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
