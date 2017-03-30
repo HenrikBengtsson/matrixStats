@@ -15,11 +15,11 @@ SIGNIFICANT CHANGES:
    row- functions.
 
  o Since anyNA() is a built-in function since R (>= 3.1.0), please use that
-   instead of \code{anyMissing()} part of this package.  The latter will
-   eventually be deprecated.  For consistency with the anyNA() name,
-   colAnyNAs() and rowAnyNAs() are now also available replacing the
-   identically colAnyMissings() and rowAnyMissings() functions, which will
-   also be deprecated in a future release.
+   instead of anyMissing() part of this package.  The latter will eventually
+   be deprecated.  For consistency with the anyNA() name, colAnyNAs() and
+   rowAnyNAs() are now also available replacing the identically
+   colAnyMissings() and rowAnyMissings() functions, which will also be
+   deprecated in a future release.
 
 SOFTWARE QUALITY:
 
