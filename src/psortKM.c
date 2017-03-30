@@ -13,8 +13,8 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include <R_ext/Utils.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 
 void psortKM_C(double *x, R_xlen_t nx, R_xlen_t k, R_xlen_t m, double *ans) {
