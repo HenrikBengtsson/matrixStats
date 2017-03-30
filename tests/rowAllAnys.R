@@ -77,7 +77,7 @@ for (kk in 1:3) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: integer
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(rep(1:28, length.out = 20 * 5), nrow = 20, ncol = 5)
+x <- matrix(rep(1:28, length.out = 20 * 5), nrow = 10, ncol = 5)
 x[2, ] <- 7L
 x[3, 1] <- 7L
 x[2:3, 3:4] <- NA_integer_
@@ -115,6 +115,40 @@ for (na.rm in c(FALSE, TRUE)) {
 }
 
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# rowAlls(x) et al. on numeric 'x' with logical 'value'
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+x <- matrix(0, nrow = 4L, ncol = 4L)
+x[2:4, 2] <- (1:3) / 3
+x[2, 2:4] <- (1:3) / 3
+x[3:4, 3] <- (3:4) / 3
+x[3, 3:4] <- (3:4) / 3
+x[4, 4] <- NA_real_
+
+for (na.rm in c(FALSE, TRUE)) {
+  y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = any, na.rm = na.rm))
+  y <- rowAnys(x, na.rm = na.rm)
+  stopifnot(identical(y, y0))
+  
+  y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = any, na.rm = na.rm))
+  y <- colAnys(x, na.rm = na.rm)
+  stopifnot(identical(y, y0))
+  
+  y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = all, na.rm = na.rm))
+  y <- rowAlls(x, na.rm = na.rm)
+  stopifnot(identical(y, y0))
+  
+  y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = all, na.rm = na.rm))
+  y <- colAlls(x, na.rm = na.rm)
+  stopifnot(identical(y, y0))
+  print(y0)
+} ## for (na.rm ...)
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Data type: character (not sure if this should be supported)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 all_R <- function(x, value = TRUE, ...) {
   if (is.na(value)) {
     all(is.na(x), ...)
@@ -131,9 +165,6 @@ any_R <- function(x, value = TRUE, ...) {
   }
 }
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Data type: character (not sure if this should be supported)
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(rep(letters, length.out = 20 * 5), nrow = 20, ncol = 5)
 x[2, ] <- "g"
 x[2:4, 3:4] <- NA_character_

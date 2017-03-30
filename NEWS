@@ -16,7 +16,13 @@ CODE REFACTORING:
  o Cleanup native low-level function names.
  
  o Now using roxygen for help and NAMESPACE (was R.oo::Rdoc).
- 
+
+BUG FIXES:
+
+ o rowAnys(x) on numeric matrices 'x' would return rowAnys(x == 1) and
+   not rowAnys(x != 0).  Same for colAnys(), rowAlls(), and colAlls().
+   Thanks Richard Cotton for reporting on this.
+   
  
 Version: 0.51.0 [2016-10-08]
 

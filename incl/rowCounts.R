@@ -1,16 +1,29 @@
-x <- matrix(FALSE, nrow = 10, ncol = 5)
-x[3:7, c(2, 4)] <- TRUE
-x[2:4, ] <- TRUE
-x[, 1] <- TRUE
-x[5, ] <- FALSE
-x[, 5] <- FALSE
-
+x <- matrix(0:11, nrow = 4, ncol = 3)
+x[2:3, 2:3] <- 2:5
+x[3, 3] <- NA_integer_
 print(x)
 
-print(rowCounts(x))       # 1 4 4 4 0 3 3 1 1 1
-print(colCounts(x))       # 9 5 3 5 0
+print(rowCounts(x, value = 2))
+## [1]  0  1 NA  0
+print(colCounts(x, value = 2))
+## [1]  1  1 NA
+print(colCounts(x, value = NA_integer_))
+## [1] 0 0 1
 
-print(rowAnys(x))
-print(which(rowAnys(x)))  # 1  2  3  4  6  7  8  9 10
-print(colAnys(x))
-print(which(colAnys(x)))  # 1 2 3 4
+print(rowCounts(x, value = 2, na.rm = TRUE))
+## [1] 0 1 1 0
+print(colCounts(x, value = 2, na.rm = TRUE))
+## [1] 1 1 0
+
+print(rowAnys(x, value = 2))
+## [1] FALSE  TRUE  TRUE FALSE
+print(rowAnys(x, value = NA_integer_))
+## [1] FALSE FALSE  TRUE FALSE
+
+print(colAnys(x, value = 2))
+## [1] TRUE TRUE   NA
+print(colAnys(x, value = 2, na.rm = TRUE))
+## [1]  TRUE  TRUE FALSE
+
+print(colAlls(x, value = 2))
+## [1] FALSE FALSE FALSE

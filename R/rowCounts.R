@@ -3,11 +3,11 @@
 #' Counts the number of TRUE values in each row (column) of a matrix.
 #'
 #' These functions takes either a matrix or a vector as input. If a vector,
-#' then argument \code{dim} must be specified and fulfill \code{prod(dim) ==
+#' then argument \code{dim.} must be specified and fulfill \code{prod(dim.) ==
 #' length(x)}.  The result will be identical to the results obtained when
-#' passing \code{matrix(x, nrow = dim[1L], ncol = dim[2L])}, but avoids having to
-#' temporarily create/allocate a matrix, if only such is needed only for these
-#' calculations.
+#' passing \code{matrix(x, nrow = dim.[1L], ncol = dim.[2L])}, but avoids
+#' having to temporarily create/allocate a matrix, if only such is needed
+#' only for these calculations.
 #'
 #' @param x An NxK \code{\link[base]{matrix}} or an N * K
 #' \code{\link[base]{vector}}.
@@ -28,13 +28,12 @@
 #' @param ... Not used.
 #'
 #' @return \code{rowCounts()} (\code{colCounts()}) returns an
-#' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).  The
-#' other methods returns a \code{\link[base]{logical}}
-#' \code{\link[base]{vector}} of length N (K).
+#' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
 #'
 #' @example incl/rowCounts.R
 #'
 #' @author Henrik Bengtsson
+#' @seealso rowAlls
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
@@ -172,154 +171,4 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   }
 
   as.integer(counts)
-}
-
-
-#' @rdname rowCounts
-#' @export
-rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 0L, na.rm, hasNAs)
-    as.logical(counts)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      rowAlls(is.na(x), na.rm = na.rm, dim. = dim., ...)
-    } else {
-      rowAlls(x == value, na.rm = na.rm, dim. = dim., ...)
-    }
-  }
-}
-
-
-#' @rdname rowCounts
-#' @export
-colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 0L, na.rm, hasNAs)
-    as.logical(counts)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      colAlls(is.na(x), na.rm = na.rm, dim. = dim., ...)
-    } else {
-      colAlls(x == value, na.rm = na.rm, dim. = dim., ...)
-    }
-  }
-}
-
-
-#' @rdname rowCounts
-#' @export
-allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    counts <- .Call(C_count, x, idxs, value, 0L, na.rm, hasNAs)
-    as.logical(counts)
-  } else {
-    # Apply subset
-    if (!is.null(idxs)) x <- x[idxs]
-
-    if (is.na(value)) {
-      allValue(is.na(x), na.rm = na.rm, ...)
-    } else {
-      allValue(x == value, na.rm = na.rm, ...)
-    }
-  }
-}
-
-
-#' @rdname rowCounts
-#' @export
-rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 1L, na.rm, hasNAs)
-    as.logical(counts)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      rowAnys(is.na(x), na.rm = na.rm, dim. = dim., ...)
-    } else {
-      rowAnys(x == value, na.rm = na.rm, dim. = dim., ...)
-    }
-  }
-}
-
-
-#' @rdname rowCounts
-#' @export
-colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 1L, na.rm, hasNAs)
-    as.logical(counts)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      colAnys(is.na(x), na.rm = na.rm, dim. = dim., ...)
-    } else {
-      colAnys(x == value, na.rm = na.rm, dim. = dim., ...)
-    }
-  }
-}
-
-
-#' @rdname rowCounts
-#' @export
-anyValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    counts <- .Call(C_count, x, idxs, value, 1L, na.rm, hasNAs)
-    as.logical(counts)
-  } else {
-    # Apply subset
-    if (!is.null(idxs)) x <- x[idxs]
-
-    if (is.na(value)) {
-      anyValue(is.na(x), na.rm = na.rm, ...)
-    } else {
-      anyValue(x == value, na.rm = na.rm, ...)
-    }
-  }
 }
