@@ -26,12 +26,12 @@ for (ii = 0; ii < n; ++ ii) {             \
 
 #define X_TYPE 'i'
 #define SUBSETTED_DEFAULT SUBSETTED_INTEGER
-#include "validateIndices_TYPE-template.h"
+#include "validateIndices_lowlevel_template.h"
 #undef SUBSETTED_DEFAULT
 
 #define X_TYPE 'r'
 #define SUBSETTED_DEFAULT SUBSETTED_REAL
-#include "validateIndices_TYPE-template.h"
+#include "validateIndices_lowlevel_template.h"
 #undef SUBSETTED_DEFAULT
 
 

@@ -39,7 +39,7 @@ void rowCummaxs_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *r
 
 #define METHOD rowCummaxs
 #define COMP '>'
-#define METHOD_TEMPLATE_H "rowCumMinMaxs_TYPE-template.h"
+#define METHOD_TEMPLATE_H "rowCumMinMaxs_lowlevel_template.h"
 #define X_TYPE 'i'
 #include "000.templates-gen-matrix.h"
 #define X_TYPE 'r'

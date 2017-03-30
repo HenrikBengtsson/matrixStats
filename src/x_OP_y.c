@@ -439,7 +439,7 @@ void x_OP_y_Div_dbl_dbl_drows_icols_didxs(double *x, R_xlen_t nrow, R_xlen_t nco
 void x_OP_y_Div_dbl_dbl_drows_dcols_didxs(double *x, R_xlen_t nrow, R_xlen_t ncol, double *y, R_xlen_t ny, void *xrows, R_xlen_t nxrows, void *xcols, R_xlen_t nxcols, void *yidxs, R_xlen_t nyidxs, int byrow, int commute, int narm, int hasna, double *ans, R_xlen_t n)
 */
 
-#define METHOD_TEMPLATE_H "x_OP_y_TYPE-template.h"
+#define METHOD_TEMPLATE_H "x_OP_y_lowlevel_template.h"
 #define RETURN_TYPE void
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, \
                    Y_C_TYPE *y, R_xlen_t ny, \
