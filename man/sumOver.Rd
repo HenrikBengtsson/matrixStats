@@ -7,8 +7,8 @@
 sumOver(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-N.}
+\item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+length N.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
@@ -24,8 +24,10 @@ of the return value.  Default is to use the same mode as argument \code{x}.}
 \value{
 Returns a scalar of the data type specified by argument \code{mode}.
 If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}
-(or any of the intermediate sums \code{sum(x[1:n])}) is outside the range
-of defined integer values.
+is outside the range of defined integer values.
+Note that the intermediate sum (\code{sum(x[1:n])}) is internally
+represented as a floating point value and will therefor never be outside of
+the range.
 }
 \description{
 Computes the sum of all or a subset of values.
@@ -36,8 +38,10 @@ is faster and more memory efficient since it avoids the actual subsetting
 which requires copying of elements and garbage collection thereof.
 
 Furthermore, \code{sumOver(x, mode = "double")} is equivalent to
-\code{sum(as.numeric(x))}, but is much more memory efficient when \code{x}
-is an \code{\link[base]{integer}} vector.
+\code{sum(as.numeric(x))} and may therefore be used to avoid integer
+overflow, but at the same time is much more memory efficient that
+the regular \code{sum()} function when \code{x} is an
+\code{\link[base]{integer}} vector.
 }
 \examples{
 x <- 1:10
