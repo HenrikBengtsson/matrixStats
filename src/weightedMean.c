@@ -12,12 +12,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double weightedMean_Integer_aidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double weightedMean_Integer_iidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double weightedMean_Integer_didxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double weightedMean_Real_aidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double weightedMean_Real_iidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double weightedMean_Real_didxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_int_aidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_int_iidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_int_didxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_dbl_aidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_dbl_iidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_dbl_didxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine)
 */
 
 #define METHOD weightedMean
@@ -60,9 +60,9 @@ SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    avg = weightedMean_Real[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
+    avg = weightedMean_dbl[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
   } else if (isInteger(x)) {
-    avg = weightedMean_Integer[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
+    avg = weightedMean_int[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
   }
 
   /* Return results */

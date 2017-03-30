@@ -116,17 +116,17 @@ void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_
 void *validateIndices(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *type);
 
 
-static R_INLINE int IntegerFromReal(double x) {
+static R_INLINE int int_from_dbl(double x) {
   if (ISNAN(x)) return NA_INTEGER;
   if (x > INT_MAX || x <= INT_MIN) return NA_INTEGER;
   return x;
-} /* IntegerFromReal() */
+} /* int_from_dbl() */
 
 
-static R_INLINE double RealFromInteger(int x) {
+static R_INLINE double dbl_from_int(int x) {
   if (x == NA_INTEGER) return NA_REAL;
   return x;
-} /* RealFromInteger() */
+} /* dbl_from_int() */
 
 
 #define SWAP(type, x, y) { \

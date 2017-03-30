@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowOrderStats_<Integer|Real>[rowsType][colsType](ARGUMENTS_LIST)
+  void rowOrderStats_<int|dbl>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, R_xlen_t qq, X_C_TYPE *ans
@@ -89,7 +89,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   o CLEANUP: Moving away from R data types in low-level C functions.
  2013-01-13 [HB]
   o Merged rowOrderStatsReal() and rowOrderStatsInteger() into
-    one rowOrderStats_<Integer|Real>() templated function.
+    one rowOrderStats_<int|dbl>() templated function.
  2009-02-04 [HB]
   o BUG FIX: For some errors in rowOrderStats(), the stack would not become
     UNPROTECTED before calling error.

@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void signTabulate_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+  void signTabulate_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans

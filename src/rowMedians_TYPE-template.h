@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowMedians_<Integer|Real>[rowsType][colsType](ARGUMENTS_LIST)
+  void rowMedians_<int|dbl>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans
@@ -160,13 +160,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   o SPEEDUP: Now using 'ansp = REAL(ans)' once and then assigning to
     'ansp' instead of to 'REAL(ans)'.
  2013-04-23 [HB]
-  o BUG FIX: The integer template of rowMedians_<Integer|Real>() would
+  o BUG FIX: The integer template of rowMedians_<int|dbl>() would
     not handle ties properly.  This was because ties were calculated as
     '(double)((rowData[qq] + value)/2)' instead of
     '((double)(rowData[qq] + value))/2'.
  2013-01-13 [HB]
-  o Merged rowMedians_Integer() and rowMedians_Real() into template
-    rowMedians_<Integer|Real>().
+  o Merged rowMedians_int() and rowMedians_dbl() into template
+    rowMedians_<int|dbl>().
  2013-01-13 [HB]
  o Using internal arguments 'by_row' instead of 'by_column'.
  2011-12-11 [HB]

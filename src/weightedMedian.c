@@ -12,12 +12,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double weightedMedian_Integer_aidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
-double weightedMedian_Integer_iidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
-double weightedMedian_Integer_didxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
-double weightedMedian_Real_aidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
-double weightedMedian_Real_iidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
-double weightedMedian_Real_didxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_int_aidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_int_iidxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_int_didxs(int *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_dbl_aidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_dbl_iidxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_dbl_didxs(double *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
 */
 
 #define METHOD weightedMedian
@@ -63,9 +63,9 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    mu = weightedMedian_Real[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
+    mu = weightedMedian_dbl[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
   } else if (isInteger(x)) {
-    mu = weightedMedian_Integer[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
+    mu = weightedMedian_int[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
   }
 
   /* Return results */

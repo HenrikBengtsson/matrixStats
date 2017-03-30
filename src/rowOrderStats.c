@@ -15,24 +15,24 @@
 /*
 Native API (dynamically generated via macros):
 
-void rowOrderStats_Integer_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Integer_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
-void rowOrderStats_Real_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
-void rowOrderStats_Real_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_int_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, int *ans)
+void rowOrderStats_dbl_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
+void rowOrderStats_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, R_xlen_t qq, double *ans)
 */
 
 #define METHOD rowOrderStats
@@ -88,11 +88,11 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which) {
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, nrows));
-    rowOrderStats_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, qq, REAL(ans));
+    rowOrderStats_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, qq, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nrows));
-    rowOrderStats_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, qq, INTEGER(ans));
+    rowOrderStats_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, qq, INTEGER(ans));
     UNPROTECT(1);
   }
 

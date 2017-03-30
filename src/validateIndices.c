@@ -36,7 +36,7 @@ for (ii = 0; ii < n; ++ ii) {             \
 
 
 /** idxs must not be NULL, which should be checked before calling this function. **/
-void* validateIndices_Logical(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna) {
+void* validateIndices_lgl(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna) {
   R_xlen_t ii, jj, kk;
   R_xlen_t count1 = 0, count2 = 0;
 
@@ -173,11 +173,11 @@ void *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound, R_
   *hasna = FALSE;
   switch (mode) {
     case INTSXP:
-      return validateIndices_Integer(INTEGER(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
+      return validateIndices_int(INTEGER(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
     case REALSXP:
-      return validateIndices_Real(REAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
+      return validateIndices_dbl(REAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
     case LGLSXP:
-      return validateIndices_Logical(LOGICAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
+      return validateIndices_lgl(LOGICAL(idxs), nidxs, maxIdx, allowOutOfBound, ansNidxs, subsettedType, hasna);
     case NILSXP:
       *subsettedType = SUBSETTED_ALL;
       *ansNidxs = maxIdx;
@@ -211,13 +211,13 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
   int mode = TYPEOF(idxs);
   switch (mode) {
     case INTSXP:
-      cidxs = validateIndices_Integer(INTEGER(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
+      cidxs = validateIndices_int(INTEGER(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
       break;
     case REALSXP:
-      cidxs = validateIndices_Real(REAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
+      cidxs = validateIndices_dbl(REAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
       break;
     case LGLSXP:
-      cidxs = validateIndices_Logical(LOGICAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
+      cidxs = validateIndices_lgl(LOGICAL(idxs), nidxs, cmaxIdx, callowOutOfBound, &ansNidxs, &subsettedType, &hasna);
       break;
     case NILSXP:
       return R_NilValue;

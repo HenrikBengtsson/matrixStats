@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowDiffs_<Integer|Real>(ARGUMENTS_LIST)
+  void rowDiffs_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans

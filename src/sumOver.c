@@ -12,12 +12,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double sumOver_Integer_aidxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Integer_iidxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Integer_didxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Real_aidxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Real_iidxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Real_didxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_int_aidxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_int_iidxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_int_didxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_dbl_aidxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_dbl_iidxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_dbl_didxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
 */
 
 #define METHOD sumOver
@@ -56,9 +56,9 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    sum = sumOver_Real[idxsType](REAL(x), nx, cidxs, nidxs, narm, mode2);
+    sum = sumOver_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, mode2);
   } else if (isInteger(x)) {
-    sum = sumOver_Integer[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, mode2);
+    sum = sumOver_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, mode2);
   } else {
     error("Argument 'x' must be numeric.");
   }

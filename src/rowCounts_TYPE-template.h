@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowCounts_<Integer|Real|Logical>[ROWS_TYPE][COLS_TYPE](ARGUMENTS_LIST)
+  void rowCounts_<int|dbl|lgl>[ROWS_TYPE][COLS_TYPE](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans

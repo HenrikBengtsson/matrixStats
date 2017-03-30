@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void colOrderStats_<Integer|Real>[rowsType][colsType](ARGUMENTS_LIST)
+  void colOrderStats_<int|dbl>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, R_xlen_t qq, X_C_TYPE *ans

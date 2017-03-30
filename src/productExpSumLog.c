@@ -11,12 +11,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double productExpSumLog_Integer_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Integer_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Integer_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Real_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Real_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Real_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_int_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_int_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_int_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_dbl_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_dbl_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_dbl_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
 */
 
 #define METHOD productExpSumLog
@@ -52,9 +52,9 @@ SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    res = productExpSumLog_Real[idxsType](REAL(x), nx, cidxs, nidxs, narm, hasna);
+    res = productExpSumLog_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, hasna);
   } else if (isInteger(x)) {
-    res = productExpSumLog_Integer[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, hasna);
+    res = productExpSumLog_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, hasna);
   }
 
   /* Return results */

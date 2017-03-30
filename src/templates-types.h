@@ -138,33 +138,33 @@
 #ifndef METHOD_NAME
   #if X_TYPE == 'i'
     #if Y_TYPE == 'i'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer_Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int_int)
     #elif Y_TYPE == 'r'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer_Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int_dbl)
     #elif Y_TYPE == 'l'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer_Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int_lgl)
     #else
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int)
     #endif
   #elif X_TYPE == 'r'
     #if Y_TYPE == 'i'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real_Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl_int)
     #elif Y_TYPE == 'r'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real_Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl_dbl)
     #elif Y_TYPE == 'l'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real_Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl_lgl)
     #else
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl)
     #endif
   #elif X_TYPE == 'l'
     #if Y_TYPE == 'i'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical_Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl_int)
     #elif Y_TYPE == 'r'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical_Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl_dbl)
     #elif Y_TYPE == 'l'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical_Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl_lgl)
     #else
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl)
     #endif
   #else
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown X_TYPE"
