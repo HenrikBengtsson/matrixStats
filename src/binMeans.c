@@ -5,8 +5,8 @@
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
 #include <Rdefines.h> 
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 #include <R_ext/Error.h>
 
 /*

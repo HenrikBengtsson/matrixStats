@@ -38,7 +38,7 @@
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
     ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 
 /* Indexing formula to compute the vector index of element j of vector i.

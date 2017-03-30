@@ -15,7 +15,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include <Rmath.h>
-#include "utils.h"
+#include "000.utils.h"
 
 
 /*
@@ -31,7 +31,7 @@ double logSumExp_double_didxs(double *x, void *idxs, R_xlen_t nidxs, int narm, i
 #define RETURN_TYPE double
 #define ARGUMENTS_LIST double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx
 
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 
 
 SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA) {

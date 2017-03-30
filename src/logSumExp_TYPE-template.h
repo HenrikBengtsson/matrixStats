@@ -7,9 +7,9 @@
  ***********************************************************************/
 #include <Rdefines.h>
 #include <Rmath.h>
-#include "types.h"
+#include "000.types.h"
 
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 
 /*

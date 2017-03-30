@@ -6,8 +6,8 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include <R_ext/Constants.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 /*
 Native API (dynamically generated via macros):
@@ -25,9 +25,9 @@ double sumOver_dbl_didxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int 
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode
 
 #define X_TYPE 'i'
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 #define X_TYPE 'r'
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 
 
 SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {

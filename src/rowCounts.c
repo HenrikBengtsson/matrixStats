@@ -5,8 +5,8 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 /*
 Native API (dynamically generated via macros):
@@ -45,11 +45,11 @@ void rowCounts_lgl_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows,
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
 
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #define X_TYPE 'l'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 
 SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {

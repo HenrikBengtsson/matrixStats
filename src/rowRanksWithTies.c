@@ -7,7 +7,7 @@
  TO DO: Add support for missing values.
  **************************************************************************/
 #include <Rdefines.h>
-#include "utils.h"
+#include "000.utils.h"
 
 /*
 Native API (dynamically generated via macros):
@@ -80,21 +80,21 @@ void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t nc
 #define METHOD rowRanksWithTies_Min
 #define MARGIN 'r'
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 #define MARGIN 'r'
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #undef METHOD
 
 #define METHOD colRanksWithTies_Min
 #define MARGIN 'c'
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 #define MARGIN 'c'
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #undef METHOD
 #undef TIESMETHOD
 
@@ -106,21 +106,21 @@ void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t nc
 #define METHOD rowRanksWithTies_Max
 #define MARGIN 'r'
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 #define MARGIN 'r'
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #undef METHOD
 
 #define METHOD colRanksWithTies_Max
 #define MARGIN 'c'
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 #define MARGIN 'c'
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #undef METHOD
 #undef TIESMETHOD
 
@@ -132,21 +132,21 @@ void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t nc
 #define METHOD rowRanksWithTies_Average
 #define MARGIN 'r'
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 #define MARGIN 'r'
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #undef METHOD
 
 #define METHOD colRanksWithTies_Average
 #define MARGIN 'c'
 #define X_TYPE 'r'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 
 #define MARGIN 'c'
 #define X_TYPE 'i'
-#include "templates-gen-matrix.h"
+#include "000.templates-gen-matrix.h"
 #undef METHOD
 #undef TIESMETHOD
 

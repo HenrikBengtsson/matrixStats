@@ -7,8 +7,8 @@
  Copyright Henrik Bengtsson, 2013-2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 /*
 Native API (dynamically generated via macros):
@@ -23,7 +23,7 @@ void rowLogSumExps_double_didxs(double *x, R_xlen_t nrow, R_xlen_t ncol, void *r
 #define RETURN_TYPE void
 #define ARGUMENTS_LIST double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, int rowsType, void *cols, R_xlen_t ncols, int colsType, int narm, int hasna, R_xlen_t byrow, double *ans
 
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 
 
 SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {

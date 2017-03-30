@@ -1,6 +1,6 @@
 #include <Rdefines.h>
 #include <R_ext/Rdynload.h>
-#include "api.h"
+#include "000.api.h"
 
 #define CALLDEF(name, n) {#name, (DL_FUNC) &name, n}
 

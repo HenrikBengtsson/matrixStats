@@ -6,9 +6,9 @@
   SEXP x, void *idxs, R_xlen_t nidxs
  ***********************************************************************/
 #include <Rdefines.h>
-#include "types.h"
+#include "000.types.h"
 
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 
 #ifndef CHECK_MISSING

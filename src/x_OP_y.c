@@ -1,6 +1,6 @@
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 /*
 Native API (dynamically generated via macros):
@@ -456,25 +456,25 @@ void x_OP_y_Div_dbl_dbl_drows_dcols_didxs(double *x, R_xlen_t nrow, R_xlen_t nco
 #define Y_TYPE 'i'
 #define ANS_TYPE 'i'
 #define OP '+'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'i'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '+'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'i'
 #define ANS_TYPE 'r'
 #define OP '+'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '+'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 #undef METHOD
 
 
@@ -484,25 +484,25 @@ void x_OP_y_Div_dbl_dbl_drows_dcols_didxs(double *x, R_xlen_t nrow, R_xlen_t nco
 #define Y_TYPE 'i'
 #define ANS_TYPE 'i'
 #define OP '-'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'i'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '-'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'i'
 #define ANS_TYPE 'r'
 #define OP '-'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '-'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 #undef METHOD
 
 
@@ -512,25 +512,25 @@ void x_OP_y_Div_dbl_dbl_drows_dcols_didxs(double *x, R_xlen_t nrow, R_xlen_t nco
 #define Y_TYPE 'i'
 #define ANS_TYPE 'i'
 #define OP '*'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'i'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '*'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'i'
 #define ANS_TYPE 'r'
 #define OP '*'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '*'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 #undef METHOD
 
 
@@ -540,25 +540,25 @@ void x_OP_y_Div_dbl_dbl_drows_dcols_didxs(double *x, R_xlen_t nrow, R_xlen_t nco
 #define Y_TYPE 'i'
 #define ANS_TYPE 'r'
 #define OP '/'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'i'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '/'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'i'
 #define ANS_TYPE 'r'
 #define OP '/'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 
 #define X_TYPE 'r'
 #define Y_TYPE 'r'
 #define ANS_TYPE 'r'
 #define OP '/'
-#include "templates-gen-matrix-vector.h"
+#include "000.templates-gen-matrix-vector.h"
 #undef METHOD
 
 

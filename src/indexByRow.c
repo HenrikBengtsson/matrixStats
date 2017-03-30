@@ -5,7 +5,7 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
+#include "000.types.h"
 
 SEXP indexByRow(SEXP dim, SEXP idxs) {
   SEXP ans;

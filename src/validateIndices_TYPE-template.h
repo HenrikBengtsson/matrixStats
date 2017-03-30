@@ -11,12 +11,12 @@
 
  ***********************************************************************/ 
 #include <Rdefines.h>
-#include "types.h"
+#include "000.types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
  */
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 #undef int_from_idx_TYPE
 #undef dbl_from_idx_TYPE
@@ -153,4 +153,4 @@ void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutO
 }
 
 
-#include "templates-types_undef.h"
+#include "000.templates-types_undef.h"

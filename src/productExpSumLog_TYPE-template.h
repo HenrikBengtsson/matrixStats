@@ -15,12 +15,12 @@
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/ 
 #include <R_ext/Constants.h>
-#include "types.h" 
+#include "000.types.h" 
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
  */
-#include "templates-types.h" 
+#include "000.templates-types.h" 
 
 
 RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {

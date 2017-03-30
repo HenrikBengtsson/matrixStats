@@ -5,8 +5,8 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 #include <R_ext/Error.h>
 
 /*
@@ -25,9 +25,9 @@ double weightedMedian_dbl_didxs(double *x, R_xlen_t nx, double *w, void *idxs, R
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties
 
 #define X_TYPE 'i'
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 #define X_TYPE 'r'
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 
 
 SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP ties) {

@@ -13,7 +13,7 @@
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
-#include "types.h"
+#include "000.types.h"
 
 #if BIN_BY == 'L'   /* [u,v) */
   #define METHOD_NAME binMeans_L
@@ -118,7 +118,7 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
 #undef BIN_BY
 #undef IS_PART_OF_FIRST_BIN
 #undef IS_PART_OF_NEXT_BIN
-#include "templates-types_undef.h"
+#include "000.templates-types_undef.h"
 
 
 

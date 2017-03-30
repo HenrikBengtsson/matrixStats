@@ -20,13 +20,13 @@
  ***********************************************************************/
 #include <R_ext/Memory.h>
 #include <Rmath.h>
-#include "types.h"
+#include "000.types.h"
 #include <stdlib.h> /* abs() and fabs() */
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
  */
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {

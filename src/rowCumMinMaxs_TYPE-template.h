@@ -19,12 +19,12 @@
  ***********************************************************************/
 #include <R_ext/Memory.h>
 #include <Rmath.h>
-#include "types.h"
+#include "000.types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
  */
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 #if COMP == '<'
   #define OP <

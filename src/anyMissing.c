@@ -7,8 +7,8 @@
  Copyright Henrik Bengtsson, 2007
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 
 /*
@@ -24,7 +24,7 @@ int anyMissing_internal_didxs(SEXP x, void *idxs, R_xlen_t nidxs)
 #define RETURN_TYPE int
 #define ARGUMENTS_LIST SEXP x, void *idxs, R_xlen_t nidxs
 
-#include "templates-gen-vector.h"
+#include "000.templates-gen-vector.h"
 
 
 SEXP anyMissing(SEXP x, SEXP idxs) {

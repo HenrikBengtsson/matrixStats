@@ -5,9 +5,9 @@
  ARGUMENTS_LIST:
   double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, int rowsType, void *cols, R_xlen_t ncols, int colsType, int narm, int hasna, R_xlen_t byrow, double *ans
  ***********************************************************************/
-#include "types.h"
+#include "000.types.h"
 
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 
 /* extern 1-D function 'logSumExp' */		

@@ -19,13 +19,13 @@
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
 #include <R_ext/Memory.h>
-#include "types.h"
+#include "000.types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
     ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
-#include "templates-types.h"
+#include "000.templates-types.h"
 
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
