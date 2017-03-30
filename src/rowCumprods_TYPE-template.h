@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowCumprods_<Integer|Real>[rowsType][colsType](ARGUMENTS_LIST)
+  void rowCumprods_<int|dbl>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, ANS_C_TYPE *ans

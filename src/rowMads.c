@@ -10,6 +10,28 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+void rowMads_int_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+void rowMads_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double scale, int narm, int hasna, int byrow, double *ans)
+*/
 
 #define METHOD rowMads
 #define RETURN_TYPE void
@@ -65,9 +87,9 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMads_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowMads_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
   }
 
   UNPROTECT(1);

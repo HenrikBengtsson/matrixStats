@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  double productExpSumLog_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+  double productExpSumLog_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna

@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  double weightedMean_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+  double weightedMean_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine

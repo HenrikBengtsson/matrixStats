@@ -93,17 +93,17 @@
 
 
 RETURN_TYPE (*METHOD_NAME[3][3][3])(ARGUMENTS_LIST) = {{
-    {METHOD_NAME_noRows_noCols_noIdxs, METHOD_NAME_noRows_noCols_intIdxs, METHOD_NAME_noRows_noCols_realIdxs},
-    {METHOD_NAME_noRows_intCols_noIdxs, METHOD_NAME_noRows_intCols_intIdxs, METHOD_NAME_noRows_intCols_realIdxs},
-    {METHOD_NAME_noRows_realCols_noIdxs, METHOD_NAME_noRows_realCols_intIdxs, METHOD_NAME_noRows_realCols_realIdxs},
+    {METHOD_NAME_arows_acols_aidxs, METHOD_NAME_arows_acols_iidxs, METHOD_NAME_arows_acols_didxs},
+    {METHOD_NAME_arows_icols_aidxs, METHOD_NAME_arows_icols_iidxs, METHOD_NAME_arows_icols_didxs},
+    {METHOD_NAME_arows_dcols_aidxs, METHOD_NAME_arows_dcols_iidxs, METHOD_NAME_arows_dcols_didxs},
   }, {
-    {METHOD_NAME_intRows_noCols_noIdxs, METHOD_NAME_intRows_noCols_intIdxs, METHOD_NAME_intRows_noCols_realIdxs},
-    {METHOD_NAME_intRows_intCols_noIdxs, METHOD_NAME_intRows_intCols_intIdxs, METHOD_NAME_intRows_intCols_realIdxs},
-    {METHOD_NAME_intRows_realCols_noIdxs, METHOD_NAME_intRows_realCols_intIdxs, METHOD_NAME_intRows_realCols_realIdxs},
+    {METHOD_NAME_irows_acols_aidxs, METHOD_NAME_irows_acols_iidxs, METHOD_NAME_irows_acols_didxs},
+    {METHOD_NAME_irows_icols_aidxs, METHOD_NAME_irows_icols_iidxs, METHOD_NAME_irows_icols_didxs},
+    {METHOD_NAME_irows_dcols_aidxs, METHOD_NAME_irows_dcols_iidxs, METHOD_NAME_irows_dcols_didxs},
   }, {
-    {METHOD_NAME_realRows_noCols_noIdxs, METHOD_NAME_realRows_noCols_intIdxs, METHOD_NAME_realRows_noCols_realIdxs},
-    {METHOD_NAME_realRows_intCols_noIdxs, METHOD_NAME_realRows_intCols_intIdxs, METHOD_NAME_realRows_intCols_realIdxs},
-    {METHOD_NAME_realRows_realCols_noIdxs, METHOD_NAME_realRows_realCols_intIdxs, METHOD_NAME_realRows_realCols_realIdxs},
+    {METHOD_NAME_drows_acols_aidxs, METHOD_NAME_drows_acols_iidxs, METHOD_NAME_drows_acols_didxs},
+    {METHOD_NAME_drows_icols_aidxs, METHOD_NAME_drows_icols_iidxs, METHOD_NAME_drows_icols_didxs},
+    {METHOD_NAME_drows_dcols_aidxs, METHOD_NAME_drows_dcols_iidxs, METHOD_NAME_drows_dcols_didxs},
   }
 };
 

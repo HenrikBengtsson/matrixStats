@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void diff2_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+  void diff2_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans

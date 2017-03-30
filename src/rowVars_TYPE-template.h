@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowVars_<Integer|Real>(ARGUMENTS_LIST)
+  void rowVars_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans

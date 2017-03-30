@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.51.0-9000 [2017-03-28]
+Version: 0.51.0-9000 [2017-03-29]
 
 SOFTWARE QUALITY:
 
@@ -13,6 +13,8 @@ SOFTWARE QUALITY:
 
 CODE REFACTORING:
 
+ o Cleanup native low-level function names.
+ 
  o Now using roxygen for help and NAMESPACE (was R.oo::Rdoc).
  
  

@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowMads_<Integer|Real>(ARGUMENTS_LIST)
+  void rowMads_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans

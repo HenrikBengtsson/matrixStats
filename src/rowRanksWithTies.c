@@ -9,7 +9,64 @@
 #include <Rdefines.h>
 #include "utils.h"
 
-/* Template <col|row>Ranks_<Integer|Real>_ties<Min|Max|Average>() */
+/*
+Native API (dynamically generated via macros):
+
+void rowRanksWithTies_Min_dbl_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Min_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Max_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int *ans)
+void rowRanksWithTies_Average_dbl_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, double *ans)
+*/
 
 #define METHOD_TEMPLATE_H "rowRanksWithTies_TYPE_TIES-template.h"
 #define RETURN_TYPE void
@@ -20,7 +77,7 @@
  * ties.method = "min"
  *****************************************************************/
 #define TIESMETHOD '0' /* min */
-#define METHOD rowRanks_tiesMin
+#define METHOD rowRanksWithTies_Min
 #define MARGIN 'r'
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
@@ -30,7 +87,7 @@
 #include "templates-gen-matrix.h"
 #undef METHOD
 
-#define METHOD colRanks_tiesMin
+#define METHOD colRanksWithTies_Min
 #define MARGIN 'c'
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
@@ -46,7 +103,7 @@
  * ties.method = "max"
  *****************************************************************/
 #define TIESMETHOD '1' /* max */
-#define METHOD rowRanks_tiesMax
+#define METHOD rowRanksWithTies_Max
 #define MARGIN 'r'
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
@@ -56,7 +113,7 @@
 #include "templates-gen-matrix.h"
 #undef METHOD
 
-#define METHOD colRanks_tiesMax
+#define METHOD colRanksWithTies_Max
 #define MARGIN 'c'
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
@@ -72,7 +129,7 @@
  * ties.method = "average"
  *****************************************************************/
 #define TIESMETHOD 'a' /* average */
-#define METHOD rowRanks_tiesAverage
+#define METHOD rowRanksWithTies_Average
 #define MARGIN 'r'
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
@@ -82,7 +139,7 @@
 #include "templates-gen-matrix.h"
 #undef METHOD
 
-#define METHOD colRanks_tiesAverage
+#define METHOD colRanksWithTies_Average
 #define MARGIN 'c'
 #define X_TYPE 'r'
 #include "templates-gen-matrix.h"
@@ -131,17 +188,17 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanks_tiesMax_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Max_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          rowRanks_tiesAverage_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          rowRanksWithTies_Average_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanks_tiesMin_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Min_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
@@ -149,17 +206,17 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanks_tiesMax_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Max_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          colRanks_tiesAverage_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          colRanksWithTies_Average_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanks_tiesMin_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Min_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
@@ -169,17 +226,17 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanks_tiesMax_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Max_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          rowRanks_tiesAverage_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          rowRanksWithTies_Average_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanks_tiesMin_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Min_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */
@@ -187,17 +244,17 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanks_tiesMax_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Max_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
         case 2:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          colRanks_tiesAverage_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          colRanksWithTies_Average_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
           UNPROTECT(1);
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanks_tiesMin_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Min_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
           UNPROTECT(1);
           break;
       } /* switch */

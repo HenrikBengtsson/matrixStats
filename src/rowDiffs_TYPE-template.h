@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void rowDiffs_<Integer|Real>(ARGUMENTS_LIST)
+  void rowDiffs_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans
@@ -78,24 +78,24 @@
 #undef DIFF_X_MATRIX_ROWS
 #ifdef ROWS_TYPE
   #if ROWS_TYPE == 'i'
-    #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, intRows)
+    #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, irows)
   #elif ROWS_TYPE == 'r'
-    #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, realRows)
+    #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, drows)
   #endif
 #else
-  #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, noRows)
+  #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, arows)
 #endif
 
 
 #undef DIFF_X_MATRIX_ROWS_COLS
 #ifdef COLS_TYPE
   #if COLS_TYPE == 'i'
-    #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, intCols)
+    #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, icols)
   #elif COLS_TYPE == 'r'
-    #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, realCols)
+    #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, dcols)
   #endif
 #else
-  #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, noCols)
+  #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, acols)
 #endif
 
 

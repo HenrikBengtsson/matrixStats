@@ -138,33 +138,33 @@
 #ifndef METHOD_NAME
   #if X_TYPE == 'i'
     #if Y_TYPE == 'i'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer_Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int_int)
     #elif Y_TYPE == 'r'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer_Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int_dbl)
     #elif Y_TYPE == 'l'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer_Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int_lgl)
     #else
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, int)
     #endif
   #elif X_TYPE == 'r'
     #if Y_TYPE == 'i'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real_Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl_int)
     #elif Y_TYPE == 'r'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real_Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl_dbl)
     #elif Y_TYPE == 'l'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real_Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl_lgl)
     #else
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, dbl)
     #endif
   #elif X_TYPE == 'l'
     #if Y_TYPE == 'i'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical_Integer)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl_int)
     #elif Y_TYPE == 'r'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical_Real)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl_dbl)
     #elif Y_TYPE == 'l'
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical_Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl_lgl)
     #else
-      #define METHOD_NAME CONCAT_MACROS(METHOD, Logical)
+      #define METHOD_NAME CONCAT_MACROS(METHOD, lgl)
     #endif
   #else
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown X_TYPE"
@@ -190,11 +190,11 @@
   #if ROWS_TYPE == 'i'
     #define ROWS_C_TYPE int
     #define ROW_INDEX(rows, ii) (rows[ii] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)rows[ii]-1)
-    #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, intRows)
+    #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, irows)
   #elif ROWS_TYPE == 'r'
     #define ROWS_C_TYPE double
     #define ROW_INDEX(rows, ii) (ISNAN(rows[ii]) ? NA_R_XLEN_T : (R_xlen_t)rows[ii]-1)
-    #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, realRows)
+    #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, drows)
   #else
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown ROWS_TYPE"
   #endif
@@ -202,7 +202,7 @@
   #define ROW_INDEX_NONA(rows, ii) (ii)
   #define ROW_INDEX(rows, ii) (ii)
   #define ROWS_C_TYPE void
-  #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, noRows)
+  #define METHOD_NAME_ROWS CONCAT_MACROS(METHOD_NAME, arows)
 #endif
 
 #ifdef COLS_TYPE
@@ -210,11 +210,11 @@
   #if COLS_TYPE == 'i'
     #define COLS_C_TYPE int
     #define COL_INDEX(cols, jj) (cols[jj] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)cols[jj]-1)
-    #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, intCols)
+    #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, icols)
   #elif COLS_TYPE == 'r'
     #define COLS_C_TYPE double
     #define COL_INDEX(cols, jj) (ISNAN(cols[jj]) ? NA_R_XLEN_T : (R_xlen_t)cols[jj]-1)
-    #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, realCols)
+    #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, dcols)
   #else
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown ROWS_TYPE"
   #endif
@@ -222,34 +222,34 @@
   #define COL_INDEX_NONA(cols, jj) (jj)
   #define COL_INDEX(cols, jj) (jj)
   #define COLS_C_TYPE void
-  #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, noCols)
+  #define METHOD_NAME_ROWS_COLS CONCAT_MACROS(METHOD_NAME_ROWS, acols)
 #endif
 
-#undef METHOD_NAME_noRows
-#undef METHOD_NAME_noRows_noCols
-#undef METHOD_NAME_noRows_intCols
-#undef METHOD_NAME_noRows_realCols
-#undef METHOD_NAME_intRows
-#undef METHOD_NAME_intRows_noCols
-#undef METHOD_NAME_intRows_intCols
-#undef METHOD_NAME_intRows_realCols
-#undef METHOD_NAME_realRows
-#undef METHOD_NAME_realRows_noCols
-#undef METHOD_NAME_realRows_intCols
-#undef METHOD_NAME_realRows_realCols
+#undef METHOD_NAME_arows
+#undef METHOD_NAME_arows_acols
+#undef METHOD_NAME_arows_icols
+#undef METHOD_NAME_arows_dcols
+#undef METHOD_NAME_irows
+#undef METHOD_NAME_irows_acols
+#undef METHOD_NAME_irows_icols
+#undef METHOD_NAME_irows_dcols
+#undef METHOD_NAME_drows
+#undef METHOD_NAME_drows_acols
+#undef METHOD_NAME_drows_icols
+#undef METHOD_NAME_drows_dcols
 
-#define METHOD_NAME_noRows CONCAT_MACROS(METHOD_NAME, noRows)
-#define METHOD_NAME_noRows_noCols CONCAT_MACROS(METHOD_NAME_noRows, noCols)
-#define METHOD_NAME_noRows_intCols CONCAT_MACROS(METHOD_NAME_noRows, intCols)
-#define METHOD_NAME_noRows_realCols CONCAT_MACROS(METHOD_NAME_noRows, realCols)
-#define METHOD_NAME_intRows CONCAT_MACROS(METHOD_NAME, intRows)
-#define METHOD_NAME_intRows_noCols CONCAT_MACROS(METHOD_NAME_intRows, noCols)
-#define METHOD_NAME_intRows_intCols CONCAT_MACROS(METHOD_NAME_intRows, intCols)
-#define METHOD_NAME_intRows_realCols CONCAT_MACROS(METHOD_NAME_intRows, realCols)
-#define METHOD_NAME_realRows CONCAT_MACROS(METHOD_NAME, realRows)
-#define METHOD_NAME_realRows_noCols CONCAT_MACROS(METHOD_NAME_realRows, noCols)
-#define METHOD_NAME_realRows_intCols CONCAT_MACROS(METHOD_NAME_realRows, intCols)
-#define METHOD_NAME_realRows_realCols CONCAT_MACROS(METHOD_NAME_realRows, realCols)
+#define METHOD_NAME_arows CONCAT_MACROS(METHOD_NAME, arows)
+#define METHOD_NAME_arows_acols CONCAT_MACROS(METHOD_NAME_arows, acols)
+#define METHOD_NAME_arows_icols CONCAT_MACROS(METHOD_NAME_arows, icols)
+#define METHOD_NAME_arows_dcols CONCAT_MACROS(METHOD_NAME_arows, dcols)
+#define METHOD_NAME_irows CONCAT_MACROS(METHOD_NAME, irows)
+#define METHOD_NAME_irows_acols CONCAT_MACROS(METHOD_NAME_irows, acols)
+#define METHOD_NAME_irows_icols CONCAT_MACROS(METHOD_NAME_irows, icols)
+#define METHOD_NAME_irows_dcols CONCAT_MACROS(METHOD_NAME_irows, dcols)
+#define METHOD_NAME_drows CONCAT_MACROS(METHOD_NAME, drows)
+#define METHOD_NAME_drows_acols CONCAT_MACROS(METHOD_NAME_drows, acols)
+#define METHOD_NAME_drows_icols CONCAT_MACROS(METHOD_NAME_drows, icols)
+#define METHOD_NAME_drows_dcols CONCAT_MACROS(METHOD_NAME_drows, dcols)
 
 
 /*
@@ -265,11 +265,11 @@
   #if IDXS_TYPE == 'i'
     #define IDXS_C_TYPE int
     #define IDX_INDEX(idxs, ii) (idxs[ii] == NA_INTEGER ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
-    #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, intIdxs)
+    #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, iidxs)
   #elif IDXS_TYPE == 'r'
     #define IDXS_C_TYPE double
     #define IDX_INDEX(idxs, ii) (ISNAN(idxs[ii]) ? NA_R_XLEN_T : (R_xlen_t)idxs[ii]-1)
-    #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, realIdxs)
+    #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, didxs)
   #else
     #error "INTERNAL ERROR: Failed to set C macro METHOD_NAME: Unknown IDXS_TYPE"
   #endif
@@ -277,16 +277,16 @@
   #define IDX_INDEX_NONA(idxs, ii) (ii)
   #define IDX_INDEX(idxs, ii) (ii)
   #define IDXS_C_TYPE void
-  #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, noIdxs)
+  #define METHOD_NAME_IDXS CONCAT_MACROS(METHOD_NAME, aidxs)
 #endif
 
-#undef METHOD_NAME_noIdxs
-#undef METHOD_NAME_intIdxs
-#undef METHOD_NAME_realIdxs
+#undef METHOD_NAME_aidxs
+#undef METHOD_NAME_iidxs
+#undef METHOD_NAME_didxs
 
-#define METHOD_NAME_noIdxs CONCAT_MACROS(METHOD_NAME, noIdxs)
-#define METHOD_NAME_intIdxs CONCAT_MACROS(METHOD_NAME, intIdxs)
-#define METHOD_NAME_realIdxs CONCAT_MACROS(METHOD_NAME, realIdxs)
+#define METHOD_NAME_aidxs CONCAT_MACROS(METHOD_NAME, aidxs)
+#define METHOD_NAME_iidxs CONCAT_MACROS(METHOD_NAME, iidxs)
+#define METHOD_NAME_didxs CONCAT_MACROS(METHOD_NAME, didxs)
 
 
 /*
@@ -296,70 +296,70 @@
 
 #ifdef IDXS_TYPE
   #if IDXS_TYPE == 'i'
-    #define METHOD_NAME_ROWS_COLS_IDXS CONCAT_MACROS(METHOD_NAME_ROWS_COLS, intIdxs)
+    #define METHOD_NAME_ROWS_COLS_IDXS CONCAT_MACROS(METHOD_NAME_ROWS_COLS, iidxs)
   #elif IDXS_TYPE == 'r'
-    #define METHOD_NAME_ROWS_COLS_IDXS CONCAT_MACROS(METHOD_NAME_ROWS_COLS, realIdxs)
+    #define METHOD_NAME_ROWS_COLS_IDXS CONCAT_MACROS(METHOD_NAME_ROWS_COLS, didxs)
   #endif
 #else
-  #define METHOD_NAME_ROWS_COLS_IDXS CONCAT_MACROS(METHOD_NAME_ROWS_COLS, noIdxs)
+  #define METHOD_NAME_ROWS_COLS_IDXS CONCAT_MACROS(METHOD_NAME_ROWS_COLS, aidxs)
 #endif
 
-#define METHOD_NAME_noIdxs CONCAT_MACROS(METHOD_NAME, noIdxs)
-#undef METHOD_NAME_noRows_noCols_noIdxs
-#undef METHOD_NAME_noRows_noCols_intIdxs
-#undef METHOD_NAME_noRows_noCols_realIdxs
-#undef METHOD_NAME_noRows_intCols_noIdxs
-#undef METHOD_NAME_noRows_intCols_intIdxs
-#undef METHOD_NAME_noRows_intCols_realIdxs
-#undef METHOD_NAME_noRows_realCols_noIdxs
-#undef METHOD_NAME_noRows_realCols_intIdxs
-#undef METHOD_NAME_noRows_realCols_realIdxs
-#undef METHOD_NAME_intRows_noCols_noIdxs
-#undef METHOD_NAME_intRows_noCols_intIdxs
-#undef METHOD_NAME_intRows_noCols_realIdxs
-#undef METHOD_NAME_intRows_intCols_noIdxs
-#undef METHOD_NAME_intRows_intCols_intIdxs
-#undef METHOD_NAME_intRows_intCols_realIdxs
-#undef METHOD_NAME_intRows_realCols_noIdxs
-#undef METHOD_NAME_intRows_realCols_intIdxs
-#undef METHOD_NAME_intRows_realCols_realIdxs
-#undef METHOD_NAME_realRows_noCols_noIdxs
-#undef METHOD_NAME_realRows_noCols_intIdxs
-#undef METHOD_NAME_realRows_noCols_realIdxs
-#undef METHOD_NAME_realRows_intCols_noIdxs
-#undef METHOD_NAME_realRows_intCols_intIdxs
-#undef METHOD_NAME_realRows_intCols_realIdxs
-#undef METHOD_NAME_realRows_realCols_noIdxs
-#undef METHOD_NAME_realRows_realCols_intIdxs
-#undef METHOD_NAME_realRows_realCols_realIdxs
+#define METHOD_NAME_aidxs CONCAT_MACROS(METHOD_NAME, aidxs)
+#undef METHOD_NAME_arows_acols_aidxs
+#undef METHOD_NAME_arows_acols_iidxs
+#undef METHOD_NAME_arows_acols_didxs
+#undef METHOD_NAME_arows_icols_aidxs
+#undef METHOD_NAME_arows_icols_iidxs
+#undef METHOD_NAME_arows_icols_didxs
+#undef METHOD_NAME_arows_dcols_aidxs
+#undef METHOD_NAME_arows_dcols_iidxs
+#undef METHOD_NAME_arows_dcols_didxs
+#undef METHOD_NAME_irows_acols_aidxs
+#undef METHOD_NAME_irows_acols_iidxs
+#undef METHOD_NAME_irows_acols_didxs
+#undef METHOD_NAME_irows_icols_aidxs
+#undef METHOD_NAME_irows_icols_iidxs
+#undef METHOD_NAME_irows_icols_didxs
+#undef METHOD_NAME_irows_dcols_aidxs
+#undef METHOD_NAME_irows_dcols_iidxs
+#undef METHOD_NAME_irows_dcols_didxs
+#undef METHOD_NAME_drows_acols_aidxs
+#undef METHOD_NAME_drows_acols_iidxs
+#undef METHOD_NAME_drows_acols_didxs
+#undef METHOD_NAME_drows_icols_aidxs
+#undef METHOD_NAME_drows_icols_iidxs
+#undef METHOD_NAME_drows_icols_didxs
+#undef METHOD_NAME_drows_dcols_aidxs
+#undef METHOD_NAME_drows_dcols_iidxs
+#undef METHOD_NAME_drows_dcols_didxs
 
-#define METHOD_NAME_noRows_noCols_noIdxs CONCAT_MACROS(METHOD_NAME_noRows_noCols, noIdxs)
-#define METHOD_NAME_noRows_noCols_intIdxs CONCAT_MACROS(METHOD_NAME_noRows_noCols, intIdxs)
-#define METHOD_NAME_noRows_noCols_realIdxs CONCAT_MACROS(METHOD_NAME_noRows_noCols, realIdxs)
-#define METHOD_NAME_noRows_intCols_noIdxs CONCAT_MACROS(METHOD_NAME_noRows_intCols, noIdxs)
-#define METHOD_NAME_noRows_intCols_intIdxs CONCAT_MACROS(METHOD_NAME_noRows_intCols, intIdxs)
-#define METHOD_NAME_noRows_intCols_realIdxs CONCAT_MACROS(METHOD_NAME_noRows_intCols, realIdxs)
-#define METHOD_NAME_noRows_realCols_noIdxs CONCAT_MACROS(METHOD_NAME_noRows_realCols, noIdxs)
-#define METHOD_NAME_noRows_realCols_intIdxs CONCAT_MACROS(METHOD_NAME_noRows_realCols, intIdxs)
-#define METHOD_NAME_noRows_realCols_realIdxs CONCAT_MACROS(METHOD_NAME_noRows_realCols, realIdxs)
-#define METHOD_NAME_intRows_noCols_noIdxs CONCAT_MACROS(METHOD_NAME_intRows_noCols, noIdxs)
-#define METHOD_NAME_intRows_noCols_intIdxs CONCAT_MACROS(METHOD_NAME_intRows_noCols, intIdxs)
-#define METHOD_NAME_intRows_noCols_realIdxs CONCAT_MACROS(METHOD_NAME_intRows_noCols, realIdxs)
-#define METHOD_NAME_intRows_intCols_noIdxs CONCAT_MACROS(METHOD_NAME_intRows_intCols, noIdxs)
-#define METHOD_NAME_intRows_intCols_intIdxs CONCAT_MACROS(METHOD_NAME_intRows_intCols, intIdxs)
-#define METHOD_NAME_intRows_intCols_realIdxs CONCAT_MACROS(METHOD_NAME_intRows_intCols, realIdxs)
-#define METHOD_NAME_intRows_realCols_noIdxs CONCAT_MACROS(METHOD_NAME_intRows_realCols, noIdxs)
-#define METHOD_NAME_intRows_realCols_intIdxs CONCAT_MACROS(METHOD_NAME_intRows_realCols, intIdxs)
-#define METHOD_NAME_intRows_realCols_realIdxs CONCAT_MACROS(METHOD_NAME_intRows_realCols, realIdxs)
-#define METHOD_NAME_realRows_noCols_noIdxs CONCAT_MACROS(METHOD_NAME_realRows_noCols, noIdxs)
-#define METHOD_NAME_realRows_noCols_intIdxs CONCAT_MACROS(METHOD_NAME_realRows_noCols, intIdxs)
-#define METHOD_NAME_realRows_noCols_realIdxs CONCAT_MACROS(METHOD_NAME_realRows_noCols, realIdxs)
-#define METHOD_NAME_realRows_intCols_noIdxs CONCAT_MACROS(METHOD_NAME_realRows_intCols, noIdxs)
-#define METHOD_NAME_realRows_intCols_intIdxs CONCAT_MACROS(METHOD_NAME_realRows_intCols, intIdxs)
-#define METHOD_NAME_realRows_intCols_realIdxs CONCAT_MACROS(METHOD_NAME_realRows_intCols, realIdxs)
-#define METHOD_NAME_realRows_realCols_noIdxs CONCAT_MACROS(METHOD_NAME_realRows_realCols, noIdxs)
-#define METHOD_NAME_realRows_realCols_intIdxs CONCAT_MACROS(METHOD_NAME_realRows_realCols, intIdxs)
-#define METHOD_NAME_realRows_realCols_realIdxs CONCAT_MACROS(METHOD_NAME_realRows_realCols, realIdxs)
+#define METHOD_NAME_arows_acols_aidxs CONCAT_MACROS(METHOD_NAME_arows_acols, aidxs)
+#define METHOD_NAME_arows_acols_iidxs CONCAT_MACROS(METHOD_NAME_arows_acols, iidxs)
+#define METHOD_NAME_arows_acols_didxs CONCAT_MACROS(METHOD_NAME_arows_acols, didxs)
+#define METHOD_NAME_arows_icols_aidxs CONCAT_MACROS(METHOD_NAME_arows_icols, aidxs)
+#define METHOD_NAME_arows_icols_iidxs CONCAT_MACROS(METHOD_NAME_arows_icols, iidxs)
+#define METHOD_NAME_arows_icols_didxs CONCAT_MACROS(METHOD_NAME_arows_icols, didxs)
+#define METHOD_NAME_arows_dcols_aidxs CONCAT_MACROS(METHOD_NAME_arows_dcols, aidxs)
+#define METHOD_NAME_arows_dcols_iidxs CONCAT_MACROS(METHOD_NAME_arows_dcols, iidxs)
+#define METHOD_NAME_arows_dcols_didxs CONCAT_MACROS(METHOD_NAME_arows_dcols, didxs)
+#define METHOD_NAME_irows_acols_aidxs CONCAT_MACROS(METHOD_NAME_irows_acols, aidxs)
+#define METHOD_NAME_irows_acols_iidxs CONCAT_MACROS(METHOD_NAME_irows_acols, iidxs)
+#define METHOD_NAME_irows_acols_didxs CONCAT_MACROS(METHOD_NAME_irows_acols, didxs)
+#define METHOD_NAME_irows_icols_aidxs CONCAT_MACROS(METHOD_NAME_irows_icols, aidxs)
+#define METHOD_NAME_irows_icols_iidxs CONCAT_MACROS(METHOD_NAME_irows_icols, iidxs)
+#define METHOD_NAME_irows_icols_didxs CONCAT_MACROS(METHOD_NAME_irows_icols, didxs)
+#define METHOD_NAME_irows_dcols_aidxs CONCAT_MACROS(METHOD_NAME_irows_dcols, aidxs)
+#define METHOD_NAME_irows_dcols_iidxs CONCAT_MACROS(METHOD_NAME_irows_dcols, iidxs)
+#define METHOD_NAME_irows_dcols_didxs CONCAT_MACROS(METHOD_NAME_irows_dcols, didxs)
+#define METHOD_NAME_drows_acols_aidxs CONCAT_MACROS(METHOD_NAME_drows_acols, aidxs)
+#define METHOD_NAME_drows_acols_iidxs CONCAT_MACROS(METHOD_NAME_drows_acols, iidxs)
+#define METHOD_NAME_drows_acols_didxs CONCAT_MACROS(METHOD_NAME_drows_acols, didxs)
+#define METHOD_NAME_drows_icols_aidxs CONCAT_MACROS(METHOD_NAME_drows_icols, aidxs)
+#define METHOD_NAME_drows_icols_iidxs CONCAT_MACROS(METHOD_NAME_drows_icols, iidxs)
+#define METHOD_NAME_drows_icols_didxs CONCAT_MACROS(METHOD_NAME_drows_icols, didxs)
+#define METHOD_NAME_drows_dcols_aidxs CONCAT_MACROS(METHOD_NAME_drows_dcols, aidxs)
+#define METHOD_NAME_drows_dcols_iidxs CONCAT_MACROS(METHOD_NAME_drows_dcols, iidxs)
+#define METHOD_NAME_drows_dcols_didxs CONCAT_MACROS(METHOD_NAME_drows_dcols, didxs)
 
 
 /*

@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void colCounts_<Integer|Real|Logical>[rowsType][colsType](ARGUMENTS_LIST)
+  void colCounts_<int|dbl|lgl>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans

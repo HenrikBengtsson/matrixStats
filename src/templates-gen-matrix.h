@@ -31,9 +31,9 @@
 
 
 RETURN_TYPE (*METHOD_NAME[3][3])(ARGUMENTS_LIST) = {
-  {METHOD_NAME_noRows_noCols, METHOD_NAME_noRows_intCols, METHOD_NAME_noRows_realCols},
-  {METHOD_NAME_intRows_noCols, METHOD_NAME_intRows_intCols, METHOD_NAME_intRows_realCols},
-  {METHOD_NAME_realRows_noCols, METHOD_NAME_realRows_intCols, METHOD_NAME_realRows_realCols},
+  {METHOD_NAME_arows_acols, METHOD_NAME_arows_icols, METHOD_NAME_arows_dcols},
+  {METHOD_NAME_irows_acols, METHOD_NAME_irows_icols, METHOD_NAME_irows_dcols},
+  {METHOD_NAME_drows_acols, METHOD_NAME_drows_icols, METHOD_NAME_drows_dcols},
 };
 
 #include "templates-types_undef.h"

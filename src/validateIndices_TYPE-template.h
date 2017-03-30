@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  void validateIndices_<Integer|Real>(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna)
+  void validateIndices_<int|dbl>(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna)
 
  Arguments:
    The following macros ("arguments") should be defined for the 
@@ -18,17 +18,17 @@
  */
 #include "templates-types.h"
 
-#undef IntegerFromIndex_TYPE
-#undef RealFromIndex_TYPE
+#undef int_from_idx_TYPE
+#undef dbl_from_idx_TYPE
 #if X_TYPE == 'i'
-#define IntegerFromIndex_TYPE CONCAT_MACROS(IntegerFromIndex, Integer)
-#define RealFromIndex_TYPE CONCAT_MACROS(RealFromIndex, Integer)
+#define int_from_idx_TYPE CONCAT_MACROS(int_from_idx, int)
+#define dbl_from_idx_TYPE CONCAT_MACROS(dbl_from_idx, int)
 #elif X_TYPE == 'r'
-#define IntegerFromIndex_TYPE CONCAT_MACROS(IntegerFromIndex, Real)
-#define RealFromIndex_TYPE CONCAT_MACROS(RealFromIndex, Real)
+#define int_from_idx_TYPE CONCAT_MACROS(int_from_idx, dbl)
+#define dbl_from_idx_TYPE CONCAT_MACROS(dbl_from_idx, dbl)
 #endif
 
-static R_INLINE int IntegerFromIndex_TYPE(X_C_TYPE x, R_xlen_t maxIdx) {
+static R_INLINE int int_from_idx_TYPE(X_C_TYPE x, R_xlen_t maxIdx) {
   if (X_ISNAN(x)) return NA_INTEGER;
 #if X_TYPE == 'r'
   if (x > R_INT_MAX || x < R_INT_MIN) return NA_INTEGER; // including the cases of Inf
@@ -37,7 +37,7 @@ static R_INLINE int IntegerFromIndex_TYPE(X_C_TYPE x, R_xlen_t maxIdx) {
   return x;
 }
 
-static R_INLINE int RealFromIndex_TYPE(X_C_TYPE x, R_xlen_t maxIdx) {
+static R_INLINE int dbl_from_idx_TYPE(X_C_TYPE x, R_xlen_t maxIdx) {
   if (X_ISNAN(x)) return NA_REAL;
 #if X_TYPE == 'r'
   if (IS_INF(x)) return NA_REAL;
@@ -108,10 +108,10 @@ void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutO
   if (state >= 0) {
     if (*subsettedType == SUBSETTED_INTEGER) {
       // NOTE: braces is needed here, because of macro-defined function
-      RETURN_VALIDATED_ANS(int, nidxs, idxs[ii], IntegerFromIndex_TYPE(idxs[ii],maxIdx),);
+      RETURN_VALIDATED_ANS(int, nidxs, idxs[ii], int_from_idx_TYPE(idxs[ii],maxIdx),);
     }
     // *subsettedType == SUBSETTED_REAL
-    RETURN_VALIDATED_ANS(double, nidxs, idxs[ii], RealFromIndex_TYPE(idxs[ii],maxIdx),);
+    RETURN_VALIDATED_ANS(double, nidxs, idxs[ii], dbl_from_idx_TYPE(idxs[ii],maxIdx),);
   }
 
   // state < 0

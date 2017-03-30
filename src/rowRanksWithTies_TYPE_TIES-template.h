@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  <col|row>Ranks_Real_ties<Min|Max|Average>[rowsType][colsType](ARGUMENTS_LIST)
+  <col|row>Ranks_dbl_ties<Min|Max|Average>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans

@@ -10,6 +10,29 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+void colRanges_int_arows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_arows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_arows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_irows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_irows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_irows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_drows_acols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_drows_icols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, int *ans, int *is_counted)
+void colRanges_dbl_arows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_arows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_arows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_irows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_irows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_irows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_drows_acols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_drows_icols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+void colRanges_dbl_drows_dcols(double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t Rf_nrows, void *cols, R_xlen_t Rf_ncols, int what, int narm, int hasna, double *ans, int *is_counted)
+*/
+
 #define METHOD colRanges
 #define RETURN_TYPE void
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
@@ -62,7 +85,7 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     } else {
       PROTECT(ans = allocVector(REALSXP, ncols));
     }
-    colRanges_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
+    colRanges_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     if (what2 == 2) {
@@ -70,7 +93,7 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     } else {
       PROTECT(ans = allocVector(INTSXP, ncols));
     }
-    colRanges_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, INTEGER(ans), is_counted);
+    colRanges_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, INTEGER(ans), is_counted);
 
     /* Any entries with zero non-missing values? */
     all_counted = 1;

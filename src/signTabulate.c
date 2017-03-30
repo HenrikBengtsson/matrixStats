@@ -8,6 +8,16 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+void signTabulate_int_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_int_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_int_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_dbl_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_dbl_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_dbl_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans)
+*/
 
 #define METHOD signTabulate
 #define RETURN_TYPE void
@@ -35,11 +45,11 @@ SEXP signTabulate(SEXP x, SEXP idxs) {
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, 6));
-    signTabulate_Real[idxsType](REAL(x), nx, cidxs, nidxs, REAL(ans));
+    signTabulate_dbl[idxsType](REAL(x), nx, cidxs, nidxs, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(REALSXP, 4));
-    signTabulate_Integer[idxsType](INTEGER(x), nx, cidxs, nidxs, REAL(ans));
+    signTabulate_int[idxsType](INTEGER(x), nx, cidxs, nidxs, REAL(ans));
     UNPROTECT(1);
   }
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  double sumOver_<Integer|Real>[idxsType](ARGUMENTS_LIST)
+  double sumOver_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode
@@ -60,7 +60,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
  2015-07-11 [DJ]
   o Supported subsetted computation.
  2014-11-06 [HB]
- o CLEANUP: Now sumOver_<Integer|Real>() uses only basic C types.
+ o CLEANUP: Now sumOver_<int|dbl>() uses only basic C types.
  2014-11-02 [HB]
  o Created.
  **************************************************************************/

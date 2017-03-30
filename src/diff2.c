@@ -9,6 +9,16 @@
 #include "types.h"
 #include "utils.h"
 
+/*
+Native API (dynamically generated via macros):
+
+void diff2_int_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_int_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_int_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_dbl_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
+void diff2_dbl_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
+void diff2_dbl_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
+*/
 
 #define METHOD diff2
 #define RETURN_TYPE void
@@ -52,11 +62,11 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences) {
   /* Dispatch to low-level C function */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, nans));
-    diff2_Real[idxsType](REAL(x), nx, cidxs, nidxs, lagg, diff, REAL(ans), nans);
+    diff2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, lagg, diff, REAL(ans), nans);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nans));
-    diff2_Integer[idxsType](INTEGER(x), nx, cidxs, nidxs, lagg, diff, INTEGER(ans), nans);
+    diff2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, lagg, diff, INTEGER(ans), nans);
     UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");
