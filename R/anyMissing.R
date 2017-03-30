@@ -1,6 +1,9 @@
 #' Checks if there are any missing values in an object or not
 #'
 #' Checks if there are any missing values in an object or not.
+#' \emph{Please use \code{base::anyNA()} instead of \code{anyMissing()},
+#' \code{colAnyNAs()} instead of \code{colAnyMissings()}, and
+#' \code{rowAnyNAs()} instead of \code{rowAnyMissings()}.}
 #'
 #' The implementation of this method is optimized for both speed and memory.
 #' The method will return \code{\link[base:logical]{TRUE}} as soon as a missing
@@ -53,5 +56,17 @@ colAnyMissings <- function(x, rows = NULL, cols = NULL, ...) {
 #' @rdname anyMissing
 #' @export
 rowAnyMissings <- function(x, rows = NULL, cols = NULL, ...) {
+  rowAnys(x, rows, cols, value = NA, ...)
+}
+
+#' @rdname anyMissing
+#' @export
+colAnyNAs <- function(x, rows = NULL, cols = NULL, ...) {
+  colAnys(x, rows, cols, value = NA, ...)
+}
+
+#' @rdname anyMissing
+#' @export
+rowAnyNAs <- function(x, rows = NULL, cols = NULL, ...) {
   rowAnys(x, rows, cols, value = NA, ...)
 }

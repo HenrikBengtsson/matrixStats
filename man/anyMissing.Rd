@@ -4,6 +4,8 @@
 \alias{anyMissing}
 \alias{colAnyMissings}
 \alias{rowAnyMissings}
+\alias{colAnyNAs}
+\alias{rowAnyNAs}
 \title{Checks if there are any missing values in an object or not}
 \usage{
 anyMissing(x, idxs = NULL, ...)
@@ -11,6 +13,10 @@ anyMissing(x, idxs = NULL, ...)
 colAnyMissings(x, rows = NULL, cols = NULL, ...)
 
 rowAnyMissings(x, rows = NULL, cols = NULL, ...)
+
+colAnyNAs(x, rows = NULL, cols = NULL, ...)
+
+rowAnyNAs(x, rows = NULL, cols = NULL, ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a
@@ -29,6 +35,9 @@ detected, otherwise \code{\link[base:logical]{FALSE}}.
 }
 \description{
 Checks if there are any missing values in an object or not.
+\emph{Please use \code{base::anyNA()} instead of \code{anyMissing()},
+\code{colAnyNAs()} instead of \code{colAnyMissings()}, and
+\code{rowAnyNAs()} instead of \code{rowAnyMissings()}.}
 }
 \details{
 The implementation of this method is optimized for both speed and memory.
