@@ -12,12 +12,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double sumOver_Integer_noIdxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Integer_intIdxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Integer_realIdxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Real_noIdxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Real_intIdxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
-double sumOver_Real_realIdxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Integer_aidxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Integer_iidxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Integer_didxs(int *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Real_aidxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Real_iidxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
+double sumOver_Real_didxs(double *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode)
 */
 
 #define METHOD sumOver

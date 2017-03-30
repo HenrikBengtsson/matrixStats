@@ -11,7 +11,7 @@
 
 
 RETURN_TYPE (*METHOD_NAME[3])(ARGUMENTS_LIST) = {
-  METHOD_NAME_noIdxs, METHOD_NAME_intIdxs, METHOD_NAME_realIdxs
+  METHOD_NAME_aidxs, METHOD_NAME_iidxs, METHOD_NAME_didxs
 };
 
 #include "templates-types_undef.h"

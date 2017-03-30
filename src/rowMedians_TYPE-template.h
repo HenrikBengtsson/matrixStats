@@ -165,7 +165,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     '(double)((rowData[qq] + value)/2)' instead of
     '((double)(rowData[qq] + value))/2'.
  2013-01-13 [HB]
-  o Merged rowMedians_Integer() and rowMedians_Read() into template
+  o Merged rowMedians_Integer() and rowMedians_Real() into template
     rowMedians_<Integer|Real>().
  2013-01-13 [HB]
  o Using internal arguments 'by_row' instead of 'by_column'.

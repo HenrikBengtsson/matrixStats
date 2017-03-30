@@ -11,12 +11,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double meanOver_Integer_noIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double meanOver_Integer_intIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double meanOver_Integer_realIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double meanOver_Real_noIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double meanOver_Real_intIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
-double meanOver_Real_realIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Integer_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Integer_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Integer_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Real_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Real_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
+double meanOver_Real_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int refine)
 */
 
 #define METHOD meanOver

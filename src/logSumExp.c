@@ -21,9 +21,9 @@
 /*
 Native API (dynamically generated via macros):
 
-double logSumExp_double_noIdxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
-double logSumExp_double_intIdxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
-double logSumExp_double_realIdxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
+double logSumExp_double_aidxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
+double logSumExp_double_iidxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
+double logSumExp_double_didxs(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx)
 */
 
 #define METHOD logSumExp

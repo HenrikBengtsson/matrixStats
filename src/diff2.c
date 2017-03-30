@@ -12,12 +12,12 @@
 /*
 Native API (dynamically generated via macros):
 
-void diff2_Integer_noIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
-void diff2_Integer_intIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
-void diff2_Integer_realIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
-void diff2_Real_noIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
-void diff2_Real_intIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
-void diff2_Real_realIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
+void diff2_Integer_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_Integer_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_Integer_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_Real_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
+void diff2_Real_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
+void diff2_Real_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, double *ans, R_xlen_t nans)
 */
 
 #define METHOD diff2

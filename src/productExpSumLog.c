@@ -11,12 +11,12 @@
 /*
 Native API (dynamically generated via macros):
 
-double productExpSumLog_Integer_noIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Integer_intIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Integer_realIdxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Real_noIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Real_intIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_Real_realIdxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Integer_aidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Integer_iidxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Integer_didxs(int *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Real_aidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Real_iidxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_Real_didxs(double *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna)
 */
 
 #define METHOD productExpSumLog
