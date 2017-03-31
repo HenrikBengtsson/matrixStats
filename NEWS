@@ -11,7 +11,7 @@ SIGNIFICANT CHANGES:
    and is now an error.  Specifically, functions colAlls(), colAnys(),
    colProds(), colQuantiles(), colIQRs(), colWeightedMeans(),
    colWeightedMedians(), and colCollapse() now produce errors an informative
-   error message if called with data.frames.  Same for the corresponding
+   error message if called with a data.frame.  Same for the corresponding
    row- functions.
 
  o Since anyNA() is a built-in function since R (>= 3.1.0), please use that
