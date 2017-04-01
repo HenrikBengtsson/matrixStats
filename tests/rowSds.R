@@ -28,11 +28,11 @@ colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  for (addNA in c(FALSE, TRUE)) {
-    cat("addNA = ", addNA, "\n", sep = "")
+  for (add_na in c(FALSE, TRUE)) {
+    cat("add_na = ", add_na, "\n", sep = "")
 
     x <- matrix(1:100 + 0.1, nrow = 20, ncol = 5)
-    if (addNA) {
+    if (add_na) {
       x[13:17, c(2, 4)] <- NA_real_
     }
     cat("mode: ", mode, "\n", sep = "")
@@ -53,7 +53,7 @@ for (mode in c("integer", "double")) {
       stopifnot(all.equal(r1b, r1))
       stopifnot(all.equal(r2b, r2))
     }
-  } # for (addNA ...)
+  } # for (add_na ...)
 }
 
 

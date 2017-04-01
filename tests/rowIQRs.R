@@ -1,15 +1,15 @@
 library("matrixStats")
 
 rowIQRs_R <- function(x, na.rm = FALSE) {
-  quantileNA <- function(x, ..., na.rm = FALSE) {
+  quantile_na <- function(x, ..., na.rm = FALSE) {
     if (!na.rm && anyMissing(x))
       return(c(NA_real_, NA_real_))
     quantile(x, ..., na.rm = na.rm)
   }
-  Q <- apply(x, MARGIN = 1L, FUN = quantileNA,
+  q <- apply(x, MARGIN = 1L, FUN = quantile_na,
              probs = c(0.25, 0.75), na.rm = na.rm)
-  dim(Q) <- c(2L, nrow(x))
-  Q[2L, , drop = TRUE] - Q[1L, , drop = TRUE]
+  dim(q) <- c(2L, nrow(x))
+  q[2L, , drop = TRUE] - q[1L, , drop = TRUE]
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -21,8 +21,8 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
   str(x)
 
-  for (addNA in c(FALSE, TRUE)) {
-    if (addNA) {
+  for (add_na in c(FALSE, TRUE)) {
+    if (add_na) {
       x[3:5, 6:9] <- NA
     }
     for (na.rm in c(FALSE, TRUE)) {
@@ -38,7 +38,7 @@ for (mode in c("integer", "double")) {
       q <- iqr(x[3, ], na.rm = na.rm)
       print(q)
     } # for (na.rm ...)
-  } # for (addNA ...)
+  } # for (add_na ...)
 } # for (mode ...)
 
 

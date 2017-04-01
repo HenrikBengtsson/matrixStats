@@ -16,8 +16,8 @@ Z <- rowAvgsPerColSet(X, S = S)
 print(Z)
 
 # Validation
-Z0 <- cbind(s1 = rowMeans(X[, 1:2]), 
-            s2 = rowMeans(X[, 3:4]), 
+Z0 <- cbind(s1 = rowMeans(X[, 1:2]),
+            s2 = rowMeans(X[, 3:4]),
             s3 = rowMeans(X[, 5:6]))
 stopifnot(identical(drop(Z), Z0))
 
@@ -34,10 +34,10 @@ Z <- colAvgsPerRowSet(X, S = S)
 print(Z)
 
 # Validation
-Z0 <- rbind(s1 = colMeans(X[  1:4, ]), 
-            s2 = colMeans(X[  5:8, ]), 
-            s3 = colMeans(X[ 9:12, ]), 
-            s4 = colMeans(X[13:16, ]), 
+Z0 <- rbind(s1 = colMeans(X[  1:4, ]),
+            s2 = colMeans(X[  5:8, ]),
+            s3 = colMeans(X[ 9:12, ]),
+            s4 = colMeans(X[13:16, ]),
             s5 = colMeans(X[17:20, ]))
 stopifnot(identical(drop(Z), Z0))
 

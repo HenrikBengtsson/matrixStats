@@ -5,7 +5,7 @@ source("utils/validateIndicesFramework.R")
 ftest <- function(x, idxs) validateIndices(idxs, length(x))
 
 x <- 1:6
-for (idxs in indexCases) {
+for (idxs in index_cases) {
   for (mode in c("integer", "numeric", "logical")) {
     if (!is.null(idxs)) {
       suppressWarnings({storage.mode(idxs) <- mode})
@@ -16,7 +16,7 @@ for (idxs in indexCases) {
 
 ftest <- function(x, idxs) validateIndices(idxs, length(x))
 
-for (idxs in indexErrorCases) {
+for (idxs in index_error_cases) {
   validateIndicesTestVector(x, idxs, ftest = ftest, fsure = identity)
 }
 
@@ -32,8 +32,8 @@ ftest <- function(x, rows, cols) {
 }
 
 x <- matrix(1:36, nrow = 6, ncol = 6)
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     validateIndicesTestMatrix(x, rows, cols, ftest = ftest, fsure = identity)
   }
 }

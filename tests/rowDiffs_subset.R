@@ -20,8 +20,8 @@ rowDiffs_R <- function(x, lag = 1L, differences = 1L, ...) {
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     for (lag in 1:2) {
       for (differences in 1:3) {
         validateIndicesTestMatrix(x, rows, cols,

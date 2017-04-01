@@ -53,8 +53,8 @@ x[2, 1] <- 0L
 x[4:5, ] <- 0L
 x[4, 6] <- NA_integer_
 
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowAlls, fsure = rowAlls_R,
                               value = 0, na.rm = TRUE)
@@ -65,13 +65,13 @@ for (rows in indexCases) {
                               ftest = rowAlls, fsure = rowAlls_R,
                               value = NA_integer_)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAlls, fsure = rowAlls_R,
+                              fcoltest = colAlls, fsure = rowAlls_R,
                               value = 0, na.rm = TRUE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAlls, fsure = rowAlls_R,
+                              fcoltest = colAlls, fsure = rowAlls_R,
                               value = 0, na.rm = FALSE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAlls, fsure = rowAlls_R,
+                              fcoltest = colAlls, fsure = rowAlls_R,
                               value = NA_integer_)
 
     validateIndicesTestMatrix(x, rows, cols,
@@ -84,26 +84,26 @@ for (rows in indexCases) {
                               ftest = rowAnys, fsure = rowAnys_R,
                               value = NA_integer_)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnys, fsure = rowAnys_R,
+                              fcoltest = colAnys, fsure = rowAnys_R,
                               value = 0, na.rm = TRUE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnys, fsure = rowAnys_R,
+                              fcoltest = colAnys, fsure = rowAnys_R,
                               value = 0, na.rm = FALSE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnys, fsure = rowAnys_R,
+                              fcoltest = colAnys, fsure = rowAnys_R,
                               value = NA_integer_)
 
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowAnyMissings,
                               fsure = rowAnyMissings_R)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnyMissings,
+                              fcoltest = colAnyMissings,
                               fsure = rowAnyMissings_R)
   }
 }
 
 for (rr in seq_len(nrow(x))) {
-  for (idxs in indexCases) {
+  for (idxs in index_cases) {
     validateIndicesTestVector(x[rr, ], idxs,
                               ftest = allValue, fsure = all_R,
                               value = 0, na.rm = TRUE)
@@ -128,8 +128,8 @@ for (rr in seq_len(nrow(x))) {
 
 
 storage.mode(x) <- "character"
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowAlls, fsure = rowAlls_R,
                               value = "0", na.rm = TRUE)
@@ -140,13 +140,13 @@ for (rows in indexCases) {
                               ftest = rowAlls, fsure = rowAlls_R,
                               value = NA_character_)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAlls, fsure = rowAlls_R,
+                              fcoltest = colAlls, fsure = rowAlls_R,
                               value = "0", na.rm = TRUE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAlls, fsure = rowAlls_R,
+                              fcoltest = colAlls, fsure = rowAlls_R,
                               value = "0", na.rm = FALSE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAlls, fsure = rowAlls_R,
+                              fcoltest = colAlls, fsure = rowAlls_R,
                               value = NA_character_)
 
     validateIndicesTestMatrix(x, rows, cols,
@@ -159,26 +159,26 @@ for (rows in indexCases) {
                               ftest = rowAnys, fsure = rowAnys_R,
                               value = NA_character_)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnys, fsure = rowAnys_R,
+                              fcoltest = colAnys, fsure = rowAnys_R,
                               value = "0", na.rm = TRUE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnys, fsure = rowAnys_R,
+                              fcoltest = colAnys, fsure = rowAnys_R,
                               value = "0", na.rm = FALSE)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnys, fsure = rowAnys_R,
+                              fcoltest = colAnys, fsure = rowAnys_R,
                               value = NA_character_)
 
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowAnyMissings,
                               fsure = rowAnyMissings_R)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colAnyMissings,
+                              fcoltest = colAnyMissings,
                               fsure = rowAnyMissings_R)
   }
 }
 
 for (rr in seq_len(nrow(x))) {
-  for (idxs in indexCases) {
+  for (idxs in index_cases) {
     validateIndicesTestVector(x[rr, ], idxs,
                               ftest = allValue, fsure = all_R,
                               value = "0", na.rm = TRUE)

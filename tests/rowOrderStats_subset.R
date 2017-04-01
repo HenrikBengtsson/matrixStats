@@ -16,8 +16,8 @@ source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
 probs <- 0.3
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     if (is.null(cols)) which <- round(probs * ncol(x))
     else {
       xxrows <- rows
@@ -33,7 +33,7 @@ for (rows in indexCases) {
                               ftest = rowOrderStats, fsure = rowOrderStats_R,
                               which = which, probs = probs)
     validateIndicesTestMatrix(x, rows, cols,
-                              fcolTest = colOrderStats, fsure = rowOrderStats_R,
+                              fcoltest = colOrderStats, fsure = rowOrderStats_R,
                               which = which, probs = probs)
   }
 }

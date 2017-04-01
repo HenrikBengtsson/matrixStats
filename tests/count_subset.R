@@ -7,7 +7,7 @@ count_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
     counts <- sum(x == value, na.rm = na.rm)
   }
   as.integer(counts)
-} # count_R()
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -16,7 +16,7 @@ count_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
 source("utils/validateIndicesFramework.R")
 x <- runif(6, min = -3, max = 3)
 storage.mode(x) <- "integer"
-for (idxs in indexCases) {
+for (idxs in index_cases) {
   validateIndicesTestVector(x, idxs,
                             ftest = count, fsure = count_R,
                             value = 0, na.rm = TRUE)

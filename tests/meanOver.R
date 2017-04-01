@@ -26,8 +26,8 @@ for (kk in 1:20) {
   if ((kk %% 4) %in% c(3, 0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1L)
-    naValues <- c(NA_real_, NaN)
-    t <- sample(naValues, size = nna, replace = TRUE)
+    na_values <- c(NA_real_, NaN)
+    t <- sample(na_values, size = nna, replace = TRUE)
     x[sample(length(x), size = nna)] <- t
   }
 
@@ -168,13 +168,13 @@ for (na.rm in c(FALSE, TRUE)) {
 # Argument 'idxs'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- 1:10
-idxsList <- list(
+idxs_list <- list(
   integer = 1:5,
   double = as.double(1:5),
   logical = (x <= 5)
 )
 
-for (idxs in idxsList) {
+for (idxs in idxs_list) {
   cat("idxs:\n")
   str(idxs)
   s1 <- mean(x[idxs], na.rm = TRUE)

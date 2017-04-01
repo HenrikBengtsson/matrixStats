@@ -16,15 +16,15 @@ for (mode in c("numeric", "integer")) {
   storage.mode(w) <- mode
   if (mode == "numeric") w[1] <- Inf
 
-  for (rows in indexCases) {
-    for (cols in indexCases) {
+  for (rows in index_cases) {
+    for (cols in index_cases) {
       for (na.rm in c(TRUE, FALSE)) {
         validateIndicesTestMatrix_w(x, w, rows, cols,
                                     ftest = rowWeightedMedians,
                                     fsure = rowWeightedMedians_R,
                                     na.rm = na.rm)
         validateIndicesTestMatrix_w(x, w, rows, cols,
-                                    fcolTest = colWeightedMedians,
+                                    fcoltest = colWeightedMedians,
                                     fsure = rowWeightedMedians_R,
                                     na.rm = na.rm)
       }

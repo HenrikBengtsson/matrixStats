@@ -15,14 +15,14 @@ colMedians_R <- function(x, na.rm = FALSE, ...) {
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -3, max = 3), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     for (na.rm in c(TRUE, FALSE)) {
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowMedians, fsure = rowMedians_R,
                                 na.rm = na.rm)
       validateIndicesTestMatrix(x, rows, cols,
-                                fcolTest = colMedians, fsure = rowMedians_R,
+                                fcoltest = colMedians, fsure = rowMedians_R,
                                 na.rm = na.rm)
     }
   }

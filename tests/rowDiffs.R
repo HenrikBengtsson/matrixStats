@@ -22,11 +22,11 @@ set.seed(0x42)
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
 
-  for (addNA in c(FALSE, TRUE)) {
-    cat("addNA = ", addNA, "\n", sep = "")
+  for (add_na in c(FALSE, TRUE)) {
+    cat("add_na = ", add_na, "\n", sep = "")
 
     x <- matrix(sample(20 * 8) + 0.1, nrow = 20, ncol = 8)
-    if (addNA) {
+    if (add_na) {
       x[13:17, c(2, 4)] <- NA_real_
     }
     storage.mode(x) <- mode
@@ -45,7 +45,7 @@ for (mode in c("integer", "double")) {
         stopifnot(all.equal(r1, r2))
       }
     }
-  } # for (addNA ...)
+  } # for (add_na ...)
 } # for (mode ...)
 
 

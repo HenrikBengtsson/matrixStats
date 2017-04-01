@@ -5,7 +5,7 @@ library("stats")
 # Local functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 binCounts_hist <- function(x, bx, right = FALSE, ...) {
-  n0 <- graphics::hist(x, breaks = bx, right = right, 
+  n0 <- graphics::hist(x, breaks = bx, right = right,
                        include.lowest = TRUE, plot = FALSE)$counts
 }
 
@@ -49,10 +49,10 @@ nx <- length(x)
 # Bins
 bx <- c(0.5, 50.5, 100.5, 150.5, 200.5)
 
-yS0 <- binCounts_hist(x, bx = bx)
-yS <- binCounts(x, bx = bx)
+y_smooth0 <- binCounts_hist(x, bx = bx)
+y_smooth <- binCounts(x, bx = bx)
 # Sanity check
-stopifnot(all.equal(yS, yS0))
+stopifnot(all.equal(y_smooth, y_smooth0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -60,20 +60,20 @@ stopifnot(all.equal(yS, yS0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- 1:10
 bx <- min(x) - c(10, 1)
-yS <- binCounts(x, bx = bx)
-stopifnot(all.equal(yS, 0L))
+y_smooth <- binCounts(x, bx = bx)
+stopifnot(all.equal(y_smooth, 0L))
 bx <- range(x)
-yS <- binCounts(x, bx = bx)
-stopifnot(all.equal(yS, length(x) - 1L))
+y_smooth <- binCounts(x, bx = bx)
+stopifnot(all.equal(y_smooth, length(x) - 1L))
 bx <- max(x) + c(1, 10)
-yS <- binCounts(x, bx = bx)
-stopifnot(all.equal(yS, 0L))
+y_smooth <- binCounts(x, bx = bx)
+stopifnot(all.equal(y_smooth, 0L))
 
 # Every second empty
 x <- 1:10
 bx <- rep(x, each = 2L)
-yS <- binCounts(x, bx = bx)
-stopifnot(all.equal(yS, rep(c(0L, 1L), length.out = length(bx) - 1L)))
+y_smooth <- binCounts(x, bx = bx)
+stopifnot(all.equal(y_smooth, rep(c(0L, 1L), length.out = length(bx) - 1L)))
 ## NOTE: binCounts_hist() does not give the same last bin count
 
 
@@ -82,10 +82,10 @@ stopifnot(all.equal(yS, rep(c(0L, 1L), length.out = length(bx) - 1L)))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Zero bin bounderies (invalid bin definition)
 bx <- double(0L)
-res <- try(yS <- binCounts(1:10, bx = bx), silent = TRUE)
+res <- try(y_smooth <- binCounts(1:10, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))
 
 # One bin boundery (invalid bin definition)
 bx <- double(1L)
-res <- try(yS <- binCounts(1:10, bx = bx), silent = TRUE)
+res <- try(y_smooth <- binCounts(1:10, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))

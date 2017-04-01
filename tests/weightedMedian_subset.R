@@ -11,7 +11,7 @@ for (mode in c("numeric", "integer")) {
   storage.mode(w) <- mode
   if (mode == "numeric") w[1] <- Inf
 
-  for (idxs in indexCases) {
+  for (idxs in index_cases) {
     validateIndicesTestVector_w(x, w, idxs,
                                 ftest = weightedMedian,
                                 fsure = weightedMedian,

@@ -180,8 +180,8 @@ stopifnot(all.equal(y1, y0))
 set.seed(1)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4L else 20L
-for (kk in seq_len(K)) {
+n_sims <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4L else 20L
+for (kk in seq_len(n_sims)) {
   cat("Random test #", kk, "\n", sep = "")
 
   # Simulate data in a matrix of any shape
@@ -194,8 +194,8 @@ for (kk in seq_len(K)) {
   if ((kk %% 4) %in% c(3, 0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1)
-    naValues <- c(NA_real_, NaN)
-    t <- sample(naValues, size = nna, replace = TRUE)
+    na_values <- c(NA_real_, NaN)
+    t <- sample(na_values, size = nna, replace = TRUE)
     x[sample(length(x), size = nna)] <- t
   }
 

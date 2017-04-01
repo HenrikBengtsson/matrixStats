@@ -17,7 +17,7 @@ source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
 idxs <- seq_len(6)
-for (rows in indexCases) {
+for (rows in index_cases) {
   if (is.null(rows)) rows <- seq_len(nrow(x))
 
   suppressWarnings({

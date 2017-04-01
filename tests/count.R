@@ -7,7 +7,7 @@ count_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
     counts <- sum(x == value, na.rm = na.rm)
   }
   as.integer(counts)
-} # count_R()
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -48,9 +48,9 @@ for (mode in c("integer", "double")) {
 } # for (mode ...)
 
 # All NAs
-naList <- list(NA_integer_, NA_real_, NaN)
-for (naValue in naList) {
-  x <- rep(naValue, times = 100L)
+na_list <- list(NA_integer_, NA_real_, NaN)
+for (na_value in na_list) {
+  x <- rep(na_value, times = 100L)
   for (na.rm in c(FALSE, TRUE)) {
     n0 <- count_R(x, na.rm = na.rm)
     n1 <- count(x, na.rm = na.rm)
@@ -65,7 +65,7 @@ for (naValue in naList) {
     stopifnot(any)
     stopifnot(all)
   }
-} # for (naValue ...)
+} # for (na_value ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -80,9 +80,9 @@ for (na.rm in c(FALSE, TRUE)) {
   n1 <- count(x, na.rm = na.rm)
   stopifnot(identical(n1, n0))
 
-  nT <- count(x, value = TRUE, na.rm = na.rm)
-  nF <- count(x, value = FALSE, na.rm = na.rm)
-  stopifnot(nT + nF == ncol(x))
+  n_true <- count(x, value = TRUE, na.rm = na.rm)
+  n_false <- count(x, value = FALSE, na.rm = na.rm)
+  stopifnot(n_true + n_false == ncol(x))
 
   # Count NAs
   n0 <- count_R(x, value = NA, na.rm = na.rm)

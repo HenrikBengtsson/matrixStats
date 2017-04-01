@@ -15,8 +15,8 @@ rowCumsums_R <- function(x) {
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -3, max = 3), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowCumsums, fsure = rowCumsums_R)
     validateIndicesTestMatrix(x, rows, cols,

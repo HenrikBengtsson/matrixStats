@@ -19,8 +19,8 @@ colRanks_R_t <- function(x, rows, cols, ...) {
   t(colRanks(t(x), rows = cols, cols = rows, preserveShape = TRUE, ...))
 }
 
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowRanks, fsure = rowRanks_R,
                               ties.method = "average")

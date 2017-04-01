@@ -40,7 +40,7 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure,
   stopifnot(all.equal(actual, expect))
 }
 
-validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure,
+validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcoltest, fsure,
                                       debug = FALSE, ...) {
   if (debug) {
     cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
@@ -48,11 +48,11 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure,
   }
 
   suppressWarnings({
-    if (missing(fcolTest)) {
+    if (missing(fcoltest)) {
       actual <- tryCatch(ftest(x, rows = rows, cols = cols, ...),
                          error = function(c) "error")
     } else {
-      actual <- tryCatch(fcolTest(t(x), rows = cols, cols = rows, ...),
+      actual <- tryCatch(fcoltest(t(x), rows = cols, cols = rows, ...),
                          error = function(c) "error")
     }
 
@@ -74,18 +74,18 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure,
 }
 
 validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest,
-                                        fcolTest, fsure, debug = FALSE, ...) {
+                                        fcoltest, fsure, debug = FALSE, ...) {
   if (debug) {
     cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
     cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
   }
 
   suppressWarnings({
-    if (missing(fcolTest)) {
+    if (missing(fcoltest)) {
       actual <- tryCatch(ftest(x, w, rows = rows, cols = cols, ...),
                          error = function(c) "error")
     } else {
-      actual <- tryCatch(fcolTest(t(x), w, rows = cols, cols = rows, ...),
+      actual <- tryCatch(fcoltest(t(x), w, rows = cols, cols = rows, ...),
                          error = function(c) "error")
     }
 
@@ -108,67 +108,68 @@ validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest,
   stopifnot(all.equal(actual, expect))
 }
 
-indexCases <- list()
+index_cases <- list()
 # negative indices with duplicates
-indexCases[[length(indexCases) + 1]] <- c(-4, 0, 0, -3, -1, -3, -1)
+index_cases[[length(index_cases) + 1]] <- c(-4, 0, 0, -3, -1, -3, -1)
 
 # positive indices
-indexCases[[length(indexCases) + 1]] <- c(3, 5, 1)
+index_cases[[length(index_cases) + 1]] <- c(3, 5, 1)
 
 # positive indices with duplicates
-indexCases[[length(indexCases) + 1]] <- c(3, 0, 0, 5, 1, 5, 5)
+index_cases[[length(index_cases) + 1]] <- c(3, 0, 0, 5, 1, 5, 5)
 
 # positive indices out of ranges
-indexCases[[length(indexCases) + 1]] <- 4:9
+index_cases[[length(index_cases) + 1]] <- 4:9
 
 # negative out of ranges: just ignore
-indexCases[[length(indexCases) + 1]] <- c(-5, 0, -3, -1, -9)
+index_cases[[length(index_cases) + 1]] <- c(-5, 0, -3, -1, -9)
 
 # negative indices exclude all
-indexCases[[length(indexCases) + 1]] <- -1:-6
+index_cases[[length(index_cases) + 1]] <- -1:-6
 
 # idxs is single number
-indexCases[[length(indexCases) + 1]] <- 4
-indexCases[[length(indexCases) + 1]] <- -4
-indexCases[[length(indexCases) + 1]] <- 0
+index_cases[[length(index_cases) + 1]] <- 4
+index_cases[[length(index_cases) + 1]] <- -4
+index_cases[[length(index_cases) + 1]] <- 0
 
 # idxs is empty
-indexCases[[length(indexCases) + 1]] <- integer()
+index_cases[[length(index_cases) + 1]] <- integer()
 
 # NA in idxs
-indexCases[[length(indexCases) + 1]] <- c(NA_real_, 0, 2)
+index_cases[[length(index_cases) + 1]] <- c(NA_real_, 0, 2)
 
 # Inf in idxs
-indexCases[[length(indexCases) + 1]] <- c(-Inf, -1)
-indexCases[[length(indexCases) + 1]] <- c(NA_real_, 0, 2, Inf)
+index_cases[[length(index_cases) + 1]] <- c(-Inf, -1)
+index_cases[[length(index_cases) + 1]] <- c(NA_real_, 0, 2, Inf)
 
 # single logical
-indexCases[[length(indexCases) + 1]] <- NA
-indexCases[[length(indexCases) + 1]] <- TRUE
-indexCases[[length(indexCases) + 1]] <- FALSE
+index_cases[[length(index_cases) + 1]] <- NA
+index_cases[[length(index_cases) + 1]] <- TRUE
+index_cases[[length(index_cases) + 1]] <- FALSE
 
 # full logical idxs
-indexCases[[length(indexCases) + 1]] <- c(FALSE, TRUE, FALSE, TRUE, TRUE, FALSE)
+index_cases[[length(index_cases) + 1]] <- c(FALSE, TRUE, FALSE, TRUE,
+                                           TRUE, FALSE)
 
 # too many logical idxs
-indexCases[[length(indexCases) + 1]] <- c(FALSE, TRUE, FALSE, TRUE,
+index_cases[[length(index_cases) + 1]] <- c(FALSE, TRUE, FALSE, TRUE,
                                         TRUE, TRUE, FALSE, TRUE)
 
 # insufficient idxs
-indexCases[[length(indexCases) + 1]] <- c(FALSE, TRUE)
-indexCases[[length(indexCases) + 1]] <- c(FALSE, TRUE, NA)
-indexCases[[length(indexCases) + 1]] <- c(FALSE, TRUE, NA, FALSE)
+index_cases[[length(index_cases) + 1]] <- c(FALSE, TRUE)
+index_cases[[length(index_cases) + 1]] <- c(FALSE, TRUE, NA)
+index_cases[[length(index_cases) + 1]] <- c(FALSE, TRUE, NA, FALSE)
 
 # NULL
-indexCases[length(indexCases) + 1] <- list(NULL)
+index_cases[length(index_cases) + 1] <- list(NULL)
 
 
-indexErrorCases <- list()
+index_error_cases <- list()
 # mixed positive and negative indices
-indexErrorCases[[length(indexCases) + 1]] <- 1:-1
+index_error_cases[[length(index_cases) + 1]] <- 1:-1
 
 # mixed positive, negative and zero indices
-indexErrorCases[[length(indexCases) + 1]] <- c(-4, 0, 0, 1)
+index_error_cases[[length(index_cases) + 1]] <- c(-4, 0, 0, 1)
 
 # NA in idxs
-indexErrorCases[[length(indexCases) + 1]] <- c(NA_real_, -2)
+index_error_cases[[length(index_cases) + 1]] <- c(NA_real_, -2)

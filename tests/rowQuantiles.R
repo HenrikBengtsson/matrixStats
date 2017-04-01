@@ -3,9 +3,9 @@ library("matrixStats")
 rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
   q <- apply(x, MARGIN = 1L, FUN = function(x, probs, na.rm) {
     if (!na.rm && any(is.na(x))) {
-      naValue <- NA_real_
-      storage.mode(naValue) <- storage.mode(x)
-      rep(naValue, times = length(probs))
+      na_value <- NA_real_
+      storage.mode(na_value) <- storage.mode(x)
+      rep(na_value, times = length(probs))
 
     } else {
       as.vector(quantile(x, probs = probs, na.rm = na.rm, ...))
@@ -71,8 +71,8 @@ set.seed(1)
 probs <- seq(from = 0, to = 1, by = 0.25)
 
 cat("Consistency checks:\n")
-K <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4L else 20L
-for (kk in seq_len(K)) {
+n_sims <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4L else 20L
+for (kk in seq_len(n_sims)) {
   cat("Random test #", kk, "\n", sep = "")
 
   # Simulate data in a matrix of any shape
@@ -82,12 +82,12 @@ for (kk in seq_len(K)) {
   dim(x) <- dim
 
   # Add NAs?
-  hasNA <- (kk %% 4) %in% c(3, 0)
-  if (hasNA) {
+  has_na <- (kk %% 4) %in% c(3, 0)
+  if (has_na) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1)
-    naValues <- c(NA_real_, NaN)
-    t <- sample(naValues, size = nna, replace = TRUE)
+    na_values <- c(NA_real_, NaN)
+    t <- sample(na_values, size = nna, replace = TRUE)
     x[sample(length(x), size = nna)] <- t
   }
 
@@ -100,10 +100,10 @@ for (kk in seq_len(K)) {
   str(x)
 
   # rowQuantiles():
-  q0 <- rowQuantiles_R(x, probs = probs, na.rm = hasNA)
-  q1 <- rowQuantiles(x, probs = probs, na.rm = hasNA)
+  q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na)
+  q1 <- rowQuantiles(x, probs = probs, na.rm = has_na)
   stopifnot(all.equal(q1, q0))
-  q2 <- colQuantiles(t(x), probs = probs, na.rm = hasNA)
+  q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na)
   stopifnot(all.equal(q2, q0))
 } # for (kk ...)
 

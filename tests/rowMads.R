@@ -117,11 +117,11 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (addNA in c(FALSE, TRUE)) {
-  cat("addNA = ", addNA, "\n", sep = "")
+for (add_na in c(FALSE, TRUE)) {
+  cat("add_na = ", add_na, "\n", sep = "")
 
   x <- matrix(1:100, nrow = 20, ncol = 5)
-  if (addNA) {
+  if (add_na) {
     x[13:17, c(2, 4)] <- NA_real_
   }
 
@@ -145,7 +145,7 @@ for (addNA in c(FALSE, TRUE)) {
     stopifnot(all.equal(r2, r0))
     stopifnot(all.equal(r1, r2))
   }
-} # for (addNA ...)
+} # for (add_na ...)
 
 
 

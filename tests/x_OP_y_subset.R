@@ -49,8 +49,8 @@ for (OP in c("+", "-", "*", "/")) {
     storage.mode(y) <- mode
     if (mode == "numeric") y[1] <- Inf
 
-    for (xrows in indexCases) {
-      for (xcols in indexCases) {
+    for (xrows in index_cases) {
+      for (xcols in index_cases) {
         if (is.null(xrows)) xrows <- seq_len(nrow(x))
         if (is.null(xcols)) xcols <- seq_len(ncol(x))
 

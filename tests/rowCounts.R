@@ -11,7 +11,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
     )
   }
   as.integer(counts)
-} # rowCounts_R()
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -53,9 +53,9 @@ for (mode in c("integer", "double")) {
 } # for (mode ...)
 
 # All NAs
-naList <- list(NA_integer_, NA_real_, NaN)
-for (naValue in naList) {
-  x <- matrix(naValue, nrow = 20, ncol = 5)
+na_list <- list(NA_integer_, NA_real_, NaN)
+for (na_value in na_list) {
+  x <- matrix(na_value, nrow = 20, ncol = 5)
   for (na.rm in c(FALSE, TRUE)) {
     r0 <- rowCounts_R(x, na.rm = na.rm)
     r1 <- rowCounts(x, na.rm = na.rm)
@@ -71,7 +71,7 @@ for (naValue in naList) {
     stopifnot(identical(r1, r0))
     stopifnot(identical(r2, r0))
   }
-} # for (naValue ...)
+} # for (na_value ...)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -92,13 +92,13 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(identical(r1, r0))
   stopifnot(identical(r2, r0))
 
-  rT <- rowCounts(x, value = TRUE, na.rm = na.rm)
-  rF <- rowCounts(x, value = FALSE, na.rm = na.rm)
-  stopifnot(rT + rF == ncol(x))
+  r_true <- rowCounts(x, value = TRUE, na.rm = na.rm)
+  r_false <- rowCounts(x, value = FALSE, na.rm = na.rm)
+  stopifnot(r_true + r_false == ncol(x))
 
-  cT <- colCounts(x, value = TRUE, na.rm = na.rm)
-  cF <- colCounts(x, value = FALSE, na.rm = na.rm)
-  stopifnot(cT + cF == nrow(x))
+  c_true <- colCounts(x, value = TRUE, na.rm = na.rm)
+  c_false <- colCounts(x, value = FALSE, na.rm = na.rm)
+  stopifnot(c_true + c_false == nrow(x))
 
   # Count NAs
   r0 <- rowCounts_R(x, value = NA, na.rm = na.rm)

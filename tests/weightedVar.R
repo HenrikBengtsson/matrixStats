@@ -1,7 +1,8 @@
 library("matrixStats")
 
 weightedVar_R <- function(x, w) {
-  sum(w * (x - mu)^2) / (sum(w) - 1)
+  mu <- weighted.mean(x, w = w)
+  sum(w * (x - mu) ^ 2) / (sum(w) - 1)
 }
 
 

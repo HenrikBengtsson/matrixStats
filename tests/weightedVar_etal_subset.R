@@ -1,8 +1,8 @@
 library("matrixStats")
 
-FUNs <- list(
+fcns <- list(
   weightedVar = weightedVar,
-  weightedSd = weightedSd,
+  weightedSd  = weightedSd,
   weightedMad = weightedMad
 )
 
@@ -11,9 +11,9 @@ FUNs <- list(
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
-for (fcn in names(FUNs)) {
-  cat(sprintf("subsetted tests on %s()...\n", fcn))
-  FUN <- FUNs[[fcn]]
+for (name in names(fcns)) {
+  cat(sprintf("subsetted tests on %s()...\n", name))
+  fcn <- fcns[[name]]
 
   for (mode in c("numeric", "integer")) {
     x <- runif(6, min = -6, max = 6)
@@ -22,14 +22,14 @@ for (fcn in names(FUNs)) {
     storage.mode(w) <- mode
     if (mode == "numeric") w[1] <- Inf
 
-    for (idxs in indexCases) {
+    for (idxs in index_cases) {
       validateIndicesTestVector_w(x, w, idxs,
-                                  ftest = FUN, fsure = FUN,
+                                  ftest = fcn, fsure = fcn,
                                   na.rm = TRUE)
       validateIndicesTestVector_w(x, w, idxs,
-                                  ftest = FUN, fsure = FUN,
+                                  ftest = fcn, fsure = fcn,
                                   na.rm = FALSE)
     }
   }
-  cat(sprintf("%s()...DONE\n", fcn))
+  cat(sprintf("%s()...DONE\n", name))
 }

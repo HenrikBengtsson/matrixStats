@@ -6,8 +6,8 @@ library("matrixStats")
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
-for (rows in indexCases) {
-  for (cols in indexCases) {
+for (rows in index_cases) {
+  for (cols in index_cases) {
     validateIndicesTestMatrix(x, rows, cols,
                               ftest = rowTabulates, fsure = rowTabulates)
     validateIndicesTestMatrix(x, rows, cols,
