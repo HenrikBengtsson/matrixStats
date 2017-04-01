@@ -126,6 +126,31 @@ y0 <- colMeans(x, na.rm = FALSE)
 y1 <- colMeans2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Special case: NaNs and NAs
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+cat("Special case: Infs and -Infs:\n")
+x <- matrix(c(NaN, NA_real_), nrow = 4, ncol = 4)
+
+y0 <- rowMeans(x, na.rm = FALSE)
+stopifnot(all(is.na(y0)), length(unique(y0)) == 2L)
+y1 <- rowMeans2(x, na.rm = FALSE)
+stopifnot(all(is.na(y1)), length(unique(y1)) == 2L)
+stopifnot(all.equal(y1, y0))
+
+y0 <- colMeans(x, na.rm = FALSE)
+stopifnot(all(is.na(y0)), length(unique(y0)) == 1L)
+y1 <- colMeans2(x, na.rm = FALSE)
+stopifnot(all(is.na(y1)), length(unique(y1)) == 1L)
+## NOTE, due to compiler optimization, it is not guaranteed that NA is
+## returned here (as one would expect). NaN might very well be returned,
+## when both NA and NaN are involved.  This is an accepted feature in R,
+## which is documented in help("is.nan").  See also
+## https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html.
+## Thus, we cannot guarantee that y1 is identical to y0.
+
+
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: Integer overflow with ties
