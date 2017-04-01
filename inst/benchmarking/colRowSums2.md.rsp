@@ -1,13 +1,12 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string colname="colMeans"%>
-<%@string rowname="rowMeans"%>
+<%@string colname="colSums2"%>
+<%@string rowname="rowSums2"%>
 <%@meta title="${colname}() and ${rowname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
-<%@meta date="2014-06-09"%>
+<%@meta date="2017-03-31"%>
 
 <%@include file="${header}"%>
-
 
 # <%@meta name="title"%>
 
@@ -15,9 +14,9 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 
 ## Alternative methods
 
-* .colMeans() and .rowMeans()
-* apply() + mean()
-
+* apply() + sum()
+* colSums() and rowSums()
+* .colSums() and .rowSums()
 
 <% for (mode in c("integer", "double")) { %>
 
@@ -43,9 +42,10 @@ X <- data[[.dataLabel.]]
 gc()
 
 colStats <- microbenchmark(
- colMeans     = colMeans(X, na.rm=FALSE),
- .colMeans    = .colMeans(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
- "apply+mean" = apply(X, MARGIN=2L, FUN=mean, na.rm=FALSE),
+ colSums2    = colSums2(X, na.rm=FALSE),
+ .colSums    = .colSums(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
+ colSums     = colSums(X, na.rm=FALSE),
+"apply+sum"  = apply(X, MARGIN=2L, FUN=sum, na.rm=FALSE),
  unit = "ms"
 )
 
@@ -53,9 +53,10 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowMeans     = rowMeans(X, na.rm=FALSE),
- .rowMeans    = .rowMeans(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
- "apply+mean" = apply(X, MARGIN=1L, FUN=mean, na.rm=FALSE),
+ rowSums2    = rowSums2(X, na.rm=FALSE),
+ .rowSums    = .rowSums(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
+ rowSums     = rowSums(X, na.rm=FALSE),
+"apply+sum"  = apply(X, MARGIN=1L, FUN=sum, na.rm=FALSE),
  unit = "ms"
 )
 })%>
@@ -67,11 +68,5 @@ rowStats <- microbenchmark(
 
 <% } # for (mode ...) %>
 
+
 <%@include file="${footer}"%>
-
-
-<%---------------------------------------------------------------------------
-HISTORY:
-2014-06-09
-o Created.
----------------------------------------------------------------------------%>
