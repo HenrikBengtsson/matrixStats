@@ -24,7 +24,7 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 data <- data[1:4]
 })%>
 ```

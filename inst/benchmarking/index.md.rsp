@@ -22,11 +22,11 @@ lenter <- function(...) {
 List of benchmark report for some of the functions available in the [matrixStats] package.
 
 <%
-path <- cmdArg(path=system.file("benchmarking", package="matrixStats"))
+path <- cmdArg(path = system.file("benchmarking", package = "matrixStats"))
 path <- getAbsolutePath(path)
 message("Processing benchmark report directory: ", path)
 pattern <- "[.]md[.]rsp$"
-filenames <- list.files(path=path, pattern=pattern)
+filenames <- list.files(path = path, pattern = pattern)
 filenames <- setdiff(filenames, "index.md.rsp")
 names <- gsub(pattern, "", filenames)
 # col- and rowAnyMissing() does not really exist
@@ -49,7 +49,7 @@ if (regexpr("^colRow", name) != -1L) {
   lenter("%d of %d. Benchmarking %s...\n", ii, length(names), label)
   html <- sprintf("%s.html", name)
   if (!file_test("-f", html)) {
-    html <- matrixStats:::benchmark(name, path=path, workdir=".", envir=new.env())
+    html <- matrixStats:::benchmark(name, path = path, workdir = ".", envir = new.env())
     html <- getRelativePath(html)
     gc()
   }
@@ -62,8 +62,8 @@ if (regexpr("^colRow", name) != -1L) {
 ## Appendix
 To reproduce this page and all of its reports, do:
 ```r
-path <- system.file("benchmarking", package="matrixStats")
-R.rsp::rfile("index.md.rsp", path=path)
+path <- system.file("benchmarking", package = "matrixStats")
+R.rsp::rfile("index.md.rsp", path = path)
 ```
 _Note: Each of the above reports takes up to several minutes to complete._
 

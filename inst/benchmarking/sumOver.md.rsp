@@ -21,8 +21,8 @@ as below
 
 ```r
 <%=withCapture({
-sumOver_R <- function(x, na.rm=FALSE, idxs) {
-  sum(x[idxs], na.rm=na.rm)
+sumOver_R <- function(x, na.rm = FALSE, idxs) {
+  sum(x[idxs], na.rm = na.rm)
 }
 })%>
 ```
@@ -34,7 +34,7 @@ sumOver_R <- function(x, na.rm=FALSE, idxs) {
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 ##data <- data[1:3]
 })%>
 ```
@@ -74,12 +74,12 @@ stats <- microbenchmark(
 <%=withCapture({
 x <- data[[.dataLabel.]]
 subset
-idxs <- sort(sample(length(x), size=subset*length(x), replace=FALSE))
+idxs <- sort(sample(length(x), size = subset*length(x), replace = FALSE))
 gc()
 
 stats <- microbenchmark(
- "sumOver"         = sumOver(x, idxs=idxs),
- "sum+[()"         = sumOver_R(x, idxs=idxs),
+ "sumOver"         = sumOver(x, idxs = idxs),
+ "sum+[()"         = sumOver_R(x, idxs = idxs),
   unit = "ms"
 )
 })%>

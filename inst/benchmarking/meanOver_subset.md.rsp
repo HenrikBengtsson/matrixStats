@@ -21,7 +21,7 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 ##data <- data[1:3]
 })%>
 ```
@@ -39,17 +39,17 @@ mprintf("%s: %s\n", mode, dataLabel)
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 x_S <- x[idxs]
 gc()
 
 stats <- microbenchmark(
- "meanOver_x_S"                = meanOver(x_S, refine=TRUE),
- "meanOver_x_S_no_refine"      = meanOver(x_S, refine=FALSE),
- "meanOver(x, idxs)"            = meanOver(x, idxs=idxs, refine=TRUE),
- "meanOver_no_refine(x, idxs)"  = meanOver(x, idxs=idxs, refine=FALSE),
- "meanOver(x[idxs])"           = meanOver(x[idxs], refine=TRUE),
- "meanOver_no_refine(x[idxs])" = meanOver(x[idxs], refine=FALSE),
+ "meanOver_x_S"                = meanOver(x_S, refine = TRUE),
+ "meanOver_x_S_no_refine"      = meanOver(x_S, refine = FALSE),
+ "meanOver(x, idxs)"            = meanOver(x, idxs = idxs, refine = TRUE),
+ "meanOver_no_refine(x, idxs)"  = meanOver(x, idxs = idxs, refine = FALSE),
+ "meanOver(x[idxs])"           = meanOver(x[idxs], refine = TRUE),
+ "meanOver_no_refine(x[idxs])" = meanOver(x[idxs], refine = FALSE),
   unit = "ms"
 )
 })%>

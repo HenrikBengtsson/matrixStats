@@ -35,7 +35,7 @@ any_is.na <- function(x) {
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 })%>
 ```
 

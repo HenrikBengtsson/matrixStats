@@ -26,7 +26,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -43,8 +43,8 @@ X <- data[[.dataLabel.]]
 gc()
 
 colStats <- microbenchmark(
- colMedians     = colMedians(X, na.rm=FALSE),
- "apply+median" = apply(X, MARGIN=2L, FUN=median, na.rm=FALSE),
+ colMedians     = colMedians(X, na.rm = FALSE),
+ "apply+median" = apply(X, MARGIN = 2L, FUN = median, na.rm = FALSE),
  unit = "ms"
 )
 
@@ -52,8 +52,8 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowMedians     = rowMedians(X, na.rm=FALSE),
- "apply+median" = apply(X, MARGIN=1L, FUN=median, na.rm=FALSE),
+ rowMedians     = rowMedians(X, na.rm = FALSE),
+ "apply+median" = apply(X, MARGIN = 1L, FUN = median, na.rm = FALSE),
  unit = "ms"
 )
 })%>

@@ -22,16 +22,16 @@ as below
 
 ```r
 <%=withCapture({
-meanOver_R_v1 <- function(x, na.rm=FALSE, idxs) {
-  mean(x[idxs], na.rm=na.rm)
+meanOver_R_v1 <- function(x, na.rm = FALSE, idxs) {
+  mean(x[idxs], na.rm = na.rm)
 }
 })%>
 ```
 and
 ```r
 <%=withCapture({
-meanOver_R_v2 <- function(x, na.rm=FALSE, idxs) {
-  mean.default(x[idxs], na.rm=na.rm)
+meanOver_R_v2 <- function(x, na.rm = FALSE, idxs) {
+  mean.default(x[idxs], na.rm = na.rm)
 }
 })%>
 ```
@@ -43,7 +43,7 @@ meanOver_R_v2 <- function(x, na.rm=FALSE, idxs) {
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 ##data <- data[1:3]
 })%>
 ```
@@ -67,8 +67,8 @@ x <- data[[.dataLabel.]]
 gc()
 
 stats <- microbenchmark(
- "meanOver"           = meanOver(x, refine=TRUE),
- "meanOver_no_refine" = meanOver(x, refine=FALSE),
+ "meanOver"           = meanOver(x, refine = TRUE),
+ "meanOver_no_refine" = meanOver(x, refine = FALSE),
  "mean"               = mean(x),
  "mean.default"       = mean.default(x),
   unit = "ms"
@@ -85,14 +85,14 @@ stats <- microbenchmark(
 <%=withCapture({
 x <- data[[.dataLabel.]]
 subset
-idxs <- sort(sample(length(x), size=subset*length(x), replace=FALSE))
+idxs <- sort(sample(length(x), size = subset*length(x), replace = FALSE))
 gc()
 
 stats <- microbenchmark(
- "meanOver"           = meanOver(x, idxs=idxs, refine=TRUE),
- "meanOver_no_refine" = meanOver(x, idxs=idxs, refine=FALSE),
- "mean+[()"           = meanOver_R_v1(x, idxs=idxs),
- "mean.default+[()"   = meanOver_R_v2(x, idxs=idxs),
+ "meanOver"           = meanOver(x, idxs = idxs, refine = TRUE),
+ "meanOver_no_refine" = meanOver(x, idxs = idxs, refine = FALSE),
+ "mean+[()"           = meanOver_R_v1(x, idxs = idxs),
+ "mean.default+[()"   = meanOver_R_v2(x, idxs = idxs),
   unit = "ms"
 )
 })%>

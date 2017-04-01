@@ -12,7 +12,7 @@
 
 <%@ifeq test_genefilter="TRUE"%>
 <%
-use("genefilter", how="load")
+use("genefilter", how = "load")
 genefilter_rowVars <- genefilter::rowVars
 genefilter_colVars <- function(x, ...) genefilter_rowVars(t(x), ...)
 %>
@@ -34,13 +34,13 @@ where
 
 ```r
 <%=withCapture({
-colVarColMeans <- function(x, na.rm=TRUE) {
+colVarColMeans <- function(x, na.rm = TRUE) {
   if (na.rm) {
     n <- colSums(!is.na(x))
   } else {
     n <- nrow(x)
   }
-  var <- colMeans(x*x, na.rm=na.rm) - (colMeans(x, na.rm=na.rm))^2
+  var <- colMeans(x*x, na.rm = na.rm) - (colMeans(x, na.rm = na.rm))^2
   var * n/(n-1)
 }
 })%>
@@ -50,14 +50,14 @@ and
 
 ```r
 <%=withCapture({
-rowVarRowMeans <- function(x, na.rm=TRUE) {
+rowVarRowMeans <- function(x, na.rm = TRUE) {
   if (na.rm) {
     n <- rowSums(!is.na(x))
   } else {
     n <- ncol(x)
   }
-  mu <- rowMeans(x, na.rm=na.rm)
-  var <- rowMeans(x*x, na.rm=na.rm) - mu^2
+  mu <- rowMeans(x, na.rm = na.rm)
+  var <- rowMeans(x*x, na.rm = na.rm) - mu^2
   var * (n/(n-1))
 }
 })%>
@@ -72,7 +72,7 @@ rowVarRowMeans <- function(x, na.rm=TRUE) {
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -88,11 +88,11 @@ X <- data[[.dataLabel.]]
 gc()
 
 colStats <- microbenchmark(
- colVars        = colVars(X, na.rm=FALSE),
- colVarColMeans = colVarColMeans(X, na.rm=FALSE),
- "apply+var"    = apply(X, MARGIN=2L, FUN=var, na.rm=FALSE),
+ colVars        = colVars(X, na.rm = FALSE),
+ colVarColMeans = colVarColMeans(X, na.rm = FALSE),
+ "apply+var"    = apply(X, MARGIN = 2L, FUN = var, na.rm = FALSE),
 <%@ifeq test_genefilter="TRUE"%>
- "genefilter::rowVars(t(.))" = genefilter_colVars(X, na.rm=FALSE),
+ "genefilter::rowVars(t(.))" = genefilter_colVars(X, na.rm = FALSE),
 <%@endif%>
  unit = "ms"
 )
@@ -101,11 +101,11 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowVars        = rowVars(X, na.rm=FALSE),
- rowVarRowMeans = rowVarRowMeans(X, na.rm=FALSE),
-"apply+var"     = apply(X, MARGIN=1L, FUN=var, na.rm=FALSE),
+ rowVars        = rowVars(X, na.rm = FALSE),
+ rowVarRowMeans = rowVarRowMeans(X, na.rm = FALSE),
+"apply+var"     = apply(X, MARGIN = 1L, FUN = var, na.rm = FALSE),
 <%@ifeq test_genefilter="TRUE"%>
- "genefilter::rowVars" = genefilter_rowVars(X, na.rm=FALSE),
+ "genefilter::rowVars" = genefilter_rowVars(X, na.rm = FALSE),
 <%@endif%>
  unit = "ms"
 )

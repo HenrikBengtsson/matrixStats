@@ -26,7 +26,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -42,10 +42,10 @@ X <- data[[.dataLabel.]]
 gc()
 
 colStats <- microbenchmark(
- colSums2    = colSums2(X, na.rm=FALSE),
- .colSums    = .colSums(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
- colSums     = colSums(X, na.rm=FALSE),
-"apply+sum"  = apply(X, MARGIN=2L, FUN=sum, na.rm=FALSE),
+ colSums2    = colSums2(X, na.rm = FALSE),
+ .colSums    = .colSums(X, m = nrow(X), n = ncol(X), na.rm = FALSE),
+ colSums     = colSums(X, na.rm = FALSE),
+"apply+sum"  = apply(X, MARGIN = 2L, FUN = sum, na.rm = FALSE),
  unit = "ms"
 )
 
@@ -53,10 +53,10 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowSums2    = rowSums2(X, na.rm=FALSE),
- .rowSums    = .rowSums(X, m=nrow(X), n=ncol(X), na.rm=FALSE),
- rowSums     = rowSums(X, na.rm=FALSE),
-"apply+sum"  = apply(X, MARGIN=1L, FUN=sum, na.rm=FALSE),
+ rowSums2    = rowSums2(X, na.rm = FALSE),
+ .rowSums    = .rowSums(X, m = nrow(X), n = ncol(X), na.rm = FALSE),
+ rowSums     = rowSums(X, na.rm = FALSE),
+"apply+sum"  = apply(X, MARGIN = 1L, FUN = sum, na.rm = FALSE),
  unit = "ms"
 )
 })%>
