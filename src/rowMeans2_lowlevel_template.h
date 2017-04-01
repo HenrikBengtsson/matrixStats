@@ -15,9 +15,9 @@
 
 
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
-  R_xlen_t ii, jj, kk, idx;
+  R_xlen_t ii, jj, idx;
   R_xlen_t *colOffset;
-  X_C_TYPE *values, value;
+  X_C_TYPE value;
   LDOUBLE sum, avg;
   R_xlen_t count;
 
@@ -27,10 +27,6 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 #ifdef COLS_TYPE
   COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
 #endif
-
-  /* R allocate memory for the 'values'.  This will be
-     taken care of by the R garbage collector later on. */
-  values = (X_C_TYPE *) R_alloc(ncols, sizeof(X_C_TYPE));
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
