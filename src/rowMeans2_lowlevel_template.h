@@ -61,8 +61,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         sum += (LDOUBLE)value;
         ++count;
       } else if (!narm) {
-          sum = R_NaReal;
-          break;
+        sum = R_NaReal;
+        break;
       }
   #elif X_TYPE == 'r'
       if (!narm) {

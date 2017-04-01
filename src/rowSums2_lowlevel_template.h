@@ -18,7 +18,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   R_xlen_t ii, jj, kk, idx;
   R_xlen_t *colOffset;
   X_C_TYPE *values, value;
-  double sum_d;
+  LDOUBLE sum;
 
 #ifdef ROWS_TYPE
   ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
@@ -49,46 +49,36 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   for (ii=0; ii < nrows; ii++) {
     R_xlen_t rowIdx = byrow ? ROW_INDEX(crows,ii) : R_INDEX_OP(ROW_INDEX(crows,ii), *, ncol);
 
-    /* Step 1: Collect values to process below
-       If a NA or NaN value is detected, then:
-       - na.rm = TRUE : skip it
-       - na.rm = FALSE: return immediately
-     */
-    kk = 0;
+    sum = 0.0;
+    
     for (jj=0; jj < ncols; jj++) {
-      idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+      idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);      
       value = R_INDEX_GET(x, idx, X_NA);
-
-      if (X_ISNAN(value)) {
-        if (narm == FALSE) {
-          kk = -1;
-          break;
-        }
-      } else {
-        values[kk] = value;
-        kk = kk + 1;
+  #if X_TYPE == 'i'
+      if (!X_ISNAN(value)) {
+        sum += (LDOUBLE)value;
+      } else if (!narm) {
+        sum = R_NaReal;
+        break;
       }
-    }
+  #elif X_TYPE == 'r'
+      if (!narm) {
+        sum += (LDOUBLE)value;
+        if (jj % 1048576 == 0 && ISNA(sum)) break;
+      } else if (!ISNAN(value)) {
+        sum += (LDOUBLE)value;
+      }
+  #endif
+    } /* for (jj ...) */
 
-    /* Note that 'values' will never contain NA/NaNs */
-
-    /* Step 2: Process values */
-    if (kk == -1) {
-      /* na.rm = FALSE with NA/NaN values */
-      ans[ii] = NA_REAL;
-    } else if (kk == 0) {
-      /* na.rm = TRUE with no non-NA/NaN values */
-      ans[ii] = 0;
+    if (sum > DOUBLE_XMAX) {
+      ans[ii] = R_PosInf;
+    } else if (sum < -DOUBLE_XMAX) {
+      ans[ii] = R_NegInf;
     } else {
-      /* Calculate the sum */
-      sum_d = 0;
-      for (jj=0; jj < kk; jj++) {
-        sum_d += (double)values[jj];
-      }
-
-      ans[ii] = sum_d;
-    } /* if (kk <= 1) */
-
+      ans[ii] = (double)sum;
+    }
+    
     R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 }
