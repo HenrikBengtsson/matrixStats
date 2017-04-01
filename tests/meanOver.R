@@ -145,7 +145,7 @@ for (na.rm in c(FALSE, TRUE)) {
     ## https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html.
     ## Thus, we cannot guarantee that s1 is identical to s0.
   }
-  
+
   # Averaging over mix of NaN, NA, +Inf, and numerics
   x <- c(NA, NaN, +Inf, 3.14)
   s1 <- mean(x, na.rm = na.rm)
