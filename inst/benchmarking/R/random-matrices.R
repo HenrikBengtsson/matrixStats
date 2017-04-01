@@ -1,4 +1,6 @@
-rmatrix <- function(nrow, ncol, mode = c("logical", "double", "integer", "index"), range = c(-100, +100), naProb = 0) {
+rmatrix <- function(nrow, ncol,
+                    mode = c("logical", "double", "integer", "index"),
+                    range = c(-100, +100), na_prob = 0) {
   mode <- match.arg(mode)
   n <- nrow * ncol
   if (mode == "logical") {
@@ -10,10 +12,10 @@ rmatrix <- function(nrow, ncol, mode = c("logical", "double", "integer", "index"
     x <- runif(n, min = range[1], max = range[2])
   }
   storage.mode(x) <- mode
-  if (naProb > 0) x[sample(n, size = naProb * n)] <- NA
+  if (na_prob > 0) x[sample(n, size = na_prob * n)] <- NA
   dim(x) <- c(nrow, ncol)
   x
-} # rmatrix()
+}
 
 
 rmatrices <- function(scale = 10, seed = 1, ...) {
@@ -27,13 +29,4 @@ rmatrices <- function(scale = 10, seed = 1, ...) {
   data[[6]] <- t(data[[5]])
   names(data) <- sapply(data, FUN = function(x) paste(dim(x), collapse = "x"))
   data
-} # rmatrices()
-
-
-############################################################################
-# HISTORY:
-# 2014-11-09
-# o Added 'index' mode.
-# 2014-06-02
-# o Created.
-############################################################################
+}

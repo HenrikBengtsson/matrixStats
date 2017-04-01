@@ -1,4 +1,5 @@
-rvector <- function(n, mode = c("logical", "double", "integer"), range = c(-100, +100), naProb = 0) {
+rvector <- function(n, mode = c("logical", "double", "integer"),
+                    range = c(-100, +100), na_prob = 0) {
   mode <- match.arg(mode)
   if (mode == "logical") {
     x <- sample(c(FALSE, TRUE), size = n, replace = TRUE)
@@ -6,7 +7,7 @@ rvector <- function(n, mode = c("logical", "double", "integer"), range = c(-100,
     x <- runif(n, min = range[1], max = range[2])
   }
   storage.mode(x) <- mode
-  if (naProb > 0) x[sample(n, size = naProb * n)] <- NA
+  if (na_prob > 0) x[sample(n, size = na_prob * n)] <- NA
   x
 } # rvector()
 
@@ -21,11 +22,4 @@ rvectors <- function(scale = 10, seed = 1, ...) {
   data[[5]] <- rvector(n = scale * 1e6, ...)
   names(data) <- sprintf("n = %d", sapply(data, FUN = length))
   data
-} # rvectors()
-
-
-############################################################################
-# HISTORY:
-# 2014-06-04
-# o Created.
-############################################################################
+}
