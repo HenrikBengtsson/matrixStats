@@ -71,53 +71,97 @@ for (n in 0:2) {
 }
 
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Summing of zero elements
+# Special cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- integer(0)
-s1 <- sum(x)
-s2 <- sumOver(x)
-stopifnot(identical(s1, s2))
+for (na.rm in c(FALSE, TRUE)) {
+  # Summing over zero elements (integers)
+  x <- integer(0)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- 1:10
-idxs <- integer(0)
-s1 <- sum(x[idxs])
-s2 <- sumOver(x, idxs = idxs)
-stopifnot(identical(s1, s2))
+  x <- 1:10
+  idxs <- integer(0)
+  s1 <- sum(x[idxs], na.rm = na.rm)
+  s2 <- sumOver(x, idxs = idxs, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_integer_, times = 10L)
-s1 <- sum(x, na.rm = TRUE)
-s2 <- sumOver(x, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  # Summing over NA_integer_:s
+  x <- rep(NA_integer_, times = 10L)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_integer_, times = 10L)
-idxs <- 1:5
-s1 <- sum(x[idxs], na.rm = TRUE)
-s2 <- sumOver(x, idxs = idxs, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  x <- rep(NA_integer_, times = 10L)
+  idxs <- 1:5
+  s1 <- sum(x[idxs], na.rm = na.rm)
+  s2 <- sumOver(x, idxs = idxs, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- double(0)
-s1 <- sum(x)
-s2 <- sumOver(x)
-stopifnot(identical(s1, s2))
 
-x <- as.double(1:10)
-idxs <- integer(0)
-s1 <- sum(x[idxs])
-s2 <- sumOver(x, idxs = idxs)
-stopifnot(identical(s1, s2))
+  # Summing over zero elements (doubles)
+  x <- double(0)
+  s1 <- sum(x)
+  s2 <- sumOver(x)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_real_, times = 10L)
-s1 <- sum(x, na.rm = TRUE)
-s2 <- sumOver(x, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  x <- as.double(1:10)
+  idxs <- integer(0)
+  s1 <- sum(x[idxs])
+  s2 <- sumOver(x, idxs = idxs)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_real_, times = 10L)
-idxs <- 1:5
-s1 <- sum(x[idxs], na.rm = TRUE)
-s2 <- sumOver(x, idxs = idxs, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  # Summing over NA_real_:s
+  x <- rep(NA_real_, times = 10L)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  x <- rep(NA_real_, times = 10L)
+  idxs <- 1:5
+  s1 <- sum(x[idxs], na.rm = na.rm)
+  s2 <- sumOver(x, idxs = idxs, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Summing over -Inf:s
+  x <- rep(-Inf, times = 3L)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Summing over +Inf:s
+  x <- rep(+Inf, times = 3L)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Summing over mix of -Inf:s and +Inf:s
+  x <- rep(c(-Inf, +Inf), times = 3L)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Summing over mix of -Inf:s and +Inf:s and numerics
+  x <- rep(c(-Inf, +Inf, 3.14), times = 2L)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Summing over mix of NaN, NA, +Inf, and numerics
+  x <- c(NaN, NA, +Inf, 3.14)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+## FIXME: https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html
+##  stopifnot(identical(s1, s2))
+
+  # Summing over mix of NaN, NA, +Inf, and numerics
+  x <- c(NA, NaN, +Inf, 3.14)
+  s1 <- sum(x, na.rm = na.rm)
+  s2 <- sumOver(x, na.rm = na.rm)
+## FIXME: https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html
+##  stopifnot(identical(s1, s2))
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
