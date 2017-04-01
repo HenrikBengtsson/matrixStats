@@ -53,53 +53,115 @@ for (kk in 1:20) {
 } # for (kk ...)
 
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Averaging over zero elements
+# Special cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- integer(0)
-s1 <- mean(x)
-s2 <- meanOver(x)
-stopifnot(identical(s1, s2))
+for (na.rm in c(FALSE, TRUE)) {
+  # Averaging over zero elements (integers)
+  x <- integer(0)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- 1:10
-idxs <- integer(0)
-s1 <- mean(x[idxs])
-s2 <- meanOver(x, idxs = idxs)
-stopifnot(identical(s1, s2))
+  x <- 1:10
+  idxs <- integer(0)
+  s1 <- mean(x[idxs], na.rm = na.rm)
+  s2 <- meanOver(x, idxs = idxs, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_integer_, times = 10L)
-s1 <- mean(x, na.rm = TRUE)
-s2 <- meanOver(x, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  # Averaging over NA_integer_:s
+  x <- rep(NA_integer_, times = 10L)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_integer_, times = 10L)
-idxs <- 1:5
-s1 <- mean(x[idxs], na.rm = TRUE)
-s2 <- meanOver(x, idxs = idxs, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  x <- rep(NA_integer_, times = 10L)
+  idxs <- 1:5
+  s1 <- mean(x[idxs], na.rm = na.rm)
+  s2 <- meanOver(x, idxs = idxs, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
 
-x <- double(0)
-s1 <- mean(x)
-s2 <- meanOver(x)
-stopifnot(identical(s1, s2))
 
-x <- as.double(1:10)
-idxs <- integer(0)
-s1 <- mean(x[idxs])
-s2 <- meanOver(x, idxs = idxs)
-stopifnot(identical(s1, s2))
+  # Averaging over zero elements (doubles)
+  x <- double(0)
+  s1 <- mean(x)
+  s2 <- meanOver(x)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_real_, times = 10L)
-s1 <- mean(x, na.rm = TRUE)
-s2 <- meanOver(x, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  x <- as.double(1:10)
+  idxs <- integer(0)
+  s1 <- mean(x[idxs])
+  s2 <- meanOver(x, idxs = idxs)
+  stopifnot(identical(s1, s2))
 
-x <- rep(NA_real_, times = 10L)
-idxs <- 1:5
-s1 <- mean(x[idxs], na.rm = TRUE)
-s2 <- meanOver(x, idxs = idxs, na.rm = TRUE)
-stopifnot(identical(s1, s2))
+  # Averaging over NA_real_:s
+  x <- rep(NA_real_, times = 10L)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  x <- rep(NA_real_, times = 10L)
+  idxs <- 1:5
+  s1 <- mean(x[idxs], na.rm = na.rm)
+  s2 <- meanOver(x, idxs = idxs, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Averaging over -Inf:s
+  x <- rep(-Inf, times = 3L)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Averaging over +Inf:s
+  x <- rep(+Inf, times = 3L)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Averaging over mix of -Inf:s and +Inf:s
+  x <- rep(c(-Inf, +Inf), times = 3L)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Averaging over mix of -Inf:s and +Inf:s and numerics
+  x <- rep(c(-Inf, +Inf, 3.14), times = 2L)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  stopifnot(identical(s1, s2))
+
+  # Averaging over mix of NaN, NA, +Inf, and numerics
+  x <- c(NaN, NA, +Inf, 3.14)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  if (na.rm) {
+    stopifnot(identical(s2, s1))
+  } else {
+    stopifnot(is.na(s1), is.na(s2))
+    ## NOTE, due to compiler optimization, it is not guaranteed that NA is
+    ## returned here (as one would expect). NaN might very well be returned,
+    ## when both NA and NaN are involved.  This is an accepted feature in R,
+    ## which is documented in help("is.nan").  See also
+    ## https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html.
+    ## Thus, we cannot guarantee that s1 is identical to s0.
+  }
+  
+  # Averaging over mix of NaN, NA, +Inf, and numerics
+  x <- c(NA, NaN, +Inf, 3.14)
+  s1 <- mean(x, na.rm = na.rm)
+  s2 <- meanOver(x, na.rm = na.rm)
+  if (na.rm) {
+    stopifnot(identical(s2, s1))
+  } else {
+    stopifnot(is.na(s1), is.na(s2))
+    ## NOTE, due to compiler optimization, it is not guaranteed that NA is
+    ## returned here (as one would expect). NaN might very well be returned,
+    ## when both NA and NaN are involved.  This is an accepted feature in R,
+    ## which is documented in help("is.nan").  See also
+    ## https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html.
+    ## Thus, we cannot guarantee that s1 is identical to s0.
+  }
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
