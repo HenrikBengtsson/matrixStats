@@ -44,8 +44,8 @@
   #elif X_TYPE == 'r'
     #define X_C_TYPE double
     #define X_IN_C REAL
-    #define X_ISNAN(x) ISNAN(x) /* NA or NaN */
-    #define X_ISNA(x) ISNA(x) /* NA only */
+    #define X_ISNAN(x) ISNAN(x) /* True for R's NA and IEEE NaN */
+    #define X_ISNA(x) ISNA(x)   /* True for R's NA */
     #define X_ABS(x) fabs(x)
     #define X_PSORT rPsort
     #define X_QSORT_I R_qsort_I
