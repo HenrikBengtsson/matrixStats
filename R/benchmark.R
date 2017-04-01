@@ -14,5 +14,7 @@ benchmark <- function(fcn, tags = NULL, path = NULL, workdir = "reports",
   filename <- sprintf("%s.md.rsp", fullname)
   pathname <- file.path(path, filename)
 
+  oopts <- options("prompt" = "> ")
+  on.exit(options(oopts))
   R.rsp::rfile(pathname, workdir = workdir, envir = envir, ...)
 }
