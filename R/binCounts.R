@@ -3,8 +3,8 @@
 #' Counts the number of elements in non-overlapping bins
 #'
 #' \code{binCounts(x, bx, right = TRUE)} gives equivalent results as
-#' \code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster and more
-#' memory efficient.
+#' \code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster
+#' and more memory efficient.
 #'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 #' positions for to be binned and counted.

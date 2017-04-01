@@ -72,8 +72,8 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Argument 'na.rm':
 
 
-  naValue <- NA
-  storage.mode(naValue) <- storage.mode(x)
+  na_value <- NA
+  storage.mode(na_value) <- storage.mode(x)
 
 
   # Remove values with zero (and negative) weight. This will:
@@ -95,7 +95,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     n <- length(x)
     keep <- NULL  # Not needed anymore
   } else if (anyMissing(x)) {
-    return(naValue)
+    return(na_value)
   }
 
   # Are any weights Inf? Then treat them with equal weight and all others
@@ -114,11 +114,11 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Are there any values left to calculate the weighted median of?
   # This is consistent with how stats::mad() works.
   if (n == 0L) {
-    return(naValue)
+    return(na_value)
   } else if (n == 1L) {
-    zeroValue <- 0
-    storage.mode(zeroValue) <- storage.mode(x)
-    return(zeroValue)
+    zero_value <- 0
+    storage.mode(zero_value) <- storage.mode(x)
+    return(zero_value)
   }
 
   # Estimate the mean?

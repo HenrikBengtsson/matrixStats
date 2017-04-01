@@ -25,8 +25,8 @@
 #' (K).
 #'
 #' @section Benchmarking:
-#' These methods are implemented in native code and have been optimized for speed
-#' and memory.
+#' These methods are implemented in native code and have been optimized for
+#' speed and memory.
 #'
 #' @author Native implementation by Henrik Bengtsson.  Original R code by
 #' Nakayama ??? (Japan).
@@ -38,10 +38,9 @@
 rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                           dim. = dim(lx), ...) {
   dim. <- as.integer(dim.)
-  hasNA <- TRUE
+  has_na <- TRUE
   res <- .Call(C_rowLogSumExps,
-               lx, dim., rows, cols,
-               as.logical(na.rm), as.logical(hasNA), TRUE)
+               lx, dim., rows, cols, as.logical(na.rm), has_na, TRUE)
 
   # Preserve names
   names <- rownames(lx)
@@ -58,10 +57,9 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                           dim. = dim(lx), ...) {
   dim. <- as.integer(dim.)
-  hasNA <- TRUE
+  has_na <- TRUE
   res <- .Call(C_rowLogSumExps,
-               lx, dim., rows, cols,
-               as.logical(na.rm), as.logical(hasNA), FALSE)
+               lx, dim., rows, cols, as.logical(na.rm), has_na, FALSE)
 
   # Preserve names
   names <- colnames(lx)

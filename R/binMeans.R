@@ -41,7 +41,8 @@
 #'
 #' @example incl/binMeans.R
 #'
-#' @author Henrik Bengtsson with initial code contributions by Martin Morgan [1].
+#' @author Henrik Bengtsson with initial code contributions by
+#' Martin Morgan [1].
 #'
 #' @seealso \code{\link{binCounts}}().  \code{\link[stats]{aggregate}} and
 #' \code{\link[base]{mean}}().

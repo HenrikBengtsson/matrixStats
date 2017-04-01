@@ -50,7 +50,6 @@ sumOver <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   if (!is.numeric(x)) {
     stop("Argument 'x' is not numeric: ", mode(x))
   }
-  n <- length(x)
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
@@ -59,13 +58,13 @@ sumOver <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 
   # Argument 'mode':
   mode <- mode[1L]
-  modeI <- charmatch(mode, c("integer", "double"), nomatch = 0L)
-  if (modeI == 0L) {
+  mode_idx <- charmatch(mode, c("integer", "double"), nomatch = 0L)
+  if (mode_idx == 0L) {
     stop("Unknown value of argument 'mode': ", mode)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call(C_sumOver, x, idxs, na.rm, modeI)
+  .Call(C_sumOver, x, idxs, na.rm, mode_idx)
 }

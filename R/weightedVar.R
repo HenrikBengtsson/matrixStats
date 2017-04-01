@@ -69,8 +69,8 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   use_0.14.2 <- (identical(method, "0.14.2"))
 
 
-  naValue <- NA
-  storage.mode(naValue) <- storage.mode(x)
+  na_value <- NA
+  storage.mode(na_value) <- storage.mode(x)
 
 
   # Remove values with zero (and negative) weight. This will:
@@ -92,7 +92,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     n <- length(x)
     keep <- NULL  # Not needed anymore
   } else if (anyMissing(x)) {
-    return(naValue)
+    return(na_value)
   }
 
   # Are any weights Inf? Then treat them with equal weight and all others
@@ -110,7 +110,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Are there any values left to calculate the weighted variance of?
   # This is consistent with how stats::var() works.
-  if (n <= 1L) return(naValue)
+  if (n <= 1L) return(na_value)
 
   # Standardize weights to sum to one
   wsum <- sum(w)

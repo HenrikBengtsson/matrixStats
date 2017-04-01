@@ -37,8 +37,8 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
   if (is.null(center)) {
     na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, TRUE)
+    has_nas <- TRUE
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE)
     return(sigma2)
   }
 
@@ -67,8 +67,8 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     # Number of non-missing values
     n <- ncol - nNA
 
-    hasNA <- any(nNA > 0L)
-    if (hasNA) {
+    has_na <- any(nNA > 0L)
+    if (has_na) {
       # Set NA estimates for rows with less than two observations
       n[n <= 1L] <- NA_integer_
     } else {
@@ -99,8 +99,8 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
-    hasNAs <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, hasNAs, FALSE)
+    has_nas <- TRUE
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE)
     return(sigma2)
   }
 
@@ -129,8 +129,8 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     # Number of non-missing values
     n <- nrow - nNA
 
-    hasNA <- any(nNA > 0L)
-    if (hasNA) {
+    has_na <- any(nNA > 0L)
+    if (has_na) {
       # Set NA estimates for rows with less than two observations
       n[n <= 1L] <- NA_integer_
     } else {

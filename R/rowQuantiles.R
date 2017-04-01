@@ -63,10 +63,10 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 
   if (nrow > 0L && ncol > 0L) {
     naRows <- rowAnyMissings(x)
-    hasNA <- any(naRows)
-    if (!hasNA) na.rm <- FALSE
+    has_na <- any(naRows)
+    if (!has_na) na.rm <- FALSE
 
-    if (!hasNA && type == 7L) {
+    if (!has_na && type == 7L) {
       n <- ncol
       idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
@@ -95,15 +95,15 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       q <- t(q)
     } else {
       # Allocate result
-      naValue <- NA_real_
-      storage.mode(naValue) <- storage.mode(x)
-      q <- matrix(naValue, nrow = nrow, ncol = length(probs))
+      na_value <- NA_real_
+      storage.mode(na_value) <- storage.mode(x)
+      q <- matrix(na_value, nrow = nrow, ncol = length(probs))
 
       # For each row...
       rows <- seq_len(nrow)
 
       # Rows with NAs should return all NAs (so skip those)
-      if (hasNA && !na.rm) rows <- rows[!naRows]
+      if (has_na && !na.rm) rows <- rows[!naRows]
 
       for (kk in rows) {
         xkk <- x[kk, ]
@@ -112,9 +112,9 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       }
     } # if (type ...)
   } else {
-    naValue <- NA_real_
-    storage.mode(naValue) <- storage.mode(x)
-    q <- matrix(naValue, nrow = nrow, ncol = length(probs))
+    na_value <- NA_real_
+    storage.mode(na_value) <- storage.mode(x)
+    q <- matrix(na_value, nrow = nrow, ncol = length(probs))
   }
 
   # Add names
@@ -159,10 +159,10 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 
   if (nrow > 0L && ncol > 0L) {
     naCols <- colAnyMissings(x)
-    hasNA <- any(naCols)
-    if (!hasNA) na.rm <- FALSE
+    has_na <- any(naCols)
+    if (!has_na) na.rm <- FALSE
 
-    if (!hasNA && type == 7L) {
+    if (!has_na && type == 7L) {
       n <- nrow
       idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
@@ -191,15 +191,15 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       q <- t(q)
     } else {
       # Allocate result
-      naValue <- NA_real_
-      storage.mode(naValue) <- storage.mode(x)
-      q <- matrix(naValue, nrow = ncol, ncol = length(probs))
+      na_value <- NA_real_
+      storage.mode(na_value) <- storage.mode(x)
+      q <- matrix(na_value, nrow = ncol, ncol = length(probs))
 
       # For each column...
       cols <- seq_len(ncol)
 
       # Columns with NAs should return all NAs (so skip those)
-      if (hasNA && !na.rm) cols <- cols[!naCols]
+      if (has_na && !na.rm) cols <- cols[!naCols]
 
       for (kk in cols) {
         xkk <- x[, kk]
@@ -208,9 +208,9 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       }
     } # if (type ...)
   } else {
-    naValue <- NA_real_
-    storage.mode(naValue) <- storage.mode(x)
-    q <- matrix(naValue, nrow = ncol, ncol = length(probs))
+    na_value <- NA_real_
+    storage.mode(na_value) <- storage.mode(x)
+    q <- matrix(na_value, nrow = ncol, ncol = length(probs))
   }
 
   # Add names

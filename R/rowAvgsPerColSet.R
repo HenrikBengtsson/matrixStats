@@ -63,7 +63,8 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
       stop("Argument 'W' is not a matrix: ", class(W)[1L])
     }
     if (any(dim(W) != dimX)) {
-      stop("Argument 'W' does not have the same dimension as 'X': ", paste(dim(W), collapse = "x"), " != ", paste(dimX, collapse = "x"))
+      stop("Argument 'W' does not have the same dimension as 'X': ",
+           paste(dim(W), collapse = "x"), " != ", paste(dimX, collapse = "x"))
     }
     if (!is.numeric(W)) {
       stop("Argument 'W' is not numeric: ", mode(W))

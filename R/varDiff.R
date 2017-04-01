@@ -123,7 +123,7 @@ sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
   if (trim > 0 && n > 0L) {
     if (anyMissing(x)) return(NA_real_)
     lo <- floor(n * trim) + 1
-    hi <- (n + 1)-lo
+    hi <- (n + 1) - lo
     partial <- unique(c(lo, hi))
     x <- sort.int(x, partial = partial)
     x <- x[lo:hi]
