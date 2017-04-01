@@ -40,7 +40,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     stop("Argument 'x' is not a matrix: ", class(x)[1])
   }
-  
+
   # Argument 'w':
   hasWeights <- !is.null(w)
   if (hasWeights) {
@@ -95,7 +95,7 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     stop("Argument 'x' is not a matrix: ", class(x)[1])
   }
-  
+
   # Argument 'w':
   hasWeights <- !is.null(w)
   if (hasWeights) {

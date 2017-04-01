@@ -129,15 +129,15 @@ for (na.rm in c(FALSE, TRUE)) {
   y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = any, na.rm = na.rm))
   y <- rowAnys(x, na.rm = na.rm)
   stopifnot(identical(y, y0))
-  
+
   y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = any, na.rm = na.rm))
   y <- colAnys(x, na.rm = na.rm)
   stopifnot(identical(y, y0))
-  
+
   y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = all, na.rm = na.rm))
   y <- rowAlls(x, na.rm = na.rm)
   stopifnot(identical(y, y0))
-  
+
   y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = all, na.rm = na.rm))
   y <- colAlls(x, na.rm = na.rm)
   stopifnot(identical(y, y0))

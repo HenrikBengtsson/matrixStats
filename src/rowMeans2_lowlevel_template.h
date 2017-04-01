@@ -48,9 +48,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
     sum = 0.0;
     count = 0;
-    
+
     for (jj=0; jj < ncols; jj++) {
-      idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);      
+      idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
       value = R_INDEX_GET(x, idx, X_NA);
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
@@ -79,9 +79,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     } else {
       avg = sum / count;
     }
-      
+
     ans[ii] = (double)avg;
-    
+
     R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 }

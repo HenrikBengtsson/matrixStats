@@ -25,7 +25,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 #endif
 
   if (byrow) {
-    /* R allocate memory for row-vector 'xx' of length 'ncol'. 
+    /* R allocate memory for row-vector 'xx' of length 'ncol'.
        This will be taken care of by the R garbage collector later on. */
     double *xx = (double *) R_alloc(ncols, sizeof(double));
 

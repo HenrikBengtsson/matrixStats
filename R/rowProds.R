@@ -43,7 +43,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   if (!is.matrix(x)) {
     stop("Argument 'x' is not a matrix: ", class(x)[1])
   }
-  
+
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -83,7 +83,7 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   if (!is.matrix(x)) {
     stop("Argument 'x' is not a matrix: ", class(x)[1])
   }
-  
+
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]

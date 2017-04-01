@@ -3,13 +3,13 @@
   void validateIndices_<int|dbl>(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutOfBound, R_xlen_t *ansNidxs, int *subsettedType, int *hasna)
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
   - X_TYPE: 'i', 'r'
 
- ***********************************************************************/ 
+ ***********************************************************************/
 #include <Rdefines.h>
 #include "000.types.h"
 
@@ -147,7 +147,7 @@ void* METHOD_NAME(X_C_TYPE *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int allowOutO
   if (*subsettedType == SUBSETTED_INTEGER) {
     // NOTE: braces is needed here, because of macro-defined function
     RETURN_VALIDATED_ANS(int, upperBound, !filter[ii], ii + 1, Free(filter););
-  } 
+  }
   // *subsettedType == SUBSETTED_REAL
   RETURN_VALIDATED_ANS(double, upperBound, !filter[ii], ii + 1, Free(filter););
 }

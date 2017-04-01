@@ -81,7 +81,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
   double value;
 #if ANS_TYPE == 'i'
   int ok = 1; /* OK, i.e. no integer overflow yet? */
-  double R_INT_MIN_d = (double)R_INT_MIN, 
+  double R_INT_MIN_d = (double)R_INT_MIN,
          R_INT_MAX_d = (double)R_INT_MAX;
 #endif
 

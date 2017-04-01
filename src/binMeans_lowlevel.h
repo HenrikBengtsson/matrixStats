@@ -1,4 +1,4 @@
-#include <Rdefines.h> 
+#include <Rdefines.h>
 #include "000.types.h"
 #include "000.utils.h"
 #include <R_ext/Error.h>

@@ -46,9 +46,9 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     R_xlen_t rowIdx = byrow ? ROW_INDEX(crows,ii) : R_INDEX_OP(ROW_INDEX(crows,ii), *, ncol);
 
     sum = 0.0;
-    
+
     for (jj=0; jj < ncols; jj++) {
-      idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);      
+      idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
       value = R_INDEX_GET(x, idx, X_NA);
   #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
@@ -74,7 +74,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     } else {
       ans[ii] = (double)sum;
     }
-    
+
     R_CHECK_USER_INTERRUPT(ii);
   } /* for (ii ...) */
 }

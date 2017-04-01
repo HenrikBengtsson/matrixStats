@@ -42,7 +42,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     stop("Argument 'x' is not a matrix: ", class(x)[1])
   }
-  
+
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")
@@ -138,7 +138,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     stop("Argument 'x' is not a matrix: ", class(x)[1])
   }
-  
+
   # Argument 'probs':
   if (anyMissing(probs)) {
     stop("Argument 'probs' contains missing values")

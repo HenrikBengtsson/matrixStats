@@ -4,7 +4,7 @@
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
-#include <Rdefines.h> 
+#include <Rdefines.h>
 #include "000.types.h"
 #include <R_ext/Error.h>
 #include "binMeans_lowlevel.h"

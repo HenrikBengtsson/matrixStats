@@ -91,7 +91,7 @@ void METHOD_NAME(double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, int *count)
 #undef IS_PART_OF_NEXT_BIN
 #include "000.templates-types_undef.h"
 
- 
+
 /***************************************************************************
  HISTORY:
  2014-11-07 [HB]

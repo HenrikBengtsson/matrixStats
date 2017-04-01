@@ -27,7 +27,7 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
 
   /* Argument 'right': */
   closedRight = asLogicalNoNA(right, "right");
- 
+
   PROTECT(counts = allocVector(INTSXP, nbins));
 
   if (closedRight) {

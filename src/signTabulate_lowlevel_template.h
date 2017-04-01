@@ -6,20 +6,20 @@
   X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
   - X_TYPE: 'i' or 'r'
 
  Copyright: Henrik Bengtsson, 2014
- ***********************************************************************/ 
+ ***********************************************************************/
 #include "000.types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
  */
-#include "000.templates-types.h" 
+#include "000.templates-types.h"
 
 
 RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
@@ -34,7 +34,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
 #endif
 
-  for (ii = 0; ii < nidxs; ii++) { 
+  for (ii = 0; ii < nidxs; ii++) {
     xi = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
     if (X_ISNAN(xi)) {
       nNA++;

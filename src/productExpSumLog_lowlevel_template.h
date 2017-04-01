@@ -6,21 +6,21 @@
   X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, int narm, int hasna
 
  Arguments:
-   The following macros ("arguments") should be defined for the 
+   The following macros ("arguments") should be defined for the
    template to work as intended.
 
   - METHOD_NAME: the name of the resulting function
   - X_TYPE: 'i' or 'r'
 
  Copyright: Henrik Bengtsson, 2014
- ***********************************************************************/ 
+ ***********************************************************************/
 #include <R_ext/Constants.h>
-#include "000.types.h" 
+#include "000.types.h"
 
 /* Expand arguments:
     X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
  */
-#include "000.templates-types.h" 
+#include "000.templates-types.h"
 
 
 RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
@@ -73,7 +73,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 
   if (ISNAN(y)) {
     /* If there where NA and/or NaN elements, then 'y' will at this
-       point be NaN. The information on an NA value is lost when 
+       point be NaN. The information on an NA value is lost when
        calculating fabs(NA), which returns NaN. For consistency with
        integers, we return NA in all cases. */
     y = NA_REAL;
@@ -82,17 +82,17 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     y = 0;
   } else {
     y = exp(y);
-  
+
     /* Update sign */
     if (isneg) {
       y = -y;
     }
-  
+
     /* Overflow or underflow? */
     if (y > DOUBLE_XMAX) {
       y = R_PosInf;
     } else if (y < -DOUBLE_XMAX) {
-      y = R_NegInf; 
+      y = R_NegInf;
     }
   }
 

@@ -1,5 +1,5 @@
 #include <Rdefines.h>
-#include "000.types.h" 
+#include "000.types.h"
 #include "000.utils.h"
 
 /*

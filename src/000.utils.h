@@ -40,9 +40,9 @@ static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
   nrow = (double)INTEGER(dim)[0];
   ncol = (double)INTEGER(dim)[1];
   if (nrow < 0) {
-    error("Argument 'dim' specifies a negative number of rows (dim[1]): %d", nrow); 
+    error("Argument 'dim' specifies a negative number of rows (dim[1]): %d", nrow);
   } else if (ncol < 0) {
-    error("Argument 'dim' specifies a negative number of columns (dim[2]): %d", ncol); 
+    error("Argument 'dim' specifies a negative number of columns (dim[2]): %d", ncol);
   } else if (nrow * ncol != max) {
     error("Argument 'dim' does not match length of argument '%s': %g * %g != %g", maxlabel, nrow, ncol, max);
   }
@@ -75,7 +75,7 @@ static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
 
   /* Argument 'dim': */
   assertArgDim(dim, xlength(x), "x");
-} /* assertArgMatrix() */ 
+} /* assertArgMatrix() */
 
 
 static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
@@ -91,8 +91,8 @@ static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
     error("Argument '%s' must be a logical.", xlabel);
   }
   if (value != TRUE && value != FALSE)
-    error("Argument '%s' must be either TRUE or FALSE.", xlabel); 
-  
+    error("Argument '%s' must be either TRUE or FALSE.", xlabel);
+
   return value;
 } /* asLogicalNoNA() */
 

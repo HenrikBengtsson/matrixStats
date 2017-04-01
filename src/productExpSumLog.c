@@ -5,7 +5,7 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "000.types.h" 
+#include "000.types.h"
 #include "productExpSumLog_lowlevel.h"
 
 SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA) {
