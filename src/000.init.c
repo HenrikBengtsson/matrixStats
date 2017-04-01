@@ -29,6 +29,7 @@ static R_CallMethodDef callMethods[]  = {
   CALLDEF(rowDiffs, 7),
   CALLDEF(rowLogSumExps, 7),
   CALLDEF(rowMads, 8),
+  CALLDEF(rowMeans2, 7),
   CALLDEF(rowMedians, 7),
   CALLDEF(rowOrderStats, 5),
   CALLDEF(rowRanges, 7),

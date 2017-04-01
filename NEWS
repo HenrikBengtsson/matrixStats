@@ -26,7 +26,11 @@ NEW FEATURES:
  o Added colSums2() and rowSums2() which work like colSums() and rowSums()
    of the base package but also supports efficient subsetting via optional
    arguments 'rows' and 'cols'.
- 
+
+ o Added colMeans2() and rowMeans2() which work like colMeans() and rowMeans()
+   of the base package but also supports efficient subsetting via optional
+   arguments 'rows' and 'cols'.
+
 SOFTWARE QUALITY:
 
  o Continuous-integration testing is now also done on macOS, in addition to
