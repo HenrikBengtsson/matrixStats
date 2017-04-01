@@ -52,7 +52,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     for (jj=0; jj < ncols; jj++) {
       idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);      
       value = R_INDEX_GET(x, idx, X_NA);
-  #if X_TYPE == 'i'
+#if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (LDOUBLE)value;
         ++count;
@@ -60,7 +60,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         sum = R_NaReal;
         break;
       }
-  #elif X_TYPE == 'r'
+#elif X_TYPE == 'r'
       if (!narm) {
         sum += (LDOUBLE)value;
         ++count;
@@ -69,7 +69,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
         sum += (LDOUBLE)value;
         ++count;
       }
-  #endif
+#endif
     } /* for (jj ...) */
 
     if (sum > DOUBLE_XMAX) {
