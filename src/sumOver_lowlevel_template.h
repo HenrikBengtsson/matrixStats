@@ -12,7 +12,7 @@
   - METHOD_NAME: the name of the resulting function
   - X_TYPE: 'i' or 'r'
 
- Copyright: Henrik Bengtsson, 2014
+ Copyright: Henrik Bengtsson, 2014-2017
  ***********************************************************************/
 #include "000.types.h"
 
@@ -44,7 +44,8 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 #elif X_TYPE == 'r'
     if (!narm) {
       sum += (LDOUBLE)value;
-      if (ii % 1048576 == 0 && !R_FINITE(sum)) break;
+      /* Early stopping if sum is NA_real_ (but not NaN, -Inf, or +Inf) */
+      if (ii % 1048576 == 0 && ISNA(sum)) break;
     } else if (!ISNAN(value)) {
       sum += (LDOUBLE)value;
     }
