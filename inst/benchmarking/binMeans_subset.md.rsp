@@ -45,8 +45,8 @@ gc()
 
 stats <- microbenchmark(
  "binMeans_x_y_S"            = binMeans(x=x_S, y=y_S, bx=bx, count=TRUE),
- "binMeans(x,y,idxs)"        = binMeans(x=x, y=y, idxs=idxs, bx=bx, count=TRUE),
- "binMeans(x[idxs],y[idxs])" = binMeans(x=x[idxs], y=y[idxs], bx=bx, count=TRUE),
+ "binMeans(x, y, idxs)"        = binMeans(x=x, y=y, idxs=idxs, bx=bx, count=TRUE),
+ "binMeans(x[idxs], y[idxs])" = binMeans(x=x[idxs], y=y[idxs], bx=bx, count=TRUE),
  unit = "ms"
 )
 })%>

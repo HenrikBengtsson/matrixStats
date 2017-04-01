@@ -81,7 +81,7 @@ gc()
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-y <- x[,1L]
+y <- x[, 1L]
 })%>
 ```
 

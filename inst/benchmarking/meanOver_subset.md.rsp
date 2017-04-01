@@ -46,8 +46,8 @@ gc()
 stats <- microbenchmark(
  "meanOver_x_S"                = meanOver(x_S, refine=TRUE),
  "meanOver_x_S_no_refine"      = meanOver(x_S, refine=FALSE),
- "meanOver(x,idxs)"            = meanOver(x, idxs=idxs, refine=TRUE),
- "meanOver_no_refine(x,idxs)"  = meanOver(x, idxs=idxs, refine=FALSE),
+ "meanOver(x, idxs)"            = meanOver(x, idxs=idxs, refine=TRUE),
+ "meanOver_no_refine(x, idxs)"  = meanOver(x, idxs=idxs, refine=FALSE),
  "meanOver(x[idxs])"           = meanOver(x[idxs], refine=TRUE),
  "meanOver_no_refine(x[idxs])" = meanOver(x[idxs], refine=FALSE),
   unit = "ms"

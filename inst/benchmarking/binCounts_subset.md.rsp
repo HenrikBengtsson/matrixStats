@@ -50,7 +50,7 @@ gc()
 
 stats <- microbenchmark(
  "binCounts_x_S"      = binCounts(x_S, bx=bx),
- "binCounts(x,idxs)"  = binCounts(x, idxs=idxs, bx=bx),
+ "binCounts(x, idxs)"  = binCounts(x, idxs=idxs, bx=bx),
  "binCounts(x[idxs])" = binCounts(x[idxs], bx=bx),
  unit = "ms"
 )

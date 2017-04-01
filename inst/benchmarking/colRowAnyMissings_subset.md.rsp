@@ -39,13 +39,13 @@ data <- rmatrices(mode=mode)
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colAnyMissings_X_S"           = colAnyMissings(X_S),
- "colAnyMissings(X,rows,cols)"  = colAnyMissings(X, rows=rows, cols=cols),
- "colAnyMissings(X[rows,cols])" = colAnyMissings(X[rows,cols]),
+ "colAnyMissings(X, rows, cols)"  = colAnyMissings(X, rows=rows, cols=cols),
+ "colAnyMissings(X[rows, cols])" = colAnyMissings(X[rows, cols]),
  unit = "ms"
 )
 
@@ -55,8 +55,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowAnyMissings_X_S"           = rowAnyMissings(X_S),
- "rowAnyMissings(X,cols,rows)"  = rowAnyMissings(X, rows=cols, cols=rows),
- "rowAnyMissings(X[cols,rows])" = rowAnyMissings(X[cols,rows]),
+ "rowAnyMissings(X, cols, rows)"  = rowAnyMissings(X, rows=cols, cols=rows),
+ "rowAnyMissings(X[cols, rows])" = rowAnyMissings(X[cols, rows]),
  unit = "ms"
 )
 })%>

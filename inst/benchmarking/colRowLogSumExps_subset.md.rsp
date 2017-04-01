@@ -35,13 +35,13 @@ data <- rmatrices(mode="double")
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colLogSumExps_X_S"           = colLogSumExps(X_S, na.rm=FALSE),
- "colLogSumExps(X,rows,cols)"  = colLogSumExps(X, rows=rows, cols=cols, na.rm=FALSE),
- "colLogSumExps(X[rows,cols])" = colLogSumExps(X[rows,cols], na.rm=FALSE),
+ "colLogSumExps(X, rows, cols)"  = colLogSumExps(X, rows=rows, cols=cols, na.rm=FALSE),
+ "colLogSumExps(X[rows, cols])" = colLogSumExps(X[rows, cols], na.rm=FALSE),
  unit = "ms"
 )
 
@@ -51,8 +51,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowLogSumExps_X_S"           = rowLogSumExps(X_S, na.rm=FALSE),
- "rowLogSumExps(X,cols,rows)"  = rowLogSumExps(X, rows=cols, cols=rows, na.rm=FALSE),
- "rowLogSumExps(X[cols,rows])" = rowLogSumExps(X[cols,rows], na.rm=FALSE),
+ "rowLogSumExps(X, cols, rows)"  = rowLogSumExps(X, rows=cols, cols=rows, na.rm=FALSE),
+ "rowLogSumExps(X[cols, rows])" = rowLogSumExps(X[cols, rows], na.rm=FALSE),
  unit = "ms"
 )
 })%>

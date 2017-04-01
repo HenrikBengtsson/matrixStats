@@ -35,15 +35,15 @@ data <- rmatrices(mode="double")
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 w <- runif(nrow(X))
 w_S <- w[rows]
 gc()
 
 colStats <- microbenchmark(
  "colWeightedMedians_X_w_S"                 = colWeightedMedians(X_S, w=w_S, na.rm=FALSE),
- "colWeightedMedians(X,w,rows,cols)"        = colWeightedMedians(X, w=w, rows=rows, cols=cols, na.rm=FALSE),
- "colWeightedMedians(X[rows,cols],w[rows])" = colWeightedMedians(X[rows,cols], w=w[rows], na.rm=FALSE),
+ "colWeightedMedians(X, w, rows, cols)"        = colWeightedMedians(X, w=w, rows=rows, cols=cols, na.rm=FALSE),
+ "colWeightedMedians(X[rows, cols], w[rows])" = colWeightedMedians(X[rows, cols], w=w[rows], na.rm=FALSE),
  unit = "ms"
 )
 
@@ -53,8 +53,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowWeightedMedians_X_w_S"                 = rowWeightedMedians(X_S, w=w_S, na.rm=FALSE),
- "rowWeightedMedians(X,w,cols,rows)"        = rowWeightedMedians(X, w=w, rows=cols, cols=rows, na.rm=FALSE),
- "rowWeightedMedians(X[cols,rows],w[rows])" = rowWeightedMedians(X[cols,rows], w=w[rows], na.rm=FALSE),
+ "rowWeightedMedians(X, w, cols, rows)"        = rowWeightedMedians(X, w=w, rows=cols, cols=rows, na.rm=FALSE),
+ "rowWeightedMedians(X[cols, rows], w[rows])" = rowWeightedMedians(X[cols, rows], w=w[rows], na.rm=FALSE),
  unit = "ms"
 )
 })%>

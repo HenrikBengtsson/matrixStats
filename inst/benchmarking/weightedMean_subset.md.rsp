@@ -47,8 +47,8 @@ gc()
 
 stats <- microbenchmark(
  "weightedMean_x_w_S"            = weightedMean(x_S, w=w_S, na.rm=FALSE),
- "weightedMean(x,w,idxs)"        = weightedMean(x, w=w, idxs=idxs, na.rm=FALSE),
- "weightedMean(x[idxs],w[idxs])" = weightedMean(x[idxs], w=w[idxs], na.rm=FALSE),
+ "weightedMean(x, w, idxs)"        = weightedMean(x, w=w, idxs=idxs, na.rm=FALSE),
+ "weightedMean(x[idxs], w[idxs])" = weightedMean(x[idxs], w=w[idxs], na.rm=FALSE),
   unit = "ms"
 )
 })%>

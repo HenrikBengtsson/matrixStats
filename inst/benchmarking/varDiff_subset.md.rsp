@@ -44,7 +44,7 @@ gc()
 
 stats <- microbenchmark(
  "varDiff_x_S"      = varDiff(x_S),
- "varDiff(x,idxs)"  = varDiff(x, idxs=idxs),
+ "varDiff(x, idxs)"  = varDiff(x, idxs=idxs),
  "varDiff(x[idxs])" = varDiff(x[idxs]),
   unit = "ms"
 )

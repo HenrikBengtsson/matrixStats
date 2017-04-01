@@ -35,15 +35,15 @@ data <- rmatrices(mode="double")
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 w <- runif(nrow(X))
 w_S <- w[rows]
 gc()
 
 colStats <- microbenchmark(
  "colWeightedMeans_X_w_S"                 = colWeightedMeans(X_S, w=w_S, na.rm=FALSE),
- "colWeightedMeans(X,w,rows,cols)"        = colWeightedMeans(X, w=w, rows=rows, cols=cols, na.rm=FALSE),
- "colWeightedMeans(X[rows,cols],w[rows])" = colWeightedMeans(X[rows,cols], w=w[rows], na.rm=FALSE),
+ "colWeightedMeans(X, w, rows, cols)"        = colWeightedMeans(X, w=w, rows=rows, cols=cols, na.rm=FALSE),
+ "colWeightedMeans(X[rows, cols], w[rows])" = colWeightedMeans(X[rows, cols], w=w[rows], na.rm=FALSE),
  unit = "ms"
 )
 
@@ -53,8 +53,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowWeightedMeans_X_w_S"                 = rowWeightedMeans(X_S, w=w_S, na.rm=FALSE),
- "rowWeightedMeans(X,w,cols,rows)"        = rowWeightedMeans(X, w=w, rows=cols, cols=rows, na.rm=FALSE),
- "rowWeightedMeans(X[cols,rows],w[rows])" = rowWeightedMeans(X[cols,rows], w=w[rows], na.rm=FALSE),
+ "rowWeightedMeans(X, w, cols, rows)"        = rowWeightedMeans(X, w=w, rows=cols, cols=rows, na.rm=FALSE),
+ "rowWeightedMeans(X[cols, rows], w[rows])" = rowWeightedMeans(X[cols, rows], w=w[rows], na.rm=FALSE),
  unit = "ms"
 )
 })%>

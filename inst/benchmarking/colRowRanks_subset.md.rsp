@@ -38,13 +38,13 @@ data <- rmatrices(mode=mode)
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colRanks_X_S"           = colRanks(X_S, na.rm=FALSE),
- "colRanks(X,rows,cols)"  = colRanks(X, rows=rows, cols=cols, na.rm=FALSE),
- "colRanks(X[rows,cols])" = colRanks(X[rows,cols], na.rm=FALSE),
+ "colRanks(X, rows, cols)"  = colRanks(X, rows=rows, cols=cols, na.rm=FALSE),
+ "colRanks(X[rows, cols])" = colRanks(X[rows, cols], na.rm=FALSE),
  unit = "ms"
 )
 
@@ -54,8 +54,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowRanks_X_S"           = rowRanks(X_S, na.rm=FALSE),
- "rowRanks(X,cols,rows)"  = rowRanks(X, rows=cols, cols=rows, na.rm=FALSE),
- "rowRanks(X[cols,rows])" = rowRanks(X[cols,rows], na.rm=FALSE),
+ "rowRanks(X, cols, rows)"  = rowRanks(X, rows=cols, cols=rows, na.rm=FALSE),
+ "rowRanks(X[cols, rows])" = rowRanks(X[cols, rows], na.rm=FALSE),
  unit = "ms"
 )
 })%>

@@ -42,7 +42,7 @@ gc()
 
 stats <- microbenchmark(
  "product_x_S"      = product(x_S, na.rm=FALSE),
- "product(x,idxs)"  = product(x, idxs=idxs, na.rm=FALSE),
+ "product(x, idxs)"  = product(x, idxs=idxs, na.rm=FALSE),
  "product(x[idxs])" = product(x[idxs], na.rm=FALSE),
  unit = "ms"
 )

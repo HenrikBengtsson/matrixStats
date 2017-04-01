@@ -46,8 +46,8 @@ gc()
 
 stats <- microbenchmark(
  "weightedMedian_x_w_S"            = weightedMedian(x_S, w=w_S, ties="mean", na.rm=FALSE),
- "weightedMedian(x,w,idxs)"        = weightedMedian(x, w=w, idxs=idxs, ties="mean", na.rm=FALSE),
- "weightedMedian(x[idxs],w[idxs])" = weightedMedian(x[idxs], w=w[idxs], ties="mean", na.rm=FALSE),
+ "weightedMedian(x, w, idxs)"        = weightedMedian(x, w=w, idxs=idxs, ties="mean", na.rm=FALSE),
+ "weightedMedian(x[idxs], w[idxs])" = weightedMedian(x[idxs], w=w[idxs], ties="mean", na.rm=FALSE),
   unit = "ms"
 )
 })%>

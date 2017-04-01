@@ -38,13 +38,13 @@ data <- rmatrices(mode=mode)
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colCummins_X_S"           = colCummins(X_S),
- "colCummins(X,rows,cols)"  = colCummins(X, rows=rows, cols=cols),
- "colCummins(X[rows,cols])" = colCummins(X[rows,cols]),
+ "colCummins(X, rows, cols)"  = colCummins(X, rows=rows, cols=cols),
+ "colCummins(X[rows, cols])" = colCummins(X[rows, cols]),
  unit = "ms"
 )
 
@@ -54,8 +54,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowCummins_X_S"           = rowCummins(X_S),
- "rowCummins(X,cols,rows)"  = rowCummins(X, rows=cols, cols=rows),
- "rowCummins(X[cols,rows])" = rowCummins(X[cols,rows]),
+ "rowCummins(X, cols, rows)"  = rowCummins(X, rows=cols, cols=rows),
+ "rowCummins(X[cols, rows])" = rowCummins(X[cols, rows]),
  unit = "ms"
 )
 })%>

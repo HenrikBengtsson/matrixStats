@@ -44,7 +44,7 @@ gc()
 
 stats <- microbenchmark(
  "count_x_S"      = count(x_S, value),
- "count(x,idxs)"  = count(x, idxs=idxs, value),
+ "count(x, idxs)"  = count(x, idxs=idxs, value),
  "count(x[idxs])" = count(x[idxs], value),
   unit = "ms"
 )

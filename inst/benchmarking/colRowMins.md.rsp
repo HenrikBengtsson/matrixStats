@@ -49,8 +49,8 @@ gc()
 colStats <- microbenchmark(
  colMins           = colMins(X, na.rm=FALSE),
  "apply+min"       = apply(X, MARGIN=2L, FUN=min, na.rm=FALSE),
- "lapply+pmin"     = do.call(pmin, lapply(seq_len(nrow(X)), function(i) X[i,])),
- "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(nrow(X)), function(i) X[i,])),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(nrow(X)), function(i) X[i, ])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(nrow(X)), function(i) X[i, ])),
  unit = "ms"
 )
 
@@ -60,8 +60,8 @@ gc()
 rowStats <- microbenchmark(
  rowMins           = rowMins(X, na.rm=FALSE),
 "apply+min"        = apply(X, MARGIN=1L, FUN=min, na.rm=FALSE),
- "lapply+pmin"     = do.call(pmin, lapply(seq_len(ncol(X)), function(i) X[,i])),
- "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(ncol(X)), function(i) X[,i])),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(ncol(X)), function(i) X[, i])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(ncol(X)), function(i) X[, i])),
  unit = "ms"
 )
 })%>

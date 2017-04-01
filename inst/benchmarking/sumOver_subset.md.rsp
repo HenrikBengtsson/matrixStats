@@ -47,7 +47,7 @@ gc()
 
 stats <- microbenchmark(
  "sumOver_x_S"      = sumOver(x_S),
- "sumOver(x,idxs)"  = sumOver(x, idxs=idxs),
+ "sumOver(x, idxs)"  = sumOver(x, idxs=idxs),
  "sumOver(x[idxs])" = sumOver(x[idxs]),
  unit = "ms"
 )

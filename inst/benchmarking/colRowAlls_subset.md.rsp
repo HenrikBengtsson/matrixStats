@@ -35,14 +35,14 @@ data <- rmatrices(mode="logical")
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 
 colStats <- microbenchmark(
  "colAlls_X_S"           = colAlls(X_S),
- "colAlls(X,rows,cols)"  = colAlls(X, rows=rows, cols=cols),
- "colAlls(X[rows,cols])" = colAlls(X[rows,cols]),
+ "colAlls(X, rows, cols)"  = colAlls(X, rows=rows, cols=cols),
+ "colAlls(X[rows, cols])" = colAlls(X[rows, cols]),
  unit = "ms"
 )
 
@@ -52,8 +52,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowAlls_X_S"           = rowAlls(X_S),
- "rowAlls(X,cols,rows)"  = rowAlls(X, rows=cols, cols=rows),
- "rowAlls(X[cols,rows])" = rowAlls(X[cols,rows]),
+ "rowAlls(X, cols, rows)"  = rowAlls(X, rows=cols, cols=rows),
+ "rowAlls(X[cols, rows])" = rowAlls(X[cols, rows]),
  unit = "ms"
 )
 })%>

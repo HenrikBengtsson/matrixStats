@@ -35,13 +35,13 @@ data <- rmatrices(mode="logical")
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colAnys_X_S"           = colAnys(X_S),
- "colAnys(X,rows,cols)"  = colAnys(X, rows=rows, cols=cols),
- "colAnys(X[rows,cols])" = colAnys(X[rows,cols]),
+ "colAnys(X, rows, cols)"  = colAnys(X, rows=rows, cols=cols),
+ "colAnys(X[rows, cols])" = colAnys(X[rows, cols]),
  unit = "ms"
 )
 
@@ -51,8 +51,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowAnys_X_S"           = rowAnys(X_S),
- "rowAnys(X,cols,rows)"  = rowAnys(X, rows=cols, cols=rows),
- "rowAnys(X[cols,rows])" = rowAnys(X[cols,rows]),
+ "rowAnys(X, cols, rows)"  = rowAnys(X, rows=cols, cols=rows),
+ "rowAnys(X[cols, rows])" = rowAnys(X[cols, rows]),
  unit = "ms"
 )
 })%>

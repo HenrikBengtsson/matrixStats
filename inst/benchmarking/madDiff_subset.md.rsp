@@ -45,7 +45,7 @@ gc()
 
 stats <- microbenchmark(
  "madDiff_x_S"      = madDiff(x_S),
- "madDiff(x,idxs)"  = madDiff(x, idxs=idxs),
+ "madDiff(x, idxs)"  = madDiff(x, idxs=idxs),
  "madDiff(x[idxs])" = madDiff(x[idxs]),
   unit = "ms"
 )

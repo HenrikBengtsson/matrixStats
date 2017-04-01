@@ -44,7 +44,7 @@ gc()
 
 stats <- microbenchmark(
  "anyMissing_x_S"      = anyMissing(x_S),
- "anyMissing(x,idxs)"  = anyMissing(x, idxs=idxs),
+ "anyMissing(x, idxs)"  = anyMissing(x, idxs=idxs),
  "anyMissing(x[idxs])" = anyMissing(x[idxs]),
   unit = "ms"
 )

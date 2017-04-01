@@ -39,13 +39,13 @@ data <- rmatrices(mode=mode)
 X <- data[[.dataLabel.]]
 rows <- sample.int(nrow(X), size=nrow(X)*0.7)
 cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colMedians_X_S"           = colMedians(X_S, na.rm=FALSE),
- "colMedians(X,rows,cols)"  = colMedians(X, rows=rows, cols=cols, na.rm=FALSE),
- "colMedians(X[rows,cols])" = colMedians(X[rows,cols], na.rm=FALSE),
+ "colMedians(X, rows, cols)"  = colMedians(X, rows=rows, cols=cols, na.rm=FALSE),
+ "colMedians(X[rows, cols])" = colMedians(X[rows, cols], na.rm=FALSE),
  unit = "ms"
 )
 
@@ -55,8 +55,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowMedians_X_S"           = rowMedians(X_S, na.rm=FALSE),
- "rowMedians(X,cols,rows)"  = rowMedians(X, rows=cols, cols=rows, na.rm=FALSE),
- "rowMedians(X[cols,rows])" = rowMedians(X[cols,rows], na.rm=FALSE),
+ "rowMedians(X, cols, rows)"  = rowMedians(X, rows=cols, cols=rows, na.rm=FALSE),
+ "rowMedians(X[cols, rows])" = rowMedians(X[cols, rows], na.rm=FALSE),
  unit = "ms"
 )
 })%>
