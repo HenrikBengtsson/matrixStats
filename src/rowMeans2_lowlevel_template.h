@@ -68,7 +68,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
       if (!narm) {
         sum += (LDOUBLE)value;
         ++count;
-        if (jj % 1048576 == 0 && !R_FINITE(sum)) break;
+        if (jj % 1048576 == 0 && ISNA(sum)) break;
       } else if (!ISNAN(value)) {
         sum += (LDOUBLE)value;
         ++count;
