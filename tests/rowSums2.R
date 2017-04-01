@@ -148,9 +148,11 @@ cat("Special case: Infs and -Infs:\n")
 x <- matrix(c(NaN, NA_real_), nrow = 4, ncol = 4)
 
 y0 <- rowSums(x, na.rm = FALSE)
-stopifnot(all(is.na(y0)), length(unique(y0)) == 2L)
+str(y0)
+stopifnot(all(is.na(y0)), length(unique(y0)) >= 1L)
 y1 <- rowSums2(x, na.rm = FALSE)
-stopifnot(all(is.na(y1)), length(unique(y1)) == 2L)
+str(y0)
+stopifnot(all(is.na(y1)), length(unique(y1)) >= 1L)
 stopifnot(all.equal(y1, y0))
 
 y0 <- colSums(x, na.rm = FALSE)
