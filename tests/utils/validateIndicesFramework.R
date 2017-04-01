@@ -6,10 +6,10 @@ validateIndicesTestVector <- function(x, idxs, ftest, fsure,
                          toString(idxs), toString(typeof(idxs))))
 
   suppressWarnings({
-    actual <- tryCatch(ftest(x,idxs = idxs,...), error = function(c) "error")
+    actual <- tryCatch(ftest(x, idxs = idxs, ...), error = function(c) "error")
     expect <- tryCatch({
       if (!is.null(idxs)) x <- x[idxs]
-      fsure(x,...)
+      fsure(x, ...)
     }, error = function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n",
@@ -24,7 +24,7 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure,
                          toString(idxs), toString(typeof(idxs))))
 
   suppressWarnings({
-    actual <- tryCatch(ftest(x, w, idxs = idxs,...),
+    actual <- tryCatch(ftest(x, w, idxs = idxs, ...),
                        error = function(c) "error")
     expect <- tryCatch({
       if (!is.null(idxs)) {
@@ -49,10 +49,10 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure,
 
   suppressWarnings({
     if (missing(fcolTest)) {
-      actual <- tryCatch(ftest(x, rows = rows, cols = cols,...),
+      actual <- tryCatch(ftest(x, rows = rows, cols = cols, ...),
                          error = function(c) "error")
     } else {
-      actual <- tryCatch(fcolTest(t(x), rows = cols, cols = rows,...),
+      actual <- tryCatch(fcolTest(t(x), rows = cols, cols = rows, ...),
                          error = function(c) "error")
     }
 
@@ -64,7 +64,7 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcolTest, fsure,
       } else if (!is.null(cols)) {
         x <- x[, cols, drop = FALSE]
       }
-      fsure(x,...)
+      fsure(x, ...)
     }, error = function(c) "error")
   })
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n",
@@ -82,10 +82,10 @@ validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest,
 
   suppressWarnings({
     if (missing(fcolTest)) {
-      actual <- tryCatch(ftest(x, w, rows = rows,cols = cols,...),
+      actual <- tryCatch(ftest(x, w, rows = rows, cols = cols, ...),
                          error = function(c) "error")
     } else {
-      actual <- tryCatch(fcolTest(t(x), w, rows = cols,cols = rows,...),
+      actual <- tryCatch(fcolTest(t(x), w, rows = cols, cols = rows, ...),
                          error = function(c) "error")
     }
 

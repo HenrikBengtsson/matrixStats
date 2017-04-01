@@ -5,7 +5,7 @@ library("stats")
 # Local functions
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 binCounts_hist <- function(x, bx, right = FALSE, ...) {
-  n0 <- graphics::hist(x, breaks = bx, right = right,
+  n0 <- graphics::hist(x, breaks = bx, right = right, 
                        include.lowest = TRUE, plot = FALSE)$counts
 }
 
