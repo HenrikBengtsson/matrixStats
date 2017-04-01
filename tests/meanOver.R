@@ -134,13 +134,33 @@ for (na.rm in c(FALSE, TRUE)) {
   x <- c(NaN, NA, +Inf, 3.14)
   s1 <- mean(x, na.rm = na.rm)
   s2 <- meanOver(x, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  if (na.rm) {
+    stopifnot(identical(s2, s1))
+  } else {
+    stopifnot(is.na(s1), is.na(s2))
+    ## NOTE, due to compiler optimization, it is not guaranteed that NA is
+    ## returned here (as one would expect). NaN might very well be returned,
+    ## when both NA and NaN are involved.  This is an accepted feature in R,
+    ## which is documented in help("is.nan").  See also
+    ## https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html.
+    ## Thus, we cannot guarantee that s1 is identical to s0.
+  }
 
   # Averaging over mix of NaN, NA, +Inf, and numerics
   x <- c(NA, NaN, +Inf, 3.14)
   s1 <- mean(x, na.rm = na.rm)
   s2 <- meanOver(x, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  if (na.rm) {
+    stopifnot(identical(s2, s1))
+  } else {
+    stopifnot(is.na(s1), is.na(s2))
+    ## NOTE, due to compiler optimization, it is not guaranteed that NA is
+    ## returned here (as one would expect). NaN might very well be returned,
+    ## when both NA and NaN are involved.  This is an accepted feature in R,
+    ## which is documented in help("is.nan").  See also
+    ## https://stat.ethz.ch/pipermail/r-devel/2017-April/074009.html.
+    ## Thus, we cannot guarantee that s1 is identical to s0.
+  }
 }
 
 
