@@ -19,7 +19,7 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = FALSE)
-  y1 <- rowSums(x, na.rm = FALSE)
+  y1 <- rowSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
 
   y0 <- colSums2_R(x, na.rm = FALSE)
@@ -36,7 +36,7 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = FALSE)
-  y1 <- rowSums(x, na.rm = FALSE)
+  y1 <- rowSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
 
   y0 <- colSums2_R(x, na.rm = FALSE)
@@ -54,7 +54,7 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = FALSE)
-  y1 <- rowSums(x, na.rm = FALSE)
+  y1 <- rowSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
 
   y0 <- colSums2_R(x, na.rm = FALSE)
@@ -72,7 +72,7 @@ for (mode in c("integer", "double")) {
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = TRUE)
-  y1 <- rowSums(x, na.rm = TRUE)
+  y1 <- rowSums2(x, na.rm = TRUE)
   stopifnot(all.equal(y1, y0))
 
   y0 <- colSums2_R(x, na.rm = TRUE)
@@ -88,7 +88,7 @@ cat("Special case: All NaNs:\n")
 x <- matrix(NA_real_, nrow = 3, ncol = 3)
 
 y0 <- rowSums_R(x, na.rm = TRUE)
-y1 <- rowSums(x, na.rm = TRUE)
+y1 <- rowSums2(x, na.rm = TRUE)
 stopifnot(all.equal(y1, y0))
 
 y0 <- colSums2_R(x, na.rm = TRUE)
@@ -103,7 +103,7 @@ cat("Special case: All Infs:\n")
 x <- matrix(Inf, nrow = 3, ncol = 3)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums(x, na.rm = FALSE)
+y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
@@ -118,7 +118,7 @@ cat("Special case: All -Infs:\n")
 x <- matrix(-Inf, nrow = 3, ncol = 3)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums(x, na.rm = FALSE)
+y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
@@ -133,7 +133,7 @@ cat("Special case: Infs and -Infs:\n")
 x <- matrix(c(-Inf, +Inf), nrow = 4, ncol = 4)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums(x, na.rm = FALSE)
+y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
@@ -148,7 +148,7 @@ cat("Special case: Integer overflow with ties:\n")
 x <- matrix(.Machine$integer.max, nrow = 4, ncol = 4)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums(x, na.rm = FALSE)
+y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
@@ -189,9 +189,9 @@ for (kk in seq_len(K)) {
 
   na.rm <- sample(c(TRUE, FALSE), size = 1)
 
-  # rowSums():
+  # rowSums2():
   y0 <- rowSums_R(x, na.rm = na.rm)
-  y1 <- rowSums(x, na.rm = na.rm)
+  y1 <- rowSums2(x, na.rm = na.rm)
   stopifnot(all.equal(y1, y0))
   y2 <- colSums2(t(x), na.rm = na.rm)
   stopifnot(all.equal(y2, y0))
@@ -200,6 +200,6 @@ for (kk in seq_len(K)) {
   y0 <- colSums2_R(x, na.rm = na.rm)
   y1 <- colSums2(x, na.rm = na.rm)
   stopifnot(all.equal(y1, y0))
-  y2 <- rowSums(t(x), na.rm = na.rm)
+  y2 <- rowSums2(t(x), na.rm = na.rm)
   stopifnot(all.equal(y2, y0))
 } # for (kk ...)
