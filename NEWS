@@ -72,6 +72,9 @@ DEPRECATED AND DEFUNCT:
  o meanOver() and sumOver() are deprecated because they were renamed to
    mean2() and sum2(), respectively.
 
+ o Previously deprecated (and ignored) argument 'flavor' of colRanks() and
+   rowRanks() is now defunct.
+
 
 Version: 0.51.0 [2016-10-08]
 
