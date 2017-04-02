@@ -63,14 +63,18 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     w <- w[idxs]
   }
 
+  # Argument 'constant':
+  stopifnot(length(constant) == 1L, is.numeric(constant))
+
+  # Argument 'center':
+  stopifnot(length(center) <= 1L)
+  
+  
   # Apply subset on x
   if (!is.null(idxs)) {
     x <- x[idxs]
     n <- length(x)
   }
-
-  # Argument 'na.rm':
-
 
   na_value <- NA
   storage.mode(na_value) <- storage.mode(x)
@@ -141,7 +145,14 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 #' @rdname weightedMad
 #' @export
 rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
-                            na.rm = FALSE, ...) {
+                            na.rm = FALSE,
+                            constant = 1.4826, center = NULL, ...) {
+  # Argument 'constant':
+  stopifnot(length(constant) == 1L, is.numeric(constant))
+  
+  # Argument 'center':
+  stopifnot(length(center) <= 1L)
+  
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -150,14 +161,22 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  apply(x, MARGIN = 1L, FUN = weightedMad, w = w, na.rm = na.rm, ...)
+  apply(x, MARGIN = 1L, FUN = weightedMad, w = w, na.rm = na.rm,
+        constant = constant, center = center, ...)
 }
 
 
 #' @rdname weightedMad
 #' @export
 colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
-                            na.rm = FALSE, ...) {
+                            na.rm = FALSE,
+                            constant = 1.4826, center = NULL, ...) {
+  # Argument 'constant':
+  stopifnot(length(constant) == 1L, is.numeric(constant))
+
+  # Argument 'center':
+  stopifnot(length(center) <= 1L)
+  
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -166,5 +185,6 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  apply(x, MARGIN = 2L, FUN = weightedMad, w = w, na.rm = na.rm, ...)
+  apply(x, MARGIN = 2L, FUN = weightedMad, w = w, na.rm = na.rm,
+        constant = constant, center = center, ...)
 }

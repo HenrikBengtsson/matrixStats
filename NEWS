@@ -34,7 +34,14 @@ NEW FEATURES:
    arguments 'rows' and 'cols'.
 
  o Functions colDiffs() and rowDiffs() gained argument 'dim.'.
- 
+
+ o Functions colWeightedMads() and rowWeightedMads() gained arguments
+   'constant' and 'center'.  The current implementation only support scalars
+   for these arguments, which means that the same values are applied to all
+   columns and rows, respectively.  In previous version a hard-to-understand
+   error would be produced if 'center' was of length greater than one; now
+   an more informative error message is given.
+
  o Package is now silent when loaded; it no longer displays a startup message.
  
 SOFTWARE QUALITY:

@@ -10,10 +10,10 @@ weightedMad(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.4826,
   center = NULL, ...)
 
 rowWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ...)
+  constant = 1.4826, center = NULL, ...)
 
 colWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ...)
+  constant = 1.4826, center = NULL, ...)
 }
 \arguments{
 \item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
