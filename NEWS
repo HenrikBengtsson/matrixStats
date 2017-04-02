@@ -5,15 +5,6 @@ Version: 0.51.0-9000 [2017-04-01]
 
 SIGNIFICANT CHANGES:
 
- o The package API is only intended for matrices and vectors of type
-   numeric, integer and logical.  However, a few functions would still
-   return if called with a data.frame.  This was never intended to work
-   and is now an error.  Specifically, functions colAlls(), colAnys(),
-   colProds(), colQuantiles(), colIQRs(), colWeightedMeans(),
-   colWeightedMedians(), and colCollapse() now produce errors an informative
-   error message if called with a data.frame.  Same for the corresponding
-   row- functions.
-
  o Since anyNA() is a built-in function since R (>= 3.1.0), please use that
    instead of anyMissing() part of this package.  The latter will eventually
    be deprecated.  For consistency with the anyNA() name, colAnyNAs() and
@@ -75,6 +66,15 @@ BUG FIXES:
    not render very well.  Now it forces the prompt to be the built-in "> " one.
 
 DEPRECATED AND DEFUNCT:
+
+ o The package API is only intended for matrices and vectors of type
+   numeric, integer and logical.  However, a few functions would still
+   return if called with a data.frame.  This was never intended to work
+   and is now an error.  Specifically, functions colAlls(), colAnys(),
+   colProds(), colQuantiles(), colIQRs(), colWeightedMeans(),
+   colWeightedMedians(), and colCollapse() now produce warnings if called
+   with a data.frame.  Same for the corresponding row- functions.
+   The use of a data.frame will be produce an error in future releases.
 
  o meanOver() and sumOver() are deprecated because they were renamed to
    mean2() and sum2(), respectively.

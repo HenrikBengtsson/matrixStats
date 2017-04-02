@@ -40,7 +40,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) {
-    stop("Argument 'x' is not a matrix: ", class(x)[1])
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
   }
 
   # Argument 'probs':
@@ -136,7 +136,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) {
-    stop("Argument 'x' is not a matrix: ", class(x)[1])
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
   }
 
   # Argument 'probs':
