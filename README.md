@@ -13,27 +13,27 @@ systems, including Linux, macOS and Windows.
 ## Example
 With a matrix
 ```r
-> X <- matrix(rnorm(20 * 500), nrow = 20, ncol = 500)
+> x <- matrix(rnorm(20 * 500), nrow = 20, ncol = 500)
 ```
 it is [many times
 faster](http://www.jottr.org/2015/01/matrixStats-0.13.1.html) to
 calculate medians column by column using
 ```r
-> mu <- matrixStats::colMedians(X)
+> mu <- matrixStats::colMedians(x)
 ```
 than using
 ```r
-> mu <- apply(X, MARGIN=2, FUN=median)
+> mu <- apply(x, MARGIN = 2, FUN = median)
 ```
 
 Moreover, if performing calculations on a subset of rows and/or
 columns, using
 ```r
-> mu <- colMedians(X, rows=33:158, cols=1001:3000)
+> mu <- colMedians(x, rows = 33:158, cols = 1001:3000)
 ```
 is much faster and more memory efficient than
 ```r
-> mu <- apply(X[33:158,1001:3000], MARGIN=2, FUN=median)
+> mu <- apply(x[33:158, 1001:3000], MARGIN = 2, FUN = median)
 ```
 
 
