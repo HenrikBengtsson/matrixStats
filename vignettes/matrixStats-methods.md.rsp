@@ -100,6 +100,13 @@ row <- data.frame(
 tbl <- rbind(tbl, row)
 
 row <- data.frame(
+  "Estimator"   = "Mean",
+  "Functions"   = "mean2, colMeans2, rowMeans2",
+  "Example"     = "mean2(x); rowMeans2(x)"
+)
+tbl <- rbind(tbl, row)
+
+row <- data.frame(
   "Estimator"   = "Median",
   "Functions"   = "median, colMedians, rowMedians",
   "Example"     = "median(x); rowMedians(x)"
@@ -337,6 +344,13 @@ tbl <- rbind(tbl, row)
 
 <%
 tbl <- NULL
+
+row <- data.frame(
+  "Operation"   = "Sum",
+  "Functions"   = "sum2, colSums2, rowSums2",
+  "Example"     = "sum2(x); rowSums2(x)"
+)
+tbl <- rbind(tbl, row)
 
 row <- data.frame(
   "Operation"   = "Lagged differences",

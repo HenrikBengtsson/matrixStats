@@ -31,8 +31,8 @@ Counts the number of elements in non-overlapping bins
 }
 \details{
 \code{binCounts(x, bx, right = TRUE)} gives equivalent results as
-\code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster and more
-memory efficient.
+\code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster
+and more memory efficient.
 }
 \section{Missing and non-finite values}{
 

@@ -1,6 +1,6 @@
 /***********************************************************************
  TEMPLATE:
-  double meanOver_<int|dbl>[idxsType](ARGUMENTS_LIST)
+  double mean2_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
   X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int refine
@@ -90,7 +90,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
  2015-07-04 [DJ]
   o Supported subsetted computation.
  2014-11-06 [HB]
- o CLEANUP: Now meanOver_<int|dbl>() uses only basic C types.
+ o CLEANUP: Now mean2_<int|dbl>() uses only basic C types.
  2014-11-02 [HB]
  o Created.
  **************************************************************************/

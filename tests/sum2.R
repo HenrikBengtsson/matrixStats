@@ -5,13 +5,13 @@ library("matrixStats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 set.seed(1)
 
-sumOver_R <- function(x, na.rm = FALSE, idxs = NULL) {
+sum2_R <- function(x, na.rm = FALSE, idxs = NULL) {
   if (is.null(idxs)) {
     sum(x, na.rm = na.rm)
   } else {
     sum(x[idxs], na.rm = na.rm)
   }
-} # sumOver_R()
+} # sum2_R()
 
 
 cat("Consistency checks:\n")
@@ -40,15 +40,15 @@ for (kk in 1:20) {
   na.rm <- sample(c(TRUE, FALSE), size = 1L)
 
   # Sum over all
-  y0 <- sumOver_R(x, na.rm = na.rm)
-  y1 <- sumOver(x, na.rm = na.rm)
+  y0 <- sum2_R(x, na.rm = na.rm)
+  y1 <- sum2(x, na.rm = na.rm)
   stopifnot(all.equal(y1, y0))
 
   # Sum over subset
   nidxs <- sample(n, size = 1L)
   idxs <- sample(n, size = nidxs)
-  y0 <- sumOver_R(x, na.rm = na.rm, idxs = idxs)
-  y1 <- sumOver(x, na.rm = na.rm, idxs = idxs)
+  y0 <- sum2_R(x, na.rm = na.rm, idxs = idxs)
+  y1 <- sum2(x, na.rm = na.rm, idxs = idxs)
   stopifnot(all.equal(y1, y0))
 } # for (kk ...)
 
@@ -60,12 +60,12 @@ for (n in 0:2) {
   for (na.rm in c(FALSE, TRUE)) {
     x <- rep(NA_real_, times = n)
     y0 <- sum(x, na.rm = na.rm)
-    y <- sumOver(x, na.rm = na.rm)
+    y <- sum2(x, na.rm = na.rm)
     stopifnot(all.equal(y, y0))
 
     x <- rep(NA_integer_, times = n)
     y0 <- sum(x, na.rm = na.rm)
-    y <- sumOver(x, na.rm = na.rm)
+    y <- sum2(x, na.rm = na.rm)
     stopifnot(all.equal(y, y0))
   }
 }
@@ -78,80 +78,80 @@ for (na.rm in c(FALSE, TRUE)) {
   # Summing over zero elements (integers)
   x <- integer(0)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   x <- 1:10
   idxs <- integer(0)
   s1 <- sum(x[idxs], na.rm = na.rm)
-  s2 <- sumOver(x, idxs = idxs, na.rm = na.rm)
+  s2 <- sum2(x, idxs = idxs, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Summing over NA_integer_:s
   x <- rep(NA_integer_, times = 10L)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   x <- rep(NA_integer_, times = 10L)
   idxs <- 1:5
   s1 <- sum(x[idxs], na.rm = na.rm)
-  s2 <- sumOver(x, idxs = idxs, na.rm = na.rm)
+  s2 <- sum2(x, idxs = idxs, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
 
   # Summing over zero elements (doubles)
   x <- double(0)
   s1 <- sum(x)
-  s2 <- sumOver(x)
+  s2 <- sum2(x)
   stopifnot(identical(s1, s2))
 
   x <- as.double(1:10)
   idxs <- integer(0)
   s1 <- sum(x[idxs])
-  s2 <- sumOver(x, idxs = idxs)
+  s2 <- sum2(x, idxs = idxs)
   stopifnot(identical(s1, s2))
 
   # Summing over NA_real_:s
   x <- rep(NA_real_, times = 10L)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   x <- rep(NA_real_, times = 10L)
   idxs <- 1:5
   s1 <- sum(x[idxs], na.rm = na.rm)
-  s2 <- sumOver(x, idxs = idxs, na.rm = na.rm)
+  s2 <- sum2(x, idxs = idxs, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Summing over -Inf:s
   x <- rep(-Inf, times = 3L)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Summing over +Inf:s
   x <- rep(+Inf, times = 3L)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Summing over mix of -Inf:s and +Inf:s
   x <- rep(c(-Inf, +Inf), times = 3L)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Summing over mix of -Inf:s and +Inf:s and numerics
   x <- rep(c(-Inf, +Inf, 3.14), times = 2L)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Summing over mix of NaN, NA, +Inf, and numerics
   x <- c(NaN, NA, +Inf, 3.14)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   if (na.rm) {
     stopifnot(identical(s2, s1))
   } else {
@@ -167,7 +167,7 @@ for (na.rm in c(FALSE, TRUE)) {
   # Summing over mix of NaN, NA, +Inf, and numerics
   x <- c(NA, NaN, +Inf, 3.14)
   s1 <- sum(x, na.rm = na.rm)
-  s2 <- sumOver(x, na.rm = na.rm)
+  s2 <- sum2(x, na.rm = na.rm)
   if (na.rm) {
     stopifnot(identical(s2, s1))
   } else {
@@ -189,19 +189,19 @@ x <- c(.Machine$integer.max, 1L, -.Machine$integer.max)
 
 # Total gives integer overflow
 s1 <- sum(x[1:2])                         # NA_integer_
-s2 <- sumOver(x[1:2])                     # NA_integer_
+s2 <- sum2(x[1:2])                     # NA_integer_
 stopifnot(identical(s1, s2))
 
 # Total gives integer overflow (coerce to numeric)
 s1 <- sum(as.numeric(x[1:2]))             # 2147483648
-s2 <- sumOver(as.numeric(x[1:2]))         # 2147483648
-s3 <- sumOver(x[1:2], mode = "double")      # 2147483648
+s2 <- sum2(as.numeric(x[1:2]))         # 2147483648
+s3 <- sum2(x[1:2], mode = "double")      # 2147483648
 stopifnot(identical(s1, s2))
 stopifnot(identical(s1, s3))
 
 # Cumulative sum would give integer overflow but not the total
 s1 <- sum(x)                              # 1L
-s2 <- sumOver(x)                          # 1L
+s2 <- sum2(x)                          # 1L
 stopifnot(identical(s1, s2))
 
 
@@ -213,7 +213,7 @@ stopifnot(identical(s1, s2))
 x <- rep(.Machine$double.xmax, times = 2L)
 y0 <- sum(x)
 print(y0)
-y <- sumOver(x)
+y <- sum2(x)
 print(y)
 stopifnot(is.infinite(y) && y > 0)
 stopifnot(identical(y, y0))
@@ -221,7 +221,7 @@ stopifnot(identical(y, y0))
 x <- rep(-.Machine$double.xmax, times = 2L)
 y0 <- sum(x)
 print(y0)
-y <- sumOver(x)
+y <- sum2(x)
 print(y)
 stopifnot(is.infinite(y) && y < 0)
 stopifnot(identical(y, y0))
@@ -241,6 +241,6 @@ for (idxs in idxs_list) {
   cat("idxs:\n")
   str(idxs)
   s1 <- sum(x[idxs], na.rm = TRUE)
-  s2 <- sumOver(x, idxs = idxs, na.rm = TRUE)
+  s2 <- sum2(x, idxs = idxs, na.rm = TRUE)
   stopifnot(identical(s1, s2))
 }

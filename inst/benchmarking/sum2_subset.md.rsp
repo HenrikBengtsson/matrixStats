@@ -1,7 +1,7 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="meanOver_subset"%>
-<%@string subname="meanOver"%>
+<%@string fcnname="sum2_subset"%>
+<%@string subname="sum2"%>
 <%@meta title="${subname}() benchmarks on subsetted computation"%>
 <%@meta author="Dongcan Jiang"%>
 <%@meta date="2015-06-07"%>
@@ -32,6 +32,8 @@ data <- rvectors(mode = mode)
 <%
 dataLabel <- names(data)[ii]
 mprintf("%s: %s\n", mode, dataLabel)
+x <- data[[dataLabel]]
+gc()
 %>
 ### <%=dataLabel%> vector
 
@@ -44,16 +46,14 @@ x_S <- x[idxs]
 gc()
 
 stats <- microbenchmark(
- "meanOver_x_S"                = meanOver(x_S, refine = TRUE),
- "meanOver_x_S_no_refine"      = meanOver(x_S, refine = FALSE),
- "meanOver(x, idxs)"            = meanOver(x, idxs = idxs, refine = TRUE),
- "meanOver_no_refine(x, idxs)"  = meanOver(x, idxs = idxs, refine = FALSE),
- "meanOver(x[idxs])"           = meanOver(x[idxs], refine = TRUE),
- "meanOver_no_refine(x[idxs])" = meanOver(x[idxs], refine = FALSE),
-  unit = "ms"
+ "sum2_x_S"      = sum2(x_S),
+ "sum2(x, idxs)"  = sum2(x, idxs = idxs),
+ "sum2(x[idxs])" = sum2(x[idxs]),
+ unit = "ms"
 )
 })%>
 ```
+
 
 <% benchmarkResults(stats, tags=c(mode, dataLabel)) %>
 

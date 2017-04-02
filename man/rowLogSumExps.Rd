@@ -39,8 +39,8 @@ columns.
 }
 \section{Benchmarking}{
 
-These methods are implemented in native code and have been optimized for speed
-and memory.
+These methods are implemented in native code and have been optimized for
+speed and memory.
 }
 
 \seealso{

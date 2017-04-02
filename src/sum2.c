@@ -1,15 +1,15 @@
 /***************************************************************************
  Public methods:
- SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
+ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
 #include <R_ext/Constants.h>
 #include "000.types.h"
-#include "sumOver_lowlevel.h"
+#include "sum2_lowlevel.h"
 
-SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
+SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
   R_xlen_t nx;
   int narm, mode2;
@@ -35,9 +35,9 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    sum = sumOver_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, mode2);
+    sum = sum2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, mode2);
   } else if (isInteger(x)) {
-    sum = sumOver_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, mode2);
+    sum = sum2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, mode2);
   } else {
     error("Argument 'x' must be numeric.");
   }
@@ -50,7 +50,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     if (ISNAN(sum)) {
       INTEGER(ans)[0] = NA_INTEGER;
     } else if (sum > R_INT_MAX || sum < R_INT_MIN) {
-      Rf_warning("Integer overflow. Use sumOver(..., mode=\"numeric\") to avoid this.");
+      Rf_warning("Integer overflow. Use sum2(..., mode=\"numeric\") to avoid this.");
       INTEGER(ans)[0] = NA_INTEGER;
     } else {
       INTEGER(ans)[0] = (int)sum;
@@ -77,7 +77,7 @@ SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   }
 
   return(ans);
-} // sumOver()
+} // sum2()
 
 
 /***************************************************************************

@@ -1,14 +1,14 @@
 /***************************************************************************
  Public methods:
- SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
+ SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
 #include "000.types.h"
-#include "meanOver_lowlevel.h"
+#include "mean2_lowlevel.h"
 
-SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
+SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   SEXP ans;
   R_xlen_t nx;
   int narm, refine2;
@@ -31,9 +31,9 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    avg = meanOver_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, refine2);
+    avg = mean2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, refine2);
   } else if (isInteger(x)) {
-    avg = meanOver_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, refine2);
+    avg = mean2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, refine2);
   }
 
   /* Return results */
@@ -42,7 +42,7 @@ SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   UNPROTECT(1);
 
   return(ans);
-} // meanOver()
+} // mean2()
 
 
 /***************************************************************************

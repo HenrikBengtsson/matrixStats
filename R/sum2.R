@@ -2,11 +2,11 @@
 #'
 #' Computes the sum of all or a subset of values.
 #'
-#' \code{sumOver(x, idxs)} gives equivalent results as \code{sum(x[idxs])}, but
+#' \code{sum2(x, idxs)} gives equivalent results as \code{sum(x[idxs])}, but
 #' is faster and more memory efficient since it avoids the actual subsetting
 #' which requires copying of elements and garbage collection thereof.
 #'
-#' Furthermore, \code{sumOver(x, mode = "double")} is equivalent to
+#' Furthermore, \code{sum2(x, mode = "double")} is equivalent to
 #' \code{sum(as.numeric(x))} and may therefore be used to avoid integer
 #' overflow, but at the same time is much more memory efficient that
 #' the regular \code{sum()} function when \code{x} is an
@@ -33,16 +33,16 @@
 #' represented as a floating point value and will therefor never be outside of
 #' the range.
 #'
-#' @example incl/sumOver.R
+#' @example incl/sum2.R
 #'
 #' @author Henrik Bengtsson
 #'
-#' @seealso \code{\link[base]{sum}}().  To efficiently average over a subset,
-#' see \code{\link{meanOver}}().
+#' @seealso \code{\link[base]{sum}}().
+#' To efficiently average over a subset, see \code{\link{mean2}}().
 #'
 #' @keywords univar internal
 #' @export
-sumOver <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
+sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,5 +66,12 @@ sumOver <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call(C_sumOver, x, idxs, na.rm, mode_idx)
+  .Call(C_sum2, x, idxs, na.rm, mode_idx)
+}
+
+#' @rdname sum2
+#' @export
+sumOver <- function(...) {
+  .Deprecated(new = "sum2")
+  sum2(...)
 }
