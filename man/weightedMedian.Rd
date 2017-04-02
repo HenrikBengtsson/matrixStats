@@ -63,8 +63,9 @@ where the weights are result of a division with zero.
 The weighted median solves the following optimization problem:
 
 \deqn{\alpha^* = \arg_\alpha \min \sum_{k = 1}{K} w_k |x_k-\alpha|} where
-\eqn{x = (x_1, x_2, \ldots, x_K)} are scalars and \eqn{w = (w_1, w_2, \ldots, w_K)}
-are the corresponding "weights" for each individual \eqn{x} value.
+\eqn{x = (x_1, x_2, \ldots, x_K)} are scalars and
+\eqn{w = (w_1, w_2, \ldots, w_K)} are the corresponding "weights" for each
+individual \eqn{x} value.
 }
 \examples{
 x <- 1:10

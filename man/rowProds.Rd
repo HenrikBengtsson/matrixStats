@@ -45,11 +45,12 @@ calculated via the \code{\link[base]{prod}}() function.
 }
 \section{Missing values}{
 
-Note, if \code{method = "expSumLog"}, \code{na.rm = FALSE}, and \code{x} contains
-missing values (\code{\link[base]{NA}} or \code{\link[base:is.finite]{NaN}}),
-then the calculated value is also missing value.  Note that it depends on
-platform whether \code{\link[base:is.finite]{NaN}} or \code{\link[base]{NA}}
-is returned when an \code{\link[base:is.finite]{NaN}} exists, cf.
+Note, if \code{method = "expSumLog"}, \code{na.rm = FALSE}, and \code{x}
+contains missing values (\code{\link[base]{NA}} or
+\code{\link[base:is.finite]{NaN}}), then the calculated value is also
+missing value.  Note that it depends on platform whether
+\code{\link[base:is.finite]{NaN}} or \code{\link[base]{NA}} is returned
+when an \code{\link[base:is.finite]{NaN}} exists, cf.
 \code{\link[base]{is.nan}}().
 }
 

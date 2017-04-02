@@ -2,7 +2,7 @@
 #'
 #' Computes the sample mean of all or a subset of values.
 #'
-#' \code{meanOver(x, idxs)} gives equivalent results as \code{mean(x[idxs])},
+#' \code{mean2(x, idxs)} gives equivalent results as \code{mean(x[idxs])},
 #' but is faster and more memory efficient since it avoids the actual
 #' subsetting which requires copying of elements and garbage collection
 #' thereof.
@@ -12,8 +12,8 @@
 #' the total sum and divides by the number of (non-missing) values.  In the
 #' second scan, this average is refined by adding the residuals towards the
 #' first average.  The \code{\link[base]{mean}}() uses this approach.
-#' \code{meanOver(..., refine = FALSE)} is almost twice as fast as
-#' \code{meanOver(..., refine = TRUE)}.
+#' \code{mean2(..., refine = FALSE)} is almost twice as fast as
+#' \code{mean2(..., refine = TRUE)}.
 #'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' N.
@@ -32,15 +32,15 @@
 #'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
-#' @example incl/meanOver.R
+#' @example incl/mean2.R
 #'
 #' @author Henrik Bengtsson
 #'
-#' @seealso \code{\link[base]{mean}}().  To efficiently sum over a subset, see
-#' \code{\link{sumOver}}().
+#' @seealso \code{\link[base]{mean}}().
+#' To efficiently sum over a subset, see \code{\link{sum2}}().
 #' @keywords univar internal
 #' @export
-meanOver <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
+mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -62,5 +62,12 @@ meanOver <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Averaging
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  .Call(C_meanOver, x, idxs, na.rm, refine)
+  .Call(C_mean2, x, idxs, na.rm, refine)
+}
+
+#' @rdname mean2
+#' @export
+meanOver <- function(...) {
+  .Deprecated(new = "mean2")
+  mean2(...)
 }

@@ -88,7 +88,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       y = -y;
     }
 
-    /* Overflow or underflow? */
+    /* 2flow or underflow? */
     if (y > DOUBLE_XMAX) {
       y = R_PosInf;
     } else if (y < -DOUBLE_XMAX) {

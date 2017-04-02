@@ -1,6 +1,6 @@
 <%@include file="includes/setup.md.rsp"%>
 
-<%@string fcnname="sumOver"%>
+<%@string fcnname="mean2"%>
 <% fcnname <- "<%@string name="fcnname"%>" %>
 <%@meta title="${fcnname}() benchmarks"%>
 <%@meta author="Henrik Bengtsson"%>
@@ -15,14 +15,23 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 
 ## Alternative methods
 
-* sum() + [()
+* mean() + [()
+* mean.default() + [() - avoids method dispatching
 
 as below
 
 ```r
 <%=withCapture({
-sumOver_R <- function(x, na.rm = FALSE, idxs) {
-  sum(x[idxs], na.rm = na.rm)
+mean2_R_v1 <- function(x, na.rm = FALSE, idxs) {
+  mean(x[idxs], na.rm = na.rm)
+}
+})%>
+```
+and
+```r
+<%=withCapture({
+mean2_R_v2 <- function(x, na.rm = FALSE, idxs) {
+  mean.default(x[idxs], na.rm = na.rm)
 }
 })%>
 ```
@@ -58,8 +67,10 @@ x <- data[[.dataLabel.]]
 gc()
 
 stats <- microbenchmark(
- "sumOver"         = sumOver(x),
- "sum"             = sum(x),
+ "mean2"           = mean2(x, refine = TRUE),
+ "mean2_no_refine" = mean2(x, refine = FALSE),
+ "mean"               = mean(x),
+ "mean.default"       = mean.default(x),
   unit = "ms"
 )
 })%>
@@ -78,8 +89,10 @@ idxs <- sort(sample(length(x), size = subset*length(x), replace = FALSE))
 gc()
 
 stats <- microbenchmark(
- "sumOver"         = sumOver(x, idxs = idxs),
- "sum+[()"         = sumOver_R(x, idxs = idxs),
+ "mean2"           = mean2(x, idxs = idxs, refine = TRUE),
+ "mean2_no_refine" = mean2(x, idxs = idxs, refine = FALSE),
+ "mean+[()"           = mean2_R_v1(x, idxs = idxs),
+ "mean.default+[()"   = mean2_R_v2(x, idxs = idxs),
   unit = "ms"
 )
 })%>

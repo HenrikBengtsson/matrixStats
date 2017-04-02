@@ -77,6 +77,7 @@ function out there?} on Oct 3, 2012\cr
 \code{\link[base]{mean}}().
 }
 \author{
-Henrik Bengtsson with initial code contributions by Martin Morgan [1].
+Henrik Bengtsson with initial code contributions by
+Martin Morgan [1].
 }
 \keyword{univar}

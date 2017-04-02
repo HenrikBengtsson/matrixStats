@@ -12,7 +12,7 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA);
 SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences);
 SEXP indexByRow(SEXP dim, SEXP idxs);
 SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA);
-SEXP meanOver(SEXP x, SEXP idxs, SEXP naRm, SEXP refine);
+SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine);
 SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA);
 SEXP psortKM(SEXP x, SEXP k, SEXP m);
 SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA);
@@ -31,7 +31,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
 SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow);
 SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow);
 SEXP signTabulate(SEXP x, SEXP idxs);
-SEXP sumOver(SEXP x, SEXP idxs, SEXP naRm, SEXP mode);
+SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode);
 SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound);
 SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine);
 SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP ties);
