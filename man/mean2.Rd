@@ -7,7 +7,7 @@
 \usage{
 mean2(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...)
 
-meanOver(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...)
+meanOver(...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length

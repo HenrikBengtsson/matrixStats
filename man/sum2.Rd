@@ -7,7 +7,7 @@
 \usage{
 sum2(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...)
 
-sumOver(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...)
+sumOver(...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of

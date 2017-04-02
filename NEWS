@@ -33,6 +33,8 @@ NEW FEATURES:
    of the base package but also supports efficient subsetting via optional
    arguments 'rows' and 'cols'.
 
+ o Package is now silent when loaded; it no longer displays a startup message.
+ 
 SOFTWARE QUALITY:
 
  o Continuous-integration testing is now also done on macOS, in addition to
