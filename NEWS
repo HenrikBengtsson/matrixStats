@@ -33,6 +33,8 @@ NEW FEATURES:
    of the base package but also supports efficient subsetting via optional
    arguments 'rows' and 'cols'.
 
+ o Functions colDiffs() and rowDiffs() gained argument 'dim.'.
+ 
  o Package is now silent when loaded; it no longer displays a startup message.
  
 SOFTWARE QUALITY:

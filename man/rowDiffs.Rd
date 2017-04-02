@@ -5,9 +5,11 @@
 \alias{colDiffs}
 \title{Calculates difference for each row (column) in a matrix}
 \usage{
-rowDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L, ...)
+rowDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
+  dim. = dim(x), ...)
 
-colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L, ...)
+colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
+  dim. = dim(x), ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
@@ -20,6 +22,10 @@ is done.}
 
 \item{differences}{An \code{\link[base]{integer}} specifying the order of
 difference.}
+
+\item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
+length two specifying the dimension of \code{x}, also when not a
+\code{\link[base]{matrix}}.}
 
 \item{...}{Not used.}
 }
