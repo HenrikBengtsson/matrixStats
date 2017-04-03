@@ -26,11 +26,11 @@
 
 # Check results
 
-16 packages with problems
+15 packages with problems
 
 |package           |version | errors| warnings| notes|
 |:-----------------|:-------|------:|--------:|-----:|
-|ChAMP             |2.6.1   |      0|        1|     3|
+|ChAMP             |2.6.2   |      0|        1|     3|
 |clusterExperiment |1.0.0   |      0|        1|     0|
 |crlmm             |1.32.0  |      0|        1|     4|
 |DeepBlueR         |1.0.11  |      0|        1|     1|
@@ -45,33 +45,17 @@
 |PathoStat         |1.0.0   |      0|        1|     0|
 |RnBeads           |1.6.1   |      0|        7|     6|
 |SICtools          |1.4.0   |      0|        1|     4|
-|sizeMat           |0.2.0   |      1|        1|     0|
 
-## ChAMP (2.6.1)
+## ChAMP (2.6.2)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
 0 errors | 1 warning  | 3 notes
 
 ```
-checking Rd \usage sections ... WARNING
-Assignments in \usage in documentation object 'champ.GSEA':
-  method = "goseq"
-
-Bad \usage lines found in documentation object 'champ.GSEA':
-      champ.GSEA(beta=myNorm,
-                 DMP=myDMP,
-                 DMR=myDMR,
-                 CpGlist=NULL,
-                 Genelist=NULL,
-                 arraytype="450K",
-                 Rplot=TRUE,
-                 adjPval=0.05)
-
-Functions with \usage entries need to have the appropriate \alias
-entries, and all their arguments documented.
-The \usage entries must correspond to syntactically valid R code.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
+checking package subdirectories ... WARNING
+Problems with news in ‘inst/NEWS.Rd’:
+  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  '
 
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
@@ -878,41 +862,5 @@ Rd file 'snpDiff.Rd':
      snpDiff(bam1, bam2, refFsa, regChr, regStart, regEnd, minBaseQuality = 13, minMapQuality = 0, nCores = 1, pValueCutOff = 0.05, baseDist ... [TRUNCATED]
 
 These lines will be truncated in the PDF manual.
-```
-
-## sizeMat (0.2.0)
-Maintainer: Josymar Torrejon-Magallanes <ejosymart@gmail.com>
-
-1 error  | 1 warning  | 0 notes
-
-```
-checking examples ... ERROR
-Running examples in ‘sizeMat-Ex.R’ failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: gonad_mature
-> ### Title: Estimate gonadal maturity
-> ### Aliases: gonad_mature
-> 
-> ### ** Examples
-> 
-> data(matFish)
-> 
-> gonad_mat = gonad_mature(matFish, varNames = c("total_length", "stage_mat"), inmName = "I", 
-+ matName = c("II", "III", "IV"), method = "fq", niter = 50)
-Error in matrixStats::rowQuantiles(pred_fq, probs = c(0.025, 0.5, 0.975)) : 
-  Argument 'x' is not a matrix: data.frame
-Calls: gonad_mature -> .gonad_mature_fq -> <Anonymous>
-Execution halted
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-Quitting from lines 108-118 (sizeMat.Rmd) 
-Error: processing vignette 'sizeMat.Rmd' failed with diagnostics:
-Argument 'x' is not a matrix: data.frame
-Execution halted
-
 ```
 

@@ -47,7 +47,7 @@
 |calmate                |0.12.1  |      0|        0|     0|
 |carx                   |0.6.2   |      0|        0|     0|
 |cellWise               |1.0.0   |      0|        0|     0|
-|ChAMP                  |2.6.1   |      0|        1|     3|
+|ChAMP                  |2.6.2   |      0|        1|     3|
 |Chicago                |1.2.0   |      0|        0|     3|
 |ChIPpeakAnno           |3.8.9   |      0|        0|     2|
 |Clomial                |1.10.0  |      0|        0|     1|
@@ -124,7 +124,7 @@
 |SGP                    |1.6-0.0 |      0|        0|     0|
 |shinyMethyl            |1.10.0  |      0|        0|     2|
 |SICtools               |1.4.0   |      0|        1|     4|
-|sizeMat                |0.2.0   |      1|        1|     0|
+|sizeMat                |0.2.0   |      0|        0|     0|
 |SRGnet                 |1.0.0   |      0|        0|     2|
 |statar                 |0.6.2   |      0|        0|     0|
 |stm                    |1.2.2   |      0|        0|     0|
@@ -321,31 +321,16 @@ Maintainer: Jakob Raymaekers <jakob.raymaekers@kuleuven.be>
 
 0 errors | 0 warnings | 0 notes
 
-## ChAMP (2.6.1)
+## ChAMP (2.6.2)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
 0 errors | 1 warning  | 3 notes
 
 ```
-checking Rd \usage sections ... WARNING
-Assignments in \usage in documentation object 'champ.GSEA':
-  method = "goseq"
-
-Bad \usage lines found in documentation object 'champ.GSEA':
-      champ.GSEA(beta=myNorm,
-                 DMP=myDMP,
-                 DMR=myDMR,
-                 CpGlist=NULL,
-                 Genelist=NULL,
-                 arraytype="450K",
-                 Rplot=TRUE,
-                 adjPval=0.05)
-
-Functions with \usage entries need to have the appropriate \alias
-entries, and all their arguments documented.
-The \usage entries must correspond to syntactically valid R code.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
+checking package subdirectories ... WARNING
+Problems with news in ‘inst/NEWS.Rd’:
+  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  '
 
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
@@ -2385,38 +2370,7 @@ These lines will be truncated in the PDF manual.
 ## sizeMat (0.2.0)
 Maintainer: Josymar Torrejon-Magallanes <ejosymart@gmail.com>
 
-1 error  | 1 warning  | 0 notes
-
-```
-checking examples ... ERROR
-Running examples in ‘sizeMat-Ex.R’ failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: gonad_mature
-> ### Title: Estimate gonadal maturity
-> ### Aliases: gonad_mature
-> 
-> ### ** Examples
-> 
-> data(matFish)
-> 
-> gonad_mat = gonad_mature(matFish, varNames = c("total_length", "stage_mat"), inmName = "I", 
-+ matName = c("II", "III", "IV"), method = "fq", niter = 50)
-Error in matrixStats::rowQuantiles(pred_fq, probs = c(0.025, 0.5, 0.975)) : 
-  Argument 'x' is not a matrix: data.frame
-Calls: gonad_mature -> .gonad_mature_fq -> <Anonymous>
-Execution halted
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-Quitting from lines 108-118 (sizeMat.Rmd) 
-Error: processing vignette 'sizeMat.Rmd' failed with diagnostics:
-Argument 'x' is not a matrix: data.frame
-Execution halted
-
-```
+0 errors | 0 warnings | 0 notes
 
 ## SRGnet (1.0.0)
 Maintainer: Isar Nassiri <isar_nassiri@urmc.rochester.edu>
