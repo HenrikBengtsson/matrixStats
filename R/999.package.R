@@ -7,8 +7,8 @@
 #' vector-based methods, e.g. binMeans(), madDiff() and weightedMedian().
 #'
 #' @section How to cite this package:
-#' Henrik Bengtsson (2016). matrixStats: Functions that Apply to Rows and
-#' Columns of Matrices (and to Vectors). R package version 0.51.0-9000.
+#' Henrik Bengtsson (2017). matrixStats: Functions that Apply to Rows and
+#' Columns of Matrices (and to Vectors). R package version 0.52.0.
 #' https://github.com/HenrikBengtsson/matrixStats
 #'
 #' @author Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola
