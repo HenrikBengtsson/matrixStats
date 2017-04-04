@@ -1,84 +1,84 @@
 library("matrixStats")
 
-X <- matrix(rnorm(20*6), nrow=20, ncol=6)
-rownames(X) <- LETTERS[1:nrow(X)]
-colnames(X) <- letters[1:ncol(X)]
-print(X)
+x <- matrix(rnorm(20 * 6), nrow = 20, ncol = 6)
+rownames(x) <- LETTERS[1:nrow(x)]
+colnames(x) <- letters[1:ncol(x)]
+print(x)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Apply rowMeans() for 3 sets of 2 columns
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
-nbrOfSets <- 3
-S <- matrix(1:ncol(X), ncol=nbrOfSets)
-colnames(S) <- sprintf("s%d", 1:nbrOfSets)
-print(S)
+nbr_of_sets <- 3L
+s <- matrix(1:ncol(x), ncol = nbr_of_sets)
+colnames(s) <- sprintf("s%d", 1:nbr_of_sets)
+print(s)
 
-Z <- rowAvgsPerColSet(X, S=S)
-print(Z)
+z <- rowAvgsPerColSet(x, S = s)
+print(z)
 
 # Validation
-Z0 <- cbind(s1=rowMeans(X[,1:2]), s2=rowMeans(X[,3:4]),
-            s3=rowMeans(X[,5:6]))
-stopifnot(identical(drop(Z), Z0))
+z0 <- cbind(s1 = rowMeans(x[, 1:2]), s2 = rowMeans(x[, 3:4]),
+            s3 = rowMeans(x[, 5:6]))
+stopifnot(identical(drop(z), z0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Apply colMeans() for 5 sets of 4 rows
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
-nbrOfSets <- 5
-S <- matrix(1:nrow(X), ncol=nbrOfSets)
-colnames(S) <- sprintf("s%d", 1:nbrOfSets)
-print(S)
+nbr_of_sets <- 5L
+s <- matrix(1:nrow(x), ncol = nbr_of_sets)
+colnames(s) <- sprintf("s%d", 1:nbr_of_sets)
+print(s)
 
-Z <- colAvgsPerRowSet(X, S=S)
-print(Z)
+z <- colAvgsPerRowSet(x, S = s)
+print(z)
 
 # Validation
-Z0 <- rbind(s1=colMeans(X[1:4,]), s2=colMeans(X[5:8,]),
-            s3=colMeans(X[9:12,]), s4=colMeans(X[13:16,]),
-            s5=colMeans(X[17:20,]))
-stopifnot(identical(drop(Z), Z0))
+z0 <- rbind(s1 = colMeans(x[1:4, ]), s2 = colMeans(x[5:8, ]),
+            s3 = colMeans(x[9:12, ]), s4 = colMeans(x[13:16, ]),
+            s5 = colMeans(x[17:20, ]))
+stopifnot(identical(drop(z), z0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 # When there is only one "complete" set
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
-nbrOfSets <- 1
-S <- matrix(1:ncol(X), ncol=nbrOfSets)
-colnames(S) <- sprintf("s%d", 1:nbrOfSets)
-print(S)
+nbr_of_sets <- 1L
+s <- matrix(1:ncol(x), ncol = nbr_of_sets)
+colnames(s) <- sprintf("s%d", 1:nbr_of_sets)
+print(s)
 
-Z <- rowAvgsPerColSet(X, S=S, FUN=rowMeans)
-print(Z)
+z <- rowAvgsPerColSet(x, S = s, FUN = rowMeans)
+print(z)
 
-Z0 <- rowMeans(X)
-stopifnot(identical(drop(Z), Z0))
+z0 <- rowMeans(x)
+stopifnot(identical(drop(z), z0))
 
 
-nbrOfSets <- 1
-S <- matrix(1:nrow(X), ncol=nbrOfSets)
-colnames(S) <- sprintf("s%d", 1:nbrOfSets)
-print(S)
+nbr_of_sets <- 1L
+s <- matrix(1:nrow(x), ncol = nbr_of_sets)
+colnames(s) <- sprintf("s%d", 1:nbr_of_sets)
+print(s)
 
-Z <- colAvgsPerRowSet(X, S=S, FUN=colMeans)
-print(Z)
+z <- colAvgsPerRowSet(x, S = s, FUN = colMeans)
+print(z)
 
-Z0 <- colMeans(X)
-stopifnot(identical(drop(Z), Z0))
+z0 <- colMeans(x)
+stopifnot(identical(drop(z), z0))
 
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Use weights
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
-nbrOfSets <- 3
-S <- matrix(1:ncol(X), ncol=nbrOfSets)
-colnames(S) <- sprintf("s%d", 1:nbrOfSets)
-print(S)
+nbr_of_sets <- 3L
+s <- matrix(1:ncol(x), ncol = nbr_of_sets)
+colnames(s) <- sprintf("s%d", 1:nbr_of_sets)
+print(s)
 
-W <- matrix(runif(length(X)), nrow=nrow(X), ncol=ncol(X))
-Z1 <- rowAvgsPerColSet(X, W=W, S=S, FUN=rowWeightedMeans)
-print(Z1)
-Z2 <- colAvgsPerRowSet(X, W=W, S=S, FUN=colWeightedMeans)
-print(Z2)
+w <- matrix(runif(length(x)), nrow = nrow(x), ncol = ncol(x))
+z1 <- rowAvgsPerColSet(x, W = w, S = s, FUN = rowWeightedMeans)
+print(z1)
+z2 <- colAvgsPerRowSet(x, W = w, S = s, FUN = colWeightedMeans)
+print(z2)

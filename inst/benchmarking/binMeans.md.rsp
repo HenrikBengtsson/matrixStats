@@ -21,7 +21,7 @@ which is defined as
 
 ```r
 <%=withCapture({
-binMeans_R <- function(y, x, bx, na.rm=FALSE, count=TRUE, right=FALSE) {
+binMeans_R <- function(y, x, bx, na.rm = FALSE, count = TRUE, right = FALSE) {
   B <- length(bx)-1L
   res <- double(B)
   counts <- integer(B)
@@ -52,12 +52,12 @@ binMeans_R <- function(y, x, bx, na.rm=FALSE, count=TRUE, right=FALSE) {
 <%=withCapture({
 nx <- 10e3 # Number of data points
 set.seed(0xBEEF)
-x <- runif(nx, min=0, max=1)
-y <- runif(nx, min=0, max=1)
+x <- runif(nx, min = 0, max = 1)
+y <- runif(nx, min = 0, max = 1)
 
 # Uniformely distributed bins
 nb <- 1e3 # Number of bins
-bx <- seq(from=0, to=1, length.out=nb+1L)
+bx <- seq(from = 0, to = 1, length.out = nb+1L)
 bx <- c(-1, bx, 2)
 })%>
 ```
@@ -70,8 +70,8 @@ bx <- c(-1, bx, 2)
 gc()
 
 stats <- microbenchmark(
- binMeans   = binMeans(x=x, y=y, bx=bx, count=TRUE),
- binMeans_R = binMeans_R(x=x, y=y, bx=bx, count=TRUE),
+ binMeans   = binMeans(x = x, y = y, bx = bx, count = TRUE),
+ binMeans_R = binMeans_R(x = x, y = y, bx = bx, count = TRUE),
  unit = "ms"
 )
 })%>

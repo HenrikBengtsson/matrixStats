@@ -1,35 +1,24 @@
-###########################################################################/**
-# @RdocFunction indexByRow
-#
-# @title "Translates matrix indices by rows into indices by columns"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage indexByRow
-# }
-#
-# \arguments{
-#  \item{dim}{A @numeric @vector of length two specifying the length
-#   of the "template" matrix.}
-#  \item{idxs}{A @vector of indices.  If @NULL, all indices are returned.}
-#  \item{...}{Not use.}
-# }
-#
-# \value{
-#   Returns an @integer @vector of indices.
-# }
-#
-# @examples "../incl/indexByRow.Rex"
-#
-# @author "HB"
-#
-# @keyword iteration
-# @keyword logic
-#*/###########################################################################
-indexByRow <- function(dim, idxs=NULL, ...) {
+#' Translates matrix indices by rows into indices by columns
+#'
+#' Translates matrix indices by rows into indices by columns.
+#'
+#' @param dim A \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length two specifying the length of the "template" matrix.
+#'
+#' @param idxs A \code{\link[base]{vector}} of indices.  If
+#' \code{\link[base]{NULL}}, all indices are returned.
+#'
+#' @param ... Not use.
+#'
+#' @return Returns an \code{\link[base]{integer}} \code{\link[base]{vector}} of
+#' indices.
+#'
+#' @example incl/indexByRow.R
+#'
+#' @author Henrik Bengtsson
+#' @keywords iteration logic
+#' @export
+indexByRow <- function(dim, idxs = NULL, ...) {
   if (is.matrix(dim)) {
     # BACKWARD COMPATIBILITY: Keep for a while, but deprecate
     # in the future.
@@ -40,15 +29,3 @@ indexByRow <- function(dim, idxs=NULL, ...) {
   if (!is.null(idxs)) idxs <- as.integer(idxs)
   .Call(C_indexByRow, dim, idxs)
 }
-
-
-##############################################################################
-# HISTORY:
-# 2014-11-09
-# o Now indexByRow() is a plain R function (was a generic function).
-# o Implemented in C.
-# 2014-05-23
-# o CLEANUP: Made indexByRow() an S3 rather than S4 generic.
-# 2007-04-12
-# o Created.
-##############################################################################

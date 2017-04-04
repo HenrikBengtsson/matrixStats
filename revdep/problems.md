@@ -4,112 +4,103 @@
 
 |setting  |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.3.1 (2016-06-21) |
+|version  |R version 3.3.3 (2017-03-06) |
 |system   |x86_64, linux-gnu            |
 |ui       |X11                          |
 |language |en                           |
 |collate  |en_US.UTF-8                  |
-|tz       |SystemV/PST8PDT              |
-|date     |2016-10-08                   |
+|tz       |America/Los_Angeles          |
+|date     |2017-04-02                   |
 
 ## Packages
 
 |package        |*  |version |date       |source          |
 |:--------------|:--|:-------|:----------|:---------------|
-|base64enc      |   |0.1-3   |2015-07-28 |CRAN (R 3.3.1)  |
-|ggplot2        |   |2.1.0   |2016-03-01 |CRAN (R 3.3.1)  |
-|knitr          |   |1.14    |2016-08-13 |cran (@1.14)    |
-|matrixStats    |   |0.50.2  |2016-04-24 |CRAN (R 3.3.1)  |
+|base64enc      |   |0.1-3   |2015-07-28 |cran (@0.1-3)   |
+|ggplot2        |   |2.2.1   |2016-12-30 |cran (@2.2.1)   |
+|knitr          |   |1.15.1  |2016-11-22 |cran (@1.15.1)  |
+|matrixStats    |   |0.51.0  |2016-10-09 |cran (@0.51.0)  |
 |microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
-|R.devices      |   |2.14.0  |2016-03-09 |CRAN (R 3.3.1)  |
-|R.rsp          |   |0.30.0  |2016-05-15 |CRAN (R 3.3.1)  |
+|R.devices      |   |2.15.1  |2016-11-10 |cran (@2.15.1)  |
+|R.rsp          |   |0.40.0  |2016-12-06 |cran (@0.40.0)  |
 
 # Check results
 
-16 packages with problems
+15 packages with problems
 
 |package           |version | errors| warnings| notes|
 |:-----------------|:-------|------:|--------:|-----:|
-|bsseq             |1.9.2   |      0|        1|     0|
-|ChIPpeakAnno      |3.7.9   |      0|        1|     2|
-|clusterExperiment |0.99.3  |      0|        2|     0|
-|crlmm             |1.31.2  |      0|        1|     4|
-|diffloop          |1.1.99  |      1|        0|     0|
-|EasyqpcR          |1.15.0  |      1|        0|     1|
-|genomation        |1.5.6   |      0|        1|     3|
-|GUIDEseq          |1.3.17  |      1|        1|     3|
-|Gviz              |1.17.7  |      0|        1|     4|
+|ChAMP             |2.6.2   |      0|        1|     3|
+|clusterExperiment |1.0.0   |      0|        1|     0|
+|crlmm             |1.32.0  |      0|        1|     4|
+|DeepBlueR         |1.0.11  |      0|        1|     1|
+|EasyqpcR          |1.16.0  |      1|        0|     1|
+|flowCore          |1.40.6  |      0|        1|     9|
+|genomation        |1.6.0   |      0|        1|     3|
+|GUIDEseq          |1.4.1   |      1|        1|     3|
+|Gviz              |1.18.2  |      0|        1|     4|
 |LS2Wstat          |2.0-3   |      0|        1|     2|
-|metagenomeSeq     |1.15.5  |      0|        1|     0|
-|methylumi         |2.19.3  |      0|        1|     8|
-|minfi             |1.19.15 |      0|        3|     4|
-|RnBeads           |1.5.1   |      0|        7|     6|
-|scater            |1.1.14  |      1|        0|     0|
-|SICtools          |1.3.2   |      0|        1|     4|
+|metagenomeSeq     |1.16.0  |      0|        1|     0|
+|methylumi         |2.20.0  |      0|        1|     8|
+|PathoStat         |1.0.0   |      0|        1|     0|
+|RnBeads           |1.6.1   |      0|        7|     6|
+|SICtools          |1.4.0   |      0|        1|     4|
 
-## bsseq (1.9.2)
-Maintainer: Kasper Daniel Hansen <kasperdanielhansen@gmail.com>  
-Bug reports: https://github.com/kasperdanielhansen/bsseq/issues
+## ChAMP (2.6.2)
+Maintainer: Yuan Tian  <champ450k@gmail.com>
 
-0 errors | 1 warning  | 0 notes
+0 errors | 1 warning  | 3 notes
 
 ```
-checking for missing documentation entries ... WARNING
-Undocumented S4 methods:
-  generic '[' and siglist 'BSseqStat,ANY,ANY,ANY'
-  generic '[' and siglist 'BSseqTstat,ANY,ANY,ANY'
-  generic '[' and siglist 'hasGRanges,ANY,ANY,ANY'
-All user-level objects in a package (including S4 classes and methods)
-should have documentation entries.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
-```
-
-## ChIPpeakAnno (3.7.9)
-Maintainer: Lihua Julie Zhu <julie.zhu@umassmed.edu>,
- Jianhong Ou <Jianhong.ou@umassmed.edu>
-
-0 errors | 1 warning  | 2 notes
-
-```
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-Warning: It seems you should call rmarkdown::render() instead of knitr::knit2html() because ChIPpeakAnno.Rmd appears to be an R Markdown v2 document.
-Quitting from lines 2-25 (ChIPpeakAnno.Rmd) 
-Error: processing vignette 'ChIPpeakAnno.Rmd' failed with diagnostics:
-could not find function "doc_date"
-Execution halted
-
+checking package subdirectories ... WARNING
+Problems with news in ‘inst/NEWS.Rd’:
+  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  '
 
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
-  ‘grid’ ‘IRanges’ ‘Biostrings’ ‘GenomicRanges’ ‘S4Vectors’
-  ‘VennDiagram’
+  ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
+  ‘IlluminaHumanMethylationEPICmanifest’
 Adding so many packages to the search path is excessive and importing
 selectively is preferable.
 
 checking installed package size ... NOTE
-  installed size is 19.5Mb
+  installed size is 11.1Mb
   sub-directories of 1Mb or more:
-    data     12.7Mb
-    extdata   5.2Mb
+    doc       8.9Mb
+    extdata   1.9Mb
+
+checking R code for possible problems ... NOTE
+Found the following calls to data() loading into the global environment:
+File ‘ChAMP/R/Block.GUI.R’:
+  data(probe.features.epic)
+  data(probe.features)
+File ‘ChAMP/R/CpG.GUI.R’:
+  data(probe.features.epic)
+  data(probe.features)
+File ‘ChAMP/R/DMP.GUI.R’:
+  data(MatchGeneName)
+... 43 lines ...
+  data(probe.features.epic)
+  data(probe.features)
+File ‘ChAMP/R/champ.norm.R’:
+  data(probeInfoALL.epic.lv)
+  data(probeInfoALL.lv)
+  data(probeInfoALL.epic.lv)
+  data(probeInfoALL.lv)
+File ‘ChAMP/R/champ.refbase.R’:
+  data(CellTypeMeans27K)
+  data(CellTypeMeans450K)
+See section ‘Good practice’ in ‘?data’.
 ```
 
-## clusterExperiment (0.99.3)
+## clusterExperiment (1.0.0)
 Maintainer: Elizabeth Purdom <epurdom@stat.berkeley.edu>  
 Bug reports: https://github.com/epurdom/clusterExperiment/issues
 
-0 errors | 2 warnings | 0 notes
+0 errors | 1 warning  | 0 notes
 
 ```
-checking whether the namespace can be unloaded cleanly ... WARNING
----- unloading
-Error in .getClassFromCache(what, resolve.confl = "all") : 
-  argument "where" is missing, with no default
-Calls: unloadNamespace ... <Anonymous> -> .removeSuperclassBackRefs -> .getClassFromCache
-Execution halted
-
 checking Rd cross-references ... WARNING
 Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
 Missing link or links in documentation object 'seqCluster.Rd':
@@ -119,7 +110,7 @@ See section 'Cross-references' in the 'Writing R Extensions' manual.
 
 ```
 
-## crlmm (1.31.2)
+## crlmm (1.32.0)
 Maintainer: Benilton S Carvalho <benilton@unicamp.br>,
  Robert Scharpf <rscharpf@jhsph.edu>, Matt Ritchie
  <mritchie@wehi.EDU.AU>
@@ -189,39 +180,25 @@ Rd file 'snprma.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## diffloop (1.1.99)
-Maintainer: Caleb Lareau <caleblareau@g.harvard.edu>  
-Bug reports: https://github.com/aryeelab/diffloop/issues
+## DeepBlueR (1.0.11)
+Maintainer: Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>
 
-1 error  | 0 warnings | 0 notes
+0 errors | 1 warning  | 1 note 
 
 ```
-checking examples ... ERROR
-Running examples in ‘diffloop-Ex.R’ failed
-The error most likely occurred in:
+checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Error in parse(file = cfile): /home/hb/repositories/matrixStats/revdep/checks/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR/inst/CITATION:13:17: unexpected symbol
+  12:          transforming, aggregating and downloading data from several epigenomic consortia.
+  13:          URL = "https
+                      ^
 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: manyLoopPlots
-> ### Title: Plot several loop regions
-> ### Aliases: manyLoopPlots manyLoopPlots,loops,GRanges-method
-> 
-> ### ** Examples
-> 
-> rda<-paste(system.file('rda',package='diffloop'),'loops.small.rda',sep='/')
-> load(rda)
-> jpn.u <- removeSelfLoops(loops.small)
-> jpn_loopfit <- loopFit(jpn.u)
-The coefficients of the fitted GLM object are:
-(Intercept) groupsnaive groupsprimedWarning in fitFDistRobustly(var, df1 = df, covariate = covariate, winsor.tail.p = winsor.tail.p) :
-  small x values have been offset away from zero
-> assoc_jn <- loopTest(jpn_loopfit, coef = 2)
-Error in object[[a]][i, , drop = FALSE] : 
-  (subscript) logical subscript too long
-Calls: loopTest ... loopTest -> glmQLFTest -> [ -> [.DGEGLM -> subsetListOfArrays
-Execution halted
+checking top-level files ... NOTE
+Non-standard file/directory found at top level:
+  ‘logo.png’
 ```
 
-## EasyqpcR (1.15.0)
+## EasyqpcR (1.16.0)
 Maintainer: Le Pape Sylvain <sylvain.le.pape@univ-poitiers.fr>
 
 1 error  | 0 warnings | 1 note 
@@ -235,7 +212,112 @@ checking package namespace information ... NOTE
   Namespace with empty importFrom: ‘gWidgetsRGtk2’
 ```
 
-## genomation (1.5.6)
+## flowCore (1.40.6)
+Maintainer: M.Jiang <wjiang2@fhcrc.org>
+
+0 errors | 1 warning  | 9 notes
+
+```
+checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'read.flowSet':
+  ‘truncate_max_range’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
+checking if this is a source package ... NOTE
+Found the following apparent object files/libraries:
+  src/boost_regex/c_regex_traits.o src/boost_regex/cpp_regex_traits.o
+  src/boost_regex/cregex.o src/boost_regex/fileiter.o
+  src/boost_regex/icu.o src/boost_regex/instances.o
+  src/boost_regex/posix_api.o src/boost_regex/regex.o
+  src/boost_regex/regex_debug.o src/boost_regex/regex_raw_buffer.o
+  src/boost_regex/regex_traits_defaults.o
+  src/boost_regex/static_mutex.o src/boost_regex/usinstances.o
+  src/boost_regex/w32_regex_traits.o src/boost_regex/wc_regex_traits.o
+  src/boost_regex/wide_posix_api.o src/boost_regex/winstances.o
+Object files/libraries should not be included in a source package.
+
+checking installed package size ... NOTE
+  installed size is 33.8Mb
+  sub-directories of 1Mb or more:
+    data      5.0Mb
+    extdata   1.1Mb
+    lib      20.5Mb
+    libs      5.3Mb
+
+checking DESCRIPTION meta-information ... NOTE
+Versioned 'LinkingTo' value for ‘BH’ is only usable in R >= 3.0.2
+
+checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘examples’ ‘hyperlog.notice.html’ ‘paper’ ‘unitTests’
+
+checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘Rgraphviz’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+
+checking S3 generic/method consistency ... NOTE
+Found the following apparent S3 methods exported but not registered:
+  as.data.frame.manyFilterResult
+See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+manual.
+
+checking R code for possible problems ... NOTE
+rbind2,flowSet-flowSet: warning in assign(i, x[[i]], env = env):
+  partial argument match of 'env' to 'envir'
+rbind2,flowSet-flowSet: warning in assign(i, y[[i]], env = env):
+  partial argument match of 'env' to 'envir'
+%in%,flowFrame-norm2Filter: no visible global function definition for
+  ‘cov.rob’
+spillover,flowSet: no visible global function definition for
+  ‘devAskNewPage’
+spillover,flowSet : <anonymous>: no visible global function definition
+... 6 lines ...
+spillover,flowSet : <anonymous> : <anonymous>: no visible global
+  function definition for ‘density’
+split,flowFrame-factor: no visible binding for global variable ‘i’
+summary,workFlow: no visible binding for global variable ‘wf’
+Undefined global functions or variables:
+  abline cov.rob density devAskNewPage i rangeGate wf
+Consider adding
+  importFrom("grDevices", "devAskNewPage")
+  importFrom("graphics", "abline")
+  importFrom("stats", "density")
+to your NAMESPACE file.
+
+checking Rd line widths ... NOTE
+Rd file 'FCSTransTransform.Rd':
+  \usage lines wider than 90 characters:
+     FCSTransTransform(transformationId = "defaultFCSTransTransform", channelrange = 2^18, channeldecade = 4.5, range = 4096, cutoff = -111, ... [TRUNCATED]
+
+Rd file 'biexponentialTransform.Rd':
+  \usage lines wider than 90 characters:
+     biexponentialTransform(transformationId="defaultBiexponentialTransform", a = 0.5, b = 1, c = 0.5, d = 1, f = 0, w = 0, tol = .Machine$d ... [TRUNCATED]
+
+Rd file 'compensation-class.Rd':
+... 10 lines ...
+                 decades=0, ncdf = FALSE, min.limit=NULL, truncate_max_range = TRUE, dataset=NULL, emptyValue=TRUE, ...)
+
+Rd file 'spillover-flowSet.Rd':
+  \usage lines wider than 90 characters:
+             ssc = "SSC-A", method = "median", stain_match = c("intensity", "ordered", "regexpr"),
+
+Rd file 'splitScaleTransform.Rd':
+  \usage lines wider than 90 characters:
+     splitScaleTransform(transformationId="defaultSplitscaleTransform", maxValue=1023, transitionChannel=64, r=192)
+
+These lines will be truncated in the PDF manual.
+
+checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+```
+
+## genomation (1.6.0)
 Maintainer: Altuna Akalin <aakalin@gmail.com>, Vedran Franke
  <vedran.franke@gmail.com>  
 Bug reports: https://github.com/BIMSBbioinfo/genomation/issues
@@ -268,7 +350,7 @@ The following directory looks like a leftover from 'knitr':
 Please remove from your package.
 ```
 
-## GUIDEseq (1.3.17)
+## GUIDEseq (1.4.1)
 Maintainer: Lihua Julie Zhu <julie.zhu@umassmed.edu>
 
 1 error  | 1 warning  | 3 notes
@@ -353,7 +435,7 @@ prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
 prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
 ```
 
-## Gviz (1.17.7)
+## Gviz (1.18.2)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
 0 errors | 1 warning  | 4 notes
@@ -454,7 +536,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## metagenomeSeq (1.15.5)
+## metagenomeSeq (1.16.0)
 Maintainer: Joseph N. Paulson <jpaulson@jimmy.harvard.edu>  
 Bug reports: https://github.com/nosson/metagenomeSeq/issues
 
@@ -463,11 +545,11 @@ Bug reports: https://github.com/nosson/metagenomeSeq/issues
 ```
 checking sizes of PDF files under ‘inst/doc’ ... WARNING
   ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘metagenomeSeq.pdf’ from 974Kb to 673Kb
+     compacted ‘metagenomeSeq.pdf’ from 975Kb to 673Kb
   consider running tools::compactPDF(gs_quality = "ebook") on these files
 ```
 
-## methylumi (2.19.3)
+## methylumi (2.20.0)
 Maintainer: Sean Davis <sdavis2@mail.nih.gov>  
 Bug reports: https://github.com/seandavi/methylumi/issues/new
 
@@ -563,71 +645,20 @@ checking for unstated dependencies in vignettes ... NOTE
 'library' or 'require' call not declared from: ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
 ```
 
-## minfi (1.19.15)
-Maintainer: Kasper Daniel Hansen <kasperdanielhansen@gmail.com>  
-Bug reports: https://github.com/kasperdanielhansen/minfi/issues
+## PathoStat (1.0.0)
+Maintainer: Solaiappan Manimaran <manimaran_1975@hotmail.com>  
+Bug reports: https://github.com/mani2012/PathoStat/issues
 
-0 errors | 3 warnings | 4 notes
+0 errors | 1 warning  | 0 notes
 
 ```
-checking for missing documentation entries ... WARNING
-Undocumented code objects:
-  ‘subsetByLoci’
-All user-level objects in a package should have documentation entries.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
-
-checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'IlluminaMethylationAnnotation-class'
-  ‘packageName’
-Documented arguments not in \usage in documentation object 'IlluminaMethylationAnnotation-class':
-  ‘PackageName’
-
-Functions with \usage entries need to have the appropriate \alias
-entries, and all their arguments documented.
-The \usage entries must correspond to syntactically valid R code.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-Warning: It seems you should call rmarkdown::render() instead of knitr::knit2html() because minfi.Rmd appears to be an R Markdown v2 document.
-Quitting from lines 2-41 (minfi.Rmd) 
-Error: processing vignette 'minfi.Rmd' failed with diagnostics:
-could not find function "doc_date"
-Execution halted
-
-
-checking package dependencies ... NOTE
-Depends: includes the non-default packages:
-  ‘BiocGenerics’ ‘Biobase’ ‘lattice’ ‘GenomicRanges’
-  ‘SummarizedExperiment’ ‘Biostrings’ ‘bumphunter’
-Adding so many packages to the search path is excessive and importing
-selectively is preferable.
-
-checking dependencies in R code ... NOTE
-Unexported objects imported by ':::' calls:
-  ‘BiocGenerics:::replaceSlots’
-  ‘SummarizedExperiment:::.valid.SummarizedExperiment.assays_ncol’
-  ‘bumphunter:::.getEstimate’
-  See the note in ?`:::` about the use of this operator.
-
-checking R code for possible problems ... NOTE
-Found the following calls to data() loading into the global environment:
-File ‘minfi/R/estimateCellCounts.R’:
-  data(list = referencePkg)
-See section ‘Good practice’ in ‘?data’.
-
-checking Rd line widths ... NOTE
-Rd file 'estimateCellCounts.Rd':
-  \usage lines wider than 90 characters:
-                        referencePlatform = c("IlluminaHumanMethylation450k", "IlluminaHumanMethylationEPIC", "IlluminaHumanMethylation27k") ... [TRUNCATED]
-
-These lines will be truncated in the PDF manual.
+checking sizes of PDF files under ‘inst/doc’ ... WARNING
+  ‘gs+qpdf’ made some significant size reductions:
+     compacted ‘PathoStatUserManual.pdf’ from 1.9Mb to 1.0Mb
+  consider running tools::compactPDF(gs_quality = "ebook") on these files
 ```
 
-## RnBeads (1.5.1)
+## RnBeads (1.6.1)
 Maintainer: Fabian Mueller <rnbeads@mpi-inf.mpg.de>
 
 0 errors | 7 warnings | 6 notes
@@ -718,6 +749,7 @@ selectively is preferable.
 checking installed package size ... NOTE
   installed size is  6.1Mb
   sub-directories of 1Mb or more:
+    R     1.0Mb
     bin   1.0Mb
     doc   3.1Mb
 
@@ -744,7 +776,7 @@ BMIQ: no visible global function definition for ‘pbeta’
 BMIQ: no visible global function definition for ‘qbeta’
 MethyLumiSet2RnBeadSet: no visible global function definition for
   ‘phenoData’
-... 718 lines ...
+... 730 lines ...
              "cutree", "dbeta", "density", "dist", "ecdf", "fisher.test",
              "hclust", "knots", "kruskal.test", "lm", "model.matrix",
              "optim", "order.dendrogram", "p.adjust", "pbeta", "pchisq",
@@ -781,32 +813,7 @@ Rd file 'save.tables-RnBDiffMeth-methods.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## scater (1.1.14)
-Maintainer: Davis McCarthy <davis@ebi.ac.uk>  
-Bug reports: https://github.com/davismcc/scater/issues
-
-1 error  | 0 warnings | 0 notes
-
-```
-checking tests ... ERROR
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-  library sizes should be finite positive values
-  1: normaliseExprs(example_sceset, method = "upperquartile", feature_set = 1:200) at testthat/test-normalisation.R:52
-  2: edgeR::cpm.default(exprs_mat, lib.size = (size_factors * mean(lib_size)/mean(size_factors)), 
-         prior.count = object@logExprsOffset, log = FALSE)
-  3: stop(err)
-  
-  Collapsing expression to 500 features.Kallisto log not provided - assuming all runs successfultestthat results ================================================================
-  OK: 76 SKIPPED: 0 FAILED: 1
-  1. Error: we can compute normalised expression values with upperquartile 
-            method (@test-normalisation.R#52) 
-  
-  Error: testthat unit tests failed
-  Execution halted
-```
-
-## SICtools (1.3.2)
+## SICtools (1.4.0)
 Maintainer: Xiaobin Xing <xiaobinxing0316@gmail.com>
 
 0 errors | 1 warning  | 4 notes

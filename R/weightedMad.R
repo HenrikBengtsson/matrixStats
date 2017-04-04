@@ -1,199 +1,190 @@
-############################################################################/**
-# @RdocFunction weightedMad
-# @alias rowWeightedMads
-# @alias colWeightedMads
-#
-# @title "Weighted Median Absolute Deviation (MAD)"
-#
-# \usage{
-#  @usage weightedMad
-#  @usage colWeightedMads
-#  @usage rowWeightedMads
-# }
-#
-# \description{
-#   Computes a weighted MAD of a numeric vector.
-# }
-#
-# \arguments{
-#   \item{x}{a @numeric @vector containing the values whose weighted MAD is
-#            to be computed.}
-#   \item{w}{a vector of weights the same length as \code{x} giving the weights
-#            to use for each element of \code{x}. Negative weights are treated
-#            as zero weights. Default value is equal weight to all values.}
-#   \item{idxs, rows, cols}{A @vector indicating subset of elements (or rows and/or columns)
-#            to operate over. If @NULL, no subsetting is done.}
-#   \item{na.rm}{a logical value indicating whether @NA values in
-#            \code{x} should be stripped before the computation proceeds,
-#            or not.  If @NA, no check at all for @NAs is done.
-#            Default value is @NA (for efficiency).}
-#   \item{constant}{A @numeric scale factor, cf. @see "stats::mad".}
-#   \item{center}{Optional @numeric scalar specifying the center
-#            location of the data.  If @NULL, it is estimated from data.}
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a @numeric scalar.
-# }
-#
-# \section{Missing values}{
-#   Missing values are dropped at the very beginning, if argument
-#   \code{na.rm} is @TRUE, otherwise not.
-# }
-#
-# @examples "../incl/weightedMad.Rex"
-#
-# \seealso{
-#   For the non-weighted MAD, see @see "stats::mad".
-#   Internally @see "weightedMedian" is used to
-#   calculate the weighted median.
-# }
-#
-# @author "HB"
-#
-# @keyword "univar"
-# @keyword "robust"
-#*/############################################################################
-weightedMad <- function(x, w=NULL, idxs=NULL, na.rm=FALSE, constant=1.4826, center=NULL, ...) {
+#' Weighted Median Absolute Deviation (MAD)
+#'
+#' Computes a weighted MAD of a numeric vector.
+#'
+#'
+#' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
+#' the values whose weighted MAD is to be computed.
+#'
+#' @param w a vector of weights the same length as \code{x} giving the weights
+#' to use for each element of \code{x}. Negative weights are treated as zero
+#' weights. Default value is equal weight to all values.
+#'
+#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
+#' elements (or rows and/or columns) to operate over. If
+#' \code{\link[base]{NULL}}, no subsetting is done.
+#'
+#' @param na.rm a logical value indicating whether \code{\link[base]{NA}}
+#' values in \code{x} should be stripped before the computation proceeds, or
+#' not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
+#' is done.  Default value is \code{\link[base]{NA}} (for efficiency).
+#'
+#' @param constant A \code{\link[base]{numeric}} scale factor, cf.
+#' \code{\link[stats]{mad}}.
+#'
+#' @param center Optional \code{\link[base]{numeric}} scalar specifying the
+#' center location of the data.  If \code{\link[base]{NULL}}, it is estimated
+#' from data.
+#'
+#' @param ... Not used.
+#'
+#' @return Returns a \code{\link[base]{numeric}} scalar.
+#'
+#' @example incl/weightedMad.R
+#'
+#' @section Missing values: Missing values are dropped at the very beginning,
+#' if argument \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.
+#'
+#' @author Henrik Bengtsson
+#'
+#' @seealso For the non-weighted MAD, see \code{\link[stats]{mad}}.  Internally
+#' \code{\link{weightedMedian}}() is used to calculate the weighted median.
+#'
+#' @importFrom stats mad median
+#' @keywords univar robust
+#' @export
+weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
+                        constant = 1.4826, center = NULL, ...) {
   # No weights? Fall back to non-weighted method.
   if (is.null(w)) {
-    if (is.null(center)) center <- median(x, na.rm=na.rm)
-    return(mad(x, center=center, constant=constant, na.rm=na.rm, ...))
+    if (is.null(center)) center <- median(x, na.rm = na.rm)
+    return(mad(x, center = center, constant = constant, na.rm = na.rm, ...))
   }
 
   # Argument 'x':
-  n <- length(x);
+  n <- length(x)
 
   # Argument 'w':
   if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ", length(w), " != ", n);
+    stop("The number of elements in arguments 'w' and 'x' does not match: ",
+         length(w), " != ", n)
   } else if (!is.null(idxs)) {
     # Apply subset on w
     w <- w[idxs]
   }
 
+  # Argument 'constant':
+  stopifnot(length(constant) == 1L, is.numeric(constant))
+
+  # Argument 'center':
+  stopifnot(length(center) <= 1L)
+  
+  
   # Apply subset on x
   if (!is.null(idxs)) {
     x <- x[idxs]
     n <- length(x)
   }
 
-  # Argument 'na.rm':
-
-
-  naValue <- NA;
-  storage.mode(naValue) <- storage.mode(x);
+  na_value <- NA
+  storage.mode(na_value) <- storage.mode(x)
 
 
   # Remove values with zero (and negative) weight. This will:
   #  1) take care of the case when all weights are zero,
   #  2) it will most likely speed up the sorting.
-  tmp <- (w > 0);
+  tmp <- (w > 0)
   if (!all(tmp)) {
-    x <- .subset(x, tmp);
-    w <- .subset(w, tmp);
-    n <- length(x);
+    x <- .subset(x, tmp)
+    w <- .subset(w, tmp)
+    n <- length(x)
   }
-  tmp <- NULL; # Not needed anymore
+  tmp <- NULL  # Not needed anymore
 
   # Drop missing values?
   if (na.rm) {
-    keep <- which(!is.na(x) & !is.na(w));
-    x <- .subset(x, keep);
-    w <- .subset(w, keep);
-    n <- length(x);
-    keep <- NULL; # Not needed anymore
+    keep <- which(!is.na(x) & !is.na(w))
+    x <- .subset(x, keep)
+    w <- .subset(w, keep)
+    n <- length(x)
+    keep <- NULL  # Not needed anymore
   } else if (anyMissing(x)) {
-    return(naValue);
+    return(na_value)
   }
 
   # Are any weights Inf? Then treat them with equal weight and all others
   # with weight zero.
-  tmp <- is.infinite(w);
+  tmp <- is.infinite(w)
   if (any(tmp)) {
-    keep <- tmp;
-    x <- .subset(x, keep);
-    n <- length(x);
-    w <- rep(1, times=n);
-    keep <- NULL; # Not needed anymore
+    keep <- tmp
+    x <- .subset(x, keep)
+    n <- length(x)
+    w <- rep(1, times = n)
+    keep <- NULL  # Not needed anymore
   }
-  tmp <- NULL; # Not needed anymore
+  tmp <- NULL  # Not needed anymore
 
 
   # Are there any values left to calculate the weighted median of?
   # This is consistent with how stats::mad() works.
   if (n == 0L) {
-    return(naValue);
+    return(na_value)
   } else if (n == 1L) {
-    zeroValue <- 0;
-    storage.mode(zeroValue) <- storage.mode(x);
-    return(zeroValue);
+    zero_value <- 0
+    storage.mode(zero_value) <- storage.mode(x)
+    return(zero_value)
   }
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- weightedMedian(x, w=w, na.rm=NA);
+    center <- weightedMedian(x, w = w, na.rm = NA)
   }
 
   # Estimate the standard deviation
-  x <- abs(x - center);
-  sigma <- weightedMedian(x, w=w, na.rm=NA);
-  x <- w <- NULL; # Not needed anymore
+  x <- abs(x - center)
+  sigma <- weightedMedian(x, w = w, na.rm = NA)
+  x <- w <- NULL  # Not needed anymore
 
   # Rescale for normal distributions
-  sigma <- constant * sigma;
+  sigma <- constant * sigma
 
-  sigma;
-} # weightedMad()
+  sigma
+}
 
 
-rowWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+#' @rdname weightedMad
+#' @export
+rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
+                            na.rm = FALSE,
+                            constant = 1.4826, center = NULL, ...) {
+  # Argument 'constant':
+  stopifnot(length(constant) == 1L, is.numeric(constant))
+  
+  # Argument 'center':
+  stopifnot(length(center) <= 1L)
+  
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  apply(x, MARGIN=1L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
-} # rowWeightedMads()
+  apply(x, MARGIN = 1L, FUN = weightedMad, w = w, na.rm = na.rm,
+        constant = constant, center = center, ...)
+}
 
-colWeightedMads <- function(x, w=NULL, rows=NULL, cols=NULL, na.rm=FALSE, ...) {
+
+#' @rdname weightedMad
+#' @export
+colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
+                            na.rm = FALSE,
+                            constant = 1.4826, center = NULL, ...) {
+  # Argument 'constant':
+  stopifnot(length(constant) == 1L, is.numeric(constant))
+
+  # Argument 'center':
+  stopifnot(length(center) <= 1L)
+  
   # Apply subset on x
-  if (!is.null(rows) && !is.null(cols)) x <- x[rows,cols,drop=FALSE]
-  else if (!is.null(rows)) x <- x[rows,,drop=FALSE]
-  else if (!is.null(cols)) x <- x[,cols,drop=FALSE]
+  if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+  else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+  else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  apply(x, MARGIN=2L, FUN=weightedMad, w=w, na.rm=na.rm, ...)
-} # colWeightedMads()
-
-
-
-############################################################################
-# HISTORY:
-# 2015-05-31 [DJ]
-# o Supported subsetted computation.
-# 2014-11-10
-# o Turned weightedMad() into a plain function.
-# 2013-11-23
-# o MEMORY: Now weightedMad() cleans out allocated objects sooner.
-# 2013-09-26
-# o Now utilizing anyMissing().
-# 2012-03-22
-# o Added an Rdoc example, which also serves as a redundancy test.
-# o SPEEDUP: Now weightedMad() lets weightedMedian() know that there are
-#   now missing values remaining.
-# o Now weightedMad() is smarter about returning early, e.g. if missing
-#   values are not removed, there are none or only one value left.
-# o Added validation of argument 'w' for weightedMad().
-# o Added Rdoc comments to weightedMad().
-# o Made weightedMad() into a default method.
-# 2009-05-13
-# o Added weightedMad().
-# o Created.
-############################################################################
+  apply(x, MARGIN = 2L, FUN = weightedMad, w = w, na.rm = na.rm,
+        constant = constant, center = center, ...)
+}

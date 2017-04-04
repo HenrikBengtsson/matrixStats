@@ -1,9 +1,9 @@
 library("matrixStats")
 
-N <- 6L
-K <- 5L
-J <- 5L
-data <- matrix(1:J, nrow=N, ncol=K)
+nrow <- 6L
+ncol <- 5L
+nbr_of_unique_values <- 5L
+data <- matrix(1:nbr_of_unique_values, nrow = nrow, ncol = ncol)
 
 
 modes <- c("integer", "raw")
@@ -16,29 +16,29 @@ for (mode in modes) {
 
   y <- rowTabulates(x)
   print(y)
-  stopifnot(identical(dim(y), c(N,J)))
+  stopifnot(identical(dim(y), c(nrow, nbr_of_unique_values)))
 
   y <- colTabulates(x)
   print(y)
-  stopifnot(identical(dim(y), c(K,J)))
+  stopifnot(identical(dim(y), c(ncol, nbr_of_unique_values)))
 
   # Count only certain values
-  y <- rowTabulates(x, values=1:3)
+  y <- rowTabulates(x, values = 1:3)
   print(y)
-  stopifnot(identical(dim(y), c(N,3L)))
+  stopifnot(identical(dim(y), c(nrow, 3L)))
 
-  y <- colTabulates(x, values=1:3)
+  y <- colTabulates(x, values = 1:3)
   print(y)
-  stopifnot(identical(dim(y), c(K,3L)))
+  stopifnot(identical(dim(y), c(ncol, 3L)))
 
   # Raw
-  y <- rowTabulates(x, values=as.raw(1:3))
+  y <- rowTabulates(x, values = as.raw(1:3))
   print(y)
-  stopifnot(identical(dim(y), c(N,3L)))
+  stopifnot(identical(dim(y), c(nrow, 3L)))
 
-  y2 <- colTabulates(t(x), values=as.raw(1:3))
+  y2 <- colTabulates(t(x), values = as.raw(1:3))
   print(y2)
-  stopifnot(identical(dim(y2), c(N,3L)))
+  stopifnot(identical(dim(y2), c(nrow, 3L)))
   stopifnot(identical(y2, y))
 
   cat(sprintf("Mode: %s...done\n", mode))

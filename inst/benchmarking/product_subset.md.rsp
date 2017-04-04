@@ -19,7 +19,7 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode="double")
+data <- rvectors(mode = "double")
 data <- data[1:4]
 })%>
 ```
@@ -36,14 +36,14 @@ message(dataLabel)
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 x_S <- x[idxs]
 gc()
 
 stats <- microbenchmark(
- "product_x_S"      = product(x_S, na.rm=FALSE),
- "product(x,idxs)"  = product(x, idxs=idxs, na.rm=FALSE),
- "product(x[idxs])" = product(x[idxs], na.rm=FALSE),
+ "product_x_S"      = product(x_S, na.rm = FALSE),
+ "product(x, idxs)"  = product(x, idxs = idxs, na.rm = FALSE),
+ "product(x[idxs])" = product(x[idxs], na.rm = FALSE),
  unit = "ms"
 )
 })%>

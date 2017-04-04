@@ -23,7 +23,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() on su
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -37,15 +37,15 @@ data <- rmatrices(mode=mode)
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
-rows <- sample.int(nrow(X), size=nrow(X)*0.7)
-cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+rows <- sample.int(nrow(X), size = nrow(X)*0.7)
+cols <- sample.int(ncol(X), size = ncol(X)*0.7)
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
- "colMins_X_S"           = colMins(X_S, na.rm=FALSE),
- "colMins(X,rows,cols)"  = colMins(X, rows=rows, cols=cols, na.rm=FALSE),
- "colMins(X[rows,cols])" = colMins(X[rows,cols], na.rm=FALSE),
+ "colMins_X_S"           = colMins(X_S, na.rm = FALSE),
+ "colMins(X, rows, cols)"  = colMins(X, rows = rows, cols = cols, na.rm = FALSE),
+ "colMins(X[rows, cols])" = colMins(X[rows, cols], na.rm = FALSE),
  unit = "ms"
 )
 
@@ -54,9 +54,9 @@ X_S <- t(X_S)
 gc()
 
 rowStats <- microbenchmark(
- "rowMins_X_S"           = rowMins(X_S, na.rm=FALSE),
- "rowMins(X,cols,rows)"  = rowMins(X, rows=cols, cols=rows, na.rm=FALSE),
- "rowMins(X[cols,rows])" = rowMins(X[cols,rows], na.rm=FALSE),
+ "rowMins_X_S"           = rowMins(X_S, na.rm = FALSE),
+ "rowMins(X, cols, rows)"  = rowMins(X, rows = cols, cols = rows, na.rm = FALSE),
+ "rowMins(X[cols, rows])" = rowMins(X[cols, rows], na.rm = FALSE),
  unit = "ms"
 )
 })%>

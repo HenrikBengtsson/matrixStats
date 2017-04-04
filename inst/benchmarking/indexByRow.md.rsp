@@ -11,7 +11,7 @@
 <%
 lfun <- local({
   locals <- list()
-  function(txt=NULL) {
+  function(txt = NULL) {
     if (is.null(txt)) return(locals)
     local <- list(txt)
     locals <<- c(locals, local)
@@ -23,16 +23,16 @@ lfun <- local({
 
 This report benchmark the performance of `<%=fcnname%>()` against alternative methods:
 
-* `indexByRow_R1()` based in `matrix(..., byrow=TRUE)`
+* `indexByRow_R1()` based in `matrix(..., byrow = TRUE)`
 * `indexByRow_R2()` is a modified version of `indexByRow_R1()`
 
 where `indexByRow_R1()` and `indexByRow_R2()` are defined as in the Appendix.
 
 <%
 lfun(withCapture({
-indexByRow_R1 <- function(dim, idxs=NULL, ...) {
+indexByRow_R1 <- function(dim, idxs = NULL, ...) {
   n <- prod(dim)
-  x <- matrix(seq_len(n), nrow=dim[2L], ncol=dim[1L], byrow=TRUE)
+  x <- matrix(seq_len(n), nrow = dim[2L], ncol = dim[1L], byrow = TRUE)
   if (!is.null(idxs))
     x <- x[idxs]
   as.vector(x)
@@ -40,10 +40,10 @@ indexByRow_R1 <- function(dim, idxs=NULL, ...) {
 }))
 
 lfun(withCapture({
-indexByRow_R2 <- function(dim, idxs=NULL, ...) {
+indexByRow_R2 <- function(dim, idxs = NULL, ...) {
   n <- prod(dim)
   if (is.null(idxs)) {
-    x <- matrix(seq_len(n), nrow=dim[2L], ncol=dim[1L], byrow=TRUE)
+    x <- matrix(seq_len(n), nrow = dim[2L], ncol = dim[1L], byrow = TRUE)
     as.vector(x)
   } else {
     idxs <- idxs - 1
@@ -63,7 +63,7 @@ indexByRow_R2 <- function(dim, idxs=NULL, ...) {
 
 ```r
 <%=withCapture({
-data <- rmatrices(mode="index")
+data <- rmatrices(mode = "index")
 })%>
 ```
 where `rmatrices()` is defined in the Appendix.
@@ -86,7 +86,7 @@ dim <- dim(X)
 idxsList <- list(
   'all-by-NULL'  = NULL,
   all            = seq_len(prod(dim)),
-  odd            = seq(from=1, to=prod(dim), by=2L)
+  odd            = seq(from = 1, to = prod(dim), by = 2L)
 )
 str(idxsList)
 })%>
@@ -101,20 +101,20 @@ idxsTag <- names(idxsList)[ii]
 
 # Validate correctness
 res <- list(
- indexByRow    = indexByRow(dim, idxs=idxs),
- indexByRow_R1 = indexByRow_R1(dim, idxs=idxs),
- indexByRow_R2 = indexByRow_R2(dim, idxs=idxs)
+ indexByRow    = indexByRow(dim, idxs = idxs),
+ indexByRow_R1 = indexByRow_R1(dim, idxs = idxs),
+ indexByRow_R2 = indexByRow_R2(dim, idxs = idxs)
 )
-lapply(res, FUN=function(x) stopifnot(all.equal(x, res[[1]])))
+lapply(res, FUN = function(x) stopifnot(all.equal(x, res[[1]])))
 gc()
 %>
 
 ```r
 <%=withCapture({
 stats <- microbenchmark(
- indexByRow    = indexByRow(dim, idxs=idxs),
- indexByRow_R1 = indexByRow_R1(dim, idxs=idxs),
- indexByRow_R2 = indexByRow_R2(dim, idxs=idxs),
+ indexByRow    = indexByRow(dim, idxs = idxs),
+ indexByRow_R1 = indexByRow_R1(dim, idxs = idxs),
+ indexByRow_R2 = indexByRow_R2(dim, idxs = idxs),
  unit = "ms"
 )
 })%>

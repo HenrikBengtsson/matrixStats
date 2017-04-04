@@ -22,7 +22,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="double")
+data <- rmatrices(mode = "double")
 })%>
 ```
 
@@ -40,8 +40,8 @@ w <- runif(nrow(X))
 gc()
 
 colStats <- microbenchmark(
- colWeightedMedians    = colWeightedMedians(X, w=w, na.rm=FALSE),
-"apply+weigthedMedian" = apply(X, MARGIN=2L, FUN=weightedMedian, w=w, na.rm=FALSE),
+ colWeightedMedians    = colWeightedMedians(X, w = w, na.rm = FALSE),
+"apply+weigthedMedian" = apply(X, MARGIN = 2L, FUN = weightedMedian, w = w, na.rm = FALSE),
  unit = "ms"
 )
 
@@ -49,8 +49,8 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowWeightedMedians    = rowWeightedMedians(X, w=w, na.rm=FALSE),
-"apply+weigthedMedian" = apply(X, MARGIN=1L, FUN=weightedMedian, w=w, na.rm=FALSE),
+ rowWeightedMedians    = rowWeightedMedians(X, w = w, na.rm = FALSE),
+"apply+weigthedMedian" = apply(X, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = FALSE),
  unit = "ms"
 )
 })%>

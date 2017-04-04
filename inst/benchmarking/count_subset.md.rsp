@@ -21,7 +21,7 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 })%>
 ```
 
@@ -38,13 +38,13 @@ value <- 42
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 x_S <- x[idxs]
 gc()
 
 stats <- microbenchmark(
  "count_x_S"      = count(x_S, value),
- "count(x,idxs)"  = count(x, idxs=idxs, value),
+ "count(x, idxs)"  = count(x, idxs = idxs, value),
  "count(x[idxs])" = count(x[idxs], value),
   unit = "ms"
 )

@@ -5,19 +5,9 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
 #include <R_ext/Error.h>
-
-#define METHOD weightedMean
-#define RETURN_TYPE double
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int refine
-
-#define X_TYPE 'i'
-#include "templates-gen-vector.h"
-#define X_TYPE 'r'
-#include "templates-gen-vector.h"
-
+#include "weightedMean_lowlevel.h"
 
 SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine) {
   SEXP ans;
@@ -49,9 +39,9 @@ SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    avg = weightedMean_Real[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
+    avg = weightedMean_dbl[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
   } else if (isInteger(x)) {
-    avg = weightedMean_Integer[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
+    avg = weightedMean_int[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
   }
 
   /* Return results */

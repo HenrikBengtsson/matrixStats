@@ -23,7 +23,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() on su
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -37,9 +37,9 @@ data <- rmatrices(mode=mode)
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
-rows <- sample.int(nrow(X), size=nrow(X)*0.7)
-cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+rows <- sample.int(nrow(X), size = nrow(X)*0.7)
+cols <- sample.int(ncol(X), size = ncol(X)*0.7)
+X_S <- X[rows, cols]
 value <- 42
 })%>
 ```
@@ -49,9 +49,9 @@ value <- 42
 ```r
 <%=withCapture({
 colStats <- microbenchmark(
- "colCounts_X_S"           = colCounts(X_S, value=value, na.rm=FALSE),
- "colCounts(X,rows,cols)"  = colCounts(X, value=value, na.rm=FALSE, rows=rows, cols=cols),
- "colCounts(X[rows,cols])" = colCounts(X[rows,cols], value=value, na.rm=FALSE),
+ "colCounts_X_S"           = colCounts(X_S, value = value, na.rm = FALSE),
+ "colCounts(X, rows, cols)"  = colCounts(X, value = value, na.rm = FALSE, rows = rows, cols = cols),
+ "colCounts(X[rows, cols])" = colCounts(X[rows, cols], value = value, na.rm = FALSE),
  unit = "ms"
 )
 })%>
@@ -69,9 +69,9 @@ X_S <- t(X_S)
 ```r
 <%=withCapture({
 rowStats <- microbenchmark(
- "rowCounts_X_S"           = rowCounts(X_S, value=value, na.rm=FALSE),
- "rowCounts(X,cols,rows)"  = rowCounts(X, value=value, na.rm=FALSE, rows=cols, cols=rows),
- "rowCounts(X[cols,rows])" = rowCounts(X[cols,rows], value=value, na.rm=FALSE),
+ "rowCounts_X_S"           = rowCounts(X_S, value = value, na.rm = FALSE),
+ "rowCounts(X, cols, rows)"  = rowCounts(X, value = value, na.rm = FALSE, rows = cols, cols = rows),
+ "rowCounts(X[cols, rows])" = rowCounts(X[cols, rows], value = value, na.rm = FALSE),
  unit = "ms"
 )
 })%>

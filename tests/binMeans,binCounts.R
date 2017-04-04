@@ -4,10 +4,10 @@ library("stats")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Naive R implementation of binMeans()
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-binMeans0 <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE) {
-  B <- length(bx)-1L
-  res <- double(B)
-  counts <- rep(NaN, times=B)
+binMeans0 <- function(y, x, bx, na.rm = TRUE, count = TRUE, right = FALSE) {
+  n_smooth <- length(bx) - 1L
+  res <- double(n_smooth)
+  counts <- rep(NaN, times = n_smooth)
 
   if (na.rm) {
     keep <- !is.na(x) & !is.na(y)
@@ -16,21 +16,20 @@ binMeans0 <- function(y, x, bx, na.rm=TRUE, count=TRUE, right=FALSE) {
   }
 
   # For each bin...
-  for (kk in seq_len(B)) {
+  for (kk in seq_len(n_smooth)) {
     if (right) {
-      idxs <- which(bx[kk] <  x & x <= bx[kk+1L])
+      idxs <- which(bx[kk] <  x & x <= bx[kk + 1L])
     } else {
-      idxs <- which(bx[kk] <= x & x <  bx[kk+1L])
+      idxs <- which(bx[kk] <= x & x <  bx[kk + 1L])
     }
-    yKK <- y[idxs]
-    muKK <- mean(yKK)
-    res[kk] <- muKK
+    y_kk <- y[idxs]
+    res[kk] <- mean(y_kk)
     counts[kk] <- length(idxs)
   } # for (kk ...)
 
   if (count) attr(res, "count") <- counts
   res
-} # binMeans0()
+}
 
 
 
@@ -45,20 +44,22 @@ y[101:150] <- -5
 y <- y + rnorm(nx)
 
 # Bins
-bx <- c(0.5,50.5,100.5,150.5,200.5)
+bx <- c(0.5, 50.5, 100.5, 150.5, 200.5)
 
-yS0 <- binMeans0(y, x=x, bx=bx)
-yS <- binMeans(y, x=x, bx=bx)
-nS <- binCounts(x, bx=bx)
+y_smooth0 <- binMeans0(y, x = x, bx = bx)
+y_smooth <- binMeans(y, x = x, bx = bx)
+n_smooth <- binCounts(x, bx = bx)
 # Sanity check
-stopifnot(all.equal(yS, yS0))
-stopifnot(all.equal(attr(yS, "count"), nS))
+stopifnot(all.equal(y_smooth, y_smooth0))
+stopifnot(all.equal(attr(y_smooth, "count"), n_smooth))
 
-yS0r <- rev(binMeans0(y, x=-x, bx=rev(-bx), count=FALSE, right=TRUE))
-ySr <- rev(binMeans(y, x=-x, bx=rev(-bx), count=FALSE, right=TRUE))
+y_smooth0r <- rev(binMeans0(y, x = -x, bx = rev(-bx),
+                            count = FALSE, right = TRUE))
+y_smoothr <- rev(binMeans(y, x = -x, bx = rev(-bx),
+                          count = FALSE, right = TRUE))
 # Sanity check
-stopifnot(all.equal(yS0r, yS0, check.attributes=FALSE))
-stopifnot(all.equal(ySr, yS0r))
+stopifnot(all.equal(y_smooth0r, y_smooth0, check.attributes = FALSE))
+stopifnot(all.equal(y_smoothr, y_smooth0r))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -69,18 +70,18 @@ x <- runif(nx)
 y <- runif(nx)
 
 nb <- 20
-bx <- do.call(seq, c(as.list(range(x)), length.out=nb))
+bx <- do.call(seq, c(as.list(range(x)), length.out = nb))
 bx1 <- c(bx[-1], bx[nb] + 1)
 
-yS0 <- binMeans0(y, x=x, bx=bx1)
-yS <- binMeans(y, x=x, bx=bx1)
-nS <- binCounts(x, bx=bx1)
-ySr <- rev(binMeans(y, x=-x, bx=rev(-bx1), right=TRUE))
+y_smooth0 <- binMeans0(y, x = x, bx = bx1)
+y_smooth <- binMeans(y, x = x, bx = bx1)
+n_smooth <- binCounts(x, bx = bx1)
+y_smoothr <- rev(binMeans(y, x = -x, bx = rev(-bx1), right = TRUE))
 
 # Sanity check
-stopifnot(all.equal(yS, yS0))
-stopifnot(all.equal(attr(yS, "count"), nS))
-stopifnot(all.equal(ySr, yS, check.attributes=FALSE))
+stopifnot(all.equal(y_smooth, y_smooth0))
+stopifnot(all.equal(attr(y_smooth, "count"), n_smooth))
+stopifnot(all.equal(y_smoothr, y_smooth, check.attributes = FALSE))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -89,12 +90,12 @@ stopifnot(all.equal(ySr, yS, check.attributes=FALSE))
 x <- c(6:8, 16:19)
 nx <- length(x)
 y <- runif(nx)
-bx <- c(0,5,10,15,20,25)
-yS0 <- binMeans0(y, x=x, bx=bx)
-yS <- binMeans(y, x=x, bx=bx)
-nS <- binCounts(x, bx=bx)
-stopifnot(all.equal(attr(yS, "count"), nS))
-stopifnot(all.equal(yS, yS0))
+bx <- c(0, 5, 10, 15, 20, 25)
+y_smooth0 <- binMeans0(y, x = x, bx = bx)
+y_smooth <- binMeans(y, x = x, bx = bx)
+n_smooth <- binCounts(x, bx = bx)
+stopifnot(all.equal(attr(y_smooth, "count"), n_smooth))
+stopifnot(all.equal(y_smooth, y_smooth0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -110,12 +111,12 @@ y[123:125] <- NA_real_
 y <- y + rnorm(nx)
 
 # Bins
-bx <- c(0.5,50.5,100.5,150.5,200.5)
+bx <- c(0.5, 50.5, 100.5, 150.5, 200.5)
 
-yS0 <- binMeans0(y, x=x, bx=bx)
-yS <- binMeans(y, x=x, bx=bx)
+y_smooth0 <- binMeans0(y, x = x, bx = bx)
+y_smooth <- binMeans(y, x = x, bx = bx)
 # Sanity check
-stopifnot(all.equal(yS, yS0))
+stopifnot(all.equal(y_smooth, y_smooth0))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -123,10 +124,10 @@ stopifnot(all.equal(yS, yS0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Zero bin bounderies (invalid bin definition)
 bx <- double(0L)
-res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
+res <- try(y_smooth <- binMeans(x = 1:10, y = 1:10, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))
 
 # One bin boundery (invalid bin definition)
 bx <- double(1L)
-res <- try(yS <- binMeans(x=1:10, y=1:10, bx=bx), silent=TRUE)
+res <- try(y_smooth <- binMeans(x = 1:10, y = 1:10, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))

@@ -1,129 +1,6 @@
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-#define METHOD_TEMPLATE_H "x_OP_y_TYPE-template.h"
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, \
-                   Y_C_TYPE *y, R_xlen_t ny, \
-                   void *xrows, R_xlen_t nxrows, void *xcols, R_xlen_t nxcols, \
-                   void *yidxs, R_xlen_t nyidxs, \
-                   int byrow, int commute, \
-                   int narm, int hasna, \
-                   ANS_C_TYPE *ans, R_xlen_t n
-
-
-/* Addition */
-#define METHOD x_OP_y_Add
-#define X_TYPE 'i'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'i'
-#define OP '+'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'i'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '+'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'r'
-#define OP '+'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '+'
-#include "templates-gen-matrix-vector.h"
-#undef METHOD
-
-
-/* Subtraction */
-#define METHOD x_OP_y_Sub
-#define X_TYPE 'i'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'i'
-#define OP '-'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'i'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '-'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'r'
-#define OP '-'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '-'
-#include "templates-gen-matrix-vector.h"
-#undef METHOD
-
-
-/* Multiplication */
-#define METHOD x_OP_y_Mul
-#define X_TYPE 'i'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'i'
-#define OP '*'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'i'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '*'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'r'
-#define OP '*'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '*'
-#include "templates-gen-matrix-vector.h"
-#undef METHOD
-
-
-/* Division */
-#define METHOD x_OP_y_Div
-#define X_TYPE 'i'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'r'
-#define OP '/'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'i'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '/'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'i'
-#define ANS_TYPE 'r'
-#define OP '/'
-#include "templates-gen-matrix-vector.h"
-
-#define X_TYPE 'r'
-#define Y_TYPE 'r'
-#define ANS_TYPE 'r'
-#define OP '/'
-#include "templates-gen-matrix-vector.h"
-#undef METHOD
-
+#include "000.types.h"
+#include "x_OP_y_lowlevel.h"
 
 SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEXP yidxs, SEXP commute, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP ans = NILSXP;
@@ -168,19 +45,19 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
       if (isReal(x) && isReal(y)) {
-        x_OP_y_Add_Real_Real[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Add_dbl_dbl[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && isInteger(y)) {
-        x_OP_y_Add_Real_Integer[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Add_dbl_int[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isInteger(x) && isReal(y)) {
-        x_OP_y_Add_Integer_Real[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Add_int_dbl[xrowsType][xcolsType][yidxsType](
             INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nxrows, nxcols));
-      x_OP_y_Add_Integer_Integer[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Add_int_int[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
@@ -189,19 +66,19 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
       if (isReal(x) && isReal(y)) {
-        x_OP_y_Sub_Real_Real[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Sub_dbl_dbl[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && isInteger(y)) {
-        x_OP_y_Sub_Real_Integer[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Sub_dbl_int[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isInteger(x) && isReal(y)) {
-        x_OP_y_Sub_Integer_Real[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Sub_int_dbl[xrowsType][xcolsType][yidxsType](
             INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nxrows, nxcols));
-      x_OP_y_Sub_Integer_Integer[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Sub_int_int[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
@@ -210,19 +87,19 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
       if (isReal(x) && isReal(y)) {
-        x_OP_y_Mul_Real_Real[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Mul_dbl_dbl[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && isInteger(y)) {
-        x_OP_y_Mul_Real_Integer[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Mul_dbl_int[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isInteger(x) && isReal(y)) {
-        x_OP_y_Mul_Integer_Real[xrowsType][xcolsType][yidxsType](
+        x_OP_y_Mul_int_dbl[xrowsType][xcolsType][yidxsType](
             INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nxrows, nxcols));
-      x_OP_y_Mul_Integer_Integer[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Mul_int_int[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
@@ -230,16 +107,16 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
     /* Division */
     PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
     if (isReal(x) && isReal(y)) {
-      x_OP_y_Div_Real_Real[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Div_dbl_dbl[xrowsType][xcolsType][yidxsType](
           REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isReal(x) && isInteger(y)) {
-      x_OP_y_Div_Real_Integer[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Div_dbl_int[xrowsType][xcolsType][yidxsType](
           REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isInteger(x) && isReal(y)) {
-      x_OP_y_Div_Integer_Real[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Div_int_dbl[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isInteger(x) && isInteger(y)) {
-      x_OP_y_Div_Integer_Integer[xrowsType][xcolsType][yidxsType](
+      x_OP_y_Div_int_int[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     }
     UNPROTECT(1);

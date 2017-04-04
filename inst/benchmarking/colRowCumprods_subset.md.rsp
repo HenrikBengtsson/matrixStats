@@ -23,7 +23,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() on su
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode, range=c(-1,1))
+data <- rmatrices(mode = mode, range = c(-1, 1))
 })%>
 ```
 
@@ -36,15 +36,15 @@ data <- rmatrices(mode=mode, range=c(-1,1))
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
-rows <- sample.int(nrow(X), size=nrow(X)*0.7)
-cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+rows <- sample.int(nrow(X), size = nrow(X)*0.7)
+cols <- sample.int(ncol(X), size = ncol(X)*0.7)
+X_S <- X[rows, cols]
 gc()
 
 colStats <- microbenchmark(
  "colCumprods_X_S"           = colCumprods(X_S),
- "colCumprods(X,rows,cols)"  = colCumprods(X, rows=rows, cols=cols),
- "colCumprods(X[rows,cols])" = colCumprods(X[rows,cols]),
+ "colCumprods(X, rows, cols)"  = colCumprods(X, rows = rows, cols = cols),
+ "colCumprods(X[rows, cols])" = colCumprods(X[rows, cols]),
  unit = "ms"
 )
 
@@ -54,8 +54,8 @@ gc()
 
 rowStats <- microbenchmark(
  "rowCumprods_X_S"           = rowCumprods(X_S),
- "rowCumprods(X,cols,rows)"  = rowCumprods(X, rows=cols, cols=rows),
- "rowCumprods(X[cols,rows])" = rowCumprods(X[cols,rows]),
+ "rowCumprods(X, cols, rows)"  = rowCumprods(X, rows = cols, cols = rows),
+ "rowCumprods(X[cols, rows])" = rowCumprods(X[cols, rows]),
  unit = "ms"
 )
 })%>

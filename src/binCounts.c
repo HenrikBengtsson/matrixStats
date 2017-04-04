@@ -5,15 +5,9 @@
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
 #include <R_ext/Error.h>
-
-#define BIN_BY 'L'
-#include "binCounts-BINBY-template.h"
-
-#define BIN_BY 'R'
-#include "binCounts-BINBY-template.h"
+#include "binCounts_lowlevel.h"
 
 
 SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
@@ -33,7 +27,7 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
 
   /* Argument 'right': */
   closedRight = asLogicalNoNA(right, "right");
- 
+
   PROTECT(counts = allocVector(INTSXP, nbins));
 
   if (closedRight) {

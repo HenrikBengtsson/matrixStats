@@ -4,17 +4,10 @@
 
  Copyright Henrik Bengtsson, 2012-2013
  **************************************************************************/
-#include <Rdefines.h> 
-#include "types.h"
-#include "utils.h"
+#include <Rdefines.h>
+#include "000.types.h"
 #include <R_ext/Error.h>
-
-#define BIN_BY 'L'
-#include "binMeans-BINBY-template.h"
-
-#define BIN_BY 'R'
-#include "binMeans-BINBY-template.h"
-
+#include "binMeans_lowlevel.h"
 
 SEXP binMeans(SEXP y, SEXP x, SEXP bx, SEXP retCount, SEXP right) {
   SEXP ans = NILSXP, count = NILSXP;

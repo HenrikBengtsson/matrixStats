@@ -21,16 +21,16 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 <%=withCapture({
 nx <- 100e3 # Number of data points
 set.seed(0xBEEF)
-x <- runif(nx, min=0, max=1)
-y <- runif(nx, min=0, max=1)
+x <- runif(nx, min = 0, max = 1)
+y <- runif(nx, min = 0, max = 1)
 
 # Uniformely distributed bins
 nb <- 1e3 # Number of bins
-bx <- seq(from=0, to=1, length.out=nb+1L)
+bx <- seq(from = 0, to = 1, length.out = nb+1L)
 bx <- c(-1, bx, 2)
 
 # indices for subsetting
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 })%>
 ```
 
@@ -44,9 +44,9 @@ y_S <- y[idxs]
 gc()
 
 stats <- microbenchmark(
- "binMeans_x_y_S"            = binMeans(x=x_S, y=y_S, bx=bx, count=TRUE),
- "binMeans(x,y,idxs)"        = binMeans(x=x, y=y, idxs=idxs, bx=bx, count=TRUE),
- "binMeans(x[idxs],y[idxs])" = binMeans(x=x[idxs], y=y[idxs], bx=bx, count=TRUE),
+ "binMeans_x_y_S"            = binMeans(x = x_S, y = y_S, bx = bx, count = TRUE),
+ "binMeans(x, y, idxs)"        = binMeans(x = x, y = y, idxs = idxs, bx = bx, count = TRUE),
+ "binMeans(x[idxs], y[idxs])" = binMeans(x = x[idxs], y = y[idxs], bx = bx, count = TRUE),
  unit = "ms"
 )
 })%>

@@ -7,19 +7,8 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-
-#define METHOD rowMads
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
-
-#define X_TYPE 'i'
-#include "templates-gen-matrix.h"
-#define X_TYPE 'r'
-#include "templates-gen-matrix.h"
-
+#include "000.types.h"
+#include "rowMads_lowlevel.h"
 
 SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
@@ -65,9 +54,9 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMads_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowMads_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
   }
 
   UNPROTECT(1);

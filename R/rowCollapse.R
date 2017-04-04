@@ -1,59 +1,52 @@
-###########################################################################/**
-# @RdocFunction rowCollapse
-# @alias colCollapse
-#
-# @title "Extracts one cell per row (column) from a matrix"
-#
-# \description{
-#  @get "title".
-#  The implementation is optimized for memory and speed.
-# }
-#
-# \usage{
-#   @usage rowCollapse
-#   @usage colCollapse
-# }
-#
-# \arguments{
-#   \item{x}{An NxK @matrix.}
-#   \item{idxs}{An index @vector of (maximum) length N (K) specifying the
-#    columns (rows) to be extracted.}
-#   \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#    to operate over. If @NULL, no subsetting is done.}
-#   \item{dim.}{An @integer @vector of length two specifying the
-#              dimension of \code{x}, also when not a @matrix.}
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns a @vector of length N (K).
-# }
-#
-# @examples "../incl/rowCollapse.Rex"
-#
-# @author "HB"
-#
-# \seealso{
-#   \emph{Matrix indexing} to index elements in matrices and arrays,
-#   cf. @see "base::[".
-# }
-#
-# @keyword utilities
-#*/###########################################################################
-rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
+#' Extracts one cell per row (column) from a matrix
+#'
+#' Extracts one cell per row (column) from a matrix.  The implementation is
+#' optimized for memory and speed.
+#'
+#' @param x An NxK \code{\link[base]{matrix}}.
+#'
+#' @param idxs An index \code{\link[base]{vector}} of (maximum) length N (K)
+#' specifying the columns (rows) to be extracted.
+#'
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#'
+#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
+#' length two specifying the dimension of \code{x}, also when not a
+#' \code{\link[base]{matrix}}.
+#'
+#' @param ... Not used.
+#'
+#' @return Returns a \code{\link[base]{vector}} of length N (K).
+#'
+#' @example incl/rowCollapse.R
+#'
+#' @author Henrik Bengtsson
+#'
+#' @seealso \emph{Matrix indexing} to index elements in matrices and arrays,
+#' cf. \code{\link[base]{[}}().
+#' @keywords utilities
+#' @export
+rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
+  # Argument 'x':
+  if (!is.matrix(x) && !is.vector(x)) {
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
+  }
+
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows)) {
-    x <- x[rows,,drop=FALSE]
+    x <- x[rows, , drop = FALSE]
     idxs <- idxs[rows]
   }
   dim. <- dim(x)
 
   # Argument 'idxs':
-  idxs <- rep(idxs, length.out=dim.[1L])
+  idxs <- rep(idxs, length.out = dim.[1L])
 
   # Columns of interest
-  cols <- 0:(dim.[2L]-1L)
+  cols <- 0:(dim.[2L] - 1L)
   cols <- cols[idxs]
 
   # Calculate column-based indices
@@ -63,49 +56,32 @@ rowCollapse <- function(x, idxs, rows=NULL, dim.=dim(x), ...) {
   x[idxs]
 }
 
-colCollapse <- function(x, idxs, cols=NULL, dim.=dim(x), ...) {
+#' @rdname rowCollapse
+#' @export
+colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
+  # Argument 'x':
+  if (!is.matrix(x) && !is.vector(x)) {
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
+  }
+
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(cols)) {
-    x <- x[,cols,drop=FALSE]
+    x <- x[, cols, drop = FALSE]
     idxs <- idxs[cols]
   }
   dim. <- dim(x)
 
   # Argument 'idxs':
-  idxs <- rep(idxs, length.out=dim.[2L])
+  idxs <- rep(idxs, length.out = dim.[2L])
 
   # Rows of interest
   rows <- seq_len(dim.[1L])
   rows <- rows[idxs]
 
   # Calculate column-based indices
-  idxs <- dim.[1L] * 0:(dim.[2L]-1L) + rows
+  idxs <- dim.[1L] * 0:(dim.[2L] - 1L) + rows
   rows <- NULL # Not needed anymore
 
   x[idxs]
 }
-
-
-############################################################################
-# HISTORY:
-# 2015-05-29 [DJ]
-# o Supported subsetted computation.
-# 2014-12-19 [HB]
-# o CLEANUP: Made col- and rowCollapse() plain R functions.
-# 2014-11-15
-# o SPEEDUP: Made calculation of colOffsets faster.
-# o SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).
-# 2014-06-02
-# o Made rowCollapse() an S3 method (was S4).
-# 2013-11-23
-# o MEMORY: rowCollapse() does a better job cleaning out allocated
-#   objects sooner.
-# 2008-06-13
-# o BUG FIX: rowCollapse(x) was broken and returned the wrong elements.
-# 2008-04-13
-# o Added Rdocs.
-# o Added colCollapse().
-# 2007-10-21
-# o Created.
-############################################################################

@@ -22,7 +22,7 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 })%>
 ```
 
@@ -38,13 +38,13 @@ mprintf("%s: %s\n", mode, dataLabel)
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 x_S <- x[idxs]
 gc()
 
 stats <- microbenchmark(
  "anyMissing_x_S"      = anyMissing(x_S),
- "anyMissing(x,idxs)"  = anyMissing(x, idxs=idxs),
+ "anyMissing(x, idxs)"  = anyMissing(x, idxs = idxs),
  "anyMissing(x[idxs])" = anyMissing(x[idxs]),
   unit = "ms"
 )

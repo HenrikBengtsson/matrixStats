@@ -1,12 +1,12 @@
 library("matrixStats")
 
 signTabulate0 <- function(x, ...) {
-  nneg <- sum(x < 0, na.rm=TRUE)
-  nzero <- sum(x == 0, na.rm=TRUE)
-  npos <- sum(x > 0, na.rm=TRUE)
+  nneg <- sum(x < 0, na.rm = TRUE)
+  nzero <- sum(x == 0, na.rm = TRUE)
+  npos <- sum(x > 0, na.rm = TRUE)
   nna <- sum(is.na(x))
-  nneginf <- sum(is.infinite(x) & x < 0, na.rm=TRUE)
-  nposinf <- sum(is.infinite(x) & x > 0, na.rm=TRUE)
+  nneginf <- sum(is.infinite(x) & x < 0, na.rm = TRUE)
+  nposinf <- sum(is.infinite(x) & x > 0, na.rm = TRUE)
   res <- c(nneg, nzero, npos, nna, nneginf, nposinf)
   res <- as.double(res)
   names(res) <- c("-1", "0", "+1", "NA", "-Inf", "+Inf")
@@ -19,10 +19,10 @@ signTabulate0 <- function(x, ...) {
 set.seed(0xBEEF)
 n <- 1e3
 x <- runif(n)
-x[sample(n, size=0.1*n)] <- 0
-x[sample(n, size=0.1*n)] <- NA_real_
-x[sample(n, size=0.1*n)] <- -Inf
-x[sample(n, size=0.1*n)] <- +Inf
+x[sample(n, size = 0.1 * n)] <- 0
+x[sample(n, size = 0.1 * n)] <- NA_real_
+x[sample(n, size = 0.1 * n)] <- -Inf
+x[sample(n, size = 0.1 * n)] <- +Inf
 
 # Doubles
 message("Doubles:")

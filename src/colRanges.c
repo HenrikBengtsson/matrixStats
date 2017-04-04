@@ -7,18 +7,8 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-#define METHOD colRanges
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
-
-#define X_TYPE 'i'
-#include "templates-gen-matrix.h"
-#define X_TYPE 'r'
-#include "templates-gen-matrix.h"
-
+#include "000.types.h"
+#include "colRanges_lowlevel.h"
 
 SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans = NILSXP, ans2 = NILSXP;
@@ -62,7 +52,7 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     } else {
       PROTECT(ans = allocVector(REALSXP, ncols));
     }
-    colRanges_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
+    colRanges_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     if (what2 == 2) {
@@ -70,7 +60,7 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     } else {
       PROTECT(ans = allocVector(INTSXP, ncols));
     }
-    colRanges_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, INTEGER(ans), is_counted);
+    colRanges_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, INTEGER(ans), is_counted);
 
     /* Any entries with zero non-missing values? */
     all_counted = 1;

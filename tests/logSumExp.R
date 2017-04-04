@@ -1,22 +1,22 @@
 library("matrixStats")
 library("stats")
 
-logSumExp_R <- function(lx, na.rm=FALSE) {
-  log(sum(exp(lx), na.rm=na.rm))
+logSumExp_R <- function(lx, na.rm = FALSE) {
+  log(sum(exp(lx), na.rm = na.rm))
 }
 
 ## R-help thread \emph{'[R] Beyond double-precision?'} on May 9, 2009.
 
 for (mode in c("integer", "double")) {
-  cat("mode: ", mode, "\n", sep="")
+  cat("mode: ", mode, "\n", sep = "")
 
   set.seed(1)
-  x <- runif(20, min=1.0, max=3.0)
+  x <- runif(20, min = 1.0, max = 3.0)
   storage.mode(x) <- mode
   str(x)
 
   ## The logarithm of the harmonic mean
-  y0 <- log(1/mean(1/x))
+  y0 <- log(1 / mean(1 / x))
   print(y0)  ## -1.600885
 
   lx <- log(x)
@@ -36,30 +36,30 @@ for (mode in c("integer", "double")) {
 # Missing values
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ## NA values
-lx <- c(1,2,3)
+lx <- c(1, 2, 3)
 lx[2] <- NA_real_
-y0 <- logSumExp_R(lx, na.rm=FALSE)
-y <- logSumExp(lx, na.rm=FALSE)
+y0 <- logSumExp_R(lx, na.rm = FALSE)
+y <- logSumExp(lx, na.rm = FALSE)
 print(y)
 stopifnot(identical(y, NA_real_))
 stopifnot(all.equal(y, y0))
 
-y0 <- logSumExp_R(lx, na.rm=TRUE)
-y <- logSumExp(lx, na.rm=TRUE)
+y0 <- logSumExp_R(lx, na.rm = TRUE)
+y <- logSumExp(lx, na.rm = TRUE)
 print(y)
 stopifnot(all.equal(y, y0))
 
 ## NaN values
-lx <- c(1,2,3)
+lx <- c(1, 2, 3)
 lx[2] <- NaN
-y0 <- logSumExp_R(lx, na.rm=FALSE)
-y <- logSumExp(lx, na.rm=FALSE)
+y0 <- logSumExp_R(lx, na.rm = FALSE)
+y <- logSumExp(lx, na.rm = FALSE)
 print(y)
 stopifnot(identical(y, NA_real_))
 stopifnot(all.equal(y, y0))
 
-y0 <- logSumExp_R(lx, na.rm=TRUE)
-y <- logSumExp(lx, na.rm=TRUE)
+y0 <- logSumExp_R(lx, na.rm = TRUE)
+y <- logSumExp(lx, na.rm = TRUE)
 print(y)
 stopifnot(all.equal(y, y0))
 
@@ -85,23 +85,23 @@ stopifnot(identical(y, lx))
 stopifnot(all.equal(y, y0))
 
 lx <- NA_real_
-y0 <- logSumExp_R(lx, na.rm=TRUE)
-y <- logSumExp(lx, na.rm=TRUE)
+y0 <- logSumExp_R(lx, na.rm = TRUE)
+y <- logSumExp(lx, na.rm = TRUE)
 print(y)
 stopifnot(identical(y, -Inf))
 stopifnot(all.equal(y, y0))
 
 ## All missing values
 lx <- c(NA_real_, NA_real_)
-y0 <- logSumExp_R(lx, na.rm=TRUE)
-y <- logSumExp(lx, na.rm=TRUE)
+y0 <- logSumExp_R(lx, na.rm = TRUE)
+y <- logSumExp(lx, na.rm = TRUE)
 print(y)
 stopifnot(identical(y, -Inf))
 stopifnot(all.equal(y, y0))
 
 lx <- c(NA_real_, NA_real_)
-y0 <- logSumExp_R(lx, na.rm=FALSE)
-y <- logSumExp(lx, na.rm=FALSE)
+y0 <- logSumExp_R(lx, na.rm = FALSE)
+y <- logSumExp(lx, na.rm = FALSE)
 print(y)
 stopifnot(identical(y, NA_real_))
 stopifnot(all.equal(y, y0))
@@ -119,14 +119,14 @@ stopifnot(all.equal(y, y0))
 lx <- c(NA_real_, 1)
 y0 <- logSumExp_R(lx)
 print(y0)
-y <- logSumExp(lx, na.rm=FALSE)
+y <- logSumExp(lx, na.rm = FALSE)
 print(y)
 stopifnot(identical(y, NA_real_))
 stopifnot(all.equal(y, y0))
 
-y0 <- logSumExp_R(lx, na.rm=TRUE)
+y0 <- logSumExp_R(lx, na.rm = TRUE)
 print(y0)
-y <- logSumExp(lx, na.rm=TRUE)
+y <- logSumExp(lx, na.rm = TRUE)
 print(y)
 stopifnot(identical(y, 1))
 stopifnot(all.equal(y, y0))

@@ -22,7 +22,7 @@ where
 
 ```r
 <%=withCapture({
-product_R <- function(x, na.rm=FALSE, ...) {
+product_R <- function(x, na.rm = FALSE, ...) {
   # Nothing todo?
   if (length(x) == 0L) return(0);
 
@@ -38,7 +38,7 @@ product_R <- function(x, na.rm=FALSE, ...) {
   sign <- if (sum(x < 0) %% 2 == 0) +1 else -1;
   x <- abs(x);
   x <- log(x);
-  x <- sum(x, na.rm=FALSE);
+  x <- sum(x, na.rm = FALSE);
   x <- exp(x);
   y <- sign*x;
 
@@ -52,7 +52,7 @@ product_R <- function(x, na.rm=FALSE, ...) {
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode="double")
+data <- rvectors(mode = "double")
 data <- data[1:4]
 })%>
 ```
@@ -74,9 +74,9 @@ x <- data[[.dataLabel.]]
 gc()
 
 stats <- microbenchmark(
- product   = product(x, na.rm=FALSE),
- product_R = product_R(x, na.rm=FALSE),
- prod      = prod(x, na.rm=FALSE),
+ product   = product(x, na.rm = FALSE),
+ product_R = product_R(x, na.rm = FALSE),
+ prod      = prod(x, na.rm = FALSE),
  unit = "ms"
 )
 })%>

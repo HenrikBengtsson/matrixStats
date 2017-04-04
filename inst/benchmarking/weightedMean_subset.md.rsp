@@ -21,7 +21,7 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
+data <- rvectors(mode = mode)
 data <- data[1:4]
 })%>
 ```
@@ -39,16 +39,16 @@ mprintf("%s: %s\n", mode, dataLabel)
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 x_S <- x[idxs]
 w <- runif(length(x))
 w_S <- w[idxs]
 gc()
 
 stats <- microbenchmark(
- "weightedMean_x_w_S"            = weightedMean(x_S, w=w_S, na.rm=FALSE),
- "weightedMean(x,w,idxs)"        = weightedMean(x, w=w, idxs=idxs, na.rm=FALSE),
- "weightedMean(x[idxs],w[idxs])" = weightedMean(x[idxs], w=w[idxs], na.rm=FALSE),
+ "weightedMean_x_w_S"            = weightedMean(x_S, w = w_S, na.rm = FALSE),
+ "weightedMean(x, w, idxs)"        = weightedMean(x, w = w, idxs = idxs, na.rm = FALSE),
+ "weightedMean(x[idxs], w[idxs])" = weightedMean(x[idxs], w = w[idxs], na.rm = FALSE),
   unit = "ms"
 )
 })%>

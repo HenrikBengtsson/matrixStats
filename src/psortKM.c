@@ -13,15 +13,15 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include <R_ext/Utils.h>
-#include "types.h"
-#include "utils.h"
+#include "000.types.h"
+#include "000.utils.h"
 
 
 void psortKM_C(double *x, R_xlen_t nx, R_xlen_t k, R_xlen_t m, double *ans) {
   R_xlen_t ii, ll;
   double *xx;
 
-  /* R allocate memory for the 'xx'.  This will be 
+  /* R allocate memory for the 'xx'.  This will be
      taken care of by the R garbage collector later on. */
   xx = (double *) R_alloc(nx, sizeof(double));
 
@@ -30,8 +30,8 @@ void psortKM_C(double *x, R_xlen_t nx, R_xlen_t k, R_xlen_t m, double *ans) {
     xx[ii] = x[ii];
   }
 
-  /* Permute xx[0:partial] so that xx[partial+1] is in the correct 
-     place with smaller values to the left, ... 
+  /* Permute xx[0:partial] so that xx[partial+1] is in the correct
+     place with smaller values to the left, ...
      Example: psortKM(x, k=50, m=2) with length(x) = 1000
      rPsort(xx, 1000, 50);  We know x[50] and that x[1:49] <= x[50]
      rPsort(xx, 50, 49);    x[49] and that x[1:48] <= x[49]
@@ -58,33 +58,33 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   assertArgVector(x, (R_TYPE_REAL), "x");
   nx = xlength(x);
   if (nx == 0) {
-    error("Argument 'x' must not be empty."); 
+    error("Argument 'x' must not be empty.");
   }
 
   /* Argument 'k': */
   if (!isInteger(k)) {
-    error("Argument 'k' must be an integer."); 
+    error("Argument 'k' must be an integer.");
   }
   if (length(k) != 1) {
-    error("Argument 'k' must be a single integer."); 
+    error("Argument 'k' must be a single integer.");
   }
   kk = asInteger(k);
   if (kk <= 0) {
-    error("Argument 'k' must be a positive integer."); 
+    error("Argument 'k' must be a positive integer.");
   } if (kk > nx) {
     error("Argument 'k' must not be greater than number of elements in 'x'.");
   }
 
   /* Argument 'm': */
   if (!isInteger(m)) {
-    error("Argument 'm' must be an integer."); 
+    error("Argument 'm' must be an integer.");
   }
   if (length(m) != 1) {
-    error("Argument 'm' must be a single integer.");  
+    error("Argument 'm' must be a single integer.");
   }
   mm = asInteger(m);
   if (mm <= 0) {
-    error("Argument 'm' must be a positive integer."); 
+    error("Argument 'm' must be a positive integer.");
   } else if (mm > kk) {
     error("Argument 'm' must not be greater than argument 'k'.");
   }
