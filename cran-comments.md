@@ -1,3 +1,12 @@
+# CRAN submission matrixStats 0.52.1
+
+on 2017-04-04
+
+Fixing CRAN error on Solaris introduced by matrixStats 0.52.0 (recently submitted).
+
+Sorry about that and thanks in advance
+
+
 # CRAN submission matrixStats 0.52.0
 
 on 2017-04-03
