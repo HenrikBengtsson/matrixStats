@@ -1,6 +1,14 @@
 Package: matrixStats
 ====================
 
+Version: 0.52.1 [2017-04-04]
+
+FIX:
+
+ o The package test on matrixStats:::benchmark() tried to run even if
+   not all suggested packages were available.
+ 
+
 Version: 0.52.0 [2017-04-03]
 
 SIGNIFICANT CHANGES:
