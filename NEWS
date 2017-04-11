@@ -14,7 +14,12 @@ BUG FIX:
    core dump R or silently return a nonsense result.  Thank you Hervé Pagès,
    Bioconductor Core, for the report.
  
+DEPRECATED AND DEFUNCT:
 
+ o rowVars(..., method = "0.14.2") that was added for very unlikely needs of
+   backward compatibility of an invalid degree-of-freedom term is deprecated.
+   
+ 
 Version: 0.52.1 [2017-04-04]
 
 BUG FIX:
