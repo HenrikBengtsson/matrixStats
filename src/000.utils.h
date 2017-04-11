@@ -26,6 +26,9 @@ static R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
       if (!(type & R_TYPE_REAL))
         error("Argument '%s' cannot be numeric.", xlabel);
       break;
+      
+    default:
+      error("Argument '%s' must be of type logical, integer or numeric, not '%s'.", xlabel, type2char(TYPEOF(x)));
   } /* switch */
 } /* assertArgVector() */
 
@@ -71,6 +74,9 @@ static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
       if (!(type & R_TYPE_REAL))
         error("Argument '%s' cannot be numeric.", xlabel);
       break;
+      
+    default:
+      error("Argument '%s' must be of type logical, integer or numeric, not '%s'.", xlabel, type2char(TYPEOF(x)));
   } /* switch */
 
   /* Argument 'dim': */
@@ -103,7 +109,7 @@ static R_INLINE R_xlen_t asR_xlen_t(SEXP x, R_xlen_t i) {
   switch (mode) {
     case INTSXP: return INTEGER(x)[i];
     case REALSXP: return REAL(x)[i];
-    default: error("only integer and numeric are supported.");
+    default: error("only integer and numeric are supported, not '%s'.", type2char(TYPEOF(x)));
   }
   return 0;
 } /* asR_xlen_t() */
