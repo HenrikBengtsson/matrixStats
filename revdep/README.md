@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-04-02                   |
+|date     |2017-04-11                   |
 
 ## Packages
 
@@ -19,14 +19,14 @@
 |base64enc      |   |0.1-3   |2015-07-28 |cran (@0.1-3)   |
 |ggplot2        |   |2.2.1   |2016-12-30 |cran (@2.2.1)   |
 |knitr          |   |1.15.1  |2016-11-22 |cran (@1.15.1)  |
-|matrixStats    |   |0.51.0  |2016-10-09 |cran (@0.51.0)  |
+|matrixStats    |   |0.52.1  |2017-04-04 |cran (@0.52.1)  |
 |microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
 |R.devices      |   |2.15.1  |2016-11-10 |cran (@2.15.1)  |
 |R.rsp          |   |0.40.0  |2016-12-06 |cran (@0.40.0)  |
 
 # Check results
 
-109 packages
+111 packages
 
 |package                |version | errors| warnings| notes|
 |:----------------------|:-------|------:|--------:|-----:|
@@ -40,8 +40,9 @@
 |aSPU                   |1.46    |      0|        0|     0|
 |BatchQC                |1.2.1   |      0|        0|     0|
 |bdynsys                |1.3     |      0|        0|     1|
+|bigstep                |0.7.4   |      0|        0|     0|
 |bingat                 |1.2.2   |      0|        0|     0|
-|brms                   |1.5.1   |      0|        0|     0|
+|brms                   |1.6.0   |      0|        0|     0|
 |bsseq                  |1.10.0  |      0|        0|     0|
 |bumphunter             |1.14.0  |      0|        0|     5|
 |calmate                |0.12.1  |      0|        0|     0|
@@ -67,6 +68,7 @@
 |EasyqpcR               |1.16.0  |      1|        0|     1|
 |EMDomics               |2.4.0   |      0|        0|     3|
 |EnrichedHeatmap        |1.4.0   |      0|        0|     4|
+|expss                  |0.7.1   |      0|        0|     0|
 |FADA                   |1.3.2   |      0|        0|     0|
 |FastHCS                |0.0.5   |      0|        0|     2|
 |FastPCS                |0.1.2   |      0|        0|     3|
@@ -79,7 +81,7 @@
 |GenRank                |1.2.0   |      0|        0|     1|
 |GPrank                 |0.1.2   |      0|        0|     0|
 |GUIDEseq               |1.4.1   |      1|        1|     3|
-|Gviz                   |1.18.2  |      0|        1|     4|
+|Gviz                   |1.18.2  |      0|        2|     4|
 |haploReconstruct       |0.1.2   |      0|        0|     1|
 |IMIFA                  |1.1.0   |      0|        0|     0|
 |InfiniumPurify         |1.3.1   |      0|        0|     0|
@@ -124,9 +126,9 @@
 |SGP                    |1.6-0.0 |      0|        0|     0|
 |shinyMethyl            |1.10.0  |      0|        0|     2|
 |SICtools               |1.4.0   |      0|        1|     4|
-|sizeMat                |0.2.0   |      0|        0|     0|
+|sizeMat                |0.3.0   |      0|        0|     0|
 |SRGnet                 |1.0.0   |      0|        0|     2|
-|statar                 |0.6.2   |      0|        0|     0|
+|statar                 |0.6.3   |      0|        0|     0|
 |stm                    |1.2.2   |      0|        0|     0|
 |StructFDR              |1.1     |      0|        0|     0|
 |summarytools           |0.6.5   |      0|        0|     0|
@@ -244,12 +246,17 @@ Consider adding
 to your NAMESPACE file.
 ```
 
+## bigstep (0.7.4)
+Maintainer: Piotr Szulc <piotr.michal.szulc@gmail.com>
+
+0 errors | 0 warnings | 0 notes
+
 ## bingat (1.2.2)
 Maintainer: Berkley Shands <rpackages@biorankings.com>
 
 0 errors | 0 warnings | 0 notes
 
-## brms (1.5.1)
+## brms (1.6.0)
 Maintainer: Paul-Christian Bürkner <paul.buerkner@gmail.com>  
 Bug reports: https://github.com/paul-buerkner/brms/issues
 
@@ -779,6 +786,12 @@ Rd file 'normalizeToMatrix.rd':
 These lines will be truncated in the PDF manual.
 ```
 
+## expss (0.7.1)
+Maintainer: Gregory Demin <gdemin@gmail.com>  
+Bug reports: https://github.com/gdemin/expss/issues
+
+0 errors | 0 warnings | 0 notes
+
 ## FADA (1.3.2)
 Maintainer: David Causeur <david.causeur@agrocampus-ouest.fr>
 
@@ -1133,7 +1146,7 @@ prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
 ## Gviz (1.18.2)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
-0 errors | 1 warning  | 4 notes
+0 errors | 2 warnings | 4 notes
 
 ```
 checking for missing documentation entries ... WARNING
@@ -1148,6 +1161,29 @@ All user-level objects in a package (including S4 classes and methods)
 should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+    colMeans, colSums, expand.grid, rowMeans, rowSums
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: grid
+Loading required package: BSgenome
+... 8 lines ...
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+
+Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
+ chunk 94 (label = BiomartGeneRegionTrackDo) 
+Error in base::serialize(object, connection = NULL, ascii = ascii) : 
+  trying to get slot "host" from an object of a basic class ("NULL") with no slots
+Execution halted
 
 checking installed package size ... NOTE
   installed size is  5.8Mb
@@ -2367,7 +2403,7 @@ Rd file 'snpDiff.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## sizeMat (0.2.0)
+## sizeMat (0.3.0)
 Maintainer: Josymar Torrejon-Magallanes <ejosymart@gmail.com>
 
 0 errors | 0 warnings | 0 notes
@@ -2409,7 +2445,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## statar (0.6.2)
+## statar (0.6.3)
 Maintainer: Matthieu Gomez <mattg@princeton.edu>  
 Bug reports: https://github.com/matthieugomez/statar/issues
 

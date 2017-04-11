@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-04-02                   |
+|date     |2017-04-11                   |
 
 ## Packages
 
@@ -19,7 +19,7 @@
 |base64enc      |   |0.1-3   |2015-07-28 |cran (@0.1-3)   |
 |ggplot2        |   |2.2.1   |2016-12-30 |cran (@2.2.1)   |
 |knitr          |   |1.15.1  |2016-11-22 |cran (@1.15.1)  |
-|matrixStats    |   |0.51.0  |2016-10-09 |cran (@0.51.0)  |
+|matrixStats    |   |0.52.1  |2017-04-04 |cran (@0.52.1)  |
 |microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
 |R.devices      |   |2.15.1  |2016-11-10 |cran (@2.15.1)  |
 |R.rsp          |   |0.40.0  |2016-12-06 |cran (@0.40.0)  |
@@ -38,7 +38,7 @@
 |flowCore          |1.40.6  |      0|        1|     9|
 |genomation        |1.6.0   |      0|        1|     3|
 |GUIDEseq          |1.4.1   |      1|        1|     3|
-|Gviz              |1.18.2  |      0|        1|     4|
+|Gviz              |1.18.2  |      0|        2|     4|
 |LS2Wstat          |2.0-3   |      0|        1|     2|
 |metagenomeSeq     |1.16.0  |      0|        1|     0|
 |methylumi         |2.20.0  |      0|        1|     8|
@@ -438,7 +438,7 @@ prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
 ## Gviz (1.18.2)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
-0 errors | 1 warning  | 4 notes
+0 errors | 2 warnings | 4 notes
 
 ```
 checking for missing documentation entries ... WARNING
@@ -453,6 +453,29 @@ All user-level objects in a package (including S4 classes and methods)
 should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+    colMeans, colSums, expand.grid, rowMeans, rowSums
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: grid
+Loading required package: BSgenome
+... 8 lines ...
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+
+Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
+ chunk 94 (label = BiomartGeneRegionTrackDo) 
+Error in base::serialize(object, connection = NULL, ascii = ascii) : 
+  trying to get slot "host" from an object of a basic class ("NULL") with no slots
+Execution halted
 
 checking installed package size ... NOTE
   installed size is  5.8Mb
