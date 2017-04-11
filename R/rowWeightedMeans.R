@@ -44,8 +44,8 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   }
 
   # Argument 'w':
-  hasWeights <- !is.null(w)
-  if (hasWeights) {
+  has_weights <- !is.null(w)
+  if (has_weights) {
     n <- ncol(x)
     if (length(w) != n) {
       stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)  #nolint
@@ -66,7 +66,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  if (hasWeights) {
+  if (has_weights) {
     # Allocate results
     m <- nrow(x)
     if (m == 0L)
@@ -144,8 +144,8 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   }
 
   # Argument 'w':
-  hasWeights <- !is.null(w)
-  if (hasWeights) {
+  has_weights <- !is.null(w)
+  if (has_weights) {
     n <- nrow(x)
     if (length(w) != n) {
       stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)  #nolint
@@ -166,7 +166,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  if (hasWeights) {
+  if (has_weights) {
     # Allocate results
     m <- ncol(x)
     if (m == 0L)

@@ -73,14 +73,15 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
              package = "matrixStats")
   }
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch = 0L)
-  if (tiesMethod == 0L) {
+  ties_method <- charmatch(ties.method, c("max", "average", "min"),
+                           nomatch = 0L)
+  if (ties_method == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
   dim. <- as.integer(dim.)
   # byrow = TRUE
-  .Call(C_rowRanksWithTies, x, dim., rows, cols, tiesMethod, TRUE)
+  .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, TRUE)
 }
 
 
@@ -100,14 +101,15 @@ colRanks <- function(x, rows = NULL, cols = NULL,
   # Argument 'preserveShape'
   preserveShape <- as.logical(preserveShape)
 
-  tiesMethod <- charmatch(ties.method, c("max", "average", "min"), nomatch = 0L)
-  if (tiesMethod == 0L) {
+  ties_method <- charmatch(ties.method, c("max", "average", "min"),
+                           nomatch = 0L)
+  if (ties_method == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
 
   dim. <- as.integer(dim.)
   # byrow = FALSE
-  y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, tiesMethod, FALSE)
+  y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, FALSE)
   if (!preserveShape) y <- t(y)
   y
 }

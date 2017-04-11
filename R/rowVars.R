@@ -62,12 +62,12 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
   if (na.rm) {
     # Count number of missing values in each row
-    nNA <- rowCounts(x, value = NA_real_, na.rm = FALSE)
+    na_counts <- rowCounts(x, value = NA_real_, na.rm = FALSE)
 
     # Number of non-missing values
-    n <- ncol - nNA
+    n <- ncol - na_counts
 
-    has_na <- any(nNA > 0L)
+    has_na <- any(na_counts > 0L)
     if (has_na) {
       # Set NA estimates for rows with less than two observations
       n[n <= 1L] <- NA_integer_
@@ -124,12 +124,12 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
   if (na.rm) {
     # Count number of missing values in each column
-    nNA <- colCounts(x, value = NA_real_, na.rm = FALSE)
+    na_counts <- colCounts(x, value = NA_real_, na.rm = FALSE)
 
     # Number of non-missing values
-    n <- nrow - nNA
+    n <- nrow - na_counts
 
-    has_na <- any(nNA > 0L)
+    has_na <- any(na_counts > 0L)
     if (has_na) {
       # Set NA estimates for rows with less than two observations
       n[n <= 1L] <- NA_integer_
