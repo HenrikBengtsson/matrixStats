@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-04-11                   |
+|date     |2017-04-13                   |
 
 ## Packages
 
@@ -30,7 +30,7 @@
 
 |package           |version | errors| warnings| notes|
 |:-----------------|:-------|------:|--------:|-----:|
-|ChAMP             |2.6.2   |      0|        1|     3|
+|ChAMP             |2.6.4   |      0|        1|     3|
 |clusterExperiment |1.0.0   |      0|        1|     0|
 |crlmm             |1.32.0  |      0|        1|     4|
 |DeepBlueR         |1.0.11  |      0|        1|     1|
@@ -38,7 +38,7 @@
 |flowCore          |1.40.6  |      0|        1|     9|
 |genomation        |1.6.0   |      0|        1|     3|
 |GUIDEseq          |1.4.1   |      1|        1|     3|
-|Gviz              |1.18.2  |      0|        2|     4|
+|Gviz              |1.18.2  |      0|        1|     4|
 |LS2Wstat          |2.0-3   |      0|        1|     2|
 |metagenomeSeq     |1.16.0  |      0|        1|     0|
 |methylumi         |2.20.0  |      0|        1|     8|
@@ -46,7 +46,7 @@
 |RnBeads           |1.6.1   |      0|        7|     6|
 |SICtools          |1.4.0   |      0|        1|     4|
 
-## ChAMP (2.6.2)
+## ChAMP (2.6.4)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
 0 errors | 1 warning  | 3 notes
@@ -54,7 +54,7 @@ Maintainer: Yuan Tian  <champ450k@gmail.com>
 ```
 checking package subdirectories ... WARNING
 Problems with news in ‘inst/NEWS.Rd’:
-  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  inst/NEWS.Rd:14: unexpected END_OF_INPUT '
   '
 
 checking package dependencies ... NOTE
@@ -242,7 +242,7 @@ Found the following apparent object files/libraries:
 Object files/libraries should not be included in a source package.
 
 checking installed package size ... NOTE
-  installed size is 33.8Mb
+  installed size is 33.9Mb
   sub-directories of 1Mb or more:
     data      5.0Mb
     extdata   1.1Mb
@@ -438,7 +438,7 @@ prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
 ## Gviz (1.18.2)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
-0 errors | 2 warnings | 4 notes
+0 errors | 1 warning  | 4 notes
 
 ```
 checking for missing documentation entries ... WARNING
@@ -453,29 +453,6 @@ All user-level objects in a package (including S4 classes and methods)
 should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-    colMeans, colSums, expand.grid, rowMeans, rowSums
-
-Loading required package: IRanges
-Loading required package: GenomicRanges
-Loading required package: GenomeInfoDb
-Loading required package: grid
-Loading required package: BSgenome
-... 8 lines ...
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages
-    'citation("pkgname")'.
-
-
-Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
- chunk 94 (label = BiomartGeneRegionTrackDo) 
-Error in base::serialize(object, connection = NULL, ascii = ascii) : 
-  trying to get slot "host" from an object of a basic class ("NULL") with no slots
-Execution halted
 
 checking installed package size ... NOTE
   installed size is  5.8Mb

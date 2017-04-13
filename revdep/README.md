@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-04-11                   |
+|date     |2017-04-13                   |
 
 ## Packages
 
@@ -26,13 +26,11 @@
 
 # Check results
 
-111 packages
+110 packages
 
 |package                |version | errors| warnings| notes|
 |:----------------------|:-------|------:|--------:|-----:|
 |ACNE                   |0.8.1   |      0|        0|     0|
-|anomalyDetection       |0.1.1   |      0|        0|     0|
-|antiProfiles           |1.14.0  |      0|        0|     1|
 |aroma.affymetrix       |3.1.0   |      0|        0|     0|
 |aroma.cn               |1.6.1   |      0|        0|     0|
 |aroma.core             |3.1.0   |      0|        0|     0|
@@ -48,7 +46,7 @@
 |calmate                |0.12.1  |      0|        0|     0|
 |carx                   |0.6.2   |      0|        0|     0|
 |cellWise               |1.0.0   |      0|        0|     0|
-|ChAMP                  |2.6.2   |      0|        1|     3|
+|ChAMP                  |2.6.4   |      0|        1|     3|
 |Chicago                |1.2.0   |      0|        0|     3|
 |ChIPpeakAnno           |3.8.9   |      0|        0|     2|
 |Clomial                |1.10.0  |      0|        0|     1|
@@ -73,7 +71,7 @@
 |FastHCS                |0.0.5   |      0|        0|     2|
 |FastPCS                |0.1.2   |      0|        0|     3|
 |FastRCS                |0.0.7   |      0|        0|     1|
-|filesstrings           |0.3.2   |      0|        0|     0|
+|filesstrings           |0.4.0   |      0|        0|     0|
 |flowCore               |1.40.6  |      0|        1|     9|
 |fslr                   |2.12    |      0|        0|     0|
 |GAD                    |1.1.1   |      0|        0|     0|
@@ -81,7 +79,7 @@
 |GenRank                |1.2.0   |      0|        0|     1|
 |GPrank                 |0.1.2   |      0|        0|     0|
 |GUIDEseq               |1.4.1   |      1|        1|     3|
-|Gviz                   |1.18.2  |      0|        2|     4|
+|Gviz                   |1.18.2  |      0|        1|     4|
 |haploReconstruct       |0.1.2   |      0|        0|     1|
 |IMIFA                  |1.1.0   |      0|        0|     0|
 |InfiniumPurify         |1.3.1   |      0|        0|     0|
@@ -119,6 +117,7 @@
 |RAC                    |1.1.1   |      0|        0|     0|
 |randomizationInference |1.0.3   |      0|        0|     1|
 |RnBeads                |1.6.1   |      0|        7|     6|
+|RTransProb             |0.1.0   |      0|        0|     0|
 |samr                   |2.0     |      0|        0|     5|
 |scater                 |1.2.0   |      0|        0|     0|
 |SemiParBIVProbit       |3.8-1   |      0|        0|     0|
@@ -147,31 +146,6 @@ Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Bug reports: https://github.com/HenrikBengtsson/ACNE/issues
 
 0 errors | 0 warnings | 0 notes
-
-## anomalyDetection (0.1.1)
-Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>  
-Bug reports: https://github.com/bradleyboehmke/anomalyDetection/issues
-
-0 errors | 0 warnings | 0 notes
-
-## antiProfiles (1.14.0)
-Maintainer: Hector Corrada Bravo <hcorrada@gmail.com>
-
-0 errors | 0 warnings | 1 note 
-
-```
-checking R code for possible problems ... NOTE
-ev: no visible global function definition for ‘predict’
-ev: no visible global function definition for ‘smoothScatter’
-ev : f1: no visible global function definition for ‘predict’
-ev: no visible global function definition for ‘curve’
-Undefined global functions or variables:
-  curve predict smoothScatter
-Consider adding
-  importFrom("graphics", "curve", "smoothScatter")
-  importFrom("stats", "predict")
-to your NAMESPACE file.
-```
 
 ## aroma.affymetrix (3.1.0)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
@@ -328,7 +302,7 @@ Maintainer: Jakob Raymaekers <jakob.raymaekers@kuleuven.be>
 
 0 errors | 0 warnings | 0 notes
 
-## ChAMP (2.6.2)
+## ChAMP (2.6.4)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
 0 errors | 1 warning  | 3 notes
@@ -336,7 +310,7 @@ Maintainer: Yuan Tian  <champ450k@gmail.com>
 ```
 checking package subdirectories ... WARNING
 Problems with news in ‘inst/NEWS.Rd’:
-  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  inst/NEWS.Rd:14: unexpected END_OF_INPUT '
   '
 
 checking package dependencies ... NOTE
@@ -478,7 +452,7 @@ Bug reports: https://github.com/scristia/CNPBayes/issues
 
 ```
 checking installed package size ... NOTE
-  installed size is 11.6Mb
+  installed size is 11.7Mb
   sub-directories of 1Mb or more:
     libs   9.6Mb
 
@@ -876,7 +850,7 @@ checking installed package size ... NOTE
     libs  14.2Mb
 ```
 
-## filesstrings (0.3.2)
+## filesstrings (0.4.0)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>  
 Bug reports: https://www.github.com/rorynolan/filesstrings/issues
 
@@ -912,7 +886,7 @@ Found the following apparent object files/libraries:
 Object files/libraries should not be included in a source package.
 
 checking installed package size ... NOTE
-  installed size is 33.8Mb
+  installed size is 33.9Mb
   sub-directories of 1Mb or more:
     data      5.0Mb
     extdata   1.1Mb
@@ -1146,7 +1120,7 @@ prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
 ## Gviz (1.18.2)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
-0 errors | 2 warnings | 4 notes
+0 errors | 1 warning  | 4 notes
 
 ```
 checking for missing documentation entries ... WARNING
@@ -1161,29 +1135,6 @@ All user-level objects in a package (including S4 classes and methods)
 should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-    colMeans, colSums, expand.grid, rowMeans, rowSums
-
-Loading required package: IRanges
-Loading required package: GenomicRanges
-Loading required package: GenomeInfoDb
-Loading required package: grid
-Loading required package: BSgenome
-... 8 lines ...
-    Vignettes contain introductory material; view with
-    'browseVignettes()'. To cite Bioconductor, see
-    'citation("Biobase")', and for packages
-    'citation("pkgname")'.
-
-
-Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
- chunk 94 (label = BiomartGeneRegionTrackDo) 
-Error in base::serialize(object, connection = NULL, ascii = ascii) : 
-  trying to get slot "host" from an object of a basic class ("NULL") with no slots
-Execution halted
 
 checking installed package size ... NOTE
   installed size is  5.8Mb
@@ -1761,7 +1712,7 @@ Maintainer: Marc A. Suchard <msuchard@ucla.edu>
 checking installed package size ... NOTE
   installed size is  9.4Mb
   sub-directories of 1Mb or more:
-    libs   7.7Mb
+    libs   7.8Mb
 ```
 
 ## NanoStringDiff (1.4.0)
@@ -2236,6 +2187,11 @@ Rd file 'save.tables-RnBDiffMeth-methods.Rd':
 
 These lines will be truncated in the PDF manual.
 ```
+
+## RTransProb (0.1.0)
+Maintainer: Ab NDiaye <pabdndiaye@gmail.com>
+
+0 errors | 0 warnings | 0 notes
 
 ## samr (2.0)
 Maintainer: Rob Tibshirani <tibs@stanford.edu>
