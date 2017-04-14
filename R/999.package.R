@@ -8,7 +8,7 @@
 #'
 #' @section How to cite this package:
 #' Henrik Bengtsson (2017). matrixStats: Functions that Apply to Rows and
-#' Columns of Matrices (and to Vectors). R package version 0.52.1.
+#' Columns of Matrices (and to Vectors). R package version 0.52.2.
 #' https://github.com/HenrikBengtsson/matrixStats
 #'
 #' @author Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola
