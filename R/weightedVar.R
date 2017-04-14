@@ -67,6 +67,9 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   ## Backward compatible but incorrect estimate?
   ## See https://github.com/HenrikBengtsson/matrixStats/issues/72
   use_0.14.2 <- (identical(method, "0.14.2"))
+  if (use_0.14.2) {
+    .Deprecated(msg = "weightedVar(..., method = \"0.14.2\") should not be used since it uses an incorrect degree-of-freedom term. It was supported only for very rare backward compatible reasons. It will be defunct in a future version of matrixStats.")  #nolint
+  }
 
 
   na_value <- NA

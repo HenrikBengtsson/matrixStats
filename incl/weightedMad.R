@@ -24,4 +24,3 @@ stopifnot(identical(m1, m2))
 w <- rep(0, times = n)
 m <- weightedMad(x, w)
 stopifnot(is.na(m))
-

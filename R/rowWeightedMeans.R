@@ -40,12 +40,12 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.matrix(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Argument 'w':
-  hasWeights <- !is.null(w)
-  if (hasWeights) {
+  has_weights <- !is.null(w)
+  if (has_weights) {
     n <- ncol(x)
     if (length(w) != n) {
       stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)  #nolint
@@ -66,7 +66,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  if (hasWeights) {
+  if (has_weights) {
     # Allocate results
     m <- nrow(x)
     if (m == 0L)
@@ -140,12 +140,12 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.matrix(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Argument 'w':
-  hasWeights <- !is.null(w)
-  if (hasWeights) {
+  has_weights <- !is.null(w)
+  if (has_weights) {
     n <- nrow(x)
     if (length(w) != n) {
       stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)  #nolint
@@ -166,7 +166,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  if (hasWeights) {
+  if (has_weights) {
     # Allocate results
     m <- ncol(x)
     if (m == 0L)

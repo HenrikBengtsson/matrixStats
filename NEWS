@@ -1,9 +1,26 @@
 Package: matrixStats
 ====================
 
+Version: 0.52.2 [2017-04-13]
+
+BUG FIX:
+
+ o Several of the row- and column-based functions would core dump R if the
+   matrix was of a data type other than logical, integer, or numeric, e.g.
+   character or complex.  This is now detected and an informative error is
+   produced instead.  Similarly, some vector-based functions could potentially
+   core dump R or silently return a nonsense result.  Thank you Hervé Pagès,
+   Bioconductor Core, for the report.
+ 
+DEPRECATED AND DEFUNCT:
+
+ o rowVars(..., method = "0.14.2") that was added for very unlikely needs of
+   backward compatibility of an invalid degree-of-freedom term is deprecated.
+   
+ 
 Version: 0.52.1 [2017-04-04]
 
-FIX:
+BUG FIX:
 
  o The package test on matrixStats:::benchmark() tried to run even if
    not all suggested packages were available.

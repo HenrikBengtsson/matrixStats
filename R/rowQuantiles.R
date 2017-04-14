@@ -40,7 +40,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Argument 'probs':
@@ -62,8 +62,8 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   ncol <- ncol(x)
 
   if (nrow > 0L && ncol > 0L) {
-    naRows <- rowAnyMissings(x)
-    has_na <- any(naRows)
+    na_rows <- rowAnyMissings(x)
+    has_na <- any(na_rows)
     if (!has_na) na.rm <- FALSE
 
     if (!has_na && type == 7L) {
@@ -82,13 +82,13 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
       if (length(idxs_adj) > 0L) {
-        qL <- q[idxs_adj, , drop = FALSE]
+        q_lo <- q[idxs_adj, , drop = FALSE]
         idxs_hi <- idxs_hi[idxs_adj]
-        qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
+        q_hi <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1 - w) * qL + w * qH
+        q[idxs_adj, ] <- (1 - w) * q_lo + w * q_hi
         # Not needed anymore
-        xp <- qL <- qH <- NULL
+        xp <- q_lo <- q_hi <- NULL
       }
 
       # Backward compatibility
@@ -103,7 +103,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       rows <- seq_len(nrow)
 
       # Rows with NAs should return all NAs (so skip those)
-      if (has_na && !na.rm) rows <- rows[!naRows]
+      if (has_na && !na.rm) rows <- rows[!na_rows]
 
       for (kk in rows) {
         xkk <- x[kk, ]
@@ -136,7 +136,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))
+    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Argument 'probs':
@@ -158,8 +158,8 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   ncol <- ncol(x)
 
   if (nrow > 0L && ncol > 0L) {
-    naCols <- colAnyMissings(x)
-    has_na <- any(naCols)
+    na_cols <- colAnyMissings(x)
+    has_na <- any(na_cols)
     if (!has_na) na.rm <- FALSE
 
     if (!has_na && type == 7L) {
@@ -178,13 +178,13 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       # Adjust
       idxs_adj <- which(idxs > idxs_lo)
       if (length(idxs_adj) > 0L) {
-        qL <- q[idxs_adj, , drop = FALSE]
+        q_lo <- q[idxs_adj, , drop = FALSE]
         idxs_hi <- idxs_hi[idxs_adj]
-        qH <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
+        q_hi <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1 - w) * qL + w * qH
+        q[idxs_adj, ] <- (1 - w) * q_lo + w * q_hi
         # Not needed anymore
-        xp <- qL <- qH <- NULL
+        xp <- q_lo <- q_hi <- NULL
       }
 
       # Backward compatibility
@@ -199,7 +199,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       cols <- seq_len(ncol)
 
       # Columns with NAs should return all NAs (so skip those)
-      if (has_na && !na.rm) cols <- cols[!naCols]
+      if (has_na && !na.rm) cols <- cols[!na_cols]
 
       for (kk in cols) {
         xkk <- x[, kk]

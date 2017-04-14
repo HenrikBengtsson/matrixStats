@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-04-02                   |
+|date     |2017-04-13                   |
 
 ## Packages
 
@@ -19,20 +19,18 @@
 |base64enc      |   |0.1-3   |2015-07-28 |cran (@0.1-3)   |
 |ggplot2        |   |2.2.1   |2016-12-30 |cran (@2.2.1)   |
 |knitr          |   |1.15.1  |2016-11-22 |cran (@1.15.1)  |
-|matrixStats    |   |0.51.0  |2016-10-09 |cran (@0.51.0)  |
+|matrixStats    |   |0.52.1  |2017-04-04 |cran (@0.52.1)  |
 |microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
 |R.devices      |   |2.15.1  |2016-11-10 |cran (@2.15.1)  |
 |R.rsp          |   |0.40.0  |2016-12-06 |cran (@0.40.0)  |
 
 # Check results
 
-109 packages
+110 packages
 
 |package                |version | errors| warnings| notes|
 |:----------------------|:-------|------:|--------:|-----:|
 |ACNE                   |0.8.1   |      0|        0|     0|
-|anomalyDetection       |0.1.1   |      0|        0|     0|
-|antiProfiles           |1.14.0  |      0|        0|     1|
 |aroma.affymetrix       |3.1.0   |      0|        0|     0|
 |aroma.cn               |1.6.1   |      0|        0|     0|
 |aroma.core             |3.1.0   |      0|        0|     0|
@@ -40,14 +38,15 @@
 |aSPU                   |1.46    |      0|        0|     0|
 |BatchQC                |1.2.1   |      0|        0|     0|
 |bdynsys                |1.3     |      0|        0|     1|
+|bigstep                |0.7.4   |      0|        0|     0|
 |bingat                 |1.2.2   |      0|        0|     0|
-|brms                   |1.5.1   |      0|        0|     0|
+|brms                   |1.6.0   |      0|        0|     0|
 |bsseq                  |1.10.0  |      0|        0|     0|
 |bumphunter             |1.14.0  |      0|        0|     5|
 |calmate                |0.12.1  |      0|        0|     0|
 |carx                   |0.6.2   |      0|        0|     0|
 |cellWise               |1.0.0   |      0|        0|     0|
-|ChAMP                  |2.6.2   |      0|        1|     3|
+|ChAMP                  |2.6.4   |      0|        1|     3|
 |Chicago                |1.2.0   |      0|        0|     3|
 |ChIPpeakAnno           |3.8.9   |      0|        0|     2|
 |Clomial                |1.10.0  |      0|        0|     1|
@@ -67,11 +66,12 @@
 |EasyqpcR               |1.16.0  |      1|        0|     1|
 |EMDomics               |2.4.0   |      0|        0|     3|
 |EnrichedHeatmap        |1.4.0   |      0|        0|     4|
+|expss                  |0.7.1   |      0|        0|     0|
 |FADA                   |1.3.2   |      0|        0|     0|
 |FastHCS                |0.0.5   |      0|        0|     2|
 |FastPCS                |0.1.2   |      0|        0|     3|
 |FastRCS                |0.0.7   |      0|        0|     1|
-|filesstrings           |0.3.2   |      0|        0|     0|
+|filesstrings           |0.4.0   |      0|        0|     0|
 |flowCore               |1.40.6  |      0|        1|     9|
 |fslr                   |2.12    |      0|        0|     0|
 |GAD                    |1.1.1   |      0|        0|     0|
@@ -117,6 +117,7 @@
 |RAC                    |1.1.1   |      0|        0|     0|
 |randomizationInference |1.0.3   |      0|        0|     1|
 |RnBeads                |1.6.1   |      0|        7|     6|
+|RTransProb             |0.1.0   |      0|        0|     0|
 |samr                   |2.0     |      0|        0|     5|
 |scater                 |1.2.0   |      0|        0|     0|
 |SemiParBIVProbit       |3.8-1   |      0|        0|     0|
@@ -124,9 +125,9 @@
 |SGP                    |1.6-0.0 |      0|        0|     0|
 |shinyMethyl            |1.10.0  |      0|        0|     2|
 |SICtools               |1.4.0   |      0|        1|     4|
-|sizeMat                |0.2.0   |      0|        0|     0|
+|sizeMat                |0.3.0   |      0|        0|     0|
 |SRGnet                 |1.0.0   |      0|        0|     2|
-|statar                 |0.6.2   |      0|        0|     0|
+|statar                 |0.6.3   |      0|        0|     0|
 |stm                    |1.2.2   |      0|        0|     0|
 |StructFDR              |1.1     |      0|        0|     0|
 |summarytools           |0.6.5   |      0|        0|     0|
@@ -145,31 +146,6 @@ Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Bug reports: https://github.com/HenrikBengtsson/ACNE/issues
 
 0 errors | 0 warnings | 0 notes
-
-## anomalyDetection (0.1.1)
-Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>  
-Bug reports: https://github.com/bradleyboehmke/anomalyDetection/issues
-
-0 errors | 0 warnings | 0 notes
-
-## antiProfiles (1.14.0)
-Maintainer: Hector Corrada Bravo <hcorrada@gmail.com>
-
-0 errors | 0 warnings | 1 note 
-
-```
-checking R code for possible problems ... NOTE
-ev: no visible global function definition for ‘predict’
-ev: no visible global function definition for ‘smoothScatter’
-ev : f1: no visible global function definition for ‘predict’
-ev: no visible global function definition for ‘curve’
-Undefined global functions or variables:
-  curve predict smoothScatter
-Consider adding
-  importFrom("graphics", "curve", "smoothScatter")
-  importFrom("stats", "predict")
-to your NAMESPACE file.
-```
 
 ## aroma.affymetrix (3.1.0)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
@@ -244,12 +220,17 @@ Consider adding
 to your NAMESPACE file.
 ```
 
+## bigstep (0.7.4)
+Maintainer: Piotr Szulc <piotr.michal.szulc@gmail.com>
+
+0 errors | 0 warnings | 0 notes
+
 ## bingat (1.2.2)
 Maintainer: Berkley Shands <rpackages@biorankings.com>
 
 0 errors | 0 warnings | 0 notes
 
-## brms (1.5.1)
+## brms (1.6.0)
 Maintainer: Paul-Christian Bürkner <paul.buerkner@gmail.com>  
 Bug reports: https://github.com/paul-buerkner/brms/issues
 
@@ -321,7 +302,7 @@ Maintainer: Jakob Raymaekers <jakob.raymaekers@kuleuven.be>
 
 0 errors | 0 warnings | 0 notes
 
-## ChAMP (2.6.2)
+## ChAMP (2.6.4)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
 0 errors | 1 warning  | 3 notes
@@ -329,7 +310,7 @@ Maintainer: Yuan Tian  <champ450k@gmail.com>
 ```
 checking package subdirectories ... WARNING
 Problems with news in ‘inst/NEWS.Rd’:
-  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  inst/NEWS.Rd:14: unexpected END_OF_INPUT '
   '
 
 checking package dependencies ... NOTE
@@ -471,7 +452,7 @@ Bug reports: https://github.com/scristia/CNPBayes/issues
 
 ```
 checking installed package size ... NOTE
-  installed size is 11.6Mb
+  installed size is 11.7Mb
   sub-directories of 1Mb or more:
     libs   9.6Mb
 
@@ -779,6 +760,12 @@ Rd file 'normalizeToMatrix.rd':
 These lines will be truncated in the PDF manual.
 ```
 
+## expss (0.7.1)
+Maintainer: Gregory Demin <gdemin@gmail.com>  
+Bug reports: https://github.com/gdemin/expss/issues
+
+0 errors | 0 warnings | 0 notes
+
 ## FADA (1.3.2)
 Maintainer: David Causeur <david.causeur@agrocampus-ouest.fr>
 
@@ -863,7 +850,7 @@ checking installed package size ... NOTE
     libs  14.2Mb
 ```
 
-## filesstrings (0.3.2)
+## filesstrings (0.4.0)
 Maintainer: Rory Nolan <rorynoolan@gmail.com>  
 Bug reports: https://www.github.com/rorynolan/filesstrings/issues
 
@@ -899,7 +886,7 @@ Found the following apparent object files/libraries:
 Object files/libraries should not be included in a source package.
 
 checking installed package size ... NOTE
-  installed size is 33.8Mb
+  installed size is 33.9Mb
   sub-directories of 1Mb or more:
     data      5.0Mb
     extdata   1.1Mb
@@ -1725,7 +1712,7 @@ Maintainer: Marc A. Suchard <msuchard@ucla.edu>
 checking installed package size ... NOTE
   installed size is  9.4Mb
   sub-directories of 1Mb or more:
-    libs   7.7Mb
+    libs   7.8Mb
 ```
 
 ## NanoStringDiff (1.4.0)
@@ -2201,6 +2188,11 @@ Rd file 'save.tables-RnBDiffMeth-methods.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
+## RTransProb (0.1.0)
+Maintainer: Ab NDiaye <pabdndiaye@gmail.com>
+
+0 errors | 0 warnings | 0 notes
+
 ## samr (2.0)
 Maintainer: Rob Tibshirani <tibs@stanford.edu>
 
@@ -2367,7 +2359,7 @@ Rd file 'snpDiff.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## sizeMat (0.2.0)
+## sizeMat (0.3.0)
 Maintainer: Josymar Torrejon-Magallanes <ejosymart@gmail.com>
 
 0 errors | 0 warnings | 0 notes
@@ -2409,7 +2401,7 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## statar (0.6.2)
+## statar (0.6.3)
 Maintainer: Matthieu Gomez <mattg@princeton.edu>  
 Bug reports: https://github.com/matthieugomez/statar/issues
 

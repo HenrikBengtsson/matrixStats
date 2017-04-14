@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-04-02                   |
+|date     |2017-04-13                   |
 
 ## Packages
 
@@ -19,7 +19,7 @@
 |base64enc      |   |0.1-3   |2015-07-28 |cran (@0.1-3)   |
 |ggplot2        |   |2.2.1   |2016-12-30 |cran (@2.2.1)   |
 |knitr          |   |1.15.1  |2016-11-22 |cran (@1.15.1)  |
-|matrixStats    |   |0.51.0  |2016-10-09 |cran (@0.51.0)  |
+|matrixStats    |   |0.52.1  |2017-04-04 |cran (@0.52.1)  |
 |microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
 |R.devices      |   |2.15.1  |2016-11-10 |cran (@2.15.1)  |
 |R.rsp          |   |0.40.0  |2016-12-06 |cran (@0.40.0)  |
@@ -30,7 +30,7 @@
 
 |package           |version | errors| warnings| notes|
 |:-----------------|:-------|------:|--------:|-----:|
-|ChAMP             |2.6.2   |      0|        1|     3|
+|ChAMP             |2.6.4   |      0|        1|     3|
 |clusterExperiment |1.0.0   |      0|        1|     0|
 |crlmm             |1.32.0  |      0|        1|     4|
 |DeepBlueR         |1.0.11  |      0|        1|     1|
@@ -46,7 +46,7 @@
 |RnBeads           |1.6.1   |      0|        7|     6|
 |SICtools          |1.4.0   |      0|        1|     4|
 
-## ChAMP (2.6.2)
+## ChAMP (2.6.4)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
 0 errors | 1 warning  | 3 notes
@@ -54,7 +54,7 @@ Maintainer: Yuan Tian  <champ450k@gmail.com>
 ```
 checking package subdirectories ... WARNING
 Problems with news in ‘inst/NEWS.Rd’:
-  inst/NEWS.Rd:13: unexpected END_OF_INPUT '
+  inst/NEWS.Rd:14: unexpected END_OF_INPUT '
   '
 
 checking package dependencies ... NOTE
@@ -242,7 +242,7 @@ Found the following apparent object files/libraries:
 Object files/libraries should not be included in a source package.
 
 checking installed package size ... NOTE
-  installed size is 33.8Mb
+  installed size is 33.9Mb
   sub-directories of 1Mb or more:
     data      5.0Mb
     extdata   1.1Mb

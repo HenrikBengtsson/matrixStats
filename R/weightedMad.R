@@ -68,8 +68,8 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Argument 'center':
   stopifnot(length(center) <= 1L)
-  
-  
+
+
   # Apply subset on x
   if (!is.null(idxs)) {
     x <- x[idxs]
@@ -149,10 +149,10 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             constant = 1.4826, center = NULL, ...) {
   # Argument 'constant':
   stopifnot(length(constant) == 1L, is.numeric(constant))
-  
+
   # Argument 'center':
   stopifnot(length(center) <= 1L)
-  
+
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -176,7 +176,7 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
 
   # Argument 'center':
   stopifnot(length(center) <= 1L)
-  
+
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]

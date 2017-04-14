@@ -90,16 +90,16 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Argument 'ties':
   if (is.null(ties)) {
-    tiesC <- 1L
+    ties_id <- 1L
   } else {
     if (ties == "weighted") {
-      tiesC <- 1L
+      ties_id <- 1L
     } else if (ties == "min") {
-      tiesC <- 2L
+      ties_id <- 2L
     } else if (ties == "max") {
-      tiesC <- 4L
+      ties_id <- 4L
     } else if (ties == "mean") {
-      tiesC <- 8L
+      ties_id <- 8L
     } else if (ties == "both") {
       .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate = FALSE, ties = \"both\") is no longer supported. Use ties = \"min\" and then ties = \"max\" to achieve the same result.")  #nolint
     } else {
@@ -107,5 +107,5 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     }
   }
 
-  .Call(C_weightedMedian, x, w, idxs, na.rm, interpolate, tiesC)
+  .Call(C_weightedMedian, x, w, idxs, na.rm, interpolate, ties_id)
 }

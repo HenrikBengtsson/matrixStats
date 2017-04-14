@@ -79,7 +79,6 @@ stopifnot(identical(m1, m2))
 w <- rep(0, times = n)
 m <- weightedMad(x, w)
 stopifnot(is.na(m))
-
 }
 \seealso{
 For the non-weighted MAD, see \code{\link[stats]{mad}}.  Internally
