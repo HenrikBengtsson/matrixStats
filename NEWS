@@ -11,6 +11,9 @@ NEW FEATURES:
    count number of TRUE elements beyond 2^31-1, which base::sum() does not
    support.
 
+ o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
+   to to using as.integer(y).
+
 
 Version: 0.52.2 [2017-04-13]
 
