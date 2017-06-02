@@ -15,8 +15,8 @@
 #' \code{mean2(..., refine = FALSE)} is almost twice as fast as
 #' \code{mean2(..., refine = TRUE)}.
 #'
-#' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-#' N.
+#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of length N.
 #'
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.

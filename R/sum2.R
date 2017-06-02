@@ -12,8 +12,8 @@
 #' the regular \code{sum()} function when \code{x} is an
 #' \code{\link[base]{integer}} vector.
 #'
-#' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of
-#' length N.
+#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of length N.
 #'
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
