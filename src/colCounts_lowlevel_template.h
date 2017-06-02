@@ -68,7 +68,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
                missing values. In other words, at this point
                the answer can be either NA or FALSE.*/
             count = NA_INTEGER;
-            } else {
+          } else {
             count = 0;
             /* Found another value! Early stopping */
             break;
