@@ -22,7 +22,8 @@
 #' skipped, otherwise not.
 #'
 #' @param mode A \code{\link[base]{character}} string specifying the data type
-#' of the return value.  Default is to use the same mode as argument \code{x}.
+#' of the return value.  Default is to use the same mode as argument \code{x},
+#' unless it is logical when it defaults to \code{"integer"}.
 #'
 #' @param ... Not used.
 #'
@@ -47,8 +48,9 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+  x_logical <- is.logical(x)
+  if (!is.numeric(x) && !x_logical) {
+    stop("Argument 'x' is neither numeric nor logical: ", mode(x))
   }
 
   # Argument 'na.rm':
@@ -58,11 +60,13 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 
   # Argument 'mode':
   mode <- mode[1L]
+  ## SPECIAL CASE: If `x` is logical, default mode should be `integer`
+  if (x_logical && mode == "logical") mode <- "integer"
   mode_idx <- charmatch(mode, c("integer", "double"), nomatch = 0L)
   if (mode_idx == 0L) {
     stop("Unknown value of argument 'mode': ", mode)
   }
-
+  
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

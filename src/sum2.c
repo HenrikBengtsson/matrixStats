@@ -16,7 +16,7 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   double sum;
 
   /* Argument 'x': */
-  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL | R_TYPE_LGL), "x");
   nx = xlength(x);
 
   /* Argument 'naRm': */
@@ -36,10 +36,8 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   /* Dispatch to low-level C function */
   if (isReal(x)) {
     sum = sum2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, mode2);
-  } else if (isInteger(x)) {
+  } else if (isInteger(x) || isLogical(x)) {
     sum = sum2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, mode2);
-  } else {
-    error("Argument 'x' must be numeric.");
   }
 
 

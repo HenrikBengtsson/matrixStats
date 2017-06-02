@@ -30,6 +30,14 @@
 #' @return \code{rowCounts()} (\code{colCounts()}) returns an
 #' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
 #'
+#' @section Known limitations:
+#' Because the return value is strictly of type integer, the maximum count
+#' that can be returned is 2^31-1 (= \code{.Machine$integer.max}).  Any counts
+#' beyond that will give \code{NA_integer_}.
+#' This limitation affects only \code{count()}, but neither \code{colCount()}
+#' nor \code{rowCount()} because in \R the maximum number of rows and / or
+#' columns possible is \code{.Machine$integer.max}.
+#' 
 #' @example incl/rowCounts.R
 #'
 #' @author Henrik Bengtsson

@@ -45,8 +45,8 @@ mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+  if (!is.numeric(x) && !is.logical(x)) {
+    stop("Argument 'x' is neither numeric nor logical: ", mode(x))
   }
 
   # Argument 'na.rm':

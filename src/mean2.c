@@ -15,7 +15,7 @@ SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   double avg = NA_REAL;
 
   /* Argument 'x': */
-  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL | R_TYPE_LGL), "x");
   nx = xlength(x);
 
   /* Argument 'naRm': */
@@ -32,7 +32,7 @@ SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine) {
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     avg = mean2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, refine2);
-  } else if (isInteger(x)) {
+  } else if (isInteger(x) || isLogical(x)) {
     avg = mean2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, refine2);
   }
 

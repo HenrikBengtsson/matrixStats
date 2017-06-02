@@ -20,7 +20,8 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 skipped, otherwise not.}
 
 \item{mode}{A \code{\link[base]{character}} string specifying the data type
-of the return value.  Default is to use the same mode as argument \code{x}.}
+of the return value.  Default is to use the same mode as argument \code{x},
+unless it is logical when it defaults to \code{"integer"}.}
 
 \item{...}{Not used.}
 }

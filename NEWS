@@ -1,10 +1,16 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-04-14]
+Version: 0.52.2-9000 [2017-06-02]
 
- o ...
- 
+NEW FEATURES:
+
+ o Functions sum2(x) and means2(x) now accept also logical input 'x', which
+   corresponds to using as.integer(x) but without the need for neither coercion
+   nor internal extra copies. With sum2(x, mode = "double") it is possible to
+   count number of TRUE elements beyond 2^31-1, which base::sum() does not
+   support.
+
 
 Version: 0.52.2 [2017-04-13]
 

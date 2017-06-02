@@ -50,6 +50,18 @@ for (kk in 1:20) {
   y0 <- sum2_R(x, na.rm = na.rm, idxs = idxs)
   y1 <- sum2(x, na.rm = na.rm, idxs = idxs)
   stopifnot(all.equal(y1, y0))
+
+  if (storage.mode(x) == "integer") {
+    storage.mode(x) <- "logical"
+    
+    y0 <- sum2_R(x, na.rm = na.rm)
+    y1 <- sum2(x, na.rm = na.rm)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- sum2_R(x, na.rm = na.rm, idxs = idxs)
+    y1 <- sum2(x, na.rm = na.rm, idxs = idxs)
+    stopifnot(all.equal(y1, y0))
+  }
 } # for (kk ...)
 
 
@@ -64,6 +76,11 @@ for (n in 0:2) {
     stopifnot(all.equal(y, y0))
 
     x <- rep(NA_integer_, times = n)
+    y0 <- sum(x, na.rm = na.rm)
+    y <- sum2(x, na.rm = na.rm)
+    stopifnot(all.equal(y, y0))
+    
+    x <- rep(NA, times = n)
     y0 <- sum(x, na.rm = na.rm)
     y <- sum2(x, na.rm = na.rm)
     stopifnot(all.equal(y, y0))
@@ -188,20 +205,20 @@ for (na.rm in c(FALSE, TRUE)) {
 x <- c(.Machine$integer.max, 1L, -.Machine$integer.max)
 
 # Total gives integer overflow
-s1 <- sum(x[1:2])                         # NA_integer_
-s2 <- sum2(x[1:2])                     # NA_integer_
+s1 <- sum(x[1:2])                        # NA_integer_
+s2 <- sum2(x[1:2])                       # NA_integer_
 stopifnot(identical(s1, s2))
 
 # Total gives integer overflow (coerce to numeric)
-s1 <- sum(as.numeric(x[1:2]))             # 2147483648
-s2 <- sum2(as.numeric(x[1:2]))         # 2147483648
+s1 <- sum(as.numeric(x[1:2]))            # 2147483648
+s2 <- sum2(as.numeric(x[1:2]))           # 2147483648
 s3 <- sum2(x[1:2], mode = "double")      # 2147483648
 stopifnot(identical(s1, s2))
 stopifnot(identical(s1, s3))
 
 # Cumulative sum would give integer overflow but not the total
 s1 <- sum(x)                              # 1L
-s2 <- sum2(x)                          # 1L
+s2 <- sum2(x)                             # 1L
 stopifnot(identical(s1, s2))
 
 
