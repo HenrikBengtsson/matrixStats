@@ -4,7 +4,7 @@
 \alias{rowCounts}
 \alias{colCounts}
 \alias{count}
-\title{Counts the number of TRUE values in each row (column) of a matrix}
+\title{Counts the number of occurrences of a specific value}
 \usage{
 rowCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
   dim. = dim(x), ...)
@@ -38,15 +38,12 @@ elements (or rows and/or columns) to operate over. If
 \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
 }
 \description{
-Counts the number of TRUE values in each row (column) of a matrix.
-}
-\details{
-These functions takes either a matrix or a vector as input. If a vector,
-then argument \code{dim.} must be specified and fulfill \code{prod(dim.) ==
-length(x)}.  The result will be identical to the results obtained when
-passing \code{matrix(x, nrow = dim.[1L], ncol = dim.[2L])}, but avoids
-having to temporarily create/allocate a matrix, if only such is needed
-only for these calculations.
+The row- and column-wise functions take either a matrix or a vector as
+input. If a vector, then argument \code{dim.} must be specified and fulfill
+\code{prod(dim.) == length(x)}.  The result will be identical to the results
+obtained when passing \code{matrix(x, nrow = dim.[1L], ncol = dim.[2L])},
+but avoids having to temporarily create/allocate a matrix, if only such is
+needed only for these calculations.
 }
 \section{Known limitations}{
 
