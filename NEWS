@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-06-02]
+Version: 0.52.2-9000 [2017-08-29]
 
 NEW FEATURES:
 
@@ -14,6 +14,11 @@ NEW FEATURES:
  o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
    to to using as.integer(y).
 
+BUG FIX:
+
+ o col-/rowLogSumExp() could core dump R for "large" number of columns/rows.
+   Thanks Brandon Stewart at Princeton University for reporting on this.
+ 
 
 Version: 0.52.2 [2017-04-13]
 

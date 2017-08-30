@@ -165,3 +165,12 @@ y <- rowLogSumExps(lx)
 print(y)
 stopifnot(length(y) == nrow(lx))
 stopifnot(all(y == 5))
+
+
+## Bug report #104 (https://github.com/HenrikBengtsson/matrixStats/issues/104)
+## (This would core dump on Windows)
+x <- matrix(0.0, nrow = 2L, ncol = 32762L)
+y <- colLogSumExps(x)
+str(y)
+
+
