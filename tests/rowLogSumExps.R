@@ -160,7 +160,7 @@ print(y)
 stopifnot(length(y) == nrow(lx))
 stopifnot(all(y == -Inf))
 
-lx <- matrix(c(-Inf, 5, -Inf), nrow = 2L, ncol = 3L, byrow = 1)
+lx <- matrix(c(-Inf, 5, -Inf), nrow = 2L, ncol = 3L, byrow = TRUE)
 y <- rowLogSumExps(lx)
 print(y)
 stopifnot(length(y) == nrow(lx))
@@ -172,5 +172,3 @@ stopifnot(all(y == 5))
 x <- matrix(0.0, nrow = 2L, ncol = 32762L)
 y <- colLogSumExps(x)
 str(y)
-
-
