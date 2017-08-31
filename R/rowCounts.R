@@ -27,15 +27,10 @@
 #'
 #' @return \code{rowCounts()} (\code{colCounts()}) returns an
 #' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
+#' \code{count()} returns a scalar of type \code{\link[base]{integer}} if
+#' the count is less than 2^31-1 (= \code{.Machine$integer.max}) otherwise
+#' a scalar of type \code{\link[base]{double}}.
 #'
-#' @section Known limitations:
-#' Because the return value is strictly of type integer, the maximum count
-#' that can be returned is 2^31-1 (= \code{.Machine$integer.max}).  Any counts
-#' beyond that will give \code{NA_integer_}.
-#' This limitation affects only \code{count()}, but neither \code{colCount()}
-#' nor \code{rowCount()} because in \R the maximum number of rows and / or
-#' columns possible is \code{.Machine$integer.max}.
-#' 
 #' @example incl/rowCounts.R
 #'
 #' @author Henrik Bengtsson
@@ -79,7 +74,9 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     dim. <- dim(x)
 
     if (is.na(value)) {
-      counts <- apply(x, MARGIN = 1L, FUN = function(x) sum(is.na(x)))
+      counts <- apply(x, MARGIN = 1L, FUN = function(x) {
+        sum(is.na(x))
+      })
     } else {
       counts <- apply(x, MARGIN = 1L, FUN = function(x) {
         sum(x == value, na.rm = na.rm)
@@ -172,11 +169,11 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
     if (!is.null(idxs)) x <- x[idxs]
 
     if (is.na(value)) {
-      counts <- sum(is.na(x))
+      counts <- sum2(is.na(x))
     } else {
-      counts <- sum(x == value, na.rm = na.rm)
+      counts <- sum2(x == value, na.rm = na.rm)
     }
   }
 
-  as.integer(counts)
+  counts
 }

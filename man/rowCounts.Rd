@@ -36,6 +36,9 @@ elements (or rows and/or columns) to operate over. If
 \value{
 \code{rowCounts()} (\code{colCounts()}) returns an
 \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
+\code{count()} returns a scalar of type \code{\link[base]{integer}} if
+the count is less than 2^31-1 (= \code{.Machine$integer.max}) otherwise
+a scalar of type \code{\link[base]{double}}.
 }
 \description{
 The row- and column-wise functions take either a matrix or a vector as
@@ -45,16 +48,6 @@ obtained when passing \code{matrix(x, nrow = dim.[1L], ncol = dim.[2L])},
 but avoids having to temporarily create/allocate a matrix, if only such is
 needed only for these calculations.
 }
-\section{Known limitations}{
-
-Because the return value is strictly of type integer, the maximum count
-that can be returned is 2^31-1 (= \code{.Machine$integer.max}).  Any counts
-beyond that will give \code{NA_integer_}.
-This limitation affects only \code{count()}, but neither \code{colCount()}
-nor \code{rowCount()} because in \R the maximum number of rows and / or
-columns possible is \code{.Machine$integer.max}.
-}
-
 \examples{
 x <- matrix(0:11, nrow = 4, ncol = 3)
 x[2:3, 2:3] <- 2:5

@@ -14,11 +14,15 @@ NEW FEATURES:
  o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
    to to using as.integer(y).
 
+ o Now count() can count beyond 2^31-1.
+
 BUG FIX:
 
  o col-/rowLogSumExp() could core dump R for "large" number of columns/rows.
    Thanks Brandon Stewart at Princeton University for reporting on this.
- 
+
+ o count() beyond 2^31-1 would return invalid results.
+
 
 Version: 0.52.2 [2017-04-13]
 
