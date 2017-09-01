@@ -10,115 +10,369 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-08-31                   |
+|date     |2017-09-01                   |
 
 ## Packages
 
-|package        |*  |version |date       |source          |
-|:--------------|:--|:-------|:----------|:---------------|
-|base64enc      |   |0.1-3   |2015-07-28 |cran (@0.1-3)   |
-|ggplot2        |   |2.2.1   |2016-12-30 |cran (@2.2.1)   |
-|knitr          |   |1.17    |2017-08-10 |cran (@1.17)    |
-|matrixStats    |   |0.52.2  |2017-04-14 |cran (@0.52.2)  |
-|microbenchmark |   |1.4-2.1 |2015-11-25 |cran (@1.4-2.1) |
-|R.devices      |   |2.15.1  |2016-11-10 |cran (@2.15.1)  |
-|R.rsp          |   |0.41.0  |2017-04-16 |cran (@0.41.0)  |
+|package        |*  |version     |date       |source                                 |
+|:--------------|:--|:-----------|:----------|:--------------------------------------|
+|base64enc      |   |0.1-4       |2017-08-31 |cran (@0.1-4)                          |
+|ggplot2        |   |2.2.1       |2016-12-30 |cran (@2.2.1)                          |
+|knitr          |   |1.17        |2017-08-10 |cran (@1.17)                           |
+|matrixStats    |   |0.52.2-9000 |2017-08-31 |local (HenrikBengtsson/matrixStats@NA) |
+|microbenchmark |   |1.4-2.1     |2015-11-25 |cran (@1.4-2.1)                        |
+|R.devices      |   |2.15.1      |2016-11-10 |cran (@2.15.1)                         |
+|R.rsp          |   |0.41.0      |2017-04-16 |cran (@0.41.0)                         |
 
 # Check results
 
-27 packages with problems
+43 packages with problems
 
 |package           |version | errors| warnings| notes|
 |:-----------------|:-------|------:|--------:|-----:|
-|anomalyDetection  |0.1.2   |      1|        0|     0|
-|BatchQC           |1.5.0   |      0|        1|     1|
-|ChAMP             |2.9.9   |      0|        1|     5|
-|Chicago           |1.5.0   |      1|        1|     5|
-|clusterExperiment |1.3.2   |      2|        1|     2|
-|consensusOV       |0.99.3  |      0|        1|     1|
-|DelayedArray      |0.3.19  |      1|        0|     0|
-|EasyqpcR          |1.19.0  |      1|        0|     1|
-|flowCore          |1.43.5  |      0|        2|    10|
-|funtooNorm        |1.1.0   |      0|        1|     0|
-|GUIDEseq          |1.7.3   |      1|        1|     3|
-|Gviz              |1.21.2  |      0|        2|     4|
+|antiProfiles      |1.14.0  |      0|        1|     1|
+|aroma.light       |3.4.0   |      2|        0|     1|
+|BatchQC           |1.2.1   |      0|        1|     0|
+|BayesTwin         |1.0     |      1|        0|     0|
+|bsseq             |1.10.0  |      0|        1|     0|
+|bumphunter        |1.14.0  |      1|        1|     5|
+|ChAMP             |2.6.4   |      0|        2|     3|
+|ChIPpeakAnno      |3.8.9   |      1|        0|     2|
+|clusterExperiment |1.0.0   |      0|        1|     0|
+|CNPBayes          |1.4.0   |      0|        1|     3|
+|CopywriteR        |2.6.0   |      0|        1|     1|
+|crlmm             |1.32.0  |      0|        1|     5|
+|DeepBlueR         |1.0.11  |      1|        0|     0|
+|EasyqpcR          |1.16.0  |      1|        0|     1|
+|EMDomics          |2.4.0   |      1|        1|     3|
+|flowCore          |1.40.6  |      1|        2|    10|
+|genomation        |1.6.0   |      0|        2|     4|
+|GUIDEseq          |1.4.1   |      1|        1|     3|
+|Gviz              |1.18.2  |      0|        2|     4|
 |LS2Wstat          |2.0-3   |      0|        1|     2|
-|metagenomeSeq     |1.19.0  |      0|        1|     0|
-|metavizr          |1.1.2   |      1|        0|     0|
-|methylumi         |2.23.0  |      0|        2|     9|
-|MIGSA             |1.1.1   |      1|        1|     1|
-|monocle           |2.5.4   |      0|        5|     3|
-|PathoStat         |1.3.0   |      0|        1|     0|
-|QDNAseq           |1.13.0  |      0|        1|     0|
-|RnBeads           |1.9.0   |      1|        3|     5|
-|RTransProb        |0.1.0   |      1|        0|     0|
-|scone             |1.1.2   |      2|        0|     4|
-|SICtools          |1.7.0   |      0|        1|     4|
-|splatter          |1.1.4   |      1|        0|     1|
-|StructFDR         |1.2     |      1|        0|     0|
-|XBSeq             |1.7.0   |      1|        0|     3|
+|metagene          |2.6.1   |      1|        0|     1|
+|metagenomeSeq     |1.16.0  |      0|        1|     0|
+|MethylAid         |1.8.0   |      0|        1|     1|
+|methylumi         |2.20.0  |      0|        2|     8|
+|minfi             |1.20.2  |      0|        1|     4|
+|monocle           |2.2.0   |      0|        1|     2|
+|motifbreakR       |1.4.0   |      0|        1|     2|
+|MultiBD           |0.2.0   |      0|        1|     2|
+|nandb             |0.2.1   |      2|        1|     0|
+|NanoStringDiff    |1.4.0   |      0|        1|     1|
+|pandaR            |1.6.0   |      0|        1|     4|
+|PathoStat         |1.0.0   |      0|        2|     0|
+|peakPick          |0.11    |      0|        1|     0|
+|Pigengene         |1.0.0   |      0|        1|     2|
+|QDNAseq           |1.10.0  |      0|        1|     0|
+|RnBeads           |1.6.1   |      0|        8|     6|
+|shinyMethyl       |1.10.0  |      0|        1|     2|
+|SICtools          |1.4.0   |      0|        2|     4|
+|SRGnet            |1.0.0   |      1|        0|     1|
+|stm               |1.2.2   |      0|        1|     0|
+|topGO             |2.26.0  |      0|        1|     4|
+|XBSeq             |1.4.0   |      1|        1|     3|
+|yarn              |1.0.1   |      1|        1|     0|
 
-## anomalyDetection (0.1.2)
-Maintainer: Bradley Boehmke <bradleyboehmke@gmail.com>  
-Bug reports: https://github.com/AFIT-R/anomalyDetection/issues
-
-1 error  | 0 warnings | 0 notes
-
-```
-checking tests ... ERROR
-  Running ‘testthat.R’
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-  6: doTryCatch(return(expr), name, parentenv, handler)
-  7: bd_row(m1, 1:5)
-  
-  var1 & var2 (r = -0.753)
-  var3 & var4 (r = 0.576)
-  var4 & var6 (r = -0.539)
-  var4 & var7 (r = -0.507)
-  var2 & var9 (r = -0.513)
-  
-  testthat results ================================================================
-  OK: 120 SKIPPED: 0 FAILED: 1
-  1. Error: bd_row provides proper messages and warnings (@test_bd_row.R#12) 
-  
-  Error: testthat unit tests failed
-  Execution halted
-```
-
-## BatchQC (1.5.0)
-Maintainer: Solaiappan Manimaran <manimaran_1975@hotmail.com>  
-Bug reports: https://github.com/mani2012/BatchQC/issues
+## antiProfiles (1.14.0)
+Maintainer: Hector Corrada Bravo <hcorrada@gmail.com>
 
 0 errors | 1 warning  | 1 note 
 
 ```
-checking for missing documentation entries ... WARNING
-Undocumented code objects:
-  ‘lmFitC’
-All user-level objects in a package should have documentation entries.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+    anyMissing, rowMedians
+
+Loading required package: RColorBrewer
+Getting sample indices
+Computing sds
+Computing ranges
+Computing tissue specificity
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.13 \usepackage
+                [numbers]{natbib}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
 
 checking R code for possible problems ... NOTE
-gls.series.C: no visible global function definition for ‘lm.fit’
+ev: no visible global function definition for ‘predict’
+ev: no visible global function definition for ‘smoothScatter’
+ev : f1: no visible global function definition for ‘predict’
+ev: no visible global function definition for ‘curve’
 Undefined global functions or variables:
-  lm.fit
+  curve predict smoothScatter
 Consider adding
-  importFrom("stats", "lm.fit")
+  importFrom("graphics", "curve", "smoothScatter")
+  importFrom("stats", "predict")
 to your NAMESPACE file.
 ```
 
-## ChAMP (2.9.9)
+## aroma.light (3.4.0)
+Maintainer: Henrik Bengtsson <henrikb@braju.com>  
+Bug reports: https://github.com/HenrikBengtsson/aroma.light/issues
+
+2 errors | 0 warnings | 1 note 
+
+```
+checking examples ... ERROR
+Running examples in ‘aroma.light-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: normalizeAffine
+> ### Title: Weighted affine normalization between channels and arrays
+> ### Aliases: normalizeAffine normalizeAffine.matrix
+> ### Keywords: methods
+> 
+... 89 lines ...
+> 
+> # Curve-fit (loess) normalization
+> rgCANl <- normalizeLoess(rgCAavg, weights=weights)
+> plotMvsA(rgCANl, col="red", add=TRUE)
+> 
+> # Curve-fit (robust spline) normalization
+> rgCANrs <- normalizeRobustSpline(rgCAavg, weights=weights)
+Error in unname(fit$parms["low"]) : 
+  invalid type/length (.../1) in vector allocation
+Calls: normalizeRobustSpline ... robustSmoothSpline.default -> smooth.spline0 -> unname
+Execution halted
+
+checking tests ... ERROR
+  Running ‘backtransformAffine.matrix.R’
+  Running ‘backtransformPrincipalCurve.matrix.R’
+  Running ‘callNaiveGenotypes.R’
+  Running ‘distanceBetweenLines.R’
+  Running ‘findPeaksAndValleys.R’
+  Running ‘fitPrincipalCurve.matrix.R’
+  Running ‘fitXYCurve.matrix.R’
+  Running ‘iwpca.matrix.R’
+  Running ‘likelihood.smooth.spline.R’
+... 12 lines ...
+  > 
+  > # Curve-fit (loess) normalization
+  > rgCANl <- normalizeLoess(rgCAavg, weights=weights)
+  > plotMvsA(rgCANl, col="red", add=TRUE)
+  > 
+  > # Curve-fit (robust spline) normalization
+  > rgCANrs <- normalizeRobustSpline(rgCAavg, weights=weights)
+  Error in unname(fit$parms["low"]) : 
+    invalid type/length (.../1) in vector allocation
+  Calls: normalizeRobustSpline ... robustSmoothSpline.default -> smooth.spline0 -> unname
+  Execution halted
+
+checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  inst/rsp/.rspPlugins
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+```
+
+## BatchQC (1.2.1)
+Maintainer: Solaiappan Manimaran <manimaran_1975@hotmail.com>  
+Bug reports: https://github.com/mani2012/BatchQC/issues
+
+0 errors | 1 warning  | 0 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+This is mgcv 1.8-17. For overview type 'help("mgcv-package")'.
+Loading required package: genefilter
+
+Attaching package: 'genefilter'
+
+The following object is masked from 'package:MASS':
+
+... 8 lines ...
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.34 \definecolor
+
+Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 43
+Execution halted
+```
+
+## BayesTwin (1.0)
+Maintainer: Inga Schwabe <bayestwin@gmail.com>  
+Bug reports: https://github.com/ingaschwabe/BayesTwin
+
+1 error  | 0 warnings | 0 notes
+
+```
+checking package dependencies ... ERROR
+Package required but not available: ‘rjags’
+
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
+```
+
+## bsseq (1.10.0)
+Maintainer: Kasper Daniel Hansen <kasperdanielhansen@gmail.com>  
+Bug reports: https://github.com/kasperdanielhansen/bsseq/issues
+
+0 errors | 1 warning  | 0 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+
+Loading required package: limma
+
+Attaching package: 'limma'
+
+The following object is masked from 'package:BiocGenerics':
+
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.38 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+```
+
+## bumphunter (1.14.0)
+Maintainer: Rafael A. Irizarry <rafa@jimmy.harvard.edu>
+
+1 error  | 1 warning  | 5 notes
+
+```
+checking tests ... ERROR
+  Running ‘runTests.R’ [23s/38s]
+  Running ‘test-all.R’ [15s/38s]
+Running the tests in ‘tests/test-all.R’ failed.
+Last 13 lines of output:
+  Loading required package: Biobase
+  Welcome to Bioconductor
+  
+      Vignettes contain introductory material; view with
+      'browseVignettes()'. To cite Bioconductor, see
+      'citation("Biobase")', and for packages 'citation("pkgname")'.
+  
+  Download the refGene table ... Error: Expectation Failed
+  In addition: Warning message:
+  In is.na(x[[i]]) :
+    is.na() applied to non-(list or vector) of type 'environment'
+  Timing stopped at: 1.384 0.02 24.8
+  testthat results ================================================================
+  OK: 10 SKIPPED: 0 FAILED: 0
+  Execution halted
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+The following object is masked from ‘package:S4Vectors’:
+
+    new2
+
+The following object is masked from ‘package:base’:
+
+    isNamespaceLoaded
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.10 \usepackage
+                [numbers]{natbib}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
+checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  ‘S4Vectors’ ‘IRanges’ ‘GenomeInfoDb’ ‘GenomicRanges’ ‘foreach’
+  ‘iterators’ ‘parallel’ ‘locfit’
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+
+checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+
+checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘doParallel:::.options’
+  See the note in ?`:::` about the use of this operator.
+
+checking R code for possible problems ... NOTE
+bumphunterEngine: no visible binding for global variable ‘bootstraps’
+Undefined global functions or variables:
+  bootstraps
+
+checking Rd line widths ... NOTE
+Rd file 'annotateTranscripts.Rd':
+  \usage lines wider than 90 characters:
+     annotateTranscripts(txdb, annotationPackage = NULL, by = c("tx","gene"), codingOnly=FALSE, verbose = TRUE, requireAnnotation = FALSE)
+
+Rd file 'bumphunter.Rd':
+  \usage lines wider than 90 characters:
+     bumphunter(object, design, chr=NULL, pos, cluster=NULL,coef=2, cutoff=NULL, pickCutoff = FALSE, pickCutoffQ = 0.99, maxGap=500, nullMet ... [TRUNCATED]
+     bumphunterEngine(mat, design, chr = NULL, pos, cluster = NULL, coef = 2, cutoff = NULL, pickCutoff = FALSE, pickCutoffQ = 0.99, maxGap  ... [TRUNCATED]
+
+Rd file 'matchGenes.Rd':
+  \usage lines wider than 90 characters:
+     matchGenes(x, subject, type = c("any", "fiveprime"), promoterDist = 2500, skipExons = FALSE, verbose = TRUE)
+  \examples lines wider than 100 characters:
+         islands=makeGRangesFromDataFrame(read.delim("http://rafalab.jhsph.edu/CGI/model-based-cpg-islands-hg19.txt")[1:100,])
+
+These lines will be truncated in the PDF manual.
+```
+
+## ChAMP (2.6.4)
 Maintainer: Yuan Tian  <champ450k@gmail.com>
 
-0 errors | 1 warning  | 5 notes
+0 errors | 2 warnings | 3 notes
 
 ```
 checking package subdirectories ... WARNING
 Problems with news in ‘inst/NEWS.Rd’:
-  inst/NEWS.Rd:67: unexpected END_OF_INPUT '
+  inst/NEWS.Rd:14: unexpected END_OF_INPUT '
   '
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+
+[===========================]
+[<<<<< ChAMP.DMP START >>>>>]
+-----------------------------
+<< Your pheno information contains following groups. >>
+<C>:4 samples.
+<T>:4 samples.
+... 8 lines ...
+
+<< Calculate DMP successfully. >>
+[<<<<<< ChAMP.DMP END >>>>>>]
+[===========================]
+[You may want to process DMP.GUI() or champ.GSEA() next.]
+
+pandoc-citeproc: error while parsing the XML string
+pandoc: Error running filter /usr/bin/pandoc-citeproc
+Error: processing vignette 'ChAMP.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 83
+Execution halted
 
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
@@ -128,15 +382,10 @@ Adding so many packages to the search path is excessive and importing
 selectively is preferable.
 
 checking installed package size ... NOTE
-  installed size is 11.6Mb
+  installed size is 11.2Mb
   sub-directories of 1Mb or more:
-    doc       9.5Mb
-    extdata   1.9Mb
-
-checking DESCRIPTION meta-information ... NOTE
-Package listed in more than one of Depends, Imports, Suggests, Enhances:
-  ‘rmarkdown’
-A package should be listed in only one of these fields.
+    doc       9.0Mb
+    extdata   2.0Mb
 
 checking R code for possible problems ... NOTE
 Found the following calls to data() loading into the global environment:
@@ -148,7 +397,7 @@ File ‘ChAMP/R/CpG.GUI.R’:
   data(probe.features)
 File ‘ChAMP/R/DMP.GUI.R’:
   data(MatchGeneName)
-... 46 lines ...
+... 43 lines ...
   data(probe.features.epic)
   data(probe.features)
 File ‘ChAMP/R/champ.norm.R’:
@@ -160,163 +409,117 @@ File ‘ChAMP/R/champ.refbase.R’:
   data(CellTypeMeans27K)
   data(CellTypeMeans450K)
 See section ‘Good practice’ in ‘?data’.
-
-checking Rd line widths ... NOTE
-Rd file 'champ.filter.Rd':
-  \examples lines wider than 100 characters:
-             myfilter <- champ.filter(beta=myImport$beta,pd=myImport$pd,detP=myImport$detP,beadcount=myImport$beadcount)
-
-These lines will be truncated in the PDF manual.
 ```
 
-## Chicago (1.5.0)
-Maintainer: Mikhail Spivakov <spivakov@babraham.ac.uk>
+## ChIPpeakAnno (3.8.9)
+Maintainer: Lihua Julie Zhu <julie.zhu@umassmed.edu>,
+ Jianhong Ou <Jianhong.ou@umassmed.edu>
 
-1 error  | 1 warning  | 5 notes
+1 error  | 0 warnings | 2 notes
 
 ```
 checking examples ... ERROR
-Running examples in ‘Chicago-Ex.R’ failed
+Running examples in ‘ChIPpeakAnno-Ex.R’ failed
 The error most likely occurred in:
 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: exportResults
-> ### Title: Export Results
-> ### Aliases: exportResults exportToGI
-> 
-> ### ** Examples
-... 30 lines ...
-Preprocessing for WashU outputs...
-Writing out text file for WashU browser upload...
-> 
-> GI <- exportToGI(cdUnitTest)
-Reading the restriction map file...
-Reading the bait map file...
-Preparing the output table...
-Error in loadNamespace(name) : 
-  there is no package called ‘GenomicInteractions’
-Calls: exportToGI ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
-Execution halted
-
-checking re-building of vignette outputs ... WARNING
-Error in re-building vignettes:
-  ...
-
-Calculating p-values...
-Approximating 3 very small p-values.
-
-*** Running getScores...
-
-Calculating p-value weights...
+> ### Name: summarizeOverlapsByBins
+> ### Title: Perform overlap queries between reads and genomic features by
+> ###   bins
+> ### Aliases: summarizeOverlapsByBins
+> ### Keywords: misc
 ... 8 lines ...
-Removing duplicated other-ends from significant interactions (same will happen with samples)...
-Bin non-significant interactions according to distance from bait before drawing random samples...
-Draw random samples...
-Sum number of overlaps with feature in our significant interactions and in our samples...
-Plotting barplot number of overlaps for features and samples...
-Returning table with results...
-
-Quitting from lines 277-280 (Chicago.Rmd) 
-Error: processing vignette 'Chicago.Rmd' failed with diagnostics:
-there is no package called 'GenomicInteractions'
++         seqnames = c(rep("chr2L", 4), rep("chr2R", 5), rep("chr3L", 2)),
++         ranges = IRanges(c(1000, 3000, 4000, 7000, 2000, 3000, 3600, 
++                            4000, 7500, 5000, 5400), 
++                          width=c(rep(500, 3), 600, 900, 500, 300, 900, 
++                                  300, 500, 500),
++                          names=letters[1:11])) 
+>     se <- summarizeOverlapsByBins(genes, fls, windowSize=50, step=10)
+Error in registered()[[bpparamClass]] : 
+  attempt to select less than one element in get1index
+Calls: summarizeOverlapsByBins ... .dispatchBamFiles -> bplapply -> bplapply -> bplapply -> bpparam
 Execution halted
 
 checking package dependencies ... NOTE
-Package suggested but not available for checking: ‘GenomicInteractions’
+Depends: includes the non-default packages:
+  ‘grid’ ‘IRanges’ ‘Biostrings’ ‘GenomicRanges’ ‘S4Vectors’
+  ‘VennDiagram’
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
 
-checking for hidden files and directories ... NOTE
-Found the following hidden files and directories:
-  .BBSoptions
-These were most likely included in error. See section ‘Package
-structure’ in the ‘Writing R Extensions’ manual.
-
-checking top-level files ... NOTE
-Non-standard file/directory found at top level:
-  ‘session.txt’
-
-checking Rd line widths ... NOTE
-Rd file 'mergeSamples.Rd':
-  \usage lines wider than 90 characters:
-           NcolNormPrefix = "NNorm", mergeMethod = c("weightedMean", "mean")[1], repNormCounts = (mergeMethod=="mean"))
-
-Rd file 'peakEnrichment4Features.Rd':
-  \examples lines wider than 100 characters:
-     peakEnrichment4Features(cdUnitTest, folder=ChIPdir, list_frag = featuresList, no_bins = 500, sample_number = 100)
-
-These lines will be truncated in the PDF manual.
-
-checking Rd cross-references ... NOTE
-Package unavailable to check Rd xrefs: ‘GenomicInteractions’
+checking installed package size ... NOTE
+  installed size is 19.7Mb
+  sub-directories of 1Mb or more:
+    data     12.7Mb
+    doc       1.0Mb
+    extdata   5.3Mb
 ```
 
-## clusterExperiment (1.3.2)
+## clusterExperiment (1.0.0)
 Maintainer: Elizabeth Purdom <epurdom@stat.berkeley.edu>  
 Bug reports: https://github.com/epurdom/clusterExperiment/issues
 
-2 errors | 1 warning  | 2 notes
+0 errors | 1 warning  | 0 notes
 
 ```
-checking examples ... ERROR
-Running examples in ‘clusterExperiment-Ex.R’ failed
-The error most likely occurred in:
+checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'seqCluster.Rd':
+  ‘tightClust’
 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: clusterContrasts,ClusterExperiment-method
-> ### Title: Create contrasts for testing DE of a cluster
-> ### Aliases: clusterContrasts,ClusterExperiment-method clusterContrasts
-> ###   clusterContrasts,vector-method
-> 
-> ### ** Examples
-> 
-> data(simData)
-> cl <- clusterMany(simData,nPCADims=c(5,10,50),  dimReduce="PCA",
-+ clusterFunction="pam", ks=2:4, findBestK=c(FALSE), removeSil=TRUE,
-+ subsample=FALSE)
-> #Pairs:
-> clusterContrasts(cl,contrastType="Pairs")
-Error in if (outputType == "MAST" & !requireNamespace("MAST", quietly = TRUE)) stop("for outputType 'MAST', you must have package 'MAST' from Bioconductor installed.") : 
-  the condition has length > 1
-Calls: clusterContrasts ... .local -> clusterContrasts -> clusterContrasts -> .local
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+
+```
+
+## CNPBayes (1.4.0)
+Maintainer: Jacob Carey <jcarey15@jhu.edu>  
+Bug reports: https://github.com/scristia/CNPBayes/issues
+
+0 errors | 1 warning  | 3 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+pandoc: Error producing PDF from TeX source.
+! LaTeX Error: File `framed.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.33 \definecolor
+
+Error: processing vignette 'Convergence.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 43
 Execution halted
 
-checking tests ... ERROR
-  Running ‘testthat.R’ [125s/125s]
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-  Note: Merging will be done on ' clusterSingle ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  Note: Merging will be done on ' nPCAFeatures=5,k=NA,findBestK=TRUE ', with clustering index 1 
-  testthat results ================================================================
-  OK: 484 SKIPPED: 0 FAILED: 1
-  1. Error: `clusterContrasts` works with matrix and ClusterExperiment objects (@test_getBestFeatures.R#6) 
-  
-  Error: testthat unit tests failed
-  Execution halted
 
-checking Rd files ... WARNING
-mergeClusters.Rd: non-ASCII input and no declared encoding
-plotClusters.Rd: non-ASCII input and no declared encoding
-problems found in ‘mergeClusters.Rd’, ‘plotClusters.Rd’
+checking installed package size ... NOTE
+  installed size is 13.1Mb
+  sub-directories of 1Mb or more:
+    libs  10.9Mb
 
-checking dependencies in R code ... NOTE
-':::' call which should be '::': ‘ape:::.PlotPhyloEnv’
-  See the note in ?`:::` about the use of this operator.
-Unexported object imported by a ':::' call: ‘ape:::.matchDataPhylo’
-  See the note in ?`:::` about the use of this operator.
+checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘GenomicRanges’
+A package should be listed in only one of these fields.
 
-checking Rd cross-references ... NOTE
-Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
+checking compiled code ... NOTE
+File ‘CNPBayes/libs/CNPBayes.so’:
+  Found no calls to: ‘R_registerRoutines’, ‘R_useDynamicSymbols’
+
+It is good practice to register native routines and to disable symbol
+search.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
 ```
 
-## consensusOV (0.99.3)
-Maintainer: Benjamin Haibe-Kains <benjamin.haibe.kains@utoronto.ca>  
-Bug reports: https://github.com/bhklab/consensusOV/issues
+## CopywriteR (2.6.0)
+Maintainer: Thomas Kuilman <t.kuilman@nki.nl>
 
 0 errors | 1 warning  | 1 note 
 
@@ -324,65 +527,257 @@ Bug reports: https://github.com/bhklab/consensusOV/issues
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
-Loading required package: survcomp
-Loading required package: survival
-Loading required package: prodlim
-Loading required package: mclust
-Package 'mclust' version 5.3
-Type 'citation("mclust")' for citing this R package in publications.
-Loading required package: limma
+  pseudoinverse used at 0.979
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  neighborhood radius 0.001
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  reciprocal condition number  0
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  There are other near singularities as well. 1e-06
 ... 8 lines ...
-Loading required package: biomaRt
-Loading required package: iC10
-Loading required package: pamr
-Loading required package: cluster
-Loading required package: iC10TrainingData
-Loading required package: AIMS
-Loading required package: e1071
-Quitting from lines 55-56 (consensusOV.Rmd) 
-Error: processing vignette 'consensusOV.Rmd' failed with diagnostics:
-4 simultaneous processes spawned
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.38 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
 Execution halted
 
-checking top-level files ... NOTE
-Non-standard file/directory found at top level:
-  ‘appveyor.yml’
+checking R code for possible problems ... NOTE
+.peakCutoff: no visible global function definition for ‘dpois’
+.peakCutoff: no visible global function definition for ‘ppois’
+.tng: no visible global function definition for ‘png’
+.tng: no visible global function definition for ‘par’
+.tng: no visible global function definition for ‘dev.off’
+.tng: no visible global function definition for ‘loess’
+.tng: no visible global function definition for ‘predict’
+.tng: no visible global function definition for ‘points’
+.tng: no visible global function definition for ‘rgb’
+... 41 lines ...
+  par pdf plot png points ppois predict read.table rgb segments text
+  write.table
+Consider adding
+  importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
+  importFrom("graphics", "abline", "axis", "lines", "par", "plot",
+             "points", "segments", "text")
+  importFrom("methods", "as", "getClass")
+  importFrom("stats", "dpois", "ecdf", "loess", "ppois", "predict")
+  importFrom("utils", "packageVersion", "read.table", "write.table")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
 ```
 
-## DelayedArray (0.3.19)
-Maintainer: Hervé Pagès <hpages@fredhutch.org>
+## crlmm (1.32.0)
+Maintainer: Benilton S Carvalho <benilton@unicamp.br>,
+ Robert Scharpf <rscharpf@jhsph.edu>, Matt Ritchie
+ <mritchie@wehi.EDU.AU>
+
+0 errors | 1 warning  | 5 notes
+
+```
+checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘limma’
+'library' or 'require' calls in package code:
+  ‘RUnit’ ‘limma’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Unexported object imported by a ':::' call: ‘Biobase:::assayDataEnvLock’
+  See the note in ?`:::` about the use of this operator.
+
+checking installed package size ... NOTE
+  installed size is  5.3Mb
+  sub-directories of 1Mb or more:
+    data   2.7Mb
+
+checking DESCRIPTION meta-information ... NOTE
+Versioned 'LinkingTo' value for ‘preprocessCore’ is only usable in R >= 3.0.2
+
+checking R code for possible problems ... NOTE
+.test: no visible global function definition for ‘defineTestSuite’
+.test: no visible global function definition for ‘runTestSuite’
+.test: no visible global function definition for ‘printTextProtocol’
+calculateRBafCNSet : processByChromosome: no visible global function
+  definition for ‘position’
+cnrmaAffy: no visible global function definition for ‘celfileName’
+computeBR: no visible global function definition for ‘genomeBuild’
+constructBafLrrSetListFrom: no visible global function definition for
+  ‘genomeBuild’
+constructOligoSetListFrom: no visible global function definition for
+  ‘genomeBuild’
+genotypeInf: no visible binding for global variable ‘anno’
+plotSamples: no visible global function definition for ‘delete’
+quantilenormalization: no visible global function definition for
+  ‘delete’
+snprmaAffy: no visible global function definition for ‘celfileName’
+Undefined global functions or variables:
+  anno celfileName defineTestSuite delete genomeBuild position
+  printTextProtocol runTestSuite
+
+checking Rd line widths ... NOTE
+Rd file 'constructInf.Rd':
+  \usage lines wider than 90 characters:
+            arrayInfoColNames = list(barcode="SentrixBarcode_A",position="SentrixPosition_A"), highDensity = FALSE, sep = "_",
+            fileExt = list(green = "Grn.idat", red = "Red.idat"), XY, cdfName, anno, genome, verbose = FALSE, batch=NULL, saveDate = TRUE)
+
+Rd file 'genotype.Illumina.Rd':
+  \usage lines wider than 90 characters:
+           highDensity=FALSE, sep="_", fileExt=list(green="Grn.idat", red="Red.idat"), XY=NULL, anno, genome, 
+           call.method="crlmm", trueCalls=NULL, cdfName, copynumber=TRUE, batch=NULL, saveDate=FALSE, stripNorm=TRUE, 
+... 20 lines ...
+Rd file 'readGenCallOutput.Rd':
+  \usage lines wider than 90 characters:
+     readGenCallOutput(filenames, path=".", cdfName, colnames=list("SampleID"="Sample ID", "SNPID"="SNP Name", "XRaw"="X Raw", "YRaw"="Y Raw ... [TRUNCATED]
+                       type=list("SampleID"="character", "SNPID"="character", "XRaw"="integer", "YRaw"="integer"), verbose=FALSE)
+
+Rd file 'snprma.Rd':
+  \usage lines wider than 90 characters:
+     snprma(filenames, mixtureSampleSize = 10^5, fitMixture = FALSE, eps = 0.1, verbose = TRUE, seed = 1, cdfName, sns)
+     snprma2(filenames, mixtureSampleSize = 10^5, fitMixture = FALSE, eps = 0.1, verbose = TRUE, seed = 1, cdfName, sns)
+
+These lines will be truncated in the PDF manual.
+
+checking compiled code ... NOTE
+File ‘crlmm/libs/crlmm.so’:
+  Found no call to: ‘R_useDynamicSymbols’
+
+It is good practice to register native routines and to disable symbol
+search.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+```
+
+## DeepBlueR (1.0.11)
+Maintainer: Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>
 
 1 error  | 0 warnings | 0 notes
 
 ```
-checking package dependencies ... ERROR
-Packages required and available but unsuitable versions:
-  ‘S4Vectors’ ‘IRanges’
-
-See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-manual.
+checking whether package ‘DeepBlueR’ can be installed ... ERROR
+Installation failed.
+See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR.Rcheck/00install.out’ for details.
 ```
 
-## EasyqpcR (1.19.0)
+## EasyqpcR (1.16.0)
 Maintainer: Le Pape Sylvain <sylvain.le.pape@univ-poitiers.fr>
 
 1 error  | 0 warnings | 1 note 
 
 ```
-checking whether package ‘EasyqpcR’ can be installed ... ERROR
-Installation failed.
-See ‘/home/hb/repositories/matrixStats/revdep/checks/EasyqpcR.Rcheck/00install.out’ for details.
+checking package dependencies ... ERROR
+Package required but not available: ‘gWidgetsRGtk2’
+
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
 
 checking package namespace information ... NOTE
   Namespace with empty importFrom: ‘gWidgetsRGtk2’
 ```
 
-## flowCore (1.43.5)
-Maintainer: M.Jiang <wjiang2@fhcrc.org>
+## EMDomics (2.4.0)
+Maintainer: Sadhika Malladi <contact@sadhikamalladi.com> and Daniel Schmolze <emd@schmolze.com>
 
-0 errors | 2 warnings | 10 notes
+1 error  | 1 warning  | 3 notes
 
 ```
+checking examples ... ERROR
+Running examples in ‘EMDomics-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: calculate_cvm
+> ### Title: Cramer von Mises for differential analysis of genomics data
+> ### Aliases: calculate_cvm
+> 
+> ### ** Examples
+> 
+> # 100 genes, 100 samples
+> dat <- matrix(rnorm(10000), nrow=100, ncol=100)
+> rownames(dat) <- paste("gene", 1:100, sep="")
+> colnames(dat) <- paste("sample", 1:100, sep="")
+> 
+> # "A": first 50 samples; "B": next 30 samples; "C": final 20 samples
+> outcomes <- c(rep("A",50), rep("B",30), rep("C",20))
+> names(outcomes) <- colnames(dat)
+> 
+> results <- calculate_cvm(dat, outcomes, nperm=10, parallel=FALSE)
+Error in registered()[[bpparamClass]] : 
+  attempt to select less than one element in get1index
+Calls: calculate_cvm -> <Anonymous>
+Execution halted
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Quitting from lines 107-108 (EMDomics.Rmd) 
+Error: processing vignette 'EMDomics.Rmd' failed with diagnostics:
+attempt to select less than one element in get1index
+Execution halted
+
+
+checking DESCRIPTION meta-information ... NOTE
+Authors@R field gives more than one person with maintainer role:
+  Sadhika Malladi <contact@sadhikamalladi.com> [aut, cre]
+  Daniel Schmolze <emd@schmolze.com> [aut, cre]
+
+checking R code for possible problems ... NOTE
+.cvm_pairwise_q: no visible global function definition for ‘combn’
+.cvm_pairwise_q : <anonymous>: no visible global function definition
+  for ‘median’
+.emd_gene_pairwise: no visible global function definition for ‘hist’
+.emd_pairwise_q: no visible global function definition for ‘combn’
+.emd_pairwise_q : <anonymous>: no visible global function definition
+  for ‘median’
+.ks_pairwise_table: no visible global function definition for ‘ks.test’
+calculate_cvm: no visible global function definition for ‘combn’
+... 11 lines ...
+calculate_ks : <anonymous>: no visible global function definition for
+  ‘median’
+calculate_ks_gene: no visible global function definition for ‘combn’
+calculate_ks_gene: no visible global function definition for ‘ks.test’
+Undefined global functions or variables:
+  combn hist ks.test median p.adjust
+Consider adding
+  importFrom("graphics", "hist")
+  importFrom("stats", "ks.test", "median", "p.adjust")
+  importFrom("utils", "combn")
+to your NAMESPACE file.
+
+checking files in ‘vignettes’ ... NOTE
+The following directory looks like a leftover from 'knitr':
+  ‘figure’
+Please remove from your package.
+```
+
+## flowCore (1.40.6)
+Maintainer: M.Jiang <wjiang2@fhcrc.org>
+
+1 error  | 2 warnings | 10 notes
+
+```
+checking tests ... ERROR
+  Running ‘testthat.R’
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  
+  4. Failure: biexponential (@test-transform.R#121) ------------------------------
+  summary(res) not equal to expectRes[["biexponential"]].
+  Mean relative difference: 0.000122351
+  
+  
+  testthat results ================================================================
+  OK: 129 SKIPPED: 0 FAILED: 4
+  1. Failure: hyperlogGml2 (@test-transform.R#97) 
+  2. Failure: logicle (@test-transform.R#105) 
+  3. Failure: logicle (@test-transform.R#110) 
+  4. Failure: biexponential (@test-transform.R#121) 
+  
+  Error: testthat unit tests failed
+  Execution halted
+
 checking Rd \usage sections ... WARNING
 Documented arguments not in \usage in documentation object 'read.flowSet':
   ‘truncate_max_range’
@@ -396,15 +791,25 @@ Extensions’ manual.
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
-Quitting from lines 301-303 (HowTo-flowCore.Rnw) 
-Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
-there is no package called 'ggcyto'
+Warning: Removed 27 rows containing missing values (geom_hex).
+Warning: Removed 5 rows containing missing values (geom_hex).
+Warning: Removed 5 rows containing missing values (geom_hex).
+Warning: Removed 4 rows containing missing values (geom_hex).
+Warning: Removed 6 rows containing missing values (geom_hex).
+Warning: Removed 7 rows containing missing values (geom_hex).
+Warning: Removed 4514 rows containing non-finite values (stat_density).
+... 8 lines ...
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.66 \usepackage
+                {graphicx}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+In addition: There were 30 warnings (use warnings() to see them)
 Execution halted
-
-
-checking package dependencies ... NOTE
-Packages suggested but not available for checking:
-  ‘flowWorkspace’ ‘openCyto’ ‘ggcyto’
 
 checking if this is a source package ... NOTE
 Found the following apparent object files/libraries:
@@ -420,12 +825,12 @@ Found the following apparent object files/libraries:
 Object files/libraries should not be included in a source package.
 
 checking installed package size ... NOTE
-  installed size is 34.1Mb
+  installed size is 34.8Mb
   sub-directories of 1Mb or more:
     data      5.0Mb
-    extdata   1.1Mb
-    lib      20.3Mb
-    libs      5.6Mb
+    extdata   1.2Mb
+    lib      20.8Mb
+    libs      5.9Mb
 
 checking DESCRIPTION meta-information ... NOTE
 Versioned 'LinkingTo' value for ‘BH’ is only usable in R >= 3.0.2
@@ -493,21 +898,72 @@ These lines will be truncated in the PDF manual.
 
 checking for GNU extensions in Makefiles ... NOTE
 GNU make is a SystemRequirements.
+
+checking compiled code ... NOTE
+File ‘flowCore/libs/flowCore.so’:
+  Found no calls to: ‘R_registerRoutines’, ‘R_useDynamicSymbols’
+
+It is good practice to register native routines and to disable symbol
+search.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
 ```
 
-## funtooNorm (1.1.0)
-Maintainer: Kathleen Klein <kathleen.klein@mail.mcgill.ca>
+## genomation (1.6.0)
+Maintainer: Altuna Akalin <aakalin@gmail.com>, Vedran Franke
+ <vedran.franke@gmail.com>  
+Bug reports: https://github.com/BIMSBbioinfo/genomation/issues
 
-0 errors | 1 warning  | 0 notes
+0 errors | 2 warnings | 4 notes
 
 ```
-checking sizes of PDF files under ‘inst/doc’ ... WARNING
-  ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘funtooNorm.pdf’ from 1239Kb to 199Kb
-  consider running tools::compactPDF(gs_quality = "ebook") on these files
+checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'ScoreMatrix,ANY,ANY,ANY'
+  generic '[' and siglist 'ScoreMatrixList,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Fetching https://raw.githubusercontent.com/BIMSBbioinfo/genomation/master/vignettes/Figures/genomationFlowChart1.png...
+pandoc: Failed to retrieve https://raw.githubusercontent.com/BIMSBbioinfo/genomation/master/vignettes/Figures/genomationFlowChart1.png
+user error (https not supported)
+Error: processing vignette 'GenomationManual.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 61
+Execution halted
+
+
+checking installed package size ... NOTE
+  installed size is  6.8Mb
+  sub-directories of 1Mb or more:
+    doc       3.6Mb
+    extdata   1.2Mb
+    libs      1.1Mb
+
+checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘BiocGenerics:::testPackage’
+  See the note in ?`:::` about the use of this operator.
+
+checking compiled code ... NOTE
+File ‘genomation/libs/genomation.so’:
+  Found no calls to: ‘R_registerRoutines’, ‘R_useDynamicSymbols’
+
+It is good practice to register native routines and to disable symbol
+search.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+
+checking files in ‘vignettes’ ... NOTE
+The following directory looks like a leftover from 'knitr':
+  ‘cache’
+Please remove from your package.
 ```
 
-## GUIDEseq (1.7.3)
+## GUIDEseq (1.4.1)
 Maintainer: Lihua Julie Zhu <julie.zhu@umassmed.edu>
 
 1 error  | 1 warning  | 3 notes
@@ -523,40 +979,40 @@ The error most likely occurred in:
 > ### Aliases: GUIDEseqAnalysis
 > ### Keywords: misc
 > 
-... 50 lines ...
->>> DONE searching
->>> Finding all hits in sequence chr13+:39262927:39262939:chr13-:39262918:39262920 ...
+... 45 lines ...
 >>> DONE searching
 finish off-target search in sequence 2
 finish off-target search in sequence 1
 finish feature vector building
 finish score calculation
 [1] "Done!"
-Error in if (!is.na(TS2)) { : the condition has length > 1
-Calls: GUIDEseqAnalysis -> offTargetAnalysisOfPeakRegions
+Warning in if (!is.na(TS2)) { :
+  the condition has length > 1 and only the first element will be used
+Error in .check_ncores(length(names)) : 7 simultaneous processes spawned
+Calls: GUIDEseqAnalysis ... offTargetAnalysisOfPeakRegions -> makeCluster -> makePSOCKcluster -> .check_ncores
 Execution halted
 
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
-Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
-  No matching found, please check your input sequence, and make
             sure you are using the right genome. You can also alter your 
             search criteria such as increasing max.mismatch!
 Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
   No matching found, please check your input sequence, and make
             sure you are using the right genome. You can also alter your 
+            search criteria such as increasing max.mismatch!
+Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
 ... 8 lines ...
-            sure you are using the right genome. You can also alter your 
-            search criteria such as increasing max.mismatch!
 Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
   No matching found, please check your input sequence, and make
             sure you are using the right genome. You can also alter your 
             search criteria such as increasing max.mismatch!
+Warning in if (!is.na(TS2)) { :
+  the condition has length > 1 and only the first element will be used
 
 Error: processing vignette 'GUIDEseq.Rnw' failed with diagnostics:
  chunk 7 
-Error in if (!is.na(TS2)) { : the condition has length > 1
+Error in .check_ncores(length(names)) : 7 simultaneous processes spawned
 Execution halted
 
 checking installed package size ... NOTE
@@ -590,12 +1046,9 @@ Undefined global functions or variables:
 checking Rd files ... NOTE
 prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
 prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
-prepare_Rd: createBarcodeFasta.Rd:42-43: Dropping empty section \value
-prepare_Rd: createBarcodeFasta.Rd:44-46: Dropping empty section \references
-prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
 ```
 
-## Gviz (1.21.2)
+## Gviz (1.18.2)
 Maintainer: Florian Hahne <florian.hahne@novartis.com>
 
 0 errors | 2 warnings | 4 notes
@@ -603,7 +1056,12 @@ Maintainer: Florian Hahne <florian.hahne@novartis.com>
 ```
 checking for missing documentation entries ... WARNING
 Undocumented S4 methods:
+  generic '[' and siglist 'AlignedReadTrack,ANY,ANY,ANY'
+  generic '[' and siglist 'DataTrack,ANY,ANY,ANY'
   generic '[' and siglist 'GenomeAxisTrack,ANY,ANY,ANY'
+  generic '[' and siglist 'IdeogramTrack,ANY,ANY,ANY'
+  generic '[' and siglist 'RangeTrack,ANY,ANY,ANY'
+  generic '[' and siglist 'StackedTrack,ANY,ANY,ANY'
 All user-level objects in a package (including S4 classes and methods)
 should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
@@ -612,45 +1070,58 @@ Extensions’ manual.
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
-Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-  Running 'texi2dvi' on 'Gviz.tex' failed.
-LaTeX errors:
-! Undefined control sequence.
-l.31 \soulregister
-                  {\link}{1}% necessary for compatibility with LaTeX soul pa...
-The control sequence at the end of the top line
+    append, as.data.frame, cbind, colnames, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect,
+    is.unsorted, lapply, lengths, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, rank,
+    rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which, which.max,
+    which.min
 ... 8 lines ...
-<to be read again> 
-                   \par 
-l.31 \soulregister{\link}
-                         {1}% necessary for compatibility with LaTeX soul pa...
-! LaTeX Error: Missing \begin{document}.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-Calls: buildVignettes -> texi2pdf -> texi2dvi
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: grid
+
+Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
+ chunk 9 (label = doIdeogramTrack) 
+Error : Expectation Failed
+
 Execution halted
 
 checking installed package size ... NOTE
   installed size is  6.0Mb
   sub-directories of 1Mb or more:
-    doc       1.7Mb
-    extdata   2.1Mb
+    doc       1.6Mb
+    extdata   2.2Mb
 
 checking top-level files ... NOTE
 Non-standard file/directory found at top level:
   ‘Rplots.pdf’
 
 checking R code for possible problems ... NOTE
-.buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-  'cdsBy'
-.buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-  'fiveUTRsByTranscript'
-.buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-  'threeUTRsByTranscript'
+.buildRange,IRanges-ANY-ANY-ANY: warning in GRanges(seqnames =
+  .chrName(chromosome), range = range, strand = if
+  (!is.null(args$strand)) args$strand else "*"): partial argument match
+  of 'range' to 'ranges'
+collapseTrack,DataTrack: warning in GRanges(seqnames = seqnames(r)[1],
+  range = rtmp): partial argument match of 'range' to 'ranges'
+collapseTrack,DataTrack: warning in GRanges(seqnames =
+  chromosome(GdObject), range = ir, strand =
+  unique(as.character(strand(GdObject)))): partial argument match of
+... 39 lines ...
+  'setNames'
+drawGD,AlignmentsTrack : <anonymous>: no visible global function
+  definition for 'setNames'
 Undefined global functions or variables:
-  cdsBy fiveUTRsByTranscript threeUTRsByTranscript
+  cdsBy dev.cur dev.off fiveUTRsByTranscript setNames
+  threeUTRsByTranscript type.convert
+Consider adding
+  importFrom("grDevices", "dev.cur", "dev.off")
+  importFrom("stats", "setNames")
+  importFrom("utils", "type.convert")
+to your NAMESPACE file.
 
 checking Rd line widths ... NOTE
 Rd file 'AlignmentsTrack-class.Rd':
@@ -683,7 +1154,7 @@ Maintainer: Matt Nunes <m.nunes@lancaster.ac.uk>
 checking whether package ‘LS2Wstat’ can be installed ... WARNING
 Found the following significant warnings:
   Warning: no DISPLAY variable so Tk is not available
-See ‘/home/hb/repositories/matrixStats/revdep/checks/LS2Wstat.Rcheck/00install.out’ for details.
+See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/LS2Wstat.Rcheck/00install.out’ for details.
 
 checking DESCRIPTION meta-information ... NOTE
 Malformed Description field: should contain one or more complete sentences.
@@ -701,7 +1172,51 @@ Consider adding
 to your NAMESPACE file.
 ```
 
-## metagenomeSeq (1.19.0)
+## metagene (2.6.1)
+Maintainer: Charles Joly Beauparlant <charles.joly-beauparlant@crchul.ulaval.ca>  
+Bug reports: https://github.com/CharlesJB/metagene/issues
+
+1 error  | 0 warnings | 1 note 
+
+```
+checking tests ... ERROR
+  Running ‘runTests.R’ [254s/268s]
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+    invalid class "MulticoreParam" object: 1: 'cluster', '.clusterargs', '.uid', 'RNGseed' must be length 1
+  invalid class "MulticoreParam" object: 2: '.clusterargs', '.controlled', 'logdir', 'resultdir' must be length 1
+  
+  Test files with failing tests
+  
+     test_parallel_job.R 
+       test.parallel_job_get_core_count_valid_multiple_core 
+       test.parallel_job_launch_job_valid_multiple_core 
+       test.parallel_job_set_core_count_valid_multiple_core 
+       test.parallel_job_set_core_count_valid_single_core 
+  
+  
+  Error in BiocGenerics:::testPackage("metagene") : 
+    unit tests failed for package metagene
+  Execution halted
+
+checking R code for possible problems ... NOTE
+get_demo_design: no visible global function definition for ‘read.table’
+get_promoters_txdb: no visible global function definition for ‘is’
+plot_metagene: no visible binding for global variable ‘position’
+plot_metagene: no visible binding for global variable ‘value’
+plot_metagene: no visible binding for global variable ‘qinf’
+plot_metagene: no visible binding for global variable ‘qsup’
+plot_metagene: no visible binding for global variable ‘group’
+Undefined global functions or variables:
+  group is position qinf qsup read.table value
+Consider adding
+  importFrom("methods", "is")
+  importFrom("utils", "read.table")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+```
+
+## metagenomeSeq (1.16.0)
 Maintainer: Joseph N. Paulson <jpaulson@jimmy.harvard.edu>  
 Bug reports: https://github.com/nosson/metagenomeSeq/issues
 
@@ -710,48 +1225,67 @@ Bug reports: https://github.com/nosson/metagenomeSeq/issues
 ```
 checking sizes of PDF files under ‘inst/doc’ ... WARNING
   ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘metagenomeSeq.pdf’ from 976Kb to 673Kb
+     compacted ‘metagenomeSeq.pdf’ from 975Kb to 718Kb
   consider running tools::compactPDF(gs_quality = "ebook") on these files
 ```
 
-## metavizr (1.1.2)
-Maintainer: Hector Corrada Bravo <hcorrada@gmail.com>
+## MethylAid (1.8.0)
+Maintainer: M. van Iterson <mviterson@gmail.com>  
+Bug reports: https://github.com/mvaniterson/methylaid/issues
 
-1 error  | 0 warnings | 0 notes
+0 errors | 1 warning  | 1 note 
 
 ```
-checking examples ... ERROR
-Running examples in ‘metavizr-Ex.R’ failed
-The error most likely occurred in:
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Loading required package: bumphunter
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: locfit
+locfit 1.5-9.1 	 2013-03-22
+Loading required package: IlluminaHumanMethylation450kmanifest
+Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: startMetavizStandalone
-> ### Title: Start metaviz app in standalone (locally) and create
-> ###   'MetavizApp' object to manage connection.
-> ### Aliases: startMetavizStandalone
-> 
-> ### ** Examples
-> 
-> # see package vignette for example usage
-> app <- startMetavizStandalone()
-checking for updates to epiviz app...
-done
-Error in .wait_until_connected(app$server) : 
-  [epivizrStandalone] Error starting app. UI unable to connect to websocket server.
-Calls: startMetavizStandalone ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+! Emergency stop.
+<read *> 
+         
+l.38 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
 Execution halted
+
+checking R code for possible problems ... NOTE
+Found the following assignments to the global environment:
+File ‘MethylAid/R/server.R’:
+  assign("outliers", outliers, envir = globalenv())
+  assign("background", as.background(background), envir = globalenv())
+  assign("location", location, envir = globalenv())
+  assign("location", location, envir = globalenv())
+  assign("location", location, envir = globalenv())
+  assign("location", location, envir = globalenv())
+  assign("location", location, envir = globalenv())
+File ‘MethylAid/R/util.R’:
+  assign("highlight", highlight, envir = globalenv())
+  assign("outliers", out, envir = globalenv())
 ```
 
-## methylumi (2.23.0)
+## methylumi (2.20.0)
 Maintainer: Sean Davis <sdavis2@mail.nih.gov>  
 Bug reports: https://github.com/seandavi/methylumi/issues/new
 
-0 errors | 2 warnings | 9 notes
+0 errors | 2 warnings | 8 notes
 
 ```
 checking for missing documentation entries ... WARNING
 Undocumented code objects:
   ‘IDATsToMatrices’ ‘IDATtoMatrix’ ‘tcgaPipeline’
+Undocumented data sets:
+  ‘mset’
 Undocumented S4 methods:
   generic '[' and siglist 'MethyLumiM,ANY,ANY,ANY'
   generic '[' and siglist 'MethyLumiSet,ANY,ANY,ANY'
@@ -760,12 +1294,29 @@ should have documentation entries.
 See chapter ‘Writing R documentation files’ in the ‘Writing R
 Extensions’ manual.
 
-checking contents of ‘data’ directory ... WARNING
-Files not of a type allowed in a ‘data’ directory:
-  ‘5318317007_A_Grn.idat’ ‘5318317007_A_Red.idat’
-  ‘5318317007_B_Grn.idat’ ‘5318317007_B_Red.idat’
-  ‘5318317007_C_Grn.idat’ ‘5318317007_C_Red.idat’
-Please use e.g. ‘inst/extdata’ for non-R data files
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Warning: running command 'kpsewhich framed.sty' had status 1
+Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+  unable to find LaTeX package 'framed'; will use a copy from knitr
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  Running 'texi2dvi' on 'methylumi.tex' failed.
+LaTeX errors:
+! LaTeX Error: File `fullpage.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.58 \usepackage
+                {hyperref}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
 
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
@@ -774,14 +1325,8 @@ Depends: includes the non-default packages:
 Adding so many packages to the search path is excessive and importing
 selectively is preferable.
 
-checking for hidden files and directories ... NOTE
-Found the following hidden files and directories:
-  .travis.yml
-These were most likely included in error. See section ‘Package
-structure’ in the ‘Writing R Extensions’ manual.
-
 checking installed package size ... NOTE
-  installed size is  9.7Mb
+  installed size is  9.9Mb
   sub-directories of 1Mb or more:
     data      6.8Mb
     extdata   1.7Mb
@@ -849,199 +1394,532 @@ checking for unstated dependencies in vignettes ... NOTE
 'library' or 'require' call not declared from: ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
 ```
 
-## MIGSA (1.1.1)
-Maintainer: Juan C. Rodriguez <jcrodriguez@bdmg.com.ar>
+## minfi (1.20.2)
+Maintainer: Kasper Daniel Hansen <kasperdanielhansen@gmail.com>  
+Bug reports: https://github.com/kasperdanielhansen/minfi/issues
 
-1 error  | 1 warning  | 1 note 
+0 errors | 1 warning  | 4 notes
 
 ```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Loading required package: XVector
+Loading required package: bumphunter
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: locfit
+locfit 1.5-9.1 	 2013-03-22
+Warning in is.na(x[[i]]) :
+... 8 lines ...
+Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
+pandoc-citeproc: 
+Error at "source" (line 1, column 1):
+unexpected '}'
+expecting "%", new-line, "\\", "{", "-", "``", "\8220", "\"`", "\"", "`", "\8216", "''", "\8221", "'", "\8217", "~", "$$", "$", "^", "_", "^^", "&" or end of input
+}{
+^
+pandoc: Error running filter /usr/bin/pandoc-citeproc
+Error: processing vignette 'minfi.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 83
+Execution halted
+
+checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  ‘BiocGenerics’ ‘Biobase’ ‘GenomicRanges’ ‘SummarizedExperiment’
+  ‘Biostrings’ ‘bumphunter’
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+
+checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  ‘BiocGenerics:::replaceSlots’
+  ‘SummarizedExperiment:::.valid.SummarizedExperiment.assays_ncol’
+  ‘bumphunter:::.getEstimate’
+  See the note in ?`:::` about the use of this operator.
+
+checking R code for possible problems ... NOTE
+Found the following calls to data() loading into the global environment:
+File ‘minfi/R/estimateCellCounts.R’:
+  data(list = referencePkg)
+See section ‘Good practice’ in ‘?data’.
+
+checking Rd line widths ... NOTE
+Rd file 'estimateCellCounts.Rd':
+  \usage lines wider than 90 characters:
+                        referencePlatform = c("IlluminaHumanMethylation450k", "IlluminaHumanMethylationEPIC", "IlluminaHumanMethylation27k") ... [TRUNCATED]
+
+These lines will be truncated in the PDF manual.
+```
+
+## monocle (2.2.0)
+Maintainer: Cole Trapnell <coletrap@uw.edu>
+
+0 errors | 1 warning  | 2 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+
+Warning in (ap %*% ab)/(ab %*% ab) * ab :
+  Recycling array of length 1 in array-vector arithmetic is deprecated.
+  Use c() or as.vector() instead.
+
+Warning in if (progenitor_method == "duplicate") { :
+  the condition has length > 1 and only the first element will be used
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.36 \sectionfont
+                 {\sffamily\bfseries\color{RoyalBlue}\sectionrule{0pt}{0pt}{...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
+checking top-level files ... NOTE
+Non-standard file/directory found at top level:
+  ‘examples’
+
+checking R code for possible problems ... NOTE
+assign_cell_lineage: no visible global function definition for ‘nei’
+buildBranchCellDataSet: no visible global function definition for ‘nei’
+count_leaf_descendents: no visible global function definition for ‘nei’
+cth_classifier_cds: no visible global function definition for ‘nei’
+cth_classifier_cell: no visible global function definition for ‘nei’
+diff_test_helper: no visible binding for global variable ‘Size_Factor’
+extract_good_branched_ordering: no visible global function definition
+  for ‘nei’
+extract_good_branched_ordering : extract_branched_ordering_helper: no
+  visible global function definition for ‘nei’
+extract_good_branched_ordering : assign_cell_state_helper: no visible
+  global function definition for ‘nei’
+extract_good_branched_ordering : assign_pseudotime_helper: no visible
+  global function definition for ‘nei’
+extract_good_ordering: no visible global function definition for ‘nei’
+fit_model_helper: no visible binding for global variable ‘Size_Factor’
+make_canonical: no visible global function definition for ‘nei’
+measure_diameter_path: no visible global function definition for ‘nei’
+project2MST: no visible global function definition for ‘nei’
+relative2abs : <anonymous>: no visible binding for global variable
+  ‘FPKM’
+Undefined global functions or variables:
+  FPKM Size_Factor nei
+```
+
+## motifbreakR (1.4.0)
+Maintainer: Simon Gert Coetzee <Simon.Coetzee@cshs.org>  
+Bug reports: https://github.com/Simon-Coetzee/motifbreakR/issues
+
+0 errors | 1 warning  | 2 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+    which, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: 'S4Vectors'
+
+... 8 lines ...
+'BiocParallel' did not register default BiocParallelParams:
+  invalid class "MulticoreParam" object: 1: 'cluster', '.clusterargs', '.uid', 'RNGseed' must be length 1
+invalid class "MulticoreParam" object: 2: '.clusterargs', '.controlled', 'logdir', 'resultdir' must be length 1
+See system.file("LICENSE", package="MotifDb") for use restrictions.
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: rtracklayer
+Quitting from lines 206-212 (motifbreakR-vignette.Rmd) 
+Error: processing vignette 'motifbreakR-vignette.Rmd' failed with diagnostics:
+attempt to select less than one element in get1index
+Execution halted
+
+checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  'MotifDb' 'grid'
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+
+checking R code for possible problems ... NOTE
+plotMotifLogoStack.2: no visible global function definition for 'par'
+snps.from.file: no visible global function definition for 'info'
+snps.from.file: no visible global function definition for 'rowRanges'
+snps.from.rsid: no visible global function definition for 'snpsById'
+Undefined global functions or variables:
+  info par rowRanges snpsById
+Consider adding
+  importFrom("graphics", "par")
+to your NAMESPACE file.
+
+Found the following assignments to the global environment:
+File ‘motifbreakR/R/scoreMotif.R’:
+  assign("tmp_motifStack_symbolsCache", list(), pos = ".GlobalEnv")
+```
+
+## MultiBD (0.2.0)
+Maintainer: Marc A. Suchard <msuchard@ucla.edu>
+
+0 errors | 1 warning  | 2 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+pandoc: Error producing PDF from TeX source.
+! LaTeX Error: File `framed.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.34 \definecolor
+
+Error: processing vignette 'SIR-MCMC.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 43
+Execution halted
+
+
+checking installed package size ... NOTE
+  installed size is 10.5Mb
+  sub-directories of 1Mb or more:
+    libs   8.9Mb
+
+checking compiled code ... NOTE
+File ‘MultiBD/libs/MultiBD.so’:
+  Found no calls to: ‘R_registerRoutines’, ‘R_useDynamicSymbols’
+
+It is good practice to register native routines and to disable symbol
+search.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+```
+
+## nandb (0.2.1)
+Maintainer: Rory Nolan <rorynoolan@gmail.com>  
+Bug reports: https://github.com/rorynolan/nandb/issues
+
+2 errors | 1 warning  | 0 notes
+
+```
+checking examples ... ERROR
+Running examples in ‘nandb-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ArrArrHexPlot
+> ### Title: Plot the values in two arrays against each other.
+> ### Aliases: ArrArrHexPlot
+> 
+> ### ** Examples
+> 
+> library(EBImage)
+> img <- ReadImageData(system.file('extdata', '50.tif', package = 'nandb'))
+> display(normalize(img[, , 1]), method = 'raster')
+> brightness <- Brightness(img, tau = NA, mst = "Huang")
+Error: .onLoad failed in loadNamespace() for 'autothresholdr', details:
+  call: NULL
+  error: .onLoad failed in loadNamespace() for 'rJava', details:
+  call: dyn.load(file, DLLpath = DLLpath, ...)
+  error: unable to load shared object '/netapp/home/hb/R/x86_64-pc-linux-gnu-library/3.4/rJava/libs/rJava.so':
+  libjvm.so: cannot open shared object file: No such file or directory
+Execution halted
+
 checking tests ... ERROR
-  Running ‘runTests.R’
-Running the tests in ‘tests/runTests.R’ failed.
+  Running ‘testthat.R’ [16s/17s]
+Running the tests in ‘tests/testthat.R’ failed.
 Last 13 lines of output:
+  testthat results ================================================================
+  OK: 115 SKIPPED: 0 FAILED: 16
+  1. Error: Brightness works (@test_brightness.R#5) 
+  2. Error: BrightnessTimeSeries works (@test_brightness.R#34) 
+  3. Error: BrightnessTxtFolder works (@test_brightness.R#80) 
+  4. Error: Brightnesses works (@test_brightness.R#99) 
+  5. Error: BrightnessTimeSeriess works (@test_brightness.R#111) 
+  6. Error: CorrectForBleachingFolder works (@test_detrend.R#27) 
+  7. Error: BestTau works (@test_detrend.R#42) 
+  8. Error: MeanIntensity works (@test_intensity.R#13) 
+  9. Error: Stack2DTifs works (@test_io.R#17) 
+  1. ...
   
-      Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-      as.data.frame, cbind, colMeans, colSums, colnames, do.call,
-      duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-      lapply, lengths, mapply, match, mget, order, paste, pmax, pmax.int,
-      pmin, pmin.int, rank, rbind, rowMeans, rowSums, rownames, sapply,
-      setdiff, sort, table, tapply, union, unique, unsplit, which,
-      which.max, which.min
-  
-  
-  
-  Error in library("RUnit", quietly = TRUE) : 
-    there is no package called 'RUnit'
-  Calls: <Anonymous> -> library
+  Error: testthat unit tests failed
   Execution halted
 
 checking re-building of vignette outputs ... WARNING
 Error in re-building vignettes:
   ...
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
-! Package pdftex.def Error: File `ClassDiagrams/geneSetsFunc-eps-converted-to.p
-df' not found.
+The following objects are masked from 'package:stats':
 
-See the pdftex.def package documentation for explanation.
+    filter, lag
+
+The following objects are masked from 'package:base':
+
 ... 8 lines ...
-' not found.
+    count
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
-! Package pdftex.def Error: File `ClassDiagrams/FitOptions-eps-converted-to.pdf
-' not found.
+Quitting from lines 40-42 (nandb.Rmd) 
+Error: processing vignette 'nandb.Rmd' failed with diagnostics:
+.onLoad failed in loadNamespace() for 'autothresholdr', details:
+  call: NULL
+  error: .onLoad failed in loadNamespace() for 'rJava', details:
+  call: dyn.load(file, DLLpath = DLLpath, ...)
+  error: unable to load shared object '/netapp/home/hb/R/x86_64-pc-linux-gnu-library/3.4/rJava/libs/rJava.so':
+  libjvm.so: cannot open shared object file: No such file or directory
+Execution halted
+```
 
-See the pdftex.def package documentation for explanation.
-Type  H <retur
+## NanoStringDiff (1.4.0)
+Maintainer: hong wang <hong.wang@uky.edu>
+
+0 errors | 1 warning  | 1 note 
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+    rbind, rownames, sapply, setdiff, sort, table, tapply, union,
+    unique, unsplit, which, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.37 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
 Calls: buildVignettes -> texi2pdf -> texi2dvi
 Execution halted
 
+checking R code for possible problems ... NOTE
+compute.baseSigma: no visible global function definition for ‘IQR’
+createNanoStringSetFromCsv: no visible global function definition for
+  ‘read.table’
+est.dispersion : get.phihat: no visible global function definition for
+  ‘optimize’
+estNormalizationFactors: no visible global function definition for
+  ‘glm’
+estNormalizationFactors: no visible global function definition for
+  ‘poisson’
+... 16 lines ...
+  for ‘optim’
+rnegbinom: no visible global function definition for ‘rpois’
+rnegbinom: no visible global function definition for ‘rgamma’
+Undefined global functions or variables:
+  IQR glm lm median optim optimize p.adjust pchisq poisson read.table
+  rgamma rpois
+Consider adding
+  importFrom("stats", "IQR", "glm", "lm", "median", "optim", "optimize",
+             "p.adjust", "pchisq", "poisson", "rgamma", "rpois")
+  importFrom("utils", "read.table")
+to your NAMESPACE file.
+```
+
+## pandaR (1.6.0)
+Maintainer: Joseph N. Paulson <jpaulson@jimmy.harvard.edu>, Dan Schlauch <dschlauch@fas.harvard.edu>
+
+0 errors | 1 warning  | 4 notes
+
+```
+checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘pandaR.Rmd’
+
+checking installed package size ... NOTE
+  installed size is  9.3Mb
+  sub-directories of 1Mb or more:
+    data   9.1Mb
+
 checking S3 generic/method consistency ... NOTE
 Found the following apparent S3 methods exported but not registered:
-  FitOptions.data.frame FitOptions.default summary.GSEAparams
-  summary.IGSAinput summary.MIGSAres summary.SEAparams
+  plot.panda
 See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
 manual.
-```
-
-## monocle (2.5.4)
-Maintainer: Cole Trapnell <coletrap@uw.edu>
-
-0 errors | 5 warnings | 3 notes
-
-```
-checking whether package ‘monocle’ can be installed ... WARNING
-Found the following significant warnings:
-  Warning: replacing previous import ‘dplyr::union’ by ‘igraph::union’ when loading ‘monocle’
-  Warning: replacing previous import ‘dplyr::as_data_frame’ by ‘igraph::as_data_frame’ when loading ‘monocle’
-  Warning: replacing previous import ‘dplyr::groups’ by ‘igraph::groups’ when loading ‘monocle’
-  Warning: replacing previous import ‘dplyr::arrange’ by ‘plyr::arrange’ when loading ‘monocle’
-See ‘/home/hb/repositories/matrixStats/revdep/checks/monocle.Rcheck/00install.out’ for details.
-
-checking Rd files ... WARNING
-checkRd: (5) detectGenes.Rd:0-27: Must have a \description
-checkRd: (5) plot_cell_trajectory.Rd:0-60: Must have a \description
-prepare_Rd: reducedDimK.Rd:16-18: Dropping empty section \description
-checkRd: (5) reducedDimK.Rd:0-24: Must have a \description
-
-checking for missing documentation entries ... WARNING
-Undocumented code objects:
-  ‘addCellType’ ‘plot_genes_violin’
-All user-level objects in a package should have documentation entries.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
-
-checking Rd \usage sections ... WARNING
-Undocumented arguments in documentation object 'newCellTypeHierarchy'
-  ‘cth’
-
-Documented arguments not in \usage in documentation object 'plot_genes_branched_pseudotime':
-  ‘multi_branch’
-
-Functions with \usage entries need to have the appropriate \alias
-entries, and all their arguments documented.
-The \usage entries must correspond to syntactically valid R code.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
-
-checking Rd contents ... WARNING
-Argument items with no description in Rd object 'plot_cell_trajectory':
-  ‘show_state_number’ ‘state_number_size’
-
-
-checking top-level files ... NOTE
-Non-standard files/directories found at top level:
-  ‘actual_vignette_holder’ ‘examples’
 
 checking R code for possible problems ... NOTE
-assign_cell_lineage: no visible global function definition for ‘nei’
-buildBranchCellDataSet: no visible global function definition for ‘nei’
-clusterCells: no visible binding for global variable ‘rho’
-clusterCells: no visible binding for global variable ‘delta’
-count_leaf_descendents: no visible global function definition for ‘nei’
-cth_classifier_cds: no visible global function definition for ‘nei’
-cth_classifier_cell: no visible global function definition for ‘nei’
-diff_test_helper: no visible binding for global variable ‘Size_Factor’
-extract_good_ordering: no visible global function definition for ‘nei’
-... 14 lines ...
-plot_multiple_branches_pseudotime: no visible binding for global
-  variable ‘pseudocount’
-plot_multiple_branches_pseudotime: no visible binding for global
-  variable ‘Branch’
-project2MST: no visible global function definition for ‘nei’
+dFunction: no visible global function definition for ‘cor’
+importPandaMatlab: no visible global function definition for
+  ‘read.delim’
+normalizeNetwork: no visible global function definition for ‘sd’
+panda: no visible global function definition for ‘cor’
+panda: no visible global function definition for ‘aggregate’
+plot.panda: no visible global function definition for ‘hist’
+plotCommunityDetection: no visible global function definition for
+  ‘title’
+plotZbyTF: no visible global function definition for ‘aggregate’
+prepResult: no visible global function definition for ‘pnorm’
 Undefined global functions or variables:
-  Branch Size_Factor delta esApply exprs<- lowess nei next_node
-  pseudocount rho
+  aggregate cor hist pnorm read.delim sd title
 Consider adding
-  importFrom("stats", "lowess")
+  importFrom("graphics", "hist", "title")
+  importFrom("stats", "aggregate", "cor", "pnorm", "sd")
+  importFrom("utils", "read.delim")
 to your NAMESPACE file.
 
-checking files in ‘vignettes’ ... NOTE
-The following files look like leftovers/mistakes:
-  ‘monocle-vignette-knitr.bbl’, ‘monocle-vignette-knitr.log’,
-  ‘monocle-vignette-knitr.toc’
-Please remove them from your package.
-The following directory looks like a leftover from 'knitr':
-  ‘figure’
-Please remove from your package.
+checking Rd \usage sections ... NOTE
+S3 methods shown with full name in documentation object 'plot.panda':
+  ‘plot.panda’
+
+The \usage entries for S3 methods should use the \method markup and not
+their full name.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
 ```
 
-## PathoStat (1.3.0)
+## PathoStat (1.0.0)
 Maintainer: Solaiappan Manimaran <manimaran_1975@hotmail.com>  
 Bug reports: https://github.com/mani2012/PathoStat/issues
 
-0 errors | 1 warning  | 0 notes
+0 errors | 2 warnings | 0 notes
 
 ```
 checking sizes of PDF files under ‘inst/doc’ ... WARNING
   ‘gs+qpdf’ made some significant size reductions:
      compacted ‘PathoStatUserManual.pdf’ from 1.9Mb to 1.0Mb
   consider running tools::compactPDF(gs_quality = "ebook") on these files
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Warning: Transformation introduced infinite values in discrete y-axis
+pandoc: Error producing PDF from TeX source.
+! LaTeX Error: File `framed.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.33 \definecolor
+
+Error: processing vignette 'PathoStatUserManual.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 43
+Execution halted
+
 ```
 
-## QDNAseq (1.13.0)
+## peakPick (0.11)
+Maintainer: Paal O. Westermark <pal-olof.westermark@charite.de>
+
+0 errors | 1 warning  | 0 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Loading required package: peakPick
+pandoc: Could not find data file peakPick-vignette_files/figure-html/detect%20peaks-1.png
+Error: processing vignette 'peakPick-vignette.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 97
+Execution halted
+
+```
+
+## Pigengene (1.0.0)
+Maintainer: Habil Zare <zare@txstate.edu>
+
+0 errors | 1 warning  | 2 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Warning: running command 'kpsewhich framed.sty' had status 1
+Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+  unable to find LaTeX package 'framed'; will use a copy from knitr
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  Running 'texi2dvi' on 'Pigengene_inference.tex' failed.
+LaTeX errors:
+! LaTeX Error: File `sectsty.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.38 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
+
+checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘AnnotationDbi’ ‘biomaRt’ ‘energy’ ‘org.Hs.eg.db’ ‘org.Mm.eg.db’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+
+checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘Pigengene/R/bn.calculation.R’:
+  assignInNamespace("supported.clusters", fixArgs, "bnlearn")
+
+welch.pvalue: no visible global function definition for ‘as.formula’
+welch.pvalue: no visible global function definition for ‘oneway.test’
+Undefined global functions or variables:
+  as.formula oneway.test
+Consider adding
+  importFrom("stats", "as.formula", "oneway.test")
+to your NAMESPACE file.
+```
+
+## QDNAseq (1.10.0)
 Maintainer: Daoud Sie <d.sie@vumc.nl>  
 Bug reports: https://github.com/ccagc/QDNAseq/issues
 
 0 errors | 1 warning  | 0 notes
 
 ```
-checking for missing documentation entries ... WARNING
-Undocumented code objects:
-  ‘exportVCF’
-All user-level objects in a package should have documentation entries.
-See chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+24584404649823131.335.538865427963037207.660.838865426545733207.650
+24584464649826131.335.538865427963037207.660.838865426545733207.650
+24584494649829131.335.538865427963037207.660.838865426545733207.650
+24585294750440131.336.338865427963037207.660.838865426545733207.650
+24589544750608131.436.338865427963037207.660.838865426545733207.650
+FINISHED!
+
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.38 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
 ```
 
-## RnBeads (1.9.0)
+## RnBeads (1.6.1)
 Maintainer: Fabian Mueller <rnbeads@mpi-inf.mpg.de>
 
-1 error  | 3 warnings | 5 notes
+0 errors | 8 warnings | 6 notes
 
 ```
-checking tests ... ERROR
-  Running ‘runTests.R’
-Running the tests in ‘tests/runTests.R’ failed.
-Last 13 lines of output:
-  
-      ozone
-  
-  The following object is masked from 'package:IRanges':
-  
-      desc
-  
-  The following object is masked from 'package:S4Vectors':
-  
-      rename
-  
-  Error in library("RUnit", quietly = TRUE) : 
-    there is no package called 'RUnit'
-  Calls: <Anonymous> -> library
-  Execution halted
-
 checking for executable files ... WARNING
 Found the following executable files:
   inst/bin/linux_x86.64/bedGraphToBigWig
@@ -1051,7 +1929,27 @@ Found the following executable files:
 Source packages should not contain undeclared executable files.
 See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
 
+checking whether package ‘RnBeads’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘gridExtra::combine’ by ‘methylumi::combine’ when loading ‘RnBeads’
+See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/RnBeads.Rcheck/00install.out’ for details.
+
+checking package subdirectories ... WARNING
+Subdirectory ‘data’ contains no data sets.
+
 checking dependencies in R code ... WARNING
+'::' or ':::' import not declared from: 'GLAD'
+'library' or 'require' calls not declared from:
+  'GLAD' 'IlluminaHumanMethylation450kanno.ilmn12.hg19' 'scales'
+'library' or 'require' calls in package code:
+  'Category' 'GLAD' 'GOstats' 'Gviz'
+  'IlluminaHumanMethylation450kanno.ilmn12.hg19'
+  'IlluminaHumanMethylation450kmanifest' 'RefFreeEWAS' 'annotate'
+  'biomaRt' 'doParallel' 'foreach' 'glmnet' 'impute' 'isva' 'minfi'
+  'nlme' 'quadprog' 'scales' 'sva' 'wateRmelon'
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Missing or unexported object: 'GenomicRanges::unlist'
 Unexported objects imported by ':::' calls:
   'Gviz:::.getBMFeatureMap' 'doParallel:::.options'
   'grDevices:::.smoothScatterCalcDensity'
@@ -1060,26 +1958,77 @@ Unexported objects imported by ':::' calls:
   See the note in ?`:::` about the use of this operator.
   Including base/recommended package(s):
   'grDevices'
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  'CONTROL.TARGETS.SAMPLE.INDEPENDENT'
+
+checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'BigFfMat,ANY,ANY,ANY'
+  generic '[<-' and siglist 'BigFfMat,ANY,ANY,ANY'
+  generic 'dim' and siglist 'BigFfMat'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
+checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'read.single.bed'
+  ‘chr.col’ ‘start.col’ ‘end.col’ ‘strand.col’ ‘c.col’ ‘t.col’
+  ‘is.epp.style’ ‘coord.shift’ ‘ffread’ ‘context’ ‘...’
+
+Undocumented arguments in documentation object 'sampleCovgApply,RnBSet-method'
+  ‘object’ ‘type’ ‘...’
+
+Undocumented arguments in documentation object 'sampleMethApply,RnBSet-method'
+  ‘object’ ‘type’ ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
 
 checking sizes of PDF files under ‘inst/doc’ ... WARNING
   ‘gs+qpdf’ made some significant size reductions:
-     compacted ‘RnBeads.pdf’ from 2.8Mb to 1.5Mb
+     compacted ‘RnBeads.pdf’ from 2.8Mb to 2.0Mb
   consider running tools::compactPDF(gs_quality = "ebook") on these files
 
-checking package dependencies ... NOTE
-Package suggested but not available for checking: ‘ggbio’
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+Warning in is.na(x[[i]]) :
+  is.na() applied to non-(list or vector) of type 'environment'
+'BiocParallel' did not register default BiocParallelParams:
+  invalid class “MulticoreParam” object: 1: ‘cluster’, ‘.clusterargs’, ‘.uid’, ‘RNGseed’ must be length 1
+invalid class “MulticoreParam” object: 2: ‘.clusterargs’, ‘.controlled’, ‘logdir’, ‘resultdir’ must be length 1
+Warning: replacing previous import ‘gridExtra::combine’ by ‘methylumi::combine’ when loading ‘RnBeads’
+Loading required package: doParallel
+... 6 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
+! Emergency stop.
+<read *> 
+         
+l.10 \usepackage
+                [american]{babel}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
+checking package dependencies ... NOTE
 Depends: includes the non-default packages:
-  ‘BiocGenerics’ ‘S4Vectors’ ‘GenomicRanges’ ‘MASS’ ‘cluster’ ‘ff’
-  ‘fields’ ‘ggplot2’ ‘gplots’ ‘gridExtra’ ‘limma’ ‘matrixStats’
-  ‘illuminaio’ ‘methylumi’ ‘plyr’
+  ‘BiocGenerics’ ‘S4Vectors’ ‘GenomicRanges’ ‘MASS’ ‘RColorBrewer’
+  ‘cluster’ ‘ff’ ‘fields’ ‘ggplot2’ ‘gplots’ ‘gridExtra’ ‘limma’
+  ‘matrixStats’ ‘illuminaio’ ‘methylumi’ ‘plyr’
 Adding so many packages to the search path is excessive and importing
 selectively is preferable.
 
 checking installed package size ... NOTE
-  installed size is  6.2Mb
+  installed size is  6.5Mb
   sub-directories of 1Mb or more:
-    R     1.1Mb
+    R     1.4Mb
     bin   1.0Mb
     doc   3.1Mb
 
@@ -1097,151 +2046,144 @@ session will be unable to start.
 Probably some imports need to be declared in the NAMESPACE file.
 
 checking R code for possible problems ... NOTE
+add.combination.plot: warning in facet_grid(Set ~ ., scale = "free",
+  drop = TRUE): partial argument match of 'scale' to 'scales'
 .stopImplicitCluster: no visible global function definition for
   ‘stopCluster’
+BMIQ: no visible global function definition for ‘density’
+BMIQ: no visible global function definition for ‘pbeta’
+BMIQ: no visible global function definition for ‘qbeta’
 MethyLumiSet2RnBeadSet: no visible global function definition for
   ‘phenoData’
-MethyLumiSet2RnBeadSet: no visible global function definition for
-  ‘assayDataElementNames’
-MethyLumiSet2RnBeadSet: no visible global function definition for
-  ‘featureNames’
-MethyLumiSet2RnBeadSet: no visible global function definition for
-... 486 lines ...
-  foreach geneCounts genome<- getCN getDoParWorkers getGreen
-  getManifest getMeth getRed getSex getUnmeth getVarCov glmnet
-  grid.draw grid.newpage group group1 group2 i impute.knn intensities
-  is.subsegmentation k letterFrequency lme mapToGenome mean.diff
-  mean.g1 mean.g2 mean.mean.g1 mean.mean.g2 mean.quot.log2 melt muted
-  n.sites num.sites numSites numeric.names oddsRatios pData
-  percent_format phenoData phenoData<- plotOrder plotTracks
-  preprocessSWAN pvalues refText reg.type region.size
-  registerDoParallel relative.coord report samples seqlengths
-  seqlevels<- sigCategories sites2ignore size solve.QP stopCluster sva
-  target tsne type types universeCounts useMart v varLabels x y yint
-```
-
-## RTransProb (0.1.0)
-Maintainer: Ab NDiaye <pabdndiaye@gmail.com>
-
-1 error  | 0 warnings | 0 notes
-
-```
-checking examples ... ERROR
-Running examples in ‘RTransProb-Ex.R’ failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: TransitionProb
-> ### Title: Estimation of credit transition probabilities
-> ### Aliases: TransitionProb
-> 
-> ### ** Examples
-> 
-> 
-> #Example 1:
-> #When start date and end date are not specified, the entire dataset is used and the package
-> #performs TTC calculations. Equally when snapshots and interval are not specified the defaults
-> #are 1.
-> snapshots <- 0
-> interval <- 0
-> startDate  <- 0
-> endDate    <- 0
-> Example1<-TransitionProb(data,startDate,endDate,'cohort', snapshots, interval)
-Error in if (is.nan(rating)) { : the condition has length > 1
-Calls: TransitionProb -> getidTotCntCohort
-Execution halted
-```
-
-## scone (1.1.2)
-Maintainer: Michael Cole <mbeloc@gmail.com>  
-Bug reports: https://github.com/YosefLab/scone/issues
-
-2 errors | 0 warnings | 4 notes
-
-```
-checking examples ... ERROR
-Running examples in ‘scone-Ex.R’ failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: SCRAN_FN
-> ### Title: Simple deconvolution normalization wrapper
-> ### Aliases: SCRAN_FN
-> 
-> ### ** Examples
-> 
-> ei <- matrix(0:76,nrow = 7)
-> eo <- SCRAN_FN(ei)
-Error in SCRAN_FN(ei) : scran package needed for SCRAN_FN()
-Execution halted
-
-checking tests ... ERROR
-  Running ‘testthat.R’
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-  testthat results ================================================================
-  OK: 7 SKIPPED: 0 FAILED: 16
-  1. Error: all back-ends work (@test_bpparam.R#17) 
-  2. Error: get_normalized works in all three modes (@test_get_design.R#18) 
-  3. Error: get_normalized works in all three modes (@test_get_norm.R#18) 
-  4. Error: get_normalized works in all three modes with nested model (@test_get_norm.R#76) 
-  5. Error: return_norm in memory (@test_hdf5.R#44) 
-  6. Error: do not return_norm (@test_hdf5.R#65) 
-  7. Error: Upper-quartile normalization works the same as in the edgeR package (@test_norm.R#15) 
-  8. Error: Test with no real method (only identity) (@test_scone.R#12) 
-  9. Error: Test imputation and scaling (@test_scone.R#129) 
-  1. ...
-  
-  Error: testthat unit tests failed
-  Execution halted
-
-checking package dependencies ... NOTE
-Package suggested but not available for checking: ‘scran’
-
-checking dependencies in R code ... NOTE
-'library' or 'require' calls in package code:
-  ‘ggplot2’ ‘plotly’ ‘visNetwork’
-  Please use :: or requireNamespace() instead.
-  See section 'Suggested packages' in the 'Writing R Extensions' manual.
-Missing or unexported object: ‘shiny::renderPlotly’
-
-checking R code for possible problems ... NOTE
-sconeReport: no visible global function definition for
-  ‘visNetworkOutput’
-sconeReport: no visible global function definition for ‘plotlyOutput’
-sconeReport : server: no visible global function definition for
-  ‘renderVisNetwork’
-sconeReport : server: no visible global function definition for ‘%>%’
-sconeReport : server: no visible global function definition for
-  ‘visNetwork’
-sconeReport : server: no visible global function definition for
-... 46 lines ...
-Undefined global functions or variables:
-  %>% aes boxplot coord_cartesian element_blank geom_bar geom_point
-  geom_violin ggplot ggplotly guides labs plot_ly plotlyOutput
-  renderVisNetwork scale_fill_manual setNames theme var visEdges
-  visGroups visHierarchicalLayout visLegend visNetwork visNetworkOutput
-  visNetworkProxy visOptions visSelectNodes write.csv ylim
-Consider adding
-  importFrom("graphics", "boxplot")
-  importFrom("stats", "setNames", "var")
-  importFrom("utils", "write.csv")
+... 730 lines ...
+             "cutree", "dbeta", "density", "dist", "ecdf", "fisher.test",
+             "hclust", "knots", "kruskal.test", "lm", "model.matrix",
+             "optim", "order.dendrogram", "p.adjust", "pbeta", "pchisq",
+             "pf", "pnorm", "prcomp", "predict", "pt", "qbeta",
+             "reorder", "residuals", "rnorm", "rt", "t.test", "vcov",
+             "wilcox.test")
+  importFrom("utils", "browseURL", "capture.output", "combn", "data",
+             "download.file", "installed.packages", "memory.size",
+             "packageVersion", "read.csv", "read.delim", "read.table",
+             "untar", "unzip", "write.table", "zip")
 to your NAMESPACE file.
 
-checking Rd cross-references ... NOTE
-Package unavailable to check Rd xrefs: ‘scran’
+checking Rd line widths ... NOTE
+Rd file 'addDiffMethTable-RnBDiffMeth-methods.Rd':
+  \examples lines wider than 100 characters:
+     dm <- rnb.execute.computeDiffMeth(rnb.set.example,pheno.cols="Sample_Group",region.types=c("genes","tiling"))
+     dmt.sites <- computeDiffTab.extended.site(meth(rnb.set.example),sample.groups[[1]],sample.groups[[2]])
+
+Rd file 'is.valid-RnBDiffMeth-methods.Rd':
+  \examples lines wider than 100 characters:
+     dm1 <- rnb.execute.computeDiffMeth(rnb.set.example,pheno.cols=c("Sample_Group"),region.types=c("genes","tiling"))
+     dm2 <- rnb.execute.computeDiffMeth(rnb.set.example,pheno.cols=c("Sample_Group","Treatment"),region.types=c("promoters"))
+... 17 lines ...
+     txt <- c("A pessimist is a person who has had to listen to too many optimists. ", "<i>Don Marquis</i>")
+
+Rd file 'rnb.runs.Rd':
+  \examples lines wider than 100 characters:
+     result <- rnb.run.import(data.source = data.source, data.type = "idat.dir", dir.reports = report.dir)
+
+Rd file 'save.tables-RnBDiffMeth-methods.Rd':
+  \examples lines wider than 100 characters:
+     dm <- rnb.execute.computeDiffMeth(rnb.set.example,pheno.cols=c("Sample_Group","Treatment"),disk.dump=TRUE,disk.dump.dir=tempfile())
+
+These lines will be truncated in the PDF manual.
 ```
 
-## SICtools (1.7.0)
+## shinyMethyl (1.10.0)
+Maintainer: Jean-Philippe Fortin <jfortin@jhsph.edu>
+
+0 errors | 1 warning  | 2 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+
+The following object is masked from 'package:SummarizedExperiment':
+
+    rowRanges
+
+The following objects are masked from 'package:Biobase':
+
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.38 \sectionfont
+                 {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
+checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+
+checking R code for possible problems ... NOTE
+addHoverDensity: no visible global function definition for ‘lines’
+addHoverPoints: no visible global function definition for ‘points’
+addHoverQC: no visible global function definition for ‘points’
+densitiesPlot: no visible global function definition for ‘plot’
+densitiesPlot: no visible global function definition for ‘lines’
+plotDesign450k: no visible global function definition for ‘par’
+plotDesign450k: no visible global function definition for ‘plot’
+plotDiscrepancyGenders: no visible global function definition for
+  ‘legend’
+... 60 lines ...
+Undefined global functions or variables:
+  abline complete.cases current.control.type current.density.type
+  current.probe.type genderCutoff grid legend lines lm
+  mouse.click.indices palette par plot points prcomp rect write.csv
+Consider adding
+  importFrom("grDevices", "palette")
+  importFrom("graphics", "abline", "grid", "legend", "lines", "par",
+             "plot", "points", "rect")
+  importFrom("stats", "complete.cases", "lm", "prcomp")
+  importFrom("utils", "write.csv")
+to your NAMESPACE file.
+```
+
+## SICtools (1.4.0)
 Maintainer: Xiaobin Xing <xiaobinxing0316@gmail.com>
 
-0 errors | 1 warning  | 4 notes
+0 errors | 2 warnings | 4 notes
 
 ```
 checking whether package ‘SICtools’ can be installed ... WARNING
 Found the following significant warnings:
   Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
-See ‘/home/hb/repositories/matrixStats/revdep/checks/SICtools.Rcheck/00install.out’ for details.
+See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools.Rcheck/00install.out’ for details.
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+    compact
+
+The following object is masked from 'package:IRanges':
+
+    desc
+
+The following object is masked from 'package:S4Vectors':
+... 8 lines ...
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.34 \definecolor
+
+Error: processing vignette 'SICtools.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 43
+Execution halted
 
 checking package dependencies ... NOTE
 Depends: includes the non-default packages:
@@ -1283,92 +2225,171 @@ Rd file 'snpDiff.Rd':
 These lines will be truncated in the PDF manual.
 ```
 
-## splatter (1.1.4)
-Maintainer: Luke Zappia <luke.zappia@mcri.edu.au>  
-Bug reports: https://github.com/Oshlack/splatter/issues
+## SRGnet (1.0.0)
+Maintainer: Isar Nassiri <isar_nassiri@urmc.rochester.edu>
 
 1 error  | 0 warnings | 1 note 
 
 ```
-checking tests ... ERROR
-  Running ‘testthat.R’ [19s/19s]
-Running the tests in ‘tests/testthat.R’ failed.
-Last 13 lines of output:
-  2: stop("The scDD simulation requires the 'scDD' package.")
-  
-  3. Error: scDD simulation output is valid (@test-scDD-simulate.R#4) ------------
-  The scDD simulation requires the 'scDD' package.
-  1: newSCDDParams(nDE = 5, nDP = 5, nDM = 5, nDB = 5, nEE = 5, nEP = 5) at testthat/test-scDD-simulate.R:4
-  2: stop("The scDD simulation requires the 'scDD' package.")
-  
-  testthat results ================================================================
-  OK: 38 SKIPPED: 0 FAILED: 3
-  1. Error: constructor is valid (@test-SCDDParams.R#4) 
-  2. Error: nGenes checks work (@test-SCDDParams.R#8) 
-  3. Error: scDD simulation output is valid (@test-scDD-simulate.R#4) 
-  
-  Error: testthat unit tests failed
-  Execution halted
+checking whether package ‘SRGnet’ can be installed ... ERROR
+Installation failed.
+See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SRGnet.Rcheck/00install.out’ for details.
 
 checking package dependencies ... NOTE
-Package suggested but not available for checking: ‘scran’
+Depends: includes the non-default packages:
+  ‘EBcoexpress’ ‘MASS’ ‘igraph’ ‘pvclust’ ‘RedeR’ ‘gRain’ ‘gbm’ ‘limma’
+  ‘DMwR’ ‘matrixStats’
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
 ```
 
-## StructFDR (1.2)
-Maintainer: Jun Chen <chen.jun2@mayo.edu>
+## stm (1.2.2)
+Maintainer: Brandon Stewart <bms4@princeton.edu>  
+Bug reports: https://github.com/bstewart/stm/issues
 
-1 error  | 0 warnings | 0 notes
+0 errors | 1 warning  | 0 notes
 
 ```
-checking examples ... ERROR
-Running examples in ‘StructFDR-Ex.R’ failed
-The error most likely occurred in:
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+stm v1.2.2 (2017-03-28) successfully loaded. See ?stm for help.
+Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+  Running 'texi2dvi' on 'stmVignette.tex' failed.
+LaTeX errors:
+! LaTeX Error: File `ulem.sty' not found.
 
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: StructFDR
-> ### Title: False Discovery Rate (FDR) Control Integrating a General Prior
-> ###   Structure
-> ### Aliases: StructFDR
-> ### Keywords: Multiple testing False discovery rate Genetics Metagenomics
-... 39 lines ...
-> 
-> # Call StructFDR
-> tree.fdr.obj <- StructFDR(X, Y, D, test.func, perm.func)
-Warning in StructFDR(X, Y, D, test.func, perm.func) :
-  Both the data matrix and the distance matrix should have labels (rownames) to avoid potential errors!
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
-Test on original data sets  ...
-Test on permuted data sets  ...
-Error in if (alt.FDR == "Permutation") { : the condition has length > 1
-Calls: StructFDR
+! Emergency stop.
+<read *> 
+         
+l.57 ^^M
+        
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
 Execution halted
+
 ```
 
-## XBSeq (1.7.0)
+## topGO (2.26.0)
+Maintainer: Adrian Alexa <adrian.alexa@gmail.com>
+
+0 errors | 1 warning  | 4 notes
+
+```
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+	 Level 2:	19 nodes to be scored.
+
+	 Level 1:	1 nodes to be scored.
+
+			 -- Classic Algorithm -- 
+
+		 the algorithm is scoring 3874 nontrivial nodes
+... 8 lines ...
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.11 \usepackage
+                {caption}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Calls: buildVignettes -> texi2pdf -> texi2dvi
+Execution halted
+
+checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  ‘BiocGenerics’ ‘graph’ ‘Biobase’ ‘GO.db’ ‘AnnotationDbi’ ‘SparseM’
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+
+checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘Rgraphviz’ ‘multtest’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Missing object imported by a ':::' call: ‘globaltest:::globaltest’
+
+checking R code for possible problems ... NOTE
+GOplot: no visible global function definition for ‘getDefaultAttrs’
+GOplot: no visible global function definition for ‘agopen’
+GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+  global function definition for ‘getNodeCenter’
+GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+  global function definition for ‘pieGlyph’
+GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+  global function definition for ‘getX’
+GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+... 35 lines ...
+  getDefaultAttrs getNodeCenter getNodeLW getNodeXY getX getY
+  mt.rawp2adjp mt.teststat name pieGlyph scoreInNode toDot txtLabel
+
+Found the following assignments to the global environment:
+File ‘topGO/R/topGOtests.R’:
+  assign(".PERMSUM.LOOKUP", sizeLookUp, .GlobalEnv)
+  assign(".PERMSUM.MAT", sapply(1:N, function(x) cumsum(sample(scoreVec, 
+    maxSample))[goSize]), .GlobalEnv)
+  assign(".PERMSUM.LOOKUP", sizeLookUp, .GlobalEnv)
+  assign(".PERMSUM.MAT", sapply(1:N, function(x) cumsum(sample(scoreVec))[goSize]), 
+    .GlobalEnv)
+
+checking Rd line widths ... NOTE
+Rd file 'diagnosticMethods.Rd':
+  \examples lines wider than 100 characters:
+     sig.tab <- GenTable(GOdata, Fis = resultFisher, KS = resultKS, orderBy = "KS", ranksOf = "Fis", topNodes = 20)
+
+Rd file 'getPvalues.Rd':
+  \usage lines wider than 90 characters:
+        getPvalues(edata, classlabel, test = "t", alternative = c("greater", "two.sided", "less")[1],
+        genesID = NULL, correction = c("none", "Bonferroni", "Holm", "Hochberg", "SidakSS", "SidakSD",
+
+Rd file 'printGraph-methods.Rd':
+  \usage lines wider than 90 characters:
+                    useFullNames = TRUE, oldSigNodes = NULL, useInfo = c("none", "pval", "counts", "def", "np", "all")[1],
+  \examples lines wider than 100 characters:
+     printGraph(GOdata, resultFisher, firstSigNodes = 5, fn.prefix = "sampleFile", useInfo = "all", pdfSW = TRUE)
+
+Rd file 'topGOdata-class.Rd':
+  \examples lines wider than 100 characters:
+                   description = "GO analysis of ALL data: Differential Expression between B-cell and T-cell",
+
+These lines will be truncated in the PDF manual.
+```
+
+## XBSeq (1.4.0)
 Maintainer: Yuanhang Liu <liuy12@uthscsa.edu>
 
-1 error  | 0 warnings | 3 notes
+1 error  | 1 warning  | 3 notes
 
 ```
 checking tests ... ERROR
-  Running ‘testthat.R’ [146s/146s]
+  Running ‘testthat.R’ [142s/143s]
 Running the tests in ‘tests/testthat.R’ failed.
 Last 13 lines of output:
-      colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
+      'citation("Biobase")', and for packages 'citation("pkgname")'.
   
-  The following object is masked from 'package:base':
-  
-      apply
-  
+  'BiocParallel' did not register default BiocParallelParams:
+    invalid class "MulticoreParam" object: 1: 'cluster', '.clusterargs', '.uid', 'RNGseed' must be length 1
+  invalid class "MulticoreParam" object: 2: '.clusterargs', '.controlled', 'logdir', 'resultdir' must be length 1
       Welcome to 'XBSeq'.
+  Warning message:
+  In is.na(x[[i]]) :
+    is.na() applied to non-(list or vector) of type 'environment'
   > 
   > test_check("XBSeq")
-  estimating parameters using MLE for group one 
-  estimating parameters using MLE for group two 
   Error: XBplot(XB, Samplenum = "Sample_54_WT") did not throw an error.
   testthat results ================================================================
   OK: 0 SKIPPED: 0 FAILED: 0
   Execution halted
+
+checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘XBSeq.Rmd’
 
 checking whether the namespace can be loaded with stated dependencies ... NOTE
 Warning: no function found corresponding to methods exports from ‘XBSeq’ for: ‘conditions’, ‘conditions<-’, ‘dispTable’
@@ -1381,15 +2402,15 @@ Probably some imports need to be declared in the NAMESPACE file.
 
 checking R code for possible problems ... NOTE
 Loglikhood : <anonymous>: no visible global function definition for
-  ‘ddelap’
-Loglikhood : <anonymous>: no visible global function definition for
   ‘dpois’
-Loglikhood_NB : <anonymous>: no visible global function definition for
-  ‘dnbinom’
 MAplot: no visible binding for global variable ‘baseMean’
 MAplot: no visible global function definition for ‘quantile’
 MAplot: no visible binding for global variable ‘log2FoldChange’
-... 49 lines ...
+XBSeqDataSet: no visible global function definition for ‘DataFrame’
+XBSeqDataSet: no visible global function definition for
+  ‘SummarizedExperiment’
+XBSeqDataSet: no visible global function definition for ‘formula’
+... 45 lines ...
   importFrom("stats", "Gamma", "coefficients", "complete.cases", "cor",
              "dnbinom", "dpois", "formula", "glm", "median", "optim",
              "p.adjust", "pbeta", "predict", "qbeta", "quantile",
@@ -1416,5 +2437,57 @@ Rd file 'estimateSCV.Rd':
      estimateSCV( object, method = c( "pooled", "per-condition", "blind" ), sharingMode = c( "maximum", "fit-only", "gene-est-only" ),
 
 These lines will be truncated in the PDF manual.
+```
+
+## yarn (1.0.1)
+Maintainer: Joseph N Paulson <jpaulson@jimmy.harvard.edu>
+
+1 error  | 1 warning  | 0 notes
+
+```
+checking examples ... ERROR
+Running examples in ‘yarn-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: annotateFromBiomart
+> ### Title: Annotate your Expression Set with biomaRt
+> ### Aliases: annotateFromBiomart
+> 
+> ### ** Examples
+> 
+> 
+> data(skin)
+> # subsetting and changing column name just for a silly example
+> skin <- skin[1:10,]
+> colnames(fData(skin)) = paste("names",1:6)
+> host<-"dec2013.archive.ensembl.org"; biomart<-"ENSEMBL_MART_ENSEMBL";
+> genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
+> newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart,host=host)
+Error in value[[3L]](cond) : 
+  Request to BioMart web service failed. Verify if you are still connected to the internet.  Alternatively the BioMart web service is temporarily down.
+Calls: annotateFromBiomart ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+Execution halted
+** found \donttest examples: check also with --run-donttest
+
+checking re-building of vignette outputs ... WARNING
+Error in re-building vignettes:
+  ...
+pandoc: Error producing PDF from TeX source.
+! LaTeX Error: File `framed.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.34 \definecolor
+
+Error: processing vignette 'yarn.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 43
+Execution halted
+
 ```
 
