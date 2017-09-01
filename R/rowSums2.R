@@ -5,7 +5,8 @@
 #' The implementation of \code{rowSums2()} and \code{colSums2()} is
 #' optimized for both speed and memory.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @param x A \code{\link[base]{numeric}} or a \code{\link[base]{logical}}
+#' NxK \code{\link[base]{matrix}}.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
