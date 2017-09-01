@@ -32,6 +32,8 @@ is outside the range of defined integer values.
 Note that the intermediate sum (\code{sum(x[1:n])}) is internally
 represented as a floating point value and will therefor never be outside of
 the range.
+If \code{mode = "integer"} and \code{typeof{x} == "double"}, then a warning
+is generated.
 }
 \description{
 Computes the sum of all or a subset of values.

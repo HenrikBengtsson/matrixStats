@@ -31,8 +31,10 @@
 #' If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}
 #' is outside the range of defined integer values.
 #' Note that the intermediate sum (\code{sum(x[1:n])}) is internally
-#' represented as a floating point value and will therefor never be outside of
+#' represented as a floating point value and will therefore never be outside of
 #' the range.
+#' If \code{mode = "integer"} and \code{typeof{x} == "double"}, then a warning
+#' is generated.
 #'
 #' @example incl/sum2.R
 #'
@@ -48,9 +50,10 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  x_logical <- is.logical(x)
+  x_mode <- typeof(x)
+  x_logical <- (x_mode == "logical")
   if (!is.numeric(x) && !x_logical) {
-    stop("Argument 'x' is neither numeric nor logical: ", mode(x))
+    stop("Argument 'x' is neither numeric nor logical: ", x_mode)
   }
 
   # Argument 'na.rm':
@@ -60,10 +63,18 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 
   # Argument 'mode':
   mode <- mode[1L]
-  ## SPECIAL CASE: If `x` is logical, default mode should be `integer`
-  if (x_logical && mode == "logical") mode <- "integer"
-  mode_idx <- charmatch(mode, c("integer", "double"), nomatch = 0L)
-  if (mode_idx == 0L) {
+  if (x_logical && mode == "logical") {
+    ## SPECIAL CASE: If `x` is logical, default mode should be `integer`
+    mode_idx <- 1L
+  } else if (mode == "integer") {
+    mode_idx <- 1L
+    ## Coercing results from double to integer is likely a mistake
+    if (x_mode == "double") {
+      warning('sum2(x, mode = "integer") called with typeof(x) == "double"; did you mean to use as.integer(sum2(x))?')
+    }
+  } else if (mode == "double") {
+    mode_idx <- 2L
+  } else {
     stop("Unknown value of argument 'mode': ", mode)
   }
   
