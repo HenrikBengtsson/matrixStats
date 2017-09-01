@@ -11,7 +11,8 @@ NEW FEATURES:
    count number of TRUE elements beyond 2^31-1, which base::sum() does not
    support.
 
- o Functions col- and rowSums2() now accept also logical input 'x'.
+ o Functions col- and rowSums2() and col- and rowMeans2() now accept also
+   logical input 'x'.
  
  o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
    to to using as.integer(y).
