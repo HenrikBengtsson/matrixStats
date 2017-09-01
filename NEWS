@@ -25,6 +25,8 @@ BUG FIX:
 
  o count() beyond 2^31-1 would return invalid results.
 
+ o Functions col- and rowTabulates(x) did not count missing values.
+
 
 Version: 0.52.2 [2017-04-13]
 

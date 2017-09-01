@@ -54,7 +54,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
       names <- paste("0x", names, sep = "")
       values <- as.raw(values)
     } else {
-      values <- sort(values)
+      values <- sort(values, na.last = TRUE)
       names <- as.character(values)
     }
   } else {
@@ -70,9 +70,9 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   nbr_of_values <- length(values)
   counts <- matrix(0L, nrow = nrow(x), ncol = nbr_of_values)
   colnames(counts) <- names
-
+  na.rm <- anyNA(x)
   for (kk in seq_len(nbr_of_values)) {
-    counts[, kk] <- rowCounts(x, value = values[kk], ...)
+    counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
   }
 
   counts
@@ -111,7 +111,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
       names <- paste("0x", names, sep = "")
       values <- as.raw(values)
     } else {
-      values <- sort(values)
+      values <- sort(values, na.last = TRUE)
       names <- as.character(values)
     }
   } else {
@@ -129,8 +129,9 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
     nbr_of_values <- length(values)
     counts <- matrix(0L, nrow = ncol(x), ncol = nbr_of_values)
     colnames(counts) <- names
+    na.rm <- anyNA(x)
     for (kk in seq_len(nbr_of_values)) {
-      counts[, kk] <- colCounts(x, value = values[kk], ...)
+      counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
     }
   }
   counts

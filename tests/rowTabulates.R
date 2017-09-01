@@ -10,7 +10,7 @@ for (mode in modes) {
 
   x <- data
   if (mode == "logical") x <- x - 2L
-#  if (mode != "raw") x[c(2,5,7)] <- NA_integer_
+  if (mode != "raw") x[c(2,5,7)] <- NA_integer_
   storage.mode(x) <- mode
   print(x)
 
@@ -19,11 +19,17 @@ for (mode in modes) {
   
   y <- rowTabulates(x)
   print(y)
-  stopifnot(identical(dim(y), c(nrow, nbr_of_unique_values)))
+  stopifnot(
+    identical(dim(y), c(nrow, nbr_of_unique_values)),
+    all(y >= 0)
+  )
 
   y <- colTabulates(x)
   print(y)
-  stopifnot(identical(dim(y), c(ncol, nbr_of_unique_values)))
+  stopifnot(
+    identical(dim(y), c(ncol, nbr_of_unique_values)),
+    all(y >= 0)
+  )
 
   # Count only certain values
   if (mode == "integer") {
@@ -50,8 +56,10 @@ for (mode in modes) {
   
     y2 <- colTabulates(t(x), values = as.raw(subset))
     print(y2)
-    stopifnot(identical(dim(y2), c(nrow, length(subset))))
-    stopifnot(identical(y2, y))
+    stopifnot(
+      identical(dim(y2), c(nrow, length(subset))),
+      identical(y2, y)
+    )
   }
 
   cat(sprintf("Mode: %s...done\n", mode))
