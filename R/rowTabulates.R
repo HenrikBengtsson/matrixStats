@@ -3,8 +3,8 @@
 #' Tabulates the values in a matrix by row (column).
 #'
 #'
-#' @param x An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK
-#' \code{\link[base]{matrix}}.
+#' @param x An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
+#' a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -30,9 +30,10 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (is.integer(x)) {
+  } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
+    stop("Argument 'x' must be of type integer, logical, or raw: ", class(x)[1])
   }
 
   # Apply subset
@@ -86,6 +87,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (is.integer(x)) {
+  } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
     stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
