@@ -128,6 +128,9 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
     Zjj
   })
 
+  # Ensure that Z is a matrix and not a vector
+  Z <- as.matrix(Z)
+
   # Sanity check
   stopifnot(dim(Z) == c(dimX[1L], nbrOfSets))
 

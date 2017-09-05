@@ -82,3 +82,12 @@ z1 <- rowAvgsPerColSet(x, W = w, S = s, FUN = rowWeightedMeans)
 print(z1)
 z2 <- colAvgsPerRowSet(x, W = w, S = s, FUN = colWeightedMeans)
 print(z2)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Result should always be a matrix
+# (https://github.com/HenrikBengtsson/matrixStats/issues/108)
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
+X <- matrix(1)
+S <- matrix(1)
+z <- rowAvgsPerColSet(X, S = S)
+stopifnot(is.matrix(z))
