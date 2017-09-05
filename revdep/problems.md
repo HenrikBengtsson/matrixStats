@@ -3082,29 +3082,6 @@ Version: 0.0.1
 
 Version: 1.0.1
 
-## Newly broken
-
-*   checking running R code from vignettes ...
-    ```
-       ‘MIGSA.Rnw’ using ‘UTF-8’ ... failed
-       ‘gettingPbcmcData.Rnw’ using ‘UTF-8’ ... OK
-       ‘gettingTcgaData.Rnw’ using ‘UTF-8’ ... OK
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘MIGSA.Rnw’
-      ...
-    
-    > MIGSAmGSZres <- MIGSAmGSZ(exprMatrix, gSets, conditions)
-    INFO [2017-09-05 10:31:52] Number of unique permutations: 198
-    INFO [2017-09-05 10:31:52] Getting ranking at cores: 6
-    Warning in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) :
-      port 11339 cannot be opened
-    
-      When sourcing ‘MIGSA.R’:
-    Error: cannot open the connection
-    Execution halted
-    ```
-
 ## In both
 
 *   checking tests ...
