@@ -19,17 +19,14 @@
 
 # Revdeps
 
-## Couldn't check (13)
+## Couldn't check (10)
 
 |package                                    |version |error |warning |note |
 |:------------------------------------------|:-------|:-----|:-------|:----|
-|anomalyDetection                           |?       |      |        |     |
 |[aroma.cn.eval](problems.md#aroma.cn.eval) |0.5.2   |1     |        |1    |
-|aroma.seq                                  |?       |      |        |     |
-|BatchQC                                    |?       |      |        |     |
-|ChAMP                                      |?       |      |        |     |
+|[aroma.seq](problems.md#aroma.seq)         |0.6.3   |1     |        |1    |
+|[brms](problems.md#brms)                   |1.9.0   |1     |1       |1    |
 |ChIPpeakAnno                               |?       |      |        |     |
-|Clomial                                    |?       |      |        |     |
 |CpGFilter                                  |?       |      |        |     |
 |[DeepBlueR](problems.md#deepbluer)         |1.2.10  |1     |1       |     |
 |IMIFA                                      |?       |      |        |     |
@@ -39,9 +36,9 @@
 
 ## Broken (1)
 
-|package                              |version |error    |warning |note |
-|:------------------------------------|:-------|:--------|:-------|:----|
-|[bumphunter](problems.md#bumphunter) |1.16.0  |1 __+1__ |__+1__  |6    |
+|package                    |version |error    |warning |note |
+|:--------------------------|:-------|:--------|:-------|:----|
+|[MIGSA](problems.md#migsa) |1.0.1   |1 __+1__ |        |2    |
 
 ## All (143)
 
@@ -49,32 +46,32 @@
 |:--------------------------------------------------------------------|:-------|:--------|:-------|:----|
 |[abcrf](problems.md#abcrf)                                           |1.7     |         |        |1    |
 |[ACNE](problems.md#acne)                                             |0.8.1   |         |        |1    |
-|anomalyDetection                                                     |?       |         |        |     |
+|[anomalyDetection](problems.md#anomalydetection)                     |0.2.2   |         |1       |     |
 |[antiProfiles](problems.md#antiprofiles)                             |1.16.0  |         |        |3    |
 |[aroma.affymetrix](problems.md#aroma.affymetrix)                     |3.1.0   |         |        |1    |
 |[aroma.cn](problems.md#aroma.cn)                                     |1.6.1   |         |        |1    |
 |[aroma.cn.eval](problems.md#aroma.cn.eval)                           |0.5.2   |1        |        |1    |
 |[aroma.core](problems.md#aroma.core)                                 |3.1.0   |         |        |2    |
 |[aroma.light](problems.md#aroma.light)                               |3.6.0   |         |        |2    |
-|aroma.seq                                                            |?       |         |        |     |
+|[aroma.seq](problems.md#aroma.seq)                                   |0.6.3   |1        |        |1    |
 |[aSPU](problems.md#aspu)                                             |1.48    |         |1       |1    |
-|BatchQC                                                              |?       |         |        |     |
+|[BatchQC](problems.md#batchqc)                                       |1.4.0   |         |2       |2    |
 |[BayesTwin](problems.md#bayestwin)                                   |1.0     |1        |        |1    |
 |[bdynsys](problems.md#bdynsys)                                       |1.3     |         |        |2    |
 |[bigstep](problems.md#bigstep)                                       |0.7.4   |         |        |1    |
 |[bingat](problems.md#bingat)                                         |1.3     |         |        |2    |
 |bmrm                                                                 |3.4     |         |        |     |
-|[brms](problems.md#brms)                                             |1.9.0   |1        |        |1    |
+|[brms](problems.md#brms)                                             |1.9.0   |1        |1       |1    |
 |[bsseq](problems.md#bsseq)                                           |1.12.2  |         |2       |2    |
-|[bumphunter](problems.md#bumphunter)                                 |1.16.0  |1 __+1__ |__+1__  |6    |
+|[bumphunter](problems.md#bumphunter)                                 |1.16.0  |1        |        |6    |
 |[calmate](problems.md#calmate)                                       |0.12.1  |         |        |1    |
 |[carx](problems.md#carx)                                             |0.6.2   |         |        |1    |
 |[CATALYST](problems.md#catalyst)                                     |1.1.1   |         |        |2    |
 |[cellWise](problems.md#cellwise)                                     |1.0.0   |         |        |1    |
-|ChAMP                                                                |?       |         |        |     |
+|[ChAMP](problems.md#champ)                                           |2.8.9   |         |2       |4    |
 |[Chicago](problems.md#chicago)                                       |1.4.0   |         |        |2    |
 |ChIPpeakAnno                                                         |?       |         |        |     |
-|Clomial                                                              |?       |         |        |     |
+|[Clomial](problems.md#clomial)                                       |1.12.0  |         |        |2    |
 |[clusterExperiment](problems.md#clusterexperiment)                   |1.2.0   |         |        |2    |
 |[CNPBayes](problems.md#cnpbayes)                                     |1.6.1   |         |3       |4    |
 |[cointmonitoR](problems.md#cointmonitor)                             |0.1.0   |         |1       |1    |
@@ -137,7 +134,7 @@
 |[MethylAid](problems.md#methylaid)                                   |1.10.0  |         |1       |2    |
 |[methylumi](problems.md#methylumi)                                   |2.22.0  |         |3       |9    |
 |[MFHD](problems.md#mfhd)                                             |0.0.1   |         |        |2    |
-|[MIGSA](problems.md#migsa)                                           |1.0.1   |1        |        |2    |
+|[MIGSA](problems.md#migsa)                                           |1.0.1   |1 __+1__ |        |2    |
 |[minfi](problems.md#minfi)                                           |1.22.1  |         |2       |3    |
 |[MinimumDistance](problems.md#minimumdistance)                       |1.20.0  |         |        |3    |
 |[mmtfa](problems.md#mmtfa)                                           |0.1     |         |        |2    |

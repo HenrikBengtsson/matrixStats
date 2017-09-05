@@ -27,6 +27,20 @@ Version: 0.8.1
     This build time stamp is over a month old.
     ```
 
+# anomalyDetection
+
+Version: 0.2.2
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    Fetching http://www.r-pkg.org/badges/version/anomalyDetection...
+    pandoc: Failed to retrieve http://www.r-pkg.org/badges/version/anomalyDetection
+    user error (openTCPConnection: host lookup failure for "www.r-pkg.org")
+    ```
+
 # antiProfiles
 
 Version: 1.16.0
@@ -215,6 +229,53 @@ Version: 3.6.0
       inst/rsp/.rspPlugins
     ```
 
+# aroma.seq
+
+Version: 0.6.3
+
+## In both
+
+*   checking whether package ‘aroma.seq’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.seq/new/aroma.seq.Rcheck/00install.out’ for details.
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘aroma.seq’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error : object ‘FilterRules’ is not exported by 'namespace:IRanges'
+ERROR: lazy loading failed for package ‘aroma.seq’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.seq/new/aroma.seq.Rcheck/aroma.seq’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘aroma.seq’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error : object ‘FilterRules’ is not exported by 'namespace:IRanges'
+ERROR: lazy loading failed for package ‘aroma.seq’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.seq/old/aroma.seq.Rcheck/aroma.seq’
+
+```
 # aSPU
 
 Version: 1.48
@@ -236,6 +297,66 @@ Version: 1.48
     The Date field is over a month old.
     
     This build time stamp is over a month old.
+    ```
+
+# BatchQC
+
+Version: 1.4.0
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘lmFitC’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Found3batches
+    Adjusting for1covariate(s) or covariate level(s)
+    Fitting L/S model and finding priors
+    Finding parametric adjustments
+    Adjusting the Data
+    
+    pandoc: Error producing PDF from TeX source.
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.34 \definecolor
+    
+    Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    gls.series.C: no visible global function definition for ‘lm.fit’
+    Undefined global functions or variables:
+      lm.fit
+    Consider adding
+      importFrom("stats", "lm.fit")
+    to your NAMESPACE file.
     ```
 
 # BayesTwin
@@ -346,12 +467,15 @@ Version: 1.9.0
 
 ## In both
 
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘shinystan’
+*   R CMD check timed out
     
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    Fetching https://travis-ci.org/paul-buerkner/brms.svg?branch=master...
+    pandoc: Failed to retrieve https://travis-ci.org/paul-buerkner/brms.svg?branch=master
+    user error (https not supported)
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -422,19 +546,6 @@ Version: 1.12.2
 
 Version: 1.16.0
 
-## Newly broken
-
-*   checking PDF version of manual without hyperrefs or index ... ERROR
-    ```
-    Re-running with no redirection of stdout/stderr.
-    ```
-
-*   checking PDF version of manual ... WARNING
-    ```
-    LaTeX errors when creating PDF version.
-    This typically indicates Rd problems.
-    ```
-
 ## In both
 
 *   checking tests ...
@@ -453,7 +564,7 @@ Version: 1.16.0
           'citation("Biobase")', and for packages 'citation("pkgname")'.
       
       Download the refGene table ... Error: Expectation Failed
-      Timing stopped at: 1.844 0.107 24.83
+      Timing stopped at: 1.977 0.094 25.63
       testthat results ================================================================
       OK: 10 SKIPPED: 0 FAILED: 0
       Execution halted
@@ -496,26 +607,26 @@ Version: 1.16.0
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-        which.min
-    
-    
-    Attaching package: ‘S4Vectors’
-    
     The following object is masked from ‘package:base’:
     
-        expand.grid
+        isNamespaceLoaded
     
-    Loading required package: IRanges
-    Loading required package: GenomeInfoDb
-    Loading required package: GenomicRanges
-    Loading required package: foreach
-    Loading required package: iterators
-    Loading required package: locfit
-    locfit 1.5-9.1 	 2013-03-22
-    Warning in file() :
-      cannot open file '/tmp/Rtmp0DyI8q/Rf5cfb6b00eafa': No space left on device
-    Error: processing vignette 'bumphunter.Rnw' failed with diagnostics:
-    cannot open the connection
+    [bumphunterEngine] Estimating p-values and FWER.
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'bumphunter.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `fullpage.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.10 \usepackage
+                    [numbers]{natbib}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
 
@@ -595,6 +706,89 @@ Version: 1.0.0
     This build time stamp is over a month old.
     ```
 
+# ChAMP
+
+Version: 2.8.9
+
+## In both
+
+*   checking package subdirectories ... WARNING
+    ```
+    Problems with news in ‘inst/NEWS.Rd’:
+      inst/NEWS.Rd:67: unexpected END_OF_INPUT '
+      '
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+      Contrast Matrix
+      You have found 4058 significant MVPs with a BH adjusted P-value below 0.05.
+      Calculate DMP for C and T done.
+    
+    [ Section 2:  Find Numeric Vector Related CpGs Done ]
+    
+    
+    [ Section 3:  Match Annotation Start ]
+    
+    
+    [ Section 3:  Match Annotation Done ]
+    
+    [<<<<<< ChAMP.DMP END >>>>>>]
+    [===========================]
+    [You may want to process DMP.GUI() or champ.GSEA() next.]
+    
+    pandoc-citeproc: error while parsing the XML string
+    pandoc: Error running filter /usr/bin/pandoc-citeproc
+    Error: processing vignette 'ChAMP.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 83
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Yuan Tian  <champ450k@gmail.com>’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    Size of tarball: 15461875 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
+      ‘IlluminaHumanMethylationEPICmanifest’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.8Mb
+      sub-directories of 1Mb or more:
+        doc       9.5Mb
+        extdata   2.0Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Author field differs from that derived from Authors@R
+      Author:    ‘Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
+      Authors@R: ‘Tian Yuan [cre, aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
+    
+    Maintainer field differs from that derived from Authors@R
+      Maintainer: ‘Yuan Tian <champ450k@gmail.com>’
+      Authors@R:  ‘Tian Yuan <champ450k@gmail.com>’
+    
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘rmarkdown’
+    A package should be listed in only one of these fields.
+    ```
+
 # Chicago
 
 Version: 1.4.0
@@ -619,6 +813,52 @@ Version: 1.4.0
     
     CRAN-pack does not know about
       .BBSoptions
+    ```
+
+# Clomial
+
+Version: 1.12.0
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Habil Zare <zare@txstate.edu>’
+    
+    The Title field should be in title case, current version then in title case:
+    ‘Infers clonal composition of a tumor’
+    ‘Infers Clonal Composition of a Tumor’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Clomial: no visible global function definition for ‘runif’
+    Clomial.generate.data: no visible global function definition for
+      ‘runif’
+    Clomial.generate.data: no visible global function definition for
+      ‘rbinom’
+    Clomial.likelihood: no visible global function definition for ‘dbinom’
+    Phi: no visible global function definition for ‘dbinom’
+    choose.best: no visible global function definition for ‘tail’
+    compute.P.reparam : update.Wj: no visible global function definition
+      for ‘optim’
+    compute.P.reparam : plot.obj: no visible global function definition for
+      ‘plot’
+    compute.q: no visible global function definition for ‘dbinom’
+    Undefined global functions or variables:
+      dbinom optim plot rbinom runif tail
+    Consider adding
+      importFrom("graphics", "plot")
+      importFrom("stats", "dbinom", "optim", "rbinom", "runif")
+      importFrom("utils", "tail")
+    to your NAMESPACE file.
     ```
 
 # clusterExperiment
@@ -2378,7 +2618,7 @@ Version: 0.7.5
       
       
       [read_BIN2R()]
-      	 >> /scratch/hb/RtmpGOLUNJ/read_BIN2R_FILE22aa4c452849
+      	 >> /scratch/hb/RtmpwmMEFL/read_BIN2R_FILE36807e6b3004
       	 >> 2 records have been read successfully!
       
       testthat results ================================================================
@@ -2841,6 +3081,29 @@ Version: 0.0.1
 # MIGSA
 
 Version: 1.0.1
+
+## Newly broken
+
+*   checking running R code from vignettes ...
+    ```
+       ‘MIGSA.Rnw’ using ‘UTF-8’ ... failed
+       ‘gettingPbcmcData.Rnw’ using ‘UTF-8’ ... OK
+       ‘gettingTcgaData.Rnw’ using ‘UTF-8’ ... OK
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘MIGSA.Rnw’
+      ...
+    
+    > MIGSAmGSZres <- MIGSAmGSZ(exprMatrix, gSets, conditions)
+    INFO [2017-09-05 10:31:52] Number of unique permutations: 198
+    INFO [2017-09-05 10:31:52] Getting ranking at cores: 6
+    Warning in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) :
+      port 11339 cannot be opened
+    
+      When sourcing ‘MIGSA.R’:
+    Error: cannot open the connection
+    Execution halted
+    ```
 
 ## In both
 
