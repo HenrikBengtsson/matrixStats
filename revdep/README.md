@@ -19,18 +19,14 @@
 
 # Revdeps
 
-## Couldn't check (10)
+## Couldn't check (6)
 
 |package                            |version |error |warning |note |
 |:----------------------------------|:-------|:-----|:-------|:----|
-|anomalyDetection                   |?       |      |        |     |
-|BatchQC                            |?       |      |        |     |
-|brms                               |?       |      |        |     |
-|ChAMP                              |?       |      |        |     |
+|[brms](problems.md#brms)           |1.9.0   |1     |        |1    |
 |ChIPpeakAnno                       |?       |      |        |     |
 |CpGFilter                          |?       |      |        |     |
 |[DeepBlueR](problems.md#deepbluer) |1.2.10  |1     |1       |     |
-|IMIFA                              |?       |      |        |     |
 |InfiniumPurify                     |?       |      |        |     |
 |kpmt                               |?       |      |        |     |
 
@@ -40,27 +36,27 @@
 |:--------------------------------------------------------------------|:-------|:-----|:-------|:----|
 |[abcrf](problems.md#abcrf)                                           |1.7     |      |        |1    |
 |[ACNE](problems.md#acne)                                             |0.8.1   |      |        |1    |
-|anomalyDetection                                                     |?       |      |        |     |
+|[anomalyDetection](problems.md#anomalydetection)                     |0.2.2   |1     |        |     |
 |[antiProfiles](problems.md#antiprofiles)                             |1.16.0  |      |        |3    |
 |[aroma.affymetrix](problems.md#aroma.affymetrix)                     |3.1.0   |      |        |1    |
 |[aroma.cn](problems.md#aroma.cn)                                     |1.6.1   |      |        |1    |
 |[aroma.core](problems.md#aroma.core)                                 |3.1.0   |      |        |2    |
 |[aroma.light](problems.md#aroma.light)                               |3.6.0   |      |        |2    |
 |[aSPU](problems.md#aspu)                                             |1.48    |      |        |1    |
-|BatchQC                                                              |?       |      |        |     |
+|[BatchQC](problems.md#batchqc)                                       |1.4.0   |      |2       |2    |
 |[BayesTwin](problems.md#bayestwin)                                   |1.0     |1     |        |1    |
 |[bdynsys](problems.md#bdynsys)                                       |1.3     |      |        |2    |
 |[bigstep](problems.md#bigstep)                                       |0.7.4   |      |        |1    |
 |[bingat](problems.md#bingat)                                         |1.3     |      |        |2    |
 |bmrm                                                                 |3.4     |      |        |     |
-|brms                                                                 |?       |      |        |     |
+|[brms](problems.md#brms)                                             |1.9.0   |1     |        |1    |
 |[bsseq](problems.md#bsseq)                                           |1.12.2  |      |1       |2    |
 |[bumphunter](problems.md#bumphunter)                                 |1.16.0  |1     |        |6    |
 |[calmate](problems.md#calmate)                                       |0.12.1  |      |        |1    |
 |[carx](problems.md#carx)                                             |0.6.2   |      |        |1    |
 |[CATALYST](problems.md#catalyst)                                     |1.1.1   |      |        |2    |
 |[cellWise](problems.md#cellwise)                                     |1.0.0   |      |        |1    |
-|ChAMP                                                                |?       |      |        |     |
+|[ChAMP](problems.md#champ)                                           |2.8.9   |      |1       |4    |
 |[Chicago](problems.md#chicago)                                       |1.4.0   |      |        |2    |
 |ChIPpeakAnno                                                         |?       |      |        |     |
 |[Clomial](problems.md#clomial)                                       |1.12.0  |      |        |2    |
@@ -108,7 +104,7 @@
 |[GUIDEseq](problems.md#guideseq)                                     |1.6.1   |1     |        |5    |
 |[Gviz](problems.md#gviz)                                             |1.20.0  |      |1       |4    |
 |[haploReconstruct](problems.md#haploreconstruct)                     |0.1.2   |      |        |2    |
-|IMIFA                                                                |?       |      |        |     |
+|[IMIFA](problems.md#imifa)                                           |1.3.1   |      |        |1    |
 |InfiniumPurify                                                       |?       |      |        |     |
 |[kernDeepStackNet](problems.md#kerndeepstacknet)                     |2.0.2   |      |        |2    |
 |[kgschart](problems.md#kgschart)                                     |1.3.5   |      |        |1    |

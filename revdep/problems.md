@@ -27,6 +27,34 @@ Version: 0.8.1
     This build time stamp is over a month old.
     ```
 
+# anomalyDetection
+
+Version: 0.2.2
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      6: doTryCatch(return(expr), name, parentenv, handler)
+      7: bd_row(m1, 1:5)
+      
+      var1 & var2 (r = -0.753)
+      var3 & var4 (r = 0.576)
+      var4 & var6 (r = -0.539)
+      var4 & var7 (r = -0.507)
+      var2 & var9 (r = -0.513)
+      
+      testthat results ================================================================
+      OK: 134 SKIPPED: 0 FAILED: 1
+      1. Error: bd_row provides proper messages and warnings (@test_bd_row.R#12) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
 # antiProfiles
 
 Version: 1.16.0
@@ -176,6 +204,66 @@ Version: 1.48
     This build time stamp is over a month old.
     ```
 
+# BatchQC
+
+Version: 1.4.0
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘lmFitC’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Found3batches
+    Adjusting for1covariate(s) or covariate level(s)
+    Fitting L/S model and finding priors
+    Finding parametric adjustments
+    Adjusting the Data
+    
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.39 \definecolor
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    gls.series.C: no visible global function definition for ‘lm.fit’
+    Undefined global functions or variables:
+      lm.fit
+    Consider adding
+      importFrom("stats", "lm.fit")
+    to your NAMESPACE file.
+    ```
+
 # BayesTwin
 
 Version: 1.0
@@ -276,6 +364,22 @@ Version: 1.3
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘genalg’
+    ```
+
+# brms
+
+Version: 1.9.0
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Paul-Christian Bürkner <paul.buerkner@gmail.com>’
+    
+    The Date field is over a month old.
     ```
 
 # bsseq
@@ -489,6 +593,63 @@ Version: 1.0.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
+    ```
+
+# ChAMP
+
+Version: 2.8.9
+
+## In both
+
+*   checking package subdirectories ... WARNING
+    ```
+    Problems with news in ‘inst/NEWS.Rd’:
+      inst/NEWS.Rd:67: unexpected END_OF_INPUT '
+      '
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Yuan Tian  <champ450k@gmail.com>’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    Size of tarball: 15461875 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
+      ‘IlluminaHumanMethylationEPICmanifest’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.8Mb
+      sub-directories of 1Mb or more:
+        doc       9.5Mb
+        extdata   2.0Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Author field differs from that derived from Authors@R
+      Author:    ‘Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
+      Authors@R: ‘Tian Yuan [cre, aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
+    
+    Maintainer field differs from that derived from Authors@R
+      Maintainer: ‘Yuan Tian <champ450k@gmail.com>’
+      Authors@R:  ‘Tian Yuan <champ450k@gmail.com>’
+    
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘rmarkdown’
+    A package should be listed in only one of these fields.
     ```
 
 # Chicago
@@ -2099,6 +2260,21 @@ Version: 0.1.2
       installed size is  9.8Mb
       sub-directories of 1Mb or more:
         data   9.5Mb
+    ```
+
+# IMIFA
+
+Version: 1.3.1
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Keefe Murphy <keefe.murphy@ucd.ie>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
     ```
 
 # kernDeepStackNet
