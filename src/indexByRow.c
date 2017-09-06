@@ -7,7 +7,7 @@
 #include <Rdefines.h>
 #include "000.types.h"
 
-void indexByRow_int(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_ptr) {
+void indexByRow_i(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_ptr) {
   R_xlen_t i, idx;
   int col, row;
 
@@ -26,26 +26,27 @@ void indexByRow_int(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_
     for (i = 0; i < nidxs; i++) {
       idx = idxs_ptr[i] - 1;
       col = idx / ncol;
-      row = idx - ncol * col;
       row = idx % ncol;
       idx = col + nrow * row + 1;
       ans_ptr[i] = idx;
     }
   }
-} // indexByRow_int()
+} // indexByRow_i()
 
 
 SEXP indexByRow(SEXP dim, SEXP idxs) {
   SEXP ans;
-  int d, i, *idxs_ptr;
+  int d, i;
   R_xlen_t nidxs;
-  double n_max = 1.0;
+  double n_max;
+  int *idxs_ptr;
 
   /* Argument 'dim': */
   if (!isInteger(dim) || xlength(dim) != 2) {
     error("Argument 'dim' must be an integer vector of length two.");
   }
 
+  n_max = 1.0;
   for (i = 0; i < xlength(dim); i++) {
     d = INTEGER(dim)[i];
     if (d < 0) {
@@ -75,8 +76,8 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
 
   PROTECT(ans = allocVector(INTSXP, nidxs));
 
-  indexByRow_int(INTEGER(dim)[0], INTEGER(dim)[1],
-		 idxs_ptr, nidxs, INTEGER(ans));
+  indexByRow_i(INTEGER(dim)[0], INTEGER(dim)[1],
+               idxs_ptr, nidxs, INTEGER(ans));
 
   UNPROTECT(1);
   
