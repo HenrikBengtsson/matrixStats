@@ -8,9 +8,9 @@
 #include "000.types.h"
 
 void indexByRow_i(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_ptr) {
-  R_xlen_t i, idx;
+  R_xlen_t i, idx, n_max;
   int col, row;
-
+  
   if (idxs_ptr == NULL) {
     row = 1;
     col = 0;
@@ -23,8 +23,15 @@ void indexByRow_i(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_pt
       }
     }
   } else {
+    n_max = (R_xlen_t)nrow * (R_xlen_t)ncol;
     for (i = 0; i < nidxs; i++) {
       idx = idxs_ptr[i] - 1;
+      if (idx < 0) {
+        error("Argument 'idxs' may only contain positive indices: %d", idx + 1);
+      } if (idx >= n_max) {
+        error("Argument 'idxs' contains indices larger than %d: %d",
+	      n_max, idx + 1);
+      }
       col = idx / ncol;
       row = idx % ncol;
       idx = col + nrow * row + 1;
@@ -55,9 +62,12 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
     n_max *= d;
 #ifndef LONG_VECTOR_SUPPORT
     if (n_max > R_INT_MAX) {
-      error("Argument 'dim' specifies too many elements: %.g > %d", n_max, R_INT_MAX);
+      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[1], INTEGER(dim)[2], n_max);
     }
 #endif
+    if (n_max > R_INT_MAX) {
+      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[1], INTEGER(dim)[2], n_max);
+    }
   }
 
   /* Argument 'idxs': */

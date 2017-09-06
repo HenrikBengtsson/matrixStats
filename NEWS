@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-08-31]
+Version: 0.52.2-9000 [2017-09-06]
 
 NEW FEATURES:
 
@@ -35,6 +35,12 @@ BUG FIX:
 
  o Functions col- and rowTabulates(x) did not count missing values.
 
+ o indexByRow(dim, idxs) would give nonsense results if 'idxs' had indices
+   greater than prod(dim) or non-positive indices; now it gives an error.
+
+ o indexByRow(dim) would give nonsense results when prod(dim) >= 2^31; now
+   it gives an informative error.
+ 
 
 Version: 0.52.2 [2017-04-13]
 
