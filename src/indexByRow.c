@@ -7,9 +7,37 @@
 #include <Rdefines.h>
 #include "000.types.h"
 
+void indexByRow_int(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_ptr) {
+  R_xlen_t i, idx;
+  int col, row;
+
+  if (idxs_ptr == NULL) {
+    row = 1;
+    col = 0;
+    for (i = 0; i < nidxs; i++) {
+      ans_ptr[i] = row + col * nrow;
+      col++;
+      if (col == ncol) {
+        row++;
+        col = 0;
+      }
+    }
+  } else {
+    for (i = 0; i < nidxs; i++) {
+      idx = idxs_ptr[i] - 1;
+      col = idx / ncol;
+      row = idx - ncol * col;
+      row = idx % ncol;
+      idx = col + nrow * row + 1;
+      ans_ptr[i] = idx;
+    }
+  }
+} // indexByRow_int()
+
+
 SEXP indexByRow(SEXP dim, SEXP idxs) {
   SEXP ans;
-  int *idxs_ptr;
+  int d, i, *idxs_ptr;
   R_xlen_t nidxs;
   double n_max = 1.0;
 
@@ -54,34 +82,6 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
   
   return(ans);
 } // indexByRow()
-
-
-void indexByRow_int(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_ptr) {
-  R_xlen_t i, idx;
-  int col, row;
-
-  if (idxs_ptr == NULL) {
-    row = 1;
-    col = 0;
-    for (i = 0; i < nidxs; i++) {
-      ans_ptr[i] = row + col * nrow;
-      col++;
-      if (col == ncol) {
-        row++;
-        col = 0;
-      }
-    }
-  } else {
-    for (i = 0; i < nidxs; i++) {
-      idx = idxs_ptr[i] - 1;
-      col = idx / ncol;
-      row = idx - ncol * col;
-      row = idx % ncol;
-      idx = col + nrow * row + 1;
-      ans_ptr[i] = idx;
-    }
-  }
-} // indexByRow_int()
 
 
 /***************************************************************************
