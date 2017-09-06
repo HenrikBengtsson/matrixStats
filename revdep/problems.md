@@ -33,12 +33,26 @@ Version: 0.2.2
 
 ## In both
 
-*   checking top-level files ... WARNING
+*   checking tests ...
     ```
-    Conversion of ‘README.md’ failed:
-    Fetching http://www.r-pkg.org/badges/version/anomalyDetection...
-    pandoc: Failed to retrieve http://www.r-pkg.org/badges/version/anomalyDetection
-    user error (openTCPConnection: host lookup failure for "www.r-pkg.org")
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      6: doTryCatch(return(expr), name, parentenv, handler)
+      7: bd_row(m1, 1:5)
+      
+      var1 & var2 (r = -0.753)
+      var3 & var4 (r = 0.576)
+      var4 & var6 (r = -0.539)
+      var4 & var7 (r = -0.507)
+      var2 & var9 (r = -0.513)
+      
+      testthat results ================================================================
+      OK: 134 SKIPPED: 0 FAILED: 1
+      1. Error: bd_row provides proper messages and warnings (@test_bd_row.R#12) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
 # antiProfiles
@@ -282,14 +296,6 @@ Version: 1.48
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching http://www.r-pkg.org/badges/version/aSPU...
-    pandoc: Failed to retrieve http://www.r-pkg.org/badges/version/aSPU
-    user error (openTCPConnection: host lookup failure for "www.r-pkg.org")
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Il-Youp Kwak <ikwak@umn.edu>’
@@ -470,14 +476,6 @@ Version: 1.9.0
 *   R CMD check timed out
     
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/paul-buerkner/brms.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/paul-buerkner/brms.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Paul-Christian Bürkner <paul.buerkner@gmail.com>’
@@ -490,14 +488,6 @@ Version: 1.9.0
 Version: 1.12.2
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching http://bioconductor.org/shields/build/release/bioc/bsseq.svg...
-    pandoc: Failed to retrieve http://bioconductor.org/shields/build/release/bioc/bsseq.svg
-    user error (openTCPConnection: host lookup failure for "bioconductor.org")
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -885,14 +875,6 @@ Version: 1.6.1
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/scristia/CNPBayes.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/scristia/CNPBayes.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking for code/documentation mismatches ... WARNING
     ```
     Codoc mismatches from documentation object 'labelSwitching':
@@ -911,7 +893,6 @@ Version: 1.6.1
     ```
     Error in re-building vignettes:
       ...
-    pandoc: Error producing PDF from TeX source.
     ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
@@ -923,6 +904,7 @@ Version: 1.6.1
              
     l.33 \definecolor
     
+    pandoc: Error producing PDF
     Error: processing vignette 'Convergence.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 43
     Execution halted
@@ -969,14 +951,6 @@ Version: 0.1.0
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/aschersleben/cointmonitoR.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/aschersleben/cointmonitoR.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Philipp Aschersleben <aschersleben@statistik.tu-dortmund.de>’
@@ -991,14 +965,6 @@ Version: 0.1.0
 Version: 0.2.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/aschersleben/cointReg.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/aschersleben/cointReg.svg?branch=master
-    user error (https not supported)
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -1373,14 +1339,6 @@ Version: 1.0.1
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/andymckenzie/DGCA.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/andymckenzie/DGCA.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Andrew McKenzie <amckenz@gmail.com>’
@@ -1393,14 +1351,6 @@ Version: 1.0.1
 Version: 1.4.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/aryeelab/diffloop.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/aryeelab/diffloop.svg?branch=master
-    user error (https not supported)
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -1606,14 +1556,6 @@ Version: 1.6.0
 Version: 1.0.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://github.com/jpromeror/EventPointer/blob/master/vignettes/Figure1.png...
-    pandoc: Failed to retrieve https://github.com/jpromeror/EventPointer/blob/master/vignettes/Figure1.png
-    user error (https not supported)
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -1864,14 +1806,6 @@ Version: 0.2.0
 Version: 1.1.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/rorynolan/filesstrings.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/rorynolan/filesstrings.svg?branch=master
-    user error (https not supported)
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -2149,40 +2083,6 @@ Version: 1.8.0
     This build time stamp is over a month old.
     
     Size of tarball: 6284148 bytes
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://api.travis-ci.org/BIMSBbioinfo/genomation.svg?branch=master...
-    pandoc: Failed to retrieve https://api.travis-ci.org/BIMSBbioinfo/genomation.svg?branch=master
-    user error (https not supported)
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-      failed to tidy R code in chunk <eadAllPeaks>
-    reason: Error in loadNamespace(name) : there is no package called 'formatR'
-    
-    Warning in block_exec(params) :
-      failed to tidy R code in chunk <findFeatureComb>
-    reason: Error in loadNamespace(name) : there is no package called 'formatR'
-    
-    Warning in block_exec(params) :
-      failed to tidy R code in chunk <visualizeFeatureComb>
-    reason: Error in loadNamespace(name) : there is no package called 'formatR'
-    
-    Warning in block_exec(params) :
-      failed to tidy R code in chunk <annotationHubExample1>
-    reason: Error in loadNamespace(name) : there is no package called 'formatR'
-    
-    Fetching https://raw.githubusercontent.com/BIMSBbioinfo/genomation/master/vignettes/Figures/genomationFlowChart1.png...
-    pandoc: Failed to retrieve https://raw.githubusercontent.com/BIMSBbioinfo/genomation/master/vignettes/Figures/genomationFlowChart1.png
-    user error (https not supported)
-    Error: processing vignette 'GenomationManual.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 61
-    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -2491,14 +2391,6 @@ Version: 1.3.5
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/kota7/kgschart-r.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/kota7/kgschart-r.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Kota Mori <kmori05@gmail.com>’
@@ -2654,14 +2546,6 @@ Version: 2.8.0
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching http://bioconductor.org/shields/years-in-bioc/metagene.svg...
-    pandoc: Failed to retrieve http://bioconductor.org/shields/years-in-bioc/metagene.svg
-    user error (openTCPConnection: host lookup failure for "bioconductor.org")
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Charles Joly Beauparlant <charles.joly-beauparlant@crchul.ulaval.ca>’
@@ -2704,14 +2588,6 @@ Version: 2.8.0
 Version: 1.18.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/HCBravoLab/metagenomeSeq.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/HCBravoLab/metagenomeSeq.svg?branch=master
-    user error (https not supported)
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -3151,37 +3027,29 @@ Version: 1.22.1
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching http://bioconductor.org/shields/build/release/bioc/minfi.svg...
-    pandoc: Failed to retrieve http://bioconductor.org/shields/build/release/bioc/minfi.svg
-    user error (openTCPConnection: host lookup failure for "bioconductor.org")
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     ...
-        strsplit
-    
-    Loading required package: bumphunter
-    Loading required package: foreach
-    Loading required package: iterators
     Loading required package: locfit
     locfit 1.5-9.1 	 2013-03-22
     Setting options('download.file.method.GEOquery'='auto')
     Setting options('GEOquery.inmemory.gpl'=FALSE)
     Loading required package: IlluminaHumanMethylation450kmanifest
     Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
-    pandoc-citeproc: 
-    Error at "source" (line 1, column 1):
-    unexpected '}'
-    expecting "%", new-line, "\\", "{", "-", "``", "\8220", "\"`", "\"", "`", "\8216", "''", "\8221", "'", "\8217", "~", "$$", "$", "^", "_", "^^", "&" or end of input
-    }{
-    ^
-    pandoc: Error running filter /usr/bin/pandoc-citeproc
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.33 \definecolor
+    
+    pandoc: Error producing PDF
     Error: processing vignette 'minfi.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 83
+    pandoc document conversion failed with error 43
     Execution halted
     ```
 
@@ -3450,14 +3318,6 @@ Version: 1.0.4
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://www.r-pkg.org/badges/version/mrfDepth...
-    pandoc: Failed to retrieve https://www.r-pkg.org/badges/version/mrfDepth
-    user error (https not supported)
-    ```
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Pieter Segaert <Pieter.Segaert@kuleuven.be>’
@@ -3480,19 +3340,10 @@ Version: 0.2.0
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/msuchard/MultiBD.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/msuchard/MultiBD.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error in re-building vignettes:
       ...
-    pandoc: Error producing PDF from TeX source.
     ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
@@ -3502,8 +3353,9 @@ Version: 0.2.0
     ! Emergency stop.
     <read *> 
              
-    l.34 \definecolor
+    l.39 \definecolor
     
+    pandoc: Error producing PDF
     Error: processing vignette 'SIR-MCMC.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 43
     Execution halted
@@ -4374,9 +4226,8 @@ Version: 1.4.0
 *   checking top-level files ... WARNING
     ```
     Conversion of ‘README.md’ failed:
-    Fetching https://semaphoreci.com/api/v1/davismcc/scater/branches/master/badge.svg...
-    pandoc: Failed to retrieve https://semaphoreci.com/api/v1/davismcc/scater/branches/master/badge.svg
-    user error (https not supported)
+    pandoc: Could not fetch https://img.shields.io/codecov/c/github/davismcc/scater/master.svg
+    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -4487,14 +4338,6 @@ Version: 1.7-0.0
 Version: 1.12.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/Jfortin1/shinyMethyl.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/Jfortin1/shinyMethyl.svg?branch=master
-    user error (https not supported)
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -4731,9 +4574,8 @@ Version: 1.0.3
 *   checking top-level files ... WARNING
     ```
     Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/Oshlack/splatter.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/Oshlack/splatter.svg?branch=master
-    user error (https not supported)
+    pandoc: Could not fetch https://img.shields.io/codecov/c/github/Oshlack/splatter/master.svg
+    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -4838,9 +4680,8 @@ Version: 0.6.5
 *   checking top-level files ... WARNING
     ```
     Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/matthieugomez/statar.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/matthieugomez/statar.svg?branch=master
-    user error (https not supported)
+    pandoc: Could not fetch https://img.shields.io/codecov/c/github/matthieugomez/statar/master.svg
+    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -5008,14 +4849,6 @@ Version: 3.24.4
 Version: 0.1.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/osofr/tmlenet.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/osofr/tmlenet.svg?branch=master
-    user error (https not supported)
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -5421,19 +5254,10 @@ Version: 1.2.0
     Execution halted
     ```
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    Fetching https://travis-ci.org/jnpaulson/yarn.svg?branch=master...
-    pandoc: Failed to retrieve https://travis-ci.org/jnpaulson/yarn.svg?branch=master
-    user error (https not supported)
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error in re-building vignettes:
       ...
-    pandoc: Error producing PDF from TeX source.
     ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
@@ -5443,8 +5267,9 @@ Version: 1.2.0
     ! Emergency stop.
     <read *> 
              
-    l.34 \definecolor
+    l.39 \definecolor
     
+    pandoc: Error producing PDF
     Error: processing vignette 'yarn.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 43
     Execution halted
