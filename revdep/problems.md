@@ -27,34 +27,6 @@ Version: 0.8.1
     This build time stamp is over a month old.
     ```
 
-# anomalyDetection
-
-Version: 0.2.2
-
-## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      6: doTryCatch(return(expr), name, parentenv, handler)
-      7: bd_row(m1, 1:5)
-      
-      var1 & var2 (r = -0.753)
-      var3 & var4 (r = 0.576)
-      var4 & var6 (r = -0.539)
-      var4 & var7 (r = -0.507)
-      var2 & var9 (r = -0.513)
-      
-      testthat results ================================================================
-      OK: 134 SKIPPED: 0 FAILED: 1
-      1. Error: bd_row provides proper messages and warnings (@test_bd_row.R#12) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
 # antiProfiles
 
 Version: 1.16.0
@@ -142,60 +114,6 @@ Version: 1.6.1
     This build time stamp is over a month old.
     ```
 
-# aroma.cn.eval
-
-Version: 0.5.2
-
-## In both
-
-*   checking whether package ‘aroma.cn.eval’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.cn.eval/new/aroma.cn.eval.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Package for evaluating copy-number estimates’
-    ‘Package for Evaluating Copy-Number Estimates’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘aroma.cn.eval’ ...
-** R
-** inst
-** preparing package for lazy loading
-Error : object ‘apply’ is not exported by 'namespace:aroma.core'
-ERROR: lazy loading failed for package ‘aroma.cn.eval’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.cn.eval/new/aroma.cn.eval.Rcheck/aroma.cn.eval’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘aroma.cn.eval’ ...
-** R
-** inst
-** preparing package for lazy loading
-Error : object ‘apply’ is not exported by 'namespace:aroma.core'
-ERROR: lazy loading failed for package ‘aroma.cn.eval’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.cn.eval/old/aroma.cn.eval.Rcheck/aroma.cn.eval’
-
-```
 # aroma.core
 
 Version: 3.1.0
@@ -214,7 +132,7 @@ Version: 3.1.0
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      ‘expectile’ ‘HaarSeg’ ‘mpcbs’
+      ‘sfit’ ‘expectile’ ‘HaarSeg’ ‘mpcbs’
     ```
 
 # aroma.light
@@ -243,53 +161,6 @@ Version: 3.6.0
       inst/rsp/.rspPlugins
     ```
 
-# aroma.seq
-
-Version: 0.6.3
-
-## In both
-
-*   checking whether package ‘aroma.seq’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.seq/new/aroma.seq.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘aroma.seq’ ...
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-Error : object ‘FilterRules’ is not exported by 'namespace:IRanges'
-ERROR: lazy loading failed for package ‘aroma.seq’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.seq/new/aroma.seq.Rcheck/aroma.seq’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘aroma.seq’ ...
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-Error : object ‘FilterRules’ is not exported by 'namespace:IRanges'
-ERROR: lazy loading failed for package ‘aroma.seq’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/aroma.seq/old/aroma.seq.Rcheck/aroma.seq’
-
-```
 # aSPU
 
 Version: 1.48
@@ -303,66 +174,6 @@ Version: 1.48
     The Date field is over a month old.
     
     This build time stamp is over a month old.
-    ```
-
-# BatchQC
-
-Version: 1.4.0
-
-## In both
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented code objects:
-      ‘lmFitC’
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Found3batches
-    Adjusting for1covariate(s) or covariate level(s)
-    Fitting L/S model and finding priors
-    Finding parametric adjustments
-    Adjusting the Data
-    
-    pandoc: Error producing PDF from TeX source.
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.34 \definecolor
-    
-    Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    gls.series.C: no visible global function definition for ‘lm.fit’
-    Undefined global functions or variables:
-      lm.fit
-    Consider adding
-      importFrom("stats", "lm.fit")
-    to your NAMESPACE file.
     ```
 
 # BayesTwin
@@ -467,22 +278,6 @@ Version: 1.3
     Package unavailable to check Rd xrefs: ‘genalg’
     ```
 
-# brms
-
-Version: 1.9.0
-
-## In both
-
-*   R CMD check timed out
-    
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Paul-Christian Bürkner <paul.buerkner@gmail.com>’
-    
-    The Date field is over a month old.
-    ```
-
 # bsseq
 
 Version: 1.12.2
@@ -554,7 +349,7 @@ Version: 1.16.0
           'citation("Biobase")', and for packages 'citation("pkgname")'.
       
       Download the refGene table ... Error: Expectation Failed
-      Timing stopped at: 1.977 0.094 25.63
+      Timing stopped at: 1.898 0.142 25.15
       testthat results ================================================================
       OK: 10 SKIPPED: 0 FAILED: 0
       Execution halted
@@ -694,89 +489,6 @@ Version: 1.0.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
-    ```
-
-# ChAMP
-
-Version: 2.8.9
-
-## In both
-
-*   checking package subdirectories ... WARNING
-    ```
-    Problems with news in ‘inst/NEWS.Rd’:
-      inst/NEWS.Rd:67: unexpected END_OF_INPUT '
-      '
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-      Contrast Matrix
-      You have found 4058 significant MVPs with a BH adjusted P-value below 0.05.
-      Calculate DMP for C and T done.
-    
-    [ Section 2:  Find Numeric Vector Related CpGs Done ]
-    
-    
-    [ Section 3:  Match Annotation Start ]
-    
-    
-    [ Section 3:  Match Annotation Done ]
-    
-    [<<<<<< ChAMP.DMP END >>>>>>]
-    [===========================]
-    [You may want to process DMP.GUI() or champ.GSEA() next.]
-    
-    pandoc-citeproc: error while parsing the XML string
-    pandoc: Error running filter /usr/bin/pandoc-citeproc
-    Error: processing vignette 'ChAMP.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 83
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Yuan Tian  <champ450k@gmail.com>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    Size of tarball: 15461875 bytes
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
-      ‘IlluminaHumanMethylationEPICmanifest’
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 11.8Mb
-      sub-directories of 1Mb or more:
-        doc       9.5Mb
-        extdata   2.0Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
-      Authors@R: ‘Tian Yuan [cre, aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Yuan Tian <champ450k@gmail.com>’
-      Authors@R:  ‘Tian Yuan <champ450k@gmail.com>’
-    
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘rmarkdown’
-    A package should be listed in only one of these fields.
     ```
 
 # Chicago
@@ -1999,7 +1711,6 @@ Version: 1.0.0
     Normalization of signal : BIRed
     Normalization of signal : AII
     Normalization of signal : BII
-    pandoc: Error producing PDF from TeX source.
     ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
@@ -2011,6 +1722,7 @@ Version: 1.0.0
              
     l.33 \definecolor
     
+    pandoc: Error producing PDF
     Error: processing vignette 'funtooNorm.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 43
     Execution halted
@@ -2186,6 +1898,32 @@ Version: 1.6.1
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    ...
+    finding local max for chromosome: chr13
+    combine plus and minus peaks ... 
+    
+    keep peaks not in merged.gr but present in both peaks1 and peaks2
+    
+    offtarget analysis ...
+    
+    search for gRNAs for input file1...
+    [1] "Scoring ..."
+    >>> Finding all hits in sequence chr13+:27629413:27629420:chr13-:27629400:27629404 ...
+    >>> DONE searching
+    >>> Finding all hits in sequence chr13+:39262927:39262939:chr13-:39262918:39262920 ...
+    >>> DONE searching
+    finish off-target search in sequence 2
+    finish off-target search in sequence 1
+    finish feature vector building
+    finish score calculation
+    [1] "Done!"
+    Error in if (!is.na(TS2)) { : the condition has length > 1
+    Calls: GUIDEseqAnalysis -> offTargetAnalysisOfPeakRegions
+    Execution halted
+    ```
+
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Lihua Julie Zhu <julie.zhu@umassmed.edu>’
@@ -2247,26 +1985,26 @@ Version: 1.6.1
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
+    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
+      No matching found, please check your input sequence, and make
+                sure you are using the right genome. You can also alter your 
                 search criteria such as increasing max.mismatch!
-    Warning in if (!is.na(TS2)) { :
-      the condition has length > 1 and only the first element will be used
-    Please check output file in directory gRNAmin1window20step20distance40
+    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
+      No matching found, please check your input sequence, and make
+                sure you are using the right genome. You can also alter your 
+                search criteria such as increasing max.mismatch!
+    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
+      No matching found, please check your input sequence, and make
+                sure you are using the right genome. You can also alter your 
+                search criteria such as increasing max.mismatch!
+    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
+      No matching found, please check your input sequence, and make
+                sure you are using the right genome. You can also alter your 
+                search criteria such as increasing max.mismatch!
     
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'GUIDEseq.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Error: processing vignette 'GUIDEseq.Rnw' failed with diagnostics:
+     chunk 7 
+    Error in if (!is.na(TS2)) { : the condition has length > 1
     Execution halted
     ```
 
@@ -2510,7 +2248,7 @@ Version: 0.7.5
       
       
       [read_BIN2R()]
-      	 >> /scratch/hb/RtmpwmMEFL/read_BIN2R_FILE36807e6b3004
+      	 >> /scratch/hb/RtmpEh2Hx3/read_BIN2R_FILE4c821bd90a9
       	 >> 2 records have been read successfully!
       
       testthat results ================================================================
@@ -3157,8 +2895,15 @@ Version: 2.4.0
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 178-198 (monocle-vignette.Rnw) 
+    Error: processing vignette 'monocle-vignette.Rnw' failed with diagnostics:
+    the condition has length > 1
+    Execution halted
+    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -3608,7 +3353,6 @@ Version: 1.2.0
     Error in re-building vignettes:
       ...
     Warning: Transformation introduced infinite values in discrete y-axis
-    pandoc: Error producing PDF from TeX source.
     ! LaTeX Error: File `framed.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
@@ -3620,6 +3364,7 @@ Version: 1.2.0
              
     l.33 \definecolor
     
+    pandoc: Error producing PDF
     Error: processing vignette 'PathoStatUserManual.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 43
     Execution halted
@@ -3689,17 +3434,6 @@ Version: 1.68.0
 Version: 0.11
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Loading required package: peakPick
-    pandoc: Could not find data file peakPick-vignette_files/figure-html/detect%20peaks-1.png
-    Error: processing vignette 'peakPick-vignette.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 97
-    Execution halted
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -4142,6 +3876,32 @@ Version: 0.1.0
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    ...
+    The error most likely occurred in:
+    
+    > ### Name: TransitionProb
+    > ### Title: Estimation of credit transition probabilities
+    > ### Aliases: TransitionProb
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > #Example 1:
+    > #When start date and end date are not specified, the entire dataset is used and the package
+    > #performs TTC calculations. Equally when snapshots and interval are not specified the defaults
+    > #are 1.
+    > snapshots <- 0
+    > interval <- 0
+    > startDate  <- 0
+    > endDate    <- 0
+    > Example1<-TransitionProb(data,startDate,endDate,'cohort', snapshots, interval)
+    Error in if (is.nan(rating)) { : the condition has length > 1
+    Calls: TransitionProb -> getidTotCntCohort
+    Execution halted
+    ```
+
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Ab NDiaye <pabdndiaye@gmail.com>’
@@ -4284,6 +4044,51 @@ Version: 1.4.0
 Version: 1.0.0
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘scone-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: biplot_interactive
+    > ### Title: Interactive biplot
+    > ### Aliases: biplot_interactive
+    > 
+    > ### ** Examples
+    > 
+    > mat <- matrix(rpois(1000, lambda = 5), ncol=10)
+    > colnames(mat) <- paste("X", 1:ncol(mat), sep="")
+    > obj <- SconeExperiment(mat)
+    > res <- scone(obj, scaling=list(none=identity,
+    +    uq=UQ_FN, deseq=DESEQ_FN,  fq=FQT_FN),
+    + evaluate=TRUE, k_ruv=0, k_qc=0, eval_kclust=2,
+    +    bpparam = BiocParallel::SerialParam())
+    Error in if (rezero) { : the condition has length > 1
+    Calls: scone -> scone -> .local
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      testthat results ================================================================
+      OK: 7 SKIPPED: 0 FAILED: 16
+      1. Error: all back-ends work (@test_bpparam.R#17) 
+      2. Error: get_normalized works in all three modes (@test_get_design.R#18) 
+      3. Error: get_normalized works in all three modes (@test_get_norm.R#18) 
+      4. Error: get_normalized works in all three modes with nested model (@test_get_norm.R#76) 
+      5. Error: return_norm in memory (@test_hdf5.R#44) 
+      6. Error: do not return_norm (@test_hdf5.R#65) 
+      7. Error: Upper-quartile normalization works the same as in the edgeR package (@test_norm.R#15) 
+      8. Error: Test with no real method (only identity) (@test_scone.R#12) 
+      9. Error: Test imputation and scaling (@test_scone.R#129) 
+      1. ...
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -4779,6 +4584,32 @@ Version: 1.2
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    ...
+    + 	obj <- apply(X, 1, function(x) {
+    + 				ttest.obj <- t.test(x ~ Y)
+    + 				c(ttest.obj$p.value, sign(ttest.obj$statistic))
+    + 			})
+    +     return(list(p.value=obj[1, ], e.sign=obj[2, ]))
+    + }
+    > 
+    > perm.func <- function (X, Y) {
+    + 	return(list(X=X, Y=sample(Y)))
+    + }
+    > 
+    > # Call StructFDR
+    > tree.fdr.obj <- StructFDR(X, Y, D, test.func, perm.func)
+    Warning in StructFDR(X, Y, D, test.func, perm.func) :
+      Both the data matrix and the distance matrix should have labels (rownames) to avoid potential errors!
+    
+    Test on original data sets  ...
+    Test on permuted data sets  ...
+    Error in if (alt.FDR == "Permutation") { : the condition has length > 1
+    Calls: StructFDR
+    Execution halted
+    ```
+
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Jun Chen <chen.jun2@mayo.edu>’
@@ -5142,6 +4973,8 @@ Version: 1.61
     Maintainer: ‘Peter Langfelder <Peter.Langfelder@gmail.com>’
     
     The Date field is over a month old.
+    
+    This build time stamp is over a month old.
     ```
 
 # XBSeq
