@@ -34,7 +34,7 @@ allocMatrix <- function(nrow, ncol, value = 0.0, ...) {
 #' @rdname allocMatrix
 #' @export
 allocVector <- function(length, value = 0.0, ...) {
-  length <- as.integer(length)
+  length <- as.numeric(length)
   .Call(C_allocVector2, length, value)
 }
 

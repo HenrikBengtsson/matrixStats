@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-08-31]
+Version: 0.52.2-9000 [2017-09-06]
 
 NEW FEATURES:
 
@@ -21,6 +21,8 @@ NEW FEATURES:
  
  o Now count() can count beyond 2^31-1.
 
+ o allocVector() can now allocate long vectors (longer than 2^31-1).
+
  o Now sum2(x, mode = "integer") generates a warning if typeof(x) == "double"
    asking if as.integer(sum2(x)) was intended.
 
@@ -33,6 +35,12 @@ BUG FIX:
 
  o Functions col- and rowTabulates(x) did not count missing values.
 
+ o indexByRow(dim, idxs) would give nonsense results if 'idxs' had indices
+   greater than prod(dim) or non-positive indices; now it gives an error.
+
+ o indexByRow(dim) would give nonsense results when prod(dim) >= 2^31; now
+   it gives an informative error.
+ 
 
 Version: 0.52.2 [2017-04-13]
 
