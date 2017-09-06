@@ -21,6 +21,8 @@ NEW FEATURES:
  
  o Now count() can count beyond 2^31-1.
 
+ o allocVector() can now allocate long vectors (longer than 2^31-1).
+
  o Now sum2(x, mode = "integer") generates a warning if typeof(x) == "double"
    asking if as.integer(sum2(x)) was intended.
 
