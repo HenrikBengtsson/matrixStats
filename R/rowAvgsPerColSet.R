@@ -148,7 +148,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
 #' @rdname rowAvgsPerColSet
 #' @export
 colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
-                             FUN = colMeans, tFUN = FALSE, ...) {
+                             FUN = colMeans, ..., tFUN = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -190,7 +190,7 @@ colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
   }
 
   # ...
-  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, tFUN = !tFUN, ...)
+  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, ..., tFUN = !tFUN)
   tX <- tW <- NULL  # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
