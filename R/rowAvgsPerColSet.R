@@ -128,8 +128,12 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
     Zjj
   })
 
-  # Ensure that Z is a matrix and not a vector
-  Z <- as.matrix(Z)
+  # apply() drops 2nd dimension if nrow(X) <= 1 (and FUN returns a vector of
+  # length nrow(X) as it should), cf. ?apply
+  if (!is.matrix(Z)) {
+    stopifnot(dimX[1] <= 1L)
+    dim(Z) <- c(length(Z), nbrOfSets)
+  }
 
   # Sanity check
   stopifnot(dim(Z) == c(dimX[1L], nbrOfSets))
