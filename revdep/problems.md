@@ -244,6 +244,66 @@ Version: 1.48
     This build time stamp is over a month old.
     ```
 
+# BatchQC
+
+Version: 1.4.0
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      'lmFitC'
+    All user-level objects in a package should have documentation entries.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Found3batches
+    Adjusting for1covariate(s) or covariate level(s)
+    Fitting L/S model and finding priors
+    Finding parametric adjustments
+    Adjusting the Data
+    
+    ! LaTeX Error: File `ifxetex.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.5 \usepackage
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Solaiappan Manimaran <manimaran_1975@hotmail.com>'
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    gls.series.C: no visible global function definition for 'lm.fit'
+    Undefined global functions or variables:
+      lm.fit
+    Consider adding
+      importFrom("stats", "lm.fit")
+    to your NAMESPACE file.
+    ```
+
 # BayesTwin
 
 Version: 1.0
@@ -359,7 +419,7 @@ Version: 1.9.0
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/paul-buerkner/brms.svg?branch=master
-    FailedConnectionException "travis-ci.org" 443
+    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
     ```
 
 *   checking examples ... WARNING
@@ -542,6 +602,57 @@ Version: 1.0.0
     This build time stamp is over a month old.
     ```
 
+# Chicago
+
+Version: 1.4.0
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Loading required package: data.table
+    
+    Welcome to CHiCAGO - version 1.4.0
+    If you are new to CHiCAGO, please consider reading the vignette through the command: vignette("Chicago").
+    NOTE: Default values of tlb.minProxOEPerBin and tlb.minProxB2BPerBin changed as of Version 1.1.5. No action is required unless you specified non-default values, or wish to re-run the pipeline on old chicagoData objects. See news(package="Chicago")
+    Quitting from lines 44-46 (Chicago.Rmd) 
+    Error: processing vignette 'Chicago.Rmd' failed with diagnostics:
+    there is no package called 'PCHiCdata'
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Mikhail Spivakov <spivakov@babraham.ac.uk>'
+    
+    The Title field starts with the package name.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: 'PCHiCdata'
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
+    
+    CRAN-pack does not know about
+      .BBSoptions
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: 'PCHiCdata'
+    ```
+
 # Clomial
 
 Version: 1.12.0
@@ -593,6 +704,89 @@ Version: 1.12.0
       importFrom("stats", "dbinom", "optim", "rbinom", "runif")
       importFrom("utils", "tail")
     to your NAMESPACE file.
+    ```
+
+# CNPBayes
+
+Version: 1.6.1
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of 'README.md' failed:
+    pandoc: Could not fetch https://travis-ci.org/scristia/CNPBayes.svg?branch=master
+    FailedConnectionException "travis-ci.org" 443
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Codoc mismatches from documentation object 'labelSwitching':
+    labelSwitching
+      Code: function(object, ...)
+      Docs: function(object, merge = TRUE)
+      Argument names in code not in docs:
+        ...
+      Argument names in docs not in code:
+        merge
+      Mismatches in argument names:
+        Position: 2 Code: ... Docs: merge
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    ! LaTeX Error: File `ifxetex.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.5 \usepackage
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'Convergence.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Jacob Carey <jcarey15@jhu.edu>'
+    
+    The Title field should be in title case, current version then in title case:
+    'Bayesian mixture models for copy number polymorphisms'
+    'Bayesian Mixture Models for Copy Number Polymorphisms'
+    
+    The Date field is not in ISO 8601 yyyy-mm-dd format.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1026.1Mb
+      sub-directories of 1Mb or more:
+        libs  1024.0Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      'GenomicRanges'
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    consensusRegion: no visible global function definition for
+      'elementLengths'
+    Undefined global functions or variables:
+      elementLengths
     ```
 
 # cointmonitoR
@@ -704,6 +898,79 @@ Version: 0.1.0
     checking a package with encoding  'UTF-8'  in an ASCII locale
     ```
 
+# crlmm
+
+Version: 1.34.0
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking CRAN incoming feasibility ... WARNING
+    ```
+    ...
+    The maintainer field is invalid or specifies more than one person
+    
+    Unknown, possibly mis-spelled, fields in DESCRIPTION:
+      '## Local Variables' '## time-stamp-pattern' '## End'
+    
+    No package encoding and non-ASCII characters in the following R files:
+      R/crlmm-illumina.R
+        367: ##  loader(<e2><80><98>file.rda<e2><80><99>)
+        368: ##  x = getVarInEnv(<e2><80><98>x<e2><80><99>)
+        369: ##  y = getVarInEnv(<e2><80><98>y<e2><80><99>)
+        371: ##  I<e2><80><99>d consider using something like:
+        373: ##	  needToLoad = !all(sapply(c(<e2><80><98>x<e2><80><99>, <e2><80><98>y<e2><80><99>), isLoaded))
+        375: ##	  loader(<e2><80><98>file.rda<e2><80><99>)
+        376: ##	  x = getVarInEnv(<e2><80><98>x<e2><80><99>)
+        377: ##	  y = getVarInEnv(<e2><80><98>y<e2><80><99>)
+    
+    The Title field should be in title case, current version then in title case:
+    'Genotype Calling (CRLMM) and Copy Number Analysis tool for Affymetrix SNP 5.0 and 6.0 and Illumina arrays'
+    'Genotype Calling (CRLMM) and Copy Number Analysis Tool for Affymetrix SNP 5.0 and 6.0 and Illumina Arrays'
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.0Mb
+      sub-directories of 1Mb or more:
+        data   2.7Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Versioned 'LinkingTo' value for 'preprocessCore' is only usable in R >= 3.0.2
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' call to 'RUnit' in package code.
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Namespaces in Imports field not imported from:
+      'SNPchip' 'splines'
+      All declared Imports should be used.
+    Unexported object imported by a ':::' call: 'Biobase:::assayDataEnvLock'
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    .test: no visible global function definition for 'defineTestSuite'
+    .test: no visible global function definition for 'runTestSuite'
+    .test: no visible global function definition for 'printTextProtocol'
+    calculateRBafCNSet : processByChromosome: no visible global function
+      definition for 'position'
+    genotypeInf: no visible binding for global variable 'anno'
+    krlmm: no visible binding for global variable 'VGLMparameters'
+    Undefined global functions or variables:
+      VGLMparameters anno defineTestSuite position printTextProtocol
+      runTestSuite
+    ```
+
 # DAMOCLES
 
 Version: 1.1
@@ -761,6 +1028,33 @@ Version: 0.9.7
       installed size is 1024.2Mb
       sub-directories of 1Mb or more:
         libs  1024.0Mb
+    ```
+
+# DeepBlueR
+
+Version: 1.2.10
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking CRAN incoming feasibility ... WARNING
+    ```
+    Maintainer: 'Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>'
+    
+    The maintainer field is invalid or specifies more than one person
+    
+    The Title field is just the package name: provide a real title.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.6Mb
+      sub-directories of 1Mb or more:
+        doc  1024.1Mb
     ```
 
 # DelayedArray
@@ -828,6 +1122,26 @@ Version: 0.2.7
       'S4Vectors:::anyMissingOrOutside'
       'S4Vectors:::extract_positions_from_Rle' 'S4Vectors:::sapply_isNULL'
       See the note in ?`:::` about the use of this operator.
+    ```
+
+# DGCA
+
+Version: 1.0.1
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of 'README.md' failed:
+    pandoc: Could not fetch https://travis-ci.org/andymckenzie/DGCA.svg?branch=master
+    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Andrew McKenzie <amckenz@gmail.com>'
+    
+    This build time stamp is over a month old.
     ```
 
 # diffloop
@@ -1373,6 +1687,153 @@ Version: 1.1.0
         libs  1024.0Mb
     ```
 
+# flowCore
+
+Version: 1.42.2
+
+## In both
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    ...
+      Code: function(files = NULL, path = ".", pattern = NULL, phenoData,
+                     descriptions, name.keyword, alter.names = FALSE,
+                     transformation = "linearize", which.lines = NULL,
+                     column.pattern = NULL, invert.pattern = FALSE, decades
+                     = 0, sep = "\t", as.is = TRUE, name, ncdf = FALSE,
+                     dataset = NULL, min.limit = NULL, truncate_max_range =
+                     TRUE, emptyValue = TRUE, ignore.text.offset = FALSE,
+                     ...)
+      Docs: function(files = NULL, path = ".", pattern = NULL, phenoData,
+                     descriptions, name.keyword, alter.names = FALSE,
+                     transformation = "linearize", which.lines = NULL,
+                     column.pattern = NULL, invert.pattern = FALSE, decades
+                     = 0, sep = "\t", as.is = TRUE, name, ncdf = FALSE,
+                     dataset = NULL, min.limit = NULL, emptyValue = TRUE,
+                     ignore.text.offset = FALSE, ...)
+      Argument names in code not in docs:
+        truncate_max_range
+      Mismatches in argument names:
+        Position: 19 Code: truncate_max_range Docs: emptyValue
+        Position: 20 Code: emptyValue Docs: ignore.text.offset
+        Position: 21 Code: ignore.text.offset Docs: ...
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'read.flowSet':
+      'truncate_max_range'
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 301-303 (HowTo-flowCore.Rnw) 
+    Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
+    there is no package called 'ggcyto'
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'M.Jiang <wjiang2@fhcrc.org>'
+    
+    The Title field starts with the package name.
+    The Title field should be in title case, current version then in title case:
+    'flowCore: Basic structures for flow cytometry data'
+    'flowCore: Basic Structures for Flow Cytometry Data'
+    
+    This build time stamp is over a month old.
+    
+    Size of tarball: 12413092 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      'flowViz' 'flowStats' 'flowWorkspace' 'openCyto' 'ggcyto'
+    ```
+
+*   checking if this is a source package ... NOTE
+    ```
+    Found the following apparent object files/libraries:
+      src/boost_regex/c_regex_traits.o src/boost_regex/cpp_regex_traits.o
+      src/boost_regex/cregex.o src/boost_regex/fileiter.o
+      src/boost_regex/icu.o src/boost_regex/instances.o
+      src/boost_regex/posix_api.o src/boost_regex/regex.o
+      src/boost_regex/regex_debug.o src/boost_regex/regex_raw_buffer.o
+      src/boost_regex/regex_traits_defaults.o
+      src/boost_regex/static_mutex.o src/boost_regex/usinstances.o
+      src/boost_regex/w32_regex_traits.o src/boost_regex/wc_regex_traits.o
+      src/boost_regex/wide_posix_api.o src/boost_regex/winstances.o
+    Object files/libraries should not be included in a source package.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 2072.3Mb
+      sub-directories of 1Mb or more:
+        data     1024.0Mb
+        extdata     1.1Mb
+        lib        21.2Mb
+        libs     1024.0Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Versioned 'LinkingTo' value for 'BH' is only usable in R >= 3.0.2
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' call to 'Rgraphviz' in package code.
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    %in%,flowFrame-norm2Filter: no visible global function definition for
+      'cov.rob'
+    spillover,flowSet: no visible global function definition for
+      'devAskNewPage'
+    spillover,flowSet : <anonymous>: no visible global function definition
+      for 'rangeGate'
+    spillover,flowSet : <anonymous>: no visible global function definition
+      for 'density'
+    spillover,flowSet : <anonymous>: no visible global function definition
+      for 'abline'
+    spillover,flowSet : <anonymous> : <anonymous>: no visible global
+      function definition for 'density'
+    split,flowFrame-factor: no visible binding for global variable 'i'
+    summary,workFlow: no visible binding for global variable 'wf'
+    Undefined global functions or variables:
+      abline cov.rob density devAskNewPage i rangeGate wf
+    Consider adding
+      importFrom("grDevices", "devAskNewPage")
+      importFrom("graphics", "abline")
+      importFrom("stats", "density")
+    to your NAMESPACE file.
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: 'flowViz', 'flowStats'
+    ```
+
+*   checking for GNU extensions in Makefiles ... NOTE
+    ```
+    GNU make is a SystemRequirements.
+    ```
+
 # fslr
 
 Version: 2.12
@@ -1391,6 +1852,55 @@ Version: 2.12
     Namespaces in Imports field not imported from:
       'R.utils' 'grDevices' 'graphics' 'matrixStats' 'stats'
       All declared Imports should be used.
+    ```
+
+# funtooNorm
+
+Version: 1.0.0
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Normalization of signal : AIGrn
+    Normalization of signal : BIGrn
+    Normalization of signal : AIRed
+    Normalization of signal : BIRed
+    Normalization of signal : AII
+    Normalization of signal : BII
+    ! LaTeX Error: File `ifxetex.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.5 \usepackage
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'funtooNorm.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Kathleen Klein <kathleen.klein@mail.mcgill.ca>'
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1025.5Mb
+      sub-directories of 1Mb or more:
+        R       1.3Mb
+        doc  1024.0Mb
     ```
 
 # GAD
@@ -1420,10 +1930,12 @@ Version: 1.1.1
 
 Version: 1.0.9
 
-## In both
+## Newly broken
 
 *   R CMD check timed out
     
+
+## In both
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -1658,6 +2170,41 @@ Version: 1.6.1
         extdata  10.5Mb
     ```
 
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    annotateOffTargets: no visible global function definition for 'toTable'
+    getPeaks: no visible binding for global variable 'adjusted.p.value'
+    getPeaks: no visible binding for global variable 'SNratio'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'qwidth.first'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'qwidth.last'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'strand.last'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'strand.first'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'readName'
+    offTargetAnalysisOfPeakRegions: no visible binding for global variable
+      'gRNAPlusPAM'
+    offTargetAnalysisOfPeakRegions: no visible binding for global variable
+      'offTarget'
+    Undefined global functions or variables:
+      SNratio adjusted.p.value exons gRNAPlusPAM genes offTarget
+      offTarget_Start qwidth.first qwidth.last readName seqlevelsStyle<-
+      strand.first strand.last toTable
+    ```
+
+*   checking Rd files ... NOTE
+    ```
+    prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
+    prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
+    prepare_Rd: createBarcodeFasta.Rd:42-43: Dropping empty section \value
+    prepare_Rd: createBarcodeFasta.Rd:44-46: Dropping empty section \references
+    prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
+    ```
+
 # Gviz
 
 Version: 1.20.0
@@ -1666,16 +2213,6 @@ Version: 1.20.0
 
 *   R CMD check timed out
     
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented S4 methods:
-      generic '[' and siglist 'GenomeAxisTrack,ANY,ANY,ANY'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter 'Writing R documentation files' in the 'Writing R
-    Extensions' manual.
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -1694,18 +2231,6 @@ Version: 1.20.0
       sub-directories of 1Mb or more:
         doc       1.6Mb
         extdata   2.1Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-      'cdsBy'
-    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-      'fiveUTRsByTranscript'
-    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-      'threeUTRsByTranscript'
-    Undefined global functions or variables:
-      cdsBy fiveUTRsByTranscript threeUTRsByTranscript
     ```
 
 # haploReconstruct
@@ -1858,6 +2383,31 @@ Version: 2.0-3
       importFrom("graphics", "segments")
       importFrom("stats", "medpolish", "rnorm")
     to your NAMESPACE file.
+    ```
+
+# LSAmitR
+
+Version: 1.0-0
+
+## In both
+
+*   checking examples ... WARNING
+    ```
+    checking a package with encoding  'UTF-8'  in an ASCII locale
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Thomas Kiefer <t.kiefer@bifie.at>'
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 55 marked UTF-8 strings
     ```
 
 # Luminescence
@@ -2058,6 +2608,29 @@ Version: 0.1.13
     to your NAMESPACE file.
     ```
 
+# metavizr
+
+Version: 1.0.2
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Hector Corrada Bravo <hcorrada@gmail.com>'
+    
+    The Title field should be in title case, current version then in title case:
+    'R Interface to the metaviz web app for interactive metagenomics data analysis and visualization'
+    'R Interface to the Metaviz Web App for Interactive Metagenomics Data Analysis and Visualization'
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    This build time stamp is over a month old.
+    ```
+
 # MethylAid
 
 Version: 1.10.0
@@ -2094,6 +2667,148 @@ Version: 1.10.0
     Maintainer field differs from that derived from Authors@R
       Maintainer: 'M. van Iterson <mviterson@gmail.com>'
       Authors@R:  'Maarten van Iterson <mviterson@gmail.com>'
+    ```
+
+# methylumi
+
+Version: 2.22.0
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      'IDATsToMatrices' 'IDATtoMatrix' 'tcgaPipeline'
+    Undocumented S4 methods:
+      generic '[' and siglist 'MethyLumiM,ANY,ANY,ANY'
+      generic '[' and siglist 'MethyLumiSet,ANY,ANY,ANY'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking contents of 'data' directory ... WARNING
+    ```
+    Files not of a type allowed in a 'data' directory:
+      '5318317007_A_Grn.idat' '5318317007_A_Red.idat'
+      '5318317007_B_Grn.idat' '5318317007_B_Red.idat'
+      '5318317007_C_Grn.idat' '5318317007_C_Red.idat'
+    Please use e.g. 'inst/extdata' for non-R data files
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Sean Davis <sdavis2@mail.nih.gov>'
+    
+    The Title field should be in title case, current version then in title case:
+    'Handle Illumina methylation data'
+    'Handle Illumina Methylation Data'
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    
+    Size of tarball: 6179445 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'Biobase' 'scales' 'reshape2' 'ggplot2' 'matrixStats'
+      'FDb.InfiniumMethylation.hg19' 'minfi'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
+    
+    CRAN-pack does not know about
+      .travis.yml
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 2053.9Mb
+      sub-directories of 1Mb or more:
+        data     1028.6Mb
+        extdata  1024.0Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+      'Biobase' 'minfi' 'lattice' 'matrixStats'
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' calls to packages already attached by Depends:
+      'FDb.InfiniumMethylation.hg19' 'ggplot2' 'matrixStats' 'minfi'
+      'reshape2' 'scales'
+      Please remove these calls from your code.
+    'library' or 'require' calls in package code:
+      'Biostrings' 'MASS' 'lumi' 'parallel' 'rtracklayer'
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Namespace in Imports field not imported from: 'graphics'
+      All declared Imports should be used.
+    Packages in Depends field not imported from:
+      'FDb.InfiniumMethylation.hg19' 'ggplot2' 'matrixStats' 'methods'
+      'reshape2' 'scales'
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ':::' call which should be '::': 'lumi:::produceMethylationGEOSubmissionFile'
+      See the note in ?`:::` about the use of this operator.
+    Unexported objects imported by ':::' calls:
+      'Biobase:::unsafeSetSlot' 'genefilter:::.findCentralMap'
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
+      abline addColorChannelInfo aes allele as.dist axis box capture.output
+      channel.probes colMedians colQuantiles colSds colorRampPalette
+      coord_flip data dnorm dropouts drops ecdf facet_grid features
+      gamma.integral gamma.mle gamma.mode geom_histogram ggplot hclust
+      hm27.controls hm27.ordering hm450.controls hm450.ordering huber index
+      intensity lines log_trans mclapply melt mu offset opts p.adjust
+      packageDescription packageVersion par plot.density pnorm points
+      position_identity read.csv read.delim read.table rect rowMins
+      scale_colour_manual scale_fill_manual scale_shape_manual
+      scale_x_continuous scale_y_continuous scale_y_discrete
+      subsetCommonProbes text theme_bw title value variable weighted.mean
+    Consider adding
+      importFrom("grDevices", "colorRampPalette")
+      importFrom("graphics", "abline", "axis", "box", "lines", "par",
+                 "points", "rect", "text", "title")
+      importFrom("stats", "as.dist", "dnorm", "ecdf", "hclust", "offset",
+                 "p.adjust", "pnorm", "weighted.mean")
+      importFrom("utils", "capture.output", "data", "packageDescription",
+                 "packageVersion", "read.csv", "read.delim", "read.table")
+    to your NAMESPACE file.
+    ```
+
+*   checking Rd files ... NOTE
+    ```
+    prepare_Rd: estimateM.Rd:34-36: Dropping empty section \seealso
+    prepare_Rd: estimateM.Rd:37-39: Dropping empty section \examples
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    'library' or 'require' call not declared from: 'TxDb.Hsapiens.UCSC.hg19.knownGene'
     ```
 
 # MFHD
@@ -2210,6 +2925,62 @@ Version: 1.0.1
      ... 
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
+    ```
+
+# minfi
+
+Version: 1.22.1
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of 'README.md' failed:
+    pandoc: Could not fetch http://bioconductor.org/shields/build/release/bioc/minfi.svg
+    FailedConnectionException "bioconductor.org" 80
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Loading required package: locfit
+    locfit 1.5-9.1 	 2013-03-22
+    Setting options('download.file.method.GEOquery'='auto')
+    Setting options('GEOquery.inmemory.gpl'=FALSE)
+    Loading required package: IlluminaHumanMethylation450kmanifest
+    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
+    ! LaTeX Error: File `ifxetex.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.5 \usepackage
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'minfi.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Kasper Daniel Hansen <kasperdanielhansen@gmail.com>'
+    
+    The Title field should be in title case, current version then in title case:
+    'Analyze Illumina Infinium DNA methylation arrays'
+    'Analyze Illumina Infinium DNA Methylation Arrays'
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: 'bumphunter:::.getEstimate'
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # MinimumDistance
@@ -2379,6 +3150,64 @@ Version: 1.6.0
     'A Package for Predicting the Disruptiveness of Single Nucleotide Polymorphisms on Transcription Factor Binding Sites'
     
     This build time stamp is over a month old.
+    ```
+
+# MPAgenomics
+
+Version: 1.1.2
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Samuel Blanck <samuel.blanck@inria.fr>'
+    
+    No package encoding and non-ASCII characters in the following R files:
+      R/bivariateSignal.R
+        64: # etrange=c(2,36)#66 semble greff<c3><a9> #7 CN <c3><a9>trange
+      R/cghcall_private.R
+        140:     #TODO v<c3><a9>rifier pertinence correction bug avec segment extreme d'un seul point
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' calls in package code:
+      'R.devices' 'R.filesets' 'R.methodsS3' 'R.oo' 'aroma.affymetrix'
+      'aroma.cn' 'aroma.core' 'aroma.light' 'matrixStats' 'snowfall'
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Unexported object imported by a ':::' call: 'cghseg:::segmeanCO'
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    markerSelection: no visible global function definition for 'read.csv'
+    postsegnormalize: no visible global function definition for 'median'
+    segFracBSignal: no visible global function definition for 'read.csv'
+    segFracBSignal : <anonymous>: no visible global function definition for
+      'points'
+    segFracBSignal : <anonymous>: no visible global function definition for
+      'lines'
+    segFracBSignal : <anonymous>: no visible global function definition for
+      'write.table'
+    tumorboostPlot: no visible global function definition for 'head'
+    tumorboostPlot: no visible global function definition for 'par'
+    tumorboostPlot: no visible global function definition for 'axis'
+    tumorboostPlot: no visible global function definition for 'points'
+    Undefined global functions or variables:
+      axis head lines lm mad median optim par points read.csv sd var
+      write.table
+    Consider adding
+      importFrom("graphics", "axis", "lines", "par", "points")
+      importFrom("stats", "lm", "mad", "median", "optim", "sd", "var")
+      importFrom("utils", "head", "read.csv", "write.table")
+    to your NAMESPACE file.
     ```
 
 # mrfDepth
@@ -3009,6 +3838,120 @@ Version: 1.0.3
     to your NAMESPACE file.
     ```
 
+# RnBeads
+
+Version: 1.8.0
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in 'tests/runTests.R' failed.
+    Last 13 lines of output:
+      
+          ozone
+      
+      The following object is masked from 'package:IRanges':
+      
+          desc
+      
+      The following object is masked from 'package:S4Vectors':
+      
+          rename
+      
+      Error in library("RUnit", quietly = TRUE) : 
+        there is no package called 'RUnit'
+      Calls: <Anonymous> -> library
+      Execution halted
+    ```
+
+*   R CMD check timed out
+    
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Fabian Mueller <rnbeads@mpi-inf.mpg.de>'
+    
+    The Title field is just the package name: provide a real title.
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    
+    Size of tarball: 6355567 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: 'GLAD'
+    
+    Depends: includes the non-default packages:
+      'BiocGenerics' 'S4Vectors' 'GenomicRanges' 'MASS' 'cluster' 'ff'
+      'fields' 'ggplot2' 'gplots' 'gridExtra' 'limma' 'matrixStats'
+      'illuminaio' 'methylumi' 'plyr'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 2051.3Mb
+      sub-directories of 1Mb or more:
+        R    1025.1Mb
+        doc  1024.3Mb
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... NOTE
+    ```
+    Warning: no function found corresponding to methods exports from 'RnBeads' for: 'samples'
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      'Gviz:::.getBMFeatureMap' 'doParallel:::.options'
+      'grDevices:::.smoothScatterCalcDensity'
+      'minfi:::.default.450k.annotation' 'minfi:::.extractFromRGSet450k'
+      'minfi:::.normalizeFunnorm450k'
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      BootRefFreeEwasModel ChrNumeric DataTrack Density Deviance Difference
+      DoISVA Error EstDimRMT GenomeAxisTrack ID IdeogramTrack
+      IlluminaHumanMethylation450kmanifest
+      IlluminaHumanMethylationEPICmanifest Index Intensity Measure
+      PairsBootRefFreeEwasModel Probe RGChannelSet RefFreeEwasModel SNP
+      Sample Slide Target Term UcscTrack Value addSex as.profileCGH
+      assayDataElement assayDataElementNames barcode bv chrom color
+      combinedRank comma covgMedian covgPercLow covgPercUp cv.glmnet daglad
+      diffmeth diffmeth.p.adj.fdr diffmeth.p.val dinucleotideFrequency
+      expectedCounts featureData featureData<- featureNames featureNames<-
+      foreach geneCounts genome<- getCN getDoParWorkers getGreen
+      getManifest getMeth getRed getSex getUnmeth getVarCov glmnet
+      grid.draw grid.newpage group group1 group2 i impute.knn intensities
+      is.subsegmentation k letterFrequency lme mapToGenome mean.diff
+      mean.g1 mean.g2 mean.mean.g1 mean.mean.g2 mean.quot.log2 melt muted
+      n.sites num.sites numSites numeric.names oddsRatios pData
+      percent_format phenoData phenoData<- plotOrder plotTracks
+      preprocessSWAN pvalues refText reg.type region.size
+      registerDoParallel relative.coord report samples seqlengths
+      seqlevels<- sigCategories sites2ignore size solve.QP stopCluster sva
+      target tsne type types universeCounts useMart v varLabels x y yint
+    ```
+
 # RTransProb
 
 Version: 0.1.0
@@ -3176,6 +4119,77 @@ Version: 1.4.0
     their full name.
     See chapter 'Writing R documentation files' in the 'Writing R
     Extensions' manual.
+    ```
+
+# scone
+
+Version: 1.0.0
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in 'scone-Ex.R' failed
+    The error most likely occurred in:
+    
+    > ### Name: biplot_interactive
+    > ### Title: Interactive biplot
+    > ### Aliases: biplot_interactive
+    > 
+    > ### ** Examples
+    > 
+    > mat <- matrix(rpois(1000, lambda = 5), ncol=10)
+    > colnames(mat) <- paste("X", 1:ncol(mat), sep="")
+    > obj <- SconeExperiment(mat)
+    > res <- scone(obj, scaling=list(none=identity,
+    +    uq=UQ_FN, deseq=DESEQ_FN,  fq=FQT_FN),
+    + evaluate=TRUE, k_ruv=0, k_qc=0, eval_kclust=2,
+    +    bpparam = BiocParallel::SerialParam())
+    Error in if (rezero) { : the condition has length > 1
+    Calls: scone -> scone -> .local
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in 'tests/testthat.R' failed.
+    Last 13 lines of output:
+      testthat results ================================================================
+      OK: 7 SKIPPED: 0 FAILED: 16
+      1. Error: all back-ends work (@test_bpparam.R#17) 
+      2. Error: get_normalized works in all three modes (@test_get_design.R#18) 
+      3. Error: get_normalized works in all three modes (@test_get_norm.R#18) 
+      4. Error: get_normalized works in all three modes with nested model (@test_get_norm.R#76) 
+      5. Error: return_norm in memory (@test_hdf5.R#44) 
+      6. Error: do not return_norm (@test_hdf5.R#65) 
+      7. Error: Upper-quartile normalization works the same as in the edgeR package (@test_norm.R#15) 
+      8. Error: Test with no real method (only identity) (@test_scone.R#12) 
+      9. Error: Test imputation and scaling (@test_scone.R#129) 
+      1. ...
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Michael Cole <mbeloc@gmail.com>'
+    
+    The Title field should be in title case, current version then in title case:
+    'Single Cell Overview of Normalized Expression data'
+    'Single Cell Overview of Normalized Expression Data'
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: 'EDASeq'
+      All declared Imports should be used.
     ```
 
 # SemiParSampleSel
@@ -3890,9 +4904,6 @@ Version: 1.20.3
 
 ## In both
 
-*   R CMD check timed out
-    
-
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: 'Leo <lschal@essex.ac.uk>'
@@ -3924,9 +4935,9 @@ Version: 1.20.3
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.6Mb
+      installed size is 1025.4Mb
       sub-directories of 1Mb or more:
-        data  14.0Mb
+        data  1024.8Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
