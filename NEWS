@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-09-06]
+Version: 0.52.2-9000 [2017-09-07]
 
 NEW FEATURES:
 
@@ -11,13 +11,13 @@ NEW FEATURES:
    count number of TRUE elements beyond 2^31-1, which base::sum() does not
    support.
 
- o Functions col- and rowSums2() and col- and rowMeans2() now accept also
-   logical input 'x'.
+ o Functions col-/rowSums2() and col-/rowMeans2() now accept also logical
+   input 'x'.
  
  o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
    to to using as.integer(y).
 
- o Functions col- and rowTabulates(x) now support logical input 'x'.
+ o Functions col-/rowTabulates(x) now support logical input 'x'.
  
  o Now count() can count beyond 2^31-1.
 
@@ -33,14 +33,18 @@ BUG FIX:
 
  o count() beyond 2^31-1 would return invalid results.
 
- o Functions col- and rowTabulates(x) did not count missing values.
+ o Functions col-/rowTabulates(x) did not count missing values.
 
  o indexByRow(dim, idxs) would give nonsense results if 'idxs' had indices
    greater than prod(dim) or non-positive indices; now it gives an error.
 
  o indexByRow(dim) would give nonsense results when prod(dim) >= 2^31; now
    it gives an informative error.
- 
+
+ o col-/rowAvgsPerColSet() would return vector rather than matrix if
+   nrow(X) <= 1. Thanks to Peter Hickey (Johns Hopkins University) for
+   troubleshooting and providing a fix.
+   
 
 Version: 0.52.2 [2017-04-13]
 
@@ -294,10 +298,10 @@ SIGNIFICANT CHANGES:
 
 NEW FEATURES:
 
- o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to 'center'.
-   This is consistent with col- and rowVars().
+ o CONSISTENCY: Renamed argument 'centers' of col-/rowMads() to 'center'.
+   This is consistent with col-/rowVars().
 
- o CONSISTENCY: col- and rowVars() now use na.rm = FALSE as the default
+ o CONSISTENCY: col-/rowVars() now use na.rm = FALSE as the default
    (na.rm = TRUE was mistakenly introduced as the default in v0.9.7).
 
 PERFORMANCE AND MEMORY:
@@ -330,9 +334,8 @@ BUG FIXES:
    consistent with all() and any() if there were missing values.  For
    example, with x <- c("a", NA, "b") we have all(x == "a") == FALSE and
    any(x == "a") == TRUE whereas our corresponding methods would return NA in
-   those cases.  The methods fixed are allValue(), anyValue(), col- and
-   rowAlls(), and col- and rowAnys().  Added more package tests to cover
-   these cases.
+   those cases.  The methods fixed are allValue(), anyValue(), col-/rowAlls(),
+   and col-/rowAnys().  Added more package tests to cover these cases.
 
  o logSumExp(x, na.rm = TRUE) would return NA if all values were NA and
    length(x) > 1.  Now it returns -Inf for all length(x):s.
@@ -663,8 +666,8 @@ Version: 0.10.1 [2014-06-09]
 
 PERFORMANCE AND MEMORY:
 
- o Added benchmark reports for also non-matrixStats functions col/rowSums()
-   and col/rowMeans().
+ o Added benchmark reports for also non-matrixStats functions col-/rowSums()
+   and col-/rowMeans().
 
  o Now all colNnn() and rowNnn() methods are benchmarked in a combined report
    making it possible to also compare colNnn(x) with rowNnn(t(x)).
@@ -690,8 +693,8 @@ Version: 0.9.7 [2014-06-05]
 
 BUG FIXES:
 
- o Introduced a bug in v0.9.5 causing col- and rowVars() and hence also
-   col- and rowSds() to return garbage.  Add package tests for these now.
+ o Introduced a bug in v0.9.5 causing col-/rowVars() and hence also
+   col-/rowSds() to return garbage.  Add package tests for these now.
 
  o Submitted to CRAN.
  
@@ -706,7 +709,7 @@ NEW FEATURES:
 
 PERFORMANCE AND MEMORY:
 
- o SPEEDUP: Now col- and rowProds() utilizes new product() function.
+ o SPEEDUP: Now col-/rowProds() utilizes new product() function.
 
  o SPEEDUP: Added product() for calculating the product of a numeric
    vector via the logarithm.
@@ -725,8 +728,8 @@ SIGNIFICANT CHANGES:
 
 NEW FEATURES:
 
- o Added argument 'method' to col- and rowProds() for controlling how the
-   product is calculated.
+ o Added argument 'method' to col-/rowProds() for controlling how the product
+   is calculated.
 
 PERFORMANCE AND MEMORY:
 
