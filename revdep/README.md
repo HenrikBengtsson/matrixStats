@@ -9,7 +9,7 @@
 |language |en                           |
 |collate  |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2017-09-06                   |
+|date     |2017-09-07                   |
 
 # Dependencies
 
@@ -30,7 +30,7 @@
 |InfiniumPurify                     |?       |      |        |     |
 |kpmt                               |?       |      |        |     |
 
-## All (141)
+## All (142)
 
 |package                                                              |version |error |warning |note |
 |:--------------------------------------------------------------------|:-------|:-----|:-------|:----|
@@ -49,6 +49,7 @@
 |[bigstep](problems.md#bigstep)                                       |0.7.4   |      |        |1    |
 |[bingat](problems.md#bingat)                                         |1.3     |      |        |2    |
 |bmrm                                                                 |3.4     |      |        |     |
+|[bnclassify](problems.md#bnclassify)                                 |0.3.3   |      |1       |1    |
 |[brms](problems.md#brms)                                             |1.9.0   |1     |        |1    |
 |[bsseq](problems.md#bsseq)                                           |1.12.2  |      |1       |2    |
 |[bumphunter](problems.md#bumphunter)                                 |1.16.0  |1     |        |6    |

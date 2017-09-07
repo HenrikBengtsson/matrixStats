@@ -366,6 +366,38 @@ Version: 1.3
     Package unavailable to check Rd xrefs: ‘genalg’
     ```
 
+# bnclassify
+
+Version: 0.3.3
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.39 \definecolor
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'introduction.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘memoise’
+    ```
+
 # brms
 
 Version: 1.9.0
@@ -453,7 +485,7 @@ Version: 1.16.0
           'citation("Biobase")', and for packages 'citation("pkgname")'.
       
       Download the refGene table ... Error: Expectation Failed
-      Timing stopped at: 1.898 0.142 25.15
+      Timing stopped at: 1.848 0.118 25.45
       testthat results ================================================================
       OK: 10 SKIPPED: 0 FAILED: 0
       Execution halted
@@ -2424,7 +2456,7 @@ Version: 0.7.5
       
       
       [read_BIN2R()]
-      	 >> /scratch/hb/RtmpEh2Hx3/read_BIN2R_FILE4c821bd90a9
+      	 >> /scratch/hb/RtmpTLCpfw/read_BIN2R_FILE74287575fa11
       	 >> 2 records have been read successfully!
       
       testthat results ================================================================
@@ -3778,7 +3810,7 @@ Version: 1.12.0
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-    25160974814302134.436.838865427963024207.660.838865426569185207.650.2
+    25163504814644134.436.838865427963024207.660.838865426569187207.650.2
     FINISHED!
     
     Total time:0minutes
