@@ -1,24 +1,15 @@
 # abcrf
 
-Version: 1.6
+Version: 1.7
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: 'Jean-Michel Marin <jean-michel.marin@umontpellier.fr>'
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is 2048.2Mb
       sub-directories of 1Mb or more:
-        data   2.6Mb
-        libs   2.3Mb
+        data  1024.0Mb
+        libs  1024.0Mb
     ```
 
 # ACNE
@@ -26,6 +17,14 @@ Version: 1.6
 Version: 0.8.1
 
 ## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: 'aroma.affymetrix'
+    
+    See section 'The DESCRIPTION file' in the 'Writing R Extensions'
+    manual.
+    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -127,6 +126,11 @@ Version: 3.1.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: 'AffymetrixDataTestFiles'
     ```
 
 *   checking installed package size ... NOTE
@@ -406,6 +410,45 @@ Version: 1.3
     Package unavailable to check Rd xrefs: 'genalg'
     ```
 
+# bnclassify
+
+Version: 0.3.3
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of 'README.md' failed:
+    pandoc: Could not fetch https://travis-ci.org/bmihaljevic/bnclassify.svg?branch=master
+    FailedConnectionException "travis-ci.org" 443
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    ! LaTeX Error: File `ifxetex.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.5 \usepackage
+    
+    pandoc: Error producing PDF
+    Error: processing vignette 'introduction.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 43
+    Execution halted
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: 'memoise'
+    ```
+
 # brms
 
 Version: 1.9.0
@@ -443,8 +486,8 @@ Version: 1.12.2
 *   checking top-level files ... WARNING
     ```
     Conversion of 'README.md' failed:
-    pandoc: Could not fetch http://bioconductor.org/shields/build/release/bioc/bsseq.svg
-    FailedConnectionException "bioconductor.org" 80
+    pandoc: Could not fetch https://travis-ci.org/kasperdanielhansen/bsseq.svg
+    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
     ```
 
 *   checking examples ... WARNING
@@ -482,8 +525,27 @@ Version: 1.16.0
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in 'tests/test-all.R' failed.
+    Last 13 lines of output:
+      testthat results ================================================================
+      OK: 24 SKIPPED: 0 FAILED: 5
+      1. Failure: Annotate Nearest (@test_annotation.R#13) 
+      2. Failure: Annotate Nearest (@test_annotation.R#14) 
+      3. Failure: Annotate Nearest (@test_annotation.R#15) 
+      4. Failure: Annotate Nearest (@test_annotation.R#17) 
+      5. Failure: Annotate Nearest (@test_annotation.R#19) 
+      
+      Error: testthat unit tests failed
+      In addition: Warning messages:
+      1: In .set_group_names(grl, use.names, txdb, by) :
+        some group names are NAs or duplicated
+      2: In .set_group_names(grl, use.names, txdb, by) :
+        some group names are NAs or duplicated
+      Execution halted
+    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -716,7 +778,7 @@ Version: 1.6.1
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/scristia/CNPBayes.svg?branch=master
-    FailedConnectionException "travis-ci.org" 443
+    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
     ```
 
 *   checking for code/documentation mismatches ... WARNING
@@ -935,9 +997,9 @@ Version: 1.34.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is 2050.4Mb
       sub-directories of 1Mb or more:
-        data   2.7Mb
+        data  2048.0Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -969,6 +1031,60 @@ Version: 1.34.0
     Undefined global functions or variables:
       VGLMparameters anno defineTestSuite position printTextProtocol
       runTestSuite
+    ```
+
+# crossmeta
+
+Version: 1.2.0
+
+## In both
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Data with usage in documentation object 'gs.names' but not in code:
+      gs.names
+    
+    Data with usage in documentation object 'gslist' but not in code:
+      gslist
+    ```
+
+*   checking examples ... WARNING
+    ```
+    checking a package with encoding  'UTF-8'  in an ASCII locale
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Alex Pickering <alexvpickering@gmail.com>'
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.9Mb
+      sub-directories of 1Mb or more:
+        doc  1024.0Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Missing or unexported objects:
+      'crossmeta::gs.names' 'crossmeta::gslist'
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    explore_paths : server: no visible binding for global variable 'gslist'
+    explore_paths : server: no visible binding for global variable
+      'gs.names'
+    Undefined global functions or variables:
+      gs.names gslist
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: 'PADOG', 'GeneMeta'
     ```
 
 # DAMOCLES
@@ -1034,6 +1150,15 @@ Version: 0.9.7
 
 Version: 1.2.10
 
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.6Mb
+      sub-directories of 1Mb or more:
+        doc  1024.1Mb
+    ```
+
 ## In both
 
 *   R CMD check timed out
@@ -1048,13 +1173,6 @@ Version: 1.2.10
     The Title field is just the package name: provide a real title.
     
     This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1024.6Mb
-      sub-directories of 1Mb or more:
-        doc  1024.1Mb
     ```
 
 # DelayedArray
@@ -1154,7 +1272,7 @@ Version: 1.4.0
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/aryeelab/diffloop.svg?branch=master
-    FailedConnectionException "travis-ci.org" 443
+    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -1185,15 +1303,6 @@ Version: 1.4.0
 
 Version: 0.1.0
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1024.1Mb
-      sub-directories of 1Mb or more:
-        example  1024.0Mb
-    ```
-
 ## In both
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -1203,6 +1312,13 @@ Version: 0.1.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.1Mb
+      sub-directories of 1Mb or more:
+        example  1024.0Mb
     ```
 
 # dplR
@@ -1227,18 +1343,9 @@ Version: 1.6.6
 
 # DPWeibull
 
-Version: 1.0
+Version: 1.1
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: 'Yushu Shi <shiyushu2006@gmail.com>'
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -1558,6 +1665,15 @@ Version: 0.0.7
 
 Version: 1.0.0
 
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.2Mb
+      sub-directories of 1Mb or more:
+        extdata  1024.0Mb
+    ```
+
 ## In both
 
 *   checking CRAN incoming feasibility ... WARNING
@@ -1582,13 +1698,6 @@ Version: 1.0.0
       inst/build
     It is recommended not to interfere with package subdirectories used by
     R.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1024.2Mb
-      sub-directories of 1Mb or more:
-        extdata  1024.0Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -1778,11 +1887,11 @@ Version: 1.42.2
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 2072.3Mb
+      installed size is 3075.1Mb
       sub-directories of 1Mb or more:
         data     1024.0Mb
         extdata     1.1Mb
-        lib        21.2Mb
+        lib      1024.0Mb
         libs     1024.0Mb
     ```
 
@@ -1858,6 +1967,16 @@ Version: 2.12
 
 Version: 1.0.0
 
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1025.5Mb
+      sub-directories of 1Mb or more:
+        R       1.3Mb
+        doc  1024.0Mb
+    ```
+
 ## In both
 
 *   checking re-building of vignette outputs ... WARNING
@@ -1895,14 +2014,6 @@ Version: 1.0.0
     This build time stamp is over a month old.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1025.5Mb
-      sub-directories of 1Mb or more:
-        R       1.3Mb
-        doc  1024.0Mb
-    ```
-
 # GAD
 
 Version: 1.1.1
@@ -1929,11 +2040,6 @@ Version: 1.1.1
 # gcapc
 
 Version: 1.0.9
-
-## Newly broken
-
-*   R CMD check timed out
-    
 
 ## In both
 
@@ -1997,7 +2103,7 @@ Version: 1.8.0
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://api.travis-ci.org/BIMSBbioinfo/genomation.svg?branch=master
-    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate rejected: [SelfSigned]",True,CertificateUnknown))) "api.travis-ci.org" 443
+    FailedConnectionException "api.travis-ci.org" 443
     ```
 
 *   checking examples ... WARNING
@@ -2025,7 +2131,7 @@ Version: 1.8.0
     reason: Error in loadNamespace(name) : there is no package called 'formatR'
     
     pandoc: Could not fetch https://raw.githubusercontent.com/BIMSBbioinfo/genomation/master/vignettes/Figures/genomationFlowChart1.png
-    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "raw.githubusercontent.com" 443
+    FailedConnectionException "raw.githubusercontent.com" 443
     Error: processing vignette 'GenomationManual.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 67
     Execution halted
@@ -2253,11 +2359,69 @@ Version: 0.1.2
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 1024.3Mb
+      installed size is  9.7Mb
       sub-directories of 1Mb or more:
-        data  1024.0Mb
+        data   9.4Mb
     ```
 
+# IMIFA
+
+Version: 1.3.1
+
+## In both
+
+*   checking whether package 'IMIFA' can be installed ... ERROR
+    ```
+    Installation failed.
+    See '/cbc/henrik/repositories/matrixStats/revdep/checks/IMIFA/new/IMIFA.Rcheck/00install.out' for details.
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Keefe Murphy <keefe.murphy@ucd.ie>'
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: 'Rmpfr'
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package 'IMIFA' ...
+** package 'IMIFA' successfully unpacked and MD5 sums checked
+** R
+** data
+** inst
+** preparing package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called 'RcppZiggurat'
+ERROR: lazy loading failed for package 'IMIFA'
+* removing '/cbc/henrik/repositories/matrixStats/revdep/checks/IMIFA/new/IMIFA.Rcheck/IMIFA'
+
+```
+### CRAN
+
+```
+* installing *source* package 'IMIFA' ...
+** package 'IMIFA' successfully unpacked and MD5 sums checked
+** R
+** data
+** inst
+** preparing package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called 'RcppZiggurat'
+ERROR: lazy loading failed for package 'IMIFA'
+* removing '/cbc/henrik/repositories/matrixStats/revdep/checks/IMIFA/old/IMIFA.Rcheck/IMIFA'
+
+```
 # kernDeepStackNet
 
 Version: 2.0.2
@@ -2290,7 +2454,7 @@ Version: 1.3.5
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/kota7/kgschart-r.svg?branch=master
-    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
+    FailedConnectionException "travis-ci.org" 443
     ```
 
 *   checking examples ... WARNING
@@ -2455,10 +2619,10 @@ Version: 0.7.5
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 1028.3Mb
+      installed size is 2050.4Mb
       sub-directories of 1Mb or more:
         R     1024.5Mb
-        libs     1.9Mb
+        libs  1024.0Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -2469,6 +2633,15 @@ Version: 0.7.5
 # metagene
 
 Version: 2.8.0
+
+## Newly broken
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of 'README.md' failed:
+    pandoc: Could not fetch http://bioconductor.org/shields/years-in-bioc/metagene.svg
+    FailedConnectionException "bioconductor.org" 80
+    ```
 
 ## In both
 
@@ -2519,7 +2692,7 @@ Version: 1.18.0
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/HCBravoLab/metagenomeSeq.svg?branch=master
-    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
+    FailedConnectionException "travis-ci.org" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -2635,6 +2808,15 @@ Version: 1.0.2
 
 Version: 1.10.0
 
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.5Mb
+      sub-directories of 1Mb or more:
+        data  1024.0Mb
+    ```
+
 ## In both
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -2648,13 +2830,6 @@ Version: 1.10.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1024.5Mb
-      sub-directories of 1Mb or more:
-        data  1024.0Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -2737,10 +2912,10 @@ Version: 2.22.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 2053.9Mb
+      installed size is  9.7Mb
       sub-directories of 1Mb or more:
-        data     1028.6Mb
-        extdata  1024.0Mb
+        data      6.8Mb
+        extdata   1.7Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -2856,6 +3031,29 @@ Version: 0.0.1
 
 Version: 1.0.1
 
+## Newly fixed
+
+*   checking running R code from vignettes ...
+    ```
+       'MIGSA.Rnw' using 'UTF-8' ... failed
+       'gettingPbcmcData.Rnw' using 'UTF-8' ... OK
+       'gettingTcgaData.Rnw' using 'UTF-8' ... OK
+     ERROR
+    Errors in running code in vignettes:
+    when running code in 'MIGSA.Rnw'
+      ...
+    
+    > MIGSAmGSZres <- MIGSAmGSZ(exprMatrix, gSets, conditions)
+    INFO [2017-09-07 21:58:50] Number of unique permutations: 198
+    INFO [2017-09-07 21:58:50] Getting ranking at cores: 62
+    Warning in socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout) :
+      port 11732 cannot be opened
+    
+      When sourcing 'MIGSA.R':
+    Error: cannot open the connection
+    Execution halted
+    ```
+
 ## In both
 
 *   checking tests ...
@@ -2933,37 +3131,14 @@ Version: 1.22.1
 
 ## In both
 
+*   R CMD check timed out
+    
+
 *   checking top-level files ... WARNING
     ```
     Conversion of 'README.md' failed:
-    pandoc: Could not fetch http://bioconductor.org/shields/build/release/bioc/minfi.svg
+    pandoc: Could not fetch http://bioconductor.org/shields/build/devel/bioc/minfi.svg
     FailedConnectionException "bioconductor.org" 80
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Loading required package: locfit
-    locfit 1.5-9.1 	 2013-03-22
-    Setting options('download.file.method.GEOquery'='auto')
-    Setting options('GEOquery.inmemory.gpl'=FALSE)
-    Loading required package: IlluminaHumanMethylation450kmanifest
-    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
-    ! LaTeX Error: File `ifxetex.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.5 \usepackage
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'minfi.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -3426,9 +3601,9 @@ Version: 1.8.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.3Mb
+      installed size is 1024.3Mb
       sub-directories of 1Mb or more:
-        data   9.0Mb
+        data  1024.0Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -3490,14 +3665,6 @@ Version: 1.2.0
     Execution halted
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1025.8Mb
-      sub-directories of 1Mb or more:
-        doc      1024.3Mb
-        example     1.0Mb
-    ```
-
 ## In both
 
 *   checking re-building of vignette outputs ... WARNING
@@ -3531,6 +3698,14 @@ Version: 1.2.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1025.8Mb
+      sub-directories of 1Mb or more:
+        doc      1024.3Mb
+        example     1.0Mb
     ```
 
 # pcaMethods
@@ -3865,9 +4040,6 @@ Version: 1.8.0
       Calls: <Anonymous> -> library
       Execution halted
     ```
-
-*   R CMD check timed out
-    
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -4245,7 +4417,7 @@ Version: 1.12.0
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/Jfortin1/shinyMethyl.svg?branch=master
-    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
+    FailedConnectionException "travis-ci.org" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -4273,6 +4445,13 @@ Version: 1.12.0
     
     CRAN-pack does not know about
       .travis.yml
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.3Mb
+      sub-directories of 1Mb or more:
+        doc  1024.0Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -4439,6 +4618,15 @@ Version: 1.4.0
 
 Version: 0.3.0
 
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.2Mb
+      sub-directories of 1Mb or more:
+        doc  1024.0Mb
+    ```
+
 ## In both
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -4448,13 +4636,6 @@ Version: 0.3.0
     The Date field is over a month old.
     
     This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1024.2Mb
-      sub-directories of 1Mb or more:
-        doc  1024.0Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -4473,7 +4654,7 @@ Version: 1.0.3
     ```
     Conversion of 'README.md' failed:
     pandoc: Could not fetch https://travis-ci.org/Oshlack/splatter.svg?branch=master
-    FailedConnectionException "travis-ci.org" 443
+    TlsExceptionHostPort (HandshakeFailed (Error_Protocol ("certificate has unknown CA",True,UnknownCa))) "travis-ci.org" 443
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -4904,6 +5085,9 @@ Version: 1.20.3
 
 ## In both
 
+*   R CMD check timed out
+    
+
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: 'Leo <lschal@essex.ac.uk>'
@@ -4935,9 +5119,9 @@ Version: 1.20.3
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 1025.4Mb
+      installed size is 14.6Mb
       sub-directories of 1Mb or more:
-        data  1024.8Mb
+        data  14.0Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -4982,6 +5166,21 @@ Version: 1.20.3
                  "write.csv", "write.table")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
+    ```
+
+# WGCNA
+
+Version: 1.61
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: 'Peter Langfelder <Peter.Langfelder@gmail.com>'
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
     ```
 
 # XBSeq
@@ -5047,6 +5246,15 @@ Version: 1.6.0
 
 Version: 1.2.0
 
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 1024.5Mb
+      sub-directories of 1Mb or more:
+        data  1024.0Mb
+    ```
+
 ## In both
 
 *   checking top-level files ... WARNING
@@ -5089,12 +5297,5 @@ Version: 1.2.0
     The Title field starts with the package name.
     
     This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 1024.5Mb
-      sub-directories of 1Mb or more:
-        data  1024.0Mb
     ```
 
