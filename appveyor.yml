@@ -38,8 +38,6 @@ install:
 build_script:
   - echo Current directory=%CD%
   - travis-tool.sh install_r base64enc ggplot2 knitr microbenchmark R.devices R.rsp
-  - travis-tool.sh install_r cwhmisc ergm laeken
-  - travis-tool.sh install_bioc genefilter
 
 test_script:
   - travis-tool.sh run_tests

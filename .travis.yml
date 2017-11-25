@@ -14,16 +14,6 @@ warnings_are_errors: false
 r_check_args: --as-cran
 latex: false
 
-## CRAN packages needed for full benchmark testing
-r_packages:
-  - ergm
-  - cwhmisc
-  - laeken
-
-## Bioconductor packages needed for full benchmark testing
-bioc_packages:
-  - genefilter
-
 matrix:
   include:
     - os: linux
