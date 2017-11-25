@@ -31,10 +31,10 @@
 #'
 #' @author Henrik Bengtsson, Harris Jaffee
 #'
-#' @seealso See \code{\link{rowWeightedMedians}}() and
+#' @seealso See \code{\link{rowWeightedMedians}()} and
 #' \code{colWeightedMedians()} for weighted medians.
-#' For mean estimates, see \code{\link{rowMeans2()}} and
-#' \code{\link[base:colSums]{rowMeans()}}.
+#' For mean estimates, see \code{\link{rowMeans2}()} and
+#' \code{\link[base:colSums]{rowMeans}()}.
 #'
 #' @keywords array iteration robust univar
 #' @export
