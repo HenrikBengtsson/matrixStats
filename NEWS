@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-09-07]
+Version: 0.52.2-9000 [2017-11-25]
 
 NEW FEATURES:
 
@@ -15,7 +15,7 @@ NEW FEATURES:
    input 'x'.
  
  o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
-   to to using as.integer(y).
+   to to using as.integer(y) but without the need for coercion to integer.
 
  o Functions col-/rowTabulates(x) now support logical input 'x'.
  
