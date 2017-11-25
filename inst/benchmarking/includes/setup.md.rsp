@@ -22,7 +22,14 @@ kable <- function(...) {
 }
 %>
 
-
+<%--------------------------------------------------------------
+ Third-party packages also benchmarked
+ --------------------------------------------------------------%>
+<%
+## Assert here that they can be loaded/installed 
+R.utils::use("genefilter,ergm,cwhmisc,laeken")
+%>
+ 
 <%--------------------------------------------------------------
  Report/package specific
  --------------------------------------------------------------%>
