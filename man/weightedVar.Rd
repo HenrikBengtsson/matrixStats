@@ -57,7 +57,7 @@ across rows or columns of a matrix.
 }
 \details{
 The estimator used here is the same as the one used by the "unbiased"
-estimator of the \bode{Hmisc} package. More specifically,
+estimator of the \bold{Hmisc} package. More specifically,
 \code{weightedVar(x, w = w) == Hmisc::wtd.var(x, weights = w)},
 }
 \section{Missing values}{
