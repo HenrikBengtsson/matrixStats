@@ -60,6 +60,9 @@ DEPRECATED AND DEFUNCT:
  o Previously defunct argument 'centers' for col-/rowMads() is now dropped.
    Use 'center' instead.
 
+ o Previously defunct argument 'flavor' of colRanks() and rowRanks() is now
+   defunct.
+
 
 Version: 0.52.2 [2017-04-13]
 
