@@ -33,6 +33,11 @@
 #'
 #' @author Henrik Bengtsson
 #'
+#' @details
+#' The estimator used here is the same as the one used by the "unbiased"
+#' estimator of the \bode{Hmisc} package. More specifically,
+#' \code{weightedVar(x, w = w) == Hmisc::wtd.var(x, weights = w)},
+#' 
 #' @seealso For the non-weighted variance, see \code{\link[stats]{var}}.
 #'
 #' @keywords univar robust
@@ -117,11 +122,10 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Standardize weights to sum to one
   wsum <- sum(w)
-  w <- w / wsum
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- sum(w * x)
+    center <- sum(w * x) / wsum
   }
 
   # Estimate the variance
@@ -129,8 +133,9 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   x <- x^2         # Squared residuals
 
   ## Correction factor
-  lambda <- wsum / (wsum - 1)
-  if (use_0.14.2) lambda <- n / (n - 1L)
+  lambda <- 1 / (wsum - 1)
+
+  if (use_0.14.2) lambda <- wsum * n / (n - 1L)
 
   sigma2 <- lambda * sum(w * x)
 
