@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2017-11-25]
+Version: 0.52.2-9000 [2018-01-21]
 
 NEW FEATURES:
 
@@ -25,6 +25,9 @@ NEW FEATURES:
 
  o Now sum2(x, mode = "integer") generates a warning if typeof(x) == "double"
    asking if as.integer(sum2(x)) was intended.
+
+ o Inspired by Hmisc::wtd.var(), when sum(w) <= 1, now weightedVar(x, w)
+   produces an informative warning that the estimate is invalid.
 
 CODE REFACTORING:
 

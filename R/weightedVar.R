@@ -141,6 +141,12 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   x <- w <- NULL  # Not needed anymore
 
+  ## Undefined estimate? (adopted from Hmisc::wtd.var())
+  if (wsum <= 1) {
+    warning(sprintf("Produced invalid variance estimate, because the weights suggests at most one effective observation (sum(w) <= 1): %g (wsum = %g)", sigma2, wsum))
+  }
+  
+  
   sigma2
 }
 
