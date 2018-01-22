@@ -68,3 +68,24 @@ stopifnot(all(idxs_R2 == idxs_by_rows))
 idxs0 <- indexByRow(dim)
 idxs1 <- indexByRow(x)
 stopifnot(identical(idxs1, idxs0))
+
+
+## Exceptions:
+## Too large matrices are not supported, which happens
+## when prod(dim) > .Machine$integer.max
+dim_too_large <- c(.Machine$integer.max, 2L)
+res <- tryCatch({
+  idxs <- indexByRow(dim_too_large, idxs = 1L)
+}, error = identity)
+stopifnot(inherits(res, "error"))
+
+## Non-positive indices are not supported
+res <- tryCatch({
+  idxs <- indexByRow(c(1,1), idxs = 0L)
+}, error = identity)
+stopifnot(inherits(res, "error"))
+
+res <- tryCatch({
+  idxs <- indexByRow(c(1,1), idxs = -1L)
+}, error = identity)
+stopifnot(inherits(res, "error"))

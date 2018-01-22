@@ -27,8 +27,10 @@
 #'
 #' @author Henrik Bengtsson
 #'
-#' @seealso See \code{\link{rowMedians}}() and \code{colMedians()} for
-#' non-weighted medians.  Internally, \code{\link{weightedMedian}}() is used.
+#' @seealso Internally, \code{\link{weightedMedian}}() is used.
+#' See \code{\link{rowMedians}}() and \code{colMedians()} for non-weighted
+#' medians.
+#' 
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,

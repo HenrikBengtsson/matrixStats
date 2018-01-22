@@ -71,8 +71,9 @@ mu_2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(mu_2, mu_1))
 }
 \seealso{
-See \code{\link{rowMedians}}() and \code{colMedians()} for
-non-weighted medians.  Internally, \code{\link{weightedMedian}}() is used.
+Internally, \code{\link{weightedMedian}}() is used.
+See \code{\link{rowMedians}}() and \code{colMedians()} for non-weighted
+medians.
 }
 \author{
 Henrik Bengtsson
