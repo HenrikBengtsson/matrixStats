@@ -100,8 +100,6 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
       ties_id <- 4L
     } else if (ties == "mean") {
       ties_id <- 8L
-    } else if (ties == "both") {
-      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate = FALSE, ties = \"both\") is no longer supported. Use ties = \"min\" and then ties = \"max\" to achieve the same result.")  #nolint
     } else {
       stop("Unknown value on 'ties': ", ties)
     }

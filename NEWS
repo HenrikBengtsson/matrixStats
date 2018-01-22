@@ -57,12 +57,13 @@ DEPRECATED AND DEFUNCT:
 
  o meanOver() and sumOver() are defunct. Use mean2() and sum2() instead.
 
- o Previously defunct argument 'centers' for col-/rowMads() is now dropped.
-   Use 'center' instead.
+ o Droppred previously defunct argument 'centers' for col-/rowMads(). Use
+   'center' instead.
 
- o Previously defunct argument 'flavor' of colRanks() and rowRanks() is now
-   defunct.
+ o Dropped previously defunct argument 'flavor' of colRanks() and rowRanks().
 
+ o Previously defunct weightedMedian(..., ties = "both") is now removed.
+ 
 
 Version: 0.52.2 [2017-04-13]
 
@@ -444,7 +445,11 @@ BUG FIXES:
  o weightedMedian(..., ties = "both") would give an error if there was a tie.
    Added package test for this case.
  
- 
+DEPRECATED AND DEFUNCT:
+
+ o weightedMedian(..., ties = "both") is now defunct.
+
+
 Version: 0.12.2 [2014-12-07]
 
 BUG FIXES:
@@ -455,6 +460,10 @@ BUG FIXES:
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
    coersion at the C level.
+
+DEPRECATED AND DEFUNCT:
+
+ o weightedMedian(..., interpolate = FALSE, ties = "both") is defunct.
  
  
 Version: 0.12.1 [2014-12-06]
