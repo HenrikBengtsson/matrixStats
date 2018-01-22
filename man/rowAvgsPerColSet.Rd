@@ -9,8 +9,8 @@ subsets of matrix columns (rows)}
 rowAvgsPerColSet(X, W = NULL, rows = NULL, S, FUN = rowMeans, ...,
   tFUN = FALSE)
 
-colAvgsPerRowSet(X, W = NULL, cols = NULL, S, FUN = colMeans,
-  tFUN = FALSE, ...)
+colAvgsPerRowSet(X, W = NULL, cols = NULL, S, FUN = colMeans, ...,
+  tFUN = FALSE)
 }
 \arguments{
 \item{X}{A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.}

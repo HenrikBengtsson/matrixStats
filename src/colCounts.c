@@ -77,7 +77,7 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans;
   int narm, hasna, what2;
   R_xlen_t nx;
-  double count;
+  double count = 0.0;
 
   /* Argument 'x' and 'dim': */
   assertArgVector(x, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");

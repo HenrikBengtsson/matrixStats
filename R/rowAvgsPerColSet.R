@@ -128,6 +128,13 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
     Zjj
   })
 
+  # apply() drops 2nd dimension if nrow(X) <= 1 (and FUN returns a vector of
+  # length nrow(X) as it should), cf. ?apply
+  if (!is.matrix(Z)) {
+    stopifnot(dimX[1] <= 1L)
+    dim(Z) <- c(length(Z), nbrOfSets)
+  }
+
   # Sanity check
   stopifnot(dim(Z) == c(dimX[1L], nbrOfSets))
 
@@ -141,7 +148,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
 #' @rdname rowAvgsPerColSet
 #' @export
 colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
-                             FUN = colMeans, tFUN = FALSE, ...) {
+                             FUN = colMeans, ..., tFUN = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -183,7 +190,7 @@ colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
   }
 
   # ...
-  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, tFUN = !tFUN, ...)
+  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, ..., tFUN = !tFUN)
   tX <- tW <- NULL  # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
