@@ -8,10 +8,10 @@
 \title{Standard deviation estimates for each row (column) in a matrix}
 \usage{
 rowMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), centers = NULL, ...)
+  na.rm = FALSE, dim. = dim(x), ...)
 
 colMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), centers = NULL, ...)
+  na.rm = FALSE, dim. = dim(x), ...)
 
 rowSds(x, rows = NULL, cols = NULL, ...)
 
@@ -36,8 +36,6 @@ first, otherwise not.}
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
 \code{\link[base]{matrix}}.}
-
-\item{centers}{(deprectated) use \code{center} instead.}
 
 \item{...}{Additional arguments passed to \code{\link{rowVars}}() and
 \code{\link{rowMedians}}(), respectively.}

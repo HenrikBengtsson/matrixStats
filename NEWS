@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2018-01-21]
+Version: 0.52.2-9000 [2018-01-22]
 
 NEW FEATURES:
 
@@ -56,7 +56,10 @@ BUG FIXES:
 DEPRECATED AND DEFUNCT:
 
  o meanOver() and sumOver() are defunct. Use mean2() and sum2() instead.
- 
+
+ o Previously defunct argument 'centers' for col-/rowMads() is now dropped.
+   Use 'center' instead.
+
 
 Version: 0.52.2 [2017-04-13]
 
