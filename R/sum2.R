@@ -87,6 +87,5 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 #' @rdname sum2
 #' @export
 sumOver <- function(...) {
-  .Deprecated(new = "sum2")
-  sum2(...)
+  .Defunct(new = "sum2")
 }

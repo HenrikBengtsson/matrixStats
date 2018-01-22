@@ -52,7 +52,11 @@ BUG FIXES:
  o col-/rowAvgsPerColSet() would return vector rather than matrix if
    nrow(X) <= 1. Thanks to Peter Hickey (Johns Hopkins University) for
    troubleshooting and providing a fix.
-   
+
+DEPRECATED AND DEFUNCT:
+
+ o meanOver() and sumOver() are defunct. Use mean2() and sum2() instead.
+ 
 
 Version: 0.52.2 [2017-04-13]
 
