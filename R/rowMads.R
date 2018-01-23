@@ -2,15 +2,7 @@
 #' @export
 rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), centers = NULL, ...) {
-  ## BACKWARD COMPATIBILITY:
-  ## - Added to matrixStats 0.14.0.
-  ## - Defunct in matrixStats (>= 0.15.0)
-  if (!is.null(centers)) {
-    center <- centers
-    .Defunct(msg = "Argument 'centers' for matrixStats::rowMads() has been renamed to 'center'. Please update code accordingly.")  #nolint
-  }
-
+                    dim. = dim(x), ...) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -42,15 +34,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
 #' @export
 colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), centers = NULL, ...) {
-  ## BACKWARD COMPATIBILITY:
-  ## - Added to matrixStats 0.14.0.
-  ## - Defunct in matrixStats (>= 0.15.0)
-  if (!is.null(centers)) {
-    center <- centers
-    .Defunct(msg = "Argument 'centers' for matrixStats::colMads() has been renamed to 'center'. Please update code accordingly.")  #nolint
-  }
-
+                    dim. = dim(x), ...) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)

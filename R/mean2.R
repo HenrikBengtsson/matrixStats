@@ -68,6 +68,5 @@ mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
 #' @rdname mean2
 #' @export
 meanOver <- function(...) {
-  .Deprecated(new = "mean2")
-  mean2(...)
+  .Defunct(new = "mean2")
 }
