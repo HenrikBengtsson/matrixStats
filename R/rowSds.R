@@ -25,8 +25,6 @@
 #' @param ... Additional arguments passed to \code{\link{rowVars}}() and
 #' \code{\link{rowMedians}}(), respectively.
 #'
-#' @param centers (deprectated) use \code{center} instead.
-#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'

@@ -12,6 +12,20 @@ Version: 1.7
     
     This build time stamp is over a month old.
     ```
+    checking a package with encoding  'UTF-8'  in an ASCII locale
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: 'Hmisc'
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 78 marked Latin-1 strings
+    ```
+
+# VanillaICE
 
 *   checking installed package size ... NOTE
     ```
@@ -101,7 +115,29 @@ Version: 1.18.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in 'tests/testthat.R' failed.
+    Last 13 lines of output:
+      
+          Welcome to 'XBSeq'.
+      > 
+      > test_check("XBSeq")
+      estimating parameters using MLE for group one 
+      estimating parameters using MLE for group two 
+      -- 1. Failure: (unknown) (@test_XBplot.R#6)  -----------------------------------
+      `XBplot(XB, Samplenum = "Sample_54_WT")` did not throw an error.
+      
+      == testthat results  ===========================================================
+      OK: 19 SKIPPED: 0 FAILED: 1
+      1. Failure: (unknown) (@test_XBplot.R#6) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
     ```
     Maintainer: ‘Hector Corrada Bravo <hcorrada@gmail.com>’
     
@@ -438,7 +474,8 @@ Version: 1.3
     ```
     Maintainer: ‘Berkley Shands <rpackages@biorankings.com>’
     
-    The Date field is over a month old.
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
     This build time stamp is over a month old.
     ```

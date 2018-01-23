@@ -13,7 +13,7 @@
 
 # Dependencies
 
-|package     |old    |new         |Δ  |
+|package     |old    |new         |<U+0394>  |
 |:-----------|:------|:-----------|:--|
 |matrixStats |0.52.2 |0.52.2-9000 |*  |
 
