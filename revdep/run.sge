@@ -1,0 +1,8 @@
+#!/bin/bash
+#$ -S /bin/bash
+#$ -R yes               # SGE host reservation, highly recommended
+#$ -cwd                 # Current working directory
+#$ -j y                 # Join STDERR and STDOUT
+
+module load r
+Rscript revdep/run.R
