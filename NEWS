@@ -171,6 +171,14 @@ DEPRECATED AND DEFUNCT:
  o Previously deprecated (and ignored) argument 'flavor' of colRanks() and
    rowRanks() is now defunct.
 
+ o Previously deprecated support for passing non-vector, non-matrix objects
+   to rowAlls(), rowAnys(), rowCollapse(), and the corresponding column-based
+   versions are now defunct.  Likewise, rowProds(), rowQuantiles(),
+   rowWeightedMeans(), rowWeightedMedians(), and the corresponding column-based
+   versions are also defunct.  The rationale for this is to tighten up the
+   identity of the matrixStats package and what types of input it accepts.
+   This will also help optimize the code further.
+
 
 Version: 0.51.0 [2016-10-08]
 

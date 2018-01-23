@@ -31,7 +31,7 @@
 rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
   # Argument 'x':
   if (!is.matrix(x) && !is.vector(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Apply subset
@@ -61,7 +61,7 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
 colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
   # Argument 'x':
   if (!is.matrix(x) && !is.vector(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Apply subset
