@@ -905,6 +905,93 @@ Version: 1.0.1
     to your NAMESPACE file.
     ```
 
+# ChAMP
+
+Version: 2.9.10
+
+## In both
+
+*   checking package subdirectories ... WARNING
+    ```
+    Problems with news in ‘inst/NEWS.Rd’:
+      inst/NEWS.Rd:74: unexpected END_OF_INPUT '
+      '
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+      You have found 4058 significant MVPs with a BH adjusted P-value below 0.05.
+      Calculate DMP for C and T done.
+    
+    [ Section 2:  Find Numeric Vector Related CpGs Done ]
+    
+    
+    [ Section 3:  Match Annotation Start ]
+    
+    
+    [ Section 3:  Match Annotation Done ]
+    
+    [<<<<<< ChAMP.DMP END >>>>>>]
+    [===========================]
+    [You may want to process DMP.GUI() or champ.GSEA() next.]
+    
+    pandoc-citeproc: Error parsing XML file academic-medicine.csl: FailedConnectionException2 "www.zotero.org" 80 False getAddrInfo: does not exist (Name or service not known)
+    pandoc: Error running filter /netapp/home/hb/apps/local/bin/pandoc-citeproc
+    Filter returned error status 1
+    Error: processing vignette 'ChAMP.Rmd' failed with diagnostics:
+    pandoc document conversion failed with error 83
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Yuan Tian  <champ450k@gmail.com>’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    Size of tarball: 15513863 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
+      ‘IlluminaHumanMethylationEPICmanifest’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.9Mb
+      sub-directories of 1Mb or more:
+        doc       9.6Mb
+        extdata   2.0Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Author field differs from that derived from Authors@R
+      Author:    ‘Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
+      Authors@R: ‘Tian Yuan [cre, aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
+    
+    Maintainer field differs from that derived from Authors@R
+      Maintainer: ‘Yuan Tian <champ450k@gmail.com>’
+      Authors@R:  ‘Tian Yuan <champ450k@gmail.com>’
+    
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘rmarkdown’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: 'prettydoc'
+      All declared Imports should be used.
+    ```
+
 # Chicago
 
 Version: 1.6.0
@@ -2096,6 +2183,90 @@ Version: 0.0.7
         libs  16.5Mb
     ```
 
+# FDb.FANTOM4.promoters.hg19
+
+Version: 1.0.0
+
+## Newly broken
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘BSgenome.Hsapiens.UCSC.hg19’
+    ```
+
+## In both
+
+*   checking CRAN incoming feasibility ... WARNING
+    ```
+    Maintainer: ‘Tim Triche, Jr. <tim.triche@gmail.com>’
+    
+    The display-name part of the maintainer field should be enclosed in ""
+    
+    Unknown, possibly mis-spelled, fields in DESCRIPTION:
+      ‘organism’ ‘species’ ‘provider’ ‘resource_url’
+    
+    The Title field should be in title case, current version then in title case:
+    ‘Annotation package for FANTOM4 promoters identified from THP-1 cells’
+    ‘Annotation Package for FANTOM4 Promoters Identified from THP-1 Cells’
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking package subdirectories ... WARNING
+    ```
+    Found the following non-empty subdirectories of ‘inst’ also used by R:
+      inst/build
+    It is recommended not to interfere with package subdirectories used by
+    R.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Malformed Description field: should contain one or more complete sentences.
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘GenomicFeatures’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' calls in package code:
+      ‘BSgenome.Hsapiens.UCSC.hg19’ ‘matrixStats’
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Package in Depends field not imported from: ‘Biostrings’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ':::' call which should be '::': ‘matrixStats:::rowProds’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    oecg: no visible global function definition for ‘seqlengths’
+    oecg: no visible binding for global variable ‘Hsapiens’
+    oecg: no visible global function definition for ‘seqlevels’
+    oecg: no visible global function definition for ‘seqnames’
+    oecg: no visible global function definition for ‘resize’
+    oecg: no visible global function definition for ‘start’
+    oecg: no visible global function definition for ‘start<-’
+    oecg: no visible global function definition for ‘end’
+    oecg: no visible global function definition for ‘end<-’
+    oecg: no visible global function definition for ‘getSeq’
+    oecg: no visible global function definition for ‘width’
+    oecg: no visible global function definition for ‘letterFrequency’
+    oecg: no visible global function definition for ‘dinucleotideFrequency’
+    Undefined global functions or variables:
+      Hsapiens dinucleotideFrequency end end<- getSeq is letterFrequency
+      resize seqlengths seqlevels seqnames start start<- width
+    Consider adding
+      importFrom("methods", "is")
+      importFrom("stats", "end", "start")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
+    ```
+
 # fergm
 
 Version: 0.2.1
@@ -2135,10 +2306,29 @@ Version: 1.44.1
 
 ## In both
 
-*   checking whether package ‘flowCore’ can be installed ... ERROR
+*   checking top-level files ... WARNING
     ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/flowCore/new/flowCore.Rcheck/00install.out’ for details.
+    Conversion of ‘README.md’ failed:
+    pandoc: Could not fetch https://travis-ci.org/RGLab/flowCore.svg?branch=trunk
+    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
+    ```
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Unknown packages ‘flowViz’, ‘flowStats’ in Rd xrefs
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Warning: running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Quitting from lines 309-311 (HowTo-flowCore.Rnw) 
+    Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
+    there is no package called 'ggcyto'
+    Execution halted
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -2159,58 +2349,46 @@ Version: 1.44.1
       ‘flowViz’ ‘flowStats’ ‘flowWorkspace’ ‘openCyto’ ‘ggcyto’
     ```
 
-## Installation
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.7Mb
+      sub-directories of 1Mb or more:
+        data      5.0Mb
+        extdata   1.2Mb
+        libs      3.4Mb
+    ```
 
-### Devel
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Versioned 'LinkingTo' value for ‘BH’ is only usable in R >= 3.0.2
+    ```
 
-```
-* installing *source* package ‘flowCore’ ...
-** libs
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c FastLogicle.cpp -o FastLogicle.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c Hyperlog.cpp -o Hyperlog.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c Logicle.cpp -o Logicle.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c RcppExports.cpp -o RcppExports.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c biexponential.cpp -o biexponential.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c convertRawBytes.cpp -o convertRawBytes.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c fcsTextParse.cpp -o fcsTextParse.o
-In file included from /netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string/std/string_traits.hpp:16:0,
-                 from /netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string/std_containers_traits.hpp:19,
-                 from /netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string.hpp:18,
-                 from fcsTextParse.cpp:8:
-/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string/sequence_traits.hpp:15:30: fatal error: boost/mpl/bool.hpp: No such file or directory
- #include <boost/mpl/bool.hpp>
-                              ^
-compilation terminated.
-make: *** [fcsTextParse.o] Error 1
-ERROR: compilation failed for package ‘flowCore’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/flowCore/new/flowCore.Rcheck/flowCore’
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    plot,workFlow-missing: no visible binding for global variable
+      ‘Rgraphviz’
+    spillover,flowSet: no visible global function definition for
+      ‘devAskNewPage’
+    spillover,flowSet : <anonymous>: no visible global function definition
+      for ‘rangeGate’
+    spillover,flowSet : <anonymous>: no visible global function definition
+      for ‘density’
+    spillover,flowSet : <anonymous>: no visible global function definition
+      for ‘abline’
+    spillover,flowSet : <anonymous> : <anonymous>: no visible global
+      function definition for ‘density’
+    split,flowFrame-factor: no visible binding for global variable ‘i’
+    summary,workFlow: no visible binding for global variable ‘wf’
+    Undefined global functions or variables:
+      Rgraphviz abline cov.rob density devAskNewPage i rangeGate wf
+    Consider adding
+      importFrom("grDevices", "devAskNewPage")
+      importFrom("graphics", "abline")
+      importFrom("stats", "density")
+    to your NAMESPACE file.
+    ```
 
-```
-### CRAN
-
-```
-* installing *source* package ‘flowCore’ ...
-** libs
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c FastLogicle.cpp -o FastLogicle.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c Hyperlog.cpp -o Hyperlog.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c Logicle.cpp -o Logicle.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c RcppExports.cpp -o RcppExports.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c biexponential.cpp -o biexponential.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c convertRawBytes.cpp -o convertRawBytes.o
-g++ -std=gnu++11 -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include" -I/usr/local/include   -fpic  -g -O2 -c fcsTextParse.cpp -o fcsTextParse.o
-In file included from /netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string/std/string_traits.hpp:16:0,
-                 from /netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string/std_containers_traits.hpp:19,
-                 from /netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string.hpp:18,
-                 from fcsTextParse.cpp:8:
-/netapp/home/hb/repositories/matrixStats/revdep/library/flowCore/BH/include/boost/algorithm/string/sequence_traits.hpp:15:30: fatal error: boost/mpl/bool.hpp: No such file or directory
- #include <boost/mpl/bool.hpp>
-                              ^
-compilation terminated.
-make: *** [fcsTextParse.o] Error 1
-ERROR: compilation failed for package ‘flowCore’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/flowCore/old/flowCore.Rcheck/flowCore’
-
-```
 # fslr
 
 Version: 2.12
@@ -2465,17 +2643,26 @@ Version: 0.1-4
     This build time stamp is over a month old.
     ```
 
+# GPrank
+
+Version: 0.1.2
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Hande Topa <hande.topa@helsinki.fi>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
 # GUIDEseq
 
 Version: 1.8.0
 
 ## In both
-
-*   checking whether package ‘GUIDEseq’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/GUIDEseq/new/GUIDEseq.Rcheck/00install.out’ for details.
-    ```
 
 *   checking CRAN incoming feasibility ... NOTE
     ```
@@ -2493,50 +2680,88 @@ Version: 1.8.0
     This build time stamp is over a month old.
     ```
 
-## Installation
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.2Mb
+      sub-directories of 1Mb or more:
+        extdata  10.6Mb
+    ```
 
-### Devel
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    annotateOffTargets: no visible global function definition for 'toTable'
+    getPeaks: no visible binding for global variable 'adjusted.p.value'
+    getPeaks: no visible binding for global variable 'SNratio'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'qwidth.first'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'qwidth.last'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'strand.last'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'strand.first'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'readName'
+    offTargetAnalysisOfPeakRegions: no visible binding for global variable
+      'gRNAPlusPAM'
+    offTargetAnalysisOfPeakRegions: no visible binding for global variable
+      'offTarget'
+    Undefined global functions or variables:
+      SNratio adjusted.p.value exons gRNAPlusPAM genes offTarget
+      offTarget_Start qwidth.first qwidth.last readName seqlevelsStyle<-
+      strand.first strand.last toTable
+    ```
 
-```
-* installing *source* package ‘GUIDEseq’ ...
-** R
-** data
-** inst
-** preparing package for lazy loading
-Warning in read.dcf(con) :
-  URL 'http://bioconductor.org/BiocInstaller.dcf': status was 'Couldn't resolve host name'
-Error in library.dynam(lib, package, package.lib) : 
-  shared object ‘httpuv.so’ not found
-ERROR: lazy loading failed for package ‘GUIDEseq’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/GUIDEseq/new/GUIDEseq.Rcheck/GUIDEseq’
+*   checking Rd files ... NOTE
+    ```
+    prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
+    prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
+    prepare_Rd: createBarcodeFasta.Rd:42-43: Dropping empty section \value
+    prepare_Rd: createBarcodeFasta.Rd:44-46: Dropping empty section \references
+    prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
+    ```
 
-```
-### CRAN
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    ...
+      No matching found, please check your input sequence, and make
+                sure you are using the right genome. You can also alter your 
+                search criteria such as increasing max.mismatch!
+    Please check output file in directory gRNAmin1window20step20distance40
+    
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'GUIDEseq.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
+    ```
 
-```
-* installing *source* package ‘GUIDEseq’ ...
-** R
-** data
-** inst
-** preparing package for lazy loading
-Warning in read.dcf(con) :
-  URL 'http://bioconductor.org/BiocInstaller.dcf': status was 'Couldn't resolve host name'
-Error in library.dynam(lib, package, package.lib) : 
-  shared object ‘httpuv.so’ not found
-ERROR: lazy loading failed for package ‘GUIDEseq’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/GUIDEseq/old/GUIDEseq.Rcheck/GUIDEseq’
-
-```
 # Gviz
 
 Version: 1.22.2
 
 ## In both
 
-*   checking whether package ‘Gviz’ can be installed ... ERROR
+*   checking for missing documentation entries ... WARNING
     ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/Gviz/new/Gviz.Rcheck/00install.out’ for details.
+    Undocumented S4 methods:
+      generic '[' and siglist 'GenomeAxisTrack,ANY,ANY,ANY'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -2550,36 +2775,52 @@ Version: 1.22.2
     This build time stamp is over a month old.
     ```
 
-## Installation
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.0Mb
+      sub-directories of 1Mb or more:
+        doc       1.7Mb
+        extdata   2.2Mb
+    ```
 
-### Devel
+*   checking R code for possible problems ... NOTE
+    ```
+    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
+      'cdsBy'
+    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
+      'fiveUTRsByTranscript'
+    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
+      'threeUTRsByTranscript'
+    Undefined global functions or variables:
+      cdsBy fiveUTRsByTranscript threeUTRsByTranscript
+    ```
 
-```
-* installing *source* package ‘Gviz’ ...
-** R
-** data
-** inst
-** preparing package for lazy loading
-Error in library.dynam(lib, package, package.lib) : 
-  shared object ‘Biobase.so’ not found
-ERROR: lazy loading failed for package ‘Gviz’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/Gviz/new/Gviz.Rcheck/Gviz’
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    ...
+    
+    The following object is masked from 'package:base':
+    
+        strsplit
+    
+    Loading required package: rtracklayer
+    Loading required package: AnnotationDbi
+    Loading required package: Biobase
+    Welcome to Bioconductor
+    
+        Vignettes contain introductory material; view with
+        'browseVignettes()'. To cite Bioconductor, see
+        'citation("Biobase")', and for packages
+        'citation("pkgname")'.
+    
+    
+    Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
+     chunk 94 (label = BiomartGeneRegionTrackDo) 
+    Error in base::serialize(object, connection = NULL, ascii = ascii, version = serializeVersion) : 
+      trying to get slot "host" from an object of a basic class ("NULL") with no slots
+    Execution halted
+    ```
 
-```
-### CRAN
-
-```
-* installing *source* package ‘Gviz’ ...
-** R
-** data
-** inst
-** preparing package for lazy loading
-Error in library.dynam(lib, package, package.lib) : 
-  shared object ‘Biobase.so’ not found
-ERROR: lazy loading failed for package ‘Gviz’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/Gviz/old/Gviz.Rcheck/Gviz’
-
-```
 # haploReconstruct
 
 Version: 0.1.2
@@ -3444,6 +3685,96 @@ Version: 1.2.0
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
+    ```
+
+# minfi
+
+Version: 1.24.0
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    pandoc: Could not fetch http://bioconductor.org/shields/build/release/bioc/minfi.svg
+    FailedConnectionException2 "bioconductor.org" 80 False getAddrInfo: does not exist (Name or service not known)
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    
+    Loading required package: bumphunter
+    Loading required package: foreach
+    Loading required package: iterators
+    Loading required package: locfit
+    locfit 1.5-9.1 	 2013-03-22
+    Setting options('download.file.method.GEOquery'='auto')
+    Setting options('GEOquery.inmemory.gpl'=FALSE)
+    Loading required package: IlluminaHumanMethylation450kmanifest
+    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
+    This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
+     restricted \write18 enabled.
+    entering extended mode
+    ! LaTeX Error: File `titling.sty' not found.
+    
+    ! Emergency stop.
+    <read *> 
+    
+    Error: processing vignette 'minfi.Rmd' failed with diagnostics:
+    Failed to compile minfi.tex. See minfi.log for more info.
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
+    
+    The Title field should be in title case, current version then in title case:
+    ‘Analyze Illumina Infinium DNA methylation arrays’
+    ‘Analyze Illumina Infinium DNA Methylation Arrays’
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: ‘bumphunter:::.getEstimate’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+# MinimumDistance
+
+Version: 1.22.0
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Robert B Scharpf <rscharpf@jhu.edu>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package which this enhances but not available for checking: ‘doSNOW’
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    callDenovoSegments: no visible global function definition for
+      ‘read.bsfiles’
+    pruneTrioSet: no visible global function definition for
+      ‘RangedDataList’
+    read.bsfiles2: no visible binding for global variable ‘read.bsfiles’
+    GenomeAnnotatedDataFrameFrom,character: no visible global function
+      definition for ‘read.bsfiles’
+    calculateMindist,list: no visible binding for global variable ‘elt’
+    Undefined global functions or variables:
+      RangedDataList elt read.bsfiles
     ```
 
 # mixOmics
@@ -4510,6 +4841,43 @@ Version: 2.0
     Extensions’ manual.
     ```
 
+# scater
+
+Version: 1.6.2
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    pandoc: Could not fetch https://travis-ci.org/davismcc/scater.svg?branch=master
+    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Davis McCarthy <davis@ebi.ac.uk>’
+    
+    No package encoding and non-ASCII characters in the following R files:
+      R/qc.R
+        190:     ##<c2><a0>Adding general metrics for each cell.
+    
+    The Title field should be in title case, current version then in title case:
+    ‘Single-cell analysis toolkit for gene expression data in R’
+    ‘Single-Cell Analysis Toolkit for Gene Expression Data in R’
+    
+    Size of tarball: 5420451 bytes
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 12.4Mb
+      sub-directories of 1Mb or more:
+        doc       5.1Mb
+        extdata   2.9Mb
+        libs      2.9Mb
+    ```
+
 # scmap
 
 Version: 1.1.5
@@ -5152,6 +5520,82 @@ Version: 0.3.0
       All declared Imports should be used.
     ```
 
+# splatter
+
+Version: 1.2.1
+
+## In both
+
+*   checking whether package ‘splatter’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/splatter/new/splatter.Rcheck/00install.out’ for details.
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    ...
+      if any, to sign a "copyright disclaimer" for the program, if necessary.
+      For more information on this, and how to apply and follow the GNU GPL, see
+      <http://www.gnu.org/licenses/>.
+      
+        The GNU General Public License does not permit incorporating your program
+      into proprietary programs.  If your program is a subroutine library, you
+      may consider it more useful to permit linking proprietary applications with
+      the library.  If this is what you want to do, use the GNU Lesser General
+      Public License instead of this License.  But first, please read
+      <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+    
+    The Title field should be in title case, current version then in title case:
+    ‘Simple Simulation of Single-cell RNA Sequencing Data’
+    ‘Simple Simulation of Single-Cell RNA Sequencing Data’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘scDD’ ‘zinbwave’ ‘BASiCS’
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘splatter’ ...
+** R
+** inst
+** preparing package for lazy loading
+Error: package or namespace load failed for ‘scater’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/netapp/home/hb/repositories/matrixStats/revdep/library/splatter/scater/libs/scater.so':
+  libbeachmat.so: cannot open shared object file: No such file or directory
+Error : package ‘scater’ could not be loaded
+ERROR: lazy loading failed for package ‘splatter’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/splatter/new/splatter.Rcheck/splatter’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘splatter’ ...
+** R
+** inst
+** preparing package for lazy loading
+Error: package or namespace load failed for ‘scater’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/netapp/home/hb/repositories/matrixStats/revdep/library/splatter/scater/libs/scater.so':
+  libbeachmat.so: cannot open shared object file: No such file or directory
+Error : package ‘scater’ could not be loaded
+ERROR: lazy loading failed for package ‘splatter’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/splatter/old/splatter.Rcheck/splatter’
+
+```
 # SRGnet
 
 Version: 1.4.0
@@ -5221,6 +5665,26 @@ Version: 0.6.3
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
+    
+    This build time stamp is over a month old.
+    ```
+
+# statar
+
+Version: 0.6.5
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    pandoc: Could not fetch https://travis-ci.org/matthieugomez/statar.svg?branch=master
+    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Matthieu Gomez <mattg@princeton.edu>’
     
     This build time stamp is over a month old.
     ```
