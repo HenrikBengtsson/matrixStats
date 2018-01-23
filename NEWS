@@ -55,15 +55,18 @@ BUG FIXES:
 
 DEPRECATED AND DEFUNCT:
 
- o meanOver() and sumOver() are defunct. Use mean2() and sum2() instead.
+ o Previously deprecated meanOver() and sumOver() are defunct. Use mean2()
+   and sum2() instead.
 
- o Droppred previously defunct argument 'centers' for col-/rowMads(). Use
+ o Previously deprecated weightedVar(x, w, method = "0.14.2") is defunct.
+ 
+ o Dropped previously defunct weightedMedian(..., ties = "both").
+ 
+ o Dropped previously defunct argument 'centers' for col-/rowMads(). Use
    'center' instead.
 
  o Dropped previously defunct argument 'flavor' of colRanks() and rowRanks().
 
- o Previously defunct weightedMedian(..., ties = "both") is now removed.
- 
 
 Version: 0.52.2 [2017-04-13]
 
@@ -256,6 +259,8 @@ BUG FIXES:
 DEPRECATED AND DEFUNCT:
 
  o CLEANUP: Defunct argument 'centers' for col-/rowMads(); use 'center'.
+
+ o weightedVar(x, w, method = "0.14.2") is deprecated.
 
  
 Version: 0.14.2 [2015-06-23]
