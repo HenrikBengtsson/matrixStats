@@ -1519,11 +1519,66 @@ Version: 0.9.8
         libs   5.6Mb
     ```
 
+# DeepBlueR
+
+Version: 1.4.1
+
+## In both
+
+*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
+    ```
+
+*   checking CRAN incoming feasibility ... WARNING
+    ```
+    Maintainer: ‘Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>’
+    
+    The maintainer field is invalid or specifies more than one person
+    
+    The Title field is just the package name: provide a real title.
+    
+    This build time stamp is over a month old.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** R
+** demo
+** inst
+** preparing package for lazy loading
+Error in function (type, msg, asError = TRUE)  : 
+  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Error : unable to load R code in package ‘DeepBlueR’
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** R
+** demo
+** inst
+** preparing package for lazy loading
+Error in function (type, msg, asError = TRUE)  : 
+  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Error : unable to load R code in package ‘DeepBlueR’
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
+
+```
 # DelayedArray
 
 Version: 0.4.1
 
-## Newly broken
+## Newly fixed
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -2213,6 +2268,21 @@ Version: 1.0.0
       importFrom("stats", "end", "start")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
+    ```
+
+# fergm
+
+Version: 0.2.1
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Benjamin W. Campbell <campbell.1721@osu.edu>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
     ```
 
 # filesstrings
@@ -3320,6 +3390,176 @@ Version: 1.12.0
       Authors@R:  ‘Maarten van Iterson <mviterson@gmail.com>’
     ```
 
+# methylumi
+
+Version: 2.24.1
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘IDATsToMatrices’ ‘IDATtoMatrix’ ‘tcgaPipeline’
+    Undocumented S4 methods:
+      generic '[' and siglist 'MethyLumiM,ANY,ANY,ANY'
+      generic '[' and siglist 'MethyLumiSet,ANY,ANY,ANY'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking contents of ‘data’ directory ... WARNING
+    ```
+    Files not of a type allowed in a ‘data’ directory:
+      ‘5318317007_A_Grn.idat’ ‘5318317007_A_Red.idat’
+      ‘5318317007_B_Grn.idat’ ‘5318317007_B_Red.idat’
+      ‘5318317007_C_Grn.idat’ ‘5318317007_C_Red.idat’
+    Please use e.g. ‘inst/extdata’ for non-R data files
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Error in re-building vignettes:
+      ...
+    Warning: running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'methylumi.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `fullpage.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.58 \usepackage
+                    {hyperref}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Sean Davis <sdavis2@mail.nih.gov>’
+    
+    The Title field should be in title case, current version then in title case:
+    ‘Handle Illumina methylation data’
+    ‘Handle Illumina Methylation Data’
+    
+    The Description field should not start with the package name,
+      'This package' or similar.
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    
+    Size of tarball: 6178909 bytes
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘methyAnalysis’
+    
+    Depends: includes the non-default packages:
+      ‘Biobase’ ‘scales’ ‘reshape2’ ‘ggplot2’ ‘matrixStats’
+      ‘FDb.InfiniumMethylation.hg19’ ‘minfi’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    
+    CRAN-pack does not know about
+      .travis.yml
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  9.8Mb
+      sub-directories of 1Mb or more:
+        data      6.8Mb
+        extdata   1.7Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘Biobase’ ‘minfi’ ‘lattice’ ‘matrixStats’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' calls to packages already attached by Depends:
+      ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘minfi’
+      ‘reshape2’ ‘scales’
+      Please remove these calls from your code.
+    'library' or 'require' calls in package code:
+      ‘Biostrings’ ‘MASS’ ‘lumi’ ‘parallel’ ‘rtracklayer’
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Namespace in Imports field not imported from: ‘graphics’
+      All declared Imports should be used.
+    Packages in Depends field not imported from:
+      ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘methods’
+      ‘reshape2’ ‘scales’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
+      See the note in ?`:::` about the use of this operator.
+    Unexported objects imported by ':::' calls:
+      ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
+      abline addColorChannelInfo aes allele as.dist axis box capture.output
+      channel.probes colMedians colQuantiles colSds colorRampPalette
+      coord_flip data dnorm dropouts drops ecdf facet_grid features
+      gamma.integral gamma.mle gamma.mode geom_histogram ggplot hclust
+      hm27.controls hm27.ordering hm450.controls hm450.ordering huber index
+      intensity lines log_trans mclapply melt mu offset opts p.adjust
+      packageDescription packageVersion par plot.density pnorm points
+      position_identity read.csv read.delim read.table rect rowMins
+      scale_colour_manual scale_fill_manual scale_shape_manual
+      scale_x_continuous scale_y_continuous scale_y_discrete
+      subsetCommonProbes text theme_bw title value variable weighted.mean
+    Consider adding
+      importFrom("grDevices", "colorRampPalette")
+      importFrom("graphics", "abline", "axis", "box", "lines", "par",
+                 "points", "rect", "text", "title")
+      importFrom("stats", "as.dist", "dnorm", "ecdf", "hclust", "offset",
+                 "p.adjust", "pnorm", "weighted.mean")
+      importFrom("utils", "capture.output", "data", "packageDescription",
+                 "packageVersion", "read.csv", "read.delim", "read.table")
+    to your NAMESPACE file.
+    ```
+
+*   checking Rd files ... NOTE
+    ```
+    prepare_Rd: estimateM.Rd:34-36: Dropping empty section \seealso
+    prepare_Rd: estimateM.Rd:37-39: Dropping empty section \examples
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    'library' or 'require' call not declared from: ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
+    ```
+
 # MFHD
 
 Version: 0.0.1
@@ -3566,6 +3806,47 @@ Version: 6.3.1
     The Date field is over a month old.
     
     This build time stamp is over a month old.
+    ```
+
+# mmtfa
+
+Version: 0.1
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Jeffrey L. Andrews <jeffrey.andrews@macewan.ca>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    plot.mmtfa: no visible global function definition for ‘plot’
+    plot.mmtfa: no visible global function definition for ‘title’
+    plot.mmtfa: no visible global function definition for ‘contour’
+    plot.mmtfa: no visible global function definition for ‘rgb’
+    plot.mmtfa : dunivt: no visible global function definition for
+      ‘mahalanobis’
+    plot.mmtfa : dunivt: no visible global function definition for ‘dnorm’
+    plot.mmtfa: no visible global function definition for ‘density’
+    plot.mmtfa: no visible global function definition for ‘curve’
+    sginit: no visible global function definition for ‘cov.wt’
+    sgupdate: no visible global function definition for ‘cov.wt’
+    winit: no visible global function definition for ‘mahalanobis’
+    Undefined global functions or variables:
+      contour cov.wt curve density dnorm kmeans mahalanobis par plot
+      rainbow rgb runif title uniroot
+    Consider adding
+      importFrom("grDevices", "rainbow", "rgb")
+      importFrom("graphics", "contour", "curve", "par", "plot", "title")
+      importFrom("stats", "cov.wt", "density", "dnorm", "kmeans",
+                 "mahalanobis", "runif", "uniroot")
+    to your NAMESPACE file.
     ```
 
 # MoEClust
@@ -4251,6 +4532,21 @@ Version: 1.0.0
 *   checking CRAN incoming feasibility ... NOTE
     ```
     Maintainer: ‘Junghi Kim <junghikim0@gmail.com>’
+    
+    The Date field is over a month old.
+    
+    This build time stamp is over a month old.
+    ```
+
+# PSCBS
+
+Version: 0.63.0
+
+## In both
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
     
     The Date field is over a month old.
     
@@ -5529,34 +5825,6 @@ Version: 1.3.0
 
 Version: 1.2.0
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    ...
-    The error most likely occurred in:
-    
-    > ### Name: assign.properties
-    > ### Title: Function to assign properties to an expression matrix
-    > ### Aliases: assign.properties
-    > 
-    > ### ** Examples
-    > 
-    > library(breastCancerMAINZ)
-    > data(mainz, package='breastCancerMAINZ')
-    > all.properties <- assign.properties(ESet=mainz, geneID.column='Gene.symbol',
-    + 	genelists=c('Stroma4', 'TNBCType'), n=10)
-    --Assigning properties to expression data--
-    --There are duplicated genes. Using most variable to collapse--
-    ----206 out of 297 total genes matching for D.stroma.property----
-    Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
-      port 11814 cannot be opened
-    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
-      cannot open the connection
-    Calls: assign.properties ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
-    Execution halted
-    ```
-
 ## In both
 
 *   checking CRAN incoming feasibility ... NOTE
@@ -5760,6 +6028,26 @@ Version: 1.0.0
     tenXplore: no visible binding for global variable ‘CellTypes’
     Undefined global functions or variables:
       CellTypes
+    ```
+
+# tmlenet
+
+Version: 0.1.0
+
+## In both
+
+*   checking top-level files ... WARNING
+    ```
+    Conversion of ‘README.md’ failed:
+    pandoc: Could not fetch https://travis-ci.org/osofr/tmlenet.svg?branch=master
+    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
+    ```
+
+*   checking CRAN incoming feasibility ... NOTE
+    ```
+    Maintainer: ‘Oleg Sofrygin <oleg.sofrygin@gmail.com>’
+    
+    This build time stamp is over a month old.
     ```
 
 # topGO
