@@ -172,3 +172,13 @@ stopifnot(all(y == 5))
 x <- matrix(0.0, nrow = 2L, ncol = 32762L)
 y <- colLogSumExps(x)
 str(y)
+
+## Bug report #120 (https://github.com/HenrikBengtsson/matrixStats/issues/120)
+## (This would error if x had rownames/colnames and non-NULL rows/cols were
+## used)
+x <- matrix(runif(6), nrow = 2L, ncol = 3L,
+            dimnames = list(c("A", "B"), c("a", "b", "c")))
+y <- colLogSumExps(x, cols = 3:1)
+stopifnot(names(y) == c("c", "b", "a"))
+y <- rowLogSumExps(x, rows = 2)
+stopifnot(names(y) == "B")
