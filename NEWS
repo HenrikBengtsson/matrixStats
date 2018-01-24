@@ -1,9 +1,76 @@
 Package: matrixStats
 ====================
 
+Version: 0.53.0 [2018-01-23]
+
+NEW FEATURES:
+
+ o Functions sum2(x) and means2(x) now accept also logical input 'x', which
+   corresponds to using as.integer(x) but without the need for neither coercion
+   nor internal extra copies. With sum2(x, mode = "double") it is possible to
+   count number of TRUE elements beyond 2^31-1, which base::sum() does not
+   support.
+
+ o Functions col-/rowSums2() and col-/rowMeans2() now accept also logical
+   input 'x'.
+ 
+ o Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
+   to to using as.integer(y) but without the need for coercion to integer.
+
+ o Functions col-/rowTabulates(x) now support logical input 'x'.
+ 
+ o Now count() can count beyond 2^31-1.
+
+ o allocVector() can now allocate long vectors (longer than 2^31-1).
+
+ o Now sum2(x, mode = "integer") generates a warning if typeof(x) == "double"
+   asking if as.integer(sum2(x)) was intended.
+
+ o Inspired by Hmisc::wtd.var(), when sum(w) <= 1, now weightedVar(x, w)
+   produces an informative warning that the estimate is invalid.
+
+CODE REFACTORING:
+
+ o Harmonized the ordering of the arguments of colAvgsPerColSet() with that
+   of rowAvgsPerColSet().
+
+BUG FIXES:
+
+ o col-/rowLogSumExp() could core dump R for "large" number of columns/rows.
+   Thanks Brandon Stewart at Princeton University for reporting on this.
+
+ o count() beyond 2^31-1 would return invalid results.
+
+ o Functions col-/rowTabulates(x) did not count missing values.
+
+ o indexByRow(dim, idxs) would give nonsense results if 'idxs' had indices
+   greater than prod(dim) or non-positive indices; now it gives an error.
+
+ o indexByRow(dim) would give nonsense results when prod(dim) >= 2^31; now
+   it gives an informative error.
+
+ o col-/rowAvgsPerColSet() would return vector rather than matrix if
+   nrow(X) <= 1. Thanks to Peter Hickey (Johns Hopkins University) for
+   troubleshooting and providing a fix.
+
+DEPRECATED AND DEFUNCT:
+
+ o Previously deprecated meanOver() and sumOver() are defunct. Use mean2()
+   and sum2() instead.
+
+ o Previously deprecated weightedVar(x, w, method = "0.14.2") is defunct.
+ 
+ o Dropped previously defunct weightedMedian(..., ties = "both").
+ 
+ o Dropped previously defunct argument 'centers' for col-/rowMads(). Use
+   'center' instead.
+
+ o Dropped previously defunct argument 'flavor' of colRanks() and rowRanks().
+
+
 Version: 0.52.2 [2017-04-13]
 
-BUG FIX:
+BUG FIXES:
 
  o Several of the row- and column-based functions would core dump R if the
    matrix was of a data type other than logical, integer, or numeric, e.g.
@@ -20,7 +87,7 @@ DEPRECATED AND DEFUNCT:
  
 Version: 0.52.1 [2017-04-04]
 
-BUG FIX:
+BUG FIXES:
 
  o The package test on matrixStats:::benchmark() tried to run even if
    not all suggested packages were available.
@@ -107,6 +174,14 @@ DEPRECATED AND DEFUNCT:
  o Previously deprecated (and ignored) argument 'flavor' of colRanks() and
    rowRanks() is now defunct.
 
+ o Previously deprecated support for passing non-vector, non-matrix objects
+   to rowAlls(), rowAnys(), rowCollapse(), and the corresponding column-based
+   versions are now defunct.  Likewise, rowProds(), rowQuantiles(),
+   rowWeightedMeans(), rowWeightedMedians(), and the corresponding column-based
+   versions are also defunct.  The rationale for this is to tighten up the
+   identity of the matrixStats package and what types of input it accepts.
+   This will also help optimize the code further.
+
 
 Version: 0.51.0 [2016-10-08]
 
@@ -185,6 +260,8 @@ DEPRECATED AND DEFUNCT:
 
  o CLEANUP: Defunct argument 'centers' for col-/rowMads(); use 'center'.
 
+ o weightedVar(x, w, method = "0.14.2") is deprecated.
+
  
 Version: 0.14.2 [2015-06-23]
 
@@ -253,10 +330,10 @@ SIGNIFICANT CHANGES:
 
 NEW FEATURES:
 
- o CONSISTENCY: Renamed argument 'centers' of col- and rowMads() to 'center'.
-   This is consistent with col- and rowVars().
+ o CONSISTENCY: Renamed argument 'centers' of col-/rowMads() to 'center'.
+   This is consistent with col-/rowVars().
 
- o CONSISTENCY: col- and rowVars() now use na.rm = FALSE as the default
+ o CONSISTENCY: col-/rowVars() now use na.rm = FALSE as the default
    (na.rm = TRUE was mistakenly introduced as the default in v0.9.7).
 
 PERFORMANCE AND MEMORY:
@@ -289,9 +366,8 @@ BUG FIXES:
    consistent with all() and any() if there were missing values.  For
    example, with x <- c("a", NA, "b") we have all(x == "a") == FALSE and
    any(x == "a") == TRUE whereas our corresponding methods would return NA in
-   those cases.  The methods fixed are allValue(), anyValue(), col- and
-   rowAlls(), and col- and rowAnys().  Added more package tests to cover
-   these cases.
+   those cases.  The methods fixed are allValue(), anyValue(), col-/rowAlls(),
+   and col-/rowAnys().  Added more package tests to cover these cases.
 
  o logSumExp(x, na.rm = TRUE) would return NA if all values were NA and
    length(x) > 1.  Now it returns -Inf for all length(x):s.
@@ -382,7 +458,11 @@ BUG FIXES:
  o weightedMedian(..., ties = "both") would give an error if there was a tie.
    Added package test for this case.
  
- 
+DEPRECATED AND DEFUNCT:
+
+ o weightedMedian(..., ties = "both") is now defunct.
+
+
 Version: 0.12.2 [2014-12-07]
 
 BUG FIXES:
@@ -393,6 +473,10 @@ BUG FIXES:
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
    coersion at the C level.
+
+DEPRECATED AND DEFUNCT:
+
+ o weightedMedian(..., interpolate = FALSE, ties = "both") is defunct.
  
  
 Version: 0.12.1 [2014-12-06]
@@ -622,8 +706,8 @@ Version: 0.10.1 [2014-06-09]
 
 PERFORMANCE AND MEMORY:
 
- o Added benchmark reports for also non-matrixStats functions col/rowSums()
-   and col/rowMeans().
+ o Added benchmark reports for also non-matrixStats functions col-/rowSums()
+   and col-/rowMeans().
 
  o Now all colNnn() and rowNnn() methods are benchmarked in a combined report
    making it possible to also compare colNnn(x) with rowNnn(t(x)).
@@ -649,8 +733,8 @@ Version: 0.9.7 [2014-06-05]
 
 BUG FIXES:
 
- o Introduced a bug in v0.9.5 causing col- and rowVars() and hence also
-   col- and rowSds() to return garbage.  Add package tests for these now.
+ o Introduced a bug in v0.9.5 causing col-/rowVars() and hence also
+   col-/rowSds() to return garbage.  Add package tests for these now.
 
  o Submitted to CRAN.
  
@@ -665,7 +749,7 @@ NEW FEATURES:
 
 PERFORMANCE AND MEMORY:
 
- o SPEEDUP: Now col- and rowProds() utilizes new product() function.
+ o SPEEDUP: Now col-/rowProds() utilizes new product() function.
 
  o SPEEDUP: Added product() for calculating the product of a numeric
    vector via the logarithm.
@@ -684,8 +768,8 @@ SIGNIFICANT CHANGES:
 
 NEW FEATURES:
 
- o Added argument 'method' to col- and rowProds() for controlling how the
-   product is calculated.
+ o Added argument 'method' to col-/rowProds() for controlling how the product
+   is calculated.
 
 PERFORMANCE AND MEMORY:
 

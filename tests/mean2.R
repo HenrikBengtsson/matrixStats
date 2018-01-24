@@ -50,6 +50,18 @@ for (kk in 1:20) {
   y0 <- mean2_R(x, na.rm = na.rm, idxs = idxs)
   y1 <- mean2(x, na.rm = na.rm, idxs = idxs)
   stopifnot(all.equal(y1, y0))
+
+  if (storage.mode(x) == "integer") {
+    storage.mode(x) <- "logical"
+    
+    y0 <- mean2_R(x, na.rm = na.rm)
+    y1 <- mean2(x, na.rm = na.rm)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- mean2_R(x, na.rm = na.rm, idxs = idxs)
+    y1 <- mean2(x, na.rm = na.rm, idxs = idxs)
+    stopifnot(all.equal(y1, y0))
+  }
 } # for (kk ...)
 
 
@@ -146,8 +158,8 @@ for (na.rm in c(FALSE, TRUE)) {
     ## Thus, we cannot guarantee that s1 is identical to s0.
   }
 
-  # Averaging over mix of NaN, NA, +Inf, and numerics
-  x <- c(NA, NaN, +Inf, 3.14)
+  # Averaging over mix of NaN, NA_real_, +Inf, and numerics
+  x <- c(NA_real_, NaN, +Inf, 3.14)
   s1 <- mean(x, na.rm = na.rm)
   s2 <- mean2(x, na.rm = na.rm)
   if (na.rm) {

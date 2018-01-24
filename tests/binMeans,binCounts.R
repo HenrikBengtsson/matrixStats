@@ -62,6 +62,27 @@ stopifnot(all.equal(y_smooth0r, y_smooth0, check.attributes = FALSE))
 stopifnot(all.equal(y_smoothr, y_smooth0r))
 
 
+# Integer input
+y <- as.integer(y)
+y_smooth0 <- binMeans0(y, x = x, bx = bx)
+y_smooth <- binMeans(y, x = x, bx = bx)
+n_smooth <- binCounts(x, bx = bx)
+# Sanity check
+stopifnot(is.integer(y),
+          all.equal(y_smooth, y_smooth0),
+          all.equal(attr(y_smooth, "count"), n_smooth))
+
+# Logical input
+y <- as.logical(y)
+y_smooth0 <- binMeans0(y, x = x, bx = bx)
+y_smooth <- binMeans(y, x = x, bx = bx)
+n_smooth <- binCounts(x, bx = bx)
+# Sanity check
+stopifnot(is.logical(y),
+          all.equal(y_smooth, y_smooth0),
+          all.equal(attr(y_smooth, "count"), n_smooth))
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Case #2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

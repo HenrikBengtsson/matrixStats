@@ -1,4 +1,5 @@
 library("matrixStats")
+options(warn = 1)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Consistency checks
@@ -50,6 +51,18 @@ for (kk in 1:20) {
   y0 <- sum2_R(x, na.rm = na.rm, idxs = idxs)
   y1 <- sum2(x, na.rm = na.rm, idxs = idxs)
   stopifnot(all.equal(y1, y0))
+
+  if (storage.mode(x) == "integer") {
+    storage.mode(x) <- "logical"
+    
+    y0 <- sum2_R(x, na.rm = na.rm)
+    y1 <- sum2(x, na.rm = na.rm)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- sum2_R(x, na.rm = na.rm, idxs = idxs)
+    y1 <- sum2(x, na.rm = na.rm, idxs = idxs)
+    stopifnot(all.equal(y1, y0))
+  }
 } # for (kk ...)
 
 
@@ -64,6 +77,11 @@ for (n in 0:2) {
     stopifnot(all.equal(y, y0))
 
     x <- rep(NA_integer_, times = n)
+    y0 <- sum(x, na.rm = na.rm)
+    y <- sum2(x, na.rm = na.rm)
+    stopifnot(all.equal(y, y0))
+    
+    x <- rep(NA, times = n)
     y0 <- sum(x, na.rm = na.rm)
     y <- sum2(x, na.rm = na.rm)
     stopifnot(all.equal(y, y0))
@@ -104,56 +122,84 @@ for (na.rm in c(FALSE, TRUE)) {
   x <- double(0)
   s1 <- sum(x)
   s2 <- sum2(x)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    identical(s1, 0),
+    identical(s1, s2)
+  )
 
   x <- as.double(1:10)
   idxs <- integer(0)
   s1 <- sum(x[idxs])
   s2 <- sum2(x, idxs = idxs)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    identical(s1, 0),
+    identical(s1, s2)
+  )
 
   # Summing over NA_real_:s
   x <- rep(NA_real_, times = 10L)
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    !na.rm || s1 == 0,
+    identical(s1, s2)
+  )
 
   x <- rep(NA_real_, times = 10L)
   idxs <- 1:5
   s1 <- sum(x[idxs], na.rm = na.rm)
   s2 <- sum2(x, idxs = idxs, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    !na.rm || s1 == 0,
+    identical(s1, s2)
+  )
 
   # Summing over -Inf:s
   x <- rep(-Inf, times = 3L)
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    is.infinite(s1) && s1 < 0,
+    identical(s1, s2)
+  )
 
   # Summing over +Inf:s
   x <- rep(+Inf, times = 3L)
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
+  stopifnot(
+    is.infinite(s1) && s1 > 0,
+    identical(s1, s2)
+  )
 
   # Summing over mix of -Inf:s and +Inf:s
   x <- rep(c(-Inf, +Inf), times = 3L)
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    is.nan(s1),
+    identical(s1, s2)
+  )
 
   # Summing over mix of -Inf:s and +Inf:s and numerics
   x <- rep(c(-Inf, +Inf, 3.14), times = 2L)
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
-  stopifnot(identical(s1, s2))
+  stopifnot(
+    is.nan(s1),
+    identical(s1, s2)
+  )
 
   # Summing over mix of NaN, NA, +Inf, and numerics
   x <- c(NaN, NA, +Inf, 3.14)
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
   if (na.rm) {
-    stopifnot(identical(s2, s1))
+    stopifnot(
+      is.infinite(s1) && s1 > 0,
+      identical(s2, s1)
+    )
   } else {
     stopifnot(is.na(s1), is.na(s2))
     ## NOTE, due to compiler optimization, it is not guaranteed that NA is
@@ -169,7 +215,10 @@ for (na.rm in c(FALSE, TRUE)) {
   s1 <- sum(x, na.rm = na.rm)
   s2 <- sum2(x, na.rm = na.rm)
   if (na.rm) {
-    stopifnot(identical(s2, s1))
+    stopifnot(
+      is.infinite(s1) && s1 > 0,
+      identical(s2, s1)
+    )
   } else {
     stopifnot(is.na(s1), is.na(s2))
     ## NOTE, due to compiler optimization, it is not guaranteed that NA is
@@ -188,23 +237,51 @@ for (na.rm in c(FALSE, TRUE)) {
 x <- c(.Machine$integer.max, 1L, -.Machine$integer.max)
 
 # Total gives integer overflow
-s1 <- sum(x[1:2])                         # NA_integer_
-s2 <- sum2(x[1:2])                     # NA_integer_
-stopifnot(identical(s1, s2))
+s1 <- sum(x[1:2])                        # NA_integer_ w/ warning
+s2 <- sum2(x[1:2])                       # NA_integer_ w/ warning
+stopifnot(
+  identical(s1, NA_integer_),
+  identical(s1, s2)
+)
+
+## Assert above warning
+res <- tryCatch({
+  s2 <- sum2(x[1:2])
+}, warning = identity)
+stopifnot(inherits(res, "warning"))
+
 
 # Total gives integer overflow (coerce to numeric)
-s1 <- sum(as.numeric(x[1:2]))             # 2147483648
-s2 <- sum2(as.numeric(x[1:2]))         # 2147483648
+s1 <- sum(as.numeric(x[1:2]))            # 2147483648
+s2 <- sum2(as.numeric(x[1:2]))           # 2147483648
 s3 <- sum2(x[1:2], mode = "double")      # 2147483648
-stopifnot(identical(s1, s2))
-stopifnot(identical(s1, s3))
+stopifnot(
+  identical(s1, 2147483648),
+  identical(s1, s2),
+  identical(s1, s3)
+)
 
 # Cumulative sum would give integer overflow but not the total
 s1 <- sum(x)                              # 1L
-s2 <- sum2(x)                          # 1L
-stopifnot(identical(s1, s2))
+s2 <- sum2(x)                             # 1L
+stopifnot(
+  identical(s1, 1L),
+  identical(s1, s2)
+)
 
+# Input is double but coersing result to integer
+x <- c(1, 2, 3.1)
+s1 <- sum2(x)
+s2 <- sum2(x, mode = "integer")
+stopifnot(
+  identical(as.integer(s1), s2)
+)
 
+## Assert above warning
+res <- tryCatch({
+  s2 <- sum2(x, mode = "integer")
+}, warning = identity)
+stopifnot(inherits(res, "warning"))
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Summing of large doubles
@@ -215,16 +292,20 @@ y0 <- sum(x)
 print(y0)
 y <- sum2(x)
 print(y)
-stopifnot(is.infinite(y) && y > 0)
-stopifnot(identical(y, y0))
+stopifnot(
+  is.infinite(y) && y > 0,
+  identical(y, y0)
+)
 
 x <- rep(-.Machine$double.xmax, times = 2L)
 y0 <- sum(x)
 print(y0)
 y <- sum2(x)
 print(y)
-stopifnot(is.infinite(y) && y < 0)
-stopifnot(identical(y, y0))
+stopifnot(
+  is.infinite(y) && y < 0,
+  identical(y, y0)
+)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -8,8 +8,8 @@ binMeans(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
   right = FALSE, ...)
 }
 \arguments{
-\item{y}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
-values to calculate means on.}
+\item{y}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+\code{\link[base]{vector}} of K values to calculate means on.}
 
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 positions for to be binned.}

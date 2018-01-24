@@ -1,8 +1,9 @@
 library("matrixStats")
 
-for (mode in c("integer", "double")) {
-  x <- matrix(1:9 + 0.1, nrow = 3, ncol = 3)
+for (mode in c("integer", "logical", "double")) {
+  x <- matrix(-4:4, nrow = 3, ncol = 3)
   storage.mode(x) <- mode
+  if (mode == "double") x <- x + 0.1
 
   y0 <- rowMeans(x, na.rm = FALSE)
   y1 <- rowMeans2(x, na.rm = FALSE)
@@ -17,7 +18,7 @@ for (mode in c("integer", "double")) {
 # Special case: Single-element matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Single-element matrix:\n")
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "logical", "double")) {
   x <- matrix(1, nrow = 1, ncol = 1)
   storage.mode(x) <- mode
 
@@ -35,7 +36,7 @@ for (mode in c("integer", "double")) {
 # Special case: Empty matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Empty matrix:\n")
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "logical", "double")) {
   x <- matrix(integer(0), nrow = 0, ncol = 0)
   storage.mode(x) <- mode
 
@@ -53,7 +54,7 @@ for (mode in c("integer", "double")) {
 # Special case: All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: All NAs:\n")
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "logical", "double")) {
   x <- matrix(NA_integer_, nrow = 3, ncol = 3)
   storage.mode(x) <- mode
 
@@ -194,25 +195,32 @@ for (kk in seq_len(n_sims)) {
     x[sample(length(x), size = nna)] <- t
   }
 
-  # Integer or double?
+  # Mode?
+  modes <- "double"
   if ((kk %% 4) %in% c(2, 0)) {
-    cat("Coercing to integers\n")
-    storage.mode(x) <- "integer"
+    modes <- c("integer", "logical")
   }
 
-  na.rm <- sample(c(TRUE, FALSE), size = 1)
+  for (mode in modes) {
+    if (mode != "double") {
+      cat(sprintf("Coercing from %s to %s\n", storage.mode(x), mode))
+      storage.mode(x) <- mode
+    }
 
-  # rowMeans():
-  y0 <- rowMeans(x, na.rm = na.rm)
-  y1 <- rowMeans2(x, na.rm = na.rm)
-  stopifnot(all.equal(y1, y0))
-  y2 <- colMeans2(t(x), na.rm = na.rm)
-  stopifnot(all.equal(y2, y0))
-
-  # colMeans2():
-  y0 <- colMeans(x, na.rm = na.rm)
-  y1 <- colMeans2(x, na.rm = na.rm)
-  stopifnot(all.equal(y1, y0))
-  y2 <- rowMeans2(t(x), na.rm = na.rm)
-  stopifnot(all.equal(y2, y0))
+    na.rm <- sample(c(TRUE, FALSE), size = 1)
+  
+    # rowMeans2():
+    y0 <- rowMeans(x, na.rm = na.rm)
+    y1 <- rowMeans2(x, na.rm = na.rm)
+    stopifnot(all.equal(y1, y0))
+    y2 <- colMeans2(t(x), na.rm = na.rm)
+    stopifnot(all.equal(y2, y0))
+  
+    # colMeans2():
+    y0 <- colMeans(x, na.rm = na.rm)
+    y1 <- colMeans2(x, na.rm = na.rm)
+    stopifnot(all.equal(y1, y0))
+    y2 <- rowMeans2(t(x), na.rm = na.rm)
+    stopifnot(all.equal(y2, y0))
+  }
 } # for (kk ...)

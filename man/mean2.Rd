@@ -10,8 +10,8 @@ mean2(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...)
 meanOver(...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-N.}
+\item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+\code{\link[base]{vector}} of length N.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}

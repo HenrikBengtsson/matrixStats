@@ -10,18 +10,18 @@
 #' is less or equal to \code{S/2} (c.f. [1]).
 #'
 #' If \code{w} is missing then all elements of \code{x} are given the same
-#' positive weight. If all weights are zero, \code{\link[base]{NA}}_real_ is
+#' positive weight. If all weights are zero, \code{\link[base:NA]{NA_real_}} is
 #' returned.
 #'
 #' If one or more weights are \code{Inf}, it is the same as these weights have
-#' the same weight and the others has zero. This makes things easier for cases
+#' the same weight and the others have zero. This makes things easier for cases
 #' where the weights are result of a division with zero.
 #'
 #' The weighted median solves the following optimization problem:
 #'
-#' \deqn{\alpha^* = \arg_\alpha \min \sum_{k = 1}{K} w_k |x_k-\alpha|} where
-#' \eqn{x = (x_1, x_2, \ldots, x_K)} are scalars and
-#' \eqn{w = (w_1, w_2, \ldots, w_K)} are the corresponding "weights" for each
+#' \deqn{\alpha^* = \arg_\alpha \min \sum_{i = 1}^{n} w_i |x_i-\alpha|} where
+#' \eqn{x = (x_1, x_2, \ldots, x_n)} are scalars and
+#' \eqn{w = (w_1, w_2, \ldots, w_n)} are the corresponding "weights" for each
 #' individual \eqn{x} value.
 #'
 #' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
@@ -63,8 +63,8 @@
 #' Illinois, for the initial ideas.
 #'
 #' @seealso \code{\link[stats]{median}}, \code{\link[base]{mean}}() and
-#'
 #' \code{\link{weightedMean}}().
+#' 
 #' @references [1] T.H. Cormen, C.E. Leiserson, R.L. Rivest, Introduction to
 #' Algorithms, The MIT Press, Massachusetts Institute of Technology, 1989.
 #'
@@ -100,8 +100,6 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
       ties_id <- 4L
     } else if (ties == "mean") {
       ties_id <- 8L
-    } else if (ties == "both") {
-      .Defunct("As of matrixStats (> 0.12.2), weightedMedian(..., interpolate = FALSE, ties = \"both\") is no longer supported. Use ties = \"min\" and then ties = \"max\" to achieve the same result.")  #nolint
     } else {
       stop("Unknown value on 'ties': ", ties)
     }

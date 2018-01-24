@@ -33,6 +33,11 @@
 #'
 #' @author Henrik Bengtsson
 #'
+#' @details
+#' The estimator used here is the same as the one used by the "unbiased"
+#' estimator of the \bold{Hmisc} package. More specifically,
+#' \code{weightedVar(x, w = w) == Hmisc::wtd.var(x, weights = w)},
+#' 
 #' @seealso For the non-weighted variance, see \code{\link[stats]{var}}.
 #'
 #' @keywords univar robust
@@ -61,14 +66,10 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Argument 'na.rm':
 
-  # Argument 'method':
-  method <- list(...)$method
-
-  ## Backward compatible but incorrect estimate?
   ## See https://github.com/HenrikBengtsson/matrixStats/issues/72
-  use_0.14.2 <- (identical(method, "0.14.2"))
-  if (use_0.14.2) {
-    .Deprecated(msg = "weightedVar(..., method = \"0.14.2\") should not be used since it uses an incorrect degree-of-freedom term. It was supported only for very rare backward compatible reasons. It will be defunct in a future version of matrixStats.")  #nolint
+  method <- list(...)$method
+  if (identical(method, "0.14.2")) {
+    .Defunct(msg = "weightedVar(..., method = \"0.14.2\") is no longer supported since it used an incorrect degree-of-freedom term.")  #nolint
   }
 
 
@@ -117,11 +118,10 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Standardize weights to sum to one
   wsum <- sum(w)
-  w <- w / wsum
 
   # Estimate the mean?
   if (is.null(center)) {
-    center <- sum(w * x)
+    center <- sum(w * x) / wsum
   }
 
   # Estimate the variance
@@ -129,13 +129,18 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   x <- x^2         # Squared residuals
 
   ## Correction factor
-  lambda <- wsum / (wsum - 1)
-  if (use_0.14.2) lambda <- n / (n - 1L)
+  lambda <- 1 / (wsum - 1)
 
   sigma2 <- lambda * sum(w * x)
 
   x <- w <- NULL  # Not needed anymore
 
+  ## Undefined estimate? (adopted from Hmisc::wtd.var())
+  if (wsum <= 1) {
+    warning(sprintf("Produced invalid variance estimate, because the weights suggest at most one effective observation (sum(w) <= 1): %g (wsum = %g)", sigma2, wsum))
+  }
+  
+  
   sigma2
 }
 

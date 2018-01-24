@@ -1,13 +1,11 @@
-#' Counts the number of TRUE values in each row (column) of a matrix
+#' Counts the number of occurrences of a specific value
 #'
-#' Counts the number of TRUE values in each row (column) of a matrix.
-#'
-#' These functions takes either a matrix or a vector as input. If a vector,
-#' then argument \code{dim.} must be specified and fulfill \code{prod(dim.) ==
-#' length(x)}.  The result will be identical to the results obtained when
-#' passing \code{matrix(x, nrow = dim.[1L], ncol = dim.[2L])}, but avoids
-#' having to temporarily create/allocate a matrix, if only such is needed
-#' only for these calculations.
+#' The row- and column-wise functions take either a matrix or a vector as
+#' input. If a vector, then argument \code{dim.} must be specified and fulfill
+#' \code{prod(dim.) == length(x)}.  The result will be identical to the results
+#' obtained when passing \code{matrix(x, nrow = dim.[1L], ncol = dim.[2L])},
+#' but avoids having to temporarily create/allocate a matrix, if only such is
+#' needed only for these calculations.
 #'
 #' @param x An NxK \code{\link[base]{matrix}} or an N * K
 #' \code{\link[base]{vector}}.
@@ -29,6 +27,9 @@
 #'
 #' @return \code{rowCounts()} (\code{colCounts()}) returns an
 #' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
+#' \code{count()} returns a scalar of type \code{\link[base]{integer}} if
+#' the count is less than 2^31-1 (= \code{.Machine$integer.max}) otherwise
+#' a scalar of type \code{\link[base]{double}}.
 #'
 #' @example incl/rowCounts.R
 #'
@@ -73,7 +74,9 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     dim. <- dim(x)
 
     if (is.na(value)) {
-      counts <- apply(x, MARGIN = 1L, FUN = function(x) sum(is.na(x)))
+      counts <- apply(x, MARGIN = 1L, FUN = function(x) {
+        sum(is.na(x))
+      })
     } else {
       counts <- apply(x, MARGIN = 1L, FUN = function(x) {
         sum(x == value, na.rm = na.rm)
@@ -166,11 +169,11 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
     if (!is.null(idxs)) x <- x[idxs]
 
     if (is.na(value)) {
-      counts <- sum(is.na(x))
+      counts <- sum2(is.na(x))
     } else {
-      counts <- sum(x == value, na.rm = na.rm)
+      counts <- sum2(x == value, na.rm = na.rm)
     }
   }
 
-  as.integer(counts)
+  counts
 }

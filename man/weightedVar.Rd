@@ -55,6 +55,11 @@ Returns a \code{\link[base]{numeric}} scalar.
 Computes a weighted variance / standard deviation of a numeric vector or
 across rows or columns of a matrix.
 }
+\details{
+The estimator used here is the same as the one used by the "unbiased"
+estimator of the \bold{Hmisc} package. More specifically,
+\code{weightedVar(x, w = w) == Hmisc::wtd.var(x, weights = w)},
+}
 \section{Missing values}{
  Missing values are dropped at the very beginning,
 if argument \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.

@@ -15,8 +15,8 @@
 #' \code{mean2(..., refine = FALSE)} is almost twice as fast as
 #' \code{mean2(..., refine = TRUE)}.
 #'
-#' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-#' N.
+#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of length N.
 #'
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
@@ -45,8 +45,8 @@ mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+  if (!is.numeric(x) && !is.logical(x)) {
+    stop("Argument 'x' is neither numeric nor logical: ", mode(x))
   }
 
   # Argument 'na.rm':
@@ -68,6 +68,5 @@ mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
 #' @rdname mean2
 #' @export
 meanOver <- function(...) {
-  .Deprecated(new = "mean2")
-  mean2(...)
+  .Defunct(new = "mean2")
 }

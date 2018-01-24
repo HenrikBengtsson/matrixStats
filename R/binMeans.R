@@ -5,8 +5,8 @@
 #' \code{binMeans(x, bx, right = TRUE)} gives equivalent results as
 #' \code{rev(binMeans(-x, bx = sort(-bx), right = FALSE))}, but is faster.
 #'
-#' @param y A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
-#' values to calculate means on.
+#' @param y A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of K values to calculate means on.
 #'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 #' positions for to be binned.
@@ -58,11 +58,11 @@ binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'y':
-  if (!is.numeric(y)) {
-    stop("Argument 'y' is not numeric: ", mode(y))
+  if (!is.numeric(y) && !is.logical(y)) {
+    stop("Argument 'y' is neither numeric nor logical: ", mode(y))
   }
-  if (any(is.infinite(y))) {
-    stop("Argument 'y' must not contain Inf values.")
+  if (is.numeric(y) && !is.integer(y) && any(is.infinite(y))) {
+    stop("Argument 'y' must not contain infinite values.")
   }
   n <- length(y)
 

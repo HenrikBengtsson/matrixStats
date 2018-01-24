@@ -68,11 +68,6 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
-  if (is.element("flavor", names(list(...)))) {
-    .Defunct(msg = "Argument 'flavor' of rowRanks() is defunct.",
-             package = "matrixStats")
-  }
-
   ties_method <- charmatch(ties.method, c("max", "average", "min"),
                            nomatch = 0L)
   if (ties_method == 0L) {
@@ -92,11 +87,6 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      dim. = dim(x), preserveShape = FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
-
-  if (is.element("flavor", names(list(...)))) {
-    .Defunct(msg = "Argument 'flavor' of colRanks() is defunct.",
-             package = "matrixStats")
-  }
 
   # Argument 'preserveShape'
   preserveShape <- as.logical(preserveShape)

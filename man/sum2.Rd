@@ -10,8 +10,8 @@ sum2(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...)
 sumOver(...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of
-length N.}
+\item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+\code{\link[base]{vector}} of length N.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
@@ -20,7 +20,8 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 skipped, otherwise not.}
 
 \item{mode}{A \code{\link[base]{character}} string specifying the data type
-of the return value.  Default is to use the same mode as argument \code{x}.}
+of the return value.  Default is to use the same mode as argument \code{x},
+unless it is logical when it defaults to \code{"integer"}.}
 
 \item{...}{Not used.}
 }
@@ -29,8 +30,10 @@ Returns a scalar of the data type specified by argument \code{mode}.
 If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}
 is outside the range of defined integer values.
 Note that the intermediate sum (\code{sum(x[1:n])}) is internally
-represented as a floating point value and will therefor never be outside of
+represented as a floating point value and will therefore never be outside of
 the range.
+If \code{mode = "integer"} and \code{typeof{x} == "double"}, then a warning
+is generated.
 }
 \description{
 Computes the sum of all or a subset of values.

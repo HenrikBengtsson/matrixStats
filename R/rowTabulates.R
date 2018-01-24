@@ -3,8 +3,8 @@
 #' Tabulates the values in a matrix by row (column).
 #'
 #'
-#' @param x An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK
-#' \code{\link[base]{matrix}}.
+#' @param x An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
+#' a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -30,9 +30,10 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (is.integer(x)) {
+  } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
+    stop("Argument 'x' must be of type integer, logical, or raw: ", class(x)[1])
   }
 
   # Apply subset
@@ -53,7 +54,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
       names <- paste("0x", names, sep = "")
       values <- as.raw(values)
     } else {
-      values <- sort(values)
+      values <- sort(values, na.last = TRUE)
       names <- as.character(values)
     }
   } else {
@@ -69,9 +70,9 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   nbr_of_values <- length(values)
   counts <- matrix(0L, nrow = nrow(x), ncol = nbr_of_values)
   colnames(counts) <- names
-
+  na.rm <- anyMissing(x)
   for (kk in seq_len(nbr_of_values)) {
-    counts[, kk] <- rowCounts(x, value = values[kk], ...)
+    counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
   }
 
   counts
@@ -86,6 +87,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (is.integer(x)) {
+  } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
     stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
@@ -109,7 +111,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
       names <- paste("0x", names, sep = "")
       values <- as.raw(values)
     } else {
-      values <- sort(values)
+      values <- sort(values, na.last = TRUE)
       names <- as.character(values)
     }
   } else {
@@ -127,8 +129,9 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
     nbr_of_values <- length(values)
     counts <- matrix(0L, nrow = ncol(x), ncol = nbr_of_values)
     colnames(counts) <- names
+    na.rm <- anyMissing(x)
     for (kk in seq_len(nbr_of_values)) {
-      counts[, kk] <- colCounts(x, value = values[kk], ...)
+      counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
     }
   }
   counts

@@ -3,7 +3,7 @@
   void colCounts_<int|dbl|lgl>[rowsType][colsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -25,7 +25,7 @@
 RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   R_xlen_t ii, jj;
   R_xlen_t colBegin, idx;
-  int count;
+  R_xlen_t count;
   X_C_TYPE xvalue;
 
 #ifdef ROWS_TYPE
@@ -49,7 +49,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
             break;
           }
         }
-        ans[jj] = count;
+        ans[jj] = (double)count;
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
@@ -67,14 +67,14 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
                we know for sure that all = FALSE regardless of
                missing values. In other words, at this point
                the answer can be either NA or FALSE.*/
-            count = NA_INTEGER;
-            } else {
+            count = NA_R_XLEN_T;
+          } else {
             count = 0;
             /* Found another value! Early stopping */
             break;
           }
         } /* for (ii ...) */
-        ans[jj] = count;
+        ans[jj] = (double)count;
       } /* for (jj ...) */
     } /* if (X_ISNAN(value)) */
   } else if (what == 1L) {  /* any */
@@ -91,7 +91,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
             break;
           }
         }
-        ans[jj] = count;
+        ans[jj] = (double)count;
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
@@ -112,10 +112,10 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
                we know for sure that any = TRUE regardless of
                missing values. In other words, at this point
                the answer can be either NA or TRUE.*/
-            count = NA_INTEGER;
+            count = NA_R_XLEN_T;
           }
         } /* for (ii ...) */
-        ans[jj] = count;
+        ans[jj] = (double)count;
       } /* for (jj ...) */
     } /* if (X_ISNAN(value)) */
   } else if (what == 2L) {  /* count */
@@ -130,7 +130,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
             ++count;
           }
         }
-        ans[jj] = count;
+        ans[jj] = (double)count;
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
@@ -142,12 +142,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
           if (xvalue == value) {
             ++count;
           } else if (!narm && X_ISNAN(xvalue)) {
-            count = NA_INTEGER;
+            count = NA_R_XLEN_T;
             /* Early stopping */
             break;
           }
         } /* for (ii ...) */
-        ans[jj] = count;
+        ans[jj] = (double)count;
       } /* for (jj ...) */
     } /* if (X_ISNAN(value)) */
   } /* if (what) */

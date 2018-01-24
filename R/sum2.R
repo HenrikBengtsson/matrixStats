@@ -12,8 +12,8 @@
 #' the regular \code{sum()} function when \code{x} is an
 #' \code{\link[base]{integer}} vector.
 #'
-#' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of
-#' length N.
+#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of length N.
 #'
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
@@ -22,7 +22,8 @@
 #' skipped, otherwise not.
 #'
 #' @param mode A \code{\link[base]{character}} string specifying the data type
-#' of the return value.  Default is to use the same mode as argument \code{x}.
+#' of the return value.  Default is to use the same mode as argument \code{x},
+#' unless it is logical when it defaults to \code{"integer"}.
 #'
 #' @param ... Not used.
 #'
@@ -30,8 +31,10 @@
 #' If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}
 #' is outside the range of defined integer values.
 #' Note that the intermediate sum (\code{sum(x[1:n])}) is internally
-#' represented as a floating point value and will therefor never be outside of
+#' represented as a floating point value and will therefore never be outside of
 #' the range.
+#' If \code{mode = "integer"} and \code{typeof{x} == "double"}, then a warning
+#' is generated.
 #'
 #' @example incl/sum2.R
 #'
@@ -47,8 +50,10 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+  x_mode <- typeof(x)
+  x_logical <- (x_mode == "logical")
+  if (!is.numeric(x) && !x_logical) {
+    stop("Argument 'x' is neither numeric nor logical: ", x_mode)
   }
 
   # Argument 'na.rm':
@@ -58,11 +63,21 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 
   # Argument 'mode':
   mode <- mode[1L]
-  mode_idx <- charmatch(mode, c("integer", "double"), nomatch = 0L)
-  if (mode_idx == 0L) {
+  if (x_logical && mode == "logical") {
+    ## SPECIAL CASE: If `x` is logical, default mode should be `integer`
+    mode_idx <- 1L
+  } else if (mode == "integer") {
+    mode_idx <- 1L
+    ## Coercing results from double to integer is likely a mistake
+    if (x_mode == "double") {
+      warning('sum2(x, mode = "integer") called with typeof(x) == "double"; did you mean to use as.integer(sum2(x))?')
+    }
+  } else if (mode == "double") {
+    mode_idx <- 2L
+  } else {
     stop("Unknown value of argument 'mode': ", mode)
   }
-
+  
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -72,6 +87,5 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 #' @rdname sum2
 #' @export
 sumOver <- function(...) {
-  .Deprecated(new = "sum2")
-  sum2(...)
+  .Defunct(new = "sum2")
 }

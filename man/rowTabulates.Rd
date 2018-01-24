@@ -10,8 +10,8 @@ rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ...)
 colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...)
 }
 \arguments{
-\item{x}{An \code{\link[base]{integer}} or \code{\link[base]{raw}} NxK
-\code{\link[base]{matrix}}.}
+\item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
+a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
 
 \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
 (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting

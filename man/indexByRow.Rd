@@ -22,6 +22,16 @@ indices.
 \description{
 Translates matrix indices by rows into indices by columns.
 }
+\section{Known limitations}{
+
+The current implementation does not support long-vector indices,
+because both input and output indices are of type integers.
+This means that the indices in argument \code{idxs} can only be in
+range [1,2^31-1]. Using a greater value will be coerced to
+\code{NA_integer_}.  Moreover, returned indices can only be in the
+same range [1,2^31-1].
+}
+
 \examples{
 dim <- c(5, 4)
 X <- matrix(NA_integer_, nrow = dim[1], ncol = dim[2])
