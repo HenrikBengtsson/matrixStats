@@ -13,7 +13,7 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
   R_xlen_t nx;
   int narm, mode2;
-  double sum;
+  double sum = NA_REAL;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL | R_TYPE_LGL), "x");
