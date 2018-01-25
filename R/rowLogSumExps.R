@@ -44,10 +44,10 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 
   # Preserve names
   names <- rownames(lx)
-  if (!is.null(rows)) {
-    names <- names[rows]
-  }
   if (!is.null(names)) {
+    if (!is.null(rows)) {
+      names <- names[rows]
+    }
     names(res) <- names
   }
 
@@ -66,10 +66,10 @@ colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 
   # Preserve names
   names <- colnames(lx)
-  if (!is.null(cols)) {
-    names <- names[cols]
-  }
   if (!is.null(names)) {
+    if (!is.null(cols)) {
+      names <- names[cols]
+    }
     names(res) <- names
   }
 
