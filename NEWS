@@ -3,8 +3,11 @@ Package: matrixStats
 
 Version: 0.53.0-9000 [2018-01-24]
 
- o ...
+BUG FIXES:
 
+ o colLogSumExps(lx, cols) / rowLogSumExps(lx, rows) gave an error if 'lx'
+   has rownames / colnames.
+    
 
 Version: 0.53.0 [2018-01-23]
 
