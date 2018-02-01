@@ -45,8 +45,9 @@
 #' @param ties If \code{interpolate == FALSE}, a character string specifying
 #' how to solve ties between two \code{x}'s that are satisfying the weighted
 #' median criteria.  Note that at most two values can satisfy the criteria.
-#' When \code{ties} is \code{"min"}, the smaller value of the two is returned
-#' and when it is \code{"max"}, the larger value is returned.  If \code{ties}
+#' When \code{ties} is \code{"min"} ("lower weighted median"), the smaller
+#' value of the two is returned and when it is \code{"max"} ("upper weighted
+#' median"), the larger value is returned.  If \code{ties}
 #' is \code{"mean"}, the mean of the two values is returned.  Finally, if
 #' \code{ties} is \code{"weighted"} (or \code{\link[base]{NULL}}) a weighted
 #' average of the two are returned, where the weights are weights of all values
