@@ -41,17 +41,17 @@ average of the two are returned, where the weights are weights of all values
 }
 \value{
 Returns a \code{\link[base]{numeric}} scalar.
-}
-\description{
-Computes a weighted median of a numeric vector.
-}
-\details{
+
 For the \code{n} elements \code{x = c(x[1], x[2], ..., x[n])} with positive
 weights \code{w = c(w[1], w[2], ..., w[n])} such that \code{sum(w) = S}, the
 \emph{weighted median} is defined as the element \code{x[k]} for which the
 total weight of all elements \code{x[i] < x[k]} is less or equal to
 \code{S/2} and for which the total weight of all elements \code{x[i] > x[k]}
 is less or equal to \code{S/2} (c.f. [1]).
+
+When using linear interpolation, the weighted mean of \code{x[k-1]} and
+\code{x[k]} with weights \code{S[k-1]} and \code{S[k]} corresponding to the
+cumulative weights of those two elements is used as an estimate.
 
 If \code{w} is missing then all elements of \code{x} are given the same
 positive weight. If all weights are zero, \code{\link[base:NA]{NA_real_}} is
@@ -67,6 +67,9 @@ The weighted median solves the following optimization problem:
 \eqn{x = (x_1, x_2, \ldots, x_n)} are scalars and
 \eqn{w = (w_1, w_2, \ldots, w_n)} are the corresponding "weights" for each
 individual \eqn{x} value.
+}
+\description{
+Computes a weighted median of a numeric vector.
 }
 \examples{
 x <- 1:10
