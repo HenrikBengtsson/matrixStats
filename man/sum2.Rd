@@ -45,9 +45,13 @@ which requires copying of elements and garbage collection thereof.
 
 Furthermore, \code{sum2(x, mode = "double")} is equivalent to
 \code{sum(as.numeric(x))} and may therefore be used to avoid integer
-overflow, but at the same time is much more memory efficient that
+overflow(*), but at the same time is much more memory efficient that
 the regular \code{sum()} function when \code{x} is an
 \code{\link[base]{integer}} vector.
+
+(*) \emph{In R (>= 3.5.0), \code{sum(x)} will no longer integer overflow
+and return \code{NA_integer_}. Instead it will return the correct sum in
+form of a double value.}
 }
 \examples{
 x <- 1:10
@@ -70,14 +74,13 @@ stopifnot(identical(s1, s2))
 
 # Total gives integer overflow
 x <- c(.Machine$integer.max, 1L, -.Machine$integer.max)
-s1 <- sum(x[1:2])                      # NA_integer_
+s1 <- sum(x[1:2])                      # NA_integer_ in R (< 3.5.0)
 s2 <- sum2(x[1:2])                     # NA_integer_
-stopifnot(identical(s1, s2))
 
 # Total gives integer overflow (coerce to numeric)
 s1 <- sum(as.numeric(x[1:2]))          # 2147483648
 s2 <- sum2(as.numeric(x[1:2]))         # 2147483648
-s3 <- sum2(x[1:2], mode = "double")    # 2147483648
+s3 <- sum2(x[1:2], mode = "double")    # 2147483648 w/out copy
 stopifnot(identical(s1, s2))
 stopifnot(identical(s1, s3))
 

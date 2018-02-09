@@ -18,7 +18,7 @@ colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values
 are excluded first, otherwise not.}
 
 \item{center}{(optional) The center, defaults to the row means.}

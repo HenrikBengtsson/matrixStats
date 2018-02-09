@@ -8,9 +8,13 @@
 #'
 #' Furthermore, \code{sum2(x, mode = "double")} is equivalent to
 #' \code{sum(as.numeric(x))} and may therefore be used to avoid integer
-#' overflow, but at the same time is much more memory efficient that
+#' overflow(*), but at the same time is much more memory efficient that
 #' the regular \code{sum()} function when \code{x} is an
 #' \code{\link[base]{integer}} vector.
+#' 
+#' (*) \emph{In R (>= 3.5.0), \code{sum(x)} will no longer integer overflow
+#' and return \code{NA_integer_}. Instead it will return the correct sum in
+#' form of a double value.}
 #'
 #' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
 #' \code{\link[base]{vector}} of length N.
@@ -87,6 +91,5 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
 #' @rdname sum2
 #' @export
 sumOver <- function(...) {
-  .Deprecated(new = "sum2")
-  sum2(...)
+  .Defunct(new = "sum2")
 }

@@ -1,7 +1,26 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2018-01-21]
+Version: 0.53.0-9000 [2018-02-08]
+
+CODE REFACTORING:
+
+ o Now col-/rowSds() explicitly replicate all arguments that are passed to
+   col-/rowVars().
+
+DOCUMENTATION:
+
+ o Added details on how weightedMedian(x, interpolate = TRUE) works.
+   
+BUG FIXES:
+
+ o colLogSumExps(lx, cols) / rowLogSumExps(lx, rows) gave an error if 'lx'
+   has rownames / colnames.
+
+ o col-/rowQuantiles() would lose rownames of output in certain cases.
+ 
+
+Version: 0.53.0 [2018-01-23]
 
 NEW FEATURES:
 
@@ -52,7 +71,21 @@ BUG FIXES:
  o col-/rowAvgsPerColSet() would return vector rather than matrix if
    nrow(X) <= 1. Thanks to Peter Hickey (Johns Hopkins University) for
    troubleshooting and providing a fix.
-   
+
+DEPRECATED AND DEFUNCT:
+
+ o Previously deprecated meanOver() and sumOver() are defunct. Use mean2()
+   and sum2() instead.
+
+ o Previously deprecated weightedVar(x, w, method = "0.14.2") is defunct.
+ 
+ o Dropped previously defunct weightedMedian(..., ties = "both").
+ 
+ o Dropped previously defunct argument 'centers' for col-/rowMads(). Use
+   'center' instead.
+
+ o Dropped previously defunct argument 'flavor' of colRanks() and rowRanks().
+
 
 Version: 0.52.2 [2017-04-13]
 
@@ -160,6 +193,14 @@ DEPRECATED AND DEFUNCT:
  o Previously deprecated (and ignored) argument 'flavor' of colRanks() and
    rowRanks() is now defunct.
 
+ o Previously deprecated support for passing non-vector, non-matrix objects
+   to rowAlls(), rowAnys(), rowCollapse(), and the corresponding column-based
+   versions are now defunct.  Likewise, rowProds(), rowQuantiles(),
+   rowWeightedMeans(), rowWeightedMedians(), and the corresponding column-based
+   versions are also defunct.  The rationale for this is to tighten up the
+   identity of the matrixStats package and what types of input it accepts.
+   This will also help optimize the code further.
+
 
 Version: 0.51.0 [2016-10-08]
 
@@ -237,6 +278,8 @@ BUG FIXES:
 DEPRECATED AND DEFUNCT:
 
  o CLEANUP: Defunct argument 'centers' for col-/rowMads(); use 'center'.
+
+ o weightedVar(x, w, method = "0.14.2") is deprecated.
 
  
 Version: 0.14.2 [2015-06-23]
@@ -399,7 +442,7 @@ NEW FEATURES:
 
 DOCUMENTATION:
 
- o DOCUMENTATION: Added vignette summarizing available functions.
+ o Added vignette summarizing available functions.
 
 PERFORMANCE AND MEMORY:
 
@@ -434,7 +477,11 @@ BUG FIXES:
  o weightedMedian(..., ties = "both") would give an error if there was a tie.
    Added package test for this case.
  
- 
+DEPRECATED AND DEFUNCT:
+
+ o weightedMedian(..., ties = "both") is now defunct.
+
+
 Version: 0.12.2 [2014-12-07]
 
 BUG FIXES:
@@ -445,6 +492,10 @@ BUG FIXES:
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
    coersion at the C level.
+
+DEPRECATED AND DEFUNCT:
+
+ o weightedMedian(..., interpolate = FALSE, ties = "both") is defunct.
  
  
 Version: 0.12.1 [2014-12-06]

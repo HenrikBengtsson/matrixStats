@@ -40,7 +40,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Argument 'probs':
@@ -117,9 +117,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
     q <- matrix(na_value, nrow = nrow, ncol = length(probs))
   }
 
-  # Add names
+  # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  rownames(q) <- rownames(x)
+  
   # Drop singleton dimensions?
   if (drop) {
     q <- drop(q)
@@ -136,7 +138,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) {
-    .Deprecated(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed, and will be defunct (produce an error) in a future version of matrixStats. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
   # Argument 'probs':
@@ -206,16 +208,17 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
         if (na.rm) xkk <- xkk[!is.na(xkk)]
         q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
-    } # if (type ...)
+    } # if (type ...)    
   } else {
     na_value <- NA_real_
     storage.mode(na_value) <- storage.mode(x)
     q <- matrix(na_value, nrow = ncol, ncol = length(probs))
   }
 
-  # Add names
+  # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  rownames(q) <- colnames(x)
 
   # Drop singleton dimensions?
   if (drop) {
