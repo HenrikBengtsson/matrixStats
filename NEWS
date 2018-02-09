@@ -12,7 +12,9 @@ BUG FIXES:
 
  o colLogSumExps(lx, cols) / rowLogSumExps(lx, rows) gave an error if 'lx'
    has rownames / colnames.
-    
+
+ o col-/rowQuantiles() would lose rownames of output in certain cases.
+ 
 
 Version: 0.53.0 [2018-01-23]
 

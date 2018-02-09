@@ -28,6 +28,7 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
+dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
 probs <- c(0, 0.25, 0.75, 1)
 for (rows in index_cases) {
   for (cols in index_cases) {
