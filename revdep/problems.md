@@ -686,6 +686,58 @@ Version: 1.6.0
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
+# ChIPpeakAnno
+
+Version: 3.12.5
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+      GRanges object contains 5 out-of-bound ranges located on sequences
+      GL000199.1 and chrM. Note that only ranges located on a non-circular
+      sequence whose length is not NA can be considered out-of-bound (use
+      seqlengths() and isCircular() to get the lengths and circularity
+      flags of the underlying sequences). You can use trim() to trim these
+      ranges. See ?`trim,GenomicRanges-method` for more information.
+    8: In valid.GenomicRanges.seqinfo(x, suggest.trim = TRUE) :
+      GRanges object contains 8 out-of-bound ranges located on sequences
+      GL000199.1 and chrM. Note that only ranges located on a non-circular
+      sequence whose length is not NA can be considered out-of-bound (use
+      seqlengths() and isCircular() to get the lengths and circularity
+      flags of the underlying sequences). You can use trim() to trim these
+      ranges. See ?`trim,GenomicRanges-method` for more information.
+    9: In valid.GenomicRanges.seqinfo(x, suggest.trim = TRUE) :
+      GRanges object contains 8 out-of-bound ranges located on sequences
+      GL000199.1 and chrM. Note that only ranges located on a non-circular
+      sequence whose length is not NA can be considered out-of-bound (use
+      seqlengths() and isCircular() to get the lengths and circularity
+      flags of the underlying sequences). You can use trim() to trim these
+      ranges. See ?`trim,GenomicRanges-method` for more information.
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘motifStack’
+    
+    Depends: includes the non-default packages:
+      ‘grid’ ‘IRanges’ ‘Biostrings’ ‘GenomicRanges’ ‘S4Vectors’
+      ‘VennDiagram’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 22.7Mb
+      sub-directories of 1Mb or more:
+        data     12.7Mb
+        doc       4.0Mb
+        extdata   5.3Mb
+    ```
+
 # cifti
 
 Version: 0.4.5
@@ -1058,7 +1110,7 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 
 Version: 0.4.1
 
-## Newly broken
+## Newly fixed
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -1069,7 +1121,7 @@ Version: 0.4.1
       unable to find LaTeX package 'framed'; will use a copy from knitr
     Quitting from lines 513-516 (Working_with_large_arrays.Rnw) 
     Error: processing vignette 'Working_with_large_arrays.Rnw' failed with diagnostics:
-    HDF5. File accessability. Unable to open file.
+    failed to create dataset 'M6c' in file '/netapp/home/hb/mydata/M6c.h5'
     Execution halted
     ```
 
