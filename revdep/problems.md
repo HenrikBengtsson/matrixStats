@@ -4,57 +4,12 @@ Version: 1.7
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jean-Michel Marin <jean-michel.marin@umontpellier.fr>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.3Mb
       sub-directories of 1Mb or more:
         data   2.6Mb
         libs   2.5Mb
-    ```
-
-# ACNE
-
-Version: 0.8.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# adjclust
-
-Version: 0.5.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Pierre Neuvial <pierre.neuvial@math.univ-toulouse.fr>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘Matrix’
-      All declared Imports should be used.
     ```
 
 # amplican
@@ -66,21 +21,6 @@ Version: 1.0.0
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘CrispRVariants’ in Rd xrefs
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Eivind Valen <eivind.valen@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Automated analysis of CRISPR experiments.’
-    ‘Automated Analysis of CRISPR Experiments.’
-    
-    The Description field should start with a capital letter.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 7170712 bytes
     ```
 
 *   checking installed package size ... NOTE
@@ -100,17 +40,6 @@ Version: 1.0.0
 Version: 1.18.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hector Corrada Bravo <hcorrada@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Implementation of gene expression anti-profiles’
-    ‘Implementation of Gene Expression Anti-Profiles’
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -152,50 +81,11 @@ Version: 1.18.0
     Execution halted
     ```
 
-# aroma.affymetrix
-
-Version: 3.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# aroma.cn
-
-Version: 1.6.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # aroma.core
 
 Version: 3.1.1
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -209,46 +99,12 @@ Version: 3.8.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
       inst/rsp/.rspPlugins
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      inst/rsp/.rspPlugins
-    ```
-
-# aSPU
-
-Version: 1.48
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://www.r-pkg.org/badges/version/aSPU
-    FailedConnectionException2 "www.r-pkg.org" 80 False getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Il-Youp Kwak <ikwak@umn.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 # BASiCS
@@ -257,32 +113,12 @@ Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Catalina A. Vallejos <cnvallej@uc.cl>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Bayesian Analysis of Single-Cell Sequencing data’
-    ‘Bayesian Analysis of Single-Cell Sequencing Data’
-    
-    The Date field is not in ISO 8601 yyyy-mm-dd format.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  7.3Mb
       sub-directories of 1Mb or more:
         data   1.8Mb
         libs   4.4Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Catalina A. Vallejos <cnvallej@uc.cl>’
-      Authors@R:  ‘Catalina Vallejos <cnvallej@uc.cl>’
     ```
 
 # BatchQC
@@ -317,15 +153,6 @@ Version: 1.6.1
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     gene_plot: no visible global function definition for ‘boxplot’
@@ -355,32 +182,11 @@ Version: 1.0
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Inga Schwabe <bayestwin@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # bdynsys
 
 Version: 1.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Viktoria Spaiser <viktoria.sp@web.de>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -408,21 +214,6 @@ Version: 1.3
     to your NAMESPACE file.
     ```
 
-# bigstep
-
-Version: 0.7.4
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Piotr Szulc <piotr.michal.szulc@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # bingat
 
 Version: 1.3
@@ -432,30 +223,6 @@ Version: 1.3
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘genalg’ in Rd xrefs
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Berkley Shands <rpackages@biorankings.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# bmrm
-
-Version: 3.4
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Julien Prados <julien.prados@unige.ch>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 # bnbc
@@ -468,17 +235,6 @@ Version: 1.0.0
     ```
     Installation failed.
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kipper Fletez-Brant <cafletezbrant@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Bandwise normalization and batch correction of Hi-C data’
-    ‘Bandwise Normalization and Batch Correction of Hi-C Data’
-    
-    This build time stamp is over a month old.
     ```
 
 ## Installation
@@ -527,13 +283,6 @@ Version: 0.3.4
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/bmihaljevic/bnclassify.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘memoise’ in Rd xrefs
@@ -562,24 +311,29 @@ Version: 0.3.4
 
 # brms
 
-Version: 2.0.1
+Version: 2.1.0
 
 ## In both
 
-*   checking top-level files ... WARNING
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/paul-buerkner/brms.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Paul-Christian Bürkner <paul.buerkner@gmail.com>’
+    Error in re-building vignettes:
+      ...
+    Error: processing vignette 'brms_multilevel.ltx' failed with diagnostics:
+    Running 'texi2dvi' on 'brms_multilevel.ltx' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `inconsolata.sty' not found.
     
-    The Date field is over a month old.
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
     
-    This build time stamp is over a month old.
+    ! Emergency stop.
+    <read *> 
+             
+    l.47 \RequirePackage
+                        [T1]{fontenc}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -587,7 +341,7 @@ Version: 2.0.1
       installed size is  5.4Mb
       sub-directories of 1Mb or more:
         R     2.2Mb
-        doc   2.4Mb
+        doc   2.3Mb
     ```
 
 # bsseq
@@ -595,13 +349,6 @@ Version: 2.0.1
 Version: 1.14.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://bioconductor.org/shields/build/release/bioc/bsseq.svg
-    FailedConnectionException2 "bioconductor.org" 80 False getAddrInfo: does not exist (Name or service not known)
-    ```
 
 *   checking Rd cross-references ... WARNING
     ```
@@ -634,17 +381,6 @@ Version: 1.14.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analyze, manage and store bisulfite sequencing data’
-    ‘Analyze, Manage and Store Bisulfite Sequencing Data’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘bsseqData’
@@ -664,32 +400,87 @@ Version: 1.14.0
       All declared Imports should be used.
     ```
 
-# calmate
+# bumphunter
 
-Version: 0.12.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# carx
-
-Version: 0.7.1
+Version: 1.20.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking tests ...
     ```
-    Maintainer: ‘Chao Wang <chao-wang@uiowa.edu>’
+     ERROR
+    Running the tests in ‘tests/test-all.R’ failed.
+    Last 13 lines of output:
+             }
+             typeName = gsub("^CURLE_", "", typeName)
+             fun = (if (asError) 
+                 stop
+             else warning)
+             fun(structure(list(message = msg, call = sys.call()), class = c(typeName, "GenericCurlError", 
+                 "error", "condition")))
+         }(6L, "Could not resolve host: genome.ucsc.edu; Name or service not known", TRUE)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 10 SKIPPED: 0 FAILED: 1
+      1. Error: (unknown) (@test_annotation.R#31) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      ‘S4Vectors’ ‘IRanges’ ‘GenomeInfoDb’ ‘GenomicRanges’ ‘foreach’
+      ‘iterators’ ‘parallel’ ‘locfit’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Malformed Description field: should contain one or more complete sentences.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: ‘doParallel:::.options’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    bumphunterEngine: no visible binding for global variable ‘bootstraps’
+    smarterNearest: no visible global function definition for
+      ‘PartitioningByEnd’
+    Undefined global functions or variables:
+      PartitioningByEnd bootstraps
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    ...
+    The following object is masked from ‘package:base’:
     
-    This build time stamp is over a month old.
+        isNamespaceLoaded
+    
+    [bumphunterEngine] Estimating p-values and FWER.
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'bumphunter.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `fullpage.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.10 \usepackage
+                    [numbers]{natbib}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
     ```
 
 # CATALYST
@@ -697,15 +488,6 @@ Version: 0.7.1
 Version: 1.2.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Helena Lucia Crowell <crowellh@student.ethz.ch>’
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 7971061 bytes
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -717,17 +499,16 @@ Version: 1.2.0
 
 # cellWise
 
-Version: 1.0.0
+Version: 2.0.8
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Maintainer: ‘Jakob Raymaekers <jakob.raymaekers@kuleuven.be>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+      installed size is  8.3Mb
+      sub-directories of 1Mb or more:
+        data   2.8Mb
+        libs   4.4Mb
     ```
 
 # CEMiTool
@@ -760,26 +541,6 @@ Version: 1.0.1
     pandoc: Error producing PDF
     Error: pandoc document conversion failed with error 43
     Execution halted
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/csbl-usp/CEMiTool.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Helder Nakaya <hnakaya@usp.br>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Co-expression Modules identification Tool’
-    ‘Co-Expression Modules Identification Tool’
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 5638196 bytes
     ```
 
 *   checking installed package size ... NOTE
@@ -856,16 +617,6 @@ Version: 2.9.10
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Yuan Tian  <champ450k@gmail.com>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    Size of tarball: 15513863 bytes
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -885,14 +636,6 @@ Version: 2.9.10
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
-      Authors@R: ‘Tian Yuan [cre, aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Yuan Tian <champ450k@gmail.com>’
-      Authors@R:  ‘Tian Yuan <champ450k@gmail.com>’
-    
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
       ‘rmarkdown’
     A package should be listed in only one of these fields.
@@ -930,15 +673,6 @@ Version: 1.6.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Mikhail Spivakov <spivakov@babraham.ac.uk>’
-    
-    The Title field starts with the package name.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘PCHiCdata’
@@ -950,51 +684,27 @@ Version: 1.6.0
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
     ```
 
-# childhoodmortality
+# cifti
 
-Version: 0.1.0
+Version: 0.4.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Casey Breen <cbreen@umn.edu>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# chromswitch
-
-Version: 1.0.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/sjessa/chromswitch.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 21-92 (cifti_work.Rmd) 
+    Error: processing vignette 'cifti_work.Rmd' failed with diagnostics:
+    there is no package called 'rgl'
+    Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Selin Jessa <selinjessa@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘An R package to detect chromatin state switches from epigenomic data’
-    ‘An R Package to Detect Chromatin State Switches from Epigenomic Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘rgl’
     ```
 
 # Clomial
@@ -1002,22 +712,6 @@ Version: 1.0.0
 Version: 1.14.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Habil Zare <zare@txstate.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Infers clonal composition of a tumor’
-    ‘Infers Clonal Composition of a Tumor’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -1054,21 +748,6 @@ Version: 1.4.0
     Unknown package ‘ConsensusClusterPlus’ in Rd xrefs
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Elizabeth Purdom <epurdom@stat.berkeley.edu>’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/dataCreation.R
-        101: # [1] <e2><80><98>1.3.3.9001<e2><80><99>
-      R/mergeClusters.R
-        622: # If warn is zero (the default) warnings are stored until the top<e2><80><93>level function returns. If 10 or fewer warnings were signalled they will be printed otherwise a message saying how many were signalled. An object called last.warning is created and can be printed through the function warnings. If warn is one, warnings are printed as they occur. If warn is two or larger all warnings are turned into errors.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 8558636 bytes
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 12.3Mb
@@ -1091,13 +770,6 @@ Version: 1.8.0
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/scristia/CNPBayes.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error in re-building vignettes:
@@ -1117,19 +789,6 @@ Version: 1.8.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jacob Carey <jcarey15@jhu.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Bayesian mixture models for copy number polymorphisms’
-    ‘Bayesian Mixture Models for Copy Number Polymorphisms’
-    
-    The Date field is not in ISO 8601 yyyy-mm-dd format.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 17.1Mb
@@ -1138,115 +797,11 @@ Version: 1.8.0
         libs  12.6Mb
     ```
 
-# cointmonitoR
-
-Version: 0.1.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/aschersleben/cointmonitoR.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Error: processing vignette 'cointmonitoR.Rmd' failed with diagnostics:
-    shared object ‘Rcpp.so’ not found
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Philipp Aschersleben <aschersleben@statistik.tu-dortmund.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# cointReg
-
-Version: 0.2.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/aschersleben/cointReg.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Philipp Aschersleben <aschersleben@statistik.tu-dortmund.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# consensusOV
-
-Version: 1.0.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/bhklab/consensusOV.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Benjamin Haibe-Kains <benjamin.haibe.kains@utoronto.ca>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Gene expression-based subtype classification for high-grade serous ovarian cancer’
-    ‘Gene Expression-Based Subtype Classification for High-Grade Serous Ovarian Cancer’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # CopywriteR
 
 Version: 2.10.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Thomas Kuilman <t.kuilman@nki.nl>’
-    
-    Uses the superseded package: ‘snow’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/CopywriteR.R
-        614:     ## <e2><80><98>Map<e2><80><99> applies a function to the corresponding elements of given vectors.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Copy number information from targeted sequencing using off-target reads’
-    ‘Copy Number Information from Targeted Sequencing using Off-Target Reads’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -1300,50 +855,11 @@ Version: 2.10.0
     Execution halted
     ```
 
-# cosinor2
-
-Version: 0.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Augustin Mutak <aumutak@ffzg.hr>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # crlmm
 
 Version: 1.36.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    ...
-    The maintainer field is invalid or specifies more than one person
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘## Local Variables’ ‘## time-stamp-pattern’ ‘## End’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/crlmm-illumina.R
-        367: ##  loader(<e2><80><98>file.rda<e2><80><99>)
-        368: ##  x = getVarInEnv(<e2><80><98>x<e2><80><99>)
-        369: ##  y = getVarInEnv(<e2><80><98>y<e2><80><99>)
-        371: ##  I<e2><80><99>d consider using something like:
-        373: ##	  needToLoad = !all(sapply(c(<e2><80><98>x<e2><80><99>, <e2><80><98>y<e2><80><99>), isLoaded))
-        375: ##	  loader(<e2><80><98>file.rda<e2><80><99>)
-        376: ##	  x = getVarInEnv(<e2><80><98>x<e2><80><99>)
-        377: ##	  y = getVarInEnv(<e2><80><98>y<e2><80><99>)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Genotype Calling (CRLMM) and Copy Number Analysis tool for Affymetrix SNP 5.0 and 6.0 and Illumina arrays’
-    ‘Genotype Calling (CRLMM) and Copy Number Analysis Tool for Affymetrix SNP 5.0 and 6.0 and Illumina Arrays’
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -1429,13 +945,6 @@ Version: 1.4.0
       gslist
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Alex Pickering <alexvpickering@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Missing or unexported objects:
@@ -1456,15 +965,6 @@ Version: 1.4.0
 Version: 1.1
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Rampal S. Etienne <r.s.etienne@rug.nl>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -1494,18 +994,9 @@ Version: 1.1
 
 # DatabionicSwarm
 
-Version: 0.9.8
+Version: 1.0.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Michael Thrun <m.thrun@gmx.net>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -1514,7 +1005,7 @@ Version: 0.9.8
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.8Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
         libs   5.6Mb
     ```
@@ -1529,17 +1020,6 @@ Version: 1.4.1
     ```
     Installation failed.
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    The Title field is just the package name: provide a real title.
-    
-    This build time stamp is over a month old.
     ```
 
 ## Installation
@@ -1578,7 +1058,7 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 
 Version: 0.4.1
 
-## Newly fixed
+## Newly broken
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -1636,17 +1116,6 @@ Version: 0.4.1
     Extensions’ manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hervé Pagès <hpages@fredhutch.org>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Delayed operations on array-like objects’
-    ‘Delayed Operations on Array-Like Objects’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
@@ -1658,47 +1127,9 @@ Version: 0.4.1
 
 # DelayedMatrixStats
 
-Version: 1.0.1
-
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      Component 8: target is NULL, current is name
-      
-      ── 2. Failure: Formals of S4 generic matches matrixStats function (@test_S4_gene
-      formals(dms_generic) not identical to formals(ms_fun).
-      Names: 1 string mismatch
-      Length mismatch: comparison on first 8 components
-      Component 8: target is NULL, current is name
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 8837 SKIPPED: 2 FAILED: 2
-      1. Failure: Formals of S4 generic matches matrixStats function (@test_S4_generics.R#10) 
-      2. Failure: Formals of S4 generic matches matrixStats function (@test_S4_generics.R#10) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
+Version: 1.0.2
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/PeteHaitch/DelayedMatrixStats.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Peter Hickey <peter.hickey@gmail.com>’
-      Authors@R: ‘Peter Hickey [aut, cre]’
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -1719,51 +1150,11 @@ Version: 1.0.1
       See the note in ?`:::` about the use of this operator.
     ```
 
-# DGCA
-
-Version: 1.0.1
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/andymckenzie/DGCA.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Andrew McKenzie <amckenz@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # diffloop
 
 Version: 1.6.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/aryeelab/diffloop.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Caleb Lareau <caleblareau@g.harvard.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Identifying differential DNA loops from chromatin topology data’
-    ‘Identifying Differential DNA Loops from Chromatin Topology Data’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -1771,9 +1162,6 @@ Version: 1.6.0
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .travis.yml
     ```
 
 # Doscheda
@@ -1837,16 +1225,6 @@ Version: 1.0.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Bruno Contrino <br1contrino@yahoo.co.uk>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  6.1Mb
@@ -1858,22 +1236,13 @@ Version: 1.0.0
 
 # dplR
 
-Version: 1.6.6
+Version: 1.6.7
 
 ## In both
 
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘gmp’ in Rd xrefs
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Andy Bunn <andy.bunn@wwu.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking package dependencies ... NOTE
@@ -1895,23 +1264,6 @@ Version: 1.20.0
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Le Pape Sylvain <sylvain.le.pape@univ-poitiers.fr>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘EasyqpcR for low-throughput real-time quantitative PCR data analysis’
-    ‘EasyqpcR for Low-Throughput Real-Time Quantitative PCR Data Analysis’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package namespace information ... NOTE
     ```
       Namespace with empty importFrom: ‘gWidgetsRGtk2’
@@ -1923,23 +1275,11 @@ Version: 2.8.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Sadhika Malladi <contact@sadhikamalladi.com> and Daniel Schmolze <emd@schmolze.com>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Authors@R field gives more than one person with maintainer role:
       Sadhika Malladi <contact@sadhikamalladi.com> [aut, cre]
       Daniel Schmolze <emd@schmolze.com> [aut, cre]
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Sadhika Malladi <contact@sadhikamalladi.com> and Daniel Schmolze <emd@schmolze.com>’
-      Authors@R:  ‘’
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -1987,17 +1327,6 @@ Version: 1.9.2
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Zuguang Gu <z.gu@dkfz.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9463257 bytes
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 10.5Mb
@@ -2023,30 +1352,6 @@ Version: 1.2.0
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://github.com/jpromeror/EventPointer/blob/master/vignettes/Figure1.png
-    FailedConnectionException2 "github.com" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Juan Pablo Romero <jpromero@ceit.es>’
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Url’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘An effective identification of alternative splicing events using junction arrays and RNA-Seq data’
-    ‘An Effective Identification of Alternative Splicing Events using Junction Arrays and RNA-Seq Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
@@ -2054,50 +1359,11 @@ Version: 1.2.0
       See the note in ?`:::` about the use of this operator.
     ```
 
-# expss
-
-Version: 0.8.4
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Gregory Demin <gdemin@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# FADA
-
-Version: 1.3.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘David Causeur <david.causeur@agrocampus-ouest.fr>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # FastHCS
 
 Version: 0.0.5
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kaveh Vakili <vakili.kaveh.email@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -2134,22 +1400,11 @@ Version: 0.1.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kaveh Vakili <vakili.kaveh.email@gmail.com>’
-    
-    The Title field starts with the package name.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.8Mb
+      installed size is  8.9Mb
       sub-directories of 1Mb or more:
-        libs   8.7Mb
+        libs   8.8Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -2177,20 +1432,11 @@ Version: 0.0.7
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kaveh Vakili <vakili.kaveh.email@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.6Mb
+      installed size is 16.7Mb
       sub-directories of 1Mb or more:
-        libs  16.5Mb
+        libs  16.6Mb
     ```
 
 # FDb.FANTOM4.promoters.hg19
@@ -2198,22 +1444,6 @@ Version: 0.0.7
 Version: 1.0.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Tim Triche, Jr. <tim.triche@gmail.com>’
-    
-    The display-name part of the maintainer field should be enclosed in ""
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘organism’ ‘species’ ‘provider’ ‘resource_url’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Annotation package for FANTOM4 promoters identified from THP-1 cells’
-    ‘Annotation Package for FANTOM4 Promoters Identified from THP-1 Cells’
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package subdirectories ... WARNING
     ```
@@ -2270,33 +1500,11 @@ Version: 1.0.0
     contains 'methods').
     ```
 
-# fergm
-
-Version: 0.2.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Benjamin W. Campbell <campbell.1721@osu.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # filesstrings
 
-Version: 2.0.2
+Version: 2.0.4
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/rorynolan/filesstrings.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
 
 *   checking Rd cross-references ... WARNING
     ```
@@ -2308,13 +1516,6 @@ Version: 2.0.2
 Version: 1.44.1
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/RGLab/flowCore.svg?branch=trunk
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
 
 *   checking Rd cross-references ... WARNING
     ```
@@ -2332,18 +1533,6 @@ Version: 1.44.1
     Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
     there is no package called 'ggcyto'
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘M.Jiang <wjiang2@fhcrc.org>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘flowCore: Basic structures for flow cytometry data’
-    ‘flowCore: Basic Structures for Flow Cytometry Data’
-    
-    Size of tarball: 8554328 bytes
     ```
 
 *   checking package dependencies ... NOTE
@@ -2394,7 +1583,7 @@ Version: 1.44.1
 
 # fslr
 
-Version: 2.12
+Version: 2.17.3
 
 ## In both
 
@@ -2409,13 +1598,6 @@ Version: 2.12
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
@@ -2423,114 +1605,22 @@ Version: 2.12
       All declared Imports should be used.
     ```
 
-# funtooNorm
-
-Version: 1.2.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/GreenwoodLab/funtooNorm.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kathleen Klein <kathleen.klein@mail.mcgill.ca>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# GAD
-
-Version: 1.1.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Leonardo Sandrini-Neto <leonardosandrini@gmail.com>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘GAD: Analysis of variance from general principles’
-    ‘GAD: Analysis of Variance from General Principles’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# gcapc
-
-Version: 1.2.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Mingxiang Teng <tengmx@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # GeneralizedUmatrix
 
-Version: 0.9.5
+Version: 1.0.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Michael Thrun <mthrun@mathematik.uni-marburg.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘rgl’
+    Packages suggested but not available for checking: ‘DatabionicSwarm’ ‘rgl’
     ```
 
 # genomation
 
-Version: 1.10.0
+Version: 1.11.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Altuna Akalin <aakalin@gmail.com>, Vedran Franke <vedran.franke@gmail.com>, Katarzyna Wreczycka <katwre@gmail.com>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Summary, annotation and visualization of genomic data’
-    ‘Summary, Annotation and Visualization of Genomic Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6334364 bytes
-    ```
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://github.com/BIMSBbioinfo/genomation/blob/master/inst/genomation_logo.png
-    FailedConnectionException2 "github.com" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -2560,9 +1650,9 @@ Version: 1.10.0
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.9Mb
+      installed size is  6.8Mb
       sub-directories of 1Mb or more:
-        doc       3.7Mb
+        doc       3.5Mb
         extdata   1.2Mb
         libs      1.2Mb
     ```
@@ -2600,24 +1690,6 @@ Version: 1.6.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Chakravarthi Kanduri <chakra.kanduri@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Candidate gene prioritization based on convergent evidence’
-    ‘Candidate Gene Prioritization Based on Convergent Evidence’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Chakravarthi Kanduri’
-      Authors@R: ‘Chakravarthi Kanduri [aut, cre]’
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     CombP: no visible global function definition for ‘read.table’
@@ -2649,49 +1721,11 @@ Version: 0.1-4
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Giampiero Marra <giampiero.marra@ucl.ac.uk>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# GPrank
-
-Version: 0.1.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hande Topa <hande.topa@helsinki.fi>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # GUIDEseq
 
 Version: 1.8.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Lihua Julie Zhu <julie.zhu@umassmed.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘GUIDE-seq analysis pipeline’
-    ‘GUIDE-Seq Analysis Pipeline’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -2777,17 +1811,6 @@ Version: 1.22.2
     Extensions’ manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Florian Hahne <florian.hahne@novartis.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Plotting data and annotation information along genomic coordinates’
-    ‘Plotting Data and Annotation Information along Genomic Coordinates’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  6.0Mb
@@ -2840,13 +1863,6 @@ Version: 0.1.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Susanne U. Franssen <susefranssen@googlemail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  9.8Mb
@@ -2870,49 +1886,11 @@ Version: 1.3.1
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Keefe Murphy <keefe.murphy@ucd.ie>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# jointseg
-
-Version: 1.0.1
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/mpierrejean/jointseg.svg
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Morgane Pierre-Jean <mpierrejean.pro@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # kernDeepStackNet
 
 Version: 2.0.2
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Thomas Welchowski <welchow@imbie.meb.uni-bonn.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -2921,40 +1899,11 @@ Version: 2.0.2
         libs   5.5Mb
     ```
 
-# kgschart
-
-Version: 1.3.5
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/kota7/kgschart-r.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kota Mori <kmori05@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # LFDREmpiricalBayes
 
 Version: 1.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Ali Karimnezhad <ali_karimnezhad@yahoo.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking re-building of vignette outputs ... NOTE
     ```
@@ -2978,36 +1927,6 @@ Version: 1.0
     Execution halted
     ```
 
-# localgauss
-
-Version: 0.40
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Tore Selland Kleppe <tore.kleppe@uis.no>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# loo
-
-Version: 1.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jonah Gabry <jsg2201@columbia.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # LS2Wstat
 
 Version: 2.0-3
@@ -3019,19 +1938,6 @@ Version: 2.0-3
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/LS2Wstat/new/LS2Wstat.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Matt Nunes <m.nunes@lancaster.ac.uk>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A Multiscale Test of Spatial Stationarity for LS2W processes’
-    ‘A Multiscale Test of Spatial Stationarity for LS2W Processes’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -3064,21 +1970,6 @@ Version: 1.0-1
       Note: found 55 marked UTF-8 strings
     ```
 
-# ltmle
-
-Version: 1.0-1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joshua Schwab <jschwab77@berkeley.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # Luminescence
 
 Version: 0.7.5
@@ -3090,19 +1981,119 @@ Version: 0.7.5
     Unknown packages ‘rjags’, ‘RLumShiny’, ‘RLumModel’ in Rd xrefs
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sebastian Kreutzer <sebastian.kreutzer@u-bordeaux-montaigne.fr>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
       ‘RLumShiny’ ‘RLumModel’ ‘rjags’
+    ```
+
+# MEAL
+
+Version: 1.8.0
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+         })(object = <S4 object of class structure("GenomicRatioSet", package = "minfi")>, 
+             design = structure(c(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0), .Dim = c(6L, 2L), .Dimnames = list(
+                 c("5723646052_R02C02", "5723646052_R04C01", "5723646052_R05C02", "5723646053_R04C02", 
+                 "5723646053_R05C02", "5723646053_R06C02"), c("(Intercept)", "statusnormal"
+                 )), assign = 0:1, contrasts = structure(list(status = "contr.treatment"), .Names = "status")), 
+             what = "M", coef = 2, datatype = c("array", "sequencing"), arraytype = c("EPIC", 
+                 "450K"), analysis.type = c("differential", "variability", "ANOVA", "diffVar"), 
+             contrasts = FALSE, cont.matrix = NULL, fdr = 0.05, ... = )
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 55 SKIPPED: 0 FAILED: 1
+      1. Error: DMRcate (@test_06regionAnalysis.R#19) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking examples ... WARNING
+    ```
+    Found the following significant warnings:
+    
+      Warning: 'DAPipeline' is deprecated.
+      Warning: 'DAProbe' is deprecated.
+      Warning: 'DARegion' is deprecated.
+      Warning: 'RDAset' is deprecated.
+      Warning: 'filterSet' is deprecated.
+      Warning: 'plotBestFeatures' is deprecated.
+      Warning: 'preparePhenotype' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Loading required package: pkgmaker
+    Loading required package: registry
+    
+    Attaching package: 'pkgmaker'
+    
+    The following object is masked from 'package:S4Vectors':
+    
+        new2
+    
+    The following object is masked from 'package:base':
+    
+        isNamespaceLoaded
+    
+    Warning in as.data.frame(mcols(x), ...) : Arguments in '...' ignored
+    Warning in as.data.frame(mcols(x), ...) : Arguments in '...' ignored
+    Warning: Ignoring unknown aesthetics: y
+    Warning: Ignoring unknown aesthetics: y
+    Quitting from lines 206-208 (MEAL.Rmd) 
+    Error: processing vignette 'MEAL.Rmd' failed with diagnostics:
+    failed to load external entity "http://genome.ucsc.edu/FAQ/FAQreleases"
+    Execution halted
+    ```
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENSE
+    is not mentioned in the DESCRIPTION file.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Missing or unexported object: 'Biobase::assays'
+    Missing object imported by a ':::' call: 'MultiDataSet:::nrows'
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      'betas'
+    correlationMethSNPs: no visible binding for global variable 'num_cores'
+    plotRegion: no visible global function definition for 'data'
+    plotRegion: no visible binding for global variable 'dmrcatedata'
+    plotRegion: no visible binding for global variable 'tx.hg19'
+    plotRegion: no visible binding for global variable 'tx.hg38'
+    plotRegion: no visible binding for global variable 'tx.mm10'
+    plotRegion: no visible global function definition for
+      'subsetByOverlaps'
+    plotRegion: no visible global function definition for 'mcols<-'
+    runBlockFinder: no visible global function definition for 'assays'
+    runBlockFinder: no visible global function definition for 'colData'
+    runRDA: no visible global function definition for 'rowData'
+    runSVA: no visible global function definition for 'resid'
+    Undefined global functions or variables:
+      assays betas colData data dmrcatedata mcols<- num_cores resid rowData
+      subsetByOverlaps tx.hg19 tx.hg38 tx.mm10
+    Consider adding
+      importFrom("stats", "resid")
+      importFrom("utils", "data")
+    to your NAMESPACE file.
     ```
 
 # metagene
@@ -3110,34 +2101,6 @@ Version: 0.7.5
 Version: 2.10.1
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://bioconductor.org/shields/years-in-bioc/metagene.svg
-    FailedConnectionException2 "bioconductor.org" 80 False getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Charles Joly Beauparlant <charles.joly-beauparlant@crchul.ulaval.ca>’
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Author@R’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A package to produce metagene plots’
-    ‘A Package to Produce Metagene Plots’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6908124 bytes
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3174,33 +2137,6 @@ Version: 1.20.1
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/HCBravoLab/metagenomeSeq.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joseph N. Paulson <jpaulson@jimmy.harvard.edu>’
-    
-    Reading CITATION file fails with
-      package ‘metagenomeSeq’ not found
-    when package is not installed.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Statistical analysis for sparse high-throughput sequencing’
-    ‘Statistical Analysis for Sparse High-Throughput Sequencing’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘interactiveDisplay’
@@ -3211,22 +2147,6 @@ Version: 1.20.1
 Version: 0.1.13
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Don Kang <donkang75@gmail.com>’
-    
-    Uses the superseded package: ‘doSNOW’
-    
-    The Title field starts with the package name.
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -3265,69 +2185,6 @@ Version: 0.1.13
     to your NAMESPACE file.
     ```
 
-# metavizr
-
-Version: 1.2.0
-
-## In both
-
-*   checking whether package ‘metavizr’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hector Corrada Bravo <hcorrada@gmail.com>’
-    
-    Found the following (possibly) invalid URLs:
-      URL: "https://github.com/epiviz/epiviz.git"
-        From: man/setMetavizStandalone.Rd
-        Message: Invalid URI scheme
-    
-    The Title field should be in title case, current version then in title case:
-    ‘R Interface to the metaviz web app for interactive metagenomics data analysis and visualization’
-    ‘R Interface to the Metaviz Web App for Interactive Metagenomics Data Analysis and Visualization’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘metavizr’ ...
-** R
-** inst
-** preparing package for lazy loading
-Warning in read.dcf(con) :
-  URL 'http://bioconductor.org/BiocInstaller.dcf': status was 'Couldn't resolve host name'
-Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
-  there is no package called 'git2r'
-ERROR: lazy loading failed for package 'metavizr'
-* removing '/netapp/home/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/metavizr'
-
-```
-### CRAN
-
-```
-* installing *source* package ‘metavizr’ ...
-** R
-** inst
-** preparing package for lazy loading
-Warning in read.dcf(con) :
-  URL 'http://bioconductor.org/BiocInstaller.dcf': status was 'Couldn't resolve host name'
-Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
-  there is no package called 'git2r'
-ERROR: lazy loading failed for package 'metavizr'
-* removing '/netapp/home/hb/repositories/matrixStats/revdep/checks/metavizr/old/metavizr.Rcheck/metavizr'
-
-```
 # MethylAid
 
 Version: 1.12.0
@@ -3360,34 +2217,9 @@ Version: 1.12.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘M. van Iterson <mviterson@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Visual and interactive quality control of large Illumina DNA Methylation array data sets’
-    ‘Visual and Interactive Quality Control of Large Illumina DNA Methylation Array Data Sets’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘MethylAidData’
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Authors@R field gives no person with name and author role
-    Author field differs from that derived from Authors@R
-      Author:    ‘Maarten van Iterson [aut, cre], Elmar Tobi[ctb], Roderick Slieker[ctb], Wouter den Hollander[ctb], Rene Luijk[ctb] and Bas Heijmans[ctb]’
-      Authors@R: ‘Maarten van Iterson [cre], Elmar Tobi [ctb], Roderick Slieker [ctb], Wouter den Hollander [ctb], Rene Luijk [ctb], Bas Heijmans [ctb]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘M. van Iterson <mviterson@gmail.com>’
-      Authors@R:  ‘Maarten van Iterson <mviterson@gmail.com>’
     ```
 
 # methylumi
@@ -3444,24 +2276,6 @@ Version: 2.24.1
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sean Davis <sdavis2@mail.nih.gov>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Handle Illumina methylation data’
-    ‘Handle Illumina Methylation Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6178909 bytes
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘methyAnalysis’
@@ -3479,9 +2293,6 @@ Version: 2.24.1
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .travis.yml
     ```
 
 *   checking installed package size ... NOTE
@@ -3572,15 +2383,6 @@ Version: 0.0.1
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/00install.out’ for details.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘K. Vakili <kaveh.vakili@wis.kuleuven.be>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 ## Installation
 
 ### Devel
@@ -3660,15 +2462,6 @@ Version: 1.2.0
       Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Juan C. Rodriguez <jcrodriguez@bdmg.com.ar>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
@@ -3701,13 +2494,6 @@ Version: 1.24.0
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch http://bioconductor.org/shields/build/release/bioc/minfi.svg
-    FailedConnectionException2 "bioconductor.org" 80 False getAddrInfo: does not exist (Name or service not known)
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     ...
@@ -3734,17 +2520,6 @@ Version: 1.24.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analyze Illumina Infinium DNA methylation arrays’
-    ‘Analyze Illumina Infinium DNA Methylation Arrays’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Unexported object imported by a ':::' call: ‘bumphunter:::.getEstimate’
@@ -3756,15 +2531,6 @@ Version: 1.24.0
 Version: 1.22.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Robert B Scharpf <rscharpf@jhu.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -3799,29 +2565,11 @@ Version: 6.3.1
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kim-Anh Le Cao <kimanh.lecao@unimelb.edu.au>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # mmtfa
 
 Version: 0.1
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jeffrey L. Andrews <jeffrey.andrews@macewan.ca>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -3847,28 +2595,6 @@ Version: 0.1
       importFrom("stats", "cov.wt", "density", "dnorm", "kmeans",
                  "mahalanobis", "runif", "uniroot")
     to your NAMESPACE file.
-    ```
-
-# MoEClust
-
-Version: 1.0.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://www.r-pkg.org/badges/version/MoEClust
-    FailedConnectionException2 "www.r-pkg.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Keefe Murphy <keefe.murphy@ucd.ie>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 # monocle
@@ -3897,32 +2623,6 @@ Version: 2.6.1
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    ...
-    Maintainer: ‘Cole Trapnell <coletrap@uw.edu>’
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Remotes’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/order_cells.R
-        1418:       # Here<e2><9c><ac>s how to take the top PCA loading genes, but using
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Clustering, differential expression, and trajectory analysis for single- cell RNA-Seq’
-    ‘Clustering, Differential Expression, and Trajectory Analysis for Single- Cell RNA-Seq’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9497684 bytes
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3979,38 +2679,11 @@ Version: 1.8.0
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Simon Gert Coetzee <Simon.Coetzee@cshs.org>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A Package For Predicting The Disruptiveness Of Single Nucleotide Polymorphisms On Transcription Factor Binding Sites’
-    ‘A Package for Predicting the Disruptiveness of Single Nucleotide Polymorphisms on Transcription Factor Binding Sites’
-    
-    This build time stamp is over a month old.
-    ```
-
 # mrfDepth
 
 Version: 1.0.6
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://www.r-pkg.org/badges/version/mrfDepth
-    FailedConnectionException2 "www.r-pkg.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Pieter Segaert <Pieter.Segaert@kuleuven.be>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -4024,13 +2697,6 @@ Version: 1.0.6
 Version: 0.2.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/msuchard/MultiBD.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -4053,15 +2719,6 @@ Version: 0.2.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Marc A. Suchard <msuchard@ucla.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 10.5Mb
@@ -4071,23 +2728,23 @@ Version: 0.2.0
 
 # NanoStringDiff
 
-Version: 1.8.0
+Version: 1.9.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking for missing documentation entries ... WARNING
     ```
-    Maintainer: ‘hong wang <hong.wang@uky.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Undocumented code objects:
+      ‘compute.baseSigma’ ‘est.dispersion’ ‘fun5’ ‘glmfit.OneGroup’
+      ‘glmfit.full’ ‘glmfit.reduce’ ‘rnegbinom’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     ...
-      ‘optimize’
     glmfit.full: no visible global function definition for ‘lm’
     glmfit.full: no visible global function definition for ‘median’
     glmfit.full: no visible global function definition for ‘IQR’
@@ -4101,13 +2758,21 @@ Version: 1.8.0
     rnegbinom: no visible global function definition for ‘rpois’
     rnegbinom: no visible global function definition for ‘rgamma’
     Undefined global functions or variables:
-      IQR glm lm median optim optimize p.adjust pchisq poisson read.table
-      rgamma rpois
+      IQR abline glm lm median optim optimize p.adjust par pchisq plot
+      poisson read.table rgamma rowVars rpois textxy title
     Consider adding
+      importFrom("graphics", "abline", "par", "plot", "title")
       importFrom("stats", "IQR", "glm", "lm", "median", "optim", "optimize",
                  "p.adjust", "pchisq", "poisson", "rgamma", "rpois")
       importFrom("utils", "read.table")
     to your NAMESPACE file.
+    ```
+
+*   checking installed files from ‘inst/doc’ ... NOTE
+    ```
+    The following files look like leftovers/mistakes:
+      ‘NanoStringDiff.log’
+    Please remove them from your package.
     ```
 
 *   checking re-building of vignette outputs ... NOTE
@@ -4136,9 +2801,25 @@ Version: 1.8.0
     Execution halted
     ```
 
+# NetLogoR
+
+Version: 0.3.1
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Packages required but not available: ‘quickPlot’ ‘SpaDES.tools’ ‘rgeos’
+    
+    Packages suggested but not available for checking: ‘fastshp’ ‘SpaDES.core’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
 # neurobase
 
-Version: 1.13.2
+Version: 1.26.1
 
 ## In both
 
@@ -4152,31 +2833,11 @@ Version: 1.13.2
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # NSA
 
 Version: 0.0.32
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Maria Ortiz-Estevez <mortizest@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Post-normalization of total copy numbers’
-    ‘Post-Normalization of Total Copy Numbers’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -4227,17 +2888,6 @@ Version: 0.0.32
 Version: 1.10.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Joseph N. Paulson <jpaulson@jimmy.harvard.edu>, Dan Schlauch <dschlauch@fas.harvard.edu>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9093987 bytes
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -4337,17 +2987,6 @@ Version: 1.4.1
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
-    
-    The Title field starts with the package name.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # pcaMethods
 
 Version: 1.70.0
@@ -4357,17 +2996,6 @@ Version: 1.70.0
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘ade4’ in Rd xrefs
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henning Redestig <henning.red@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A collection of PCA methods’
-    ‘A Collection of PCA Methods’
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -4396,39 +3024,11 @@ Version: 1.70.0
     to your NAMESPACE file.
     ```
 
-# peakPick
-
-Version: 0.11
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Paal O. Westermark <pal-olof.westermark@charite.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # phosphonormalizer
 
 Version: 1.2.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sohrab Saraei <sohrab.saraei@utu.fi>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Compensates for the bias introduced by median normalization in phosphoproteomics’
-    ‘Compensates for the Bias Introduced by Median Normalization in Phosphoproteomics’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -4437,65 +3037,34 @@ Version: 1.2.0
 
 # Pigengene
 
-Version: 1.4.0
+Version: 1.4.2
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    Pigengene started analizing 366 samples using 1000 genes...
-    Warning: executing %dopar% sequentially: no parallel backend registered
-    Pigengenes...
-    Pigengene plots in:
-    /netapp/home/hb/repositories/matrixStats/revdep/checks/Pigengene/new/Pigengene.Rcheck/pigengene/plots
-    learn.bn() with bnNum= 10 started at:
-    2018-01-23 10:31:59
-    Warning in check.threshold(threshold, strength) :
-      the threshold is outside the range of the strength values.
-    learn.bn() took:
-    2.407481 secs
-    Making decision trees...
-    minPerLeaf: 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37
-    costs:
-        AML MDS
-    AML   0   1
-    MDS   1   0
-    Error in UseMethod("as.party") : 
-      no applicable method for 'as.party' applied to an object of class "C5.0"
-    Calls: one.step.pigengene ... unlist -> get.fitted.leaf -> eval -> parse -> <Anonymous>
-    Execution halted
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
-    Error in re-building vignettes:
-      ...
+    ...
     Warning: running command 'kpsewhich framed.sty' had status 1
     Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
       unable to find LaTeX package 'framed'; will use a copy from knitr
     Warning in has_utility("pdfcrop") :
       pdfcrop not installed or not in PATH
-    Quitting from lines 114-116 (Pigengene_inference.Rnw) 
-    Error: processing vignette 'Pigengene_inference.Rnw' failed with diagnostics:
-    no applicable method for 'as.party' applied to an object of class "C5.0"
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'Pigengene_inference.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Habil Zare <zare@txstate.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Infers biological signatures from gene expression data’
-    ‘Infers Biological Signatures from Gene Expression Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -4504,6 +3073,8 @@ Version: 1.4.0
       ‘AnnotationDbi’ ‘biomaRt’ ‘energy’ ‘org.Hs.eg.db’ ‘org.Mm.eg.db’
       Please use :: or requireNamespace() instead.
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Unexported object imported by a ':::' call: ‘C50:::as.party.C5.0’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -4523,36 +3094,6 @@ Version: 1.4.0
     to your NAMESPACE file.
     ```
 
-# POMaSPU
-
-Version: 1.0.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Junghi Kim <junghikim0@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# PSCBS
-
-Version: 0.63.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # QDNAseq
 
 Version: 1.14.0
@@ -4568,23 +3109,10 @@ Version: 1.14.0
     Extensions’ manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Daoud Sie <d.sie@vumc.nl>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Quantitative DNA sequencing for chromosomal aberrations’
-    ‘Quantitative DNA Sequencing for Chromosomal Aberrations’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-    25323904808468135.336.738865427951103207.660.738865426552879207.650
+    25324424808544135.336.738865427951103207.660.738865426552955207.650
     FINISHED!
     
     Total time:0minutes
@@ -4621,58 +3149,11 @@ Version: 1.0.4
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Alberto Ruiz Moreno <aruiz@eeza.csic.es>’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/r2dRue.r
-        976: 	#tama<f1>o del ultimo bloque
-        1072: 	#as<ed> que hay que forzar a ser matriz
-      R/rgf.R
-        90: #          1<aa> modificacion: si inFl 
-        120: # CHANGES: 20/04/2010 - a<f1>adir comprobacion de parametros 
-    
-    The Title field should be in title case, current version then in title case:
-    ‘2d Rain Use Efficience model’
-    ‘2d Rain Use Efficience Model’
-    
-    The Description field should start with a capital letter.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# RAC
-
-Version: 1.1.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Baldan D. <damiano.baldan91@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # randomizationInference
 
 Version: 1.0.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joseph J. Lee <joseph.j.lee@post.harvard.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -4694,20 +3175,24 @@ Version: 1.0.3
 
 # RnBeads
 
-Version: 1.10.5
+Version: 1.10.7
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘RnBeads’ can be installed ... WARNING
     ```
-    Maintainer: ‘Fabian Mueller <rnbeads@mpi-inf.mpg.de>’
-    
-    The Title field is just the package name: provide a real title.
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    Size of tarball: 6475192 bytes
+    Found the following significant warnings:
+      Warning: multiple methods tables found for ‘combine’
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/00install.out’ for details.
+    ```
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘combine’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking package dependencies ... NOTE
@@ -4726,14 +3211,11 @@ Version: 1.10.5
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .travis.yml
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.6Mb
+      installed size is  6.7Mb
       sub-directories of 1Mb or more:
         R     1.1Mb
         bin   1.0Mb
@@ -4743,6 +3225,7 @@ Version: 1.10.5
 *   checking whether the namespace can be loaded with stated dependencies ... NOTE
     ```
     Warning: no function found corresponding to methods exports from ‘RnBeads’ for: ‘samples’
+    Warning: multiple methods tables found for ‘combine’
     
     A namespace must be able to be loaded with just the base namespace
     loaded: otherwise if the namespace gets loaded by a saved object, the
@@ -4791,6 +3274,7 @@ Version: 1.10.5
     ```
     Error in re-building vignettes:
       ...
+    Warning: multiple methods tables found for ‘combine’
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'RnBeads.tex' failed.
     LaTeX errors:
@@ -4848,25 +3332,11 @@ Version: 0.2.0
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/RTransProb/new/RTransProb.Rcheck/00install.out’ for details.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Ab NDiaye <pabdndiaye@gmail.com>’
-    
-    The Date field is over a month old.
-    ```
-
 # samr
 
 Version: 2.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Rob Tibshirani <tibs@stanford.edu>’
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -4927,28 +3397,6 @@ Version: 1.6.2
 
 ## In both
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/davismcc/scater.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Davis McCarthy <davis@ebi.ac.uk>’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/qc.R
-        190:     ##<c2><a0>Adding general metrics for each cell.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single-cell analysis toolkit for gene expression data in R’
-    ‘Single-Cell Analysis Toolkit for Gene Expression Data in R’
-    
-    Size of tarball: 5420451 bytes
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 12.4Mb
@@ -4973,17 +3421,6 @@ Version: 1.1.5
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Vladimir Kiselev <vladimir.yu.kiselev@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A tool for unsupervised projection of single cell RNA-seq data’
-    ‘A Tool for Unsupervised Projection of Single Cell RNA-Seq Data’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.7Mb
@@ -4991,13 +3428,6 @@ Version: 1.1.5
         data   2.7Mb
         doc    1.3Mb
         libs   1.4Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Vladimir Kiselev’
-      Authors@R: ‘Vladimir Kiselev [cre, aut], Andrew Yiu [ctb], Martin Hemberg [aut]’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -5027,20 +3457,6 @@ Version: 1.2.0
     > eo <- SCRAN_FN(ei)
     Error in SCRAN_FN(ei) : scran package needed for SCRAN_FN()
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Michael Cole <mbeloc@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single Cell Overview of Normalized Expression data’
-    ‘Single Cell Overview of Normalized Expression Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5083,40 +3499,11 @@ Version: 1.5
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Giampiero Marra <giampiero.marra@ucl.ac.uk>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# SGP
-
-Version: 1.7-0.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Damian W. Betebenner <dbetebenner@nciea.org>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # shinyMethyl
 
 Version: 1.14.0
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/Jfortin1/shinyMethyl.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -5144,31 +3531,12 @@ Version: 1.14.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jean-Philippe Fortin <jfortin@jhsph.edu>’
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Url’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Interactive visualization for Illumina methylation arrays’
-    ‘Interactive Visualization for Illumina Methylation Arrays’
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9379921 bytes
-    ```
-
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .travis.yml
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5209,22 +3577,6 @@ Version: 1.8.0
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Xiaobin Xing <xiaobinxing0316@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Find SNV/Indel differences between two bam files with near relationship’
-    ‘Find SNV/Indel Differences Between Two Bam Files with Near Relationship’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -5240,9 +3592,6 @@ Version: 1.8.0
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
     ```
 
 ## Installation
@@ -5556,21 +3905,6 @@ Version: 1.6.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Alejandro Reyes <alejandro.reyes@embl.de>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single Cell Transcriptome Data and Analysis of Mouse mTEC cells’
-    ‘Single Cell Transcriptome Data and Analysis of Mouse mTEC Cells’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 947852922 bytes
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is 908.2Mb
@@ -5584,15 +3918,6 @@ Version: 1.6.0
 Version: 0.3.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Josymar Torrejon-Magallanes <ejosymart@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -5610,32 +3935,6 @@ Version: 1.2.1
     ```
     Installation failed.
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/splatter/new/splatter.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    ...
-      if any, to sign a "copyright disclaimer" for the program, if necessary.
-      For more information on this, and how to apply and follow the GNU GPL, see
-      <http://www.gnu.org/licenses/>.
-      
-        The GNU General Public License does not permit incorporating your program
-      into proprietary programs.  If your program is a subroutine library, you
-      may consider it more useful to permit linking proprietary applications with
-      the library.  If this is what you want to do, use the GNU Lesser General
-      Public License instead of this License.  But first, please read
-      <http://www.gnu.org/philosophy/why-not-lgpl.html>.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Simple Simulation of Single-cell RNA Sequencing Data’
-    ‘Simple Simulation of Single-Cell RNA Sequencing Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking package dependencies ... NOTE
@@ -5682,18 +3981,6 @@ Version: 1.4.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Isar Nassiri <isar_nassiri@urmc.rochester.edu>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘SRGnet: An R package for studying synergistic response to gene mutations from transcriptomics data from transcriptomics data’
-    ‘SRGnet: An R Package for Studying Synergistic Response to Gene Mutations from Transcriptomics Data from Transcriptomics Data’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -5701,13 +3988,6 @@ Version: 1.4.0
       ‘matrixStats’ ‘Hmisc’
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Isar Nassiri [aut, cre], Matthew McCall [aut, cre]’
-      Authors@R: ‘Isar Nassiri [aut, cre]’
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5736,42 +4016,9 @@ Version: 1.4.0
     to your NAMESPACE file.
     ```
 
-# stapler
-
-Version: 0.6.3
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# statar
-
-Version: 0.6.5
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/matthieugomez/statar.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Matthieu Gomez <mattg@princeton.edu>’
-    
-    This build time stamp is over a month old.
-    ```
-
 # stm
 
-Version: 1.3.0
+Version: 1.3.3
 
 ## In both
 
@@ -5780,37 +4027,29 @@ Version: 1.3.0
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
+      Completed M-Step. 
       ....................................................................................................
-      Completed E-Step (1 seconds). 
-      .....................................................................................................
-      Completed M-Step (11 seconds). 
+      Completed Group 1 E-Step (1 seconds). 
+      Completed M-Step. 
       Model Terminated Before Convergence Reached 
       ── 1. Error: plot.STM doesn't throw error  (@test-visualize.R#4)  ──────────────
       cannot open the connection to 'http://goo.gl/VPdxlS'
       1: load(url("http://goo.gl/VPdxlS")) at testthat/test-visualize.R:4
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 9 SKIPPED: 0 FAILED: 1
+      OK: 10 SKIPPED: 0 FAILED: 1
       1. Error: plot.STM doesn't throw error  (@test-visualize.R#4) 
       
       Error: testthat unit tests failed
       Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Brandon Stewart <bms4@princeton.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking re-building of vignette outputs ... NOTE
     ```
     Error in re-building vignettes:
       ...
-    stm v1.3.0 (2017-09-08) successfully loaded. See ?stm for help.
+    stm v1.3.3 (2018-1-26) successfully loaded. See ?stm for help. 
+     Papers, resources, and other materials at structuraltopicmodel.com
     Warning in load(url("http://goo.gl/VPdxlS")) :
       URL 'http://goo.gl/VPdxlS': status was 'Couldn't resolve host name'
     
@@ -5826,18 +4065,6 @@ Version: 1.3.0
 Version: 1.2.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sadiq Saleh <sadiq.mehdiismailsaleh@mail.mcgill.ca>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking re-building of vignette outputs ... NOTE
     ```
@@ -5885,15 +4112,6 @@ Version: 1.2
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jun Chen <chen.jun2@mayo.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # summarytools
 
 Version: 0.8.1
@@ -5910,63 +4128,11 @@ Version: 0.8.1
       Note: found 78 marked Latin-1 strings
     ```
 
-# support
-
-Version: 0.1.0
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘support-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: sp
-    > ### Title: Generating support points using difference-of-convex programming
-    > ### Aliases: sp
-    > 
-    > ### ** Examples
-    > 
-    >   ## Don't show: 
-    >     #Generate 25 support points for the 2-d i.i.d. N(0,1) distribution
-    >     n <- 25 #number of points
-    >     p <- 2 #dimension
-    >     des <- sp(n,p,dist.str=rep("normal",p))
-    Error in if (is.na(bd)) { : the condition has length > 1
-    Calls: sp
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Simon Mak <smak6@gatech.edu>’
-    
-    The Title field starts with the package name.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘doParallel’ ‘matrixStats’ ‘nloptr’
-      All declared Imports should be used.
-    ```
-
 # sva
 
 Version: 3.26.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Jeffrey T. Leek <jtleek@gmail.com>, John D. Storey <jstorey@princeton.edu>, W. Evan Johnson <wej@bu.edu>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking re-building of vignette outputs ... NOTE
     ```
@@ -6012,42 +4178,11 @@ Version: 1.0.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘VJ Carey <stvjc@channing.harvard.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘ontological exploration of scRNA-seq of 1.3 million mouse neurons from 10x genomics’
-    ‘Ontological Exploration of scRNA-Seq of 1.3 Million Mouse Neurons from 10x Genomics’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     tenXplore: no visible binding for global variable ‘CellTypes’
     Undefined global functions or variables:
       CellTypes
-    ```
-
-# tmlenet
-
-Version: 0.1.0
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/osofr/tmlenet.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Oleg Sofrygin <oleg.sofrygin@gmail.com>’
-    
-    This build time stamp is over a month old.
     ```
 
 # topGO
@@ -6080,18 +4215,6 @@ Version: 2.30.0
       row names contain missing values
     Calls: GenTable -> GenTable -> .local -> data.frame
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Adrian Alexa <adrian.alexa@gmail.com>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking package dependencies ... NOTE
@@ -6169,22 +4292,6 @@ Version: 1.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Meredith Ray <mere2110@yahoo.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Genome-wide DNA methylation sites screening by use of training and testing samples.’
-    ‘Genome-Wide DNA Methylation Sites Screening by Use of Training and Testing Samples.’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Malformed Title field: should not end in a period.
@@ -6222,19 +4329,6 @@ Version: 1.40.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Robert Scharpf <rscharpf@jhsph.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A Hidden Markov Model for high throughput genotyping arrays’
-    ‘A Hidden Markov Model for High Throughput Genotyping Arrays’
-    
-    The Date field is not in ISO 8601 yyyy-mm-dd format.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Packages which this enhances but not available for checking:
@@ -6249,44 +4343,11 @@ Version: 1.40.0
       See the note in ?`:::` about the use of this operator.
     ```
 
-# visualFields
-
-Version: 0.4.3
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Ivan Marin-Franch <ivan.marin@uv.es>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # wateRmelon
 
 Version: 1.22.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Leo <lschal@essex.ac.uk>’
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Tue Mar 22 11’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Illumina 450 methylation array normalization and metrics’
-    ‘Illumina 450 Methylation Array Normalization and Metrics’
-    
-    The Description field should start with a capital letter.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -6341,21 +4402,6 @@ Version: 1.22.0
     contains 'methods').
     ```
 
-# WGCNA
-
-Version: 1.61
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Peter Langfelder <Peter.Langfelder@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # XBSeq
 
 Version: 1.8.0
@@ -6386,19 +4432,6 @@ Version: 1.8.0
     Error: processing vignette 'XBSeq.Rmd' failed with diagnostics:
     there is no package called 'reticulate'
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Yuanhang Liu <liuy12@uthscsa.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Test for differential expression for RNA-seq data’
-    ‘Test for Differential Expression for RNA-Seq Data’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking whether the namespace can be loaded with stated dependencies ... NOTE
@@ -6470,13 +4503,6 @@ Version: 1.4.0
     Execution halted
     ```
 
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://travis-ci.org/jnpaulson/yarn.svg?branch=master
-    FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
-    ```
-
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error in re-building vignettes:
@@ -6498,15 +4524,6 @@ Version: 1.4.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joseph N Paulson <jpaulson@jimmy.harvard.edu>’
-    
-    The Title field starts with the package name.
-    
-    This build time stamp is over a month old.
-    ```
-
 # zinbwave
 
 Version: 1.0.0
@@ -6519,12 +4536,5 @@ Version: 1.0.0
     
     See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
     manual.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Davide Risso <risso.davide@gmail.com>’
-    
-    This build time stamp is over a month old.
     ```
 
