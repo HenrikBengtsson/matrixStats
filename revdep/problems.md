@@ -14,45 +14,25 @@ Version: 1.7
 
 # amplican
 
-Version: 0.8.1
+Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking Rd cross-references ... WARNING
     ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Unknown package ‘CrispRVariants’ in Rd xrefs
     ```
 
-# anomalyDetection
-
-Version: 0.2.2
-
-## In both
-
-*   checking tests ...
+*   checking installed package size ... NOTE
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      6: doTryCatch(return(expr), name, parentenv, handler)
-      7: bd_row(m1, 1:5)
-      
-      var1 & var2 (r = -0.753)
-      var3 & var4 (r = 0.576)
-      var4 & var6 (r = -0.539)
-      var4 & var7 (r = -0.507)
-      var2 & var9 (r = -0.513)
-      
-      testthat results ================================================================
-      OK: 134 SKIPPED: 0 FAILED: 1
-      1. Error: bd_row provides proper messages and warnings (@test_bd_row.R#12) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+      installed size is 14.3Mb
+      sub-directories of 1Mb or more:
+        doc  13.6Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Malformed Title field: should not end in a period.
     ```
 
 # antiProfiles
@@ -60,17 +40,6 @@ Version: 0.2.2
 Version: 1.18.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hector Corrada Bravo <hcorrada@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Implementation of gene expression anti-profiles’
-    ‘Implementation of Gene Expression Anti-Profiles’
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -112,50 +81,11 @@ Version: 1.18.0
     Execution halted
     ```
 
-# aroma.affymetrix
-
-Version: 3.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# aroma.cn
-
-Version: 1.6.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # aroma.core
 
-Version: 3.1.0
+Version: 3.1.1
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -168,15 +98,6 @@ Version: 3.1.0
 Version: 3.8.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -261,32 +182,11 @@ Version: 1.0
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Inga Schwabe <bayestwin@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # bdynsys
 
 Version: 1.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Viktoria Spaiser <viktoria.sp@web.de>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -314,7 +214,7 @@ Version: 1.3
     to your NAMESPACE file.
     ```
 
-# bigstep
+# bingat
 
 Version: 1.3
 
@@ -325,27 +225,61 @@ Version: 1.3
     Unknown package ‘genalg’ in Rd xrefs
     ```
 
-# bingat
+# bnbc
 
 Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘bnbc’ can be installed ... ERROR
     ```
     Installation failed.
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/00install.out’ for details.
     ```
 
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘genalg’
-    ```
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘bnbc’ ...
+** libs
+g++  -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c update_bands.cpp -o update_bands.o
+g++ -shared -L/usr/local/lib64 -o bnbc.so RcppExports.o update_bands.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/bnbc/libs
+** R
+** data
+** inst
+** preparing package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘tiff’
+ERROR: lazy loading failed for package ‘bnbc’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/bnbc’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘bnbc’ ...
+** libs
+g++  -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/include -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c update_bands.cpp -o update_bands.o
+g++ -shared -L/usr/local/lib64 -o bnbc.so RcppExports.o update_bands.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/old/bnbc.Rcheck/bnbc/libs
+** R
+** data
+** inst
+** preparing package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘tiff’
+ERROR: lazy loading failed for package ‘bnbc’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/old/bnbc.Rcheck/bnbc’
 
 ```
 # bnclassify
 
-Version: 0.3.3
+Version: 0.3.4
 
 ## In both
 
@@ -373,11 +307,6 @@ Version: 0.3.3
     Error: processing vignette 'introduction.Rmd' failed with diagnostics:
     pandoc document conversion failed with error 43
     Execution halted
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘memoise’
     ```
 
 # brms
@@ -409,9 +338,10 @@ Version: 2.1.0
 
 *   checking installed package size ... NOTE
     ```
-    Maintainer: ‘Paul-Christian Bürkner <paul.buerkner@gmail.com>’
-    
-    The Date field is over a month old.
+      installed size is  5.4Mb
+      sub-directories of 1Mb or more:
+        R     2.2Mb
+        doc   2.3Mb
     ```
 
 # bsseq
@@ -419,6 +349,11 @@ Version: 2.1.0
 Version: 1.14.0
 
 ## In both
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Unknown package ‘bsseqData’ in Rd xrefs
+    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -446,15 +381,17 @@ Version: 1.14.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analyze, manage and store bisulfite sequencing data’
-    ‘Analyze, Manage and Store Bisulfite Sequencing Data’
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘bsseqData’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.5Mb
+      sub-directories of 1Mb or more:
+        data   2.7Mb
+        doc    2.3Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -592,30 +529,53 @@ Version: 1.0.1
     /netapp/home/hb/apps/local/bin/pandoc +RTS -K512m -RTS /netapp/home/hb/repositories/matrixStats/revdep/checks/CEMiTool/new/CEMiTool.Rcheck/Reports/Report/report.utf8.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output /netapp/home/hb/repositories/matrixStats/revdep/checks/CEMiTool/new/CEMiTool.Rcheck/Reports/Report/report.pdf --table-of-contents --toc-depth 2 --template /netapp/home/hb/repositories/matrixStats/revdep/library/CEMiTool/rmarkdown/rmd/latex/default-1.17.0.2.tex --number-sections --highlight-style tango --latex-engine pdflatex --variable graphics=yes --variable 'geometry:margin=1in' 
     ! LaTeX Error: File `titling.sty' not found.
     
-    Size of tarball: 6929990 bytes
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    Enter file name: 
+    ! Emergency stop.
+    <read *> 
+             
+    l.66 ^^M
+    
+    pandoc: Error producing PDF
+    Error: pandoc document conversion failed with error 43
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.2Mb
+      installed size is  8.8Mb
       sub-directories of 1Mb or more:
-        data   2.3Mb
-        doc    8.5Mb
+        data      3.1Mb
+        doc       2.3Mb
+        extdata   2.8Mb
     ```
 
-# cellWise
-
-Version: 1.0.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-    Maintainer: ‘Jakob Raymaekers <jakob.raymaekers@kuleuven.be>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    ...
+    plot_qq,CEMiTool: no visible binding for global variable ‘data’
+    plot_sample_tree,CEMiTool: no visible global function definition for
+      ‘hclust’
+    plot_sample_tree,CEMiTool: no visible global function definition for
+      ‘dist’
+    plot_sample_tree,CEMiTool: no visible global function definition for
+      ‘png’
+    plot_sample_tree,CEMiTool: no visible global function definition for
+      ‘dev.off’
+    save_plots,CEMiTool : <anonymous>: no visible global function
+      definition for ‘dev.off’
+    save_plots,CEMiTool: no visible global function definition for
+      ‘dev.off’
+    Undefined global functions or variables:
+      ..eq.label.. ..rr.label.. Mean Variance as.dist cem data dev.off dist
+      hclust head png tail var
+    Consider adding
+      importFrom("grDevices", "dev.off", "png")
+      importFrom("stats", "as.dist", "dist", "hclust", "var")
+      importFrom("utils", "data", "head", "tail")
+    to your NAMESPACE file.
     ```
 
 # ChAMP
@@ -1150,21 +1110,6 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 
 Version: 0.4.1
 
-## Newly fixed
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    Warning: running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
-    Quitting from lines 513-516 (Working_with_large_arrays.Rnw) 
-    Error: processing vignette 'Working_with_large_arrays.Rnw' failed with diagnostics:
-    failed to create dataset 'M6c' in file '/netapp/home/hb/mydata/M6c.h5'
-    Execution halted
-    ```
-
 ## In both
 
 *   checking tests ...
@@ -1220,6 +1165,30 @@ Version: 0.4.1
 # DelayedMatrixStats
 
 Version: 1.0.2
+
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      
+      ── 2. Failure: Formals of S4 generic matches matrixStats function (@test_S4_gene
+      formals(dms_generic) not identical to formals(ms_fun).
+      Names: 1 string mismatch
+      Length mismatch: comparison on first 4 components
+      Component 4: Modes of target, current: name, logical
+      Component 4: target, current do not match when deparsed
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 8853 SKIPPED: 0 FAILED: 2
+      1. Failure: Formals of S4 generic matches matrixStats function (@test_S4_generics.R#10) 
+      2. Failure: Formals of S4 generic matches matrixStats function (@test_S4_generics.R#10) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
 
 ## In both
 
@@ -3204,7 +3173,7 @@ Version: 1.14.0
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-    25324424808544135.336.738865427951103207.660.738865426552955207.650
+    25324334808544135.336.738865427951103207.660.738865426552955207.650
     FINISHED!
     
     Total time:0minutes
@@ -3246,15 +3215,6 @@ Version: 1.0.4
 Version: 1.0.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joseph J. Lee <joseph.j.lee@post.harvard.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -3494,31 +3454,9 @@ Version: 2.0
 
 # scater
 
-Version: 1.4.0
+Version: 1.6.2
 
 ## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/davismcc/scater/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Davis McCarthy <davis@ebi.ac.uk>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single-cell analysis toolkit for gene expression data in R’
-    ‘Single-Cell Analysis Toolkit for Gene Expression Data in R’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 5853441 bytes
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3544,97 +3482,55 @@ Version: 1.1.5
     Execution halted
     ```
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.7Mb
+      sub-directories of 1Mb or more:
+        data   2.7Mb
+        doc    1.3Mb
+        libs   1.4Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘Biobase’
+      All declared Imports should be used.
+    ```
+
+# scone
+
+Version: 1.2.0
+
+## Newly broken
+
 *   checking tests ...
     ```
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 13 lines of output:
-      testthat results ================================================================
-      OK: 7 SKIPPED: 0 FAILED: 16
-      1. Error: all back-ends work (@test_bpparam.R#17) 
-      2. Error: get_normalized works in all three modes (@test_get_design.R#18) 
-      3. Error: get_normalized works in all three modes (@test_get_norm.R#18) 
-      4. Error: get_normalized works in all three modes with nested model (@test_get_norm.R#76) 
-      5. Error: return_norm in memory (@test_hdf5.R#44) 
-      6. Error: do not return_norm (@test_hdf5.R#65) 
-      7. Error: Upper-quartile normalization works the same as in the edgeR package (@test_norm.R#15) 
-      8. Error: Test with no real method (only identity) (@test_scone.R#12) 
-      9. Error: Test imputation and scaling (@test_scone.R#129) 
-      1. ...
+      5: bplapply(seq_len(NROW(sc_params)), function(i) scaling[[sc_params[i, 2]]](imputed[[sc_params[i, 
+             1]]]), BPPARAM = bpparam)
+      6: bpstart(BPPARAM, length(X))
+      7: bpstart(BPPARAM, length(X))
+      8: .local(x, ...)
+      9: .bpfork(nnodes, bptimeout(x), .hostname(x), .port(x))
+      10: .bpforkConnect(host, port, rank, timeout)
+      11: socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 58 SKIPPED: 0 FAILED: 1
+      1. Error: all back-ends work (@test_bpparam.R#25) 
       
       Error: testthat unit tests failed
       Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Michael Cole <mbeloc@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single Cell Overview of Normalized Expression data’
-    ‘Single Cell Overview of Normalized Expression Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘EDASeq’
-      All declared Imports should be used.
-    ```
-
-# SemiParSampleSel
-
-Version: 1.5
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Giampiero Marra <giampiero.marra@ucl.ac.uk>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# SGP
-
-Version: 1.7-0.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Damian W. Betebenner <dbetebenner@nciea.org>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# shinyMethyl
-
-Version: 1.12.0
-
 ## In both
 
 *   checking examples ... ERROR
     ```
-    ...
-    Setting options('download.file.method.GEOquery'='auto')
-    Setting options('GEOquery.inmemory.gpl'=FALSE)
-    Loading required package: IlluminaHumanMethylation450kmanifest
-    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
-    Loading required package: shiny
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'shinyMethyl.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
+    Running examples in ‘scone-Ex.R’ failed
+    The error most likely occurred in:
     
     > ### Name: SCRAN_FN
     > ### Title: Simple deconvolution normalization wrapper
@@ -3676,6 +3572,96 @@ Version: 1.12.0
 
 # SemiParSampleSel
 
+Version: 1.5
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘copula’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# shinyMethyl
+
+Version: 1.14.0
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Setting options('download.file.method.GEOquery'='auto')
+    Setting options('GEOquery.inmemory.gpl'=FALSE)
+    Loading required package: IlluminaHumanMethylation450kmanifest
+    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
+    Loading required package: shiny
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'shinyMethyl.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `titlesec.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.95 \makeatletter
+                      ^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    server.shinyMethyl : <anonymous>: no visible global function definition
+      for ‘lines’
+    server.shinyMethyl : <anonymous>: no visible global function definition
+      for ‘legend’
+    ui.shinyMethyl: no visible binding for '<<-' assignment to
+      ‘sampleColors’
+    shinySummarize,GenomicRatioSet: no visible global function definition
+      for ‘prcomp’
+    shinySummarize,RGChannelSet: no visible global function definition for
+      ‘prcomp’
+    Undefined global functions or variables:
+      abline complete.cases current.control.type current.density.type
+      current.probe.type genderCutoff grid legend lines lm
+      mouse.click.indices palette par plot points prcomp rect write.csv
+    Consider adding
+      importFrom("grDevices", "palette")
+      importFrom("graphics", "abline", "grid", "legend", "lines", "par",
+                 "plot", "points", "rect")
+      importFrom("stats", "complete.cases", "lm", "prcomp")
+      importFrom("utils", "write.csv")
+    to your NAMESPACE file.
+    ```
+
+# SICtools
+
+Version: 1.8.0
+
+## In both
+
+*   checking whether package ‘SICtools’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -3691,31 +3677,285 @@ Version: 1.12.0
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    .indelDiffFunc: no visible global function definition for ‘fisher.test’
-    .indelDiffFunc: no visible global function definition for ‘dist’
-    indelDiff: no visible global function definition for ‘read.delim’
-    snpDiff : calcInfoRange : <anonymous>: no visible global function
-      definition for ‘fisher.test’
-    snpDiff : calcInfoRange : <anonymous>: no visible global function
-      definition for ‘dist’
-    Undefined global functions or variables:
-      dist fisher.test read.delim
-    Consider adding
-      importFrom("stats", "dist", "fisher.test")
-      importFrom("utils", "read.delim")
-    to your NAMESPACE file.
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘SICtools’ ...
+** libs
+** arch - 
+Makefile:24: warning: overriding recipe for target `.c.o'
+/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/etc/Makeconf:159: warning: ignoring old recipe for target `.c.o'
+make[1]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
+bgzf.c: In function ‘worker_aux’:
+bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
+  int i, tmp, stop = 0;
+         ^
+bgzf.c: In function ‘bgzf_close’:
+bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
+  int ret, count, block_length;
+           ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
+bam_pileup.c: In function ‘resolve_cigar2’:
+bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
+  int k, is_head = 0;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
+bam_reheader.c: In function ‘bam_reheader’:
+bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  bam_header_t *old;
+                ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
+kprobaln.c: In function ‘kpa_glocal’:
+kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
+  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
+                     ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
+ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
+bcf.c: In function ‘bcf_fmt_core’:
+bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
+     int iPL = -1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
+bcfutils.c: In function ‘bcf_fit_alt’:
+bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
+     int ipl=-1, igt=-1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
+em.c: In function ‘bcf_em1’:
+em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
+  int i, n, n2;
+            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
+ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+make[2]: Nothing to be done for `lib'.
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
+bam_plcmd.c: In function ‘mpileup’:
+bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
+    int total_depth, _ref0, ref16;
+                            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
+bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
+bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                            ^
+bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                     ^
+bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
+  int N, l_run, ref_type;
+                ^
+bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                                  ^
+bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
+cut_target.c: In function ‘main_cut_target’:
+cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
+  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
+                                    ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
+bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
+ #include <curses.h>
+                    ^
+compilation terminated.
+make[1]: *** [bam_tview_curses.o] Error 1
+make[1]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make: *** [all-recur] Error 1
+ERROR: compilation failed for package ‘SICtools’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/SICtools’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘SICtools’ ...
+** libs
+** arch - 
+Makefile:24: warning: overriding recipe for target `.c.o'
+/netapp/home/hb/shared/apps/manual/r/R-3.4.3-20180109/lib64/R/etc/Makeconf:159: warning: ignoring old recipe for target `.c.o'
+make[1]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
+bgzf.c: In function ‘worker_aux’:
+bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
+  int i, tmp, stop = 0;
+         ^
+bgzf.c: In function ‘bgzf_close’:
+bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
+  int ret, count, block_length;
+           ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
+bam_pileup.c: In function ‘resolve_cigar2’:
+bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
+  int k, is_head = 0;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
+bam_reheader.c: In function ‘bam_reheader’:
+bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  bam_header_t *old;
+                ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
+kprobaln.c: In function ‘kpa_glocal’:
+kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
+  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
+                     ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
+ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
+bcf.c: In function ‘bcf_fmt_core’:
+bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
+     int iPL = -1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
+bcfutils.c: In function ‘bcf_fit_alt’:
+bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
+     int ipl=-1, igt=-1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
+em.c: In function ‘bcf_em1’:
+em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
+  int i, n, n2;
+            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
+ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+make[2]: Nothing to be done for `lib'.
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
+bam_plcmd.c: In function ‘mpileup’:
+bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
+    int total_depth, _ref0, ref16;
+                            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
+bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
+bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                            ^
+bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                     ^
+bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
+  int N, l_run, ref_type;
+                ^
+bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                                  ^
+bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
+cut_target.c: In function ‘main_cut_target’:
+cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
+  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
+                                    ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
+bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
+ #include <curses.h>
+                    ^
+compilation terminated.
+make[1]: *** [bam_tview_curses.o] Error 1
+make[1]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make: *** [all-recur] Error 1
+ERROR: compilation failed for package ‘SICtools’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/SICtools’
+
+```
 # Single.mTEC.Transcriptomes
 
-Version: 1.4.0
+Version: 1.6.0
 
 ## In both
 
@@ -3735,7 +3975,7 @@ Version: 1.4.0
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
       Running 'texi2dvi' on 'mTECs.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
+    ! LaTeX Error: File `titlesec.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -3743,34 +3983,19 @@ Version: 1.4.0
     ! Emergency stop.
     <read *> 
              
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+    l.95 \makeatletter
+                      ^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Alejandro Reyes <alejandro.reyes@embl.de>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single Cell Transcriptome Data and Analysis of Mouse mTEC cells’
-    ‘Single Cell Transcriptome Data and Analysis of Mouse mTEC Cells’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 955580345 bytes
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 915.5Mb
+      installed size is 908.2Mb
       sub-directories of 1Mb or more:
         data  898.7Mb
-        doc    16.7Mb
+        doc     9.4Mb
     ```
 
 # sizeMat
@@ -3778,15 +4003,6 @@ Version: 1.4.0
 Version: 0.3.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Josymar Torrejon-Magallanes <ejosymart@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -3796,66 +4012,20 @@ Version: 0.3.0
 
 # splatter
 
-Version: 1.0.3
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/Oshlack/splatter/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    ...
-      if any, to sign a "copyright disclaimer" for the program, if necessary.
-      For more information on this, and how to apply and follow the GNU GPL, see
-      <http://www.gnu.org/licenses/>.
-      
-        The GNU General Public License does not permit incorporating your program
-      into proprietary programs.  If your program is a subroutine library, you
-      may consider it more useful to permit linking proprietary applications with
-      the library.  If this is what you want to do, use the GNU Lesser General
-      Public License instead of this License.  But first, please read
-      <http://www.gnu.org/philosophy/why-not-lgpl.html>.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Simple Simulation of Single-cell RNA Sequencing Data’
-    ‘Simple Simulation of Single-Cell RNA Sequencing Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Luke Zappia’
-      Authors@R: ‘Luke Zappia [aut, cre], Belinda Phipson [aut], Alicia Oshlack [aut]’
-    ```
-
-# splatter
-
 Version: 1.2.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘splatter’ can be installed ... ERROR
     ```
-    Maintainer: ‘Isar Nassiri <isar_nassiri@urmc.rochester.edu>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘SRGnet: An R package for studying synergistic response to gene mutations from transcriptomics data from transcriptomics data’
-    ‘SRGnet: An R Package for Studying Synergistic Response to Gene Mutations from Transcriptomics Data from Transcriptomics Data’
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/splatter/new/splatter.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘scDD’ ‘zinbwave’ ‘BASiCS’
     ```
 
 ## Installation
@@ -3905,13 +4075,6 @@ Version: 1.4.0
     selectively is preferable.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Isar Nassiri [aut, cre], Matthew McCall [aut, cre]’
-      Authors@R: ‘Isar Nassiri [aut, cre]’
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     ...
@@ -3937,40 +4100,6 @@ Version: 1.4.0
       importFrom("utils", "write.table")
     to your NAMESPACE file.
     ```
-    checking a package with encoding  'UTF-8'  in an ASCII locale
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: 'Hmisc'
-    ```
-
-*   checking data for non-ASCII characters ... NOTE
-    ```
-      Note: found 78 marked Latin-1 strings
-    ```
-
-# VanillaICE
-
-# statar
-
-Version: 0.6.5
-
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/matthieugomez/statar/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Matthieu Gomez <mattg@princeton.edu>’
-    
-    This build time stamp is over a month old.
-    ```
 
 # stm
 
@@ -3985,7 +4114,7 @@ Version: 1.3.3
     Last 13 lines of output:
       Completed M-Step. 
       ....................................................................................................
-      Completed Group 1 E-Step (1 seconds). 
+      Completed Group 1 E-Step (0 seconds). 
       Completed M-Step. 
       Model Terminated Before Convergence Reached 
       ── 1. Error: plot.STM doesn't throw error  (@test-visualize.R#4)  ──────────────
@@ -4314,13 +4443,6 @@ Version: 1.22.0
     selectively is preferable.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 14.7Mb
-      sub-directories of 1Mb or more:
-        data  14.1Mb
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
@@ -4365,61 +4487,36 @@ Version: 1.22.0
     contains 'methods').
     ```
 
-# WGCNA
+# XBSeq
 
-Version: 1.61
+Version: 1.8.0
 
 ## In both
 
 *   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Peter Langfelder <Peter.Langfelder@gmail.com>’
+    ...
+    The following objects are masked from 'package:Biobase':
     
-    The Date field is over a month old.
+        anyMissing, rowMedians
     
-    This build time stamp is over a month old.
-    ```
-
-# XBSeq
-
-Version: 1.6.0
-
-## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-          colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-      
-      The following object is masked from 'package:base':
-      
-          apply
-      
-          Welcome to 'XBSeq'.
-      > 
-      > test_check("XBSeq")
-      estimating parameters using MLE for group one 
-      estimating parameters using MLE for group two 
-      Error: XBplot(XB, Samplenum = "Sample_54_WT") did not throw an error.
-      testthat results ================================================================
-      OK: 0 SKIPPED: 0 FAILED: 0
-      Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Yuanhang Liu <liuy12@uthscsa.edu>’
     
-    The Title field should be in title case, current version then in title case:
-    ‘Test for differential expression for RNA-seq data’
-    ‘Test for Differential Expression for RNA-Seq Data’
+    Attaching package: 'DelayedArray'
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
+    The following objects are masked from 'package:matrixStats':
     
-    This build time stamp is over a month old.
+        colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
+    
+    The following object is masked from 'package:base':
+    
+        apply
+    
+        Welcome to 'XBSeq'.
+    Warning: The 'python' engine in knitr requires the reticulate package. If you do not want to use the reticulate package, set the chunk option python.reticulate = FALSE.
+    Quitting from lines 58-60 (XBSeq.Rmd) 
+    Error: processing vignette 'XBSeq.Rmd' failed with diagnostics:
+    there is no package called 'reticulate'
+    Execution halted
     ```
 
 *   checking whether the namespace can be loaded with stated dependencies ... NOTE
@@ -4512,12 +4609,17 @@ Version: 1.4.0
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+# zinbwave
+
+Version: 1.0.0
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
     Package required but not available: ‘copula’
     
-    The Title field starts with the package name.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
