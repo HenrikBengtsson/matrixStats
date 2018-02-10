@@ -1,7 +1,26 @@
 Package: matrixStats
 ====================
 
-Version: 0.52.2-9000 [2018-01-22]
+Version: 0.53.0-9000 [2018-02-08]
+
+CODE REFACTORING:
+
+ o Now col-/rowSds() explicitly replicate all arguments that are passed to
+   col-/rowVars().
+
+DOCUMENTATION:
+
+ o Added details on how weightedMedian(x, interpolate = TRUE) works.
+   
+BUG FIXES:
+
+ o colLogSumExps(lx, cols) / rowLogSumExps(lx, rows) gave an error if 'lx'
+   has rownames / colnames.
+
+ o col-/rowQuantiles() would lose rownames of output in certain cases.
+ 
+
+Version: 0.53.0 [2018-01-23]
 
 NEW FEATURES:
 
@@ -423,7 +442,7 @@ NEW FEATURES:
 
 DOCUMENTATION:
 
- o DOCUMENTATION: Added vignette summarizing available functions.
+ o Added vignette summarizing available functions.
 
 PERFORMANCE AND MEMORY:
 

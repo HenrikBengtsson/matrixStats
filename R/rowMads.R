@@ -1,3 +1,5 @@
+#' @param constant A scale factor.  See \code{\link[stats]{mad}} for details.
+#' 
 #' @rdname rowSds
 #' @export
 rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,

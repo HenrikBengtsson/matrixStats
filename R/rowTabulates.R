@@ -70,7 +70,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   nbr_of_values <- length(values)
   counts <- matrix(0L, nrow = nrow(x), ncol = nbr_of_values)
   colnames(counts) <- names
-  na.rm <- anyNA(x)
+  na.rm <- anyMissing(x)
   for (kk in seq_len(nbr_of_values)) {
     counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
   }
@@ -129,7 +129,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
     nbr_of_values <- length(values)
     counts <- matrix(0L, nrow = ncol(x), ncol = nbr_of_values)
     colnames(counts) <- names
-    na.rm <- anyNA(x)
+    na.rm <- anyMissing(x)
     for (kk in seq_len(nbr_of_values)) {
       counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
     }

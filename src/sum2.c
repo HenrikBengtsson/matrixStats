@@ -13,7 +13,7 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
   SEXP ans = NILSXP;
   R_xlen_t nx;
   int narm, mode2;
-  double sum;
+  double sum = NA_REAL;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL | R_TYPE_LGL), "x");
@@ -48,7 +48,7 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
     if (ISNAN(sum)) {
       INTEGER(ans)[0] = NA_INTEGER;
     } else if (sum > R_INT_MAX || sum < R_INT_MIN) {
-      Rf_warning("Integer overflow. Use sum2(..., mode=\"numeric\") to avoid this.");
+      Rf_warning("Integer overflow. Use sum2(..., mode = \"double\") to avoid this.");
       INTEGER(ans)[0] = NA_INTEGER;
     } else {
       INTEGER(ans)[0] = (int)sum;

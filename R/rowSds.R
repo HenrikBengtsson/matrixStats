@@ -9,21 +9,18 @@
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
 #'
-#' @param center A optional \code{\link[base]{numeric}}
-#' \code{\link[base]{vector}} of length N (K) with centers.  By default, they
-#' are calculated using \code{\link{rowMedians}}().
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' are excluded first, otherwise not.
 #'
-#' @param constant A scale factor.  See \code{\link[stats]{mad}} for details.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are removed
-#' first, otherwise not.
+#' @param center (optional) The center, defaults to the row means for the
+#' SD estimators and row medians for the MAD estimators.
 #'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
 #' \code{\link[base]{matrix}}.
 #'
-#' @param ... Additional arguments passed to \code{\link{rowVars}}() and
-#' \code{\link{rowMedians}}(), respectively.
+#' @param ... Additional arguments passed to \code{rowMeans()} and
+#' \code{rowSums()}.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
@@ -35,15 +32,17 @@
 #' @keywords array iteration robust univar
 #'
 #' @export
-rowSds <- function(x, rows = NULL, cols = NULL, ...) {
-  x <- rowVars(x, rows = rows, cols = cols, ...)
+rowSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+                    dim. = dim(x), ...) {
+  x <- rowVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., ...)
   sqrt(x)
 }
 
 
 #' @rdname rowSds
 #' @export
-colSds <- function(x, rows = NULL, cols = NULL, ...) {
-  x <- colVars(x, rows = rows, cols = cols, ...)
+colSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+                    dim. = dim(x), ...) {
+  x <- colVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., ...)
   sqrt(x)
 }

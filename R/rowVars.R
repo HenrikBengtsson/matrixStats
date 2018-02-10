@@ -8,10 +8,10 @@
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
 #'
-#' @param center (optional) The center, defaults to the row means.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values
 #' are excluded first, otherwise not.
+#'
+#' @param center (optional) The center, defaults to the row means.
 #'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a

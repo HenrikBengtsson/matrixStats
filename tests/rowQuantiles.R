@@ -17,6 +17,7 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
 
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  rownames(q) <- rownames(x)
 
   if (drop) q <- drop(q)
   q
@@ -30,6 +31,7 @@ for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(1:40 + 0.1, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
+  dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
   str(x)
 
   probs <- c(0, 0.5, 1)
@@ -50,6 +52,7 @@ for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(1:40, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
+  dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
   str(x)
 
   probs <- c(0.5)
@@ -80,6 +83,7 @@ for (kk in seq_len(n_sims)) {
   n <- prod(dim)
   x <- rnorm(n, sd = 100)
   dim(x) <- dim
+  dimnames(x) <- lapply(dim(x), FUN = function(n) rep(letters, length.out = n))
 
   # Add NAs?
   has_na <- (kk %% 4) %in% c(3, 0)
@@ -112,6 +116,7 @@ for (kk in seq_len(n_sims)) {
 # Empty matrices
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 x <- matrix(NA_real_, nrow = 0L, ncol = 0L)
+dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
 probs <- c(0, 0.25, 0.75, 1)
 q <- rowQuantiles(x, probs = probs)
 stopifnot(identical(dim(q), c(nrow(x), length(probs))))
@@ -119,10 +124,12 @@ q <- colQuantiles(x, probs = probs)
 stopifnot(identical(dim(q), c(ncol(x), length(probs))))
 
 x <- matrix(NA_real_, nrow = 2L, ncol = 0L)
+dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
 q <- rowQuantiles(x, probs = probs)
 stopifnot(identical(dim(q), c(nrow(x), length(probs))))
 
 x <- matrix(NA_real_, nrow = 0L, ncol = 2L)
+dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
 q <- colQuantiles(x, probs = probs)
 stopifnot(identical(dim(q), c(ncol(x), length(probs))))
 
@@ -135,5 +142,6 @@ q <- rowQuantiles(x, probs = probs)
 print(q)
 
 x <- matrix(1, nrow = 1L, ncol = 2L)
+dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
 q <- colQuantiles(x, probs = probs)
 print(q)
