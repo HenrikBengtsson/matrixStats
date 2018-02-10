@@ -3501,30 +3501,6 @@ Version: 1.1.5
 
 Version: 1.2.0
 
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      5: bplapply(seq_len(NROW(sc_params)), function(i) scaling[[sc_params[i, 2]]](imputed[[sc_params[i, 
-             1]]]), BPPARAM = bpparam)
-      6: bpstart(BPPARAM, length(X))
-      7: bpstart(BPPARAM, length(X))
-      8: .local(x, ...)
-      9: .bpfork(nnodes, bptimeout(x), .hostname(x), .port(x))
-      10: .bpforkConnect(host, port, rank, timeout)
-      11: socketConnection(host, port, TRUE, TRUE, "a+b", timeout = timeout)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 58 SKIPPED: 0 FAILED: 1
-      1. Error: all back-ends work (@test_bpparam.R#25) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
 ## In both
 
 *   checking examples ... ERROR
