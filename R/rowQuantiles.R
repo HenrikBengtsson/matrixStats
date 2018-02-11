@@ -117,9 +117,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
     q <- matrix(na_value, nrow = nrow, ncol = length(probs))
   }
 
-  # Add names
+  # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  rownames(q) <- rownames(x)
+  
   # Drop singleton dimensions?
   if (drop) {
     q <- drop(q)
@@ -206,16 +208,17 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
         if (na.rm) xkk <- xkk[!is.na(xkk)]
         q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
-    } # if (type ...)
+    } # if (type ...)    
   } else {
     na_value <- NA_real_
     storage.mode(na_value) <- storage.mode(x)
     q <- matrix(na_value, nrow = ncol, ncol = length(probs))
   }
 
-  # Add names
+  # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  rownames(q) <- colnames(x)
 
   # Drop singleton dimensions?
   if (drop) {
