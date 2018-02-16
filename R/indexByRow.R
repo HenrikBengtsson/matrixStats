@@ -28,8 +28,7 @@
 #' @export
 indexByRow <- function(dim, idxs = NULL, ...) {
   if (is.matrix(dim)) {
-    # BACKWARD COMPATIBILITY: Keep for a while, but deprecate
-    # in the future.
+    .Deprecated(msg = "indexByRow(x) where 'x' is a matrix is deprecated. Use indexByRow(dim(x)) instead.")
     dim <- dim(dim)
   } else {
     dim <- as.integer(dim)
