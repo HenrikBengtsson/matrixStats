@@ -3,7 +3,7 @@
   double sum2_<int|dbl>[idxsType](ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm, int mode
+  X_C_TYPE *x, R_xlen_t nx, int *idxs, R_xlen_t nidxs, int narm
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -12,7 +12,7 @@
   - METHOD_NAME: the name of the resulting function
   - X_TYPE: 'i' or 'r'
 
- Copyright: Henrik Bengtsson, 2014-2017
+ Copyright: Henrik Bengtsson, 2014-2018
  ***********************************************************************/
 #include "000.types.h"
 
