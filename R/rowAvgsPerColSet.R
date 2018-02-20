@@ -7,7 +7,7 @@
 #'
 #' If argument \code{S} is a single column vector with indices \code{1:N}, then
 #' \code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
-#' \code{rowMeans(X)}.  Analogously, for \code{rowAvgsPerColSet()}.
+#' \code{rowMeans(X)}.  Analogously, for \code{colAvgsPerRowSet()}.
 #'
 #' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
 #'
