@@ -61,7 +61,7 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
-  } if (op == 2) {
+  } else if (op == 2) {
     /* Subtraction */
     if (isReal(x) || isReal(y)) {
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
@@ -120,6 +120,8 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     }
     UNPROTECT(1);
+  } else {
+    error("Unknown value on argument 'OP': %dL", op);
   }
 
   return(ans);
