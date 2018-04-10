@@ -1,11 +1,6 @@
 #----------------------------------------------------------------
-# Travis-CI configuration for R packages
-#
-# REFERENCES:
-# * Travis CI: https://docs.travis-ci.com/user/languages/r
-# * covr: https://github.com/jimhester/covr
-#
-# Validate your .travis.yml file at http://lint.travis-ci.org/
+# Travis-CI Configuration for R Packages
+# https://docs.travis-ci.com/user/languages/r
 #----------------------------------------------------------------
 language: r
 sudo: false
@@ -20,15 +15,6 @@ matrix:
       r: oldrel
     - os: linux
       r: release
-    - os: linux
-      r: release
-      r_github_packages:
-        - jimhester/covr
-      r_check_args: --no-codoc --no-examples --no-tests --ignore-vignettes
-      after_success:
-        - Rscript -e 'covr::codecov(quiet=FALSE)'
-      env:
-        - NB='w/ covr' ## Just a label
     - os: linux
       r: release
       addons:
@@ -75,10 +61,23 @@ matrix:
         - _R_CHECK_USE_VALGRIND_=TRUE
     - os: linux
       r: devel
+      env:
+      - R_KEEP_PKG_SOURCE=yes
+      - _R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV_=true
+      - _R_S3_METHOD_LOOKUP_USE_TOPENV_AS_DEFENV_=true
     - os: osx
       r: oldrel
     - os: osx
       r: release
+    - os: linux
+      r: release
+      r_packages:
+        - covr
+      r_check_args: --no-codoc --no-examples --no-tests --ignore-vignettes
+      after_success:
+        - Rscript -e 'covr::codecov(quiet=FALSE)'
+      env:
+        - NB='w/ covr' ## Just a label
 
 before_install:
   - Rscript -e 'c(physical = parallel::detectCores(logical = FALSE), logical = parallel::detectCores())'
@@ -98,8 +97,6 @@ before_install:
       find tests/* -prune -type f ! -name "*_parallel.R"  | xargs rm;
     fi
   
-
-
 notifications:
   email:
     on_success: change
