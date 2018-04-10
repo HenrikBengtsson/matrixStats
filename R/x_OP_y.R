@@ -66,7 +66,7 @@ t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
   na.rm <- as.logical(na.rm)
   if (is.character(OP)) {
     op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
-    if (op == 4L) stop("Unknown value on argument 'OP': ", sQuote(OP))
+    if (op == 0L) stop("Unknown value on argument 'OP': ", sQuote(OP))
   } else {
     op <- as.integer(OP)
   }
