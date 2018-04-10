@@ -1,13 +1,18 @@
 Package: matrixStats
 ====================
 
-Version: 0.53.1-9000 [2018-04-03]
+Version: 0.53.1-9000 [2018-04-10]
 
 PERFORMANCE:
 
  o SPEEDUP: No longer using stopifnot() for internal validation, because
    it comes with a great overhead.  This was only used in weightedMad(),
    col-, and rowWeightedMads(), as well as col- and rowAvgsPerColSet().
+
+BUG FIXES:
+
+ o Despite being an unlikely use case, colLogSumExps(lx) / rowLogSumExps(lx)
+   now also accepts integer 'lx' values.
 
 DEPRECATED AND DEFUNCT:
 

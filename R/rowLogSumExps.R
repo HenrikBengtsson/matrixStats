@@ -40,7 +40,8 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
   dim. <- as.integer(dim.)
   has_na <- TRUE
   res <- .Call(C_rowLogSumExps,
-               lx, dim., rows, cols, as.logical(na.rm), has_na, TRUE)
+               as.numeric(lx),
+               dim., rows, cols, as.logical(na.rm), has_na, TRUE)
 
   # Preserve names
   names <- rownames(lx)
@@ -62,7 +63,8 @@ colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
   dim. <- as.integer(dim.)
   has_na <- TRUE
   res <- .Call(C_rowLogSumExps,
-               lx, dim., rows, cols, as.logical(na.rm), has_na, FALSE)
+               as.numeric(lx),
+               dim., rows, cols, as.logical(na.rm), has_na, FALSE)
 
   # Preserve names
   names <- colnames(lx)
