@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.53.1-9000 [2018-04-10]
+Version: 0.53.1-9000 [2018-05-14]
 
 PERFORMANCE:
 
@@ -13,6 +13,9 @@ BUG FIXES:
 
  o Despite being an unlikely use case, colLogSumExps(lx) / rowLogSumExps(lx)
    now also accepts integer 'lx' values.
+
+ o The error produced when using indexByRow(dim) with prod(dim) >= 2^31 would
+   report garbage dimensions instead of 'dim'.
 
 DEPRECATED AND DEFUNCT:
 
