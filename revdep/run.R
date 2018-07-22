@@ -23,5 +23,9 @@ if (length(envs) > 0L) {
               paste(sQuote(envs), collapse = ", ")))
 }
 
+## WORKAROUND: Remove checked pkgs that use file links, which otherwise
+## produce warnings which are promoted to errors by revdepcheck.
+unlink("revdep/checks/aroma.affymetrix", recursive = TRUE)
+
 revdep_check(bioc = TRUE, num_workers = availableCores(),
              timeout = as.difftime(20, units = "mins"), quiet = FALSE)
