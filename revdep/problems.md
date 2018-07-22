@@ -1,76 +1,47 @@
 # abcrf
 
-Version: 1.7
+Version: 1.7.1
 
 ## In both
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         data   2.6Mb
         libs   2.5Mb
     ```
 
-# ACNE
+# adjclust
 
-Version: 0.8.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# anomalyDetection
-
-Version: 0.2.2
+Version: 0.5.6
 
 ## In both
 
-*   checking tests ...
+*   checking package dependencies ... NOTE
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      6: doTryCatch(return(expr), name, parentenv, handler)
-      7: bd_row(m1, 1:5)
-      
-      var1 & var2 (r = -0.753)
-      var3 & var4 (r = 0.576)
-      var4 & var6 (r = -0.539)
-      var4 & var7 (r = -0.507)
-      var2 & var9 (r = -0.513)
-      
-      testthat results ================================================================
-      OK: 134 SKIPPED: 0 FAILED: 1
-      1. Error: bd_row provides proper messages and warnings (@test_bd_row.R#12) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+    Package suggested but not available for checking: ‘rioja’
+    ```
+
+# amplican
+
+Version: 1.2.1
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘ggforce’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # antiProfiles
 
-Version: 1.16.0
+Version: 1.20.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hector Corrada Bravo <hcorrada@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Implementation of gene expression anti-profiles’
-    ‘Implementation of Gene Expression Anti-Profiles’
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -114,48 +85,24 @@ Version: 1.16.0
 
 # aroma.affymetrix
 
-Version: 3.1.0
+Version: 3.1.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# aroma.cn
-
-Version: 1.6.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+      installed size is  5.9Mb
+      sub-directories of 1Mb or more:
+        R             2.3Mb
+        help          1.1Mb
+        testScripts   1.3Mb
     ```
 
 # aroma.core
 
-Version: 3.1.0
+Version: 3.1.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -165,18 +112,9 @@ Version: 3.1.0
 
 # aroma.light
 
-Version: 3.6.0
+Version: 3.10.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -184,84 +122,34 @@ Version: 3.6.0
       inst/rsp/.rspPlugins
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      inst/rsp/.rspPlugins
     ```
 
-# aSPU
+# BASiCS
 
-Version: 1.48
+Version: 1.2.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Il-Youp Kwak <ikwak@umn.edu>’
+    Package required but not available: ‘scran’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # BatchQC
 
-Version: 1.4.0
+Version: 1.8.0
 
 ## In both
 
-*   checking for missing documentation entries ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Undocumented code objects:
-      ‘lmFitC’
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Found3batches
-    Adjusting for1covariate(s) or covariate level(s)
-    Fitting L/S model and finding priors
-    Finding parametric adjustments
-    Adjusting the Data
+    Package required but not available: ‘MCMCpack’
     
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.39 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    gls.series.C: no visible global function definition for ‘lm.fit’
-    Undefined global functions or variables:
-      lm.fit
-    Consider adding
-      importFrom("stats", "lm.fit")
-    to your NAMESPACE file.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # BayesTwin
@@ -278,13 +166,17 @@ Version: 1.0
     manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+# baystability
+
+Version: 0.1.0
+
+## In both
+
+*   checking dependencies in R code ... NOTE
     ```
-    Maintainer: ‘Inga Schwabe <bayestwin@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Namespaces in Imports field not imported from:
+      ‘ggfortify’ ‘ggplot2’ ‘matrixStats’ ‘reshape2’ ‘scales’
+      All declared Imports should be used.
     ```
 
 # bdynsys
@@ -293,57 +185,12 @@ Version: 1.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Viktoria Spaiser <viktoria.sp@web.de>’
+    Package required but not available: ‘plm’
     
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    plot_data: no visible global function definition for ‘dev.set’
-    plot_data: no visible global function definition for ‘postscript’
-    plot_data: no visible global function definition for ‘plot’
-    plot_data: no visible global function definition for ‘matplot’
-    plot_data: no visible global function definition for ‘points’
-    plot_data: no visible global function definition for ‘legend’
-    plot_data: no visible global function definition for ‘dev.off’
-    polyfitbayes: no visible global function definition for ‘runif’
-    polyfitbayes: no visible global function definition for ‘var’
-    polyfitreg: no visible global function definition for ‘lm’
-    polyfitreg: no visible binding for global variable ‘na.exclude’
-    polyfitreg: no visible global function definition for ‘var’
-    Undefined global functions or variables:
-      dev.off dev.set grid legend lm matplot na.exclude plot points
-      postscript runif sd var write.table
-    Consider adding
-      importFrom("grDevices", "dev.off", "dev.set", "postscript")
-      importFrom("graphics", "grid", "legend", "matplot", "plot", "points")
-      importFrom("stats", "lm", "na.exclude", "runif", "sd", "var")
-      importFrom("utils", "write.table")
-    to your NAMESPACE file.
-    ```
-
-# bigstep
-
-Version: 0.7.4
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Piotr Szulc <piotr.michal.szulc@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # bingat
@@ -352,23 +199,71 @@ Version: 1.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Berkley Shands <rpackages@biorankings.com>’
+    Package required but not available: ‘vegan’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking Rd cross-references ... NOTE
+# bnbc
+
+Version: 1.2.0
+
+## In both
+
+*   checking whether package ‘bnbc’ can be installed ... ERROR
     ```
-    Package unavailable to check Rd xrefs: ‘genalg’
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/00install.out’ for details.
     ```
 
-# bnclassify
+## Installation
 
-Version: 0.3.3
+### Devel
+
+```
+* installing *source* package ‘bnbc’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c update_bands.cpp -o update_bands.o
+g++ -shared -L/usr/local/lib64 -o bnbc.so RcppExports.o update_bands.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/bnbc/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘bnbc’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/new/bnbc.Rcheck/bnbc’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘bnbc’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/bnbc/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c update_bands.cpp -o update_bands.o
+g++ -shared -L/usr/local/lib64 -o bnbc.so RcppExports.o update_bands.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/old/bnbc.Rcheck/bnbc/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘bnbc’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bnbc/old/bnbc.Rcheck/bnbc’
+
+```
+# brms
+
+Version: 2.4.0
 
 ## In both
 
@@ -376,62 +271,10 @@ Version: 0.3.3
     ```
     Error in re-building vignettes:
       ...
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.39 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'introduction.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘memoise’
-    ```
-
-# brms
-
-Version: 1.9.0
-
-## In both
-
-*   R CMD check timed out
-    
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Paul-Christian Bürkner <paul.buerkner@gmail.com>’
-    
-    The Date field is over a month old.
-    ```
-
-# bsseq
-
-Version: 1.12.2
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    
-    The following object is masked from 'package:base':
-    
-        apply
-    
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'bsseq.tex' failed.
+    Error: processing vignette 'brms_multilevel.ltx' failed with diagnostics:
+    Running 'texi2dvi' on 'brms_multilevel.ltx' failed.
     LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
+    ! LaTeX Error: File `inconsolata.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -439,63 +282,30 @@ Version: 1.12.2
     ! Emergency stop.
     <read *> 
              
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+    l.47 \RequirePackage
+                        [T1]{fontenc}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analyze, manage and store bisulfite sequencing data’
-    ‘Analyze, Manage and Store Bisulfite Sequencing Data’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘HDF5Array’
-      All declared Imports should be used.
+      installed size is  6.8Mb
+      sub-directories of 1Mb or more:
+        R     3.5Mb
+        doc   2.4Mb
     ```
 
 # bumphunter
 
-Version: 1.16.0
+Version: 1.22.0
 
 ## In both
 
-*   checking tests ...
+*   checking whether package ‘bumphunter’ can be installed ... ERROR
     ```
-     ERROR
-    Running the tests in ‘tests/test-all.R’ failed.
-    Last 13 lines of output:
-      Loading required package: locfit
-      locfit 1.5-9.1 	 2013-03-22
-      Loading required package: AnnotationDbi
-      Loading required package: Biobase
-      Welcome to Bioconductor
-      
-          Vignettes contain introductory material; view with
-          'browseVignettes()'. To cite Bioconductor, see
-          'citation("Biobase")', and for packages 'citation("pkgname")'.
-      
-      Download the refGene table ... Error: Expectation Failed
-      Timing stopped at: 1.848 0.118 25.45
-      testthat results ================================================================
-      OK: 10 SKIPPED: 0 FAILED: 0
-      Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Rafael A. Irizarry <rafa@jimmy.harvard.edu>’
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bumphunter/new/bumphunter.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -507,196 +317,155 @@ Version: 1.16.0
     selectively is preferable.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘bumphunter’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘bumphunter’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bumphunter/new/bumphunter.Rcheck/bumphunter’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘bumphunter’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘bumphunter’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/bumphunter/old/bumphunter.Rcheck/bumphunter’
+
+```
+# carx
+
+Version: 0.7.1
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    Malformed Description field: should contain one or more complete sentences.
+    Package required but not available: ‘tmvtnorm’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported object imported by a ':::' call: ‘doParallel:::.options’
-      See the note in ?`:::` about the use of this operator.
-    ```
+# cellWise
 
-*   checking R code for possible problems ... NOTE
-    ```
-    bumphunterEngine: no visible binding for global variable ‘bootstraps’
-    Undefined global functions or variables:
-      bootstraps
-    ```
+Version: 2.0.10
 
-*   checking re-building of vignette outputs ... NOTE
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
     ```
-    ...
-    The following object is masked from ‘package:base’:
-    
-        isNamespaceLoaded
-    
-    [bumphunterEngine] Estimating p-values and FWER.
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'bumphunter.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `fullpage.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.10 \usepackage
-                    [numbers]{natbib}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 120-122 (DDC_examples.Rmd) 
+    Error: processing vignette 'DDC_examples.Rmd' failed with diagnostics:
+    there is no package called 'robustHD'
     Execution halted
     ```
 
-# calmate
-
-Version: 0.12.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# carx
-
-Version: 0.6.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Chao Wang <chao-wang@uiowa.edu>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# CATALYST
-
-Version: 1.1.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Helena Lucia Crowell <crowellh@student.ethz.ch>’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/helpers-debarcoding.R
-        42:         # difference b/w the kth and (k<e2><80><93>1)th highest 
-        98:         # difference b/w the kth and (k<e2><80><93>1)th highest 
-      R/plotEvents.R
-        63:         # <c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7>
-        78:         # <c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7>
-        137:         # <c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7>
-        142:         # <c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7><c2><b7>
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6929990 bytes
+    Package suggested but not available for checking: ‘robustHD’
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.2Mb
+      installed size is  9.4Mb
       sub-directories of 1Mb or more:
-        data   2.3Mb
-        doc    8.5Mb
+        data   2.8Mb
+        libs   5.5Mb
     ```
 
-# cellWise
+# CHARGE
 
 Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Jakob Raymaekers <jakob.raymaekers@kuleuven.be>’
+    Packages required but not available: ‘FactoMineR’ ‘factoextra’
     
-    The Date field is over a month old.
+    Package suggested but not available for checking: ‘EnsDb.Hsapiens.v86’
     
-    This build time stamp is over a month old.
-    ```
-
-# ChAMP
-
-Version: 2.8.9
-
-## In both
-
-*   checking package subdirectories ... WARNING
-    ```
-    Problems with news in ‘inst/NEWS.Rd’:
-      inst/NEWS.Rd:67: unexpected END_OF_INPUT '
-      '
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Yuan Tian  <champ450k@gmail.com>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    Size of tarball: 15461875 bytes
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      ‘minfi’ ‘ChAMPdata’ ‘FEM’ ‘DMRcate’ ‘Illumina450ProbeVariants.db’
-      ‘IlluminaHumanMethylationEPICmanifest’
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 11.8Mb
-      sub-directories of 1Mb or more:
-        doc       9.5Mb
-        extdata   2.0Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
-      Authors@R: ‘Tian Yuan [cre, aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Yuan Tian <champ450k@gmail.com>’
-      Authors@R:  ‘Tian Yuan <champ450k@gmail.com>’
-    
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘rmarkdown’
-    A package should be listed in only one of these fields.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # Chicago
 
-Version: 1.4.0
+Version: 1.8.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Mikhail Spivakov <spivakov@babraham.ac.uk>’
+    ...
+    > ##create a temporary directory, export output there
+    > tempDirectory <- tempdir()
+    > print(tempDirectory)
+    [1] "/scratch/hb/RtmpUQjstJ"
+    > exportResults(cdUnitTest, outfileprefix = file.path(tempDirectory, "unitTestOutput"))
+    Reading the restriction map file...
+    Reading the bait map file...
+    Preparing the output table...
+    Writing out for seqMonk...
+    Writing out interBed...
+    Preprocessing for WashU outputs...
+    Writing out text file for WashU browser upload...
+    > 
+    > GI <- exportToGI(cdUnitTest)
+    Reading the restriction map file...
+    Reading the bait map file...
+    Preparing the output table...
+    Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+      there is no package called ‘RCurl’
+    Calls: exportToGI ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+    Execution halted
+    ```
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Unknown packages ‘PCHiCdata’, ‘GenomicInteractions’ in Rd xrefs
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Loading required package: data.table
     
-    The Title field starts with the package name.
-    
-    This build time stamp is over a month old.
+    Welcome to CHiCAGO - version 1.8.0
+    If you are new to CHiCAGO, please consider reading the vignette through the command: vignette("Chicago").
+    NOTE: Default values of tlb.minProxOEPerBin and tlb.minProxB2BPerBin changed as of Version 1.1.5. No action is required unless you specified non-default values, or wish to re-run the pipeline on old chicagoData objects. See news(package="Chicago")
+    Quitting from lines 44-46 (Chicago.Rmd) 
+    Error: processing vignette 'Chicago.Rmd' failed with diagnostics:
+    there is no package called 'PCHiCdata'
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘PCHiCdata’ ‘GenomicInteractions’
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -705,32 +474,70 @@ Version: 1.4.0
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
+    ```
+
+# chromswitch
+
+Version: 1.2.1
+
+## In both
+
+*   checking whether package ‘chromswitch’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/chromswitch/new/chromswitch.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘chromswitch’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘chromswitch’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/chromswitch/new/chromswitch.Rcheck/chromswitch’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘chromswitch’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘chromswitch’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/chromswitch/old/chromswitch.Rcheck/chromswitch’
+
+```
+# cifti
+
+Version: 0.4.5
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘covr’
     ```
 
 # Clomial
 
-Version: 1.12.0
+Version: 1.16.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Habil Zare <zare@txstate.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Infers clonal composition of a tumor’
-    ‘Infers Clonal Composition of a Tumor’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -758,194 +565,79 @@ Version: 1.12.0
 
 # clusterExperiment
 
-Version: 1.2.0
+Version: 2.0.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘clusterExperiment’ can be installed ... ERROR
     ```
-    Maintainer: ‘Elizabeth Purdom <epurdom@stat.berkeley.edu>’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/clusterExperiment/new/clusterExperiment.Rcheck/00install.out’ for details.
     ```
 
-# CNPBayes
-
-Version: 1.6.1
-
-## In both
-
-*   checking for code/documentation mismatches ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Codoc mismatches from documentation object 'labelSwitching':
-    labelSwitching
-      Code: function(object, ...)
-      Docs: function(object, merge = TRUE)
-      Argument names in code not in docs:
-        ...
-      Argument names in docs not in code:
-        merge
-      Mismatches in argument names:
-        Position: 2 Code: ... Docs: merge
+    Package suggested but not available for checking: ‘MAST’
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.33 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'Convergence.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
+## Installation
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jacob Carey <jcarey15@jhu.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Bayesian mixture models for copy number polymorphisms’
-    ‘Bayesian Mixture Models for Copy Number Polymorphisms’
-    
-    The Date field is not in ISO 8601 yyyy-mm-dd format.
-    
-    This build time stamp is over a month old.
-    ```
+### Devel
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 13.1Mb
-      sub-directories of 1Mb or more:
-        libs  10.9Mb
-    ```
+```
+* installing *source* package ‘clusterExperiment’ ...
+** libs
+g++ -std=gnu++11 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/clusterExperiment/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/clusterExperiment/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c search_pairs.cpp -o search_pairs.o
+g++ -std=gnu++11 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/clusterExperiment/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c subsampleLoop.cpp -o subsampleLoop.o
+g++ -std=gnu++11 -shared -L/usr/local/lib64 -o clusterExperiment.so RcppExports.o search_pairs.o subsampleLoop.o -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRlapack -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRblas -lgfortran -lm -lquadmath
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/clusterExperiment/new/clusterExperiment.Rcheck/clusterExperiment/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘clusterExperiment’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/clusterExperiment/new/clusterExperiment.Rcheck/clusterExperiment’
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘GenomicRanges’
-    A package should be listed in only one of these fields.
-    ```
+```
+### CRAN
 
-*   checking R code for possible problems ... NOTE
-    ```
-    consensusRegion: no visible global function definition for
-      ‘elementLengths’
-    Undefined global functions or variables:
-      elementLengths
-    ```
+```
+* installing *source* package ‘clusterExperiment’ ...
+** libs
+g++ -std=gnu++11 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/clusterExperiment/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/clusterExperiment/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c search_pairs.cpp -o search_pairs.o
+g++ -std=gnu++11 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/clusterExperiment/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c subsampleLoop.cpp -o subsampleLoop.o
+g++ -std=gnu++11 -shared -L/usr/local/lib64 -o clusterExperiment.so RcppExports.o search_pairs.o subsampleLoop.o -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRlapack -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRblas -lgfortran -lm -lquadmath
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/clusterExperiment/old/clusterExperiment.Rcheck/clusterExperiment/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘clusterExperiment’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/clusterExperiment/old/clusterExperiment.Rcheck/clusterExperiment’
 
-# cointmonitoR
+```
+# cna
 
-Version: 0.1.0
+Version: 2.1.1
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Philipp Aschersleben <aschersleben@statistik.tu-dortmund.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# cointReg
-
-Version: 0.2.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Philipp Aschersleben <aschersleben@statistik.tu-dortmund.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# CopywriteR
-
-Version: 2.8.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Thomas Kuilman <t.kuilman@nki.nl>’
-    
-    Uses the superseded package: ‘snow’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/CopywriteR.R
-        614:     ## <e2><80><98>Map<e2><80><99> applies a function to the corresponding elements of given vectors.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Copy number information from targeted sequencing using off-target reads’
-    ‘Copy Number Information from Targeted Sequencing using Off-Target Reads’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      definition for ‘text’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘axis’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘abline’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘dev.off’
-    preCopywriteR: no visible global function definition for ‘as’
-    Undefined global functions or variables:
-      abline as axis dev.off dpois ecdf getClass lines loess packageVersion
-      par pdf plot png points ppois predict read.table rgb segments text
-      write.table
-    Consider adding
-      importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
-      importFrom("graphics", "abline", "axis", "lines", "par", "plot",
-                 "points", "segments", "text")
-      importFrom("methods", "as", "getClass")
-      importFrom("stats", "dpois", "ecdf", "loess", "ppois", "predict")
-      importFrom("utils", "packageVersion", "read.table", "write.table")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
-    ```
 
 *   checking re-building of vignette outputs ... NOTE
     ```
-    ...
-      reciprocal condition number  0
-    Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
-      There are other near singularities as well. 1e-06
-    Warning in plot.xy(xy.coords(x, y), type = type, ...) :
-      "subset" is not a graphical parameter
+    Error in re-building vignettes:
+      ...
     Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'CopywriteR.tex' failed.
+      Running 'texi2dvi' on 'cna_vignette.tex' failed.
     LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
+    ! LaTeX Error: File `nicefrac.sty' not found.
     
     Type X to quit or <RETURN> to proceed,
     or enter new name. (Default extension: sty)
@@ -953,123 +645,227 @@ Version: 2.8.1
     ! Emergency stop.
     <read *> 
              
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+    l.12 \usepackage
+                    {float}^^M
     !  ==> Fatal error occurred, no output PDF file produced!
     Calls: buildVignettes -> texi2pdf -> texi2dvi
     Execution halted
     ```
 
-# crlmm
+# CNPBayes
 
-Version: 1.34.0
+Version: 1.10.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking whether package ‘CNPBayes’ can be installed ... ERROR
     ```
-    ...
-    The maintainer field is invalid or specifies more than one person
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘## Local Variables’ ‘## time-stamp-pattern’ ‘## End’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/crlmm-illumina.R
-        367: ##  loader(<e2><80><98>file.rda<e2><80><99>)
-        368: ##  x = getVarInEnv(<e2><80><98>x<e2><80><99>)
-        369: ##  y = getVarInEnv(<e2><80><98>y<e2><80><99>)
-        371: ##  I<e2><80><99>d consider using something like:
-        373: ##	  needToLoad = !all(sapply(c(<e2><80><98>x<e2><80><99>, <e2><80><98>y<e2><80><99>), isLoaded))
-        375: ##	  loader(<e2><80><98>file.rda<e2><80><99>)
-        376: ##	  x = getVarInEnv(<e2><80><98>x<e2><80><99>)
-        377: ##	  y = getVarInEnv(<e2><80><98>y<e2><80><99>)
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Genotype Calling (CRLMM) and Copy Number Analysis tool for Affymetrix SNP 5.0 and 6.0 and Illumina arrays’
-    ‘Genotype Calling (CRLMM) and Copy Number Analysis Tool for Affymetrix SNP 5.0 and 6.0 and Illumina Arrays’
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/CNPBayes/new/CNPBayes.Rcheck/00install.out’ for details.
     ```
 
-*   checking installed package size ... NOTE
+*   checking package dependencies ... NOTE
     ```
-      installed size is  5.2Mb
-      sub-directories of 1Mb or more:
-        data   2.7Mb
+    Package suggested but not available for checking: ‘BiocCheck’
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Versioned 'LinkingTo' value for ‘preprocessCore’ is only usable in R >= 3.0.2
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' call to ‘RUnit’ in package code.
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Namespaces in Imports field not imported from:
-      ‘SNPchip’ ‘splines’
-      All declared Imports should be used.
-    Unexported object imported by a ':::' call: ‘Biobase:::assayDataEnvLock’
-      See the note in ?`:::` about the use of this operator.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    .test: no visible global function definition for ‘defineTestSuite’
-    .test: no visible global function definition for ‘runTestSuite’
-    .test: no visible global function definition for ‘printTextProtocol’
-    calculateRBafCNSet : processByChromosome: no visible global function
-      definition for ‘position’
-    genotypeInf: no visible binding for global variable ‘anno’
-    krlmm: no visible binding for global variable ‘VGLMparameters’
-    Undefined global functions or variables:
-      VGLMparameters anno defineTestSuite position printTextProtocol
-      runTestSuite
-    ```
+```
+* installing *source* package ‘CNPBayes’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c miscfunctions.cpp -o miscfunctions.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch.cpp -o multibatch.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch_pooledvar.cpp -o multibatch_pooledvar.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch_pooledvar_reduced.cpp -o multibatch_pooledvar_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch_reduced.cpp -o multibatch_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch.cpp -o singlebatch.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch_pooledvar.cpp -o singlebatch_pooledvar.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch_pooledvar_reduced.cpp -o singlebatch_pooledvar_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch_reduced.cpp -o singlebatch_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c update.cpp -o update.o
+g++ -shared -L/usr/local/lib64 -o CNPBayes.so RcppExports.o miscfunctions.o multibatch.o multibatch_pooledvar.o multibatch_pooledvar_reduced.o multibatch_reduced.o singlebatch.o singlebatch_pooledvar.o singlebatch_pooledvar_reduced.o singlebatch_reduced.o update.o -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRlapack -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRblas -lgfortran -lm -lquadmath
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/CNPBayes/new/CNPBayes.Rcheck/CNPBayes/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘CNPBayes’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/CNPBayes/new/CNPBayes.Rcheck/CNPBayes’
 
-# crossmeta
+```
+### CRAN
+
+```
+* installing *source* package ‘CNPBayes’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c miscfunctions.cpp -o miscfunctions.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch.cpp -o multibatch.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch_pooledvar.cpp -o multibatch_pooledvar.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch_pooledvar_reduced.cpp -o multibatch_pooledvar_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c multibatch_reduced.cpp -o multibatch_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch.cpp -o singlebatch.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch_pooledvar.cpp -o singlebatch_pooledvar.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch_pooledvar_reduced.cpp -o singlebatch_pooledvar_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c singlebatch_reduced.cpp -o singlebatch_reduced.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/CNPBayes/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c update.cpp -o update.o
+g++ -shared -L/usr/local/lib64 -o CNPBayes.so RcppExports.o miscfunctions.o multibatch.o multibatch_pooledvar.o multibatch_pooledvar_reduced.o multibatch_reduced.o singlebatch.o singlebatch_pooledvar.o singlebatch_pooledvar_reduced.o singlebatch_reduced.o update.o -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRlapack -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRblas -lgfortran -lm -lquadmath
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/CNPBayes/old/CNPBayes.Rcheck/CNPBayes/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘CNPBayes’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/CNPBayes/old/CNPBayes.Rcheck/CNPBayes’
+
+```
+# consensusOV
 
 Version: 1.2.0
 
 ## In both
 
-*   checking for code/documentation mismatches ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Data with usage in documentation object 'gs.names' but not in code:
-      gs.names
+    Packages required but not available: ‘GSVA’ ‘genefu’
     
-    Data with usage in documentation object 'gslist' but not in code:
-      gslist
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+# CopywriteR
+
+Version: 2.12.0
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Alex Pickering <alexvpickering@gmail.com>’
+    Package required but not available: ‘chipseq’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking dependencies in R code ... NOTE
+# cosinor2
+
+Version: 0.1.0
+
+## In both
+
+*   checking examples ... ERROR
     ```
-    Missing or unexported objects:
-      ‘crossmeta::gs.names’ ‘crossmeta::gslist’
+    ...
+           25        26        27        28        29        30 
+    1.6250000 1.3815789 1.2894737 1.3333333 1.1710526 0.8088235 
+    
+    $cosinors[[17]]$fitted.values
+     [1] 0.9751600 1.3201375 1.6020512 1.6086144 1.3348849 0.9869865 0.8268939
+     [8] 0.9751600 1.3201375 1.6020512 1.6086144 1.3348849 0.9869865 0.8268939
+    
+    $cosinors[[17]]$residuals
+              17           18           19           20           21           22 
+     0.372062185 -0.099549245 -0.129828980  0.030274467  0.408536153  0.061624562 
+              23           24           25           26           27           28 
+    -0.368560591 -0.113317932  0.304862520 -0.220472255 -0.319140737 -0.001551566 
+              29           30 
+     0.184066083 -0.018070395 
+    
+    
+    
+    $plots
+    $plots[[1]]
+    Error: Column `y` must be a 1d atomic vector or a list
+    Execution halted
     ```
 
-*   checking R code for possible problems ... NOTE
+# crlmm
+
+Version: 1.38.0
+
+## In both
+
+*   checking whether package ‘crlmm’ can be installed ... ERROR
     ```
-    explore_paths : server: no visible binding for global variable ‘gslist’
-    explore_paths : server: no visible binding for global variable
-      ‘gs.names’
-    Undefined global functions or variables:
-      gs.names gslist
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/crlmm/new/crlmm.Rcheck/00install.out’ for details.
     ```
 
-*   checking Rd cross-references ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Packages unavailable to check Rd xrefs: ‘PADOG’, ‘GeneMeta’
+    Package suggested but not available for checking: ‘GGdata’
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘crlmm’ ...
+** libs
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c gtypeCaller.c -o gtypeCaller.o
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c trimmed.c -o trimmed.o
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c utils.c -o utils.o
+gcc -std=gnu99 -shared -L/usr/local/lib64 -o crlmm.so gtypeCaller.o init.o trimmed.o utils.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/crlmm/new/crlmm.Rcheck/crlmm/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘oligoClasses’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘oligoClasses’ could not be loaded
+ERROR: lazy loading failed for package ‘crlmm’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/crlmm/new/crlmm.Rcheck/crlmm’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘crlmm’ ...
+** libs
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c gtypeCaller.c -o gtypeCaller.o
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c trimmed.c -o trimmed.o
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/crlmm/preprocessCore/include" -I/usr/local/include   -fpic  -g -O2  -c utils.c -o utils.o
+gcc -std=gnu99 -shared -L/usr/local/lib64 -o crlmm.so gtypeCaller.o init.o trimmed.o utils.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/crlmm/old/crlmm.Rcheck/crlmm/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘oligoClasses’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘oligoClasses’ could not be loaded
+ERROR: lazy loading failed for package ‘crlmm’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/crlmm/old/crlmm.Rcheck/crlmm’
+
+```
+# crossmeta
+
+Version: 1.6.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘ccmap’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # DAMOCLES
@@ -1078,107 +874,52 @@ Version: 1.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Rampal S. Etienne <r.s.etienne@rug.nl>’
+    Package required but not available: ‘picante’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking R code for possible problems ... NOTE
+# DatabionicSwarm
+
+Version: 1.1.0
+
+## In both
+
+*   checking package dependencies ... NOTE
     ```
-    ...
-      ‘cophenetic’
-    DAMOCLES_bootstrap: no visible global function definition for ‘sd’
-    DAMOCLES_bootstrap: no visible global function definition for
-      ‘quantile’
-    DAMOCLES_sim: no visible global function definition for ‘na.omit’
-    DAMOCLES_sim: no visible global function definition for ‘runif’
-    DAMOCLES_sim: no visible global function definition for ‘lines’
-    DAMOCLES_sim: no visible global function definition for ‘rnorm’
-    DAMOCLES_sim: no visible global function definition for ‘dexp’
-    DAMOCLES_sim: no visible global function definition for ‘dist’
-    DAMOCLES_simplex: no visible global function definition for
-      ‘flush.console’
-    Undefined global functions or variables:
-      cophenetic dexp dist flush.console lines na.omit quantile rnorm runif
-      sd
-    Consider adding
-      importFrom("graphics", "lines")
-      importFrom("stats", "cophenetic", "dexp", "dist", "na.omit",
-                 "quantile", "rnorm", "runif", "sd")
-      importFrom("utils", "flush.console")
-    to your NAMESPACE file.
+    Package suggested but not available for checking: ‘ProjectionBasedClustering’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 10.5Mb
+      sub-directories of 1Mb or more:
+        doc    4.5Mb
+        libs   5.7Mb
     ```
 
 # DeepBlueR
 
-Version: 1.2.10
+Version: 1.6.0
 
 ## In both
 
-*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
+*   checking package dependencies ... ERROR
     ```
-    Installation failed.
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Felipe Albrecht <felipe.albrecht@mpi-inf.mpg.de>, Markus List <markus.list@mpi-inf.mpg.de>’
+    Packages required but not available: ‘XML’ ‘RCurl’
     
-    The maintainer field is invalid or specifies more than one person
+    Package suggested but not available for checking: ‘Gviz’
     
-    The Title field is just the package name: provide a real title.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘DeepBlueR’ ...
-** R
-** demo
-** inst
-** preparing package for lazy loading
-Called method: deepblue_list_column_types
-Reported status was: okay
-status 
- "417" 
-Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
-  Problems
-Error : unable to load R code in package ‘DeepBlueR’
-ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘DeepBlueR’ ...
-** R
-** demo
-** inst
-** preparing package for lazy loading
-Called method: deepblue_list_column_types
-Reported status was: okay
-status 
- "417" 
-Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
-  Problems
-Error : unable to load R code in package ‘DeepBlueR’
-ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
-
-```
 # DelayedArray
 
-Version: 0.2.7
+Version: 0.6.1
 
 ## In both
 
@@ -1188,54 +929,125 @@ Version: 0.2.7
     Running the tests in ‘tests/run_unitTests.R’ failed.
     Last 13 lines of output:
       
+      The following objects are masked from 'package:matrixStats':
+      
           colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
       
-      The following object is masked from 'package:base':
+      The following objects are masked from 'package:base':
       
-          apply
+          aperm, apply
       
       [1] TRUE
       > DelayedArray:::.test()
-      ------------------------------------------------------------------
-      Running tests with realization backend set to "RleArray" ...
       Error in library("RUnit", quietly = TRUE) : 
         there is no package called 'RUnit'
       Calls: <Anonymous> -> <Anonymous> -> library
       Execution halted
     ```
 
+*   checking package subdirectories ... WARNING
+    ```
+    Subdirectory 'inst/doc' contains invalid file names:
+      ‘02-Implementing_a_backend.Rmd’ ‘01-Working_with_large_arrays.Rnw’
+      ‘02-Implementing_a_backend.html’ ‘01-Working_with_large_arrays.pdf’
+    Please remove or rename the files.
+    See section ‘Package subdirectories’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
 *   checking for missing documentation entries ... WARNING
     ```
-    Undocumented S4 methods:
-      generic 'dlogis' and siglist 'DelayedArray'
-      generic 'plogis' and siglist 'DelayedArray'
-      generic 'qlogis' and siglist 'DelayedArray'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
+    Undocumented code objects:
+      ‘blockApply’ ‘currentBlockId’ ‘currentViewport’ ‘defaultGrid’
+      ‘effectiveGrid’
+    All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Maintainer: ‘Hervé Pagès <hpages@fredhutch.org>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Delayed operations on array-like objects’
-    ‘Delayed Operations on Array-Like Objects’
-    
-    This build time stamp is over a month old.
+    Error in re-building vignettes:
+      ...
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
+    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
+      unable to find LaTeX package 'framed'; will use a copy from knitr
+    Quitting from lines 35-45 (01-Working_with_large_arrays.Rnw) 
+    Error: processing vignette '01-Working_with_large_arrays.Rnw' failed with diagnostics:
+    package 'GenomeInfoDb' could not be loaded
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      ‘stats4’ ‘matrixStats’ ‘BiocGenerics’ ‘S4Vectors’ ‘IRanges’
+      ‘BiocParallel’
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
-      ‘BiocGenerics:::testPackage’ ‘IRanges:::combine_dimnames’
-      ‘IRanges:::combine_dimnames_along’ ‘IRanges:::combine_dims_along’
-      ‘IRanges:::get_dims_to_bind’ ‘IRanges:::simple_abind’
-      ‘S4Vectors:::anyMissingOrOutside’
+      ‘BiocGenerics:::replaceSlots’ ‘BiocGenerics:::testPackage’
+      ‘S4Vectors:::anyMissing’ ‘S4Vectors:::anyMissingOrOutside’
+      ‘S4Vectors:::diffWithInitialZero’
       ‘S4Vectors:::extract_positions_from_Rle’ ‘S4Vectors:::sapply_isNULL’
       See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    block_MAPPLY: no visible binding for global variable ‘x’
+    Undefined global functions or variables:
+      x
+    ```
+
+# DelayedMatrixStats
+
+Version: 1.2.0
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘covr’
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Missing objects imported by ':::' calls:
+      ‘DelayedArray:::.execute_delayed_ops’
+      ‘DelayedArray:::get_Nindex_names_along’
+    Unexported objects imported by ':::' calls:
+      ‘DelayedArray:::.as_array_or_matrix’ ‘DelayedArray:::.get_ans_type’
+      ‘DelayedArray:::.reduce_array_dimensions’
+      ‘DelayedArray:::RleArraySeed’ ‘DelayedArray:::colblock_APPLY’
+      ‘DelayedArray:::extract_block’ ‘DelayedArray:::get_Nindex_lengths’
+      ‘DelayedArray:::get_max_block_length’
+      ‘DelayedArray:::get_spacings_for_capped_length_blocks’
+      ‘DelayedArray:::get_verbose_block_processing’
+      ‘DelayedArray:::set_dim’ ‘DelayedArray:::set_dimnames’
+      ‘DelayedArray:::subset_by_Nindex’ ‘DelayedArray:::to_linear_index’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+# detrendr
+
+Version: 0.5.1
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Packages required but not available: ‘ijtiff’ ‘autothresholdr’
+    
+    Package suggested but not available for checking: ‘covr’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # DGCA
@@ -1244,30 +1056,26 @@ Version: 1.0.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Andrew McKenzie <amckenz@gmail.com>’
+    Package required but not available: ‘WGCNA’
     
-    This build time stamp is over a month old.
+    Packages suggested but not available for checking: ‘GOstats’ ‘MEGENA’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # diffloop
 
-Version: 1.4.0
+Version: 1.8.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘diffloop’ can be installed ... ERROR
     ```
-    Maintainer: ‘Caleb Lareau <caleblareau@g.harvard.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Identifying differential DNA loops from chromatin topology data’
-    ‘Identifying Differential DNA Loops from Chromatin Topology Data’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/diffloop/new/diffloop.Rcheck/00install.out’ for details.
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -1276,70 +1084,111 @@ Version: 1.4.0
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .travis.yml
     ```
 
-# DisHet
+## Installation
 
-Version: 0.1.0
+### Devel
+
+```
+* installing *source* package ‘diffloop’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘diffloop’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/diffloop/new/diffloop.Rcheck/diffloop’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘diffloop’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘diffloop’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/diffloop/old/diffloop.Rcheck/diffloop’
+
+```
+# dmrseq
+
+Version: 1.0.13
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Tao Wang <tao.wang@utsouthwestern.edu>’
+    Package required but not available: ‘annotatr’
     
-    The Date field is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# Doscheda
+
+Version: 1.2.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘drc’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # dplR
 
-Version: 1.6.6
+Version: 1.6.8
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Andy Bunn <andy.bunn@wwu.edu>’
+    Package required but not available: ‘XML’
     
-    The Date field is over a month old.
+    Package suggested but not available for checking: ‘gmp’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # DPWeibull
 
-Version: 1.1
+Version: 1.2
 
 ## In both
 
-*   checking installed package size ... NOTE
+*   checking package dependencies ... ERROR
     ```
-      installed size is  5.1Mb
-      sub-directories of 1Mb or more:
-        libs   5.0Mb
+    Package required but not available: ‘truncdist’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # dtree
 
-Version: 0.2.3
+Version: 0.4.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Ross Jacobucci <rcjacobuc@gmail.com>’
+    Packages required but not available: ‘party’ ‘evtree’ ‘partykit’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # EasyqpcR
 
-Version: 1.18.0
+Version: 1.21.0
 
 ## In both
 
@@ -1347,25 +1196,10 @@ Version: 1.18.0
     ```
     Package required but not available: ‘gWidgetsRGtk2’
     
+    Packages suggested but not available for checking: ‘qpcrNorm’ ‘qpcR’
+    
     See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
     manual.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Le Pape Sylvain <sylvain.le.pape@univ-poitiers.fr>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘EasyqpcR for low-throughput real-time quantitative PCR data analysis’
-    ‘EasyqpcR for Low-Throughput Real-Time Quantitative PCR Data Analysis’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking package namespace information ... NOTE
@@ -1375,27 +1209,15 @@ Version: 1.18.0
 
 # EMDomics
 
-Version: 2.6.0
+Version: 2.10.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Sadhika Malladi <contact@sadhikamalladi.com> and Daniel Schmolze <emd@schmolze.com>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Authors@R field gives more than one person with maintainer role:
       Sadhika Malladi <contact@sadhikamalladi.com> [aut, cre]
       Daniel Schmolze <emd@schmolze.com> [aut, cre]
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Sadhika Malladi <contact@sadhikamalladi.com> and Daniel Schmolze <emd@schmolze.com>’
-      Authors@R:  ‘’
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -1424,197 +1246,170 @@ Version: 2.6.0
     to your NAMESPACE file.
     ```
 
-*   checking files in ‘vignettes’ ... NOTE
-    ```
-    The following directory looks like a leftover from 'knitr':
-      ‘figure’
-    Please remove from your package.
-    ```
-
 # EnrichedHeatmap
 
-Version: 1.6.0
+Version: 1.10.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘EnrichedHeatmap’ can be installed ... ERROR
     ```
-    Maintainer: ‘Zuguang Gu <z.gu@dkfz.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 5274613 bytes
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/EnrichedHeatmap/new/EnrichedHeatmap.Rcheck/00install.out’ for details.
     ```
 
-*   checking installed package size ... NOTE
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘EnrichedHeatmap’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/EnrichedHeatmap/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/EnrichedHeatmap/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c dist_by_closeness.cpp -o dist_by_closeness.o
+g++ -shared -L/usr/local/lib64 -o EnrichedHeatmap.so RcppExports.o dist_by_closeness.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/EnrichedHeatmap/new/EnrichedHeatmap.Rcheck/EnrichedHeatmap/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘EnrichedHeatmap’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/EnrichedHeatmap/new/EnrichedHeatmap.Rcheck/EnrichedHeatmap’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘EnrichedHeatmap’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/EnrichedHeatmap/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/EnrichedHeatmap/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c dist_by_closeness.cpp -o dist_by_closeness.o
+g++ -shared -L/usr/local/lib64 -o EnrichedHeatmap.so RcppExports.o dist_by_closeness.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/EnrichedHeatmap/old/EnrichedHeatmap.Rcheck/EnrichedHeatmap/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘EnrichedHeatmap’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/EnrichedHeatmap/old/EnrichedHeatmap.Rcheck/EnrichedHeatmap’
+
+```
+# eseis
+
+Version: 0.4.0
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-      installed size is  5.3Mb
-      sub-directories of 1Mb or more:
-        doc       2.5Mb
-        extdata   2.5Mb
+    Packages required but not available: ‘rgdal’ ‘fftw’ ‘XML’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# estudy2
+
+Version: 0.8.5
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    ...
+    Error in re-building vignettes:
+      ...
+    'getSymbols' currently uses auto.assign=TRUE by default, but will
+    use auto.assign=FALSE in 0.5-0. You will still be able to use
+    'loadSymbols' to automatically load data. getOption("getSymbols.env")
+    and getOption("getSymbols.auto.assign") will still be checked for
+    alternate defaults.
+    
+    This message is shown once per session and may be disabled by setting 
+    options("getSymbols.warning4.0"=FALSE). See ?getSymbols for details.
+    
+    
+    WARNING: There have been significant changes to Yahoo Finance data.
+    Please see the Warning section of '?getSymbols.yahoo' for details.
+    
+    This message is shown once per session and may be disabled by setting
+    options("getSymbols.yahoo.warning"=FALSE).
+    Quitting from lines 56-64 (estudy2-intro.Rmd) 
+    Error: processing vignette 'estudy2-intro.Rmd' failed with diagnostics:
+    Could not resolve host: finance.yahoo.com; Name or service not known
+    Execution halted
     ```
 
 # EventPointer
 
-Version: 1.0.0
+Version: 1.4.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Juan Pablo Romero <jpromero@ceit.es>’
+    Package required but not available: ‘RBGL’
     
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Url’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘An effective identification of alternative splicing events using junction arrays and RNA-Seq data’
-    ‘An Effective Identification of Alternative Splicing Events using Junction Arrays and RNA-Seq Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package subdirectories ... NOTE
-    ```
-    Found the following CITATION file in a non-standard place:
-      inst/CITATION.orig
-    Most likely ‘inst/CITATION’ should be used instead.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported objects imported by ':::' calls:
-      ‘SGSeq:::edges’ ‘SGSeq:::exonGraph’ ‘SGSeq:::nodes’
-      See the note in ?`:::` about the use of this operator.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # FADA
 
-Version: 1.3.2
+Version: 1.3.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘David Causeur <david.causeur@agrocampus-ouest.fr>’
+    Package required but not available: ‘sda’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # FastHCS
 
-Version: 0.0.5
+Version: 0.0.6
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kaveh Vakili <vakili.kaveh.email@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.3Mb
+      installed size is 16.4Mb
       sub-directories of 1Mb or more:
         data   1.3Mb
-        libs  14.9Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    FHCSpsdo: no visible global function definition for ‘is’
-    FastHCS: no visible global function definition for ‘complete.cases’
-    compPcaParams: no visible global function definition for ‘quantile’
-    compPcaParams: no visible global function definition for ‘qchisq’
-    compPcaParams: no visible global function definition for ‘qnorm’
-    compPcaParams: no visible global function definition for ‘sd’
-    plot.FastHCS: no visible global function definition for ‘plot’
-    plot.FastHCS: no visible global function definition for ‘abline’
-    Undefined global functions or variables:
-      abline complete.cases is plot qchisq qnorm quantile sd
-    Consider adding
-      importFrom("graphics", "abline", "plot")
-      importFrom("methods", "is")
-      importFrom("stats", "complete.cases", "qchisq", "qnorm", "quantile",
-                 "sd")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+        libs  15.0Mb
     ```
 
 # FastPCS
 
-Version: 0.1.2
+Version: 0.1.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kaveh Vakili <vakili.kaveh.email@gmail.com>’
-    
-    The Title field starts with the package name.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.8Mb
+      installed size is  8.9Mb
       sub-directories of 1Mb or more:
-        libs   8.7Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    FastPCS: no visible global function definition for ‘complete.cases’
-    FastPCS: no visible global function definition for ‘cov’
-    FastPCS: no visible global function definition for ‘mahalanobis’
-    FastPCS: no visible global function definition for ‘qchisq’
-    FastPCS: no visible global function definition for ‘quantile’
-    plot.FastPCS: no visible global function definition for ‘plot’
-    plot.FastPCS: no visible global function definition for ‘abline’
-    plot.FastPCS: no visible global function definition for ‘qchisq’
-    Undefined global functions or variables:
-      abline complete.cases cov mahalanobis plot qchisq quantile
-    Consider adding
-      importFrom("graphics", "abline", "plot")
-      importFrom("stats", "complete.cases", "cov", "mahalanobis", "qchisq",
-                 "quantile")
-    to your NAMESPACE file.
+        libs   8.8Mb
     ```
 
 # FastRCS
 
-Version: 0.0.7
+Version: 0.0.8
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kaveh Vakili <vakili.kaveh.email@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.6Mb
+      installed size is 16.7Mb
       sub-directories of 1Mb or more:
-        libs  16.5Mb
+        libs  16.6Mb
     ```
 
 # FDb.FANTOM4.promoters.hg19
@@ -1623,202 +1418,113 @@ Version: 1.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking whether package ‘FDb.FANTOM4.promoters.hg19’ can be installed ... ERROR
     ```
-    Maintainer: ‘Tim Triche, Jr. <tim.triche@gmail.com>’
-    
-    The display-name part of the maintainer field should be enclosed in ""
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘organism’ ‘species’ ‘provider’ ‘resource_url’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Annotation package for FANTOM4 promoters identified from THP-1 cells’
-    ‘Annotation Package for FANTOM4 Promoters Identified from THP-1 Cells’
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/new/FDb.FANTOM4.promoters.hg19.Rcheck/00install.out’ for details.
     ```
 
-*   checking package subdirectories ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Found the following non-empty subdirectories of ‘inst’ also used by R:
-      inst/build
-    It is recommended not to interfere with package subdirectories used by
-    R.
+    Package suggested but not available for checking: ‘BSgenome.Hsapiens.UCSC.hg19’
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Description field: should contain one or more complete sentences.
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘GenomicFeatures’
-    A package should be listed in only one of these fields.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘BSgenome.Hsapiens.UCSC.hg19’ ‘matrixStats’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Package in Depends field not imported from: ‘Biostrings’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ':::' call which should be '::': ‘matrixStats:::rowProds’
-      See the note in ?`:::` about the use of this operator.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    oecg: no visible global function definition for ‘seqlengths’
-    oecg: no visible binding for global variable ‘Hsapiens’
-    oecg: no visible global function definition for ‘seqlevels’
-    oecg: no visible global function definition for ‘seqnames’
-    oecg: no visible global function definition for ‘resize’
-    oecg: no visible global function definition for ‘start’
-    oecg: no visible global function definition for ‘start<-’
-    oecg: no visible global function definition for ‘end’
-    oecg: no visible global function definition for ‘end<-’
-    oecg: no visible global function definition for ‘getSeq’
-    oecg: no visible global function definition for ‘width’
-    oecg: no visible global function definition for ‘letterFrequency’
-    oecg: no visible global function definition for ‘dinucleotideFrequency’
-    Undefined global functions or variables:
-      Hsapiens dinucleotideFrequency end end<- getSeq is letterFrequency
-      resize seqlengths seqlevels seqnames start start<- width
-    Consider adding
-      importFrom("methods", "is")
-      importFrom("stats", "end", "start")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
-    ```
+```
+* installing *source* package ‘FDb.FANTOM4.promoters.hg19’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘FDb.FANTOM4.promoters.hg19’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/new/FDb.FANTOM4.promoters.hg19.Rcheck/FDb.FANTOM4.promoters.hg19’
 
+```
+### CRAN
+
+```
+* installing *source* package ‘FDb.FANTOM4.promoters.hg19’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘FDb.FANTOM4.promoters.hg19’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/old/FDb.FANTOM4.promoters.hg19.Rcheck/FDb.FANTOM4.promoters.hg19’
+
+```
 # fergm
 
-Version: 0.2.0
+Version: 1.1.1
 
 ## In both
 
-*   checking dependencies in R code ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Namespace in Imports field not imported from: ‘scales’
-      All declared Imports should be used.
+    Packages required but not available: ‘statnet’ ‘ergm’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # filesstrings
 
-Version: 1.1.0
+Version: 2.5.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Rory Nolan <rorynoolan@gmail.com>’
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘covr’
     ```
 
 # flowCore
 
-Version: 1.42.2
+Version: 1.46.1
 
 ## In both
 
-*   checking for code/documentation mismatches ... WARNING
+*   checking Rd cross-references ... WARNING
     ```
-    ...
-      Code: function(files = NULL, path = ".", pattern = NULL, phenoData,
-                     descriptions, name.keyword, alter.names = FALSE,
-                     transformation = "linearize", which.lines = NULL,
-                     column.pattern = NULL, invert.pattern = FALSE, decades
-                     = 0, sep = "\t", as.is = TRUE, name, ncdf = FALSE,
-                     dataset = NULL, min.limit = NULL, truncate_max_range =
-                     TRUE, emptyValue = TRUE, ignore.text.offset = FALSE,
-                     ...)
-      Docs: function(files = NULL, path = ".", pattern = NULL, phenoData,
-                     descriptions, name.keyword, alter.names = FALSE,
-                     transformation = "linearize", which.lines = NULL,
-                     column.pattern = NULL, invert.pattern = FALSE, decades
-                     = 0, sep = "\t", as.is = TRUE, name, ncdf = FALSE,
-                     dataset = NULL, min.limit = NULL, emptyValue = TRUE,
-                     ignore.text.offset = FALSE, ...)
-      Argument names in code not in docs:
-        truncate_max_range
-      Mismatches in argument names:
-        Position: 19 Code: truncate_max_range Docs: emptyValue
-        Position: 20 Code: emptyValue Docs: ignore.text.offset
-        Position: 21 Code: ignore.text.offset Docs: ...
-    ```
-
-*   checking Rd \usage sections ... WARNING
-    ```
-    Documented arguments not in \usage in documentation object 'read.flowSet':
-      ‘truncate_max_range’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    Unknown packages ‘flowViz’, ‘flowStats’ in Rd xrefs
     ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error in re-building vignettes:
       ...
-    Warning: running command 'kpsewhich framed.sty' had status 1
+    Warning in system(sprintf("%s %s.sty", kpsewhich(), name), intern = TRUE) :
+      running command 'kpsewhich framed.sty' had status 1
     Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
       unable to find LaTeX package 'framed'; will use a copy from knitr
-    Quitting from lines 301-303 (HowTo-flowCore.Rnw) 
+    Quitting from lines 317-319 (HowTo-flowCore.Rnw) 
     Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
     there is no package called 'ggcyto'
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘M.Jiang <wjiang2@fhcrc.org>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘flowCore: Basic structures for flow cytometry data’
-    ‘flowCore: Basic Structures for Flow Cytometry Data’
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 12413092 bytes
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      ‘flowViz’ ‘flowWorkspace’ ‘ggcyto’
-    ```
-
-*   checking if this is a source package ... NOTE
-    ```
-    Found the following apparent object files/libraries:
-      src/boost_regex/c_regex_traits.o src/boost_regex/cpp_regex_traits.o
-      src/boost_regex/cregex.o src/boost_regex/fileiter.o
-      src/boost_regex/icu.o src/boost_regex/instances.o
-      src/boost_regex/posix_api.o src/boost_regex/regex.o
-      src/boost_regex/regex_debug.o src/boost_regex/regex_raw_buffer.o
-      src/boost_regex/regex_traits_defaults.o
-      src/boost_regex/static_mutex.o src/boost_regex/usinstances.o
-      src/boost_regex/w32_regex_traits.o src/boost_regex/wc_regex_traits.o
-      src/boost_regex/wide_posix_api.o src/boost_regex/winstances.o
-    Object files/libraries should not be included in a source package.
+      ‘Rgraphviz’ ‘flowViz’ ‘flowStats’ ‘flowWorkspace’ ‘openCyto’ ‘ggcyto’
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 34.8Mb
+      installed size is 12.3Mb
       sub-directories of 1Mb or more:
+        R         1.3Mb
         data      5.0Mb
         extdata   1.2Mb
-        lib      20.8Mb
-        libs      5.9Mb
+        libs      3.4Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -1826,18 +1532,11 @@ Version: 1.42.2
     Versioned 'LinkingTo' value for ‘BH’ is only usable in R >= 3.0.2
     ```
 
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' call to ‘Rgraphviz’ in package code.
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     ...
-    %in%,flowFrame-norm2Filter: no visible global function definition for
-      ‘cov.rob’
+    plot,workFlow-missing: no visible binding for global variable
+      ‘Rgraphviz’
     spillover,flowSet: no visible global function definition for
       ‘devAskNewPage’
     spillover,flowSet : <anonymous>: no visible global function definition
@@ -1851,7 +1550,7 @@ Version: 1.42.2
     split,flowFrame-factor: no visible binding for global variable ‘i’
     summary,workFlow: no visible binding for global variable ‘wf’
     Undefined global functions or variables:
-      abline cov.rob density devAskNewPage i rangeGate wf
+      Rgraphviz abline cov.rob density devAskNewPage i rangeGate wf
     Consider adding
       importFrom("grDevices", "devAskNewPage")
       importFrom("graphics", "abline")
@@ -1859,183 +1558,202 @@ Version: 1.42.2
     to your NAMESPACE file.
     ```
 
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘flowViz’
-    ```
+# flowWorkspace
 
-*   checking for GNU extensions in Makefiles ... NOTE
+Version: 3.28.1
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    GNU make is a SystemRequirements.
+    Packages required but not available:
+      ‘ncdfFlow’ ‘RBGL’ ‘XML’ ‘Rgraphviz’ ‘flowViz’
+    
+    Package suggested but not available for checking: ‘ggcyto’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # fslr
 
-Version: 2.12
+Version: 2.17.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
+    Package required but not available: ‘neurobase’
     
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘R.utils’ ‘grDevices’ ‘graphics’ ‘matrixStats’ ‘stats’
-      All declared Imports should be used.
+    Package suggested but not available for checking: ‘covr’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # funtooNorm
-
-Version: 1.0.0
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Normalization of signal : AIGrn
-    Normalization of signal : BIGrn
-    Normalization of signal : AIRed
-    Normalization of signal : BIRed
-    Normalization of signal : AII
-    Normalization of signal : BII
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.33 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'funtooNorm.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kathleen Klein <kathleen.klein@mail.mcgill.ca>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# GAD
-
-Version: 1.1.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Leonardo Sandrini-Neto <leonardosandrini@gmail.com>’
-    
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘GAD: Analysis of variance from general principles’
-    ‘GAD: Analysis of Variance from General Principles’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# gcapc
-
-Version: 1.0.9
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Mingxiang Teng <tengmx@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# genomation
-
-Version: 1.8.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Altuna Akalin <aakalin@gmail.com>, Vedran Franke <vedran.franke@gmail.com>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Summary, annotation and visualization of genomic data’
-    ‘Summary, Annotation and Visualization of Genomic Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6284148 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        doc       3.7Mb
-        extdata   1.2Mb
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘RUnit’
-      All declared Imports should be used.
-    Unexported object imported by a ':::' call: ‘BiocGenerics:::testPackage’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking files in ‘vignettes’ ... NOTE
-    ```
-    The following directory looks like a leftover from 'knitr':
-      ‘cache’
-    Please remove from your package.
-    ```
-
-# GenRank
 
 Version: 1.4.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘funtooNorm’ can be installed ... ERROR
     ```
-    Maintainer: ‘Chakravarthi Kanduri <chakra.kanduri@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Candidate gene prioritization based on convergent evidence’
-    ‘Candidate Gene Prioritization Based on Convergent Evidence’
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/funtooNorm/new/funtooNorm.Rcheck/00install.out’ for details.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘funtooNorm’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘funtooNorm’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/funtooNorm/new/funtooNorm.Rcheck/funtooNorm’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘funtooNorm’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘funtooNorm’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/funtooNorm/old/funtooNorm.Rcheck/funtooNorm’
+
+```
+# gcapc
+
+Version: 1.4.0
+
+## In both
+
+*   checking whether package ‘gcapc’ can be installed ... ERROR
     ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Chakravarthi Kanduri’
-      Authors@R: ‘Chakravarthi Kanduri [aut, cre]’
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/gcapc/new/gcapc.Rcheck/00install.out’ for details.
     ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘BSgenome.Hsapiens.UCSC.hg19’ ‘BSgenome.Mmusculus.UCSC.mm10’
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘gcapc’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘gcapc’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/gcapc/new/gcapc.Rcheck/gcapc’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘gcapc’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘gcapc’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/gcapc/old/gcapc.Rcheck/gcapc’
+
+```
+# GeneralizedUmatrix
+
+Version: 1.1.2
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘DatabionicSwarm’ ‘ProjectionBasedClustering’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.1Mb
+      sub-directories of 1Mb or more:
+        doc    4.7Mb
+        libs   2.2Mb
+    ```
+
+# genomation
+
+Version: 1.12.0
+
+## In both
+
+*   checking whether package ‘genomation’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘genomation’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/genomation/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/genomation/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c binSum.cpp -o binSum.o
+g++ -shared -L/usr/local/lib64 -o genomation.so RcppExports.o binSum.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/genomation/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘genomation’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/genomation’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘genomation’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/genomation/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/genomation/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c binSum.cpp -o binSum.o
+g++ -shared -L/usr/local/lib64 -o genomation.so RcppExports.o binSum.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/genomation/old/genomation.Rcheck/genomation/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘genomation’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/genomation/old/genomation.Rcheck/genomation’
+
+```
+# GenRank
+
+Version: 1.8.0
+
+## In both
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -2054,224 +1772,64 @@ Version: 1.4.0
 
 # GJRM
 
-Version: 0.1-1
+Version: 0.1-4
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Giampiero Marra <giampiero.marra@ucl.ac.uk>’
+    Packages required but not available: ‘VineCopula’ ‘Rmpfr’ ‘copula’
     
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
     Package which this enhances but not available for checking: ‘sp’
-    ```
-
-# GPrank
-
-Version: 0.1.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Hande Topa <hande.topa@helsinki.fi>’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # GUIDEseq
 
-Version: 1.6.1
+Version: 1.10.0
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking package dependencies ... ERROR
     ```
-    ...
-    finding local max for chromosome: chr13
-    combine plus and minus peaks ... 
+    Package required but not available: ‘ChIPpeakAnno’
     
-    keep peaks not in merged.gr but present in both peaks1 and peaks2
+    Package suggested but not available for checking: ‘BSgenome.Hsapiens.UCSC.hg19’
     
-    offtarget analysis ...
-    
-    search for gRNAs for input file1...
-    [1] "Scoring ..."
-    >>> Finding all hits in sequence chr13+:27629413:27629420:chr13-:27629400:27629404 ...
-    >>> DONE searching
-    >>> Finding all hits in sequence chr13+:39262927:39262939:chr13-:39262918:39262920 ...
-    >>> DONE searching
-    finish off-target search in sequence 2
-    finish off-target search in sequence 1
-    finish feature vector building
-    finish score calculation
-    [1] "Done!"
-    Error in if (!is.na(TS2)) { : the condition has length > 1
-    Calls: GUIDEseqAnalysis -> offTargetAnalysisOfPeakRegions
-    Execution halted
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Lihua Julie Zhu <julie.zhu@umassmed.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘GUIDE-seq analysis pipeline’
-    ‘GUIDE-Seq Analysis Pipeline’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
+# GUniFrac
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 11.2Mb
-      sub-directories of 1Mb or more:
-        extdata  10.6Mb
-    ```
+Version: 1.1
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    annotateOffTargets: no visible global function definition for 'toTable'
-    getPeaks: no visible binding for global variable 'adjusted.p.value'
-    getPeaks: no visible binding for global variable 'SNratio'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'qwidth.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'qwidth.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'readName'
-    offTargetAnalysisOfPeakRegions: no visible binding for global variable
-      'gRNAPlusPAM'
-    offTargetAnalysisOfPeakRegions: no visible binding for global variable
-      'offTarget'
-    Undefined global functions or variables:
-      SNratio adjusted.p.value exons gRNAPlusPAM genes offTarget
-      offTarget_Start qwidth.first qwidth.last readName seqlevelsStyle<-
-      strand.first strand.last toTable
-    ```
+## In both
 
-*   checking Rd files ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
-    prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
-    prepare_Rd: createBarcodeFasta.Rd:42-43: Dropping empty section \value
-    prepare_Rd: createBarcodeFasta.Rd:44-46: Dropping empty section \references
-    prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
-      No matching found, please check your input sequence, and make
-                sure you are using the right genome. You can also alter your 
-                search criteria such as increasing max.mismatch!
-    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
-      No matching found, please check your input sequence, and make
-                sure you are using the right genome. You can also alter your 
-                search criteria such as increasing max.mismatch!
-    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
-      No matching found, please check your input sequence, and make
-                sure you are using the right genome. You can also alter your 
-                search criteria such as increasing max.mismatch!
-    Warning in searchHits(gRNAs = gRNAs1, PAM = PAM, PAM.pattern = PAM.pattern,  :
-      No matching found, please check your input sequence, and make
-                sure you are using the right genome. You can also alter your 
-                search criteria such as increasing max.mismatch!
+    Package required but not available: ‘vegan’
     
-    Error: processing vignette 'GUIDEseq.Rnw' failed with diagnostics:
-     chunk 7 
-    Error in if (!is.na(TS2)) { : the condition has length > 1
-    Execution halted
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # Gviz
 
-Version: 1.20.0
+Version: 1.24.0
 
 ## In both
 
-*   checking for missing documentation entries ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Undocumented S4 methods:
-      generic '[' and siglist 'GenomeAxisTrack,ANY,ANY,ANY'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Florian Hahne <florian.hahne@novartis.com>’
+    Package required but not available: ‘biovizBase’
     
-    The Title field should be in title case, current version then in title case:
-    ‘Plotting data and annotation information along genomic coordinates’
-    ‘Plotting Data and Annotation Information along Genomic Coordinates’
+    Package suggested but not available for checking: ‘BSgenome.Hsapiens.UCSC.hg19’
     
-    This build time stamp is over a month old.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.0Mb
-      sub-directories of 1Mb or more:
-        doc       1.6Mb
-        extdata   2.2Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-      'cdsBy'
-    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-      'fiveUTRsByTranscript'
-    .buildRange,TxDb-ANY-ANY-ANY: no visible global function definition for
-      'threeUTRsByTranscript'
-    Undefined global functions or variables:
-      cdsBy fiveUTRsByTranscript threeUTRsByTranscript
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-        pmin, pmin.int, rank, rbind, rowMeans, rowSums,
-        rownames, sapply, setdiff, sort, table, tapply,
-        union, unique, unsplit, which, which.max, which.min
-    
-    
-    Attaching package: ‘S4Vectors’
-    
-    The following object is masked from ‘package:base’:
-    
-        expand.grid
-    
-    Loading required package: IRanges
-    Loading required package: GenomicRanges
-    Loading required package: GenomeInfoDb
-    Loading required package: grid
-    
-    Error: processing vignette 'Gviz.Rnw' failed with diagnostics:
-     chunk 9 (label = doIdeogramTrack) 
-    Error : Expectation Failed
-    
-    Execution halted
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # haploReconstruct
@@ -2280,33 +1838,52 @@ Version: 0.1.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Susanne U. Franssen <susefranssen@googlemail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.8Mb
+      installed size is  9.9Mb
       sub-directories of 1Mb or more:
         data   9.5Mb
     ```
 
+# hipathia
+
+Version: 1.0.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘coin’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
 # IMIFA
+
+Version: 2.0.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘Rfast’
+    
+    Packages suggested but not available for checking: ‘gmp’ ‘mcclust’ ‘Rmpfr’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# InfiniumPurify
 
 Version: 1.3.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking Rd cross-references ... WARNING
     ```
-    Maintainer: ‘Keefe Murphy <keefe.murphy@ucd.ie>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Unknown package ‘minfi’ in Rd xrefs
     ```
 
 # kernDeepStackNet
@@ -2315,123 +1892,166 @@ Version: 2.0.2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Thomas Welchowski <welchow@imbie.meb.uni-bonn.de>’
+    Package required but not available: ‘DiceOptim’
     
-    The Date field is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# kissDE
+
+Version: 1.0.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘DSS’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# LFDREmpiricalBayes
+
+Version: 1.0
+
+## In both
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error in re-building vignettes:
+      ...
+    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
+      Running 'texi2dvi' on 'LFDREmpiricalBayes.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `changepage.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ! Emergency stop.
+    <read *> 
+             
+    l.10 \usepackage
+                    {url}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Execution halted
+    ```
+
+# liger
+
+Version: 0.1
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    ! Emergency stop.
+    <read *> 
+    
+    Error: processing vignette 'gsea.Rmd' failed with diagnostics:
+    Failed to compile gsea.tex. See gsea.log for more info.
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
     ```
       installed size is  5.8Mb
       sub-directories of 1Mb or more:
-        libs   5.5Mb
-    ```
-
-# kgschart
-
-Version: 1.3.5
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kota Mori <kmori05@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# localgauss
-
-Version: 0.40
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Tore Selland Kleppe <tore.kleppe@uis.no>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+        data   3.3Mb
+        doc    1.2Mb
+        libs   1.1Mb
     ```
 
 # loo
 
-Version: 1.1.0
+Version: 2.0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking tests ...
     ```
-    Maintainer: ‘Jonah Gabry <jsg2201@columbia.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      > Sys.setenv("R_TESTS" = "")
+      > test_check("loo")
+      ── 1. Error: (unknown) (@test_psis.R#2)  ───────────────────────────────────────
+      there is no package called 'rstanarm'
+      1: suppressPackageStartupMessages(library(rstanarm)) at testthat/test_psis.R:2
+      2: withCallingHandlers(expr, packageStartupMessage = function(c) invokeRestart("muffleMessage"))
+      3: library(rstanarm)
+      4: stop(txt, domain = NA)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 341 SKIPPED: 0 FAILED: 1
+      1. Error: (unknown) (@test_psis.R#2) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rstanarm’
     ```
 
 # LS2Wstat
 
-Version: 2.0-3
+Version: 2.1-1
 
 ## In both
 
-*   checking whether package ‘LS2Wstat’ can be installed ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Found the following significant warnings:
-      Warning: no DISPLAY variable so Tk is not available
-    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/LS2Wstat/new/LS2Wstat.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Matt Nunes <m.nunes@lancaster.ac.uk>’
+    Packages required but not available: ‘LS2W’ ‘geoR’ ‘RandomFields’
     
-    The Title field should be in title case, current version then in title case:
-    ‘A Multiscale Test of Spatial Stationarity for LS2W processes’
-    ‘A Multiscale Test of Spatial Stationarity for LS2W Processes’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Description field: should contain one or more complete sentences.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    TOS2D: no visible global function definition for ‘medpolish’
-    countTextures: no visible global function definition for ‘medpolish’
-    plot.imageQT: no visible global function definition for ‘segments’
-    simTexture: no visible global function definition for ‘rnorm’
-    Undefined global functions or variables:
-      medpolish rnorm segments
-    Consider adding
-      importFrom("graphics", "segments")
-      importFrom("stats", "medpolish", "rnorm")
-    to your NAMESPACE file.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # LSAmitR
 
-Version: 1.0-0
+Version: 1.0-2
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking examples ... ERROR
     ```
-    Maintainer: ‘Thomas Kiefer <t.kiefer@bifie.at>’
+    Running examples in ‘LSAmitR-Ex.R’ failed
+    The error most likely occurred in:
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    > ### Encoding: UTF-8
+    > 
+    > ### Name: Kapitel  1
+    > ### Title: Kapitel 1: Testkonstruktion
+    > ### Aliases: 'Kapitel 1'
+    > 
+    > ### ** Examples
+    > 
+    > library(TAM)
+    Error in library(TAM) : there is no package called ‘TAM’
+    Execution halted
+    ```
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Unknown package ‘TAM’ in Rd xrefs
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘BIFIEsurvey’ ‘TAM’ ‘miceadds’ ‘sirt’ ‘irr’ ‘difR’ ‘kerdiest’ ‘mirt’
+      ‘car’
     ```
 
 *   checking data for non-ASCII characters ... NOTE
@@ -2441,118 +2061,46 @@ Version: 1.0-0
 
 # Luminescence
 
-Version: 0.7.5
+Version: 0.8.5
 
 ## In both
 
-*   checking tests ...
+*   checking package dependencies ... ERROR
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      Content type 'application/octet-stream' length 3014 bytes
-      ==================================================
-      downloaded 3014 bytes
-      
-      
-      [read_BIN2R()]
-      	 >> /scratch/hb/RtmpTLCpfw/read_BIN2R_FILE74287575fa11
-      	 >> 2 records have been read successfully!
-      
-      testthat results ================================================================
-      OK: 488 SKIPPED: 0 FAILED: 1
-      1. Error: Full check of analyse_baSAR function (@test_analyse_baSAR.R#19) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sebastian Kreutzer <sebastian.kreutzer@u-bordeaux-montaigne.fr>’
+    Package required but not available: ‘XML’
     
-    The Date field is over a month old.
+    Packages suggested but not available for checking:
+      ‘RLumShiny’ ‘RLumModel’ ‘rjags’
     
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘rjags’
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘rjags’
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # metagene
 
-Version: 2.8.0
+Version: 2.12.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Charles Joly Beauparlant <charles.joly-beauparlant@crchul.ulaval.ca>’
+    Packages required but not available:
+      ‘DBChIP’ ‘ensembldb’ ‘EnsDb.Hsapiens.v86’
     
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Author@R’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A package to produce metagene plots’
-    ‘A Package to Produce Metagene Plots’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    get_demo_design: no visible global function definition for ‘read.table’
-    get_promoters_txdb: no visible global function definition for ‘is’
-    plot_metagene: no visible binding for global variable ‘position’
-    plot_metagene: no visible binding for global variable ‘value’
-    plot_metagene: no visible binding for global variable ‘qinf’
-    plot_metagene: no visible binding for global variable ‘qsup’
-    plot_metagene: no visible binding for global variable ‘group’
-    Undefined global functions or variables:
-      group is position qinf qsup read.table value
-    Consider adding
-      importFrom("methods", "is")
-      importFrom("utils", "read.table")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # metagenomeSeq
 
-Version: 1.18.0
+Version: 1.22.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Joseph N. Paulson <jpaulson@jimmy.harvard.edu>’
-    
-    Reading CITATION file fails with
-      package ‘metagenomeSeq’ not found
-    when package is not installed.
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Statistical analysis for sparse high-throughput sequencing’
-    ‘Statistical Analysis for Sparse High-Throughput Sequencing’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Packages suggested but not available for checking:
+      ‘vegan’ ‘interactiveDisplay’
     ```
 
 # MetaQC
@@ -2561,20 +2109,9 @@ Version: 0.1.13
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Don Kang <donkang75@gmail.com>’
-    
-    Uses the superseded package: ‘doSNOW’
-    
-    The Title field starts with the package name.
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘FactoMineR’
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -2616,247 +2153,92 @@ Version: 0.1.13
 
 # metavizr
 
-Version: 1.0.2
+Version: 1.4.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Hector Corrada Bravo <hcorrada@gmail.com>’
+    Packages required but not available:
+      ‘metagenomeSeq’ ‘epivizr’ ‘epivizrData’ ‘epivizrStandalone’ ‘vegan’
+      ‘phyloseq’
     
-    The Title field should be in title case, current version then in title case:
-    ‘R Interface to the metaviz web app for interactive metagenomics data analysis and visualization’
-    ‘R Interface to the Metaviz Web App for Interactive Metagenomics Data Analysis and Visualization’
+    Packages suggested but not available for checking:
+      ‘msd16s’ ‘etec16s’ ‘curatedMetagenomicData’
     
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # MethylAid
 
-Version: 1.10.0
+Version: 1.14.0
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking whether package ‘MethylAid’ can be installed ... ERROR
     ```
-    ...
-    Loading required package: locfit
-    locfit 1.5-9.1 	 2013-03-22
-    Loading required package: IlluminaHumanMethylation450kmanifest
-    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
-    [read.metharray.sheet] Found the following CSV files:
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'MethylAid.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘M. van Iterson <mviterson@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Visual and interactive quality control of large Illumina DNA Methylation array data sets’
-    ‘Visual and Interactive Quality Control of Large Illumina DNA Methylation Array Data Sets’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Authors@R field gives no person with name and author role
-    Author field differs from that derived from Authors@R
-      Author:    ‘Maarten van Iterson [aut, cre], Elmar Tobi[ctb], Roderick Slieker[ctb], Wouter den Hollander[ctb], Rene Luijk[ctb] and Bas Heijmans[ctb]’
-      Authors@R: ‘Maarten van Iterson [cre], Elmar Tobi [ctb], Roderick Slieker [ctb], Wouter den Hollander [ctb], Rene Luijk [ctb], Bas Heijmans [ctb]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘M. van Iterson <mviterson@gmail.com>’
-      Authors@R:  ‘Maarten van Iterson <mviterson@gmail.com>’
-    ```
-
-# methylumi
-
-Version: 2.22.0
-
-## In both
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented code objects:
-      ‘IDATsToMatrices’ ‘IDATtoMatrix’ ‘tcgaPipeline’
-    Undocumented S4 methods:
-      generic '[' and siglist 'MethyLumiM,ANY,ANY,ANY'
-      generic '[' and siglist 'MethyLumiSet,ANY,ANY,ANY'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking contents of ‘data’ directory ... WARNING
-    ```
-    Files not of a type allowed in a ‘data’ directory:
-      ‘5318317007_A_Grn.idat’ ‘5318317007_A_Red.idat’
-      ‘5318317007_B_Grn.idat’ ‘5318317007_B_Red.idat’
-      ‘5318317007_C_Grn.idat’ ‘5318317007_C_Red.idat’
-    Please use e.g. ‘inst/extdata’ for non-R data files
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error in re-building vignettes:
-      ...
-    Warning: running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'methylumi.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `fullpage.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.58 \usepackage
-                    {hyperref}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sean Davis <sdavis2@mail.nih.gov>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Handle Illumina methylation data’
-    ‘Handle Illumina Methylation Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6179445 bytes
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/MethylAid/new/MethylAid.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
     ```
+    Packages suggested but not available for checking:
+      ‘MethylAidData’ ‘minfiDataEPIC’
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘MethylAid’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘MethylAid’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/MethylAid/new/MethylAid.Rcheck/MethylAid’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘MethylAid’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘MethylAid’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/MethylAid/old/MethylAid.Rcheck/MethylAid’
+
+```
+# methylumi
+
+Version: 2.26.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘FDb.InfiniumMethylation.hg19’
+    
+    Packages suggested but not available for checking:
+      ‘lumi’ ‘methyAnalysis’ ‘FDb.InfiniumMethylation.hg18’ ‘Homo.sapiens’
+    
     Depends: includes the non-default packages:
       ‘Biobase’ ‘scales’ ‘reshape2’ ‘ggplot2’ ‘matrixStats’
       ‘FDb.InfiniumMethylation.hg19’ ‘minfi’
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
-    ```
-
-*   checking for hidden files and directories ... NOTE
-    ```
-    Found the following hidden files and directories:
-      .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
     
-    CRAN-pack does not know about
-      .travis.yml
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  9.8Mb
-      sub-directories of 1Mb or more:
-        data      6.8Mb
-        extdata   1.7Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Packages listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’ ‘minfi’ ‘lattice’ ‘matrixStats’
-    A package should be listed in only one of these fields.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls to packages already attached by Depends:
-      ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘minfi’
-      ‘reshape2’ ‘scales’
-      Please remove these calls from your code.
-    'library' or 'require' calls in package code:
-      ‘Biostrings’ ‘MASS’ ‘lumi’ ‘parallel’ ‘rtracklayer’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Namespace in Imports field not imported from: ‘graphics’
-      All declared Imports should be used.
-    Packages in Depends field not imported from:
-      ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘methods’
-      ‘reshape2’ ‘scales’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
-      See the note in ?`:::` about the use of this operator.
-    Unexported objects imported by ':::' calls:
-      ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
-      abline addColorChannelInfo aes allele as.dist axis box capture.output
-      channel.probes colMedians colQuantiles colSds colorRampPalette
-      coord_flip data dnorm dropouts drops ecdf facet_grid features
-      gamma.integral gamma.mle gamma.mode geom_histogram ggplot hclust
-      hm27.controls hm27.ordering hm450.controls hm450.ordering huber index
-      intensity lines log_trans mclapply melt mu offset opts p.adjust
-      packageDescription packageVersion par plot.density pnorm points
-      position_identity read.csv read.delim read.table rect rowMins
-      scale_colour_manual scale_fill_manual scale_shape_manual
-      scale_x_continuous scale_y_continuous scale_y_discrete
-      subsetCommonProbes text theme_bw title value variable weighted.mean
-    Consider adding
-      importFrom("grDevices", "colorRampPalette")
-      importFrom("graphics", "abline", "axis", "box", "lines", "par",
-                 "points", "rect", "text", "title")
-      importFrom("stats", "as.dist", "dnorm", "ecdf", "hclust", "offset",
-                 "p.adjust", "pnorm", "weighted.mean")
-      importFrom("utils", "capture.output", "data", "packageDescription",
-                 "packageVersion", "read.csv", "read.delim", "read.table")
-    to your NAMESPACE file.
-    ```
-
-*   checking Rd files ... NOTE
-    ```
-    prepare_Rd: estimateM.Rd:34-36: Dropping empty section \seealso
-    prepare_Rd: estimateM.Rd:37-39: Dropping empty section \examples
-    ```
-
-*   checking for unstated dependencies in vignettes ... NOTE
-    ```
-    'library' or 'require' call not declared from: ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # MFHD
@@ -2865,241 +2247,31 @@ Version: 0.0.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘K. Vakili <kaveh.vakili@wis.kuleuven.be>’
+    Package required but not available: ‘depth’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      ‘plot’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘points’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘lines’
-    plot.bagplot: no visible global function definition for ‘boxplot’
-    plot.bagplot: no visible global function definition for ‘plot’
-    plot.bagplot: no visible global function definition for ‘points’
-    plot.bagplot: no visible global function definition for ‘segments’
-    plot.bagplot: no visible global function definition for ‘text’
-    plot.bagplot: no visible global function definition for ‘lines’
-    plot.bagplot: no visible global function definition for ‘polygon’
-    Undefined global functions or variables:
-      boxplot chull complete.cases identify lines plot points polygon
-      prcomp quantile sd segments text xy.coords
-    Consider adding
-      importFrom("grDevices", "chull", "xy.coords")
-      importFrom("graphics", "boxplot", "identify", "lines", "plot",
-                 "points", "polygon", "segments", "text")
-      importFrom("stats", "complete.cases", "prcomp", "quantile", "sd")
-    to your NAMESPACE file.
-    ```
+# MHTcop
 
-# MIGSA
-
-Version: 1.0.1
+Version: 0.1.0
 
 ## In both
 
-*   checking tests ...
+*   checking package dependencies ... ERROR
     ```
-     ERROR
-    Running the tests in ‘tests/runTests.R’ failed.
-    Last 13 lines of output:
-      
-          Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-          as.data.frame, cbind, colMeans, colSums, colnames, do.call,
-          duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-          lapply, lengths, mapply, match, mget, order, paste, pmax, pmax.int,
-          pmin, pmin.int, rank, rbind, rowMeans, rowSums, rownames, sapply,
-          setdiff, sort, table, tapply, union, unique, unsplit, which,
-          which.max, which.min
-      
-      
-      
-      Error in library("RUnit", quietly = TRUE) : 
-        there is no package called 'RUnit'
-      Calls: <Anonymous> -> library
-      Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Juan C. Rodriguez <jcrodriguez@bdmg.com.ar>’
+    Packages required but not available: ‘copula’ ‘MCMCpack’
     
-    No package encoding and non-ASCII characters in the following R files:
-      R/Genesets-loadGo.R
-        51:         # annotated at that GO term OR TO ONE OF IT<e2><80><99>S CHILD NODES
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    The following object is masked from ‘package:mGSZ’:
-    
-        geneSetsList
-    
-    Loading required package: GO.db
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'MIGSA.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `multirow.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.7 \DeclareMathOperator
-                            *{\argmax}{arg\,max}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
+# microsamplingDesign
 
-# minfi
-
-Version: 1.22.1
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Loading required package: locfit
-    locfit 1.5-9.1 	 2013-03-22
-    Setting options('download.file.method.GEOquery'='auto')
-    Setting options('GEOquery.inmemory.gpl'=FALSE)
-    Loading required package: IlluminaHumanMethylation450kmanifest
-    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.33 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'minfi.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Kasper Daniel Hansen <kasperdanielhansen@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Analyze Illumina Infinium DNA methylation arrays’
-    ‘Analyze Illumina Infinium DNA Methylation Arrays’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      ‘minfiDataEPIC’ ‘FlowSorted.Blood.450k’
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported object imported by a ':::' call: ‘bumphunter:::.getEstimate’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-# MinimumDistance
-
-Version: 1.20.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Robert B Scharpf <rscharpf@jhu.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package which this enhances but not available for checking: ‘doSNOW’
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    callDenovoSegments: no visible global function definition for
-      ‘read.bsfiles’
-    pruneTrioSet: no visible global function definition for
-      ‘RangedDataList’
-    read.bsfiles2: no visible binding for global variable ‘read.bsfiles’
-    GenomeAnnotatedDataFrameFrom,character: no visible global function
-      definition for ‘read.bsfiles’
-    calculateMindist,list: no visible binding for global variable ‘elt’
-    Undefined global functions or variables:
-      RangedDataList elt read.bsfiles
-    ```
-
-# mmtfa
-
-Version: 0.1
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jeffrey L. Andrews <jeffrey.andrews@macewan.ca>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    plot.mmtfa: no visible global function definition for ‘plot’
-    plot.mmtfa: no visible global function definition for ‘title’
-    plot.mmtfa: no visible global function definition for ‘contour’
-    plot.mmtfa: no visible global function definition for ‘rgb’
-    plot.mmtfa : dunivt: no visible global function definition for
-      ‘mahalanobis’
-    plot.mmtfa : dunivt: no visible global function definition for ‘dnorm’
-    plot.mmtfa: no visible global function definition for ‘density’
-    plot.mmtfa: no visible global function definition for ‘curve’
-    sginit: no visible global function definition for ‘cov.wt’
-    sgupdate: no visible global function definition for ‘cov.wt’
-    winit: no visible global function definition for ‘mahalanobis’
-    Undefined global functions or variables:
-      contour cov.wt curve density dnorm kmeans mahalanobis par plot
-      rainbow rgb runif title uniroot
-    Consider adding
-      importFrom("grDevices", "rainbow", "rgb")
-      importFrom("graphics", "contour", "curve", "par", "plot", "title")
-      importFrom("stats", "cov.wt", "density", "dnorm", "kmeans",
-                 "mahalanobis", "runif", "uniroot")
-    to your NAMESPACE file.
-    ```
-
-# monocle
-
-Version: 2.4.0
+Version: 1.0.2
 
 ## In both
 
@@ -3107,184 +2279,98 @@ Version: 2.4.0
     ```
     Error in re-building vignettes:
       ...
-    Quitting from lines 178-198 (monocle-vignette.Rnw) 
-    Error: processing vignette 'monocle-vignette.Rnw' failed with diagnostics:
-    the condition has length > 1
+    Loading required package: Rcpp
+    ! LaTeX Error: File `framed.sty' not found.
+    
+    ! Emergency stop.
+    <read *> 
+    
+    Error: processing vignette 'microsamplingDesign.Rmd' failed with diagnostics:
+    Failed to compile microsamplingDesign.tex. See microsamplingDesign.log for more info.
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+# MIGSA
+
+Version: 1.4.0
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Cole Trapnell <coletrap@uw.edu>’
+    Packages required but not available:
+      ‘GOstats’ ‘GSEABase’ ‘RBGL’ ‘Rgraphviz’ ‘vegan’
     
-    No package encoding and non-ASCII characters in the following R files:
-      R/order_cells.R
-        1390:       # Here<e2><9c><ac>s how to take the top PCA loading genes, but using
+    Packages suggested but not available for checking: ‘mGSZ’ ‘pbcmc’
     
-    The Title field should be in title case, current version then in title case:
-    ‘Clustering, differential expression, and trajectory analysis for single- cell RNA-Seq’
-    ‘Clustering, Differential Expression, and Trajectory Analysis for Single- Cell RNA-Seq’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking R code for possible problems ... NOTE
+# MinimumDistance
+
+Version: 1.24.1
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    assign_cell_lineage: no visible global function definition for ‘nei’
-    buildBranchCellDataSet: no visible global function definition for ‘nei’
-    clusterCells: no visible binding for global variable ‘rho’
-    clusterCells: no visible binding for global variable ‘delta’
-    count_leaf_descendents: no visible global function definition for ‘nei’
-    cth_classifier_cds: no visible global function definition for ‘nei’
-    cth_classifier_cell: no visible global function definition for ‘nei’
-    diff_test_helper: no visible binding for global variable ‘Size_Factor’
-    extract_good_ordering: no visible global function definition for ‘nei’
-    fit_model_helper: no visible binding for global variable ‘Size_Factor’
-    get_next_node_id: no visible binding for '<<-' assignment to
-      ‘next_node’
-    get_next_node_id: no visible binding for global variable ‘next_node’
-    make_canonical: no visible global function definition for ‘nei’
-    measure_diameter_path: no visible global function definition for ‘nei’
-    orderCells: no visible binding for '<<-' assignment to ‘next_node’
-    project2MST: no visible global function definition for ‘nei’
-    Undefined global functions or variables:
-      Size_Factor delta nei next_node rho
+    Package required but not available: ‘VanillaICE’
+    
+    Packages suggested but not available for checking:
+      ‘BSgenome.Hsapiens.UCSC.hg18’ ‘BSgenome.Hsapiens.UCSC.hg19’
+    
+    Package which this enhances but not available for checking: ‘doSNOW’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# mixOmics
+
+Version: 6.3.2
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.9Mb
+      sub-directories of 1Mb or more:
+        R      1.2Mb
+        data   4.1Mb
     ```
 
 # motifbreakR
 
-Version: 1.6.0
+Version: 1.10.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Simon Gert Coetzee <Simon.Coetzee@cshs.org>’
+    Packages required but not available:
+      ‘VariantAnnotation’ ‘motifStack’ ‘Gviz’
     
-    The Title field should be in title case, current version then in title case:
-    ‘A Package For Predicting The Disruptiveness Of Single Nucleotide Polymorphisms On Transcription Factor Binding Sites’
-    ‘A Package for Predicting the Disruptiveness of Single Nucleotide Polymorphisms on Transcription Factor Binding Sites’
+    Packages suggested but not available for checking:
+      ‘BSgenome.Hsapiens.UCSC.hg19’ ‘SNPlocs.Hsapiens.dbSNP.20120608’
+      ‘SNPlocs.Hsapiens.dbSNP142.GRCh37’ ‘BSgenome.Drerio.UCSC.danRer7’
     
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Simon Gert Coetzee [aut, cre] Dennis J. Hazelett [aut]’
-      Authors@R: ‘Simon Gert Coetzee [aut, cre], Dennis J. Hazelett [aut]’
-    
-    Maintainer field differs from that derived from Authors@R
-      Maintainer: ‘Simon Gert Coetzee <Simon.Coetzee@cshs.org>’
-      Authors@R:  ‘Simon Gert Coetzee <simon.coetzee@cshs.org>’
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Packages in Depends field not imported from:
-      'MotifDb' 'grid'
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    plotMotifLogoStack.2: no visible global function definition for 'par'
-    snps.from.file: no visible global function definition for
-      'elementLengths'
-    snps.from.file: no visible global function definition for 'info'
-    snps.from.file: no visible global function definition for 'rowRanges'
-    snps.from.rsid: no visible global function definition for 'snpsById'
-    Undefined global functions or variables:
-      elementLengths info par rowRanges snpsById
-    Consider adding
-      importFrom("graphics", "par")
-    to your NAMESPACE file.
-    ```
-
-# MPAgenomics
-
-Version: 1.1.2
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Samuel Blanck <samuel.blanck@inria.fr>’
-    
-    No package encoding and non-ASCII characters in the following R files:
-      R/bivariateSignal.R
-        64: # etrange=c(2,36)#66 semble greff<c3><a9> #7 CN <c3><a9>trange
-      R/cghcall_private.R
-        140:     #TODO v<c3><a9>rifier pertinence correction bug avec segment extreme d'un seul point
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘R.devices’ ‘R.filesets’ ‘R.methodsS3’ ‘R.oo’ ‘aroma.affymetrix’
-      ‘aroma.cn’ ‘aroma.core’ ‘aroma.light’ ‘matrixStats’ ‘snowfall’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Unexported object imported by a ':::' call: ‘cghseg:::segmeanCO’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    markerSelection: no visible global function definition for ‘read.csv’
-    postsegnormalize: no visible global function definition for ‘median’
-    segFracBSignal: no visible global function definition for ‘read.csv’
-    segFracBSignal : <anonymous>: no visible global function definition for
-      ‘points’
-    segFracBSignal : <anonymous>: no visible global function definition for
-      ‘lines’
-    segFracBSignal : <anonymous>: no visible global function definition for
-      ‘write.table’
-    tumorboostPlot: no visible global function definition for ‘head’
-    tumorboostPlot: no visible global function definition for ‘par’
-    tumorboostPlot: no visible global function definition for ‘axis’
-    tumorboostPlot: no visible global function definition for ‘points’
-    Undefined global functions or variables:
-      axis head lines lm mad median optim par points read.csv sd var
-      write.table
-    Consider adding
-      importFrom("graphics", "axis", "lines", "par", "points")
-      importFrom("stats", "lm", "mad", "median", "optim", "sd", "var")
-      importFrom("utils", "head", "read.csv", "write.table")
-    to your NAMESPACE file.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # mrfDepth
 
-Version: 1.0.4
+Version: 1.0.8
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Pieter Segaert <Pieter.Segaert@kuleuven.be>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 15.4Mb
+      installed size is 17.1Mb
       sub-directories of 1Mb or more:
-        libs  14.5Mb
+        data   1.6Mb
+        libs  15.0Mb
     ```
 
 # MultiBD
@@ -3299,77 +2385,45 @@ Version: 0.2.0
       ...
     ! LaTeX Error: File `framed.sty' not found.
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
     ! Emergency stop.
     <read *> 
-             
-    l.39 \definecolor
     
-    pandoc: Error producing PDF
     Error: processing vignette 'SIR-MCMC.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
+    Failed to compile SIR-MCMC.tex. See SIR-MCMC.log for more info.
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Marc A. Suchard <msuchard@ucla.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘MCMCpack’
     ```
 
 *   checking installed package size ... NOTE
     ```
       installed size is 10.5Mb
       sub-directories of 1Mb or more:
-        libs   8.9Mb
-    ```
-
-# nandb
-
-Version: 0.2.1
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘autothresholdr’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Rory Nolan <rorynoolan@gmail.com>’
-    
-    This build time stamp is over a month old.
+        libs   8.8Mb
     ```
 
 # NanoStringDiff
 
-Version: 1.6.0
+Version: 1.10.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking for missing documentation entries ... WARNING
     ```
-    Maintainer: ‘hong wang <hong.wang@uky.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Undocumented code objects:
+      ‘compute.baseSigma’ ‘est.dispersion’ ‘fun5’ ‘glmfit.OneGroup’
+      ‘glmfit.full’ ‘glmfit.reduce’ ‘rnegbinom’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     ...
-      ‘optimize’
     glmfit.full: no visible global function definition for ‘lm’
     glmfit.full: no visible global function definition for ‘median’
     glmfit.full: no visible global function definition for ‘IQR’
@@ -3383,13 +2437,21 @@ Version: 1.6.0
     rnegbinom: no visible global function definition for ‘rpois’
     rnegbinom: no visible global function definition for ‘rgamma’
     Undefined global functions or variables:
-      IQR glm lm median optim optimize p.adjust pchisq poisson read.table
-      rgamma rpois
+      IQR abline glm lm median optim optimize p.adjust par pchisq plot
+      poisson read.table rgamma rowVars rpois textxy title
     Consider adding
+      importFrom("graphics", "abline", "par", "plot", "title")
       importFrom("stats", "IQR", "glm", "lm", "median", "optim", "optimize",
                  "p.adjust", "pchisq", "poisson", "rgamma", "rpois")
       importFrom("utils", "read.table")
     to your NAMESPACE file.
+    ```
+
+*   checking installed files from ‘inst/doc’ ... NOTE
+    ```
+    The following files look like leftovers/mistakes:
+      ‘NanoStringDiff.log’
+    Please remove them from your package.
     ```
 
 *   checking re-building of vignette outputs ... NOTE
@@ -3418,17 +2480,42 @@ Version: 1.6.0
     Execution halted
     ```
 
-# neurobase
+# NetLogoR
 
-Version: 1.13.2
+Version: 0.3.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘John Muschelli <muschellij2@gmail.com>’
+    Packages required but not available: ‘car’ ‘SpaDES.tools’ ‘rgeos’
     
-    This build time stamp is over a month old.
+    Packages suggested but not available for checking:
+      ‘fastshp’ ‘sf’ ‘SpaDES.core’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# neurobase
+
+Version: 1.26.1
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error in re-building vignettes:
+      ...
+    Quitting from lines 189-219 (nifti_basics.Rmd) 
+    Error: processing vignette 'nifti_basics.Rmd' failed with diagnostics:
+    Could not resolve host: raw.githubusercontent.com; Name or service not known
+    Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘covr’
     ```
 
 # NSA
@@ -3436,19 +2523,6 @@ Version: 1.13.2
 Version: 0.0.32
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Maria Ortiz-Estevez <mortizest@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Post-normalization of total copy numbers’
-    ‘Post-Normalization of Total Copy Numbers’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -3494,22 +2568,75 @@ Version: 0.0.32
     to your NAMESPACE file.
     ```
 
-# pandaR
+# omicplotR
 
-Version: 1.8.0
+Version: 1.0.1
 
 ## In both
 
-*   checking CRAN incoming feasibility ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Joseph N. Paulson <jpaulson@jimmy.harvard.edu>, Dan Schlauch <dschlauch@fas.harvard.edu>’
+    Packages required but not available: ‘compositions’ ‘vegan’ ‘zCompositions’
     
-    The maintainer field is invalid or specifies more than one person
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9093938 bytes
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
+
+# omicsPrint
+
+Version: 1.0.0
+
+## In both
+
+*   checking whether package ‘omicsPrint’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/omicsPrint/new/omicsPrint.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking:
+      ‘VariantAnnotation’ ‘FDb.InfiniumMethylation.hg19’
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘omicsPrint’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘omicsPrint’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/omicsPrint/new/omicsPrint.Rcheck/omicsPrint’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘omicsPrint’ ...
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘omicsPrint’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/omicsPrint/old/omicsPrint.Rcheck/omicsPrint’
+
+```
+# pandaR
+
+Version: 1.12.0
+
+## In both
 
 *   checking installed package size ... NOTE
     ```
@@ -3552,58 +2679,27 @@ Version: 1.8.0
 
 # PathoStat
 
-Version: 1.2.0
+Version: 1.6.1
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Error in re-building vignettes:
-      ...
-    Warning: Transformation introduced infinite values in discrete y-axis
-    ! LaTeX Error: File `framed.sty' not found.
+    Packages required but not available: ‘phyloseq’ ‘XML’ ‘vegan’
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.33 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'PathoStatUserManual.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Solaiappan Manimaran <manimaran_1975@hotmail.com>’
-    
-    The Title field starts with the package name.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # pcaMethods
 
-Version: 1.68.0
+Version: 1.72.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking Rd cross-references ... WARNING
     ```
-    Maintainer: ‘Henning Redestig <henning.red@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘A collection of PCA methods’
-    ‘A Collection of PCA Methods’
-    
-    This build time stamp is over a month old.
+    Unknown package ‘ade4’ in Rd xrefs
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -3632,44 +2728,11 @@ Version: 1.68.0
     to your NAMESPACE file.
     ```
 
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘ade4’
-    ```
-
-# peakPick
-
-Version: 0.11
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Paal O. Westermark <pal-olof.westermark@charite.de>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
 # phosphonormalizer
 
-Version: 1.0.0
+Version: 1.4.0
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Sohrab Saraei <sohrab.saraei@utu.fi>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Compensates for the bias introduced by median normalization in phosphoproteomics’
-    ‘Compensates for the Bias Introduced by Median Normalization in Phosphoproteomics’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -3678,239 +2741,86 @@ Version: 1.0.0
 
 # Pigengene
 
-Version: 1.2.0
+Version: 1.6.0
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    ...
-    Error in re-building vignettes:
-      ...
-    Warning: running command 'kpsewhich framed.sty' had status 1
-    Warning in test_latex_pkg("framed", system.file("misc", "framed.sty", package = "knitr")) :
-      unable to find LaTeX package 'framed'; will use a copy from knitr
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'Pigengene_inference.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
+    Packages required but not available: ‘C50’ ‘partykit’ ‘Rgraphviz’ ‘WGCNA’
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Habil Zare <zare@txstate.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Infers biological signatures from gene expression data’
-    ‘Infers Biological Signatures from Gene Expression Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘AnnotationDbi’ ‘biomaRt’ ‘energy’ ‘org.Hs.eg.db’ ‘org.Mm.eg.db’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Found the following possibly unsafe calls:
-    File ‘Pigengene/R/bn.calculation.R’:
-      assignInNamespace("supported.clusters", fixArgs, "bnlearn")
-    
-    check.pigengene.input: no visible global function definition for
-      ‘setNames’
-    welch.pvalue: no visible global function definition for ‘as.formula’
-    welch.pvalue: no visible global function definition for ‘oneway.test’
-    Undefined global functions or variables:
-      as.formula oneway.test setNames
-    Consider adding
-      importFrom("stats", "as.formula", "oneway.test", "setNames")
-    to your NAMESPACE file.
-    ```
-
-# POMaSPU
-
-Version: 1.0.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Junghi Kim <junghikim0@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# PSCBS
-
-Version: 0.63.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Henrik Bengtsson <henrikb@braju.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # QDNAseq
 
-Version: 1.12.0
+Version: 1.16.0
 
 ## In both
 
-*   checking for missing documentation entries ... WARNING
+*   checking whether package ‘QDNAseq’ can be installed ... ERROR
     ```
-    Undocumented code objects:
-      ‘exportVCF’
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/QDNAseq/new/QDNAseq.Rcheck/00install.out’ for details.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Daoud Sie <d.sie@vumc.nl>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Quantitative DNA sequencing for chromosomal aberrations’
-    ‘Quantitative DNA Sequencing for Chromosomal Aberrations’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
+## Installation
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    25163504814644134.436.838865427963024207.660.838865426569187207.650.2
-    FINISHED!
-    
-    Total time:0minutes
-    
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'QDNAseq.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
+### Devel
 
+```
+* installing *source* package ‘QDNAseq’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘QDNAseq’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/QDNAseq/new/QDNAseq.Rcheck/QDNAseq’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘QDNAseq’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘QDNAseq’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/QDNAseq/old/QDNAseq.Rcheck/QDNAseq’
+
+```
 # r2dRue
 
 Version: 1.0.4
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Alberto Ruiz Moreno <aruiz@eeza.csic.es>’
+    Package required but not available: ‘rgdal’
     
-    No package encoding and non-ASCII characters in the following R files:
-      R/r2dRue.r
-        976: 	#tama<f1>o del ultimo bloque
-        1072: 	#as<ed> que hay que forzar a ser matriz
-      R/rgf.R
-        90: #          1<aa> modificacion: si inFl 
-        120: # CHANGES: 20/04/2010 - a<f1>adir comprobacion de parametros 
-    
-    The Title field should be in title case, current version then in title case:
-    ‘2d Rain Use Efficience model’
-    ‘2d Rain Use Efficience Model’
-    
-    The Description field should start with a capital letter.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' call to ‘rgdal’ which was already attached by Depends.
-      Please remove these calls from your code.
-    Packages in Depends field not imported from:
-      ‘matrixStats’ ‘rgdal’ ‘sp’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    rueObsMe: no visible global function definition for ‘readGDAL’
-    rueObsMe: no visible global function definition for ‘setTxtProgressBar’
-    showInfo: no visible global function definition for ‘head’
-    solarRad: no visible global function definition for ‘is.projected’
-    solarRad: no visible global function definition for ‘coordinates’
-    solarRad12M: no visible global function definition for ‘writeGDAL’
-    summarize: no visible global function definition for ‘writeGDAL’
-    Undefined global functions or variables:
-      GDAL.close GDAL.open GDALinfo abline axis.Date barplot boxplot
-      coordinates cor density gdalDrivers head hist image is.projected
-      layout layout.show lines na.omit pf plot pt read.table readGDAL rect
-      rowCounts rowMedians rowRanges rowSds rowVars setTxtProgressBar
-      spplot title txtProgressBar write.table writeGDAL
-    Consider adding
-      importFrom("graphics", "abline", "axis.Date", "barplot", "boxplot",
-                 "hist", "image", "layout", "layout.show", "lines", "plot",
-                 "rect", "title")
-      importFrom("stats", "cor", "density", "na.omit", "pf", "pt")
-      importFrom("utils", "head", "read.table", "setTxtProgressBar",
-                 "txtProgressBar", "write.table")
-    to your NAMESPACE file.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # RAC
 
-Version: 1.1.1
+Version: 1.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Baldan D. <damiano.baldan91@gmail.com>’
+    Packages required but not available: ‘rgdal’ ‘rgeos’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # randomizationInference
@@ -3918,15 +2828,6 @@ Version: 1.1.1
 Version: 1.0.3
 
 ## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joseph J. Lee <joseph.j.lee@post.harvard.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -3946,452 +2847,111 @@ Version: 1.0.3
     to your NAMESPACE file.
     ```
 
-# RnBeads
-
-Version: 1.8.0
-
-## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/runTests.R’ failed.
-    Last 13 lines of output:
-      
-          ozone
-      
-      The following object is masked from 'package:IRanges':
-      
-          desc
-      
-      The following object is masked from 'package:S4Vectors':
-      
-          rename
-      
-      Error in library("RUnit", quietly = TRUE) : 
-        there is no package called 'RUnit'
-      Calls: <Anonymous> -> library
-      Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Fabian Mueller <rnbeads@mpi-inf.mpg.de>’
-    
-    The Title field is just the package name: provide a real title.
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 6355567 bytes
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      ‘BiocGenerics’ ‘S4Vectors’ ‘GenomicRanges’ ‘MASS’ ‘cluster’ ‘ff’
-      ‘fields’ ‘ggplot2’ ‘gplots’ ‘gridExtra’ ‘limma’ ‘matrixStats’
-      ‘illuminaio’ ‘methylumi’ ‘plyr’
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.2Mb
-      sub-directories of 1Mb or more:
-        R     1.1Mb
-        bin   1.0Mb
-        doc   3.2Mb
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... NOTE
-    ```
-    Warning: no function found corresponding to methods exports from ‘RnBeads’ for: ‘samples’
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported objects imported by ':::' calls:
-      'Gviz:::.getBMFeatureMap' 'doParallel:::.options'
-      'grDevices:::.smoothScatterCalcDensity'
-      'minfi:::.default.450k.annotation' 'minfi:::.extractFromRGSet450k'
-      'minfi:::.normalizeFunnorm450k'
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      BootRefFreeEwasModel ChrNumeric DataTrack Density Deviance Difference
-      DoISVA Error EstDimRMT GenomeAxisTrack ID IdeogramTrack
-      IlluminaHumanMethylation450kmanifest
-      IlluminaHumanMethylationEPICmanifest Index Intensity Measure
-      PairsBootRefFreeEwasModel Probe RGChannelSet RefFreeEwasModel SNP
-      Sample Slide Target Term UcscTrack Value addSex as.profileCGH
-      assayDataElement assayDataElementNames barcode bv chrom color
-      combinedRank comma covgMedian covgPercLow covgPercUp cv.glmnet daglad
-      diffmeth diffmeth.p.adj.fdr diffmeth.p.val dinucleotideFrequency
-      expectedCounts featureData featureData<- featureNames featureNames<-
-      foreach geneCounts genome<- getCN getDoParWorkers getGreen
-      getManifest getMeth getRed getSex getUnmeth getVarCov glmnet
-      grid.draw grid.newpage group group1 group2 i impute.knn intensities
-      is.subsegmentation k letterFrequency lme mapToGenome mean.diff
-      mean.g1 mean.g2 mean.mean.g1 mean.mean.g2 mean.quot.log2 melt muted
-      n.sites num.sites numSites numeric.names oddsRatios pData
-      percent_format phenoData phenoData<- plotOrder plotTracks
-      preprocessSWAN pvalues refText reg.type region.size
-      registerDoParallel relative.coord report samples seqlengths
-      seqlevels<- sigCategories sites2ignore size solve.QP stopCluster sva
-      target tsne type types universeCounts useMart v varLabels x y yint
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    Error in re-building vignettes:
-      ...
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'RnBeads.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `vmargin.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.10 \usepackage
-                    [american]{babel}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
 # RTransProb
 
-Version: 0.1.0
+Version: 0.3.3
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘RTransProb’ can be installed ... WARNING
     ```
-    ...
-    The error most likely occurred in:
-    
-    > ### Name: TransitionProb
-    > ### Title: Estimation of credit transition probabilities
-    > ### Aliases: TransitionProb
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > #Example 1:
-    > #When start date and end date are not specified, the entire dataset is used and the package
-    > #performs TTC calculations. Equally when snapshots and interval are not specified the defaults
-    > #are 1.
-    > snapshots <- 0
-    > interval <- 0
-    > startDate  <- 0
-    > endDate    <- 0
-    > Example1<-TransitionProb(data,startDate,endDate,'cohort', snapshots, interval)
-    Error in if (is.nan(rating)) { : the condition has length > 1
-    Calls: TransitionProb -> getidTotCntCohort
-    Execution halted
+    Found the following significant warnings:
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/RTransProb/new/RTransProb.Rcheck/00install.out’ for details.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Ab NDiaye <pabdndiaye@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
+# scmap
 
-# samr
-
-Version: 2.0
+Version: 1.2.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘scmap’ can be installed ... ERROR
     ```
-    Maintainer: ‘Rob Tibshirani <tibs@stanford.edu>’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Description field: should contain one or more complete sentences.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/scmap/new/scmap.Rcheck/00install.out’ for details.
     ```
 
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls to packages already attached by Depends:
-      ‘impute’ ‘matrixStats’
-      Please remove these calls from your code.
-    Packages in Depends field not imported from:
-      ‘impute’ ‘matrixStats’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ```
+## Installation
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    samr.plot: no visible global function definition for ‘abline’
-    samr.tail.strength: no visible global function definition for ‘var’
-    samr.xl.compute.plot.xy: no visible global function definition for
-      ‘points’
-    samr.xl.compute.plot.xy: no visible global function definition for
-      ‘abline’
-    samr.xl.impute.data: no visible global function definition for
-      ‘impute.knn’
-    samr.xl.impute.data: no visible binding for global variable
-      ‘samr.xl.var.knn.neighbors’
-    Undefined global functions or variables:
-      abline dev.off impute.knn lines mad median mtext par plot points
-      predict quantile rowMedians rpois runif samr.xl.var.knn.neighbors
-      smooth.spline title var
-    Consider adding
-      importFrom("grDevices", "dev.off")
-      importFrom("graphics", "abline", "lines", "mtext", "par", "plot",
-                 "points", "title")
-      importFrom("stats", "mad", "median", "predict", "quantile", "rpois",
-                 "runif", "smooth.spline", "var")
-    to your NAMESPACE file.
-    ```
+### Devel
 
-*   checking Rd \usage sections ... NOTE
-    ```
-    S3 methods shown with full name in documentation object 'samr-internal':
-      ‘plot.SAMoutput’ ‘print.SAMoutput’
-    
-    The \usage entries for S3 methods should use the \method markup and not
-    their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
+```
+* installing *source* package ‘scmap’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/RcppArmadillo/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/RcppArmadillo/include" -I/usr/local/include   -fpic  -g -O2  -c scmap.cpp -o scmap.o
+g++ -shared -L/usr/local/lib64 -o scmap.so RcppExports.o scmap.o -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRlapack -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRblas -lgfortran -lm -lquadmath
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/scmap/new/scmap.Rcheck/scmap/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘scmap’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/scmap/new/scmap.Rcheck/scmap’
 
-# scater
+```
+### CRAN
 
-Version: 1.4.0
+```
+* installing *source* package ‘scmap’ ...
+** libs
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/RcppArmadillo/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++  -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG  -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/Rcpp/include" -I"/netapp/home/hb/repositories/matrixStats/revdep/library/scmap/RcppArmadillo/include" -I/usr/local/include   -fpic  -g -O2  -c scmap.cpp -o scmap.o
+g++ -shared -L/usr/local/lib64 -o scmap.so RcppExports.o scmap.o -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRlapack -L/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/lib -lRblas -lgfortran -lm -lquadmath
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/scmap/old/scmap.Rcheck/scmap/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘scmap’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/scmap/old/scmap.Rcheck/scmap’
 
-## In both
-
-*   checking top-level files ... WARNING
-    ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/davismcc/scater/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Davis McCarthy <davis@ebi.ac.uk>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single-cell analysis toolkit for gene expression data in R’
-    ‘Single-Cell Analysis Toolkit for Gene Expression Data in R’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 5853441 bytes
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  8.7Mb
-      sub-directories of 1Mb or more:
-        doc   5.7Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Davis McCarthy’
-      Authors@R: ‘Davis McCarthy [aut, cre], Quin Wills [aut], Kieran Campbell [aut], Vladimir Kiselev [ctb], Aaron Lun [ctb]’
-    ```
-
-*   checking Rd \usage sections ... NOTE
-    ```
-    S3 methods shown with full name in documentation object 'arrange':
-      ‘arrange.SCESet’
-    
-    S3 methods shown with full name in documentation object 'filter':
-      ‘filter.SCESet’
-    
-    S3 methods shown with full name in documentation object 'mutate':
-      ‘mutate.SCESet’
-    
-    S3 methods shown with full name in documentation object 'rename':
-      ‘rename.SCESet’
-    
-    The \usage entries for S3 methods should use the \method markup and not
-    their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-# scone
-
-Version: 1.0.0
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘scone-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: biplot_interactive
-    > ### Title: Interactive biplot
-    > ### Aliases: biplot_interactive
-    > 
-    > ### ** Examples
-    > 
-    > mat <- matrix(rpois(1000, lambda = 5), ncol=10)
-    > colnames(mat) <- paste("X", 1:ncol(mat), sep="")
-    > obj <- SconeExperiment(mat)
-    > res <- scone(obj, scaling=list(none=identity,
-    +    uq=UQ_FN, deseq=DESEQ_FN,  fq=FQT_FN),
-    + evaluate=TRUE, k_ruv=0, k_qc=0, eval_kclust=2,
-    +    bpparam = BiocParallel::SerialParam())
-    Error in if (rezero) { : the condition has length > 1
-    Calls: scone -> scone -> .local
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      testthat results ================================================================
-      OK: 7 SKIPPED: 0 FAILED: 16
-      1. Error: all back-ends work (@test_bpparam.R#17) 
-      2. Error: get_normalized works in all three modes (@test_get_design.R#18) 
-      3. Error: get_normalized works in all three modes (@test_get_norm.R#18) 
-      4. Error: get_normalized works in all three modes with nested model (@test_get_norm.R#76) 
-      5. Error: return_norm in memory (@test_hdf5.R#44) 
-      6. Error: do not return_norm (@test_hdf5.R#65) 
-      7. Error: Upper-quartile normalization works the same as in the edgeR package (@test_norm.R#15) 
-      8. Error: Test with no real method (only identity) (@test_scone.R#12) 
-      9. Error: Test imputation and scaling (@test_scone.R#129) 
-      1. ...
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Michael Cole <mbeloc@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single Cell Overview of Normalized Expression data’
-    ‘Single Cell Overview of Normalized Expression Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘EDASeq’
-      All declared Imports should be used.
-    ```
-
+```
 # SemiParSampleSel
 
 Version: 1.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Giampiero Marra <giampiero.marra@ucl.ac.uk>’
+    Package required but not available: ‘copula’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # SGP
 
-Version: 1.7-0.0
+Version: 1.8-0.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Damian W. Betebenner <dbetebenner@nciea.org>’
+    Package required but not available: ‘quantreg’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # shinyMethyl
 
-Version: 1.12.0
+Version: 1.16.0
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking whether package ‘shinyMethyl’ can be installed ... ERROR
     ```
-    ...
-    Setting options('download.file.method.GEOquery'='auto')
-    Setting options('GEOquery.inmemory.gpl'=FALSE)
-    Loading required package: IlluminaHumanMethylation450kmanifest
-    Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
-    Loading required package: shiny
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'shinyMethyl.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jean-Philippe Fortin <jfortin@jhsph.edu>’
-    
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Url’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Interactive visualization for Illumina methylation arrays’
-    ‘Interactive Visualization for Illumina Methylation Arrays’
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 9265239 bytes
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/shinyMethyl/new/shinyMethyl.Rcheck/00install.out’ for details.
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -4400,64 +2960,62 @@ Version: 1.12.0
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .travis.yml
     ```
 
-*   checking R code for possible problems ... NOTE
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘shinyMethyl’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘shinyMethyl’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/shinyMethyl/new/shinyMethyl.Rcheck/shinyMethyl’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘shinyMethyl’ ...
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘shinyMethyl’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/shinyMethyl/old/shinyMethyl.Rcheck/shinyMethyl’
+
+```
+# SIAMCAT
+
+Version: 1.0.0
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    ...
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘lines’
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘legend’
-    ui.shinyMethyl: no visible binding for '<<-' assignment to
-      ‘sampleColors’
-    shinySummarize,GenomicRatioSet: no visible global function definition
-      for ‘prcomp’
-    shinySummarize,RGChannelSet: no visible global function definition for
-      ‘prcomp’
-    Undefined global functions or variables:
-      abline complete.cases current.control.type current.density.type
-      current.probe.type genderCutoff grid legend lines lm
-      mouse.click.indices palette par plot points prcomp rect write.csv
-    Consider adding
-      importFrom("grDevices", "palette")
-      importFrom("graphics", "abline", "grid", "legend", "lines", "par",
-                 "plot", "points", "rect")
-      importFrom("stats", "complete.cases", "lm", "prcomp")
-      importFrom("utils", "write.csv")
-    to your NAMESPACE file.
+    Packages required but not available: ‘mlr’ ‘phyloseq’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # SICtools
 
-Version: 1.6.0
+Version: 1.10.0
 
 ## In both
 
-*   checking whether package ‘SICtools’ can be installed ... WARNING
+*   checking whether package ‘SICtools’ can be installed ... ERROR
     ```
-    Found the following significant warnings:
-      Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
+    Installation failed.
     See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Xiaobin Xing <xiaobinxing0316@gmail.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Find SNV/Indel differences between two bam files with near relationship’
-    ‘Find SNV/Indel Differences Between Two Bam Files with Near Relationship’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking package dependencies ... NOTE
@@ -4475,31 +3033,285 @@ Version: 1.6.0
       .BBSoptions
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
-    
-    CRAN-pack does not know about
-      .BBSoptions
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    .indelDiffFunc: no visible global function definition for ‘fisher.test’
-    .indelDiffFunc: no visible global function definition for ‘dist’
-    indelDiff: no visible global function definition for ‘read.delim’
-    snpDiff : calcInfoRange : <anonymous>: no visible global function
-      definition for ‘fisher.test’
-    snpDiff : calcInfoRange : <anonymous>: no visible global function
-      definition for ‘dist’
-    Undefined global functions or variables:
-      dist fisher.test read.delim
-    Consider adding
-      importFrom("stats", "dist", "fisher.test")
-      importFrom("utils", "read.delim")
-    to your NAMESPACE file.
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘SICtools’ ...
+** libs
+** arch - 
+Makefile:24: warning: overriding recipe for target `.c.o'
+/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/etc/Makeconf:159: warning: ignoring old recipe for target `.c.o'
+make[1]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
+bgzf.c: In function ‘worker_aux’:
+bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
+  int i, tmp, stop = 0;
+         ^
+bgzf.c: In function ‘bgzf_close’:
+bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
+  int ret, count, block_length;
+           ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
+bam_pileup.c: In function ‘resolve_cigar2’:
+bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
+  int k, is_head = 0;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
+bam_reheader.c: In function ‘bam_reheader’:
+bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  bam_header_t *old;
+                ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
+kprobaln.c: In function ‘kpa_glocal’:
+kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
+  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
+                     ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
+ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
+bcf.c: In function ‘bcf_fmt_core’:
+bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
+     int iPL = -1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
+bcfutils.c: In function ‘bcf_fit_alt’:
+bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
+     int ipl=-1, igt=-1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
+em.c: In function ‘bcf_em1’:
+em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
+  int i, n, n2;
+            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
+ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+make[2]: Nothing to be done for `lib'.
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
+bam_plcmd.c: In function ‘mpileup’:
+bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
+    int total_depth, _ref0, ref16;
+                            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
+bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
+bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                            ^
+bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                     ^
+bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
+  int N, l_run, ref_type;
+                ^
+bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                                  ^
+bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
+cut_target.c: In function ‘main_cut_target’:
+cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
+  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
+                                    ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
+bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
+ #include <curses.h>
+                    ^
+compilation terminated.
+make[1]: *** [bam_tview_curses.o] Error 1
+make[1]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make: *** [all-recur] Error 1
+ERROR: compilation failed for package ‘SICtools’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/SICtools’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘SICtools’ ...
+** libs
+** arch - 
+Makefile:24: warning: overriding recipe for target `.c.o'
+/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/etc/Makeconf:159: warning: ignoring old recipe for target `.c.o'
+make[1]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
+bgzf.c: In function ‘worker_aux’:
+bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
+  int i, tmp, stop = 0;
+         ^
+bgzf.c: In function ‘bgzf_close’:
+bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
+  int ret, count, block_length;
+           ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
+bam_pileup.c: In function ‘resolve_cigar2’:
+bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
+  int k, is_head = 0;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
+bam_reheader.c: In function ‘bam_reheader’:
+bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
+  bam_header_t *old;
+                ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
+kprobaln.c: In function ‘kpa_glocal’:
+kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
+  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
+                     ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
+ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
+bcf.c: In function ‘bcf_fmt_core’:
+bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
+     int iPL = -1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
+bcfutils.c: In function ‘bcf_fit_alt’:
+bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
+     int ipl=-1, igt=-1;
+         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
+em.c: In function ‘bcf_em1’:
+em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
+  int i, n, n2;
+            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
+ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
+make[2]: Entering directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+make[2]: Nothing to be done for `lib'.
+make[2]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
+bam_plcmd.c: In function ‘mpileup’:
+bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
+    int total_depth, _ref0, ref16;
+                            ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
+bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
+bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                            ^
+bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
+  char *inscns = 0, *ref2, *query, **ref_sample;
+                     ^
+bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
+  int N, l_run, ref_type;
+                ^
+bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                                  ^
+bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
+  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
+                                                                         ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
+cut_target.c: In function ‘main_cut_target’:
+cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
+  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
+                                    ^
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
+gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
+bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
+ #include <curses.h>
+                    ^
+compilation terminated.
+make[1]: *** [bam_tview_curses.o] Error 1
+make[1]: Leaving directory `/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
+make: *** [all-recur] Error 1
+ERROR: compilation failed for package ‘SICtools’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/SICtools’
+
+```
 # Single.mTEC.Transcriptomes
 
-Version: 1.4.0
+Version: 1.8.0
 
 ## In both
 
@@ -4511,50 +3323,77 @@ Version: 1.4.0
 *   checking re-building of vignette outputs ... WARNING
     ```
     ...
-    final dispersion estimates
-    Warning: Removed 1634 rows containing non-finite values (stat_ydensity).
-    Warning: Removed 1634 rows containing non-finite values (stat_boxplot).
-    Warning: Removed 1454 rows containing non-finite values (stat_ydensity).
-    Warning: Removed 1454 rows containing non-finite values (stat_boxplot).
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'mTECs.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
+        intersect, is.unsorted, lapply, lengths, mapply, match, mget,
+        order, paste, pmax, pmax.int, pmin, pmin.int, rank, rbind,
+        rowMeans, rowSums, rownames, sapply, setdiff, sort, table,
+        tapply, union, unique, unsplit, which, which.max, which.min
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
     
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Attaching package: 'S4Vectors'
+    
+    The following object is masked from 'package:base':
+    
+        expand.grid
+    
+    Loading required package: IRanges
+    Loading required package: GenomicRanges
+    Loading required package: GenomeInfoDb
+    Error: package or namespace load failed for 'GenomeInfoDb' in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+     there is no package called 'RCurl'
+    Quitting from lines 64-79 (mTECs.Rnw) 
+    Error: processing vignette 'mTECs.Rnw' failed with diagnostics:
+    package 'GenomeInfoDb' could not be loaded
     Execution halted
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    Maintainer: ‘Alejandro Reyes <alejandro.reyes@embl.de>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Single Cell Transcriptome Data and Analysis of Mouse mTEC cells’
-    ‘Single Cell Transcriptome Data and Analysis of Mouse mTEC Cells’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 955580345 bytes
+    Packages suggested but not available for checking: ‘ggbio’ ‘Gviz’
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 915.5Mb
+      installed size is 908.2Mb
       sub-directories of 1Mb or more:
         data  898.7Mb
-        doc    16.7Mb
+        doc     9.4Mb
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Failed with error:  'package 'GenomeInfoDb' could not be loaded'
+      Error in .requirePackage(package) : 
+        unable to find required package 'DESeq2'
+      Calls: <Anonymous> ... getClass -> getClassDef -> .classEnv -> .requirePackage
+      Execution halted
+    ```
+
+# singleCellTK
+
+Version: 1.0.3
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Packages required but not available: ‘GSVA’ ‘GSVAdata’ ‘MAST’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# singscore
+
+Version: 1.0.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘GSEABase’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # sizeMat
@@ -4563,373 +3402,261 @@ Version: 0.3.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Josymar Torrejon-Magallanes <ejosymart@gmail.com>’
+    Package required but not available: ‘MCMCpack’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘mcmc’
-      All declared Imports should be used.
-    ```
+# smerc
 
-# splatter
-
-Version: 1.0.3
+Version: 0.4.5
 
 ## In both
 
-*   checking top-level files ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/Oshlack/splatter/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    ...
-      if any, to sign a "copyright disclaimer" for the program, if necessary.
-      For more information on this, and how to apply and follow the GNU GPL, see
-      <http://www.gnu.org/licenses/>.
-      
-        The GNU General Public License does not permit incorporating your program
-      into proprietary programs.  If your program is a subroutine library, you
-      may consider it more useful to permit linking proprietary applications with
-      the library.  If this is what you want to do, use the GNU Lesser General
-      Public License instead of this License.  But first, please read
-      <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+    Package required but not available: ‘smacpod’
     
-    The Title field should be in title case, current version then in title case:
-    ‘Simple Simulation of Single-cell RNA Sequencing Data’
-    ‘Simple Simulation of Single-Cell RNA Sequencing Data’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Luke Zappia’
-      Authors@R: ‘Luke Zappia [aut, cre], Belinda Phipson [aut], Alicia Oshlack [aut]’
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # SRGnet
 
-Version: 1.2.0
+Version: 1.6.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Isar Nassiri <isar_nassiri@urmc.rochester.edu>’
+    Package required but not available: ‘EBcoexpress’
     
-    The Title field starts with the package name.
-    The Title field should be in title case, current version then in title case:
-    ‘SRGnet: An R package for studying synergistic response to gene mutations from transcriptomics data from transcriptomics data’
-    ‘SRGnet: An R Package for Studying Synergistic Response to Gene Mutations from Transcriptomics Data from Transcriptomics Data’
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
     Depends: includes the non-default packages:
       ‘EBcoexpress’ ‘MASS’ ‘igraph’ ‘pvclust’ ‘gbm’ ‘limma’ ‘DMwR’
       ‘matrixStats’ ‘Hmisc’
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Author field differs from that derived from Authors@R
-      Author:    ‘Isar Nassiri [aut, cre], Matthew McCall [aut, cre]’
-      Authors@R: ‘Isar Nassiri [aut, cre]’
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    SRGnet: no visible binding for global variable
-      ‘Differentially_expressed_genes’
-    SRGnet: no visible binding for global variable ‘Transcriptomics’
-    SRGnet: no visible binding for global variable ‘PLCRG’
-    SRGnet: no visible global function definition for ‘ebPatterns’
-    SRGnet: no visible global function definition for ‘par’
-    SRGnet: no visible global function definition for ‘boxplot’
-    SRGnet: no visible global function definition for ‘plot’
-    SRGnet: no visible global function definition for ‘predict’
-    SRGnet: no visible global function definition for ‘terrain.colors’
-    SRGnet: no visible global function definition for ‘na.omit’
-    SRGnet: no visible global function definition for ‘write.table’
-    Undefined global functions or variables:
-      Differentially_expressed_genes PLCRG Transcriptomics boxplot
-      ebPatterns na.omit par plot predict terrain.colors write.table
-    Consider adding
-      importFrom("grDevices", "terrain.colors")
-      importFrom("graphics", "boxplot", "par", "plot")
-      importFrom("stats", "na.omit", "predict")
-      importFrom("utils", "write.table")
-    to your NAMESPACE file.
-    ```
-    checking a package with encoding  'UTF-8'  in an ASCII locale
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: 'Hmisc'
-    ```
-
-*   checking data for non-ASCII characters ... NOTE
-    ```
-      Note: found 78 marked Latin-1 strings
-    ```
-
-# VanillaICE
-
-# statar
+# stapler
 
 Version: 0.6.5
 
 ## In both
 
-*   checking top-level files ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Conversion of ‘README.md’ failed:
-    pandoc: Could not fetch https://img.shields.io/codecov/c/github/matthieugomez/statar/master.svg
-    TlsExceptionHostPort (HandshakeFailed Error_EOF) "img.shields.io" 443
+    Package suggested but not available for checking: ‘covr’
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
+# staRdom
+
+Version: 1.0.8
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Matthieu Gomez <mattg@princeton.edu>’
+    Packages required but not available: ‘multiway’ ‘drc’
     
-    This build time stamp is over a month old.
+    Package suggested but not available for checking: ‘xlsx’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # stm
 
-Version: 1.2.2
+Version: 1.3.3
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Brandon Stewart <bms4@princeton.edu>’
+    Package required but not available: ‘quanteda’
     
-    The Date field is over a month old.
+    Package suggested but not available for checking: ‘tm’
     
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
+
+# STROMA4
+
+Version: 1.4.0
+
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    ...
+    The error most likely occurred in:
+    
+    > ### Name: assign.properties
+    > ### Title: Function to assign properties to an expression matrix
+    > ### Aliases: assign.properties
+    > 
+    > ### ** Examples
+    > 
+    > library(breastCancerMAINZ)
+    > data(mainz, package='breastCancerMAINZ')
+    > all.properties <- assign.properties(ESet=mainz, geneID.column='Gene.symbol',
+    + 	genelists=c('Stroma4', 'TNBCType'), n=10)
+    --Assigning properties to expression data--
+    --There are duplicated genes. Using most variable to collapse--
+    ----206 out of 297 total genes matching for D.stroma.property----
+    Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
+      port 11592 cannot be opened
+    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
+      cannot open the connection
+    Calls: assign.properties ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
+    Execution halted
+    ```
+
+## In both
 
 *   checking re-building of vignette outputs ... NOTE
     ```
     Error in re-building vignettes:
       ...
-    stm v1.2.2 (2017-03-28) successfully loaded. See ?stm for help.
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'stmVignette.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `ulem.sty' not found.
+    Warning in file(filename, "r", encoding = encoding) :
+      URL 'https://bioconductor.org/biocLite.R': status was 'Couldn't resolve host name'
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.57 ^^M
-            
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    Error: processing vignette 'STROMA4-vignette.Rnw' failed with diagnostics:
+     chunk 1 
+    Error in file(filename, "r", encoding = encoding) : 
+      cannot open the connection to 'https://bioconductor.org/biocLite.R'
     Execution halted
     ```
 
-# STROMA4
+# summarytools
 
-Version: 1.0.0
+Version: 0.8.6
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Sadiq Saleh <sadiq.mehdiismailsaleh@mail.mcgill.ca>’
+    Package required but not available: ‘RCurl’
     
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking re-building of vignette outputs ... NOTE
+# support
+
+Version: 0.1.1
+
+## In both
+
+*   checking package dependencies ... ERROR
     ```
-    ...
-    ----670 out of 705 total genes matching for IM.property----
-    ----315 out of 458 total genes matching for T.stroma.property----
-    ----449 out of 473 total genes matching for BL1.property----
-    ----20 out of 27 total genes matching for E.stroma.property----
-    ----269 out of 291 total genes matching for BL2.property----
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'STROMA4-vignette.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `a4wide.sty' not found.
+    Package required but not available: ‘randtoolbox’
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.11 ^^M
-            
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-# StructFDR
+# sva
 
-Version: 1.2
+Version: 3.28.0
+
+## In both
+
+*   checking whether package ‘sva’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/sva/new/sva.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘sva’ ...
+** libs
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c sva.c -o sva.o
+gcc -std=gnu99 -shared -L/usr/local/lib64 -o sva.so sva.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/sva/new/sva.Rcheck/sva/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘genefilter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘genefilter’ could not be loaded
+ERROR: lazy loading failed for package ‘sva’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/sva/new/sva.Rcheck/sva’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘sva’ ...
+** libs
+gcc -std=gnu99 -I"/netapp/home/hb/shared/apps/manual/r/R-3.5.1/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c sva.c -o sva.o
+gcc -std=gnu99 -shared -L/usr/local/lib64 -o sva.so sva.o
+installing to /netapp/home/hb/repositories/matrixStats/revdep/checks/sva/old/sva.Rcheck/sva/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘genefilter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘genefilter’ could not be loaded
+ERROR: lazy loading failed for package ‘sva’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/sva/old/sva.Rcheck/sva’
+
+```
+# tenXplore
+
+Version: 1.2.0
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Packages required but not available: ‘restfulSE’ ‘ontoProc’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# topGO
+
+Version: 2.32.0
 
 ## In both
 
 *   checking examples ... ERROR
     ```
-    ...
-    + 	obj <- apply(X, 1, function(x) {
-    + 				ttest.obj <- t.test(x ~ Y)
-    + 				c(ttest.obj$p.value, sign(ttest.obj$statistic))
-    + 			})
-    +     return(list(p.value=obj[1, ], e.sign=obj[2, ]))
-    + }
+    Running examples in ‘topGO-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annFUN
+    > ### Title: Functions which map gene identifiers to GO terms
+    > ### Aliases: annFUN.db annFUN annFUN.GO2genes annFUN.gene2GO annFUN.file
+    > ###   annFUN.org inverseList readMappings
+    > ### Keywords: misc
     > 
-    > perm.func <- function (X, Y) {
-    + 	return(list(X=X, Y=sample(Y)))
-    + }
+    > ### ** Examples
     > 
-    > # Call StructFDR
-    > tree.fdr.obj <- StructFDR(X, Y, D, test.func, perm.func)
-    Warning in StructFDR(X, Y, D, test.func, perm.func) :
-      Both the data matrix and the distance matrix should have labels (rownames) to avoid potential errors!
-    
-    Test on original data sets  ...
-    Test on permuted data sets  ...
-    Error in if (alt.FDR == "Permutation") { : the condition has length > 1
-    Calls: StructFDR
+    > 
+    > library(hgu133a.db)
+    Error in library(hgu133a.db) : there is no package called ‘hgu133a.db’
     Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Jun Chen <chen.jun2@mayo.edu>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# summarytools
-
-Version: 0.6.5
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Dominic Comtois <dominic.comtois@gmail.com>’
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    ```
-
-# sva
-
-Version: 3.24.4
-
-## In both
-
-*   checking CRAN incoming feasibility ... WARNING
-    ```
-    Maintainer: ‘Jeffrey T. Leek <jtleek@gmail.com>, John D. Storey <jstorey@princeton.edu>, W. Evan Johnson <wej@bu.edu>’
-    
-    The maintainer field is invalid or specifies more than one person
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Adjusting for0covariate(s) or covariate level(s)
-    Fitting L/S model and finding priors
-    Finding parametric adjustments
-    Adjusting the Data
-    
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'sva.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.38 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
-    Execution halted
-    ```
-
-# tmlenet
-
-Version: 0.1.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Oleg Sofrygin <oleg.sofrygin@gmail.com>’
-    
-    This build time stamp is over a month old.
-    ```
-
-# topGO
-
-Version: 2.28.0
-
-## In both
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Adrian Alexa <adrian.alexa@gmail.com>’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
     ```
 
 *   checking package dependencies ... NOTE
     ```
+    Packages suggested but not available for checking:
+      ‘hgu95av2.db’ ‘hgu133a.db’ ‘Rgraphviz’
+    
     Depends: includes the non-default packages:
       ‘BiocGenerics’ ‘graph’ ‘Biobase’ ‘GO.db’ ‘AnnotationDbi’ ‘SparseM’
     Adding so many packages to the search path is excessive and importing
@@ -4942,7 +3669,8 @@ Version: 2.28.0
       ‘Rgraphviz’ ‘multtest’
       Please use :: or requireNamespace() instead.
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Missing object imported by a ':::' call: ‘globaltest:::globaltest’
+    Unavailable namespace imported from by a ':::' call: ‘globaltest’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -4974,26 +3702,26 @@ Version: 2.28.0
 *   checking re-building of vignette outputs ... NOTE
     ```
     ...
-    			 -- Classic Algorithm -- 
+    Attaching package: ‘SparseM’
     
-    		 the algorithm is scoring 3965 nontrivial nodes
-    		 parameters: 
-    			 test statistic: fisher
-    Error in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  : 
-      Running 'texi2dvi' on 'topGO.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
+    The following object is masked from ‘package:base’:
     
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
+        backsolve
     
-    ! Emergency stop.
-    <read *> 
-             
-    l.11 \usepackage
-                    {caption}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    Calls: buildVignettes -> texi2pdf -> texi2dvi
+    
+    groupGOTerms: 	GOBPTerm, GOMFTerm, GOCCTerm environments built.
+    
+    Attaching package: ‘topGO’
+    
+    The following object is masked from ‘package:IRanges’:
+    
+        members
+    
+    
+    Error: processing vignette 'topGO.Rnw' failed with diagnostics:
+     chunk 7 
+    Error in library(package = affyLib, character.only = TRUE) : 
+      there is no package called ‘hgu95av2.db’
     Execution halted
     ```
 
@@ -5003,362 +3731,208 @@ Version: 1.5
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking whether package ‘ttScreening’ can be installed ... ERROR
     ```
-    Maintainer: ‘Meredith Ray <mere2110@yahoo.com>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Genome-wide DNA methylation sites screening by use of training and testing samples.’
-    ‘Genome-Wide DNA Methylation Sites Screening by Use of Training and Testing Samples.’
-    
-    The Description field should not start with the package name,
-      'This package' or similar.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/ttScreening/new/ttScreening.Rcheck/00install.out’ for details.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Title field: should not end in a period.
-    ```
+## Installation
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    ttScreening: no visible global function definition for ‘gaussian’
-    ttScreening: no visible global function definition for ‘glm.control’
-    ttScreening: no visible global function definition for ‘model.response’
-    ttScreening: no visible global function definition for ‘is.empty.model’
-    ttScreening: no visible global function definition for ‘model.matrix’
-    ttScreening: no visible global function definition for ‘na.omit’
-    ttScreening: no visible global function definition for ‘terms’
-    ttScreening: no visible global function definition for ‘capture.output’
-    ttScreening: no visible global function definition for ‘glm’
-    ttScreening: no visible binding for global variable ‘gaussian’
-    ttScreening: no visible global function definition for ‘pt’
-    ttScreening: no visible global function definition for ‘p.adjust’
-    Undefined global functions or variables:
-      capture.output gaussian glm glm.control is.empty.model model.matrix
-      model.response na.omit p.adjust pt terms
-    Consider adding
-      importFrom("stats", "gaussian", "glm", "glm.control", "is.empty.model",
-                 "model.matrix", "model.response", "na.omit", "p.adjust",
-                 "pt", "terms")
-      importFrom("utils", "capture.output")
-    to your NAMESPACE file.
-    ```
+### Devel
 
+```
+* installing *source* package ‘ttScreening’ ...
+** package ‘ttScreening’ successfully unpacked and MD5 sums checked
+** R
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘genefilter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘genefilter’ could not be loaded
+ERROR: lazy loading failed for package ‘ttScreening’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/ttScreening/new/ttScreening.Rcheck/ttScreening’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘ttScreening’ ...
+** package ‘ttScreening’ successfully unpacked and MD5 sums checked
+** R
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘genefilter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘genefilter’ could not be loaded
+ERROR: lazy loading failed for package ‘ttScreening’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/ttScreening/old/ttScreening.Rcheck/ttScreening’
+
+```
 # VanillaICE
 
-Version: 1.38.0
+Version: 1.42.4
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Robert Scharpf <rscharpf@jhsph.edu>’
+    Packages required but not available: ‘crlmm’ ‘BSgenome.Hsapiens.UCSC.hg18’
     
-    The Title field should be in title case, current version then in title case:
-    ‘A Hidden Markov Model for high throughput genotyping arrays’
-    ‘A Hidden Markov Model for High Throughput Genotyping Arrays’
-    
-    The Date field is not in ISO 8601 yyyy-mm-dd format.
-    
-    This build time stamp is over a month old.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
     Packages which this enhances but not available for checking:
       ‘doMC’ ‘doMPI’ ‘doSNOW’ ‘doParallel’ ‘doRedis’
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘BSgenome.Hsapiens.UCSC.hg18’
-      All declared Imports should be used.
-    Unexported object imported by a ':::' call: ‘SummarizedExperiment:::.ShallowSimpleListAssays0’
-      See the note in ?`:::` about the use of this operator.
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # visualFields
 
-Version: 0.4.3
+Version: 0.5.4
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Ivan Marin-Franch <ivan.marin@uv.es>’
+    Packages required but not available: ‘flip’ ‘spatstat’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # wateRmelon
 
-Version: 1.20.3
+Version: 1.24.0
 
 ## In both
 
-*   checking CRAN incoming feasibility ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Maintainer: ‘Leo <lschal@essex.ac.uk>’
+    Packages required but not available: ‘methylumi’ ‘lumi’
     
-    Unknown, possibly mis-spelled, fields in DESCRIPTION:
-      ‘Tue Mar 22 11’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Illumina 450 methylation array normalization and metrics’
-    ‘Illumina 450 Methylation Array Normalization and Metrics’
-    
-    The Description field should start with a capital letter.
-    
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
-    
-    Size of tarball: 14917546 bytes
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
     Depends: includes the non-default packages:
       ‘Biobase’ ‘limma’ ‘matrixStats’ ‘methylumi’ ‘lumi’ ‘ROC’
       ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘illuminaio’
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 14.7Mb
-      sub-directories of 1Mb or more:
-        data  14.1Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’
-    A package should be listed in only one of these fields.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Packages in Depends field not imported from:
-      ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘ROC’ ‘illuminaio’
-      ‘limma’ ‘lumi’ ‘matrixStats’ ‘methods’ ‘methylumi’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    Unexported object imported by a ':::' call: ‘minfi:::.isRGOrStop’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      .mclapply IlluminaHumanMethylation450kanno.ilmn12.hg19 MethylSet
-      PATH_RES QCdata QCdata<- RGChannelSetExtended addAnnotationInfo
-      addControlData2methyLumiM as betas betas<- colData colMedians
-      controlData<- data density detectionP epic.controls epic.ordering
-      getAnnotation getBeta getControlAddress getGreen getManifestInfo
-      getMeth getNBeads getProbeInfo getRed getSnpBeta getUnmeth
-      hm27.controls hm27.ordering hm450.controls hm450.ordering
-      intensitiesByChannel is kmeans lm lumiMethyB mad median metadata
-      methylated methylated<- methylumiR n.sd na.exclude new
-      normalizeQuantiles pAUC packageVersion preprocessRaw preprocessSWAN
-      probeAnnotationsCategory projectName pval.detect<- pvals qchisq
-      quantile read.csv read.table readIDAT rocdemo.sca sd t.test
-      unmethylated unmethylated<- warn write.csv write.table
-    Consider adding
-      importFrom("methods", "as", "is", "new")
-      importFrom("stats", "density", "kmeans", "lm", "mad", "median",
-                 "na.exclude", "qchisq", "quantile", "sd", "t.test")
-      importFrom("utils", "data", "packageVersion", "read.csv", "read.table",
-                 "write.csv", "write.table")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # WGCNA
 
-Version: 1.61
+Version: 1.63
 
 ## In both
 
-*   checking tests ...
+*   checking package dependencies ... ERROR
     ```
-     ERROR
-    Running the tests in 'tests/testthat.R' failed.
-    Last 13 lines of output:
-      
-          Welcome to 'XBSeq'.
-      > 
-      > test_check("XBSeq")
-      estimating parameters using MLE for group one 
-      estimating parameters using MLE for group two 
-      -- 1. Failure: (unknown) (@test_XBplot.R#6)  -----------------------------------
-      `XBplot(XB, Samplenum = "Sample_54_WT")` did not throw an error.
-      
-      == testthat results  ===========================================================
-      OK: 19 SKIPPED: 0 FAILED: 1
-      1. Failure: (unknown) (@test_XBplot.R#6) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Maintainer: ‘Peter Langfelder <Peter.Langfelder@gmail.com>’
+    Package required but not available: ‘robust’
     
-    The Date field is over a month old.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # XBSeq
+
+Version: 1.12.0
+
+## In both
+
+*   checking whether package ‘XBSeq’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/XBSeq/new/XBSeq.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘XBSeq’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘XBSeq’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/XBSeq/new/XBSeq.Rcheck/XBSeq’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘XBSeq’ ...
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error: package or namespace load failed for ‘GenomeInfoDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘RCurl’
+Error : package ‘GenomeInfoDb’ could not be loaded
+ERROR: lazy loading failed for package ‘XBSeq’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/XBSeq/old/XBSeq.Rcheck/XBSeq’
+
+```
+# yarn
 
 Version: 1.6.0
 
 ## In both
 
-*   checking tests ...
+*   checking whether package ‘yarn’ can be installed ... ERROR
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-          colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-      
-      The following object is masked from 'package:base':
-      
-          apply
-      
-          Welcome to 'XBSeq'.
-      > 
-      > test_check("XBSeq")
-      estimating parameters using MLE for group one 
-      estimating parameters using MLE for group two 
-      Error: XBplot(XB, Samplenum = "Sample_54_WT") did not throw an error.
-      testthat results ================================================================
-      OK: 0 SKIPPED: 0 FAILED: 0
-      Execution halted
+    Installation failed.
+    See ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/yarn/new/yarn.Rcheck/00install.out’ for details.
     ```
 
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Yuanhang Liu <liuy12@uthscsa.edu>’
-    
-    The Title field should be in title case, current version then in title case:
-    ‘Test for differential expression for RNA-seq data’
-    ‘Test for Differential Expression for RNA-Seq Data’
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    This build time stamp is over a month old.
-    ```
+## Installation
 
-*   checking whether the namespace can be loaded with stated dependencies ... NOTE
-    ```
-    Warning: no function found corresponding to methods exports from ‘XBSeq’ for: ‘conditions’, ‘conditions<-’, ‘dispTable’
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay’
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay<-’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘conditions’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘dispTable<-’
-    Undefined global functions or variables:
-      ..count.. DataFrame Gamma Group Sample SummarizedExperiment assay
-      assay<- assays baseMean coefficients complete.cases conditions cor
-      data ddelap dispTable dispTable<- dnbinom dpois formula glm
-      log2FoldChange median optim p.adjust pbeta predict qbeta quantile
-      rnbinom scvBiasCorrectionFits
-    Consider adding
-      importFrom("stats", "Gamma", "coefficients", "complete.cases", "cor",
-                 "dnbinom", "dpois", "formula", "glm", "median", "optim",
-                 "p.adjust", "pbeta", "predict", "qbeta", "quantile",
-                 "rnbinom")
-      importFrom("utils", "data")
-    to your NAMESPACE file.
-    ```
+```
+* installing *source* package ‘yarn’ ...
+It is recommended to use ‘given’ instead of ‘middle’.
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘yarn’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/yarn/new/yarn.Rcheck/yarn’
 
-# yarn
+```
+### CRAN
+
+```
+* installing *source* package ‘yarn’ ...
+It is recommended to use ‘given’ instead of ‘middle’.
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘RCurl’
+ERROR: lazy loading failed for package ‘yarn’
+* removing ‘/netapp/home/hb/repositories/matrixStats/revdep/checks/yarn/old/yarn.Rcheck/yarn’
+
+```
+# zinbwave
 
 Version: 1.2.0
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking package dependencies ... ERROR
     ```
-    ...
-    Running examples in ‘yarn-Ex.R’ failed
-    The error most likely occurred in:
+    Package required but not available: ‘copula’
     
-    > ### Name: annotateFromBiomart
-    > ### Title: Annotate your Expression Set with biomaRt
-    > ### Aliases: annotateFromBiomart
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > data(skin)
-    > # subsetting and changing column name just for a silly example
-    > skin <- skin[1:10,]
-    > colnames(fData(skin)) = paste("names",1:6)
-    > host<-"dec2013.archive.ensembl.org"; biomart<-"ENSEMBL_MART_ENSEMBL";
-    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
-    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart,host=host)
-    Error in value[[3L]](cond) : 
-      Request to BioMart web service failed. Verify if you are still connected to the internet.  Alternatively the BioMart web service is temporarily down.
-    Calls: annotateFromBiomart ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error in re-building vignettes:
-      ...
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    Enter file name: 
-    ! Emergency stop.
-    <read *> 
-             
-    l.39 \definecolor
-    
-    pandoc: Error producing PDF
-    Error: processing vignette 'yarn.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 43
-    Execution halted
-    ```
-
-*   checking CRAN incoming feasibility ... NOTE
-    ```
-    Maintainer: ‘Joseph N Paulson <jpaulson@jimmy.harvard.edu>’
-    
-    The Title field starts with the package name.
-    
-    This build time stamp is over a month old.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 

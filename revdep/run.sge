@@ -7,3 +7,8 @@
 
 module load r
 Rscript revdep/run.R
+
+## NOTE TO SELF: To manually install packages that failed to
+## install by revdepcheck, use:
+##   pkgs=$(grep -A 1 -F " but not available" revdep/problems.md | grep -F "‘" | sed 's/.*: //g' | sed 's/[‘’]//g' | sed 's/ +/\n/g' | sort -u)
+##   Rscript -e "crancache::install_packages(c($(printf "'%s', " $pkgs) 'future'))"
