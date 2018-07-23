@@ -64,10 +64,12 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   }
 
   # Argument 'constant':
-  stopifnot(length(constant) == 1L, is.numeric(constant))
+  if (length(constant) != 1L || !is.numeric(constant))
+    stop("Argument 'constant' must be a numeric scalar")
 
   # Argument 'center':
-  stopifnot(length(center) <= 1L)
+  if (length(center) > 1L)
+    stop("Argument 'center' must be a scalar or NULL")
 
 
   # Apply subset on x
@@ -148,10 +150,12 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
                             constant = 1.4826, center = NULL, ...) {
   # Argument 'constant':
-  stopifnot(length(constant) == 1L, is.numeric(constant))
+  if (length(constant) != 1L || !is.numeric(constant))
+    stop("Argument 'constant' must be a numeric scalar")
 
   # Argument 'center':
-  stopifnot(length(center) <= 1L)
+  if (length(center) > 1L)
+    stop("Argument 'center' must be a scalar or NULL")
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -172,10 +176,12 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
                             constant = 1.4826, center = NULL, ...) {
   # Argument 'constant':
-  stopifnot(length(constant) == 1L, is.numeric(constant))
+  if (length(constant) != 1L || !is.numeric(constant))
+    stop("Argument 'constant' must be a numeric scalar")
 
   # Argument 'center':
-  stopifnot(length(center) <= 1L)
+  if (length(center) > 1L)
+    stop("Argument 'center' must be a scalar or NULL")
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

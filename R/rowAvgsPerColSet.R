@@ -7,7 +7,7 @@
 #'
 #' If argument \code{S} is a single column vector with indices \code{1:N}, then
 #' \code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
-#' \code{rowMeans(X)}.  Analogously, for \code{rowAvgsPerColSet()}.
+#' \code{rowMeans(X)}.  Analogously, for \code{colAvgsPerRowSet()}.
 #'
 #' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
 #'
@@ -122,7 +122,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
     }
 
     # Sanity check
-    stopifnot(length(Zjj) == dimX[1L])
+    if (length(Zjj) != dimX[1L]) stop("Internal error: length(Zjj) != dimX[1L]")
 
     # Return set average
     Zjj
@@ -131,12 +131,13 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
   # apply() drops 2nd dimension if nrow(X) <= 1 (and FUN returns a vector of
   # length nrow(X) as it should), cf. ?apply
   if (!is.matrix(Z)) {
-    stopifnot(dimX[1] <= 1L)
+    if (dimX[1] > 1L) stop("Internal error: dimX[1] > 1L")
     dim(Z) <- c(length(Z), nbrOfSets)
   }
 
   # Sanity check
-  stopifnot(dim(Z) == c(dimX[1L], nbrOfSets))
+  if (any(dim(Z) != c(dimX[1L], nbrOfSets)))
+    stop("Internal error: dim(Z) != c(dimX[1L], nbrOfSets)")
 
   # Set names
   rownames(Z) <- rownamesX

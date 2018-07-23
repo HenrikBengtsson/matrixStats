@@ -1,6 +1,28 @@
 Package: matrixStats
 ====================
 
+Version: 0.54.0 [2018-07-23]
+
+PERFORMANCE:
+
+ o SPEEDUP: No longer using stopifnot() for internal validation, because
+   it comes with a great overhead.  This was only used in weightedMad(),
+   col-, and rowWeightedMads(), as well as col- and rowAvgsPerColSet().
+
+BUG FIXES:
+
+ o Despite being an unlikely use case, colLogSumExps(lx) / rowLogSumExps(lx)
+   now also accepts integer 'lx' values.
+
+ o The error produced when using indexByRow(dim) with prod(dim) >= 2^31 would
+   report garbage dimensions instead of 'dim'.
+
+DEPRECATED AND DEFUNCT:
+
+ o Calling indexByRow(x) where 'x' is a matrix is deprecated. Use
+   indexByRow(dim(x)) instead.
+  
+
 Version: 0.53.1 [2018-02-10]
 
 CODE REFACTORING:

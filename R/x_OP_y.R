@@ -47,8 +47,12 @@ x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
                    commute = FALSE, na.rm = FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
-  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
-  stopifnot(op > 0L)
+  if (is.character(OP)) {
+    op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
+    if (op == 0L) stop("Unknown value on argument 'OP': ", sQuote(OP))
+  } else {
+    op <- as.integer(OP)
+  }
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs,
         commute, na.rm, TRUE, FALSE)
 }
@@ -60,8 +64,12 @@ t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
                       commute = FALSE, na.rm = FALSE) {
   commute <- as.logical(commute)
   na.rm <- as.logical(na.rm)
-  op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
-  stopifnot(op > 0L)
+  if (is.character(OP)) {
+    op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
+    if (op == 0L) stop("Unknown value on argument 'OP': ", sQuote(OP))
+  } else {
+    op <- as.integer(OP)
+  }
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs,
         commute, na.rm, TRUE, TRUE)
 }

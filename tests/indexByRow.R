@@ -68,6 +68,10 @@ stopifnot(all(idxs_R2 == idxs_by_rows))
 idxs0 <- indexByRow(dim)
 idxs1 <- indexByRow(x)
 stopifnot(identical(idxs1, idxs0))
+res <- tryCatch({
+  idxs1 <- indexByRow(x)
+}, warning = identity)
+stopifnot(inherits(res, "warning"))
 
 
 ## Exceptions:

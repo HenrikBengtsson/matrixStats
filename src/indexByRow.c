@@ -62,11 +62,11 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
     n_max *= d;
 #ifndef LONG_VECTOR_SUPPORT
     if (n_max > R_INT_MAX) {
-      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[1], INTEGER(dim)[2], n_max);
+      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[0], INTEGER(dim)[1], n_max);
     }
 #endif
     if (n_max > R_INT_MAX) {
-      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[1], INTEGER(dim)[2], n_max);
+      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[0], INTEGER(dim)[1], n_max);
     }
   }
 
