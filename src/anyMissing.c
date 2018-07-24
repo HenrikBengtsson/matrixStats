@@ -13,7 +13,6 @@
 
 
 SEXP anyMissing(SEXP x, SEXP idxs) {
-  SEXP ans;
   R_xlen_t nx;
 
   nx = xlength(x);
