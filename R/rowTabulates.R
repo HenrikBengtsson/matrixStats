@@ -1,7 +1,4 @@
-#' Tabulates the values in a matrix by row (column)
-#'
 #' Tabulates the values in a matrix by row (column).
-#'
 #'
 #' @param x An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
 #' a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.
@@ -18,6 +15,17 @@
 #' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the
 #' number of row (column) \code{\link[base]{vector}}s tabulated and J is the
 #' number of values counted.
+#'
+#' @details
+#' An alternative to these functions, is to use \code{table(x, row(x))}
+#' and \code{table(x, col(x))}, with the exception that the latter do not
+#' support the \code{\link[base]{raw}} data type.
+#' When there are no missing values in \code{x}, we have that
+#' \code{all(rowTabulates(x) == t(table(x, row(x))))} and
+#' \code{all(colTabulates(x) == t(table(x, col(x))))}.
+#' When there are missing values, we have that
+#' \code{all(rowTabulates(x) == t(table(x, row(x), useNA = "always")[, seq_len(nrow(x))]))} and
+#' \code{all(colTabulates(x) == t(table(x, col(x), useNA = "always")[, seq_len(ncol(x))]))}.
 #'
 #' @example incl/rowTabulates.R
 #'
