@@ -5,11 +5,11 @@
 \alias{colMeans2}
 \title{Calculates the mean for each row (column) in a matrix}
 \usage{
-rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ...)
+rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(x), ...)
 
-colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ...)
+colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(x), ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} or a \code{\link[base]{logical}}

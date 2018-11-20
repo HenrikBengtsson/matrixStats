@@ -5,11 +5,11 @@
 \alias{colWeightedMeans}
 \title{Calculates the weighted means for each row (column) in a matrix}
 \usage{
-rowWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ...)
+rowWeightedMeans(x, w = NULL, rows = NULL, cols = NULL,
+  na.rm = FALSE, ...)
 
-colWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ...)
+colWeightedMeans(x, w = NULL, rows = NULL, cols = NULL,
+  na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

@@ -5,9 +5,11 @@
 \alias{colSums2}
 \title{Calculates the sum for each row (column) in a matrix}
 \usage{
-rowSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
+rowSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+  ...)
 
-colSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
+colSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+  ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} or a \code{\link[base]{logical}}
