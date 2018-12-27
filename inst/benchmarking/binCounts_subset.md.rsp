@@ -24,17 +24,17 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 set.seed(0xBEEF)
 nx <- 100e3 # Number of data points
 xmax <- 0.01*nx
-x <- runif(nx, min=0, max=xmax)
+x <- runif(nx, min = 0, max = xmax)
 storage.mode(x) <- mode
 str(x)
 
 # Uniformely distributed bins
 nb <- 10e3 # Number of bins
-bx <- seq(from=0, to=xmax, length.out=nb+1L)
+bx <- seq(from = 0, to = xmax, length.out = nb+1L)
 bx <- c(-1, bx, xmax+1)
 
 # indices for subsetting
-idxs <- sample.int(length(x), size=length(x)*0.7)
+idxs <- sample.int(length(x), size = length(x)*0.7)
 })%>
 ```
 
@@ -49,9 +49,9 @@ x_S <- x[idxs]
 gc()
 
 stats <- microbenchmark(
- "binCounts_x_S"      = binCounts(x_S, bx=bx),
- "binCounts(x,idxs)"  = binCounts(x, idxs=idxs, bx=bx),
- "binCounts(x[idxs])" = binCounts(x[idxs], bx=bx),
+ "binCounts_x_S"      = binCounts(x_S, bx = bx),
+ "binCounts(x, idxs)"  = binCounts(x, idxs = idxs, bx = bx),
+ "binCounts(x[idxs])" = binCounts(x[idxs], bx = bx),
  unit = "ms"
 )
 })%>
@@ -61,8 +61,8 @@ stats <- microbenchmark(
 
 <%
 # Sanity checks
-n1 <- binCounts(x, idxs=idxs, bx=bx)
-n1r <- rev(binCounts(-x, idxs=idxs, bx=rev(-bx), right=TRUE))
+n1 <- binCounts(x, idxs = idxs, bx = bx)
+n1r <- rev(binCounts(-x, idxs = idxs, bx = rev(-bx), right = TRUE))
 stopifnot(identical(n1r, n1))
 %>
 <% } # benchmark() %>

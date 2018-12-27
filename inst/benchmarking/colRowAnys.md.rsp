@@ -23,7 +23,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="logical")
+data <- rmatrices(mode = "logical")
 })%>
 ```
 
@@ -41,7 +41,7 @@ gc()
 
 colStats <- microbenchmark(
  colAnys       = colAnys(X),
- "apply+any"   = apply(X, MARGIN=2L, FUN=any),
+ "apply+any"   = apply(X, MARGIN = 2L, FUN = any),
  "colSums > 0" = (colSums(X) > 0L),
  unit = "ms"
 )
@@ -51,7 +51,7 @@ gc()
 
 rowStats <- microbenchmark(
  rowAnys       = rowAnys(X),
- "apply+any"   = apply(X, MARGIN=1L, FUN=any),
+ "apply+any"   = apply(X, MARGIN = 1L, FUN = any),
  "rowSums > 0" = (rowSums(X) > 0L),
  unit = "ms"
 )

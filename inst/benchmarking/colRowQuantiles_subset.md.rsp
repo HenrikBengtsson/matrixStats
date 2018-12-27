@@ -19,7 +19,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() on su
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="double")
+data <- rmatrices(mode = "double")
 })%>
 ```
 
@@ -33,17 +33,17 @@ data <- rmatrices(mode="double")
 ```r
 <%=withCapture({
 X <- data[[.dataLabel.]]
-rows <- sample.int(nrow(X), size=nrow(X)*0.7)
-cols <- sample.int(ncol(X), size=ncol(X)*0.7)
-X_S <- X[rows,cols]
+rows <- sample.int(nrow(X), size = nrow(X)*0.7)
+cols <- sample.int(ncol(X), size = ncol(X)*0.7)
+X_S <- X[rows, cols]
 gc()
 
-probs <- seq(from=0, to=1, by=0.25)
+probs <- seq(from = 0, to = 1, by = 0.25)
 
 colStats <- microbenchmark(
- "colQuantiles_X_S"           = colQuantiles(X_S, probs=probs, na.rm=FALSE),
- "colQuantiles(X,rows,cols)"  = colQuantiles(X, rows=rows, cols=cols, probs=probs, na.rm=FALSE),
- "colQuantiles(X[rows,cols])" = colQuantiles(X[rows,cols], probs=probs, na.rm=FALSE),
+ "colQuantiles_X_S"           = colQuantiles(X_S, probs = probs, na.rm = FALSE),
+ "colQuantiles(X, rows, cols)"  = colQuantiles(X, rows = rows, cols = cols, probs = probs, na.rm = FALSE),
+ "colQuantiles(X[rows, cols])" = colQuantiles(X[rows, cols], probs = probs, na.rm = FALSE),
  unit = "ms"
 )
 
@@ -52,9 +52,9 @@ X_S <- t(X_S)
 gc()
 
 rowStats <- microbenchmark(
- "rowQuantiles_X_S"           = rowQuantiles(X_S, probs=probs, na.rm=FALSE),
- "rowQuantiles(X,cols,rows)"  = rowQuantiles(X, rows=cols, cols=rows, probs=probs, na.rm=FALSE),
- "rowQuantiles(X[cols,rows])" = rowQuantiles(X[cols,rows], probs=probs, na.rm=FALSE),
+ "rowQuantiles_X_S"           = rowQuantiles(X_S, probs = probs, na.rm = FALSE),
+ "rowQuantiles(X, cols, rows)"  = rowQuantiles(X, rows = cols, cols = rows, probs = probs, na.rm = FALSE),
+ "rowQuantiles(X[cols, rows])" = rowQuantiles(X[cols, rows], probs = probs, na.rm = FALSE),
  unit = "ms"
 )
 })%>

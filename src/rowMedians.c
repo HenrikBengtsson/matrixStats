@@ -7,18 +7,8 @@
  Copyright Henrik Bengtsson, 2007
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-#define METHOD rowMedians
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans
-
-#define X_TYPE 'i'
-#include "templates-gen-matrix.h"
-#define X_TYPE 'r'
-#include "templates-gen-matrix.h"
-
+#include "000.types.h"
+#include "rowMedians_lowlevel.h"
 
 SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
@@ -59,9 +49,9 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMedians_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowMedians_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowMedians_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowMedians_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
   }
 
   UNPROTECT(1);

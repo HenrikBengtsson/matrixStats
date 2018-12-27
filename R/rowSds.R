@@ -1,72 +1,48 @@
-###########################################################################/**
-# @RdocFunction rowSds
-# @alias rowSds
-# @alias colSds
-# @alias rowMads
-# @alias colMads
-# \alias{rowSds,matrix-method}
-# \alias{colSds,matrix-method}
-#
-# @title "Standard deviation estimates for each row (column) in a matrix"
-#
-# \description{
-#   @get "title".
-# }
-#
-# \usage{
-#  @usage rowSds
-#  @usage colSds
-#  @usage rowMads
-#  @usage colMads
-# }
-#
-# \arguments{
-#  \item{x}{A @numeric NxK @matrix.}
-#  \item{rows, cols}{A @vector indicating subset of rows (and/or columns)
-#     to operate over. If @NULL, no subsetting is done.}
-#  \item{center}{A optional @numeric @vector of length N (K) with centers.
-#     By default, they are calculated using @see "rowMedians".}
-#  \item{constant}{A scale factor.  See @see "stats::mad" for details.}
-#  \item{na.rm}{If @TRUE, missing values are removed first, otherwise not.}
-#  \item{dim.}{An @integer @vector of length two specifying the
-#              dimension of \code{x}, also when not a @matrix.}
-#  \item{...}{Additional arguments passed to @see "rowVars" and
-#     @see "rowMedians", respectively.}
-#  \item{centers}{(deprectated) use \code{center} instead.}
-# }
-#
-# \value{
-#   Returns a @numeric @vector of length N (K).
-# }
-#
-# @author "HB"
-#
-# \seealso{
-#   @see "stats::sd", @see "stats::mad" and \code{\link[stats:cor]{var}}.
-#   @see "rowIQRs".
-# }
-#
-# @keyword array
-# @keyword iteration
-# @keyword robust
-# @keyword univar
-#*/###########################################################################
-rowSds <- function(x, rows=NULL, cols=NULL, ...) {
-  x <- rowVars(x, rows=rows, cols=cols, ...);
-  sqrt(x);
+#' Standard deviation estimates for each row (column) in a matrix
+#'
+#' Standard deviation estimates for each row (column) in a matrix.
+#'
+#'
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#'
+#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
+#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+#' is done.
+#'
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+#' are excluded first, otherwise not.
+#'
+#' @param center (optional) The center, defaults to the row means for the
+#' SD estimators and row medians for the MAD estimators.
+#'
+#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
+#' length two specifying the dimension of \code{x}, also when not a
+#' \code{\link[base]{matrix}}.
+#'
+#' @param ... Additional arguments passed to \code{rowMeans()} and
+#' \code{rowSums()}.
+#'
+#' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
+#' length N (K).
+#'
+#' @author Henrik Bengtsson
+#'
+#' @seealso \code{\link[stats]{sd}}, \code{\link[stats]{mad}} and
+#' \code{\link[stats:cor]{var}}.  \code{\link{rowIQRs}}().
+#' @keywords array iteration robust univar
+#'
+#' @export
+rowSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+                    dim. = dim(x), ...) {
+  x <- rowVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., ...)
+  sqrt(x)
 }
 
 
-colSds <- function(x, rows=NULL, cols=NULL, ...) {
-  x <- colVars(x, rows=rows, cols=cols, ...);
-  sqrt(x);
+#' @rdname rowSds
+#' @export
+colSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+                    dim. = dim(x), ...) {
+  x <- colVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., ...)
+  sqrt(x)
 }
-
-
-############################################################################
-# HISTORY:
-# 2012-03-19 [HC]
-# o Changed description of centers argument to rowMads and colMads
-# 2008-03-26 [HB]
-# o Created from genefilter::rowVars() by Wolfgang Huber.
-############################################################################

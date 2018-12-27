@@ -8,21 +8,8 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-#define METHOD rowVars
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans
-
-#define X_TYPE 'i'
-#include "templates-gen-matrix.h"
-
-#define X_TYPE 'r'
-#include "templates-gen-matrix.h"
-
-#undef METHOD
-
+#include "000.types.h"
+#include "rowVars_lowlevel.h"
 
 SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
@@ -62,9 +49,9 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowVars_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowVars_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowVars_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowVars_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
   }
 
   UNPROTECT(1);

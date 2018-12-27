@@ -27,7 +27,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -50,9 +50,9 @@ value <- 42
 ```r
 <%=withCapture({
 colStats <- microbenchmark(
- colCounts   = colCounts(X, value=value, na.rm=FALSE),
- colSums     = colSums(X == value, na.rm=FALSE),
- "apply+sum" = apply(X, MARGIN=2L, FUN=function(x) sum(x == value, na.rm=FALSE)),
+ colCounts   = colCounts(X, value = value, na.rm = FALSE),
+ colSums     = colSums(X == value, na.rm = FALSE),
+ "apply+sum" = apply(X, MARGIN = 2L, FUN = function(x) sum(x == value, na.rm = FALSE)),
  unit = "ms"
 )
 })%>
@@ -69,9 +69,9 @@ X <- t(X)
 ```r
 <%=withCapture({
 rowStats <- microbenchmark(
- rowCounts   = rowCounts(X, value=value, na.rm=FALSE),
- rowSums     = rowSums(X == value, na.rm=FALSE),
- "apply+sum" = apply(X, MARGIN=1L, FUN=function(x) sum(x == value, na.rm=FALSE)),
+ rowCounts   = rowCounts(X, value = value, na.rm = FALSE),
+ rowSums     = rowSums(X == value, na.rm = FALSE),
+ "apply+sum" = apply(X, MARGIN = 1L, FUN = function(x) sum(x == value, na.rm = FALSE)),
  unit = "ms"
 )
 })%>

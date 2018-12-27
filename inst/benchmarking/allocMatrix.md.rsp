@@ -21,11 +21,11 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 where
 ```r
 <%=withCapture({
-allocMatrix_R <- function(nrow, ncol, value=NA) {
+allocMatrix_R <- function(nrow, ncol, value = NA) {
   if (is.na(value) && !is.nan(value)) {
-    matrix(data=value[c()], nrow=nrow, ncol=ncol)
+    matrix(data = value[c()], nrow = nrow, ncol = ncol)
   } else {
-    matrix(data=value, nrow=nrow, ncol=ncol)
+    matrix(data = value, nrow = nrow, ncol = ncol)
   }
 } # allocMatrix_R()
 })%>
@@ -39,10 +39,10 @@ allocMatrix_R <- function(nrow, ncol, value=NA) {
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
-values <- list(zero=0, one=1, "NA"=NA_real_)
+data <- rmatrices(mode = mode)
+values <- list(zero = 0, one = 1, "NA" = NA_real_)
 if (mode != "double")
-  values <- lapply(values, FUN=function(x) { storage.mode(x) <- mode; x })
+  values <- lapply(values, FUN = function(x) { storage.mode(x) <- mode; x })
 })%>
 ```
 
@@ -76,9 +76,9 @@ str(value)
 ```r
 <%=withCapture({
 stats <- microbenchmark(
- "allocMatrix"         = allocMatrix(nrow=nrow, ncol=ncol, value=value),
- "matrix"              = matrix(data=value, nrow=nrow, ncol=ncol),
- "allocMatrix_R"       = allocMatrix_R(nrow=nrow, ncol=ncol, value=value),
+ "allocMatrix"         = allocMatrix(nrow = nrow, ncol = ncol, value = value),
+ "matrix"              = matrix(data = value, nrow = nrow, ncol = ncol),
+ "allocMatrix_R"       = allocMatrix_R(nrow = nrow, ncol = ncol, value = value),
   unit = "ms"
 )
 })%>

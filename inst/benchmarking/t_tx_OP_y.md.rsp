@@ -21,7 +21,7 @@ as below
 
 ```r
 <%=withCapture({
-t_tx_OP_y_R <- function(x, y, OP, na.rm=FALSE) {
+t_tx_OP_y_R <- function(x, y, OP, na.rm = FALSE) {
   x <- t(x)
   
   if (na.rm) {
@@ -64,7 +64,7 @@ t_tx_OP_y_R <- function(x, y, OP, na.rm=FALSE) {
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -83,21 +83,21 @@ gc()
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-y <- x[,1L]
+y <- x[, 1L]
 })%>
 ```
 
 <% for (OP in c("+", "-", "*", "/")) { %>
 <%
-OPTag <- c("+"="add", "-"="sub", "*"="mul", "/"="div")[OP]
+OPTag <- c("+" = "add", "-" = "sub", "*" = "mul", "/" = "div")[OP]
 gc()
 %>
 ```r
 <%=withCapture({
 OP
 stats <- microbenchmark(
- "t_tx_OP_y"   = t_tx_OP_y(x, y, OP=OP, na.rm=FALSE),
- "t_tx_OP_y_R" = t_tx_OP_y_R(x, y, OP=OP, na.rm=FALSE),
+ "t_tx_OP_y"   = t_tx_OP_y(x, y, OP = OP, na.rm = FALSE),
+ "t_tx_OP_y_R" = t_tx_OP_y_R(x, y, OP = OP, na.rm = FALSE),
   unit = "ms"
 )
 

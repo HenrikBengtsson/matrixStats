@@ -24,7 +24,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode="double")
+data <- rmatrices(mode = "double")
 })%>
 ```
 
@@ -42,10 +42,10 @@ X <- data[[.dataLabel.]]
 <% gc() %>
 <%=withCapture({
 colStats <- microbenchmark(
- "colProds w/ direct"    = colProds(X, method="direct", na.rm=FALSE),
- "colProds w/ expSumLog" = colProds(X, method="expSumLog", na.rm=FALSE),
- "apply+prod"            = apply(X, MARGIN=2L, FUN=prod, na.rm=FALSE),
- "apply+product"         = apply(X, MARGIN=2L, FUN=product, na.rm=FALSE),
+ "colProds w/ direct"    = colProds(X, method = "direct", na.rm = FALSE),
+ "colProds w/ expSumLog" = colProds(X, method = "expSumLog", na.rm = FALSE),
+ "apply+prod"            = apply(X, MARGIN = 2L, FUN = prod, na.rm = FALSE),
+ "apply+product"         = apply(X, MARGIN = 2L, FUN = product, na.rm = FALSE),
  unit = "ms"
 )
 })%>
@@ -55,10 +55,10 @@ X <- t(X)
 <% gc() %>
 <%=withCapture({
 rowStats <- microbenchmark(
- "rowProds w/ direct"    = rowProds(X, method="direct", na.rm=FALSE),
- "rowProds w/ expSumLog" = rowProds(X, method="expSumLog", na.rm=FALSE),
- "apply+prod"            = apply(X, MARGIN=1L, FUN=prod, na.rm=FALSE),
- "apply+product"         = apply(X, MARGIN=1L, FUN=product, na.rm=FALSE),
+ "rowProds w/ direct"    = rowProds(X, method = "direct", na.rm = FALSE),
+ "rowProds w/ expSumLog" = rowProds(X, method = "expSumLog", na.rm = FALSE),
+ "apply+prod"            = apply(X, MARGIN = 1L, FUN = prod, na.rm = FALSE),
+ "apply+product"         = apply(X, MARGIN = 1L, FUN = product, na.rm = FALSE),
  unit = "ms"
 )
 })%>

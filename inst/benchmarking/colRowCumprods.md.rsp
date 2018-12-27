@@ -26,7 +26,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode, range=c(-1,1))
+data <- rmatrices(mode = mode, range = c(-1, 1))
 })%>
 ```
 
@@ -43,7 +43,7 @@ gc()
 
 colStats <- microbenchmark(
  colCumprods     = colCumprods(X),
- "apply+cumprod" = apply(X, MARGIN=2L, FUN=cumprod),
+ "apply+cumprod" = apply(X, MARGIN = 2L, FUN = cumprod),
  unit = "ms"
 )
 
@@ -52,7 +52,7 @@ gc()
 
 rowStats <- microbenchmark(
  rowCumprods     = rowCumprods(X),
- "apply+cumprod" = apply(X, MARGIN=1L, FUN=cumprod),
+ "apply+cumprod" = apply(X, MARGIN = 1L, FUN = cumprod),
  unit = "ms"
 )
 })%>

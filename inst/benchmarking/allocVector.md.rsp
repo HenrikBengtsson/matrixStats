@@ -22,14 +22,14 @@ This report benchmark the performance of <%=fcnname%>() against alternative meth
 where
 ```r
 <%=withCapture({
-allocVector_R1 <- function(length, value=NA) {
-  x <- vector(mode=typeof(value), length=length)
+allocVector_R1 <- function(length, value = NA) {
+  x <- vector(mode = typeof(value), length = length)
   if (!is.finite(value) || value != 0) x[] <- value
   x
 } # allocVector_R1()
 
-allocVector_R2 <- function(length, value=NA) {
-  x <- matrix(data=value, nrow=length, ncol=1L)
+allocVector_R2 <- function(length, value = NA) {
+  x <- matrix(data = value, nrow = length, ncol = 1L)
   as.vector(x)
 } # allocVector_R2()
 })%>
@@ -43,10 +43,10 @@ allocVector_R2 <- function(length, value=NA) {
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode=mode)
-values <- list(zero=0, one=1, "NA"=NA_real_)
+data <- rvectors(mode = mode)
+values <- list(zero = 0, one = 1, "NA" = NA_real_)
 if (mode != "double")
-  values <- lapply(values, FUN=function(x) { storage.mode(x) <- mode; x })
+  values <- lapply(values, FUN = function(x) { storage.mode(x) <- mode; x })
 })%>
 ```
 
@@ -78,10 +78,10 @@ str(value)
 ```r
 <%=withCapture({
 stats <- microbenchmark(
- "allocVector"         = allocVector(length=n, value=value),
- "rep"                 = rep(value, times=n),
- "allocVector_R1"      = allocVector_R1(length=n, value=value),
- "allocVector_R2"      = allocVector_R2(length=n, value=value),
+ "allocVector"         = allocVector(length = n, value = value),
+ "rep"                 = rep(value, times = n),
+ "allocVector_R1"      = allocVector_R1(length = n, value = value),
+ "allocVector_R2"      = allocVector_R2(length = n, value = value),
   unit = "ms"
 )
 })%>

@@ -7,17 +7,8 @@
  Copyright Henrik Bengtsson, 2013-2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-
-#define METHOD rowLogSumExp
-#define METHOD_NAME rowLogSumExps_double
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST double *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, int rowsType, void *cols, R_xlen_t ncols, int colsType, int narm, int hasna, R_xlen_t byrow, double *ans
-
-#include "templates-gen-vector.h"
-
+#include "000.types.h"
+#include "rowLogSumExp_lowlevel.h"
 
 SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
   SEXP ans;

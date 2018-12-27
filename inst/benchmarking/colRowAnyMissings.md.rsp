@@ -23,7 +23,7 @@ where
 
 ```r
 <%=withCapture({
-colAnyMissings <- function(x, ...) colAnys(x, value=NA)
+colAnyMissings <- function(x, ...) colAnys(x, value = NA)
 })%>
 ```
 
@@ -31,7 +31,7 @@ and
 
 ```r
 <%=withCapture({
-rowAnyMissings <- function(x, ...) rowAnys(x, value=NA)
+rowAnyMissings <- function(x, ...) rowAnys(x, value = NA)
 })%>
 ```
 
@@ -43,7 +43,7 @@ rowAnyMissings <- function(x, ...) rowAnys(x, value=NA)
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -61,8 +61,8 @@ gc()
 
 colStats <- microbenchmark(
  colAnyMissings     = colAnyMissings(X),
- "apply+anyMissing" = apply(X, MARGIN=2L, FUN=anyMissing),
- colSums            = is.na(colSums(X, na.rm=FALSE)),
+ "apply+anyMissing" = apply(X, MARGIN = 2L, FUN = anyMissing),
+ colSums            = is.na(colSums(X, na.rm = FALSE)),
  unit = "ms"
 )
 
@@ -71,8 +71,8 @@ gc()
 
 rowStats <- microbenchmark(
  rowAnyMissings     = rowAnyMissings(X),
- "apply+anyMissing" = apply(X, MARGIN=1L, FUN=anyMissing),
- rowSums            = is.na(rowSums(X, na.rm=FALSE)),
+ "apply+anyMissing" = apply(X, MARGIN = 1L, FUN = anyMissing),
+ rowSums            = is.na(rowSums(X, na.rm = FALSE)),
  unit = "ms"
 )
 })%>

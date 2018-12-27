@@ -21,7 +21,7 @@ This report benchmark the performance of <%=subname%>() on subsetted computation
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -38,10 +38,10 @@ mprintf("%s: %s\n", mode, dataLabel)
 ```r
 <%=withCapture({
 x <- data[[.dataLabel.]]
-y <- x[,1L]
-xrows <- sample.int(nrow(x), size=nrow(x)*0.7)
-xcols <- sample.int(ncol(x), size=ncol(x)*0.7)
-x_S <- x[xrows,xcols]
+y <- x[, 1L]
+xrows <- sample.int(nrow(x), size = nrow(x)*0.7)
+xcols <- sample.int(ncol(x), size = ncol(x)*0.7)
+x_S <- x[xrows, xcols]
 yidxs <- xrows
 y_S <- y[yidxs]
 })%>
@@ -49,7 +49,7 @@ y_S <- y[yidxs]
 
 <% for (OP in c("+", "-", "*", "/")) { %>
 <%
-OPTag <- c("+"="add", "-"="sub", "*"="mul", "/"="div")[OP]
+OPTag <- c("+" = "add", "-" = "sub", "*" = "mul", "/" = "div")[OP]
 gc()
 %>
 ```r
@@ -57,9 +57,9 @@ gc()
 OP
 
 stats <- microbenchmark(
- "x_OP_y_x_y_S"                       = x_OP_y(x_S, y_S, OP=OP, na.rm=FALSE),
- "x_OP_y(x,y,OP,xrows,xcols,yidxs)"   = x_OP_y(x, y, OP=OP, xrows=xrows, xcols=xcols, yidxs=yidxs, na.rm=FALSE),
- "x_OP_y(x[xrows,xcols],y[yidxs],OP)" = x_OP_y(x[xrows,xcols], y[yidxs], OP=OP, na.rm=FALSE),
+ "x_OP_y_x_y_S"                       = x_OP_y(x_S, y_S, OP = OP, na.rm = FALSE),
+ "x_OP_y(x, y, OP, xrows, xcols, yidxs)"   = x_OP_y(x, y, OP = OP, xrows = xrows, xcols = xcols, yidxs = yidxs, na.rm = FALSE),
+ "x_OP_y(x[xrows, xcols], y[yidxs], OP)" = x_OP_y(x[xrows, xcols], y[yidxs], OP = OP, na.rm = FALSE),
   unit = "ms"
 )
 })%>

@@ -15,16 +15,7 @@
  **************************************************************************/
 #include <Rdefines.h>
 #include <Rmath.h>
-#include "utils.h"
-
-
-#define METHOD logSumExp
-#define METHOD_NAME logSumExp_double
-#define RETURN_TYPE double
-#define ARGUMENTS_LIST double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx
-
-#include "templates-gen-vector.h"
-
+#include "logSumExp_lowlevel.h"
 
 SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA) {
   int narm, hasna;

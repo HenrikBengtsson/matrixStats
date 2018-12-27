@@ -1,4 +1,5 @@
-benchmark <- function(fcn, tags=NULL, path=NULL, workdir="reports", envir=parent.frame(), ...) {
+benchmark <- function(fcn, tags = NULL, path = NULL, workdir = "reports",
+                      envir = parent.frame(), ...) {
   requireNamespace("R.rsp") || stop("R.rsp not installed.")
 
   if (is.function(fcn)) {
@@ -6,18 +7,14 @@ benchmark <- function(fcn, tags=NULL, path=NULL, workdir="reports", envir=parent
   }
 
   if (is.null(path)) {
-    path <- system.file("benchmarking", package="matrixStats")
+    path <- system.file("benchmarking", package = "matrixStats")
   }
 
-  fullname <- paste(c(fcn, tags), collapse=",")
+  fullname <- paste(c(fcn, tags), collapse = ", ")
   filename <- sprintf("%s.md.rsp", fullname)
   pathname <- file.path(path, filename)
 
-  R.rsp::rfile(pathname, workdir=workdir, envir=envir, ...)
-} # benchmark()
-
-############################################################################
-# HISTORY:
-# 2014-06-02
-# o Created.
-############################################################################
+  oopts <- options("prompt" = "> ")
+  on.exit(options(oopts))
+  R.rsp::rfile(pathname, workdir = workdir, envir = envir, ...)
+}

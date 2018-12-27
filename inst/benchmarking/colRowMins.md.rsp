@@ -30,7 +30,7 @@ See also [StackOverflow:colMins?].
 ```r
 <%=withCapture({
 <%@include file="R/random-matrices.R"%>
-data <- rmatrices(mode=mode)
+data <- rmatrices(mode = mode)
 })%>
 ```
 
@@ -47,10 +47,10 @@ X <- data[[.dataLabel.]]
 gc()
 
 colStats <- microbenchmark(
- colMins           = colMins(X, na.rm=FALSE),
- "apply+min"       = apply(X, MARGIN=2L, FUN=min, na.rm=FALSE),
- "lapply+pmin"     = do.call(pmin, lapply(seq_len(nrow(X)), function(i) X[i,])),
- "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(nrow(X)), function(i) X[i,])),
+ colMins           = colMins(X, na.rm = FALSE),
+ "apply+min"       = apply(X, MARGIN = 2L, FUN = min, na.rm = FALSE),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(nrow(X)), function(i) X[i, ])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(nrow(X)), function(i) X[i, ])),
  unit = "ms"
 )
 
@@ -58,10 +58,10 @@ X <- t(X)
 gc()
 
 rowStats <- microbenchmark(
- rowMins           = rowMins(X, na.rm=FALSE),
-"apply+min"        = apply(X, MARGIN=1L, FUN=min, na.rm=FALSE),
- "lapply+pmin"     = do.call(pmin, lapply(seq_len(ncol(X)), function(i) X[,i])),
- "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(ncol(X)), function(i) X[,i])),
+ rowMins           = rowMins(X, na.rm = FALSE),
+"apply+min"        = apply(X, MARGIN = 1L, FUN = min, na.rm = FALSE),
+ "lapply+pmin"     = do.call(pmin, lapply(seq_len(ncol(X)), function(i) X[, i])),
+ "lapply+pmin.int" = do.call(pmin.int, lapply(seq_len(ncol(X)), function(i) X[, i])),
  unit = "ms"
 )
 })%>

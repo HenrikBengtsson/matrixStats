@@ -33,7 +33,7 @@ logSumExp_R <- function(lx, ...) {
 ```r
 <%=withCapture({
 <%@include file="R/random-vectors.R"%>
-data <- rvectors(mode="double")
+data <- rvectors(mode = "double")
 data <- data[1:4]
 })%>
 ```

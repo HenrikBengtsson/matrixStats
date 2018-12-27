@@ -5,19 +5,8 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-
-#define METHOD signTabulate
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nx, void *idxs, R_xlen_t nidxs, double *ans
-
-#define X_TYPE 'i'
-#include "templates-gen-vector.h"
-#define X_TYPE 'r'
-#include "templates-gen-vector.h"
-
+#include "000.types.h"
+#include "signTabulate_lowlevel.h"
 
 SEXP signTabulate(SEXP x, SEXP idxs) {
   SEXP ans = NILSXP;
@@ -35,11 +24,11 @@ SEXP signTabulate(SEXP x, SEXP idxs) {
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, 6));
-    signTabulate_Real[idxsType](REAL(x), nx, cidxs, nidxs, REAL(ans));
+    signTabulate_dbl[idxsType](REAL(x), nx, cidxs, nidxs, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(REALSXP, 4));
-    signTabulate_Integer[idxsType](INTEGER(x), nx, cidxs, nidxs, REAL(ans));
+    signTabulate_int[idxsType](INTEGER(x), nx, cidxs, nidxs, REAL(ans));
     UNPROTECT(1);
   }
 

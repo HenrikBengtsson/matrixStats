@@ -5,26 +5,13 @@
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
 #include <Rdefines.h>
-#include "types.h"
-#include "utils.h"
-
-
-#define METHOD colCounts
-#define RETURN_TYPE void
-#define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, int *ans
-
-#define X_TYPE 'i'
-#include "templates-gen-matrix.h"
-#define X_TYPE 'r'
-#include "templates-gen-matrix.h"
-#define X_TYPE 'l'
-#include "templates-gen-matrix.h"
-
+#include "000.types.h"
+#include "colCounts_lowlevel.h"
 
 SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans;
   int narm, hasna, what2;
-  R_xlen_t nrow, ncol;
+  R_xlen_t ii, nrow, ncol;
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
@@ -56,16 +43,30 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
 
   /* R allocate an integer vector of length 'ncol' */
-  PROTECT(ans = allocVector(INTSXP, ncols));
+  /* R allocate memory for vector 'count' of length 'ncols'.
+     This will be taken care of by the R garbage collector later on. */
+  double *count = (double *) R_alloc(ncols, sizeof(double));
 
   if (isReal(x)) {
-    colCounts_Real[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, count);
   } else if (isInteger(x)) {
-    colCounts_Integer[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, count);
   } else if (isLogical(x)) {
-    colCounts_Logical[rowsType][colsType](LOGICAL(x), nrow, ncol, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_lgl[rowsType][colsType](LOGICAL(x), nrow, ncol, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, count);
   }
 
+  /* Coerce counts from double to integer.  This is needed because
+     colCount_nnn() returns double counts, which is in turn is needed
+     because count() may need to return > INT_MAX. */
+  PROTECT(ans = allocVector(INTSXP, ncols));
+  int *ans_ptr = INTEGER(ans);
+  for (ii = 0; ii < ncols; ii++) {
+    if (count[ii] == (double)NA_R_XLEN_T) {
+      ans_ptr[ii] = NA_INTEGER;
+    } else {
+      ans_ptr[ii] = (int)count[ii];
+    }
+  }
   UNPROTECT(1);
 
   return(ans);
@@ -76,6 +77,7 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   SEXP ans;
   int narm, hasna, what2;
   R_xlen_t nx;
+  double count = 0.0;
 
   /* Argument 'x' and 'dim': */
   assertArgVector(x, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
@@ -103,18 +105,28 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   void *crows = validateIndices(idxs, nx, 1, &nrows, &rowsType);
   void *ccols = NULL;
 
-  /* R allocate a integer scalar */
-  PROTECT(ans = allocVector(INTSXP, 1));
-
   if (isReal(x)) {
-    colCounts_Real[rowsType][colsType](REAL(x), nx, 1, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_dbl[rowsType][colsType](REAL(x), nx, 1, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, &count);
   } else if (isInteger(x)) {
-    colCounts_Integer[rowsType][colsType](INTEGER(x), nx, 1, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_int[rowsType][colsType](INTEGER(x), nx, 1, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, &count);
   } else if (isLogical(x)) {
-    colCounts_Logical[rowsType][colsType](LOGICAL(x), nx, 1, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans));
+    colCounts_lgl[rowsType][colsType](LOGICAL(x), nx, 1, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, &count);
   }
 
-  UNPROTECT(1);
+  /* R allocate a scalar */
+  if (count > (double)INT_MAX && count != (double)NA_R_XLEN_T) {
+    PROTECT(ans = allocVector(REALSXP, 1));
+    REAL(ans)[0] = count;
+    UNPROTECT(1);
+  } else {
+    PROTECT(ans = allocVector(INTSXP, 1));
+    if (count == (double)NA_R_XLEN_T) {
+      INTEGER(ans)[0] = NA_INTEGER;
+    } else {
+      INTEGER(ans)[0] = (int)count;
+    }
+    UNPROTECT(1);
+  }
 
   return(ans);
 } // count()
