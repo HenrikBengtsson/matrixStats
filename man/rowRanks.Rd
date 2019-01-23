@@ -3,7 +3,7 @@
 \name{rowRanks}
 \alias{rowRanks}
 \alias{colRanks}
-\title{Gets the rank of each row (column) of a matrix}
+\title{Gets the rank of the elements in each row (column) of a matrix}
 \usage{
 rowRanks(x, rows = NULL, cols = NULL, ties.method = c("max",
   "average", "min"), dim. = dim(x), ...)
@@ -46,7 +46,7 @@ for %% \code{ties.method == "average"} when it is
 \code{\link[base]{double}}.
 }
 \description{
-Gets the rank of each row (column) of a matrix.
+Gets the rank of the elements in each row (column) of a matrix.
 }
 \details{
 The row ranks of \code{x} are collected as \emph{rows} of the result matrix.

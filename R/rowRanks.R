@@ -1,6 +1,6 @@
-#' Gets the rank of each row (column) of a matrix
+#' Gets the rank of the elements in each row (column) of a matrix
 #'
-#' Gets the rank of each row (column) of a matrix.
+#' Gets the rank of the elements in each row (column) of a matrix.
 #'
 #' The row ranks of \code{x} are collected as \emph{rows} of the result matrix.
 #'
