@@ -1,10 +1,15 @@
 Package: matrixStats
 ====================
 
-Version: 0.54.0-9000 [2018-07-23]
+Version: 0.54.0-9000 [2019-03-28]
 
  o ...
 
+DEPRECATED AND DEFUNCT:
+
+ o Calling indexByRow(x) where 'x' is a matrix is now defunct. Use
+   indexByRow(dim(x)) instead.
+   
 
 Version: 0.54.0 [2018-07-23]
 
