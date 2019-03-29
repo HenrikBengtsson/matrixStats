@@ -34,7 +34,7 @@ rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   na.rm <- as.logical(na.rm)
 
   has_nas <- TRUE
-  return(.Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, TRUE))
+  .Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, TRUE)
 }
 
 #' @rdname rowSums2
@@ -45,5 +45,5 @@ colSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   na.rm <- as.logical(na.rm)
 
   has_nas <- TRUE
-  return(.Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, FALSE))
+  .Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, FALSE)
 }

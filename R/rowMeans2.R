@@ -34,7 +34,7 @@ rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   na.rm <- as.logical(na.rm)
 
   has_nas <- TRUE
-  return(.Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, TRUE))
+  .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, TRUE)
 }
 
 #' @rdname rowMeans2
@@ -45,5 +45,5 @@ colMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   na.rm <- as.logical(na.rm)
 
   has_nas <- TRUE
-  return(.Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, FALSE))
+  .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, FALSE)
 }
