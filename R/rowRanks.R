@@ -63,13 +63,14 @@
 #'
 #' @export
 rowRanks <- function(x, rows = NULL, cols = NULL,
-                     ties.method = c("max", "average", "min"),
+                     ties.method = c("average", "first", "last", "random",
+                                     "max", "min", "dense"),
                      dim. = dim(x), ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
-  ties_method <- charmatch(ties.method, c("max", "average", "min"),
-                           nomatch = 0L)
+  ties_method <- charmatch(ties.method, c("average", "first", "last", "random",
+                                          "max", "min", "dense"), nomatch = 0L)
   if (ties_method == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
@@ -83,7 +84,8 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
 #' @rdname rowRanks
 #' @export
 colRanks <- function(x, rows = NULL, cols = NULL,
-                     ties.method = c("max", "average", "min"),
+                     ties.method = c("average", "first", "last", "random",
+                                     "max", "min", "dense"),
                      dim. = dim(x), preserveShape = FALSE, ...) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
@@ -91,8 +93,8 @@ colRanks <- function(x, rows = NULL, cols = NULL,
   # Argument 'preserveShape'
   preserveShape <- as.logical(preserveShape)
 
-  ties_method <- charmatch(ties.method, c("max", "average", "min"),
-                           nomatch = 0L)
+  ties_method <- charmatch(ties.method, c("average", "first", "last", "random",
+                                          "max", "min", "dense"), nomatch = 0L)
   if (ties_method == 0L) {
     stop("Unknown value of argument 'ties.method': ", ties.method)
   }
