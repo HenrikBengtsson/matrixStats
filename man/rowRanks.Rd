@@ -5,11 +5,12 @@
 \alias{colRanks}
 \title{Gets the rank of the elements in each row (column) of a matrix}
 \usage{
-rowRanks(x, rows = NULL, cols = NULL, ties.method = c("max",
-  "average", "min"), dim. = dim(x), ...)
+rowRanks(x, rows = NULL, cols = NULL, ties.method = c("average",
+  "first", "last", "random", "max", "min", "dense"), dim. = dim(x), ...)
 
-colRanks(x, rows = NULL, cols = NULL, ties.method = c("max",
-  "average", "min"), dim. = dim(x), preserveShape = FALSE, ...)
+colRanks(x, rows = NULL, cols = NULL, ties.method = c("average",
+  "first", "last", "random", "max", "min", "dense"), dim. = dim(x),
+  preserveShape = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK
@@ -69,13 +70,16 @@ result.
 }
 
 \seealso{
-\code{\link[base]{rank}}().  For developers, see also Section
-'Utility functions' in 'Writing R Extensions manual', particularly the
+\code{\link[base]{rank}}().  
+\code{\link[data.table]{frank}}() for ties.method 'dense'.  
+For developers, see also Section Utility functions' in 
+'Writing R Extensions manual', particularly the
 native functions \code{R_qsort_I()} and \code{R_qsort_int_I()}.
 }
 \author{
 Hector Corrada Bravo and Harris Jaffee.  Peter Langfelder for adding
-'ties.method' support.  Henrik Bengtsson adapted the original native
+'ties.method' support.  Brian Montgomery for adding more 'ties.method's.
+Henrik Bengtsson adapted the original native
 implementation of \code{rowRanks()} from Robert Gentleman's \code{rowQ()} in
 the \pkg{Biobase} package.
 }

@@ -52,12 +52,15 @@
 #' \code{na.last = "keep"} in the \code{\link[base]{rank}}() function.
 #'
 #' @author Hector Corrada Bravo and Harris Jaffee.  Peter Langfelder for adding
-#' 'ties.method' support.  Henrik Bengtsson adapted the original native
+#' 'ties.method' support.  Brian Montgomery for adding more 'ties.method's.
+#' Henrik Bengtsson adapted the original native
 #' implementation of \code{rowRanks()} from Robert Gentleman's \code{rowQ()} in
 #' the \pkg{Biobase} package.
 #'
-#' @seealso \code{\link[base]{rank}}().  For developers, see also Section
-#' 'Utility functions' in 'Writing R Extensions manual', particularly the
+#' @seealso \code{\link[base]{rank}}().  
+#' \code{\link[data.table]{frank}}() for ties.method 'dense'.  
+#' For developers, see also Section Utility functions' in 
+#' 'Writing R Extensions manual', particularly the
 #' native functions \code{R_qsort_I()} and \code{R_qsort_int_I()}.
 #' @keywords array iteration robust univar
 #'

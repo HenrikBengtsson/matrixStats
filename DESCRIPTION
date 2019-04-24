@@ -8,7 +8,8 @@ Suggests:
   knitr,
   microbenchmark,
   R.devices,
-  R.rsp
+  R.rsp,
+  data.table (>= 1.9.6)
 VignetteBuilder: R.rsp
 Date: 2018-07-23
 Title: Functions that Apply to Rows and Columns of Matrices (and to Vectors)
@@ -21,8 +22,9 @@ Authors@R: c(
   person("Harris", "Jaffee", role="ctb"),
   person("Dongcan", "Jiang", role="ctb"),
   person("Peter", "Langfelder", role="ctb"),
-  person("Peter", "Hickey", role="ctb"))
-Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Peter Hickey [ctb]
+  person("Peter", "Hickey", role="ctb"),
+  person("Brian", "Montgomery", role="ctb"))
+Author: Henrik Bengtsson [aut, cre, cph], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Peter Hickey [ctb], Brian Montgomery [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: High-performing functions operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  Functions optimized per data type and for subsetted calculations such that both memory usage and processing time is minimized.  There are also optimized vector-based methods, e.g. binMeans(), madDiff() and weightedMedian().
 License: Artistic-2.0
