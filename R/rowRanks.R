@@ -66,7 +66,8 @@
 #'
 #' @export
 rowRanks <- function(x, rows = NULL, cols = NULL,
-                     ties.method = c("average", "first", "last", "random",
+                     # max is listed twice so that it remains the default for now
+                     ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), ...) {
   # Argument 'ties.method':
@@ -87,7 +88,8 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
 #' @rdname rowRanks
 #' @export
 colRanks <- function(x, rows = NULL, cols = NULL,
-                     ties.method = c("average", "first", "last", "random",
+                     # max is listed twice so that it remains the default for now
+                     ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), preserveShape = FALSE, ...) {
   # Argument 'ties.method':
