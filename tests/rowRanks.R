@@ -97,19 +97,28 @@ for (kk in 1:4) {
 } # for (kk ...)
 
 cat("Consistency checks for dense:\n")
-if (!requireNamespace("data.table", quietly = TRUE)) {
-  stop("Package \"data.table\" needed for tests of \"dense\" ties.method to work. Please install it.",
-       call. = FALSE)
+
+dense_rank <- function(x){
+  ans <- rank(x, na.last = "keep", ties.method = "min")
+  #squeeze the ranks to make them "dense"
+  r <- 2L
+  while (any(ans > r, na.rm = TRUE)) {
+    if (length(ans[ans %in% r]) == 0) {
+      ans[!is.na(ans) & ans > r] <- ans[!is.na(ans) & ans > r] - 1L
+    } else {
+      r <- r + 1L
+    }
+  }
+  ans
 }
-  for (kk in 1:4) {
-  
+
+for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep = "")
   for (ties in c("dense")) {
     cat(sprintf("ties.method = %s\n", ties))
     # rowRanks():
     y1 <- matrixStats::rowRanks(x[[kk]], ties.method = ties)
-    y2 <- t(apply(x[[kk]], MARGIN = 1L, FUN = data.table::frank, na.last = "keep",
-                  ties.method = ties))
+    y2 <- t(apply(x[[kk]], MARGIN = 1L, FUN = dense_rank))
     stopifnot(identical(y1, y2))
     
     y3 <- matrixStats::colRanks(t(x[[kk]]), ties.method = ties)
@@ -117,15 +126,13 @@ if (!requireNamespace("data.table", quietly = TRUE)) {
     
     # colRanks():
     y1 <- matrixStats::colRanks(x[[kk]], ties.method = ties)
-    y2 <- t(apply(x[[kk]], MARGIN = 2L, FUN = data.table::frank, na.last = "keep",
-                  ties.method = ties))
+    y2 <- t(apply(x[[kk]], MARGIN = 2L, FUN = dense_rank))
     stopifnot(identical(y1, y2))
     
     y3 <- matrixStats::rowRanks(t(x[[kk]]), ties.method = ties)
     stopifnot(identical(y1, y3))
   }
 } # for (kk ...)
-
 
 
 ## Exception handling
