@@ -98,19 +98,7 @@ for (kk in 1:4) {
 
 cat("Consistency checks for dense:\n")
 
-dense_rank <- function(x){
-  ans <- rank(x, na.last = "keep", ties.method = "min")
-  #squeeze the ranks to make them "dense"
-  r <- 2L
-  while (any(ans > r, na.rm = TRUE)) {
-    if (length(ans[ans %in% r]) == 0) {
-      ans[!is.na(ans) & ans > r] <- ans[!is.na(ans) & ans > r] - 1L
-    } else {
-      r <- r + 1L
-    }
-  }
-  ans
-}
+dense_rank <- function(x) match(x, sort(unique(x)))
 
 for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep = "")
