@@ -45,46 +45,62 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   } else {
     stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
   }
-
+  
   # Argument 'dim.':
   dim. <- as.integer(dim.)
-
+  
   # Argument 'value':
-  if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
-  }
-
-  # Coerce 'value' to matrix
-  storage.mode(value) <- storage.mode(x)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Count
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      counts <- apply(x, MARGIN = 1L, FUN = function(x) {
-        sum(is.na(x))
-      })
+  if (is.null(value)) {
+    if (is.null(rows)) {
+      if (is.null(cols)) {
+        value <- sort(unique(as.vector(x)))
+      } else {
+        value <- sort(unique(x[, cols]))
+      }
     } else {
-      counts <- apply(x, MARGIN = 1L, FUN = function(x) {
-        sum(x == value, na.rm = na.rm)
-      })
+      if (is.null(cols)) {
+        value <- sort(unique(x[rows, ]))
+      } else {
+        value <- sort(unique(x[rows, cols]))
+      }
     }
   }
-
-  as.integer(counts)
+  counts <- matrix(0L, nrow = nrow(x), ncol = length(value))
+  colnames(counts) <- value
+  
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x)
+  
+  for (i in seq_along(value)) {
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Count
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (is.numeric(x) || is.logical(x)) {
+      na.rm <- as.logical(na.rm)
+      has_nas <- TRUE
+      counts[, i] <- .Call(C_rowCounts, x, dim., rows, cols, value[i], 2L, na.rm, has_nas)
+    } else {
+      if (is.vector(x)) dim(x) <- dim.
+      
+      # Apply subset
+      if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+      else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+      else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+      dim. <- dim(x)
+      
+      if (is.na(value[i])) {
+        counts[, i] <- apply(x, MARGIN = 1L, FUN = function(x) {
+          sum(is.na(x))
+        })
+      } else {
+        counts[, i] <- apply(x, MARGIN = 1L, FUN = function(x) {
+          sum(x == value[i], na.rm = na.rm)
+        })
+      }
+    }
+  }
+  if (length(value) <= 1) as.vector(counts) else counts
 }
 
 
@@ -98,46 +114,62 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   } else {
     stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
   }
-
+  
   # Argument 'dim.':
   dim. <- as.integer(dim.)
-
+  
   # Argument 'value':
-  if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
-  }
-
-  # Coerce 'value' to matrix
-  storage.mode(value) <- storage.mode(x)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Count
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      counts <- apply(x, MARGIN = 2L, FUN = function(x)
-        sum(is.na(x))
-      )
+  if (is.null(value)) {
+    if (is.null(rows)) {
+      if (is.null(cols)) {
+        value <- sort(unique(as.vector(x)))
+      } else {
+        value <- sort(unique(x[, cols]))
+      }
     } else {
-      counts <- apply(x, MARGIN = 2L, FUN = function(x)
-        sum(x == value, na.rm = na.rm)
-      )
+      if (is.null(cols)) {
+        value <- sort(unique(x[rows, ]))
+      } else {
+        value <- sort(unique(x[rows, cols]))
+      }
     }
   }
-
-  as.integer(counts)
+  counts <- matrix(0L, nrow = ncol(x), ncol = length(value))
+  colnames(counts) <- value
+  
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x)
+  
+  for (i in seq_along(value)) {
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Count
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (is.numeric(x) || is.logical(x)) {
+      na.rm <- as.logical(na.rm)
+      has_nas <- TRUE
+      counts[, i] <- .Call(C_colCounts, x, dim., rows, cols, value[i], 2L, na.rm, has_nas)
+    } else {
+      if (is.vector(x)) dim(x) <- dim.
+      
+      # Apply subset
+      if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+      else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+      else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+      dim. <- dim(x)
+      
+      if (is.na(value[i])) {
+        counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
+          sum(is.na(x))
+        )
+      } else {
+        counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
+          sum(x == value[i], na.rm = na.rm)
+        )
+      }
+    }
+  }
+  if (length(value) == 1) as.vector(counts) else counts
 }
 
 
@@ -148,32 +180,40 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   if (!is.vector(x)) {
     stop("Argument 'x' must be a vector: ", mode(x)[1L])
   }
-
+  
   # Argument 'value':
-  if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
-  }
-
-  # Coerce 'value' to matrix
-  storage.mode(value) <- storage.mode(x)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Count
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_count, x, idxs, value, 2L, na.rm, has_nas)
-  } else {
-    # Apply subset
-    if (!is.null(idxs)) x <- x[idxs]
-
-    if (is.na(value)) {
-      counts <- sum2(is.na(x))
+  if (is.null(value)) {
+    if (is.null(idxs)) {
+      value <- sort(unique(x))
     } else {
-      counts <- sum2(x == value, na.rm = na.rm)
+      value <- sort(unique(x[idxs]))
     }
   }
-
-  counts
+  counts <- integer(length(value))
+  names(counts) <- value
+  
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x)
+  
+  for (i in seq_along(value)) {
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Count
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (is.numeric(x) || is.logical(x)) {
+      na.rm <- as.logical(na.rm)
+      has_nas <- TRUE
+      counts[i] <- .Call(C_count, x, idxs, value[i], 2L, na.rm, has_nas)
+     } else {
+      # Apply subset
+      if (!is.null(idxs)) x <- x[idxs]
+      
+      if (is.na(value[i])) {
+        counts[i] <- sum2(is.na(x))
+      } else {
+        counts[i] <- sum2(x == value[i], na.rm = na.rm)
+      }
+    }
+  } 
+  if (length(value) == 1) unname(counts) else counts
 }
