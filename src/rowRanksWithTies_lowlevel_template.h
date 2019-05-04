@@ -202,6 +202,8 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
 /***************************************************************************
  HISTORY:
+ 2019-4-23 [BKM]
+  o Added new tiesMethods: first, last, random, and dense.
  2015-06-12 [DJ]
   o Supported subsetted computation.
  2014-11-06 [HB]

@@ -228,6 +228,8 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
 
 /***************************************************************************
  HISTORY:
+ 2019-4-23 [BKM]
+  o Added more tiesMethods: first, last, random, and dense
  2015-06-12 [DJ]
   o Supported subsetted computation.
  2013-01-13 [HB]
