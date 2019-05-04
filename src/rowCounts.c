@@ -77,6 +77,8 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
 /***************************************************************************
  HISTORY:
+ 2019-5-4 [BKM]
+  o Supported vector of values.
  2015-04-13 [DJ]
   o Supported subsetted computation.
  2014-06-02 [HB]

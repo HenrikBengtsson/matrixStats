@@ -186,6 +186,8 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
 
 /***************************************************************************
  HISTORY:
+ 2019-05-4 [BKM]
+  o Supported a vector of values.
  2015-04-21 [DJ]
   o Supported subsetted computation.
  2014-11-14 [HB]

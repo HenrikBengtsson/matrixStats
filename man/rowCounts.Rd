@@ -4,7 +4,7 @@
 \alias{rowCounts}
 \alias{colCounts}
 \alias{count}
-\title{Counts the number of occurrences of a specific value}
+\title{Counts the number of occurrences of a specific value or vector of values}
 \usage{
 rowCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
   dim. = dim(x), ...)
@@ -18,7 +18,7 @@ count(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 \item{x}{An NxK \code{\link[base]{matrix}} or an N * K
 \code{\link[base]{vector}}.}
 
-\item{value}{A value to search for.}
+\item{value}{A value or vector of values to search for.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 are excluded first, otherwise not.}
@@ -38,7 +38,11 @@ elements (or rows and/or columns) to operate over. If
 \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
 \code{count()} returns a scalar of type \code{\link[base]{integer}} if
 the count is less than 2^31-1 (= \code{.Machine$integer.max}) otherwise
-a scalar of type \code{\link[base]{double}}.
+a scalar of type \code{\link[base]{double}}.  
+If value is a \code{\link[base]{vector}} of J values, a N x J (K x J) matrix 
+is returned with column names corresponding to the values.  
+Specifying value = \code{\link[base]{NULL}} will use all unique matrix values 
+(similar to \code{rowTabulates()} (\code{colTabulates()})).
 }
 \description{
 The row- and column-wise functions take either a matrix or a vector as
@@ -56,10 +60,21 @@ print(x)
 
 print(rowCounts(x, value = 2))
 ## [1]  0  1 NA  0
+print(rowCounts(x, value = 2:3))
+##       2  3
+## [1,]  0  0
+## [2,]  1  0
+## [3,] NA NA
+## [4,]  0  1
 print(colCounts(x, value = 2))
 ## [1]  1  1 NA
 print(colCounts(x, value = NA_integer_))
 ## [1] 0 0 1
+print(colCounts(x, value = NULL))
+##       0  1  2  3  4  7  8 11
+## [1,]  1  1  1  1  0  0  0  0
+## [2,]  0  0  1  1  1  1  0  0
+## [3,] NA NA NA NA NA NA NA NA
 
 print(rowCounts(x, value = 2, na.rm = TRUE))
 ## [1] 0 1 1 0
@@ -80,10 +95,11 @@ print(colAlls(x, value = 2))
 ## [1] FALSE FALSE FALSE
 }
 \seealso{
-rowAlls
+rowAlls, rowTabulates
 }
 \author{
-Henrik Bengtsson
+Henrik Bengtsson. Brian Montgomery added support for a vector of
+values and value = NULL.
 }
 \keyword{array}
 \keyword{iteration}

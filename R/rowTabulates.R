@@ -29,7 +29,7 @@
 #'
 #' @example incl/rowTabulates.R
 #'
-#' @author Henrik Bengtsson
+#' @author Henrik Bengtsson.  Brian Montgomery moved loops to C for speed.
 #' @keywords utilities
 #' @export
 rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
