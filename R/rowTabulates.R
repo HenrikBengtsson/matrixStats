@@ -73,16 +73,12 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
       names <- as.character(values)
     }
   }
-
-
-  nbr_of_values <- length(values)
-  counts <- matrix(0L, nrow = nrow(x), ncol = nbr_of_values)
-  colnames(counts) <- names
   na.rm <- anyMissing(x)
-  for (kk in seq_len(nbr_of_values)) {
-    counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
+  counts <- rowCounts(x, value = values, na.rm = na.rm)
+  if (length(values) == 1) {
+    counts <- matrix(counts, ncol = 1)
   }
-
+  colnames(counts) <- names
   counts
 }
 
@@ -131,16 +127,12 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
     }
   }
 
-
-  transpose <- FALSE
-  if (!transpose) {
-    nbr_of_values <- length(values)
-    counts <- matrix(0L, nrow = ncol(x), ncol = nbr_of_values)
-    colnames(counts) <- names
-    na.rm <- anyMissing(x)
-    for (kk in seq_len(nbr_of_values)) {
-      counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
-    }
+  # transpose <- FALSE
+  na.rm <- anyMissing(x)
+  counts <- colCounts(x, value = values, na.rm = na.rm)
+  if (length(values) == 1) {
+    counts <- matrix(counts, ncol = 1)
   }
+  colnames(counts) <- names
   counts
 }

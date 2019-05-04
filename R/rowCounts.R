@@ -55,39 +55,38 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       if (is.null(cols)) {
         value <- sort(unique(as.vector(x)))
       } else {
-        value <- sort(unique(x[, cols]))
+        value <- sort(unique(as.vector(x[, cols])))
       }
     } else {
       if (is.null(cols)) {
-        value <- sort(unique(x[rows, ]))
+        value <- sort(unique(as.vector(x[rows, ])))
       } else {
-        value <- sort(unique(x[rows, cols]))
+        value <- sort(unique(as.vector(x[rows, cols])))
       }
     }
   }
-  counts <- matrix(0L, nrow = nrow(x), ncol = length(value))
-  colnames(counts) <- value
   
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
   
-  for (i in seq_along(value)) {
+  
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Count
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (is.numeric(x) || is.logical(x)) {
+    na.rm <- as.logical(na.rm)
+    has_nas <- TRUE
+    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
+  } else {
+    if (is.vector(x)) dim(x) <- dim.
     
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Count
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (is.numeric(x) || is.logical(x)) {
-      na.rm <- as.logical(na.rm)
-      has_nas <- TRUE
-      counts[, i] <- .Call(C_rowCounts, x, dim., rows, cols, value[i], 2L, na.rm, has_nas)
-    } else {
-      if (is.vector(x)) dim(x) <- dim.
-      
-      # Apply subset
-      if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-      else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-      else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-      dim. <- dim(x)
+    # Apply subset
+    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+    dim. <- dim(x)
+    counts <- allocMatrix(nrow = nrow(x), ncol = length(value), value = 0L)
+    for (i in seq_along(value)) {
       
       if (is.na(value[i])) {
         counts[, i] <- apply(x, MARGIN = 1L, FUN = function(x) {
@@ -100,7 +99,12 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       }
     }
   }
-  if (length(value) <= 1) as.vector(counts) else counts
+  if (length(value) == 1) {
+    as.integer(counts)
+  } else {
+    colnames(counts) <- value
+    counts
+  }
 }
 
 
@@ -124,23 +128,20 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       if (is.null(cols)) {
         value <- sort(unique(as.vector(x)))
       } else {
-        value <- sort(unique(x[, cols]))
+        value <- sort(unique(as.vector(x[, cols])))
       }
     } else {
       if (is.null(cols)) {
-        value <- sort(unique(x[rows, ]))
+        value <- sort(unique(as.vector(x[rows, ])))
       } else {
-        value <- sort(unique(x[rows, cols]))
+        value <- sort(unique(as.vector(x[rows, cols])))
       }
     }
   }
-  counts <- matrix(0L, nrow = ncol(x), ncol = length(value))
-  colnames(counts) <- value
   
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
   
-  for (i in seq_along(value)) {
     
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Count
@@ -148,7 +149,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     if (is.numeric(x) || is.logical(x)) {
       na.rm <- as.logical(na.rm)
       has_nas <- TRUE
-      counts[, i] <- .Call(C_colCounts, x, dim., rows, cols, value[i], 2L, na.rm, has_nas)
+      counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
     } else {
       if (is.vector(x)) dim(x) <- dim.
       
@@ -158,18 +159,25 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
       dim. <- dim(x)
       
-      if (is.na(value[i])) {
-        counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
-          sum(is.na(x))
-        )
-      } else {
-        counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
-          sum(x == value[i], na.rm = na.rm)
-        )
+      counts <- allocMatrix(nrow = ncol(x), ncol = length(value), value = 0L)
+      for (i in seq_along(value)) {
+        if (is.na(value[i])) {
+          counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
+            sum(is.na(x))
+          )
+        } else {
+          counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
+            sum(x == value[i], na.rm = na.rm)
+          )
+        }
       }
     }
+  if (length(value) == 1) {
+    as.integer(counts)
+  } else {
+    colnames(counts) <- value
+    counts
   }
-  if (length(value) == 1) as.vector(counts) else counts
 }
 
 
@@ -189,25 +197,23 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
       value <- sort(unique(x[idxs]))
     }
   }
-  counts <- integer(length(value))
-  names(counts) <- value
   
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
-  
-  for (i in seq_along(value)) {
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Count
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (is.numeric(x) || is.logical(x)) {
-      na.rm <- as.logical(na.rm)
-      has_nas <- TRUE
-      counts[i] <- .Call(C_count, x, idxs, value[i], 2L, na.rm, has_nas)
-     } else {
-      # Apply subset
-      if (!is.null(idxs)) x <- x[idxs]
-      
+  if (is.numeric(x) || is.logical(x)) {
+    na.rm <- as.logical(na.rm)
+    has_nas <- TRUE
+    counts <- .Call(C_count, x, idxs, value, 2L, na.rm, has_nas)
+  } else {
+    # Apply subset
+    if (!is.null(idxs)) x <- x[idxs]
+    
+    counts <- integer(length(value))
+    for (i in seq_along(value)) {
       if (is.na(value[i])) {
         counts[i] <- sum2(is.na(x))
       } else {
@@ -215,5 +221,6 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
       }
     }
   } 
-  if (length(value) == 1) unname(counts) else counts
+  if (length(value) > 1) names(counts) <- value
+  counts
 }

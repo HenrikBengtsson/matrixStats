@@ -105,6 +105,12 @@ for (na.rm in c(FALSE, TRUE)) {
   c_false <- colCounts(x, value = FALSE, na.rm = na.rm)
   stopifnot(c_true + c_false == nrow(x))
 
+  ct <- count(x[1, ], value = value, na.rm = na.rm)
+  stopifnot(identical(ct, r1[1]))
+  
+  ct <- count(x[2, ], value = value, na.rm = na.rm)
+  stopifnot(identical(ct, r1[2]))
+  
   # Count NAs
   r0 <- rowCounts_R(x, value = NA, na.rm = na.rm)
   r1 <- rowCounts(x, value = NA, na.rm = na.rm)
@@ -163,6 +169,11 @@ for (mode in c("integer", "double")) {
         stopifnot(identical(r1, r0))
         stopifnot(identical(r2, r0))
       stopifnot(all(apply(r0, MARGIN = 1L, sum) == ncol(x)))
+      ct <- count(x[1, ], value = value, na.rm = na.rm)
+      stopifnot(identical(ct, r1[1, ]))
+      
+      ct <- count(x[2, ], value = value, na.rm = na.rm)
+      stopifnot(identical(ct, r1[2, ]))
     } # if (mode == "integer")
   } # for (na.rm ...)
 } # for (mode ...)
