@@ -29,6 +29,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which);
 SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA);
 SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, SEXP byRow);
 SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow);
+SEXP rowTrimmedMeans(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP trimFrac, SEXP naRm, SEXP hasNA, SEXP byRow);
 SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow);
 SEXP signTabulate(SEXP x, SEXP idxs);
 SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode);

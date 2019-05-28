@@ -35,6 +35,7 @@ static R_CallMethodDef callMethods[]  = {
   CALLDEF(rowRanges, 7),
   CALLDEF(rowRanksWithTies, 6),
   CALLDEF(rowSums2, 7),
+  CALLDEF(rowTrimmedMeans, 8),
   CALLDEF(rowVars, 7),
   CALLDEF(signTabulate, 2),
   CALLDEF(sum2, 4),
