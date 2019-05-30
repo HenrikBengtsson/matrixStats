@@ -12,7 +12,7 @@ rowCumsums_R <- function(x) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "double", "logical")) {
   for (add_na in c(FALSE, TRUE)) {
     cat("add_na = ", add_na, "\n", sep = "")
 
@@ -38,7 +38,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "double", "logical")) {
   x <- matrix(NA_real_, nrow = 20, ncol = 5)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
@@ -56,7 +56,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("integer", "double", "logical")) {
   x <- matrix(0, nrow = 1, ncol = 1)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode

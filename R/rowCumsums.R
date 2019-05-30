@@ -30,6 +30,7 @@
 #' @export
 rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
   dim <- as.integer(dim.)
+  if (storage.mode(x) == "logical") storage.mode(x) <- "integer"
   .Call(C_rowCumsums, x, dim, rows, cols, TRUE)
 }
 
@@ -38,6 +39,7 @@ rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 #' @export
 colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
   dim <- as.integer(dim.)
+  if (storage.mode(x) == "logical") storage.mode(x) <- "integer"
   .Call(C_rowCumsums, x, dim, rows, cols, FALSE)
 }
 
