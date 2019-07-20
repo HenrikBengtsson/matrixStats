@@ -53,6 +53,10 @@
 #' If one or more weights are \code{Inf}, it is the same as these weights have
 #' the same weight and the others have zero. This makes things easier for cases
 #' where the weights are result of a division with zero.
+#' 
+#' If there are missing values in \code{w} that are part of the calculation
+#' (after subsetting and dropping missing values in \code{x}), then the final
+#' result is always \code{NA} of the same type as \code{x}.
 #'
 #' The weighted median solves the following optimization problem:
 #'
