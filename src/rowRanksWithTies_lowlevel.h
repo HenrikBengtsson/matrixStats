@@ -64,6 +64,109 @@ void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t nc
 #define RETURN_TYPE void
 #define ARGUMENTS_LIST X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
 
+/*****************************************************************
+ * ties.method = "average"
+ *****************************************************************/
+#define TIESMETHOD 'a' /* average */
+#define METHOD rowRanksWithTies_Average
+#define MARGIN 'r'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'r'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+
+#define METHOD colRanksWithTies_Average
+#define MARGIN 'c'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'c'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
+
+
+/*****************************************************************
+ * ties.method = "first"
+ *****************************************************************/
+#define TIESMETHOD 'f' /* first */
+#define METHOD rowRanksWithTies_First
+#define MARGIN 'r'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'r'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+
+#define METHOD colRanksWithTies_First
+#define MARGIN 'c'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'c'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
+
+
+/*****************************************************************
+ * ties.method = "last"
+ *****************************************************************/
+#define TIESMETHOD 'l' /* last */
+#define METHOD rowRanksWithTies_Last
+#define MARGIN 'r'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'r'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+
+#define METHOD colRanksWithTies_Last
+#define MARGIN 'c'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'c'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
+
+
+/*****************************************************************
+ * ties.method = "random"
+ *****************************************************************/
+#define TIESMETHOD 'r' /* random */
+#define METHOD rowRanksWithTies_Random
+#define MARGIN 'r'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'r'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+
+#define METHOD colRanksWithTies_Random
+#define MARGIN 'c'
+#define X_TYPE 'r'
+#include "000.templates-gen-matrix.h"
+
+#define MARGIN 'c'
+#define X_TYPE 'i'
+#include "000.templates-gen-matrix.h"
+#undef METHOD
+#undef TIESMETHOD
+
 
 /*****************************************************************
  * ties.method = "min"
@@ -118,10 +221,10 @@ void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t nc
 
 
 /*****************************************************************
- * ties.method = "average"
+ * ties.method = "dense"
  *****************************************************************/
-#define TIESMETHOD 'a' /* average */
-#define METHOD rowRanksWithTies_Average
+#define TIESMETHOD 'd' /* dense */
+#define METHOD rowRanksWithTies_Dense
 #define MARGIN 'r'
 #define X_TYPE 'r'
 #include "000.templates-gen-matrix.h"
@@ -131,7 +234,7 @@ void rowRanksWithTies_Average_int_drows_dcols(int *x, R_xlen_t nrow, R_xlen_t nc
 #include "000.templates-gen-matrix.h"
 #undef METHOD
 
-#define METHOD colRanksWithTies_Average
+#define METHOD colRanksWithTies_Dense
 #define MARGIN 'c'
 #define X_TYPE 'r'
 #include "000.templates-gen-matrix.h"
