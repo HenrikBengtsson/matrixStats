@@ -70,7 +70,7 @@ m1 <- weightedVar(x, w = w)
 str(list(m0 = m0, m1 = m1))
 stopifnot(all.equal(m1, m0))
 
-message("- Infinite weights on first element")
+message("- Infinite weight on first element")
 idxs <- 1L
 m0 <- var(x[idxs])
 w <- rep(0, times = n)
@@ -78,6 +78,14 @@ w[idxs] <- Inf
 m1 <- weightedVar(x, w = w)
 str(list(m0 = m0, m1 = m1))
 stopifnot(all.equal(m1, m0))
+
+message("- Missing-value weight on first element")
+idxs <- 1L
+w <- rep(1, times = n)
+w[idxs] <- NA_real_
+m1 <- weightedVar(x, w = w)
+str(list(m1 = m1))
+stopifnot(identical(m1, NA_real_))
 
 
 message("- Frequency weights")

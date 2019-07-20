@@ -1,10 +1,14 @@
 Package: matrixStats
 ====================
 
-Version: 0.54.0-9000 [2019-03-28]
+Version: 0.54.0-9000 [2019-07-20]
 
- * ...
+BUG FIXES:
 
+ * weightedMad(), weightedSd(), weightedVar(), and their row- and column-
+   specific counter parts would produce an error instead of returning a
+   missing value when one of the weights is a missing value.
+   
 DEPRECATED AND DEFUNCT:
 
  * Calling indexByRow(x) where 'x' is a matrix is now defunct. Use
