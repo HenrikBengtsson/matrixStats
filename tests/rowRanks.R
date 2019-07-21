@@ -1,132 +1,133 @@
 library("matrixStats")
 
+dense_rank <- function(x) match(x, table = sort(unique(x)))
+
+rowRanks_R <- function(X, ties.method, ...) {
+  if (ties.method == "dense") {
+    t(apply(X, MARGIN = 1L, FUN = dense_rank))
+  } else {
+    t(apply(X, MARGIN = 1L, FUN = rank, na.last = "keep", ties.method = ties.method))
+  }
+}
+
+colRanks_R <- function(X, ties.method, ...) {
+  if (ties.method == "dense") {
+    t(apply(X, MARGIN = 2L, FUN = dense_rank))
+  } else {
+    t(apply(X, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties.method))
+  }
+}
+
 set.seed(1)
 
 cat("Consistency checks:\n")
-x <- vector('list', 4)
+xs <- vector("list", length = 4L)
 for (kk in 1:4) {
   
-  # Simulate data in a matrix of any shape - store in list
+  # Simulate data in a matrix of any shape
   dim <- sample(40:80, size = 2L)
   n <- prod(dim)
-  x[[kk]] <- rnorm(n, sd = 10)
-  dim(x[[kk]]) <- dim
+  x <- rnorm(n, sd = 10)
+  dim(x) <- dim
   
   # Add NAs?
   if ((kk %% 4) %in% c(3, 0)) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1L)
-    x[[kk]][sample(length(x[[kk]]), size = nna)] <- NA_real_
+    x[sample(length(x), size = nna)] <- NA_real_
   }
   
   # Integer or double?
   if ((kk %% 4) %in% c(2, 0)) {
     cat("Coercing to integers\n")
-    storage.mode(x[[kk]]) <- "integer"
+    storage.mode(x) <- "integer"
   }
+
+  xs[[kk]] <- x
 } # for (kk ...)
-str(x)
+str(xs)
 
 for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep = "")
-  for (ties in c("max", "min", "average", "first", "last")) {
+  x <- xs[[kk]]
+  tx <- t(x)
+  
+  for (ties in c("max", "min", "average", "first", "last", "dense")) {
     cat(sprintf("ties.method = %s\n", ties))
     # rowRanks():
-    y1 <- matrixStats::rowRanks(x[[kk]], ties.method = ties)
-    y2 <- t(apply(x[[kk]], MARGIN = 1L, FUN = rank, na.last = "keep",
-                  ties.method = ties))
+    y1 <- matrixStats::rowRanks(x, ties.method = ties)
+    y2 <- rowRanks_R(x, ties.method = ties)
     stopifnot(identical(y1, y2))
     
-    y3 <- matrixStats::colRanks(t(x[[kk]]), ties.method = ties)
+    y3 <- matrixStats::colRanks(tx, ties.method = ties)
     stopifnot(identical(y1, y3))
     
     # colRanks():
-    y1 <- matrixStats::colRanks(x[[kk]], ties.method = ties)
-    y2 <- t(apply(x[[kk]], MARGIN = 2L, FUN = rank, na.last = "keep",
-                  ties.method = ties))
+    y1 <- matrixStats::colRanks(x, ties.method = ties)
+    y2 <- colRanks_R(x, ties.method = ties)
     stopifnot(identical(y1, y2))
     
-    y3 <- matrixStats::rowRanks(t(x[[kk]]), ties.method = ties)
+    y3 <- matrixStats::rowRanks(tx, ties.method = ties)
     stopifnot(identical(y1, y3))
   }
 } # for (kk ...)
+
+# Note, below we know ties.method %in% c("min", "max", "average") is correct
 
 cat("Consistency checks for random:\n")
+tolerance <- 0.1
+nsamples <- 10000
 for (kk in 1:4) {
   cat("Random test #", kk, "\n", sep = "")
-  
+  x <- xs[[kk]]
+  tx <- t(x)
+
   for (ties in c("random")) {
     cat(sprintf("ties.method = %s\n", ties))
-    # rowRanks():
-    y1 <- matrixStats::rowRanks(x[[kk]], ties.method = ties)
-    y2min <- t(apply(x[[kk]], MARGIN = 1L, FUN = rank, na.last = "keep",
-                     ties.method = "min"))
-    y2max <- t(apply(x[[kk]], MARGIN = 1L, FUN = rank, na.last = "keep",
-                     ties.method = "max"))
+    
+    ## rowRanks():
+    y0 <- rowRanks_R(x, ties.method = ties)
+    y1 <- matrixStats::rowRanks(x, ties.method = ties)
+    
+    ## Assert symmetric rank differences
+    d <- y1 - y0
+    stopifnot(all(rowSums(d) == 0, na.rm = TRUE))
+    
+    ## Assert within [min, max]
+    y2min <- matrixStats::rowRanks(x, ties.method = "min")
+    y2max <- matrixStats::rowRanks(x, ties.method = "max")
     stopifnot(all(y1 >= y2min, na.rm = TRUE) && all(y1 <= y2max, na.rm = TRUE))
-    y1list <- Map(function(...) matrixStats::rowRanks(x[[kk]], ties.method = ties), 1:10000)
-    y1mean <- Reduce(`+`, y1list) / length(y1list)
-    y2avg <- t(apply(x[[kk]], MARGIN = 1L, FUN = rank, na.last = "keep",
-                     ties.method = "average"))
-    stopifnot(!(abs(y1mean - y2avg) < 0.1) %in% FALSE)
-    
-    y3min <- matrixStats::colRanks(t(x[[kk]]), ties.method = 'min')
-    y3max <- matrixStats::colRanks(t(x[[kk]]), ties.method = 'max')
-    stopifnot(all(y1 >= y3min, na.rm = TRUE) && all(y1 <= y3max, na.rm = TRUE))
-    y3avg <- matrixStats::colRanks(t(x[[kk]]), ties.method = 'average')
-    stopifnot(!(abs(y1mean - y3avg) < 0.1) %in% FALSE)
-    # colRanks():
-    y1 <- matrixStats::colRanks(x[[kk]], ties.method = ties)
-    y2min <- t(apply(x[[kk]], MARGIN = 2L, FUN = rank, na.last = "keep",
-                     ties.method = "min"))
-    y2max <- t(apply(x[[kk]], MARGIN = 2L, FUN = rank, na.last = "keep",
-                     ties.method = "max"))
+    ## Assert near average
+    y1list <- replicate(nsamples, matrixStats::rowRanks(x, ties.method = ties), simplify = FALSE)
+    y1mean <- Reduce(`+`, y1list) / nsamples
+    y2avg <- matrixStats::rowRanks(x, ties.method = "average")
+    stopifnot(all(abs(y1mean - y2avg) < tolerance, na.rm = TRUE))
+
+    ## colRanks():
+    y0 <- colRanks_R(x, ties.method = ties)
+    y1 <- matrixStats::colRanks(x, ties.method = ties)
+
+    ## Assert symmetric rank differences
+    d <- y1 - y0
+    stopifnot(all(rowSums(d) == 0, na.rm = TRUE))
+
+    ## Assert within [min, max]
+    y2min <- matrixStats::colRanks(x, ties.method = "min")
+    y2max <- matrixStats::colRanks(x, ties.method = "max")
     stopifnot(all(y1 >= y2min, na.rm = TRUE) && all(y1 <= y2max, na.rm = TRUE))
-    y1list <- Map(function(...) matrixStats::colRanks(x[[kk]], ties.method = ties), 1:10000)
-    y1mean <- Reduce(`+`, y1list) / length(y1list)
-    y2avg <- t(apply(x[[kk]], MARGIN = 2L, FUN = rank, na.last = "keep",
-                     ties.method = "average"))
-    stopifnot(!(abs(y1mean - y2avg) < 0.1) %in% FALSE)
-    
-    y3min <- matrixStats::rowRanks(t(x[[kk]]), ties.method = "min")
-    y3max <- matrixStats::rowRanks(t(x[[kk]]), ties.method = "max")
-    stopifnot(all(y1 >= y3min, na.rm = TRUE) && all(y1 <= y3max, na.rm = TRUE))
-    y3avg <- matrixStats::rowRanks(t(x[[kk]]), ties.method = "average")
-    stopifnot(!(abs(y1mean - y3avg) < 0.1) %in% FALSE)
-  }
-} # for (kk ...)
-
-cat("Consistency checks for dense:\n")
-
-dense_rank <- function(x) match(x, sort(unique(x)))
-
-for (kk in 1:4) {
-  cat("Random test #", kk, "\n", sep = "")
-  for (ties in c("dense")) {
-    cat(sprintf("ties.method = %s\n", ties))
-    # rowRanks():
-    y1 <- matrixStats::rowRanks(x[[kk]], ties.method = ties)
-    y2 <- t(apply(x[[kk]], MARGIN = 1L, FUN = dense_rank))
-    stopifnot(identical(y1, y2))
-    
-    y3 <- matrixStats::colRanks(t(x[[kk]]), ties.method = ties)
-    stopifnot(identical(y1, y3))
-    
-    # colRanks():
-    y1 <- matrixStats::colRanks(x[[kk]], ties.method = ties)
-    y2 <- t(apply(x[[kk]], MARGIN = 2L, FUN = dense_rank))
-    stopifnot(identical(y1, y2))
-    
-    y3 <- matrixStats::rowRanks(t(x[[kk]]), ties.method = ties)
-    stopifnot(identical(y1, y3))
+    y1list <- replicate(nsamples, matrixStats::colRanks(x, ties.method = ties), simplify = FALSE)
+    y1mean <- Reduce(`+`, y1list) / nsamples
+    ## Assert near average
+    y2avg <- matrixStats::colRanks(x, ties.method = "average")
+    stopifnot(all(abs(y1mean - y2avg) < tolerance, na.rm = TRUE))
   }
 } # for (kk ...)
 
 
 ## Exception handling
-m <- matrix(1:12, nrow = 3L)
-y <- try(rowRanks(m, ties.method = "unknown"), silent = TRUE)
+x <- matrix(1:12, nrow = 3L)
+y <- try(rowRanks(x, ties.method = "unknown"), silent = TRUE)
 stopifnot(inherits(y, "try-error"))
 
-y <- try(colRanks(m, ties.method = "unknown"), silent = TRUE)
+y <- try(colRanks(x, ties.method = "unknown"), silent = TRUE)
 stopifnot(inherits(y, "try-error"))
