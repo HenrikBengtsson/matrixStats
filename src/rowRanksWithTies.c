@@ -25,7 +25,7 @@
  void SHUFFLE_INT(int *array, size_t i, size_t j) {
      if (j > i) {
          for (size_t k = i; k < j; k++) {
-           size_t l = k + (int) (unif_rand() * (j - k + 1));
+           size_t l = k + (size_t) (unif_rand() * (j - k + 1));
            SWAP(int, array[l], array[k]);
          }
      }
