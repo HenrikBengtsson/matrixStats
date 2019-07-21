@@ -30,7 +30,7 @@
 #'
 #' @section Missing values:
 #' This function handles missing values consistently with
-#' \code{\link{weightedMean()}}.
+#' \code{\link{weightedMean}}().
 #' More precisely, if \code{na.rm = FALSE}, then any missing values in either
 #' \code{x} or \code{w} will give result \code{NA_real_}.
 #' If \code{na.rm = TRUE}, then all \code{(x, w)} data points for which
