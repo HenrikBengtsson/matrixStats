@@ -13,25 +13,29 @@
   - MARGIN: 'r' (rows) or 'c' (columns).
   - X_TYPE: 'i' or 'r'
   - ANS_TYPE: 'i' or 'r'
-  - TIESMETHOD: '0' (min), '1' (max), 'a' (average)
+  - TIESMETHOD: 'a' (average), 'f' (first), 'l' (last), 'r' (random), '0' (min), '1' (max), 'd' (dense)
 
  Authors:
   Hector Corrada Bravo [HCB]
   Peter Langfelder [PL]
   Henrik Bengtsson [HB]
+  Brian Montgomery [BKM]
  ***********************************************************************/
 #include <Rinternals.h>
 
 #undef RANK
-#if TIESMETHOD == '0'   /* min */
+#if TIESMETHOD == 'a' /* average */
+  #define ANS_TYPE 'r'
+  #define RANK(firstTie, aboveTie) ((double) (firstTie + aboveTie + 1))/2
+#elif TIESMETHOD == '0' /* min */
   #define ANS_TYPE 'i'
   #define RANK(firstTie, aboveTie) firstTie + 1
 #elif TIESMETHOD == '1' /* max */
   #define ANS_TYPE 'i'
   #define RANK(firstTie, aboveTie) aboveTie
-#elif TIESMETHOD == 'a' /* average */
-  #define ANS_TYPE 'r'
-  #define RANK(firstTie, aboveTie) ((double) (firstTie + aboveTie + 1))/2
+#else
+  #define ANS_TYPE 'i' /* dense and other(RANK not used) */
+  #define RANK(firstTie, aboveTie) firstTie + 1
 #endif
 
 /* Expand arguments:
@@ -40,6 +44,7 @@
  */
 #include "000.templates-types.h"
 
+void SHUFFLE_INT(int *array, size_t i, size_t j); /* prototype for use with "random" */
 
 /* Indexing formula to compute the vector index of element j of vector i.
    Should take arguments element, vector, nElements, nVectors. */
@@ -61,7 +66,7 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   R_xlen_t *colOffset;
   R_xlen_t ii, jj, kk, rowIdx;
   int *I;
-  int lastFinite, firstTie, aboveTie;
+  int lastFinite, firstTie, aboveTie, dense_rank_adj;
   int nvalues, nVec;
 
 #ifdef ROWS_TYPE
@@ -150,15 +155,45 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     if (lastFinite > 0) X_QSORT_I(values, I, 1, lastFinite + 1);
 
     // Calculate the ranks.
+    firstTie = 0;
+    aboveTie = 1;
+    dense_rank_adj = 0;
     for (jj=0; jj <= lastFinite;) {
-      firstTie = jj;
+      if (TIESMETHOD == 'd') {
+        dense_rank_adj += (aboveTie - firstTie - 1);
+        firstTie = jj - dense_rank_adj;
+      } else {
+        firstTie = jj;
+      }
       current = values[jj];
       while ((jj <= lastFinite) && (values[jj] == current)) jj++;
-      aboveTie = jj;
-      // Depending on rank method, get maximum, average, or minimum rank
-      rank = RANK(firstTie, aboveTie);
+      if (TIESMETHOD == 'd') {
+        aboveTie = jj - dense_rank_adj;
+      } else {
+        aboveTie = jj;
+      }
+      // X_QSORT_I is not stable - ties can be permuted.
+      // This restores the original order.
+      // It might be more efficient to use a stable sort to begin with.
+      if (TIESMETHOD == 'f' || TIESMETHOD == 'l') {
+        R_qsort_int(I, firstTie + 1, aboveTie); /* Function is 1-based */
+      // SHUFFLE_INT randomizes the order.
+      } else if (TIESMETHOD == 'r') {
+        SHUFFLE_INT(I, firstTie, aboveTie - 1);
+      } else {
+        // Get appropriate rank for average, min, max, or dense
+        rank = RANK(firstTie, aboveTie);
+      }
       for (kk=firstTie; kk < aboveTie; kk++) {
-        ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = rank;
+        if (TIESMETHOD == 'f' || TIESMETHOD == 'r') {
+          ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = kk + 1;
+        } else if (TIESMETHOD == 'l') {
+          ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = aboveTie - (kk - firstTie);
+        } else if (TIESMETHOD == 'd') {
+          ans[ ANS_INDEX_OF(I[kk + dense_rank_adj], ii, nrows) ] = rank;
+        } else {
+          ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = rank;
+        }
       }
     }
 
@@ -175,6 +210,8 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
 /***************************************************************************
  HISTORY:
+ 2019-4-23 [BKM]
+  o Added new tiesMethods: first, last, random, and dense.
  2015-06-12 [DJ]
   o Supported subsetted computation.
  2014-11-06 [HB]

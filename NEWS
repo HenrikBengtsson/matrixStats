@@ -1,7 +1,14 @@
 Package: matrixStats
 ====================
 
-Version: 0.54.0-9000 [2019-07-20]
+Version: 0.54.0-9000 [2019-07-21]
+
+NEW FEATURES:
+
+ * colRanks() and rowRanks() now supports the same set of 'ties.method' as
+   base::rank() plus "dense" as defined by data.table::frank(). For backward
+   compatible reasons, the default 'ties.method' remains the same as in
+   previous versions.  Thank to Brian Montgomery for contributing this.
 
 BUG FIXES:
 
