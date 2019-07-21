@@ -59,7 +59,7 @@
       ss = 0;
       for (jj=0; jj < ncol_y; jj++) {
         for (ii=0; ii < nrow_y; ii++) {
-          /*	Rprintf("y[%d] = x[%d] - x[%d] = %g - %g = %g\n", ss, uu, tt, (double)x[uu], (double)x[tt], (double)X_DIFF(x[uu], x[tt]));  */
+          /* Rprintf("y[%d] = x[%d] - x[%d] = %g - %g = %g\n", ss, uu, tt, (double)x[uu], (double)x[tt], (double)X_DIFF(x[uu], x[tt])); */
           y[ss++] = X_DIFF(x[uu++], x[tt++]);
         }
         tt += lag;

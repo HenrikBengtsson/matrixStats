@@ -10,7 +10,7 @@
 #include "000.templates-types.h"
 
 
-/* extern 1-D function 'logSumExp' */		
+/* extern 1-D function 'logSumExp' */
 extern double (*logSumExp_double[3])(double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx);
 
 

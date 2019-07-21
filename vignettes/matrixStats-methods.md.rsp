@@ -25,10 +25,10 @@ kable <- function(df, ...) {
   fcns <- strsplit(fcns, split=",")
   fcns <- sapply(fcns, FUN=function(names) {
     names <- trim(names)
-	ok <- sapply(names, FUN=exists, envir=ns, mode="function")
-	names[ok] <- sprintf("%s()", names[ok])
-	names[!ok] <- sprintf("~~%s()~~", names[!ok])
-	names <- paste(names, collapse=", ")
+    ok <- sapply(names, FUN=exists, envir=ns, mode="function")
+    names[ok] <- sprintf("%s()", names[ok])
+    names[!ok] <- sprintf("~~%s()~~", names[!ok])
+    names <- paste(names, collapse=", ")
   })
   df$Functions <- fcns
   df$Example <- sprintf("`%s`", df$Example)
