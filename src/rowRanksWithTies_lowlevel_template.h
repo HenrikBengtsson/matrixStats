@@ -161,11 +161,17 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     for (jj=0; jj <= lastFinite;) {
       if (TIESMETHOD == 'd') {
         dense_rank_adj += (aboveTie - firstTie - 1);
+        firstTie = jj - dense_rank_adj;
+      } else {
+        firstTie = jj;
       }
-      firstTie = jj - dense_rank_adj;
       current = values[jj];
       while ((jj <= lastFinite) && (values[jj] == current)) jj++;
-      aboveTie = jj - dense_rank_adj;
+      if (TIESMETHOD == 'd') {
+        aboveTie = jj - dense_rank_adj;
+      } else {
+        aboveTie = jj;
+      }
       // X_QSORT_I is not stable - ties can be permuted.
       // This restores the original order.
       // It might be more efficient to use a stable sort to begin with.
@@ -183,8 +189,10 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
           ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = kk + 1;
         } else if (TIESMETHOD == 'l') {
           ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = aboveTie - (kk - firstTie);
-        } else {
+        } else if (TIESMETHOD == 'd') {
           ans[ ANS_INDEX_OF(I[kk + dense_rank_adj], ii, nrows) ] = rank;
+        } else {
+          ans[ ANS_INDEX_OF(I[kk], ii, nrows) ] = rank;
         }
       }
     }
