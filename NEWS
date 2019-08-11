@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.54.0-9000 [2019-07-21]
+Version: 0.54.0-9000 [2019-08-11]
 
 NEW FEATURES:
 
@@ -10,6 +10,8 @@ NEW FEATURES:
    compatible reasons, the default 'ties.method' remains the same as in
    previous versions.  Thank to Brian Montgomery for contributing this.
 
+ * colCumsums() and rowCumsums() now support also logical input.
+ 
 BUG FIXES:
 
  * weightedMad(), weightedSd(), weightedVar(), and their row- and column-
