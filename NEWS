@@ -1,8 +1,18 @@
 Package: matrixStats
 ====================
 
-Version: 0.54.0-9000 [2019-08-11]
+Version: 0.54.0-9000 [2019-08-13]
 
+SIGNIFICANT CHANGES:
+
+ * weightedVar(), weightedSd(), weightedMad(), and their row- and column-
+   specific counter parts now return a missing value if there are missing
+   values in any of the weights 'w' after possibly dropping (x, w) elements
+   with missing values in 'x' (na.rm = TRUE).  Previously, na.rm=TRUE would
+   also drop (x, w) elements where 'w' was missing.  With this change, we
+   now have that for all functions in this package, na.rm=TRUE never applies
+   to weights - only 'x' values.
+   
 NEW FEATURES:
 
  * colRanks() and rowRanks() now supports the same set of 'ties.method' as
@@ -14,7 +24,7 @@ NEW FEATURES:
  
 BUG FIXES:
 
- * weightedMad(), weightedSd(), weightedVar(), and their row- and column-
+ * weightedVar(), weightedSd(), weightedMad(), and their row- and column-
    specific counter parts would produce an error instead of returning a
    missing value when one of the weights is a missing value.
    

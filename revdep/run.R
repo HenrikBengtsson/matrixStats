@@ -86,6 +86,18 @@ revdep_children <- local({
   }
 })
 
+revdep_pkgs_with_status <- function(status = "error") {
+  status <- match.arg(status)
+  res <- revdepcheck::revdep_summary()
+  field <- switch(status, error = "errors")
+  has_status <- vapply(res, FUN = function(x) {
+    z <- x[["new"]][[field]]
+    is.character(z) && any(nchar(z) > 0)
+  }, FUN.VALUE = NA, USE.NAMES = TRUE)
+  has_status <- !is.na(has_status) & has_status
+  names(has_status)[has_status]
+}
+
 args <- base::commandArgs()
 if ("--reset" %in% args) {
   revdep_reset()
@@ -125,6 +137,29 @@ if ("--reset" %in% args) {
   pkgs <- unique(pkgs)
   revdep_add(packages = pkgs)
   todo()
+} else if ("--show-check" %in% args) {
+  pos <- which("--show-check" == args)
+  pkgs <- parse_pkgs(args[seq(from = pos + 1L, to = length(args))])
+  for (pkg in pkgs) {
+    for (dir in c("old", "new")) {
+      path <- file.path("revdep", "checks", pkg, dir, sprintf("%s.Rcheck", pkg))
+      if (!utils::file_test("-d", path)) next
+      pathname <- file.path(path, "00check.log")
+      cat("-----------------------------------------------\n")
+      cat(sprintf("%s (%s):\n", pkg, dir))
+      cat("-----------------------------------------------\n")
+      bfr <- readLines(pathname, warn = FALSE)
+      tail <- tail(bfr, n = 20L)
+      writeLines(tail)
+    }
+  }
+} else if ("--list-error" %in% args) {
+  cat(paste(revdep_pkgs_with_status("error"), collapse = " "), "\n", sep="")
+} else if ("--add-error" %in% args) {
+  revdepcheck::revdep_add(packages = revdep_pkgs_with_status("error"))
+} else if ("--install-error" %in% args) {
+  res <- revdepcheck::revdep_summary()
+  crancache::install_packages(revdep_pkgs_with_status("error"))
 } else if ("--install" %in% args) {
   pos <- which("--install" == args)
   pkgs <- parse_pkgs(args[seq(from = pos + 1L, to = length(args))])
