@@ -18,3 +18,10 @@ Run `revdep_details(,"sesame")` for more info
 *   R CMD check timed out
     
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        doc   4.5Mb
+    ```
+

@@ -36,11 +36,33 @@ Run `revdep_details(,"AMARETTO")` for more info
 
 ## In both
 
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     License components with restrictions not permitted:
       Apache License (== 2.0) + file LICENSE
     'LinkingTo' field is unused: package has no 'src' directory
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
     ```
 
 # amplican
@@ -149,8 +171,8 @@ Run `revdep_details(,"aroma.light")` for more info
     ```
     Found the following hidden files and directories:
       inst/rsp/.rspPlugins
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 # BASiCS
@@ -294,6 +316,54 @@ Run `revdep_details(,"bumphunter")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    ...
+    
+    > ### Name: runmedByCluster
+    > ### Title: Apply running median smoothing to values within each
+    > ###   spatially-defined cluster
+    > ### Aliases: runmedByCluster
+    > 
+    > ### ** Examples
+    > 
+    > dat <- dummyData()
+    > smoothed <- runmedByCluster(y=dat$mat[,1], cluster=dat$cluster,
+    +                             k=5, endrule="constant")
+    
+     *** caught segfault ***
+    address (nil), cause 'memory not mapped'
+    
+    Traceback:
+     1: runmed(y[Index, j], k = k, endrule = endrule)
+     2: runmed(y[Index, j], k = k, endrule = endrule)
+     3: runmedByCluster(y = dat$mat[, 1], cluster = dat$cluster, k = 5,     endrule = "constant")
+    An irrecoverable exception occurred. R is aborting now ...
+    Segmentation fault (core dumped)
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in 'tests/runTests.R' failed.
+    Last 13 lines of output:
+       2: runmed(y[Index, j], k = k, endrule = endrule)
+       3: runmedByCluster(y = dat$mat[, 1], cluster = dat$cluster, k = 5,     endrule = "constant")
+       4: func()
+       5: system.time(func(), gcFirst = RUnitEnv$.gcBeforeTest)
+       6: doTryCatch(return(expr), name, parentenv, handler)
+       7: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       8: tryCatchList(expr, classes, parentenv, handlers)
+       9: tryCatch(expr, error = function(e) {    call <- conditionCall(e)    if (!is.null(call)) {        if (identical(call[[1L]], quote(doTryCatch)))             call <- sys.call(-4L)        dcall <- deparse(call)[1L]        prefix <- paste("Error in", dcall, ": ")        LONG <- 75L        sm <- strsplit(conditionMessage(e), "\n")[[1L]]        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")        if (is.na(w))             w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L],                 type = "b")        if (w > LONG)             prefix <- paste0(prefix, "\n  ")    }    else prefix <- "Error : "    msg <- paste0(prefix, conditionMessage(e), "\n")    .Internal(seterrmessage(msg[1L]))    if (!silent && isTRUE(getOption("show.error.messages"))) {        cat(msg, file = outFile)        .Internal(printDeferredWarnings())    }    invisible(structure(msg, class = "try-error", condition = e))})
+      10: try(system.time(func(), gcFirst = RUnitEnv$.gcBeforeTest))
+      11: .executeTestCase(funcName, envir = sandbox, setUpFunc = .setUp,     tearDownFunc = .tearDown)
+      12: .sourceTestFile(testFile, testSuite$testFuncRegexp)
+      13: RUnit::runTestSuite(suite)
+      14: BiocGenerics:::testPackage("bumphunter")
+      An irrecoverable exception occurred. R is aborting now ...
+      Segmentation fault (core dumped)
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -389,6 +459,107 @@ Run `revdep_details(,"CATALYST")` for more info
     Execution halted
     ```
 
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: package or namespace load failed for ‘CATALYST’:
+     unable to load R code in package ‘circlize’
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking S3 generic/method consistency ... WARNING
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking replacement functions ... WARNING
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    The argument of a replacement function which corresponds to the right
+    hand side must be named 'value'.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 10.3Mb
@@ -397,12 +568,90 @@ Run `revdep_details(,"CATALYST")` for more info
         doc    6.1Mb
     ```
 
+*   checking dependencies in R code ... NOTE
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    ```
+
+*   checking foreign function calls ... NOTE
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
+    ```
+
 *   checking R code for possible problems ... NOTE
     ```
-    plotClusterHeatmap,daFrame : <anonymous>: no visible binding for global
-      variable ‘cluster_id’
-    Undefined global functions or variables:
-      cluster_id
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
+    ```
+
+*   checking Rd \usage sections ... NOTE
+    ```
+    ...
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    The \usage entries for S3 methods should use the \method markup and not
+    their full name.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # celda
@@ -588,16 +837,67 @@ Run `revdep_details(,"ChAMP")` for more info
 
 ## In both
 
+*   checking whether package 'ChAMP' can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import 'plyr::summarise' by 'plotly::summarise' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::rename' by 'plotly::rename' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::arrange' by 'plotly::arrange' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::mutate' by 'plotly::mutate' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::is.discrete' by 'Hmisc::is.discrete' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::summarize' by 'Hmisc::summarize' when loading 'ChAMP'
+      Warning: replacing previous import 'plotly::subplot' by 'Hmisc::subplot' when loading 'ChAMP'
+      Warning: replacing previous import 'GenomicRanges::sort' by 'globaltest::sort' when loading 'ChAMP'
+      Warning: replacing previous import 'globaltest::model.matrix' by 'stats::model.matrix' when loading 'ChAMP'
+      Warning: replacing previous import 'globaltest::p.adjust' by 'stats::p.adjust' when loading 'ChAMP'
+    See '/home/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out' for details.
+    ```
+
 *   checking package subdirectories ... WARNING
     ```
-    Problems with news in ‘inst/NEWS.Rd’:
+    Problems with news in 'inst/NEWS.Rd':
       inst/NEWS.Rd:81: unexpected END_OF_INPUT '
       '
-    Invalid citation information in ‘inst/CITATION’:
+    Invalid citation information in 'inst/CITATION':
       Error in parse(file = cfile): /home/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00_pkg_src/ChAMP/inst/CITATION:10:12: unexpected symbol
       9:            person("Stephan", "Beck")
       10:            person
                      ^
+    ```
+
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    In addition: Warning messages:
+    1: replacing previous import ‘igraph::edges’ by ‘graph::edges’ when loading ‘FEM’ 
+    2: replacing previous import ‘igraph::intersection’ by ‘graph::intersection’ when loading ‘FEM’ 
+    3: replacing previous import ‘igraph::degree’ by ‘graph::degree’ when loading ‘FEM’ 
+    4: replacing previous import ‘igraph::union’ by ‘graph::union’ when loading ‘FEM’ 
+    5: replacing previous import ‘limma::plotMA’ by ‘BiocGenerics::plotMA’ when loading ‘FEM’ 
+    6: replacing previous import ‘igraph::path’ by ‘BiocGenerics::path’ when loading ‘FEM’ 
+    7: replacing previous import ‘Matrix::which’ by ‘BiocGenerics::which’ when loading ‘FEM’ 
+    8: replacing previous import ‘igraph::normalize’ by ‘BiocGenerics::normalize’ when loading ‘FEM’ 
+    Error: package 'DMRcate' could not be loaded
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Warning: replacing previous import ‘plyr::summarise’ by ‘plotly::summarise’ when loading ‘ChAMP’
+    Warning: replacing previous import ‘plyr::rename’ by ‘plotly::rename’ when loading ‘ChAMP’
+    Warning: replacing previous import ‘plyr::arrange’ by ‘plotly::arrange’ when loading ‘ChAMP’
+    Warning: replacing previous import ‘plyr::mutate’ by ‘plotly::mutate’ when loading ‘ChAMP’
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: unable to load R code in package 'Gviz'
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
     ```
 
 *   checking package dependencies ... NOTE
@@ -620,25 +920,27 @@ Run `revdep_details(,"ChAMP")` for more info
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘rmarkdown’
+      'rmarkdown'
     A package should be listed in only one of these fields.
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
-    Namespace in Imports field not imported from: 'prettydoc'
-      All declared Imports should be used.
+    Error: package 'DMRcate' could not be loaded
+    Call sequence:
+    3: stop(gettextf("package %s could not be loaded", sQuote(pkg)), 
+           call. = FALSE, domain = NA)
+    2: .getRequiredPackages2(pkgInfo, quietly = quietly)
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
-    champ.ebGSEA : gseaWTfn: no visible global function definition for
-      'wilcox.test'
-    Undefined global functions or variables:
-      wilcox.test
-    Consider adding
-      importFrom("stats", "wilcox.test")
-    to your NAMESPACE file.
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: unable to load R code in package 'Gviz'
+    Execution halted
     ```
 
 # Chicago
@@ -658,15 +960,21 @@ Run `revdep_details(,"Chicago")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘PCHiCdata’
+    Package suggested but not available for checking: 'PCHiCdata'
     ```
 
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
       .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -742,14 +1050,27 @@ Run `revdep_details(,"clusterExperiment")` for more info
       generic 'defaultNDims' and siglist 'matrixOrHDF5'
     All user-level objects in a package (including S4 classes and methods)
     should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
-*   checking contents of ‘data’ directory ... WARNING
+*   checking contents of 'data' directory ... WARNING
     ```
     Output for data("rsecFluidigm", package = "clusterExperiment"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
       Creating a new generic function for ‘edges’ in package ‘phylobase’
+      Creating a new generic function for ‘packageName’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘ls’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘eapply’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘exists’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘sample’ from package ‘base’ in package ‘AnnotationDbi’
       Search path was changed
     ```
 
@@ -769,8 +1090,8 @@ Run `revdep_details(,"clusterExperiment")` for more info
       .C(ape::node_depth_edgelength, ...)
       .C(ape::node_height, ...)
       .C(ape::node_height_clado, ...)
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -828,7 +1149,7 @@ Run `revdep_details(,"CNPBayes")` for more info
 *   checking tests ...
     ```
      ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
+    Running the tests in 'tests/testthat.R' failed.
     Last 13 lines of output:
       
       ── 4. Failure: easy mendelian example (@test_trios.R#524)  ─────────────────────
@@ -869,8 +1190,8 @@ Run `revdep_details(,"CNPBayes")` for more info
       generic 'zFreq' and siglist 'MultiBatch'
     All user-level objects in a package (including S4 classes and methods)
     should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking for code/documentation mismatches ... WARNING
@@ -921,8 +1242,8 @@ Run `revdep_details(,"CNPBayes")` for more info
     Functions with \usage entries need to have the appropriate \alias
     entries, and all their arguments documented.
     The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking installed package size ... NOTE
@@ -983,20 +1304,46 @@ Run `revdep_details(,"CNVScope")` for more info
 
 ## In both
 
+*   checking for missing documentation entries ... ERROR
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    ```
+
 *   checking whether the package can be unloaded cleanly ... WARNING
     ```
-    Error in rgb(c(84, 140, 191, 223, 246, 245, 199, 128, 53, 1, 0), c(48,  : 
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
       could not find function "rgb"
     Error: package or namespace load failed for 'CNVScope':
-     unable to load R code in package 'heatmaply'
+     unable to load R code in package 'Gviz'
     Execution halted
     ```
 
 *   checking whether the namespace can be loaded with stated dependencies ... WARNING
     ```
-    Error in rgb(c(84, 140, 191, 223, 246, 245, 199, 128, 53, 1, 0), c(48,  : 
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
       could not find function "rgb"
-    Error: unable to load R code in package 'heatmaply'
+    Error: unable to load R code in package 'Gviz'
     Execution halted
     
     A namespace must be able to be loaded with just the base namespace
@@ -1004,6 +1351,84 @@ Run `revdep_details(,"CNVScope")` for more info
     session will be unable to start.
     
     Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking S3 generic/method consistency ... WARNING
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking replacement functions ... WARNING
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    The argument of a replacement function which corresponds to the right
+    hand side must be named 'value'.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1032,12 +1457,64 @@ Run `revdep_details(,"CNVScope")` for more info
     Execution halted
     ```
 
+*   checking foreign function calls ... NOTE
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
+    ```
+
 *   checking R code for possible problems ... NOTE
     ```
-    Error in rgb(c(84, 140, 191, 223, 246, 245, 199, 128, 53, 1, 0), c(48,  : 
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
       could not find function "rgb"
-    Error: unable to load R code in package 'heatmaply'
+    Error: unable to load R code in package 'Gviz'
     Execution halted
+    ```
+
+*   checking Rd \usage sections ... NOTE
+    ```
+    ...
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    The \usage entries for S3 methods should use the \method markup and not
+    their full name.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # cola
@@ -1056,9 +1533,105 @@ Run `revdep_details(,"cola")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
+*   checking whether the package can be unloaded cleanly ... WARNING
     ```
-    Packages suggested but not available for checking: 'samr', 'WGCNA'
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: package or namespace load failed for ‘cola’:
+     unable to load R code in package ‘circlize’
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking S3 generic/method consistency ... WARNING
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking replacement functions ... WARNING
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    The argument of a replacement function which corresponds to the right
+    hand side must be named 'value'.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -1069,9 +1642,90 @@ Run `revdep_details(,"cola")` for more info
         extdata   1.0Mb
     ```
 
-*   checking Rd cross-references ... NOTE
+*   checking dependencies in R code ... NOTE
     ```
-    Package unavailable to check Rd xrefs: ‘WGCNA’
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    ```
+
+*   checking foreign function calls ... NOTE
+    ```
+    ...
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
+    ```
+
+*   checking Rd \usage sections ... NOTE
+    ```
+    ...
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    The \usage entries for S3 methods should use the \method markup and not
+    their full name.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # crlmm
@@ -1091,15 +1745,15 @@ Run `revdep_details(,"crlmm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.8Mb
+      installed size is  5.7Mb
       sub-directories of 1Mb or more:
-        R      1.2Mb
+        R      1.1Mb
         data   2.7Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
-    Versioned 'LinkingTo' value for ‘preprocessCore’ is only usable in R >= 3.0.2
+    Versioned 'LinkingTo' value for 'preprocessCore' is only usable in R >= 3.0.2
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1128,6 +1782,19 @@ Run `revdep_details(,"crlmm")` for more info
       runTestSuite
     ```
 
+*   checking contents of 'data' directory ... NOTE
+    ```
+    Output for data("cnSetExample2", package = "crlmm"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    ```
+
 # crossmeta
 
 <details>
@@ -1145,8 +1812,6 @@ Run `revdep_details(,"crossmeta")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Error in globalVariables(c("Cluster", "ggplot", "aes", "geom_bar", "coord_flip",  : 
-      could not find function "globalVariables"
     Error in setGeneric("getX", function(object, type) standardGeneric("getX")) : 
       could not find function "setGeneric"
     Unexported object imported by a ':::' call: ‘GEOquery:::parseGSEMatrix’
@@ -1213,11 +1878,6 @@ Run `revdep_details(,"DatabionicSwarm")` for more info
         libs   5.3Mb
     ```
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Error in setOldClass("sf") : could not find function "setOldClass"
-    ```
-
 # DeepBlueR
 
 <details>
@@ -1259,7 +1919,7 @@ Run `revdep_details(,"DelayedArray")` for more info
       ‘02-Implementing_a_backend.Rmd’ ‘01-Working_with_large_arrays.Rnw’
       ‘02-Implementing_a_backend.html’ ‘01-Working_with_large_arrays.pdf’
     Please remove or rename the files.
-    See section ‘Package subdirectories’ in the ‘Writing R Extensions’
+    See section 'Package subdirectories' in the 'Writing R Extensions'
     manual.
     ```
 
@@ -1281,8 +1941,8 @@ Run `revdep_details(,"DelayedArray")` for more info
       generic 'tcrossprod' and siglist 'DelayedMatrix,missing'
     All user-level objects in a package (including S4 classes and methods)
     should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking package dependencies ... NOTE
@@ -1297,7 +1957,7 @@ Run `revdep_details(,"DelayedArray")` for more info
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Matrix’
+      'Matrix'
     A package should be listed in only one of these fields.
     ```
 
@@ -1351,9 +2011,9 @@ Run `revdep_details(,"DelayedMatrixStats")` for more info
 
 <details>
 
-* Version: 1.0.2
+* Version: 1.0.4
 * Source code: https://github.com/cran/DeMixT
-* Date/Publication: 2019-07-01
+* Date/Publication: 2019-08-15
 * Number of recursive dependencies: 35
 
 Run `revdep_details(,"DeMixT")` for more info
@@ -1362,11 +2022,11 @@ Run `revdep_details(,"DeMixT")` for more info
 
 ## In both
 
-*   checking package vignettes in ‘inst/doc’ ... WARNING
+*   checking package vignettes in 'inst/doc' ... WARNING
     ```
-    Located more than one ‘weave’ output file (by engine ‘knitr::rmarkdown’) for vignette with name ‘demixt’: ‘demixt.html’, ‘demixt.pdf’
+    Located more than one 'weave' output file (by engine 'knitr::rmarkdown') for vignette with name 'demixt': 'demixt.html', 'demixt.pdf'
     Package vignette without corresponding single PDF/HTML:
-       ‘demixt.Rmd’
+       'demixt.Rmd'
     ```
 
 # DepecheR
@@ -1402,7 +2062,7 @@ Run `revdep_details(,"DepecheR")` for more info
     write to stdout/stderr instead of to the console, nor use Fortran I/O
     nor system RNGs.
     
-    See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+    See 'Writing portable packages' in the 'Writing R Extensions' manual.
     ```
 
 # DEqMS
@@ -1503,8 +2163,8 @@ Run `revdep_details(,"diffloop")` for more info
     ```
     Found the following hidden files and directories:
       .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 # DiscoRhythm
@@ -1663,6 +2323,34 @@ Run `revdep_details(,"Doscheda")` for more info
         shiny-examples   2.0Mb
     ```
 
+# doseR
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/doseR
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 56
+
+Run `revdep_details(,"doseR")` for more info
+
+</details>
+
+## In both
+
+*   checking contents of 'data' directory ... NOTE
+    ```
+    Output for data("hmel.se", package = "doseR"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    ```
+
 # EasyqpcR
 
 <details>
@@ -1681,61 +2369,61 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     
-    (R:3772): Gtk-WARNING **: 02:52:29.335: gtk_disable_setlocale() must be called before gtk_init()
-    See section ‘Generic functions and methods’ in the ‘Writing R
-    Extensions’ manual.
+    (R:14060): Gtk-WARNING **: 23:13:20.938: gtk_disable_setlocale() must be called before gtk_init()
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking replacement functions ... WARNING
     ```
     
-    (R:4333): Gtk-WARNING **: 02:52:33.321: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14158): Gtk-WARNING **: 23:13:25.058: gtk_disable_setlocale() must be called before gtk_init()
     The argument of a replacement function which corresponds to the right
-    hand side must be named ‘value’.
+    hand side must be named 'value'.
     ```
 
 *   checking for missing documentation entries ... WARNING
     ```
     
-    (R:5036): Gtk-WARNING **: 02:52:48.923: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14513): Gtk-WARNING **: 23:13:41.582: gtk_disable_setlocale() must be called before gtk_init()
     All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking for code/documentation mismatches ... WARNING
     ```
     
-    (R:5112): Gtk-WARNING **: 02:52:52.554: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14565): Gtk-WARNING **: 23:13:45.331: gtk_disable_setlocale() must be called before gtk_init()
     
-    (R:5228): Gtk-WARNING **: 02:52:56.074: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14617): Gtk-WARNING **: 23:13:49.139: gtk_disable_setlocale() must be called before gtk_init()
     
-    (R:5273): Gtk-WARNING **: 02:52:59.695: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14771): Gtk-WARNING **: 23:13:52.936: gtk_disable_setlocale() must be called before gtk_init()
     ```
 
 *   checking package namespace information ... NOTE
     ```
-      Namespace with empty importFrom: ‘gWidgetsRGtk2’
+      Namespace with empty importFrom: 'gWidgetsRGtk2'
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
     
-    (R:3534): Gtk-WARNING **: 02:52:25.792: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14009): Gtk-WARNING **: 23:13:17.285: gtk_disable_setlocale() must be called before gtk_init()
     ```
 
 *   checking foreign function calls ... NOTE
     ```
     
-    (R:4417): Gtk-WARNING **: 02:52:36.933: gtk_disable_setlocale() must be called before gtk_init()
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
+    (R:14209): Gtk-WARNING **: 23:13:28.789: gtk_disable_setlocale() must be called before gtk_init()
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     
-    (R:4516): Gtk-WARNING **: 02:52:40.958: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14381): Gtk-WARNING **: 23:13:33.105: gtk_disable_setlocale() must be called before gtk_init()
     badCt: no visible global function definition for ‘aggregate’
     nrmData: no visible global function definition for ‘aggregate’
     nrmData: no visible binding for global variable ‘sd’
@@ -1756,17 +2444,17 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     
-    (R:5315): Gtk-WARNING **: 02:53:03.401: gtk_disable_setlocale() must be called before gtk_init()
+    (R:14842): Gtk-WARNING **: 23:13:56.791: gtk_disable_setlocale() must be called before gtk_init()
     The \usage entries for S3 methods should use the \method markup and not
     their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
-*   checking files in ‘vignettes’ ... NOTE
+*   checking files in 'vignettes' ... NOTE
     ```
     The following files look like leftovers/mistakes:
-      ‘vignette_EasyqpcR.toc’
+      'vignette_EasyqpcR.toc'
     Please remove them from your package.
     ```
 
@@ -1868,6 +2556,20 @@ Run `revdep_details(,"EnrichedHeatmap")` for more info
 
 ## In both
 
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in setLoadActions(function(ns) { : 
+      could not find function "setLoadActions"
+    Error: unable to load R code in package ‘circlize’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  9.4Mb
@@ -1932,8 +2634,8 @@ Run `revdep_details(,"ExCluster")` for more info
     ```
     Found the following hidden files and directories:
       .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 # ExpressionNormalizationWorkflow
@@ -1952,14 +2654,14 @@ Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
 
 ## In both
 
-*   checking whether package ‘ExpressionNormalizationWorkflow’ can be installed ... WARNING
+*   checking whether package 'ExpressionNormalizationWorkflow' can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: /home/hb/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
       Warning: /home/hb/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
-      Warning: replacing previous import ‘Biobase::anyMissing’ by ‘matrixStats::anyMissing’ when loading ‘ExpressionNormalizationWorkflow’
-      Warning: replacing previous import ‘Biobase::rowMedians’ by ‘matrixStats::rowMedians’ when loading ‘ExpressionNormalizationWorkflow’
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
+      Warning: replacing previous import 'Biobase::anyMissing' by 'matrixStats::anyMissing' when loading 'ExpressionNormalizationWorkflow'
+      Warning: replacing previous import 'Biobase::rowMedians' by 'matrixStats::rowMedians' when loading 'ExpressionNormalizationWorkflow'
+    See '/home/hb/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out' for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -1984,45 +2686,6 @@ Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     '::' or ':::' import not declared from: ‘BiocManager’
-    ```
-
-# expss
-
-<details>
-
-* Version: 0.9.0
-* Source code: https://github.com/cran/expss
-* URL: https://gdemin.github.io/expss/
-* BugReports: https://github.com/gdemin/expss/issues
-* Date/Publication: 2019-07-01 04:20:05 UTC
-* Number of recursive dependencies: 69
-
-Run `revdep_details(,"expss")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      
-      ── 3. Failure: (unknown) (@test_weighted_stats.R#169)  ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-      w_mad(x, w, na.rm = FALSE) not equal to matrixStats::weightedMad(...).
-      1/1 mismatches
-      [1] 0.193 - NA == NA
-      
-      Set default dataset to 'd_iris'
-      ══ testthat results  ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-      [ OK: 1991 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 3 ]
-      1. Failure: (unknown) (@test_weighted_stats.R#77) 
-      2. Failure: (unknown) (@test_weighted_stats.R#92) 
-      3. Failure: (unknown) (@test_weighted_stats.R#169) 
-      
-      Error: testthat unit tests failed
-      Execution halted
     ```
 
 # FastHCS
@@ -2108,7 +2771,7 @@ Run `revdep_details(,"FDb.FANTOM4.promoters.hg19")` for more info
 
 *   checking package subdirectories ... WARNING
     ```
-    Found the following non-empty subdirectories of ‘inst’ also used by R:
+    Found the following non-empty subdirectories of 'inst' also used by R:
       inst/build
     It is recommended not to interfere with package subdirectories used by
     R.
@@ -2118,7 +2781,7 @@ Run `revdep_details(,"FDb.FANTOM4.promoters.hg19")` for more info
     ```
     Malformed Description field: should contain one or more complete sentences.
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘GenomicFeatures’
+      'GenomicFeatures'
     A package should be listed in only one of these fields.
     ```
 
@@ -2139,10 +2802,10 @@ Run `revdep_details(,"FDb.FANTOM4.promoters.hg19")` for more info
 
 <details>
 
-* Version: 1.0.1
+* Version: 1.0.2
 * Source code: https://github.com/cran/fishpond
 * URL: https://github.com/mikelove/fishpond
-* Date/Publication: 2019-05-06
+* Date/Publication: 2019-08-11
 * Number of recursive dependencies: 155
 
 Run `revdep_details(,"fishpond")` for more info
@@ -2176,7 +2839,7 @@ Run `revdep_details(,"flowCore")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘openCyto’
+    Package suggested but not available for checking: 'openCyto'
     ```
 
 *   checking installed package size ... NOTE
@@ -2207,7 +2870,7 @@ Run `revdep_details(,"flowWorkspace")` for more info
 *   checking tests ...
     ```
      ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
+    Running the tests in 'tests/testthat.R' failed.
     Last 13 lines of output:
              if (logical.return) 
                  message(paste("Error:", msg), domain = NA)
@@ -2239,7 +2902,7 @@ Run `revdep_details(,"flowWorkspace")` for more info
     ```
     Malformed Title field: should not end in a period.
     Versioned 'LinkingTo' values for
-      ‘BH’ ‘RProtoBufLib’ ‘cytolib’
+      'BH' 'RProtoBufLib' 'cytolib'
     are only usable in R >= 3.0.2
     ```
 
@@ -2274,7 +2937,7 @@ Run `revdep_details(,"flowWorkspace")` for more info
 * URL: http://www.deepbionics.org
 * BugReports: https://github.com/Mthrun/GeneralizedUmatrix/issues
 * Date/Publication: 2019-02-03 12:54:40 UTC
-* Number of recursive dependencies: 92
+* Number of recursive dependencies: 90
 
 Run `revdep_details(,"GeneralizedUmatrix")` for more info
 
@@ -2284,7 +2947,7 @@ Run `revdep_details(,"GeneralizedUmatrix")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘DatabionicSwarm’
+    Package suggested but not available for checking: 'DatabionicSwarm'
     ```
 
 *   checking installed package size ... NOTE
@@ -2293,6 +2956,27 @@ Run `revdep_details(,"GeneralizedUmatrix")` for more info
       sub-directories of 1Mb or more:
         doc    3.1Mb
         libs   2.3Mb
+    ```
+
+# GenEst
+
+<details>
+
+* Version: 1.3.1
+* Source code: https://github.com/cran/GenEst
+* Date/Publication: 2019-08-22 18:50:02 UTC
+* Number of recursive dependencies: 71
+
+Run `revdep_details(,"GenEst")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘cbinom’
+      All declared Imports should be used.
     ```
 
 # genomation
@@ -2329,10 +3013,10 @@ Run `revdep_details(,"genomation")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
-*   checking files in ‘vignettes’ ... NOTE
+*   checking files in 'vignettes' ... NOTE
     ```
     The following directory looks like a leftover from 'knitr':
-      ‘cache’
+      'cache'
     Please remove from your package.
     ```
 
@@ -2378,73 +3062,7 @@ Run `revdep_details(,"GJRM")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package which this enhances but not available for checking: ‘sp’
-    ```
-
-# GNET2
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/GNET2
-* URL: https://github.com/chrischen1/GNET2
-* BugReports: https://github.com/chrischen1/GNET2/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 93
-
-Run `revdep_details(,"GNET2")` for more info
-
-</details>
-
-## In both
-
-*   checking whether the package can be unloaded cleanly ... WARNING
-    ```
-    Error in globalVariables(c("Cluster", "ggplot", "aes", "geom_bar", "coord_flip",  : 
-      could not find function "globalVariables"
-    Error: package or namespace load failed for ‘GNET2’:
-     unable to load R code in package ‘xgboost’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in globalVariables(c("Cluster", "ggplot", "aes", "geom_bar", "coord_flip",  : 
-      could not find function "globalVariables"
-    Error: unable to load R code in package ‘xgboost’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
+    Package which this enhances but not available for checking: 'sp'
     ```
 
 # graper
@@ -2505,11 +3123,11 @@ Run `revdep_details(,"GUIDEseq")` for more info
 
 <details>
 
-* Version: 1.28.0
+* Version: 1.28.1
 * Source code: https://github.com/cran/Gviz
 * URL: https://github.com/ivanek/Gviz
 * BugReports: https://github.com/ivanek/Gviz/issues
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-08-15
 * Number of recursive dependencies: 133
 
 Run `revdep_details(,"Gviz")` for more info
@@ -2522,7 +3140,7 @@ Run `revdep_details(,"Gviz")` for more info
     ```
       installed size is 11.8Mb
       sub-directories of 1Mb or more:
-        R         1.7Mb
+        R         1.6Mb
         doc       6.5Mb
         extdata   2.1Mb
     ```
@@ -2615,78 +3233,6 @@ Run `revdep_details(,"kernDeepStackNet")` for more info
         libs   5.9Mb
     ```
 
-# kissDE
-
-<details>
-
-* Version: 1.4.0
-* Source code: https://github.com/cran/kissDE
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 136
-
-Run `revdep_details(,"kissDE")` for more info
-
-</details>
-
-## In both
-
-*   checking whether the package can be unloaded cleanly ... WARNING
-    ```
-    Error in globalVariables("tstat") : 
-      could not find function "globalVariables"
-    Error: package or namespace load failed for ‘kissDE’:
-     unable to load R code in package ‘bsseq’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in globalVariables("tstat") : 
-      could not find function "globalVariables"
-    Error: unable to load R code in package ‘bsseq’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in globalVariables("tstat") : 
-      could not find function "globalVariables"
-    Error: unable to load R code in package ‘bsseq’
-    Execution halted
-    ```
-
 # liger
 
 <details>
@@ -2732,7 +3278,7 @@ Run `revdep_details(,"loo")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘brms’
+    Package suggested but not available for checking: 'brms'
     ```
 
 # LS2Wstat
@@ -2750,24 +3296,11 @@ Run `revdep_details(,"LS2Wstat")` for more info
 
 ## In both
 
-*   checking whether package ‘LS2Wstat’ can be installed ... WARNING
+*   checking whether package 'LS2Wstat' can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/LS2Wstat/new/LS2Wstat.Rcheck/00install.out’ for details.
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setOldClass("sf") : could not find function "setOldClass"
-    Error: unable to load R code in package ‘sf’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
+    See '/home/hb/repositories/matrixStats/revdep/checks/LS2Wstat/new/LS2Wstat.Rcheck/00install.out' for details.
     ```
 
 # LSAmitR
@@ -2810,7 +3343,7 @@ Run `revdep_details(,"Luminescence")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘RLumShiny’
+    Package suggested but not available for checking: 'RLumShiny'
     ```
 
 *   checking installed package size ... NOTE
@@ -2836,7 +3369,7 @@ Run `revdep_details(,"Luminescence")` for more info
 * URL: https://github.com/tallulandrews/M3Drop
 * BugReports: https://github.com/tallulandrews/M3Drop/issues
 * Date/Publication: 2019-05-02
-* Number of recursive dependencies: 185
+* Number of recursive dependencies: 191
 
 Run `revdep_details(,"M3Drop")` for more info
 
@@ -2855,11 +3388,10 @@ Run `revdep_details(,"M3Drop")` for more info
     ```
     Error in setMethod("plot", signature(x = "performance", y = "missing"),  : 
       no existing definition for function ‘plot’
-    Error in setClass("SCESet", contains = "ExpressionSet", slots = c(logExprsOffset = "numeric",  : 
-      could not find function "setClass"
     Package in Depends field not imported from: ‘numDeriv’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
+    Missing or unexported object: ‘scater::exprs’
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -2892,11 +3424,11 @@ Run `revdep_details(,"maEndToEnd")` for more info
 
 ## In both
 
-*   checking whether package ‘maEndToEnd’ can be installed ... WARNING
+*   checking whether package 'maEndToEnd' can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: call dbDisconnect() when finished working with a connection
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out’ for details.
+    See '/home/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out' for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -2952,6 +3484,29 @@ Run `revdep_details(,"MEAL")` for more info
 
 ## In both
 
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: package or namespace load failed for 'MEAL':
+     unable to load R code in package 'Gviz'
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: unable to load R code in package 'Gviz'
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
 *   checking examples ... WARNING
     ```
     Found the following significant warnings:
@@ -2973,27 +3528,38 @@ Run `revdep_details(,"MEAL")` for more info
     is not mentioned in the DESCRIPTION file.
     ```
 
+*   checking dependencies in R code ... NOTE
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    ```
+
 *   checking R code for possible problems ... NOTE
     ```
-    plotRegion: no visible global function definition for 'data'
-    plotRegion: no visible binding for global variable 'dmrcatedata'
-    plotRegion: no visible binding for global variable 'tx.hg19'
-    plotRegion: no visible binding for global variable 'tx.hg38'
-    plotRegion: no visible binding for global variable 'tx.mm10'
-    plotRegion: no visible global function definition for
-      'subsetByOverlaps'
-    plotRegion: no visible global function definition for 'mcols<-'
-    runBlockFinder: no visible global function definition for 'assays'
-    runBlockFinder: no visible global function definition for 'colData'
-    runRDA: no visible global function definition for 'rowData'
-    runSVA: no visible global function definition for 'resid'
-    Undefined global functions or variables:
-      assays colData data dmrcatedata mcols<- resid rowData
-      subsetByOverlaps tx.hg19 tx.hg38 tx.mm10
-    Consider adding
-      importFrom("stats", "resid")
-      importFrom("utils", "data")
-    to your NAMESPACE file.
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: unable to load R code in package 'Gviz'
+    Execution halted
     ```
 
 # metagene
@@ -3023,7 +3589,7 @@ Run `revdep_details(,"metagene")` for more info
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘similaRpeak’
+      'similaRpeak'
     A package should be listed in only one of these fields.
     ```
 
@@ -3046,7 +3612,7 @@ Run `revdep_details(,"metagenomeSeq")` for more info
 
 *   checking examples ... ERROR
     ```
-    Running examples in ‘metagenomeSeq-Ex.R’ failed
+    Running examples in 'metagenomeSeq-Ex.R' failed
     The error most likely occurred in:
     
     > ### Name: biom2MRexperiment
@@ -3084,8 +3650,8 @@ Run `revdep_details(,"metagenomeSeq")` for more info
     Functions with \usage entries need to have the appropriate \alias
     entries, and all their arguments documented.
     The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # MetaNeighbor
@@ -3103,6 +3669,47 @@ Run `revdep_details(,"MetaNeighbor")` for more info
 
 ## In both
 
+*   checking S3 generic/method consistency ... WARNING
+    ```
+    Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+    Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+    Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    All user-level objects in a package should have documentation entries.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+    Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  8.6Mb
@@ -3115,6 +3722,22 @@ Run `revdep_details(,"MetaNeighbor")` for more info
     Namespaces in Imports field not imported from:
       ‘GenomicRanges’ ‘RColorBrewer’ ‘gplots’
       All declared Imports should be used.
+    ```
+
+*   checking Rd \usage sections ... NOTE
+    ```
+    Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+    Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+    Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    The \usage entries for S3 methods should use the \method markup and not
+    their full name.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # MethylAid
@@ -3134,7 +3757,7 @@ Run `revdep_details(,"MethylAid")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘MethylAidData’
+    Package suggested but not available for checking: 'MethylAidData'
     ```
 
 # methylationArrayAnalysis
@@ -3151,6 +3774,40 @@ Run `revdep_details(,"methylationArrayAnalysis")` for more info
 </details>
 
 ## In both
+
+*   checking whether package 'methylationArrayAnalysis' can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import 'rmarkdown::pdf_document' by 'BiocStyle::pdf_document' when loading 'methylationArrayAnalysis'
+      Warning: replacing previous import 'rmarkdown::html_document' by 'BiocStyle::html_document' when loading 'methylationArrayAnalysis'
+      Warning: replacing previous import 'rmarkdown::md_document' by 'BiocStyle::md_document' when loading 'methylationArrayAnalysis'
+    See '/home/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out' for details.
+    ```
+
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: package 'Gviz' could not be loaded
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Warning: replacing previous import ‘rmarkdown::pdf_document’ by ‘BiocStyle::pdf_document’ when loading ‘methylationArrayAnalysis’
+    Warning: replacing previous import ‘rmarkdown::html_document’ by ‘BiocStyle::html_document’ when loading ‘methylationArrayAnalysis’
+    Warning: replacing previous import ‘rmarkdown::md_document’ by ‘BiocStyle::md_document’ when loading ‘methylationArrayAnalysis’
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: unable to load R code in package 'Gviz'
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -3202,22 +3859,22 @@ Run `revdep_details(,"methylumi")` for more info
       generic '[' and siglist 'MethyLumiSet,ANY,ANY,ANY'
     All user-level objects in a package (including S4 classes and methods)
     should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
-*   checking contents of ‘data’ directory ... WARNING
+*   checking contents of 'data' directory ... WARNING
     ```
-    Files not of a type allowed in a ‘data’ directory:
-      ‘5318317007_A_Grn.idat’ ‘5318317007_A_Red.idat’
-      ‘5318317007_B_Grn.idat’ ‘5318317007_B_Red.idat’
-      ‘5318317007_C_Grn.idat’ ‘5318317007_C_Red.idat’
-    Please use e.g. ‘inst/extdata’ for non-R data files
+    Files not of a type allowed in a 'data' directory:
+      '5318317007_A_Grn.idat' '5318317007_A_Red.idat'
+      '5318317007_B_Grn.idat' '5318317007_B_Red.idat'
+      '5318317007_C_Grn.idat' '5318317007_C_Red.idat'
+    Please use e.g. 'inst/extdata' for non-R data files
     ```
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'lumi', 'methyAnalysis'
+    Package suggested but not available for checking: 'methyAnalysis'
     
     Depends: includes the non-default packages:
       'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
@@ -3230,13 +3887,13 @@ Run `revdep_details(,"methylumi")` for more info
     ```
     Found the following hidden files and directories:
       .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.5Mb
+      installed size is 10.4Mb
       sub-directories of 1Mb or more:
         R         1.3Mb
         data      6.8Mb
@@ -3246,7 +3903,7 @@ Run `revdep_details(,"methylumi")` for more info
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Packages listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’ ‘minfi’ ‘lattice’ ‘matrixStats’
+      'Biobase' 'minfi' 'lattice' 'matrixStats'
     A package should be listed in only one of these fields.
     ```
 
@@ -3267,10 +3924,10 @@ Run `revdep_details(,"methylumi")` for more info
       ‘reshape2’ ‘scales’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
+    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
+      See the note in ?`:::` about the use of this operator.
     Unexported objects imported by ':::' calls:
       ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
-      See the note in ?`:::` about the use of this operator.
-    Unavailable namespace imported from by a ':::' call: ‘lumi’
       See the note in ?`:::` about the use of this operator.
     ```
 
@@ -3393,17 +4050,17 @@ Run `revdep_details(,"MIGSA")` for more info
 *   checking tests ...
     ```
      ERROR
-    Running the tests in ‘tests/runTests.R’ failed.
+    Running the tests in 'tests/runTests.R' failed.
     Last 13 lines of output:
-      The following objects are masked from 'package:base':
-      
-          Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-          as.data.frame, basename, cbind, colnames, dirname, do.call,
-          duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-          lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-          tapply, union, unique, unsplit, which, which.max, which.min
-      
+      Creating a generic function for 'sub' from package 'base' in package 'IRanges'
+      Creating a generic function for 'gsub' from package 'base' in package 'IRanges'
+      Creating a generic function for 'smoothEnds' from package 'stats' in package 'IRanges'
+      Creating a new generic function for 'packageName' in package 'AnnotationDbi'
+      code for methods in class "AnnotationDb" was not checked for suspicious field assignments (recommended package 'codetools' not available?)
+      Creating a generic function for 'ls' from package 'base' in package 'AnnotationDbi'
+      Creating a generic function for 'eapply' from package 'base' in package 'AnnotationDbi'
+      Creating a generic function for 'exists' from package 'base' in package 'AnnotationDbi'
+      Creating a generic function for 'sample' from package 'base' in package 'AnnotationDbi'
       
       
       Error in library("RUnit", quietly = TRUE) : 
@@ -3417,7 +4074,7 @@ Run `revdep_details(,"MIGSA")` for more info
     Found the following apparent S3 methods exported but not registered:
       FitOptions.data.frame FitOptions.default summary.GSEAparams
       summary.IGSAinput summary.MIGSAres summary.SEAparams
-    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+    See section 'Registering S3 methods' in the 'Writing R Extensions'
     manual.
     ```
 
@@ -3444,7 +4101,7 @@ Run `revdep_details(,"MinimumDistance")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package which this enhances but not available for checking: ‘doSNOW’
+    Package which this enhances but not available for checking: 'doSNOW'
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -3461,15 +4118,37 @@ Run `revdep_details(,"MinimumDistance")` for more info
       RangedDataList elt read.bsfiles
     ```
 
+*   checking contents of 'data' directory ... NOTE
+    ```
+    Output for data("md_exp", package = "MinimumDistance"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    Output for data("trioSetListExample", package = "MinimumDistance"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    ```
+
 # mixOmics
 
 <details>
 
-* Version: 6.8.0
+* Version: 6.8.2
 * Source code: https://github.com/cran/mixOmics
 * URL: http://www.mixOmics.org
-* BugReports: https://bitbucket.org/klecao/package-mixomics/issues
-* Date/Publication: 2019-05-02
+* BugReports: https://github.com/mixOmicsTeam/mixOmics/issues/
+* Date/Publication: 2019-08-23
 * Number of recursive dependencies: 84
 
 Run `revdep_details(,"mixOmics")` for more info
@@ -3547,8 +4226,8 @@ Run `revdep_details(,"mnem")` for more info
        })
     1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
     Execution halted
-    See section ‘Generic functions and methods’ in the ‘Writing R
-    Extensions’ manual.
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking replacement functions ... WARNING
@@ -3574,7 +4253,7 @@ Run `revdep_details(,"mnem")` for more info
     1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
     Execution halted
     The argument of a replacement function which corresponds to the right
-    hand side must be named ‘value’.
+    hand side must be named 'value'.
     ```
 
 *   checking for code/documentation mismatches ... WARNING
@@ -3651,8 +4330,8 @@ Run `revdep_details(,"mnem")` for more info
        })
     1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
     Execution halted
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking Rd \usage sections ... NOTE
@@ -3677,8 +4356,8 @@ Run `revdep_details(,"mnem")` for more info
     Execution halted
     The \usage entries for S3 methods should use the \method markup and not
     their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # moc.gapbk
@@ -3711,7 +4390,7 @@ Run `revdep_details(,"moc.gapbk")` for more info
 * Version: 2.12.0
 * Source code: https://github.com/cran/monocle
 * Date/Publication: 2019-05-02
-* Number of recursive dependencies: 221
+* Number of recursive dependencies: 227
 
 Run `revdep_details(,"monocle")` for more info
 
@@ -3753,10 +4432,10 @@ Run `revdep_details(,"monocle")` for more info
     to your NAMESPACE file.
     ```
 
-*   checking files in ‘vignettes’ ... NOTE
+*   checking files in 'vignettes' ... NOTE
     ```
     The following directory looks like a leftover from 'knitr':
-      ‘figure’
+      'figure'
     Please remove from your package.
     ```
 
@@ -3776,6 +4455,29 @@ Run `revdep_details(,"motifbreakR")` for more info
 
 ## In both
 
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: package or namespace load failed for 'motifbreakR':
+     unable to load R code in package 'Gviz'
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in rgb(c(247, 222, 198, 158, 107, 66, 33, 8, 8), c(251, 235, 219,  : 
+      could not find function "rgb"
+    Error: unable to load R code in package 'Gviz'
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
@@ -3783,16 +4485,34 @@ Run `revdep_details(,"motifbreakR")` for more info
     Undocumented data sets:
       'rs1006140'
     All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
-    Packages in Depends field not imported from:
-      'MotifDb' 'grid'
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
     ```
 
 # mrfDepth
@@ -3863,14 +4583,14 @@ Run `revdep_details(,"NanoStringDiff")` for more info
       ‘compute.baseSigma’ ‘est.dispersion’ ‘fun5’ ‘glmfit.OneGroup’
       ‘glmfit.full’ ‘glmfit.reduce’ ‘rnegbinom’
     All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
-*   checking installed files from ‘inst/doc’ ... NOTE
+*   checking installed files from 'inst/doc' ... NOTE
     ```
     The following files look like leftovers/mistakes:
-      ‘NanoStringDiff.log’
+      'NanoStringDiff.log'
     Please remove them from your package.
     ```
 
@@ -3883,7 +4603,7 @@ Run `revdep_details(,"NanoStringDiff")` for more info
 * URL: http://netlogor.predictiveecology.org, https://github.com/PredictiveEcology/NetLogoR/
 * BugReports: https://github.com/PredictiveEcology/NetLogoR/issues
 * Date/Publication: 2019-01-25 17:20:07 UTC
-* Number of recursive dependencies: 163
+* Number of recursive dependencies: 165
 
 Run `revdep_details(,"NetLogoR")` for more info
 
@@ -3891,29 +4611,9 @@ Run `revdep_details(,"NetLogoR")` for more info
 
 ## In both
 
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setOldClass("sf") : could not find function "setOldClass"
-    Error: unable to load R code in package ‘sf’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘fastshp’
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in setOldClass("sf") : could not find function "setOldClass"
-    Error: unable to load R code in package ‘sf’
-    Execution halted
+    Package suggested but not available for checking: 'fastshp'
     ```
 
 # NormalyzerDE
@@ -3936,8 +4636,8 @@ Run `revdep_details(,"NormalyzerDE")` for more info
     ```
     Found the following hidden files and directories:
       .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3945,13 +4645,35 @@ Run `revdep_details(,"NormalyzerDE")` for more info
     Missing or unexported object: ‘SummarizedExperiment::metadata’
     ```
 
+*   checking contents of 'data' directory ... NOTE
+    ```
+    Output for data("example_stat_summarized_experiment", package = "NormalyzerDE"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    Output for data("example_summarized_experiment", package = "NormalyzerDE"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    ```
+
 # omicplotR
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.4.2
 * Source code: https://github.com/cran/omicplotR
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-08-23
 * Number of recursive dependencies: 70
 
 Run `revdep_details(,"omicplotR")` for more info
@@ -3964,8 +4686,8 @@ Run `revdep_details(,"omicplotR")` for more info
     ```
     Found the following hidden files and directories:
       .github
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 # omicsPrint
@@ -4048,7 +4770,7 @@ Run `revdep_details(,"pandaR")` for more info
     ```
     Found the following apparent S3 methods exported but not registered:
       plot.panda
-    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+    See section 'Registering S3 methods' in the 'Writing R Extensions'
     manual.
     ```
 
@@ -4059,8 +4781,8 @@ Run `revdep_details(,"pandaR")` for more info
     
     The \usage entries for S3 methods should use the \method markup and not
     their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # PathoStat
@@ -4176,7 +4898,7 @@ Run `revdep_details(,"phosphonormalizer")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package which this enhances but not available for checking: ‘MSnbase’
+    Package which this enhances but not available for checking: 'MSnbase'
     ```
 
 # Pigengene
@@ -4209,9 +4931,22 @@ Run `revdep_details(,"Pigengene")` for more info
       assignInNamespace("supported.clusters", fixArgs, "bnlearn")
     ```
 
-*   checking contents of ‘data’ directory ... NOTE
+*   checking contents of 'data' directory ... NOTE
     ```
     Output for data("pigengene", package = "Pigengene"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+      Creating a new generic function for ‘packageName’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘ls’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘eapply’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘exists’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘sample’ from package ‘base’ in package ‘AnnotationDbi’
       
     ```
 
@@ -4229,53 +4964,6 @@ Run `revdep_details(,"PrecisionTrialDrawer")` for more info
 </details>
 
 ## In both
-
-*   checking whether the package can be unloaded cleanly ... WARNING
-    ```
-    Error in globalVariables("n") : could not find function "globalVariables"
-    Error: package or namespace load failed for ‘PrecisionTrialDrawer’:
-     unable to load R code in package ‘brglm’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in globalVariables("n") : could not find function "globalVariables"
-    Error: unable to load R code in package ‘brglm’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -4320,200 +5008,13 @@ Run `revdep_details(,"QDNAseq")` for more info
 
 ## In both
 
-*   checking whether the package can be unloaded cleanly ... WARNING
-    ```
-    Error in setGeneric("plot.cghRaw", function(x, y, ...) standardGeneric("plot.cghRaw")) : 
-      could not find function "setGeneric"
-    Error: package or namespace load failed for ‘QDNAseq’:
-     unable to load R code in package ‘CGHbase’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setGeneric("plot.cghRaw", function(x, y, ...) standardGeneric("plot.cghRaw")) : 
-      could not find function "setGeneric"
-    Error: unable to load R code in package ‘CGHbase’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking S3 generic/method consistency ... WARNING
-    ```
-    ...
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    See section ‘Generic functions and methods’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking replacement functions ... WARNING
-    ```
-    ...
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    The argument of a replacement function which corresponds to the right
-    hand side must be named ‘value’.
-    ```
-
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
       ‘exportVCF’
     All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
-
-*   checking foreign function calls ... NOTE
-    ```
-    ...
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in setGeneric("plot.cghRaw", function(x, y, ...) standardGeneric("plot.cghRaw")) : 
-      could not find function "setGeneric"
-    Error: unable to load R code in package ‘CGHbase’
-    Execution halted
-    ```
-
-*   checking Rd \usage sections ... NOTE
-    ```
-    ...
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    The \usage entries for S3 methods should use the \method markup and not
-    their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # r2dRue
@@ -4560,8 +5061,8 @@ Run `revdep_details(,"rhierbaps")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Error in prototype(data = data_frame(), extraInfo = data_frame(), anc_seq = ape::as.DNAbin(character(0)),  : 
-      could not find function "prototype"
+    Error in setClass("jplace", representation = representation(placements = "tbl_df"),  : 
+      could not find function "setClass"
     ```
 
 # RnBeads
@@ -4593,8 +5094,8 @@ Run `revdep_details(,"RnBeads")` for more info
     ```
     Found the following hidden files and directories:
       .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 *   checking installed package size ... NOTE
@@ -4609,7 +5110,7 @@ Run `revdep_details(,"RnBeads")` for more info
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘qvalue’
+      'qvalue'
     A package should be listed in only one of these fields.
     ```
 
@@ -4675,11 +5176,11 @@ Run `revdep_details(,"RTransProb")` for more info
 
 ## In both
 
-*   checking whether package ‘RTransProb’ can be installed ... WARNING
+*   checking whether package 'RTransProb' can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/RTransProb/new/RTransProb.Rcheck/00install.out’ for details.
+    See '/home/hb/repositories/matrixStats/revdep/checks/RTransProb/new/RTransProb.Rcheck/00install.out' for details.
     ```
 
 # scmap
@@ -4731,11 +5232,11 @@ Run `revdep_details(,"scMerge")` for more info
 
 ## In both
 
-*   checking whether package ‘scMerge’ can be installed ... WARNING
+*   checking whether package 'scMerge' can be installed ... WARNING
     ```
     Found the following significant warnings:
-      Warning: replacing previous import ‘SingleCellExperiment::as.matrix’ by ‘proxy::as.matrix’ when loading ‘scMerge’
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/scMerge/new/scMerge.Rcheck/00install.out’ for details.
+      Warning: replacing previous import 'SingleCellExperiment::as.matrix' by 'proxy::as.matrix' when loading 'scMerge'
+    See '/home/hb/repositories/matrixStats/revdep/checks/scMerge/new/scMerge.Rcheck/00install.out' for details.
     ```
 
 *   checking data for non-ASCII characters ... WARNING
@@ -4763,6 +5264,19 @@ Run `revdep_details(,"scMerge")` for more info
     make_para_gn_parallel: no visible binding for global variable ‘i’
     Undefined global functions or variables:
       i
+    ```
+
+*   checking contents of 'data' directory ... NOTE
+    ```
+    Output for data("example_sce", package = "scMerge"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
     ```
 
 # scone
@@ -4827,6 +5341,13 @@ Run `revdep_details(,"sesame")` for more info
 *   R CMD check timed out
     
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        doc   4.5Mb
+    ```
+
 # SGP
 
 <details>
@@ -4844,69 +5365,12 @@ Run `revdep_details(,"SGP")` for more info
 
 ## In both
 
-*   checking whether the package can be unloaded cleanly ... WARNING
-    ```
-    Error in setMethod("predict", signature(object = "selm"), predict.selm) : 
-      no existing definition for function ‘predict’
-    Error: package or namespace load failed for ‘SGP’:
-     unable to load R code in package ‘sn’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setMethod("predict", signature(object = "selm"), predict.selm) : 
-      no existing definition for function ‘predict’
-    Error: unable to load R code in package ‘sn’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.4Mb
       sub-directories of 1Mb or more:
         R     1.3Mb
         doc   3.0Mb
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in setMethod("predict", signature(object = "selm"), predict.selm) : 
-      no existing definition for function ‘predict’
-    Error: unable to load R code in package ‘sn’
-    Execution halted
     ```
 
 # shinyMethyl
@@ -4928,8 +5392,8 @@ Run `revdep_details(,"shinyMethyl")` for more info
     ```
     Found the following hidden files and directories:
       .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5001,7 +5465,7 @@ Run `revdep_details(,"SICtools")` for more info
 
 ## In both
 
-*   checking whether package ‘SICtools’ can be installed ... WARNING
+*   checking whether package 'SICtools' can be installed ... WARNING
     ```
     ...
       bam_index.c:362:4: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
@@ -5023,8 +5487,8 @@ Run `revdep_details(,"SICtools")` for more info
       knetfile.h:9:32: warning: ignoring return value of ‘write’, declared with attribute warn_unused_result [-Wunused-result]
       errmod.c:79:8: warning: self-comparison always evaluates to false [-Wtautological-compare]
       md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
-      Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
+      Warning: replacing previous import 'plyr::count' by 'matrixStats::count' when loading 'SICtools'
+    See '/home/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out' for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -5040,8 +5504,8 @@ Run `revdep_details(,"SICtools")` for more info
     ```
     Found the following hidden files and directories:
       .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5084,6 +5548,32 @@ Run `revdep_details(,"Single.mTEC.Transcriptomes")` for more info
         doc     9.3Mb
     ```
 
+*   checking contents of 'data' directory ... NOTE
+    ```
+    ...
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+      Creating a new generic function for ‘packageName’ in package ‘AnnotationDbi’
+      code for methods in class “AnnotationDb” was not checked for suspicious field assignments (recommended package ‘codetools’ not available?)
+      Creating a generic function for ‘ls’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘eapply’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘exists’ from package ‘base’ in package ‘AnnotationDbi’
+      Creating a generic function for ‘sample’ from package ‘base’ in package ‘AnnotationDbi’
+    Output for data("mTECdxd", package = "Single.mTEC.Transcriptomes"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+    ```
+
 # singleCellTK
 
 <details>
@@ -5117,8 +5607,8 @@ Run `revdep_details(,"singleCellTK")` for more info
     ```
     Found the following hidden files and directories:
       .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
+    These were most likely included in error. See section 'Package
+    structure' in the 'Writing R Extensions' manual.
     ```
 
 *   checking installed package size ... NOTE
@@ -5194,8 +5684,8 @@ Run `revdep_details(,"slingshot")` for more info
        })
     1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
     Execution halted
-    See section ‘Generic functions and methods’ in the ‘Writing R
-    Extensions’ manual.
+    See section 'Generic functions and methods' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking replacement functions ... WARNING
@@ -5221,7 +5711,7 @@ Run `revdep_details(,"slingshot")` for more info
     1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
     Execution halted
     The argument of a replacement function which corresponds to the right
-    hand side must be named ‘value’.
+    hand side must be named 'value'.
     ```
 
 *   checking for code/documentation mismatches ... WARNING
@@ -5298,8 +5788,8 @@ Run `revdep_details(,"slingshot")` for more info
        })
     1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
     Execution halted
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'System and foreign language interfaces' in the 'Writing R
+    Extensions' manual.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5331,8 +5821,8 @@ Run `revdep_details(,"slingshot")` for more info
     Execution halted
     The \usage entries for S3 methods should use the \method markup and not
     their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See chapter 'Writing R documentation files' in the 'Writing R
+    Extensions' manual.
     ```
 
 # SMAD
@@ -5445,8 +5935,8 @@ Run `revdep_details(,"stm")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Error in setRefClass(Class = "spacy_out", fields = list(timestamps = "character",  : 
-      could not find function "setRefClass"
+    Error in packageVersion("quanteda") : 
+      could not find function "packageVersion"
     ```
 
 # STROMA4
@@ -5466,10 +5956,10 @@ Run `revdep_details(,"STROMA4")` for more info
 
 *   checking running R code from vignettes ...
     ```
-      ‘STROMA4-vignette.Rnw’... failed
+      'STROMA4-vignette.Rnw'... failed
      ERROR
     Errors in running code in vignettes:
-    when running code in ‘STROMA4-vignette.Rnw’
+    when running code in 'STROMA4-vignette.Rnw'
       ...
     
     > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
@@ -5490,12 +5980,12 @@ Run `revdep_details(,"STROMA4")` for more info
 
 <details>
 
-* Version: 0.9.3
+* Version: 0.9.4
 * Source code: https://github.com/cran/summarytools
 * URL: https://github.com/dcomtois/summarytools
 * BugReports: https://github.com/dcomtois/summarytools/issues
-* Date/Publication: 2019-04-11 19:53:53 UTC
-* Number of recursive dependencies: 52
+* Date/Publication: 2019-08-24 05:20:02 UTC
+* Number of recursive dependencies: 53
 
 Run `revdep_details(,"summarytools")` for more info
 
@@ -5503,11 +5993,11 @@ Run `revdep_details(,"summarytools")` for more info
 
 ## In both
 
-*   checking whether package ‘summarytools’ can be installed ... WARNING
+*   checking whether package 'summarytools' can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
+    See '/home/hb/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out' for details.
     ```
 
 *   checking data for non-ASCII characters ... NOTE
@@ -5578,9 +6068,9 @@ Run `revdep_details(,"tenXplore")` for more info
 
 *   checking whether the namespace can be loaded with stated dependencies ... WARNING
     ```
-    Error in setClass("TermSet", representation(ontoTags = "character", cleanFrame = "DataFrame"),  : 
+    Error in setClass("RESTfulSummarizedExperiment", contains = "RangedSummarizedExperiment",  : 
       could not find function "setClass"
-    Error: unable to load R code in package ‘ontoProc’
+    Error: unable to load R code in package ‘restfulSE’
     Execution halted
     
     A namespace must be able to be loaded with just the base namespace
@@ -5588,6 +6078,19 @@ Run `revdep_details(,"tenXplore")` for more info
     session will be unable to start.
     
     Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking contents of 'data' directory ... NOTE
+    ```
+    Output for data("tenx500", package = "tenXplore"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
     ```
 
 # topGO
@@ -5616,45 +6119,11 @@ Run `revdep_details(,"topGO")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Error in matchSignature(signature(x = "gt.object"), sort) : 
-      trying to match a method signature to an object (of class “function”) that is not a generic function
-    Error in matchSignature(signature(x = "gt.object"), sort) : 
-      trying to match a method signature to an object (of class “function”) that is not a generic function
     'library' or 'require' calls in package code:
       ‘Rgraphviz’ ‘multtest’
       Please use :: or requireNamespace() instead.
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Unavailable namespace imported from by a ':::' call: ‘globaltest’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-# ttScreening
-
-<details>
-
-* Version: 1.6
-* Source code: https://github.com/cran/ttScreening
-* Date/Publication: 2018-10-11 22:00:02 UTC
-* Number of recursive dependencies: 52
-
-Run `revdep_details(,"ttScreening")` for more info
-
-</details>
-
-## In both
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setMethod(show, "varlist", function(object) print.varlist(object)) : 
-      could not find function "setMethod"
-    Error: unable to load R code in package ‘simsalapar’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
+    Missing object imported by a ':::' call: ‘globaltest:::globaltest’
     ```
 
 # VanillaICE
@@ -5697,71 +6166,17 @@ Run `revdep_details(,"VanillaICE")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
-# visualFields
-
-<details>
-
-* Version: 0.6
-* Source code: https://github.com/cran/visualFields
-* URL: http://people.eng.unimelb.edu.au/aturpin/opi/index.html
-* Date/Publication: 2018-12-19 11:30:03 UTC
-* Number of recursive dependencies: 80
-
-Run `revdep_details(,"visualFields")` for more info
-
-</details>
-
-## In both
-
-*   checking whether the package can be unloaded cleanly ... WARNING
+*   checking contents of 'data' directory ... NOTE
     ```
-    Error in setMethod("hist", "flip.object", function(x, ...) { : 
-      no existing definition for function ‘hist’
-    In addition: Warning message:
-    no function found corresponding to methods exports from ‘someMTP’ for: ‘show’ 
-    Error: package or namespace load failed for ‘visualFields’:
-     unable to load R code in package ‘flip’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setMethod("hist", "flip.object", function(x, ...) { : 
-      no existing definition for function ‘hist’
-    Error: unable to load R code in package ‘flip’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
+    Output for data("snp_exp", package = "VanillaICE"):
+      Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+      Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+      Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
     ```
 
 # wateRmelon
@@ -5779,14 +6194,14 @@ Run `revdep_details(,"wateRmelon")` for more info
 
 ## In both
 
-*   checking whether package ‘wateRmelon’ can be installed ... WARNING
+*   checking whether package 'wateRmelon' can be installed ... WARNING
     ```
     Found the following significant warnings:
       Note: possible error in 'preprocessIlluminaMethylation(path2data = path2data, ': unused arguments (path2data = path2data, path2controlData = path2controlData, projectName = projectName) 
-    See ‘/home/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/00install.out’ for details.
-    Information on the location(s) of code generating the ‘Note’s can be
+    See '/home/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/00install.out' for details.
+    Information on the location(s) of code generating the 'Note's can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
-    to ‘yes’.
+    to 'yes'.
     ```
 
 *   checking package dependencies ... NOTE
@@ -5801,7 +6216,7 @@ Run `revdep_details(,"wateRmelon")` for more info
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’
+      'Biobase'
     A package should be listed in only one of these fields.
     ```
 
