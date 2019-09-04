@@ -72,10 +72,18 @@ revdep_todo_reset <- function() {
   DBI::dbWriteTable(db, "todo", df, overwrite = TRUE, append = FALSE)
 }
 
+revdep_this_package <- local({
+  pkg <- NULL
+  function() {
+    if (is.null(pkg)) pkg <<- desc::desc(file = "DESCRIPTION")$get("Package")
+    pkg
+  }
+})
+
 revdep_children <- local({
   cache <- list()
   function(pkg = NULL) {
-    if (is.null(pkg)) pkg <- desc::desc(file = "DESCRIPTION")$get("Package")
+    if (is.null(pkg)) pkg <- revdep_this_package()
     pkgs <- cache[[pkg]]
     if (is.null(pkgs)) {
       pkgs <- revdepcheck:::cran_revdeps(pkg)
@@ -96,6 +104,20 @@ revdep_pkgs_with_status <- function(status = "error") {
   }, FUN.VALUE = NA, USE.NAMES = TRUE)
   has_status <- !is.na(has_status) & has_status
   names(has_status)[has_status]
+}
+
+revdep_preinstall <- function(pkgs) {
+  pkgs <- unique(pkgs)
+  lib_paths_org <- lib_paths <- .libPaths()
+  on.exit(.libPaths(lib_paths_org))
+  lib_paths[1] <- sprintf("%s-revdepcheck", lib_paths[1])
+  dir.create(lib_paths[1], recursive = TRUE, showWarnings = FALSE)
+  .libPaths(lib_paths)
+  message("Triggering crancache builds by pre-installing packages: ",
+           paste(sQuote(pkgs), collapse = ", "))
+  message(".libPaths():")
+  message(paste(paste0(" - ", .libPaths()), collapse = "\n"))
+  crancache::install_packages(pkgs)
 }
 
 args <- base::commandArgs()
@@ -153,17 +175,25 @@ if ("--reset" %in% args) {
       writeLines(tail)
     }
   }
+} else if ("--list-children" %in% args) {
+  pkg <- revdep_this_package()
+  pkgs <- revdepcheck:::cran_revdeps(pkg)
+  cat(paste(pkgs, collapse = " "), "\n", sep="")
 } else if ("--list-error" %in% args) {
   cat(paste(revdep_pkgs_with_status("error"), collapse = " "), "\n", sep="")
 } else if ("--add-error" %in% args) {
   revdepcheck::revdep_add(packages = revdep_pkgs_with_status("error"))
-} else if ("--install-error" %in% args) {
+} else if ("--preinstall-children" %in% args) {
+  pkg <- revdep_this_package()
+  pkgs <- revdepcheck:::cran_revdeps(pkg)
+  revdep_preinstall(pkgs)
+} else if ("--preinstall-error" %in% args) {
   res <- revdepcheck::revdep_summary()
-  crancache::install_packages(revdep_pkgs_with_status("error"))
-} else if ("--install" %in% args) {
-  pos <- which("--install" == args)
+  revdep_preinstall(revdep_pkgs_with_status("error"))
+} else if ("--preinstall" %in% args) {
+  pos <- which("--preinstall" == args)
   pkgs <- parse_pkgs(args[seq(from = pos + 1L, to = length(args))])
-  crancache::install_packages(pkgs)
+  revdep_preinstall(pkgs)
 } else {
   check()
   revdep_report(all = TRUE)
