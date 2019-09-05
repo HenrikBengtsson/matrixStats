@@ -113,13 +113,14 @@ revdep_preinstall <- function(pkgs) {
   lib_paths[1] <- sprintf("%s-revdepcheck", lib_paths[1])
   dir.create(lib_paths[1], recursive = TRUE, showWarnings = FALSE)
   .libPaths(lib_paths)
-  message("Triggering crancache builds by pre-installing packages: ",
-           paste(sQuote(pkgs), collapse = ", "))
+  message(sprintf("Triggering crancache builds by pre-installing %d packages: %s", length(pkgs), paste(sQuote(pkgs), collapse = ", ")))
   message(".libPaths():")
   message(paste(paste0(" - ", .libPaths()), collapse = "\n"))
   ## Install one-by-one to update cache sooner
-  for (pkg in pkgs) {
-    message("Pre-installing package: ", pkg)
+  for (kk in seq_along(pkgs)) {
+    pkg <- pkgs[kk]
+    message(sprintf("Pre-installing package %d of %d: %s",
+                    kk, length(pkgs), pkg))
     crancache::install_packages(pkg)
   }
 }
@@ -182,7 +183,7 @@ if ("--reset" %in% args) {
 } else if ("--list-children" %in% args) {
   pkg <- revdep_this_package()
   pkgs <- revdepcheck:::cran_revdeps(pkg)
-  cat(paste(pkgs, collapse = " "), "\n", sep="")
+  cat(sprintf("[n=%d] %s\n", length(pkgs), paste(pkgs, collapse = " ")))
 } else if ("--list-error" %in% args) {
   cat(paste(revdep_pkgs_with_status("error"), collapse = " "), "\n", sep="")
 } else if ("--add-error" %in% args) {
