@@ -212,54 +212,6 @@ Run `revdep_details(,"aroma.light")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    + 
-    +   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    +   # The raw data
-    +   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    +   plotMvsAPairs(rg[,sidx])
-    +   title(main=paste("Observed", channel))
-    +   box(col=channelColor)
-    +  
-    +   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    +   # The calibrated data
-    +   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    +   rgC[,sidx] <- calibrateMultiscan(rg[,sidx], average=NULL)
-    + 
-    +   plotMvsAPairs(rgC[,sidx])
-    +   title(main=paste("Calibrated", channel))
-    +   box(col=channelColor)
-    + } # for (channel ...)
-    Error in method == "dgesdd" || method == "dgesvd" : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: calibrateMultiscan ... statistic -> iwpca -> iwpca.matrix -> wpca -> wpca.matrix
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/normalizeAffine.matrix.R’ failed.
-    Last 13 lines of output:
-      + 
-      +   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      +   # The calibrated data
-      +   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      +   rgC[,sidx] <- calibrateMultiscan(rg[,sidx], average=NULL)
-      + 
-      +   plotMvsAPairs(rgC, channel=channel)
-      +   title(main=paste("Calibrated", channel))
-      +   box(col=channelColor)
-      + } # for (channel ...)
-      Error in method == "dgesdd" || method == "dgesvd" : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      Calls: calibrateMultiscan ... statistic -> iwpca -> iwpca.matrix -> wpca -> wpca.matrix
-      In addition: There were 28 warnings (use warnings() to see them)
-      Execution halted
-    ```
-
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
@@ -606,31 +558,28 @@ Run `revdep_details(,"CATALYST")` for more info
 *   checking examples ... ERROR
     ```
     ...
-    > # test for
-    > # - differential abundance (DA) of clusters
-    > # - differential states (DS) within clusters
-    > da <- diffcyt(re, design = design, contrast = contrast, 
-    +     analysis_type = "DA", method_DA = "diffcyt-DA-edgeR",
-    +     clustering_to_use = "meta20")
-    using CATALYST 'daFrame' input object
-    using cluster IDs from clustering stored in column 'meta20' of 'cluster_codes' data frame in 'metadata' of 'daFrame' object
-    calculating features...
-    calculating DA tests using method 'diffcyt-DA-edgeR'...
-    > ds <- diffcyt(re, design = design, contrast = contrast, 
-    +     analysis_type = "DS", method_DS = "diffcyt-DS-limma",
-    +     clustering_to_use = "meta20")
-    using CATALYST 'daFrame' input object
-    using cluster IDs from clustering stored in column 'meta20' of 'cluster_codes' data frame in 'metadata' of 'daFrame' object
-    calculating features...
-    calculating DS tests using method 'diffcyt-DS-limma'...
-    Error in HasZero && HasNA : 
-      'length(x) = 5 > 1' in coercion to 'logical(1)'
-    Calls: diffcyt ... testDS_limma -> contrasts.fit -> .zeroDominantMatrixMult
+    
+    > ### Name: runDR
+    > ### Title: Perform dim. reduction on a 'daFrame'
+    > ### Aliases: runDR runDR,daFrame-method
+    > 
+    > ### ** Examples
+    > 
+    > data(PBMC_fs, PBMC_panel, PBMC_md)
+    > daf <- daFrame(PBMC_fs, PBMC_panel, PBMC_md)
+    > daf <- cluster(daf)
+    o running FlowSOM clustering...
+    o running ConsensusClusterPlus metaclustering...
+    > 
+    > # PCA on all cells
+    > daf <- runDR(daf, "PCA")
+    > 
+    > # UMAP on 1000 random cells
+    > daf <- runDR(daf, "UMAP", rows_to_use = sample(nrow(daf), 1e3))
+    Error in loadNamespace(name) : there is no package called ‘uwot’
+    Calls: runDR ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
     Execution halted
     ```
-
-*   R CMD check timed out
-    
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -1037,26 +986,6 @@ Run `revdep_details(,"cola")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘cola-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: collect_classes-HierarchicalPartition-method
-    > ### Title: Collect classes from HierarchicalPartition object
-    > ### Aliases: collect_classes,HierarchicalPartition-method
-    > 
-    > ### ** Examples
-    > 
-    > data(cola_rh)
-    > collect_classes(cola_rh)
-    Loading required namespace: data.tree
-    Error in is.function(traversal) || traversal == "pre-order" : 
-      'length(x) = 5 > 1' in coercion to 'logical(1)'
-    Calls: collect_classes ... as.dendrogram.Node -> structure -> <Anonymous> -> Traverse
-    Execution halted
-    ```
-
 *   checking Rd cross-references ... WARNING
     ```
     Unknown package ‘venneuler’ in Rd xrefs
@@ -1083,46 +1012,32 @@ Run `revdep_details(,"CopywriteR")` for more info
 
 ## In both
 
-*   checking whether package ‘CopywriteR’ can be installed ... ERROR
+*   checking R code for possible problems ... NOTE
     ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CopywriteR/new/CopywriteR.Rcheck/00install.out’ for details.
+    ...
+      definition for ‘text’
+    plotCNA : <anonymous> : <anonymous>: no visible global function
+      definition for ‘axis’
+    plotCNA : <anonymous> : <anonymous>: no visible global function
+      definition for ‘abline’
+    plotCNA : <anonymous> : <anonymous>: no visible global function
+      definition for ‘dev.off’
+    preCopywriteR: no visible global function definition for ‘as’
+    Undefined global functions or variables:
+      abline as axis dev.off dpois ecdf getClass lines loess packageVersion
+      par pdf plot png points ppois predict read.table rgb segments text
+      write.table
+    Consider adding
+      importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
+      importFrom("graphics", "abline", "axis", "lines", "par", "plot",
+                 "points", "segments", "text")
+      importFrom("methods", "as", "getClass")
+      importFrom("stats", "dpois", "ecdf", "loess", "ppois", "predict")
+      importFrom("utils", "packageVersion", "read.table", "write.table")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
     ```
 
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘CopywriteR’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘CopywriteR’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CopywriteR/new/CopywriteR.Rcheck/CopywriteR’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘CopywriteR’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘CopywriteR’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CopywriteR/old/CopywriteR.Rcheck/CopywriteR’
-
-```
 # corrcoverage
 
 <details>
@@ -1132,7 +1047,7 @@ ERROR: lazy loading failed for package ‘CopywriteR’
 * URL: https://annahutch.github.io/corrcoverage
 * BugReports: https://github.com/annahutch/corrcoverage/issues
 * Date/Publication: 2019-08-28 09:10:15 UTC
-* Number of recursive dependencies: 69
+* Number of recursive dependencies: 64
 
 Run `revdep_details(,"corrcoverage")` for more info
 
@@ -1738,50 +1653,28 @@ Run `revdep_details(,"DiscoRhythm")` for more info
 
 ## In both
 
-*   checking whether package ‘DiscoRhythm’ can be installed ... ERROR
+*   checking tests ...
     ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/new/DiscoRhythm.Rcheck/00install.out’ for details.
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(DiscoRhythm)
+      Error in describe(fn, idx, raw = FALSE) %when% { : 
+        Function name is already bound to non lambda.r object
+      Error: package or namespace load failed for 'DiscoRhythm':
+       unable to load R code in package 'lambda.r'
+      Execution halted
     ```
 
-## Installation
+*   checking R code for possible problems ... NOTE
+    ```
+    discoApp: no visible binding for global variable ‘.discorhythm_ncores’
+    discoBatch: no visible binding for global variable ‘discoODAres’
+    Undefined global functions or variables:
+      .discorhythm_ncores discoODAres
+    ```
 
-### Devel
-
-```
-* installing *source* package ‘DiscoRhythm’ ...
-** using staged installation
-** R
-** data
-*** moving datasets to lazyload DB
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘DiscoRhythm’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/new/DiscoRhythm.Rcheck/DiscoRhythm’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘DiscoRhythm’ ...
-** using staged installation
-** R
-** data
-*** moving datasets to lazyload DB
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘DiscoRhythm’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/old/DiscoRhythm.Rcheck/DiscoRhythm’
-
-```
 # dmrseq
 
 <details>
@@ -2120,32 +2013,6 @@ Run `revdep_details(,"EventPointer")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    >    Dmatrix<-matrix(c(1,1,1,1,0,0,1,1),nrow=4,ncol=2,byrow=FALSE)
-    >    Cmatrix<-t(t(c(0,1)))
-    >    EventsFound<-paste(system.file('extdata',package='EventPointer'),'/EventsFound.txt',sep='')
-    > 
-    >  Events<-EventPointer(Design=Dmatrix,
-    +                       Contrast=Cmatrix,
-    +                       ExFit=ArraysData,
-    +                       Eventstxt=EventsFound,
-    +                       Filter=TRUE,
-    +                       Qn=0.25,
-    +                       Statistic='LogFC',
-    +                       PSI=TRUE)
-    04:06:43 Running EventPointer:  
-    	** Statistical Analysis: Logarithm of the fold change of both isoforms 
-    	** Delta PSI will be calculated 
-    	** Expression filter using 25 quantile 
-             ---------------------------------------------------------------- 
-    	** Calculating PSI...Error in HasZero && HasNA : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: EventPointer -> contrasts.fit -> .zeroDominantMatrixMult
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
@@ -2181,51 +2048,6 @@ Run `revdep_details(,"ExCluster")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > 
-    > ### ** Examples
-    > 
-    > # specify the path to the ExCluster package
-    > ExClust_Path <- system.file(package="ExCluster")
-    > # now find the bam files within that folder
-    > bamFiles <- list.files(ExClust_Path,recursive=TRUE,pattern="*.bam",
-    +     full.names=TRUE)
-    > # now grab the path to the sub-sampled example GFF file
-    > GFF_file <- system.file("extdata","sub_gen.v23.ExClust.gff3",
-    +     package="ExCluster")
-    > # assign sample names (only 2 replicates per condition in this example)
-    > sampleNames <- c("iPSC_cond1_rep1","iPSC_cond1_rep2","iPSC_cond2_rep1",
-    +     "iPSC_cond2_rep2")
-    > # now run processCounts, with paired.Reads=TRUE for paired-end data
-    > normCounts <- processCounts(bam.Files=bamFiles, sample.Names=sampleNames,
-    +     GFF.File=GFF_file, paired.Reads=TRUE)
-    Error in is.na(files) || is.null(files) : 
-      'length(x) = 4 > 1' in coercion to 'logical(1)'
-    Calls: processCounts -> featureCounts -> .check_and_NormPath
-    Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘ExCluster.Rnw’using ‘UTF-8’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘ExCluster.Rnw’
-      ...
-    
-    > sampleNames <- c("iPSC_cond1_rep1", "iPSC_cond1_rep2", 
-    +     "iPSC_cond2_rep1", "iPSC_cond2_rep2")
-    
-    > normCounts <- processCounts(bam.Files = bamFiles, 
-    +     sample.Names = sampleNames, annot.GFF = GFF, paired.Reads = TRUE)
-    
-      When sourcing ‘ExCluster.R’:
-    Error: 'length(x) = 4 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -2729,89 +2551,39 @@ Run `revdep_details(,"GUIDEseq")` for more info
 
 ## In both
 
-*   checking whether package ‘GUIDEseq’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/GUIDEseq/new/GUIDEseq.Rcheck/00install.out’ for details.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘GUIDEseq’ ...
-** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘GUIDEseq’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/GUIDEseq/new/GUIDEseq.Rcheck/GUIDEseq’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘GUIDEseq’ ...
-** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘GUIDEseq’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/GUIDEseq/old/GUIDEseq.Rcheck/GUIDEseq’
-
-```
-# Gviz
-
-<details>
-
-* Version: 1.28.1
-* Source code: https://github.com/cran/Gviz
-* URL: https://github.com/ivanek/Gviz
-* BugReports: https://github.com/ivanek/Gviz/issues
-* Date/Publication: 2019-08-15
-* Number of recursive dependencies: 133
-
-Run `revdep_details(,"Gviz")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
+*   checking R code for possible problems ... NOTE
     ```
     ...
-    > ###   chromosome<-,AlignmentsTrack-method drawAxis,AlignmentsTrack-method
-    > ###   drawGD,AlignmentsTrack-method [,AlignmentsTrack,ANY,ANY-method
-    > ###   coverage,AlignmentsTrack-method initialize,AlignmentsTrack-method
-    > ###   initialize,ReferenceAlignmentsTrack-method
-    > ###   subset,AlignmentsTrack-method subset,ReferenceAlignmentsTrack-method
-    > ###   stacks,AlignmentsTrack-method values,AlignmentsTrack-method
-    > ###   show,AlignmentsTrack-method
-    > ### Keywords: classes
-    > 
-    > ### ** Examples
-    > 
-    > ## Creating objects
-    > afrom <- 2960000
-    > ato <- 3160000
-    > alTrack <- AlignmentsTrack(system.file(package="Gviz", "extdata",
-    + "gapped.bam"), isPaired=TRUE)
-    > plotTracks(alTrack, from=afrom, to=ato, chromosome="chr12")
-    Error in gpars$alpha < 0 || gpars$alpha > 1 : 
-      'length(x) = 2494 > 1' in coercion to 'logical(1)'
-    Calls: plotTracks ... grid.polygon -> polygonGrob -> grob -> gpar -> validGP
-    Execution halted
+    annotateOffTargets: no visible global function definition for 'genes'
+    getPeaks: no visible binding for global variable 'adjusted.p.value'
+    getPeaks: no visible binding for global variable 'SNratio'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'qwidth.first'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'qwidth.last'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'strand.last'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'strand.first'
+    getUniqueCleavageEvents: no visible binding for global variable
+      'readName'
+    offTargetAnalysisOfPeakRegions: no visible binding for global variable
+      'gRNAPlusPAM'
+    offTargetAnalysisOfPeakRegions: no visible binding for global variable
+      'offTarget'
+    Undefined global functions or variables:
+      SNratio adjusted.p.value exons gRNAPlusPAM genes offTarget
+      offTarget_Start qwidth.first qwidth.last readName seqlevelsStyle<-
+      strand.first strand.last
+    ```
+
+*   checking Rd files ... NOTE
+    ```
+    prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
+    prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
+    prepare_Rd: createBarcodeFasta.Rd:42-43: Dropping empty section \value
+    prepare_Rd: createBarcodeFasta.Rd:44-46: Dropping empty section \references
+    prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
     ```
 
 # hipathia
@@ -3525,70 +3297,6 @@ Run `revdep_details(,"MHTcop")` for more info
     manual.
     ```
 
-# microsamplingDesign
-
-<details>
-
-* Version: 1.0.6
-* Source code: https://github.com/cran/microsamplingDesign
-* URL: http://www.openanalytics.eu
-* Date/Publication: 2019-03-20 15:50:03 UTC
-* Number of recursive dependencies: 114
-
-Run `revdep_details(,"microsamplingDesign")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    >   object        <-  getExampleSetOfSchemes()
-    >   pkData        <-  getPkData( getExamplePkModel() , 
-    +    getTimePoints( object ) , getNSubjects( object ) , nSamples = 10  )
-    >   objectRanked    <- rankObject(  object ,  pkData  , data.frame(criterion = "auc" , weight = 1) ) 
-    start Ranking Schemes on cluster with  1 cores>  extractByRank( object = objectRanked  , rank = 1 )
-         timePoint1 timePoint2 timePoint3 timePoint4
-    rat1       TRUE       TRUE       TRUE       TRUE
-    rat2       TRUE       TRUE       TRUE       TRUE
-    >  extractByRank( objectRanked  , rank = 5 )
-         timePoint1 timePoint2 timePoint3 timePoint4
-    rat1         NA         NA         NA         NA
-    rat2         NA         NA         NA         NA
-    >   object                             <-  getExampleSetOfTimePoints( 0 :10 ) 
-    >   pkData                             <-  getPkData(getExamplePkModel() ,
-    +  getTimePoints( object ) , 1 , 5 )
-    > objectRanked                       <-  rankObject( object , pkData , nGrid = 20,
-    +   nSamplesAvCurve = 25 )
-    Error in arr.ind && !is.null(d <- dim(x)) : 
-      'length(x) = 11 > 1' in coercion to 'logical(1)'
-    Calls: rankObject ... rankObject.SetOfTimePoints -> t -> apply -> FUN -> which
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      2: rankObject(object = setOfTimePoints, pkData = pkDataExample, nGrid = 75, nSamplesAvCurve = 13)
-      3: .local(object, ...)
-      4: rankObject.SetOfTimePoints(object = object, pkData = pkData, nGrid = nGrid, nSamplesAvCurve = nSamplesAvCurve, 
-             useAverageRat = useAverageRat, avCurve = avCurve, nCores = nCores)
-      5: t(apply(dataTimeOptionsWithZero, 1, convertToIndices))
-      6: apply(dataTimeOptionsWithZero, 1, convertToIndices)
-      7: FUN(newX[, i], ...)
-      8: which(fullTimes %in% times, fullTimes)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 19 | SKIPPED: 3 | WARNINGS: 0 | FAILED: 1 ]
-      1. Error: (unknown) (@testRankTimePoints.R#33) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
 # MIGSA
 
 <details>
@@ -3605,48 +3313,60 @@ Run `revdep_details(,"MIGSA")` for more info
 
 ## In both
 
-*   checking whether package ‘MIGSA’ can be installed ... ERROR
+*   checking examples ... ERROR
     ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MIGSA/new/MIGSA.Rcheck/00install.out’ for details.
+    Running examples in ‘MIGSA-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Genesets-enrichr
+    > ### Title: List and download gene sets from enrichr database
+    > ### Aliases: Genesets-enrichr enrichrGeneSets
+    > ###   enrichrGeneSets,character-method enrichrGeneSets,ANY-method
+    > ###   downloadEnrichrGeneSets downloadEnrichrGeneSets,character-method
+    > ###   downloadEnrichrGeneSets,ANY-method
+    > 
+    > ### ** Examples
+    > 
+    > ## Lets list all the gene sets that can be downloaded from Enichr website.
+    > enrichrGeneSets();
+    Warning in readLines(biocURL) :
+      URL 'http://www.bioconductor.org/main.html': status was 'Couldn't resolve host name'
+    Error in enrichrGeneSets() : You must have internet connection.
+    Calls: enrichrGeneSets -> enrichrGeneSets
+    Execution halted
     ```
 
-## Installation
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 13 lines of output:
+      The following objects are masked from 'package:base':
+      
+          Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+          as.data.frame, basename, cbind, colnames, dirname, do.call,
+          duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+          lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+          tapply, union, unique, unsplit, which, which.max, which.min
+      
+      
+      
+      Error in library("RUnit", quietly = TRUE) : 
+        there is no package called 'RUnit'
+      Calls: <Anonymous> -> library
+      Execution halted
+    ```
 
-### Devel
+*   checking S3 generic/method consistency ... NOTE
+    ```
+    Found the following apparent S3 methods exported but not registered:
+      FitOptions.data.frame FitOptions.default summary.GSEAparams
+      summary.IGSAinput summary.MIGSAres summary.SEAparams
+    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+    manual.
+    ```
 
-```
-* installing *source* package ‘MIGSA’ ...
-** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘MIGSA’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MIGSA/new/MIGSA.Rcheck/MIGSA’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘MIGSA’ ...
-** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘MIGSA’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MIGSA/old/MIGSA.Rcheck/MIGSA’
-
-```
 # MinimumDistance
 
 <details>
@@ -3659,54 +3379,6 @@ ERROR: lazy loading failed for package ‘MIGSA’
 Run `revdep_details(,"MinimumDistance")` for more info
 
 </details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
-
-## Newly fixed
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/doRUnit.R’ failed.
-    Last 13 lines of output:
-      Number of errors: 2 
-      Number of failures: 0 
-      
-       
-      1 Test Suite : 
-      MinimumDistance unit testing - 12 test functions, 2 errors, 0 failures
-      ERROR in test_MAP2: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      ERROR in test_posteriorCalls: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      Error: 
-      
-      unit testing failed (#test failures: 0, #R errors: 2)
-      
-      Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘MinimumDistance.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘MinimumDistance.Rnw’
-      ...
-    > ind_id <- setNames(gsub(" ", "", sample_info$IndividualID), 
-    +     sample_info$File)
-    
-    > colnames(views) <- ind_id[gsub(".txt", "", colnames(views))]
-    
-    > me <- MinDistExperiment(views, pedigree = ped_list[[2]])
-    
-      When sourcing ‘MinimumDistance.R’:
-    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
 
 ## In both
 
@@ -3733,49 +3405,6 @@ Run `revdep_details(,"MinimumDistance")` for more info
     calculateMindist,list: no visible binding for global variable ‘elt’
     Undefined global functions or variables:
       RangedDataList elt read.bsfiles
-    ```
-
-# mixOmics
-
-<details>
-
-* Version: 6.8.2
-* Source code: https://github.com/cran/mixOmics
-* URL: http://www.mixOmics.org
-* BugReports: https://github.com/mixOmicsTeam/mixOmics/issues/
-* Date/Publication: 2019-08-23
-* Number of recursive dependencies: 84
-
-Run `revdep_details(,"mixOmics")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-     Functions to visualise samples: 
-     -------------------- 
-     plotIndiv, plotArrow 
-    
-     Functions to visualise variables: 
-     -------------------- 
-     plotVar, plotLoadings, network
-    
-     Other functions: 
-     -------------------- 
-     selectVar 
-    > # in plotindiv we color the samples per breast subtype group but the method is unsupervised!
-    > plotIndiv(TCGA.block.spls, group =  breast.TCGA$data.train$subtype, ind.names = FALSE)
-    > # illustrates coefficient weights in each block
-    > plotLoadings(TCGA.block.spls, ncomp = 1)
-    > plotVar(TCGA.block.spls, style = 'graphics', legend = TRUE)
-    > network(TCGA.block.spls)
-    Error in length(lwd.edge) != 2 || !is.finite(lwd.edge) : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: network
-    Execution halted
     ```
 
 # moc.gapbk
@@ -4027,54 +3656,6 @@ Run `revdep_details(,"NormalyzerDE")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    The error most likely occurred in:
-    
-    > ### Name: calculateContrasts
-    > ### Title: Performs statistical comparisons between the supplied
-    > ###   conditions. It uses the design matrix and data matrix in the supplied
-    > ###   NormalyzerStatistics object. A column is supplied specifying which of
-    > ###   the columns in the design matrix that is used for deciding the sample
-    > ###   groups. The comparisons vector specifies which pairwise comparisons
-    > ###   between condition levels that are to be calculated.
-    > ### Aliases: calculateContrasts
-    > ###   calculateContrasts,NormalyzerStatistics-method
-    > 
-    > ### ** Examples
-    > 
-    > data(example_stat_summarized_experiment)
-    > nst <- NormalyzerStatistics(example_stat_summarized_experiment)
-    > results <- calculateContrasts(nst, c("1-2", "2-3"), "group")
-    Error in HasZero && HasNA : 
-      'length(x) = 9 > 1' in coercion to 'logical(1)'
-    Calls: calculateContrasts ... calculateLimmaContrast -> <Anonymous> -> .zeroDominantMatrixMult
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      3: .zeroDominantMatrixMult(fit$coefficients, contrasts)
-      
-      ── 2. Error: calculateLimmaContrast_data_batch_test (@test_calculateStatistics.R
-      'length(x) = 3 > 1' in coercion to 'logical(1)'
-      1: calculateLimmaContrast(small_df, limmaDesign, limmaFit, levels) at testthat/test_calculateStatistics.R:288
-      2: limma::contrasts.fit(limmaFit, contrastMatrix)
-      3: .zeroDominantMatrixMult(fit$coefficients, contrasts)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 77 | SKIPPED: 0 | WARNINGS: 70 | FAILED: 2 ]
-      1. Error: calculateLimmaContrast_data_test (@test_calculateStatistics.R#247) 
-      2. Error: calculateLimmaContrast_data_batch_test (@test_calculateStatistics.R#288) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -5120,32 +4701,6 @@ Run `revdep_details(,"SIAMCAT")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    > ### Title: Add metadata as predictors
-    > ### Aliases: add.meta.pred
-    > ### Keywords: SIAMCAT add.meta.pred
-    > 
-    > ### ** Examples
-    > 
-    > data(siamcat_example)
-    > 
-    > # Add the Age of the patients as potential predictor
-    > siamcat_age_added <- add.meta.pred(siamcat_example, pred.names=c('Age'))
-    Adding metadata as predictor finished
-    > 
-    > # Add Age and BMI as potential predictors
-    > # Additionally, prevent standardization of the added features
-    > siamcat_meta_added <- add.meta.pred(siamcat_example,
-    +     pred.names=c('Age', 'BMI'),
-    +     std.meta=FALSE)
-    Error in pred.names != "" && !is.null(pred.names) : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: add.meta.pred
-    Execution halted
-    ```
-
 *   checking data for non-ASCII characters ... NOTE
     ```
       Note: found 10 marked UTF-8 strings
@@ -5967,48 +5522,13 @@ Run `revdep_details(,"TCA")` for more info
 
 ## In both
 
-*   checking whether package ‘TCA’ can be installed ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/TCA/new/TCA.Rcheck/00install.out’ for details.
+    Namespaces in Imports field not imported from:
+      ‘Matrix’ ‘quadprog’
+      All declared Imports should be used.
     ```
 
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘TCA’ ...
-** package ‘TCA’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘TCA’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/TCA/new/TCA.Rcheck/TCA’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘TCA’ ...
-** package ‘TCA’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘TCA’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/TCA/old/TCA.Rcheck/TCA’
-
-```
 # tenXplore
 
 <details>
@@ -6044,51 +5564,6 @@ Run `revdep_details(,"topGO")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    Ontology: BP 
-    'classic' algorithm with the 'fisher' test
-    777 GO terms scored: 48 terms with p < 0.01
-    Annotation data:
-        Annotated genes: 318 
-        Significant genes: 50 
-        Min. no. of genes annotated to a GO: 5 
-        Nontrivial nodes: 590 
-    > 
-    > ## weight01 is the default algorithm 
-    > weight01.fisher <- runTest(GOdata, statistic = "fisher")
-    
-    			 -- Weight01 Algorithm -- 
-    
-    		 the algorithm is scoring 590 nontrivial nodes
-    		 parameters: 
-    			 test statistic: fisher
-    Error in is.na(index) || index < 0 : 
-      'length(x) = 590 > 1' in coercion to 'logical(1)'
-    Calls: runTest ... buildLevels -> getGraphRoot -> sapply -> adj -> adj
-    Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘topGO.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘topGO.Rnw’
-      ...
-    Warning in result_fetch(res@ptr, n = n) :
-      SQL statements must be issued with dbExecute() or dbSendStatement() instead of dbGetQuery() or dbSendQuery().
-    	( 1598 GO terms found. )
-    
-    Build GO DAG topology ..........
-    	( 4474 GO terms and 10284 relations. )
-    
-      When sourcing ‘topGO.R’:
-    Error: 'length(x) = 4474 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -6148,80 +5623,6 @@ Run `revdep_details(,"VanillaICE")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    Running examples in ‘VanillaICE-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: SnpArrayExperiment-class
-    > ### Title: A RangedSummarizedExperiment-derived class of marker-level SNP
-    > ###   array data for copy number inference
-    > ### Aliases: SnpArrayExperiment-class SnpArrayExperiment
-    > ###   SnpArrayExperiment,missing-method SnpArrayExperiment,matrix-method
-    > 
-    > ### ** Examples
-    > 
-    > ## empty container
-    > 
-    > data(snp_exp) # example
-    > 
-    > SnpArrayExperiment(cn=lrr(snp_exp), baf=baf(snp_exp),
-    +                    rowRanges=rowRanges(snp_exp))
-    Error in msg && (requiredAssays() %in% names(assays(object))) : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: SnpArrayExperiment ... validObject -> anyStrings -> isTRUE -> validityMethod
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/doRUnit.R’ failed.
-    Last 13 lines of output:
-      ERROR in test_SnpArrayExperiment: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      ERROR in test_SnpArrayExperiment2: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      ERROR in test_hmm_cnset: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      ERROR in test_state4: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      ERROR in test_cn_NAs: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
-      Error: 
-      
-      unit testing failed (#test failures: 0, #R errors: 5)
-      
-      Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-    ...
-               FinalReport6872.txt FinalReport6903.txt
-    rs12789205                   2                   2
-    rs2114088                    1                   2
-    
-    > snp_exp <- SnpExperiment(views[, 4:5])
-    
-      When sourcing ‘VanillaICE.R’:
-    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Execution halted
-    when running code in ‘crlmmDownstream.Rnw’
-      ...
-    ================================================================================
-    
-    > data(cnSetExample, package = "crlmm")
-    
-    > se <- as(cnSetExample, "SnpArrayExperiment")
-    Warning: executing %dopar% sequentially: no parallel backend registered
-    
-      When sourcing ‘crlmmDownstream.R’:
-    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
