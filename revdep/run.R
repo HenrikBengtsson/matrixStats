@@ -117,7 +117,11 @@ revdep_preinstall <- function(pkgs) {
            paste(sQuote(pkgs), collapse = ", "))
   message(".libPaths():")
   message(paste(paste0(" - ", .libPaths()), collapse = "\n"))
-  crancache::install_packages(pkgs)
+  ## Install one-by-one to update cache sooner
+  for (pkg in pkgs) {
+    message("Pre-installing package: ", pkg)
+    crancache::install_packages(pkg)
+  }
 }
 
 args <- base::commandArgs()
