@@ -20,15 +20,13 @@
 
 # Revdeps
 
-## Failed to check (5)
+## Failed to check (3)
 
-|package                                  |version |error |warning |note |
-|:----------------------------------------|:-------|:-----|:-------|:----|
-|[ChIPpeakAnno](failures.md#chippeakanno) |3.18.2  |1     |        |1    |
-|[DeepBlueR](failures.md#deepbluer)       |1.10.0  |1     |        |     |
-|[DiscoRhythm](failures.md#discorhythm)   |1.0.0   |1     |        |     |
-|[maEndToEnd](failures.md#maendtoend)     |2.4.0   |1     |        |1    |
-|[SICtools](failures.md#sictools)         |1.14.0  |1     |        |2    |
+|package                              |version |error |warning |note |
+|:------------------------------------|:-------|:-----|:-------|:----|
+|[DeepBlueR](failures.md#deepbluer)   |1.10.0  |1     |        |     |
+|[maEndToEnd](failures.md#maendtoend) |2.4.0   |1     |        |1    |
+|[SICtools](failures.md#sictools)     |1.14.0  |1     |        |2    |
 
 ## All (244)
 
@@ -72,7 +70,7 @@
 |ChemoSpec2D                                                                    |0.3.166 |      |        |     |
 |[Chicago](problems.md#chicago)                                                 |1.12.0  |      |1       |2    |
 |childhoodmortality                                                             |0.3.0   |      |        |     |
-|[ChIPpeakAnno](failures.md#chippeakanno)                                       |3.18.2  |1     |        |1    |
+|[ChIPpeakAnno](problems.md#chippeakanno)                                       |3.18.2  |      |        |1    |
 |chromswitch                                                                    |1.6.0   |      |        |     |
 |cifti                                                                          |0.4.5   |      |        |     |
 |[Clomial](problems.md#clomial)                                                 |1.20.0  |      |        |1    |
@@ -104,7 +102,7 @@
 |[DGCA](problems.md#dgca)                                                       |1.0.1   |      |        |1    |
 |DHS.rates                                                                      |0.7.0   |      |        |     |
 |[diffloop](problems.md#diffloop)                                               |1.12.0  |      |        |1    |
-|[DiscoRhythm](failures.md#discorhythm)                                         |1.0.0   |1     |        |     |
+|[DiscoRhythm](problems.md#discorhythm)                                         |1.0.0   |1     |        |1    |
 |DisHet                                                                         |1.0.0   |      |        |     |
 |[dmrseq](problems.md#dmrseq)                                                   |1.4.9   |1     |        |1    |
 |[Doscheda](problems.md#doscheda)                                               |1.6.0   |2     |        |     |

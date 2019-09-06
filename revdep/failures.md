@@ -1,73 +1,3 @@
-# ChIPpeakAnno
-
-<details>
-
-* Version: 3.18.2
-* Source code: https://github.com/cran/ChIPpeakAnno
-* Date/Publication: 2019-07-26
-* Number of recursive dependencies: 163
-
-Run `revdep_details(,"ChIPpeakAnno")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘ChIPpeakAnno’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/00install.out’ for details.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      'grid', 'IRanges', 'Biostrings', 'GenomicRanges', 'S4Vectors',
-      'VennDiagram'
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘ChIPpeakAnno’ ...
-** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: package or namespace load failed for ‘futile.logger’:
- unable to load R code in package ‘lambda.r’
-Error: package ‘futile.logger’ could not be loaded
-Execution halted
-ERROR: lazy loading failed for package ‘ChIPpeakAnno’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/ChIPpeakAnno’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘ChIPpeakAnno’ ...
-** using staged installation
-** R
-** data
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: package or namespace load failed for ‘futile.logger’:
- unable to load R code in package ‘lambda.r’
-Error: package ‘futile.logger’ could not be loaded
-Execution halted
-ERROR: lazy loading failed for package ‘ChIPpeakAnno’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChIPpeakAnno/old/ChIPpeakAnno.Rcheck/ChIPpeakAnno’
-
-```
 # DeepBlueR
 
 <details>
@@ -125,67 +55,6 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 * removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
 
 ```
-# DiscoRhythm
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/DiscoRhythm
-* URL: https://github.com/matthewcarlucci/DiscoRhythm
-* BugReports: https://github.com/matthewcarlucci/DiscoRhythm/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 145
-
-Run `revdep_details(,"DiscoRhythm")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘DiscoRhythm’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/new/DiscoRhythm.Rcheck/00install.out’ for details.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘DiscoRhythm’ ...
-** using staged installation
-** R
-** data
-*** moving datasets to lazyload DB
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘DiscoRhythm’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/new/DiscoRhythm.Rcheck/DiscoRhythm’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘DiscoRhythm’ ...
-** using staged installation
-** R
-** data
-*** moving datasets to lazyload DB
-** inst
-** byte-compile and prepare package for lazy loading
-Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
-  'length(x) = 9 > 1' in coercion to 'logical(1)'
-Error: unable to load R code in package ‘lambda.r’
-Execution halted
-ERROR: lazy loading failed for package ‘DiscoRhythm’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/old/DiscoRhythm.Rcheck/DiscoRhythm’
-
-```
 # maEndToEnd
 
 <details>
@@ -235,11 +104,20 @@ No man pages found in package  ‘maEndToEnd’
 ** building package indices
 ** installing vignettes
 ** testing if installed package can be loaded from temporary location
-Error in omittedSig && (signature[omittedSig] != "missing") : 
-  'length(x) = 4 > 1' in coercion to 'logical(1)'
-Error: package or namespace load failed for ‘ArrayExpress’:
- unable to load R code in package ‘oligo’
-Error : package ‘ArrayExpress’ could not be loaded
+Note: in method for ‘pm<-’ with signature
+‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
+expanding the signature to include omitted arguments in definition: =
+"missing"
+Note: in method for ‘mm<-’ with signature
+‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
+expanding the signature to include omitted arguments in definition: =
+"missing"
+Warning: call dbDisconnect() when finished working with a connection
+Error in setMethod(paste0(f, "<-"), ..., where = where) : 
+  no existing definition for function ‘weights<-’
+Error: package or namespace load failed for ‘arrayQualityMetrics’:
+ unable to load R code in package ‘affyPLM’
+Error : package ‘arrayQualityMetrics’ could not be loaded
 Error: loading failed
 Execution halted
 ERROR: loading failed
@@ -258,11 +136,20 @@ No man pages found in package  ‘maEndToEnd’
 ** building package indices
 ** installing vignettes
 ** testing if installed package can be loaded from temporary location
-Error in omittedSig && (signature[omittedSig] != "missing") : 
-  'length(x) = 4 > 1' in coercion to 'logical(1)'
-Error: package or namespace load failed for ‘ArrayExpress’:
- unable to load R code in package ‘oligo’
-Error : package ‘ArrayExpress’ could not be loaded
+Note: in method for ‘pm<-’ with signature
+‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
+expanding the signature to include omitted arguments in definition: =
+"missing"
+Note: in method for ‘mm<-’ with signature
+‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
+expanding the signature to include omitted arguments in definition: =
+"missing"
+Warning: call dbDisconnect() when finished working with a connection
+Error in setMethod(paste0(f, "<-"), ..., where = where) : 
+  no existing definition for function ‘weights<-’
+Error: package or namespace load failed for ‘arrayQualityMetrics’:
+ unable to load R code in package ‘affyPLM’
+Error : package ‘arrayQualityMetrics’ could not be loaded
 Error: loading failed
 Execution halted
 ERROR: loading failed
