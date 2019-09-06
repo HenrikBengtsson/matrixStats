@@ -56,16 +56,20 @@ for (kk in 1:4) {
     cat(sprintf("ties.method = %s\n", ties))
     # rowRanks():
     y1 <- matrixStats::rowRanks(x, ties.method = ties)
-    y2 <- rowRanks_R(x, ties.method = ties)
-    stopifnot(identical(y1, y2))
+    if (ties != "last" || getRversion() >= "3.3.0") {
+      y2 <- rowRanks_R(x, ties.method = ties)
+      stopifnot(identical(y1, y2))
+    }
     
     y3 <- matrixStats::colRanks(tx, ties.method = ties)
     stopifnot(identical(y1, y3))
     
     # colRanks():
     y1 <- matrixStats::colRanks(x, ties.method = ties)
-    y2 <- colRanks_R(x, ties.method = ties)
-    stopifnot(identical(y1, y2))
+    if (ties != "last" || getRversion() >= "3.3.0") {
+      y2 <- colRanks_R(x, ties.method = ties)
+      stopifnot(identical(y1, y2))
+    }
     
     y3 <- matrixStats::rowRanks(tx, ties.method = ties)
     stopifnot(identical(y1, y3))
