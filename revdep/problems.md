@@ -5272,3 +5272,411 @@ Run `revdep_details(,"STROMA4")` for more info
 
 # summarytools
 
+<details>
+
+* Version: 0.9.4
+* Source code: https://github.com/cran/summarytools
+* URL: https://github.com/dcomtois/summarytools
+* BugReports: https://github.com/dcomtois/summarytools/issues
+* Date/Publication: 2019-08-24 05:20:02 UTC
+* Number of recursive dependencies: 53
+
+Run `revdep_details(,"summarytools")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘summarytools’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 78 marked UTF-8 strings
+    ```
+
+# SuperPCA
+
+<details>
+
+* Version: 0.2.0
+* Source code: https://github.com/cran/SuperPCA
+* Date/Publication: 2019-05-24 14:10:03 UTC
+* Number of recursive dependencies: 35
+
+Run `revdep_details(,"SuperPCA")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘R.matlab’ ‘fBasics’ ‘spls’
+      All declared Imports should be used.
+    ```
+
+# sva
+
+<details>
+
+* Version: 3.32.1
+* Source code: https://github.com/cran/sva
+* Date/Publication: 2019-05-22
+* Number of recursive dependencies: 71
+
+Run `revdep_details(,"sva")` for more info
+
+</details>
+
+## In both
+
+*   checking R code for possible problems ... NOTE
+    ```
+    sva_network: no visible global function definition for ‘lm’
+    Undefined global functions or variables:
+      lm
+    Consider adding
+      importFrom("stats", "lm")
+    to your NAMESPACE file.
+    ```
+
+# TCA
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/TCA
+* URL: https://www.biorxiv.org/content/10.1101/437368v1
+* BugReports: https://github.com/cozygene/TCA/issues
+* Date/Publication: 2019-05-22 14:10:03 UTC
+* Number of recursive dependencies: 45
+
+Run `revdep_details(,"TCA")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘Matrix’ ‘quadprog’
+      All declared Imports should be used.
+    ```
+
+# tenXplore
+
+<details>
+
+* Version: 1.6.0
+* Source code: https://github.com/cran/tenXplore
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 105
+
+Run `revdep_details(,"tenXplore")` for more info
+
+</details>
+
+## In both
+
+*   checking R code for possible problems ... NOTE
+    ```
+    apd: warning in dir(system.file("app", package = "tenXplore"), full =
+      TRUE): partial argument match of 'full' to 'full.names'
+    ```
+
+# topGO
+
+<details>
+
+* Version: 2.36.0
+* Source code: https://github.com/cran/topGO
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 46
+
+Run `revdep_details(,"topGO")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'BiocGenerics', 'graph', 'Biobase', 'GO.db', 'AnnotationDbi',
+      'SparseM'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' calls in package code:
+      ‘Rgraphviz’ ‘multtest’
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Missing object imported by a ':::' call: ‘globaltest:::globaltest’
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    GOplot.counts : plotSigChart: no visible global function definition for
+      ‘getY’
+    GOplot.counts: no visible global function definition for
+      ‘getDefaultAttrs’
+    GOplot.counts: no visible global function definition for ‘agopen’
+    getPvalues: no visible global function definition for ‘mt.teststat’
+    getPvalues: no visible global function definition for ‘mt.rawp2adjp’
+    printDOT: no visible global function definition for ‘getDefaultAttrs’
+    printDOT: no visible global function definition for ‘toDot’
+    GOSumTest,classicScore: no visible binding for global variable
+      ‘.PERMSUM.MAT’
+    GOSumTest,classicScore: no visible binding for global variable
+      ‘.PERMSUM.LOOKUP’
+    initialize,classicExpr: no visible global function definition for
+      ‘error’
+    scoresInTerm,topGOdata-missing: no visible global function definition
+      for ‘scoreInNode’
+    Undefined global functions or variables:
+      .PERMSUM.LOOKUP .PERMSUM.MAT AgNode agopen drawTxtLabel error
+      getDefaultAttrs getNodeCenter getNodeLW getNodeXY getX getY
+      mt.rawp2adjp mt.teststat name pieGlyph scoreInNode toDot txtLabel
+    ```
+
+# VanillaICE
+
+<details>
+
+* Version: 1.46.0
+* Source code: https://github.com/cran/VanillaICE
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 76
+
+Run `revdep_details(,"VanillaICE")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'doMC', 'doMPI', 'doSNOW', 'doParallel', 'doRedis'
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘BSgenome.Hsapiens.UCSC.hg18’
+      All declared Imports should be used.
+    Unexported object imported by a ':::' call: ‘SummarizedExperiment:::.ShallowSimpleListAssays0’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+# wateRmelon
+
+<details>
+
+* Version: 1.28.0
+* Source code: https://github.com/cran/wateRmelon
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 141
+
+Run `revdep_details(,"wateRmelon")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘wateRmelon’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Note: possible error in 'preprocessIlluminaMethylation(path2data = path2data, ': unused arguments (path2data = path2data, path2controlData = path2controlData, projectName = projectName) 
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/00install.out’ for details.
+    Information on the location(s) of code generating the ‘Note’s can be
+    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+    to ‘yes’.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'Biobase', 'limma', 'matrixStats', 'methylumi', 'lumi', 'ROC',
+      'IlluminaHumanMethylation450kanno.ilmn12.hg19', 'illuminaio'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘Biobase’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' call to ‘irlba’ in package code.
+      Please use :: or requireNamespace() instead.
+      See section 'Suggested packages' in the 'Writing R Extensions' manual.
+    Packages in Depends field not imported from:
+      ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘matrixStats’
+      ‘methylumi’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    Unexported objects imported by ':::' calls:
+      ‘minfi:::.isRGOrStop’ ‘minfi:::pickCompProbes’
+      ‘minfi:::projectCellType’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    tost,MethyLumiSet: no visible global function definition for
+      ‘unmethylated’
+    tost,MethyLumiSet: no visible global function definition for ‘pvals’
+    tost,RGChannelSet: no visible global function definition for
+      ‘detectionP’
+    tost,RGChannelSet: no visible global function definition for
+      ‘preprocessRaw’
+    tost,RGChannelSet: no visible global function definition for ‘getMeth’
+    tost,RGChannelSet: no visible global function definition for
+      ‘getUnmeth’
+    Undefined global functions or variables:
+      .mclapply IlluminaHumanMethylation450kanno.ilmn12.hg19 MethylSet
+      PATH_RES QCdata QCdata<- RGChannelSetExtended betas betas<- colData
+      colMedians detectionP epic.controls epic.ordering getAnnotation
+      getAnnotationObject getBeta getControlAddress getGreen
+      getManifestInfo getMeth getNBeads getProbeInfo getProbeType getRed
+      getSnpBeta getUnmeth hm27.controls hm27.ordering hm450.controls
+      hm450.ordering intensitiesByChannel metadata methylated methylated<-
+      methylumiR n.sd prcomp_irlba preprocessRaw preprocessSWAN
+      probeAnnotationsCategory projectName pval.detect<- pvals unmethylated
+      unmethylated<- warn
+    ```
+
+# XBSeq
+
+<details>
+
+* Version: 1.16.0
+* Source code: https://github.com/cran/XBSeq
+* URL: https://github.com/Liuy12/XBSeq
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 119
+
+Run `revdep_details(,"XBSeq")` for more info
+
+</details>
+
+## In both
+
+*   checking whether the namespace can be loaded with stated dependencies ... NOTE
+    ```
+    Warning: no function found corresponding to methods exports from ‘XBSeq’ for: ‘conditions’, ‘conditions<-’, ‘dispTable’
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    estimateRealCount,XBSeqDataSet: no visible global function definition
+      for ‘assay’
+    estimateRealCount,XBSeqDataSet: no visible global function definition
+      for ‘assay<-’
+    estimateSCV,XBSeqDataSet: no visible global function definition for
+      ‘conditions’
+    estimateSCV,XBSeqDataSet: no visible global function definition for
+      ‘dispTable<-’
+    Undefined global functions or variables:
+      ..count.. DataFrame Gamma Group Sample SummarizedExperiment assay
+      assay<- assays baseMean coefficients complete.cases conditions cor
+      data ddelap dispTable dispTable<- dnbinom dpois formula glm
+      log2FoldChange median optim p.adjust pbeta predict qbeta quantile
+      rnbinom scvBiasCorrectionFits
+    Consider adding
+      importFrom("stats", "Gamma", "coefficients", "complete.cases", "cor",
+                 "dnbinom", "dpois", "formula", "glm", "median", "optim",
+                 "p.adjust", "pbeta", "predict", "qbeta", "quantile",
+                 "rnbinom")
+      importFrom("utils", "data")
+    to your NAMESPACE file.
+    ```
+
+# yarn
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/yarn
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 145
+
+Run `revdep_details(,"yarn")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    Running examples in ‘yarn-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annotateFromBiomart
+    > ### Title: Annotate your Expression Set with biomaRt
+    > ### Aliases: annotateFromBiomart
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > data(skin)
+    > # subsetting and changing column name just for a silly example
+    > skin <- skin[1:10,]
+    > colnames(fData(skin)) = paste("names",1:6)
+    > biomart<-"ENSEMBL_MART_ENSEMBL";
+    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
+    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Could not resolve host: www.ensembl.org; Name or service not known
+    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Execution halted
+    ```
+
+# zinbwave
+
+<details>
+
+* Version: 1.6.0
+* Source code: https://github.com/cran/zinbwave
+* BugReports: https://github.com/drisso/zinbwave/issues
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 194
+
+Run `revdep_details(,"zinbwave")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘copula’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
