@@ -20,15 +20,14 @@
 
 # Revdeps
 
-## Failed to check (5)
+## Failed to check (4)
 
-|package                            |version |error |warning |note |
-|:----------------------------------|:-------|:-----|:-------|:----|
-|ChIPpeakAnno                       |?       |      |        |     |
-|[DeepBlueR](failures.md#deepbluer) |1.10.0  |1     |        |     |
-|GAPGOM                             |?       |      |        |     |
-|maEndToEnd                         |?       |      |        |     |
-|[SICtools](failures.md#sictools)   |1.14.0  |1     |        |2    |
+|package                                  |version |error |warning |note |
+|:----------------------------------------|:-------|:-----|:-------|:----|
+|[ChIPpeakAnno](failures.md#chippeakanno) |3.18.2  |1     |        |1    |
+|[DeepBlueR](failures.md#deepbluer)       |1.10.0  |1     |        |     |
+|[DiscoRhythm](failures.md#discorhythm)   |1.0.0   |1     |        |     |
+|[SICtools](failures.md#sictools)         |1.14.0  |1     |        |2    |
 
 ## All (244)
 
@@ -38,7 +37,7 @@
 |ACNE                                                                           |0.8.1   |      |        |     |
 |ActivityIndex                                                                  |0.3.6   |      |        |     |
 |adjclust                                                                       |0.5.7   |      |        |     |
-|[AMARETTO](problems.md#amaretto)                                               |1.0.0   |1 -1  |        |1    |
+|[AMARETTO](problems.md#amaretto)                                               |1.0.0   |1     |        |1    |
 |[amplican](problems.md#amplican)                                               |1.6.2   |      |1       |     |
 |[antiProfiles](problems.md#antiprofiles)                                       |1.24.0  |      |        |1    |
 |[aroma.affymetrix](problems.md#aromaaffymetrix)                                |3.2.0   |      |        |1    |
@@ -72,7 +71,7 @@
 |ChemoSpec2D                                                                    |0.3.166 |      |        |     |
 |[Chicago](problems.md#chicago)                                                 |1.12.0  |      |1       |2    |
 |childhoodmortality                                                             |0.3.0   |      |        |     |
-|ChIPpeakAnno                                                                   |?       |      |        |     |
+|[ChIPpeakAnno](failures.md#chippeakanno)                                       |3.18.2  |1     |        |1    |
 |chromswitch                                                                    |1.6.0   |      |        |     |
 |cifti                                                                          |0.4.5   |      |        |     |
 |[Clomial](problems.md#clomial)                                                 |1.20.0  |      |        |1    |
@@ -104,7 +103,7 @@
 |[DGCA](problems.md#dgca)                                                       |1.0.1   |      |        |1    |
 |DHS.rates                                                                      |0.7.0   |      |        |     |
 |[diffloop](problems.md#diffloop)                                               |1.12.0  |      |        |1    |
-|[DiscoRhythm](problems.md#discorhythm)                                         |1.0.0   |1     |        |1    |
+|[DiscoRhythm](failures.md#discorhythm)                                         |1.0.0   |1     |        |     |
 |DisHet                                                                         |1.0.0   |      |        |     |
 |[dmrseq](problems.md#dmrseq)                                                   |1.4.9   |1     |        |1    |
 |[Doscheda](problems.md#doscheda)                                               |1.6.0   |2     |        |     |
@@ -133,11 +132,11 @@
 |fergm                                                                          |1.1.4   |      |        |     |
 |filesstrings                                                                   |3.1.5   |      |        |     |
 |[fishpond](problems.md#fishpond)                                               |1.0.2   |      |        |1    |
-|[flowCore](problems.md#flowcore)                                               |1.50.0  |1     |1       |1    |
-|[flowWorkspace](problems.md#flowworkspace)                                     |3.32.0  |1     |        |6    |
+|flowCore                                                                       |1.50.0  |      |        |     |
+|[flowWorkspace](problems.md#flowworkspace)                                     |3.32.0  |      |        |5    |
 |funtooNorm                                                                     |1.8.0   |      |        |     |
 |GAD                                                                            |1.1.1   |      |        |     |
-|GAPGOM                                                                         |?       |      |        |     |
+|[GAPGOM](problems.md#gapgom)                                                   |1.0.0   |1     |        |     |
 |gcapc                                                                          |1.8.0   |      |        |     |
 |GeneralizedUmatrix                                                             |1.1.5   |      |        |     |
 |[GenEst](problems.md#genest)                                                   |1.3.1   |1     |        |     |
@@ -171,7 +170,7 @@
 |[ltmle](problems.md#ltmle)                                                     |1.1-0   |1     |        |     |
 |[Luminescence](problems.md#luminescence)                                       |0.9.3   |      |1       |1    |
 |[M3Drop](problems.md#m3drop)                                                   |1.10.0  |      |        |3    |
-|maEndToEnd                                                                     |?       |      |        |     |
+|[maEndToEnd](problems.md#maendtoend)                                           |2.4.0   |1     |        |     |
 |matrixTests                                                                    |0.1.5   |      |        |     |
 |[MEAL](problems.md#meal)                                                       |1.14.0  |1     |1       |2    |
 |MEDseq                                                                         |1.0.0   |      |        |     |

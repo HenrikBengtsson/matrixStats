@@ -11,30 +11,6 @@ Run `revdep_details(,"AMARETTO")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      ── 1. Error: (unknown) (@test_AMARETTO.R#11)  ──────────────────────────────────
-      length of 'dimnames' [2] not equal to array extent
-      1: AMARETTO_Run(AMARETTOinit) at testthat/test_AMARETTO.R:11
-      2: AMARETTO_LarsenBased(AMARETTOinit$MA_matrix_Var, AMARETTOinit$ModuleMembership, AMARETTOinit$RegulatorData, 
-             AMARETTOinit$Parameters, AMARETTOinit$NrCores)
-      3: AMARETTO_LearnRegulatoryProgramsLarsen(Data, Clusters, RegulatorData, RegulatorSign, 
-             Lambda, AutoRegulation, alpha = Parameters$alpha, pmax = Parameters$pmax)
-      4: `colnames<-`(`*tmp*`, value = RegulatorData_rownames)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 0 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: (unknown) (@test_AMARETTO.R#11) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
 ## In both
 
 *   checking examples ... ERROR
@@ -774,6 +750,76 @@ Run `revdep_details(,"Chicago")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
+# ChIPpeakAnno
+
+<details>
+
+* Version: 3.18.2
+* Source code: https://github.com/cran/ChIPpeakAnno
+* Date/Publication: 2019-07-26
+* Number of recursive dependencies: 163
+
+Run `revdep_details(,"ChIPpeakAnno")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘ChIPpeakAnno’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'grid', 'IRanges', 'Biostrings', 'GenomicRanges', 'S4Vectors',
+      'VennDiagram'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘ChIPpeakAnno’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
+  'length(x) = 9 > 1' in coercion to 'logical(1)'
+Error: package or namespace load failed for ‘futile.logger’:
+ unable to load R code in package ‘lambda.r’
+Error: package ‘futile.logger’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘ChIPpeakAnno’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/ChIPpeakAnno’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘ChIPpeakAnno’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
+  'length(x) = 9 > 1' in coercion to 'logical(1)'
+Error: package or namespace load failed for ‘futile.logger’:
+ unable to load R code in package ‘lambda.r’
+Error: package ‘futile.logger’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘ChIPpeakAnno’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChIPpeakAnno/old/ChIPpeakAnno.Rcheck/ChIPpeakAnno’
+
+```
 # Clomial
 
 <details>
@@ -1668,28 +1714,50 @@ Run `revdep_details(,"DiscoRhythm")` for more info
 
 ## In both
 
-*   checking tests ...
+*   checking whether package ‘DiscoRhythm’ can be installed ... ERROR
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(DiscoRhythm)
-      Error in describe(fn, idx, raw = FALSE) %when% { : 
-        Function name is already bound to non lambda.r object
-      Error: package or namespace load failed for 'DiscoRhythm':
-       unable to load R code in package 'lambda.r'
-      Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/new/DiscoRhythm.Rcheck/00install.out’ for details.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    discoApp: no visible binding for global variable ‘.discorhythm_ncores’
-    discoBatch: no visible binding for global variable ‘discoODAres’
-    Undefined global functions or variables:
-      .discorhythm_ncores discoODAres
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘DiscoRhythm’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
+  'length(x) = 9 > 1' in coercion to 'logical(1)'
+Error: unable to load R code in package ‘lambda.r’
+Execution halted
+ERROR: lazy loading failed for package ‘DiscoRhythm’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/new/DiscoRhythm.Rcheck/DiscoRhythm’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DiscoRhythm’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in !is.na(line <- it()) && line$token != "SPECIAL" : 
+  'length(x) = 9 > 1' in coercion to 'logical(1)'
+Error: unable to load R code in package ‘lambda.r’
+Execution halted
+ERROR: lazy loading failed for package ‘DiscoRhythm’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/old/DiscoRhythm.Rcheck/DiscoRhythm’
+
+```
 # dmrseq
 
 <details>
@@ -2274,54 +2342,6 @@ Run `revdep_details(,"fishpond")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
-# flowCore
-
-<details>
-
-* Version: 1.50.0
-* Source code: https://github.com/cran/flowCore
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 97
-
-Run `revdep_details(,"flowCore")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘flowCore-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: filterResultList-class
-    > ### Title: Class "filterResultList"
-    > ### Aliases: filterResultList-class filterResultList
-    > ###   [,filterResultList,ANY-method [[,filterResultList,ANY-method
-    > ###   names,filterResultList-method parameters,filterResultList-method
-    > ###   show,filterResultList-method split,flowSet,filterResultList-method
-    > ###   summary,filterResultList-method
-    > ### Keywords: classes
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > library(flowStats)
-    Error in library(flowStats) : there is no package called ‘flowStats’
-    Execution halted
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown packages ‘flowStats’, ‘ggcyto’ in Rd xrefs
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'flowStats', 'openCyto', 'ggcyto'
-    ```
-
 # flowWorkspace
 
 <details>
@@ -2337,38 +2357,11 @@ Run `revdep_details(,"flowWorkspace")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      
-          Vignettes contain introductory material; view with
-          'browseVignettes()'. To cite Bioconductor, see
-          'citation("Biobase")', and for packages 'citation("pkgname")'.
-      
-      ── 1. Error: (unknown) (@test-parseWorkspace.R#4)  ─────────────────────────────
-      there is no package called 'CytoML'
-      1: library(CytoML) at testthat/test-parseWorkspace.R:4
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 577 | SKIPPED: 2 | WARNINGS: 27 | FAILED: 1 ]
-      1. Error: (unknown) (@test-parseWorkspace.R#4) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking: 'ggcyto', 'CytoML'
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 25.8Mb
+      installed size is 22.8Mb
       sub-directories of 1Mb or more:
-        lib   12.4Mb
+        lib    9.5Mb
         libs  12.7Mb
     ```
 
@@ -2426,6 +2419,45 @@ Run `revdep_details(,"flowWorkspace")` for more info
 *   checking for GNU extensions in Makefiles ... NOTE
     ```
     GNU make is a SystemRequirements.
+    ```
+
+# GAPGOM
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/GAPGOM
+* URL: https://github.com/Berghopper/GAPGOM/
+* BugReports: https://github.com/Berghopper/GAPGOM/issues/
+* Date/Publication: 2019-05-02
+* Number of recursive dependencies: 123
+
+Run `revdep_details(,"GAPGOM")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘GAPGOM-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: fantom_download
+    > ### Title: GAPGOM - fantom_download()
+    > ### Aliases: fantom_download
+    > 
+    > ### ** Examples
+    > 
+    > fantom_file <- fantom_download(organism = "mouse", noprompt = TRUE)
+    adding rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz'
+    Warning in value[[3L]](cond) :
+      
+    trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error:
+      attempt to write a readonly database
+    Error in bfcrpath(bfc, url) : not all 'rnames' found or unique.
+    Calls: fantom_download -> bfcrpath -> bfcrpath
+    Execution halted
     ```
 
 # GenEst
@@ -2851,6 +2883,40 @@ Run `revdep_details(,"M3Drop")` for more info
     ```
     prepare_Rd: NBumi_FSOther.Rd:8-10: Dropping empty section \usage
     prepare_Rd: NBumi_TradDE.Rd:7-8: Dropping empty section \usage
+    ```
+
+# maEndToEnd
+
+<details>
+
+* Version: 2.4.0
+* Source code: https://github.com/cran/maEndToEnd
+* URL: https://www.bioconductor.org/help/workflows/
+* Date/Publication: 2019-05-03
+* Number of recursive dependencies: 216
+
+Run `revdep_details(,"maEndToEnd")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘arrayQualityMetrics’
+    
+    Depends: includes the non-default packages:
+      'Biobase', 'oligoClasses', 'ArrayExpress', 'pd.hugene.1.0.st.v1',
+      'hugene10sttranscriptcluster.db', 'oligo', 'arrayQualityMetrics',
+      'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
+      'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
+      'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
+      'Rgraphviz'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # MEAL
