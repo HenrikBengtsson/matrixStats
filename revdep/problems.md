@@ -440,9 +440,6 @@ Run `revdep_details(,"brms")` for more info
 
 ## In both
 
-*   R CMD check timed out
-    
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘spdep’
@@ -673,9 +670,6 @@ Run `revdep_details(,"ChAMP")` for more info
 
 ## In both
 
-*   R CMD check timed out
-    
-
 *   checking package subdirectories ... WARNING
     ```
     Problems with news in ‘inst/NEWS.Rd’:
@@ -708,6 +702,17 @@ Run `revdep_details(,"ChAMP")` for more info
     ```
     Namespace in Imports field not imported from: 'prettydoc'
       All declared Imports should be used.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    champ.ebGSEA : gseaWTfn: no visible global function definition for
+      'wilcox.test'
+    Undefined global functions or variables:
+      wilcox.test
+    Consider adding
+      importFrom("stats", "wilcox.test")
+    to your NAMESPACE file.
     ```
 
 # CHARGE
@@ -849,8 +854,27 @@ Run `revdep_details(,"CNPBayes")` for more info
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      
+      ── 4. Failure: easy mendelian example (@test_trios.R#524)  ─────────────────────
+      `z.m` not identical to 2.
+      1/1 mismatches
+      [1] 3 - 2 == 1
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 305 | SKIPPED: 3 | WARNINGS: 3 | FAILED: 4 ]
+      1. Failure: sigma2_pooled (@test_SingleBatchPooled.R#24) 
+      2. Failure: ggfun (@test_ggfuns.R#9) 
+      3. Failure: kbatch (@test_multibatch.R#271) 
+      4. Failure: easy mendelian example (@test_trios.R#524) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
 
 *   checking for missing documentation entries ... WARNING
     ```
@@ -1075,9 +1099,6 @@ Run `revdep_details(,"crlmm")` for more info
 </details>
 
 ## In both
-
-*   R CMD check timed out
-    
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -1329,9 +1350,6 @@ Run `revdep_details(,"DelayedArray")` for more info
 
 ## In both
 
-*   R CMD check timed out
-    
-
 *   checking package subdirectories ... WARNING
     ```
     Subdirectory 'inst/doc' contains invalid file names:
@@ -1409,9 +1427,6 @@ Run `revdep_details(,"DelayedMatrixStats")` for more info
 </details>
 
 ## In both
-
-*   R CMD check timed out
-    
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -4019,209 +4034,12 @@ Run `revdep_details(,"QDNAseq")` for more info
 
 ## In both
 
-*   checking whether the package can be unloaded cleanly ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Error in setGeneric("plot.cghRaw", function(x, y, ...) standardGeneric("plot.cghRaw")) : 
-      could not find function "setGeneric"
-    Error: package or namespace load failed for ‘QDNAseq’:
-     unable to load R code in package ‘CGHbase’
-    Execution halted
-    ```
-
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setGeneric("plot.cghRaw", function(x, y, ...) standardGeneric("plot.cghRaw")) : 
-      could not find function "setGeneric"
-    Error: unable to load R code in package ‘CGHbase’
-    Execution halted
+    Package required but not available: ‘CGHbase’
     
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
-
-*   checking S3 generic/method consistency ... WARNING
-    ```
-    ...
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    See section ‘Generic functions and methods’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking replacement functions ... WARNING
-    ```
-    ...
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    The argument of a replacement function which corresponds to the right
-    hand side must be named ‘value’.
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    package ‘CGHbase’ exists but was not installed under R >= 2.10.0 so xrefs cannot be checked
-    Missing link or links in documentation object 'exportBins.Rd':
-      ‘cghRaw’ ‘cghSeg’ ‘cghCall’ ‘cghRegions’
-    
-    See section 'Cross-references' in the 'Writing R Extensions' manual.
-    ```
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented code objects:
-      ‘exportVCF’
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    ...
-    Call sequence:
-    6: stop(msg, call. = FALSE, domain = NA)
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    ```
-
-*   checking foreign function calls ... NOTE
-    ```
-    ...
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in setGeneric("plot.cghRaw", function(x, y, ...) standardGeneric("plot.cghRaw")) : 
-      could not find function "setGeneric"
-    Error: unable to load R code in package ‘CGHbase’
-    Execution halted
-    ```
-
-*   checking Rd \usage sections ... NOTE
-    ```
-    ...
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-       }, error = function(e) {
-           P <- if (!is.null(cc <- conditionCall(e))) 
-               paste(" in", deparse(cc)[1L])
-           else ""
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
-    The \usage entries for S3 methods should use the \method markup and not
-    their full name.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # r2dRue
@@ -4501,30 +4319,6 @@ Run `revdep_details(,"scMerge")` for more info
 Run `revdep_details(,"scone")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-             switch(type, PSOCK = makePSOCKcluster(names = spec, ...), FORK = makeForkCluster(nnodes = spec, 
-                 ...), SOCK = snow::makeSOCKcluster(names = spec, ...), MPI = snow::makeMPIcluster(count = spec, 
-                 ...), NWS = snow::makeNWScluster(names = spec, ...), stop("unknown cluster type"))
-         })(spec = 2, type = "SOCK", snowlib = "/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/scone/BiocParallel", 
-             master = "localhost", port = 11963L)
-      11: snow::makeSOCKcluster(names = spec, ...)
-      12: newSOCKnode(names[[i]], options = options, rank = i)
-      13: socketConnection(port = port, server = TRUE, blocking = TRUE, open = "a+b")
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 59 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: all back-ends work (@test_bpparam.R#42) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
 
 ## In both
 
@@ -5475,25 +5269,6 @@ Run `revdep_details(,"sva")` for more info
 </details>
 
 ## In both
-
-*   checking running R code from vignettes ...
-    ```
-      ‘sva.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘sva.Rnw’
-      ...
-    
-    > contrast.matrix <- cbind(C1 = c(-1, 1, 0, rep(0, svobj$n.sv)), 
-    +     C2 = c(0, -1, 1, rep(0, svobj$n.sv)), C3 = c(-1, 0, 1, rep(0, 
-    +         svobj .... [TRUNCATED] 
-    
-    > fitContrasts = contrasts.fit(fit, contrast.matrix)
-    
-      When sourcing ‘sva.R’:
-    Error: 'length(x) = 5 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
