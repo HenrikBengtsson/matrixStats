@@ -20,13 +20,14 @@
 
 # Revdeps
 
-## Failed to check (4)
+## Failed to check (5)
 
 |package                                  |version |error |warning |note |
 |:----------------------------------------|:-------|:-----|:-------|:----|
 |[ChIPpeakAnno](failures.md#chippeakanno) |3.18.2  |1     |        |1    |
 |[DeepBlueR](failures.md#deepbluer)       |1.10.0  |1     |        |     |
 |[DiscoRhythm](failures.md#discorhythm)   |1.0.0   |1     |        |     |
+|[maEndToEnd](failures.md#maendtoend)     |2.4.0   |1     |        |1    |
 |[SICtools](failures.md#sictools)         |1.14.0  |1     |        |2    |
 
 ## All (244)
@@ -170,7 +171,7 @@
 |[ltmle](problems.md#ltmle)                                                     |1.1-0   |1     |        |     |
 |[Luminescence](problems.md#luminescence)                                       |0.9.3   |      |1       |1    |
 |[M3Drop](problems.md#m3drop)                                                   |1.10.0  |      |        |3    |
-|[maEndToEnd](problems.md#maendtoend)                                           |2.4.0   |1     |        |     |
+|[maEndToEnd](failures.md#maendtoend)                                           |2.4.0   |1     |        |1    |
 |matrixTests                                                                    |0.1.5   |      |        |     |
 |[MEAL](problems.md#meal)                                                       |1.14.0  |1     |1       |2    |
 |MEDseq                                                                         |1.0.0   |      |        |     |
@@ -221,7 +222,7 @@
 |[PrecisionTrialDrawer](problems.md#precisiontrialdrawer)                       |1.0.1   |1     |1       |     |
 |[ProteoMM](problems.md#proteomm)                                               |1.2.0   |      |        |1    |
 |PSCBS                                                                          |0.65.0  |      |        |     |
-|[QDNAseq](problems.md#qdnaseq)                                                 |1.20.0  |1     |        |     |
+|[QDNAseq](problems.md#qdnaseq)                                                 |1.20.0  |      |1       |     |
 |[r2dRue](problems.md#r2drue)                                                   |1.0.4   |      |        |2    |
 |RAC                                                                            |1.5     |      |        |     |
 |[randomizationInference](problems.md#randomizationinference)                   |1.0.3   |      |        |1    |

@@ -30,7 +30,7 @@ check <- function() {
   }
 
   envs <- Sys.getenv()
-  envs <- envs[grep("^R_CHECK_", names(envs))]
+  envs <- envs[grep("^_?R_CHECK_", names(envs))]
   if (length(envs) > 0L) {
     envs <- sprintf(" %02d. %s=%s", seq_along(envs), names(envs), envs)
     envs <- paste(envs, collapse="\n")

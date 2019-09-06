@@ -186,6 +186,89 @@ ERROR: lazy loading failed for package ‘DiscoRhythm’
 * removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DiscoRhythm/old/DiscoRhythm.Rcheck/DiscoRhythm’
 
 ```
+# maEndToEnd
+
+<details>
+
+* Version: 2.4.0
+* Source code: https://github.com/cran/maEndToEnd
+* URL: https://www.bioconductor.org/help/workflows/
+* Date/Publication: 2019-05-03
+* Number of recursive dependencies: 216
+
+Run `revdep_details(,"maEndToEnd")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘maEndToEnd’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'Biobase', 'oligoClasses', 'ArrayExpress', 'pd.hugene.1.0.st.v1',
+      'hugene10sttranscriptcluster.db', 'oligo', 'arrayQualityMetrics',
+      'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
+      'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
+      'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
+      'Rgraphviz'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘maEndToEnd’ ...
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘maEndToEnd’ 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Error in omittedSig && (signature[omittedSig] != "missing") : 
+  'length(x) = 4 > 1' in coercion to 'logical(1)'
+Error: package or namespace load failed for ‘ArrayExpress’:
+ unable to load R code in package ‘oligo’
+Error : package ‘ArrayExpress’ could not be loaded
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/maEndToEnd’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘maEndToEnd’ ...
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘maEndToEnd’ 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Error in omittedSig && (signature[omittedSig] != "missing") : 
+  'length(x) = 4 > 1' in coercion to 'logical(1)'
+Error: package or namespace load failed for ‘ArrayExpress’:
+ unable to load R code in package ‘oligo’
+Error : package ‘ArrayExpress’ could not be loaded
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/maEndToEnd’
+
+```
 # SICtools
 
 <details>
