@@ -4,8 +4,8 @@
 \alias{weightedMean}
 \title{Weighted Arithmetic Mean}
 \usage{
-weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE,
-  ...)
+weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE,
+  refine = FALSE, ...)
 }
 \arguments{
 \item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
@@ -13,7 +13,8 @@ the values whose weighted mean is to be computed.}
 
 \item{w}{a vector of weights the same length as \code{x} giving the weights
 to use for each element of \code{x}. Negative weights are treated as zero
-weights. Default value is equal weight to all values.}
+weights. Default value is equal weight to all values.
+If a missing-value weight exists, the result is always a missing value.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
@@ -38,7 +39,8 @@ zero length, then \code{NaN} is returned, which is consistent with
 Computes the weighted sample mean of a numeric vector.
 }
 \section{Missing values}{
- This function handles missing values consistently
+
+This function handles missing values consistently with
 \code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm = FALSE},
 then any missing values in either \code{x} or \code{w} will give result
 \code{NA_real_}.  If \code{na.rm = TRUE}, then all \code{(x, w)} data points

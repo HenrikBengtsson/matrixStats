@@ -16,13 +16,17 @@ for (mode in modes) {
 
   unique_values <- unique(as.vector(x))
   nbr_of_unique_values <- length(unique_values)
-  
+
   y <- rowTabulates(x)
   print(y)
   stopifnot(
     identical(dim(y), c(nrow, nbr_of_unique_values)),
     all(y >= 0)
   )
+  if (mode != "raw") {
+    y0 <- t(table(x, row(x), useNA = "always")[, seq_len(nrow(x))])
+    stopifnot(all(y == y0))
+  }
 
   y <- colTabulates(x)
   print(y)
@@ -30,6 +34,10 @@ for (mode in modes) {
     identical(dim(y), c(ncol, nbr_of_unique_values)),
     all(y >= 0)
   )
+  if (mode != "raw") {
+    y0 <- t(table(x, col(x), useNA = "always")[, seq_len(ncol(x))])
+    stopifnot(all(y == y0))
+  }
 
   # Count only certain values
   if (mode == "integer") {

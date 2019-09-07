@@ -5,11 +5,11 @@
 \alias{colMedians}
 \title{Calculates the median for each row (column) in a matrix}
 \usage{
-rowMedians(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ...)
+rowMedians(x, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(x), ...)
 
-colMedians(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ...)
+colMedians(x, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(x), ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

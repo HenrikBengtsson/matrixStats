@@ -9,19 +9,23 @@
 \alias{colMaxs}
 \title{Gets the range of values in each row (column) of a matrix}
 \usage{
-rowRanges(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+rowRanges(x, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(x), ...)
+
+rowMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
   ...)
 
-rowMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
-
-rowMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
-
-colRanges(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+rowMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
   ...)
 
-colMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
+colRanges(x, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(x), ...)
 
-colMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
+colMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+  ...)
+
+colMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+  ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

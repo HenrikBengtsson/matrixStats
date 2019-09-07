@@ -30,7 +30,7 @@ void indexByRow_i(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_pt
         error("Argument 'idxs' may only contain positive indices: %d", idx + 1);
       } if (idx >= n_max) {
         error("Argument 'idxs' contains indices larger than %d: %d",
-	      n_max, idx + 1);
+              n_max, idx + 1);
       }
       col = idx / ncol;
       row = idx % ncol;

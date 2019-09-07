@@ -28,11 +28,9 @@
 #' @export
 indexByRow <- function(dim, idxs = NULL, ...) {
   if (is.matrix(dim)) {
-    .Deprecated(msg = "indexByRow(x) where 'x' is a matrix is deprecated. Use indexByRow(dim(x)) instead.")
-    dim <- dim(dim)
-  } else {
-    dim <- as.integer(dim)
+    .Defunct(msg = "indexByRow(x) where 'x' is a matrix is defunct. Use indexByRow(dim(x)) instead.")
   }
+
   if (!is.null(idxs)) idxs <- as.integer(idxs)
-  .Call(C_indexByRow, dim, idxs)
+  .Call(C_indexByRow, as.integer(dim), idxs)
 }

@@ -56,7 +56,7 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
           } else {
             count[jj] = n;
           }
-	}
+        }
         ans[jj] = n > 0 ? sum / n : R_NaN;
         sum = 0.0;
         n = 0;
@@ -95,7 +95,7 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
           count[jj] = R_INT_MAX;
         } else {
           count[jj] = n;
-	}
+        }
       }
       ans[jj] = n > 0 ? sum / n : R_NaN;
 

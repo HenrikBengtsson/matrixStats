@@ -28,8 +28,16 @@
 #'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
-#' @section Missing values: Missing values are dropped at the very beginning,
-#' if argument \code{na.rm} is \code{\link[base:logical]{TRUE}}, otherwise not.
+#' @section Missing values:
+#' This function handles missing values consistently with
+#' \code{\link{weightedMean}}().
+#' More precisely, if \code{na.rm = FALSE}, then any missing values in either
+#' \code{x} or \code{w} will give result \code{NA_real_}.
+#' If \code{na.rm = TRUE}, then all \code{(x, w)} data points for which
+#' \code{x} is missing are skipped.  Note that if both \code{x} and \code{w}
+#' are missing for a data points, then it is also skipped (by the same rule).
+#' However, if only \code{w} is missing, then the final results will always
+#' be \code{NA_real_} regardless of \code{na.rm}.
 #'
 #' @author Henrik Bengtsson
 #'
@@ -76,11 +84,10 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   na_value <- NA
   storage.mode(na_value) <- storage.mode(x)
 
-
   # Remove values with zero (and negative) weight. This will:
   #  1) take care of the case when all weights are zero,
   #  2) it will most likely speed up the sorting.
-  tmp <- (w > 0)
+  tmp <- (is.na(w) | w > 0)
   if (!all(tmp)) {
     x <- .subset(x, tmp)
     w <- .subset(w, tmp)
@@ -90,7 +97,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Drop missing values?
   if (na.rm) {
-    keep <- which(!is.na(x) & !is.na(w))
+    keep <- which(!is.na(x))
     x <- .subset(x, keep)
     w <- .subset(w, keep)
     n <- length(x)
@@ -98,6 +105,9 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   } else if (anyMissing(x)) {
     return(na_value)
   }
+  
+  # Missing values in 'w'?
+  if (anyMissing(w)) return(na_value)
 
   # Are any weights Inf? Then treat them with equal weight and all others
   # with weight zero.

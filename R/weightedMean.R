@@ -9,6 +9,7 @@
 #' @param w a vector of weights the same length as \code{x} giving the weights
 #' to use for each element of \code{x}. Negative weights are treated as zero
 #' weights. Default value is equal weight to all values.
+#' If a missing-value weight exists, the result is always a missing value.
 #'
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
@@ -30,7 +31,8 @@
 #'
 #' @example incl/weightedMean.R
 #'
-#' @section Missing values: This function handles missing values consistently
+#' @section Missing values:
+#' This function handles missing values consistently with
 #' \code{\link[stats]{weighted.mean}}.  More precisely, if \code{na.rm = FALSE},
 #' then any missing values in either \code{x} or \code{w} will give result
 #' \code{NA_real_}.  If \code{na.rm = TRUE}, then all \code{(x, w)} data points

@@ -3,7 +3,7 @@
 \name{rowTabulates}
 \alias{rowTabulates}
 \alias{colTabulates}
-\title{Tabulates the values in a matrix by row (column)}
+\title{Tabulates the values in a matrix by row (column).}
 \usage{
 rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ...)
 
@@ -29,6 +29,17 @@ number of values counted.
 }
 \description{
 Tabulates the values in a matrix by row (column).
+}
+\details{
+An alternative to these functions, is to use \code{table(x, row(x))}
+and \code{table(x, col(x))}, with the exception that the latter do not
+support the \code{\link[base]{raw}} data type.
+When there are no missing values in \code{x}, we have that
+\code{all(rowTabulates(x) == t(table(x, row(x))))} and
+\code{all(colTabulates(x) == t(table(x, col(x))))}.
+When there are missing values, we have that
+\code{all(rowTabulates(x) == t(table(x, row(x), useNA = "always")[, seq_len(nrow(x))]))} and
+\code{all(colTabulates(x) == t(table(x, col(x), useNA = "always")[, seq_len(ncol(x))]))}.
 }
 \examples{
 x <- matrix(1:5, nrow = 10, ncol = 5)

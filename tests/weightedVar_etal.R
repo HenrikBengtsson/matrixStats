@@ -67,6 +67,13 @@ for (name in names(fcns)) {
         w[n] <- Inf
         m1 <- fcn(x, w, na.rm = na.rm)
         str(list(m1 = m1))
+
+        cat("Last weight is NA\n")
+        # All weight on the last value
+        w[1] <- 1
+        w[n] <- NA_real_
+        m1 <- fcn(x, w, na.rm = na.rm)
+        str(list(m1 = m1))
       } # for (na.rm ...)
     } # for (add_na ...)
   } # for (mode ...)

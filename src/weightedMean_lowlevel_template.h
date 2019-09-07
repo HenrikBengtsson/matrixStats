@@ -88,7 +88,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
           sum += (LDOUBLE)weight * (value - avg);
           /* Early stopping? Special for long LDOUBLE vectors */
           if (i % 1048576 == 0 && ISNAN(sum)) break;
-	} else if (!ISNAN(value)) {
+        } else if (!ISNAN(value)) {
           sum += (LDOUBLE)weight * (value - avg);
         }
       }

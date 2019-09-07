@@ -4,7 +4,7 @@
 #' Cumulative sums, products, minima and maxima for each row (column) in a
 #' matrix.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @param x An NxK \code{\link[base]{matrix}}.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of elements
 #' (or rows and/or columns) to operate over. If \code{\link[base]{NULL}}, no
@@ -17,7 +17,9 @@
 #' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}
-#' of the same mode as \code{x}.
+#' of the same mode as \code{x}, except when \code{x} is of mode
+#' \code{\link[base]{logical}}, then the return type is
+#' \code{\link[base]{integer}}.
 #'
 #' @example incl/rowCumsums.R
 #'

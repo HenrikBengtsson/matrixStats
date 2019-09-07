@@ -85,7 +85,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Remove values with zero (and negative) weight. This will:
   #  1) take care of the case when all weights are zero,
   #  2) it will most likely speed up the sorting.
-  tmp <- (w > 0)
+  tmp <- (is.na(w) | w > 0)
   if (!all(tmp)) {
     x <- .subset(x, tmp)
     w <- .subset(w, tmp)
@@ -95,7 +95,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Drop missing values?
   if (na.rm) {
-    keep <- which(!is.na(x) & !is.na(w))
+    keep <- which(!is.na(x))
     x <- .subset(x, keep)
     w <- .subset(w, keep)
     n <- length(x)
@@ -103,6 +103,9 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   } else if (anyMissing(x)) {
     return(na_value)
   }
+
+  # Missing values in 'w'?
+  if (anyMissing(w)) return(na_value)
 
   # Are any weights Inf? Then treat them with equal weight and all others
   # with weight zero.
