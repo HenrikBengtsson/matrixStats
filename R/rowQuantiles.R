@@ -64,6 +64,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   nrow <- nrow(x)
   ncol <- ncol(x)
 
+  # Allocate result
+  na_value <- NA_real_
+  storage.mode(na_value) <- storage.mode(x)
+  q <- matrix(na_value, nrow = nrow, ncol = length(probs))
+
   if (nrow > 0L && ncol > 0L) {
     na_rows <- rowAnyMissings(x)
     has_na <- any(na_rows)
@@ -74,34 +79,45 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
-      partial <- sort(unique(c(idxs_lo, idxs_hi)))
+      partial <- sort.int(unique(c(idxs_lo, idxs_hi)))
 
-      xp <- apply(x, MARGIN = 1L, FUN = sort, partial = partial)
-      if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
-
-      q <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_lo)
-      if (is.null(dim(q))) dim(q) <- c(1L, length(q))
-
-      # Adjust
+      # Adjust?
       idxs_adj <- which(idxs > idxs_lo)
-      if (length(idxs_adj) > 0L) {
-        q_lo <- q[idxs_adj, , drop = FALSE]
+      adj <- (length(idxs_adj) > 0L)
+      # Adjust
+      if (adj) {
         idxs_hi <- idxs_hi[idxs_adj]
-        q_hi <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1 - w) * q_lo + w * q_hi
+        q_lo <- matrix(na_value, nrow = length(idxs_adj), ncol = nrow)
+        q_hi <- matrix(na_value, nrow = length(idxs_adj), ncol = nrow)
+        cols <- seq_len(ncol)
+        for (rr in seq_len(nrow)) {
+          x_rr <- .subset(x, rr, cols, drop = TRUE)
+          xp_rr <- sort.int(x_rr, partial = partial)
+	  q_rr <- .subset(xp_rr, idxs_lo)
+          q[rr,] <- q_rr
+          q_hi[,rr] <- .subset(xp_rr, idxs_hi)
+          q_lo[,rr] <- .subset(q_rr, idxs_adj)
+          # Not needed anymore
+          x_rr <- xp_rr <- NULL
+        }
+	## FIXME: Try to avoid these two t():s
+        qq <- t(q)
+        qq[idxs_adj,] <- (1 - w) * q_lo + w * q_hi
+	q <- t(qq)
         # Not needed anymore
-        xp <- q_lo <- q_hi <- NULL
+        qq <- q_lo <- q_hi <- NULL
+      } else {
+        cols <- seq_len(ncol)
+        for (rr in seq_len(nrow)) {
+          x_rr <- .subset(x, rr, cols, drop = TRUE)
+          xp_rr <- sort.int(x_rr, partial = partial)
+          q[rr,] <- .subset(xp_rr, idxs_lo)
+          # Not needed anymore
+          x_rr <- xp_rr <- NULL
+        }
       }
-
-      # Backward compatibility
-      q <- t(q)
     } else {
-      # Allocate result
-      na_value <- NA_real_
-      storage.mode(na_value) <- storage.mode(x)
-      q <- matrix(na_value, nrow = nrow, ncol = length(probs))
-
       # For each row...
       rows <- seq_len(nrow)
 
@@ -114,10 +130,6 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
         q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)
-  } else {
-    na_value <- NA_real_
-    storage.mode(na_value) <- storage.mode(x)
-    q <- matrix(na_value, nrow = nrow, ncol = length(probs))
   }
 
   # Add dim names
@@ -162,6 +174,11 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   nrow <- nrow(x)
   ncol <- ncol(x)
 
+  # Allocate result
+  na_value <- NA_real_
+  storage.mode(na_value) <- storage.mode(x)
+  q <- matrix(na_value, nrow = ncol, ncol = length(probs))
+
   if (nrow > 0L && ncol > 0L) {
     na_cols <- colAnyMissings(x)
     has_na <- any(na_cols)
@@ -172,34 +189,44 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
-      partial <- sort(unique(c(idxs_lo, idxs_hi)))
+      partial <- sort.int(unique(c(idxs_lo, idxs_hi)))
 
-      xp <- apply(x, MARGIN = 2L, FUN = sort, partial = partial)
-      if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
-
-      q <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_lo)
-      if (is.null(dim(q))) dim(q) <- c(1L, length(q))
-
-      # Adjust
+      # Adjust?
       idxs_adj <- which(idxs > idxs_lo)
-      if (length(idxs_adj) > 0L) {
-        q_lo <- q[idxs_adj, , drop = FALSE]
+      adj <- (length(idxs_adj) > 0L)
+      if (adj) {
         idxs_hi <- idxs_hi[idxs_adj]
-        q_hi <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1 - w) * q_lo + w * q_hi
+        q_lo <- matrix(na_value, nrow = length(idxs_adj), ncol = ncol)
+        q_hi <- matrix(na_value, nrow = length(idxs_adj), ncol = ncol)
+        rows <- seq_len(nrow)
+        for (cc in seq_len(ncol)) {
+          x_cc <- .subset(x, rows, cc, drop = TRUE)
+          xp_cc <- sort.int(x_cc, partial = partial)
+	  q_cc <- .subset(xp_cc, idxs_lo)
+          q[cc,] <- q_cc
+          q_hi[,cc] <- .subset(xp_cc, idxs_hi)
+          q_lo[,cc] <- .subset(q_cc, idxs_adj)
+          # Not needed anymore
+          x_cc <- xp_cc <- NULL
+        }
+	## FIXME: Try to avoid these two t():s
+        qq <- t(q)
+        qq[idxs_adj,] <- (1 - w) * q_lo + w * q_hi
+	q <- t(qq)
         # Not needed anymore
-        xp <- q_lo <- q_hi <- NULL
+        qq <- q_lo <- q_hi <- NULL
+      } else {
+        rows <- seq_len(nrow)
+        for (cc in seq_len(ncol)) {
+          x_cc <- .subset(x, rows, cc, drop = TRUE)
+          xp_cc <- sort.int(x_cc, partial = partial)
+          q[cc,] <- .subset(xp_cc, idxs_lo)
+          # Not needed anymore
+          x_cc <- xp_cc <- NULL
+        }
       }
-
-      # Backward compatibility
-      q <- t(q)
     } else {
-      # Allocate result
-      na_value <- NA_real_
-      storage.mode(na_value) <- storage.mode(x)
-      q <- matrix(na_value, nrow = ncol, ncol = length(probs))
-
       # For each column...
       cols <- seq_len(ncol)
 
@@ -212,10 +239,6 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
         q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)    
-  } else {
-    na_value <- NA_real_
-    storage.mode(na_value) <- storage.mode(x)
-    q <- matrix(na_value, nrow = ncol, ncol = length(probs))
   }
 
   # Add dim names

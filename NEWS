@@ -10,6 +10,12 @@ SIGNIFICANT CHANGES:
    input, but that was a mistake.  The restriction on input allows for further
    optimization of these functions.
 
+PERFORMANCE:
+
+ * colQuantiles() and rowQuantiles() with the default type=7L and when there
+   are no missing values is now significantly faster and uses significantly
+   fewer memory allocations.
+
 
 Version: 0.55.0 [2019-09-05]
 
