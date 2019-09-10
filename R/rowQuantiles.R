@@ -101,12 +101,12 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
           # Not needed anymore
           x_rr <- xp_rr <- NULL
         }
-	## FIXME: Try to avoid these two t():s
-        qq <- t(q)
-        qq[idxs_adj,] <- (1 - w) * q_lo + w * q_hi
-	q <- t(qq)
+	q_adj <- (1 - w) * q_lo + w * q_hi
+	for (cc in seq_along(idxs_adj)) {
+	  q[, idxs_adj[cc]] <- q_adj[cc, , drop = TRUE]
+	}
         # Not needed anymore
-        qq <- q_lo <- q_hi <- NULL
+        q_adj <- q_lo <- q_hi <- NULL
       } else {
         cols <- seq_len(ncol)
         for (rr in seq_len(nrow)) {
@@ -210,12 +210,12 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
           # Not needed anymore
           x_cc <- xp_cc <- NULL
         }
-	## FIXME: Try to avoid these two t():s
-        qq <- t(q)
-        qq[idxs_adj,] <- (1 - w) * q_lo + w * q_hi
-	q <- t(qq)
+	q_adj <- (1 - w) * q_lo + w * q_hi
+	for (cc in seq_along(idxs_adj)) {
+	  q[, idxs_adj[cc]] <- q_adj[cc, , drop = TRUE]
+	}
         # Not needed anymore
-        qq <- q_lo <- q_hi <- NULL
+        q_adj <- q_lo <- q_hi <- NULL
       } else {
         rows <- seq_len(nrow)
         for (cc in seq_len(ncol)) {
