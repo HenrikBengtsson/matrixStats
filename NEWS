@@ -1,10 +1,15 @@
 Package: matrixStats
 ====================
 
-Version: 0.55.0-9000 [2019-09-07]
+Version: 0.55.0-9000 [2019-09-10]
 
- * ...
- 
+SIGNIFICANT CHANGES:
+
+ * colQuantiles() and rowQuantiles() now supports only integer and numeric
+   input.  Previously, it was also possible to pass, for instance, 'character'
+   input, but that was a mistake.  The restriction on input allows for further
+   optimization of these functions.
+
 
 Version: 0.55.0 [2019-09-05]
 

@@ -2,8 +2,8 @@
 #'
 #' Estimates quantiles for each row (column) in a matrix.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with
-#' N >= 0.
+#' @param x An \code{\link[base]{integer}} or a \code{\link[base]{numeric}}
+#' NxK \code{\link[base]{matrix}} with N >= 0.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -23,9 +23,9 @@
 #' @param drop If TRUE, singleton dimensions in the result are dropped,
 #' otherwise not.
 #'
-#' @return Returns a \code{\link[base]{numeric}} NxJ (KxJ)
-#' \code{\link[base]{matrix}}, where N (K) is the number of rows (columns) for
-#' which the J quantiles are calculated.
+#' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}} of the same type
+#' as \code{x}, where N (K) is the number of rows (columns) for which the
+#' J quantiles are calculated.
 #'
 #' @example incl/rowQuantiles.R
 #'
@@ -41,6 +41,9 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   # Argument 'x':
   if (!is.matrix(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+  }
+  if (!is.numeric(x) && !is.integer(x)) {
+    .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer' and 'numeric' is supported.", sQuote(storage.mode(x))))  #nolint
   }
 
   # Argument 'probs':
