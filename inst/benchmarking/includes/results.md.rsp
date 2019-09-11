@@ -5,6 +5,15 @@
  Local functions
  --------------------------------------------------------------%>
 <% toImage <- function(stats, name=levels(stats$expr)[1L], tags=NULL, ylim="auto", col=NULL, alpha=NULL, ...) { %>
+<%
+  # Replace spaces in name with hypen, e.g. ' w/ direct' -> '-w/-direct'
+  name <- gsub(" ", "-", name, fixed=TRUE)
+  # Drop any forward slashes in name, e.g. ' w/ ' -> ' w '
+  name <- gsub("/", "", name, fixed=TRUE)
+  # Drop any spaces in tags, e.g. 'n = 1000' -> 'n=1000'
+  tags <- gsub(" ", "", tags, fixed=TRUE)
+  cat("\n")
+%>
 ![](<%=toPNG(name, tags=c(tags, "benchmark"), aspectRatio=2/3, {
   if (identical(ylim, "auto")) {
     y <- stats$time/1e6
@@ -44,6 +53,7 @@ toTable <- function(stats, tags=NULL, order="median", ...) {
     s <- s[order(s[[order]]),]
 	s
   }, row.names=TRUE)
+  cat("\n")
 }
 %>
 
