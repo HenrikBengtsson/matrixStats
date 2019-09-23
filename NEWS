@@ -13,7 +13,7 @@ SIGNIFICANT CHANGES:
 PERFORMANCE:
 
  * colQuantiles() and rowQuantiles() with the default type=7L and when there
-   are no missing values is now significantly faster and uses significantly
+   are no missing values is now significantly faster and use significantly
    fewer memory allocations.
 
 BUG FIXES:
