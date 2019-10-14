@@ -53,7 +53,7 @@
 #' If one or more weights are \code{Inf}, it is the same as these weights have
 #' the same weight and the others have zero. This makes things easier for cases
 #' where the weights are result of a division with zero.
-#' 
+#'
 #' If there are missing values in \code{w} that are part of the calculation
 #' (after subsetting and dropping missing values in \code{x}), then the final
 #' result is always \code{NA} of the same type as \code{x}.
@@ -73,7 +73,7 @@
 #'
 #' @seealso \code{\link[stats]{median}}, \code{\link[base]{mean}}() and
 #' \code{\link{weightedMean}}().
-#' 
+#'
 #' @references [1] T.H. Cormen, C.E. Leiserson, R.L. Rivest, Introduction to
 #' Algorithms, The MIT Press, Massachusetts Institute of Technology, 1989.
 #'
@@ -82,6 +82,9 @@
 weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
                            interpolate = is.null(ties), ties = NULL, ...) {
   # Argument 'x':
+  if (is.logical(x)) {
+    x <- as.integer(x)
+  }
 
   # Argument 'w':
   if (is.null(w)) {

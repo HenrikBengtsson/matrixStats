@@ -51,6 +51,11 @@ weightedMean <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Argument 'refine':
   refine <- as.logical(refine)
 
+  # Argument 'x':
+  if (is.logical(x)) {
+    x <- as.integer(x)
+  }
+
   # Argument 'w':
   if (is.null(w)) {
     ## We won't fall back to stats::mean(), because it's has some overhead
