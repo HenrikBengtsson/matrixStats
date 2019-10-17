@@ -114,7 +114,7 @@ stopifnot(!is.finite(weightedMedian(x1, w0)),
           !is.infinite(weightedMedian(x1, w0)))
 
 w1 <- c(1, 1, 1)
-stopifnot(weightedMedian(x1, w1) == 0.5)
+stopifnot(weightedMedian(x1, w1) == 1)
 
 w2 <- c(1, 2, 3)
 stopifnot(weightedMedian(x1, w2) == 1)
@@ -123,7 +123,8 @@ stopifnot(weightedMedian(x1, w2) == 1)
 stopifnot(is.na(weightedMedian(c(TRUE, FALSE, NA),
                                c(1, 2, 3))),
           all.equal(weightedMedian(c(TRUE, FALSE, NA),
-                                   c(1, 2, 3)),
+                                   c(1, 2, 3),
+                                   na.rm = TRUE),
                     weightedMedian(c(TRUE, FALSE),
                                    c(1, 2))))
 ### Identical to as.integer()
