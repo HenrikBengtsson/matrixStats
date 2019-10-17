@@ -54,9 +54,6 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
                         center = NULL, ...) {
   # Argument 'x':
   n <- length(x)
-  if (is.logical(x)) {
-    x <- as.integer(x)
-  }
 
   # Argument 'w':
   if (is.null(w)) {

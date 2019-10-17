@@ -42,5 +42,3 @@ revdep
 ^[.]test
 ^[.]check
 ^.*[.]tar[.]gz$
-^.*\.Rproj$
-^\.Rproj\.user$

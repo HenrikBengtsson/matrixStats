@@ -53,7 +53,7 @@ weightedMean <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Argument 'x':
   if (is.logical(x)) {
-    x <- as.integer(x)
+    # x <- as.integer(x)
   }
 
   # Argument 'w':
