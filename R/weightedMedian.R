@@ -81,10 +81,6 @@
 #' @export
 weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
                            interpolate = is.null(ties), ties = NULL, ...) {
-  # Argument 'x':
-  if (is.logical(x)) {
-    x <- as.integer(x)
-  }
 
   # Argument 'w':
   if (is.null(w)) {

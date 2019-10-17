@@ -25,8 +25,8 @@ BUG FIXES:
 
 NEW FEATURES:
 
- * weightedMean(), weightedMedian(), and weightedVar() now accept logical 'x',
-   internally converted to integer 0 and 1.
+ * weightedMean() and weightedMedian() now accept logical 'x',
+   internally treated as integer 0 and 1.
 
 
 Version: 0.55.0 [2019-09-05]
