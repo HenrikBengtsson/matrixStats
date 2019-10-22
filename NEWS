@@ -21,7 +21,7 @@ BUG FIXES:
  * The Markdown reports produced by the internal benchmark report generator
    did not add a line between tables and the following text (a figure caption)
    causing the following text to be included in a cell on an extra row in
-   the table (at when rendered on GitHub Wiki pages).
+   the table (at least when rendered on GitHub Wiki pages).
 
  
 Version: 0.55.0 [2019-09-05]
