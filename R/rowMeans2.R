@@ -12,6 +12,10 @@
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
 #' is done.
 #'
+#' @param trim A scalar fraction (0 to 0.5) of observations to be trimmed 
+#' from each end of x before the mean is computed. Values of trim outside that 
+#' range are taken as the nearest endpoint.
+#' 
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 #' are excluded first, otherwise not.
 #'
@@ -28,10 +32,32 @@
 #'
 #' @keywords array iteration robust univar
 #' @export
-rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
+rowMeans2 <- function(x, rows = NULL, cols = NULL, trim = 0, na.rm = FALSE,
                        dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
+  
+  if (!is.numeric(trim) || length(trim) != 1L) 
+    stop("'trim' must be numeric of length one")
+  if (trim > 0) {
+    if (trim >= 0.5) {
+      if (storage.mode(x) == 'logical') {
+        storage.mode(x) <- 'integer'
+        med <- rowMedians(x, rows, cols, na.rm, dim., ...)
+        if (!anyNA(x) && ncol(x) %% 2 != 0) {
+          storage.mode(med) <- 'logical'
+        } else {
+          storage.mode(med) <- 'numeric'
+        }
+      } else {
+        med <- rowMedians(x, rows, cols, na.rm, dim., ...)
+      }
+      return(med)
+    } else {
+      has_nas <- TRUE
+      return(.Call(C_rowTrimmedMeans, x, dim., rows, cols, trim, na.rm, has_nas, TRUE))
+    }
+  }
 
   has_nas <- TRUE
   .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, TRUE)
@@ -39,11 +65,32 @@ rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 
 #' @rdname rowMeans2
 #' @export
-colMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
+colMeans2 <- function(x, rows = NULL, cols = NULL, trim = 0, na.rm = FALSE,
                        dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
 
+  if (!is.numeric(trim) || length(trim) != 1L) 
+    stop("'trim' must be numeric of length one")
+  if (trim > 0) {
+    if (trim >= 0.5) {
+      if (storage.mode(x) == 'logical') {
+        storage.mode(x) <- 'integer'
+        med <- colMedians(x, rows, cols, na.rm, dim., ...)
+        if (!anyNA(x) && nrow(x) %% 2 != 0) {
+          storage.mode(med) <- 'logical'
+        } else {
+          storage.mode(med) <- 'numeric'
+        }
+      } else {
+        med <- colMedians(x, rows, cols, na.rm, dim., ...)
+      }
+      return(med)
+    } else {
+      has_nas <- TRUE
+      return(.Call(C_rowTrimmedMeans, x, dim., rows, cols, trim, na.rm, has_nas, FALSE))
+    }
+  }
   has_nas <- TRUE
   .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, FALSE)
 }
