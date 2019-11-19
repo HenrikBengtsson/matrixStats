@@ -80,12 +80,12 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- ncol
   }
 
+  # Center
+  x <- x - center
   # Spread
   x <- x * x
-  x <- rowMeans(x, na.rm = na.rm)
-
   # Variance
-  x <- (x - center^2)
+  x <- rowMeans(x, na.rm = na.rm)
   x * (n / (n - 1))
 }
 
