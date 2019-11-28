@@ -6,11 +6,25 @@
 \alias{count}
 \title{Counts the number of occurrences of a specific value}
 \usage{
-rowCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ...)
+rowCounts(
+  x,
+  rows = NULL,
+  cols = NULL,
+  value = TRUE,
+  na.rm = FALSE,
+  dim. = dim(x),
+  ...
+)
 
-colCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ...)
+colCounts(
+  x,
+  rows = NULL,
+  cols = NULL,
+  value = TRUE,
+  na.rm = FALSE,
+  dim. = dim(x),
+  ...
+)
 
 count(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 }

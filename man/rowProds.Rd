@@ -8,11 +8,23 @@
 \usage{
 product(x, idxs = NULL, na.rm = FALSE, ...)
 
-rowProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
-  method = c("direct", "expSumLog"), ...)
+rowProds(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  method = c("direct", "expSumLog"),
+  ...
+)
 
-colProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
-  method = c("direct", "expSumLog"), ...)
+colProds(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  method = c("direct", "expSumLog"),
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

@@ -9,22 +9,17 @@
 \alias{colWeightedSds}
 \title{Weighted variance and weighted standard deviation}
 \usage{
-weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL,
-  ...)
+weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, ...)
 
 weightedSd(...)
 
-rowWeightedVars(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ...)
+rowWeightedVars(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 
-colWeightedVars(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ...)
+colWeightedVars(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 
-rowWeightedSds(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ...)
+rowWeightedSds(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 
-colWeightedSds(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ...)
+colWeightedSds(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing

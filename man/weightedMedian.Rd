@@ -4,8 +4,15 @@
 \alias{weightedMedian}
 \title{Weighted Median Value}
 \usage{
-weightedMedian(x, w = NULL, idxs = NULL, na.rm = FALSE,
-  interpolate = is.null(ties), ties = NULL, ...)
+weightedMedian(
+  x,
+  w = NULL,
+  idxs = NULL,
+  na.rm = FALSE,
+  interpolate = is.null(ties),
+  ties = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing

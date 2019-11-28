@@ -7,17 +7,47 @@
 \alias{colSds}
 \title{Standard deviation estimates for each row (column) in a matrix}
 \usage{
-rowMads(x, rows = NULL, cols = NULL, center = NULL,
-  constant = 1.4826, na.rm = FALSE, dim. = dim(x), ...)
+rowMads(
+  x,
+  rows = NULL,
+  cols = NULL,
+  center = NULL,
+  constant = 1.4826,
+  na.rm = FALSE,
+  dim. = dim(x),
+  ...
+)
 
-colMads(x, rows = NULL, cols = NULL, center = NULL,
-  constant = 1.4826, na.rm = FALSE, dim. = dim(x), ...)
+colMads(
+  x,
+  rows = NULL,
+  cols = NULL,
+  center = NULL,
+  constant = 1.4826,
+  na.rm = FALSE,
+  dim. = dim(x),
+  ...
+)
 
-rowSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ...)
+rowSds(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  center = NULL,
+  dim. = dim(x),
+  ...
+)
 
-colSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ...)
+colSds(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  center = NULL,
+  dim. = dim(x),
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

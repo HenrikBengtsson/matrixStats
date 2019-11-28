@@ -4,8 +4,7 @@
 \alias{binMeans}
 \title{Fast mean calculations in non-overlapping bins}
 \usage{
-binMeans(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
-  right = FALSE, ...)
+binMeans(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE, right = FALSE, ...)
 }
 \arguments{
 \item{y}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
