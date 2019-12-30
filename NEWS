@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.55.0-9000 [2019-11-28]
+Version: 0.55.0-9000 [2019-11-30]
 
 SIGNIFICANT CHANGES:
 
@@ -22,6 +22,8 @@ BUG FIXES:
    column functions silently treated a 'diff' less than zero as diff = 0.
    Now an error is produced.
    
+ * Error messages on argument 'dim.' referred to non-existing argument 'dim'.
+ 
  * The Markdown reports produced by the internal benchmark report generator
    did not add a line between tables and the following text (a figure caption)
    causing the following text to be included in a cell on an extra row in
