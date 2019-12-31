@@ -44,9 +44,9 @@ static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
   nrow = (double)INTEGER(dim)[0];
   ncol = (double)INTEGER(dim)[1];
   if (nrow < 0) {
-    error("Argument '%s' specifies a negative number of rows (%s[1]): %d", dimlabel, dimlabel, nrow);
+    error("Argument '%s' specifies a negative number of rows (%s[1]): %g", dimlabel, dimlabel, nrow);
   } else if (ncol < 0) {
-    error("Argument '%s' specifies a negative number of columns (%s[2]): %d", dimlabel, dimlabel, ncol);
+    error("Argument '%s' specifies a negative number of columns (%s[2]): %g", dimlabel, dimlabel, ncol);
   } else if (nrow * ncol != max) {
     error("Argument '%s' does not match length of argument '%s': %g * %g != %g", dimlabel, maxlabel, nrow, ncol, max);
   }
