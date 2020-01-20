@@ -26,6 +26,15 @@ colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
 }
 
+rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
+  x <- sweep(x, MARGIN = 1, STATS = as.array(center), FUN = "-")
+  rowVars(x, rows = rows, cols = cols, center = 0, na.rm = na.rm)
+}
+
+colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
+  x <- sweep(x, MARGIN = 2, STATS = as.array(center), FUN = "-")
+  colVars(x, rows = rows, cols = cols, center = 0, na.rm = na.rm)
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
@@ -65,6 +74,14 @@ for (mode in c("integer", "double")) {
       stopifnot(all.equal(r2, r0))
       stopifnot(all.equal(r2b, r2))
       stopifnot(all.equal(r2c, r2))
+
+      r3 <- colVars(x, center = x[1, ], na.rm = na.rm)
+      r3b <- colVars_center_naive(x, center = x[1, ], na.rm = na.rm)
+      r3c <- rowVars(t(x), center = x[1, ], na.rm = na.rm)
+      r3d <- rowVars_center_naive(t(x), center = x[1, ], na.rm = na.rm)
+      stopifnot(all.equal(r3b, r3))
+      stopifnot(all.equal(r3c, r3))
+      stopifnot(all.equal(r3d, r3))
     }
   } # for (add_na ...)
 }

@@ -56,6 +56,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     ## Scalar 'center'?
     if (length(center) == 1L && is.null(rows)) {
       validateScalarCenter(center, nrow(x), "rows")
+      center <- rep(center, times = nrow(x))
     } else {
       stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
     }
@@ -150,6 +151,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     ## Scalar 'center'?
     if (length(center) == 1L && is.null(cols)) {
       validateScalarCenter(center, ncol(x), "columns")
+      center <- rep(center, times = ncol(x))
     } else {
       stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
     }

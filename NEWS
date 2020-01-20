@@ -41,7 +41,8 @@ BUG FIXES:
 DEPRECATED AND DEFUNCT:
 
  * Using a scalar value for argument 'center' of colSds(), rowSds(), colVars(),
-   rowVars(), colMads(), and rowMads() is now deprecated.
+   rowVars(), colMads(), rowMads(), colWeightedMads(), and rowWeightedMads() is
+   now deprecated.
  
 
 Version: 0.57.0 [2020-09-25]
