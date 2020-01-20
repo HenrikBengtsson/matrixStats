@@ -82,8 +82,10 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
   # Center
   x <- x - center
+
   # Spread
   x <- x * x
+
   # Variance
   x <- rowMeans(x, na.rm = na.rm)
   x * (n / (n - 1))
@@ -142,11 +144,14 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- nrow
   }
 
+
+  # Center
+  x <- t(t(x) - center)
+
   # Spread
   x <- x * x
-  x <- colMeans(x, na.rm = na.rm)
 
   # Variance
-  x <- (x - center^2)
+  x <- colMeans(x, na.rm = na.rm)
   x * (n / (n - 1))
 }
