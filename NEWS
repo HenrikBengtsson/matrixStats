@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.55.0-9000 [2019-12-31]
+Version: 0.55.0-9000 [2020-02-10]
 
 SIGNIFICANT CHANGES:
 
@@ -18,6 +18,9 @@ PERFORMANCE:
 
 BUG FIXES:
 
+ * colDiffs() and rowDiffs() gave an error if argument 'dim.' was of type
+   numeric rather than type integer.
+ 
  * varDiff(), sdDiff(), madDiff(), iqrDiff(), and the corrsponding row- and
    column functions silently treated a 'diff' less than zero as diff = 0.
    Now an error is produced.
