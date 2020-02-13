@@ -112,13 +112,19 @@ revdep_pkgs_with_status <- function(status = c("error", "failure")) {
   }
 }
 
-revdep_preinstall <- function(pkgs) {
-  pkgs <- unique(pkgs)
-  lib_paths_org <- lib_paths <- .libPaths()
-  on.exit(.libPaths(lib_paths_org))
+revdep_preinstall_libs <- function() {
+  lib_paths <- .libPaths()
   lib_paths[1] <- sprintf("%s-revdepcheck", lib_paths[1])
   dir.create(lib_paths[1], recursive = TRUE, showWarnings = FALSE)
-  .libPaths(lib_paths)
+  lib_paths
+}
+
+revdep_preinstall <- function(pkgs) {
+  lib_paths_org <- .libPaths()
+  on.exit(.libPaths(lib_paths_org))
+  .libPaths(revdep_preinstall_libs())
+  
+  pkgs <- unique(pkgs)
   message(sprintf("Triggering crancache builds by pre-installing %d packages: %s", length(pkgs), paste(sQuote(pkgs), collapse = ", ")))
   message(".libPaths():")
   message(paste(paste0(" - ", .libPaths()), collapse = "\n"))
@@ -130,6 +136,18 @@ revdep_preinstall <- function(pkgs) {
     crancache::install_packages(pkg)
   }
 }
+
+revdep_preinstall_update <- function() {
+  lib_paths_org <- .libPaths()
+  on.exit(.libPaths(lib_paths_org))
+  .libPaths(revdep_preinstall_libs())
+  
+  message("Update crancache for all pre-installing packages:")
+  message(".libPaths():")
+  message(paste(paste0(" - ", .libPaths()), collapse = "\n"))
+  crancache::update_packages(ask = FALSE)
+}
+
 
 args <- base::commandArgs(trailingOnly = TRUE)
 if ("--reset" %in% args) {
@@ -207,6 +225,8 @@ if ("--reset" %in% args) {
   revdepcheck::revdep_add(packages = revdep_pkgs_with_status("error"))
 } else if ("--add-failure" %in% args) {
   revdepcheck::revdep_add(packages = revdep_pkgs_with_status("failure"))
+} else if ("--preinstall-update" %in% args) {
+  revdep_preinstall_update()
 } else if ("--preinstall-children" %in% args) {
   pkg <- revdep_this_package()
   pkgs <- revdepcheck:::cran_revdeps(pkg)
