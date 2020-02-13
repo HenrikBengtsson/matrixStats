@@ -20,19 +20,15 @@
 
 # Revdeps
 
-## Failed to check (9)
+## Failed to check (5)
 
 |package                              |version |error |warning |note |
 |:------------------------------------|:-------|:-----|:-------|:----|
-|[bumphunter](failures.md#bumphunter) |1.28.0  |1     |        |1    |
-|[CARBayesST](failures.md#carbayesst) |3.0.2   |1     |        |     |
 |[ChAMP](failures.md#champ)           |2.16.1  |1     |        |1    |
 |Chicago                              |?       |      |        |     |
 |ChIPpeakAnno                         |?       |      |        |     |
 |cola                                 |?       |      |        |     |
 |[maEndToEnd](failures.md#maendtoend) |2.6.0   |1     |        |1    |
-|[metavizr](failures.md#metavizr)     |1.10.0  |1     |        |     |
-|[methrix](failures.md#methrix)       |1.0.05  |1     |        |1    |
 
 ## New problems (1)
 
@@ -69,9 +65,9 @@
 |bnclassify                                                         |0.4.4   |       |        |     |
 |BRISC                                                              |0.2.0   |       |        |     |
 |brms                                                               |2.11.1  |       |        |     |
-|[bumphunter](failures.md#bumphunter)                               |1.28.0  |1      |        |1    |
+|[bumphunter](problems.md#bumphunter)                               |1.28.0  |1      |1       |4    |
 |calmate                                                            |0.12.1  |       |        |     |
-|[CARBayesST](failures.md#carbayesst)                               |3.0.2   |1      |        |     |
+|[CARBayesST](problems.md#carbayesst)                               |3.0.2   |1      |        |     |
 |carx                                                               |0.7.1   |       |        |     |
 |[CATALYST](problems.md#catalyst)                                   |1.10.1  |1      |        |     |
 |[celda](problems.md#celda)                                         |1.2.4   |       |1       |1    |
@@ -98,7 +94,7 @@
 |cola                                                               |?       |       |        |     |
 |consensus                                                          |1.4.0   |       |        |     |
 |consensusOV                                                        |1.8.1   |       |        |     |
-|[CopywriteR](problems.md#copywriter)                               |2.18.0  |1      |        |     |
+|[CopywriteR](problems.md#copywriter)                               |2.18.0  |1      |1       |1    |
 |[corrcoverage](problems.md#corrcoverage)                           |1.2.1   |       |        |1    |
 |cosinor2                                                           |0.2.1   |       |        |     |
 |CpGFilter                                                          |1.1     |       |        |     |
@@ -200,8 +196,8 @@
 |[metagenomeSeq](problems.md#metagenomeseq)                         |1.28.2  |       |2       |     |
 |metamicrobiomeR                                                    |1.1     |       |        |     |
 |MetaNeighbor                                                       |1.6.0   |       |        |     |
-|[metavizr](failures.md#metavizr)                                   |1.10.0  |1      |        |     |
-|[methrix](failures.md#methrix)                                     |1.0.05  |1      |        |1    |
+|[metavizr](problems.md#metavizr)                                   |1.10.0  |       |1       |     |
+|[methrix](problems.md#methrix)                                     |1.0.05  |       |2       |1    |
 |MethylAid                                                          |1.20.0  |       |        |     |
 |methylationArrayAnalysis                                           |1.10.0  |       |        |     |
 |methylumi                                                          |2.32.0  |       |        |     |
