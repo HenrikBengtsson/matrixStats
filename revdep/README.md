@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2020-02-12                   |
+|date     |2020-02-13                   |
 
 # Dependencies
 
@@ -20,37 +20,19 @@
 
 # Revdeps
 
-## Failed to check (27)
+## Failed to check (9)
 
 |package                              |version |error |warning |note |
 |:------------------------------------|:-------|:-----|:-------|:----|
-|AMARETTO                             |?       |      |        |     |
-|amplican                             |?       |      |        |     |
-|BASiCS                               |?       |      |        |     |
-|BatchQC                              |?       |      |        |     |
-|baystability                         |?       |      |        |     |
-|bigPint                              |?       |      |        |     |
-|biscuiteer                           |?       |      |        |     |
-|bnclassify                           |?       |      |        |     |
-|brms                                 |?       |      |        |     |
 |[bumphunter](failures.md#bumphunter) |1.28.0  |1     |        |1    |
 |[CARBayesST](failures.md#carbayesst) |3.0.2   |1     |        |     |
-|CATALYST                             |?       |      |        |     |
-|celda                                |?       |      |        |     |
-|CEMiTool                             |?       |      |        |     |
-|ChAMP                                |?       |      |        |     |
-|CHARGE                               |?       |      |        |     |
+|[ChAMP](failures.md#champ)           |2.16.1  |1     |        |1    |
 |Chicago                              |?       |      |        |     |
 |ChIPpeakAnno                         |?       |      |        |     |
 |cola                                 |?       |      |        |     |
-|DGCA                                 |?       |      |        |     |
-|flowSpy                              |?       |      |        |     |
-|flowWorkspace                        |?       |      |        |     |
-|GAPGOM                               |?       |      |        |     |
-|maEndToEnd                           |?       |      |        |     |
-|metavizr                             |?       |      |        |     |
-|methrix                              |?       |      |        |     |
-|STROMA4                              |?       |      |        |     |
+|[maEndToEnd](failures.md#maendtoend) |2.6.0   |1     |        |1    |
+|[metavizr](failures.md#metavizr)     |1.10.0  |1     |        |     |
+|[methrix](failures.md#methrix)       |1.0.05  |1     |        |1    |
 
 ## New problems (1)
 
@@ -65,38 +47,38 @@
 |abcrf                                                              |1.8.1   |       |        |     |
 |ACNE                                                               |0.8.1   |       |        |     |
 |adjclust                                                           |0.5.9   |       |        |     |
-|AMARETTO                                                           |?       |       |        |     |
-|amplican                                                           |?       |       |        |     |
+|[AMARETTO](problems.md#amaretto)                                   |1.2.0   |1      |1       |3    |
+|[amplican](problems.md#amplican)                                   |1.8.2   |2      |1       |     |
 |[antiProfiles](problems.md#antiprofiles)                           |1.26.0  |       |        |1    |
 |aroma.affymetrix                                                   |3.2.0   |       |        |     |
 |[aroma.cn](problems.md#aromacn)                                    |1.6.1   |       |        |1    |
 |[aroma.core](problems.md#aromacore)                                |3.2.1   |       |1       |1    |
 |[aroma.light](problems.md#aromalight)                              |3.16.0  |       |        |1    |
 |aSPU                                                               |1.48    |       |        |     |
-|BASiCS                                                             |?       |       |        |     |
-|BatchQC                                                            |?       |       |        |     |
+|[BASiCS](problems.md#basics)                                       |1.8.1   |       |3       |2    |
+|[BatchQC](problems.md#batchqc)                                     |1.14.0  |       |        |1    |
 |BayesTwin                                                          |1.0     |       |        |     |
-|baystability                                                       |?       |       |        |     |
+|[baystability](problems.md#baystability)                           |0.1.0   |       |        |1    |
 |[bdynsys](problems.md#bdynsys)                                     |1.3     |       |        |1    |
-|bigPint                                                            |?       |       |        |     |
+|[bigPint](problems.md#bigpint)                                     |1.2.0   |1      |        |     |
 |bigstep                                                            |1.0.3   |       |        |     |
 |[bingat](problems.md#bingat)                                       |1.3     |       |1       |     |
-|biscuiteer                                                         |?       |       |        |     |
+|[biscuiteer](problems.md#biscuiteer)                               |1.0.0   |1      |        |     |
 |bmrm                                                               |4.1     |       |        |     |
 |[bnbc](problems.md#bnbc)                                           |1.8.0   |       |1       |     |
-|bnclassify                                                         |?       |       |        |     |
+|bnclassify                                                         |0.4.4   |       |        |     |
 |BRISC                                                              |0.2.0   |       |        |     |
-|brms                                                               |?       |       |        |     |
+|brms                                                               |2.11.1  |       |        |     |
 |[bumphunter](failures.md#bumphunter)                               |1.28.0  |1      |        |1    |
 |calmate                                                            |0.12.1  |       |        |     |
 |[CARBayesST](failures.md#carbayesst)                               |3.0.2   |1      |        |     |
 |carx                                                               |0.7.1   |       |        |     |
-|CATALYST                                                           |?       |       |        |     |
-|celda                                                              |?       |       |        |     |
+|[CATALYST](problems.md#catalyst)                                   |1.10.1  |1      |        |     |
+|[celda](problems.md#celda)                                         |1.2.4   |       |1       |1    |
 |[cellWise](problems.md#cellwise)                                   |2.1.0   |       |1       |     |
-|CEMiTool                                                           |?       |       |        |     |
-|ChAMP                                                              |?       |       |        |     |
-|CHARGE                                                             |?       |       |        |     |
+|[CEMiTool](problems.md#cemitool)                                   |1.10.1  |       |        |1    |
+|[ChAMP](failures.md#champ)                                         |2.16.1  |1      |        |1    |
+|[CHARGE](problems.md#charge)                                       |1.6.0   |1      |2       |1    |
 |ChemoSpec2D                                                        |0.3.166 |       |        |     |
 |Chicago                                                            |?       |       |        |     |
 |childhoodmortality                                                 |0.3.0   |       |        |     |
@@ -132,7 +114,7 @@
 |[DepecheR](problems.md#depecher)                                   |1.2.1   |-1     |1       |2    |
 |DEqMS                                                              |1.4.0   |       |        |     |
 |detrendr                                                           |0.6.4   |       |        |     |
-|DGCA                                                               |?       |       |        |     |
+|DGCA                                                               |1.0.2   |       |        |     |
 |DHS.rates                                                          |0.7.0   |       |        |     |
 |diffloop                                                           |1.14.0  |       |        |     |
 |DiscoRhythm                                                        |1.2.1   |       |        |     |
@@ -168,12 +150,12 @@
 |filesstrings                                                       |3.1.5   |       |        |     |
 |fishpond                                                           |1.2.0   |       |        |     |
 |flowCore                                                           |1.52.1  |       |        |     |
-|flowSpy                                                            |?       |       |        |     |
-|flowWorkspace                                                      |?       |       |        |     |
+|[flowSpy](problems.md#flowspy)                                     |1.0.0   |1      |        |     |
+|[flowWorkspace](problems.md#flowworkspace)                         |3.34.1  |1      |3       |6    |
 |funtooNorm                                                         |1.10.0  |       |        |     |
 |GAD                                                                |1.1.1   |       |        |     |
 |[gap](problems.md#gap)                                             |1.2.2   |       |1       |1    |
-|GAPGOM                                                             |?       |       |        |     |
+|[GAPGOM](problems.md#gapgom)                                       |1.2.0   |1      |        |     |
 |gcapc                                                              |1.10.0  |       |        |     |
 |GeneralizedUmatrix                                                 |1.1.6   |       |        |     |
 |GenEst                                                             |1.4.0.2 |       |        |     |
@@ -209,7 +191,7 @@
 |ltmle                                                              |1.1-0   |       |        |     |
 |Luminescence                                                       |0.9.7   |       |        |     |
 |M3Drop                                                             |1.12.0  |       |        |     |
-|maEndToEnd                                                         |?       |       |        |     |
+|[maEndToEnd](failures.md#maendtoend)                               |2.6.0   |1      |        |1    |
 |matrixTests                                                        |0.1.8   |       |        |     |
 |MEAL                                                               |1.16.0  |       |        |     |
 |MEDseq                                                             |1.0.1   |       |        |     |
@@ -218,8 +200,8 @@
 |[metagenomeSeq](problems.md#metagenomeseq)                         |1.28.2  |       |2       |     |
 |metamicrobiomeR                                                    |1.1     |       |        |     |
 |MetaNeighbor                                                       |1.6.0   |       |        |     |
-|metavizr                                                           |?       |       |        |     |
-|methrix                                                            |?       |       |        |     |
+|[metavizr](failures.md#metavizr)                                   |1.10.0  |1      |        |     |
+|[methrix](failures.md#methrix)                                     |1.0.05  |1      |        |1    |
 |MethylAid                                                          |1.20.0  |       |        |     |
 |methylationArrayAnalysis                                           |1.10.0  |       |        |     |
 |methylumi                                                          |2.32.0  |       |        |     |
@@ -301,7 +283,7 @@
 |statar                                                             |0.7.1   |       |        |     |
 |stm                                                                |1.3.5   |       |        |     |
 |strex                                                              |1.2.0   |       |        |     |
-|STROMA4                                                            |?       |       |        |     |
+|[STROMA4](problems.md#stroma4)                                     |1.10.0  |1      |        |1    |
 |StructFDR                                                          |1.3     |       |        |     |
 |subtee                                                             |0.3-5   |       |        |     |
 |summarytools                                                       |0.9.5   |       |        |     |

@@ -1816,3 +1816,1361 @@ Run `revdep_details(,"tximport")` for more info
     Package suggested but not available for checking: ‘csaw’
     ```
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ng whether package ‘maEndToEnd’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'Biobase', 'oligoClasses', 'ArrayExpress', 'pd.hugene.1.0.st.v1',
+      'hugene10sttranscriptcluster.db', 'oligo', 'arrayQualityMetrics',
+      'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
+      'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
+      'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
+      'Rgraphviz'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘maEndToEnd’ ...
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘maEndToEnd’ 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00_pkg_src/maEndToEnd: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Warning: multiple methods tables found for ‘splitAsList’
+No methods found in package ‘RSQLite’ for request: ‘dbListFields’ when loading ‘oligo’
+ ----------- FAILURE REPORT -------------- 
+ --- failure: length > 1 in coercion to logical ---
+ --- srcref --- 
+: 
+ --- package (from environment) --- 
+methods
+ --- call from context --- 
+conformMethod(signature, mnames, fnames, f, fdef, definition)
+ --- call from argument --- 
+omittedSig && (signature[omittedSig] != "missing")
+ --- R stacktrace ---
+where 1: conformMethod(signature, mnames, fnames, f, fdef, definition)
+where 2: setMethod(paste0(f, "<-"), ..., where = where)
+where 3: setReplaceMethod("pm", signature(object = "TilingFeatureSet", 
+    value = "array"), function(object, value) {
+    idx <- pmindex(object)
+    if (all(channelNames(object) %in% c("channel1", "channel2"))) {
+        tmp <- assayDataElement(object, "channel1")
+        tmp[idx, ] <- value[, , 1]
+        out <- assayDataElementReplace(object, "channel1", tmp)
+        tmp <- assayDataElement(out, "channel2")
+        tmp[idx, ] <- value[, , 2]
+        assayDataElementReplace(out, "channel2", tmp)
+    }
+    else {
+        callNextMethod()
+    }
+})
+where 4: eval(exprs[i], envir)
+where 5: eval(exprs[i], envir)
+where 6: sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data)
+where 7: doTryCatch(return(expr), name, parentenv, handler)
+where 8: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+where 9: tryCatchList(expr, classes, parentenv, handlers)
+where 10: tryCatch(expr, error = function(e) {
+    call <- conditionCall(e)
+    if (!is.null(call)) {
+        if (identical(call[[1L]], quote(doTryCatch))) 
+            call <- sys.call(-4L)
+        dcall <- deparse(call)[1L]
+        prefix <- paste("Error in", dcall, ": ")
+        LONG <- 75L
+        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
+        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
+        if (is.na(w)) 
+            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
+                type = "b")
+        if (w > LONG) 
+            prefix <- paste0(prefix, "\n  ")
+    }
+    else prefix <- "Error : "
+    msg <- paste0(prefix, conditionMessage(e), "\n")
+    .Internal(seterrmessage(msg[1L]))
+    if (!silent && isTRUE(getOption("show.error.messages"))) {
+        cat(msg, file = outFile)
+        .Internal(printDeferredWarnings())
+    }
+    invisible(structure(msg, class = "try-error", condition = e))
+})
+where 11: try(sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data))
+where 12: loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])
+where 13: asNamespace(ns)
+where 14: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc, 
+    .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+where 15: loadNamespace(package, lib.loc)
+where 16: doTryCatch(return(expr), name, parentenv, handler)
+where 17: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+where 18: tryCatchList(expr, classes, parentenv, handlers)
+where 19: tryCatch({
+    attr(package, "LibPath") <- which.lib.loc
+    ns <- loadNamespace(package, lib.loc)
+    env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+}, error = function(e) {
+    P <- if (!is.null(cc <- conditionCall(e))) 
+        paste(" in", deparse(cc)[1L])
+    else ""
+    msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+        sQuote(package), P, conditionMessage(e))
+    if (logical.return) 
+        message(paste("Error:", msg), domain = NA)
+    else stop(msg, call. = FALSE, domain = NA)
+})
+where 20: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
+    quietly = quietly)
+where 21: .getRequiredPackages2(pkgInfo, quietly = quietly)
+where 22: library(pkg_name, lib.loc = lib, character.only = TRUE, logical.return = TRUE)
+where 23: withCallingHandlers(expr, packageStartupMessage = function(c) invokeRestart("muffleMessage"))
+where 24: suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
+    character.only = TRUE, logical.return = TRUE))
+where 25: doTryCatch(return(expr), name, parentenv, handler)
+where 26: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+where 27: tryCatchList(expr, classes, parentenv, handlers)
+where 28: tryCatch(expr, error = function(e) {
+    call <- conditionCall(e)
+    if (!is.null(call)) {
+        if (identical(call[[1L]], quote(doTryCatch))) 
+            call <- sys.call(-4L)
+        dcall <- deparse(call)[1L]
+        prefix <- paste("Error in", dcall, ": ")
+        LONG <- 75L
+        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
+        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
+        if (is.na(w)) 
+            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
+                type = "b")
+        if (w > LONG) 
+            prefix <- paste0(prefix, "\n  ")
+    }
+    else prefix <- "Error : "
+    msg <- paste0(prefix, conditionMessage(e), "\n")
+    .Internal(seterrmessage(msg[1L]))
+    if (!silent && isTRUE(getOption("show.error.messages"))) {
+        cat(msg, file = outFile)
+        .Internal(printDeferredWarnings())
+    }
+    invisible(structure(msg, class = "try-error", condition = e))
+})
+where 29: try(suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
+    character.only = TRUE, logical.return = TRUE)))
+where 30: tools:::.test_load_package("maEndToEnd", "/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00LOCK-maEndToEnd/00new")
+
+ --- value of length: 4 type: logical ---
+[1] FALSE  TRUE  TRUE FALSE
+ --- function from context --- 
+function (signature, mnames, fnames, f = "<unspecified>", fdef, 
+    method) 
+{
+    sig0 <- signature
+    fsig <- fdef@signature
+    if (is.na(match("...", mnames)) && !is.na(match("...", fnames))) 
+        fnames <- fnames[-match("...", fnames)]
+    imf <- match(fnames, mnames)
+    omitted <- is.na(imf)
+    if (is.unsorted(imf[!omitted])) 
+        stop(.renderSignature(f, signature), "formal arguments in method and generic do not appear in the same order", 
+            call. = FALSE)
+    if (!any(omitted)) 
+        return(signature)
+    sigNames <- names(signature)
+    omittedSig <- sigNames %in% fnames[omitted]
+    if (!any(omittedSig)) 
+        return(signature)
+    if (any(is.na(match(signature[omittedSig], c("ANY", "missing"))))) {
+        bad <- omittedSig & is.na(match(signature[omittedSig], 
+            c("ANY", "missing")))
+        bad2 <- paste0(fnames[bad], " = \"", signature[bad], 
+            "\"", collapse = ", ")
+        stop(.renderSignature(f, sig0), gettextf("formal arguments (%s) omitted in the method definition cannot be in the signature", 
+            bad2), call. = TRUE, domain = NA)
+    }
+    else if (!all(signature[omittedSig] == "missing")) {
+        omittedSig <- omittedSig && (signature[omittedSig] != 
+            "missing")
+        .message("Note: ", .renderSignature(f, sig0), gettextf("expanding the signature to include omitted arguments in definition: %s", 
+            paste(sigNames[omittedSig], "= \"missing\"", collapse = ", ")))
+        omittedSig <- seq_along(omittedSig)[omittedSig]
+        signature[omittedSig] <- "missing"
+    }
+    n <- length(signature)
+    while (.identC(signature[[n]], "ANY")) n <- n - 1L
+    length(signature) <- n
+    length(fsig) <- n
+    setNames(signature, fsig)
+}
+<bytecode: 0x26c68370>
+<environment: namespace:methods>
+ --- function search by body ---
+Function conformMethod in namespace methods has this body.
+ ----------- END OF FAILURE REPORT -------------- 
+Error in omittedSig && (signature[omittedSig] != "missing") : 
+  'length(x) = 4 > 1' in coercion to 'logical(1)'
+Error: package or namespace load failed for ‘ArrayExpress’:
+ unable to load R code in package ‘oligo’
+Error : package ‘ArrayExpress’ could not be loaded
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/maEndToEnd’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘maEndToEnd’ ...
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘maEndToEnd’ 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/00_pkg_src/maEndToEnd: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Warning: multiple methods tables found for ‘splitAsList’
+No methods found in package ‘RSQLite’ for request: ‘dbListFields’ when loading ‘oligo’
+ ----------- FAILURE REPORT -------------- 
+ --- failure: length > 1 in coercion to logical ---
+ --- srcref --- 
+: 
+ --- package (from environment) --- 
+methods
+ --- call from context --- 
+conformMethod(signature, mnames, fnames, f, fdef, definition)
+ --- call from argument --- 
+omittedSig && (signature[omittedSig] != "missing")
+ --- R stacktrace ---
+where 1: conformMethod(signature, mnames, fnames, f, fdef, definition)
+where 2: setMethod(paste0(f, "<-"), ..., where = where)
+where 3: setReplaceMethod("pm", signature(object = "TilingFeatureSet", 
+    value = "array"), function(object, value) {
+    idx <- pmindex(object)
+    if (all(channelNames(object) %in% c("channel1", "channel2"))) {
+        tmp <- assayDataElement(object, "channel1")
+        tmp[idx, ] <- value[, , 1]
+        out <- assayDataElementReplace(object, "channel1", tmp)
+        tmp <- assayDataElement(out, "channel2")
+        tmp[idx, ] <- value[, , 2]
+        assayDataElementReplace(out, "channel2", tmp)
+    }
+    else {
+        callNextMethod()
+    }
+})
+where 4: eval(exprs[i], envir)
+where 5: eval(exprs[i], envir)
+where 6: sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data)
+where 7: doTryCatch(return(expr), name, parentenv, handler)
+where 8: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+where 9: tryCatchList(expr, classes, parentenv, handlers)
+where 10: tryCatch(expr, error = function(e) {
+    call <- conditionCall(e)
+    if (!is.null(call)) {
+        if (identical(call[[1L]], quote(doTryCatch))) 
+            call <- sys.call(-4L)
+        dcall <- deparse(call)[1L]
+        prefix <- paste("Error in", dcall, ": ")
+        LONG <- 75L
+        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
+        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
+        if (is.na(w)) 
+            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
+                type = "b")
+        if (w > LONG) 
+            prefix <- paste0(prefix, "\n  ")
+    }
+    else prefix <- "Error : "
+    msg <- paste0(prefix, conditionMessage(e), "\n")
+    .Internal(seterrmessage(msg[1L]))
+    if (!silent && isTRUE(getOption("show.error.messages"))) {
+        cat(msg, file = outFile)
+        .Internal(printDeferredWarnings())
+    }
+    invisible(structure(msg, class = "try-error", condition = e))
+})
+where 11: try(sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data))
+where 12: loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])
+where 13: asNamespace(ns)
+where 14: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc, 
+    .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
+where 15: loadNamespace(package, lib.loc)
+where 16: doTryCatch(return(expr), name, parentenv, handler)
+where 17: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+where 18: tryCatchList(expr, classes, parentenv, handlers)
+where 19: tryCatch({
+    attr(package, "LibPath") <- which.lib.loc
+    ns <- loadNamespace(package, lib.loc)
+    env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+}, error = function(e) {
+    P <- if (!is.null(cc <- conditionCall(e))) 
+        paste(" in", deparse(cc)[1L])
+    else ""
+    msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+        sQuote(package), P, conditionMessage(e))
+    if (logical.return) 
+        message(paste("Error:", msg), domain = NA)
+    else stop(msg, call. = FALSE, domain = NA)
+})
+where 20: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
+    quietly = quietly)
+where 21: .getRequiredPackages2(pkgInfo, quietly = quietly)
+where 22: library(pkg_name, lib.loc = lib, character.only = TRUE, logical.return = TRUE)
+where 23: withCallingHandlers(expr, packageStartupMessage = function(c) invokeRestart("muffleMessage"))
+where 24: suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
+    character.only = TRUE, logical.return = TRUE))
+where 25: doTryCatch(return(expr), name, parentenv, handler)
+where 26: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+where 27: tryCatchList(expr, classes, parentenv, handlers)
+where 28: tryCatch(expr, error = function(e) {
+    call <- conditionCall(e)
+    if (!is.null(call)) {
+        if (identical(call[[1L]], quote(doTryCatch))) 
+            call <- sys.call(-4L)
+        dcall <- deparse(call)[1L]
+        prefix <- paste("Error in", dcall, ": ")
+        LONG <- 75L
+        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
+        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
+        if (is.na(w)) 
+            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
+                type = "b")
+        if (w > LONG) 
+            prefix <- paste0(prefix, "\n  ")
+    }
+    else prefix <- "Error : "
+    msg <- paste0(prefix, conditionMessage(e), "\n")
+    .Internal(seterrmessage(msg[1L]))
+    if (!silent && isTRUE(getOption("show.error.messages"))) {
+        cat(msg, file = outFile)
+        .Internal(printDeferredWarnings())
+    }
+    invisible(structure(msg, class = "try-error", condition = e))
+})
+where 29: try(suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
+    character.only = TRUE, logical.return = TRUE)))
+where 30: tools:::.test_load_package("maEndToEnd", "/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/00LOCK-maEndToEnd/00new")
+
+ --- value of length: 4 type: logical ---
+[1] FALSE  TRUE  TRUE FALSE
+ --- function from context --- 
+function (signature, mnames, fnames, f = "<unspecified>", fdef, 
+    method) 
+{
+    sig0 <- signature
+    fsig <- fdef@signature
+    if (is.na(match("...", mnames)) && !is.na(match("...", fnames))) 
+        fnames <- fnames[-match("...", fnames)]
+    imf <- match(fnames, mnames)
+    omitted <- is.na(imf)
+    if (is.unsorted(imf[!omitted])) 
+        stop(.renderSignature(f, signature), "formal arguments in method and generic do not appear in the same order", 
+            call. = FALSE)
+    if (!any(omitted)) 
+        return(signature)
+    sigNames <- names(signature)
+    omittedSig <- sigNames %in% fnames[omitted]
+    if (!any(omittedSig)) 
+        return(signature)
+    if (any(is.na(match(signature[omittedSig], c("ANY", "missing"))))) {
+        bad <- omittedSig & is.na(match(signature[omittedSig], 
+            c("ANY", "missing")))
+        bad2 <- paste0(fnames[bad], " = \"", signature[bad], 
+            "\"", collapse = ", ")
+        stop(.renderSignature(f, sig0), gettextf("formal arguments (%s) omitted in the method definition cannot be in the signature", 
+            bad2), call. = TRUE, domain = NA)
+    }
+    else if (!all(signature[omittedSig] == "missing")) {
+        omittedSig <- omittedSig && (signature[omittedSig] != 
+            "missing")
+        .message("Note: ", .renderSignature(f, sig0), gettextf("expanding the signature to include omitted arguments in definition: %s", 
+            paste(sigNames[omittedSig], "= \"missing\"", collapse = ", ")))
+        omittedSig <- seq_along(omittedSig)[omittedSig]
+        signature[omittedSig] <- "missing"
+    }
+    n <- length(signature)
+    while (.identC(signature[[n]], "ANY")) n <- n - 1L
+    length(signature) <- n
+    length(fsig) <- n
+    setNames(signature, fsig)
+}
+<bytecode: 0x265d6608>
+<environment: namespace:methods>
+ --- function search by body ---
+Function conformMethod in namespace methods has this body.
+ ----------- END OF FAILURE REPORT -------------- 
+Error in omittedSig && (signature[omittedSig] != "missing") : 
+  'length(x) = 4 > 1' in coercion to 'logical(1)'
+Error: package or namespace load failed for ‘ArrayExpress’:
+ unable to load R code in package ‘oligo’
+Error : package ‘ArrayExpress’ could not be loaded
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/maEndToEnd’
+
+```
+# metagenomeSeq
+
+<details>
+
+* Version: 1.28.2
+* Source code: https://github.com/cran/metagenomeSeq
+* URL: https://github.com/nosson/metagenomeSeq/
+* BugReports: https://github.com/nosson/metagenomeSeq/issues
+* Date/Publication: 2020-02-03
+* Number of recursive dependencies: 116
+
+Run `revdep_details(,"metagenomeSeq")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Missing link or links in documentation object 'MRihw-fitFeatureModelResults.Rd':
+      ‘fitFeatureModelResults’ ‘fitZigResults’
+    
+    Missing link or links in documentation object 'MRihw-fitZigResults.Rd':
+      ‘fitFeatureModelResults’ ‘fitZigResults’
+    
+    See section 'Cross-references' in the 'Writing R Extensions' manual.
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'MRcoefs':
+      ‘IHWcov’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+# metavizr
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/metavizr
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 173
+
+Run `revdep_details(,"metavizr")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘metavizr’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘metavizr’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/00_pkg_src/metavizr: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘metavizr’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/metavizr’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘metavizr’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/old/metavizr.Rcheck/00_pkg_src/metavizr: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘metavizr’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/old/metavizr.Rcheck/metavizr’
+
+```
+# methrix
+
+<details>
+
+* Version: 1.0.05
+* Source code: https://github.com/cran/methrix
+* Date/Publication: 2020-01-08
+* Number of recursive dependencies: 144
+
+Run `revdep_details(,"methrix")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘methrix’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/new/methrix.Rcheck/00install.out’ for details.
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘methrix’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/new/methrix.Rcheck/00_pkg_src/methrix: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Warning message:
+multiple methods tables found for ‘splitAsList’ 
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘methrix’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/new/methrix.Rcheck/methrix’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘methrix’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/old/methrix.Rcheck/00_pkg_src/methrix: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Warning message:
+multiple methods tables found for ‘splitAsList’ 
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘methrix’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/old/methrix.Rcheck/methrix’
+
+```
+# MFHD
+
+<details>
+
+* Version: 0.0.1
+* Source code: https://github.com/cran/MFHD
+* Date/Publication: 2013-10-23 23:50:20
+* Number of recursive dependencies: 78
+
+Run `revdep_details(,"MFHD")` for more info
+
+</details>
+
+## In both
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+      ‘plot’
+    plot.bagplot : find.cut.z.pg: no visible global function definition for
+      ‘points’
+    plot.bagplot : find.cut.z.pg: no visible global function definition for
+      ‘lines’
+    plot.bagplot: no visible global function definition for ‘boxplot’
+    plot.bagplot: no visible global function definition for ‘plot’
+    plot.bagplot: no visible global function definition for ‘points’
+    plot.bagplot: no visible global function definition for ‘segments’
+    plot.bagplot: no visible global function definition for ‘text’
+    plot.bagplot: no visible global function definition for ‘lines’
+    plot.bagplot: no visible global function definition for ‘polygon’
+    Undefined global functions or variables:
+      boxplot chull complete.cases identify lines plot points polygon
+      prcomp quantile sd segments text xy.coords
+    Consider adding
+      importFrom("grDevices", "chull", "xy.coords")
+      importFrom("graphics", "boxplot", "identify", "lines", "plot",
+                 "points", "polygon", "segments", "text")
+      importFrom("stats", "complete.cases", "prcomp", "quantile", "sd")
+    to your NAMESPACE file.
+    ```
+
+# MHTcop
+
+<details>
+
+* Version: 0.1.1
+* Source code: https://github.com/cran/MHTcop
+* Date/Publication: 2019-01-21 16:10:03 UTC
+* Number of recursive dependencies: 39
+
+Run `revdep_details(,"MHTcop")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘MCMCpack’ ‘copula’
+      All declared Imports should be used.
+    ```
+
+# monocle
+
+<details>
+
+* Version: 2.14.0
+* Source code: https://github.com/cran/monocle
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 248
+
+Run `revdep_details(,"monocle")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘Rcpp’ ‘biocViews’
+      All declared Imports should be used.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    extract_good_ordering: no visible global function definition for ‘nei’
+    fit_model_helper: no visible binding for global variable ‘Size_Factor’
+    get_next_node_id: no visible binding for '<<-' assignment to
+      ‘next_node’
+    get_next_node_id: no visible binding for global variable ‘next_node’
+    make_canonical: no visible global function definition for ‘nei’
+    measure_diameter_path: no visible global function definition for ‘nei’
+    orderCells: no visible binding for '<<-' assignment to ‘next_node’
+    plot_multiple_branches_pseudotime: no visible binding for global
+      variable ‘pseudocount’
+    plot_multiple_branches_pseudotime: no visible binding for global
+      variable ‘Branch’
+    project2MST: no visible global function definition for ‘nei’
+    reverseEmbeddingCDS : <anonymous>: no visible global function
+      definition for ‘quantile’
+    Undefined global functions or variables:
+      Branch Size_Factor nei next_node pseudocount quantile
+      use_for_ordering
+    Consider adding
+      importFrom("stats", "quantile")
+    to your NAMESPACE file.
+    ```
+
+*   checking files in ‘vignettes’ ... NOTE
+    ```
+    The following directory looks like a leftover from 'knitr':
+      ‘figure’
+    Please remove from your package.
+    ```
+
+# mrfDepth
+
+<details>
+
+* Version: 1.0.11
+* Source code: https://github.com/cran/mrfDepth
+* URL: https://github.com/PSegaert/mrfDepth
+* BugReports: https://github.com/PSegaert/mrfDepth/issues
+* Date/Publication: 2019-05-15 10:00:03 UTC
+* Number of recursive dependencies: 48
+
+Run `revdep_details(,"mrfDepth")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.1Mb
+      sub-directories of 1Mb or more:
+        libs   5.9Mb
+    ```
+
+# NanoStringDiff
+
+<details>
+
+* Version: 1.16.0
+* Source code: https://github.com/cran/NanoStringDiff
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 44
+
+Run `revdep_details(,"NanoStringDiff")` for more info
+
+</details>
+
+## Newly fixed
+
+*   checking running R code from vignettes ...
+    ```
+      ‘NanoStringDiff.Rnw’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘NanoStringDiff.Rnw’
+      ...
+    
+    
+    > contrast = c(-1, 1)
+    
+    > NanoStringData1 = estNormalizationFactors(NanoStringData1)
+    Warning in log(y/mu) : NaNs produced
+    
+      When sourcing ‘NanoStringDiff.R’:
+    Error: no valid set of coefficients has been found: please supply starting values
+    Execution halted
+    ```
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘compute.baseSigma’ ‘est.dispersion’ ‘fun5’ ‘glmfit.OneGroup’
+      ‘glmfit.full’ ‘glmfit.reduce’ ‘rnegbinom’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    glmfit.full: no visible global function definition for ‘lm’
+    glmfit.full: no visible global function definition for ‘median’
+    glmfit.full: no visible global function definition for ‘IQR’
+    glmfit.full : get.phi: no visible global function definition for
+      ‘optimize’
+    glmfit.full : get.beta.full: no visible global function definition for
+      ‘optim’
+    glmfit.reduce: no visible global function definition for ‘lm’
+    glmfit.reduce : get.beta.reduce: no visible global function definition
+      for ‘optim’
+    rnegbinom: no visible global function definition for ‘rpois’
+    rnegbinom: no visible global function definition for ‘rgamma’
+    Undefined global functions or variables:
+      IQR abline glm lm median optim optimize p.adjust par pchisq plot
+      poisson read.table rgamma rowVars rpois textxy title
+    Consider adding
+      importFrom("graphics", "abline", "par", "plot", "title")
+      importFrom("stats", "IQR", "glm", "lm", "median", "optim", "optimize",
+                 "p.adjust", "pchisq", "poisson", "rgamma", "rpois")
+      importFrom("utils", "read.table")
+    to your NAMESPACE file.
+    ```
+
+*   checking installed files from ‘inst/doc’ ... NOTE
+    ```
+    The following files look like leftovers/mistakes:
+      ‘NanoStringDiff.log’
+    Please remove them from your package.
+    ```
+
+# OptimalDesign
+
+<details>
+
+* Version: 1.0.1
+* Source code: https://github.com/cran/OptimalDesign
+* URL: < http://www.iam.fmph.uniba.sk/design/ >
+* Date/Publication: 2019-12-02 08:50:07 UTC
+* Number of recursive dependencies: 69
+
+Run `revdep_details(,"OptimalDesign")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'gurobi', 'slam'
+    ```
+
+# pandaR
+
+<details>
+
+* Version: 1.18.0
+* Source code: https://github.com/cran/pandaR
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 51
+
+Run `revdep_details(,"pandaR")` for more info
+
+</details>
+
+## In both
+
+*   checking S3 generic/method consistency ... NOTE
+    ```
+    Found the following apparent S3 methods exported but not registered:
+      plot.panda
+    See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    dFunction: no visible global function definition for ‘cor’
+    importPandaMatlab: no visible global function definition for
+      ‘read.delim’
+    panda: no visible global function definition for ‘cor’
+    panda: no visible global function definition for ‘aggregate’
+    plot.panda: no visible global function definition for ‘hist’
+    plotCommunityDetection: no visible global function definition for
+      ‘title’
+    plotZbyTF: no visible global function definition for ‘aggregate’
+    prepResult: no visible global function definition for ‘pnorm’
+    Undefined global functions or variables:
+      aggregate cor hist pnorm read.delim title
+    Consider adding
+      importFrom("graphics", "hist", "title")
+      importFrom("stats", "aggregate", "cor", "pnorm")
+      importFrom("utils", "read.delim")
+    to your NAMESPACE file.
+    ```
+
+*   checking Rd \usage sections ... NOTE
+    ```
+    S3 methods shown with full name in documentation object 'plot.panda':
+      ‘plot.panda’
+    
+    The \usage entries for S3 methods should use the \method markup and not
+    their full name.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+# pcaMethods
+
+<details>
+
+* Version: 1.78.0
+* Source code: https://github.com/cran/pcaMethods
+* URL: https://github.com/hredestig/pcamethods
+* BugReports: https://github.com/hredestig/pcamethods/issues
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 40
+
+Run `revdep_details(,"pcaMethods")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Unknown package ‘ade4’ in Rd xrefs
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    svdImpute: no visible global function definition for ‘prcomp’
+    svdPca: no visible global function definition for ‘prcomp’
+    plot,pcaRes: no visible global function definition for ‘gray’
+    plot,pcaRes: no visible global function definition for ‘barplot’
+    plot,pcaRes: no visible global function definition for ‘legend’
+    slplot,pcaRes: no visible global function definition for ‘par’
+    slplot,pcaRes: no visible global function definition for ‘layout’
+    slplot,pcaRes: no visible global function definition for ‘abline’
+    slplot,pcaRes: no visible global function definition for ‘lines’
+    Undefined global functions or variables:
+      abline barplot cor cov gray layout legend lines median na.omit pairs
+      par points prcomp qf rnorm runif setTxtProgressBar text
+      txtProgressBar
+    Consider adding
+      importFrom("grDevices", "gray")
+      importFrom("graphics", "abline", "barplot", "layout", "legend",
+                 "lines", "pairs", "par", "points", "text")
+      importFrom("stats", "cor", "cov", "median", "na.omit", "prcomp", "qf",
+                 "rnorm", "runif")
+      importFrom("utils", "setTxtProgressBar", "txtProgressBar")
+    to your NAMESPACE file.
+    ```
+
+# phosphonormalizer
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/phosphonormalizer
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 40
+
+Run `revdep_details(,"phosphonormalizer")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package which this enhances but not available for checking: ‘MSnbase’
+    ```
+
+# ProteoMM
+
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/ProteoMM
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 85
+
+Run `revdep_details(,"ProteoMM")` for more info
+
+</details>
+
+## In both
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    License components which are templates and need '+ file LICENSE':
+      MIT
+    ```
+
+# r2dRue
+
+<details>
+
+* Version: 1.0.4
+* Source code: https://github.com/cran/r2dRue
+* Date/Publication: 2013-06-28 12:22:19
+* Number of recursive dependencies: 4
+
+Run `revdep_details(,"r2dRue")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    'library' or 'require' call to ‘rgdal’ which was already attached by Depends.
+      Please remove these calls from your code.
+    Packages in Depends field not imported from:
+      ‘matrixStats’ ‘rgdal’ ‘sp’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    rueObsMe: no visible global function definition for ‘readGDAL’
+    rueObsMe: no visible global function definition for ‘setTxtProgressBar’
+    showInfo: no visible global function definition for ‘head’
+    solarRad: no visible global function definition for ‘is.projected’
+    solarRad: no visible global function definition for ‘coordinates’
+    solarRad12M: no visible global function definition for ‘writeGDAL’
+    summarize: no visible global function definition for ‘writeGDAL’
+    Undefined global functions or variables:
+      GDAL.close GDAL.open GDALinfo abline axis.Date barplot boxplot
+      coordinates cor density gdalDrivers head hist image is.projected
+      layout layout.show lines na.omit pf plot pt read.table readGDAL rect
+      rowCounts rowMedians rowRanges rowSds rowVars setTxtProgressBar
+      spplot title txtProgressBar write.table writeGDAL
+    Consider adding
+      importFrom("graphics", "abline", "axis.Date", "barplot", "boxplot",
+                 "hist", "image", "layout", "layout.show", "lines", "plot",
+                 "rect", "title")
+      importFrom("stats", "cor", "density", "na.omit", "pf", "pt")
+      importFrom("utils", "head", "read.table", "setTxtProgressBar",
+                 "txtProgressBar", "write.table")
+    to your NAMESPACE file.
+    ```
+
+# randomizationInference
+
+<details>
+
+* Version: 1.0.3
+* Source code: https://github.com/cran/randomizationInference
+* Date/Publication: 2015-01-09 07:58:52
+* Number of recursive dependencies: 2
+
+Run `revdep_details(,"randomizationInference")` for more info
+
+</details>
+
+## In both
+
+*   checking R code for possible problems ... NOTE
+    ```
+    anovaF: no visible global function definition for ‘anova’
+    anovaF: no visible global function definition for ‘lm’
+    randInterval: no visible global function definition for ‘quantile’
+    randInterval : <anonymous>: no visible global function definition for
+      ‘quantile’
+    randPlot: no visible global function definition for ‘par’
+    randPlot: no visible global function definition for ‘hist’
+    randPlot: no visible global function definition for ‘abline’
+    Undefined global functions or variables:
+      abline anova hist lm par quantile
+    Consider adding
+      importFrom("graphics", "abline", "hist", "par")
+      importFrom("stats", "anova", "lm", "quantile")
+    to your NAMESPACE file.
+    ```
+
+# RTransProb
+
+<details>
+
+* Version: 0.3.3
+* Source code: https://github.com/cran/RTransProb
+* Date/Publication: 2018-07-17 17:10:11 UTC
+* Number of recursive dependencies: 74
+
+Run `revdep_details(,"RTransProb")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘RTransProb’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RTransProb/new/RTransProb.Rcheck/00install.out’ for details.
+    ```
+
+# Single.mTEC.Transcriptomes
+
+<details>
+
+* Version: 1.14.0
+* Source code: https://github.com/cran/Single.mTEC.Transcriptomes
+* Date/Publication: 2019-11-05
+* Number of recursive dependencies: 151
+
+Run `revdep_details(,"Single.mTEC.Transcriptomes")` for more info
+
+</details>
+
+## In both
+
+*   checking contents of ‘data’ directory ... WARNING
+    ```
+    Output for data("dxdATAC", package = "Single.mTEC.Transcriptomes"):
+      Warning: namespace ‘GenomicRanges’ is not available and has been replaced
+      by .GlobalEnv when processing object ‘dxdATAC’
+    Output for data("fantom", package = "Single.mTEC.Transcriptomes"):
+      Warning: namespace ‘DESeq2’ is not available and has been replaced
+      by .GlobalEnv when processing object ‘dxdFANTOM’
+      Warning: namespace ‘GenomicRanges’ is not available and has been replaced
+      by .GlobalEnv when processing object ‘dxdFANTOM’
+    Output for data("mTECdxd", package = "Single.mTEC.Transcriptomes"):
+      Warning: namespace ‘GenomicRanges’ is not available and has been replaced
+      by .GlobalEnv when processing object ‘dxd’
+    ```
+
+*   checking data for non-ASCII characters ... WARNING
+    ```
+    ...
+      Failed with error:  'package 'GenomeInfoDb' could not be loaded'
+      Error loading dataset 'dxd':
+       Error in .requirePackage(package) : 
+        unable to find required package 'DESeq2'
+      
+      Failed with error:  'package 'GenomeInfoDb' could not be loaded'
+      Error loading dataset 'dxdATAC':
+       Error in .requirePackage(package) : 
+        unable to find required package 'DESeq2'
+      
+      Failed with error:  'package 'GenomeInfoDb' could not be loaded'
+      Error loading dataset 'dxdFANTOM':
+       Error in .requirePackage(package) : 
+        unable to find required package 'DESeq2'
+      
+      Failed with error:  'package 'GenomeInfoDb' could not be loaded'
+      Error loading dataset 'geneRanges':
+       Error in .requirePackage(package) : 
+        unable to find required package 'GenomicRanges'
+      
+      The dataset(s) may use package(s) not declared in the DESCRIPTION file.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘ggbio’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 764.7Mb
+      sub-directories of 1Mb or more:
+        data  764.6Mb
+    ```
+
+# SMAD
+
+<details>
+
+* Version: 1.2.0
+* Source code: https://github.com/cran/SMAD
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 54
+
+Run `revdep_details(,"SMAD")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘matrixStats’
+      All declared Imports should be used.
+    ```
+
+# SRGnet
+
+<details>
+
+* Version: 1.12.0
+* Source code: https://github.com/cran/SRGnet
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 94
+
+Run `revdep_details(,"SRGnet")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'EBcoexpress', 'MASS', 'igraph', 'pvclust', 'gbm', 'limma', 'DMwR',
+      'matrixStats', 'Hmisc'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    SRGnet: no visible binding for global variable
+      ‘Differentially_expressed_genes’
+    SRGnet: no visible binding for global variable ‘Transcriptomics’
+    SRGnet: no visible binding for global variable ‘PLCRG’
+    SRGnet: no visible global function definition for ‘ebPatterns’
+    SRGnet: no visible global function definition for ‘par’
+    SRGnet: no visible global function definition for ‘boxplot’
+    SRGnet: no visible global function definition for ‘plot’
+    SRGnet: no visible global function definition for ‘predict’
+    SRGnet: no visible global function definition for ‘terrain.colors’
+    SRGnet: no visible global function definition for ‘na.omit’
+    SRGnet: no visible global function definition for ‘write.table’
+    Undefined global functions or variables:
+      Differentially_expressed_genes PLCRG Transcriptomics boxplot
+      ebPatterns na.omit par plot predict terrain.colors write.table
+    Consider adding
+      importFrom("grDevices", "terrain.colors")
+      importFrom("graphics", "boxplot", "par", "plot")
+      importFrom("stats", "na.omit", "predict")
+      importFrom("utils", "write.table")
+    to your NAMESPACE file.
+    ```
+
+# staRdom
+
+<details>
+
+* Version: 1.1.3
+* Source code: https://github.com/cran/staRdom
+* URL: https://cran.r-project.org/package=staRdom
+* BugReports: https://github.com/MatthiasPucher/staRdom/issues
+* Date/Publication: 2020-01-28 11:20:02 UTC
+* Number of recursive dependencies: 152
+
+Run `revdep_details(,"staRdom")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘xlsx’
+    ```
+
+# STROMA4
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/STROMA4
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 12
+
+Run `revdep_details(,"STROMA4")` for more info
+
+</details>
+
+## In both
+
+*   checking running R code from vignettes ...
+    ```
+      ‘STROMA4-vignette.Rnw’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘STROMA4-vignette.Rnw’
+      ...
+    
+    > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+    Installing package into ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    (as ‘lib’ is unspecified)
+    
+      When sourcing ‘STROMA4-vignette.R’:
+    Error: trying to use CRAN without setting a mirror
+    Execution halted
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    'library' or 'require' call not declared from: ‘BiocManager’
+    ```
+
+# SuperPCA
+
+<details>
+
+* Version: 0.2.0
+* Source code: https://github.com/cran/SuperPCA
+* Date/Publication: 2019-05-24 14:10:03 UTC
+* Number of recursive dependencies: 35
+
+Run `revdep_details(,"SuperPCA")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘R.matlab’ ‘fBasics’ ‘spls’
+      All declared Imports should be used.
+    ```
+
+# TCA
+
+<details>
+
+* Version: 1.1.0
+* Source code: https://github.com/cran/TCA
+* URL: https://www.nature.com/articles/s41467-019-11052-9
+* BugReports: https://github.com/cozygene/TCA/issues
+* Date/Publication: 2019-11-16 17:10:02 UTC
+* Number of recursive dependencies: 62
+
+Run `revdep_details(,"TCA")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘Matrix’ ‘glmnet’ ‘quadprog’
+      All declared Imports should be used.
+    ```
+
+# treeHMM
+
+<details>
+
+* Version: 0.1.1
+* Source code: https://github.com/cran/treeHMM
+* Date/Publication: 2019-12-12 17:10:02 UTC
+* Number of recursive dependencies: 10
+
+Run `revdep_details(,"treeHMM")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘Matrix’
+      All declared Imports should be used.
+    ```
+
+# tximport
+
+<details>
+
+* Version: 1.14.0
+* Source code: https://github.com/cran/tximport
+* URL: https://github.com/mikelove/tximport
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 149
+
+Run `revdep_details(,"tximport")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘csaw’
+    ```
+
