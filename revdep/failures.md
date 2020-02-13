@@ -3798,430 +3798,1319 @@ installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/library/cola/0
 
 
 ```
-# maEndToEnd
+# flowWorkspace
 
 <details>
 
-* Version: 2.6.0
-* Source code: https://github.com/cran/maEndToEnd
-* URL: https://www.bioconductor.org/help/workflows/
-* Date/Publication: 2019-10-30
-* Number of recursive dependencies: 228
+* Version: 
+* Source code: ???
+* URL: https://github.com/HenrikBengtsson/matrixStats
+* BugReports: https://github.com/HenrikBengtsson/matrixStats/issues
+* Number of recursive dependencies: 0
 
-Run `revdep_details(,"maEndToEnd")` for more info
+Run `revdep_details(,"")` for more info
 
 </details>
 
-## In both
-
-*   checking whether package ‘maEndToEnd’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out’ for details.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      'Biobase', 'oligoClasses', 'ArrayExpress', 'pd.hugene.1.0.st.v1',
-      'hugene10sttranscriptcluster.db', 'oligo', 'arrayQualityMetrics',
-      'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
-      'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
-      'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
-      'Rgraphviz'
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-## Installation
+## Error before installation
 
 ### Devel
 
 ```
-* installing *source* package ‘maEndToEnd’ ...
+gcc -std=gnu99 -g -O2  -Wall px.c -o px
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-common.c -o api-common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c common.c -o common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c extra.c -o extra.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c dummy.c -o dummy.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c posix.c -o posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-posix.c -o api-posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c linux.c -o linux.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-linux.c -o api-linux.o
+gcc -std=gnu99 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -L/usr/local/lib64 -o ps.so init.o api-common.o common.o extra.o dummy.o posix.o api-posix.o linux.o api-linux.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -lR
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘backports’ ...
+* DONE (backports)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *binary* package ‘BiocGenerics’ ...
+* DONE (BiocGenerics)
+* installing *binary* package ‘cluster’ ...
+* DONE (cluster)
+* installing *binary* package ‘colorspace’ ...
+* DONE (colorspace)
+* installing *binary* package ‘corpcor’ ...
+* DONE (corpcor)
+* installing *binary* package ‘crayon’ ...
+* DONE (crayon)
+* installing *binary* package ‘cytolib’ ...
+* DONE (cytolib)
+* installing *binary* package ‘data.table’ ...
+* DONE (data.table)
+* installing *binary* package ‘DEoptimR’ ...
+* DONE (DEoptimR)
+* installing *binary* package ‘digest’ ...
+* DONE (digest)
+* installing *binary* package ‘ellipse’ ...
+* DONE (ellipse)
+* installing *binary* package ‘evaluate’ ...
+* DONE (evaluate)
+* installing *binary* package ‘fansi’ ...
+* DONE (fansi)
+* installing *binary* package ‘farver’ ...
+* DONE (farver)
+* installing *binary* package ‘flowWorkspaceData’ ...
+* DONE (flowWorkspaceData)
+* installing *binary* package ‘FNN’ ...
+* DONE (FNN)
+* installing *binary* package ‘glue’ ...
+* DONE (glue)
+* installing *binary* package ‘gtable’ ...
+* DONE (gtable)
+* installing *binary* package ‘gtools’ ...
+* DONE (gtools)
+* installing *binary* package ‘highr’ ...
+* DONE (highr)
+* installing *binary* package ‘jpeg’ ...
+* DONE (jpeg)
+* installing *binary* package ‘jsonlite’ ...
+* DONE (jsonlite)
+* installing *binary* package ‘kernlab’ ...
+* DONE (kernlab)
+* installing *binary* package ‘KernSmooth’ ...
+* DONE (KernSmooth)
+* installing *binary* package ‘labeling’ ...
+* DONE (labeling)
+* installing *binary* package ‘lattice’ ...
+* DONE (lattice)
+* installing *binary* package ‘lazyeval’ ...
+* DONE (lazyeval)
+* installing *binary* package ‘magrittr’ ...
+* DONE (magrittr)
+* installing *binary* package ‘MASS’ ...
+* DONE (MASS)
+* installing *binary* package ‘mclust’ ...
+* DONE (mclust)
+* installing *binary* package ‘mime’ ...
+* DONE (mime)
+* installing *binary* package ‘mnormt’ ...
+* DONE (mnormt)
+* installing *binary* package ‘mvtnorm’ ...
+* DONE (mvtnorm)
+* installing *binary* package ‘pkgconfig’ ...
+* DONE (pkgconfig)
+* installing *binary* package ‘plogr’ ...
+* DONE (plogr)
+* installing *binary* package ‘png’ ...
+* DONE (png)
+* installing *binary* package ‘praise’ ...
+* DONE (praise)
+* installing *binary* package ‘prettyunits’ ...
+* DONE (prettyunits)
+* installing *source* package ‘ps’ ...
+** package ‘ps’ successfully unpacked and MD5 sums checked
 ** using staged installation
+** libs
+installing via 'install.libs.R' to /wynton/home/cbi/hb/repositories/matrixStats/revdep/library/flowWorkspace/00LOCK-ps/00new/ps
+** R
 ** inst
+** byte-compile and prepare package for lazy loading
 ** help
-No man pages found in package  ‘maEndToEnd’ 
 *** installing help indices
 ** building package indices
-** installing vignettes
 ** testing if installed package can be loaded from temporary location
-.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00_pkg_src/maEndToEnd: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Warning: multiple methods tables found for ‘splitAsList’
-No methods found in package ‘RSQLite’ for request: ‘dbListFields’ when loading ‘oligo’
- ----------- FAILURE REPORT -------------- 
- --- failure: length > 1 in coercion to logical ---
- --- srcref --- 
-: 
- --- package (from environment) --- 
-methods
- --- call from context --- 
-conformMethod(signature, mnames, fnames, f, fdef, definition)
- --- call from argument --- 
-omittedSig && (signature[omittedSig] != "missing")
- --- R stacktrace ---
-where 1: conformMethod(signature, mnames, fnames, f, fdef, definition)
-where 2: setMethod(paste0(f, "<-"), ..., where = where)
-where 3: setReplaceMethod("pm", signature(object = "TilingFeatureSet", 
-    value = "array"), function(object, value) {
-    idx <- pmindex(object)
-    if (all(channelNames(object) %in% c("channel1", "channel2"))) {
-        tmp <- assayDataElement(object, "channel1")
-        tmp[idx, ] <- value[, , 1]
-        out <- assayDataElementReplace(object, "channel1", tmp)
-        tmp <- assayDataElement(out, "channel2")
-        tmp[idx, ] <- value[, , 2]
-        assayDataElementReplace(out, "channel2", tmp)
-    }
-    else {
-        callNextMethod()
-    }
-})
-where 4: eval(exprs[i], envir)
-where 5: eval(exprs[i], envir)
-where 6: sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data)
-where 7: doTryCatch(return(expr), name, parentenv, handler)
-where 8: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-where 9: tryCatchList(expr, classes, parentenv, handlers)
-where 10: tryCatch(expr, error = function(e) {
-    call <- conditionCall(e)
-    if (!is.null(call)) {
-        if (identical(call[[1L]], quote(doTryCatch))) 
-            call <- sys.call(-4L)
-        dcall <- deparse(call)[1L]
-        prefix <- paste("Error in", dcall, ": ")
-        LONG <- 75L
-        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
-        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
-        if (is.na(w)) 
-            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
-                type = "b")
-        if (w > LONG) 
-            prefix <- paste0(prefix, "\n  ")
-    }
-    else prefix <- "Error : "
-    msg <- paste0(prefix, conditionMessage(e), "\n")
-    .Internal(seterrmessage(msg[1L]))
-    if (!silent && isTRUE(getOption("show.error.messages"))) {
-        cat(msg, file = outFile)
-        .Internal(printDeferredWarnings())
-    }
-    invisible(structure(msg, class = "try-error", condition = e))
-})
-where 11: try(sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data))
-where 12: loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])
-where 13: asNamespace(ns)
-where 14: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc, 
-    .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
-where 15: loadNamespace(package, lib.loc)
-where 16: doTryCatch(return(expr), name, parentenv, handler)
-where 17: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-where 18: tryCatchList(expr, classes, parentenv, handlers)
-where 19: tryCatch({
-    attr(package, "LibPath") <- which.lib.loc
-    ns <- loadNamespace(package, lib.loc)
-    env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-}, error = function(e) {
-    P <- if (!is.null(cc <- conditionCall(e))) 
-        paste(" in", deparse(cc)[1L])
-    else ""
-    msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-        sQuote(package), P, conditionMessage(e))
-    if (logical.return) 
-        message(paste("Error:", msg), domain = NA)
-    else stop(msg, call. = FALSE, domain = NA)
-})
-where 20: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
-    quietly = quietly)
-where 21: .getRequiredPackages2(pkgInfo, quietly = quietly)
-where 22: library(pkg_name, lib.loc = lib, character.only = TRUE, logical.return = TRUE)
-where 23: withCallingHandlers(expr, packageStartupMessage = function(c) invokeRestart("muffleMessage"))
-where 24: suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
-    character.only = TRUE, logical.return = TRUE))
-where 25: doTryCatch(return(expr), name, parentenv, handler)
-where 26: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-where 27: tryCatchList(expr, classes, parentenv, handlers)
-where 28: tryCatch(expr, error = function(e) {
-    call <- conditionCall(e)
-    if (!is.null(call)) {
-        if (identical(call[[1L]], quote(doTryCatch))) 
-            call <- sys.call(-4L)
-        dcall <- deparse(call)[1L]
-        prefix <- paste("Error in", dcall, ": ")
-        LONG <- 75L
-        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
-        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
-        if (is.na(w)) 
-            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
-                type = "b")
-        if (w > LONG) 
-            prefix <- paste0(prefix, "\n  ")
-    }
-    else prefix <- "Error : "
-    msg <- paste0(prefix, conditionMessage(e), "\n")
-    .Internal(seterrmessage(msg[1L]))
-    if (!silent && isTRUE(getOption("show.error.messages"))) {
-        cat(msg, file = outFile)
-        .Internal(printDeferredWarnings())
-    }
-    invisible(structure(msg, class = "try-error", condition = e))
-})
-where 29: try(suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
-    character.only = TRUE, logical.return = TRUE)))
-where 30: tools:::.test_load_package("maEndToEnd", "/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00LOCK-maEndToEnd/00new")
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ps)
+* installing *binary* package ‘R.methodsS3’ ...
+* DONE (R.methodsS3)
+* installing *binary* package ‘R6’ ...
+* DONE (R6)
+* installing *binary* package ‘RColorBrewer’ ...
+* DONE (RColorBrewer)
+* installing *binary* package ‘Rcpp’ ...
+* DONE (Rcpp)
+* installing *binary* package ‘RcppParallel’ ...
+* DONE (RcppParallel)
+* installing *binary* package ‘Rhdf5lib’ ...
+* DONE (Rhdf5lib)
+* installing *binary* package ‘rlang’ ...
+* DONE (rlang)
+* installing *binary* package ‘RProtoBufLib’ ...
+* DONE (RProtoBufLib)
+* installing *binary* package ‘rstudioapi’ ...
+* DONE (rstudioapi)
+* installing *binary* package ‘RUnit’ ...
+* DONE (RUnit)
+* installing *binary* package ‘stringi’ ...
+* DONE (stringi)
+* installing *binary* package ‘utf8’ ...
+* DONE (utf8)
+* installing *binary* package ‘viridisLite’ ...
+* DONE (viridisLite)
+* installing *binary* package ‘withr’ ...
+* DONE (withr)
+* installing *binary* package ‘xfun’ ...
+* DONE (xfun)
+* installing *binary* package ‘XML’ ...
+* DONE (XML)
+* installing *binary* package ‘yaml’ ...
+* DONE (yaml)
+* installing *binary* package ‘zlibbioc’ ...
+* DONE (zlibbioc)
+* installing *binary* package ‘Biobase’ ...
+* DONE (Biobase)
+* installing *binary* package ‘cli’ ...
+* DONE (cli)
+* installing *binary* package ‘clue’ ...
+* DONE (clue)
+* installing *binary* package ‘ellipsis’ ...
+* DONE (ellipsis)
+* installing *binary* package ‘graph’ ...
+* DONE (graph)
+* installing *binary* package ‘gridExtra’ ...
+* DONE (gridExtra)
+* installing *binary* package ‘hexbin’ ...
+* DONE (hexbin)
+* installing *binary* package ‘IDPmisc’ ...
+* DONE (IDPmisc)
+* installing *binary* package ‘latticeExtra’ ...
+* DONE (latticeExtra)
+* installing *binary* package ‘lifecycle’ ...
+* DONE (lifecycle)
+* installing *binary* package ‘markdown’ ...
+* DONE (markdown)
+* installing *binary* package ‘Matrix’ ...
+* DONE (Matrix)
+* installing *binary* package ‘multicool’ ...
+* DONE (multicool)
+* installing *binary* package ‘munsell’ ...
+* DONE (munsell)
+* installing *binary* package ‘nlme’ ...
+* DONE (nlme)
+* installing *binary* package ‘pcaPP’ ...
+* DONE (pcaPP)
+* installing *binary* package ‘plyr’ ...
+* DONE (plyr)
+* installing *binary* package ‘processx’ ...
+* DONE (processx)
+* installing *binary* package ‘purrr’ ...
+* DONE (purrr)
+* installing *binary* package ‘R.oo’ ...
+* DONE (R.oo)
+* installing *binary* package ‘RcppArmadillo’ ...
+* DONE (RcppArmadillo)
+* installing *binary* package ‘robustbase’ ...
+* DONE (robustbase)
+* installing *binary* package ‘rprojroot’ ...
+* DONE (rprojroot)
+* installing *binary* package ‘stringr’ ...
+* DONE (stringr)
+* installing *binary* package ‘callr’ ...
+* DONE (callr)
+* installing *binary* package ‘desc’ ...
+* DONE (desc)
+* installing *binary* package ‘fda’ ...
+* DONE (fda)
+* installing *binary* package ‘flowCore’ ...
+* DONE (flowCore)
+* installing *binary* package ‘knitr’ ...
+* DONE (knitr)
+* installing *binary* package ‘mgcv’ ...
+* DONE (mgcv)
+* installing *binary* package ‘R.utils’ ...
+* DONE (R.utils)
+* installing *binary* package ‘RBGL’ ...
+* DONE (RBGL)
+* installing *binary* package ‘reshape2’ ...
+* DONE (reshape2)
+* installing *binary* package ‘Rgraphviz’ ...
+* DONE (Rgraphviz)
+* installing *binary* package ‘rrcov’ ...
+* DONE (rrcov)
+* installing *binary* package ‘scales’ ...
+* DONE (scales)
+* installing *binary* package ‘vctrs’ ...
+* DONE (vctrs)
+* installing *binary* package ‘flowViz’ ...
+* DONE (flowViz)
+* installing *binary* package ‘ks’ ...
+* DONE (ks)
+* installing *binary* package ‘ncdfFlow’ ...
+* DONE (ncdfFlow)
+* installing *binary* package ‘pillar’ ...
+* DONE (pillar)
+* installing *binary* package ‘pkgbuild’ ...
+* DONE (pkgbuild)
+* installing *binary* package ‘tidyselect’ ...
+* DONE (tidyselect)
+* installing *binary* package ‘flowClust’ ...
+* DONE (flowClust)
+* installing *binary* package ‘flowStats’ ...
+* DONE (flowStats)
 
- --- value of length: 4 type: logical ---
-[1] FALSE  TRUE  TRUE FALSE
- --- function from context --- 
-function (signature, mnames, fnames, f = "<unspecified>", fdef, 
-    method) 
-{
-    sig0 <- signature
-    fsig <- fdef@signature
-    if (is.na(match("...", mnames)) && !is.na(match("...", fnames))) 
-        fnames <- fnames[-match("...", fnames)]
-    imf <- match(fnames, mnames)
-    omitted <- is.na(imf)
-    if (is.unsorted(imf[!omitted])) 
-        stop(.renderSignature(f, signature), "formal arguments in method and generic do not appear in the same order", 
-            call. = FALSE)
-    if (!any(omitted)) 
-        return(signature)
-    sigNames <- names(signature)
-    omittedSig <- sigNames %in% fnames[omitted]
-    if (!any(omittedSig)) 
-        return(signature)
-    if (any(is.na(match(signature[omittedSig], c("ANY", "missing"))))) {
-        bad <- omittedSig & is.na(match(signature[omittedSig], 
-            c("ANY", "missing")))
-        bad2 <- paste0(fnames[bad], " = \"", signature[bad], 
-            "\"", collapse = ", ")
-        stop(.renderSignature(f, sig0), gettextf("formal arguments (%s) omitted in the method definition cannot be in the signature", 
-            bad2), call. = TRUE, domain = NA)
-    }
-    else if (!all(signature[omittedSig] == "missing")) {
-        omittedSig <- omittedSig && (signature[omittedSig] != 
-            "missing")
-        .message("Note: ", .renderSignature(f, sig0), gettextf("expanding the signature to include omitted arguments in definition: %s", 
-            paste(sigNames[omittedSig], "= \"missing\"", collapse = ", ")))
-        omittedSig <- seq_along(omittedSig)[omittedSig]
-        signature[omittedSig] <- "missing"
-    }
-    n <- length(signature)
-    while (.identC(signature[[n]], "ANY")) n <- n - 1L
-    length(signature) <- n
-    length(fsig) <- n
-    setNames(signature, fsig)
-}
-<bytecode: 0x26c68370>
-<environment: namespace:methods>
- --- function search by body ---
-Function conformMethod in namespace methods has this body.
- ----------- END OF FAILURE REPORT -------------- 
-Error in omittedSig && (signature[omittedSig] != "missing") : 
-  'length(x) = 4 > 1' in coercion to 'logical(1)'
-Error: package or namespace load failed for ‘ArrayExpress’:
- unable to load R code in package ‘oligo’
-Error : package ‘ArrayExpress’ could not be loaded
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/maEndToEnd’
 
 ```
 ### CRAN
 
 ```
-* installing *source* package ‘maEndToEnd’ ...
+gcc -std=gnu99 -g -O2  -Wall px.c -o px
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-common.c -o api-common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c common.c -o common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c extra.c -o extra.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c dummy.c -o dummy.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c posix.c -o posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-posix.c -o api-posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c linux.c -o linux.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-linux.c -o api-linux.o
+gcc -std=gnu99 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -L/usr/local/lib64 -o ps.so init.o api-common.o common.o extra.o dummy.o posix.o api-posix.o linux.o api-linux.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -lR
+
+
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘backports’ ...
+* DONE (backports)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *binary* package ‘BiocGenerics’ ...
+* DONE (BiocGenerics)
+* installing *binary* package ‘cluster’ ...
+* DONE (cluster)
+* installing *binary* package ‘colorspace’ ...
+* DONE (colorspace)
+* installing *binary* package ‘corpcor’ ...
+* DONE (corpcor)
+* installing *binary* package ‘crayon’ ...
+* DONE (crayon)
+* installing *binary* package ‘cytolib’ ...
+* DONE (cytolib)
+* installing *binary* package ‘data.table’ ...
+* DONE (data.table)
+* installing *binary* package ‘DEoptimR’ ...
+* DONE (DEoptimR)
+* installing *binary* package ‘digest’ ...
+* DONE (digest)
+* installing *binary* package ‘ellipse’ ...
+* DONE (ellipse)
+* installing *binary* package ‘evaluate’ ...
+* DONE (evaluate)
+* installing *binary* package ‘fansi’ ...
+* DONE (fansi)
+* installing *binary* package ‘farver’ ...
+* DONE (farver)
+* installing *binary* package ‘flowWorkspaceData’ ...
+* DONE (flowWorkspaceData)
+* installing *binary* package ‘FNN’ ...
+* DONE (FNN)
+* installing *binary* package ‘glue’ ...
+* DONE (glue)
+* installing *binary* package ‘gtable’ ...
+* DONE (gtable)
+* installing *binary* package ‘gtools’ ...
+* DONE (gtools)
+* installing *binary* package ‘highr’ ...
+* DONE (highr)
+* installing *binary* package ‘jpeg’ ...
+* DONE (jpeg)
+* installing *binary* package ‘jsonlite’ ...
+* DONE (jsonlite)
+* installing *binary* package ‘kernlab’ ...
+* DONE (kernlab)
+* installing *binary* package ‘KernSmooth’ ...
+* DONE (KernSmooth)
+* installing *binary* package ‘labeling’ ...
+* DONE (labeling)
+* installing *binary* package ‘lattice’ ...
+* DONE (lattice)
+* installing *binary* package ‘lazyeval’ ...
+* DONE (lazyeval)
+* installing *binary* package ‘magrittr’ ...
+* DONE (magrittr)
+* installing *binary* package ‘MASS’ ...
+* DONE (MASS)
+* installing *binary* package ‘mclust’ ...
+* DONE (mclust)
+* installing *binary* package ‘mime’ ...
+* DONE (mime)
+* installing *binary* package ‘mnormt’ ...
+* DONE (mnormt)
+* installing *binary* package ‘mvtnorm’ ...
+* DONE (mvtnorm)
+* installing *binary* package ‘pkgconfig’ ...
+* DONE (pkgconfig)
+* installing *binary* package ‘plogr’ ...
+* DONE (plogr)
+* installing *binary* package ‘png’ ...
+* DONE (png)
+* installing *binary* package ‘praise’ ...
+* DONE (praise)
+* installing *binary* package ‘prettyunits’ ...
+* DONE (prettyunits)
+* installing *source* package ‘ps’ ...
+** package ‘ps’ successfully unpacked and MD5 sums checked
 ** using staged installation
+** libs
+installing via 'install.libs.R' to /wynton/home/cbi/hb/repositories/matrixStats/revdep/library/flowWorkspace/00LOCK-ps/00new/ps
+** R
 ** inst
+** byte-compile and prepare package for lazy loading
 ** help
-No man pages found in package  ‘maEndToEnd’ 
 *** installing help indices
 ** building package indices
-** installing vignettes
 ** testing if installed package can be loaded from temporary location
-.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/00_pkg_src/maEndToEnd: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Warning: multiple methods tables found for ‘splitAsList’
-No methods found in package ‘RSQLite’ for request: ‘dbListFields’ when loading ‘oligo’
- ----------- FAILURE REPORT -------------- 
- --- failure: length > 1 in coercion to logical ---
- --- srcref --- 
-: 
- --- package (from environment) --- 
-methods
- --- call from context --- 
-conformMethod(signature, mnames, fnames, f, fdef, definition)
- --- call from argument --- 
-omittedSig && (signature[omittedSig] != "missing")
- --- R stacktrace ---
-where 1: conformMethod(signature, mnames, fnames, f, fdef, definition)
-where 2: setMethod(paste0(f, "<-"), ..., where = where)
-where 3: setReplaceMethod("pm", signature(object = "TilingFeatureSet", 
-    value = "array"), function(object, value) {
-    idx <- pmindex(object)
-    if (all(channelNames(object) %in% c("channel1", "channel2"))) {
-        tmp <- assayDataElement(object, "channel1")
-        tmp[idx, ] <- value[, , 1]
-        out <- assayDataElementReplace(object, "channel1", tmp)
-        tmp <- assayDataElement(out, "channel2")
-        tmp[idx, ] <- value[, , 2]
-        assayDataElementReplace(out, "channel2", tmp)
-    }
-    else {
-        callNextMethod()
-    }
-})
-where 4: eval(exprs[i], envir)
-where 5: eval(exprs[i], envir)
-where 6: sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data)
-where 7: doTryCatch(return(expr), name, parentenv, handler)
-where 8: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-where 9: tryCatchList(expr, classes, parentenv, handlers)
-where 10: tryCatch(expr, error = function(e) {
-    call <- conditionCall(e)
-    if (!is.null(call)) {
-        if (identical(call[[1L]], quote(doTryCatch))) 
-            call <- sys.call(-4L)
-        dcall <- deparse(call)[1L]
-        prefix <- paste("Error in", dcall, ": ")
-        LONG <- 75L
-        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
-        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
-        if (is.na(w)) 
-            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
-                type = "b")
-        if (w > LONG) 
-            prefix <- paste0(prefix, "\n  ")
-    }
-    else prefix <- "Error : "
-    msg <- paste0(prefix, conditionMessage(e), "\n")
-    .Internal(seterrmessage(msg[1L]))
-    if (!silent && isTRUE(getOption("show.error.messages"))) {
-        cat(msg, file = outFile)
-        .Internal(printDeferredWarnings())
-    }
-    invisible(structure(msg, class = "try-error", condition = e))
-})
-where 11: try(sys.source(codeFile, env, keep.source = keep.source, keep.parse.data = keep.parse.data))
-where 12: loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])
-where 13: asNamespace(ns)
-where 14: namespaceImportFrom(ns, loadNamespace(j <- i[[1L]], c(lib.loc, 
-    .libPaths()), versionCheck = vI[[j]]), i[[2L]], from = package)
-where 15: loadNamespace(package, lib.loc)
-where 16: doTryCatch(return(expr), name, parentenv, handler)
-where 17: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-where 18: tryCatchList(expr, classes, parentenv, handlers)
-where 19: tryCatch({
-    attr(package, "LibPath") <- which.lib.loc
-    ns <- loadNamespace(package, lib.loc)
-    env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
-}, error = function(e) {
-    P <- if (!is.null(cc <- conditionCall(e))) 
-        paste(" in", deparse(cc)[1L])
-    else ""
-    msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-        sQuote(package), P, conditionMessage(e))
-    if (logical.return) 
-        message(paste("Error:", msg), domain = NA)
-    else stop(msg, call. = FALSE, domain = NA)
-})
-where 20: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
-    quietly = quietly)
-where 21: .getRequiredPackages2(pkgInfo, quietly = quietly)
-where 22: library(pkg_name, lib.loc = lib, character.only = TRUE, logical.return = TRUE)
-where 23: withCallingHandlers(expr, packageStartupMessage = function(c) invokeRestart("muffleMessage"))
-where 24: suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
-    character.only = TRUE, logical.return = TRUE))
-where 25: doTryCatch(return(expr), name, parentenv, handler)
-where 26: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-where 27: tryCatchList(expr, classes, parentenv, handlers)
-where 28: tryCatch(expr, error = function(e) {
-    call <- conditionCall(e)
-    if (!is.null(call)) {
-        if (identical(call[[1L]], quote(doTryCatch))) 
-            call <- sys.call(-4L)
-        dcall <- deparse(call)[1L]
-        prefix <- paste("Error in", dcall, ": ")
-        LONG <- 75L
-        sm <- strsplit(conditionMessage(e), "\n")[[1L]]
-        w <- 14L + nchar(dcall, type = "w") + nchar(sm[1L], type = "w")
-        if (is.na(w)) 
-            w <- 14L + nchar(dcall, type = "b") + nchar(sm[1L], 
-                type = "b")
-        if (w > LONG) 
-            prefix <- paste0(prefix, "\n  ")
-    }
-    else prefix <- "Error : "
-    msg <- paste0(prefix, conditionMessage(e), "\n")
-    .Internal(seterrmessage(msg[1L]))
-    if (!silent && isTRUE(getOption("show.error.messages"))) {
-        cat(msg, file = outFile)
-        .Internal(printDeferredWarnings())
-    }
-    invisible(structure(msg, class = "try-error", condition = e))
-})
-where 29: try(suppressPackageStartupMessages(library(pkg_name, lib.loc = lib, 
-    character.only = TRUE, logical.return = TRUE)))
-where 30: tools:::.test_load_package("maEndToEnd", "/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/00LOCK-maEndToEnd/00new")
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ps)
+* installing *binary* package ‘R.methodsS3’ ...
+* DONE (R.methodsS3)
+* installing *binary* package ‘R6’ ...
+* DONE (R6)
+* installing *binary* package ‘RColorBrewer’ ...
+* DONE (RColorBrewer)
+* installing *binary* package ‘Rcpp’ ...
+* DONE (Rcpp)
+* installing *binary* package ‘RcppParallel’ ...
+* DONE (RcppParallel)
+* installing *binary* package ‘Rhdf5lib’ ...
+* DONE (Rhdf5lib)
+* installing *binary* package ‘rlang’ ...
+* DONE (rlang)
+* installing *binary* package ‘RProtoBufLib’ ...
+* DONE (RProtoBufLib)
+* installing *binary* package ‘rstudioapi’ ...
+* DONE (rstudioapi)
+* installing *binary* package ‘RUnit’ ...
+* DONE (RUnit)
+* installing *binary* package ‘stringi’ ...
+* DONE (stringi)
+* installing *binary* package ‘utf8’ ...
+* DONE (utf8)
+* installing *binary* package ‘viridisLite’ ...
+* DONE (viridisLite)
+* installing *binary* package ‘withr’ ...
+* DONE (withr)
+* installing *binary* package ‘xfun’ ...
+* DONE (xfun)
+* installing *binary* package ‘XML’ ...
+* DONE (XML)
+* installing *binary* package ‘yaml’ ...
+* DONE (yaml)
+* installing *binary* package ‘zlibbioc’ ...
+* DONE (zlibbioc)
+* installing *binary* package ‘Biobase’ ...
+* DONE (Biobase)
+* installing *binary* package ‘cli’ ...
+* DONE (cli)
+* installing *binary* package ‘clue’ ...
+* DONE (clue)
+* installing *binary* package ‘ellipsis’ ...
+* DONE (ellipsis)
+* installing *binary* package ‘graph’ ...
+* DONE (graph)
+* installing *binary* package ‘gridExtra’ ...
+* DONE (gridExtra)
+* installing *binary* package ‘hexbin’ ...
+* DONE (hexbin)
+* installing *binary* package ‘IDPmisc’ ...
+* DONE (IDPmisc)
+* installing *binary* package ‘latticeExtra’ ...
+* DONE (latticeExtra)
+* installing *binary* package ‘lifecycle’ ...
+* DONE (lifecycle)
+* installing *binary* package ‘markdown’ ...
+* DONE (markdown)
+* installing *binary* package ‘Matrix’ ...
+* DONE (Matrix)
+* installing *binary* package ‘multicool’ ...
+* DONE (multicool)
+* installing *binary* package ‘munsell’ ...
+* DONE (munsell)
+* installing *binary* package ‘nlme’ ...
+* DONE (nlme)
+* installing *binary* package ‘pcaPP’ ...
+* DONE (pcaPP)
+* installing *binary* package ‘plyr’ ...
+* DONE (plyr)
+* installing *binary* package ‘processx’ ...
+* DONE (processx)
+* installing *binary* package ‘purrr’ ...
+* DONE (purrr)
+* installing *binary* package ‘R.oo’ ...
+* DONE (R.oo)
+* installing *binary* package ‘RcppArmadillo’ ...
+* DONE (RcppArmadillo)
+* installing *binary* package ‘robustbase’ ...
+* DONE (robustbase)
+* installing *binary* package ‘rprojroot’ ...
+* DONE (rprojroot)
+* installing *binary* package ‘stringr’ ...
+* DONE (stringr)
+* installing *binary* package ‘callr’ ...
+* DONE (callr)
+* installing *binary* package ‘desc’ ...
+* DONE (desc)
+* installing *binary* package ‘fda’ ...
+* DONE (fda)
+* installing *binary* package ‘flowCore’ ...
+* DONE (flowCore)
+* installing *binary* package ‘knitr’ ...
+* DONE (knitr)
+* installing *binary* package ‘mgcv’ ...
+* DONE (mgcv)
+* installing *binary* package ‘R.utils’ ...
+* DONE (R.utils)
+* installing *binary* package ‘RBGL’ ...
+* DONE (RBGL)
+* installing *binary* package ‘reshape2’ ...
+* DONE (reshape2)
+* installing *binary* package ‘Rgraphviz’ ...
+* DONE (Rgraphviz)
+* installing *binary* package ‘rrcov’ ...
+* DONE (rrcov)
+* installing *binary* package ‘scales’ ...
+* DONE (scales)
+* installing *binary* package ‘vctrs’ ...
+* DONE (vctrs)
+* installing *binary* package ‘flowViz’ ...
+* DONE (flowViz)
+* installing *binary* package ‘ks’ ...
+* DONE (ks)
+* installing *binary* package ‘ncdfFlow’ ...
+* DONE (ncdfFlow)
+* installing *binary* package ‘pillar’ ...
+* DONE (pillar)
+* installing *binary* package ‘pkgbuild’ ...
+* DONE (pkgbuild)
+* installing *binary* package ‘tidyselect’ ...
+* DONE (tidyselect)
+* installing *binary* package ‘flowClust’ ...
+* DONE (flowClust)
+* installing *binary* package ‘flowStats’ ...
+* DONE (flowStats)
 
- --- value of length: 4 type: logical ---
-[1] FALSE  TRUE  TRUE FALSE
- --- function from context --- 
-function (signature, mnames, fnames, f = "<unspecified>", fdef, 
-    method) 
-{
-    sig0 <- signature
-    fsig <- fdef@signature
-    if (is.na(match("...", mnames)) && !is.na(match("...", fnames))) 
-        fnames <- fnames[-match("...", fnames)]
-    imf <- match(fnames, mnames)
-    omitted <- is.na(imf)
-    if (is.unsorted(imf[!omitted])) 
-        stop(.renderSignature(f, signature), "formal arguments in method and generic do not appear in the same order", 
-            call. = FALSE)
-    if (!any(omitted)) 
-        return(signature)
-    sigNames <- names(signature)
-    omittedSig <- sigNames %in% fnames[omitted]
-    if (!any(omittedSig)) 
-        return(signature)
-    if (any(is.na(match(signature[omittedSig], c("ANY", "missing"))))) {
-        bad <- omittedSig & is.na(match(signature[omittedSig], 
-            c("ANY", "missing")))
-        bad2 <- paste0(fnames[bad], " = \"", signature[bad], 
-            "\"", collapse = ", ")
-        stop(.renderSignature(f, sig0), gettextf("formal arguments (%s) omitted in the method definition cannot be in the signature", 
-            bad2), call. = TRUE, domain = NA)
-    }
-    else if (!all(signature[omittedSig] == "missing")) {
-        omittedSig <- omittedSig && (signature[omittedSig] != 
-            "missing")
-        .message("Note: ", .renderSignature(f, sig0), gettextf("expanding the signature to include omitted arguments in definition: %s", 
-            paste(sigNames[omittedSig], "= \"missing\"", collapse = ", ")))
-        omittedSig <- seq_along(omittedSig)[omittedSig]
-        signature[omittedSig] <- "missing"
-    }
-    n <- length(signature)
-    while (.identC(signature[[n]], "ANY")) n <- n - 1L
-    length(signature) <- n
-    length(fsig) <- n
-    setNames(signature, fsig)
-}
-<bytecode: 0x265d6608>
-<environment: namespace:methods>
- --- function search by body ---
-Function conformMethod in namespace methods has this body.
- ----------- END OF FAILURE REPORT -------------- 
-Error in omittedSig && (signature[omittedSig] != "missing") : 
-  'length(x) = 4 > 1' in coercion to 'logical(1)'
-Error: package or namespace load failed for ‘ArrayExpress’:
- unable to load R code in package ‘oligo’
-Error : package ‘ArrayExpress’ could not be loaded
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/maEndToEnd’
+
+```
+# maEndToEnd
+
+<details>
+
+* Version: 
+* Source code: ???
+* URL: https://github.com/HenrikBengtsson/matrixStats
+* BugReports: https://github.com/HenrikBengtsson/matrixStats/issues
+* Number of recursive dependencies: 0
+
+Run `revdep_details(,"")` for more info
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+gcc -std=gnu99 -g -O2  -Wall px.c -o px
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-common.c -o api-common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c common.c -o common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c extra.c -o extra.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c dummy.c -o dummy.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c posix.c -o posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-posix.c -o api-posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c linux.c -o linux.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-linux.c -o api-linux.o
+gcc -std=gnu99 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -L/usr/local/lib64 -o ps.so init.o api-common.o common.o extra.o dummy.o posix.o api-posix.o linux.o api-linux.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -lR
+
+
+* installing *binary* package ‘acepack’ ...
+* DONE (acepack)
+* installing *binary* package ‘affxparser’ ...
+* DONE (affxparser)
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘backports’ ...
+* DONE (backports)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BeadDataPackR’ ...
+* DONE (BeadDataPackR)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *binary* package ‘BiocGenerics’ ...
+* DONE (BiocGenerics)
+* installing *binary* package ‘BiocManager’ ...
+* DONE (BiocManager)
+* installing *binary* package ‘bit’ ...
+* DONE (bit)
+* installing *binary* package ‘bitops’ ...
+* DONE (bitops)
+* installing *binary* package ‘brew’ ...
+* DONE (brew)
+* installing *binary* package ‘clipr’ ...
+* DONE (clipr)
+* installing *binary* package ‘clisymbols’ ...
+* DONE (clisymbols)
+* installing *binary* package ‘cluster’ ...
+* DONE (cluster)
+* installing *binary* package ‘codetools’ ...
+* DONE (codetools)
+* installing *binary* package ‘colorspace’ ...
+* DONE (colorspace)
+* installing *binary* package ‘commonmark’ ...
+* DONE (commonmark)
+* installing *binary* package ‘crayon’ ...
+* DONE (crayon)
+* installing *binary* package ‘curl’ ...
+* DONE (curl)
+* installing *binary* package ‘data.table’ ...
+* DONE (data.table)
+* installing *binary* package ‘DBI’ ...
+* DONE (DBI)
+* installing *binary* package ‘digest’ ...
+* DONE (digest)
+* installing *binary* package ‘evaluate’ ...
+* DONE (evaluate)
+* installing *binary* package ‘fansi’ ...
+* DONE (fansi)
+* installing *binary* package ‘farver’ ...
+* DONE (farver)
+* installing *binary* package ‘fastmap’ ...
+* DONE (fastmap)
+* installing *binary* package ‘fastmatch’ ...
+* DONE (fastmatch)
+* installing *binary* package ‘foreign’ ...
+* DONE (foreign)
+* installing *binary* package ‘formatR’ ...
+* DONE (formatR)
+* installing *binary* package ‘Formula’ ...
+* DONE (Formula)
+* installing *binary* package ‘futile.options’ ...
+* DONE (futile.options)
+* installing *binary* package ‘GenomeInfoDbData’ ...
+* DONE (GenomeInfoDbData)
+* installing *binary* package ‘git2r’ ...
+* DONE (git2r)
+* installing *binary* package ‘glue’ ...
+* DONE (glue)
+* installing *binary* package ‘gridGraphics’ ...
+* DONE (gridGraphics)
+* installing *binary* package ‘gtable’ ...
+* DONE (gtable)
+* installing *binary* package ‘gtools’ ...
+* DONE (gtools)
+* installing *binary* package ‘highr’ ...
+* DONE (highr)
+* installing *binary* package ‘hwriter’ ...
+* DONE (hwriter)
+* installing *binary* package ‘ini’ ...
+* DONE (ini)
+* installing *binary* package ‘iterators’ ...
+* DONE (iterators)
+* installing *binary* package ‘jpeg’ ...
+* DONE (jpeg)
+* installing *binary* package ‘jsonlite’ ...
+* DONE (jsonlite)
+* installing *binary* package ‘KernSmooth’ ...
+* DONE (KernSmooth)
+* installing *binary* package ‘labeling’ ...
+* DONE (labeling)
+* installing *binary* package ‘lattice’ ...
+* DONE (lattice)
+* installing *binary* package ‘lazyeval’ ...
+* DONE (lazyeval)
+* installing *binary* package ‘limma’ ...
+* DONE (limma)
+* installing *binary* package ‘magrittr’ ...
+* DONE (magrittr)
+* installing *binary* package ‘MASS’ ...
+* DONE (MASS)
+* installing *binary* package ‘mime’ ...
+* DONE (mime)
+* installing *binary* package ‘nnet’ ...
+* DONE (nnet)
+* installing *binary* package ‘pkgconfig’ ...
+* DONE (pkgconfig)
+* installing *binary* package ‘plogr’ ...
+* DONE (plogr)
+* installing *binary* package ‘png’ ...
+* DONE (png)
+* installing *binary* package ‘polyclip’ ...
+* DONE (polyclip)
+* installing *binary* package ‘praise’ ...
+* DONE (praise)
+* installing *binary* package ‘preprocessCore’ ...
+* DONE (preprocessCore)
+* installing *binary* package ‘prettyunits’ ...
+* DONE (prettyunits)
+* installing *source* package ‘ps’ ...
+** package ‘ps’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+installing via 'install.libs.R' to /wynton/home/cbi/hb/repositories/matrixStats/revdep/library/maEndToEnd/00LOCK-ps/00new/ps
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ps)
+* installing *binary* package ‘R6’ ...
+* DONE (R6)
+* installing *binary* package ‘rappdirs’ ...
+* DONE (rappdirs)
+* installing *binary* package ‘RColorBrewer’ ...
+* DONE (RColorBrewer)
+* installing *binary* package ‘Rcpp’ ...
+* DONE (Rcpp)
+* installing *binary* package ‘remotes’ ...
+* DONE (remotes)
+* installing *binary* package ‘rlang’ ...
+* DONE (rlang)
+* installing *binary* package ‘rpart’ ...
+* DONE (rpart)
+* installing *binary* package ‘rstudioapi’ ...
+* DONE (rstudioapi)
+* installing *binary* package ‘setRNG’ ...
+* DONE (setRNG)
+* installing *binary* package ‘snow’ ...
+* DONE (snow)
+* installing *binary* package ‘sourcetools’ ...
+* DONE (sourcetools)
+* installing *binary* package ‘SparseM’ ...
+* DONE (SparseM)
+* installing *binary* package ‘stringi’ ...
+* DONE (stringi)
+* installing *binary* package ‘sys’ ...
+* DONE (sys)
+* installing *binary* package ‘systemfonts’ ...
+* DONE (systemfonts)
+* installing *binary* package ‘utf8’ ...
+* DONE (utf8)
+* installing *binary* package ‘viridisLite’ ...
+* DONE (viridisLite)
+* installing *binary* package ‘whisker’ ...
+* DONE (whisker)
+* installing *binary* package ‘withr’ ...
+* DONE (withr)
+* installing *binary* package ‘xfun’ ...
+* DONE (xfun)
+* installing *binary* package ‘XML’ ...
+* DONE (XML)
+* installing *binary* package ‘xtable’ ...
+* DONE (xtable)
+* installing *binary* package ‘yaml’ ...
+* DONE (yaml)
+* installing *binary* package ‘zip’ ...
+* DONE (zip)
+* installing *binary* package ‘zlibbioc’ ...
+* DONE (zlibbioc)
+* installing *binary* package ‘affyio’ ...
+* DONE (affyio)
+* installing *binary* package ‘askpass’ ...
+* DONE (askpass)
+* installing *binary* package ‘Biobase’ ...
+* DONE (Biobase)
+* installing *binary* package ‘bit64’ ...
+* DONE (bit64)
+* installing *binary* package ‘caTools’ ...
+* DONE (caTools)
+* installing *binary* package ‘checkmate’ ...
+* DONE (checkmate)
+* installing *binary* package ‘cli’ ...
+* DONE (cli)
+* installing *binary* package ‘ellipsis’ ...
+* DONE (ellipsis)
+* installing *binary* package ‘ff’ ...
+* DONE (ff)
+* installing *binary* package ‘foreach’ ...
+* DONE (foreach)
+* installing *binary* package ‘fs’ ...
+* DONE (fs)
+* installing *binary* package ‘gdata’ ...
+* DONE (gdata)
+* installing *binary* package ‘gdtools’ ...
+* DONE (gdtools)
+* installing *binary* package ‘graph’ ...
+* DONE (graph)
+* installing *binary* package ‘gridExtra’ ...
+* DONE (gridExtra)
+* installing *binary* package ‘gridSVG’ ...
+* DONE (gridSVG)
+* installing *binary* package ‘hexbin’ ...
+* DONE (hexbin)
+* installing *binary* package ‘htmltools’ ...
+* DONE (htmltools)
+* installing *binary* package ‘lambda.r’ ...
+* DONE (lambda.r)
+* installing *binary* package ‘later’ ...
+* DONE (later)
+* installing *binary* package ‘latticeExtra’ ...
+* DONE (latticeExtra)
+* installing *binary* package ‘lifecycle’ ...
+* DONE (lifecycle)
+* installing *binary* package ‘markdown’ ...
+* DONE (markdown)
+* installing *binary* package ‘Matrix’ ...
+* DONE (Matrix)
+* installing *binary* package ‘memoise’ ...
+* DONE (memoise)
+* installing *binary* package ‘munsell’ ...
+* DONE (munsell)
+* installing *binary* package ‘nlme’ ...
+* DONE (nlme)
+* installing *binary* package ‘openxlsx’ ...
+* DONE (openxlsx)
+* installing *binary* package ‘plyr’ ...
+* DONE (plyr)
+* installing *binary* package ‘processx’ ...
+* DONE (processx)
+* installing *binary* package ‘purrr’ ...
+* DONE (purrr)
+* installing *binary* package ‘RcppArmadillo’ ...
+* DONE (RcppArmadillo)
+* installing *binary* package ‘RCurl’ ...
+* DONE (RCurl)
+* installing *binary* package ‘rex’ ...
+* DONE (rex)
+* installing *binary* package ‘rprojroot’ ...
+* DONE (rprojroot)
+* installing *binary* package ‘rvcheck’ ...
+* DONE (rvcheck)
+* installing *binary* package ‘S4Vectors’ ...
+* DONE (S4Vectors)
+* installing *binary* package ‘stringr’ ...
+* DONE (stringr)
+* installing *binary* package ‘tinytex’ ...
+* DONE (tinytex)
+* installing *binary* package ‘triebeard’ ...
+* DONE (triebeard)
+* installing *binary* package ‘tweenr’ ...
+* DONE (tweenr)
+* installing *binary* package ‘xml2’ ...
+* DONE (xml2)
+* installing *binary* package ‘affy’ ...
+* DONE (affy)
+* installing *binary* package ‘callr’ ...
+* DONE (callr)
+* installing *binary* package ‘desc’ ...
+* DONE (desc)
+* installing *binary* package ‘futile.logger’ ...
+* DONE (futile.logger)
+* installing *binary* package ‘gplots’ ...
+* DONE (gplots)
+* installing *binary* package ‘htmlwidgets’ ...
+* DONE (htmlwidgets)
+* installing *binary* package ‘igraph’ ...
+* DONE (igraph)
+* installing *binary* package ‘IRanges’ ...
+* DONE (IRanges)
+* installing *binary* package ‘knitr’ ...
+* DONE (knitr)
+* installing *binary* package ‘mgcv’ ...
+* DONE (mgcv)
+* installing *binary* package ‘openssl’ ...
+* DONE (openssl)
+
+
+```
+### CRAN
+
+```
+gcc -std=gnu99 -g -O2  -Wall px.c -o px
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c init.c -o init.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-common.c -o api-common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c common.c -o common.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c extra.c -o extra.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c dummy.c -o dummy.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c posix.c -o posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-posix.c -o api-posix.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c linux.c -o linux.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/include" -DNDEBUG   -I/usr/local/include  -fpic  -g -O2  -c api-linux.c -o api-linux.o
+gcc -std=gnu99 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -L/usr/local/lib64 -o ps.so init.o api-common.o common.o extra.o dummy.o posix.o api-posix.o linux.o api-linux.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/lib -lR
+
+
+* installing *binary* package ‘acepack’ ...
+* DONE (acepack)
+* installing *binary* package ‘affxparser’ ...
+* DONE (affxparser)
+* installing *binary* package ‘assertthat’ ...
+* DONE (assertthat)
+* installing *binary* package ‘backports’ ...
+* DONE (backports)
+* installing *binary* package ‘base64enc’ ...
+* DONE (base64enc)
+* installing *binary* package ‘BeadDataPackR’ ...
+* DONE (BeadDataPackR)
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
+* installing *binary* package ‘BiocGenerics’ ...
+* DONE (BiocGenerics)
+* installing *binary* package ‘BiocManager’ ...
+* DONE (BiocManager)
+* installing *binary* package ‘bit’ ...
+* DONE (bit)
+* installing *binary* package ‘bitops’ ...
+* DONE (bitops)
+* installing *binary* package ‘brew’ ...
+* DONE (brew)
+* installing *binary* package ‘clipr’ ...
+* DONE (clipr)
+* installing *binary* package ‘clisymbols’ ...
+* DONE (clisymbols)
+* installing *binary* package ‘cluster’ ...
+* DONE (cluster)
+* installing *binary* package ‘codetools’ ...
+* DONE (codetools)
+* installing *binary* package ‘colorspace’ ...
+* DONE (colorspace)
+* installing *binary* package ‘commonmark’ ...
+* DONE (commonmark)
+* installing *binary* package ‘crayon’ ...
+* DONE (crayon)
+* installing *binary* package ‘curl’ ...
+* DONE (curl)
+* installing *binary* package ‘data.table’ ...
+* DONE (data.table)
+* installing *binary* package ‘DBI’ ...
+* DONE (DBI)
+* installing *binary* package ‘digest’ ...
+* DONE (digest)
+* installing *binary* package ‘evaluate’ ...
+* DONE (evaluate)
+* installing *binary* package ‘fansi’ ...
+* DONE (fansi)
+* installing *binary* package ‘farver’ ...
+* DONE (farver)
+* installing *binary* package ‘fastmap’ ...
+* DONE (fastmap)
+* installing *binary* package ‘fastmatch’ ...
+* DONE (fastmatch)
+* installing *binary* package ‘foreign’ ...
+* DONE (foreign)
+* installing *binary* package ‘formatR’ ...
+* DONE (formatR)
+* installing *binary* package ‘Formula’ ...
+* DONE (Formula)
+* installing *binary* package ‘futile.options’ ...
+* DONE (futile.options)
+* installing *binary* package ‘GenomeInfoDbData’ ...
+* DONE (GenomeInfoDbData)
+* installing *binary* package ‘git2r’ ...
+* DONE (git2r)
+* installing *binary* package ‘glue’ ...
+* DONE (glue)
+* installing *binary* package ‘gridGraphics’ ...
+* DONE (gridGraphics)
+* installing *binary* package ‘gtable’ ...
+* DONE (gtable)
+* installing *binary* package ‘gtools’ ...
+* DONE (gtools)
+* installing *binary* package ‘highr’ ...
+* DONE (highr)
+* installing *binary* package ‘hwriter’ ...
+* DONE (hwriter)
+* installing *binary* package ‘ini’ ...
+* DONE (ini)
+* installing *binary* package ‘iterators’ ...
+* DONE (iterators)
+* installing *binary* package ‘jpeg’ ...
+* DONE (jpeg)
+* installing *binary* package ‘jsonlite’ ...
+* DONE (jsonlite)
+* installing *binary* package ‘KernSmooth’ ...
+* DONE (KernSmooth)
+* installing *binary* package ‘labeling’ ...
+* DONE (labeling)
+* installing *binary* package ‘lattice’ ...
+* DONE (lattice)
+* installing *binary* package ‘lazyeval’ ...
+* DONE (lazyeval)
+* installing *binary* package ‘limma’ ...
+* DONE (limma)
+* installing *binary* package ‘magrittr’ ...
+* DONE (magrittr)
+* installing *binary* package ‘MASS’ ...
+* DONE (MASS)
+* installing *binary* package ‘mime’ ...
+* DONE (mime)
+* installing *binary* package ‘nnet’ ...
+* DONE (nnet)
+* installing *binary* package ‘pkgconfig’ ...
+* DONE (pkgconfig)
+* installing *binary* package ‘plogr’ ...
+* DONE (plogr)
+* installing *binary* package ‘png’ ...
+* DONE (png)
+* installing *binary* package ‘polyclip’ ...
+* DONE (polyclip)
+* installing *binary* package ‘praise’ ...
+* DONE (praise)
+* installing *binary* package ‘preprocessCore’ ...
+* DONE (preprocessCore)
+* installing *binary* package ‘prettyunits’ ...
+* DONE (prettyunits)
+* installing *source* package ‘ps’ ...
+** package ‘ps’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+installing via 'install.libs.R' to /wynton/home/cbi/hb/repositories/matrixStats/revdep/library/maEndToEnd/00LOCK-ps/00new/ps
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ps)
+* installing *binary* package ‘R6’ ...
+* DONE (R6)
+* installing *binary* package ‘rappdirs’ ...
+* DONE (rappdirs)
+* installing *binary* package ‘RColorBrewer’ ...
+* DONE (RColorBrewer)
+* installing *binary* package ‘Rcpp’ ...
+* DONE (Rcpp)
+* installing *binary* package ‘remotes’ ...
+* DONE (remotes)
+* installing *binary* package ‘rlang’ ...
+* DONE (rlang)
+* installing *binary* package ‘rpart’ ...
+* DONE (rpart)
+* installing *binary* package ‘rstudioapi’ ...
+* DONE (rstudioapi)
+* installing *binary* package ‘setRNG’ ...
+* DONE (setRNG)
+* installing *binary* package ‘snow’ ...
+* DONE (snow)
+* installing *binary* package ‘sourcetools’ ...
+* DONE (sourcetools)
+* installing *binary* package ‘SparseM’ ...
+* DONE (SparseM)
+* installing *binary* package ‘stringi’ ...
+* DONE (stringi)
+* installing *binary* package ‘sys’ ...
+* DONE (sys)
+* installing *binary* package ‘systemfonts’ ...
+* DONE (systemfonts)
+* installing *binary* package ‘utf8’ ...
+* DONE (utf8)
+* installing *binary* package ‘viridisLite’ ...
+* DONE (viridisLite)
+* installing *binary* package ‘whisker’ ...
+* DONE (whisker)
+* installing *binary* package ‘withr’ ...
+* DONE (withr)
+* installing *binary* package ‘xfun’ ...
+* DONE (xfun)
+* installing *binary* package ‘XML’ ...
+* DONE (XML)
+* installing *binary* package ‘xtable’ ...
+* DONE (xtable)
+* installing *binary* package ‘yaml’ ...
+* DONE (yaml)
+* installing *binary* package ‘zip’ ...
+* DONE (zip)
+* installing *binary* package ‘zlibbioc’ ...
+* DONE (zlibbioc)
+* installing *binary* package ‘affyio’ ...
+* DONE (affyio)
+* installing *binary* package ‘askpass’ ...
+* DONE (askpass)
+* installing *binary* package ‘Biobase’ ...
+* DONE (Biobase)
+* installing *binary* package ‘bit64’ ...
+* DONE (bit64)
+* installing *binary* package ‘caTools’ ...
+* DONE (caTools)
+* installing *binary* package ‘checkmate’ ...
+* DONE (checkmate)
+* installing *binary* package ‘cli’ ...
+* DONE (cli)
+* installing *binary* package ‘ellipsis’ ...
+* DONE (ellipsis)
+* installing *binary* package ‘ff’ ...
+* DONE (ff)
+* installing *binary* package ‘foreach’ ...
+* DONE (foreach)
+* installing *binary* package ‘fs’ ...
+* DONE (fs)
+* installing *binary* package ‘gdata’ ...
+* DONE (gdata)
+* installing *binary* package ‘gdtools’ ...
+* DONE (gdtools)
+* installing *binary* package ‘graph’ ...
+* DONE (graph)
+* installing *binary* package ‘gridExtra’ ...
+* DONE (gridExtra)
+* installing *binary* package ‘gridSVG’ ...
+* DONE (gridSVG)
+* installing *binary* package ‘hexbin’ ...
+* DONE (hexbin)
+* installing *binary* package ‘htmltools’ ...
+* DONE (htmltools)
+* installing *binary* package ‘lambda.r’ ...
+* DONE (lambda.r)
+* installing *binary* package ‘later’ ...
+* DONE (later)
+* installing *binary* package ‘latticeExtra’ ...
+* DONE (latticeExtra)
+* installing *binary* package ‘lifecycle’ ...
+* DONE (lifecycle)
+* installing *binary* package ‘markdown’ ...
+* DONE (markdown)
+* installing *binary* package ‘Matrix’ ...
+* DONE (Matrix)
+* installing *binary* package ‘memoise’ ...
+* DONE (memoise)
+* installing *binary* package ‘munsell’ ...
+* DONE (munsell)
+* installing *binary* package ‘nlme’ ...
+* DONE (nlme)
+* installing *binary* package ‘openxlsx’ ...
+* DONE (openxlsx)
+* installing *binary* package ‘plyr’ ...
+* DONE (plyr)
+* installing *binary* package ‘processx’ ...
+* DONE (processx)
+* installing *binary* package ‘purrr’ ...
+* DONE (purrr)
+* installing *binary* package ‘RcppArmadillo’ ...
+* DONE (RcppArmadillo)
+* installing *binary* package ‘RCurl’ ...
+* DONE (RCurl)
+* installing *binary* package ‘rex’ ...
+* DONE (rex)
+* installing *binary* package ‘rprojroot’ ...
+* DONE (rprojroot)
+* installing *binary* package ‘rvcheck’ ...
+* DONE (rvcheck)
+* installing *binary* package ‘S4Vectors’ ...
+* DONE (S4Vectors)
+* installing *binary* package ‘stringr’ ...
+* DONE (stringr)
+* installing *binary* package ‘tinytex’ ...
+* DONE (tinytex)
+* installing *binary* package ‘triebeard’ ...
+* DONE (triebeard)
+* installing *binary* package ‘tweenr’ ...
+* DONE (tweenr)
+* installing *binary* package ‘xml2’ ...
+* DONE (xml2)
+* installing *binary* package ‘affy’ ...
+* DONE (affy)
+* installing *binary* package ‘callr’ ...
+* DONE (callr)
+* installing *binary* package ‘desc’ ...
+* DONE (desc)
+* installing *binary* package ‘futile.logger’ ...
+* DONE (futile.logger)
+* installing *binary* package ‘gplots’ ...
+* DONE (gplots)
+* installing *binary* package ‘htmlwidgets’ ...
+* DONE (htmlwidgets)
+* installing *binary* package ‘igraph’ ...
+* DONE (igraph)
+* installing *binary* package ‘IRanges’ ...
+* DONE (IRanges)
+* installing *binary* package ‘knitr’ ...
+* DONE (knitr)
+* installing *binary* package ‘mgcv’ ...
+* DONE (mgcv)
+* installing *binary* package ‘openssl’ ...
+* DONE (openssl)
+
+
+```
+# NanoStringDiff
+
+<details>
+
+* Version: 1.16.0
+* Source code: https://github.com/cran/NanoStringDiff
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 44
+
+Run `revdep_details(,"NanoStringDiff")` for more info
+
+</details>
+
+## Error before installation
+
+### Devel
+
+```
+* using log directory ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/NanoStringDiff/new/NanoStringDiff.Rcheck’
+* using R version 3.6.2 (2019-12-12)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using options ‘--no-manual --no-build-vignettes’
+* checking for file ‘NanoStringDiff/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘NanoStringDiff’ version ‘1.16.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘NanoStringDiff’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘read.table’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘glm’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘poisson’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘rowVars’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘par’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘plot’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘abline’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘lm’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘title’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘textxy’
+compute.baseSigma: no visible global function definition for ‘IQR’
+createNanoStringSetFromCsv: no visible global function definition for
+  ‘read.table’
+est.dispersion : get.phihat: no visible global function definition for
+  ‘optimize’
+estNormalizationFactors: no visible global function definition for
+  ‘glm’
+estNormalizationFactors: no visible global function definition for
+  ‘poisson’
+estNormalizationFactors: no visible binding for global variable
+  ‘median’
+glm.LRT: no visible global function definition for ‘pchisq’
+glm.LRT: no visible global function definition for ‘p.adjust’
+glmfit.OneGroup : get.mu: no visible global function definition for
+  ‘optimize’
+glmfit.full: no visible global function definition for ‘lm’
+glmfit.full: no visible global function definition for ‘median’
+glmfit.full: no visible global function definition for ‘IQR’
+glmfit.full : get.phi: no visible global function definition for
+  ‘optimize’
+glmfit.full : get.beta.full: no visible global function definition for
+  ‘optim’
+glmfit.reduce: no visible global function definition for ‘lm’
+glmfit.reduce : get.beta.reduce: no visible global function definition
+  for ‘optim’
+rnegbinom: no visible global function definition for ‘rpois’
+rnegbinom: no visible global function definition for ‘rgamma’
+Undefined global functions or variables:
+  IQR abline glm lm median optim optimize p.adjust par pchisq plot
+  poisson read.table rgamma rowVars rpois textxy title
+Consider adding
+  importFrom("graphics", "abline", "par", "plot", "title")
+  importFrom("stats", "IQR", "glm", "lm", "median", "optim", "optimize",
+             "p.adjust", "pchisq", "poisson", "rgamma", "rpois")
+  importFrom("utils", "read.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘compute.baseSigma’ ‘est.dispersion’ ‘fun5’ ‘glmfit.OneGroup’
+  ‘glmfit.full’ ‘glmfit.reduce’ ‘rnegbinom’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... OK
+* checking sizes of PDF files under ‘inst/doc’ ... OK
+* checking installed files from ‘inst/doc’ ... NOTE
+The following files look like leftovers/mistakes:
+  ‘NanoStringDiff.log’
+Please remove them from your package.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘NanoStringDiff.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... SKIPPED
+* DONE
+Status: 1 WARNING, 2 NOTEs
+
+
+
+
+.Rprofile error [/scratch/228426.1.long.q/Rtmp6EZX1a/file48ea3353e00f8: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-restore --slave --args nextArgNanoStringDiff_1.16.0.tar.gznextArg--no-manualnextArg--no-build-vignettesnextArg-onextArg/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/NanoStringDiff/new]: there is no package called ‘startup’
+  Running ‘testthat.R’
+
+See
+  ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/NanoStringDiff/new/NanoStringDiff.Rcheck/00check.log’
+for details.
+
+
+
+
+
+
+```
+### CRAN
+
+```
+
+
+
+
+
 
 ```

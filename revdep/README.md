@@ -20,15 +20,17 @@
 
 # Revdeps
 
-## Failed to check (5)
+## Failed to check (7)
 
-|package                              |version |error |warning |note |
-|:------------------------------------|:-------|:-----|:-------|:----|
-|[ChAMP](failures.md#champ)           |2.16.1  |1     |        |1    |
-|Chicago                              |?       |      |        |     |
-|ChIPpeakAnno                         |?       |      |        |     |
-|cola                                 |?       |      |        |     |
-|[maEndToEnd](failures.md#maendtoend) |2.6.0   |1     |        |1    |
+|package                    |version |error |warning |note |
+|:--------------------------|:-------|:-----|:-------|:----|
+|[ChAMP](failures.md#champ) |2.16.1  |1     |        |1    |
+|Chicago                    |?       |      |        |     |
+|ChIPpeakAnno               |?       |      |        |     |
+|cola                       |?       |      |        |     |
+|flowWorkspace              |?       |      |        |     |
+|maEndToEnd                 |?       |      |        |     |
+|NanoStringDiff             |?       |      |        |     |
 
 ## New problems (1)
 
@@ -67,7 +69,7 @@
 |brms                                                               |2.11.1  |       |        |     |
 |[bumphunter](problems.md#bumphunter)                               |1.28.0  |1      |1       |4    |
 |calmate                                                            |0.12.1  |       |        |     |
-|[CARBayesST](problems.md#carbayesst)                               |3.0.2   |1      |        |     |
+|CARBayesST                                                         |3.0.2   |       |        |     |
 |carx                                                               |0.7.1   |       |        |     |
 |[CATALYST](problems.md#catalyst)                                   |1.10.1  |1      |        |     |
 |[celda](problems.md#celda)                                         |1.2.4   |       |1       |1    |
@@ -147,7 +149,7 @@
 |fishpond                                                           |1.2.0   |       |        |     |
 |flowCore                                                           |1.52.1  |       |        |     |
 |[flowSpy](problems.md#flowspy)                                     |1.0.0   |1      |        |     |
-|[flowWorkspace](problems.md#flowworkspace)                         |3.34.1  |1      |3       |6    |
+|flowWorkspace                                                      |?       |       |        |     |
 |funtooNorm                                                         |1.10.0  |       |        |     |
 |GAD                                                                |1.1.1   |       |        |     |
 |[gap](problems.md#gap)                                             |1.2.2   |       |1       |1    |
@@ -187,7 +189,7 @@
 |ltmle                                                              |1.1-0   |       |        |     |
 |Luminescence                                                       |0.9.7   |       |        |     |
 |M3Drop                                                             |1.12.0  |       |        |     |
-|[maEndToEnd](failures.md#maendtoend)                               |2.6.0   |1      |        |1    |
+|maEndToEnd                                                         |?       |       |        |     |
 |matrixTests                                                        |0.1.8   |       |        |     |
 |MEAL                                                               |1.16.0  |       |        |     |
 |MEDseq                                                             |1.0.1   |       |        |     |
@@ -221,7 +223,7 @@
 |multiviewtest                                                      |2.0.0   |       |        |     |
 |muscat                                                             |1.0.0   |       |        |     |
 |nandb                                                              |2.0.5   |       |        |     |
-|[NanoStringDiff](problems.md#nanostringdiff)                       |1.16.0  |-1     |1       |2    |
+|NanoStringDiff                                                     |?       |       |        |     |
 |NetLogoR                                                           |0.3.6   |       |        |     |
 |neurobase                                                          |1.29.0  |       |        |     |
 |NormalyzerDE                                                       |1.4.0   |       |        |     |
