@@ -364,7 +364,7 @@ Run `revdep_details(,"bigPint")` for more info
 
 </details>
 
-## Newly broken
+## In both
 
 *   checking examples ... ERROR
     ```
@@ -394,15 +394,10 @@ Run `revdep_details(,"bigPint")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.1Mb
+      installed size is 10.3Mb
       sub-directories of 1Mb or more:
-        doc   5.8Mb
+        doc  10.1Mb
     ```
-
-## Newly fixed
-
-*   R CMD check timed out
-    
 
 # bingat
 
@@ -1626,27 +1621,25 @@ Run `revdep_details(,"DMCFB")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
+    Running examples in ‘DMCFB-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: readBismark-method
+    > ### Title: readBismark method
+    > ### Aliases: readBismark-method readBismark,character,DataFrame-method
+    > ###   readBismark readBismark,character,data.frame-method
+    > ###   readBismark,character,character-method
+    > 
+    > ### ** Examples
+    > 
+    > fn <- list.files(system.file("extdata", package = "DMCHMM"))
+    > fn.f <- list.files(system.file("extdata", package = "DMCHMM"),
+    +   full.names = TRUE
     + )
-    > OBJ2 <- findDMCFB(OBJ1,
-    +   bwa = 10, bwb = 10, nBurn = 50, nMC = 50, nThin = 1,
-    +   alpha = 0.05, nCores = 2, pSize = 500, sfiles = FALSE
-    + )
-    ------------------------------------------------------------
-    Running Bayesian functional regression model ...
-    The priors's SD = 0.3033, estimated from data ... 
-    Number of assigned cores: 2 ... 
-    ------------------------------------------------------------
-    Fitted model: 
-    logit(MethRead/ReadDepth) ~ F(Group)
-    ------------------------------------------------------------
-    Creating 1 batches of genomic positions ...
-    Running batch 1/1; chr1; 1000 positions; Region [   1, 1000]; Date 2020-02-15 13:09:53
-    Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
-      port 11860 cannot be opened
-    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
-      cannot open the connection
-    Calls: findDMCFB ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
+    > OBJ <- readBismark(fn.f, fn)
+    Building BSDMC object.
+    Error in methData[[1]] : subscript out of bounds
+    Calls: readBismark -> readBismark -> .readBismark
     Execution halted
     ```
 
@@ -1898,26 +1891,6 @@ Run `revdep_details(,"EasyqpcR")` for more info
       ‘vignette_EasyqpcR.toc’
     Please remove them from your package.
     ```
-
-# eGST
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/eGST
-* URL: https://github.com/ArunabhaCodes/eGST
-* BugReports: https://github.com/ArunabhaCodes/eGST/issues
-* Date/Publication: 2019-07-02 15:00:03 UTC
-* Number of recursive dependencies: 42
-
-Run `revdep_details(,"eGST")` for more info
-
-</details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
 
 # EMDomics
 
@@ -2331,26 +2304,6 @@ Run `revdep_details(,"flowCore")` for more info
       mat msv
     ```
 
-# flowSpy
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/flowSpy
-* URL: http://www.r-project.org, https://github.com/ytdai/flowSpy
-* BugReports: https://github.com/ytdai/flowSpy/issues
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 226
-
-Run `revdep_details(,"flowSpy")` for more info
-
-</details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
-
 # flowWorkspace
 
 <details>
@@ -2607,24 +2560,6 @@ Run `revdep_details(,"GJRM")` for more info
     ```
     Package which this enhances but not available for checking: ‘sp’
     ```
-
-# graper
-
-<details>
-
-* Version: 1.2.0
-* Source code: https://github.com/cran/graper
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 68
-
-Run `revdep_details(,"graper")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
 
 # GUIDEseq
 
@@ -3133,11 +3068,6 @@ Run `revdep_details(,"MetaNeighbor")` for more info
 Run `revdep_details(,"MethylAid")` for more info
 
 </details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
 
 ## In both
 
@@ -3774,7 +3704,7 @@ Run `revdep_details(,"muscat")` for more info
       Contrasts with only a single non-zero term are already evaluated by default.
     Dividing work into 83 chunks...
     
-    Total:10 s
+    Total:8 s
     Error in fitFDistRobustly(var, df1 = df, covariate = covariate, winsor.tail.p = winsor.tail.p) : 
       statmod package required but is not installed
     Calls: mmDS ... squeezeVar -> fitFDistRobustly -> Recall -> fitFDistRobustly

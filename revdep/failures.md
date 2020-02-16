@@ -57,46 +57,6 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 * removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
 
 ```
-# eGST
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/eGST
-* URL: https://github.com/ArunabhaCodes/eGST
-* BugReports: https://github.com/ArunabhaCodes/eGST/issues
-* Date/Publication: 2019-07-02 15:00:03 UTC
-* Number of recursive dependencies: 42
-
-Run `revdep_details(,"eGST")` for more info
-
-</details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
-
-# flowSpy
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/flowSpy
-* URL: http://www.r-project.org, https://github.com/ytdai/flowSpy
-* BugReports: https://github.com/ytdai/flowSpy/issues
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 226
-
-Run `revdep_details(,"flowSpy")` for more info
-
-</details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
-
 # GAPGOM
 
 <details>
@@ -959,24 +919,6 @@ Run `revdep_details(,"")` for more info
 
 
 ```
-# graper
-
-<details>
-
-* Version: 1.2.0
-* Source code: https://github.com/cran/graper
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 68
-
-Run `revdep_details(,"graper")` for more info
-
-</details>
-
-## In both
-
-*   R CMD check timed out
-    
-
 # maEndToEnd
 
 <details>
@@ -2897,31 +2839,6 @@ Run `revdep_details(,"")` for more info
 
 
 ```
-# MethylAid
-
-<details>
-
-* Version: 1.20.0
-* Source code: https://github.com/cran/MethylAid
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 153
-
-Run `revdep_details(,"MethylAid")` for more info
-
-</details>
-
-## Newly broken
-
-*   R CMD check timed out
-    
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘MethylAidData’
-    ```
-
 # RNAmodR
 
 <details>
