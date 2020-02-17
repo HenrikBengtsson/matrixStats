@@ -2859,11 +2859,6 @@ Run `revdep_details(,"Luminescence")` for more info
 
 </details>
 
-## Newly fixed
-
-*   R CMD check timed out
-    
-
 ## In both
 
 *   checking Rd cross-references ... WARNING
@@ -2915,6 +2910,151 @@ Run `revdep_details(,"M3Drop")` for more info
     ```
     prepare_Rd: NBumi_FSOther.Rd:8-10: Dropping empty section \usage
     prepare_Rd: NBumi_TradDE.Rd:7-8: Dropping empty section \usage
+    ```
+
+# maEndToEnd
+
+<details>
+
+* Version: 2.6.0
+* Source code: https://github.com/cran/maEndToEnd
+* URL: https://www.bioconductor.org/help/workflows/
+* Date/Publication: 2019-10-30
+* Number of recursive dependencies: 228
+
+Run `revdep_details(,"maEndToEnd")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘maEndToEnd’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: call dbDisconnect() when finished working with a connection
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'Biobase', 'oligoClasses', 'ArrayExpress', 'pd.hugene.1.0.st.v1',
+      'hugene10sttranscriptcluster.db', 'oligo', 'arrayQualityMetrics',
+      'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
+      'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
+      'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
+      'Rgraphviz'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    License components which are templates and need '+ file LICENSE':
+      MIT
+    ```
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENCE
+    is not mentioned in the DESCRIPTION file.
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘AnnotationDbi’
+    ```
+
+# MEAL
+
+<details>
+
+* Version: 1.16.0
+* Source code: https://github.com/cran/MEAL
+* Date/Publication: 2019-11-07
+* Number of recursive dependencies: 221
+
+Run `revdep_details(,"MEAL")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+    ...
+      Warning message:
+      replacing previous import 'minfi::getMeth' by 'bsseq::getMeth' when loading 'DMRcate' 
+      > 
+      > test_check("MEAL")
+      ── 1. Error: DMRcate (@test_06regionAnalysis.R#19)  ────────────────────────────
+      Invalid Cache: sqlite file
+        Hub has not been added to cache
+        Run again with 'localHub=FALSE'
+      Backtrace:
+       1. MEAL::runDMRcate(set = set, model = ~status, pcutoff = 0.9)
+       2. base::tryCatch(...)
+       3. base:::tryCatchList(expr, classes, parentenv, handlers)
+       4. base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       5. value[[3L]](cond)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 35 | SKIPPED: 0 | WARNINGS: 13 | FAILED: 1 ]
+      1. Error: DMRcate (@test_06regionAnalysis.R#19) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Codoc mismatches from documentation object 'runRDA':
+    runRDA
+      Code: function(set, model, num_vars = ncol(model), range, betas =
+                     FALSE, resultSet = TRUE, num_permutations = 10000,
+                     ...)
+      Docs: function(set, model, num_vars = ncol(model), range, betas =
+                     FALSE, resultSet = TRUE, num_permutations = 10000)
+      Argument names in code not in docs:
+        ...
+    ```
+
+*   checking examples ... WARNING
+    ```
+    Found the following significant warnings:
+    
+      Warning: 'calculateRelevantSNPs' is deprecated.
+      Warning: 'correlationMethSNPs' is deprecated.
+      Warning: 'explainedVariance' is deprecated.
+      Warning: 'normalSNP' is deprecated.
+      Warning: 'plotLM' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
+    ```
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENSE
+    is not mentioned in the DESCRIPTION file.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    plotRegion: no visible global function definition for
+      'subsetByOverlaps'
+    plotRegion: no visible global function definition for 'mcols<-'
+    runBlockFinder: no visible global function definition for 'assays'
+    runBlockFinder: no visible global function definition for 'colData'
+    runRDA: no visible global function definition for 'rowData'
+    runSVA: no visible global function definition for 'resid'
+    Undefined global functions or variables:
+      assays colData mcols<- resid rowData subsetByOverlaps
+    Consider adding
+      importFrom("stats", "resid")
+    to your NAMESPACE file.
     ```
 
 # metagene
@@ -3054,6 +3194,29 @@ Run `revdep_details(,"MetaNeighbor")` for more info
     Namespaces in Imports field not imported from:
       ‘GenomicRanges’ ‘RColorBrewer’ ‘gplots’
       All declared Imports should be used.
+    ```
+
+# methrix
+
+<details>
+
+* Version: 1.0.05
+* Source code: https://github.com/cran/methrix
+* Date/Publication: 2020-01-08
+* Number of recursive dependencies: 144
+
+Run `revdep_details(,"methrix")` for more info
+
+</details>
+
+## In both
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
     ```
 
 # MethylAid
@@ -5247,6 +5410,29 @@ Run `revdep_details(,"SMAD")` for more info
     ```
     Namespace in Imports field not imported from: ‘matrixStats’
       All declared Imports should be used.
+    ```
+
+# splatter
+
+<details>
+
+* Version: 1.10.1
+* Source code: https://github.com/cran/splatter
+* URL: https://github.com/Oshlack/splatter
+* BugReports: https://github.com/Oshlack/splatter/issues
+* Date/Publication: 2020-02-14
+* Number of recursive dependencies: 210
+
+Run `revdep_details(,"splatter")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: ‘rlang:::warn_deprecated’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # SRGnet

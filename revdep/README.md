@@ -20,18 +20,14 @@
 
 # Revdeps
 
-## Failed to check (8)
+## Failed to check (4)
 
 |package                            |version |error |warning |note |
 |:----------------------------------|:-------|:-----|:-------|:----|
 |[DeepBlueR](failures.md#deepbluer) |1.12.0  |1     |        |     |
 |GAPGOM                             |?       |      |        |     |
-|maEndToEnd                         |?       |      |        |     |
-|MEAL                               |?       |      |        |     |
-|methrix                            |?       |      |        |     |
 |[RNAmodR](failures.md#rnamodr)     |1.0.2   |2     |        |1    |
 |[SICtools](failures.md#sictools)   |1.16.0  |1     |        |2    |
-|splatter                           |?       |      |        |     |
 
 ## New problems (3)
 
@@ -189,11 +185,11 @@
 |[LSAmitR](problems.md#lsamitr)                                                 |1.0-2   |       |        |1        |
 |lspartition                                                                    |0.4     |       |        |         |
 |[ltmle](problems.md#ltmle)                                                     |1.1-0   |1      |        |         |
-|[Luminescence](problems.md#luminescence)                                       |0.9.7   |-1     |1       |1        |
+|[Luminescence](problems.md#luminescence)                                       |0.9.7   |       |1       |1        |
 |[M3Drop](problems.md#m3drop)                                                   |1.12.0  |       |        |3        |
-|maEndToEnd                                                                     |?       |       |        |         |
+|[maEndToEnd](problems.md#maendtoend)                                           |2.6.0   |       |1       |4        |
 |matrixTests                                                                    |0.1.8   |       |        |         |
-|MEAL                                                                           |?       |       |        |         |
+|[MEAL](problems.md#meal)                                                       |1.16.0  |1      |2       |2        |
 |MEDseq                                                                         |1.0.1   |       |        |         |
 |MetabolicSurv                                                                  |1.1.0   |       |        |         |
 |[metagene](problems.md#metagene)                                               |2.18.0  |       |        |2        |
@@ -201,7 +197,7 @@
 |[metamicrobiomeR](problems.md#metamicrobiomer)                                 |1.1     |       |        |1        |
 |[MetaNeighbor](problems.md#metaneighbor)                                       |1.6.0   |       |        |1 -1     |
 |metavizr                                                                       |1.10.0  |       |        |         |
-|methrix                                                                        |?       |       |        |         |
+|[methrix](problems.md#methrix)                                                 |1.0.05  |       |        |1        |
 |[MethylAid](problems.md#methylaid)                                             |1.20.0  |       |        |1        |
 |[methylationArrayAnalysis](problems.md#methylationarrayanalysis)               |1.10.0  |       |        |3        |
 |[methylumi](problems.md#methylumi)                                             |2.32.0  |       |2       |7        |
@@ -274,7 +270,7 @@
 |slingshot                                                                      |1.4.0   |       |        |         |
 |[SMAD](problems.md#smad)                                                       |1.2.0   |       |        |1        |
 |smerc                                                                          |1.1     |       |        |         |
-|splatter                                                                       |?       |       |        |         |
+|[splatter](problems.md#splatter)                                               |1.10.1  |       |        |1        |
 |splitFeas                                                                      |0.1.0   |       |        |         |
 |[SRGnet](problems.md#srgnet)                                                   |1.12.0  |       |        |2        |
 |stability                                                                      |0.5.0   |       |        |         |
