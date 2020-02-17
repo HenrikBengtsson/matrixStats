@@ -85,8 +85,8 @@ Run `revdep_details(,"")` for more info
 * DONE (backports)
 * installing *binary* package ‘base64enc’ ...
 * DONE (base64enc)
-ERROR: failed to lock directory ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPGOM’ for modifying
-Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPGOM/00LOCK-BH’
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
 * installing *binary* package ‘BiocGenerics’ ...
 * DONE (BiocGenerics)
 * installing *binary* package ‘bit’ ...
@@ -287,17 +287,7 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 * DONE (GO.db)
 * installing *binary* package ‘kableExtra’ ...
 * DONE (kableExtra)
-* installing *source* package ‘org.Ag.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Ag.eg.db’ ...
 * DONE (org.Ag.eg.db)
 * installing *source* package ‘org.At.tair.db’ ...
 ** using staged installation
@@ -311,31 +301,11 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (org.At.tair.db)
-* installing *source* package ‘org.Bt.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Bt.eg.db’ ...
 * DONE (org.Bt.eg.db)
 * installing *binary* package ‘org.Ce.eg.db’ ...
 * DONE (org.Ce.eg.db)
-* installing *source* package ‘org.Cf.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Cf.eg.db’ ...
 * DONE (org.Cf.eg.db)
 * installing *source* package ‘org.Dm.eg.db’ ...
 ** using staged installation
@@ -361,81 +331,21 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (org.Dr.eg.db)
-* installing *source* package ‘org.EcK12.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.EcK12.eg.db’ ...
 * DONE (org.EcK12.eg.db)
-* installing *source* package ‘org.EcSakai.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.EcSakai.eg.db’ ...
 * DONE (org.EcSakai.eg.db)
-* installing *source* package ‘org.Gg.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Gg.eg.db’ ...
 * DONE (org.Gg.eg.db)
 * installing *binary* package ‘org.Hs.eg.db’ ...
 * DONE (org.Hs.eg.db)
 * installing *binary* package ‘org.Mm.eg.db’ ...
 * DONE (org.Mm.eg.db)
-* installing *source* package ‘org.Mmu.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Mmu.eg.db’ ...
 * DONE (org.Mmu.eg.db)
-* installing *source* package ‘org.Pf.plasmo.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Pf.plasmo.db’ ...
 * DONE (org.Pf.plasmo.db)
-* installing *source* package ‘org.Pt.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Pt.eg.db’ ...
 * DONE (org.Pt.eg.db)
 * installing *source* package ‘org.Rn.eg.db’ ...
 ** using staged installation
@@ -461,29 +371,9 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (org.Sc.sgd.db)
-* installing *source* package ‘org.Ss.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Ss.eg.db’ ...
 * DONE (org.Ss.eg.db)
-* installing *source* package ‘org.Xl.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Xl.eg.db’ ...
 * DONE (org.Xl.eg.db)
 * installing *binary* package ‘tidyr’ ...
 * DONE (tidyr)
@@ -508,8 +398,8 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 * DONE (backports)
 * installing *binary* package ‘base64enc’ ...
 * DONE (base64enc)
-ERROR: failed to lock directory ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPGOM’ for modifying
-Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPGOM/00LOCK-BH’
+* installing *binary* package ‘BH’ ...
+* DONE (BH)
 * installing *binary* package ‘BiocGenerics’ ...
 * DONE (BiocGenerics)
 * installing *binary* package ‘bit’ ...
@@ -710,17 +600,7 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 * DONE (GO.db)
 * installing *binary* package ‘kableExtra’ ...
 * DONE (kableExtra)
-* installing *source* package ‘org.Ag.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Ag.eg.db’ ...
 * DONE (org.Ag.eg.db)
 * installing *source* package ‘org.At.tair.db’ ...
 ** using staged installation
@@ -734,31 +614,11 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (org.At.tair.db)
-* installing *source* package ‘org.Bt.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Bt.eg.db’ ...
 * DONE (org.Bt.eg.db)
 * installing *binary* package ‘org.Ce.eg.db’ ...
 * DONE (org.Ce.eg.db)
-* installing *source* package ‘org.Cf.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Cf.eg.db’ ...
 * DONE (org.Cf.eg.db)
 * installing *source* package ‘org.Dm.eg.db’ ...
 ** using staged installation
@@ -784,81 +644,21 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (org.Dr.eg.db)
-* installing *source* package ‘org.EcK12.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.EcK12.eg.db’ ...
 * DONE (org.EcK12.eg.db)
-* installing *source* package ‘org.EcSakai.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.EcSakai.eg.db’ ...
 * DONE (org.EcSakai.eg.db)
-* installing *source* package ‘org.Gg.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Gg.eg.db’ ...
 * DONE (org.Gg.eg.db)
 * installing *binary* package ‘org.Hs.eg.db’ ...
 * DONE (org.Hs.eg.db)
 * installing *binary* package ‘org.Mm.eg.db’ ...
 * DONE (org.Mm.eg.db)
-* installing *source* package ‘org.Mmu.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Mmu.eg.db’ ...
 * DONE (org.Mmu.eg.db)
-* installing *source* package ‘org.Pf.plasmo.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Pf.plasmo.db’ ...
 * DONE (org.Pf.plasmo.db)
-* installing *source* package ‘org.Pt.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Pt.eg.db’ ...
 * DONE (org.Pt.eg.db)
 * installing *source* package ‘org.Rn.eg.db’ ...
 ** using staged installation
@@ -884,29 +684,9 @@ Try removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/library/GAPG
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (org.Sc.sgd.db)
-* installing *source* package ‘org.Ss.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Ss.eg.db’ ...
 * DONE (org.Ss.eg.db)
-* installing *source* package ‘org.Xl.eg.db’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** testing if installed package can be loaded from temporary location
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
+* installing *binary* package ‘org.Xl.eg.db’ ...
 * DONE (org.Xl.eg.db)
 * installing *binary* package ‘tidyr’ ...
 * DONE (tidyr)
