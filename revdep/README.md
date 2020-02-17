@@ -20,12 +20,11 @@
 
 # Revdeps
 
-## Failed to check (4)
+## Failed to check (3)
 
 |package                            |version |error |warning |note |
 |:----------------------------------|:-------|:-----|:-------|:----|
 |[DeepBlueR](failures.md#deepbluer) |1.12.0  |1     |        |     |
-|GAPGOM                             |?       |      |        |     |
 |[RNAmodR](failures.md#rnamodr)     |1.0.2   |2     |        |1    |
 |[SICtools](failures.md#sictools)   |1.16.0  |1     |        |2    |
 
@@ -151,7 +150,7 @@
 |funtooNorm                                                                     |1.10.0  |       |        |         |
 |GAD                                                                            |1.1.1   |       |        |         |
 |[gap](problems.md#gap)                                                         |1.2.2   |       |1       |1        |
-|GAPGOM                                                                         |?       |       |        |         |
+|[GAPGOM](problems.md#gapgom)                                                   |1.2.0   |1      |        |         |
 |gcapc                                                                          |1.10.0  |       |        |         |
 |GeneralizedUmatrix                                                             |1.1.6   |       |        |         |
 |GenEst                                                                         |1.4.0.2 |       |        |         |

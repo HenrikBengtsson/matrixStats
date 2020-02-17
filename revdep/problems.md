@@ -2456,6 +2456,45 @@ Run `revdep_details(,"gap")` for more info
     Package suggested but not available for checking: ‘regress’
     ```
 
+# GAPGOM
+
+<details>
+
+* Version: 1.2.0
+* Source code: https://github.com/cran/GAPGOM
+* URL: https://github.com/Berghopper/GAPGOM/
+* BugReports: https://github.com/Berghopper/GAPGOM/issues/
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 128
+
+Run `revdep_details(,"GAPGOM")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘GAPGOM-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: fantom_download
+    > ### Title: GAPGOM - fantom_download()
+    > ### Aliases: fantom_download
+    > 
+    > ### ** Examples
+    > 
+    > fantom_file <- fantom_download(organism = "mouse", noprompt = TRUE)
+    adding rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz'
+    Warning in value[[3L]](cond) :
+      
+    trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error:
+      attempt to write a readonly database
+    Error in bfcrpath(bfc, url) : not all 'rnames' found or unique.
+    Calls: fantom_download -> bfcrpath -> bfcrpath
+    Execution halted
+    ```
+
 # genomation
 
 <details>
