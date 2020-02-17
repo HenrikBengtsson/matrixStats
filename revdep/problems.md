@@ -3678,6 +3678,14 @@ Run `revdep_details(,"mixOmics")` for more info
       Execution halted
     ```
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.0Mb
+      sub-directories of 1Mb or more:
+        R     1.2Mb
+        doc   4.4Mb
+    ```
+
 # mnem
 
 <details>

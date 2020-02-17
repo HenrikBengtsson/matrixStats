@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2020-02-16                   |
+|date     |2020-02-17                   |
 
 # Dependencies
 
@@ -206,7 +206,7 @@
 |microsamplingDesign                                                            |1.0.6   |       |        |         |
 |[MIGSA](problems.md#migsa)                                                     |1.10.1  |3      |        |1        |
 |[MinimumDistance](problems.md#minimumdistance)                                 |1.30.0  |       |        |2        |
-|[mixOmics](problems.md#mixomics)                                               |6.10.8  |1      |        |         |
+|[mixOmics](problems.md#mixomics)                                               |6.10.8  |1      |        |1        |
 |mmtfa                                                                          |0.3     |       |        |         |
 |[mnem](problems.md#mnem)                                                       |1.2.0   |       |        |1        |
 |[moc.gapbk](problems.md#mocgapbk)                                              |0.1.0   |1      |        |         |
