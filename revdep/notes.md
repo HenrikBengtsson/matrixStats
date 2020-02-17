@@ -39,15 +39,23 @@ $ revdep/run.R --preinstall-children
 * DMCFB
 
 
-### Packages that timed out
+### Packages that timed out (> 30-minute walltime)
 
 Packages that gave "R CMD check timed out":
 
 * eGST
 * flowSpy
 * graper
+* Luminescence
 * MethylAid
 
+Other timeouts:
+
+* GAPGOM
+* maEndToEnd
+* MEAL
+* metrix
+* splatter
 
 
 ### Packages that depend on **oligo**
@@ -73,7 +81,6 @@ their examples or tests require a working internet connection:
 * crossmeta: "AnnotatingURL 'https://bioconductor.org/config.yaml': status was 'Couldn't resolve host, ..."
 * DeepBlueR: "Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known"
 * Doscheda: "Could not resolve host: www.humanmine.org; Name or service not known"
-* GAPGOM
 * Pigengene: "Could not resolve host: useast.ensembl.org; Name or service not known"
 * PrecisionTrialDrawer: "Could not resolve host: www.cbioportal.org; Name or service not known"
 * stm: "cannot open the connection to 'http://goo.gl/VPdxlS'"
