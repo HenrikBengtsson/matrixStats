@@ -4,7 +4,12 @@
 
 In order to run these checks successfully on a machine _without internet
 access_, make sure to first populate the 'crancache' cache by pre-installing
-all packages to be tested plus a few more:
+all packages to be tested plus a few more.
+
+```r
+> install.packages("remotes")
+> remotes::install_github("r-lib/revdepcheck")
+```
 
 ```sh
 ## Update current crancache
@@ -51,9 +56,7 @@ Packages that gave "R CMD check timed out":
 
 Other timeouts:
 
-* GAPGOM
 * maEndToEnd
-* MEAL
 * metrix
 * splatter
 
@@ -81,6 +84,7 @@ their examples or tests require a working internet connection:
 * crossmeta: "AnnotatingURL 'https://bioconductor.org/config.yaml': status was 'Couldn't resolve host, ..."
 * DeepBlueR: "Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known"
 * Doscheda: "Could not resolve host: www.humanmine.org; Name or service not known"
+* GAPGOM: "trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error: attempt to write a readonly database. Error in bfcrpath(bfc, url) : not all 'rnames' found or unique."
 * Pigengene: "Could not resolve host: useast.ensembl.org; Name or service not known"
 * PrecisionTrialDrawer: "Could not resolve host: www.cbioportal.org; Name or service not known"
 * stm: "cannot open the connection to 'http://goo.gl/VPdxlS'"
@@ -89,11 +93,12 @@ their examples or tests require a working internet connection:
 
 The following packages produce errors on "No internet connection using 'localHub=TRUE'":
 
-* RNAmodR
 * AMARETTO
 * biscuiteer
 * DEqMS
 * hipathia
+* MEAL
+* RNAmodR
 * sesame
 
 
