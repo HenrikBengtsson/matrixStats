@@ -97,7 +97,59 @@ Run `revdep_details(,"amplican")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking examples ... ERROR
+    ```
+    ...
+    Running examples in ‘amplican-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: amplicanAlign
+    > ### Title: Align reads to amplicons.
+    > ### Aliases: amplicanAlign
+    > 
+    > ### ** Examples
+    > 
+    > # path to example config file
+    > config <- system.file("extdata", "config.csv", package = "amplican")
+    > # path to example fastq files
+    > fastq_folder <- system.file("extdata", package = "amplican")
+    > aln <- amplicanAlign(config, fastq_folder)
+    Checking configuration file...
+    Making alignments...
+    Aligning reads for barcode_1
+    Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+      there is no package called ‘Rsamtools’
+    Calls: amplicanAlign ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+    ...
+      ── 2. Error: (unknown) (@test_filters_helpers.R#5)  ────────────────────────────
+      there is no package called 'Rsamtools'
+      Backtrace:
+        1. ShortRead::readFastq
+        2. base::getExportedValue(pkg, name)
+        3. base::asNamespace(ns)
+        4. base::getNamespace(ns)
+        5. base::loadNamespace(name)
+        7. base::loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]])
+        9. base::loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]])
+       10. base::withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+       11. base:::withOneRestart(expr, restarts[[1L]])
+       12. base:::doWithOneRestart(return(expr), restart)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 41 | SKIPPED: 0 | WARNINGS: 2 | FAILED: 2 ]
+      1. Error: amplican runs through example files without any issues (@test_amplican.R#19) 
+      2. Error: (unknown) (@test_filters_helpers.R#5) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘CrispRVariants’ in Rd xrefs
     ```
@@ -155,28 +207,6 @@ Run `revdep_details(,"aroma.affymetrix")` for more info
       could not find function "setGeneric"
     ```
 
-# aroma.cn
-
-<details>
-
-* Version: 1.6.1
-* Source code: https://github.com/cran/aroma.cn
-* URL: http://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.cn
-* BugReports: https://github.com/HenrikBengtsson/aroma.cn/issues
-* Date/Publication: 2015-10-28 00:08:16
-* Number of recursive dependencies: 24
-
-Run `revdep_details(,"aroma.cn")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘GLAD’
-    ```
-
 # aroma.core
 
 <details>
@@ -194,15 +224,10 @@ Run `revdep_details(,"aroma.core")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘GLAD’ in Rd xrefs
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      'GLAD', 'sfit', 'expectile', 'HaarSeg', 'mpcbs'
+      'sfit', 'expectile', 'HaarSeg', 'mpcbs'
     ```
 
 # aroma.light
@@ -249,7 +274,7 @@ Run `revdep_details(,"BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
         libs   5.3Mb
     ```
@@ -394,9 +419,9 @@ Run `revdep_details(,"bigPint")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.3Mb
+      installed size is 13.7Mb
       sub-directories of 1Mb or more:
-        doc  10.1Mb
+        doc  13.4Mb
     ```
 
 # bingat
@@ -414,7 +439,7 @@ Run `revdep_details(,"bingat")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘genalg’ in Rd xrefs
     ```
@@ -436,36 +461,12 @@ Run `revdep_details(,"biscuiteer")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking package dependencies ... ERROR
     ```
-    ...
-    Extracting sample names from /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_header_only.vcf.gz...
-    /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz does not have a header. Using VCF file header information to help set column names.
-    Assuming unmerged data. Checking now... ...The file might be alright. Double check if you're worried.
-    /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz has 254147 indexed loci.
-    /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz looks valid for import.
-    Reading unmerged input from /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz...
-    Excluding CpG sites with uniformly zero coverage...
-    Loaded /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz. Creating bsseq object...
-    > 
-    >   cpg <- CpGindex(bisc)
-    Computing hypermethylation indices...
-    Loading HMM_CpG_islands.hg19...
-    Loading H9state23unmeth.hg19...
-    Computing hypomethylation indices...
-    Loading PMDs.hg19.rda from biscuiteerData...
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: CpGindex ... ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported object imported by a ':::' call: ‘QDNAseq:::expectedVariance’
-      See the note in ?`:::` about the use of this operator.
+    Package required but not available: ‘Rsamtools’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # bumphunter
@@ -484,30 +485,10 @@ Run `revdep_details(,"bumphunter")` for more info
 
 ## In both
 
-*   checking tests ...
+*   checking whether package ‘bumphunter’ can be installed ... ERROR
     ```
-    ...
-      Loading required package: foreach
-      Loading required package: iterators
-      Loading required package: locfit
-      locfit 1.5-9.1 	 2013-03-22
-      trying URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
-      ── 1. Error: (unknown) (@test_annotation.R#99)  ────────────────────────────────
-      cannot open URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
-      Backtrace:
-       1. rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
-       2. rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
-       4. rtracklayer::import(FileForFormat(con), ...)
-       6. rtracklayer::import(con, ...)
-       7. rtracklayer:::.local(con, format, text, ...)
-       8. utils::download.file(resource(con), destfile)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 13 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: (unknown) (@test_annotation.R#99) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/bumphunter/new/bumphunter.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -519,24 +500,46 @@ Run `revdep_details(,"bumphunter")` for more info
     selectively is preferable.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Description field: should contain one or more complete sentences.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported object imported by a ':::' call: ‘doParallel:::.options’
-      See the note in ?`:::` about the use of this operator.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    bumphunterEngine: no visible binding for global variable ‘bootstraps’
-    Undefined global functions or variables:
-      bootstraps
-    ```
+```
+* installing *source* package ‘bumphunter’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/bumphunter/new/bumphunter.Rcheck/00_pkg_src/bumphunter: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘bumphunter’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/bumphunter/new/bumphunter.Rcheck/bumphunter’
 
+```
+### CRAN
+
+```
+* installing *source* package ‘bumphunter’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/bumphunter/old/bumphunter.Rcheck/00_pkg_src/bumphunter: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘bumphunter’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/bumphunter/old/bumphunter.Rcheck/bumphunter’
+
+```
 # CATALYST
 
 <details>
@@ -580,6 +583,14 @@ Run `revdep_details(,"CATALYST")` for more info
     Execution halted
     ```
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.0Mb
+      sub-directories of 1Mb or more:
+        data   2.8Mb
+        doc    3.7Mb
+    ```
+
 # celda
 
 <details>
@@ -621,7 +632,7 @@ Run `revdep_details(,"cellWise")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘rospca’ in Rd xrefs
     ```
@@ -633,7 +644,7 @@ Run `revdep_details(,"cellWise")` for more info
 * Version: 1.10.1
 * Source code: https://github.com/cran/CEMiTool
 * Date/Publication: 2019-12-18
-* Number of recursive dependencies: 179
+* Number of recursive dependencies: 172
 
 Run `revdep_details(,"CEMiTool")` for more info
 
@@ -682,33 +693,10 @@ Run `revdep_details(,"ChAMP")` for more info
 
 ## In both
 
-*   checking whether package ‘ChAMP’ can be installed ... WARNING
+*   checking whether package ‘ChAMP’ can be installed ... ERROR
     ```
-    Found the following significant warnings:
-      Note: possible error in 'dmrcate(myannotation, ': unused argument (mc.cores = cores) 
+    Installation failed.
     See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
-    Information on the location(s) of code generating the ‘Note’s can be
-    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
-    to ‘yes’.
-    ```
-
-*   checking package subdirectories ... WARNING
-    ```
-    Problems with news in ‘inst/NEWS.Rd’:
-      inst/NEWS.Rd:87: unexpected END_OF_INPUT '
-      '
-    ```
-
-*   checking Rd \usage sections ... WARNING
-    ```
-    Duplicated \argument entries in documentation object 'champ.SVD':
-      ‘Rplot’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
     ```
 
 *   checking package dependencies ... NOTE
@@ -721,36 +709,42 @@ Run `revdep_details(,"ChAMP")` for more info
     selectively is preferable.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘rmarkdown’
-    A package should be listed in only one of these fields.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: 'prettydoc'
-      All declared Imports should be used.
-    Package in Depends field not imported from: 'DT'
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    champ.DMR: possible error in dmrcate(myannotation, min.cpgs =
-      minProbes, lambda = lambda, C = C, mc.cores = cores): unused argument
-      (mc.cores = cores)
-    champ.ebGSEA : gseaWTfn: no visible global function definition for
-      'wilcox.test'
-    Undefined global functions or variables:
-      wilcox.test
-    Consider adding
-      importFrom("stats", "wilcox.test")
-    to your NAMESPACE file.
-    ```
+```
+* installing *source* package ‘ChAMP’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00_pkg_src/ChAMP: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bumphunter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘bumphunter’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘ChAMP’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/ChAMP’
 
+```
+### CRAN
+
+```
+* installing *source* package ‘ChAMP’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/old/ChAMP.Rcheck/00_pkg_src/ChAMP: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bumphunter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘bumphunter’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘ChAMP’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/old/ChAMP.Rcheck/ChAMP’
+
+```
 # CHARGE
 
 <details>
@@ -765,6 +759,51 @@ Run `revdep_details(,"CHARGE")` for more info
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    > ### Title: exprFinder
+    > ### Aliases: exprFinder
+    > 
+    > ### ** Examples
+    > 
+    > library(GenomicRanges)
+    > library(EnsDb.Hsapiens.v86)
+    Loading required package: ensembldb
+    Loading required package: GenomicFeatures
+    Loading required package: AnnotationDbi
+    Loading required package: Biobase
+    Welcome to Bioconductor
+    
+        Vignettes contain introductory material; view with
+        'browseVignettes()'. To cite Bioconductor, see
+        'citation("Biobase")', and for packages 'citation("pkgname")'.
+    
+    Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+     there is no package called ‘Rsamtools’
+    Error: package ‘GenomicFeatures’ could not be loaded
+    Execution halted
+    ```
+
+*   checking running R code from vignettes ...
+    ```
+      ‘CHARGE_Vignette.Rnw’using ‘UTF-8’... failed
+     WARNING
+    Errors in running code in vignettes:
+    when running code in ‘CHARGE_Vignette.Rnw’
+      ...
+    > library(EnsDb.Hsapiens.v86)
+    Loading required package: ensembldb
+    Loading required package: GenomicFeatures
+    Loading required package: AnnotationDbi
+    Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+     there is no package called ‘Rsamtools’
+    
+      When sourcing ‘CHARGE_Vignette.R’:
+    Error: package ‘GenomicFeatures’ could not be loaded
+    Execution halted
+    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -792,14 +831,35 @@ Run `revdep_details(,"Chicago")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking examples ... ERROR
     ```
-    Unknown package ‘PCHiCdata’ in Rd xrefs
+    ...
+    > ##create a temporary directory, export output there
+    > tempDirectory <- tempdir()
+    > print(tempDirectory)
+    [1] "/scratch/573693.1.long.q/RtmpIHGNy9"
+    > exportResults(cdUnitTest, outfileprefix = file.path(tempDirectory, "unitTestOutput"))
+    Reading the restriction map file...
+    Reading the bait map file...
+    Preparing the output table...
+    Writing out for seqMonk...
+    Writing out interBed...
+    Preprocessing for WashU outputs...
+    Writing out text file for WashU browser upload...
+    > 
+    > GI <- exportToGI(cdUnitTest)
+    Reading the restriction map file...
+    Reading the bait map file...
+    Preparing the output table...
+    Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+      there is no package called ‘Rsamtools’
+    Calls: exportToGI ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+    Execution halted
     ```
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘PCHiCdata’
+    Package suggested but not available for checking: ‘Rsamtools’
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -814,9 +874,9 @@ Run `revdep_details(,"Chicago")` for more info
 
 <details>
 
-* Version: 3.20.0
+* Version: 3.20.1
 * Source code: https://github.com/cran/ChIPpeakAnno
-* Date/Publication: 2019-10-29
+* Date/Publication: 2020-02-24
 * Number of recursive dependencies: 179
 
 Run `revdep_details(,"ChIPpeakAnno")` for more info
@@ -825,13 +885,101 @@ Run `revdep_details(,"ChIPpeakAnno")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
+*   checking package dependencies ... ERROR
     ```
+    Package required but not available: ‘Rsamtools’
+    
     Depends: includes the non-default packages:
       'grid', 'IRanges', 'Biostrings', 'GenomicRanges', 'S4Vectors',
       'VennDiagram'
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# chromswitch
+
+<details>
+
+* Version: 1.8.0
+* Source code: https://github.com/cran/chromswitch
+* URL: https://github.com/sjessa/chromswitch
+* BugReports: https://github.com/sjessa/chromswitch/issues
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 153
+
+Run `revdep_details(,"chromswitch")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘chromswitch’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/chromswitch/new/chromswitch.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘chromswitch’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/chromswitch/new/chromswitch.Rcheck/00_pkg_src/chromswitch: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘chromswitch’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/chromswitch/new/chromswitch.Rcheck/chromswitch’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘chromswitch’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/chromswitch/old/chromswitch.Rcheck/00_pkg_src/chromswitch: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘chromswitch’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/chromswitch/old/chromswitch.Rcheck/chromswitch’
+
+```
+# cifti
+
+<details>
+
+* Version: 0.4.5
+* Source code: https://github.com/cran/cifti
+* Date/Publication: 2018-02-01 23:25:24 UTC
+* Number of recursive dependencies: 84
+
+Run `revdep_details(,"cifti")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
     ```
 
 # Clomial
@@ -889,10 +1037,8 @@ Run `revdep_details(,"clusterExperiment")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘ConsensusClusterPlus’ in Rd xrefs
-    ```
+*   R CMD check timed out
+    
 
 *   checking contents of ‘data’ directory ... WARNING
     ```
@@ -902,10 +1048,10 @@ Run `revdep_details(,"clusterExperiment")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.2Mb
+      installed size is  6.6Mb
       sub-directories of 1Mb or more:
         R     1.1Mb
-        doc   6.0Mb
+        doc   3.4Mb
     ```
 
 *   checking foreign function calls ... NOTE
@@ -919,6 +1065,76 @@ Run `revdep_details(,"clusterExperiment")` for more info
     Extensions’ manual.
     ```
 
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘ConsensusClusterPlus’ in Rd xrefs
+    ```
+
+# CNVScope
+
+<details>
+
+* Version: 2.9.4
+* Source code: https://github.com/cran/CNVScope
+* URL: https://github.com/jamesdalg/CNVScope/
+* BugReports: https://github.com/jamesdalg/CNVScope/issues/
+* Date/Publication: 2019-12-07 15:30:02 UTC
+* Number of recursive dependencies: 194
+
+Run `revdep_details(,"CNVScope")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘CNVScope’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CNVScope/new/CNVScope.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘CNVScope’ ...
+** package ‘CNVScope’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CNVScope/new/CNVScope.Rcheck/00_pkg_src/CNVScope: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘CNVScope’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CNVScope/new/CNVScope.Rcheck/CNVScope’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘CNVScope’ ...
+** package ‘CNVScope’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CNVScope/old/CNVScope.Rcheck/00_pkg_src/CNVScope: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘CNVScope’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CNVScope/old/CNVScope.Rcheck/CNVScope’
+
+```
 # CopywriteR
 
 <details>
@@ -935,49 +1151,12 @@ Run `revdep_details(,"CopywriteR")` for more info
 
 ## In both
 
-*   checking running R code from vignettes ...
+*   checking package dependencies ... ERROR
     ```
-      ‘CopywriteR.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘CopywriteR.Rnw’
-      ...
-     --- function search by body ---
-    Function .tng in namespace CopywriteR has this body.
-     ----------- END OF FAILURE REPORT -------------- 
+    Package required but not available: ‘Rsamtools’
     
-      When sourcing ‘CopywriteR.R’:
-    Error: The GC-content and mappability normalization did not work due to a
-      failure to calculate loesses. This can generally be solved by using
-      larger bin sizes. Stopping execution of the remaining part of the
-      script...
-    Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      definition for ‘text’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘axis’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘abline’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘dev.off’
-    preCopywriteR: no visible global function definition for ‘as’
-    Undefined global functions or variables:
-      abline as axis dev.off dpois ecdf getClass lines loess packageVersion
-      par pdf plot png points ppois predict read.table rgb segments text
-      write.table
-    Consider adding
-      importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
-      importFrom("graphics", "abline", "axis", "lines", "par", "plot",
-                 "points", "segments", "text")
-      importFrom("methods", "as", "getClass")
-      importFrom("stats", "dpois", "ecdf", "loess", "ppois", "predict")
-      importFrom("utils", "packageVersion", "read.table", "write.table")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # corrcoverage
@@ -1017,6 +1196,9 @@ Run `revdep_details(,"crlmm")` for more info
 </details>
 
 ## In both
+
+*   R CMD check timed out
+    
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -1100,11 +1282,6 @@ Run `revdep_details(,"crossmeta")` for more info
       ‘getDirListing’ ‘getGEO’ ‘getGEOSuppFiles’
     ```
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown packages ‘PADOG’, ‘GeneMeta’ in Rd xrefs
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     ...
@@ -1129,6 +1306,11 @@ Run `revdep_details(,"crossmeta")` for more info
                  "read.table")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown packages ‘PADOG’, ‘GeneMeta’ in Rd xrefs
     ```
 
 # cSEM
@@ -1175,6 +1357,28 @@ Run `revdep_details(,"DAMOCLES")` for more info
       All declared Imports should be used.
     ```
 
+# DatabionicSwarm
+
+<details>
+
+* Version: 1.1.3
+* Source code: https://github.com/cran/DatabionicSwarm
+* URL: http://www.deepbionics.org
+* BugReports: https://github.com/Mthrun/DatabionicSwarm/issues
+* Date/Publication: 2020-02-03 14:00:02 UTC
+* Number of recursive dependencies: 126
+
+Run `revdep_details(,"DatabionicSwarm")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
+    ```
+
 # DeepBlueR
 
 <details>
@@ -1207,10 +1411,10 @@ Run `revdep_details(,"DeepBlueR")` for more info
 ** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
-.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
-Error: unable to load R code in package ‘DeepBlueR’
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
 * removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
@@ -1225,10 +1429,10 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 ** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
-.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
-Error: unable to load R code in package ‘DeepBlueR’
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
 * removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
@@ -1346,6 +1550,11 @@ Run `revdep_details(,"DelayedMatrixStats")` for more info
       Execution halted
     ```
 
+## Newly fixed
+
+*   R CMD check timed out
+    
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -1368,9 +1577,9 @@ Run `revdep_details(,"DelayedMatrixStats")` for more info
 
 <details>
 
-* Version: 1.2.4
+* Version: 1.2.5
 * Source code: https://github.com/cran/DeMixT
-* Date/Publication: 2020-02-05
+* Date/Publication: 2020-02-16
 * Number of recursive dependencies: 70
 
 Run `revdep_details(,"DeMixT")` for more info
@@ -1390,12 +1599,16 @@ Run `revdep_details(,"DeMixT")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    DeMixT_GS: no visible global function definition for ‘qchisq’
     simulate_2comp: no visible global function definition for ‘SimpleList’
     simulate_2comp: no visible global function definition for ‘DataFrame’
     simulate_3comp: no visible global function definition for ‘SimpleList’
     simulate_3comp: no visible global function definition for ‘DataFrame’
     Undefined global functions or variables:
-      DataFrame SimpleList
+      DataFrame SimpleList qchisq
+    Consider adding
+      importFrom("stats", "qchisq")
+    to your NAMESPACE file.
     ```
 
 # DepecheR
@@ -1494,7 +1707,7 @@ Run `revdep_details(,"DEqMS")` for more info
     Loading required package: dbplyr
     > eh = ExperimentHub()
     No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/352417.1.long.q/RtmpsGsq4b/BiocFileCache
+    Using temporary cache /scratch/573693.1.long.q/RtmpSCsQs8/BiocFileCache
     Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
       Invalid Cache: sqlite file
       Hub has not been added to cache
@@ -1564,6 +1777,12 @@ Run `revdep_details(,"diffloop")` for more info
 
 ## In both
 
+*   checking whether package ‘diffloop’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/diffloop/new/diffloop.Rcheck/00install.out’ for details.
+    ```
+
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
@@ -1572,6 +1791,42 @@ Run `revdep_details(,"diffloop")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘diffloop’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/diffloop/new/diffloop.Rcheck/00_pkg_src/diffloop: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘diffloop’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/diffloop/new/diffloop.Rcheck/diffloop’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘diffloop’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/diffloop/old/diffloop.Rcheck/00_pkg_src/diffloop: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘diffloop’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/diffloop/old/diffloop.Rcheck/diffloop’
+
+```
 # DiscoRhythm
 
 <details>
@@ -1619,52 +1874,48 @@ Run `revdep_details(,"DMCFB")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘DMCFB’ can be installed ... ERROR
     ```
-    Running examples in ‘DMCFB-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: readBismark-method
-    > ### Title: readBismark method
-    > ### Aliases: readBismark-method readBismark,character,DataFrame-method
-    > ###   readBismark readBismark,character,data.frame-method
-    > ###   readBismark,character,character-method
-    > 
-    > ### ** Examples
-    > 
-    > fn <- list.files(system.file("extdata", package = "DMCHMM"))
-    > fn.f <- list.files(system.file("extdata", package = "DMCHMM"),
-    +   full.names = TRUE
-    + )
-    > OBJ <- readBismark(fn.f, fn)
-    Building BSDMC object.
-    Error in methData[[1]] : subscript out of bounds
-    Calls: readBismark -> readBismark -> .readBismark
-    Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DMCFB/new/DMCFB.Rcheck/00install.out’ for details.
     ```
 
-*   checking whether the namespace can be loaded with stated dependencies ... WARNING
-    ```
-    Error in setClass("balance", representation(rawdata = "data.frame", matched = "data.frame",  : 
-      could not find function "setClass"
-    Error: unable to load R code in package ‘arm’
-    Execution halted
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
+## Installation
 
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in setClass("balance", representation(rawdata = "data.frame", matched = "data.frame",  : 
-      could not find function "setClass"
-    Error: unable to load R code in package ‘arm’
-    Execution halted
-    ```
+### Devel
 
+```
+* installing *source* package ‘DMCFB’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DMCFB/new/DMCFB.Rcheck/00_pkg_src/DMCFB: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘DMCFB’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DMCFB/new/DMCFB.Rcheck/DMCFB’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DMCFB’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DMCFB/old/DMCFB.Rcheck/00_pkg_src/DMCFB: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘DMCFB’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DMCFB/old/DMCFB.Rcheck/DMCFB’
+
+```
 # dmrseq
 
 <details>
@@ -1678,52 +1929,54 @@ Run `revdep_details(,"dmrseq")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.1Mb
-      sub-directories of 1Mb or more:
-        data   6.8Mb
-    ```
-
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘dmrseq’ can be installed ... ERROR
     ```
-    ...
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (4 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (3 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (2 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (1 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Error in getAnnot("hg19") : Annotation could not be retrieved.
-    Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/dmrseq/new/dmrseq.Rcheck/00install.out’ for details.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    plotDMRs: warning in rank(as.numeric(rowSums(cov.unique)), ties =
-      "first"): partial argument match of 'ties' to 'ties.method'
-    plotEmpiricalDistribution: no visible binding for global variable ‘wt’
-    Undefined global functions or variables:
-      wt
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘dmrseq’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/dmrseq/new/dmrseq.Rcheck/00_pkg_src/dmrseq: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bsseq’ in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘bsseq’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘dmrseq’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/dmrseq/new/dmrseq.Rcheck/dmrseq’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘dmrseq’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/dmrseq/old/dmrseq.Rcheck/00_pkg_src/dmrseq: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bsseq’ in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘bsseq’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘dmrseq’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/dmrseq/old/dmrseq.Rcheck/dmrseq’
+
+```
 # Doscheda
 
 <details>
@@ -1803,7 +2056,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     
-    (R:32122): Gtk-WARNING **: 13:47:35.335: gtk_disable_setlocale() must be called before gtk_init()
+    (R:40819): Gtk-WARNING **: 14:08:56.125: gtk_disable_setlocale() must be called before gtk_init()
     See section ‘Generic functions and methods’ in the ‘Writing R
     Extensions’ manual.
     ```
@@ -1811,7 +2064,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking replacement functions ... WARNING
     ```
     
-    (R:32233): Gtk-WARNING **: 13:47:39.221: gtk_disable_setlocale() must be called before gtk_init()
+    (R:40962): Gtk-WARNING **: 14:09:01.577: gtk_disable_setlocale() must be called before gtk_init()
     The argument of a replacement function which corresponds to the right
     hand side must be named ‘value’.
     ```
@@ -1819,7 +2072,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     
-    (R:32688): Gtk-WARNING **: 13:47:58.378: gtk_disable_setlocale() must be called before gtk_init()
+    (R:41882): Gtk-WARNING **: 14:09:31.654: gtk_disable_setlocale() must be called before gtk_init()
     All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
@@ -1828,11 +2081,11 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking for code/documentation mismatches ... WARNING
     ```
     
-    (R:32735): Gtk-WARNING **: 13:48:01.880: gtk_disable_setlocale() must be called before gtk_init()
+    (R:41974): Gtk-WARNING **: 14:09:36.078: gtk_disable_setlocale() must be called before gtk_init()
     
-    (R:32800): Gtk-WARNING **: 13:48:05.037: gtk_disable_setlocale() must be called before gtk_init()
+    (R:42122): Gtk-WARNING **: 14:09:40.032: gtk_disable_setlocale() must be called before gtk_init()
     
-    (R:32867): Gtk-WARNING **: 13:48:08.611: gtk_disable_setlocale() must be called before gtk_init()
+    (R:42272): Gtk-WARNING **: 14:09:44.574: gtk_disable_setlocale() must be called before gtk_init()
     ```
 
 *   checking package namespace information ... NOTE
@@ -1843,13 +2096,13 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     
-    (R:32041): Gtk-WARNING **: 13:47:32.878: gtk_disable_setlocale() must be called before gtk_init()
+    (R:40705): Gtk-WARNING **: 14:08:51.488: gtk_disable_setlocale() must be called before gtk_init()
     ```
 
 *   checking foreign function calls ... NOTE
     ```
     
-    (R:32288): Gtk-WARNING **: 13:47:41.961: gtk_disable_setlocale() must be called before gtk_init()
+    (R:41052): Gtk-WARNING **: 14:09:05.043: gtk_disable_setlocale() must be called before gtk_init()
     See chapter ‘System and foreign language interfaces’ in the ‘Writing R
     Extensions’ manual.
     ```
@@ -1857,7 +2110,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     
-    (R:32456): Gtk-WARNING **: 13:47:47.561: gtk_disable_setlocale() must be called before gtk_init()
+    (R:41318): Gtk-WARNING **: 14:09:15.981: gtk_disable_setlocale() must be called before gtk_init()
     badCt: no visible global function definition for ‘aggregate’
     nrmData: no visible global function definition for ‘aggregate’
     nrmData: no visible binding for global variable ‘sd’
@@ -1878,7 +2131,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     
-    (R:32961): Gtk-WARNING **: 13:48:12.112: gtk_disable_setlocale() must be called before gtk_init()
+    (R:42395): Gtk-WARNING **: 14:09:50.251: gtk_disable_setlocale() must be called before gtk_init()
     The \usage entries for S3 methods should use the \method markup and not
     their full name.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
@@ -1940,6 +2193,88 @@ Run `revdep_details(,"EMDomics")` for more info
     to your NAMESPACE file.
     ```
 
+# ENmix
+
+<details>
+
+* Version: 1.22.4
+* Source code: https://github.com/cran/ENmix
+* Date/Publication: 2020-02-27
+* Number of recursive dependencies: 142
+
+Run `revdep_details(,"ENmix")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘ENmix’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ENmix/new/ENmix.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘ENmix’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ENmix/new/ENmix.Rcheck/00_pkg_src/ENmix: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘ENmix’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ENmix/new/ENmix.Rcheck/ENmix’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘ENmix’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ENmix/old/ENmix.Rcheck/00_pkg_src/ENmix: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘ENmix’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ENmix/old/ENmix.Rcheck/ENmix’
+
+```
+# eseis
+
+<details>
+
+* Version: 0.5.0
+* Source code: https://github.com/cran/eseis
+* Date/Publication: 2019-12-17 11:30:02 UTC
+* Number of recursive dependencies: 85
+
+Run `revdep_details(,"eseis")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘fftw’
+    
+    Package suggested but not available for checking: ‘rgl’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
 # evaluomeR
 
 <details>
@@ -1980,27 +2315,48 @@ Run `revdep_details(,"EventPointer")` for more info
 
 ## In both
 
-*   checking dependencies in R code ... NOTE
+*   checking whether package ‘EventPointer’ can be installed ... ERROR
     ```
-    Unexported objects imported by ':::' calls:
-      ‘SGSeq:::addFeatureID’ ‘SGSeq:::addGeneID’ ‘SGSeq:::edges’
-      ‘SGSeq:::exonGraph’ ‘SGSeq:::feature2name’ ‘SGSeq:::matchSGFeatures’
-      ‘SGSeq:::nodes’ ‘SGSeq:::propagateAnnotation’
-      ‘SGSeq:::splitCharacterList’
-      See the note in ?`:::` about the use of this operator.
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/EventPointer/new/EventPointer.Rcheck/00install.out’ for details.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    annotate2: no visible global function definition for
-      ‘addDummySpliceSites’
-    annotate2: no visible global function definition for ‘annotatePaths’
-    annotateFeatures2: no visible global function definition for
-      ‘matchTxFeatures’
-    Undefined global functions or variables:
-      addDummySpliceSites annotatePaths matchTxFeatures
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘EventPointer’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/EventPointer/new/EventPointer.Rcheck/00_pkg_src/EventPointer: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package ‘Rsamtools’ required by ‘SGSeq’ could not be found
+Execution halted
+ERROR: lazy loading failed for package ‘EventPointer’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/EventPointer/new/EventPointer.Rcheck/EventPointer’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘EventPointer’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/EventPointer/old/EventPointer.Rcheck/00_pkg_src/EventPointer: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package ‘Rsamtools’ required by ‘SGSeq’ could not be found
+Execution halted
+ERROR: lazy loading failed for package ‘EventPointer’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/EventPointer/old/EventPointer.Rcheck/EventPointer’
+
+```
 # ExCluster
 
 <details>
@@ -2016,6 +2372,12 @@ Run `revdep_details(,"ExCluster")` for more info
 
 ## In both
 
+*   checking whether package ‘ExCluster’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ExCluster/new/ExCluster.Rcheck/00install.out’ for details.
+    ```
+
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
@@ -2024,6 +2386,42 @@ Run `revdep_details(,"ExCluster")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘ExCluster’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ExCluster/new/ExCluster.Rcheck/00_pkg_src/ExCluster: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘rtracklayer’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘rtracklayer’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘ExCluster’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ExCluster/new/ExCluster.Rcheck/ExCluster’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘ExCluster’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ExCluster/old/ExCluster.Rcheck/00_pkg_src/ExCluster: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘rtracklayer’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘rtracklayer’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘ExCluster’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ExCluster/old/ExCluster.Rcheck/ExCluster’
+
+```
 # ExpressionNormalizationWorkflow
 
 <details>
@@ -2056,11 +2454,6 @@ Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
     prepare_Rd: ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
     ```
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘<pkg>’ in Rd xrefs
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     expSetobj: no visible global function definition for ‘new’
@@ -2082,6 +2475,11 @@ Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
       importFrom("utils", "write.table")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘<pkg>’ in Rd xrefs
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -2106,7 +2504,7 @@ Run `revdep_details(,"FastHCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.5Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         libs   5.4Mb
     ```
@@ -2147,61 +2545,50 @@ Run `revdep_details(,"FDb.FANTOM4.promoters.hg19")` for more info
 
 ## In both
 
-*   checking package subdirectories ... WARNING
+*   checking whether package ‘FDb.FANTOM4.promoters.hg19’ can be installed ... ERROR
     ```
-    Found the following non-empty subdirectories of ‘inst’ also used by R:
-      inst/build
-    It is recommended not to interfere with package subdirectories used by
-    R.
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/new/FDb.FANTOM4.promoters.hg19.Rcheck/00install.out’ for details.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Description field: should contain one or more complete sentences.
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘GenomicFeatures’
-    A package should be listed in only one of these fields.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls in package code:
-      ‘BSgenome.Hsapiens.UCSC.hg19’ ‘matrixStats’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Package in Depends field not imported from: ‘Biostrings’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ':::' call which should be '::': ‘matrixStats:::rowProds’
-      See the note in ?`:::` about the use of this operator.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    oecg: no visible global function definition for ‘seqlengths’
-    oecg: no visible binding for global variable ‘Hsapiens’
-    oecg: no visible global function definition for ‘seqlevels’
-    oecg: no visible global function definition for ‘seqnames’
-    oecg: no visible global function definition for ‘resize’
-    oecg: no visible global function definition for ‘start’
-    oecg: no visible global function definition for ‘start<-’
-    oecg: no visible global function definition for ‘end’
-    oecg: no visible global function definition for ‘end<-’
-    oecg: no visible global function definition for ‘getSeq’
-    oecg: no visible global function definition for ‘width’
-    oecg: no visible global function definition for ‘letterFrequency’
-    oecg: no visible global function definition for ‘dinucleotideFrequency’
-    Undefined global functions or variables:
-      Hsapiens dinucleotideFrequency end end<- getSeq is letterFrequency
-      resize seqlengths seqlevels seqnames start start<- width
-    Consider adding
-      importFrom("methods", "is")
-      importFrom("stats", "end", "start")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
-    ```
+```
+* installing *source* package ‘FDb.FANTOM4.promoters.hg19’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/new/FDb.FANTOM4.promoters.hg19.Rcheck/00_pkg_src/FDb.FANTOM4.promoters.hg19: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘FDb.FANTOM4.promoters.hg19’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/new/FDb.FANTOM4.promoters.hg19.Rcheck/FDb.FANTOM4.promoters.hg19’
 
+```
+### CRAN
+
+```
+* installing *source* package ‘FDb.FANTOM4.promoters.hg19’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/old/FDb.FANTOM4.promoters.hg19.Rcheck/00_pkg_src/FDb.FANTOM4.promoters.hg19: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘FDb.FANTOM4.promoters.hg19’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/FDb.FANTOM4.promoters.hg19/old/FDb.FANTOM4.promoters.hg19.Rcheck/FDb.FANTOM4.promoters.hg19’
+
+```
 # fishpond
 
 <details>
@@ -2294,6 +2681,18 @@ Run `revdep_details(,"flowCore")` for more info
     Extensions’ manual.
     ```
 
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'read.flowSet':
+      ‘truncate.max.range’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
 *   checking R code for possible problems ... NOTE
     ```
     eval,compensatedParameter-missing : <anonymous>: no visible binding for
@@ -2302,6 +2701,35 @@ Run `revdep_details(,"flowCore")` for more info
       global variable ‘msv’
     Undefined global functions or variables:
       mat msv
+    ```
+
+# flowSpy
+
+<details>
+
+* Version: 1.0.2
+* Source code: https://github.com/cran/flowSpy
+* URL: http://www.r-project.org, https://github.com/JhuangLab/flowSpy
+* BugReports: https://github.com/JhuangLab/flowSpy/issues
+* Date/Publication: 2020-02-24
+* Number of recursive dependencies: 226
+
+Run `revdep_details(,"flowSpy")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'runDiff':
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 # flowWorkspace
@@ -2346,9 +2774,6 @@ Run `revdep_details(,"flowWorkspace")` for more info
     ```
     ...
     
-    Undocumented arguments in documentation object 'GatingSet,flowSet,ANY-method'
-      ‘x’
-    
     Undocumented arguments in documentation object 'flowjo_log_trans'
       ‘n’ ‘equal.space’ ‘max_val’ ‘min_val’
     
@@ -2361,6 +2786,9 @@ Run `revdep_details(,"flowWorkspace")` for more info
     Duplicated \argument entries in documentation object 'getPopStats,GatingSet-method':
       ‘x’ ‘...’
     
+    Documented arguments not in \usage in documentation object 'isGated':
+      ‘...’
+    
     Functions with \usage entries need to have the appropriate \alias
     entries, and all their arguments documented.
     The \usage entries must correspond to syntactically valid R code.
@@ -2370,9 +2798,9 @@ Run `revdep_details(,"flowWorkspace")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 24.3Mb
+      installed size is 24.4Mb
       sub-directories of 1Mb or more:
-        lib   10.9Mb
+        lib   10.2Mb
         libs  12.7Mb
     ```
 
@@ -2429,6 +2857,63 @@ Run `revdep_details(,"flowWorkspace")` for more info
     GNU make is a SystemRequirements.
     ```
 
+# funtooNorm
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/funtooNorm
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 127
+
+Run `revdep_details(,"funtooNorm")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘funtooNorm’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/funtooNorm/new/funtooNorm.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘funtooNorm’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/funtooNorm/new/funtooNorm.Rcheck/00_pkg_src/funtooNorm: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘funtooNorm’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/funtooNorm/new/funtooNorm.Rcheck/funtooNorm’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘funtooNorm’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/funtooNorm/old/funtooNorm.Rcheck/00_pkg_src/funtooNorm: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘funtooNorm’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/funtooNorm/old/funtooNorm.Rcheck/funtooNorm’
+
+```
 # gap
 
 <details>
@@ -2446,14 +2931,14 @@ Run `revdep_details(,"gap")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘genetics’ in Rd xrefs
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘regress’
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘genetics’ in Rd xrefs
     ```
 
 # GAPGOM
@@ -2475,24 +2960,74 @@ Run `revdep_details(,"GAPGOM")` for more info
 
 *   checking examples ... ERROR
     ```
-    Running examples in ‘GAPGOM-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: fantom_download
-    > ### Title: GAPGOM - fantom_download()
+    ...
     > ### Aliases: fantom_download
     > 
     > ### ** Examples
     > 
     > fantom_file <- fantom_download(organism = "mouse", noprompt = TRUE)
     adding rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz'
+    Warning: download failed
+      web resource path: ‘http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz’
+      local file path: ‘/wynton/home/cbi/hb/.cache/BiocFileCache/41c032f8aa34_mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz’
+      reason: Could not resolve host: fantom.gsc.riken.jp; Name or service not known
+    Warning: bfcadd() failed; resource removed
+      rid: BFC10
+      fpath: ‘http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz’
+      reason: download failed
     Warning in value[[3L]](cond) :
       
     trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error:
-      attempt to write a readonly database
+      bfcadd() failed; see warnings()
     Error in bfcrpath(bfc, url) : not all 'rnames' found or unique.
     Calls: fantom_download -> bfcrpath -> bfcrpath
     Execution halted
+    ```
+
+# gcapc
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/gcapc
+* URL: https://github.com/tengmx/gcapc
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 55
+
+Run `revdep_details(,"gcapc")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘Rsamtools’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
+    ```
+
+# GeneralizedUmatrix
+
+<details>
+
+* Version: 1.1.8
+* Source code: https://github.com/cran/GeneralizedUmatrix
+* URL: http://www.deepbionics.org
+* BugReports: https://github.com/Mthrun/GeneralizedUmatrix/issues
+* Date/Publication: 2020-02-17 15:40:09 UTC
+* Number of recursive dependencies: 106
+
+Run `revdep_details(,"GeneralizedUmatrix")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
     ```
 
 # genomation
@@ -2512,39 +3047,12 @@ Run `revdep_details(,"genomation")` for more info
 
 ## In both
 
-*   checking examples ... WARNING
+*   checking package dependencies ... ERROR
     ```
-    Found the following significant warnings:
+    Package required but not available: ‘Rsamtools’
     
-      Warning: 'GenomicRangesList' is deprecated.
-    Deprecated functions may be defunct as soon as of the next release of
-    R.
-    See ?Deprecated.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘RUnit’
-      All declared Imports should be used.
-    Unexported object imported by a ':::' call: ‘BiocGenerics:::testPackage’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ScoreMatrixBin,RleList-GRangesList: no visible binding for global
-      variable ‘id’
-    ScoreMatrixBin,RleList-GRangesList: no visible global function
-      definition for ‘:=’
-    Undefined global functions or variables:
-      := id
-    ```
-
-*   checking files in ‘vignettes’ ... NOTE
-    ```
-    The following directory looks like a leftover from 'knitr':
-      ‘cache’
-    Please remove from your package.
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # GenRank
@@ -2615,94 +3123,105 @@ Run `revdep_details(,"GUIDEseq")` for more info
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    ...
-    annotateOffTargets: no visible global function definition for 'genes'
-    getPeaks: no visible binding for global variable 'adjusted.p.value'
-    getPeaks: no visible binding for global variable 'SNratio'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'qwidth.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'qwidth.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'readName'
-    offTargetAnalysisOfPeakRegions: no visible binding for global variable
-      'gRNAPlusPAM'
-    offTargetAnalysisOfPeakRegions: no visible binding for global variable
-      'offTarget'
-    Undefined global functions or variables:
-      SNratio adjusted.p.value exons gRNAPlusPAM genes offTarget
-      offTarget_Start qwidth.first qwidth.last readName seqlevelsStyle<-
-      strand.first strand.last
-    ```
-
-*   checking Rd files ... NOTE
-    ```
-    prepare_Rd: annotateOffTargets.Rd:33-35: Dropping empty section \details
-    prepare_Rd: annotateOffTargets.Rd:43-45: Dropping empty section \references
-    prepare_Rd: createBarcodeFasta.Rd:42-43: Dropping empty section \value
-    prepare_Rd: createBarcodeFasta.Rd:44-46: Dropping empty section \references
-    prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
+    Package required but not available: ‘Rsamtools’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # Gviz
 
 <details>
 
-* Version: 1.30.1
+* Version: 1.30.3
 * Source code: https://github.com/cran/Gviz
 * URL: https://github.com/ivanek/Gviz
 * BugReports: https://github.com/ivanek/Gviz/issues
-* Date/Publication: 2020-01-23
-* Number of recursive dependencies: 146
+* Date/Publication: 2020-02-17
+* Number of recursive dependencies: 139
 
 Run `revdep_details(,"Gviz")` for more info
 
 </details>
 
-## Newly fixed
+## In both
 
-*   checking installed package size ... NOTE
+*   checking package dependencies ... ERROR
     ```
-      installed size is  6.9Mb
-      sub-directories of 1Mb or more:
-        R     1.5Mb
-        doc   4.6Mb
+    Package required but not available: ‘Rsamtools’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
+
+# gwasurvivr
+
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/gwasurvivr
+* URL: https://github.com/suchestoncampbelllab/gwasurvivr
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 112
+
+Run `revdep_details(,"gwasurvivr")` for more info
+
+</details>
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘gwasurvivr’ can be installed ... ERROR
     ```
-    ...
-            restCols <- setdiff(colnames(box), c("x1", "x2", "y1", 
-                "y2", "cx1", "cx2", "cy1", "cy2", "textX", "textY"))
-            tags <- sapply(restCols, function(x) {
-                tmp <- as.character(box[, x])
-                names(tmp) <- rownames(coords)
-                tmp
-            }, simplify = FALSE)
-            tags$title <- identifier(GdObject)
-            ImageMap(coords = coords, tags = tags)
-        }
-        else NULL
-        imageMap(GdObject) <- im
-        return(invisible(GdObject))
-    }
-    <environment: namespace:Gviz>
-     --- function search by body ---
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in .dpOrDefault(GdObject, ".__hasAnno", FALSE) && !is.null(bartext) &&  : 
-      'length(x) = 3 > 1' in coercion to 'logical(1)'
-    Calls: plotTracks ... drawGD -> drawGD -> callNextMethod -> .nextMethod -> .local
-    Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/new/gwasurvivr.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘gwasurvivr’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/new/gwasurvivr.Rcheck/00_pkg_src/gwasurvivr: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Warning: namespace ‘lme4’ is not available and has been replaced
+by .GlobalEnv when processing object ‘’
+Warning: namespace ‘lme4’ is not available and has been replaced
+by .GlobalEnv when processing object ‘’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘gwasurvivr’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/new/gwasurvivr.Rcheck/gwasurvivr’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘gwasurvivr’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/old/gwasurvivr.Rcheck/00_pkg_src/gwasurvivr: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Warning: namespace ‘lme4’ is not available and has been replaced
+by .GlobalEnv when processing object ‘’
+Warning: namespace ‘lme4’ is not available and has been replaced
+by .GlobalEnv when processing object ‘’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘gwasurvivr’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/old/gwasurvivr.Rcheck/gwasurvivr’
+
+```
 # hipathia
 
 <details>
@@ -2716,13 +3235,15 @@ Run `revdep_details(,"hipathia")` for more info
 
 </details>
 
-## Newly fixed
+## Newly broken
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
-        data   4.7Mb
+        data      2.9Mb
+        doc       1.7Mb
+        extdata   1.0Mb
     ```
 
 ## In both
@@ -2742,7 +3263,7 @@ Run `revdep_details(,"hipathia")` for more info
     > pathways <- load_pathways(species = "hsa", pathways_list = c("hsa03320",
     + "hsa04012"))
     No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/352417.1.long.q/RtmpKujKEq/BiocFileCache
+    Using temporary cache /scratch/573693.1.long.q/Rtmp8kr5w9/BiocFileCache
     Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
       Invalid Cache: sqlite file
       Hub has not been added to cache
@@ -2792,11 +3313,68 @@ Run `revdep_details(,"InfiniumPurify")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘minfi’ in Rd xrefs
     ```
 
+# kissDE
+
+<details>
+
+* Version: 1.6.0
+* Source code: https://github.com/cran/kissDE
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 146
+
+Run `revdep_details(,"kissDE")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘kissDE’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/kissDE/new/kissDE.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘kissDE’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/kissDE/new/kissDE.Rcheck/00_pkg_src/kissDE: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘kissDE’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/kissDE/new/kissDE.Rcheck/kissDE’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘kissDE’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/kissDE/old/kissDE.Rcheck/00_pkg_src/kissDE: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘kissDE’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/kissDE/old/kissDE.Rcheck/kissDE’
+
+```
 # loo
 
 <details>
@@ -2883,33 +3461,6 @@ Run `revdep_details(,"ltmle")` for more info
       Execution halted
     ```
 
-# Luminescence
-
-<details>
-
-* Version: 0.9.7
-* Source code: https://github.com/cran/Luminescence
-* URL: https://CRAN.R-project.org/package=Luminescence
-* BugReports: https://github.com/R-Lum/Luminescence/issues
-* Date/Publication: 2020-01-08 23:02:25 UTC
-* Number of recursive dependencies: 142
-
-Run `revdep_details(,"Luminescence")` for more info
-
-</details>
-
-## In both
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘RLumShiny’ in Rd xrefs
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘RLumShiny’
-    ```
-
 # M3Drop
 
 <details>
@@ -2919,13 +3470,20 @@ Run `revdep_details(,"Luminescence")` for more info
 * URL: https://github.com/tallulandrews/M3Drop
 * BugReports: https://github.com/tallulandrews/M3Drop/issues
 * Date/Publication: 2019-10-29
-* Number of recursive dependencies: 202
+* Number of recursive dependencies: 203
 
 Run `revdep_details(,"M3Drop")` for more info
 
 </details>
 
 ## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.3Mb
+      sub-directories of 1Mb or more:
+        doc   6.0Mb
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -2964,6 +3522,15 @@ Run `revdep_details(,"M3Drop")` for more info
 Run `revdep_details(,"maEndToEnd")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.8Mb
+      sub-directories of 1Mb or more:
+        doc   6.7Mb
+    ```
 
 ## In both
 
@@ -3020,82 +3587,48 @@ Run `revdep_details(,"MEAL")` for more info
 
 ## In both
 
-*   checking tests ...
+*   checking whether package ‘MEAL’ can be installed ... ERROR
     ```
-    ...
-      Warning message:
-      replacing previous import 'minfi::getMeth' by 'bsseq::getMeth' when loading 'DMRcate' 
-      > 
-      > test_check("MEAL")
-      ── 1. Error: DMRcate (@test_06regionAnalysis.R#19)  ────────────────────────────
-      Invalid Cache: sqlite file
-        Hub has not been added to cache
-        Run again with 'localHub=FALSE'
-      Backtrace:
-       1. MEAL::runDMRcate(set = set, model = ~status, pcutoff = 0.9)
-       2. base::tryCatch(...)
-       3. base:::tryCatchList(expr, classes, parentenv, handlers)
-       4. base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-       5. value[[3L]](cond)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 35 | SKIPPED: 0 | WARNINGS: 13 | FAILED: 1 ]
-      1. Error: DMRcate (@test_06regionAnalysis.R#19) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MEAL/new/MEAL.Rcheck/00install.out’ for details.
     ```
 
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    Codoc mismatches from documentation object 'runRDA':
-    runRDA
-      Code: function(set, model, num_vars = ncol(model), range, betas =
-                     FALSE, resultSet = TRUE, num_permutations = 10000,
-                     ...)
-      Docs: function(set, model, num_vars = ncol(model), range, betas =
-                     FALSE, resultSet = TRUE, num_permutations = 10000)
-      Argument names in code not in docs:
-        ...
-    ```
+## Installation
 
-*   checking examples ... WARNING
-    ```
-    Found the following significant warnings:
-    
-      Warning: 'calculateRelevantSNPs' is deprecated.
-      Warning: 'correlationMethSNPs' is deprecated.
-      Warning: 'explainedVariance' is deprecated.
-      Warning: 'normalSNP' is deprecated.
-      Warning: 'plotLM' is deprecated.
-    Deprecated functions may be defunct as soon as of the next release of
-    R.
-    See ?Deprecated.
-    ```
+### Devel
 
-*   checking top-level files ... NOTE
-    ```
-    File
-      LICENSE
-    is not mentioned in the DESCRIPTION file.
-    ```
+```
+* installing *source* package ‘MEAL’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MEAL/new/MEAL.Rcheck/00_pkg_src/MEAL: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘MEAL’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MEAL/new/MEAL.Rcheck/MEAL’
 
-*   checking R code for possible problems ... NOTE
-    ```
-    plotRegion: no visible global function definition for
-      'subsetByOverlaps'
-    plotRegion: no visible global function definition for 'mcols<-'
-    runBlockFinder: no visible global function definition for 'assays'
-    runBlockFinder: no visible global function definition for 'colData'
-    runRDA: no visible global function definition for 'rowData'
-    runSVA: no visible global function definition for 'resid'
-    Undefined global functions or variables:
-      assays colData mcols<- resid rowData subsetByOverlaps
-    Consider adding
-      importFrom("stats", "resid")
-    to your NAMESPACE file.
-    ```
+```
+### CRAN
 
+```
+* installing *source* package ‘MEAL’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MEAL/old/MEAL.Rcheck/00_pkg_src/MEAL: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘MEAL’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MEAL/old/MEAL.Rcheck/MEAL’
+
+```
 # metagene
 
 <details>
@@ -3112,31 +3645,12 @@ Run `revdep_details(,"metagene")` for more info
 
 ## In both
 
-*   checking DESCRIPTION meta-information ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘similaRpeak’
-    A package should be listed in only one of these fields.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    avoid_gaps_update: no visible binding for global variable 'value'
-    avoid_gaps_update: no visible binding for global variable 'bam'
-    avoid_gaps_update: no visible binding for global variable 'tab'
-    avoid_gaps_update: no visible binding for global variable 'nuc'
-    permutation_test: no visible global function definition for '.'
-    permutation_test: no visible binding for global variable 'value'
-    plot_metagene: no visible binding for global variable 'bin'
-    plot_metagene: no visible binding for global variable 'value'
-    plot_metagene: no visible binding for global variable 'qinf'
-    plot_metagene: no visible binding for global variable 'qsup'
-    plot_metagene: no visible binding for global variable 'group'
-    plot_metagene: no visible binding for global variable 'nuc'
-    plot_metagene: no visible binding for global variable 'design'
-    plot_metagene: no visible binding for global variable 'nuctot'
-    Undefined global functions or variables:
-      . bam bin design group nuc nuctot qinf qsup tab value
+    Package required but not available: ‘Rsamtools’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # metagenomeSeq
@@ -3217,15 +3731,6 @@ Run `revdep_details(,"MetaNeighbor")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.1Mb
-      sub-directories of 1Mb or more:
-        data   4.6Mb
-    ```
-
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -3235,6 +3740,63 @@ Run `revdep_details(,"MetaNeighbor")` for more info
       All declared Imports should be used.
     ```
 
+# metavizr
+
+<details>
+
+* Version: 1.10.0
+* Source code: https://github.com/cran/metavizr
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 175
+
+Run `revdep_details(,"metavizr")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘metavizr’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘metavizr’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/00_pkg_src/metavizr: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘metavizr’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/new/metavizr.Rcheck/metavizr’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘metavizr’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/old/metavizr.Rcheck/00_pkg_src/metavizr: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘metavizr’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/metavizr/old/metavizr.Rcheck/metavizr’
+
+```
 # methrix
 
 <details>
@@ -3250,6 +3812,12 @@ Run `revdep_details(,"methrix")` for more info
 
 ## In both
 
+*   checking whether package ‘methrix’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/new/methrix.Rcheck/00install.out’ for details.
+    ```
+
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
@@ -3258,6 +3826,44 @@ Run `revdep_details(,"methrix")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘methrix’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/new/methrix.Rcheck/00_pkg_src/methrix: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘methrix’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/new/methrix.Rcheck/methrix’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘methrix’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/old/methrix.Rcheck/00_pkg_src/methrix: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘methrix’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methrix/old/methrix.Rcheck/methrix’
+
+```
 # MethylAid
 
 <details>
@@ -3273,11 +3879,50 @@ Run `revdep_details(,"MethylAid")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
+*   checking whether package ‘MethylAid’ can be installed ... ERROR
     ```
-    Package suggested but not available for checking: ‘MethylAidData’
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MethylAid/new/MethylAid.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘MethylAid’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MethylAid/new/MethylAid.Rcheck/00_pkg_src/MethylAid: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘MethylAid’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MethylAid/new/MethylAid.Rcheck/MethylAid’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘MethylAid’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MethylAid/old/MethylAid.Rcheck/00_pkg_src/MethylAid: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘MethylAid’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MethylAid/old/MethylAid.Rcheck/MethylAid’
+
+```
 # methylationArrayAnalysis
 
 <details>
@@ -3293,6 +3938,12 @@ Run `revdep_details(,"methylationArrayAnalysis")` for more info
 
 ## In both
 
+*   checking whether package ‘methylationArrayAnalysis’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -3305,19 +3956,52 @@ Run `revdep_details(,"methylationArrayAnalysis")` for more info
     selectively is preferable.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 152.0Mb
-      sub-directories of 1Mb or more:
-        doc        1.9Mb
-        extdata  150.2Mb
-    ```
+## Installation
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Malformed Title field: should not end in a period.
-    ```
+### Devel
 
+```
+* installing *source* package ‘methylationArrayAnalysis’ ...
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘methylationArrayAnalysis’ 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00_pkg_src/methylationArrayAnalysis: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bumphunter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error : package ‘bumphunter’ could not be loaded
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/methylationArrayAnalysis’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘methylationArrayAnalysis’ ...
+** using staged installation
+** inst
+** help
+No man pages found in package  ‘methylationArrayAnalysis’ 
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/old/methylationArrayAnalysis.Rcheck/00_pkg_src/methylationArrayAnalysis: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bumphunter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error : package ‘bumphunter’ could not be loaded
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/old/methylationArrayAnalysis.Rcheck/methylationArrayAnalysis’
+
+```
 # methylumi
 
 <details>
@@ -3334,32 +4018,14 @@ Run `revdep_details(,"methylumi")` for more info
 
 ## In both
 
-*   checking for missing documentation entries ... WARNING
+*   checking whether package ‘methylumi’ can be installed ... ERROR
     ```
-    Undocumented code objects:
-      ‘IDATsToMatrices’ ‘IDATtoMatrix’ ‘tcgaPipeline’
-    Undocumented S4 methods:
-      generic '[' and siglist 'MethyLumiM,ANY,ANY,ANY'
-      generic '[' and siglist 'MethyLumiSet,ANY,ANY,ANY'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking contents of ‘data’ directory ... WARNING
-    ```
-    Files not of a type allowed in a ‘data’ directory:
-      ‘5318317007_A_Grn.idat’ ‘5318317007_A_Red.idat’
-      ‘5318317007_B_Grn.idat’ ‘5318317007_B_Red.idat’
-      ‘5318317007_C_Grn.idat’ ‘5318317007_C_Red.idat’
-    Please use e.g. ‘inst/extdata’ for non-R data files
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylumi/new/methylumi.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘methyAnalysis’
-    
     Depends: includes the non-default packages:
       'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
       'FDb.InfiniumMethylation.hg19', 'minfi'
@@ -3375,74 +4041,44 @@ Run `revdep_details(,"methylumi")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Packages listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’ ‘minfi’ ‘lattice’ ‘matrixStats’
-    A package should be listed in only one of these fields.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    'library' or 'require' calls to packages already attached by Depends:
-      ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘minfi’
-      ‘reshape2’ ‘scales’
-      Please remove these calls from your code.
-    'library' or 'require' calls in package code:
-      ‘Biostrings’ ‘MASS’ ‘lumi’ ‘parallel’ ‘rtracklayer’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    Namespace in Imports field not imported from: ‘graphics’
-      All declared Imports should be used.
-    Packages in Depends field not imported from:
-      ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘methods’
-      ‘reshape2’ ‘scales’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
-      See the note in ?`:::` about the use of this operator.
-    Unexported objects imported by ':::' calls:
-      ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
-      See the note in ?`:::` about the use of this operator.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
-      abline addColorChannelInfo aes allele as.dist axis box capture.output
-      channel.probes colMedians colQuantiles colSds colorRampPalette
-      coord_flip data dnorm dropouts drops ecdf facet_grid features
-      gamma.integral gamma.mle gamma.mode geom_histogram ggplot hclust
-      hm27.controls hm27.ordering hm450.controls hm450.ordering huber index
-      intensity lines log_trans mclapply melt mu offset opts p.adjust
-      packageDescription packageVersion par plot.density pnorm points
-      position_identity read.csv read.delim read.table rect rowMins
-      scale_colour_manual scale_fill_manual scale_shape_manual
-      scale_x_continuous scale_y_continuous scale_y_discrete
-      subsetCommonProbes text theme_bw title value variable weighted.mean
-    Consider adding
-      importFrom("grDevices", "colorRampPalette")
-      importFrom("graphics", "abline", "axis", "box", "lines", "par",
-                 "points", "rect", "text", "title")
-      importFrom("stats", "as.dist", "dnorm", "ecdf", "hclust", "offset",
-                 "p.adjust", "pnorm", "weighted.mean")
-      importFrom("utils", "capture.output", "data", "packageDescription",
-                 "packageVersion", "read.csv", "read.delim", "read.table")
-    to your NAMESPACE file.
-    ```
+```
+* installing *source* package ‘methylumi’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylumi/new/methylumi.Rcheck/00_pkg_src/methylumi: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘methylumi’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylumi/new/methylumi.Rcheck/methylumi’
 
-*   checking Rd files ... NOTE
-    ```
-    prepare_Rd: estimateM.Rd:34-36: Dropping empty section \seealso
-    prepare_Rd: estimateM.Rd:37-39: Dropping empty section \examples
-    ```
+```
+### CRAN
 
-*   checking for unstated dependencies in vignettes ... NOTE
-    ```
-    'library' or 'require' call not declared from: ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
-    ```
+```
+* installing *source* package ‘methylumi’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylumi/old/methylumi.Rcheck/00_pkg_src/methylumi: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘methylumi’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylumi/old/methylumi.Rcheck/methylumi’
 
+```
 # MFHD
 
 <details>
@@ -3458,30 +4094,71 @@ Run `revdep_details(,"MFHD")` for more info
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking whether package ‘MFHD’ can be installed ... ERROR
     ```
-    ...
-      ‘plot’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘points’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘lines’
-    plot.bagplot: no visible global function definition for ‘boxplot’
-    plot.bagplot: no visible global function definition for ‘plot’
-    plot.bagplot: no visible global function definition for ‘points’
-    plot.bagplot: no visible global function definition for ‘segments’
-    plot.bagplot: no visible global function definition for ‘text’
-    plot.bagplot: no visible global function definition for ‘lines’
-    plot.bagplot: no visible global function definition for ‘polygon’
-    Undefined global functions or variables:
-      boxplot chull complete.cases identify lines plot points polygon
-      prcomp quantile sd segments text xy.coords
-    Consider adding
-      importFrom("grDevices", "chull", "xy.coords")
-      importFrom("graphics", "boxplot", "identify", "lines", "plot",
-                 "points", "polygon", "segments", "text")
-      importFrom("stats", "complete.cases", "prcomp", "quantile", "sd")
-    to your NAMESPACE file.
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘MFHD’ ...
+** package ‘MFHD’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/00_pkg_src/MFHD: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘rgl’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘MFHD’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/MFHD’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘MFHD’ ...
+** package ‘MFHD’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/old/MFHD.Rcheck/00_pkg_src/MFHD: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘rgl’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘MFHD’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/old/MFHD.Rcheck/MFHD’
+
+```
+# mgcViz
+
+<details>
+
+* Version: 0.1.4
+* Source code: https://github.com/cran/mgcViz
+* URL: https://github.com/mfasiolo/mgcViz
+* BugReports: https://github.com/mfasiolo/mgcViz/issues
+* Date/Publication: 2019-06-07 16:50:03 UTC
+* Number of recursive dependencies: 94
+
+Run `revdep_details(,"mgcViz")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... ERROR
+    ```
+    Package required but not available: ‘rgl’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # MHTcop
@@ -3616,6 +4293,51 @@ Run `revdep_details(,"MinimumDistance")` for more info
 
 ## In both
 
+*   checking tests ...
+    ```
+    ...
+      
+      
+      Executing test function test_cbsSplits  ...  done successfully.
+      
+      ------------------- UNIT TEST SUMMARY ---------------------
+      
+      RUNIT TEST PROTOCOL -- Sat Feb 29 16:26:34 2020 
+      *********************************************** 
+      Number of test functions: 12 
+      Number of errors: 1 
+      Number of failures: 0 
+      
+       
+      1 Test Suite : 
+      MinimumDistance unit testing - 12 test functions, 1 error, 0 failures
+      ERROR in test_MAP2: Error : package 'rtracklayer' could not be loaded
+      Error: 
+      
+      unit testing failed (#test failures: 0, #R errors: 1)
+      
+      Execution halted
+    ```
+
+*   checking running R code from vignettes ...
+    ```
+      ‘MinimumDistance.Rnw’... failed
+     WARNING
+    Errors in running code in vignettes:
+    when running code in ‘MinimumDistance.Rnw’
+      ...
+    
+        strsplit
+    
+    Loading required package: rtracklayer
+    Error: package or namespace load failed for ‘rtracklayer’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+     there is no package called ‘Rsamtools’
+    
+      When sourcing ‘MinimumDistance.R’:
+    Error: package ‘rtracklayer’ could not be loaded
+    Execution halted
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Package which this enhances but not available for checking: ‘doSNOW’
@@ -3678,12 +4400,9 @@ Run `revdep_details(,"mixOmics")` for more info
       Execution halted
     ```
 
-*   checking installed package size ... NOTE
+*   checking package dependencies ... NOTE
     ```
-      installed size is  6.0Mb
-      sub-directories of 1Mb or more:
-        R     1.2Mb
-        doc   4.4Mb
+    Package suggested but not available for checking: ‘rgl’
     ```
 
 # mnem
@@ -3738,7 +4457,7 @@ Run `revdep_details(,"moc.gapbk")` for more info
 * Version: 2.14.0
 * Source code: https://github.com/cran/monocle
 * Date/Publication: 2019-10-29
-* Number of recursive dependencies: 248
+* Number of recursive dependencies: 249
 
 Run `revdep_details(,"monocle")` for more info
 
@@ -3803,59 +4522,52 @@ Run `revdep_details(,"motifbreakR")` for more info
 
 ## In both
 
-*   checking for missing documentation entries ... WARNING
+*   checking whether package ‘motifbreakR’ can be installed ... ERROR
     ```
-    Undocumented code objects:
-      'rs1006140' 'variants.from.file'
-    Undocumented data sets:
-      'rs1006140'
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00install.out’ for details.
     ```
 
-*   checking Rd \usage sections ... WARNING
-    ```
-    Undocumented arguments in documentation object 'motifbreakR'
-      ‘legacy.score’
-    
-    Undocumented arguments in documentation object 'scoreAllWindows'
-      ‘snp.seq’ ‘snp.seq.rc’ ‘pwm’ ‘from’ ‘to’ ‘pwm.range’ ‘calcp’
-    
-    Undocumented arguments in documentation object 'snps.from.file'
-      ‘indels’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      'compiler' 'grImport'
-      All declared Imports should be used.
-    Package in Depends field not imported from: 'MotifDb'
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    formatVcfOut: no visible binding for global variable 'search.genome'
-    plotMotifLogoStack.2: no visible global function definition for 'par'
-    preparePWM: no visible binding for global variable 'threshold'
-    snps.from.file: no visible binding for global variable 'DNA_ALPHABET'
-    wScore: no visible global function definition for 'scoreMotif'
-    Undefined global functions or variables:
-      DNA_ALPHABET par scoreMotif search.genome threshold
-    Consider adding
-      importFrom("graphics", "par")
-    to your NAMESPACE file.
-    ```
+```
+* installing *source* package ‘motifbreakR’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00_pkg_src/motifbreakR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘MotifDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘MotifDb’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘motifbreakR’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/motifbreakR’
 
+```
+### CRAN
+
+```
+* installing *source* package ‘motifbreakR’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/motifbreakR/old/motifbreakR.Rcheck/00_pkg_src/motifbreakR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘MotifDb’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘MotifDb’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘motifbreakR’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/motifbreakR/old/motifbreakR.Rcheck/motifbreakR’
+
+```
 # mrfDepth
 
 <details>
@@ -3875,7 +4587,7 @@ Run `revdep_details(,"mrfDepth")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  6.3Mb
       sub-directories of 1Mb or more:
         libs   5.9Mb
     ```
@@ -3898,8 +4610,6 @@ Run `revdep_details(,"muscat")` for more info
 *   checking examples ... ERROR
     ```
     ...
-    > data(sce)
-    > # subset "B cells" cluster
     > sce <- sce[, sce$cluster_id == "B cells"]
     > sce$cluster_id <- droplevels(sce$cluster_id)
     > 
@@ -3910,11 +4620,13 @@ Run `revdep_details(,"muscat")` for more info
     > 
     > res <- mmDS(sce, method = "dream", 
     +     n_threads = 1, verbose = FALSE)
+    Warning in DGEList(counts(x), norm.factors = 1/sizeFactors(x)) :
+      norm factors don't multiply to 1
     Warning in dream(v, formula, cd, contrast, ddf = ddf, suppressWarnings = !verbose) :
       Contrasts with only a single non-zero term are already evaluated by default.
     Dividing work into 83 chunks...
     
-    Total:8 s
+    Total:13 s
     Error in fitFDistRobustly(var, df1 = df, covariate = covariate, winsor.tail.p = winsor.tail.p) : 
       statmod package required but is not installed
     Calls: mmDS ... squeezeVar -> fitFDistRobustly -> Recall -> fitFDistRobustly
@@ -3945,6 +4657,18 @@ Run `revdep_details(,"muscat")` for more info
       
       Error: testthat unit tests failed
       Execution halted
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'mmDS':
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 # NanoStringDiff
@@ -4014,13 +4738,23 @@ Run `revdep_details(,"NanoStringDiff")` for more info
 * URL: http://netlogor.predictiveecology.org, https://github.com/PredictiveEcology/NetLogoR/
 * BugReports: https://github.com/PredictiveEcology/NetLogoR/issues
 * Date/Publication: 2019-11-27 12:00:02 UTC
-* Number of recursive dependencies: 174
+* Number of recursive dependencies: 163
 
 Run `revdep_details(,"NetLogoR")` for more info
 
 </details>
 
 ## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented S4 methods:
+      generic '[[<-' and siglist 'worldArray,ANY,ANY'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -4086,6 +4820,33 @@ Run `revdep_details(,"omicplotR")` for more info
       for when this namespace is loaded but not attached.
     ```
 
+# omicsPrint
+
+<details>
+
+* Version: 1.6.0
+* Source code: https://github.com/cran/omicsPrint
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 115
+
+Run `revdep_details(,"omicsPrint")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘Rsamtools’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.3Mb
+      sub-directories of 1Mb or more:
+        data   5.3Mb
+    ```
+
 # OptimalDesign
 
 <details>
@@ -4102,12 +4863,85 @@ Run `revdep_details(,"OptimalDesign")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
+*   checking package dependencies ... ERROR
     ```
+    Package required but not available: ‘rgl’
+    
     Packages which this enhances but not available for checking:
       'gurobi', 'slam'
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
+# OUTRIDER
+
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/OUTRIDER
+* URL: https://github.com/gagneurlab/OUTRIDER
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 175
+
+Run `revdep_details(,"OUTRIDER")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘OUTRIDER’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/new/OUTRIDER.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘OUTRIDER’ ...
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/RcppArmadillo/include" -I/usr/local/include -fopenmp -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/RcppArmadillo/include" -I/usr/local/include -fopenmp -fpic  -g -O2  -c loss_n_gradient_functions.cpp -o loss_n_gradient_functions.o
+g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o OUTRIDER.so RcppExports.o loss_n_gradient_functions.o -fopenmp -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
+installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/new/OUTRIDER.Rcheck/00LOCK-OUTRIDER/00new/OUTRIDER/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/new/OUTRIDER.Rcheck/00_pkg_src/OUTRIDER: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘OUTRIDER’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/new/OUTRIDER.Rcheck/OUTRIDER’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘OUTRIDER’ ...
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/RcppArmadillo/include" -I/usr/local/include -fopenmp -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/OUTRIDER/RcppArmadillo/include" -I/usr/local/include -fopenmp -fpic  -g -O2  -c loss_n_gradient_functions.cpp -o loss_n_gradient_functions.o
+g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o OUTRIDER.so RcppExports.o loss_n_gradient_functions.o -fopenmp -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
+installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/old/OUTRIDER.Rcheck/00LOCK-OUTRIDER/00new/OUTRIDER/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/old/OUTRIDER.Rcheck/00_pkg_src/OUTRIDER: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘OUTRIDER’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/OUTRIDER/old/OUTRIDER.Rcheck/OUTRIDER’
+
+```
 # pandaR
 
 <details>
@@ -4120,6 +4954,15 @@ Run `revdep_details(,"OptimalDesign")` for more info
 Run `revdep_details(,"pandaR")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  8.1Mb
+      sub-directories of 1Mb or more:
+        data   7.9Mb
+    ```
 
 ## In both
 
@@ -4141,13 +4984,6 @@ Run `revdep_details(,"pandaR")` for more info
       cannot coerce type 'S4' to vector of type 'double'
     Calls: plot -> plot.default -> xy.coords
     Execution halted
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  8.1Mb
-      sub-directories of 1Mb or more:
-        data   7.9Mb
     ```
 
 *   checking S3 generic/method consistency ... NOTE
@@ -4231,11 +5067,6 @@ Run `revdep_details(,"pcaMethods")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘ade4’ in Rd xrefs
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     ...
@@ -4260,6 +5091,11 @@ Run `revdep_details(,"pcaMethods")` for more info
                  "rnorm", "runif")
       importFrom("utils", "setTxtProgressBar", "txtProgressBar")
     to your NAMESPACE file.
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘ade4’ in Rd xrefs
     ```
 
 # phosphonormalizer
@@ -4289,7 +5125,7 @@ Run `revdep_details(,"phosphonormalizer")` for more info
 * Version: 1.12.0
 * Source code: https://github.com/cran/Pigengene
 * Date/Publication: 2019-10-29
-* Number of recursive dependencies: 141
+* Number of recursive dependencies: 135
 
 Run `revdep_details(,"Pigengene")` for more info
 
@@ -4380,7 +5216,7 @@ Run `revdep_details(,"PrecisionTrialDrawer")` for more info
     Execution halted
     ```
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘LowMACA’ in Rd xrefs
     ```
@@ -4423,10 +5259,12 @@ Run `revdep_details(,"QDNAseq")` for more info
 
 ## In both
 
-*   checking dependencies in R code ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    Namespace in Imports field not imported from: ‘future’
-      All declared Imports should be used.
+    Package required but not available: ‘Rsamtools’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # r2dRue
@@ -4513,6 +5351,97 @@ Run `revdep_details(,"randomizationInference")` for more info
     to your NAMESPACE file.
     ```
 
+# regsem
+
+<details>
+
+* Version: 1.5.2
+* Source code: https://github.com/cran/regsem
+* Date/Publication: 2020-02-19 12:00:03 UTC
+* Number of recursive dependencies: 152
+
+Run `revdep_details(,"regsem")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘regsem’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘regsem’ ...
+** package ‘regsem’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
+installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘regsem’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so':
+  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so: undefined symbol: regsem_rcpp_fit_fun
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/regsem’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘regsem’ ...
+** package ‘regsem’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/Rcpp/include" -I"/scratch/573693.1.long.q/tmp.n8Yg3gxqXi/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
+installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘regsem’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so':
+  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so: undefined symbol: regsem_rcpp_fit_fun
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/regsem’
+
+```
 # RNAmodR
 
 <details>
@@ -4530,46 +5459,12 @@ Run `revdep_details(,"RNAmodR")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking package dependencies ... ERROR
     ```
-    ...
-    > ###   getDataTrack,CoverageSequenceData-method
-    > 
-    > ### ** Examples
-    > 
-    > # Construction of a CoverageSequenceData objectobject
-    > library(RNAmodR.Data)
-    Loading required package: ExperimentHub
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
-    Loading required package: ExperimentHubData
-    Loading required package: AnnotationHubData
-    No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/352417.1.long.q/RtmpM9Iiz1/BiocFileCache
-    Error: package or namespace load failed for 'RNAmodR.Data':
-     .onLoad failed in loadNamespace() for 'RNAmodR.Data', details:
-      call: .updateHubDB(hub_bfc, .class, url, proxy, localHub)
-      error: Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Execution halted
-    ```
-
-*   R CMD check timed out
+    Package required but not available: ‘Rsamtools’
     
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported objects imported by ':::' calls:
-      'BiocGenerics:::replaceSlots' 'IRanges:::.valid.CompressedList'
-      'IRanges:::coerceToCompressedList' 'S4Vectors:::.valid.DataFrame'
-      'S4Vectors:::labeledLine' 'S4Vectors:::make_zero_col_DataFrame'
-      'S4Vectors:::prepare_objects_to_bind'
-      See the note in ?`:::` about the use of this operator.
-    There are ::: calls to the package's namespace in its code. A package
-      almost never needs to use ::: for its own objects:
-      '.get_inosine_score'
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # RnBeads
@@ -4585,48 +5480,16 @@ Run `revdep_details(,"RnBeads")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.9Mb
-      sub-directories of 1Mb or more:
-        R     3.1Mb
-        doc   3.1Mb
-    ```
-
 ## In both
 
-*   checking tests ...
+*   checking whether package ‘RnBeads’ can be installed ... ERROR
     ```
-    ...
-      RUNIT TEST PROTOCOL -- Sun Feb 16 01:09:30 2020 
-      *********************************************** 
-      Number of test functions: 8 
-      Number of errors: 1 
-      Number of failures: 0 
-      
-       
-      1 Test Suite : 
-      RnBeads RUnit Tests - 8 test functions, 1 error, 0 failures
-      ERROR in /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_differential.R: Error while sourcing  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_differential.R : Error in UseMethod("varFit") : 
-        no applicable method for 'varFit' applied to an object of class "c('matrix', 'double', 'numeric')"
-      
-      Test files with failing tests
-      
-         test_differential.R 
-           /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_differential.R 
-      
-      
-      Error in BiocGenerics:::testPackage("RnBeads") : 
-        unit tests failed for package RnBeads
-      Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘GLAD’
-    
     Depends: includes the non-default packages:
       'BiocGenerics', 'S4Vectors', 'GenomicRanges', 'MASS', 'cluster',
       'ff', 'fields', 'ggplot2', 'gplots', 'gridExtra', 'limma',
@@ -4643,60 +5506,44 @@ Run `revdep_details(,"RnBeads")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘qvalue’
-    A package should be listed in only one of these fields.
-    ```
+## Installation
 
-*   checking whether the namespace can be loaded with stated dependencies ... NOTE
-    ```
-    Warning: no function found corresponding to methods exports from ‘RnBeads’ for: ‘samples’
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
-    ```
+### Devel
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported objects imported by ':::' calls:
-      'Gviz:::.getBMFeatureMap' 'doParallel:::.options'
-      'grDevices:::.smoothScatterCalcDensity'
-      'minfi:::.default.450k.annotation' 'minfi:::.extractFromRGSet450k'
-      'minfi:::.normalizeFunnorm450k'
-      See the note in ?`:::` about the use of this operator.
-    ```
+```
+* installing *source* package ‘RnBeads’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/00_pkg_src/RnBeads: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘RnBeads’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads’
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-      Measure Mmusculus PairsBootRefFreeEwasModel Predicted Probe
-      RGChannelSet Rd2HTML RefFreeEwasModel SNP Sample Segment Slide Target
-      Term UcscTrack Value addSex as.profileCGH assayDataElement
-      assayDataElementNames barcode browserSession bv calculateFDRs chrom
-      combinedRank combinedRank.var comma covgMedian covgPercLow covgPercUp
-      cv.glmnet daglad diffmeth diffmeth.p.adj.fdr diffmeth.p.val
-      dinucleotideFrequency eps expectedCounts featureData featureData<-
-      featureNames featureNames<- foreach geneCounts genome<- getCN
-      getDoParWorkers getGreen getManifest getMeth getRed getSex getTable
-      getUnmeth getVarCov glmnet grid.draw grid.newpage group group1 group2
-      i impute.knn is.subsegmentation k letterFrequency lme loadRegionDB
-      log10FDR log10P mapToGenome mclapply mean.diff mean.quot.log2 melt
-      mergeRegionDBs muted n.sites ng.2 num.sites numSites numeric.names
-      oddsRatios p.vals.t.na.adj pData percent_format phenoData phenoData<-
-      plotAlphaDistributionOneChr plotFinalSegmentation plotTracks
-      preprocessSWAN pvalues qvalue readMethylome readSNPTable refText
-      reg.type region.size registerDoParallel relative.coord removeSNPs
-      report runLOLA samples segmentPMDs segmentUMRsLMRs seqlengths
-      seqlevels<- sigCategories sites2ignore size solve.QP stopCluster sva
-      target texthere tsne type types ucscTableQuery universeCounts useMart
-      v var.diff varFit varLabels x x2 xmlValue y y2 yint
-    ```
+```
+### CRAN
 
+```
+* installing *source* package ‘RnBeads’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/old/RnBeads.Rcheck/00_pkg_src/RnBeads: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘RnBeads’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/old/RnBeads.Rcheck/RnBeads’
+
+```
 # RTransProb
 
 <details>
@@ -4723,11 +5570,11 @@ Run `revdep_details(,"RTransProb")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.1.6
 * Source code: https://github.com/cran/scDblFinder
 * URL: https://github.com/plger/scDblFinder
 * BugReports: https://github.com/plger/scDblFinder/issues
-* Date/Publication: 2019-10-29
+* Date/Publication: 2020-02-25
 * Number of recursive dependencies: 105
 
 Run `revdep_details(,"scDblFinder")` for more info
@@ -4738,17 +5585,13 @@ Run `revdep_details(,"scDblFinder")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    doubletThresholding: warning in legend("top", col = c("blue", "red",
-      "darkgrey"), lty = c(1, 1, 1), lw = 2, legend = leg): partial
-      argument match of 'lw' to 'lwd'
-    doubletThresholding: warning in legend("top", col = c("blue", "blue",
-      "red", "darkgrey"), lty = c(1, 2, 1, 1), lw = 2, legend = leg):
-      partial argument match of 'lw' to 'lwd'
     plotROCs: no visible binding for global variable ‘FPR’
     plotROCs: no visible binding for global variable ‘TPR’
     plotROCs: no visible binding for global variable ‘method’
+    scDblFinder : <anonymous>: no visible binding for global variable
+      ‘ndims’
     Undefined global functions or variables:
-      FPR TPR method
+      FPR TPR method ndims
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -4821,32 +5664,50 @@ Run `revdep_details(,"scone")` for more info
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking whether package ‘scone’ can be installed ... ERROR
     ```
-    ...
-    sconeReport : server: no visible global function definition for ‘theme’
-    sconeReport : server: no visible global function definition for
-      ‘element_blank’
-    sconeReport : server: no visible global function definition for
-      ‘ggplotly’
-    sconeReport : server: no visible global function definition for
-      ‘geom_violin’
-    sconeReport : server: no visible global function definition for
-      ‘coord_cartesian’
-    sconeReport : server: no visible global function definition for
-      ‘scale_fill_manual’
-    sconeReport : server: no visible global function definition for
-      ‘geom_point’
-    sconeReport : server: no visible global function definition for
-      ‘guides’
-    Undefined global functions or variables:
-      %>% aes coord_cartesian element_blank geom_bar geom_point geom_violin
-      ggplot ggplotly guides labs plot_ly plotlyOutput renderVisNetwork
-      scale_fill_manual theme visEdges visGroups visHierarchicalLayout
-      visLegend visNetwork visNetworkOutput visNetworkProxy visOptions
-      visSelectNodes ylim
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/scone/new/scone.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘scone’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/scone/new/scone.Rcheck/00_pkg_src/scone: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘scone’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/scone/new/scone.Rcheck/scone’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘scone’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/scone/old/scone.Rcheck/00_pkg_src/scone: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘scone’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/scone/old/scone.Rcheck/scone’
+
+```
 # semtree
 
 <details>
@@ -4910,24 +5771,24 @@ Run `revdep_details(,"sesame")` for more info
 *   checking tests ...
     ```
     ...
-      Invalid Cache: sqlite file
-        Hub has not been added to cache
-        Run again with 'localHub=FALSE'
       Backtrace:
-        1. sesame::makeExampleSeSAMeDataSet()
-        2. sesameData::sesameDataGet(paste0(platform, ".address"))
-       10. sesameData:::.sesameDataGet(title, dateAdded = dateAdded)
-       12. ExperimentHub::ExperimentHub(localHub = TRUE)
-       13. AnnotationHub::.Hub(...)
-       14. AnnotationHub:::.create_cache(.class, url, cache, proxy, localHub)
-       15. AnnotationHub:::.updateHubDB(hub_bfc, .class, url, proxy, localHub)
+       1. base::library(FlowSorted.Blood.450k)
+       2. base::.getRequiredPackages2(pkgInfo, quietly = quietly)
+       3. base::library(...)
+       4. base::.getRequiredPackages2(pkgInfo, quietly = quietly)
+      
+      ── 4. Error: SigSetToRGChannelSet gives correct results (@test_sesamize.R#25)  ─
+      package 'bumphunter' could not be loaded
+      Backtrace:
+       1. base::library(minfi)
+       2. base::.getRequiredPackages2(pkgInfo, quietly = quietly)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
       [ OK: 0 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 4 ]
       1. Error: test=background subtraction gives correct warning (@test_background.R#4) 
       2. Error: test='detectionP' gives correct errors (@test_detectionP.R#3) 
-      3. Error: RGChannelSetToSigSet gives correct results (@test_sesamize.R#6) 
-      4. Error: SigSetToRGChannelSet gives correct results (@test_sesamize.R#26) 
+      3. Error: RGChannelSetToSigSet gives correct results (@test_sesamize.R#4) 
+      4. Error: SigSetToRGChannelSet gives correct results (@test_sesamize.R#25) 
       
       Error: testthat unit tests failed
       Execution halted
@@ -4948,6 +5809,12 @@ Run `revdep_details(,"shinyMethyl")` for more info
 
 ## In both
 
+*   checking whether package ‘shinyMethyl’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/shinyMethyl/new/shinyMethyl.Rcheck/00install.out’ for details.
+    ```
+
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
@@ -4956,32 +5823,42 @@ Run `revdep_details(,"shinyMethyl")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘lines’
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘legend’
-    ui.shinyMethyl: no visible binding for '<<-' assignment to
-      ‘sampleColors’
-    shinySummarize,GenomicRatioSet: no visible global function definition
-      for ‘prcomp’
-    shinySummarize,RGChannelSet: no visible global function definition for
-      ‘prcomp’
-    Undefined global functions or variables:
-      abline complete.cases current.control.type current.density.type
-      current.probe.type genderCutoff grid legend lines lm
-      mouse.click.indices palette par plot points prcomp rect write.csv
-    Consider adding
-      importFrom("grDevices", "palette")
-      importFrom("graphics", "abline", "grid", "legend", "lines", "par",
-                 "plot", "points", "rect")
-      importFrom("stats", "complete.cases", "lm", "prcomp")
-      importFrom("utils", "write.csv")
-    to your NAMESPACE file.
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘shinyMethyl’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/shinyMethyl/new/shinyMethyl.Rcheck/00_pkg_src/shinyMethyl: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bumphunter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘bumphunter’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘shinyMethyl’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/shinyMethyl/new/shinyMethyl.Rcheck/shinyMethyl’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘shinyMethyl’ ...
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/shinyMethyl/old/shinyMethyl.Rcheck/00_pkg_src/shinyMethyl: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘bumphunter’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘bumphunter’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘shinyMethyl’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/shinyMethyl/old/shinyMethyl.Rcheck/shinyMethyl’
+
+```
 # SIAMCAT
 
 <details>
@@ -5012,7 +5889,7 @@ Run `revdep_details(,"SIAMCAT")` for more info
             message("Adding metadata as predictor finished")
         return(siamcat)
     }
-    <bytecode: 0x119c9dd8>
+    <bytecode: 0x11249088>
     <environment: namespace:SIAMCAT>
      --- function search by body ---
     Function add.meta.pred in namespace SIAMCAT has this body.
@@ -5043,305 +5920,20 @@ Run `revdep_details(,"SICtools")` for more info
 
 ## In both
 
-*   checking whether package ‘SICtools’ can be installed ... ERROR
+*   checking package dependencies ... ERROR
     ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
+    Package required but not available: ‘Rsamtools’
+    
     Depends: includes the non-default packages:
       'Rsamtools', 'doParallel', 'Biostrings', 'stringr', 'matrixStats',
       'plyr', 'GenomicRanges', 'IRanges'
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
-*   checking for hidden files and directories ... NOTE
-    ```
-    Found the following hidden files and directories:
-      .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘SICtools’ ...
-** using staged installation
-** libs
-** arch - 
-Makefile:24: warning: overriding recipe for target `.c.o'
-/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/etc/Makeconf:168: warning: ignoring old recipe for target `.c.o'
-make[1]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
-bgzf.c: In function ‘worker_aux’:
-bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
-  int i, tmp, stop = 0;
-         ^
-bgzf.c: In function ‘bgzf_close’:
-bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
-  int ret, count, block_length;
-           ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
-bam_pileup.c: In function ‘resolve_cigar2’:
-bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
-  int k, is_head = 0;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
-bam_reheader.c: In function ‘bam_reheader’:
-bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
-  bam_header_t *old;
-                ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
-kprobaln.c: In function ‘kpa_glocal’:
-kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
-  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
-                     ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
-ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
-bcf.c: In function ‘bcf_fmt_core’:
-bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
-     int iPL = -1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
-bcfutils.c: In function ‘bcf_fit_alt’:
-bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
-     int ipl=-1, igt=-1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
-em.c: In function ‘bcf_em1’:
-em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
-  int i, n, n2;
-            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
-ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-make[2]: Nothing to be done for `lib'.
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
-bam_plcmd.c: In function ‘mpileup’:
-bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
-    int total_depth, _ref0, ref16;
-                            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
-bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
-bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                            ^
-bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                     ^
-bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
-  int N, l_run, ref_type;
-                ^
-bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                                  ^
-bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
-cut_target.c: In function ‘main_cut_target’:
-cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
-  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
-                                    ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
-bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
- #include <curses.h>
-                    ^
-compilation terminated.
-make[1]: *** [bam_tview_curses.o] Error 1
-make[1]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make: *** [all-recur] Error 1
-ERROR: compilation failed for package ‘SICtools’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/SICtools’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘SICtools’ ...
-** using staged installation
-** libs
-** arch - 
-Makefile:24: warning: overriding recipe for target `.c.o'
-/wynton/home/cbi/shared/software/CBI/R-3.6.2/lib64/R/etc/Makeconf:168: warning: ignoring old recipe for target `.c.o'
-make[1]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
-bgzf.c: In function ‘worker_aux’:
-bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
-  int i, tmp, stop = 0;
-         ^
-bgzf.c: In function ‘bgzf_close’:
-bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
-  int ret, count, block_length;
-           ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
-bam_pileup.c: In function ‘resolve_cigar2’:
-bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
-  int k, is_head = 0;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
-bam_reheader.c: In function ‘bam_reheader’:
-bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
-  bam_header_t *old;
-                ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
-kprobaln.c: In function ‘kpa_glocal’:
-kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
-  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
-                     ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
-ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
-bcf.c: In function ‘bcf_fmt_core’:
-bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
-     int iPL = -1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
-bcfutils.c: In function ‘bcf_fit_alt’:
-bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
-     int ipl=-1, igt=-1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
-em.c: In function ‘bcf_em1’:
-em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
-  int i, n, n2;
-            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
-ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-make[2]: Nothing to be done for `lib'.
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
-bam_plcmd.c: In function ‘mpileup’:
-bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
-    int total_depth, _ref0, ref16;
-                            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
-bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
-bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                            ^
-bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                     ^
-bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
-  int N, l_run, ref_type;
-                ^
-bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                                  ^
-bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
-cut_target.c: In function ‘main_cut_target’:
-cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
-  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
-                                    ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
-bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
- #include <curses.h>
-                    ^
-compilation terminated.
-make[1]: *** [bam_tview_curses.o] Error 1
-make[1]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make: *** [all-recur] Error 1
-ERROR: compilation failed for package ‘SICtools’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/SICtools’
-
-```
 # Single.mTEC.Transcriptomes
 
 <details>
@@ -5359,10 +5951,10 @@ Run `revdep_details(,"Single.mTEC.Transcriptomes")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 776.2Mb
+      installed size is 794.6Mb
       sub-directories of 1Mb or more:
-        data  769.2Mb
-        doc     7.0Mb
+        data  790.4Mb
+        doc     4.1Mb
     ```
 
 # singleCellTK
@@ -5374,7 +5966,7 @@ Run `revdep_details(,"Single.mTEC.Transcriptomes")` for more info
 * URL: https://compbiomed.github.io/sctk_docs/
 * BugReports: https://github.com/compbiomed/singleCellTK/issues
 * Date/Publication: 2019-10-29
-* Number of recursive dependencies: 216
+* Number of recursive dependencies: 215
 
 Run `revdep_details(,"singleCellTK")` for more info
 
@@ -5436,6 +6028,32 @@ Run `revdep_details(,"singscore")` for more info
     Undefined global functions or variables:
       ..density.. Class Dispersion EntrezID Ranks SampleLabel SampleText
       Score sc1 sc2 upDown
+    ```
+
+# slingshot
+
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/slingshot
+* BugReports: https://github.com/kstreet13/slingshot/issues
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 211
+
+Run `revdep_details(,"slingshot")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘rgl’ in Rd xrefs
     ```
 
 # SMAD
@@ -5532,28 +6150,6 @@ Run `revdep_details(,"SRGnet")` for more info
     to your NAMESPACE file.
     ```
 
-# staRdom
-
-<details>
-
-* Version: 1.1.3
-* Source code: https://github.com/cran/staRdom
-* URL: https://cran.r-project.org/package=staRdom
-* BugReports: https://github.com/MatthiasPucher/staRdom/issues
-* Date/Publication: 2020-01-28 11:20:02 UTC
-* Number of recursive dependencies: 152
-
-Run `revdep_details(,"staRdom")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘xlsx’
-    ```
-
 # stm
 
 <details>
@@ -5563,7 +6159,7 @@ Run `revdep_details(,"staRdom")` for more info
 * URL: http://structuraltopicmodel.com
 * BugReports: https://github.com/bstewart/stm/issues
 * Date/Publication: 2019-12-17 12:50:02 UTC
-* Number of recursive dependencies: 113
+* Number of recursive dependencies: 108
 
 Run `revdep_details(,"stm")` for more info
 
@@ -5574,14 +6170,14 @@ Run `revdep_details(,"stm")` for more info
 *   checking tests ...
     ```
     ...
-      Completed Group 1 E-Step (1 seconds). 
+      Completed Group 1 E-Step (2 seconds). 
       Completed M-Step. 
       Completing Iteration 1 (approx. per word bound = -10.359) 
       ....................................................................................................
-      Completed Group 1 E-Step (1 seconds). 
+      Completed Group 1 E-Step (2 seconds). 
       Completed M-Step. 
       ....................................................................................................
-      Completed Group 2 E-Step (1 seconds). 
+      Completed Group 2 E-Step (2 seconds). 
       Completed M-Step. 
       Model Terminated Before Convergence Reached 
       ── 1. Error: plot.STM doesn't throw error  (@test-visualize.R#4)  ──────────────
@@ -5854,27 +6450,6 @@ Run `revdep_details(,"treeHMM")` for more info
       All declared Imports should be used.
     ```
 
-# tximport
-
-<details>
-
-* Version: 1.14.0
-* Source code: https://github.com/cran/tximport
-* URL: https://github.com/mikelove/tximport
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 149
-
-Run `revdep_details(,"tximport")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘csaw’
-    ```
-
 # VanillaICE
 
 <details>
@@ -5893,42 +6468,42 @@ Run `revdep_details(,"VanillaICE")` for more info
 *   checking examples ... ERROR
     ```
     ...
-        rowRanges = rowRanges, colData = colData))
-    where 8: SnpArrayExperiment(cn = lrr(snp_exp), baf = baf(snp_exp), rowRanges = rowRanges(snp_exp))
-    where 9: SnpArrayExperiment(cn = lrr(snp_exp), baf = baf(snp_exp), rowRanges = rowRanges(snp_exp))
+    The following object is masked from ‘package:GenomicRanges’:
     
-     --- value of length: 2 type: logical ---
-    [1] TRUE TRUE
-     --- function from context --- 
-    function (object) 
-    {
-        msg <- validObject(rowRanges(object))
-        msg <- msg && (requiredAssays() %in% names(assays(object)))
-        msg
-    }
-    <bytecode: 0x1ae00018>
-    <environment: namespace:VanillaICE>
-     --- function search by body ---
-     ----------- END OF FAILURE REPORT -------------- 
-    Error in msg && (requiredAssays() %in% names(assays(object))) : 
-      'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Calls: SnpArrayExperiment ... validObject -> anyStrings -> isTRUE -> validityMethod
+        shift
+    
+    The following object is masked from ‘package:IRanges’:
+    
+        shift
+    
+    The following objects are masked from ‘package:S4Vectors’:
+    
+        first, second
+    
+    >   extdir <- system.file("extdata", package="VanillaICE", mustWork=TRUE)
+    >   features <- suppressWarnings(fread(file.path(extdir, "SNP_info.csv")))
+    >   fgr <- GRanges(paste0("chr", features$Chr), IRanges(features$Position, width=1),
+    +                  isSnp=features[["Intensity Only"]]==0)
+    >   fgr <- SnpGRanges(fgr)
+    >   names(fgr) <- features[["Name"]]
+    >   bsgenome <- BSgenome.Hsapiens.UCSC.hg18
+    Error: object 'BSgenome.Hsapiens.UCSC.hg18' not found
     Execution halted
     ```
 
 *   checking tests ...
     ```
     ...
-      Number of errors: 5 
-      Number of failures: 0 
-      
        
       1 Test Suite : 
-      VanillaICE unit testing - 24 test functions, 5 errors, 0 failures
+      VanillaICE unit testing - 24 test functions, 7 errors, 0 failures
+      ERROR in test_ArrayViews: Error in seqlevels(BSgenome.Hsapiens.UCSC.hg18) : 
+        object 'BSgenome.Hsapiens.UCSC.hg18' not found
+      ERROR in test_columnSubset: Error in seqlevels(BSgenome.Hsapiens.UCSC.hg18) : 
+        object 'BSgenome.Hsapiens.UCSC.hg18' not found
       ERROR in test_SnpArrayExperiment: Error in msg && (requiredAssays() %in% names(assays(object))) : 
         'length(x) = 2 > 1' in coercion to 'logical(1)'
-      ERROR in test_SnpArrayExperiment2: Error in msg && (requiredAssays() %in% names(assays(object))) : 
-        'length(x) = 2 > 1' in coercion to 'logical(1)'
+      ERROR in test_SnpArrayExperiment2: Error : package 'rtracklayer' could not be loaded
       ERROR in test_hmm_cnset: Error in msg && (requiredAssays() %in% names(assays(object))) : 
         'length(x) = 2 > 1' in coercion to 'logical(1)'
       ERROR in test_state4: Error in msg && (requiredAssays() %in% names(assays(object))) : 
@@ -5937,7 +6512,7 @@ Run `revdep_details(,"VanillaICE")` for more info
         'length(x) = 2 > 1' in coercion to 'logical(1)'
       Error: 
       
-      unit testing failed (#test failures: 0, #R errors: 5)
+      unit testing failed (#test failures: 0, #R errors: 7)
       
       Execution halted
     ```
@@ -5945,20 +6520,20 @@ Run `revdep_details(,"VanillaICE")` for more info
 *   checking running R code from vignettes ...
     ```
     ...
-    }
-    <bytecode: 0xa721908>
-    <environment: namespace:VanillaICE>
-     --- function search by body ---
-     ----------- END OF FAILURE REPORT -------------- 
+        strsplit
+    
+    Loading required package: rtracklayer
+    Error: package or namespace load failed for ‘rtracklayer’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+     there is no package called ‘Rsamtools’
     
       When sourcing ‘VanillaICE.R’:
-    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
+    Error: package ‘rtracklayer’ could not be loaded
     Execution halted
     when running code in ‘crlmmDownstream.Rnw’
       ...
         msg
     }
-    <bytecode: 0x1d56f5e0>
+    <bytecode: 0x1d77d060>
     <environment: namespace:VanillaICE>
      --- function search by body ---
      ----------- END OF FAILURE REPORT -------------- 
@@ -5995,6 +6570,12 @@ Run `revdep_details(,"wateRmelon")` for more info
 
 ## In both
 
+*   checking whether package ‘wateRmelon’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/00install.out’ for details.
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -6004,52 +6585,44 @@ Run `revdep_details(,"wateRmelon")` for more info
     selectively is preferable.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’
-    A package should be listed in only one of these fields.
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Packages in Depends field not imported from:
-      ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘matrixStats’
-      ‘methylumi’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    Unexported objects imported by ':::' calls:
-      ‘minfi:::.isRGOrStop’ ‘minfi:::pickCompProbes’
-      ‘minfi:::projectCellType’
-      See the note in ?`:::` about the use of this operator.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    tost,MethyLumiSet: no visible global function definition for
-      ‘unmethylated’
-    tost,MethyLumiSet: no visible global function definition for ‘pvals’
-    tost,RGChannelSet: no visible global function definition for
-      ‘detectionP’
-    tost,RGChannelSet: no visible global function definition for
-      ‘preprocessRaw’
-    tost,RGChannelSet: no visible global function definition for ‘getMeth’
-    tost,RGChannelSet: no visible global function definition for
-      ‘getUnmeth’
-    Undefined global functions or variables:
-      .mclapply IlluminaHumanMethylation450kanno.ilmn12.hg19 MethylSet
-      PATH_RES QCdata QCdata<- RGChannelSetExtended betas betas<- colData
-      colMedians detectionP epic.controls epic.ordering getAnnotation
-      getAnnotationObject getBeta getControlAddress getGreen
-      getManifestInfo getMeth getNBeads getProbeInfo getProbeType getRed
-      getSnpBeta getUnmeth hm27.controls hm27.ordering hm450.controls
-      hm450.ordering intensitiesByChannel metadata methylated methylated<-
-      methylumiR n.sd preprocessRaw preprocessSWAN probeAnnotationsCategory
-      projectName pval.detect<- pvals subsetByLoci unmethylated
-      unmethylated<- warn
-    ```
+```
+* installing *source* package ‘wateRmelon’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/00_pkg_src/wateRmelon: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘wateRmelon’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/wateRmelon’
 
+```
+### CRAN
+
+```
+* installing *source* package ‘wateRmelon’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/old/wateRmelon.Rcheck/00_pkg_src/wateRmelon: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘GenomicFeatures’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘Rsamtools’
+Error: package ‘GenomicFeatures’ could not be loaded
+Execution halted
+ERROR: lazy loading failed for package ‘wateRmelon’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/old/wateRmelon.Rcheck/wateRmelon’
+
+```
 # XBSeq
 
 <details>
@@ -6066,43 +6639,50 @@ Run `revdep_details(,"XBSeq")` for more info
 
 ## In both
 
-*   checking whether the namespace can be loaded with stated dependencies ... NOTE
+*   checking whether package ‘XBSeq’ can be installed ... ERROR
     ```
-    Warning: no function found corresponding to methods exports from ‘XBSeq’ for: ‘conditions’, ‘conditions<-’, ‘dispTable’
-    
-    A namespace must be able to be loaded with just the base namespace
-    loaded: otherwise if the namespace gets loaded by a saved object, the
-    session will be unable to start.
-    
-    Probably some imports need to be declared in the NAMESPACE file.
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/XBSeq/new/XBSeq.Rcheck/00install.out’ for details.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay’
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay<-’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘conditions’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘dispTable<-’
-    Undefined global functions or variables:
-      ..count.. DataFrame Gamma Group Sample SummarizedExperiment assay
-      assay<- assays baseMean coefficients complete.cases conditions cor
-      data ddelap dispTable dispTable<- dnbinom dpois formula glm
-      log2FoldChange median optim p.adjust pbeta predict qbeta quantile
-      rnbinom scvBiasCorrectionFits
-    Consider adding
-      importFrom("stats", "Gamma", "coefficients", "complete.cases", "cor",
-                 "dnbinom", "dpois", "formula", "glm", "median", "optim",
-                 "p.adjust", "pbeta", "predict", "qbeta", "quantile",
-                 "rnbinom")
-      importFrom("utils", "data")
-    to your NAMESPACE file.
-    ```
+## Installation
 
+### Devel
+
+```
+* installing *source* package ‘XBSeq’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/XBSeq/new/XBSeq.Rcheck/00_pkg_src/XBSeq: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘XBSeq’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/XBSeq/new/XBSeq.Rcheck/XBSeq’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘XBSeq’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/XBSeq/old/XBSeq.Rcheck/00_pkg_src/XBSeq: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘XBSeq’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/XBSeq/old/XBSeq.Rcheck/XBSeq’
+
+```
 # yarn
 
 <details>
@@ -6118,29 +6698,49 @@ Run `revdep_details(,"yarn")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘yarn’ can be installed ... ERROR
     ```
-    ...
-    Running examples in ‘yarn-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: annotateFromBiomart
-    > ### Title: Annotate your Expression Set with biomaRt
-    > ### Aliases: annotateFromBiomart
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > data(skin)
-    > # subsetting and changing column name just for a silly example
-    > skin <- skin[1:10,]
-    > colnames(fData(skin)) = paste("names",1:6)
-    > biomart<-"ENSEMBL_MART_ENSEMBL";
-    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
-    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.ensembl.org; Name or service not known
-    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/yarn/new/yarn.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘yarn’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/yarn/new/yarn.Rcheck/00_pkg_src/yarn: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘yarn’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/yarn/new/yarn.Rcheck/yarn’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘yarn’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/yarn/old/yarn.Rcheck/00_pkg_src/yarn: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘Rsamtools’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘yarn’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/yarn/old/yarn.Rcheck/yarn’
+
+```
