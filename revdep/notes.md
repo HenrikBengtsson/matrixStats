@@ -1,20 +1,34 @@
 # Notes
 
+## Setup
+
+```r
+> options(Ncpus = 6L)
+> install.packages("remotes")
+> remotes::install_github("r-lib/revdepcheck")
+```
+
+```sh
+## Used by R itself
+$ revdep/run.R --preinstall RCurl XML
+```
+
+
 ## Pre-installation
 
 In order to run these checks successfully on a machine _without internet
 access_, make sure to first populate the 'crancache' cache by pre-installing
-all packages to be tested plus a few more:
+all packages to be tested plus a few more.
 
 ```sh
+## Needed by some packages to be tested (identified by trial and error)
+$ revdep/run.R --preinstall Rsamtools sf
+
 ## Update current crancache
 $ revdep/run.R --preinstall-update
 
-## Used by R itself
-$ revdep/run.R --preinstall RCurl XML
-
-## Needed by some packages to be tested (identified by trial and error)
-$ revdep/run.R --preinstall Rsamtools sf
+## OpenMx needed by semtree (gcc >= 4.9.3)
+$ scl enable devtoolset-6 "revdep/run.R --preinstall OpenMx"
 
 ## Rfast needed by IMIFA and obfuscatoR (gcc 6.3.1)
 ## (https://github.com/RfastOfficial/Rfast/issues/8#issuecomment-586522490)
@@ -23,9 +37,6 @@ $ scl enable devtoolset-6 "revdep/run.R --preinstall Rfast"
 ## RccpAlgos needed by ImpactEffectsize (gcc 5.3.1)
 ## (https://github.com/jwood000/RcppAlgos/issues/10)
 $ scl enable devtoolset-4 "revdep/run.R --preinstall RcppAlgos"
-
-## OpenMx needed by semtree (gcc >= 4.9.3)
-$ scl enable devtoolset-4 "revdep/run.R --preinstall OpenMx"
 
 ## All packages to be tested
 $ revdep/run.R --preinstall-children
@@ -51,9 +62,7 @@ Packages that gave "R CMD check timed out":
 
 Other timeouts:
 
-* GAPGOM
 * maEndToEnd
-* MEAL
 * metrix
 * splatter
 
@@ -81,6 +90,7 @@ their examples or tests require a working internet connection:
 * crossmeta: "AnnotatingURL 'https://bioconductor.org/config.yaml': status was 'Couldn't resolve host, ..."
 * DeepBlueR: "Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known"
 * Doscheda: "Could not resolve host: www.humanmine.org; Name or service not known"
+* GAPGOM: "trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error: attempt to write a readonly database. Error in bfcrpath(bfc, url) : not all 'rnames' found or unique."
 * Pigengene: "Could not resolve host: useast.ensembl.org; Name or service not known"
 * PrecisionTrialDrawer: "Could not resolve host: www.cbioportal.org; Name or service not known"
 * stm: "cannot open the connection to 'http://goo.gl/VPdxlS'"
@@ -89,11 +99,12 @@ their examples or tests require a working internet connection:
 
 The following packages produce errors on "No internet connection using 'localHub=TRUE'":
 
-* RNAmodR
 * AMARETTO
 * biscuiteer
 * DEqMS
 * hipathia
+* MEAL
+* RNAmodR
 * sesame
 
 

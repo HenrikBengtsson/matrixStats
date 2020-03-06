@@ -2,8 +2,8 @@
 #'
 #' Estimates quantiles for each row (column) in a matrix.
 #'
-#' @param x An \code{\link[base]{integer}} or a \code{\link[base]{numeric}}
-#' NxK \code{\link[base]{matrix}} with N >= 0.
+#' @param x An \code{\link[base]{integer}}, \code{\link[base]{numeric}} or
+#' \code{\link[base]{logical}} NxK \code{\link[base]{matrix}} with N >= 0.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -23,9 +23,9 @@
 #' @param drop If TRUE, singleton dimensions in the result are dropped,
 #' otherwise not.
 #'
-#' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}} of the same type
-#' as \code{x}, where N (K) is the number of rows (columns) for which the
-#' J quantiles are calculated.
+#' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}}, where N (K) is the
+#' number of rows (columns) for which the J quantiles are calculated.
+#' The return type is either integer or numeric depending on \code{type}.
 #'
 #' @example incl/rowQuantiles.R
 #'
@@ -42,8 +42,8 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
-  if (!is.numeric(x) && !is.integer(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer' and 'numeric' is supported.", sQuote(storage.mode(x))))  #nolint
+  if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
+    .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
   }
 
   # Argument 'probs':
@@ -59,6 +59,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+
+  # Coerce?
+#  if (is.logical(x)) {
+#    storage.mode(x) <- "integer"
+#  }
 
   # Argument 'x':
   nrow <- nrow(x)
@@ -117,6 +122,8 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
           x_rr <- xp_rr <- NULL
         }
       }
+
+      storage.mode(q) <- "numeric"
     } else {
       # For each row...
       rows <- seq_len(nrow)
@@ -155,6 +162,9 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
+  if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
+    .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
+  }
 
   # Argument 'probs':
   if (anyMissing(probs)) {
@@ -170,6 +180,11 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
+  # Coerce?
+#  if (is.logical(x)) {
+#    storage.mode(x) <- "integer"
+#  }
+  
   # Argument 'x':
   nrow <- nrow(x)
   ncol <- ncol(x)
@@ -226,6 +241,8 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
           x_cc <- xp_cc <- NULL
         }
       }
+      
+      storage.mode(q) <- "numeric"
     } else {
       # For each column...
       cols <- seq_len(ncol)

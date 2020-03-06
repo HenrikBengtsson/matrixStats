@@ -6,7 +6,6 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
       na_value <- NA_real_
       storage.mode(na_value) <- storage.mode(x)
       rep(na_value, times = length(probs))
-
     } else {
       as.vector(quantile(x, probs = probs, na.rm = na.rm, ...))
     }
@@ -27,7 +26,7 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with multiple quantiles
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(1:40 + 0.1, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
@@ -48,7 +47,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Test with a single quantile
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(1:40, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
@@ -74,7 +73,7 @@ set.seed(1)
 probs <- seq(from = 0, to = 1, by = 0.25)
 
 cat("Consistency checks:\n")
-n_sims <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 4L else 20L
+n_sims <- if (Sys.getenv("_R_CHECK_USE_VALGRIND_") != "") 6L else 24L
 for (kk in seq_len(n_sims)) {
   cat("Random test #", kk, "\n", sep = "")
 
@@ -86,7 +85,7 @@ for (kk in seq_len(n_sims)) {
   dimnames(x) <- lapply(dim(x), FUN = function(n) rep(letters, length.out = n))
 
   # Add NAs?
-  has_na <- (kk %% 4) %in% c(3, 0)
+  has_na <- ((kk %% 2) == 0L)
   if (has_na) {
     cat("Adding NAs\n")
     nna <- sample(n, size = 1)
@@ -95,8 +94,11 @@ for (kk in seq_len(n_sims)) {
     x[sample(length(x), size = nna)] <- t
   }
 
-  # Integer or double?
-  if ((kk %% 4) %in% c(2, 0)) {
+  # Logical, integer, or double?
+  if ((kk %% 6) %in% 1:2) {
+    cat("Coercing to logical\n")
+    storage.mode(x) <- "logical"
+  } else if ((kk %% 6) %in% 3:4) {
     cat("Coercing to integers\n")
     storage.mode(x) <- "integer"
   }
@@ -104,11 +106,14 @@ for (kk in seq_len(n_sims)) {
   str(x)
 
   # rowQuantiles():
-  q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na)
-  q1 <- rowQuantiles(x, probs = probs, na.rm = has_na)
-  stopifnot(all.equal(q1, q0))
-  q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na)
-  stopifnot(all.equal(q2, q0))
+  for (type in 1:9) {
+    cat(sprintf("type=%d, has_na=%s:\n", type, has_na))
+    q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type)
+    q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type)
+    stopifnot(all.equal(q1, q0))
+    q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type)
+    stopifnot(all.equal(q2, q0))
+  }
 } # for (kk ...)
 
 
