@@ -27,6 +27,9 @@ $ revdep/run.R --preinstall Rsamtools sf
 ## Update current crancache
 $ revdep/run.R --preinstall-update
 
+## OpenMx needed by semtree (gcc >= 4.9.3)
+$ scl enable devtoolset-6 "revdep/run.R --preinstall OpenMx"
+
 ## Rfast needed by IMIFA and obfuscatoR (gcc 6.3.1)
 ## (https://github.com/RfastOfficial/Rfast/issues/8#issuecomment-586522490)
 $ scl enable devtoolset-6 "revdep/run.R --preinstall Rfast"
@@ -34,9 +37,6 @@ $ scl enable devtoolset-6 "revdep/run.R --preinstall Rfast"
 ## RccpAlgos needed by ImpactEffectsize (gcc 5.3.1)
 ## (https://github.com/jwood000/RcppAlgos/issues/10)
 $ scl enable devtoolset-4 "revdep/run.R --preinstall RcppAlgos"
-
-## OpenMx needed by semtree (gcc >= 4.9.3)
-$ scl enable devtoolset-4 "revdep/run.R --preinstall OpenMx"
 
 ## All packages to be tested
 $ revdep/run.R --preinstall-children

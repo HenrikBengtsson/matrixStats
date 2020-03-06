@@ -1,14 +1,17 @@
 Package: matrixStats
 ====================
 
-Version: 0.55.0-9000 [2020-02-10]
+Version: 0.55.0-9000 [2020-03-06]
 
 SIGNIFICANT CHANGES:
 
- * colQuantiles() and rowQuantiles() now supports only integer and numeric
-   input.  Previously, it was also possible to pass, for instance, 'character'
-   input, but that was a mistake.  The restriction on input allows for further
-   optimization of these functions.
+ * colQuantiles() and rowQuantiles() now supports only integer, numeric and
+   logical input.  Previously, it was also possible to pass, for instance,
+   'character' input, but that was a mistake.  The restriction on input allows
+   for further optimization of these functions.
+
+ * The returned type of colQuantiles() and rowQuantiles() is now the same as
+   for stats::quantile(), which depends on argument 'type'.
 
 PERFORMANCE:
 
