@@ -860,16 +860,6 @@ Run `revdep_details(,"clusterExperiment")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.9Mb
-      sub-directories of 1Mb or more:
-        R     1.1Mb
-        doc   2.9Mb
-    ```
-
 ## In both
 
 *   R CMD check timed out
@@ -879,6 +869,14 @@ Run `revdep_details(,"clusterExperiment")` for more info
     ```
     Output for data("rsecFluidigm", package = "clusterExperiment"):
       Search path was changed
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  9.6Mb
+      sub-directories of 1Mb or more:
+        R     1.1Mb
+        doc   6.6Mb
     ```
 
 *   checking foreign function calls ... NOTE
@@ -2753,31 +2751,6 @@ Run `revdep_details(,"GUIDEseq")` for more info
     prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
     ```
 
-# Gviz
-
-<details>
-
-* Version: 1.30.3
-* Source code: https://github.com/cran/Gviz
-* URL: https://github.com/ivanek/Gviz
-* BugReports: https://github.com/ivanek/Gviz/issues
-* Date/Publication: 2020-02-17
-* Number of recursive dependencies: 138
-
-Run `revdep_details(,"Gviz")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.6Mb
-      sub-directories of 1Mb or more:
-        R     1.5Mb
-        doc   4.7Mb
-    ```
-
 # gwasurvivr
 
 <details>
@@ -4197,7 +4170,7 @@ Run `revdep_details(,"omicsPrint")` for more info
 
 </details>
 
-## Newly broken
+## In both
 
 *   checking installed package size ... NOTE
     ```
@@ -4689,12 +4662,12 @@ Run `revdep_details(,"regsem")` for more info
 ** package ‘regsem’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
-gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
 g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
 installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
 ** R
@@ -4723,12 +4696,12 @@ ERROR: loading failed
 ** package ‘regsem’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
-gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
 g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
 installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
 ** R
@@ -5876,12 +5849,6 @@ Run `revdep_details(,"STROMA4")` for more info
 *   checking examples ... ERROR
     ```
     ...
-    > ### Name: assign.properties
-    > ### Title: Function to assign properties to an expression matrix
-    > ### Aliases: assign.properties
-    > 
-    > ### ** Examples
-    > 
     > library(breastCancerMAINZ)
     > data(mainz, package='breastCancerMAINZ')
     > all.properties <- assign.properties(ESet=mainz, geneID.column='Gene.symbol',
@@ -5891,8 +5858,14 @@ Run `revdep_details(,"STROMA4")` for more info
     ----206 out of 297 total genes matching for D.stroma.property----
     ----1064 out of 1105 total genes matching for MSL.property----
     ----671 out of 710 total genes matching for M.property----
+    ----104 out of 567 total genes matching for B.stroma.property----
+    ----1146 out of 1205 total genes matching for LAR.property----
+    ----670 out of 705 total genes matching for IM.property----
+    ----315 out of 458 total genes matching for T.stroma.property----
+    ----449 out of 473 total genes matching for BL1.property----
+    ----20 out of 27 total genes matching for E.stroma.property----
     Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
-      port 11729 cannot be opened
+      port 11262 cannot be opened
     Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
       cannot open the connection
     Calls: assign.properties ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection

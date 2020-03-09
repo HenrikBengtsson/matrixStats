@@ -12,16 +12,6 @@ Run `revdep_details(,"clusterExperiment")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.9Mb
-      sub-directories of 1Mb or more:
-        R     1.1Mb
-        doc   2.9Mb
-    ```
-
 ## In both
 
 *   R CMD check timed out
@@ -31,6 +21,14 @@ Run `revdep_details(,"clusterExperiment")` for more info
     ```
     Output for data("rsecFluidigm", package = "clusterExperiment"):
       Search path was changed
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  9.6Mb
+      sub-directories of 1Mb or more:
+        R     1.1Mb
+        doc   6.6Mb
     ```
 
 *   checking foreign function calls ... NOTE
@@ -213,12 +211,12 @@ Run `revdep_details(,"regsem")` for more info
 ** package ‘regsem’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
-gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
 g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
 installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
 ** R
@@ -247,12 +245,12 @@ ERROR: loading failed
 ** package ‘regsem’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
-gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
-g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/Rcpp/include" -I"/scratch/746543.1.long.q/tmp.Y1MgBd5sBT/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
 g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
 installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
 ** R
