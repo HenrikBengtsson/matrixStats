@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.55.0-9000 [2020-03-06]
+Version: 0.55.0-9000 [2020-03-10]
 
 SIGNIFICANT CHANGES:
 
@@ -16,7 +16,7 @@ SIGNIFICANT CHANGES:
 PERFORMANCE:
 
  * colQuantiles() and rowQuantiles() with the default type=7L and when there
-   are no missing values is now significantly faster and use significantly
+   are no missing values are now significantly faster and use significantly
    fewer memory allocations.
 
 BUG FIXES:
