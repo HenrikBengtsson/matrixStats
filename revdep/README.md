@@ -20,7 +20,7 @@
 
 # Revdeps
 
-## Failed to check (6)
+## Failed to check (5)
 
 |package                                            |version |error |warning |note     |
 |:--------------------------------------------------|:-------|:-----|:-------|:--------|
@@ -29,7 +29,6 @@
 |[MethylAid](failures.md#methylaid)                 |1.20.0  |1     |        |         |
 |[regsem](failures.md#regsem)                       |1.5.2   |1     |        |         |
 |[RNAmodR](failures.md#rnamodr)                     |1.0.2   |1     |        |1        |
-|[SICtools](failures.md#sictools)                   |1.16.0  |1     |        |2        |
 
 ## New problems (1)
 
@@ -262,13 +261,13 @@
 |SGP                                                                            |1.9-5.0 |       |        |         |
 |[shinyMethyl](problems.md#shinymethyl)                                         |1.22.0  |       |        |2        |
 |[SIAMCAT](problems.md#siamcat)                                                 |1.6.0   |1      |        |1        |
-|[SICtools](failures.md#sictools)                                               |1.16.0  |1      |        |2        |
+|[SICtools](problems.md#sictools)                                               |1.16.0  |       |1       |3        |
 |sindyr                                                                         |0.2.2   |       |        |         |
 |[Single.mTEC.Transcriptomes](problems.md#singlemtectranscriptomes)             |1.14.0  |       |        |1        |
 |[singleCellTK](problems.md#singlecelltk)                                       |1.6.0   |       |        |2        |
 |[singscore](problems.md#singscore)                                             |1.6.0   |       |        |1        |
 |sizeMat                                                                        |1.1.0   |       |        |         |
-|[slingshot](problems.md#slingshot)                                             |1.4.0   |       |        |2        |
+|slingshot                                                                      |1.4.0   |       |        |         |
 |[SMAD](problems.md#smad)                                                       |1.2.0   |       |        |1        |
 |smerc                                                                          |1.1     |       |        |         |
 |[splatter](problems.md#splatter)                                               |1.10.1  |       |        |1        |
