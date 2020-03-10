@@ -108,6 +108,14 @@ The following packages produce errors on "No internet connection using 'localHub
 * sesame
 
 
+To check these on a machine with internet access, do:
+
+```r
+$ revdep/run.R --add bumphunter crossmeta DeepBlueR Doscheda GAPGOM Pigengene PrecisionTrialDrawer stm STROMA4 yarn AMARETTO biscuiteer DEqMS hipathia MEAL RNAmodR sesame
+$ NSLOTS=8 revdep/run.R
+```
+
+
 ### Missing dependencies
 
 * CATALYST: "Error in loadNamespace(name) : there is no package called ‘uwot’"
@@ -127,3 +135,4 @@ The following packages produce errors on "No internet connection using 'localHub
 ### Packages with installation errors (?!?)
 
 * SICtools: "bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory"
+
