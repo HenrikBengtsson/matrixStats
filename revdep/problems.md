@@ -834,6 +834,16 @@ Run `revdep_details(,"clusterExperiment")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  9.4Mb
+      sub-directories of 1Mb or more:
+        R     1.1Mb
+        doc   6.4Mb
+    ```
+
 ## In both
 
 *   R CMD check timed out
@@ -843,14 +853,6 @@ Run `revdep_details(,"clusterExperiment")` for more info
     ```
     Output for data("rsecFluidigm", package = "clusterExperiment"):
       Search path was changed
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  9.6Mb
-      sub-directories of 1Mb or more:
-        R     1.1Mb
-        doc   6.6Mb
     ```
 
 *   checking foreign function calls ... NOTE
@@ -866,7 +868,7 @@ Run `revdep_details(,"clusterExperiment")` for more info
 
 *   checking Rd cross-references ... NOTE
     ```
-    Unknown package ‘ConsensusClusterPlus’ in Rd xrefs
+    Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
     ```
 
 # CopywriteR
@@ -1768,31 +1770,6 @@ Run `revdep_details(,"ENmix")` for more info
     ComBat.mc: no visible global function definition for ‘ComBat’
     Undefined global functions or variables:
       ComBat
-    ```
-
-# eseis
-
-<details>
-
-* Version: 0.5.0
-* Source code: https://github.com/cran/eseis
-* Date/Publication: 2019-12-17 11:30:02 UTC
-* Number of recursive dependencies: 93
-
-Run `revdep_details(,"eseis")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘fftw’
-    
-    Package suggested but not available for checking: ‘rgl’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
 # evaluomeR
@@ -3214,71 +3191,30 @@ Run `revdep_details(,"MFHD")` for more info
 
 ## In both
 
-*   checking whether package ‘MFHD’ can be installed ... ERROR
+*   checking R code for possible problems ... NOTE
     ```
-    Installation failed.
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/00install.out’ for details.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘MFHD’ ...
-** package ‘MFHD’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** byte-compile and prepare package for lazy loading
-.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/00_pkg_src/MFHD: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
-  there is no package called ‘rgl’
-Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
-Execution halted
-ERROR: lazy loading failed for package ‘MFHD’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/new/MFHD.Rcheck/MFHD’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘MFHD’ ...
-** package ‘MFHD’ successfully unpacked and MD5 sums checked
-** using staged installation
-** R
-** byte-compile and prepare package for lazy loading
-.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/old/MFHD.Rcheck/00_pkg_src/MFHD: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
-  there is no package called ‘rgl’
-Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
-Execution halted
-ERROR: lazy loading failed for package ‘MFHD’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/MFHD/old/MFHD.Rcheck/MFHD’
-
-```
-# mgcViz
-
-<details>
-
-* Version: 0.1.6
-* Source code: https://github.com/cran/mgcViz
-* URL: https://github.com/mfasiolo/mgcViz
-* BugReports: https://github.com/mfasiolo/mgcViz/issues
-* Date/Publication: 2020-03-04 15:10:02 UTC
-* Number of recursive dependencies: 94
-
-Run `revdep_details(,"mgcViz")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘rgl’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    ...
+      ‘plot’
+    plot.bagplot : find.cut.z.pg: no visible global function definition for
+      ‘points’
+    plot.bagplot : find.cut.z.pg: no visible global function definition for
+      ‘lines’
+    plot.bagplot: no visible global function definition for ‘boxplot’
+    plot.bagplot: no visible global function definition for ‘plot’
+    plot.bagplot: no visible global function definition for ‘points’
+    plot.bagplot: no visible global function definition for ‘segments’
+    plot.bagplot: no visible global function definition for ‘text’
+    plot.bagplot: no visible global function definition for ‘lines’
+    plot.bagplot: no visible global function definition for ‘polygon’
+    Undefined global functions or variables:
+      boxplot chull complete.cases identify lines plot points polygon
+      prcomp quantile sd segments text xy.coords
+    Consider adding
+      importFrom("grDevices", "chull", "xy.coords")
+      importFrom("graphics", "boxplot", "identify", "lines", "plot",
+                 "points", "polygon", "segments", "text")
+      importFrom("stats", "complete.cases", "prcomp", "quantile", "sd")
+    to your NAMESPACE file.
     ```
 
 # MHTcop
@@ -3930,15 +3866,10 @@ Run `revdep_details(,"OptimalDesign")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking package dependencies ... NOTE
     ```
-    Package required but not available: ‘rgl’
-    
     Packages which this enhances but not available for checking:
       'gurobi', 'slam'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
 # OUTRIDER
@@ -4453,34 +4384,6 @@ ERROR: loading failed
 Run `revdep_details(,"RNAmodR")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > 
-    > # Construction of a CoverageSequenceData objectobject
-    > library(RNAmodR.Data)
-    Loading required package: ExperimentHub
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
-    Loading required package: ExperimentHubData
-    Loading required package: AnnotationHubData
-    Testing for internet connectivity via https_proxy... success!
-    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
-    snapshotDate(): 2019-10-22
-    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
-    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
-    > library(rtracklayer)
-    > annotation <- GFF3File(RNAmodR.Data.example.man.gff3())
-    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Empty reply from server
-    Calls: GFF3File ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
 
 ## In both
 
