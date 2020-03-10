@@ -4080,7 +4080,7 @@ Run `revdep_details(,"Pigengene")` for more info
 
 </details>
 
-## Newly broken
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
@@ -4104,7 +4104,7 @@ Run `revdep_details(,"Pigengene")` for more info
     [1] "org.Hs.eg.db-SYMBOL"
     'select()' returned 1:1 mapping between keys and columns
     Loading required package: biomaRt
-    Error: disk I/O error
+    Error: failed to load HTTP resource
     Execution halted
     ```
 
