@@ -80,8 +80,12 @@ Run `revdep_details(,"DeepBlueR")` for more info
 ** inst
 ** byte-compile and prepare package for lazy loading
 .Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Called method: deepblue_list_column_types
+Reported status was: okay
+status 
+ "417" 
+Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
+  Problems
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
@@ -98,8 +102,12 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 ** inst
 ** byte-compile and prepare package for lazy loading
 .Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Called method: deepblue_list_column_types
+Reported status was: okay
+status 
+ "417" 
+Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
+  Problems
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
@@ -272,6 +280,67 @@ ERROR: loading failed
 * removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/regsem’
 
 ```
+# RNAmodR
+
+<details>
+
+* Version: 1.0.2
+* Source code: https://github.com/cran/RNAmodR
+* URL: https://github.com/FelixErnst/RNAmodR
+* BugReports: https://github.com/FelixErnst/RNAmodR/issues
+* Date/Publication: 2020-01-12
+* Number of recursive dependencies: 190
+
+Run `revdep_details(,"RNAmodR")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    ...
+    > 
+    > # Construction of a CoverageSequenceData objectobject
+    > library(RNAmodR.Data)
+    Loading required package: ExperimentHub
+    Loading required package: AnnotationHub
+    Loading required package: BiocFileCache
+    Loading required package: dbplyr
+    Loading required package: ExperimentHubData
+    Loading required package: AnnotationHubData
+    Testing for internet connectivity via https_proxy... success!
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    snapshotDate(): 2019-10-22
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    > library(rtracklayer)
+    > annotation <- GFF3File(RNAmodR.Data.example.man.gff3())
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Empty reply from server
+    Calls: GFF3File ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Execution halted
+    ```
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      'BiocGenerics:::replaceSlots' 'IRanges:::.valid.CompressedList'
+      'IRanges:::coerceToCompressedList' 'S4Vectors:::.valid.DataFrame'
+      'S4Vectors:::labeledLine' 'S4Vectors:::make_zero_col_DataFrame'
+      'S4Vectors:::prepare_objects_to_bind'
+      See the note in ?`:::` about the use of this operator.
+    There are ::: calls to the package's namespace in its code. A package
+      almost never needs to use ::: for its own objects:
+      '.get_inosine_score'
+    ```
+
 # SICtools
 
 <details>

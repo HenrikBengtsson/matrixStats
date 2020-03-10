@@ -13,32 +13,6 @@ Run `revdep_details(,"AMARETTO")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    The error most likely occurred in:
-    
-    > ### Name: AMARETTO_Download
-    > ### Title: AMARETTO_Download
-    > ### Aliases: AMARETTO_Download
-    > 
-    > ### ** Examples
-    > 
-    > TargetDirectory <- file.path(getwd(),"Downloads/");dir.create(TargetDirectory)
-    > CancerSite <- 'CHOL'
-    > DataSetDirectories <- AMARETTO_Download(CancerSite,TargetDirectory = TargetDirectory)
-    Downloading Gene Expression and Copy Number Variation data for: CHOL
-    
-    This TCGA cancer site/type was not tested, continue at your own risk.
-    
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: AMARETTO_Download ... ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     License components with restrictions not permitted:
@@ -405,7 +379,6 @@ Run `revdep_details(,"biscuiteer")` for more info
 *   checking examples ... ERROR
     ```
     ...
-    Extracting sample names from /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_header_only.vcf.gz...
     /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz does not have a header. Using VCF file header information to help set column names.
     Assuming unmerged data. Checking now... ...The file might be alright. Double check if you're worried.
     /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz has 254147 indexed loci.
@@ -420,6 +393,7 @@ Run `revdep_details(,"biscuiteer")` for more info
     Loading H9state23unmeth.hg19...
     Computing hypomethylation indices...
     Loading PMDs.hg19.rda from biscuiteerData...
+    Testing for internet connectivity via https_proxy... success!
     Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
       Invalid Cache: sqlite file
       Hub has not been added to cache
@@ -453,24 +427,24 @@ Run `revdep_details(,"bumphunter")` for more info
 *   checking tests ...
     ```
     ...
-      Loading required package: foreach
-      Loading required package: iterators
       Loading required package: locfit
       locfit 1.5-9.1 	 2013-03-22
       trying URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
-      ── 1. Error: (unknown) (@test_annotation.R#99)  ────────────────────────────────
-      cannot open URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
+      Content type 'text/plain' length 38817086 bytes (37.0 MB)
+      ==================================================
+      downloaded 37.0 MB
+      
+      ── 1. Error: (unknown) (@test_annotation.R#103)  ───────────────────────────────
+      don't know where to find assembly report for GCF_000001405.26
       Backtrace:
-       1. rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
-       2. rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
-       4. rtracklayer::import(FileForFormat(con), ...)
-       6. rtracklayer::import(con, ...)
-       7. rtracklayer:::.local(con, format, text, ...)
-       8. utils::download.file(resource(con), destfile)
+       1. GenomeInfoDb::fetchExtendedChromInfoFromUCSC("hg38")
+       2. GenomeInfoDb:::FUN(...)
+       3. GenomeInfoDb:::fetch_assembly_report(assembly_accession, AssemblyUnits = AssemblyUnits)
+       4. GenomeInfoDb:::.make_assembly_report_URL(assembly_accession)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 13 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: (unknown) (@test_annotation.R#99) 
+      [ OK: 13 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 1 ]
+      1. Error: (unknown) (@test_annotation.R#103) 
       
       Error: testthat unit tests failed
       Execution halted
@@ -1040,32 +1014,6 @@ Run `revdep_details(,"crossmeta")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    > eset <- load_raw("GSE9601", data_dir)[[1]]
-    > 
-    > # annotate eset (need if load_raw failed to annotate)
-    > eset <- symbol_annot(eset)
-    AnnotatingURL 'https://bioconductor.org/config.yaml': status was 'Couldn't resolve host
-      name'
-    cannot open the connection to 'https://bioconductor.org/config.yaml'
-    URL 'http://bioconductor.org/config.yaml': status was 'Couldn't resolve host
-      name'
-    cannot open the connection to 'http://bioconductor.org/config.yaml'
-    Bioconductor version cannot be validated; no internet connection?
-    URL 'https://bioconductor.org/config.yaml': status was 'Couldn't resolve host
-      name'
-    cannot open the connection to 'https://bioconductor.org/config.yaml'
-    URL 'http://bioconductor.org/config.yaml': status was 'Couldn't resolve host
-      name'
-    cannot open the connection to 'http://bioconductor.org/config.yaml'
-    Error in if (v1 < v2) -1L else if (v1 > v2) 1L else 0L : 
-      argument is of length zero
-    Calls: symbol_annot ... entrez_map -> get_biocpack -> <Anonymous> -> .version_compare
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... WARNING
     ```
     '::' or ':::' import not declared from: ‘shinyBS’
@@ -1104,7 +1052,7 @@ Run `revdep_details(,"crossmeta")` for more info
 
 *   checking Rd cross-references ... NOTE
     ```
-    Unknown packages ‘PADOG’, ‘GeneMeta’ in Rd xrefs
+    Packages unavailable to check Rd xrefs: ‘PADOG’, ‘GeneMeta’
     ```
 
 # cSEM
@@ -1206,8 +1154,12 @@ Run `revdep_details(,"DeepBlueR")` for more info
 ** inst
 ** byte-compile and prepare package for lazy loading
 .Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Called method: deepblue_list_column_types
+Reported status was: okay
+status 
+ "417" 
+Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
+  Problems
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
@@ -1224,8 +1176,12 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 ** inst
 ** byte-compile and prepare package for lazy loading
 .Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+Called method: deepblue_list_column_types
+Reported status was: okay
+status 
+ "417" 
+Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
+  Problems
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
@@ -1424,32 +1380,6 @@ Run `revdep_details(,"DEqMS")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    The following objects are masked from ‘package:base’:
-    
-        Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-        as.data.frame, basename, cbind, colnames, dirname, do.call,
-        duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-        lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-        pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-        tapply, union, unique, unsplit, which, which.max, which.min
-    
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
-    > eh = ExperimentHub()
-    No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/746543.1.long.q/RtmpgdxJrt/BiocFileCache
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -1661,67 +1591,6 @@ Run `revdep_details(,"dmrseq")` for more info
     plotEmpiricalDistribution: no visible binding for global variable ‘wt’
     Undefined global functions or variables:
       wt
-    ```
-
-# Doscheda
-
-<details>
-
-* Version: 1.8.1
-* Source code: https://github.com/cran/Doscheda
-* Date/Publication: 2020-02-05
-* Number of recursive dependencies: 156
-
-Run `revdep_details(,"Doscheda")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘Doscheda-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: corrPlot
-    > ### Title: Plot showing correlation between all channels across replicates
-    > ### Aliases: corrPlot corrPlot,ChemoProtSet-method corrPlot,ANY,ANY-method
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > ex <- processedExample
-    > ex <- runNormalisation(ex)
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.humanmine.org; Name or service not known
-    Calls: runNormalisation ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-    ...
-    Complete output:
-      > library(testthat)
-      > library(Doscheda)
-      > 
-      > test_check("Doscheda")
-      ── 1. Error: normalize_data med works (@test-normal.R#8)  ──────────────────────
-      Could not resolve host: www.humanmine.org; Name or service not known
-      Backtrace:
-       1. Doscheda:::normalize_data(...)
-       2. Doscheda:::uniprotGene(organism)
-       3. httr::POST(...)
-       4. httr:::request_perform(req, hu$handle$handle)
-       6. httr:::request_fetch.write_memory(req$output, req$url, handle)
-       7. curl::curl_fetch_memory(url, handle = handle)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 0 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 1 ]
-      1. Error: normalize_data med works (@test-normal.R#8) 
-      
-      Error: testthat unit tests failed
-      Execution halted
     ```
 
 # EasyqpcR
@@ -2510,49 +2379,6 @@ Run `revdep_details(,"gap")` for more info
     Unknown package ‘genetics’ in Rd xrefs
     ```
 
-# GAPGOM
-
-<details>
-
-* Version: 1.2.0
-* Source code: https://github.com/cran/GAPGOM
-* URL: https://github.com/Berghopper/GAPGOM/
-* BugReports: https://github.com/Berghopper/GAPGOM/issues/
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 128
-
-Run `revdep_details(,"GAPGOM")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > ### Aliases: fantom_download
-    > 
-    > ### ** Examples
-    > 
-    > fantom_file <- fantom_download(organism = "mouse", noprompt = TRUE)
-    adding rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz'
-    Warning: download failed
-      web resource path: ‘http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz’
-      local file path: ‘/wynton/home/cbi/hb/.cache/BiocFileCache/3fb460b22a73_mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz’
-      reason: Could not resolve host: fantom.gsc.riken.jp; Name or service not known
-    Warning: bfcadd() failed; resource removed
-      rid: BFC14
-      fpath: ‘http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz’
-      reason: download failed
-    Warning in value[[3L]](cond) :
-      
-    trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error:
-      bfcadd() failed; see warnings()
-    Error in bfcrpath(bfc, url) : not all 'rnames' found or unique.
-    Calls: fantom_download -> bfcrpath -> bfcrpath
-    Execution halted
-    ```
-
 # GeneralizedUmatrix
 
 <details>
@@ -2774,71 +2600,6 @@ Run `revdep_details(,"gwasurvivr")` for more info
     See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/new/gwasurvivr.Rcheck/00install.out’ for details.
     ```
 
-# hipathia
-
-<details>
-
-* Version: 2.2.1
-* Source code: https://github.com/cran/hipathia
-* Date/Publication: 2019-12-06
-* Number of recursive dependencies: 116
-
-Run `revdep_details(,"hipathia")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘hipathia-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: create_report
-    > ### Title: Create visualization HTML
-    > ### Aliases: create_report
-    > 
-    > ### ** Examples
-    > 
-    > data(comp)
-    > pathways <- load_pathways(species = "hsa", pathways_list = c("hsa03320",
-    + "hsa04012"))
-    No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/746543.1.long.q/RtmpOM3K1v/BiocFileCache
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: load_pathways ... AnnotationHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-    ...
-       3. hipathia:::hub()
-       5. AnnotationHub::AnnotationHub()
-       6. AnnotationHub::.Hub(...)
-       7. AnnotationHub:::.create_cache(.class, url, cache, proxy, localHub)
-       8. AnnotationHub:::.updateHubDB(hub_bfc, .class, url, proxy, localHub)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 46 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 10 ]
-      1.  Error: (unknown) (@test-color-node.R#10) 
-      2.  Error: (unknown) (@test-hipathia.R#8) 
-      3.  Error: (unknown) (@test-load-pathways.R#8) 
-      4.  Error: (unknown) (@test-normalize-paths.R#8) 
-      5.  Error: (unknown) (@test-path-annots.R#8) 
-      6.  Error: (unknown) (@test-path-list.R#8) 
-      7.  Error: (unknown) (@test-path-names.R#8) 
-      8.  Error: (unknown) (@test-path-summary.R#9) 
-      9.  Error: (unknown) (@test-quantify.R#8) 
-      10. Error: (unknown) (@test-translate-matrix.R#8) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
 # InfiniumPurify
 
 <details>
@@ -3054,32 +2815,6 @@ Run `revdep_details(,"MEAL")` for more info
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-    ...
-      Warning message:
-      replacing previous import 'minfi::getMeth' by 'bsseq::getMeth' when loading 'DMRcate' 
-      > 
-      > test_check("MEAL")
-      ── 1. Error: DMRcate (@test_06regionAnalysis.R#19)  ────────────────────────────
-      Invalid Cache: sqlite file
-        Hub has not been added to cache
-        Run again with 'localHub=FALSE'
-      Backtrace:
-       1. MEAL::runDMRcate(set = set, model = ~status, pcutoff = 0.9)
-       2. base::tryCatch(...)
-       3. base:::tryCatchList(expr, classes, parentenv, handlers)
-       4. base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-       5. value[[3L]](cond)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 35 | SKIPPED: 0 | WARNINGS: 13 | FAILED: 1 ]
-      1. Error: DMRcate (@test_06regionAnalysis.R#19) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
 
 *   checking for code/documentation mismatches ... WARNING
     ```
@@ -4414,11 +4149,13 @@ Run `revdep_details(,"Pigengene")` for more info
 
 </details>
 
-## In both
+## Newly broken
 
 *   checking examples ... ERROR
     ```
     ...
+    
+    >      g1 <- gene.mapping(ids="NM_001159995")
     Loading required package: org.Mm.eg.db
     
     'select()' returned 1:1 mapping between keys and columns
@@ -4436,11 +4173,11 @@ Run `revdep_details(,"Pigengene")` for more info
     [1] "org.Hs.eg.db-SYMBOL"
     'select()' returned 1:1 mapping between keys and columns
     Loading required package: biomaRt
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: useast.ensembl.org; Name or service not known
-    Calls: gene.mapping ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Error: disk I/O error
     Execution halted
     ```
+
+## In both
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -4478,30 +4215,9 @@ Run `revdep_details(,"PrecisionTrialDrawer")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘PrecisionTrialDrawer-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: getAlterations
-    > ### Title: Retrieve genomic data for each gene in the panel
-    > ### Aliases: getAlterations
-    > 
-    > ### ** Examples
-    > 
-    > #Load panelexample
-    > data(cpObj2)
-    > # Retrieve data from AML
-    > cpObj <- getAlterations(cpObj2 , tumor_type=c("laml"))
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.cbioportal.org; Name or service not known
-    Calls: getAlterations ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
 *   checking Rd cross-references ... NOTE
     ```
-    Unknown package ‘LowMACA’ in Rd xrefs
+    Package unavailable to check Rd xrefs: ‘LowMACA’
     ```
 
 # ProteoMM
@@ -4738,14 +4454,11 @@ Run `revdep_details(,"RNAmodR")` for more info
 
 </details>
 
-## In both
+## Newly broken
 
 *   checking examples ... ERROR
     ```
     ...
-    > ###   getDataTrack,CoverageSequenceData-method
-    > 
-    > ### ** Examples
     > 
     > # Construction of a CoverageSequenceData objectobject
     > library(RNAmodR.Data)
@@ -4755,42 +4468,24 @@ Run `revdep_details(,"RNAmodR")` for more info
     Loading required package: dbplyr
     Loading required package: ExperimentHubData
     Loading required package: AnnotationHubData
-    No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/746543.1.long.q/Rtmp3S4zcG/BiocFileCache
-    Error: package or namespace load failed for 'RNAmodR.Data':
-     .onLoad failed in loadNamespace() for 'RNAmodR.Data', details:
-      call: .updateHubDB(hub_bfc, .class, url, proxy, localHub)
-      error: Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
+    Testing for internet connectivity via https_proxy... success!
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    snapshotDate(): 2019-10-22
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    > library(rtracklayer)
+    > annotation <- GFF3File(RNAmodR.Data.example.man.gff3())
+    Using temporary cache /scratch/hb/RtmpJ2dui3/BiocFileCache
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Empty reply from server
+    Calls: GFF3File ... request_fetch -> request_fetch.write_memory -> <Anonymous>
     Execution halted
     ```
 
-*   checking tests ...
-    ```
-    ...
-       .onLoad failed in loadNamespace() for 'RNAmodR.Data', details:
-        call: .updateHubDB(hub_bfc, .class, url, proxy, localHub)
-        error: Invalid Cache: sqlite file
-        Hub has not been added to cache
-        Run again with 'localHub=FALSE'
-      Backtrace:
-       1. base::library(RNAmodR.Data)
-       2. base::tryCatch(...)
-       3. base:::tryCatchList(expr, classes, parentenv, handlers)
-       4. base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-       5. value[[3L]](cond)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 439 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 4 ]
-      1. Error: SequenceData: (@test-0SequenceData.R#20) 
-      2. Error: Modifier/ModifierSet: (@test-2Modifier.R#69) 
-      3. Error: argument normalization: (@test-3normalization.R#4) 
-      4. Error: Comparing data: (@test-3zcomparison.R#19) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
+## In both
+
+*   R CMD check timed out
+    
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -5111,6 +4806,7 @@ Run `revdep_details(,"sesame")` for more info
     > ### ** Examples
     > 
     > data <- sesameDataGet('HM450.76.TCGA.matched')
+    Testing for internet connectivity via https_proxy... success!
     Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
       Invalid Cache: sqlite file
       Hub has not been added to cache
@@ -5769,68 +5465,6 @@ Run `revdep_details(,"SRGnet")` for more info
     to your NAMESPACE file.
     ```
 
-# stm
-
-<details>
-
-* Version: 1.3.5
-* Source code: https://github.com/cran/stm
-* URL: http://structuraltopicmodel.com
-* BugReports: https://github.com/bstewart/stm/issues
-* Date/Publication: 2019-12-17 12:50:02 UTC
-* Number of recursive dependencies: 106
-
-Run `revdep_details(,"stm")` for more info
-
-</details>
-
-## In both
-
-*   checking tests ...
-    ```
-    ...
-      Completed Group 1 E-Step (1 seconds). 
-      Completed M-Step. 
-      Completing Iteration 1 (approx. per word bound = -10.359) 
-      ....................................................................................................
-      Completed Group 1 E-Step (1 seconds). 
-      Completed M-Step. 
-      ....................................................................................................
-      Completed Group 2 E-Step (1 seconds). 
-      Completed M-Step. 
-      Model Terminated Before Convergence Reached 
-      ── 1. Error: plot.STM doesn't throw error  (@test-visualize.R#4)  ──────────────
-      cannot open the connection to 'http://goo.gl/VPdxlS'
-      Backtrace:
-       1. base::load(url("http://goo.gl/VPdxlS"))
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 9 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: plot.STM doesn't throw error  (@test-visualize.R#4) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘stmVignette.Rnw’using ‘UTF-8’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘stmVignette.Rnw’
-      ...
-    [2,]    1    1    1
-    
-    
-    > load(url("http://goo.gl/VPdxlS"))
-    Warning in load(url("http://goo.gl/VPdxlS")) :
-      URL 'http://goo.gl/VPdxlS': status was 'Couldn't resolve host name'
-    
-      When sourcing 'stmVignette.R':
-    Error: cannot open the connection to 'http://goo.gl/VPdxlS'
-    Execution halted
-    ```
-
 # STROMA4
 
 <details>
@@ -5843,34 +5477,6 @@ Run `revdep_details(,"stm")` for more info
 Run `revdep_details(,"STROMA4")` for more info
 
 </details>
-
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > library(breastCancerMAINZ)
-    > data(mainz, package='breastCancerMAINZ')
-    > all.properties <- assign.properties(ESet=mainz, geneID.column='Gene.symbol',
-    + 	genelists=c('Stroma4', 'TNBCType'), n=10)
-    --Assigning properties to expression data--
-    --There are duplicated genes. Using most variable to collapse--
-    ----206 out of 297 total genes matching for D.stroma.property----
-    ----1064 out of 1105 total genes matching for MSL.property----
-    ----671 out of 710 total genes matching for M.property----
-    ----104 out of 567 total genes matching for B.stroma.property----
-    ----1146 out of 1205 total genes matching for LAR.property----
-    ----670 out of 705 total genes matching for IM.property----
-    ----315 out of 458 total genes matching for T.stroma.property----
-    ----449 out of 473 total genes matching for BL1.property----
-    ----20 out of 27 total genes matching for E.stroma.property----
-    Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
-      port 11262 cannot be opened
-    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
-      cannot open the connection
-    Calls: assign.properties ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
-    Execution halted
-    ```
 
 ## In both
 
@@ -6323,46 +5929,5 @@ Run `revdep_details(,"XBSeq")` for more info
                  "rnbinom")
       importFrom("utils", "data")
     to your NAMESPACE file.
-    ```
-
-# yarn
-
-<details>
-
-* Version: 1.12.0
-* Source code: https://github.com/cran/yarn
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 153
-
-Run `revdep_details(,"yarn")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    Running examples in ‘yarn-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: annotateFromBiomart
-    > ### Title: Annotate your Expression Set with biomaRt
-    > ### Aliases: annotateFromBiomart
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > data(skin)
-    > # subsetting and changing column name just for a silly example
-    > skin <- skin[1:10,]
-    > colnames(fData(skin)) = paste("names",1:6)
-    > biomart<-"ENSEMBL_MART_ENSEMBL";
-    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
-    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.ensembl.org; Name or service not known
-    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
     ```
 
