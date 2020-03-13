@@ -1,6 +1,44 @@
 Package: matrixStats
 ====================
 
+Version: 0.56.0 [2020-03-12]
+
+SIGNIFICANT CHANGES:
+
+ * colQuantiles() and rowQuantiles() now supports only integer, numeric and
+   logical input.  Previously, it was also possible to pass, for instance,
+   'character' input, but that was a mistake.  The restriction on input allows
+   for further optimization of these functions.
+
+ * The returned type of colQuantiles() and rowQuantiles() is now the same as
+   for stats::quantile(), which depends on argument 'type'.
+
+PERFORMANCE:
+
+ * colQuantiles() and rowQuantiles() with the default type=7L and when there
+   are no missing values are now significantly faster and use significantly
+   fewer memory allocations.
+
+BUG FIXES:
+
+ * colDiffs() and rowDiffs() gave an error if argument 'dim.' was of type
+   numeric rather than type integer.
+ 
+ * varDiff(), sdDiff(), madDiff(), iqrDiff(), and the corrsponding row- and
+   column functions silently treated a 'diff' less than zero as diff = 0.
+   Now an error is produced.
+   
+ * Error messages on argument 'dim.' referred to non-existing argument 'dim'.
+ 
+ * Error messages on negative values in argument 'dim.' reported a garbage
+   value instead of the negative value.
+ 
+ * The Markdown reports produced by the internal benchmark report generator
+   did not add a line between tables and the following text (a figure caption)
+   causing the following text to be included in a cell on an extra row in
+   the table (at least when rendered on GitHub Wiki pages).
+
+ 
 Version: 0.55.0 [2019-09-05]
 
 SIGNIFICANT CHANGES:

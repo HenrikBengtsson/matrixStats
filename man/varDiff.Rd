@@ -19,34 +19,97 @@ varDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...)
 
 sdDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...)
 
-madDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
-  constant = 1.4826, ...)
+madDiff(
+  x,
+  idxs = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  constant = 1.4826,
+  ...
+)
 
 iqrDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...)
 
-rowVarDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+rowVarDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-colVarDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+colVarDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-rowSdDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+rowSdDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-colSdDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+colSdDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-rowMadDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+rowMadDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-colMadDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+colMadDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-rowIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+rowIQRDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 
-colIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ...)
+colIQRDiffs(
+  x,
+  rows = NULL,
+  cols = NULL,
+  na.rm = FALSE,
+  diff = 1L,
+  trim = 0,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length

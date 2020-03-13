@@ -35,19 +35,20 @@ static R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
 
 static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
   double nrow, ncol;
+  const char *dimlabel = "dim.";
 
   /* Argument 'dim': */
   if (!isVectorAtomic(dim) || xlength(dim) != 2 || !isInteger(dim)) {
-    error("Argument 'dim' must be an integer vector of length two.");
+    error("Argument '%s' must be an integer vector of length two.", dimlabel);
   }
   nrow = (double)INTEGER(dim)[0];
   ncol = (double)INTEGER(dim)[1];
   if (nrow < 0) {
-    error("Argument 'dim' specifies a negative number of rows (dim[1]): %d", nrow);
+    error("Argument '%s' specifies a negative number of rows (%s[1]): %g", dimlabel, dimlabel, nrow);
   } else if (ncol < 0) {
-    error("Argument 'dim' specifies a negative number of columns (dim[2]): %d", ncol);
+    error("Argument '%s' specifies a negative number of columns (%s[2]): %g", dimlabel, dimlabel, ncol);
   } else if (nrow * ncol != max) {
-    error("Argument 'dim' does not match length of argument '%s': %g * %g != %g", maxlabel, nrow, ncol, max);
+    error("Argument '%s' does not match length of argument '%s': %g * %g != %g", dimlabel, maxlabel, nrow, ncol, max);
   }
 } /* assertArgDim() */
 

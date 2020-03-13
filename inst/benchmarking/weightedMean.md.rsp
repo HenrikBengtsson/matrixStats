@@ -8,7 +8,7 @@
 
 <%@include file="${header}"%>
 <%
-library("stats")
+weighted.mean <- stats:::weighted.mean
 weighted.mean.default <- stats:::weighted.mean.default
 %>
 

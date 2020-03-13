@@ -11,7 +11,7 @@ use("R.utils (>= 1.34.0)")
 
 ## Assert that all third-party packages to be benchmarked
 ## are available and can be loaded/installed already here
-R.utils::use("cwhmisc, ergm, laeken, genefilter")
+R.utils::use("cwhmisc, ergm, laeken, genefilter", how = "load")
 
 # Simple logging function
 lenter <- function(...) {

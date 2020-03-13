@@ -54,8 +54,8 @@ X_S <- t(X_S)
 gc()
 
 rowStats <- microbenchmark(
- "rowVars_X_S"           = rowVars(X_S, na.rm = FALSE),
- "rowVars(X, cols, rows)"  = rowVars(X, rows = cols, cols = rows, na.rm = FALSE),
+ "rowVars_X_S"            = rowVars(X_S, na.rm = FALSE),
+ "rowVars(X, cols, rows)" = rowVars(X, rows = cols, cols = rows, na.rm = FALSE),
  "rowVars(X[cols, rows])" = rowVars(X[cols, rows], na.rm = FALSE),
  unit = "ms"
 )

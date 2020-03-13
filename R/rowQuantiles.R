@@ -2,8 +2,8 @@
 #'
 #' Estimates quantiles for each row (column) in a matrix.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with
-#' N >= 0.
+#' @param x An \code{\link[base]{integer}}, \code{\link[base]{numeric}} or
+#' \code{\link[base]{logical}} NxK \code{\link[base]{matrix}} with N >= 0.
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -23,9 +23,9 @@
 #' @param drop If TRUE, singleton dimensions in the result are dropped,
 #' otherwise not.
 #'
-#' @return Returns a \code{\link[base]{numeric}} NxJ (KxJ)
-#' \code{\link[base]{matrix}}, where N (K) is the number of rows (columns) for
-#' which the J quantiles are calculated.
+#' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}}, where N (K) is the
+#' number of rows (columns) for which the J quantiles are calculated.
+#' The return type is either integer or numeric depending on \code{type}.
 #'
 #' @example incl/rowQuantiles.R
 #'
@@ -42,6 +42,9 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
+  if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
+    .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
+  }
 
   # Argument 'probs':
   if (anyMissing(probs)) {
@@ -57,9 +60,19 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
+  # Coerce?
+#  if (is.logical(x)) {
+#    storage.mode(x) <- "integer"
+#  }
+
   # Argument 'x':
   nrow <- nrow(x)
   ncol <- ncol(x)
+
+  # Allocate result
+  na_value <- NA_real_
+  storage.mode(na_value) <- storage.mode(x)
+  q <- matrix(na_value, nrow = nrow, ncol = length(probs))
 
   if (nrow > 0L && ncol > 0L) {
     na_rows <- rowAnyMissings(x)
@@ -71,34 +84,47 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
-      partial <- sort(unique(c(idxs_lo, idxs_hi)))
+      partial <- sort.int(unique(c(idxs_lo, idxs_hi)))
 
-      xp <- apply(x, MARGIN = 1L, FUN = sort, partial = partial)
-      if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
-
-      q <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_lo)
-      if (is.null(dim(q))) dim(q) <- c(1L, length(q))
-
-      # Adjust
+      # Adjust?
       idxs_adj <- which(idxs > idxs_lo)
-      if (length(idxs_adj) > 0L) {
-        q_lo <- q[idxs_adj, , drop = FALSE]
+      adj <- (length(idxs_adj) > 0L)
+      # Adjust
+      if (adj) {
         idxs_hi <- idxs_hi[idxs_adj]
-        q_hi <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1 - w) * q_lo + w * q_hi
+        q_lo <- matrix(na_value, nrow = length(idxs_adj), ncol = nrow)
+        q_hi <- matrix(na_value, nrow = length(idxs_adj), ncol = nrow)
+        cols <- seq_len(ncol)
+        for (rr in seq_len(nrow)) {
+          x_rr <- .subset(x, rr, cols, drop = TRUE)
+          xp_rr <- sort.int(x_rr, partial = partial)
+	  q_rr <- .subset(xp_rr, idxs_lo)
+          q[rr,] <- q_rr
+          q_hi[,rr] <- .subset(xp_rr, idxs_hi)
+          q_lo[,rr] <- .subset(q_rr, idxs_adj)
+          # Not needed anymore
+          x_rr <- xp_rr <- NULL
+        }
+	q_adj <- (1 - w) * q_lo + w * q_hi
+	for (cc in seq_along(idxs_adj)) {
+	  q[, idxs_adj[cc]] <- q_adj[cc, , drop = TRUE]
+	}
         # Not needed anymore
-        xp <- q_lo <- q_hi <- NULL
+        q_adj <- q_lo <- q_hi <- NULL
+      } else {
+        cols <- seq_len(ncol)
+        for (rr in seq_len(nrow)) {
+          x_rr <- .subset(x, rr, cols, drop = TRUE)
+          xp_rr <- sort.int(x_rr, partial = partial)
+          q[rr,] <- .subset(xp_rr, idxs_lo)
+          # Not needed anymore
+          x_rr <- xp_rr <- NULL
+        }
       }
 
-      # Backward compatibility
-      q <- t(q)
+      storage.mode(q) <- "numeric"
     } else {
-      # Allocate result
-      na_value <- NA_real_
-      storage.mode(na_value) <- storage.mode(x)
-      q <- matrix(na_value, nrow = nrow, ncol = length(probs))
-
       # For each row...
       rows <- seq_len(nrow)
 
@@ -111,10 +137,6 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
         q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)
-  } else {
-    na_value <- NA_real_
-    storage.mode(na_value) <- storage.mode(x)
-    q <- matrix(na_value, nrow = nrow, ncol = length(probs))
   }
 
   # Add dim names
@@ -140,6 +162,9 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   if (!is.matrix(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
+  if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
+    .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
+  }
 
   # Argument 'probs':
   if (anyMissing(probs)) {
@@ -155,9 +180,19 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
+  # Coerce?
+#  if (is.logical(x)) {
+#    storage.mode(x) <- "integer"
+#  }
+  
   # Argument 'x':
   nrow <- nrow(x)
   ncol <- ncol(x)
+
+  # Allocate result
+  na_value <- NA_real_
+  storage.mode(na_value) <- storage.mode(x)
+  q <- matrix(na_value, nrow = ncol, ncol = length(probs))
 
   if (nrow > 0L && ncol > 0L) {
     na_cols <- colAnyMissings(x)
@@ -169,34 +204,46 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       idxs <- 1 + (n - 1) * probs
       idxs_lo <- floor(idxs)
       idxs_hi <- ceiling(idxs)
-      partial <- sort(unique(c(idxs_lo, idxs_hi)))
+      partial <- sort.int(unique(c(idxs_lo, idxs_hi)))
 
-      xp <- apply(x, MARGIN = 2L, FUN = sort, partial = partial)
-      if (is.null(dim(xp))) dim(xp) <- c(1L, length(xp))
-
-      q <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_lo)
-      if (is.null(dim(q))) dim(q) <- c(1L, length(q))
-
-      # Adjust
+      # Adjust?
       idxs_adj <- which(idxs > idxs_lo)
-      if (length(idxs_adj) > 0L) {
-        q_lo <- q[idxs_adj, , drop = FALSE]
+      adj <- (length(idxs_adj) > 0L)
+      if (adj) {
         idxs_hi <- idxs_hi[idxs_adj]
-        q_hi <- apply(xp, MARGIN = 2L, FUN = .subset, idxs_hi)
         w <- (idxs - idxs_lo)[idxs_adj]
-        q[idxs_adj, ] <- (1 - w) * q_lo + w * q_hi
+        q_lo <- matrix(na_value, nrow = length(idxs_adj), ncol = ncol)
+        q_hi <- matrix(na_value, nrow = length(idxs_adj), ncol = ncol)
+        rows <- seq_len(nrow)
+        for (cc in seq_len(ncol)) {
+          x_cc <- .subset(x, rows, cc, drop = TRUE)
+          xp_cc <- sort.int(x_cc, partial = partial)
+	  q_cc <- .subset(xp_cc, idxs_lo)
+          q[cc,] <- q_cc
+          q_hi[,cc] <- .subset(xp_cc, idxs_hi)
+          q_lo[,cc] <- .subset(q_cc, idxs_adj)
+          # Not needed anymore
+          x_cc <- xp_cc <- NULL
+        }
+	q_adj <- (1 - w) * q_lo + w * q_hi
+	for (cc in seq_along(idxs_adj)) {
+	  q[, idxs_adj[cc]] <- q_adj[cc, , drop = TRUE]
+	}
         # Not needed anymore
-        xp <- q_lo <- q_hi <- NULL
+        q_adj <- q_lo <- q_hi <- NULL
+      } else {
+        rows <- seq_len(nrow)
+        for (cc in seq_len(ncol)) {
+          x_cc <- .subset(x, rows, cc, drop = TRUE)
+          xp_cc <- sort.int(x_cc, partial = partial)
+          q[cc,] <- .subset(xp_cc, idxs_lo)
+          # Not needed anymore
+          x_cc <- xp_cc <- NULL
+        }
       }
-
-      # Backward compatibility
-      q <- t(q)
+      
+      storage.mode(q) <- "numeric"
     } else {
-      # Allocate result
-      na_value <- NA_real_
-      storage.mode(na_value) <- storage.mode(x)
-      q <- matrix(na_value, nrow = ncol, ncol = length(probs))
-
       # For each column...
       cols <- seq_len(ncol)
 
@@ -209,10 +256,6 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
         q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
       }
     } # if (type ...)    
-  } else {
-    na_value <- NA_real_
-    storage.mode(na_value) <- storage.mode(x)
-    q <- matrix(na_value, nrow = ncol, ncol = length(probs))
   }
 
   # Add dim names

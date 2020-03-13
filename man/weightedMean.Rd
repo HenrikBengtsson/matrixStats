@@ -4,8 +4,7 @@
 \alias{weightedMean}
 \title{Weighted Arithmetic Mean}
 \usage{
-weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE,
-  refine = FALSE, ...)
+weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE, ...)
 }
 \arguments{
 \item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing

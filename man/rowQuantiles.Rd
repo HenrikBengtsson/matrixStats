@@ -5,15 +5,31 @@
 \alias{colQuantiles}
 \title{Estimates quantiles for each row (column) in a matrix}
 \usage{
-rowQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
-  1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE)
+rowQuantiles(
+  x,
+  rows = NULL,
+  cols = NULL,
+  probs = seq(from = 0, to = 1, by = 0.25),
+  na.rm = FALSE,
+  type = 7L,
+  ...,
+  drop = TRUE
+)
 
-colQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to =
-  1, by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE)
+colQuantiles(
+  x,
+  rows = NULL,
+  cols = NULL,
+  probs = seq(from = 0, to = 1, by = 0.25),
+  na.rm = FALSE,
+  type = 7L,
+  ...,
+  drop = TRUE
+)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}} with
-N >= 0.}
+\item{x}{An \code{\link[base]{integer}}, \code{\link[base]{numeric}} or
+\code{\link[base]{logical}} NxK \code{\link[base]{matrix}} with N >= 0.}
 
 \item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
 (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -34,9 +50,9 @@ See \code{\link[stats]{quantile}} for more details.}
 otherwise not.}
 }
 \value{
-Returns a \code{\link[base]{numeric}} NxJ (KxJ)
-\code{\link[base]{matrix}}, where N (K) is the number of rows (columns) for
-which the J quantiles are calculated.
+Returns a NxJ (KxJ) \code{\link[base]{matrix}}, where N (K) is the
+number of rows (columns) for which the J quantiles are calculated.
+The return type is either integer or numeric depending on \code{type}.
 }
 \description{
 Estimates quantiles for each row (column) in a matrix.

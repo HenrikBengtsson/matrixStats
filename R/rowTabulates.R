@@ -55,14 +55,14 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
     values <- unique(values)
     if (is.raw(values)) {
       values <- as.integer(values)
-      values <- sort(values)
+      values <- sort.int(values)
       # WORKAROUND: Cannot use "%#x" because it gives an error OSX with
       # R v2.9.0 devel (2009-01-13 r47593b) at R-forge. /HB 2009-06-20
       names <- sprintf("%x", values)
       names <- paste("0x", names, sep = "")
       values <- as.raw(values)
     } else {
-      values <- sort(values, na.last = TRUE)
+      values <- sort.int(values, na.last = TRUE)
       names <- as.character(values)
     }
   } else {
@@ -98,7 +98,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' is not of type integer or raw: ", class(x)[1])
+    stop("Argument 'x' must be of type integer, logical, or raw: ", class(x)[1])
   }
 
   # Apply subset
@@ -112,14 +112,14 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
     values <- unique(values)
     if (is.raw(values)) {
       values <- as.integer(values)
-      values <- sort(values)
+      values <- sort.int(values)
       # WORKAROUND: Cannot use "%#x" because it gives an error OSX with
       # R v2.9.0 devel (2009-01-13 r47593b) at R-forge. /HB 2009-06-20
       names <- sprintf("%x", values)
       names <- paste("0x", names, sep = "")
       values <- as.raw(values)
     } else {
-      values <- sort(values, na.last = TRUE)
+      values <- sort.int(values, na.last = TRUE)
       names <- as.character(values)
     }
   } else {

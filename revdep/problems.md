@@ -2,10 +2,10 @@
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.0
 * Source code: https://github.com/cran/AMARETTO
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 133
+* Date/Publication: 2019-12-09
+* Number of recursive dependencies: 143
 
 Run `revdep_details(,"AMARETTO")` for more info
 
@@ -13,49 +13,57 @@ Run `revdep_details(,"AMARETTO")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    The error most likely occurred in:
-    
-    > ### Name: AMARETTO_Download
-    > ### Title: AMARETTO_Download
-    > ### Aliases: AMARETTO_Download
-    > 
-    > ### ** Examples
-    > 
-    > TargetDirectory <- file.path(getwd(),"Downloads/");dir.create(TargetDirectory)
-    > CancerSite <- 'CHOL'
-    > DataSetDirectories <- AMARETTO_Download(CancerSite,TargetDirectory = TargetDirectory)
-    Downloading Gene Expression and Copy Number Variation data for: CHOL
-    
-    This TCGA cancer site/type was not tested, continue at your own risk.
-    
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: AMARETTO_Download ... ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     License components with restrictions not permitted:
       Apache License (== 2.0) + file LICENSE
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘knitr’
+    A package should be listed in only one of these fields.
     'LinkingTo' field is unused: package has no 'src' directory
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    ...
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Type’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Color’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Modules’
+    AMARETTO_HTMLreport: no visible binding for global variable
+      ‘dt_gensesetsall’
+    GeneSetDescription: no visible binding for global variable
+      ‘MsigdbMapping’
+    GeneSetDescription : <anonymous>: no visible binding for global
+      variable ‘MsigdbMapping’
+    GmtFromModules: no visible binding for global variable ‘value’
+    GmtFromModules: no visible binding for global variable ‘variable’
+    GmtFromModules: no visible binding for global variable ‘GeneNames’
+    HyperGTestGeneEnrichment: no visible binding for global variable ‘i’
+    HyperGTestGeneEnrichment: no visible binding for global variable ‘j’
+    read_gct: no visible binding for global variable ‘Description’
+    Undefined global functions or variables:
+      Color Description GeneNames Genes Geneset Geneset_length ModuleNr
+      Modules MsigdbMapping NumberGenes Overlapping_genes RegulatorIDs
+      TargetIDs Testset Type Weights dt_gensesetsall i j moduleNr
+      n_Overlapping overlap_perc p.value p_value padj q.value value
+      variable
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 152 marked UTF-8 strings
     ```
 
 # amplican
 
 <details>
 
-* Version: 1.6.2
+* Version: 1.8.2
 * Source code: https://github.com/cran/amplican
 * URL: https://github.com/valenlab/amplican
 * BugReports: https://github.com/valenlab/amplican/issues
-* Date/Publication: 2019-06-06
-* Number of recursive dependencies: 94
+* Date/Publication: 2019-12-16
+* Number of recursive dependencies: 104
 
 Run `revdep_details(,"amplican")` for more info
 
@@ -63,7 +71,7 @@ Run `revdep_details(,"amplican")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘CrispRVariants’ in Rd xrefs
     ```
@@ -72,10 +80,10 @@ Run `revdep_details(,"amplican")` for more info
 
 <details>
 
-* Version: 1.24.0
+* Version: 1.26.0
 * Source code: https://github.com/cran/antiProfiles
 * URL: https://github.com/HCBravoLab/antiProfiles
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 7
 
 Run `revdep_details(,"antiProfiles")` for more info
@@ -107,7 +115,7 @@ Run `revdep_details(,"antiProfiles")` for more info
 * URL: https://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.affymetrix
 * BugReports: https://github.com/HenrikBengtsson/aroma.affymetrix/issues
 * Date/Publication: 2019-06-23 06:00:14 UTC
-* Number of recursive dependencies: 80
+* Number of recursive dependencies: 75
 
 Run `revdep_details(,"aroma.affymetrix")` for more info
 
@@ -121,38 +129,16 @@ Run `revdep_details(,"aroma.affymetrix")` for more info
       could not find function "setGeneric"
     ```
 
-# aroma.cn
-
-<details>
-
-* Version: 1.6.1
-* Source code: https://github.com/cran/aroma.cn
-* URL: http://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.cn
-* BugReports: https://github.com/HenrikBengtsson/aroma.cn/issues
-* Date/Publication: 2015-10-28 00:08:16
-* Number of recursive dependencies: 23
-
-Run `revdep_details(,"aroma.cn")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘GLAD’
-    ```
-
 # aroma.core
 
 <details>
 
-* Version: 3.2.0
+* Version: 3.2.1
 * Source code: https://github.com/cran/aroma.core
 * URL: https://github.com/HenrikBengtsson/aroma.core, https://www.aroma-project.org/
 * BugReports: https://github.com/HenrikBengtsson/aroma.core/issues
-* Date/Publication: 2019-06-17 18:20:03 UTC
-* Number of recursive dependencies: 45
+* Date/Publication: 2020-02-04 15:20:21 UTC
+* Number of recursive dependencies: 47
 
 Run `revdep_details(,"aroma.core")` for more info
 
@@ -160,26 +146,21 @@ Run `revdep_details(,"aroma.core")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘GLAD’ in Rd xrefs
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      'GLAD', 'sfit', 'expectile', 'HaarSeg', 'mpcbs'
+      'sfit', 'expectile', 'HaarSeg', 'mpcbs'
     ```
 
 # aroma.light
 
 <details>
 
-* Version: 3.14.0
+* Version: 3.16.0
 * Source code: https://github.com/cran/aroma.light
-* URL: https://github.com/HenrikBengtsson/aroma.light, http://www.aroma-project.org
+* URL: https://github.com/HenrikBengtsson/aroma.light, https://www.aroma-project.org
 * BugReports: https://github.com/HenrikBengtsson/aroma.light/issues
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 6
 
 Run `revdep_details(,"aroma.light")` for more info
@@ -200,12 +181,12 @@ Run `revdep_details(,"aroma.light")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.1
 * Source code: https://github.com/cran/BASiCS
 * URL: https://github.com/catavallejos/BASiCS
 * BugReports: https://github.com/catavallejos/BASiCS/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 122
+* Date/Publication: 2020-02-10
+* Number of recursive dependencies: 126
 
 Run `revdep_details(,"BASiCS")` for more info
 
@@ -215,21 +196,21 @@ Run `revdep_details(,"BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.5Mb
+      installed size is  5.6Mb
       sub-directories of 1Mb or more:
-        libs   5.2Mb
+        libs   5.3Mb
     ```
 
 # BatchQC
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * Source code: https://github.com/cran/BatchQC
 * URL: https://github.com/mani2012/BatchQC
 * BugReports: https://github.com/mani2012/BatchQC/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 110
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 121
 
 Run `revdep_details(,"BatchQC")` for more info
 
@@ -252,31 +233,6 @@ Run `revdep_details(,"BatchQC")` for more info
     to your NAMESPACE file.
     ```
 
-# BayesTwin
-
-<details>
-
-* Version: 1.0
-* Source code: https://github.com/cran/BayesTwin
-* URL: http://www.ingaschwabe.com
-* BugReports: https://github.com/ingaschwabe/BayesTwin
-* Date/Publication: 2017-06-26 16:37:46 UTC
-* Number of recursive dependencies: 5
-
-Run `revdep_details(,"BayesTwin")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘rjags’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
 # baystability
 
 <details>
@@ -284,7 +240,7 @@ Run `revdep_details(,"BayesTwin")` for more info
 * Version: 0.1.0
 * Source code: https://github.com/cran/baystability
 * Date/Publication: 2018-03-13 15:55:34 UTC
-* Number of recursive dependencies: 96
+* Number of recursive dependencies: 103
 
 Run `revdep_details(,"baystability")` for more info
 
@@ -306,7 +262,7 @@ Run `revdep_details(,"baystability")` for more info
 * Version: 1.3
 * Source code: https://github.com/cran/bdynsys
 * Date/Publication: 2014-12-08 07:01:51
-* Number of recursive dependencies: 78
+* Number of recursive dependencies: 89
 
 Run `revdep_details(,"bdynsys")` for more info
 
@@ -340,6 +296,49 @@ Run `revdep_details(,"bdynsys")` for more info
     to your NAMESPACE file.
     ```
 
+# bigPint
+
+<details>
+
+* Version: 1.2.0
+* Source code: https://github.com/cran/bigPint
+* URL: https://github.com/lindsayrutter/bigPint
+* BugReports: https://github.com/lindsayrutter/bigPint/issues
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 164
+
+Run `revdep_details(,"bigPint")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    +     pointColor = "#00C379", saveFile = FALSE)
+    > ret[[1]] + xlab("Standardized read counts") +
+    + ylab("Standardized read counts")
+    > 
+    > # Example 4: Plot scatterplot matrix of hexagons.
+    > 
+    > ret <- plotSM(soybean_cn_sub, soybean_cn_sub_metrics, option = "hexagon", 
+    +     xbins = 5, pointSize = 0.1, saveFile = FALSE)
+    > ret[[2]]
+    > 
+    > # Example 5: Plot scatterplot matrix of orthogonal distance on the logged
+    > # data, first without considering the metrics dataset and then considering
+    > # it.
+    > 
+    > soybean_ir_sub[,-1] <- log(soybean_ir_sub[,-1] + 1) 
+    > ret <- plotSM(soybean_ir_sub, option = "orthogonal", threshOrth = 2.5,
+    +     pointSize = 0.2, saveFile = FALSE)
+    > ret[[1]]
+    Error in alpha * 255 : non-numeric argument to binary operator
+    Calls: <Anonymous> ... validGP -> numnotnull -> alpha -> <Anonymous> -> encode_c
+    Execution halted
+    ```
+
 # bingat
 
 <details>
@@ -347,7 +346,7 @@ Run `revdep_details(,"bdynsys")` for more info
 * Version: 1.3
 * Source code: https://github.com/cran/bingat
 * Date/Publication: 2017-07-05 18:30:37 UTC
-* Number of recursive dependencies: 36
+* Number of recursive dependencies: 34
 
 Run `revdep_details(,"bingat")` for more info
 
@@ -355,81 +354,69 @@ Run `revdep_details(,"bingat")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘genalg’ in Rd xrefs
     ```
 
-# bnclassify
+# biscuiteer
 
 <details>
 
-* Version: 0.4.2
-* Source code: https://github.com/cran/bnclassify
-* URL: http://github.com/bmihaljevic/bnclassify
-* BugReports: http://github.com/bmihaljevic/bnclassify/issues
-* Date/Publication: 2019-03-14 13:33:39 UTC
-* Number of recursive dependencies: 82
+* Version: 1.0.0
+* Source code: https://github.com/cran/biscuiteer
+* URL: https://github.com/trichelab/biscuiteer
+* BugReports: https://github.com/trichelab/biscuiteer/issues
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 194
 
-Run `revdep_details(,"bnclassify")` for more info
+Run `revdep_details(,"biscuiteer")` for more info
 
 </details>
 
 ## In both
 
-*   checking tests ...
+*   checking examples ... ERROR
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      11: t(apply(dataset, 1, compute_grain_log_joint_instance, grain, class))
-      12: apply(dataset, 1, compute_grain_log_joint_instance, grain, class)
-      13: FUN(newX[, i], ...)
-      14: gRain::setEvidence(grain, nodes = vars, states = instance)
-      15: setEvi_(object, evidence, propagate = propagate, details = details)
-      16: propagate(object)
-      17: propagate.grain(object)
-      18: propagateLS(object$temppot, rip = object$rip)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 626 | SKIPPED: 26 | WARNINGS: 0 | FAILED: 1 ]
-      1. Error: incomplete data (@test-learn-aode.r#88) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+    ...
+    /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz does not have a header. Using VCF file header information to help set column names.
+    Assuming unmerged data. Checking now... ...The file might be alright. Double check if you're worried.
+    /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz has 254147 indexed loci.
+    /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz looks valid for import.
+    Reading unmerged input from /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz...
+    Excluding CpG sites with uniformly zero coverage...
+    Loaded /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz. Creating bsseq object...
+    > 
+    >   cpg <- CpGindex(bisc)
+    Computing hypermethylation indices...
+    Loading HMM_CpG_islands.hg19...
+    Loading H9state23unmeth.hg19...
+    Computing hypomethylation indices...
+    Loading PMDs.hg19.rda from biscuiteerData...
+    Testing for internet connectivity via https_proxy... success!
+    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
+      Invalid Cache: sqlite file
+      Hub has not been added to cache
+      Run again with 'localHub=FALSE'
+    Calls: CpGindex ... ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
+    Execution halted
     ```
 
-# brms
-
-<details>
-
-* Version: 2.10.0
-* Source code: https://github.com/cran/brms
-* URL: https://github.com/paul-buerkner/brms, http://discourse.mc-stan.org
-* BugReports: https://github.com/paul-buerkner/brms/issues
-* Date/Publication: 2019-08-29 15:50:07 UTC
-* Number of recursive dependencies: 164
-
-Run `revdep_details(,"brms")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
+*   checking dependencies in R code ... NOTE
     ```
-    Package suggested but not available for checking: ‘spdep’
+    Unexported object imported by a ':::' call: ‘QDNAseq:::expectedVariance’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # bumphunter
 
 <details>
 
-* Version: 1.26.0
+* Version: 1.28.0
 * Source code: https://github.com/cran/bumphunter
 * URL: https://github.com/ririzarr/bumphunter
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 84
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 97
 
 Run `revdep_details(,"bumphunter")` for more info
 
@@ -439,21 +426,25 @@ Run `revdep_details(,"bumphunter")` for more info
 
 *   checking tests ...
     ```
-     ERROR
-    Running the tests in ‘tests/test-all.R’ failed.
-    Last 13 lines of output:
-      1: import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz") at testthat/test_annotation.R:99
-      2: import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
-      3: import(FileForFormat(con), ...)
-      4: import(FileForFormat(con), ...)
-      5: import(con, ...)
-      6: import(con, ...)
-      7: .local(con, format, text, ...)
-      8: download.file(resource(con), destfile)
+    ...
+      Loading required package: locfit
+      locfit 1.5-9.1 	 2013-03-22
+      trying URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
+      Content type 'text/plain' length 38817086 bytes (37.0 MB)
+      ==================================================
+      downloaded 37.0 MB
+      
+      ── 1. Error: (unknown) (@test_annotation.R#103)  ───────────────────────────────
+      don't know where to find assembly report for GCF_000001405.26
+      Backtrace:
+       1. GenomeInfoDb::fetchExtendedChromInfoFromUCSC("hg38")
+       2. GenomeInfoDb:::FUN(...)
+       3. GenomeInfoDb:::fetch_assembly_report(assembly_accession, AssemblyUnits = AssemblyUnits)
+       4. GenomeInfoDb:::.make_assembly_report_URL(assembly_accession)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 13 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: (unknown) (@test_annotation.R#99) 
+      [ OK: 13 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 1 ]
+      1. Error: (unknown) (@test_annotation.R#103) 
       
       Error: testthat unit tests failed
       Execution halted
@@ -486,41 +477,16 @@ Run `revdep_details(,"bumphunter")` for more info
       bootstraps
     ```
 
-# CARBayesST
-
-<details>
-
-* Version: 3.0.1
-* Source code: https://github.com/cran/CARBayesST
-* URL: http://github.com/duncanplee/CARBayesST
-* BugReports: http://github.com/duncanplee/CARBayesST/issues
-* Date/Publication: 2019-01-08 11:50:02 UTC
-* Number of recursive dependencies: 94
-
-Run `revdep_details(,"CARBayesST")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘spdep’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
 # CATALYST
 
 <details>
 
-* Version: 1.8.6
+* Version: 1.10.1
 * Source code: https://github.com/cran/CATALYST
 * URL: https://github.com/HelenaLC/CATALYST
 * BugReports: https://github.com/HelenaLC/CATALYST/issues
-* Date/Publication: 2019-07-27
-* Number of recursive dependencies: 192
+* Date/Publication: 2019-11-25
+* Number of recursive dependencies: 229
 
 Run `revdep_details(,"CATALYST")` for more info
 
@@ -532,34 +498,52 @@ Run `revdep_details(,"CATALYST")` for more info
     ```
     ...
     
-    > ### Name: runDR
-    > ### Title: Perform dim. reduction on a 'daFrame'
-    > ### Aliases: runDR runDR,daFrame-method
-    > 
-    > ### ** Examples
-    > 
-    > data(PBMC_fs, PBMC_panel, PBMC_md)
-    > daf <- daFrame(PBMC_fs, PBMC_panel, PBMC_md)
-    > daf <- cluster(daf)
-    o running FlowSOM clustering...
-    o running ConsensusClusterPlus metaclustering...
-    > 
-    > # PCA on all cells
-    > daf <- runDR(daf, "PCA")
-    > 
-    > # UMAP on 1000 random cells
-    > daf <- runDR(daf, "UMAP", rows_to_use = sample(nrow(daf), 1e3))
+    The following objects are masked from ‘package:matrixStats’:
+    
+        colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
+    
+    The following objects are masked from ‘package:base’:
+    
+        aperm, apply, rowsum
+    
+    Loading required package: ggplot2
+    
+    Attaching package: ‘scater’
+    
+    The following object is masked from ‘package:CATALYST’:
+    
+        plotMDS
+    
+    > sce <- runUMAP(sce, exprs_values = "exprs")
     Error in loadNamespace(name) : there is no package called ‘uwot’
-    Calls: runDR ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+    Calls: runUMAP ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
     Execution halted
     ```
 
+# celda
+
+<details>
+
+* Version: 1.2.4
+* Source code: https://github.com/cran/celda
+* BugReports: https://github.com/campbio/celda/issues
+* Date/Publication: 2020-01-22
+* Number of recursive dependencies: 147
+
+Run `revdep_details(,"celda")` for more info
+
+</details>
+
+## In both
+
 *   checking R code for possible problems ... NOTE
     ```
-    plotClusterHeatmap,daFrame : <anonymous>: no visible binding for global
-      variable ‘cluster_id’
+    plotDendro: no visible binding for global variable ‘xend’
+    plotDendro: no visible binding for global variable ‘y’
+    plotDendro: no visible binding for global variable ‘label’
+    plotDimReduceCluster: no visible binding for global variable ‘Cluster’
     Undefined global functions or variables:
-      cluster_id
+      Cluster label xend y
     ```
 
 # cellWise
@@ -569,7 +553,7 @@ Run `revdep_details(,"CATALYST")` for more info
 * Version: 2.1.0
 * Source code: https://github.com/cran/cellWise
 * Date/Publication: 2019-02-25 17:40:03 UTC
-* Number of recursive dependencies: 57
+* Number of recursive dependencies: 68
 
 Run `revdep_details(,"cellWise")` for more info
 
@@ -577,7 +561,7 @@ Run `revdep_details(,"cellWise")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘rospca’ in Rd xrefs
     ```
@@ -586,24 +570,16 @@ Run `revdep_details(,"cellWise")` for more info
 
 <details>
 
-* Version: 1.8.3
+* Version: 1.10.1
 * Source code: https://github.com/cran/CEMiTool
-* Date/Publication: 2019-07-11
-* Number of recursive dependencies: 183
+* Date/Publication: 2019-12-18
+* Number of recursive dependencies: 173
 
 Run `revdep_details(,"CEMiTool")` for more info
 
 </details>
 
 ## In both
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘GeneOverlap’ ‘RColorBrewer’ ‘ff’ ‘ffbase’ ‘gRbase’ ‘limma’ ‘plyr’
-      ‘tidyr’
-      All declared Imports should be used.
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -635,10 +611,10 @@ Run `revdep_details(,"CEMiTool")` for more info
 
 <details>
 
-* Version: 2.14.0
+* Version: 2.16.1
 * Source code: https://github.com/cran/ChAMP
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 221
+* Date/Publication: 2019-12-16
+* Number of recursive dependencies: 240
 
 Run `revdep_details(,"ChAMP")` for more info
 
@@ -646,23 +622,41 @@ Run `revdep_details(,"ChAMP")` for more info
 
 ## In both
 
+*   checking whether package ‘ChAMP’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Note: possible error in 'dmrcate(myannotation, ': unused argument (mc.cores = cores) 
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
+    Information on the location(s) of code generating the ‘Note’s can be
+    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+    to ‘yes’.
+    ```
+
 *   checking package subdirectories ... WARNING
     ```
     Problems with news in ‘inst/NEWS.Rd’:
-      inst/NEWS.Rd:81: unexpected END_OF_INPUT '
+      inst/NEWS.Rd:87: unexpected END_OF_INPUT '
       '
-    Invalid citation information in ‘inst/CITATION’:
-      Error in parse(file = cfile): /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00_pkg_src/ChAMP/inst/CITATION:10:12: unexpected symbol
-      9:            person("Stephan", "Beck")
-      10:            person
-                     ^
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Duplicated \argument entries in documentation object 'champ.SVD':
+      ‘Rplot’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
       'minfi', 'ChAMPdata', 'FEM', 'DMRcate',
-      'Illumina450ProbeVariants.db', 'IlluminaHumanMethylationEPICmanifest'
+      'Illumina450ProbeVariants.db',
+      'IlluminaHumanMethylationEPICmanifest', 'DT'
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
     ```
@@ -678,10 +672,16 @@ Run `revdep_details(,"ChAMP")` for more info
     ```
     Namespace in Imports field not imported from: 'prettydoc'
       All declared Imports should be used.
+    Package in Depends field not imported from: 'DT'
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
+    champ.DMR: possible error in dmrcate(myannotation, min.cpgs =
+      minProbes, lambda = lambda, C = C, mc.cores = cores): unused argument
+      (mc.cores = cores)
     champ.ebGSEA : gseaWTfn: no visible global function definition for
       'wilcox.test'
     Undefined global functions or variables:
@@ -695,10 +695,10 @@ Run `revdep_details(,"ChAMP")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * Source code: https://github.com/cran/CHARGE
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 149
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 157
 
 Run `revdep_details(,"CHARGE")` for more info
 
@@ -706,41 +706,28 @@ Run `revdep_details(,"CHARGE")` for more info
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    exprFinder: no visible global function definition for ‘as’
-    Undefined global functions or variables:
-      as
-    Consider adding
-      importFrom("methods", "as")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    Package required but not available: ‘modes’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # Chicago
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * Source code: https://github.com/cran/Chicago
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 143
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 154
 
 Run `revdep_details(,"Chicago")` for more info
 
 </details>
 
 ## In both
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘PCHiCdata’ in Rd xrefs
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘PCHiCdata’
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -754,10 +741,10 @@ Run `revdep_details(,"Chicago")` for more info
 
 <details>
 
-* Version: 3.18.2
+* Version: 3.20.1
 * Source code: https://github.com/cran/ChIPpeakAnno
-* Date/Publication: 2019-07-26
-* Number of recursive dependencies: 163
+* Date/Publication: 2020-02-24
+* Number of recursive dependencies: 178
 
 Run `revdep_details(,"ChIPpeakAnno")` for more info
 
@@ -774,13 +761,33 @@ Run `revdep_details(,"ChIPpeakAnno")` for more info
     selectively is preferable.
     ```
 
+# cifti
+
+<details>
+
+* Version: 0.4.5
+* Source code: https://github.com/cran/cifti
+* Date/Publication: 2018-02-01 23:25:24 UTC
+* Number of recursive dependencies: 92
+
+Run `revdep_details(,"cifti")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
+    ```
+
 # Clomial
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.22.0
 * Source code: https://github.com/cran/Clomial
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 2
 
 Run `revdep_details(,"Clomial")` for more info
@@ -817,224 +824,87 @@ Run `revdep_details(,"Clomial")` for more info
 
 <details>
 
-* Version: 2.4.4
+* Version: 2.6.1
 * Source code: https://github.com/cran/clusterExperiment
 * BugReports: https://github.com/epurdom/clusterExperiment/issues
-* Date/Publication: 2019-06-07
-* Number of recursive dependencies: 172
+* Date/Publication: 2019-11-06
+* Number of recursive dependencies: 182
 
 Run `revdep_details(,"clusterExperiment")` for more info
 
 </details>
 
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘zinbwave’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-# CNPBayes
-
-<details>
-
-* Version: 1.13.5
-* Source code: https://github.com/cran/CNPBayes
-* URL: https://github.com/scristia/CNPBayes
-* BugReports: https://github.com/scristia/CNPBayes/issues
-* Date/Publication: 2019-01-05
-* Number of recursive dependencies: 157
-
-Run `revdep_details(,"CNPBayes")` for more info
-
-</details>
-
-## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      
-      ── 4. Failure: easy mendelian example (@test_trios.R#524)  ─────────────────────
-      `z.m` not identical to 2.
-      1/1 mismatches
-      [1] 3 - 2 == 1
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 305 | SKIPPED: 3 | WARNINGS: 3 | FAILED: 4 ]
-      1. Failure: sigma2_pooled (@test_SingleBatchPooled.R#24) 
-      2. Failure: ggfun (@test_ggfuns.R#9) 
-      3. Failure: kbatch (@test_multibatch.R#271) 
-      4. Failure: easy mendelian example (@test_trios.R#524) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    ...
-      generic 'sigma' and siglist 'MultiBatchPooled'
-      generic 'sigma<-' and siglist 'MixtureModel'
-      generic 'sigma<-' and siglist 'MultiBatchPooled'
-      generic 'tau2' and siglist 'MultiBatch'
-      generic 'theta' and siglist 'MultiBatch'
-      generic 'theta<-' and siglist 'McmcChains,ANY'
-      generic 'theta<-' and siglist 'MixtureModel,ANY'
-      generic 'theta<-' and siglist 'MultiBatch,matrix'
-      generic 'theta<-' and siglist 'MultiBatchModel,ANY'
-      generic 'thin' and siglist 'MultiBatch'
-      generic 'thin' and siglist 'MultiBatchList'
-      generic 'thin<-' and siglist 'McmcParams,numeric'
-      generic 'thin<-' and siglist 'MultiBatch,numeric'
-      generic 'thin<-' and siglist 'MultiBatchList,numeric'
-      generic 'triodata_lrr' and siglist 'TrioBatchModel'
-      generic 'z' and siglist 'MultiBatch'
-      generic 'zFreq' and siglist 'MultiBatch'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    ...
-    Slots for class 'MultiBatch'
-      Code: chains current_values data down_sample flags parameters specs
-            summaries
-      Docs: chains current_values data down_sample flags parameters
-            summaries
-    
-    S4 class codoc mismatches from documentation object 'MultiBatchModel-class':
-    Slots for class 'MultiBatchModel'
-      Code: .internal.constraint .internal.counter batch batchElements data
-            data.mean data.prec hyperparams k label_switch loglik logprior
-            marginal_lik mcmc.chains mcmc.params modes mu nu.0 pi
-            predictive probz sigma2 sigma2.0 tau2 theta u z zfreq zstar
-      Inherited: k hyperparams theta sigma2 nu.0 sigma2.0 pi mu tau2
-            predictive zstar data data.mean data.prec z zfreq probz u
-            logprior loglik mcmc.chains batch batchElements modes
-            mcmc.params label_switch marginal_lik .internal.constraint
-            .internal.counter
-      Docs: .internal.constraint batch batchElements data data.mean
-            data.prec hyperparams is_mendelian k label_switch loglik
-            logprior mcmc.chains mcmc.params modes mu nu.0 pi probz sigma2
-            sigma2.0 tau2 theta z zfreq
-    ```
-
-*   checking Rd \usage sections ... WARNING
-    ```
-    ...
-    
-    Documented arguments not in \usage in documentation object 'iter<-':
-      ‘force’
-    
-    Documented arguments not in \usage in documentation object 'mcmcParams':
-      ‘force’
-    
-    Undocumented arguments in documentation object 'sigma<-'
-      ‘value’
-    
-    Undocumented arguments in documentation object 'singleBatchGuided,MultiBatchList,MultiBatch-method'
-      ‘x’ ‘guide’
-    
-    Undocumented arguments in documentation object 'theta'
-      ‘value’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
+## Newly broken
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  9.4Mb
       sub-directories of 1Mb or more:
-        R      1.6Mb
-        libs   3.5Mb
+        R     1.1Mb
+        doc   6.4Mb
     ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘RcppArmadillo’
-      All declared Imports should be used.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    ...
-    batch<-,MultiBatch-numeric: no visible global function definition for
-      ‘spec’
-    batch<-,MultiBatch-numeric: no visible global function definition for
-      ‘spec<-’
-    coerce,McmcChains-list: no visible binding for global variable ‘s’
-    computePrec,MultiBatch: no visible binding for global variable ‘prec’
-    findSurrogates,MultiBatch: no visible binding for global variable ‘id’
-    findSurrogates,MultiBatch: no visible binding for global variable
-      ‘provisional_batch’
-    findSurrogates,MultiBatch: no visible binding for global variable
-      ‘batch_labels’
-    sigma,MultiBatchCopyNumberPooled: no visible binding for global
-      variable ‘s2’
-    Undefined global functions or variables:
-      . .gibbs_trios_mcmc2 .gibbs_trios_mcmc3 := batch_index batch_labels
-      batches bk copy_number father id log_ratio maplabel medians model
-      mother mprob nhom parents prec provisional_batch s s2 snpdat spec
-      spec<- t.test value
-    Consider adding
-      importFrom("stats", "t.test")
-    to your NAMESPACE file.
-    ```
-
-# cola
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/cola
-* URL: https://github.com/jokergoo/cola
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 169
-
-Run `revdep_details(,"cola")` for more info
-
-</details>
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   R CMD check timed out
+    
+
+*   checking contents of ‘data’ directory ... WARNING
     ```
-    Unknown package ‘venneuler’ in Rd xrefs
+    Output for data("rsecFluidigm", package = "clusterExperiment"):
+      Search path was changed
     ```
 
-*   checking package dependencies ... NOTE
+*   checking foreign function calls ... NOTE
     ```
-    Package suggested but not available for checking: ‘venneuler’
+    Foreign function calls to a different package:
+      .C(ape::node_depth, ...)
+      .C(ape::node_depth_edgelength, ...)
+      .C(ape::node_height, ...)
+      .C(ape::node_height_clado, ...)
+    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
     ```
 
 # CopywriteR
 
 <details>
 
-* Version: 2.16.0
+* Version: 2.18.0
 * Source code: https://github.com/cran/CopywriteR
 * URL: https://github.com/PeeperLab/CopywriteR
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 58
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 61
 
 Run `revdep_details(,"CopywriteR")` for more info
 
 </details>
 
 ## In both
+
+*   checking running R code from vignettes ...
+    ```
+      ‘CopywriteR.Rnw’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘CopywriteR.Rnw’
+      ...
+     --- function search by body ---
+    Function .tng in namespace CopywriteR has this body.
+     ----------- END OF FAILURE REPORT -------------- 
+    
+      When sourcing ‘CopywriteR.R’:
+    Error: The GC-content and mappability normalization did not work due to a
+      failure to calculate loesses. This can generally be solved by using
+      larger bin sizes. Stopping execution of the remaining part of the
+      script...
+    Execution halted
+    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -1066,12 +936,12 @@ Run `revdep_details(,"CopywriteR")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.1
 * Source code: https://github.com/cran/corrcoverage
 * URL: https://annahutch.github.io/corrcoverage
 * BugReports: https://github.com/annahutch/corrcoverage/issues
-* Date/Publication: 2019-08-28 09:10:15 UTC
-* Number of recursive dependencies: 64
+* Date/Publication: 2019-12-06 23:20:12 UTC
+* Number of recursive dependencies: 68
 
 Run `revdep_details(,"corrcoverage")` for more info
 
@@ -1089,10 +959,10 @@ Run `revdep_details(,"corrcoverage")` for more info
 
 <details>
 
-* Version: 1.42.0
+* Version: 1.44.0
 * Source code: https://github.com/cran/crlmm
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 77
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 72
 
 Run `revdep_details(,"crlmm")` for more info
 
@@ -1135,10 +1005,10 @@ Run `revdep_details(,"crlmm")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/crossmeta
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 166
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 186
 
 Run `revdep_details(,"crossmeta")` for more info
 
@@ -1146,83 +1016,78 @@ Run `revdep_details(,"crossmeta")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking dependencies in R code ... WARNING
     ```
-    ...
-    > ### Title: Add hgnc symbol to expression set.
-    > ### Aliases: symbol_annot
-    > 
-    > ### ** Examples
-    > 
-    > library(lydata)
-    > 
-    > # location of raw data
-    > data_dir <- system.file("extdata", package = "lydata")
-    > 
-    > # load eset
-    > eset <- load_raw("GSE9601", data_dir)[[1]]
-    > 
-    > # annotate eset (need if load_raw failed to annotate)
-    > eset <- symbol_annot(eset)
-    AnnotatingWarning in file(con, "r") :
-      URL 'https://bioconductor.org/config.yaml': status was 'Couldn't resolve host name'
-    Warning in file(con, "r") :
-      URL 'http://bioconductor.org/config.yaml': status was 'Couldn't resolve host name'
-    Error: invalid version specification ‘Bioconductor version cannot be validated; no internet connection?’
-    Execution halted
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown packages ‘PADOG’, ‘GeneMeta’ in Rd xrefs
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Error in setGeneric("getX", function(object, type) standardGeneric("getX")) : 
-      could not find function "setGeneric"
+    '::' or ':::' import not declared from: ‘shinyBS’
     Unexported object imported by a ':::' call: ‘GEOquery:::parseGSEMatrix’
       See the note in ?`:::` about the use of this operator.
     There are ::: calls to the package's namespace in its code. A package
       almost never needs to use ::: for its own objects:
-      ‘getDirListing’ ‘getGEO’ ‘getGEOSuppFiles’ ‘merge_fdata’
-      ‘symbol_annot’
+      ‘getDirListing’ ‘getGEO’ ‘getGEOSuppFiles’
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     ...
-    explore_paths : server: no visible binding for global variable
-      ‘gs.names’
-    getAndParseGSEMatrices: no visible global function definition for
       ‘download.file’
     getDirListing: no visible global function definition for ‘read.table’
     getGEOSuppFiles: no visible global function definition for
       ‘download.file’
+    get_dfs: no visible global function definition for ‘head’
     load_agil_plat : <anonymous>: no visible global function definition for
       ‘capture.output’
     load_agil_plat: no visible global function definition for ‘as’
     load_illum_plat: no visible global function definition for ‘as’
     padog: no visible global function definition for ‘is’
     symbol_annot: no visible binding for global variable ‘SYMBOL_9606’
+    which_max_iqr: no visible binding for global variable ‘iqrange’
     Undefined global functions or variables:
-      SYMBOL_9606 as capture.output download.file gs.names gslist is
+      SYMBOL_9606 as capture.output download.file head iqrange is
       read.table
     Consider adding
       importFrom("methods", "as", "is")
-      importFrom("utils", "capture.output", "download.file", "read.table")
+      importFrom("utils", "capture.output", "download.file", "head",
+                 "read.table")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: ‘PADOG’, ‘GeneMeta’
+    ```
+
+# cSEM
+
+<details>
+
+* Version: 0.1.0
+* Source code: https://github.com/cran/cSEM
+* URL: https://github.com/M-E-Rademaker/cSEM, https://m-e-rademaker.github.io/cSEM/
+* BugReports: https://github.com/M-E-Rademaker/cSEM/issues
+* Date/Publication: 2020-01-13 17:20:02 UTC
+* Number of recursive dependencies: 100
+
+Run `revdep_details(,"cSEM")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘Rdpack’
+      All declared Imports should be used.
     ```
 
 # DAMOCLES
 
 <details>
 
-* Version: 1.1
+* Version: 2.2
 * Source code: https://github.com/cran/DAMOCLES
-* Date/Publication: 2015-03-05 17:36:50
-* Number of recursive dependencies: 22
+* Date/Publication: 2020-01-22 12:10:02 UTC
+* Number of recursive dependencies: 105
 
 Run `revdep_details(,"DAMOCLES")` for more info
 
@@ -1230,42 +1095,22 @@ Run `revdep_details(,"DAMOCLES")` for more info
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking dependencies in R code ... NOTE
     ```
-    ...
-      ‘cophenetic’
-    DAMOCLES_bootstrap: no visible global function definition for ‘sd’
-    DAMOCLES_bootstrap: no visible global function definition for
-      ‘quantile’
-    DAMOCLES_sim: no visible global function definition for ‘na.omit’
-    DAMOCLES_sim: no visible global function definition for ‘runif’
-    DAMOCLES_sim: no visible global function definition for ‘lines’
-    DAMOCLES_sim: no visible global function definition for ‘rnorm’
-    DAMOCLES_sim: no visible global function definition for ‘dexp’
-    DAMOCLES_sim: no visible global function definition for ‘dist’
-    DAMOCLES_simplex: no visible global function definition for
-      ‘flush.console’
-    Undefined global functions or variables:
-      cophenetic dexp dist flush.console lines na.omit quantile rnorm runif
-      sd
-    Consider adding
-      importFrom("graphics", "lines")
-      importFrom("stats", "cophenetic", "dexp", "dist", "na.omit",
-                 "quantile", "rnorm", "runif", "sd")
-      importFrom("utils", "flush.console")
-    to your NAMESPACE file.
+    Namespace in Imports field not imported from: ‘expm’
+      All declared Imports should be used.
     ```
 
 # DatabionicSwarm
 
 <details>
 
-* Version: 1.1.1
+* Version: 1.1.3
 * Source code: https://github.com/cran/DatabionicSwarm
 * URL: http://www.deepbionics.org
 * BugReports: https://github.com/Mthrun/DatabionicSwarm/issues
-* Date/Publication: 2019-01-27 14:20:03 UTC
-* Number of recursive dependencies: 106
+* Date/Publication: 2020-02-03 14:00:02 UTC
+* Number of recursive dependencies: 134
 
 Run `revdep_details(,"DatabionicSwarm")` for more info
 
@@ -1275,17 +1120,17 @@ Run `revdep_details(,"DatabionicSwarm")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘spdep’
+    Package suggested but not available for checking: ‘rgl’
     ```
 
 # DeepBlueR
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/DeepBlueR
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 138
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 154
 
 Run `revdep_details(,"DeepBlueR")` for more info
 
@@ -1310,8 +1155,13 @@ Run `revdep_details(,"DeepBlueR")` for more info
 ** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Called method: deepblue_list_column_types
+Reported status was: okay
+status 
+ "417" 
+Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
+  Problems
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
@@ -1327,8 +1177,13 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 ** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
-Error in function (type, msg, asError = TRUE)  : 
-  Could not resolve host: deepblue.mpi-inf.mpg.de; Name or service not known
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/00_pkg_src/DeepBlueR: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Called method: deepblue_list_column_types
+Reported status was: okay
+status 
+ "417" 
+Error in xml.rpc(deepblue_options("url"), "info", id, user_key) : 
+  Problems
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
@@ -1339,10 +1194,10 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 
 <details>
 
-* Version: 0.10.0
+* Version: 0.12.2
 * Source code: https://github.com/cran/DelayedArray
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 72
+* Date/Publication: 2020-01-06
+* Number of recursive dependencies: 68
 
 Run `revdep_details(,"DelayedArray")` for more info
 
@@ -1391,13 +1246,6 @@ Run `revdep_details(,"DelayedArray")` for more info
     selectively is preferable.
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Matrix’
-    A package should be listed in only one of these fields.
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
@@ -1415,12 +1263,12 @@ Run `revdep_details(,"DelayedArray")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * Source code: https://github.com/cran/DelayedMatrixStats
 * URL: https://github.com/PeteHaitch/DelayedMatrixStats
 * BugReports: https://github.com/PeteHaitch/DelayedMatrixStats/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 56
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 68
 
 Run `revdep_details(,"DelayedMatrixStats")` for more info
 
@@ -1448,10 +1296,10 @@ Run `revdep_details(,"DelayedMatrixStats")` for more info
 
 <details>
 
-* Version: 1.0.4
+* Version: 1.2.5
 * Source code: https://github.com/cran/DeMixT
-* Date/Publication: 2019-08-15
-* Number of recursive dependencies: 35
+* Date/Publication: 2020-02-16
+* Number of recursive dependencies: 80
 
 Run `revdep_details(,"DeMixT")` for more info
 
@@ -1459,21 +1307,26 @@ Run `revdep_details(,"DeMixT")` for more info
 
 ## In both
 
-*   checking package vignettes in ‘inst/doc’ ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Located more than one ‘weave’ output file (by engine ‘knitr::rmarkdown’) for vignette with name ‘demixt’: ‘demixt.html’, ‘demixt.pdf’
-    Package vignette without corresponding single PDF/HTML:
-       ‘demixt.Rmd’
+    Depends: includes the non-default packages:
+      'parallel', 'Rcpp', 'SummarizedExperiment', 'knitr', 'KernSmooth',
+      'matrixcalc'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
-    DeMixT_S1: no visible binding for global variable ‘sd’
-    DeMixT_S2: no visible binding for global variable ‘sd’
+    DeMixT_GS: no visible global function definition for ‘qchisq’
+    simulate_2comp: no visible global function definition for ‘SimpleList’
+    simulate_2comp: no visible global function definition for ‘DataFrame’
+    simulate_3comp: no visible global function definition for ‘SimpleList’
+    simulate_3comp: no visible global function definition for ‘DataFrame’
     Undefined global functions or variables:
-      sd
+      DataFrame SimpleList qchisq
     Consider adding
-      importFrom("stats", "sd")
+      importFrom("stats", "qchisq")
     to your NAMESPACE file.
     ```
 
@@ -1481,10 +1334,10 @@ Run `revdep_details(,"DeMixT")` for more info
 
 <details>
 
-* Version: 1.0.3
+* Version: 1.2.2
 * Source code: https://github.com/cran/DepecheR
-* Date/Publication: 2019-06-28
-* Number of recursive dependencies: 89
+* Date/Publication: 2020-03-02
+* Number of recursive dependencies: 97
 
 Run `revdep_details(,"DepecheR")` for more info
 
@@ -1494,8 +1347,9 @@ Run `revdep_details(,"DepecheR")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Namespace in Imports field not imported from: ‘BiocParallel’
-      All declared Imports should be used.
+    There are ::: calls to the package's namespace in its code. A package
+      almost never needs to use ::: for its own objects:
+      ‘microClust’
     ```
 
 *   checking compiled code ... NOTE
@@ -1517,11 +1371,11 @@ Run `revdep_details(,"DepecheR")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * Source code: https://github.com/cran/DEqMS
 * BugReports: https://github.com/yafeng/DEqMS/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 95
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 108
 
 Run `revdep_details(,"DEqMS")` for more info
 
@@ -1529,41 +1383,9 @@ Run `revdep_details(,"DEqMS")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    The following objects are masked from ‘package:base’:
-    
-        Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-        as.data.frame, basename, cbind, colnames, dirname, do.call,
-        duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-        lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-        pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-        tapply, union, unique, unsplit, which, which.max, which.min
-    
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
-    > eh = ExperimentHub()
-    No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/hb/RtmpCbvl2L/BiocFileCache
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Malformed Title field: should not end in a period.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Error in setClass("INI_Calls", representation(I_Calls = "vector", NI_Calls = "vector",  : 
-      could not find function "setClass"
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -1592,7 +1414,7 @@ Run `revdep_details(,"DEqMS")` for more info
 * URL: https://rorynolan.github.io/detrendr, https://www.github.com/rorynolan/detrendr
 * BugReports: https://www.github.com/rorynolan/detrendr/issues
 * Date/Publication: 2019-07-08 16:40:03 UTC
-* Number of recursive dependencies: 85
+* Number of recursive dependencies: 92
 
 Run `revdep_details(,"detrendr")` for more info
 
@@ -1605,37 +1427,16 @@ Run `revdep_details(,"detrendr")` for more info
     GNU make is a SystemRequirements.
     ```
 
-# DGCA
-
-<details>
-
-* Version: 1.0.1
-* Source code: https://github.com/cran/DGCA
-* Date/Publication: 2016-11-17 18:33:47
-* Number of recursive dependencies: 147
-
-Run `revdep_details(,"DGCA")` for more info
-
-</details>
-
-## In both
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Error in globalVariables(names = c("ind", "gene", "is.hub", "cpair")) : 
-      could not find function "globalVariables"
-    ```
-
 # diffloop
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * Source code: https://github.com/cran/diffloop
 * URL: https://github.com/aryeelab/diffloop
 * BugReports: https://github.com/aryeelab/diffloop/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 134
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 147
 
 Run `revdep_details(,"diffloop")` for more info
 
@@ -1655,12 +1456,12 @@ Run `revdep_details(,"diffloop")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.1
 * Source code: https://github.com/cran/DiscoRhythm
 * URL: https://github.com/matthewcarlucci/DiscoRhythm
 * BugReports: https://github.com/matthewcarlucci/DiscoRhythm/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 145
+* Date/Publication: 2019-11-29
+* Number of recursive dependencies: 155
 
 Run `revdep_details(,"DiscoRhythm")` for more info
 
@@ -1668,18 +1469,10 @@ Run `revdep_details(,"DiscoRhythm")` for more info
 
 ## In both
 
-*   checking tests ...
+*   checking dependencies in R code ... NOTE
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(DiscoRhythm)
-      Error in describe(fn, idx, raw = FALSE) %when% { : 
-        Function name is already bound to non lambda.r object
-      Error: package or namespace load failed for 'DiscoRhythm':
-       unable to load R code in package 'lambda.r'
-      Execution halted
+    Namespace in Imports field not imported from: ‘data.table’
+      All declared Imports should be used.
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -1690,14 +1483,76 @@ Run `revdep_details(,"DiscoRhythm")` for more info
       .discorhythm_ncores discoODAres
     ```
 
+# DMCFB
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/DMCFB
+* BugReports: https://github.com/shokoohi/DMCFB/issues
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 100
+
+Run `revdep_details(,"DMCFB")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘DMCFB-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: readBismark-method
+    > ### Title: readBismark method
+    > ### Aliases: readBismark-method readBismark,character,DataFrame-method
+    > ###   readBismark readBismark,character,data.frame-method
+    > ###   readBismark,character,character-method
+    > 
+    > ### ** Examples
+    > 
+    > fn <- list.files(system.file("extdata", package = "DMCHMM"))
+    > fn.f <- list.files(system.file("extdata", package = "DMCHMM"),
+    +   full.names = TRUE
+    + )
+    > OBJ <- readBismark(fn.f, fn)
+    Building BSDMC object.
+    Error in methData[[1]] : subscript out of bounds
+    Calls: readBismark -> readBismark -> .readBismark
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in setClass("balance", representation(rawdata = "data.frame", matched = "data.frame",  : 
+      could not find function "setClass"
+    Error: unable to load R code in package ‘arm’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Error in setClass("balance", representation(rawdata = "data.frame", matched = "data.frame",  : 
+      could not find function "setClass"
+    Error: unable to load R code in package ‘arm’
+    Execution halted
+    ```
+
 # dmrseq
 
 <details>
 
-* Version: 1.4.9
+* Version: 1.6.0
 * Source code: https://github.com/cran/dmrseq
-* Date/Publication: 2019-06-18
-* Number of recursive dependencies: 140
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 150
 
 Run `revdep_details(,"dmrseq")` for more info
 
@@ -1740,71 +1595,14 @@ Run `revdep_details(,"dmrseq")` for more info
       wt
     ```
 
-# Doscheda
-
-<details>
-
-* Version: 1.6.0
-* Source code: https://github.com/cran/Doscheda
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 143
-
-Run `revdep_details(,"Doscheda")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘Doscheda-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: corrPlot
-    > ### Title: Plot showing correlation between all channels across replicates
-    > ### Aliases: corrPlot corrPlot,ChemoProtSet-method corrPlot,ANY,ANY-method
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > ex <- processedExample
-    > ex <- runNormalisation(ex)
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.humanmine.org; Name or service not known
-    Calls: runNormalisation ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-             modelType = "linear", accessionID = "Accession", uniquePeptides = "UniquePeps") at testthat/test-normal.R:8
-      2: uniprotGene(organism)
-      3: httr::POST("http://www.humanmine.org/humanmine/service/query/results", body = list(query = query, 
-             format = "json"), encode = "form")
-      4: request_perform(req, hu$handle$handle)
-      5: request_fetch(req$output, req$url, handle)
-      6: request_fetch.write_memory(req$output, req$url, handle)
-      7: curl::curl_fetch_memory(url, handle = handle)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 0 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 1 ]
-      1. Error: normalize_data med works (@test-normal.R#8) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
 # EasyqpcR
 
 <details>
 
-* Version: 1.26.0
+* Version: 1.28.0
 * Source code: https://github.com/cran/EasyqpcR
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 84
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 94
 
 Run `revdep_details(,"EasyqpcR")` for more info
 
@@ -1815,7 +1613,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     
-    (R:4155): Gtk-WARNING **: 03:17:28.534: gtk_disable_setlocale() must be called before gtk_init()
+    (R:2403): Gtk-WARNING **: 15:28:50.496: gtk_disable_setlocale() must be called before gtk_init()
     See section ‘Generic functions and methods’ in the ‘Writing R
     Extensions’ manual.
     ```
@@ -1823,7 +1621,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking replacement functions ... WARNING
     ```
     
-    (R:4262): Gtk-WARNING **: 03:17:36.052: gtk_disable_setlocale() must be called before gtk_init()
+    (R:2777): Gtk-WARNING **: 15:28:54.229: gtk_disable_setlocale() must be called before gtk_init()
     The argument of a replacement function which corresponds to the right
     hand side must be named ‘value’.
     ```
@@ -1831,7 +1629,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     
-    (R:4721): Gtk-WARNING **: 03:18:06.239: gtk_disable_setlocale() must be called before gtk_init()
+    (R:5001): Gtk-WARNING **: 15:29:15.327: gtk_disable_setlocale() must be called before gtk_init()
     All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
@@ -1840,11 +1638,11 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking for code/documentation mismatches ... WARNING
     ```
     
-    (R:4824): Gtk-WARNING **: 03:18:10.782: gtk_disable_setlocale() must be called before gtk_init()
+    (R:5271): Gtk-WARNING **: 15:29:18.111: gtk_disable_setlocale() must be called before gtk_init()
     
-    (R:4931): Gtk-WARNING **: 03:18:16.010: gtk_disable_setlocale() must be called before gtk_init()
+    (R:5507): Gtk-WARNING **: 15:29:21.099: gtk_disable_setlocale() must be called before gtk_init()
     
-    (R:5005): Gtk-WARNING **: 03:18:21.223: gtk_disable_setlocale() must be called before gtk_init()
+    (R:5728): Gtk-WARNING **: 15:29:24.027: gtk_disable_setlocale() must be called before gtk_init()
     ```
 
 *   checking package namespace information ... NOTE
@@ -1855,13 +1653,13 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     
-    (R:4032): Gtk-WARNING **: 03:17:23.955: gtk_disable_setlocale() must be called before gtk_init()
+    (R:2176): Gtk-WARNING **: 15:28:47.739: gtk_disable_setlocale() must be called before gtk_init()
     ```
 
 *   checking foreign function calls ... NOTE
     ```
     
-    (R:4325): Gtk-WARNING **: 03:17:40.109: gtk_disable_setlocale() must be called before gtk_init()
+    (R:3081): Gtk-WARNING **: 15:28:56.973: gtk_disable_setlocale() must be called before gtk_init()
     See chapter ‘System and foreign language interfaces’ in the ‘Writing R
     Extensions’ manual.
     ```
@@ -1869,7 +1667,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     
-    (R:4458): Gtk-WARNING **: 03:17:48.670: gtk_disable_setlocale() must be called before gtk_init()
+    (R:3643): Gtk-WARNING **: 15:29:01.978: gtk_disable_setlocale() must be called before gtk_init()
     badCt: no visible global function definition for ‘aggregate’
     nrmData: no visible global function definition for ‘aggregate’
     nrmData: no visible binding for global variable ‘sd’
@@ -1890,7 +1688,7 @@ Run `revdep_details(,"EasyqpcR")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     
-    (R:5096): Gtk-WARNING **: 03:18:27.606: gtk_disable_setlocale() must be called before gtk_init()
+    (R:6058): Gtk-WARNING **: 15:29:27.213: gtk_disable_setlocale() must be called before gtk_init()
     The \usage entries for S3 methods should use the \method markup and not
     their full name.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
@@ -1908,10 +1706,10 @@ Run `revdep_details(,"EasyqpcR")` for more info
 
 <details>
 
-* Version: 2.14.0
+* Version: 2.16.0
 * Source code: https://github.com/cran/EMDomics
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 55
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 65
 
 Run `revdep_details(,"EMDomics")` for more info
 
@@ -1956,10 +1754,10 @@ Run `revdep_details(,"EMDomics")` for more info
 
 <details>
 
-* Version: 1.20.3
+* Version: 1.22.4
 * Source code: https://github.com/cran/ENmix
-* Date/Publication: 2019-06-03
-* Number of recursive dependencies: 156
+* Date/Publication: 2020-02-27
+* Number of recursive dependencies: 142
 
 Run `revdep_details(,"ENmix")` for more info
 
@@ -1967,60 +1765,46 @@ Run `revdep_details(,"ENmix")` for more info
 
 ## In both
 
-*   checking dependencies in R code ... WARNING
-    ```
-    'library' or 'require' calls not declared from:
-      ‘ExperimentHub’ ‘impute’ ‘preprocessCore’
-    'library' or 'require' calls in package code:
-      ‘ExperimentHub’ ‘RPMM’ ‘dynamicTreeCut’ ‘flashClust’ ‘genefilter’
-      ‘gplots’ ‘impute’ ‘preprocessCore’ ‘quadprog’ ‘sqldf’
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Missing link or links in documentation object 'mpreprocess.Rd':
-      ‘RGChannelSet-class’ ‘MethylSet-class’
-    
-    See section 'Cross-references' in the 'Writing R Extensions' manual.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    plotCtrl: no visible global function definition for ‘getProbeInfo’
-    preprocessENmix: no visible global function definition for
-      ‘preprocessRaw’
-    preprocessENmix: no visible global function definition for
-      ‘getProbeType’
-    preprocessENmix: no visible global function definition for
-      ‘getProbeInfo’
-    preprocessENmix: no visible global function definition for ‘metadata’
-    rcp: no visible global function definition for ‘getAnnotation’
-    readidat: no visible binding for global variable ‘arrayType’
-    readidat: no visible global function definition for ‘metadata’
-    relic: no visible global function definition for ‘getProbeType’
-    rgDataSet: no visible global function definition for ‘SimpleList’
-    show,methDataSet: no visible global function definition for ‘metadata’
-    show,rgDataSet: no visible global function definition for ‘metadata’
+    ComBat.mc: no visible global function definition for ‘ComBat’
     Undefined global functions or variables:
-      ExperimentHub SimpleList annopkg arrayType betaObjf blc detectionP
-      featureNames getAnnotation getControlAddress getManifestInfo
-      getProbeInfo getProbeType hannum heatmap.2 hovath metadata phenoage
-      preprocessRaw printFlush query rowFtests rowMedians rowttests
-      solve.QP
+      ComBat
+    ```
+
+# evaluomeR
+
+<details>
+
+* Version: 1.2.41
+* Source code: https://github.com/cran/evaluomeR
+* URL: https://github.com/neobernad/evaluomeR
+* BugReports: https://github.com/neobernad/evaluomeR/issues
+* Date/Publication: 2020-01-09
+* Number of recursive dependencies: 122
+
+Run `revdep_details(,"evaluomeR")` for more info
+
+</details>
+
+## In both
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENSE
+    is not mentioned in the DESCRIPTION file.
     ```
 
 # EventPointer
 
 <details>
 
-* Version: 2.2.4
+* Version: 2.4.0
 * Source code: https://github.com/cran/EventPointer
 * BugReports: https://github.com/jpromeror/EventPointer/issues
-* Date/Publication: 2019-06-03
-* Number of recursive dependencies: 138
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 148
 
 Run `revdep_details(,"EventPointer")` for more info
 
@@ -2053,9 +1837,9 @@ Run `revdep_details(,"EventPointer")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * Source code: https://github.com/cran/ExCluster
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 30
 
 Run `revdep_details(,"ExCluster")` for more info
@@ -2076,11 +1860,11 @@ Run `revdep_details(,"ExCluster")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/ExpressionNormalizationWorkflow
 * BugReports: https://github.com/
-* Date/Publication: 2019-05-03
-* Number of recursive dependencies: 95
+* Date/Publication: 2019-10-30
+* Number of recursive dependencies: 104
 
 Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
 
@@ -2102,11 +1886,6 @@ Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
     ```
     prepare_Rd: ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
     prepare_Rd: ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘<pkg>’ in Rd xrefs
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -2132,6 +1911,11 @@ Run `revdep_details(,"ExpressionNormalizationWorkflow")` for more info
     contains 'methods').
     ```
 
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘<pkg>’ in Rd xrefs
+    ```
+
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     '::' or ':::' import not declared from: ‘BiocManager’
@@ -2154,7 +1938,7 @@ Run `revdep_details(,"FastHCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.5Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         libs   5.4Mb
     ```
@@ -2187,7 +1971,7 @@ Run `revdep_details(,"FastRCS")` for more info
 
 * Version: 1.0.0
 * Source code: https://github.com/cran/FDb.FANTOM4.promoters.hg19
-* Number of recursive dependencies: 66
+* Number of recursive dependencies: 75
 
 Run `revdep_details(,"FDb.FANTOM4.promoters.hg19")` for more info
 
@@ -2254,17 +2038,40 @@ Run `revdep_details(,"FDb.FANTOM4.promoters.hg19")` for more info
 
 <details>
 
-* Version: 1.0.2
+* Version: 1.2.0
 * Source code: https://github.com/cran/fishpond
 * URL: https://github.com/mikelove/fishpond
-* Date/Publication: 2019-08-11
-* Number of recursive dependencies: 155
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 169
 
 Run `revdep_details(,"fishpond")` for more info
 
 </details>
 
 ## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(fishpond)
+      > 
+      > test_check("fishpond")
+      ── 1. Error: Reading in Alevin EDS format works (@test_readEDS.R#11)  ──────────
+      cannot open the connection
+      Backtrace:
+       1. base::readLines(barcode.file)
+       2. base::file(con, "r")
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 10 | SKIPPED: 1 | WARNINGS: 1 | FAILED: 1 ]
+      1. Error: Reading in Alevin EDS format works (@test_readEDS.R#11) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -2274,14 +2081,110 @@ Run `revdep_details(,"fishpond")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
+# flowCore
+
+<details>
+
+* Version: 1.52.1
+* Source code: https://github.com/cran/flowCore
+* Date/Publication: 2019-12-04
+* Number of recursive dependencies: 108
+
+Run `revdep_details(,"flowCore")` for more info
+
+</details>
+
+## In both
+
+*   checking R files for non-ASCII characters ... WARNING
+    ```
+    Found the following file with non-ASCII characters:
+      AllGenerics.R
+    Portable packages must use only ASCII characters in their R code,
+    except perhaps in comments.
+    Use \uxxxx escapes for other characters.
+    ```
+
+*   checking Rd cross-references ... WARNING
+    ```
+    Missing link or links in documentation object 'compensation-class.Rd':
+      ‘[flowCore:spillover-flowSet]{spillover}’
+    
+    See section 'Cross-references' in the 'Writing R Extensions' manual.
+    ```
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘Data’ ‘action’ ‘actions’ ‘gate’ ‘isNull’ ‘journal’ ‘parent’
+      ‘spillover’ ‘spillover_match’ ‘tree’ ‘views’
+    Undocumented S4 methods:
+      generic 'identifier' and siglist 'NULL'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'read.flowSet':
+      ‘truncate.max.range’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    eval,compensatedParameter-missing : <anonymous>: no visible binding for
+      global variable ‘mat’
+    eval,compensatedParameter-missing : <anonymous>: no visible binding for
+      global variable ‘msv’
+    Undefined global functions or variables:
+      mat msv
+    ```
+
+# flowSpy
+
+<details>
+
+* Version: 1.0.2
+* Source code: https://github.com/cran/flowSpy
+* URL: http://www.r-project.org, https://github.com/JhuangLab/flowSpy
+* BugReports: https://github.com/JhuangLab/flowSpy/issues
+* Date/Publication: 2020-02-24
+* Number of recursive dependencies: 225
+
+Run `revdep_details(,"flowSpy")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'runDiff':
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
 # flowWorkspace
 
 <details>
 
-* Version: 3.32.0
+* Version: 3.34.1
 * Source code: https://github.com/cran/flowWorkspace
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 103
+* Date/Publication: 2020-01-02
+* Number of recursive dependencies: 113
 
 Run `revdep_details(,"flowWorkspace")` for more info
 
@@ -2289,11 +2192,60 @@ Run `revdep_details(,"flowWorkspace")` for more info
 
 ## In both
 
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘getChildren’ ‘getData’ ‘getGate’ ‘getNodes’ ‘getParent’
+      ‘getPopStats’ ‘gh_pop_get_stats_tfilter’ ‘gs_cyto_data<-’
+      ‘gs_pop_get_stats_tfilter’
+    Undocumented S4 methods:
+      generic 'flowData<-' and siglist 'GatingSet'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    S4 class codoc mismatches from documentation object 'GatingSet-class':
+    Slots for class 'GatingSet'
+      Code: FCSPath axis compensation data flag guid name pointer
+            transformation
+      Docs: FCSPath axis compensation data flag guid pointer transformation
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    ...
+    
+    Undocumented arguments in documentation object 'flowjo_log_trans'
+      ‘n’ ‘equal.space’ ‘max_val’ ‘min_val’
+    
+    Documented arguments not in \usage in documentation object 'GatingSet,GatingHierarchy,character-method':
+      ‘swap_cols’
+    
+    Undocumented arguments in documentation object 'flowData'
+      ‘...’
+    
+    Duplicated \argument entries in documentation object 'getPopStats,GatingSet-method':
+      ‘x’ ‘...’
+    
+    Documented arguments not in \usage in documentation object 'isGated':
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is 22.8Mb
+      installed size is 25.4Mb
       sub-directories of 1Mb or more:
-        lib    9.5Mb
+        lib   12.1Mb
         libs  12.7Mb
     ```
 
@@ -2317,28 +2269,25 @@ Run `revdep_details(,"flowWorkspace")` for more info
       ‘graph:::.makeEdgeKeys’ ‘lattice:::updateList’
       ‘ncdfFlow:::.isValidSamples’ ‘stats:::.splinefun’
       See the note in ?`:::` about the use of this operator.
-    There are ::: calls to the package's namespace in its code. A package
-      almost never needs to use ::: for its own objects:
-      ‘.cpp_setIndices’ ‘.getNodeInd’
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     ...
+      for ‘as’
+    plotGate,GatingSetList-character: no visible global function definition
       for ‘selectMethod’
-    rbind2,GatingSetList-missing: no visible global function definition for
-      ‘new’
-    rbind2,GatingSetList-missing: no visible binding for global variable
-      ‘slot’
     recompute,GatingSetList: no visible global function definition for
       ‘selectMethod’
+    setNode,GatingSet-character-ANY: no visible global function definition
+      for ‘is’
     transform,GatingSet: no visible global function definition for ‘is’
     transform,GatingSet : <anonymous>: no visible global function
       definition for ‘is’
     Undefined global functions or variables:
-      . .hasSlot IQR as as.formula callNextMethod desc extends getKeywords
-      gray is median new node old openCyto.count parallel sampleName
-      selectMethod slot validObject xml.count
+      . .hasSlot IQR as as.formula callNextMethod count desc extends
+      fj_ws_get_keywords gray is median new node obj old openCyto.count
+      parallel percent sampleName selectMethod slot validObject xml.count
     Consider adding
       importFrom("grDevices", "gray")
       importFrom("methods", ".hasSlot", "as", "callNextMethod", "extends",
@@ -2353,53 +2302,90 @@ Run `revdep_details(,"flowWorkspace")` for more info
     GNU make is a SystemRequirements.
     ```
 
-# GAPGOM
+# funtooNorm
 
 <details>
 
-* Version: 1.0.0
-* Source code: https://github.com/cran/GAPGOM
-* URL: https://github.com/Berghopper/GAPGOM/
-* BugReports: https://github.com/Berghopper/GAPGOM/issues/
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 123
+* Version: 1.10.0
+* Source code: https://github.com/cran/funtooNorm
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 127
 
-Run `revdep_details(,"GAPGOM")` for more info
+Run `revdep_details(,"funtooNorm")` for more info
 
 </details>
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking Rd \usage sections ... WARNING
     ```
-    Running examples in ‘GAPGOM-Ex.R’ failed
-    The error most likely occurred in:
+    Documented arguments not in \usage in documentation object 'show,SampleSet-method':
+      ‘...’
     
-    > ### Name: fantom_download
-    > ### Title: GAPGOM - fantom_download()
-    > ### Aliases: fantom_download
-    > 
-    > ### ** Examples
-    > 
-    > fantom_file <- fantom_download(organism = "mouse", noprompt = TRUE)
-    adding rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz'
-    Warning in value[[3L]](cond) :
-      
-    trying to add rname 'http://fantom.gsc.riken.jp/5/datafiles/latest/extra/CAGE_peaks/mm9.cage_peak_phase1and2combined_tpm_ann.osc.txt.gz' produced error:
-      attempt to write a readonly database
-    Error in bfcrpath(bfc, url) : not all 'rnames' found or unique.
-    Calls: fantom_download -> bfcrpath -> bfcrpath
-    Execution halted
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+# gap
+
+<details>
+
+* Version: 1.2.2
+* Source code: https://github.com/cran/gap
+* URL: https://github.com/jinghuazhao/R
+* BugReports: https://github.com/jinghuazhao/R/issues
+* Date/Publication: 2020-02-02 15:10:02 UTC
+* Number of recursive dependencies: 141
+
+Run `revdep_details(,"gap")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘regress’
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘genetics’ in Rd xrefs
+    ```
+
+# GeneralizedUmatrix
+
+<details>
+
+* Version: 1.1.8
+* Source code: https://github.com/cran/GeneralizedUmatrix
+* URL: http://www.deepbionics.org
+* BugReports: https://github.com/Mthrun/GeneralizedUmatrix/issues
+* Date/Publication: 2020-02-17 15:40:09 UTC
+* Number of recursive dependencies: 116
+
+Run `revdep_details(,"GeneralizedUmatrix")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
     ```
 
 # GenEst
 
 <details>
 
-* Version: 1.3.1
+* Version: 1.4.1
 * Source code: https://github.com/cran/GenEst
-* Date/Publication: 2019-08-22 18:50:02 UTC
-* Number of recursive dependencies: 71
+* Date/Publication: 2020-03-06 05:30:02 UTC
+* Number of recursive dependencies: 95
 
 Run `revdep_details(,"GenEst")` for more info
 
@@ -2407,30 +2393,38 @@ Run `revdep_details(,"GenEst")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-    Package required but not available: ‘gsl’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Namespace in Imports field not imported from: ‘htmlwidgets’
+      All declared Imports should be used.
     ```
 
 # genomation
 
 <details>
 
-* Version: 1.16.0
+* Version: 1.18.0
 * Source code: https://github.com/cran/genomation
 * URL: http://bioinformatics.mdc-berlin.de/genomation/
 * BugReports: https://github.com/BIMSBbioinfo/genomation/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 88
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 100
 
 Run `revdep_details(,"genomation")` for more info
 
 </details>
 
 ## In both
+
+*   checking examples ... WARNING
+    ```
+    Found the following significant warnings:
+    
+      Warning: 'GenomicRangesList' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -2461,12 +2455,12 @@ Run `revdep_details(,"genomation")` for more info
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * Source code: https://github.com/cran/GenRank
 * URL: https://github.com/chakri9/GenRank
 * BugReports: https://github.com/chakri9/GenRank/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 47
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 59
 
 Run `revdep_details(,"GenRank")` for more info
 
@@ -2493,11 +2487,11 @@ Run `revdep_details(,"GenRank")` for more info
 
 <details>
 
-* Version: 0.2
+* Version: 0.2-2
 * Source code: https://github.com/cran/GJRM
 * URL: http://www.ucl.ac.uk/statistics/people/giampieromarra
-* Date/Publication: 2019-03-07 15:02:42 UTC
-* Number of recursive dependencies: 83
+* Date/Publication: 2020-02-07 11:40:05 UTC
+* Number of recursive dependencies: 80
 
 Run `revdep_details(,"GJRM")` for more info
 
@@ -2505,24 +2499,19 @@ Run `revdep_details(,"GJRM")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking package dependencies ... NOTE
     ```
-    Packages required but not available: 'VineCopula', 'copula'
-    
     Package which this enhances but not available for checking: ‘sp’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
 # GUIDEseq
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * Source code: https://github.com/cran/GUIDEseq
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 103
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 114
 
 Run `revdep_details(,"GUIDEseq")` for more info
 
@@ -2565,65 +2554,27 @@ Run `revdep_details(,"GUIDEseq")` for more info
     prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
     ```
 
-# hipathia
+# gwasurvivr
 
 <details>
 
-* Version: 2.0.0
-* Source code: https://github.com/cran/hipathia
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 106
+* Version: 1.4.0
+* Source code: https://github.com/cran/gwasurvivr
+* URL: https://github.com/suchestoncampbelllab/gwasurvivr
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 112
 
-Run `revdep_details(,"hipathia")` for more info
+Run `revdep_details(,"gwasurvivr")` for more info
 
 </details>
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘gwasurvivr’ can be installed ... WARNING
     ```
-    Running examples in ‘hipathia-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: create_report
-    > ### Title: Create visualization HTML
-    > ### Aliases: create_report
-    > 
-    > ### ** Examples
-    > 
-    > data(comp)
-    > pathways <- load_pathways(species = "hsa", pathways_list = c("hsa03320",
-    + "hsa04012"))
-    No internet connection using 'localHub=TRUE'
-    Using temporary cache /scratch/hb/RtmpSzl6sC/BiocFileCache
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: load_pathways ... AnnotationHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 46 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 10 ]
-      1.  Error: (unknown) (@test-color-node.R#10) 
-      2.  Error: (unknown) (@test-hipathia.R#8) 
-      3.  Error: (unknown) (@test-load-pathways.R#8) 
-      4.  Error: (unknown) (@test-normalize-paths.R#8) 
-      5.  Error: (unknown) (@test-path-annots.R#8) 
-      6.  Error: (unknown) (@test-path-list.R#8) 
-      7.  Error: (unknown) (@test-path-names.R#8) 
-      8.  Error: (unknown) (@test-path-summary.R#9) 
-      9.  Error: (unknown) (@test-quantify.R#8) 
-      10. Error: (unknown) (@test-translate-matrix.R#8) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+    Found the following significant warnings:
+      Warning: namespace ‘lme4’ is not available and has been replaced
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/gwasurvivr/new/gwasurvivr.Rcheck/00install.out’ for details.
     ```
 
 # InfiniumPurify
@@ -2641,7 +2592,7 @@ Run `revdep_details(,"InfiniumPurify")` for more info
 
 ## In both
 
-*   checking Rd cross-references ... WARNING
+*   checking Rd cross-references ... NOTE
     ```
     Unknown package ‘minfi’ in Rd xrefs
     ```
@@ -2650,12 +2601,12 @@ Run `revdep_details(,"InfiniumPurify")` for more info
 
 <details>
 
-* Version: 2.1.0
+* Version: 2.2.0
 * Source code: https://github.com/cran/loo
 * URL: https://mc-stan.org/loo, https://discourse.mc-stan.org
 * BugReports: https://github.com/stan-dev/loo/issues
-* Date/Publication: 2019-03-13 21:40:03 UTC
-* Number of recursive dependencies: 133
+* Date/Publication: 2019-12-19 09:40:05 UTC
+* Number of recursive dependencies: 138
 
 Run `revdep_details(,"loo")` for more info
 
@@ -2665,30 +2616,7 @@ Run `revdep_details(,"loo")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'rstanarm', 'spdep'
-    ```
-
-# LS2Wstat
-
-<details>
-
-* Version: 2.1-1
-* Source code: https://github.com/cran/LS2Wstat
-* Date/Publication: 2018-07-18 22:40:16 UTC
-* Number of recursive dependencies: 31
-
-Run `revdep_details(,"LS2Wstat")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘spdep’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Package suggested but not available for checking: ‘rstanarm’
     ```
 
 # LSAmitR
@@ -2699,7 +2627,7 @@ Run `revdep_details(,"LS2Wstat")` for more info
 * Source code: https://github.com/cran/LSAmitR
 * URL: https://www.bifie.at/node/3770
 * Date/Publication: 2018-06-08 13:23:05 UTC
-* Number of recursive dependencies: 149
+* Number of recursive dependencies: 162
 
 Run `revdep_details(,"LSAmitR")` for more info
 
@@ -2721,7 +2649,7 @@ Run `revdep_details(,"LSAmitR")` for more info
 * URL: https://github.com/joshuaschwab/ltmle
 * BugReports: https://github.com/joshuaschwab/ltmle/issues
 * Date/Publication: 2018-08-20 20:30:03 UTC
-* Number of recursive dependencies: 28
+* Number of recursive dependencies: 46
 
 Run `revdep_details(,"ltmle")` for more info
 
@@ -2731,9 +2659,13 @@ Run `revdep_details(,"ltmle")` for more info
 
 *   checking tests ...
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
+    ...
+      ltmle(data = data.frame(W, A, Y), Anodes = "A", Ynodes = "Y", 
+          abar = 1, estimate.time = F, gcomp = T)
+      
+      GCOMP Estimate:  0.7758063 
+      Estimator:  gcomp 
+      Warning: inference for gcomp is not accurate! It is based on TMLE influence curves.
       Call:
       ltmle(data = data.frame(W, A, Y), Anodes = "A", Ynodes = "Y", 
           abar = 1, estimate.time = F, gcomp = T)
@@ -2751,43 +2683,16 @@ Run `revdep_details(,"ltmle")` for more info
       Execution halted
     ```
 
-# Luminescence
-
-<details>
-
-* Version: 0.9.3
-* Source code: https://github.com/cran/Luminescence
-* URL: https://CRAN.R-project.org/package=Luminescence
-* BugReports: https://github.com/R-Lum/Luminescence/issues
-* Date/Publication: 2019-07-31 11:40:06 UTC
-* Number of recursive dependencies: 135
-
-Run `revdep_details(,"Luminescence")` for more info
-
-</details>
-
-## In both
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown packages ‘rjags’, ‘RLumShiny’ in Rd xrefs
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking: 'RLumShiny', 'rjags'
-    ```
-
 # M3Drop
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/M3Drop
 * URL: https://github.com/tallulandrews/M3Drop
 * BugReports: https://github.com/tallulandrews/M3Drop/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 191
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 214
 
 Run `revdep_details(,"M3Drop")` for more info
 
@@ -2805,10 +2710,12 @@ Run `revdep_details(,"M3Drop")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    M3DropConvertData: no visible global function definition for ‘assays’
+    NBumiConvertData: no visible global function definition for ‘assays’
     bg__filter_cells: no visible binding for global variable ‘x’
     bg__get_extreme_residuals: no visible binding for global variable ‘x’
     Undefined global functions or variables:
-      x
+      assays x
     ```
 
 *   checking Rd files ... NOTE
@@ -2821,11 +2728,11 @@ Run `revdep_details(,"M3Drop")` for more info
 
 <details>
 
-* Version: 2.4.0
+* Version: 2.6.0
 * Source code: https://github.com/cran/maEndToEnd
 * URL: https://www.bioconductor.org/help/workflows/
-* Date/Publication: 2019-05-03
-* Number of recursive dependencies: 216
+* Date/Publication: 2019-10-30
+* Number of recursive dependencies: 229
 
 Run `revdep_details(,"maEndToEnd")` for more info
 
@@ -2833,9 +2740,10 @@ Run `revdep_details(,"maEndToEnd")` for more info
 
 ## In both
 
-*   checking whether package ‘maEndToEnd’ can be installed ... ERROR
+*   checking whether package ‘maEndToEnd’ can be installed ... WARNING
     ```
-    Installation failed.
+    Found the following significant warnings:
+      Warning: call dbDisconnect() when finished working with a connection
     See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/00install.out’ for details.
     ```
 
@@ -2852,80 +2760,32 @@ Run `revdep_details(,"maEndToEnd")` for more info
     selectively is preferable.
     ```
 
-## Installation
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    License components which are templates and need '+ file LICENSE':
+      MIT
+    ```
 
-### Devel
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENCE
+    is not mentioned in the DESCRIPTION file.
+    ```
 
-```
-* installing *source* package ‘maEndToEnd’ ...
-** using staged installation
-** inst
-** help
-No man pages found in package  ‘maEndToEnd’ 
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-Note: in method for ‘pm<-’ with signature
-‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
-expanding the signature to include omitted arguments in definition: =
-"missing"
-Note: in method for ‘mm<-’ with signature
-‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
-expanding the signature to include omitted arguments in definition: =
-"missing"
-Warning: call dbDisconnect() when finished working with a connection
-Error in setMethod(paste0(f, "<-"), ..., where = where) : 
-  no existing definition for function ‘weights<-’
-Error: package or namespace load failed for ‘arrayQualityMetrics’:
- unable to load R code in package ‘affyPLM’
-Error : package ‘arrayQualityMetrics’ could not be loaded
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/new/maEndToEnd.Rcheck/maEndToEnd’
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    '::' or ':::' import not declared from: ‘AnnotationDbi’
+    ```
 
-```
-### CRAN
-
-```
-* installing *source* package ‘maEndToEnd’ ...
-** using staged installation
-** inst
-** help
-No man pages found in package  ‘maEndToEnd’ 
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-Note: in method for ‘pm<-’ with signature
-‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
-expanding the signature to include omitted arguments in definition: =
-"missing"
-Note: in method for ‘mm<-’ with signature
-‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
-expanding the signature to include omitted arguments in definition: =
-"missing"
-Warning: call dbDisconnect() when finished working with a connection
-Error in setMethod(paste0(f, "<-"), ..., where = where) : 
-  no existing definition for function ‘weights<-’
-Error: package or namespace load failed for ‘arrayQualityMetrics’:
- unable to load R code in package ‘affyPLM’
-Error : package ‘arrayQualityMetrics’ could not be loaded
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/maEndToEnd/old/maEndToEnd.Rcheck/maEndToEnd’
-
-```
 # MEAL
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * Source code: https://github.com/cran/MEAL
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 201
+* Date/Publication: 2019-11-07
+* Number of recursive dependencies: 222
 
 Run `revdep_details(,"MEAL")` for more info
 
@@ -2933,26 +2793,17 @@ Run `revdep_details(,"MEAL")` for more info
 
 ## In both
 
-*   checking tests ...
+*   checking for code/documentation mismatches ... WARNING
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-             nrows = 1000L, listData = structure(list(), .Names = character(0)), elementType = "ANY", 
-             elementMetadata = NULL, metadata = list()), metadata = list()), design = structure(c(1, 
-         1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0), .Dim = c(6L, 2L), .Dimnames = list(c("5723646052_R02C02", 
-         "5723646052_R04C01", "5723646052_R05C02", "5723646053_R04C02", "5723646053_R05C02", 
-         "5723646053_R06C02"), c("(Intercept)", "statusnormal")), assign = 0:1, contrasts = list(
-             status = "contr.treatment")), what = "M", coef = 2, datatype = c("array", "sequencing"), 
-             arraytype = c("EPIC", "450K"), analysis.type = c("differential", "variability", 
-                 "ANOVA", "diffVar"), contrasts = FALSE, cont.matrix = NULL, fdr = 0.05, ... = )
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 35 | SKIPPED: 0 | WARNINGS: 8 | FAILED: 1 ]
-      1. Error: DMRcate (@test_06regionAnalysis.R#19) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+    Codoc mismatches from documentation object 'runRDA':
+    runRDA
+      Code: function(set, model, num_vars = ncol(model), range, betas =
+                     FALSE, resultSet = TRUE, num_permutations = 10000,
+                     ...)
+      Docs: function(set, model, num_vars = ncol(model), range, betas =
+                     FALSE, resultSet = TRUE, num_permutations = 10000)
+      Argument names in code not in docs:
+        ...
     ```
 
 *   checking examples ... WARNING
@@ -2978,11 +2829,6 @@ Run `revdep_details(,"MEAL")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    plotRegion: no visible global function definition for 'data'
-    plotRegion: no visible binding for global variable 'dmrcatedata'
-    plotRegion: no visible binding for global variable 'tx.hg19'
-    plotRegion: no visible binding for global variable 'tx.hg38'
-    plotRegion: no visible binding for global variable 'tx.mm10'
     plotRegion: no visible global function definition for
       'subsetByOverlaps'
     plotRegion: no visible global function definition for 'mcols<-'
@@ -2991,11 +2837,9 @@ Run `revdep_details(,"MEAL")` for more info
     runRDA: no visible global function definition for 'rowData'
     runSVA: no visible global function definition for 'resid'
     Undefined global functions or variables:
-      assays colData data dmrcatedata mcols<- resid rowData
-      subsetByOverlaps tx.hg19 tx.hg38 tx.mm10
+      assays colData mcols<- resid rowData subsetByOverlaps
     Consider adding
       importFrom("stats", "resid")
-      importFrom("utils", "data")
     to your NAMESPACE file.
     ```
 
@@ -3003,11 +2847,11 @@ Run `revdep_details(,"MEAL")` for more info
 
 <details>
 
-* Version: 2.16.0
+* Version: 2.18.0
 * Source code: https://github.com/cran/metagene
 * BugReports: https://github.com/CharlesJB/metagene/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 121
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 136
 
 Run `revdep_details(,"metagene")` for more info
 
@@ -3046,12 +2890,12 @@ Run `revdep_details(,"metagene")` for more info
 
 <details>
 
-* Version: 1.26.3
+* Version: 1.28.2
 * Source code: https://github.com/cran/metagenomeSeq
 * URL: https://github.com/nosson/metagenomeSeq/
 * BugReports: https://github.com/nosson/metagenomeSeq/issues
-* Date/Publication: 2019-08-04
-* Number of recursive dependencies: 105
+* Date/Publication: 2020-02-03
+* Number of recursive dependencies: 116
 
 Run `revdep_details(,"metagenomeSeq")` for more info
 
@@ -3091,7 +2935,7 @@ Run `revdep_details(,"metagenomeSeq")` for more info
 * URL: https://github.com/nhanhocu/metamicrobiomeR
 * BugReports: https://github.com/nhanhocu/metamicrobiomeR/issues
 * Date/Publication: 2019-09-03 07:20:02 UTC
-* Number of recursive dependencies: 119
+* Number of recursive dependencies: 130
 
 Run `revdep_details(,"metamicrobiomeR")` for more info
 
@@ -3111,10 +2955,10 @@ Run `revdep_details(,"metamicrobiomeR")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * Source code: https://github.com/cran/MetaNeighbor
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 56
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 68
 
 Run `revdep_details(,"MetaNeighbor")` for more info
 
@@ -3129,14 +2973,37 @@ Run `revdep_details(,"MetaNeighbor")` for more info
       All declared Imports should be used.
     ```
 
+# methrix
+
+<details>
+
+* Version: 1.0.05
+* Source code: https://github.com/cran/methrix
+* Date/Publication: 2020-01-08
+* Number of recursive dependencies: 143
+
+Run `revdep_details(,"methrix")` for more info
+
+</details>
+
+## In both
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
 # MethylAid
 
 <details>
 
-* Version: 1.18.0
+* Version: 1.20.0
 * Source code: https://github.com/cran/MethylAid
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 152
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 163
 
 Run `revdep_details(,"MethylAid")` for more info
 
@@ -3144,19 +3011,17 @@ Run `revdep_details(,"MethylAid")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘MethylAidData’
-    ```
+*   R CMD check timed out
+    
 
 # methylationArrayAnalysis
 
 <details>
 
-* Version: 1.8.1
+* Version: 1.10.0
 * Source code: https://github.com/cran/methylationArrayAnalysis
-* Date/Publication: 2019-06-07
-* Number of recursive dependencies: 184
+* Date/Publication: 2019-10-30
+* Number of recursive dependencies: 207
 
 Run `revdep_details(,"methylationArrayAnalysis")` for more info
 
@@ -3178,9 +3043,9 @@ Run `revdep_details(,"methylationArrayAnalysis")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 78.9Mb
+      installed size is 92.0Mb
       sub-directories of 1Mb or more:
-        extdata  78.9Mb
+        extdata  91.9Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -3192,11 +3057,11 @@ Run `revdep_details(,"methylationArrayAnalysis")` for more info
 
 <details>
 
-* Version: 2.30.0
+* Version: 2.32.0
 * Source code: https://github.com/cran/methylumi
 * BugReports: https://github.com/seandavi/methylumi/issues/new
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 175
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 188
 
 Run `revdep_details(,"methylumi")` for more info
 
@@ -3228,8 +3093,6 @@ Run `revdep_details(,"methylumi")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘methyAnalysis’
-    
     Depends: includes the non-default packages:
       'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
       'FDb.InfiniumMethylation.hg19', 'minfi'
@@ -3320,7 +3183,7 @@ Run `revdep_details(,"methylumi")` for more info
 * Version: 0.0.1
 * Source code: https://github.com/cran/MFHD
 * Date/Publication: 2013-10-23 23:50:20
-* Number of recursive dependencies: 75
+* Number of recursive dependencies: 86
 
 Run `revdep_details(,"MFHD")` for more info
 
@@ -3361,7 +3224,7 @@ Run `revdep_details(,"MFHD")` for more info
 * Version: 0.1.1
 * Source code: https://github.com/cran/MHTcop
 * Date/Publication: 2019-01-21 16:10:03 UTC
-* Number of recursive dependencies: 38
+* Number of recursive dependencies: 39
 
 Run `revdep_details(,"MHTcop")` for more info
 
@@ -3369,23 +3232,22 @@ Run `revdep_details(,"MHTcop")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-    Package required but not available: ‘copula’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Namespaces in Imports field not imported from:
+      ‘MCMCpack’ ‘copula’
+      All declared Imports should be used.
     ```
 
 # MIGSA
 
 <details>
 
-* Version: 1.8.1
+* Version: 1.10.1
 * Source code: https://github.com/cran/MIGSA
-* URL: http://www.bdmg.com.ar/
-* Date/Publication: 2019-07-12
-* Number of recursive dependencies: 93
+* URL: https://jcrodriguez.rbind.io/
+* Date/Publication: 2020-01-07
+* Number of recursive dependencies: 105
 
 Run `revdep_details(,"MIGSA")` for more info
 
@@ -3398,29 +3260,33 @@ Run `revdep_details(,"MIGSA")` for more info
     Running examples in ‘MIGSA-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: Genesets-enrichr
-    > ### Title: List and download gene sets from enrichr database
-    > ### Aliases: Genesets-enrichr enrichrGeneSets
-    > ###   enrichrGeneSets,character-method enrichrGeneSets,ANY-method
-    > ###   downloadEnrichrGeneSets downloadEnrichrGeneSets,character-method
-    > ###   downloadEnrichrGeneSets,ANY-method
+    > ### Name: FitOptions-class
+    > ### Title: FitOptions S4 class implementation in R
+    > ### Aliases: FitOptions-class FitOptions FitOptions.default
+    > ###   FitOptions.data.frame
     > 
     > ### ** Examples
     > 
-    > ## Lets list all the gene sets that can be downloaded from Enichr website.
-    > enrichrGeneSets();
-    Warning in readLines(biocURL) :
-      URL 'http://www.bioconductor.org/main.html': status was 'Couldn't resolve host name'
-    Error in enrichrGeneSets() : You must have internet connection.
-    Calls: enrichrGeneSets -> enrichrGeneSets
+    > ## Supose we have 15 subjects, the first 8 from Condition1 and the last 7 
+    > ## from Condition2, lets create the corresponding FitOptions object to test
+    > ## Condition1 vs. Condition2.
+    > l <- c(rep("Condition1", 8), rep("Condition2", 7));
+    > fit_options <- FitOptions(l);
+    Error in UseMethod("FitOptions", x) : 
+      no applicable method for 'FitOptions' applied to an object of class "character"
+    Calls: FitOptions
     Execution halted
     ```
 
 *   checking tests ...
     ```
-     ERROR
-    Running the tests in ‘tests/runTests.R’ failed.
-    Last 13 lines of output:
+    ...
+          parLapplyLB, parRapply, parSapply, parSapplyLB
+      
+      The following objects are masked from 'package:stats':
+      
+          IQR, mad, sd, var, xtabs
+      
       The following objects are masked from 'package:base':
       
           Filter, Find, Map, Position, Reduce, anyDuplicated, append,
@@ -3438,6 +3304,27 @@ Run `revdep_details(,"MIGSA")` for more info
       Execution halted
     ```
 
+*   checking running R code from vignettes ...
+    ```
+      ‘MIGSA.Rnw’using ‘UTF-8’... failed
+      ‘gettingPbcmcData.Rnw’using ‘UTF-8’... OK
+      ‘gettingTcgaData.Rnw’using ‘UTF-8’... OK
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘MIGSA.Rnw’
+      ...
+    
+    > exprData2 <- new("MAList", list(M = exprData2))
+    
+    > conditions <- rep(c("C1", "C2"), c(nSamples/2, nSamples/2))
+    
+    > fitOpts <- FitOptions(conditions)
+    
+      When sourcing ‘MIGSA.R’:
+    Error: no applicable method for 'FitOptions' applied to an object of class "character"
+    Execution halted
+    ```
+
 *   checking S3 generic/method consistency ... NOTE
     ```
     Found the following apparent S3 methods exported but not registered:
@@ -3451,22 +3338,16 @@ Run `revdep_details(,"MIGSA")` for more info
 
 <details>
 
-* Version: 1.28.0
+* Version: 1.30.0
 * Source code: https://github.com/cran/MinimumDistance
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 77
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 72
 
 Run `revdep_details(,"MinimumDistance")` for more info
 
 </details>
 
 ## In both
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    Functions or methods with usage in documentation object 'coerce' but not in code:
-      ‘as’
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -3487,6 +3368,76 @@ Run `revdep_details(,"MinimumDistance")` for more info
       RangedDataList elt read.bsfiles
     ```
 
+# mixOmics
+
+<details>
+
+* Version: 6.10.8
+* Source code: https://github.com/cran/mixOmics
+* URL: http://www.mixOmics.org
+* BugReports: https://github.com/mixOmicsTeam/mixOmics/issues/
+* Date/Publication: 2020-01-29
+* Number of recursive dependencies: 93
+
+Run `revdep_details(,"mixOmics")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+    ...
+        |                                                                            
+        |                                                                      |   0%── 1. Error: perf.diablo works with and without parallel processing and with aur
+      there is no package called 'snow'
+      Backtrace:
+        1. mixOmics:::perf.sgccda(...)
+        2. parallel::makeCluster(cpus, type = cluster_type)
+        3. snow::makeSOCKcluster
+        4. base::getExportedValue(pkg, name)
+        5. base::asNamespace(ns)
+        6. base::getNamespace(ns)
+        7. base::loadNamespace(name)
+        8. base::withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+        9. base:::withOneRestart(expr, restarts[[1L]])
+       10. base:::doWithOneRestart(return(expr), restart)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 85 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 1 ]
+      1. Error: perf.diablo works with and without parallel processing and with auroc (@test-perf.diablo.R#30) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘rgl’
+    ```
+
+# mnem
+
+<details>
+
+* Version: 1.2.0
+* Source code: https://github.com/cran/mnem
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 162
+
+Run `revdep_details(,"mnem")` for more info
+
+</details>
+
+## In both
+
+*   checking R code for possible problems ... NOTE
+    ```
+    createApp: no visible binding for global variable ‘..tmp’
+    Undefined global functions or variables:
+      ..tmp
+    ```
+
 # moc.gapbk
 
 <details>
@@ -3494,7 +3445,7 @@ Run `revdep_details(,"MinimumDistance")` for more info
 * Version: 0.1.0
 * Source code: https://github.com/cran/moc.gapbk
 * Date/Publication: 2019-03-07 17:20:03 UTC
-* Number of recursive dependencies: 39
+* Number of recursive dependencies: 40
 
 Run `revdep_details(,"moc.gapbk")` for more info
 
@@ -3514,10 +3465,10 @@ Run `revdep_details(,"moc.gapbk")` for more info
 
 <details>
 
-* Version: 2.12.0
+* Version: 2.14.0
 * Source code: https://github.com/cran/monocle
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 227
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 250
 
 Run `revdep_details(,"monocle")` for more info
 
@@ -3570,11 +3521,11 @@ Run `revdep_details(,"monocle")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 2.0.0
 * Source code: https://github.com/cran/motifbreakR
 * BugReports: https://github.com/Simon-Coetzee/motifbreakR/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 137
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 154
 
 Run `revdep_details(,"motifbreakR")` for more info
 
@@ -3585,7 +3536,7 @@ Run `revdep_details(,"motifbreakR")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
-      'rs1006140'
+      'rs1006140' 'variants.from.file'
     Undocumented data sets:
       'rs1006140'
     All user-level objects in a package should have documentation entries.
@@ -3593,19 +3544,43 @@ Run `revdep_details(,"motifbreakR")` for more info
     Extensions’ manual.
     ```
 
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'motifbreakR'
+      ‘legacy.score’
+    
+    Undocumented arguments in documentation object 'scoreAllWindows'
+      ‘snp.seq’ ‘snp.seq.rc’ ‘pwm’ ‘from’ ‘to’ ‘pwm.range’ ‘calcp’
+    
+    Undocumented arguments in documentation object 'snps.from.file'
+      ‘indels’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
 *   checking dependencies in R code ... NOTE
     ```
-    Packages in Depends field not imported from:
-      'MotifDb' 'grid'
+    Namespaces in Imports field not imported from:
+      'compiler' 'grImport'
+      All declared Imports should be used.
+    Package in Depends field not imported from: 'MotifDb'
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
+    formatVcfOut: no visible binding for global variable 'search.genome'
     plotMotifLogoStack.2: no visible global function definition for 'par'
+    preparePWM: no visible binding for global variable 'threshold'
+    snps.from.file: no visible binding for global variable 'DNA_ALPHABET'
+    wScore: no visible global function definition for 'scoreMotif'
     Undefined global functions or variables:
-      par
+      DNA_ALPHABET par scoreMotif search.genome threshold
     Consider adding
       importFrom("graphics", "par")
     to your NAMESPACE file.
@@ -3620,7 +3595,7 @@ Run `revdep_details(,"motifbreakR")` for more info
 * URL: https://github.com/PSegaert/mrfDepth
 * BugReports: https://github.com/PSegaert/mrfDepth/issues
 * Date/Publication: 2019-05-15 10:00:03 UTC
-* Number of recursive dependencies: 48
+* Number of recursive dependencies: 61
 
 Run `revdep_details(,"mrfDepth")` for more info
 
@@ -3635,14 +3610,93 @@ Run `revdep_details(,"mrfDepth")` for more info
         libs   5.9Mb
     ```
 
+# muscat
+
+<details>
+
+* Version: 1.0.0
+* Source code: https://github.com/cran/muscat
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 195
+
+Run `revdep_details(,"muscat")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    > sce <- sce[, sce$cluster_id == "B cells"]
+    > sce$cluster_id <- droplevels(sce$cluster_id)
+    > 
+    > # downsample to 100 genes
+    > cs_by_s <- split(colnames(sce), sce$sample_id)
+    > gs <- sample(nrow(sce), 100)
+    > sce <- sce[gs, ]
+    > 
+    > res <- mmDS(sce, method = "dream", 
+    +     n_threads = 1, verbose = FALSE)
+    Warning in DGEList(counts(x), norm.factors = 1/sizeFactors(x)) :
+      norm factors don't multiply to 1
+    Warning in dream(v, formula, cd, contrast, ddf = ddf, suppressWarnings = !verbose) :
+      Contrasts with only a single non-zero term are already evaluated by default.
+    Dividing work into 83 chunks...
+    
+    Total:12 s
+    Error in fitFDistRobustly(var, df1 = df, covariate = covariate, winsor.tail.p = winsor.tail.p) : 
+      statmod package required but is not installed
+    Calls: mmDS ... squeezeVar -> fitFDistRobustly -> Recall -> fitFDistRobustly
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+    ...
+      
+      ── 2. Error: pbDS.limma-trend (@test-pbDS.R#48)  ───────────────────────────────
+      statmod package required but is not installed
+      Backtrace:
+       1. muscat::pbDS(...)
+       2. base::lapply(...)
+       3. muscat:::FUN(X[[i]], ...)
+       4. base::lapply(...)
+       5. muscat:::FUN(X[[i]], ...)
+       6. limma::eBayes(cfit, trend = trend, robust = robust)
+       7. limma:::.ebayes(...)
+       8. limma::squeezeVar(...)
+       9. limma::fitFDistRobustly(...)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      [ OK: 161 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 2 ]
+      1. Error: defaults - pbDS.limma-trend (@test-pbDS.R#29) 
+      2. Error: pbDS.limma-trend (@test-pbDS.R#48) 
+      
+      Error: testthat unit tests failed
+      Execution halted
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'mmDS':
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
 # NanoStringDiff
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * Source code: https://github.com/cran/NanoStringDiff
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 32
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 44
 
 Run `revdep_details(,"NanoStringDiff")` for more info
 
@@ -3697,12 +3751,12 @@ Run `revdep_details(,"NanoStringDiff")` for more info
 
 <details>
 
-* Version: 0.3.5
+* Version: 0.3.7
 * Source code: https://github.com/cran/NetLogoR
 * URL: http://netlogor.predictiveecology.org, https://github.com/PredictiveEcology/NetLogoR/
 * BugReports: https://github.com/PredictiveEcology/NetLogoR/issues
-* Date/Publication: 2019-01-25 17:20:07 UTC
-* Number of recursive dependencies: 165
+* Date/Publication: 2020-03-02 10:00:08 UTC
+* Number of recursive dependencies: 162
 
 Run `revdep_details(,"NetLogoR")` for more info
 
@@ -3710,25 +3764,19 @@ Run `revdep_details(,"NetLogoR")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking package dependencies ... NOTE
     ```
-    Package required but not available: ‘SpaDES.tools’
-    
-    Packages suggested but not available for checking:
-      'fastshp', 'sf', 'SpaDES.core'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Package suggested but not available for checking: ‘fastshp’
     ```
 
 # NormalyzerDE
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * Source code: https://github.com/cran/NormalyzerDE
 * URL: https://github.com/ComputationalProteomics/NormalyzerDE
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 151
 
 Run `revdep_details(,"NormalyzerDE")` for more info
@@ -3754,10 +3802,10 @@ Run `revdep_details(,"NormalyzerDE")` for more info
 
 <details>
 
-* Version: 1.4.3
+* Version: 1.6.1
 * Source code: https://github.com/cran/omicplotR
-* Date/Publication: 2019-08-27
-* Number of recursive dependencies: 70
+* Date/Publication: 2019-11-13
+* Number of recursive dependencies: 106
 
 Run `revdep_details(,"omicplotR")` for more info
 
@@ -3773,27 +3821,46 @@ Run `revdep_details(,"omicplotR")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking dependencies in R code ... NOTE
     ```
-    omicplotr.colvec: no visible global function definition for ‘col2rgb’
-    Undefined global functions or variables:
-      col2rgb
-    Consider adding
-      importFrom("grDevices", "col2rgb")
-    to your NAMESPACE file.
+    Package in Depends field not imported from: ‘ALDEx2’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
     ```
 
-# OUTRIDER
+# omicsPrint
 
 <details>
 
-* Version: 1.2.0
-* Source code: https://github.com/cran/OUTRIDER
-* URL: https://github.com/gagneurlab/OUTRIDER
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 155
+* Version: 1.6.0
+* Source code: https://github.com/cran/omicsPrint
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 115
 
-Run `revdep_details(,"OUTRIDER")` for more info
+Run `revdep_details(,"omicsPrint")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.3Mb
+      sub-directories of 1Mb or more:
+        data   5.3Mb
+    ```
+
+# OptimalDesign
+
+<details>
+
+* Version: 1.0.1
+* Source code: https://github.com/cran/OptimalDesign
+* URL: < http://www.iam.fmph.uniba.sk/design/ >
+* Date/Publication: 2019-12-02 08:50:07 UTC
+* Number of recursive dependencies: 78
+
+Run `revdep_details(,"OptimalDesign")` for more info
 
 </details>
 
@@ -3801,30 +3868,72 @@ Run `revdep_details(,"OUTRIDER")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘RMySQL’
+    Packages which this enhances but not available for checking:
+      'gurobi', 'slam'
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
+# OUTRIDER
+
+<details>
+
+* Version: 1.4.0
+* Source code: https://github.com/cran/OUTRIDER
+* URL: https://github.com/gagneurlab/OUTRIDER
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 176
+
+Run `revdep_details(,"OUTRIDER")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd \usage sections ... WARNING
     ```
-    Authors@R field gives more than one person with maintainer role:
-      Felix Brechtmann <brechtma@in.tum.de> [aut, cre]
-      Christian Mertes <mertes@in.tum.de> [aut, cre]
+    Documented arguments not in \usage in documentation object 'normalizationFactors':
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 # pandaR
 
 <details>
 
-* Version: 1.16.0
+* Version: 1.18.0
 * Source code: https://github.com/cran/pandaR
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 51
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 62
 
 Run `revdep_details(,"pandaR")` for more info
 
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘pandaR-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: plot.panda
+    > ### Title: Plot.panda
+    > ### Aliases: plot.panda
+    > ### Keywords: keywords
+    > 
+    > ### ** Examples
+    > 
+    > data(pandaResult)
+    > plot(pandaResult)
+    Error in as.double(y) : 
+      cannot coerce type 'S4' to vector of type 'double'
+    Calls: plot -> plot.default -> xy.coords
+    Execution halted
+    ```
 
 *   checking S3 generic/method consistency ... NOTE
     ```
@@ -3870,12 +3979,12 @@ Run `revdep_details(,"pandaR")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/PathoStat
 * URL: https://github.com/mani2012/PathoStat
 * BugReports: https://github.com/mani2012/PathoStat/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 186
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 195
 
 Run `revdep_details(,"PathoStat")` for more info
 
@@ -3894,23 +4003,18 @@ Run `revdep_details(,"PathoStat")` for more info
 
 <details>
 
-* Version: 1.76.0
+* Version: 1.78.0
 * Source code: https://github.com/cran/pcaMethods
 * URL: https://github.com/hredestig/pcamethods
 * BugReports: https://github.com/hredestig/pcamethods/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 40
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 49
 
 Run `revdep_details(,"pcaMethods")` for more info
 
 </details>
 
 ## In both
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘ade4’ in Rd xrefs
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -3938,14 +4042,19 @@ Run `revdep_details(,"pcaMethods")` for more info
     to your NAMESPACE file.
     ```
 
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown package ‘ade4’ in Rd xrefs
+    ```
+
 # phosphonormalizer
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * Source code: https://github.com/cran/phosphonormalizer
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 28
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 40
 
 Run `revdep_details(,"phosphonormalizer")` for more info
 
@@ -3962,20 +4071,22 @@ Run `revdep_details(,"phosphonormalizer")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/Pigengene
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 124
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 136
 
 Run `revdep_details(,"Pigengene")` for more info
 
 </details>
 
-## In both
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
     ...
+    
+    >      g1 <- gene.mapping(ids="NM_001159995")
     Loading required package: org.Mm.eg.db
     
     'select()' returned 1:1 mapping between keys and columns
@@ -3993,11 +4104,11 @@ Run `revdep_details(,"Pigengene")` for more info
     [1] "org.Hs.eg.db-SYMBOL"
     'select()' returned 1:1 mapping between keys and columns
     Loading required package: biomaRt
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.ensembl.org; Name or service not known
-    Calls: gene.mapping ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Error: failed to load HTTP resource
     Execution halted
     ```
+
+## In both
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -4024,10 +4135,10 @@ Run `revdep_details(,"Pigengene")` for more info
 
 <details>
 
-* Version: 1.0.1
+* Version: 1.2.1
 * Source code: https://github.com/cran/PrecisionTrialDrawer
-* Date/Publication: 2019-07-12
-* Number of recursive dependencies: 111
+* Date/Publication: 2020-01-06
+* Number of recursive dependencies: 127
 
 Run `revdep_details(,"PrecisionTrialDrawer")` for more info
 
@@ -4035,40 +4146,19 @@ Run `revdep_details(,"PrecisionTrialDrawer")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking Rd cross-references ... NOTE
     ```
-    Running examples in ‘PrecisionTrialDrawer-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: getAlterations
-    > ### Title: Retrieve genomic data for each gene in the panel
-    > ### Aliases: getAlterations
-    > 
-    > ### ** Examples
-    > 
-    > #Load panelexample
-    > data(cpObj2)
-    > # Retrieve data from AML
-    > cpObj <- getAlterations(cpObj2 , tumor_type=c("laml"))
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.cbioportal.org; Name or service not known
-    Calls: getAlterations ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘LowMACA’ in Rd xrefs
+    Package unavailable to check Rd xrefs: ‘LowMACA’
     ```
 
 # ProteoMM
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * Source code: https://github.com/cran/ProteoMM
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 81
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 94
 
 Run `revdep_details(,"ProteoMM")` for more info
 
@@ -4086,12 +4176,12 @@ Run `revdep_details(,"ProteoMM")` for more info
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.22.0
 * Source code: https://github.com/cran/QDNAseq
 * URL: https://github.com/ccagc/QDNAseq
 * BugReports: https://github.com/ccagc/QDNAseq/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 66
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 70
 
 Run `revdep_details(,"QDNAseq")` for more info
 
@@ -4099,13 +4189,10 @@ Run `revdep_details(,"QDNAseq")` for more info
 
 ## In both
 
-*   checking for missing documentation entries ... WARNING
+*   checking dependencies in R code ... NOTE
     ```
-    Undocumented code objects:
-      ‘exportVCF’
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
+    Namespace in Imports field not imported from: ‘future’
+      All declared Imports should be used.
     ```
 
 # r2dRue
@@ -4192,14 +4279,138 @@ Run `revdep_details(,"randomizationInference")` for more info
     to your NAMESPACE file.
     ```
 
+# regsem
+
+<details>
+
+* Version: 1.5.2
+* Source code: https://github.com/cran/regsem
+* Date/Publication: 2020-02-19 12:00:03 UTC
+* Number of recursive dependencies: 162
+
+Run `revdep_details(,"regsem")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘regsem’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘regsem’ ...
+** package ‘regsem’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
+installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘regsem’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so':
+  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so: undefined symbol: regsem_rcpp_fit_fun
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/new/regsem.Rcheck/regsem’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘regsem’ ...
+** package ‘regsem’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -std=gnu99 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -I/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/include  -c regsem_init.c -o regsem_init.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_RAMmult.cpp -o regsem_rcpp_RAMmult.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_fit_fun.cpp -o regsem_rcpp_fit_fun.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_grad_ram.cpp -o regsem_rcpp_grad_ram.o
+g++ -std=gnu++11 -I"/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/include" -DNDEBUG  -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/Rcpp/include" -I"/scratch/788857.1.long.q/tmp.xGo5yP0ank/regsem/RcppArmadillo/include" -I/usr/local/include  -fpic  -g -O2  -c regsem_rcpp_quasi_calc.cpp -o regsem_rcpp_quasi_calc.o
+g++ -std=gnu++11 -shared -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -L/wynton/home/cbi/shared/software/CBI/gdal-2.4.3/lib -o regsem.so RcppExports.o regsem_init.o regsem_rcpp_RAMmult.o regsem_rcpp_fit_fun.o regsem_rcpp_grad_ram.o regsem_rcpp_quasi_calc.o -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRlapack -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/lib -lR
+installing to /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+.Rprofile error [/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00_pkg_src/regsem: /wynton/home/cbi/shared/software/CBI/R-3.6.3/lib64/R/bin/exec/R --no-save --slave]: there is no package called ‘startup’
+Error: package or namespace load failed for ‘regsem’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so':
+  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/00LOCK-regsem/00new/regsem/libs/regsem.so: undefined symbol: regsem_rcpp_fit_fun
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/regsem/old/regsem.Rcheck/regsem’
+
+```
+# RNAmodR
+
+<details>
+
+* Version: 1.0.2
+* Source code: https://github.com/cran/RNAmodR
+* URL: https://github.com/FelixErnst/RNAmodR
+* BugReports: https://github.com/FelixErnst/RNAmodR/issues
+* Date/Publication: 2020-01-12
+* Number of recursive dependencies: 190
+
+Run `revdep_details(,"RNAmodR")` for more info
+
+</details>
+
+## In both
+
+*   R CMD check timed out
+    
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      'BiocGenerics:::replaceSlots' 'IRanges:::.valid.CompressedList'
+      'IRanges:::coerceToCompressedList' 'S4Vectors:::.valid.DataFrame'
+      'S4Vectors:::labeledLine' 'S4Vectors:::make_zero_col_DataFrame'
+      'S4Vectors:::prepare_objects_to_bind'
+      See the note in ?`:::` about the use of this operator.
+    There are ::: calls to the package's namespace in its code. A package
+      almost never needs to use ::: for its own objects:
+      '.get_inosine_score'
+    ```
+
 # RnBeads
 
 <details>
 
-* Version: 2.2.0
+* Version: 2.4.0
 * Source code: https://github.com/cran/RnBeads
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 224
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 243
 
 Run `revdep_details(,"RnBeads")` for more info
 
@@ -4209,19 +4420,23 @@ Run `revdep_details(,"RnBeads")` for more info
 
 *   checking tests ...
     ```
-     ERROR
-    Running the tests in ‘tests/runTests.R’ failed.
-    Last 13 lines of output:
-      ERROR in /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_others.R: Error while sourcing  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_others.R : Error in logger.error(txt) : 
-        Missing required package GLAD or its dependency
+    ...
+      RUNIT TEST PROTOCOL -- Fri Mar  6 17:46:46 2020 
+      *********************************************** 
+      Number of test functions: 8 
+      Number of errors: 1 
+      Number of failures: 0 
+      
+       
+      1 Test Suite : 
+      RnBeads RUnit Tests - 8 test functions, 1 error, 0 failures
+      ERROR in /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_differential.R: Error while sourcing  /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_differential.R : Error in UseMethod("varFit") : 
+        no applicable method for 'varFit' applied to an object of class "c('matrix', 'double', 'numeric')"
       
       Test files with failing tests
       
          test_differential.R 
            /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_differential.R 
-      
-         test_others.R 
-           /wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RnBeads/new/RnBeads.Rcheck/RnBeads/unitTests/test_others.R 
       
       
       Error in BiocGenerics:::testPackage("RnBeads") : 
@@ -4231,8 +4446,6 @@ Run `revdep_details(,"RnBeads")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘GLAD’
-    
     Depends: includes the non-default packages:
       'BiocGenerics', 'S4Vectors', 'GenomicRanges', 'MASS', 'cluster',
       'ff', 'fields', 'ggplot2', 'gplots', 'gridExtra', 'limma',
@@ -4280,27 +4493,27 @@ Run `revdep_details(,"RnBeads")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     ...
-      Density Deviance Difference DoISVA Error EstDimRMT GenomeAxisTrack ID
-      IdeogramTrack IlluminaHumanMethylation450kmanifest
-      IlluminaHumanMethylationEPICmanifest Index Intensity Measure
-      PairsBootRefFreeEwasModel Probe RGChannelSet Rd2HTML RefFreeEwasModel
-      SNP Sample Slide Target Term UcscTrack Value addSex as.profileCGH
-      assayDataElement assayDataElementNames barcode bv chrom combinedRank
-      combinedRank.var comma covgMedian covgPercLow covgPercUp cv.glmnet
-      daglad diffmeth diffmeth.p.adj.fdr diffmeth.p.val
+      Measure Mmusculus PairsBootRefFreeEwasModel Predicted Probe
+      RGChannelSet Rd2HTML RefFreeEwasModel SNP Sample Segment Slide Target
+      Term UcscTrack Value addSex as.profileCGH assayDataElement
+      assayDataElementNames barcode browserSession bv calculateFDRs chrom
+      combinedRank combinedRank.var comma covgMedian covgPercLow covgPercUp
+      cv.glmnet daglad diffmeth diffmeth.p.adj.fdr diffmeth.p.val
       dinucleotideFrequency eps expectedCounts featureData featureData<-
       featureNames featureNames<- foreach geneCounts genome<- getCN
-      getDoParWorkers getGreen getManifest getMeth getRed getSex getUnmeth
-      getVarCov glmnet grid.draw grid.newpage group group1 group2 i
-      impute.knn is.subsegmentation k letterFrequency lme loadRegionDB
+      getDoParWorkers getGreen getManifest getMeth getRed getSex getTable
+      getUnmeth getVarCov glmnet grid.draw grid.newpage group group1 group2
+      i impute.knn is.subsegmentation k letterFrequency lme loadRegionDB
       log10FDR log10P mapToGenome mclapply mean.diff mean.quot.log2 melt
       mergeRegionDBs muted n.sites ng.2 num.sites numSites numeric.names
       oddsRatios p.vals.t.na.adj pData percent_format phenoData phenoData<-
-      plotTracks preprocessSWAN pvalues qvalue refText reg.type region.size
-      registerDoParallel relative.coord report runLOLA samples seqlengths
+      plotAlphaDistributionOneChr plotFinalSegmentation plotTracks
+      preprocessSWAN pvalues qvalue readMethylome readSNPTable refText
+      reg.type region.size registerDoParallel relative.coord removeSNPs
+      report runLOLA samples segmentPMDs segmentUMRsLMRs seqlengths
       seqlevels<- sigCategories sites2ignore size solve.QP stopCluster sva
-      target tsne type types universeCounts useMart v var.diff varFit
-      varLabels x xmlValue y yint
+      target texthere tsne type types ucscTableQuery universeCounts useMart
+      v var.diff varFit varLabels x x2 xmlValue y y2 yint
     ```
 
 # RTransProb
@@ -4310,7 +4523,7 @@ Run `revdep_details(,"RnBeads")` for more info
 * Version: 0.3.3
 * Source code: https://github.com/cran/RTransProb
 * Date/Publication: 2018-07-17 17:10:11 UTC
-* Number of recursive dependencies: 73
+* Number of recursive dependencies: 87
 
 Run `revdep_details(,"RTransProb")` for more info
 
@@ -4325,41 +4538,18 @@ Run `revdep_details(,"RTransProb")` for more info
     See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/RTransProb/new/RTransProb.Rcheck/00install.out’ for details.
     ```
 
-# scmap
+# scDblFinder
 
 <details>
 
-* Version: 1.6.0
-* Source code: https://github.com/cran/scmap
-* URL: https://github.com/hemberg-lab/scmap
-* BugReports: https://support.bioconductor.org/t/scmap/
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 81
+* Version: 1.1.8
+* Source code: https://github.com/cran/scDblFinder
+* URL: https://github.com/plger/scDblFinder
+* BugReports: https://github.com/plger/scDblFinder/issues
+* Date/Publication: 2020-03-05
+* Number of recursive dependencies: 115
 
-Run `revdep_details(,"scmap")` for more info
-
-</details>
-
-## In both
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘Biobase’
-      All declared Imports should be used.
-    ```
-
-# scMerge
-
-<details>
-
-* Version: 1.0.0
-* Source code: https://github.com/cran/scMerge
-* URL: https://github.com/SydneyBioX/scMerge
-* BugReports: https://github.com/SydneyBioX/scMerge/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 140
-
-Run `revdep_details(,"scMerge")` for more info
+Run `revdep_details(,"scDblFinder")` for more info
 
 </details>
 
@@ -4367,20 +4557,73 @@ Run `revdep_details(,"scMerge")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    make_para_gn_parallel: no visible binding for global variable ‘i’
+    plotROCs: no visible binding for global variable ‘FPR’
+    plotROCs: no visible binding for global variable ‘TPR’
+    plotROCs: no visible binding for global variable ‘method’
+    scDblFinder : <anonymous>: no visible binding for global variable
+      ‘ndims’
     Undefined global functions or variables:
-      i
+      FPR TPR method ndims
+    ```
+
+# scmap
+
+<details>
+
+* Version: 1.8.0
+* Source code: https://github.com/cran/scmap
+* URL: https://github.com/hemberg-lab/scmap
+* BugReports: https://support.bioconductor.org/t/scmap/
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 93
+
+Run `revdep_details(,"scmap")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... WARNING
+    ```
+    ...
+      Warning: 'isSpike' is deprecated.
+      Warning: 'spikeNames' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'isSpike<-' is deprecated.
+      Warning: 'spikeNames' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'spikeNames' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'isSpike<-' is deprecated.
+      Warning: 'spikeNames' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'spikeNames' is deprecated.
+      Warning: 'isSpike' is deprecated.
+      Warning: 'isSpike<-' is deprecated.
+      Warning: 'spikeNames' is deprecated.
+      Warning: 'isSpike' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘Biobase’
+      All declared Imports should be used.
     ```
 
 # scone
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * Source code: https://github.com/cran/scone
 * BugReports: https://github.com/YosefLab/scone/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 197
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 220
 
 Run `revdep_details(,"scone")` for more info
 
@@ -4414,17 +4657,16 @@ Run `revdep_details(,"scone")` for more info
       visSelectNodes ylim
     ```
 
-# SemiParSampleSel
+# semtree
 
 <details>
 
-* Version: 1.5
-* Source code: https://github.com/cran/SemiParSampleSel
-* URL: http://www.ucl.ac.uk/statistics/people/giampieromarra
-* Date/Publication: 2017-05-17 17:55:57 UTC
-* Number of recursive dependencies: 24
+* Version: 0.9.14
+* Source code: https://github.com/cran/semtree
+* Date/Publication: 2020-01-07 22:00:02 UTC
+* Number of recursive dependencies: 83
 
-Run `revdep_details(,"SemiParSampleSel")` for more info
+Run `revdep_details(,"semtree")` for more info
 
 </details>
 
@@ -4432,7 +4674,7 @@ Run `revdep_details(,"SemiParSampleSel")` for more info
 
 *   checking package dependencies ... ERROR
     ```
-    Package required but not available: ‘copula’
+    Package required but not available: ‘OpenMx’
     
     See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
     manual.
@@ -4442,12 +4684,12 @@ Run `revdep_details(,"SemiParSampleSel")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * Source code: https://github.com/cran/sesame
 * URL: https://github.com/zwdzwd/sesame
 * BugReports: https://github.com/zwdzwd/sesame/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 156
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 163
 
 Run `revdep_details(,"sesame")` for more info
 
@@ -4460,13 +4702,14 @@ Run `revdep_details(,"sesame")` for more info
     Running examples in ‘sesame-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: IG
-    > ### Title: IG getter generic
-    > ### Aliases: IG IG,SigSet-method
+    > ### Name: DML
+    > ### Title: Test differential methylation on each locus
+    > ### Aliases: DML
     > 
     > ### ** Examples
     > 
-    > sset <- sesameDataGet('HM450.1.TCGA.PAAD')$sset
+    > data <- sesameDataGet('HM450.76.TCGA.matched')
+    Testing for internet connectivity via https_proxy... success!
     Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
       Invalid Cache: sqlite file
       Hub has not been added to cache
@@ -4477,14 +4720,18 @@ Run `revdep_details(,"sesame")` for more info
 
 *   checking tests ...
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      12: ExperimentHub(localHub = TRUE)
-      13: .Hub("ExperimentHub", hub, cache, proxy, localHub, ...)
-      14: .create_cache(.class, url, cache, proxy, localHub)
-      15: .updateHubDB(hub_bfc, .class, url, proxy, localHub)
-      16: stop("Invalid Cache: sqlite file", "\n  Hub has not been added to cache", "\n  Run again with 'localHub=FALSE'")
+    ...
+      Invalid Cache: sqlite file
+        Hub has not been added to cache
+        Run again with 'localHub=FALSE'
+      Backtrace:
+        1. sesame::makeExampleSeSAMeDataSet()
+        2. sesameData::sesameDataGet(paste0(platform, ".address"))
+       10. sesameData:::.sesameDataGet(title, dateAdded = dateAdded)
+       12. ExperimentHub::ExperimentHub(localHub = TRUE)
+       13. AnnotationHub::.Hub(...)
+       14. AnnotationHub:::.create_cache(.class, url, cache, proxy, localHub)
+       15. AnnotationHub:::.updateHubDB(hub_bfc, .class, url, proxy, localHub)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
       [ OK: 0 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 4 ]
@@ -4501,10 +4748,10 @@ Run `revdep_details(,"sesame")` for more info
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.22.0
 * Source code: https://github.com/cran/shinyMethyl
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 137
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 136
 
 Run `revdep_details(,"shinyMethyl")` for more info
 
@@ -4550,16 +4797,42 @@ Run `revdep_details(,"shinyMethyl")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * Source code: https://github.com/cran/SIAMCAT
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 99
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 111
 
 Run `revdep_details(,"SIAMCAT")` for more info
 
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+            if (verbose > 0) 
+                message("+++ Not adding any of the meta-variables as predictor", 
+                    " to the feature matrix")
+        }
+        e.time <- proc.time()[3]
+        if (verbose > 1) 
+            message(paste("+ finished add.meta.pred in", formatC(e.time - 
+                s.time, digits = 3), "s"))
+        if (verbose == 1) 
+            message("Adding metadata as predictor finished")
+        return(siamcat)
+    }
+    <bytecode: 0x11905e28>
+    <environment: namespace:SIAMCAT>
+     --- function search by body ---
+    Function add.meta.pred in namespace SIAMCAT has this body.
+     ----------- END OF FAILURE REPORT -------------- 
+    Error in pred.names != "" && !is.null(pred.names) : 
+      'length(x) = 2 > 1' in coercion to 'logical(1)'
+    Calls: add.meta.pred
+    Execution halted
+    ```
 
 *   checking data for non-ASCII characters ... NOTE
     ```
@@ -4570,9 +4843,9 @@ Run `revdep_details(,"SIAMCAT")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * Source code: https://github.com/cran/SICtools
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 39
 
 Run `revdep_details(,"SICtools")` for more info
@@ -4581,9 +4854,11 @@ Run `revdep_details(,"SICtools")` for more info
 
 ## In both
 
-*   checking whether package ‘SICtools’ can be installed ... ERROR
+*   checking whether package ‘SICtools’ can be installed ... WARNING
     ```
-    Installation failed.
+    Found the following significant warnings:
+      md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
+      Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
     See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
     ```
 
@@ -4604,290 +4879,31 @@ Run `revdep_details(,"SICtools")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-## Installation
+*   checking R code for possible problems ... NOTE
+    ```
+    .indelDiffFunc: no visible global function definition for ‘fisher.test’
+    .indelDiffFunc: no visible global function definition for ‘dist’
+    indelDiff: no visible global function definition for ‘read.delim’
+    snpDiff : calcInfoRange : <anonymous>: no visible global function
+      definition for ‘fisher.test’
+    snpDiff : calcInfoRange : <anonymous>: no visible global function
+      definition for ‘dist’
+    Undefined global functions or variables:
+      dist fisher.test read.delim
+    Consider adding
+      importFrom("stats", "dist", "fisher.test")
+      importFrom("utils", "read.delim")
+    to your NAMESPACE file.
+    ```
 
-### Devel
-
-```
-* installing *source* package ‘SICtools’ ...
-** using staged installation
-** libs
-** arch - 
-Makefile:24: warning: overriding recipe for target `.c.o'
-/wynton/home/cbi/shared/software/CBI/R-3.6.1/lib64/R/etc/Makeconf:167: warning: ignoring old recipe for target `.c.o'
-make[1]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
-bgzf.c: In function ‘worker_aux’:
-bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
-  int i, tmp, stop = 0;
-         ^
-bgzf.c: In function ‘bgzf_close’:
-bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
-  int ret, count, block_length;
-           ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
-bam_pileup.c: In function ‘resolve_cigar2’:
-bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
-  int k, is_head = 0;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
-bam_reheader.c: In function ‘bam_reheader’:
-bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
-  bam_header_t *old;
-                ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
-kprobaln.c: In function ‘kpa_glocal’:
-kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
-  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
-                     ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
-ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
-bcf.c: In function ‘bcf_fmt_core’:
-bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
-     int iPL = -1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
-bcfutils.c: In function ‘bcf_fit_alt’:
-bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
-     int ipl=-1, igt=-1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
-em.c: In function ‘bcf_em1’:
-em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
-  int i, n, n2;
-            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
-ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-make[2]: Nothing to be done for `lib'.
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
-bam_plcmd.c: In function ‘mpileup’:
-bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
-    int total_depth, _ref0, ref16;
-                            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
-bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
-bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                            ^
-bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                     ^
-bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
-  int N, l_run, ref_type;
-                ^
-bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                                  ^
-bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
-cut_target.c: In function ‘main_cut_target’:
-cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
-  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
-                                    ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
-bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
- #include <curses.h>
-                    ^
-compilation terminated.
-make[1]: *** [bam_tview_curses.o] Error 1
-make[1]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make: *** [all-recur] Error 1
-ERROR: compilation failed for package ‘SICtools’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/SICtools’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘SICtools’ ...
-** using staged installation
-** libs
-** arch - 
-Makefile:24: warning: overriding recipe for target `.c.o'
-/wynton/home/cbi/shared/software/CBI/R-3.6.1/lib64/R/etc/Makeconf:167: warning: ignoring old recipe for target `.c.o'
-make[1]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -DBGZF_CACHE -I. bgzf.c -o bgzf.o
-bgzf.c: In function ‘worker_aux’:
-bgzf.c:392:9: warning: variable ‘tmp’ set but not used [-Wunused-but-set-variable]
-  int i, tmp, stop = 0;
-         ^
-bgzf.c: In function ‘bgzf_close’:
-bgzf.c:572:11: warning: variable ‘count’ set but not used [-Wunused-but-set-variable]
-  int ret, count, block_length;
-           ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kstring.c -o kstring.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_aux.c -o bam_aux.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam.c -o bam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_import.c -o bam_import.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam.c -o sam.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_index.c -o bam_index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_pileup.c -o bam_pileup.o
-bam_pileup.c: In function ‘resolve_cigar2’:
-bam_pileup.c:75:9: warning: variable ‘is_head’ set but not used [-Wunused-but-set-variable]
-  int k, is_head = 0;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_lpileup.c -o bam_lpileup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_md.c -o bam_md.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. razf.c -o razf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. faidx.c -o faidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedidx.c -o bedidx.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. knetfile.c -o knetfile.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_sort.c -o bam_sort.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_header.c -o sam_header.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_reheader.c -o bam_reheader.o
-bam_reheader.c: In function ‘bam_reheader’:
-bam_reheader.c:12:16: warning: variable ‘old’ set but not used [-Wunused-but-set-variable]
-  bam_header_t *old;
-                ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kprobaln.c -o kprobaln.o
-kprobaln.c: In function ‘kpa_glocal’:
-kprobaln.c:78:21: warning: variable ‘is_diff’ set but not used [-Wunused-but-set-variable]
-  int bw, bw2, i, k, is_diff = 0, is_backward = 1, Pr;
-                     ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_cat.c -o bam_cat.o
-ar -csru libbam.a bgzf.o kstring.o bam_aux.o bam.o bam_import.o sam.o bam_index.o bam_pileup.o bam_lpileup.o bam_md.o razf.o faidx.o bedidx.o knetfile.o bam_sort.o sam_header.o bam_reheader.o kprobaln.o bam_cat.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf.c -o bcf.o
-bcf.c: In function ‘bcf_fmt_core’:
-bcf.c:233:9: warning: variable ‘iPL’ set but not used [-Wunused-but-set-variable]
-     int iPL = -1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. vcf.c -o vcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcfutils.c -o bcfutils.o
-bcfutils.c: In function ‘bcf_fit_alt’:
-bcfutils.c:119:9: warning: variable ‘ipl’ set but not used [-Wunused-but-set-variable]
-     int ipl=-1, igt=-1;
-         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. prob1.c -o prob1.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. em.c -o em.o
-em.c: In function ‘bcf_em1’:
-em.c:174:12: warning: variable ‘n2’ set but not used [-Wunused-but-set-variable]
-  int i, n, n2;
-            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kfunc.c -o kfunc.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. kmin.c -o kmin.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. index.c -o index.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. fet.c -o fet.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. mut.c -o mut.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I.. -I. bcf2qcall.c -o bcf2qcall.o
-ar -csru libbcf.a bcf.o vcf.o bcfutils.o prob1.o em.o kfunc.o kmin.o index.o fet.o mut.o bcf2qcall.o
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/bcftools'
-make[2]: Entering directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-make[2]: Nothing to be done for `lib'.
-make[2]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src/misc'
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview.c -o bam_tview.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_plcmd.c -o bam_plcmd.o
-bam_plcmd.c: In function ‘mpileup’:
-bam_plcmd.c:333:28: warning: variable ‘ref16’ set but not used [-Wunused-but-set-variable]
-    int total_depth, _ref0, ref16;
-                            ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sam_view.c -o sam_view.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdup.c -o bam_rmdup.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_rmdupse.c -o bam_rmdupse.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_mate.c -o bam_mate.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_stat.c -o bam_stat.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_color.c -o bam_color.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamtk.c -o bamtk.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. kaln.c -o kaln.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf.c -o bam2bcf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2bcf_indel.c -o bam2bcf_indel.o
-bam2bcf_indel.c: In function ‘bcf_call_gap_prep’:
-bam2bcf_indel.c:121:28: warning: variable ‘query’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                            ^
-bam2bcf_indel.c:121:21: warning: variable ‘ref2’ set but not used [-Wunused-but-set-variable]
-  char *inscns = 0, *ref2, *query, **ref_sample;
-                     ^
-bam2bcf_indel.c:120:16: warning: variable ‘ref_type’ set but not used [-Wunused-but-set-variable]
-  int N, l_run, ref_type;
-                ^
-bam2bcf_indel.c:119:82: warning: variable ‘score2’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                                  ^
-bam2bcf_indel.c:119:73: warning: variable ‘score1’ set but not used [-Wunused-but-set-variable]
-  int i, s, j, k, t, n_types, *types, max_rd_len, left, right, max_ins, *score1, *score2, max_ref2;
-                                                                         ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. errmod.c -o errmod.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. sample.c -o sample.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. cut_target.c -o cut_target.o
-cut_target.c: In function ‘main_cut_target’:
-cut_target.c:137:36: warning: variable ‘lastpos’ set but not used [-Wunused-but-set-variable]
-  int c, tid, pos, n, lasttid = -1, lastpos = -1, l, max_l;
-                                    ^
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. phase.c -o phase.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam2depth.c -o bam2depth.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. padding.c -o padding.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bedcov.c -o bedcov.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bamshuf.c -o bamshuf.o
-gcc -c -g -Wall -O2 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_USE_KNETFILE -D_CURSES_LIB=1 -I. bam_tview_curses.c -o bam_tview_curses.o
-bam_tview_curses.c:5:20: fatal error: curses.h: No such file or directory
- #include <curses.h>
-                    ^
-compilation terminated.
-make[1]: *** [bam_tview_curses.o] Error 1
-make[1]: Leaving directory `/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/00_pkg_src/SICtools/src'
-make: *** [all-recur] Error 1
-ERROR: compilation failed for package ‘SICtools’
-* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/SICtools/old/SICtools.Rcheck/SICtools’
-
-```
 # Single.mTEC.Transcriptomes
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * Source code: https://github.com/cran/Single.mTEC.Transcriptomes
-* Date/Publication: 2019-05-07
-* Number of recursive dependencies: 142
+* Date/Publication: 2019-11-05
+* Number of recursive dependencies: 161
 
 Run `revdep_details(,"Single.mTEC.Transcriptomes")` for more info
 
@@ -4897,21 +4913,21 @@ Run `revdep_details(,"Single.mTEC.Transcriptomes")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 765.4Mb
+      installed size is 774.5Mb
       sub-directories of 1Mb or more:
-        data  765.3Mb
+        data  774.4Mb
     ```
 
 # singleCellTK
 
 <details>
 
-* Version: 1.4.2
+* Version: 1.6.0
 * Source code: https://github.com/cran/singleCellTK
 * URL: https://compbiomed.github.io/sctk_docs/
 * BugReports: https://github.com/compbiomed/singleCellTK/issues
-* Date/Publication: 2019-08-04
-* Number of recursive dependencies: 183
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 216
 
 Run `revdep_details(,"singleCellTK")` for more info
 
@@ -4929,7 +4945,8 @@ Run `revdep_details(,"singleCellTK")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Namespace in Imports field not imported from: ‘shinythemes’
+    Namespaces in Imports field not imported from:
+      ‘celda’ ‘shinyBS’ ‘shinythemes’
       All declared Imports should be used.
     ```
 
@@ -4937,12 +4954,12 @@ Run `revdep_details(,"singleCellTK")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * Source code: https://github.com/cran/singscore
 * URL: https://davislaboratory.github.io/singscore
 * BugReports: https://github.com/DavisLaboratory/singscore/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 110
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 121
 
 Run `revdep_details(,"singscore")` for more info
 
@@ -4955,7 +4972,8 @@ Run `revdep_details(,"singscore")` for more info
     plotDispersion: no visible binding for global variable ‘Score’
     plotDispersion: no visible binding for global variable ‘Dispersion’
     plotDispersion: no visible binding for global variable ‘Class’
-    plotDispersion: no visible binding for global variable ‘SampleID’
+    plotDispersion: no visible binding for global variable ‘SampleText’
+    plotDispersion: no visible binding for global variable ‘SampleLabel’
     plotRankDensity_intl: no visible binding for global variable ‘Ranks’
     plotRankDensity_intl: no visible binding for global variable ‘upDown’
     plotRankDensity_intl: no visible binding for global variable
@@ -4964,45 +4982,23 @@ Run `revdep_details(,"singscore")` for more info
     plotScoreLandscape: no visible binding for global variable ‘sc1’
     plotScoreLandscape: no visible binding for global variable ‘sc2’
     projectScoreLandscape: no visible binding for global variable
-      ‘SampleLabel’
+      ‘SampleText’
     projectScoreLandscape: no visible binding for global variable ‘Class’
+    projectScoreLandscape: no visible binding for global variable
+      ‘SampleLabel’
     Undefined global functions or variables:
-      ..density.. Class Dispersion EntrezID Ranks SampleID SampleLabel
+      ..density.. Class Dispersion EntrezID Ranks SampleLabel SampleText
       Score sc1 sc2 upDown
-    ```
-
-# slingshot
-
-<details>
-
-* Version: 1.2.0
-* Source code: https://github.com/cran/slingshot
-* BugReports: https://github.com/kstreet13/slingshot/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 206
-
-Run `revdep_details(,"slingshot")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘clusterExperiment’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
 # SMAD
 
 <details>
 
-* Version: 1.0.1
+* Version: 1.2.0
 * Source code: https://github.com/cran/SMAD
-* Date/Publication: 2019-05-14
-* Number of recursive dependencies: 45
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 54
 
 Run `revdep_details(,"SMAD")` for more info
 
@@ -5016,58 +5012,16 @@ Run `revdep_details(,"SMAD")` for more info
       All declared Imports should be used.
     ```
 
-# smerc
-
-<details>
-
-* Version: 1.0.1
-* Source code: https://github.com/cran/smerc
-* Date/Publication: 2019-07-15 22:00:03 UTC
-* Number of recursive dependencies: 77
-
-Run `revdep_details(,"smerc")` for more info
-
-</details>
-
-## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/test-all.R’ failed.
-    Last 13 lines of output:
-      1: SpatialEpi::besag_newell at testthat/test-bn.test.R:44
-      2: getExportedValue(pkg, name)
-      3: asNamespace(ns)
-      4: getNamespace(ns)
-      5: loadNamespace(name)
-      6: withRestarts(stop(cond), retry_loadNamespace = function() NULL)
-      7: withOneRestart(expr, restarts[[1L]])
-      8: doWithOneRestart(return(expr), restart)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 241 | SKIPPED: 1 | WARNINGS: 0 | FAILED: 1 ]
-      1. Error: (unknown) (@test-bn.test.R#44) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘SpatialEpi’
-    ```
-
 # splatter
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.1
 * Source code: https://github.com/cran/splatter
 * URL: https://github.com/Oshlack/splatter
 * BugReports: https://github.com/Oshlack/splatter/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 215
+* Date/Publication: 2020-02-14
+* Number of recursive dependencies: 210
 
 Run `revdep_details(,"splatter")` for more info
 
@@ -5075,42 +5029,20 @@ Run `revdep_details(,"splatter")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-    Running examples in ‘splatter-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: zinbSimulate
-    > ### Title: ZINB-WaVE simulation
-    > ### Aliases: zinbSimulate
-    > 
-    > ### ** Examples
-    > 
-    > sim <- zinbSimulate()
-    Error in newZINBParams() : 
-      The ZINB-WaVE simulation requires the 'zinbwave' package.
-    Calls: zinbSimulate -> <Anonymous> -> checkClass -> newZINBParams
-    Execution halted
-    ```
-
-*   checking Rd cross-references ... WARNING
-    ```
-    Unknown package ‘zinbwave’ in Rd xrefs
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘zinbwave’
+    Unexported object imported by a ':::' call: ‘rlang:::warn_deprecated’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # SRGnet
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * Source code: https://github.com/cran/SRGnet
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 91
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 102
 
 Run `revdep_details(,"SRGnet")` for more info
 
@@ -5153,93 +5085,13 @@ Run `revdep_details(,"SRGnet")` for more info
     to your NAMESPACE file.
     ```
 
-# staRdom
-
-<details>
-
-* Version: 1.0.18
-* Source code: https://github.com/cran/staRdom
-* URL: https://cran.r-project.org/package=staRdom
-* BugReports: https://github.com/MatthiasPucher/staRdom/issues
-* Date/Publication: 2019-08-30 14:10:02 UTC
-* Number of recursive dependencies: 150
-
-Run `revdep_details(,"staRdom")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘xlsx’
-    ```
-
-# stm
-
-<details>
-
-* Version: 1.3.3
-* Source code: https://github.com/cran/stm
-* URL: http://structuraltopicmodel.com
-* BugReports: https://github.com/bstewart/stm/issues
-* Date/Publication: 2018-01-28 21:13:01 UTC
-* Number of recursive dependencies: 93
-
-Run `revdep_details(,"stm")` for more info
-
-</details>
-
-## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      Completed M-Step. 
-      ....................................................................................................
-      Completed Group 2 E-Step (1 seconds). 
-      Completed M-Step. 
-      Model Terminated Before Convergence Reached 
-      ── 1. Error: plot.STM doesn't throw error  (@test-visualize.R#4)  ──────────────
-      cannot open the connection to 'http://goo.gl/VPdxlS'
-      1: load(url("http://goo.gl/VPdxlS")) at testthat/test-visualize.R:4
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 9 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: plot.STM doesn't throw error  (@test-visualize.R#4) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘stmVignette.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘stmVignette.Rnw’
-      ...
-    [2,]    1    1    1
-    
-    
-    > load(url("http://goo.gl/VPdxlS"))
-    Warning in load(url("http://goo.gl/VPdxlS")) :
-      URL 'http://goo.gl/VPdxlS': status was 'Couldn't resolve host name'
-    
-      When sourcing 'stmVignette.R':
-    Error: cannot open the connection to 'http://goo.gl/VPdxlS'
-    Execution halted
-    ```
-
 # STROMA4
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * Source code: https://github.com/cran/STROMA4
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 12
 
 Run `revdep_details(,"STROMA4")` for more info
@@ -5274,12 +5126,12 @@ Run `revdep_details(,"STROMA4")` for more info
 
 <details>
 
-* Version: 0.9.4
+* Version: 0.9.6
 * Source code: https://github.com/cran/summarytools
 * URL: https://github.com/dcomtois/summarytools
 * BugReports: https://github.com/dcomtois/summarytools/issues
-* Date/Publication: 2019-08-24 05:20:02 UTC
-* Number of recursive dependencies: 53
+* Date/Publication: 2020-03-02 07:20:02 UTC
+* Number of recursive dependencies: 73
 
 Run `revdep_details(,"summarytools")` for more info
 
@@ -5303,9 +5155,9 @@ Run `revdep_details(,"summarytools")` for more info
 
 <details>
 
-* Version: 0.2.0
+* Version: 0.3.0
 * Source code: https://github.com/cran/SuperPCA
-* Date/Publication: 2019-05-24 14:10:03 UTC
+* Date/Publication: 2020-03-04 11:10:02 UTC
 * Number of recursive dependencies: 35
 
 Run `revdep_details(,"SuperPCA")` for more info
@@ -5325,10 +5177,10 @@ Run `revdep_details(,"SuperPCA")` for more info
 
 <details>
 
-* Version: 3.32.1
+* Version: 3.34.0
 * Source code: https://github.com/cran/sva
-* Date/Publication: 2019-05-22
-* Number of recursive dependencies: 71
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 79
 
 Run `revdep_details(,"sva")` for more info
 
@@ -5350,12 +5202,12 @@ Run `revdep_details(,"sva")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.1.0
 * Source code: https://github.com/cran/TCA
-* URL: https://www.biorxiv.org/content/10.1101/437368v1
+* URL: https://www.nature.com/articles/s41467-019-11052-9
 * BugReports: https://github.com/cozygene/TCA/issues
-* Date/Publication: 2019-05-22 14:10:03 UTC
-* Number of recursive dependencies: 45
+* Date/Publication: 2019-11-16 17:10:02 UTC
+* Number of recursive dependencies: 62
 
 Run `revdep_details(,"TCA")` for more info
 
@@ -5366,7 +5218,7 @@ Run `revdep_details(,"TCA")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
-      ‘Matrix’ ‘quadprog’
+      ‘Matrix’ ‘glmnet’ ‘quadprog’
       All declared Imports should be used.
     ```
 
@@ -5374,10 +5226,10 @@ Run `revdep_details(,"TCA")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * Source code: https://github.com/cran/tenXplore
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 105
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 114
 
 Run `revdep_details(,"tenXplore")` for more info
 
@@ -5395,10 +5247,10 @@ Run `revdep_details(,"tenXplore")` for more info
 
 <details>
 
-* Version: 2.36.0
+* Version: 2.38.1
 * Source code: https://github.com/cran/topGO
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 46
+* Date/Publication: 2019-12-16
+* Number of recursive dependencies: 41
 
 Run `revdep_details(,"topGO")` for more info
 
@@ -5450,20 +5302,119 @@ Run `revdep_details(,"topGO")` for more info
       mt.rawp2adjp mt.teststat name pieGlyph scoreInNode toDot txtLabel
     ```
 
+# treeHMM
+
+<details>
+
+* Version: 0.1.1
+* Source code: https://github.com/cran/treeHMM
+* Date/Publication: 2019-12-12 17:10:02 UTC
+* Number of recursive dependencies: 10
+
+Run `revdep_details(,"treeHMM")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘Matrix’
+      All declared Imports should be used.
+    ```
+
 # VanillaICE
 
 <details>
 
-* Version: 1.46.0
+* Version: 1.48.0
 * Source code: https://github.com/cran/VanillaICE
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 76
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 71
 
 Run `revdep_details(,"VanillaICE")` for more info
 
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+        rowRanges = rowRanges, colData = colData))
+    where 8: SnpArrayExperiment(cn = lrr(snp_exp), baf = baf(snp_exp), rowRanges = rowRanges(snp_exp))
+    where 9: SnpArrayExperiment(cn = lrr(snp_exp), baf = baf(snp_exp), rowRanges = rowRanges(snp_exp))
+    
+     --- value of length: 2 type: logical ---
+    [1] TRUE TRUE
+     --- function from context --- 
+    function (object) 
+    {
+        msg <- validObject(rowRanges(object))
+        msg <- msg && (requiredAssays() %in% names(assays(object)))
+        msg
+    }
+    <bytecode: 0x1b07aa68>
+    <environment: namespace:VanillaICE>
+     --- function search by body ---
+     ----------- END OF FAILURE REPORT -------------- 
+    Error in msg && (requiredAssays() %in% names(assays(object))) : 
+      'length(x) = 2 > 1' in coercion to 'logical(1)'
+    Calls: SnpArrayExperiment ... validObject -> anyStrings -> isTRUE -> validityMethod
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+    ...
+      Number of errors: 5 
+      Number of failures: 0 
+      
+       
+      1 Test Suite : 
+      VanillaICE unit testing - 24 test functions, 5 errors, 0 failures
+      ERROR in test_SnpArrayExperiment: Error in msg && (requiredAssays() %in% names(assays(object))) : 
+        'length(x) = 2 > 1' in coercion to 'logical(1)'
+      ERROR in test_SnpArrayExperiment2: Error in msg && (requiredAssays() %in% names(assays(object))) : 
+        'length(x) = 2 > 1' in coercion to 'logical(1)'
+      ERROR in test_hmm_cnset: Error in msg && (requiredAssays() %in% names(assays(object))) : 
+        'length(x) = 2 > 1' in coercion to 'logical(1)'
+      ERROR in test_state4: Error in msg && (requiredAssays() %in% names(assays(object))) : 
+        'length(x) = 2 > 1' in coercion to 'logical(1)'
+      ERROR in test_cn_NAs: Error in msg && (requiredAssays() %in% names(assays(object))) : 
+        'length(x) = 2 > 1' in coercion to 'logical(1)'
+      Error: 
+      
+      unit testing failed (#test failures: 0, #R errors: 5)
+      
+      Execution halted
+    ```
+
+*   checking running R code from vignettes ...
+    ```
+    ...
+    }
+    <bytecode: 0x9eb17e0>
+    <environment: namespace:VanillaICE>
+     --- function search by body ---
+     ----------- END OF FAILURE REPORT -------------- 
+    
+      When sourcing ‘VanillaICE.R’:
+    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
+    Execution halted
+    when running code in ‘crlmmDownstream.Rnw’
+      ...
+        msg
+    }
+    <bytecode: 0x1dfa9690>
+    <environment: namespace:VanillaICE>
+     --- function search by body ---
+     ----------- END OF FAILURE REPORT -------------- 
+    
+      When sourcing ‘crlmmDownstream.R’:
+    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
+    Execution halted
+    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -5475,34 +5426,22 @@ Run `revdep_details(,"VanillaICE")` for more info
     ```
     Namespace in Imports field not imported from: ‘BSgenome.Hsapiens.UCSC.hg18’
       All declared Imports should be used.
-    Unexported object imported by a ':::' call: ‘SummarizedExperiment:::.ShallowSimpleListAssays0’
-      See the note in ?`:::` about the use of this operator.
     ```
 
 # wateRmelon
 
 <details>
 
-* Version: 1.28.0
+* Version: 1.30.0
 * Source code: https://github.com/cran/wateRmelon
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 141
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 158
 
 Run `revdep_details(,"wateRmelon")` for more info
 
 </details>
 
 ## In both
-
-*   checking whether package ‘wateRmelon’ can be installed ... WARNING
-    ```
-    Found the following significant warnings:
-      Note: possible error in 'preprocessIlluminaMethylation(path2data = path2data, ': unused arguments (path2data = path2data, path2controlData = path2controlData, projectName = projectName) 
-    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/wateRmelon/new/wateRmelon.Rcheck/00install.out’ for details.
-    Information on the location(s) of code generating the ‘Note’s can be
-    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
-    to ‘yes’.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -5522,9 +5461,6 @@ Run `revdep_details(,"wateRmelon")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    'library' or 'require' call to ‘irlba’ in package code.
-      Please use :: or requireNamespace() instead.
-      See section 'Suggested packages' in the 'Writing R Extensions' manual.
     Packages in Depends field not imported from:
       ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘matrixStats’
       ‘methylumi’
@@ -5557,8 +5493,8 @@ Run `revdep_details(,"wateRmelon")` for more info
       getManifestInfo getMeth getNBeads getProbeInfo getProbeType getRed
       getSnpBeta getUnmeth hm27.controls hm27.ordering hm450.controls
       hm450.ordering intensitiesByChannel metadata methylated methylated<-
-      methylumiR n.sd prcomp_irlba preprocessRaw preprocessSWAN
-      probeAnnotationsCategory projectName pval.detect<- pvals unmethylated
+      methylumiR n.sd preprocessRaw preprocessSWAN probeAnnotationsCategory
+      projectName pval.detect<- pvals subsetByLoci unmethylated
       unmethylated<- warn
     ```
 
@@ -5566,11 +5502,11 @@ Run `revdep_details(,"wateRmelon")` for more info
 
 <details>
 
-* Version: 1.16.0
+* Version: 1.18.0
 * Source code: https://github.com/cran/XBSeq
 * URL: https://github.com/Liuy12/XBSeq
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 119
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 127
 
 Run `revdep_details(,"XBSeq")` for more info
 
@@ -5613,70 +5549,5 @@ Run `revdep_details(,"XBSeq")` for more info
                  "rnbinom")
       importFrom("utils", "data")
     to your NAMESPACE file.
-    ```
-
-# yarn
-
-<details>
-
-* Version: 1.10.0
-* Source code: https://github.com/cran/yarn
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 145
-
-Run `revdep_details(,"yarn")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    Running examples in ‘yarn-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: annotateFromBiomart
-    > ### Title: Annotate your Expression Set with biomaRt
-    > ### Aliases: annotateFromBiomart
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > data(skin)
-    > # subsetting and changing column name just for a silly example
-    > skin <- skin[1:10,]
-    > colnames(fData(skin)) = paste("names",1:6)
-    > biomart<-"ENSEMBL_MART_ENSEMBL";
-    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
-    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.ensembl.org; Name or service not known
-    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
-# zinbwave
-
-<details>
-
-* Version: 1.6.0
-* Source code: https://github.com/cran/zinbwave
-* BugReports: https://github.com/drisso/zinbwave/issues
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 194
-
-Run `revdep_details(,"zinbwave")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘copula’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
