@@ -5,25 +5,11 @@
 \alias{colVars}
 \title{Variance estimates for each row (column) in a matrix}
 \usage{
-rowVars(
-  x,
-  rows = NULL,
-  cols = NULL,
-  na.rm = FALSE,
-  center = NULL,
-  dim. = dim(x),
-  ...
-)
+rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+  dim. = dim(x), ...)
 
-colVars(
-  x,
-  rows = NULL,
-  cols = NULL,
-  na.rm = FALSE,
-  center = NULL,
-  dim. = dim(x),
-  ...
-)
+colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+  dim. = dim(x), ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

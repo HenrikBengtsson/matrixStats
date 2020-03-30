@@ -32,3 +32,4 @@ ByteCompile: TRUE
 URL: https://github.com/HenrikBengtsson/matrixStats
 BugReports: https://github.com/HenrikBengtsson/matrixStats/issues
 RoxygenNote: 7.1.0
+Roxygen: list(old_usage = TRUE)
