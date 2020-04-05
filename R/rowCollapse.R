@@ -34,6 +34,9 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
+  # Argument 'idxs':
+  idxs <- rep(idxs, length.out = dim.[1L])
+
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows)) {
@@ -41,9 +44,6 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
     idxs <- idxs[rows]
   }
   dim. <- dim(x)
-
-  # Argument 'idxs':
-  idxs <- rep(idxs, length.out = dim.[1L])
 
   # Columns of interest
   cols <- 0:(dim.[2L] - 1L)
@@ -64,6 +64,9 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
     .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
   }
 
+  # Argument 'idxs':
+  idxs <- rep(idxs, length.out = dim.[2L])
+
   # Apply subset
   if (is.vector(x)) dim(x) <- dim.
   if (!is.null(cols)) {
@@ -71,9 +74,6 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
     idxs <- idxs[cols]
   }
   dim. <- dim(x)
-
-  # Argument 'idxs':
-  idxs <- rep(idxs, length.out = dim.[2L])
 
   # Rows of interest
   rows <- seq_len(dim.[1L])

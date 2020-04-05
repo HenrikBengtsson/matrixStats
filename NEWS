@@ -1,9 +1,13 @@
 Package: matrixStats
 ====================
 
-Version: 0.56.0-9000 [2020-03-13]
+Version: 0.56.0-9000 [2020-04-04]
 
- * ...
+BUG FIXES:
+
+ * colCollapse() and rowCollapse() did not expand 'idxs' argument before
+   subsetting by 'cols' and 'rows', respectively.  Thanks to Constantin
+   Ahlmann-Eltze at EMBL Heidelberg for reporting on this.
  
 
 Version: 0.56.0 [2020-03-12]
