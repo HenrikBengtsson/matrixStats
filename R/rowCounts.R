@@ -1,4 +1,4 @@
-#' Counts the number of occurrences of a specific value
+#' Counts the number of occurrences of a specific value or vector of values
 #'
 #' The row- and column-wise functions take either a matrix or a vector as
 #' input. If a vector, then argument \code{dim.} must be specified and fulfill
@@ -14,7 +14,7 @@
 #' elements (or rows and/or columns) to operate over. If
 #' \code{\link[base]{NULL}}, no subsetting is done.
 #'
-#' @param value A value to search for.
+#' @param value A value or vector of values to search for.
 #'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 #' are excluded first, otherwise not.
@@ -29,12 +29,17 @@
 #' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).
 #' \code{count()} returns a scalar of type \code{\link[base]{integer}} if
 #' the count is less than 2^31-1 (= \code{.Machine$integer.max}) otherwise
-#' a scalar of type \code{\link[base]{double}}.
+#' a scalar of type \code{\link[base]{double}}.  
+#' If value is a \code{\link[base]{vector}} of J values, a N x J (K x J) matrix 
+#' is returned with column names corresponding to the values.  
+#' Specifying value = \code{\link[base]{NULL}} will use all unique matrix values 
+#' (similar to \code{rowTabulates()} (\code{colTabulates()})).
 #'
 #' @example incl/rowCounts.R
 #'
-#' @author Henrik Bengtsson
-#' @seealso rowAlls
+#' @author Henrik Bengtsson. Brian Montgomery added support for a vector of
+#' values and value = NULL.
+#' @seealso rowAlls, rowTabulates
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
@@ -45,18 +50,31 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   } else {
     stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
   }
-
+  
   # Argument 'dim.':
   dim. <- as.integer(dim.)
-
+  
   # Argument 'value':
-  if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
+  if (is.null(value)) {
+    if (is.null(rows)) {
+      if (is.null(cols)) {
+        value <- sort(unique(as.vector(x)))
+      } else {
+        value <- sort(unique(as.vector(x[, cols])))
+      }
+    } else {
+      if (is.null(cols)) {
+        value <- sort(unique(as.vector(x[rows, ])))
+      } else {
+        value <- sort(unique(as.vector(x[rows, cols])))
+      }
+    }
   }
-
+  
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
-
+  
+  
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,25 +84,32 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
   } else {
     if (is.vector(x)) dim(x) <- dim.
-
+    
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
     else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
     else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
     dim. <- dim(x)
-
-    if (is.na(value)) {
-      counts <- apply(x, MARGIN = 1L, FUN = function(x) {
-        sum(is.na(x))
-      })
-    } else {
-      counts <- apply(x, MARGIN = 1L, FUN = function(x) {
-        sum(x == value, na.rm = na.rm)
-      })
+    counts <- allocMatrix(nrow = nrow(x), ncol = length(value), value = 0L)
+    for (i in seq_along(value)) {
+      
+      if (is.na(value[i])) {
+        counts[, i] <- apply(x, MARGIN = 1L, FUN = function(x) {
+          sum(is.na(x))
+        })
+      } else {
+        counts[, i] <- apply(x, MARGIN = 1L, FUN = function(x) {
+          sum(x == value[i], na.rm = na.rm)
+        })
+      }
     }
   }
-
-  as.integer(counts)
+  if (length(value) == 1) {
+    as.integer(counts)
+  } else {
+    colnames(counts) <- value
+    counts
+  }
 }
 
 
@@ -98,46 +123,66 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   } else {
     stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
   }
-
+  
   # Argument 'dim.':
   dim. <- as.integer(dim.)
-
+  
   # Argument 'value':
-  if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
-  }
-
-  # Coerce 'value' to matrix
-  storage.mode(value) <- storage.mode(x)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Count
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
-  } else {
-    if (is.vector(x)) dim(x) <- dim.
-
-    # Apply subset
-    if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
-    else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
-    else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
-    dim. <- dim(x)
-
-    if (is.na(value)) {
-      counts <- apply(x, MARGIN = 2L, FUN = function(x)
-        sum(is.na(x))
-      )
+  if (is.null(value)) {
+    if (is.null(rows)) {
+      if (is.null(cols)) {
+        value <- sort(unique(as.vector(x)))
+      } else {
+        value <- sort(unique(as.vector(x[, cols])))
+      }
     } else {
-      counts <- apply(x, MARGIN = 2L, FUN = function(x)
-        sum(x == value, na.rm = na.rm)
-      )
+      if (is.null(cols)) {
+        value <- sort(unique(as.vector(x[rows, ])))
+      } else {
+        value <- sort(unique(as.vector(x[rows, cols])))
+      }
     }
   }
-
-  as.integer(counts)
+  
+  # Coerce 'value' to matrix
+  storage.mode(value) <- storage.mode(x)
+  
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Count
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if (is.numeric(x) || is.logical(x)) {
+      na.rm <- as.logical(na.rm)
+      has_nas <- TRUE
+      counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
+    } else {
+      if (is.vector(x)) dim(x) <- dim.
+      
+      # Apply subset
+      if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
+      else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
+      else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+      dim. <- dim(x)
+      
+      counts <- allocMatrix(nrow = ncol(x), ncol = length(value), value = 0L)
+      for (i in seq_along(value)) {
+        if (is.na(value[i])) {
+          counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
+            sum(is.na(x))
+          )
+        } else {
+          counts[, i] <- apply(x, MARGIN = 2L, FUN = function(x)
+            sum(x == value[i], na.rm = na.rm)
+          )
+        }
+      }
+    }
+  if (length(value) == 1) {
+    as.integer(counts)
+  } else {
+    colnames(counts) <- value
+    counts
+  }
 }
 
 
@@ -148,18 +193,22 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   if (!is.vector(x)) {
     stop("Argument 'x' must be a vector: ", mode(x)[1L])
   }
-
+  
   # Argument 'value':
-  if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
+  if (is.null(value)) {
+    if (is.null(idxs)) {
+      value <- sort(unique(x))
+    } else {
+      value <- sort(unique(x[idxs]))
+    }
   }
-
+  
   # Coerce 'value' to matrix
   storage.mode(value) <- storage.mode(x)
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Count
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Count
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -167,13 +216,16 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   } else {
     # Apply subset
     if (!is.null(idxs)) x <- x[idxs]
-
-    if (is.na(value)) {
-      counts <- sum2(is.na(x))
-    } else {
-      counts <- sum2(x == value, na.rm = na.rm)
+    
+    counts <- integer(length(value))
+    for (i in seq_along(value)) {
+      if (is.na(value[i])) {
+        counts[i] <- sum2(is.na(x))
+      } else {
+        counts[i] <- sum2(x == value[i], na.rm = na.rm)
+      }
     }
-  }
-
+  } 
+  if (length(value) > 1) names(counts) <- value
   counts
 }

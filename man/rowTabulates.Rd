@@ -57,6 +57,6 @@ print(rowTabulates(y))
 print(colTabulates(y))
 }
 \author{
-Henrik Bengtsson
+Henrik Bengtsson.  Brian Montgomery moved loops to C for speed.
 }
 \keyword{utilities}

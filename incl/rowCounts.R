@@ -5,10 +5,21 @@ print(x)
 
 print(rowCounts(x, value = 2))
 ## [1]  0  1 NA  0
+print(rowCounts(x, value = 2:3))
+##       2  3
+## [1,]  0  0
+## [2,]  1  0
+## [3,] NA NA
+## [4,]  0  1
 print(colCounts(x, value = 2))
 ## [1]  1  1 NA
 print(colCounts(x, value = NA_integer_))
 ## [1] 0 0 1
+print(colCounts(x, value = NULL))
+##       0  1  2  3  4  7  8 11
+## [1,]  1  1  1  1  0  0  0  0
+## [2,]  0  0  1  1  1  1  0  0
+## [3,] NA NA NA NA NA NA NA NA
 
 print(rowCounts(x, value = 2, na.rm = TRUE))
 ## [1] 0 1 1 0
