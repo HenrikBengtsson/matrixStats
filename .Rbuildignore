@@ -3,7 +3,9 @@
 #----------------------------
 ^[.]svn
 ^[.]git
+^[.]github
 ^[.]make
+^[.]local
 INSTALL[.]md
 OVERVIEW[.]md
 README[.]md
