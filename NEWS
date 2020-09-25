@@ -1,14 +1,24 @@
 Package: matrixStats
 ====================
 
-Version: 0.56.0-9000 [2020-04-04]
+Version: 0.57.0 [2020-09-25]
+
+NEW FEATURES:
+
+ * colCumprods() and rowCumprods() now support also logical input. Thanks to
+   Constantin Ahlmann-Eltze at EMBL Heidelberg for the patch.
 
 BUG FIXES:
 
  * colCollapse() and rowCollapse() did not expand 'idxs' argument before
    subsetting by 'cols' and 'rows', respectively.  Thanks to Constantin
-   Ahlmann-Eltze at EMBL Heidelberg for reporting on this.
- 
+   Ahlmann-Eltze for reporting on this.
+
+ * colAnys(), rowAnys(), anyValue(), colAlls(), rowAlls(), and allValue() with
+   value=FALSE and *numeric* input would incorrectly consider all values
+   different from one as FALSE.  Now it is only values that are zero that are
+   considered FALSE.  Thanks to Constantin Ahlmann-Eltze for the bug fix.
+
 
 Version: 0.56.0 [2020-03-12]
 
