@@ -1,4 +1,4 @@
-# CRAN submission matrixStats 0.56.1
+# CRAN submission matrixStats 0.57.0
 
 I've verified that this submission does not cause issues for the 287 reverse package dependencies available on CRAN and Bioconductor.
 
