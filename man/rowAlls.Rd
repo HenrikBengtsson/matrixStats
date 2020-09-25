@@ -9,47 +9,19 @@
 \alias{anyValue}
 \title{Checks if a value exists / does not exist in each row (column) of a matrix}
 \usage{
-rowAlls(
-  x,
-  rows = NULL,
-  cols = NULL,
-  value = TRUE,
-  na.rm = FALSE,
-  dim. = dim(x),
-  ...
-)
+rowAlls(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
+  dim. = dim(x), ...)
 
-colAlls(
-  x,
-  rows = NULL,
-  cols = NULL,
-  value = TRUE,
-  na.rm = FALSE,
-  dim. = dim(x),
-  ...
-)
+colAlls(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
+  dim. = dim(x), ...)
 
 allValue(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 
-rowAnys(
-  x,
-  rows = NULL,
-  cols = NULL,
-  value = TRUE,
-  na.rm = FALSE,
-  dim. = dim(x),
-  ...
-)
+rowAnys(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
+  dim. = dim(x), ...)
 
-colAnys(
-  x,
-  rows = NULL,
-  cols = NULL,
-  value = TRUE,
-  na.rm = FALSE,
-  dim. = dim(x),
-  ...
-)
+colAnys(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
+  dim. = dim(x), ...)
 
 anyValue(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 }

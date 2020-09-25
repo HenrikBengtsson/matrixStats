@@ -6,25 +6,11 @@
 \title{Applies a row-by-row (column-by-column) averaging function to equally-sized
 subsets of matrix columns (rows)}
 \usage{
-rowAvgsPerColSet(
-  X,
-  W = NULL,
-  rows = NULL,
-  S,
-  FUN = rowMeans,
-  ...,
-  tFUN = FALSE
-)
+rowAvgsPerColSet(X, W = NULL, rows = NULL, S, FUN = rowMeans, ...,
+  tFUN = FALSE)
 
-colAvgsPerRowSet(
-  X,
-  W = NULL,
-  cols = NULL,
-  S,
-  FUN = colMeans,
-  ...,
-  tFUN = FALSE
-)
+colAvgsPerRowSet(X, W = NULL, cols = NULL, S, FUN = colMeans, ...,
+  tFUN = FALSE)
 }
 \arguments{
 \item{X}{A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.}

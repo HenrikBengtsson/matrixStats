@@ -5,27 +5,11 @@
 \alias{colQuantiles}
 \title{Estimates quantiles for each row (column) in a matrix}
 \usage{
-rowQuantiles(
-  x,
-  rows = NULL,
-  cols = NULL,
-  probs = seq(from = 0, to = 1, by = 0.25),
-  na.rm = FALSE,
-  type = 7L,
-  ...,
-  drop = TRUE
-)
+rowQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1,
+  by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE)
 
-colQuantiles(
-  x,
-  rows = NULL,
-  cols = NULL,
-  probs = seq(from = 0, to = 1, by = 0.25),
-  na.rm = FALSE,
-  type = 7L,
-  ...,
-  drop = TRUE
-)
+colQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1,
+  by = 0.25), na.rm = FALSE, type = 7L, ..., drop = TRUE)
 }
 \arguments{
 \item{x}{An \code{\link[base]{integer}}, \code{\link[base]{numeric}} or

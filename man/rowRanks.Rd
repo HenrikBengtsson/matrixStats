@@ -5,24 +5,12 @@
 \alias{colRanks}
 \title{Gets the rank of the elements in each row (column) of a matrix}
 \usage{
-rowRanks(
-  x,
-  rows = NULL,
-  cols = NULL,
-  ties.method = c("max", "average", "first", "last", "random", "max", "min", "dense"),
-  dim. = dim(x),
-  ...
-)
+rowRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
+  "first", "last", "random", "max", "min", "dense"), dim. = dim(x), ...)
 
-colRanks(
-  x,
-  rows = NULL,
-  cols = NULL,
-  ties.method = c("max", "average", "first", "last", "random", "max", "min", "dense"),
-  dim. = dim(x),
-  preserveShape = FALSE,
-  ...
-)
+colRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
+  "first", "last", "random", "max", "min", "dense"), dim. = dim(x),
+  preserveShape = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK

@@ -16,7 +16,7 @@ SEXP rowCumprods(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = asR_xlen_t(dim, 0);
   ncol = asR_xlen_t(dim, 1);
 
@@ -34,7 +34,7 @@ SEXP rowCumprods(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
     rowCumprods_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
     UNPROTECT(1);
-  } else if (isInteger(x)) {
+  } else if (isInteger(x) | isLogical(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
     rowCumprods_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
     UNPROTECT(1);

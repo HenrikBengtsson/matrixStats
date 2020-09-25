@@ -5,25 +5,11 @@
 \alias{colDiffs}
 \title{Calculates difference for each row (column) in a matrix}
 \usage{
-rowDiffs(
-  x,
-  rows = NULL,
-  cols = NULL,
-  lag = 1L,
-  differences = 1L,
-  dim. = dim(x),
-  ...
-)
+rowDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
+  dim. = dim(x), ...)
 
-colDiffs(
-  x,
-  rows = NULL,
-  cols = NULL,
-  lag = 1L,
-  differences = 1L,
-  dim. = dim(x),
-  ...
-)
+colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
+  dim. = dim(x), ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

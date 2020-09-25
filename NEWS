@@ -1,6 +1,25 @@
 Package: matrixStats
 ====================
 
+Version: 0.57.0 [2020-09-25]
+
+NEW FEATURES:
+
+ * colCumprods() and rowCumprods() now support also logical input. Thanks to
+   Constantin Ahlmann-Eltze at EMBL Heidelberg for the patch.
+
+BUG FIXES:
+
+ * colCollapse() and rowCollapse() did not expand 'idxs' argument before
+   subsetting by 'cols' and 'rows', respectively.  Thanks to Constantin
+   Ahlmann-Eltze for reporting on this.
+
+ * colAnys(), rowAnys(), anyValue(), colAlls(), rowAlls(), and allValue() with
+   value=FALSE and *numeric* input would incorrectly consider all values
+   different from one as FALSE.  Now it is only values that are zero that are
+   considered FALSE.  Thanks to Constantin Ahlmann-Eltze for the bug fix.
+
+
 Version: 0.56.0 [2020-03-12]
 
 SIGNIFICANT CHANGES:
@@ -24,7 +43,7 @@ BUG FIXES:
  * colDiffs() and rowDiffs() gave an error if argument 'dim.' was of type
    numeric rather than type integer.
  
- * varDiff(), sdDiff(), madDiff(), iqrDiff(), and the corrsponding row- and
+ * varDiff(), sdDiff(), madDiff(), iqrDiff(), and the corresponding row- and
    column functions silently treated a 'diff' less than zero as diff = 0.
    Now an error is produced.
    
@@ -737,7 +756,7 @@ NEW FEATURES:
 
 DEPRECATED AND DEFUNCT:
 
- * Calling indexByRow(X) with a matrix 'X' is deprectated.  Instead call it
+ * Calling indexByRow(X) with a matrix 'X' is deprecatated.  Instead call it
    with indexByRow(dim(X)).
 
  
@@ -1089,7 +1108,7 @@ Version: 0.7.1 [2013-04-23]
 
 NEW FEATURES:
 
- * Added argument 'preserveShape' to colRanks().  For backwardcompatibility
+ * Added argument 'preserveShape' to colRanks().  For backward compatibility
    the default is preserveShape = FALSE, but it may change in the future.
 
 BUG FIXES:
