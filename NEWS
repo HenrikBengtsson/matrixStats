@@ -5,9 +5,11 @@ Version: 0.57.0-9000 [2020-10-07]
 
 BUG FIXES:
 
- * colVars() and rowVars() was unclear on what the 'center' argument should be
-   and it would not detect when an incorrect specification was used.  Now it
-   gives an informative error message.
+ * The documentation for colSds(), rowSds(), colVars(), rowVars(), colMads(),
+   and rowMads() were unclear on what the 'center' argument should be. They
+   would not detect when an incorrect specification was used, notibly when the
+   length of 'center' did not match the matrix dimensions.  Now these functions
+   give an informative error message when 'center' is of the incorrect length.
 
 
 Version: 0.57.0 [2020-09-25]
