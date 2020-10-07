@@ -1,10 +1,14 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-09-25]
+Version: 0.57.0-9000 [2020-10-07]
 
- * ...
- 
+BUG FIXES:
+
+ * colVars() and rowVars() was unclear on what the 'center' argument should be
+   and it would not detect when an incorrect specification was used.  Now it
+   gives an informative error message.
+
 
 Version: 0.57.0 [2020-09-25]
 

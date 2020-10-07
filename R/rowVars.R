@@ -11,7 +11,8 @@
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values
 #' are excluded first, otherwise not.
 #'
-#' @param center (optional) The center, defaults to the row means.
+#' @param center (optional; a vector or length N (K))
+#' The center, defaults to corresponding row/column means.
 #'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
@@ -42,15 +43,19 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
-  # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
+  
+  # Apply subset on 'center'
+  if (length(center) != nrow(x)) {
+    stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+  }
+  if (!is.null(rows)) center <- center[rows]
+
+  # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   dim. <- dim(x)
-
-  # Apply subset on 'center'
-  if (!is.null(rows)) center <- center[rows]
 
   ncol <- ncol(x)
 
@@ -104,15 +109,18 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
-  # Apply subset on 'x'
   if (is.vector(x)) dim(x) <- dim.
+  # Apply subset on 'center'
+  if (length(center) != ncol(x)) {
+    stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", ncol(x))
+  }
+  if (!is.null(cols)) center <- center[cols]
+  
+  # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   dim. <- dim(x)
-
-  # Apply subset on 'center'
-  if (!is.null(cols)) center <- center[cols]
 
   nrow <- nrow(x)
 

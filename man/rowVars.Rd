@@ -21,7 +21,8 @@ is done.}
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values
 are excluded first, otherwise not.}
 
-\item{center}{(optional) The center, defaults to the row means.}
+\item{center}{(optional; a vector or length N (K))
+The center, defaults to corresponding row/column means.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
