@@ -16,7 +16,12 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
 
     # Apply subset on 'center'
     if (length(center) != nrow(x)) {
-      stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+      ## Scalar 'center'?
+      if (length(center) == 1L && is.null(rows)) {
+        .Deprecated(msg = paste("Argument 'center' should be of the same length as number of rows of 'x'. Use of a scalar value is deprecated: ", length(center), " != ", nrow(x), sep = ""), package = .packageName)
+      } else {
+        stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+      }
     }
     if (!is.null(rows)) center <- center[rows]
 
@@ -49,9 +54,14 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, FALSE)
   } else {
     if (is.vector(x)) dim(x) <- dim.
+    
     # Apply subset on 'center'
     if (length(center) != ncol(x)) {
-      stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", ncol(x))
+      if (length(center) == 1L && is.null(cols)) {
+        .Deprecated(msg = paste("Argument 'center' should be of the same length as number of rows of 'x'. Use of a scalar value is deprecated: ", length(center), " != ", ncol(x), sep = ""), package = .packageName)
+      } else {
+        stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", ncol(x))
+      }
     }
     if (!is.null(cols)) center <- center[cols]
 
