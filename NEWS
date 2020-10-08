@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-10-07]
+Version: 0.57.0-9000 [2020-10-08]
 
 BUG FIXES:
 
@@ -11,6 +11,11 @@ BUG FIXES:
    length of 'center' did not match the matrix dimensions.  Now these functions
    give an informative error message when 'center' is of the incorrect length.
 
+DEPRECATED AND DEFUNCT:
+
+ * Using a scalar value for argument 'center' of colSds(), rowSds(), colVars(),
+   rowVars(), colMads(), and rowMads() is now deprecated.
+ 
 
 Version: 0.57.0 [2020-09-25]
 
