@@ -21,8 +21,11 @@ is done.}
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values
 are excluded first, otherwise not.}
 
-\item{center}{(optional; a vector or length N (K))
-The center, defaults to corresponding row/column means.}
+\item{center}{(optional; a vector or length N (K)) If the row (column)
+means are already estimated, they can be pre-specified using this argument.
+This avoid re-estimating them again. (*Warning: If biased estimated are
+given, the estimate of the spread will also be biased.*)
+If NULL (default), the row/column means are estimated internally.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
@@ -65,6 +68,10 @@ print(colSds(x))
 print(colMads(x))
 print(colIQRs(x))
 
+# Pre-estimated row means
+mu <- rowMeans(x)
+print(rowVars(x, center = mu))
+print(rowSds(x, center = mu))
 
 # Row ranges
 print(rowRanges(x))
