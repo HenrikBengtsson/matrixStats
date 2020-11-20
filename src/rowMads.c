@@ -38,7 +38,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);

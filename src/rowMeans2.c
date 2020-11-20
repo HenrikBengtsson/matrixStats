@@ -33,7 +33,7 @@ SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP byRow) {
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);

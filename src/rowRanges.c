@@ -40,7 +40,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm) {
   int rowsType, colsType;
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   is_counted = (int *) R_alloc(nrows, sizeof(int));
 

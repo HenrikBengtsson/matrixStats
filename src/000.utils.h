@@ -11,7 +11,7 @@
 #define R_TYPE_INT  2 /* 0b0010 */
 #define R_TYPE_REAL 4 /* 0b0100 */
 
-static R_INLINE int has_NA(SEXP x) {
+static R_INLINE int hasNA(SEXP x) {
 #ifdef HAS_ALTREP
   int mode = TYPEOF(x);
   switch (mode) {

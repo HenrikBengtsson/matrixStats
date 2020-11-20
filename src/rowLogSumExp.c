@@ -28,7 +28,7 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP byRo
   int rowsType, colsType;
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
-  int hasna = has_NA(lx);
+  int hasna = hasNA(lx);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);

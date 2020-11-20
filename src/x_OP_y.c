@@ -32,7 +32,7 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
   void *cxrows = validateIndices(xrows, nrow, 0, &nxrows, &xrowsType);
   void *cxcols = validateIndices(xcols, ncol, 0, &nxcols, &xcolsType);
   void *cyidxs = validateIndices(yidxs, ny, 1, &nyidxs, &yidxsType);
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   /* Argument 'operator': */
   op = asInteger(operator);

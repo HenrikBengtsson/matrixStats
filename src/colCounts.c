@@ -44,7 +44,7 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
      This will be taken care of by the R garbage collector later on. */
   double *count = (double *) R_alloc(ncols, sizeof(double));
 
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   if (isReal(x)) {
     colCounts_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, count);
@@ -100,7 +100,7 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm) {
   int rowsType, colsType = SUBSETTED_ALL;
   void *crows = validateIndices(idxs, nx, 1, &nrows, &rowsType);
   void *ccols = NULL;
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   if (isReal(x)) {
     colCounts_dbl[rowsType][colsType](REAL(x), nx, 1, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, &count);

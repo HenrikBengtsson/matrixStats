@@ -25,7 +25,7 @@ SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm) {
   R_xlen_t nidxs;
   int idxsType;
   void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
-  int hasna = has_NA(x);
+  int hasna = hasNA(x);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
