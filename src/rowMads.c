@@ -31,6 +31,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+  if (hasna) hasna = has_NA(x);
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;

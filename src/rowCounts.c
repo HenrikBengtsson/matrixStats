@@ -35,6 +35,7 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+  if (hasna) hasna = has_NA(x);
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;

@@ -1,10 +1,29 @@
+#include <Rversion.h>
 #include <R.h>
 #include "000.types.h"
+
+/* ALTREP in available in R (>= 3.5.0) */
+#if defined(R_VERSION) && R_VERSION >= R_Version(3, 5, 0)
+#define HAS_ALTREP
+#endif
 
 #define R_TYPE_LGL  1 /* 0b0001 */
 #define R_TYPE_INT  2 /* 0b0010 */
 #define R_TYPE_REAL 4 /* 0b0100 */
 
+static R_INLINE int has_NA(SEXP x) {
+#ifdef HAS_ALTREP
+  int mode = TYPEOF(x);
+  switch (mode) {
+    case  INTSXP: return !INTEGER_NO_NA(x);
+    case  LGLSXP: return !LOGICAL_NO_NA(x);
+    case REALSXP: return !REAL_NO_NA(x);
+    default     : return 1;
+  }
+#else
+  return 1;
+#endif
+}
 
 static R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
   /* Argument 'x': */

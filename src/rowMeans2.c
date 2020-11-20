@@ -26,6 +26,7 @@ SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SE
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+  if (hasna) hasna = has_NA(x);
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;

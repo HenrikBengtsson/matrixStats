@@ -28,6 +28,7 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+  if (hasna) hasna = has_NA(x);
 
   /* Argument 'xrows', 'xcols' and 'yidxs': */
   R_xlen_t nxrows, nxcols, nyidxs;

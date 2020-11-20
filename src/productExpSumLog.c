@@ -23,6 +23,7 @@ SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA) {
 
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
+  if (hasna) hasna = has_NA(x);
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
