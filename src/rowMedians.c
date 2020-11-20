@@ -10,8 +10,8 @@
 #include "000.types.h"
 #include "rowMedians_lowlevel.h"
 
-SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  int narm, hasna, byrow;
+SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP byRow) {
+  int narm, byrow;
   SEXP ans;
   R_xlen_t nrow, ncol;
 
@@ -24,10 +24,6 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
@@ -36,6 +32,8 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+
+  int hasna = has_NA(x);
 
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);

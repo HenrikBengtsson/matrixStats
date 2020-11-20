@@ -57,6 +57,5 @@
 #'
 #' @export
 logSumExp <- function(lx, idxs = NULL, na.rm = FALSE, ...) {
-  has_na <- TRUE
-  .Call(C_logSumExp, as.numeric(lx), idxs, as.logical(na.rm), has_na)
+  .Call(C_logSumExp, as.numeric(lx), idxs, as.logical(na.rm))
 }

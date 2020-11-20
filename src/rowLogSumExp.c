@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow)
+ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP byRow)
 
  Authors: Henrik Bengtsson
 
@@ -10,9 +10,9 @@
 #include "000.types.h"
 #include "rowLogSumExp_lowlevel.h"
 
-SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
+SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP byRow) {
   SEXP ans;
-  int narm, hasna, byrow;
+  int narm, byrow;
   R_xlen_t nrow, ncol;
 
   /* Argument 'lx' and 'dim': */
@@ -23,15 +23,12 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasN
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(lx);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  int hasna = has_NA(lx);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);

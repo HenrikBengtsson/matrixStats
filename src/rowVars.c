@@ -1,7 +1,7 @@
 /***************************************************************************
  Public methods:
- SEXP rowVars(SEXP x, SEXP naRm, SEXP hasNA)
- SEXP colVars(SEXP x, SEXP naRm, SEXP hasNA)
+ SEXP rowVars(SEXP x, SEXP naRm, SEXP byRow)
+ SEXP colVars(SEXP x, SEXP naRm, SEXP byRow)
 
  Authors: Henrik Bengtsson
 
@@ -11,8 +11,8 @@
 #include "000.types.h"
 #include "rowVars_lowlevel.h"
 
-SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  int narm, hasna, byrow;
+SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP byRow) {
+  int narm, byrow;
   SEXP ans;
   R_xlen_t nrow, ncol;
 
@@ -24,10 +24,6 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
@@ -36,6 +32,8 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+
+  int hasna = has_NA(x);
 
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);

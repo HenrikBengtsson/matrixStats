@@ -9,8 +9,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
     constant <- as.numeric(constant)
-    has_nas <- TRUE
-    x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, TRUE)
+    x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, TRUE)
   } else {
     if (is.vector(x)) dim(x) <- dim.
 
@@ -50,8 +49,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
     constant <- as.numeric(constant)
-    has_nas <- TRUE
-    x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, FALSE)
+    x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, FALSE)
   } else {
     if (is.vector(x)) dim(x) <- dim.
     

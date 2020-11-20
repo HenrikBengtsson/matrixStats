@@ -2,9 +2,9 @@
 #include "000.types.h"
 #include "x_OP_y_lowlevel.h"
 
-SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEXP yidxs, SEXP commute, SEXP naRm, SEXP hasNA, SEXP byRow) {
+SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEXP yidxs, SEXP commute, SEXP naRm, SEXP byRow) {
   SEXP ans = NILSXP;
-  int narm, hasna, byrow, commute2;
+  int narm, byrow, commute2;
   int op;
   R_xlen_t nrow, ncol, ny;
 
@@ -26,16 +26,13 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'xrows', 'xcols' and 'yidxs': */
   R_xlen_t nxrows, nxcols, nyidxs;
   int xrowsType, xcolsType, yidxsType;
   void *cxrows = validateIndices(xrows, nrow, 0, &nxrows, &xrowsType);
   void *cxcols = validateIndices(xcols, ncol, 0, &nxcols, &xcolsType);
   void *cyidxs = validateIndices(yidxs, ny, 1, &nyidxs, &yidxsType);
+  int hasna = has_NA(x);
 
   /* Argument 'operator': */
   op = asInteger(operator);

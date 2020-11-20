@@ -10,8 +10,8 @@
 #include "000.types.h"
 #include "rowMads_lowlevel.h"
 
-SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, SEXP hasNA, SEXP byRow) {
-  int narm, hasna, byrow;
+SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, SEXP byRow) {
+  int narm, byrow;
   SEXP ans;
   R_xlen_t nrow, ncol;
   double scale;
@@ -29,10 +29,6 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
@@ -41,6 +37,8 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+
+  int hasna = has_NA(x);
 
   if (!byrow) {
     SWAP(R_xlen_t, nrow, ncol);

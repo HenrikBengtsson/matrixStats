@@ -8,9 +8,9 @@
 #include "000.types.h"
 #include "colCounts_lowlevel.h"
 
-SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm) {
   SEXP ans;
-  int narm, hasna, what2;
+  int narm, what2;
   R_xlen_t ii, nrow, ncol;
 
   /* Argument 'x' and 'dim': */
@@ -33,10 +33,6 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-  
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
@@ -47,6 +43,8 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   /* R allocate memory for vector 'count' of length 'ncols'.
      This will be taken care of by the R garbage collector later on. */
   double *count = (double *) R_alloc(ncols, sizeof(double));
+
+  int hasna = has_NA(x);
 
   if (isReal(x)) {
     colCounts_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, count);
@@ -74,9 +72,9 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 } // colCounts()
 
 
-SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm) {
   SEXP ans;
-  int narm, hasna, what2;
+  int narm, what2;
   R_xlen_t nx;
   double count = 0.0;
 
@@ -97,15 +95,12 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'idxs': */
   R_xlen_t nrows, ncols = 1;
   int rowsType, colsType = SUBSETTED_ALL;
   void *crows = validateIndices(idxs, nx, 1, &nrows, &rowsType);
   void *ccols = NULL;
+  int hasna = has_NA(x);
 
   if (isReal(x)) {
     colCounts_dbl[rowsType][colsType](REAL(x), nx, 1, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, &count);

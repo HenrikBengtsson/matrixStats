@@ -36,7 +36,7 @@ rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                       dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
+  .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm)
 }
 
 
@@ -46,7 +46,7 @@ rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
+  .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm)
 }
 
 
@@ -56,7 +56,7 @@ rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
+  .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm)
 }
 
 
@@ -66,7 +66,7 @@ colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                       dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
+  .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm)
 }
 
 
@@ -76,7 +76,7 @@ colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
+  .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm)
 }
 
 
@@ -86,5 +86,5 @@ colMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
+  .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm)
 }

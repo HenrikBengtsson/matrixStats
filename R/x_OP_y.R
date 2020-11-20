@@ -54,7 +54,7 @@ x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
     op <- as.integer(OP)
   }
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs,
-        commute, na.rm, TRUE, FALSE)
+        commute, na.rm, FALSE)
 }
 
 
@@ -71,5 +71,5 @@ t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
     op <- as.integer(OP)
   }
   .Call(C_x_OP_y, x, y, dim(x), op, xrows, xcols, yidxs,
-        commute, na.rm, TRUE, TRUE)
+        commute, na.rm, TRUE)
 }

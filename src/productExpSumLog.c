@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA)
+ SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm)
 
  Copyright Henrik Bengtsson, 2014
  **************************************************************************/
@@ -8,11 +8,11 @@
 #include "000.types.h"
 #include "productExpSumLog_lowlevel.h"
 
-SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA) {
+SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm) {
   SEXP ans = NILSXP;
   R_xlen_t nx;
   double res = NA_REAL;
-  int narm, hasna;
+  int narm;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
@@ -21,14 +21,11 @@ SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA) {
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'idxs': */
   R_xlen_t nidxs;
   int idxsType;
   void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+  int hasna = has_NA(x);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {

@@ -41,8 +41,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
   if (is.null(center)) {
     na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE)
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, TRUE)
     return(sigma2)
   }
 
@@ -112,8 +111,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE)
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, FALSE)
     return(sigma2)
   }
 

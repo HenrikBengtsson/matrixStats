@@ -8,9 +8,9 @@
 #include "000.types.h"
 #include "rowCounts_lowlevel.h"
 
-SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm) {
   SEXP ans;
-  int narm, hasna, what2;
+  int narm, what2;
   R_xlen_t nrow, ncol;
 
   /* Argument 'x' & 'dim': */
@@ -33,15 +33,12 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  int hasna = has_NA(x);
 
   /* R allocate a double vector of length 'nrow' */
   PROTECT(ans = allocVector(INTSXP, nrows));

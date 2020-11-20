@@ -1,12 +1,11 @@
 /***************************************************************************
  Public methods:
- SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA)
+ SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm)
 
  Arguments:
    lx   : numeric vector
    idxs : subsetting indices
    naRm : a logical scalar
-   hasNA: a logical scalar
 
 
  Authors: Henrik Bengtsson
@@ -17,8 +16,8 @@
 #include <Rmath.h>
 #include "logSumExp_lowlevel.h"
 
-SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA) {
-  int narm, hasna;
+SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm) {
+  int narm;
 
   /* Argument 'lx': */
   assertArgVector(lx, (R_TYPE_REAL), "lx");
@@ -26,14 +25,11 @@ SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA) {
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(lx);
-
   /* Argument 'idxs': */
   R_xlen_t nidxs;
   int idxsType;
   void *cidxs = validateIndices(idxs, xlength(lx), 1, &nidxs, &idxsType);
+  int hasna = has_NA(lx);
 
   return(Rf_ScalarReal(logSumExp_double[idxsType](REAL(lx), cidxs, nidxs, narm, hasna, 0, NULL)));
 } /* logSumExp() */

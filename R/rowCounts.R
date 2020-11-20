@@ -62,8 +62,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
+    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm)
   } else {
     if (is.vector(x)) dim(x) <- dim.
 
@@ -115,8 +114,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
+    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm)
   } else {
     if (is.vector(x)) dim(x) <- dim.
 
@@ -162,8 +160,7 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
-    has_nas <- TRUE
-    counts <- .Call(C_count, x, idxs, value, 2L, na.rm, has_nas)
+    counts <- .Call(C_count, x, idxs, value, 2L, na.rm)
   } else {
     # Apply subset
     if (!is.null(idxs)) x <- x[idxs]

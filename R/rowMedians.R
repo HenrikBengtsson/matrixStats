@@ -42,8 +42,7 @@ rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  has_nas <- TRUE  # Add as an argument? /2007-08-24
-  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE)
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, TRUE)
 }
 
 #' @rdname rowMedians
@@ -52,6 +51,5 @@ colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ...) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  has_nas <- TRUE  # Add as an argument? /2007-08-24
-  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE)
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, FALSE)
 }

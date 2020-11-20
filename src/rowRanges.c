@@ -10,12 +10,12 @@
 #include "000.types.h"
 #include "rowRanges_lowlevel.h"
 
-SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA) {
+SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm) {
   SEXP ans = NILSXP, ans2 = NILSXP;
   int *mins, *maxs;
   double *mins2, *maxs2;
   int *is_counted, all_counted = 0;
-  int what2, narm, hasna;
+  int what2, narm;
   R_xlen_t nrow, ncol, ii;
 
   /* Argument 'x' and 'dim': */
@@ -35,15 +35,12 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
-  /* Argument 'hasNA': */
-  hasna = asLogicalNoNA(hasNA, "hasNA");
-  if (hasna) hasna = has_NA(x);
-
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
   int rowsType, colsType;
   void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
   void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  int hasna = has_NA(x);
 
   is_counted = (int *) R_alloc(nrows, sizeof(int));
 
