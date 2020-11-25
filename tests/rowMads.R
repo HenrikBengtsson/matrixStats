@@ -1,5 +1,8 @@
 library("matrixStats")
 
+## Always allow testing of the 'center' argument (as long as it's not defunct)
+options(matrixStats.center.onUse = "ignore")
+
 rowMads_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
     apply(x, MARGIN = 1L, FUN = mad, na.rm = na.rm)
