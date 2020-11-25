@@ -1,7 +1,12 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-10-08]
+Version: 0.57.0-9000 [2020-11-25]
+
+NEW FEATURES:
+
+ * colWeightedMads() and rowWeightedMads() now accept 'center' of the same
+   length as the number of columns and rows, respectively.
 
 BUG FIXES:
 
