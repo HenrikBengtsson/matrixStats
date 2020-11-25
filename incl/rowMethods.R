@@ -24,11 +24,6 @@ print(colSds(x))
 print(colMads(x))
 print(colIQRs(x))
 
-# Pre-estimated row means
-mu <- rowMeans(x)
-print(rowVars(x, center = mu))
-print(rowSds(x, center = mu))
-
 # Row ranges
 print(rowRanges(x))
 print(cbind(rowMins(x), rowMaxs(x)))
