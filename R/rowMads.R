@@ -12,8 +12,11 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     has_nas <- TRUE
     x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, TRUE)
   } else {
+    ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+    centerOnUse("rowMads")
+    
     if (is.vector(x)) dim(x) <- dim.
-
+    
     # Apply subset on 'center'
     if (length(center) != nrow(x)) {
       ## Scalar 'center'?
@@ -53,6 +56,9 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     has_nas <- TRUE
     x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, FALSE)
   } else {
+    ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+    centerOnUse("colMads")
+    
     if (is.vector(x)) dim(x) <- dim.
     
     # Apply subset on 'center'

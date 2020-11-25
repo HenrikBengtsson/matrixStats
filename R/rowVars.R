@@ -46,6 +46,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+  centerOnUse("rowVars")
+
   if (is.vector(x)) dim(x) <- dim.
   
   # Apply subset on 'center'
@@ -116,6 +119,9 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE)
     return(sigma2)
   }
+
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+  centerOnUse("colVars")
 
   if (is.vector(x)) dim(x) <- dim.
 

@@ -133,6 +133,9 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Estimate the mean?
   if (is.null(center)) {
     center <- weightedMedian(x, w = w, na.rm = NA)
+  } else {
+    ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+    centerOnUse("weightedMad")
   }
 
   # Estimate the standard deviation
