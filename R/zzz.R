@@ -3,6 +3,9 @@
   onLoadSetCenterOnScalar()
   ## https://github.com/HenrikBengtsson/matrixStats/issues/187
   onLoadSetCenterOnUse()
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/16
+  onLoadSetVarsFormulaFreq()
+  onLoadSetVarsFormulaOnMistake()
 }
 
 #' @useDynLib "matrixStats", .registration = TRUE, .fixes = "C_"
