@@ -7,7 +7,7 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
 
   if (is.null(msg)) {
     msg <- sprintf("Argument 'center' of %s::%s() is %s: %s",
-                   .packageName, fcnname, value, deparse(calls[[1]]))
+                   .packageName, fcnname, value, deparse(calls[[1]])[1])
   }
   
   fcn(msg = msg, package = .packageName)
