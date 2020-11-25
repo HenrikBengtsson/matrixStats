@@ -1,4 +1,6 @@
 .onLoad <- function(libname, pkgname) {
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/183
+  onLoadSetCenterOnScalar()
   ## https://github.com/HenrikBengtsson/matrixStats/issues/187
   onLoadSetCenterOnUse()
 }

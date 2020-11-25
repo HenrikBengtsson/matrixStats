@@ -19,9 +19,8 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     
     # Apply subset on 'center'
     if (length(center) != nrow(x)) {
-      ## Scalar 'center'?
       if (length(center) == 1L && is.null(rows)) {
-        .Deprecated(msg = paste("Argument 'center' should be of the same length as number of rows of 'x'. Use of a scalar value is deprecated: ", length(center), " != ", nrow(x), sep = ""), package = .packageName)
+        validateScalarCenter(center, nrow(x), "rows")
       } else {
         stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
       }
@@ -64,9 +63,9 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     # Apply subset on 'center'
     if (length(center) != ncol(x)) {
       if (length(center) == 1L && is.null(cols)) {
-        .Deprecated(msg = paste("Argument 'center' should be of the same length as number of rows of 'x'. Use of a scalar value is deprecated: ", length(center), " != ", ncol(x), sep = ""), package = .packageName)
+        validateScalarCenter(center, ncol(x), "columns")
       } else {
-        stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", ncol(x))
+        stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
       }
     }
     if (!is.null(cols)) center <- center[cols]
