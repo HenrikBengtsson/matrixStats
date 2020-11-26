@@ -186,7 +186,12 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
     y[kk] <- weightedMad(x[kk, , drop = TRUE], w = w, na.rm = na.rm,
                           constant = constant, center = center[kk], ...)
   }
-  
+
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names(y) <- rownames(x)
+
   y
 }
 
@@ -228,6 +233,11 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
     y[kk] <- weightedMad(x[, kk, drop = TRUE], w = w, na.rm = na.rm,
                           constant = constant, center = center[kk], ...)
   }
+
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names(y) <- colnames(x)
   
   y
 }

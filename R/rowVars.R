@@ -97,12 +97,18 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- ncol
   }
 
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names <- rownames(x)
+
   validate <- validateVarsCenterFormula()
   if (!validate) {
     ## The primary formula for estimating the sample variance
     x <- (x - center)^2
     x <- rowMeans(x, na.rm = na.rm)
     x <- x * (n / (n - 1))
+    names(x) <- names
     return(x)
   }
 
@@ -123,7 +129,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     fcn(sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
   }
   
-  x * (n / (n - 1))
+  x <- x * (n / (n - 1))
+  names(x) <- names
+  x  
 }
 
 
@@ -192,6 +200,11 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- nrow
   }
 
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names <- names(x)
+  
   validate <- validateVarsCenterFormula()
   if (!validate) {
     ## The primary formula for estimating the sample variance
@@ -200,6 +213,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     }
     x <- colMeans(x, na.rm = na.rm)
     x <- x * (n / (n - 1))
+    names(x) <- names
     return(x)
   }
 
@@ -223,5 +237,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     fcn(sprintf("colVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
   }
   
-  x * (n / (n - 1))
+  x <- x * (n / (n - 1))
+  names(x) <- names
+  x  
 }
