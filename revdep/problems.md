@@ -204,53 +204,6 @@ Run `revdep_details(, "antiProfiles")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    ...
-        pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-        tapply, union, unique, unsplit, which.max, which.min
-    
-    Welcome to Bioconductor
-    
-        Vignettes contain introductory material; view with
-        'browseVignettes()'. To cite Bioconductor, see
-        'citation("Biobase")', and for packages 'citation("pkgname")'.
-    
-    
-    Attaching package: ‘Biobase’
-    
-    The following objects are masked from ‘package:matrixStats’:
-    
-        anyMissing, rowMedians
-    
-    Getting sample indices
-    Computing sds
-    Computing ranges
-    Error: Argument 'center' of matrixStats::rowMads() is defunct: apStats(exprs(apColonData), pData(apColonData)$Status)
-    Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘antiProfiles.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘antiProfiles.Rnw’
-      ...
-    
-    > colonStats = apStats(exprs(apColonData)[, trainSamples], 
-    +     pData(apColonData)$Status[trainSamples], minL = 5)
-    Getting sample indices
-    Computing sds
-    Computing ranges
-    
-      When sourcing ‘antiProfiles.R’:
-    Error: Argument 'center' of matrixStats::rowMads() is defunct: tools:::.run_one_vignette("antiProfiles.Rnw", "/c4/home/henrik/repositories/matrixStats/revdep/checks/antiProfiles/new/antiProfiles.Rcheck/00_pkg_src/antiProfiles/vignettes", Argument 'center' of matrixStats::rowMads() is defunct:     pkgdir = "/c4/home/henrik/repositories/matrixStats/revdep/checks/antiProfiles/new/antiProfiles.Rcheck/00_pkg_src/antiProfiles")
-    Execution halted
-    ```
-
 ## In both
 
 *   checking R code for possible problems ... NOTE
@@ -483,74 +436,6 @@ Run `revdep_details(, "bigPint")` for more info
         data             2.0Mb
         doc              2.3Mb
         shiny-examples   3.0Mb
-    ```
-
-# bigstep
-
-<details>
-
-* Version: 1.0.3
-* GitHub: https://github.com/pmszulc/bigstep
-* Source code: https://github.com/cran/bigstep
-* Date/Publication: 2019-07-25 23:10:02 UTC
-* Number of recursive dependencies: 91
-
-Run `revdep_details(, "bigstep")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    ...
-    Running examples in ‘bigstep-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: reduce_matrix
-    > ### Title: Reducing number of variables
-    > ### Aliases: reduce_matrix
-    > 
-    > ### ** Examples
-    > 
-    > set.seed(1)
-    > n <- 30
-    > p <- 10
-    > X <- matrix(rnorm(n * p), ncol = p)
-    > y <- X[, 2] + 2*X[, 3] - X[, 6] + rnorm(n)
-    > d <- prepare_data(y, X)
-    > reduce_matrix(d)
-    Performing single tests...
-    
-      |                                                                            
-      |                                                                      |   0%Error: Argument 'center' of matrixStats::colVars() is defunct: reduce_matrix(d)
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-    ...
-      Backtrace:
-          █
-       1. ├─testthat::expect_equal(...) test_reduce.R:14:2
-       2. │ └─testthat::quasi_label(enquo(object), label, arg = "object")
-       3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
-       4. └─bigstep::reduce_matrix(d)
-       5.   └─matrixStats::colSds(XX, center = means)
-       6.     └─matrixStats::colVars(...)
-       7.       └─matrixStats:::centerOnUse("colVars")
-       8.         └─base:::fcn(msg = msg, package = .packageName)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      ERROR (test_all.R:39:3): Typical data
-      ERROR (test_all.R:83:3): Typical data + Xadd
-      ERROR (test_all.R:118:3): Bigmemory
-      ERROR (test_all.R:172:3): GLM
-      ERROR (test_reduce.R:14:3): Fast
-      
-      [ FAIL 5 | WARN 0 | SKIP 0 | PASS 189 ]
-      Error: Test failures
-      Execution halted
     ```
 
 # bingat
@@ -1024,7 +909,7 @@ Run `revdep_details(, "celda")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/cellWise
 * Date/Publication: 2020-11-11 06:40:14 UTC
-* Number of recursive dependencies: 88
+* Number of recursive dependencies: 89
 
 Run `revdep_details(, "cellWise")` for more info
 
@@ -1582,7 +1467,7 @@ Run `revdep_details(, "CopywriteR")` for more info
     Errors in running code in vignettes:
     when running code in ‘CopywriteR.Rnw’
       ...
-    Plotting to file /scratch/henrik/Rtmpkn3MEh/file37786dc1d9ce/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
+    Plotting to file /scratch/henrik/RtmpTd6Hqx/fileb2a71dac8c38/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
     Warning in png(plot, width = 700, height = 1400) :
       unable to open connection to X11 display ''
     
@@ -1953,10 +1838,10 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.12.1
 * GitHub: https://github.com/PeteHaitch/DelayedMatrixStats
 * Source code: https://github.com/cran/DelayedMatrixStats
-* Date/Publication: 2020-10-27
+* Date/Publication: 2020-11-24
 * Number of recursive dependencies: 80
 
 Run `revdep_details(, "DelayedMatrixStats")` for more info
@@ -2094,10 +1979,10 @@ Run `revdep_details(, "DEqMS")` for more info
     Loading required package: BiocFileCache
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
-    snapshotDate(): 2020-11-20
+    snapshotDate(): 2020-11-25
     > query(eh, "DEqMS")
     ExperimentHub with 0 records
-    # snapshotDate(): 2020-11-20
+    # snapshotDate(): 2020-11-25
     > dat.psm = eh[["EH1663"]]
     Error: File not previously downloaded.
       Run with 'localHub=FALSE'
@@ -2662,48 +2547,6 @@ Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     '::' or ':::' import not declared from: ‘BiocManager’
-    ```
-
-# expss
-
-<details>
-
-* Version: 0.10.7
-* GitHub: https://github.com/gdemin/expss
-* Source code: https://github.com/cran/expss
-* Date/Publication: 2020-11-15 22:00:06 UTC
-* Number of recursive dependencies: 86
-
-Run `revdep_details(, "expss")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-    ...
-       52 z
-      ── ERROR (test_weighted_stats.R:80:1): (code run outside of `test_that()`) ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-      Error: Argument 'center' of matrixStats::weightedMad() is defunct: testthat::test_check("expss")
-      Backtrace:
-          █
-       1. ├─testthat::expect_equal(...) test_weighted_stats.R:80:0
-       2. │ └─testthat::quasi_label(enquo(object), label, arg = "object")
-       3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
-       4. └─expss::w_mad(x, w)
-       5.   └─expss:::internal_w_stat(...)
-       6.     └─expss:::fun(x = x, w = weight, na.rm = na.rm)
-       7.       └─matrixStats::weightedMad(...)
-       8.         └─matrixStats:::centerOnUse("weightedMad")
-       9.           └─base:::fcn(msg = msg, package = .packageName)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-      ERROR (test_weighted_stats.R:80:1): (code run outside of `test_that()`)
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 1772 ]
-      Error: Test failures
-      Execution halted
     ```
 
 # FastHCS
@@ -3989,25 +3832,25 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 *   checking tests ...
     ```
     ...
-      Error: Argument 'center' of matrixStats::rowVars() is defunct: test_check("MatrixGenerics")
+       1. ├─MatrixGenerics::colWeightedMads(...) test-api_compatibility.R:698:8
+       2. └─MatrixGenerics::colWeightedMads(...)
+       3.   └─matrixStats::colWeightedMads(...)
+      
+      ── ERROR (test-api_compatibility.R:1466:2): rowWeightedMads works  ─────────────
+      Error: Argument 'center' should be of the same length as number of rows of 'x': 1 != 6
       Backtrace:
           █
-       1. ├─MatrixGenerics::rowVars(...) test-api_compatibility.R:1445:8
-       2. └─MatrixGenerics::rowVars(...)
-       3.   └─MatrixGenerics:::.local(x, rows, cols, na.rm, center, ...)
-       4.     └─matrixStats::rowVars(...)
-       5.       └─matrixStats:::centerOnUse("rowVars")
-       6.         └─base:::fcn(msg = msg, package = .packageName)
+       1. ├─MatrixGenerics::rowWeightedMads(...) test-api_compatibility.R:1466:8
+       2. └─MatrixGenerics::rowWeightedMads(...)
+       3.   └─matrixStats::rowWeightedMads(...)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      ERROR (test-api_compatibility.R:360:2): colMads works 
       ERROR (test-api_compatibility.R:593:2): colSds works 
       ERROR (test-api_compatibility.R:678:2): colVars works 
-      ERROR (test-api_compatibility.R:1127:2): rowMads works 
-      ERROR (test-api_compatibility.R:1360:2): rowSds works 
-      ERROR (test-api_compatibility.R:1445:2): rowVars works 
+      ERROR (test-api_compatibility.R:698:2): colWeightedMads works 
+      ERROR (test-api_compatibility.R:1466:2): rowWeightedMads works 
       
-      [ FAIL 6 | WARN 0 | SKIP 0 | PASS 304 ]
+      [ FAIL 4 | WARN 0 | SKIP 0 | PASS 306 ]
       Error: Test failures
       Execution halted
     ```
@@ -4826,7 +4669,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[731,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[54550,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4842,7 +4685,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking replacement functions ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[578,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[54412,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4858,7 +4701,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[113,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[54014,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4877,7 +4720,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     ...
     --------------------------------------------------------------------------
     --------------------------------------------------------------------------
-    [[4047,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[53890,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4887,7 +4730,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     lower performance.
     --------------------------------------------------------------------------
     --------------------------------------------------------------------------
-    [[4017,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[53865,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4901,7 +4744,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[785,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[54579,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4919,7 +4762,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking foreign function calls ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[543,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[54395,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4935,7 +4778,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[334,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[54221,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4949,7 +4792,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[3931,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[53837,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -5509,6 +5352,8 @@ Run `revdep_details(, "OUTRIDER")` for more info
 *   checking tests ...
     ```
     ...
+      Backtrace:
+           █
         1. ├─testthat::expect_equal(...) test_plotting.R:17:4
         2. │ └─testthat::quasi_label(enquo(object), label, arg = "object")
         3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
@@ -5527,8 +5372,6 @@ Run `revdep_details(, "OUTRIDER")` for more info
       
       [ FAIL 1 | WARN 2 | SKIP 0 | PASS 82 ]
       Error: Test failures
-      In addition: Warning message:
-      call dbDisconnect() when finished working with a connection 
       Execution halted
     ```
 
@@ -6233,7 +6076,7 @@ Run `revdep_details(, "RnBeads")` for more info
 *   checking tests ...
     ```
     ...
-      RUNIT TEST PROTOCOL -- Wed Nov 25 02:02:24 2020 
+      RUNIT TEST PROTOCOL -- Thu Nov 26 01:40:23 2020 
       *********************************************** 
       Number of test functions: 24 
       Number of errors: 1 
@@ -6630,34 +6473,6 @@ Run `revdep_details(, "sesame")` for more info
 Run `revdep_details(, "Seurat")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-    ...
-        3.   ├─Seurat::ScaleData(...)
-        4.   └─Seurat:::ScaleData.Assay(...)
-        5.     ├─Seurat::SetAssayData(...)
-        6.     ├─Seurat:::SetAssayData.Assay(...)
-        7.     │ └─Seurat:::IsMatrixEmpty(x = new.data)
-        8.     ├─Seurat::ScaleData(...)
-        9.     └─Seurat:::ScaleData.default(...)
-       10.       ├─base::do.call(what = scale.function, args = arg.list)
-       11.       └─(function (mat, center = TRUE, scale = TRUE, scale_max = 10) ...
-       12.         └─matrixStats::rowSds(mat, center = rm)
-       13.           └─matrixStats::rowVars(...)
-       14.             └─matrixStats:::centerOnUse("rowVars")
-       15.               └─base:::fcn(msg = msg, package = .packageName)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      ERROR (test_data_manipulation.R:59:3): Fast implementation of row scaling returns expected values
-      ERROR (test_preprocessing.R:117:1): (code run outside of `test_that()`)
-      
-      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 382 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 ## In both
 

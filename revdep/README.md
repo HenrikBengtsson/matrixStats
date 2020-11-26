@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2020-11-25                   |
+|date     |2020-11-26                   |
 
 # Dependencies
 
@@ -27,15 +27,11 @@
 |[clusterExperiment](failures.md#clusterexperiment) |2.10.0  |1     |1       |3    |
 |[metagene](failures.md#metagene)                   |2.22.0  |1     |        |     |
 
-## New problems (5)
+## New problems (1)
 
 |package                                      |version |error  |warning |note |
 |:--------------------------------------------|:-------|:------|:-------|:----|
-|[antiProfiles](problems.md#antiprofiles)     |1.30.0  |__+2__ |        |1    |
-|[bigstep](problems.md#bigstep)               |1.0.3   |__+2__ |        |     |
-|[expss](problems.md#expss)                   |0.10.7  |__+1__ |        |     |
 |[MatrixGenerics](problems.md#matrixgenerics) |1.2.0   |__+1__ |        |1    |
-|[Seurat](problems.md#seurat)                 |3.2.2   |__+1__ |        |3    |
 
 ## All (307)
 
@@ -47,7 +43,7 @@
 |[AlpsNMR](problems.md#alpsnmr)                                                 |3.0.4   |       |1       |1    |
 |[AMARETTO](problems.md#amaretto)                                               |1.6.0   |1      |        |4    |
 |[amplican](problems.md#amplican)                                               |1.12.0  |       |        |2    |
-|[antiProfiles](problems.md#antiprofiles)                                       |1.30.0  |__+2__ |        |1    |
+|[antiProfiles](problems.md#antiprofiles)                                       |1.30.0  |       |        |1    |
 |apollo                                                                         |0.2.1   |       |        |     |
 |aroma.affymetrix                                                               |3.2.0   |       |        |     |
 |aroma.cn                                                                       |1.6.1   |       |        |     |
@@ -61,7 +57,7 @@
 |[baystability](problems.md#baystability)                                       |0.1.0   |       |        |1    |
 |[bdynsys](problems.md#bdynsys)                                                 |1.3     |       |        |1    |
 |[bigPint](problems.md#bigpint)                                                 |1.6.0   |1      |        |1    |
-|[bigstep](problems.md#bigstep)                                                 |1.0.3   |__+2__ |        |     |
+|bigstep                                                                        |1.0.3   |       |        |     |
 |[bingat](problems.md#bingat)                                                   |1.3     |       |        |1    |
 |[biscuiteer](problems.md#biscuiteer)                                           |1.4.0   |1      |1       |2    |
 |bmrm                                                                           |4.1     |       |        |     |
@@ -116,7 +112,7 @@
 |[DatabionicSwarm](problems.md#databionicswarm)                                 |1.1.3   |       |        |1    |
 |dearseq                                                                        |1.2.0   |       |        |     |
 |[DeepBlueR](problems.md#deepbluer)                                             |1.16.0  |       |        |1    |
-|[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.12.0  |       |        |1    |
+|[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.12.1  |       |        |1    |
 |[DeMixT](problems.md#demixt)                                                   |1.6.0   |       |        |4    |
 |[DepecheR](problems.md#depecher)                                               |1.6.0   |       |        |1    |
 |[DEqMS](problems.md#deqms)                                                     |1.8.0   |1      |        |2    |
@@ -147,7 +143,7 @@
 |[EventPointer](problems.md#eventpointer)                                       |2.8.0   |       |        |2    |
 |[ExCluster](problems.md#excluster)                                             |1.8.0   |       |        |1    |
 |[ExpressionNormalizationWorkflow](problems.md#expressionnormalizationworkflow) |1.16.0  |       |2       |4    |
-|[expss](problems.md#expss)                                                     |0.10.7  |__+1__ |        |     |
+|expss                                                                          |0.10.7  |       |        |     |
 |FADA                                                                           |1.3.5   |       |        |     |
 |fairsubset                                                                     |1.0     |       |        |     |
 |[FastHCS](problems.md#fasthcs)                                                 |0.0.7   |       |        |1    |
@@ -300,7 +296,7 @@
 |[semtree](problems.md#semtree)                                                 |0.9.14  |       |        |1    |
 |sensobol                                                                       |0.2.2   |       |        |     |
 |[sesame](problems.md#sesame)                                                   |1.8.2   |1      |        |     |
-|[Seurat](problems.md#seurat)                                                   |3.2.2   |__+1__ |        |3    |
+|[Seurat](problems.md#seurat)                                                   |3.2.2   |       |        |3    |
 |[SGP](problems.md#sgp)                                                         |1.9-5.0 |       |        |1    |
 |[shinyMethyl](problems.md#shinymethyl)                                         |1.26.0  |       |        |2    |
 |[SIAMCAT](problems.md#siamcat)                                                 |1.10.0  |       |        |4    |
@@ -320,7 +316,7 @@
 |[SRGnet](problems.md#srgnet)                                                   |1.16.0  |       |        |2    |
 |stability                                                                      |0.5.0   |       |        |     |
 |stapler                                                                        |0.7.1   |       |        |     |
-|staRdom                                                                        |1.1.14  |       |        |     |
+|staRdom                                                                        |1.1.18  |       |        |     |
 |statar                                                                         |0.7.3   |       |        |     |
 |[stm](problems.md#stm)                                                         |1.3.6   |       |        |1    |
 |[STROMA4](problems.md#stroma4)                                                 |1.14.0  |1      |        |1    |
