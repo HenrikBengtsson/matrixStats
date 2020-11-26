@@ -27,12 +27,15 @@ SIGNIFICANT CHANGES:
 
 NEW FEATURES:
 
- * colWeightedMads() and rowWeightedMads() now accept 'center' of the same
+ * Now colWeightedMads() and rowWeightedMads() accept 'center' of the same
    length as the number of columns and rows, respectively.
 
- * weightedMean() and weightedMedian() now accept logical 'x', where FALSE
-   is treated as integer 0 and TRUE as 1.  Note that colWeightedMeans() and
-   rowWeightedMeans() still does not accept logical input.
+ * Now weightedMean() and weightedMedian() and the corresponding row- and
+   column-based functions now accept logical 'x', where FALSE is treated as
+   integer 0 and TRUE as 1.
+
+ * Now x_OP_y() and t_tx_OP_y() accept logical 'x' and 'y', where FALSE is
+   treated as integer 0 and TRUE as 1.
 
 BUG FIXES:
 

@@ -9,12 +9,12 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
   R_xlen_t nrow, ncol, ny;
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = asR_xlen_t(dim, 0);
   ncol = asR_xlen_t(dim, 1);
 
   /* Argument 'y': */
-  assertArgVector(y, (R_TYPE_INT | R_TYPE_REAL), "y");
+  assertArgVector(y, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "y");
   ny = xlength(y);
 
   /* Argument 'byRow': */
@@ -47,10 +47,10 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
       if (isReal(x) && isReal(y)) {
         x_OP_y_Add_dbl_dbl[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-      } else if (isReal(x) && isInteger(y)) {
+      } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
         x_OP_y_Add_dbl_int[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-      } else if (isInteger(x) && isReal(y)) {
+      } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
         x_OP_y_Add_int_dbl[xrowsType][xcolsType][yidxsType](
             INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
@@ -68,10 +68,10 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
       if (isReal(x) && isReal(y)) {
         x_OP_y_Sub_dbl_dbl[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-      } else if (isReal(x) && isInteger(y)) {
+      } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
         x_OP_y_Sub_dbl_int[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-      } else if (isInteger(x) && isReal(y)) {
+      } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
         x_OP_y_Sub_int_dbl[xrowsType][xcolsType][yidxsType](
             INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
@@ -89,10 +89,10 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
       if (isReal(x) && isReal(y)) {
         x_OP_y_Mul_dbl_dbl[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-      } else if (isReal(x) && isInteger(y)) {
+      } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
         x_OP_y_Mul_dbl_int[xrowsType][xcolsType][yidxsType](
             REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-      } else if (isInteger(x) && isReal(y)) {
+      } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
         x_OP_y_Mul_int_dbl[xrowsType][xcolsType][yidxsType](
             INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
@@ -109,13 +109,13 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
     if (isReal(x) && isReal(y)) {
       x_OP_y_Div_dbl_dbl[xrowsType][xcolsType][yidxsType](
           REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-    } else if (isReal(x) && isInteger(y)) {
+    } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
       x_OP_y_Div_dbl_int[xrowsType][xcolsType][yidxsType](
           REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-    } else if (isInteger(x) && isReal(y)) {
+    } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
       x_OP_y_Div_int_dbl[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
-    } else if (isInteger(x) && isInteger(y)) {
+    } else if ((isInteger(x) || isLogical(x)) && (isInteger(y) || isLogical(y))) {
       x_OP_y_Div_int_int[xrowsType][xcolsType][yidxsType](
           INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     }

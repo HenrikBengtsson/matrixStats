@@ -135,7 +135,7 @@ ys <- list(
 
 for (x in xs) {
   for (y in ys) {
-    for (mode in c("integer", "double")) {
+    for (mode in c("logical", "integer", "double")) {
       storage.mode(x) <- mode
       storage.mode(y) <- mode
       str(list(x = x, y = y))
