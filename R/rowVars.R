@@ -46,13 +46,17 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+  centerOnUse("rowVars")
+
   if (is.vector(x)) dim(x) <- dim.
   
   # Apply subset on 'center'
   if (length(center) != nrow(x)) {
     ## Scalar 'center'?
     if (length(center) == 1L && is.null(rows)) {
-      .Deprecated(msg = paste("Argument 'center' should be of the same length as number of rows of 'x'. Use of a scalar value is deprecated: ", length(center), " != ", nrow(x), sep = ""), package = .packageName)
+      validateScalarCenter(center, nrow(x), "rows")
+      center <- rep(center, times = nrow(x))
     } else {
       stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
     }
@@ -93,13 +97,41 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- ncol
   }
 
-  # Spread
-  x <- x * x
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names <- rownames(x)
+
+  validate <- validateVarsCenterFormula()
+  if (!validate) {
+    ## The primary formula for estimating the sample variance
+    x <- (x - center)^2
+    x <- rowMeans(x, na.rm = na.rm)
+    x <- x * (n / (n - 1))
+    names(x) <- names
+    return(x)
+  }
+
+  ## The alternative formula for estimating the sample variance
+  x2 <- x * x
+  x2 <- rowMeans(x2, na.rm = na.rm)
+  x2 <- (x2 - center^2)
+
+  ## The primary formula for estimating the sample variance
+  x <- (x - center)^2
   x <- rowMeans(x, na.rm = na.rm)
 
-  # Variance
-  x <- (x - center^2)
-  x * (n / (n - 1))
+  equal <- all.equal(x, x2)
+  x2 <- NULL
+  if (!isTRUE(equal)) {
+    fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+    fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
+    fcn(sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
+  }
+  
+  x <- x * (n / (n - 1))
+  names(x) <- names
+  x  
 }
 
 
@@ -117,15 +149,19 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+  centerOnUse("colVars")
+
   if (is.vector(x)) dim(x) <- dim.
 
   # Apply subset on 'center'
   if (length(center) != ncol(x)) {
     ## Scalar 'center'?
     if (length(center) == 1L && is.null(cols)) {
-      .Deprecated(msg = paste("Argument 'center' should be of the same length as number of rows of 'x'. Use of a scalar value is deprecated: ", length(center), " != ", ncol(x), sep = ""), package = .packageName)
+      validateScalarCenter(center, ncol(x), "columns")
+      center <- rep(center, times = ncol(x))
     } else {
-      stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", ncol(x))
+      stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
     }
   }
   if (!is.null(cols)) center <- center[cols]
@@ -164,11 +200,44 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- nrow
   }
 
-  # Spread
-  x <- x * x
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names <- names(x)
+  
+  validate <- validateVarsCenterFormula()
+  if (!validate) {
+    ## The primary formula for estimating the sample variance
+    for (cc in seq_len(ncol(x))) {
+      x[, cc] <- (x[, cc] - center[cc])^2
+    }
+    x <- colMeans(x, na.rm = na.rm)
+    x <- x * (n / (n - 1))
+    names(x) <- names
+    return(x)
+  }
+
+  ## The alternative formula for estimating the sample variance
+  x2 <- x * x
+  x2 <- colMeans(x2, na.rm = na.rm)
+  x2 <- (x2 - center^2)
+
+  ## The primary formula for estimating the sample variance
+  ## The primary formula for estimating the sample variance
+  for (cc in seq_len(ncol(x))) {
+    x[, cc] <- (x[, cc] - center[cc])^2
+  }
   x <- colMeans(x, na.rm = na.rm)
 
-  # Variance
-  x <- (x - center^2)
-  x * (n / (n - 1))
+  equal <- all.equal(x, x2)
+  x2 <- NULL
+  if (!isTRUE(equal)) {
+    fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+    fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
+    fcn(sprintf("colVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
+  }
+  
+  x <- x * (n / (n - 1))
+  names(x) <- names
+  x  
 }

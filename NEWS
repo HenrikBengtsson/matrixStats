@@ -1,12 +1,38 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-10-08]
+Version: 0.57.0-9000 [2020-11-26]
+
+SIGNIFICANT CHANGES:
+
+ * colVars() and rowVars() with argument 'center' now calculates the sample
+   variance using the n/(n-1)*avg((x-center)^2) formula rather than the
+   n/(n-1)*(avg(x^2)-center^2) formula that was used in the past.  Both give
+   the same result when 'center' is the correct sample mean estimate.  The
+   main reason for this change is that, if an incorrect 'center' is provided,
+   in contrast to the old approach, the new approach is guaranteed to give at
+   least non-negative results, despite being incorrect.
+   BACKWARD COMPATIBILITY: Out of all 307 reverse dependencies on CRAN and
+   Bioconductor, only four called these functions with argument 'center'. All
+   of them pass their package checks also after this update.  To further
+   protect against a negative impact in existing user scripts, colVars() and
+   rowVars() will calculate both versions and assert that the result is the
+   same.  If not, an informative error is produced.  To limit the performance
+   impact, this validation is run only once every 50:th call, a frequency that
+   can be controlled by R option 'matrixStats.vars.formula.freq'.  Setting it
+   to 0 or NULL will disable the validation.  The default can also be
+   controlled by environment variable 'R_MATRIXSTATS_VARS_FORMULA_FREQ'.
+   This validation framework will be removed in a future version of the package
+   after it has been established that this change has no negative impact.
+
+NEW FEATURES:
+
+ * colWeightedMads() and rowWeightedMads() now accept 'center' of the same
+   length as the number of columns and rows, respectively.
 
 BUG FIXES:
 
- * The documentation for colSds(), rowSds(), colVars(), rowVars(), colMads(),
-   and rowMads() were unclear on what the 'center' argument should be. They
+ * The documentation was unclear on what the 'center' argument should be. They
    would not detect when an incorrect specification was used, notibly when the
    length of 'center' did not match the matrix dimensions.  Now these functions
    give an informative error message when 'center' is of the incorrect length.
@@ -14,7 +40,8 @@ BUG FIXES:
 DEPRECATED AND DEFUNCT:
 
  * Using a scalar value for argument 'center' of colSds(), rowSds(), colVars(),
-   rowVars(), colMads(), and rowMads() is now deprecated.
+   rowVars(), colMads(), rowMads(), colWeightedMads(), and rowWeightedMads() is
+   now deprecated.
  
 
 Version: 0.57.0 [2020-09-25]

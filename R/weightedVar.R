@@ -132,6 +132,9 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Estimate the mean?
   if (is.null(center)) {
     center <- sum(w * x) / wsum
+  } else {
+    ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+    centerOnUse("weightedVar")
   }
 
   # Estimate the variance
