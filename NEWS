@@ -30,6 +30,10 @@ NEW FEATURES:
  * colWeightedMads() and rowWeightedMads() now accept 'center' of the same
    length as the number of columns and rows, respectively.
 
+ * weightedMean() and weightedMedian() now accept logical 'x', where FALSE
+   is treated as integer 0 and TRUE as 1.  Note that colWeightedMeans() and
+   rowWeightedMeans() still does not accept logical input.
+
 BUG FIXES:
 
  * The documentation was unclear on what the 'center' argument should be. They
@@ -99,11 +103,6 @@ BUG FIXES:
    did not add a line between tables and the following text (a figure caption)
    causing the following text to be included in a cell on an extra row in
    the table (at least when rendered on GitHub Wiki pages).
-
-NEW FEATURES:
-
- * weightedMean() and weightedMedian() now accept logical 'x',
-   internally treated as integer 0 and 1.
 
 
 Version: 0.55.0 [2019-09-05]

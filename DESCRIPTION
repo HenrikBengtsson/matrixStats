@@ -23,8 +23,9 @@ Authors@R: c(
   person("Harris", "Jaffee", role="ctb"),
   person("Dongcan", "Jiang", role="ctb"),
   person("Peter", "Langfelder", role="ctb"),
-  person("Brian", "Montgomery", role="ctb"))
-Author: Henrik Bengtsson [aut, cre, cph], Constantin Ahlmann-Eltze [ctb], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Jan Gleixner [ctb], Peter Hickey [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Brian Montgomery [ctb]
+  person("Brian", "Montgomery", role="ctb"),
+  person("Hugh", "Parsonage", role="ctb"))
+Author: Henrik Bengtsson [aut, cre, cph], Constantin Ahlmann-Eltze [ctb], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Jan Gleixner [ctb], Peter Hickey [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Brian Montgomery [ctb], Hugh Parsonage [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: High-performing functions operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  Functions optimized per data type and for subsetted calculations such that both memory usage and processing time is minimized.  There are also optimized vector-based methods, e.g. binMeans(), madDiff() and weightedMedian().
 License: Artistic-2.0
