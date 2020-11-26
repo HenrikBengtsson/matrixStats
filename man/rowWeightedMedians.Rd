@@ -5,11 +5,9 @@
 \alias{colWeightedMedians}
 \title{Calculates the weighted medians for each row (column) in a matrix}
 \usage{
-rowWeightedMedians(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ...)
+rowWeightedMedians(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 
-colWeightedMedians(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ...)
+colWeightedMedians(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}

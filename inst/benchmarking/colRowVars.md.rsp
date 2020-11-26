@@ -16,7 +16,7 @@ use("genefilter", how = "load")
 genefilter_rowVars <- genefilter::rowVars
 genefilter_colVars <- function(x, ...) genefilter_rowVars(t(x), ...)
 %>
-<%@endif%> 
+<%@endif%>
 
 # <%@meta name="title"%>
 
@@ -28,7 +28,7 @@ This report benchmark the performance of <%=colname%>() and <%=rowname%>() again
 * colVarColMeans() and rowVarColMeans()
 <%@ifeq test_genefilter="TRUE"%>
 * genefilter::rowVars(t(.)) and genefilter::rowVars()
-<%@endif%> 
+<%@endif%>
 
 where
 
@@ -89,6 +89,7 @@ gc()
 
 colStats <- microbenchmark(
  colVars        = colVars(X, na.rm = FALSE),
+ colVarsCenter  = colVars(X, center = colMeans(X, na.rm = FALSE), na.rm = FALSE),
  colVarColMeans = colVarColMeans(X, na.rm = FALSE),
  "apply+var"    = apply(X, MARGIN = 2L, FUN = var, na.rm = FALSE),
 <%@ifeq test_genefilter="TRUE"%>
@@ -102,6 +103,7 @@ gc()
 
 rowStats <- microbenchmark(
  rowVars        = rowVars(X, na.rm = FALSE),
+ rowVarsCenter  = rowVars(X, center = rowMeans(X, na.rm = FALSE), na.rm = FALSE),
  rowVarRowMeans = rowVarRowMeans(X, na.rm = FALSE),
 "apply+var"     = apply(X, MARGIN = 1L, FUN = var, na.rm = FALSE),
 <%@ifeq test_genefilter="TRUE"%>

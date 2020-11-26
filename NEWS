@@ -1,27 +1,104 @@
 Package: matrixStats
 ====================
 
-Version: 0.55.0-9000 [2019-09-10]
+Version: 0.57.0-9000 [2020-11-26]
 
 SIGNIFICANT CHANGES:
 
- * colQuantiles() and rowQuantiles() now supports only integer and numeric
-   input.  Previously, it was also possible to pass, for instance, 'character'
-   input, but that was a mistake.  The restriction on input allows for further
-   optimization of these functions.
+ * colVars() and rowVars() with argument 'center' now calculates the sample
+   variance using the n/(n-1)*avg((x-center)^2) formula rather than the
+   n/(n-1)*(avg(x^2)-center^2) formula that was used in the past.  Both give
+   the same result when 'center' is the correct sample mean estimate.  The
+   main reason for this change is that, if an incorrect 'center' is provided,
+   in contrast to the old approach, the new approach is guaranteed to give at
+   least non-negative results, despite being incorrect.
+   BACKWARD COMPATIBILITY: Out of all 307 reverse dependencies on CRAN and
+   Bioconductor, only four called these functions with argument 'center'. All
+   of them pass their package checks also after this update.  To further
+   protect against a negative impact in existing user scripts, colVars() and
+   rowVars() will calculate both versions and assert that the result is the
+   same.  If not, an informative error is produced.  To limit the performance
+   impact, this validation is run only once every 50:th call, a frequency that
+   can be controlled by R option 'matrixStats.vars.formula.freq'.  Setting it
+   to 0 or NULL will disable the validation.  The default can also be
+   controlled by environment variable 'R_MATRIXSTATS_VARS_FORMULA_FREQ'.
+   This validation framework will be removed in a future version of the package
+   after it has been established that this change has no negative impact.
+
+NEW FEATURES:
+
+ * colWeightedMads() and rowWeightedMads() now accept 'center' of the same
+   length as the number of columns and rows, respectively.
+
+BUG FIXES:
+
+ * The documentation was unclear on what the 'center' argument should be. They
+   would not detect when an incorrect specification was used, notibly when the
+   length of 'center' did not match the matrix dimensions.  Now these functions
+   give an informative error message when 'center' is of the incorrect length.
+
+DEPRECATED AND DEFUNCT:
+
+ * Using a scalar value for argument 'center' of colSds(), rowSds(), colVars(),
+   rowVars(), colMads(), rowMads(), colWeightedMads(), and rowWeightedMads() is
+   now deprecated.
+ 
+
+Version: 0.57.0 [2020-09-25]
+
+NEW FEATURES:
+
+ * colCumprods() and rowCumprods() now support also logical input. Thanks to
+   Constantin Ahlmann-Eltze at EMBL Heidelberg for the patch.
+
+BUG FIXES:
+
+ * colCollapse() and rowCollapse() did not expand 'idxs' argument before
+   subsetting by 'cols' and 'rows', respectively.  Thanks to Constantin
+   Ahlmann-Eltze for reporting on this.
+
+ * colAnys(), rowAnys(), anyValue(), colAlls(), rowAlls(), and allValue() with
+   value=FALSE and *numeric* input would incorrectly consider all values
+   different from one as FALSE.  Now it is only values that are zero that are
+   considered FALSE.  Thanks to Constantin Ahlmann-Eltze for the bug fix.
+
+
+Version: 0.56.0 [2020-03-12]
+
+SIGNIFICANT CHANGES:
+
+ * colQuantiles() and rowQuantiles() now supports only integer, numeric and
+   logical input.  Previously, it was also possible to pass, for instance,
+   'character' input, but that was a mistake.  The restriction on input allows
+   for further optimization of these functions.
+
+ * The returned type of colQuantiles() and rowQuantiles() is now the same as
+   for stats::quantile(), which depends on argument 'type'.
 
 PERFORMANCE:
 
  * colQuantiles() and rowQuantiles() with the default type=7L and when there
-   are no missing values is now significantly faster and use significantly
+   are no missing values are now significantly faster and use significantly
    fewer memory allocations.
 
 BUG FIXES:
 
+ * colDiffs() and rowDiffs() gave an error if argument 'dim.' was of type
+   numeric rather than type integer.
+ 
+ * varDiff(), sdDiff(), madDiff(), iqrDiff(), and the corresponding row- and
+   column functions silently treated a 'diff' less than zero as diff = 0.
+   Now an error is produced.
+   
+ * Error messages on argument 'dim.' referred to non-existing argument 'dim'.
+ 
+ * Error messages on negative values in argument 'dim.' reported a garbage
+   value instead of the negative value.
+ 
  * The Markdown reports produced by the internal benchmark report generator
    did not add a line between tables and the following text (a figure caption)
    causing the following text to be included in a cell on an extra row in
-   the table (at when rendered on GitHub Wiki pages).
+   the table (at least when rendered on GitHub Wiki pages).
 
 NEW FEATURES:
 
@@ -727,7 +804,7 @@ NEW FEATURES:
 
 DEPRECATED AND DEFUNCT:
 
- * Calling indexByRow(X) with a matrix 'X' is deprectated.  Instead call it
+ * Calling indexByRow(X) with a matrix 'X' is deprecatated.  Instead call it
    with indexByRow(dim(X)).
 
 
@@ -1079,7 +1156,7 @@ Version: 0.7.1 [2013-04-23]
 
 NEW FEATURES:
 
- * Added argument 'preserveShape' to colRanks().  For backwardcompatibility
+ * Added argument 'preserveShape' to colRanks().  For backward compatibility
    the default is preserveShape = FALSE, but it may change in the future.
 
 BUG FIXES:

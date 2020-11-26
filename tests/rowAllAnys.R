@@ -118,31 +118,34 @@ for (na.rm in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # rowAlls(x) et al. on numeric 'x' with logical 'value'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(0, nrow = 4L, ncol = 4L)
-x[2:4, 2] <- (1:3) / 3
-x[2, 2:4] <- (1:3) / 3
-x[3:4, 3] <- (3:4) / 3
-x[3, 3:4] <- (3:4) / 3
+x <- matrix(0, nrow = 4L, ncol = 5L)
+x[2:4, 2] <- (1:3) / 4
+x[2, 2:4] <- (1:3) / 4
+x[3:4, 3] <- (3:4) / 4
+x[3, 3:4] <- (3:4) / 4
+x[1:4, 5] <- (1:4) / 5
 x[4, 4] <- NA_real_
 
-for (na.rm in c(FALSE, TRUE)) {
-  y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = any, na.rm = na.rm))
-  y <- rowAnys(x, na.rm = na.rm)
-  stopifnot(identical(y, y0))
-
-  y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = any, na.rm = na.rm))
-  y <- colAnys(x, na.rm = na.rm)
-  stopifnot(identical(y, y0))
-
-  y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = all, na.rm = na.rm))
-  y <- rowAlls(x, na.rm = na.rm)
-  stopifnot(identical(y, y0))
-
-  y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = all, na.rm = na.rm))
-  y <- colAlls(x, na.rm = na.rm)
-  stopifnot(identical(y, y0))
-  print(y0)
-} ## for (na.rm ...)
+for (value in c(TRUE, FALSE)) {
+  for (na.rm in c(FALSE, TRUE)) {
+    y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = function(e) any(as.logical(e) == value, na.rm = na.rm)))
+    y <- rowAnys(x, na.rm = na.rm, value = value)
+    stopifnot(identical(y, y0))
+  
+    y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = function(e) any(as.logical(e) == value, na.rm = na.rm)))
+    y <- colAnys(x, na.rm = na.rm, value = value)
+    stopifnot(identical(y, y0))
+  
+    y0 <- suppressWarnings(apply(x, MARGIN = 1L, FUN = function(e) all(as.logical(e) == value, na.rm = na.rm)))
+    y <- rowAlls(x, na.rm = na.rm, value = value)
+    stopifnot(identical(y, y0))
+  
+    y0 <- suppressWarnings(apply(x, MARGIN = 2L, FUN = function(e) all(as.logical(e) == value, na.rm = na.rm)))
+    y <- colAlls(x, na.rm = na.rm, value = value)
+    stopifnot(identical(y, y0))
+    print(y0)
+  } ## for (na.rm ...)
+} ## for(value ...)
 
 
 

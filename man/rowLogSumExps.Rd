@@ -6,11 +6,9 @@
 \title{Accurately computes the logarithm of the sum of exponentials across rows or
 columns}
 \usage{
-rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-  dim. = dim(lx), ...)
+rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
 
-colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-  dim. = dim(lx), ...)
+colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
 }
 \arguments{
 \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.

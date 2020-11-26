@@ -1,9 +1,11 @@
 #----------------------------
 # Git and SVN related
 #----------------------------
-^.svn
-^.git
-^.make
+^[.]svn
+^[.]git
+^[.]github
+^[.]make
+^[.]local
 INSTALL[.]md
 OVERVIEW[.]md
 README[.]md
@@ -42,3 +44,4 @@ revdep
 ^[.]test
 ^[.]check
 ^.*[.]tar[.]gz$
+^last[.]dump_.*

@@ -68,7 +68,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     stop("Argument 'constant' must be a numeric scalar")
 
   # Argument 'center':
-  if (length(center) > 1L)
+  if (!is.null(center) && length(center) != 1L)
     stop("Argument 'center' must be a scalar or NULL")
 
 
@@ -133,6 +133,9 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Estimate the mean?
   if (is.null(center)) {
     center <- weightedMedian(x, w = w, na.rm = NA)
+  } else {
+    ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+    centerOnUse("weightedMad")
   }
 
   # Estimate the standard deviation
@@ -156,10 +159,20 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   if (length(constant) != 1L || !is.numeric(constant))
     stop("Argument 'constant' must be a numeric scalar")
 
-  # Argument 'center':
-  if (length(center) > 1L)
-    stop("Argument 'center' must be a scalar or NULL")
-
+  # Apply subset on 'center'?
+  if (!is.null(center)) {
+    if (length(center) != nrow(x)) {
+      ## Scalar 'center'?
+      if (length(center) == 1L && is.null(rows)) {
+        validateScalarCenter(center, nrow(x), "rows")
+        center <- rep(center, times = nrow(x))
+      } else {
+        stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+      }
+    }
+    if (!is.null(rows)) center <- center[rows]
+  }
+  
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -168,8 +181,18 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
 
-  apply(x, MARGIN = 1L, FUN = weightedMad, w = w, na.rm = na.rm,
-        constant = constant, center = center, ...)
+  y <- numeric(nrow(x))
+  for (kk in seq_along(y)) {
+    y[kk] <- weightedMad(x[kk, , drop = TRUE], w = w, na.rm = na.rm,
+                          constant = constant, center = center[kk], ...)
+  }
+
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names(y) <- rownames(x)
+
+  y
 }
 
 
@@ -183,8 +206,19 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
     stop("Argument 'constant' must be a numeric scalar")
 
   # Argument 'center':
-  if (length(center) > 1L)
-    stop("Argument 'center' must be a scalar or NULL")
+  # Apply subset on 'center'?
+  if (!is.null(center)) {
+    if (length(center) != ncol(x)) {
+      ## Scalar 'center'?
+      if (length(center) == 1L && is.null(cols)) {
+        validateScalarCenter(center, ncol(x), "cols")
+        center <- rep(center, times = ncol(x))
+      } else {
+        stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
+      }
+    }
+    if (!is.null(cols)) center <- center[cols]
+  }
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -194,6 +228,16 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Apply subset on w
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
 
-  apply(x, MARGIN = 2L, FUN = weightedMad, w = w, na.rm = na.rm,
-        constant = constant, center = center, ...)
+  y <- numeric(ncol(x))
+  for (kk in seq_along(y)) {
+    y[kk] <- weightedMad(x[, kk, drop = TRUE], w = w, na.rm = na.rm,
+                          constant = constant, center = center[kk], ...)
+  }
+
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names(y) <- colnames(x)
+  
+  y
 }
