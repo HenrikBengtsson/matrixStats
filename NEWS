@@ -31,7 +31,7 @@ NEW FEATURES:
    length as the number of columns and rows, respectively.
 
  * Now weightedMean() and weightedMedian() and the corresponding row- and
-   column-based functions now accept logical 'x', where FALSE is treated as
+   column-based functions accept logical 'x', where FALSE is treated as
    integer 0 and TRUE as 1.
 
  * Now x_OP_y() and t_tx_OP_y() accept logical 'x' and 'y', where FALSE is
