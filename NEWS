@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-11-26]
+Version: 0.57.0-9000 [2020-12-04]
 
 SIGNIFICANT CHANGES:
 
@@ -38,6 +38,10 @@ NEW FEATURES:
    treated as integer 0 and TRUE as 1.
 
 BUG FIXES:
+
+ * colQuantiles() and rowQuantiles() on a logical matrix should return a
+   numeric vector for 'type = 7'. However, when there were only missing values
+   (= NA) in the matrix, then it would return a "logical" vector instead.
 
  * The documentation was unclear on what the 'center' argument should be. They
    would not detect when an incorrect specification was used, notibly when the

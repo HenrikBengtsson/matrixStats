@@ -71,7 +71,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Allocate result
   na_value <- NA_real_
-  storage.mode(na_value) <- storage.mode(x)
+  if (type != 7L) storage.mode(na_value) <- storage.mode(x)
   q <- matrix(na_value, nrow = nrow, ncol = length(probs))
 
   if (nrow > 0L && ncol > 0L) {
@@ -191,7 +191,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Allocate result
   na_value <- NA_real_
-  storage.mode(na_value) <- storage.mode(x)
+  if (type != 7L) storage.mode(na_value) <- storage.mode(x)
   q <- matrix(na_value, nrow = ncol, ncol = length(probs))
 
   if (nrow > 0L && ncol > 0L) {
@@ -242,7 +242,6 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
         }
       }
       
-      storage.mode(q) <- "numeric"
     } else {
       # For each column...
       cols <- seq_len(ncol)
