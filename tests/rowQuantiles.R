@@ -1,13 +1,13 @@
 library("matrixStats")
 
-rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
+rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, drop = TRUE, type = 7L, ...) {
   q <- apply(x, MARGIN = 1L, FUN = function(x, probs, na.rm) {
     if (!na.rm && any(is.na(x))) {
       na_value <- NA_real_
-      storage.mode(na_value) <- storage.mode(x)
+      if (type != 7L) storage.mode(na_value) <- storage.mode(x)
       rep(na_value, times = length(probs))
     } else {
-      as.vector(quantile(x, probs = probs, na.rm = na.rm, ...))
+      as.vector(quantile(x, probs = probs, na.rm = na.rm, type = type, ...))
     }
   }, probs = probs, na.rm = na.rm)
 
@@ -117,36 +117,68 @@ for (kk in seq_len(n_sims)) {
 } # for (kk ...)
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Empty matrices
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(NA_real_, nrow = 0L, ncol = 0L)
-dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-probs <- c(0, 0.25, 0.75, 1)
-q <- rowQuantiles(x, probs = probs)
-stopifnot(identical(dim(q), c(nrow(x), length(probs))))
-q <- colQuantiles(x, probs = probs)
-stopifnot(identical(dim(q), c(ncol(x), length(probs))))
 
-x <- matrix(NA_real_, nrow = 2L, ncol = 0L)
-dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-q <- rowQuantiles(x, probs = probs)
-stopifnot(identical(dim(q), c(nrow(x), length(probs))))
+for (mode in c("logical", "integer", "double")) {
+  naValue <- NA_real_
+  storage.mode(naValue) <- mode
 
-x <- matrix(NA_real_, nrow = 0L, ncol = 2L)
-dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-q <- colQuantiles(x, probs = probs)
-stopifnot(identical(dim(q), c(ncol(x), length(probs))))
+  someValue <- 1
+  storage.mode(someValue) <- mode
+
+  for (type in 1:9) {
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # All NA
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    x <- matrix(naValue, nrow = 3L, ncol = 4L)
+    qr0 <- rowQuantiles_R(x, type = type)
+
+    qr <- rowQuantiles(x, type = type)
+    stopifnot(identical(qr, qr0))
+
+    x <- matrix(naValue, nrow = 4L, ncol = 3L)
+    qc <- colQuantiles(x, type = type)
+
+    stopifnot(identical(qc, qr))
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Single column matrices
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(1, nrow = 2L, ncol = 1L)
-q <- rowQuantiles(x, probs = probs)
-print(q)
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Empty matrices
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    probs <- c(0, 0.25, 0.75, 1)
+    x <- matrix(naValue, nrow = 0L, ncol = 0L)
+    dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+    q <- rowQuantiles(x, probs = probs, type = type)
+    stopifnot(identical(dim(q), c(nrow(x), length(probs))))
+    q <- colQuantiles(x, probs = probs, type = type)
+    stopifnot(identical(dim(q), c(ncol(x), length(probs))))
+    
+    x <- matrix(naValue, nrow = 2L, ncol = 0L)
+    dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+    q <- rowQuantiles(x, probs = probs, type = type)
+    stopifnot(identical(dim(q), c(nrow(x), length(probs))))
+    
+    x <- matrix(naValue, nrow = 0L, ncol = 2L)
+    dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+    q <- colQuantiles(x, probs = probs, type = type)
+    stopifnot(identical(dim(q), c(ncol(x), length(probs))))
 
-x <- matrix(1, nrow = 1L, ncol = 2L)
-dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-q <- colQuantiles(x, probs = probs)
-print(q)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Single column matrices
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    probs <- c(0, 0.25, 0.75, 1)
+    x <- matrix(someValue, nrow = 2L, ncol = 1L)
+    dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+    qr <- rowQuantiles(x, probs = probs, type = type)
+    print(qr)
+    
+    x <- matrix(someValue, nrow = 1L, ncol = 2L)
+    dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+    qc <- colQuantiles(x, probs = probs, type = type)
+    print(qc)
+    
+    stopifnot(identical(qc, qr))
+  }
+}
+
+

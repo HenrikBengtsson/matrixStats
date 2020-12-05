@@ -1,10 +1,14 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-10-08]
+Version: 0.57.0-9000 [2020-12-04]
 
 BUG FIXES:
 
+ * colQuantiles() and rowQuantiles() on a logical matrix should return a
+   numeric vector for 'type = 7'. However, when there were only missing values
+   (= NA) in the matrix, then it would return a "logical" vector instead.
+ 
  * The documentation for colSds(), rowSds(), colVars(), rowVars(), colMads(),
    and rowMads() were unclear on what the 'center' argument should be. They
    would not detect when an incorrect specification was used, notibly when the
