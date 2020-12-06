@@ -102,22 +102,38 @@ stopifnot(is.matrix(Z2))
 S <- cbind(1:2, 3:4, 5:6)
 X <- matrix(rnorm(2 * 6), nrow = 6, ncol = 2)
 Z2 <- colAvgsPerRowSet(X, S = S, FUN = colSums2)
-print(Z2)
+Z2_ref <- rbind(colSums2(X[S[,1], ,drop=FALSE]),
+                colSums2(X[S[,2], ,drop=FALSE]),
+                colSums2(X[S[,3], ,drop=FALSE]))
+stopifnot(identical(Z2, Z2_ref))
 X <- matrix(rnorm(6), nrow = 6, ncol = 1)
 Z1 <- colAvgsPerRowSet(X, S = S, FUN = colSums2)
-print(Z1)
+Z1_ref <- rbind(colSums2(X[S[,1], ,drop=FALSE]),
+                colSums2(X[S[,2], ,drop=FALSE]),
+                colSums2(X[S[,3], ,drop=FALSE]))
+stopifnot(identical(Z1, Z1_ref))
 X <- matrix(numeric(0), nrow = 6, ncol = 0)
 Z0 <- colAvgsPerRowSet(X, S = S, FUN = colSums2)
-print(Z0)
+Z0_ref <- matrix(numeric(0), nrow = ncol(S), ncol = 0)
+stopifnot(identical(Z0, unname(Z0_ref)))
 
 
 S <- rbind(1:4, 5:8)
 X <- matrix(rnorm(n = 2 * 8), nrow = 2, ncol = 8)
 Z2 <- rowAvgsPerColSet(X, S = S, FUN = rowMeans2)
-print(Z2)
+Z2_ref <- cbind(rowMeans2(X[,S[,1],drop=FALSE]),
+                rowMeans2(X[,S[,2],drop=FALSE]),
+                rowMeans2(X[,S[,3],drop=FALSE]),
+                rowMeans2(X[,S[,4],drop=FALSE]))
+stopifnot(identical(Z2, Z2_ref))
 X <- matrix(rnorm(n = 8), nrow = 1, ncol = 8)
 Z1 <- rowAvgsPerColSet(X, S = S, FUN = rowMeans2)
-print(Z1)
+Z1_ref <- cbind(rowMeans2(X[,S[,1],drop=FALSE]),
+                rowMeans2(X[,S[,2],drop=FALSE]),
+                rowMeans2(X[,S[,3],drop=FALSE]),
+                rowMeans2(X[,S[,4],drop=FALSE]))
+stopifnot(identical(Z1, Z1_ref))
 X <- matrix(numeric(0), nrow = 0, ncol = 8)
 Z0 <- rowAvgsPerColSet(X, S = S, FUN = rowMeans2)
-print(Z0)
+Z0_ref <- matrix(numeric(0), nrow = 0, ncol = ncol(S))
+stopifnot(identical(Z0, Z0_ref))
