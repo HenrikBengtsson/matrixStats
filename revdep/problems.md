@@ -862,7 +862,7 @@ Run `revdep_details(, "CARBayesST")` for more info
 * GitHub: https://github.com/HelenaLC/CATALYST
 * Source code: https://github.com/cran/CATALYST
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 234
+* Number of recursive dependencies: 238
 
 Run `revdep_details(, "CATALYST")` for more info
 
@@ -905,10 +905,10 @@ Run `revdep_details(, "celda")` for more info
 
 <details>
 
-* Version: 2.2.1
+* Version: 2.2.3
 * GitHub: NA
 * Source code: https://github.com/cran/cellWise
-* Date/Publication: 2020-11-11 06:40:14 UTC
+* Date/Publication: 2020-12-03 11:00:02 UTC
 * Number of recursive dependencies: 89
 
 Run `revdep_details(, "cellWise")` for more info
@@ -917,13 +917,18 @@ Run `revdep_details(, "cellWise")` for more info
 
 ## In both
 
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘GSE’
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.7Mb
+      installed size is 14.6Mb
       sub-directories of 1Mb or more:
-        data   3.2Mb
-        doc    1.8Mb
-        libs   7.5Mb
+        data   3.1Mb
+        doc    2.0Mb
+        libs   9.1Mb
     ```
 
 # CEMiTool
@@ -1467,7 +1472,7 @@ Run `revdep_details(, "CopywriteR")` for more info
     Errors in running code in vignettes:
     when running code in ‘CopywriteR.Rnw’
       ...
-    Plotting to file /scratch/henrik/RtmpTd6Hqx/fileb2a71dac8c38/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
+    Plotting to file /scratch/henrik/Rtmp8rI4Y3/file6e8c3e49450/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
     Warning in png(plot, width = 700, height = 1400) :
       unable to open connection to X11 display ''
     
@@ -1772,7 +1777,7 @@ Run `revdep_details(, "cytomapper")` for more info
 * GitHub: https://github.com/JhuangLab/CytoTree
 * Source code: https://github.com/cran/CytoTree
 * Date/Publication: 2020-11-08
-* Number of recursive dependencies: 240
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "CytoTree")` for more info
 
@@ -1829,11 +1834,52 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 ## In both
 
-*   checking Rd files ... NOTE
+*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
     ```
-    prepare_Rd: deepblue_enrich_regions_fast.Rd:35-38: Dropping empty section \examples
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
+Execution halted
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
+Execution halted
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
+
+```
 # DelayedMatrixStats
 
 <details>
@@ -1979,10 +2025,10 @@ Run `revdep_details(, "DEqMS")` for more info
     Loading required package: BiocFileCache
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
-    snapshotDate(): 2020-11-25
+    snapshotDate(): 2020-12-03
     > query(eh, "DEqMS")
     ExperimentHub with 0 records
-    # snapshotDate(): 2020-11-25
+    # snapshotDate(): 2020-12-03
     > dat.psm = eh[["EH1663"]]
     Error: File not previously downloaded.
       Run with 'localHub=FALSE'
@@ -2721,7 +2767,7 @@ Run `revdep_details(, "fishpond")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/flowCore
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 124
+* Number of recursive dependencies: 131
 
 Run `revdep_details(, "flowCore")` for more info
 
@@ -2775,7 +2821,7 @@ Run `revdep_details(, "flowCore")` for more info
 * GitHub: https://github.com/JhuangLab/flowSpy
 * Source code: https://github.com/cran/flowSpy
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 240
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "flowSpy")` for more info
 
@@ -2806,7 +2852,7 @@ Run `revdep_details(, "flowSpy")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/flowWorkspace
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 126
+* Number of recursive dependencies: 133
 
 Run `revdep_details(, "flowWorkspace")` for more info
 
@@ -3445,26 +3491,26 @@ Run `revdep_details(, "GWENA")` for more info
 *   checking examples ... ERROR
     ```
     ...
-    > ### Aliases: plot_enrichment
+    > ### Aliases: bio_enrich
     > 
     > ### ** Examples
     > 
     > custom_path <- system.file("extdata", "h.all.v6.2.symbols.gmt",
     +                            package = "GWENA", mustWork = TRUE)
-    > multi_module <- list(mod1 = c("BIRC3", "PMAIP1", "CASP8", "JUN", "BCL2L11",
-    +                               "MCL1", "IL1B", "SPTAN1", "DIABLO", "BAX",
-    +                               "BIK", "IL1A", "BID", "CDKN1A", "GADD45A"),
+    > 
+    > single_module <- c("BIRC3", "PMAIP1", "CASP8", "JUN", "BCL2L11", "MCL1",
+    +                    "IL1B", "SPTAN1", "DIABLO", "BAX", "BIK", "IL1A", "BID",
+    +                    "CDKN1A", "GADD45A")
+    > single_module_enriched <- bio_enrich(single_module, custom_path)
+    > 
+    > multi_module <- list(mod1 = single_module,
     +                      mod2 = c("TAF1C", "TARBP2", "POLH", "CETN2", "POLD1",
     +                               "CANT1", "PDE4B", "DGCR8", "RAD51", "SURF1",
-    +                               "PNP", "ADA", "NME3", "GTF3C5", "NT5C"))
+    +                                "PNP", "ADA", "NME3", "GTF3C5", "NT5C"))
     > multi_module_enriched <- bio_enrich(multi_module, custom_path)
-    > plot_enrichment(multi_module_enriched)
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    Calls: plot_enrichment ... <Anonymous> -> ggplotly.ggplot -> gg2list -> dev_fun
-    In addition: Warning message:
-    In dev_fun(file = tempfile(), width = width %||% 640, height = height %||%  :
-      unable to open connection to X11 display ''
+    Error in gprofiler2::upload_GMT_file(gmt) : 
+      Bad request, response code 503
+    Calls: bio_enrich ... suppressMessages -> withCallingHandlers -> force -> <Anonymous>
     Execution halted
     ```
 
@@ -3616,7 +3662,7 @@ Run `revdep_details(, "landmap")` for more info
 * GitHub: https://github.com/philips-software/latrend
 * Source code: https://github.com/cran/latrend
 * Date/Publication: 2020-11-18 10:10:02 UTC
-* Number of recursive dependencies: 181
+* Number of recursive dependencies: 193
 
 Run `revdep_details(, "latrend")` for more info
 
@@ -3681,11 +3727,11 @@ Run `revdep_details(, "LSAmitR")` for more info
 
 <details>
 
-* Version: 0.9.8
+* Version: 0.9.9
 * GitHub: https://github.com/R-Lum/Luminescence
 * Source code: https://github.com/cran/Luminescence
-* Date/Publication: 2020-11-16 13:00:06 UTC
-* Number of recursive dependencies: 146
+* Date/Publication: 2020-11-29 06:00:03 UTC
+* Number of recursive dependencies: 147
 
 Run `revdep_details(, "Luminescence")` for more info
 
@@ -3767,7 +3813,7 @@ Run `revdep_details(, "M3Drop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
 * Date/Publication: 2020-04-28
-* Number of recursive dependencies: 224
+* Number of recursive dependencies: 225
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
@@ -3832,6 +3878,7 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 *   checking tests ...
     ```
     ...
+          █
        1. ├─MatrixGenerics::colWeightedMads(...) test-api_compatibility.R:698:8
        2. └─MatrixGenerics::colWeightedMads(...)
        3.   └─matrixStats::colWeightedMads(...)
@@ -3846,11 +3893,10 @@ Run `revdep_details(, "MatrixGenerics")` for more info
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
       ERROR (test-api_compatibility.R:593:2): colSds works 
-      ERROR (test-api_compatibility.R:678:2): colVars works 
       ERROR (test-api_compatibility.R:698:2): colWeightedMads works 
       ERROR (test-api_compatibility.R:1466:2): rowWeightedMads works 
       
-      [ FAIL 4 | WARN 0 | SKIP 0 | PASS 306 ]
+      [ FAIL 3 | WARN 0 | SKIP 0 | PASS 307 ]
       Error: Test failures
       Execution halted
     ```
@@ -4382,7 +4428,7 @@ Run `revdep_details(, "methylumi")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MFHD
 * Date/Publication: 2013-10-23 23:50:20
-* Number of recursive dependencies: 59
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "MFHD")` for more info
 
@@ -4621,7 +4667,7 @@ Run `revdep_details(, "mixOmics")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/mnem
 * Date/Publication: 2020-11-16
-* Number of recursive dependencies: 156
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "mnem")` for more info
 
@@ -4669,7 +4715,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[54550,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[65276,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4685,7 +4731,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking replacement functions ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[54412,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[65134,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4701,7 +4747,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[54014,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[64819,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4720,7 +4766,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     ...
     --------------------------------------------------------------------------
     --------------------------------------------------------------------------
-    [[53890,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[64698,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4730,7 +4776,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     lower performance.
     --------------------------------------------------------------------------
     --------------------------------------------------------------------------
-    [[53865,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[64622,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4744,7 +4790,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[54579,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[65319,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4762,7 +4808,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking foreign function calls ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[54395,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[65091,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4778,7 +4824,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[54221,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[65010,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4792,7 +4838,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[53837,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[64576,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -5445,7 +5491,7 @@ Run `revdep_details(, "pandaR")` for more info
 * GitHub: https://github.com/mani2012/PathoStat
 * Source code: https://github.com/cran/PathoStat
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 192
+* Number of recursive dependencies: 193
 
 Run `revdep_details(, "PathoStat")` for more info
 
@@ -6076,7 +6122,7 @@ Run `revdep_details(, "RnBeads")` for more info
 *   checking tests ...
     ```
     ...
-      RUNIT TEST PROTOCOL -- Thu Nov 26 01:40:23 2020 
+      RUNIT TEST PROTOCOL -- Sun Dec  6 19:17:35 2020 
       *********************************************** 
       Number of test functions: 24 
       Number of errors: 1 
@@ -6339,7 +6385,7 @@ Run `revdep_details(, "scp")` for more info
 * GitHub: https://github.com/PhilBoileau/scPCA
 * Source code: https://github.com/cran/scPCA
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 190
+* Number of recursive dependencies: 189
 
 Run `revdep_details(, "scPCA")` for more info
 
@@ -6937,11 +6983,11 @@ Run `revdep_details(, "spathial")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.14.1
 * GitHub: https://github.com/Oshlack/splatter
 * Source code: https://github.com/cran/splatter
-* Date/Publication: 2020-10-27
-* Number of recursive dependencies: 241
+* Date/Publication: 2020-12-01
+* Number of recursive dependencies: 239
 
 Run `revdep_details(, "splatter")` for more info
 
@@ -7036,7 +7082,7 @@ Run `revdep_details(, "SRGnet")` for more info
 * GitHub: https://github.com/bstewart/stm
 * Source code: https://github.com/cran/stm
 * Date/Publication: 2020-09-18 13:50:02 UTC
-* Number of recursive dependencies: 124
+* Number of recursive dependencies: 125
 
 Run `revdep_details(, "stm")` for more info
 
@@ -7530,5 +7576,47 @@ Run `revdep_details(, "XBSeq")` for more info
                  "rnbinom")
       importFrom("utils", "data")
     to your NAMESPACE file.
+    ```
+
+# yarn
+
+<details>
+
+* Version: 1.16.0
+* GitHub: NA
+* Source code: https://github.com/cran/yarn
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 160
+
+Run `revdep_details(, "yarn")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    ...
+    Running examples in ‘yarn-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annotateFromBiomart
+    > ### Title: Annotate your Expression Set with biomaRt
+    > ### Aliases: annotateFromBiomart
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > data(skin)
+    > # subsetting and changing column name just for a silly example
+    > skin <- skin[1:10,]
+    > colnames(fData(skin)) = paste("names",1:6)
+    > biomart<-"ENSEMBL_MART_ENSEMBL";
+    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
+    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
+    Error in getBM(attributes = attributes, filters = filters, values = genes,  : 
+      Multiple cache results found
+    Calls: annotateFromBiomart -> getBM
+    Execution halted
     ```
 

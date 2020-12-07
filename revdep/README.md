@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2020-11-26                   |
+|date     |2020-12-06                   |
 
 # Dependencies
 
@@ -20,11 +20,12 @@
 
 # Revdeps
 
-## Failed to check (2)
+## Failed to check (3)
 
 |package                                            |version |error |warning |note |
 |:--------------------------------------------------|:-------|:-----|:-------|:----|
 |[clusterExperiment](failures.md#clusterexperiment) |2.10.0  |1     |1       |3    |
+|[DeepBlueR](failures.md#deepbluer)                 |1.16.0  |1     |        |     |
 |[metagene](failures.md#metagene)                   |2.22.0  |1     |        |     |
 
 ## New problems (1)
@@ -44,7 +45,7 @@
 |[AMARETTO](problems.md#amaretto)                                               |1.6.0   |1      |        |4    |
 |[amplican](problems.md#amplican)                                               |1.12.0  |       |        |2    |
 |[antiProfiles](problems.md#antiprofiles)                                       |1.30.0  |       |        |1    |
-|apollo                                                                         |0.2.1   |       |        |     |
+|apollo                                                                         |0.2.2   |       |        |     |
 |aroma.affymetrix                                                               |3.2.0   |       |        |     |
 |aroma.cn                                                                       |1.6.1   |       |        |     |
 |[aroma.core](problems.md#aromacore)                                            |3.2.1   |       |        |1    |
@@ -73,7 +74,7 @@
 |carx                                                                           |0.7.1   |       |        |     |
 |[CATALYST](problems.md#catalyst)                                               |1.14.0  |       |        |1    |
 |[celda](problems.md#celda)                                                     |1.6.1   |       |        |1    |
-|[cellWise](problems.md#cellwise)                                               |2.2.1   |       |        |1    |
+|[cellWise](problems.md#cellwise)                                               |2.2.3   |       |        |2    |
 |[CEMiTool](problems.md#cemitool)                                               |1.14.0  |       |1       |2    |
 |[ChAMP](problems.md#champ)                                                     |2.20.1  |       |2       |5    |
 |ChemoSpec2D                                                                    |0.4.176 |       |        |     |
@@ -89,7 +90,7 @@
 |[cmapR](problems.md#cmapr)                                                     |1.2.0   |1      |        |     |
 |[cna](problems.md#cna)                                                         |3.0.1   |       |        |1    |
 |cnaOpt                                                                         |0.2.0   |       |        |     |
-|CNVScope                                                                       |3.1.8   |       |        |     |
+|CNVScope                                                                       |3.3.7   |       |        |     |
 |coin                                                                           |1.3-1   |       |        |     |
 |cointmonitoR                                                                   |0.1.0   |       |        |     |
 |cointReg                                                                       |0.2.0   |       |        |     |
@@ -111,7 +112,7 @@
 |DAMOCLES                                                                       |2.3     |       |        |     |
 |[DatabionicSwarm](problems.md#databionicswarm)                                 |1.1.3   |       |        |1    |
 |dearseq                                                                        |1.2.0   |       |        |     |
-|[DeepBlueR](problems.md#deepbluer)                                             |1.16.0  |       |        |1    |
+|[DeepBlueR](failures.md#deepbluer)                                             |1.16.0  |1      |        |     |
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.12.1  |       |        |1    |
 |[DeMixT](problems.md#demixt)                                                   |1.6.0   |       |        |4    |
 |[DepecheR](problems.md#depecher)                                               |1.6.0   |       |        |1    |
@@ -196,12 +197,12 @@
 |LFDREmpiricalBayes                                                             |1.0     |       |        |     |
 |[liger](problems.md#liger)                                                     |1.1.2   |       |        |1    |
 |localgauss                                                                     |0.40    |       |        |     |
-|loo                                                                            |2.3.1   |       |        |     |
+|loo                                                                            |2.4.0   |       |        |     |
 |LS2Wstat                                                                       |2.1-2   |       |        |     |
 |[LSAmitR](problems.md#lsamitr)                                                 |1.0-2   |       |        |1    |
 |lspartition                                                                    |0.4     |       |        |     |
 |ltmle                                                                          |1.2-0   |       |        |     |
-|[Luminescence](problems.md#luminescence)                                       |0.9.8   |       |        |3    |
+|[Luminescence](problems.md#luminescence)                                       |0.9.9   |       |        |3    |
 |[M3Drop](problems.md#m3drop)                                                   |1.16.0  |       |        |4    |
 |[maEndToEnd](problems.md#maendtoend)                                           |2.9.0   |       |        |5    |
 |maic                                                                           |0.1.2   |       |        |     |
@@ -310,7 +311,7 @@
 |[slingshot](problems.md#slingshot)                                             |1.8.0   |       |        |1    |
 |sparseMatrixStats                                                              |1.2.0   |       |        |     |
 |[spathial](problems.md#spathial)                                               |0.1.2   |       |        |1    |
-|[splatter](problems.md#splatter)                                               |1.14.0  |       |        |1    |
+|[splatter](problems.md#splatter)                                               |1.14.1  |       |        |1    |
 |splitFeas                                                                      |0.1.0   |       |        |     |
 |[spqn](problems.md#spqn)                                                       |1.2.0   |       |        |1    |
 |[SRGnet](problems.md#srgnet)                                                   |1.16.0  |       |        |2    |
@@ -342,6 +343,6 @@
 |WGCNA                                                                          |1.69    |       |        |     |
 |Wrench                                                                         |1.8.0   |       |        |     |
 |[XBSeq](problems.md#xbseq)                                                     |1.22.0  |       |        |3    |
-|yarn                                                                           |1.16.0  |       |        |     |
+|[yarn](problems.md#yarn)                                                       |1.16.0  |1      |        |     |
 |zinbwave                                                                       |1.12.0  |       |        |     |
 
