@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-12-04]
+Version: 0.57.0-9000 [2020-12-06]
 
 SIGNIFICANT CHANGES:
 
@@ -42,6 +42,10 @@ BUG FIXES:
  * colQuantiles() and rowQuantiles() on a logical matrix should return a
    numeric vector for 'type = 7'. However, when there were only missing values
    (= NA) in the matrix, then it would return a "logical" vector instead.
+
+ * colAvgsPerRowSet() on a single-column matrix would produce an error on
+   non-matching dimensions.  Analogously, for rowAvgsPerRowSet() and single-
+   row matrices.
 
  * The documentation was unclear on what the 'center' argument should be. They
    would not detect when an incorrect specification was used, notibly when the
