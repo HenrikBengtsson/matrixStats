@@ -132,7 +132,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
   # length nrow(X) as it should), cf. ?apply
   if (!is.matrix(Z)) {
     if (dimX[1] > 1L) stop("Internal error: dimX[1] > 1L")
-    dim(Z) <- c(length(Z), nbrOfSets)
+    dim(Z) <- c(dimX[1L], nbrOfSets)
   }
 
   # Sanity check
