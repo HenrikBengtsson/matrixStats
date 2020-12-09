@@ -121,7 +121,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   x <- (x - center)^2
   x <- rowMeans(x, na.rm = na.rm)
 
-  equal <- all.equal(x, x2)
+  equal <- all.equal(x, x2, check.attributes = FALSE)
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
