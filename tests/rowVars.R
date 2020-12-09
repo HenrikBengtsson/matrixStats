@@ -129,3 +129,24 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(all.equal(r1b, r1))
   stopifnot(all.equal(r2b, r2))
 }
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# center and .dim
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+m <- matrix(1:12, nrow = 3, ncol = 4)
+a <- array(m, dim = c(3, 2, 2))
+stopifnot(prod(dim(a)) == prod(dim(m)))
+
+y0 <- rowVars(m, dim. = dim(m))
+print(y0)
+y1 <- rowVars(a, dim. = dim(m))
+print(y1)
+stopifnot(identical(y1, y0))
+
+mu <- rowMeans(m)
+y0 <- rowVars(m, center = mu, dim. = dim(m))
+print(y0)
+y1 <- rowVars(a, center = mu, dim. = dim(m))
+print(y1)
+stopifnot(identical(y1, y0))

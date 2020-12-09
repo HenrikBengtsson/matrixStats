@@ -65,7 +65,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     has_nas <- TRUE
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
   } else {
-    if (is.vector(x)) dim(x) <- dim.
+    dim(x) <- dim.
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -118,7 +118,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     has_nas <- TRUE
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
   } else {
-    if (is.vector(x)) dim(x) <- dim.
+    dim(x) <- dim.
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

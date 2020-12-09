@@ -49,7 +49,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## https://github.com/HenrikBengtsson/matrixStats/issues/187
   centerOnUse("rowVars")
 
-  if (is.vector(x)) dim(x) <- dim.
+  dim(x) <- dim.
   
   # Apply subset on 'center'
   if (length(center) != nrow(x)) {
@@ -152,7 +152,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## https://github.com/HenrikBengtsson/matrixStats/issues/187
   centerOnUse("colVars")
 
-  if (is.vector(x)) dim(x) <- dim.
+  dim(x) <- dim.
 
   # Apply subset on 'center'
   if (length(center) != ncol(x)) {

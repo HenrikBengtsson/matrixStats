@@ -49,6 +49,9 @@ BUG FIXES:
    non-matching dimensions.  Analogously, for rowAvgsPerRowSet() and single-
    row matrices.
 
+ * colVars(x) and rowVars(x) with 'x' being an array would give the wrong
+   value if both argument 'dim.' and 'center' would be specified.
+
  * The documentation was unclear on what the 'center' argument should be. They
    would not detect when an incorrect specification was used, notibly when the
    length of 'center' did not match the matrix dimensions.  Now these functions

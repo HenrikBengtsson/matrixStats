@@ -15,7 +15,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     ## https://github.com/HenrikBengtsson/matrixStats/issues/187
     centerOnUse("rowMads")
     
-    if (is.vector(x)) dim(x) <- dim.
+    dim(x) <- dim.
     
     # Apply subset on 'center'
     if (length(center) != nrow(x)) {
@@ -58,7 +58,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     ## https://github.com/HenrikBengtsson/matrixStats/issues/187
     centerOnUse("colMads")
     
-    if (is.vector(x)) dim(x) <- dim.
+    dim(x) <- dim.
     
     # Apply subset on 'center'
     if (length(center) != ncol(x)) {
