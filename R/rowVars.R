@@ -126,7 +126,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
     fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
-    fcn(sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
+    fcn(msg = sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
   }
   
   x <- x * (n / (n - 1))
