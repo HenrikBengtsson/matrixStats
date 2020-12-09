@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-12-06]
+Version: 0.57.0-9000 [2020-12-08]
 
 SIGNIFICANT CHANGES:
 
@@ -29,6 +29,8 @@ NEW FEATURES:
 
  * Now colWeightedMads() and rowWeightedMads() accept 'center' of the same
    length as the number of columns and rows, respectively.
+
+ * colAvgsPerRowSet() and rowAvgsPerRowSet() gained argument 'na.rm'.
 
  * Now weightedMean() and weightedMedian() and the corresponding row- and
    column-based functions accept logical 'x', where FALSE is treated as

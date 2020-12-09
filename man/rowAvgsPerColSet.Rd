@@ -7,10 +7,10 @@
 subsets of matrix columns (rows)}
 \usage{
 rowAvgsPerColSet(X, W = NULL, rows = NULL, S, FUN = rowMeans, ...,
-  tFUN = FALSE)
+  na.rm = NA, tFUN = FALSE)
 
 colAvgsPerRowSet(X, W = NULL, cols = NULL, S, FUN = colMeans, ...,
-  tFUN = FALSE)
+  na.rm = NA, tFUN = FALSE)
 }
 \arguments{
 \item{X}{A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.}
@@ -29,12 +29,16 @@ corresponding subset.}
 \item{FUN}{The row-by-row (column-by-column) \code{\link[base]{function}}
 used to average over each subset of \code{X}.  This function must accept a
 \code{\link[base]{numeric}} NxK (KxM) \code{\link[base]{matrix}} and the
-\code{\link[base]{logical}} argument \code{na.rm} (which is automatically
-set), and return a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
-length N (M).}
+\code{\link[base]{logical}} argument \code{na.rm}, and return a
+\code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (M).}
 
 \item{...}{Additional arguments passed to then \code{FUN}
 \code{\link[base]{function}}.}
+
+\item{na.rm}{(logical) Argument passed to \code{FUN()} as
+\code{na.rm = na.rm}.  If \code{\link[base:logical]{NA}} (default), then
+\code{na.rm = TRUE} is used if \code{X} or \code{S} holds missing values,
+otherwise \code{na.rm = FALSE}.}
 
 \item{tFUN}{If \code{\link[base:logical]{TRUE}}, the NxK (KxM)
 \code{\link[base]{matrix}} passed to \code{FUN()} is transposed first.}
