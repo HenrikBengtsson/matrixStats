@@ -10,7 +10,7 @@
 #include <Rdefines.h>
 #include "000.types.h"
 #include "rowSums2_lowlevel.h"
-
+#include "naming.h"
 SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
   int narm, hasna, byrow;
   SEXP ans;
@@ -46,6 +46,28 @@ SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEX
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */
   PROTECT(ans = allocVector(REALSXP, nrows));
+  SEXP matrixDimnames = getAttrib(x,R_DimNamesSymbol);
+  /* We check whether the result has a natural naming by the dimnames of the
+   * input and set the names of the result to these names if it is
+   */
+  if(matrixDimnames != R_NilValue){
+    int indexDim = 0;
+    if(byrow){
+      indexDim = 0;
+    }
+    else{
+      indexDim = 1;
+    }
+    SEXP possibleNameVector = VECTOR_ELT(matrixDimnames,indexDim);
+    /* We may risk that even though the dimnames attribute is defined,
+     * the names for our requested dimension is not available
+     */
+    if (possibleNameVector != R_NilValue){
+      // The naming vector is available, so we can set the names of the result
+      setNames(ans,possibleNameVector,nrows,crows,rowsType);
+      }
+  }
+  
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
@@ -53,8 +75,6 @@ SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEX
   } else if (isInteger(x) || isLogical(x)) {
     rowSums2_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
   }
-
   UNPROTECT(1);
-
   return(ans);
 }

@@ -19,17 +19,18 @@ colSums2_R <- function(x, na.rm = FALSE, ...) {
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
-x <- matrix(runif(6 * 6, min = -3, max = 3), nrow = 6, ncol = 6)
+refDimnames <- list(letters[1:6],LETTERS[1:6])
+x <- matrix(runif(6 * 6, min = -3, max = 3), nrow = 6, ncol = 6,dimnames = refDimnames)
 storage.mode(x) <- "integer"
 for (rows in index_cases) {
   for (cols in index_cases) {
     for (na.rm in c(TRUE, FALSE)) {
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowSums2, fsure = rowSums2_R,
-                                na.rm = na.rm)
+                                na.rm = na.rm,useNames = TRUE,debug = TRUE)
       validateIndicesTestMatrix(x, rows, cols,
                                 fcoltest = colSums2, fsure = rowSums2_R,
-                                na.rm = na.rm)
+                                na.rm = na.rm, useNames = TRUE,debug = TRUE)
     }
   }
 }
