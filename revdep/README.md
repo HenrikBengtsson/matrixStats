@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2020-12-06                   |
+|date     |2020-12-10                   |
 
 # Dependencies
 
@@ -20,13 +20,14 @@
 
 # Revdeps
 
-## Failed to check (3)
+## Failed to check (4)
 
-|package                                            |version |error |warning |note |
-|:--------------------------------------------------|:-------|:-----|:-------|:----|
-|[clusterExperiment](failures.md#clusterexperiment) |2.10.0  |1     |1       |3    |
-|[DeepBlueR](failures.md#deepbluer)                 |1.16.0  |1     |        |     |
-|[metagene](failures.md#metagene)                   |2.22.0  |1     |        |     |
+|package                                                |version |error |warning |note |
+|:------------------------------------------------------|:-------|:-----|:-------|:----|
+|[clusterExperiment](failures.md#clusterexperiment)     |2.10.0  |1     |1       |3    |
+|[metagene](failures.md#metagene)                       |2.22.0  |1     |        |     |
+|[microsamplingDesign](failures.md#microsamplingdesign) |1.0.7   |1     |        |     |
+|[PathoStat](failures.md#pathostat)                     |1.16.0  |1     |        |     |
 
 ## New problems (1)
 
@@ -34,7 +35,7 @@
 |:--------------------------------------------|:-------|:------|:-------|:----|
 |[MatrixGenerics](problems.md#matrixgenerics) |1.2.0   |__+1__ |        |1    |
 
-## All (307)
+## All (308)
 
 |package                                                                        |version |error  |warning |note |
 |:------------------------------------------------------------------------------|:-------|:------|:-------|:----|
@@ -112,7 +113,7 @@
 |DAMOCLES                                                                       |2.3     |       |        |     |
 |[DatabionicSwarm](problems.md#databionicswarm)                                 |1.1.3   |       |        |1    |
 |dearseq                                                                        |1.2.0   |       |        |     |
-|[DeepBlueR](failures.md#deepbluer)                                             |1.16.0  |1      |        |     |
+|[DeepBlueR](problems.md#deepbluer)                                             |1.16.0  |       |        |1    |
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.12.1  |       |        |1    |
 |[DeMixT](problems.md#demixt)                                                   |1.6.0   |       |        |4    |
 |[DepecheR](problems.md#depecher)                                               |1.6.0   |       |        |1    |
@@ -197,7 +198,7 @@
 |LFDREmpiricalBayes                                                             |1.0     |       |        |     |
 |[liger](problems.md#liger)                                                     |1.1.2   |       |        |1    |
 |localgauss                                                                     |0.40    |       |        |     |
-|loo                                                                            |2.4.0   |       |        |     |
+|loo                                                                            |2.4.1   |       |        |     |
 |LS2Wstat                                                                       |2.1-2   |       |        |     |
 |[LSAmitR](problems.md#lsamitr)                                                 |1.0-2   |       |        |1    |
 |lspartition                                                                    |0.4     |       |        |     |
@@ -211,7 +212,7 @@
 |[mcmcsae](problems.md#mcmcsae)                                                 |0.5.0   |       |        |1    |
 |[MEAL](problems.md#meal)                                                       |1.20.0  |       |1       |3    |
 |MEDseq                                                                         |1.2.0   |       |        |     |
-|metabCombiner                                                                  |1.0.0   |       |        |     |
+|[metabCombiner](problems.md#metabcombiner)                                     |1.0.1   |       |2       |1    |
 |[metagene](failures.md#metagene)                                               |2.22.0  |1      |        |     |
 |metagenomeSeq                                                                  |1.32.0  |       |        |     |
 |[metamicrobiomeR](problems.md#metamicrobiomer)                                 |1.2     |       |        |1    |
@@ -226,7 +227,7 @@
 |[mgcViz](problems.md#mgcviz)                                                   |0.1.6   |       |        |1    |
 |[MHTcop](problems.md#mhtcop)                                                   |0.1.1   |       |        |1    |
 |[microbiomeExplorer](problems.md#microbiomeexplorer)                           |1.0.1   |       |        |1    |
-|microsamplingDesign                                                            |1.0.7   |       |        |     |
+|[microsamplingDesign](failures.md#microsamplingdesign)                         |1.0.7   |1      |        |     |
 |MIGSA                                                                          |1.14.1  |       |        |     |
 |[MinimumDistance](problems.md#minimumdistance)                                 |1.34.0  |       |3       |4    |
 |miRecSurv                                                                      |0.0.1   |       |        |     |
@@ -258,10 +259,11 @@
 |[OptimalDesign](problems.md#optimaldesign)                                     |1.0.1   |       |        |1    |
 |[OUTRIDER](problems.md#outrider)                                               |1.8.0   |2      |        |2    |
 |[pandaR](problems.md#pandar)                                                   |1.22.0  |       |1       |3    |
-|[PathoStat](problems.md#pathostat)                                             |1.16.0  |       |        |1    |
+|[PathoStat](failures.md#pathostat)                                             |1.16.0  |1      |        |     |
 |[pcaMethods](problems.md#pcamethods)                                           |1.82.0  |       |        |2    |
 |peakPick                                                                       |0.11    |       |        |     |
 |PepsNMR                                                                        |1.8.0   |       |        |     |
+|[phosphonormalizer](problems.md#phosphonormalizer)                             |1.14.3  |       |        |2    |
 |[Pigengene](problems.md#pigengene)                                             |1.16.0  |1      |        |3    |
 |PINSPlus                                                                       |2.0.5   |       |        |     |
 |[pipeComp](problems.md#pipecomp)                                               |1.0.0   |       |        |5    |
@@ -281,7 +283,7 @@
 |[regsem](problems.md#regsem)                                                   |1.6.2   |       |        |1    |
 |rhierbaps                                                                      |1.1.3   |       |        |     |
 |[RJcluster](problems.md#rjcluster)                                             |0.1.0   |       |        |1    |
-|[RNAmodR](problems.md#rnamodr)                                                 |1.4.0   |2      |        |1    |
+|[RNAmodR](problems.md#rnamodr)                                                 |1.4.1   |2      |        |1    |
 |[RnBeads](problems.md#rnbeads)                                                 |2.8.0   |1      |        |7    |
 |RTCC                                                                           |0.1.1   |       |        |     |
 |samr                                                                           |3.0     |       |        |     |
@@ -319,13 +321,13 @@
 |stapler                                                                        |0.7.1   |       |        |     |
 |staRdom                                                                        |1.1.18  |       |        |     |
 |statar                                                                         |0.7.3   |       |        |     |
-|[stm](problems.md#stm)                                                         |1.3.6   |       |        |1    |
+|[stm](problems.md#stm)                                                         |1.3.6   |1      |        |1    |
 |[STROMA4](problems.md#stroma4)                                                 |1.14.0  |1      |        |1    |
 |StructFDR                                                                      |1.3     |       |        |     |
 |subtee                                                                         |0.3-6   |       |        |     |
 |[summarytools](problems.md#summarytools)                                       |0.9.6   |       |1       |1    |
 |[SuperPCA](problems.md#superpca)                                               |0.3.0   |       |        |1    |
-|surveysd                                                                       |1.2.0   |       |        |     |
+|surveysd                                                                       |1.3.0   |       |        |     |
 |sva                                                                            |3.38.0  |       |        |     |
 |target                                                                         |1.4.0   |       |        |     |
 |[TCA](problems.md#tca)                                                         |1.1.0   |       |        |1    |

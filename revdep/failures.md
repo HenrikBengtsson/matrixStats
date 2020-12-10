@@ -6,7 +6,7 @@
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 178
+* Number of recursive dependencies: 177
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -49,68 +49,6 @@ Run `revdep_details(, "clusterExperiment")` for more info
     Packages unavailable to check Rd xrefs: ‘scRNAseq’, ‘ConsensusClusterPlus’
     ```
 
-# DeepBlueR
-
-<details>
-
-* Version: 1.16.0
-* GitHub: NA
-* Source code: https://github.com/cran/DeepBlueR
-* Date/Publication: 2020-10-27
-* Number of recursive dependencies: 160
-
-Run `revdep_details(, "DeepBlueR")` for more info
-
-</details>
-
-## In both
-
-*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
-    ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
-    ```
-
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘DeepBlueR’ ...
-** using staged installation
-** R
-** demo
-** inst
-** byte-compile and prepare package for lazy loading
-status 
- "503" 
-Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
-  Problems
-Error: unable to load R code in package ‘DeepBlueR’
-Execution halted
-ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘DeepBlueR’ ...
-** using staged installation
-** R
-** demo
-** inst
-** byte-compile and prepare package for lazy loading
-status 
- "503" 
-Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
-  Problems
-Error: unable to load R code in package ‘DeepBlueR’
-Execution halted
-ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
-
-```
 # metagene
 
 <details>
@@ -173,5 +111,131 @@ Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWith
 Execution halted
 ERROR: lazy loading failed for package ‘metagene’
 * removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/old/metagene.Rcheck/metagene’
+
+```
+# microsamplingDesign
+
+<details>
+
+* Version: 1.0.7
+* GitHub: NA
+* Source code: https://github.com/cran/microsamplingDesign
+* Date/Publication: 2020-04-05 19:30:02 UTC
+* Number of recursive dependencies: 128
+
+Run `revdep_details(, "microsamplingDesign")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘microsamplingDesign’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘microsamplingDesign’ ...
+** package ‘microsamplingDesign’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c interpolation.cpp -o interpolation.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -L/usr/local/lib64 -o microsamplingDesign.so RcppExports.o interpolation.o -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRlapack -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lR
+installing to /c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/00LOCK-microsamplingDesign/00new/microsamplingDesign/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘microsamplingDesign’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/microsamplingDesign’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘microsamplingDesign’ ...
+** package ‘microsamplingDesign’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c interpolation.cpp -o interpolation.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -L/usr/local/lib64 -o microsamplingDesign.so RcppExports.o interpolation.o -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRlapack -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lR
+installing to /c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/old/microsamplingDesign.Rcheck/00LOCK-microsamplingDesign/00new/microsamplingDesign/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘microsamplingDesign’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/old/microsamplingDesign.Rcheck/microsamplingDesign’
+
+```
+# PathoStat
+
+<details>
+
+* Version: 1.16.0
+* GitHub: https://github.com/mani2012/PathoStat
+* Source code: https://github.com/cran/PathoStat
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 196
+
+Run `revdep_details(, "PathoStat")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘PathoStat’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/PathoStat/new/PathoStat.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘PathoStat’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘PathoStat’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/PathoStat/new/PathoStat.Rcheck/PathoStat’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘PathoStat’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘PathoStat’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/PathoStat/old/PathoStat.Rcheck/PathoStat’
 
 ```

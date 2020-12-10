@@ -274,7 +274,7 @@ Run `revdep_details(, "aroma.light")` for more info
 * GitHub: https://github.com/catavallejos/BASiCS
 * Source code: https://github.com/cran/BASiCS
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 134
+* Number of recursive dependencies: 133
 
 Run `revdep_details(, "BASiCS")` for more info
 
@@ -739,23 +739,23 @@ Run `revdep_details(, "bumphunter")` for more info
 *   checking tests ...
     ```
     ...
-      ── Warning (test_annotation.R:103:1): (code run outside of `test_that()`) ──────
-      'fetchExtendedChromInfoFromUCSC' is deprecated.
-      Use 'getChromInfoFromUCSC' instead.
-      See help("Deprecated")
       
-      ── ERROR (test_annotation.R:103:1): (code run outside of `test_that()`) ────────
-      Error: don't know where to find assembly report for GCF_000001405.26
+      ── ERROR (test_annotation.R:99:1): (code run outside of `test_that()`) ─────────
+      Error: cannot open URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
       Backtrace:
           █
-       1. └─GenomeInfoDb::fetchExtendedChromInfoFromUCSC("hg38") test_annotation.R:103:0
-       2.   └─GenomeInfoDb:::FUN(...)
-       3.     └─GenomeInfoDb:::fetch_assembly_report(assembly_accession, AssemblyUnits = AssemblyUnits)
-       4.       └─GenomeInfoDb:::.make_assembly_report_URL(assembly_accession)
+       1. ├─rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz") test_annotation.R:99:0
+       2. └─rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
+       3.   ├─rtracklayer::import(FileForFormat(con), ...)
+       4.   └─rtracklayer::import(FileForFormat(con), ...)
+       5.     ├─rtracklayer::import(con, ...)
+       6.     └─rtracklayer::import(con, ...)
+       7.       └─rtracklayer:::.local(con, format, text, ...)
+       8.         └─utils::download.file(resource(con), destfile)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      Warning (test_annotation.R:103:1): (code run outside of `test_that()`)
-      ERROR (test_annotation.R:103:1): (code run outside of `test_that()`)
+      Warning (test_annotation.R:99:1): (code run outside of `test_that()`)
+      ERROR (test_annotation.R:99:1): (code run outside of `test_that()`)
       
       [ FAIL 1 | WARN 1 | SKIP 0 | PASS 13 ]
       Error: Test failures
@@ -1254,7 +1254,7 @@ Run `revdep_details(, "Clomial")` for more info
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 178
+* Number of recursive dependencies: 177
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -1472,7 +1472,7 @@ Run `revdep_details(, "CopywriteR")` for more info
     Errors in running code in vignettes:
     when running code in ‘CopywriteR.Rnw’
       ...
-    Plotting to file /scratch/henrik/Rtmp8rI4Y3/file6e8c3e49450/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
+    Plotting to file /scratch/henrik/RtmpqnejdL/file756a1f5be44f/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
     Warning in png(plot, width = 700, height = 1400) :
       unable to open connection to X11 display ''
     
@@ -1777,7 +1777,7 @@ Run `revdep_details(, "cytomapper")` for more info
 * GitHub: https://github.com/JhuangLab/CytoTree
 * Source code: https://github.com/cran/CytoTree
 * Date/Publication: 2020-11-08
-* Number of recursive dependencies: 244
+* Number of recursive dependencies: 243
 
 Run `revdep_details(, "CytoTree")` for more info
 
@@ -1834,52 +1834,11 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 ## In both
 
-*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
+*   checking Rd files ... NOTE
     ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
+    prepare_Rd: deepblue_enrich_regions_fast.Rd:35-38: Dropping empty section \examples
     ```
 
-## Installation
-
-### Devel
-
-```
-* installing *source* package ‘DeepBlueR’ ...
-** using staged installation
-** R
-** demo
-** inst
-** byte-compile and prepare package for lazy loading
-status 
- "503" 
-Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
-  Problems
-Error: unable to load R code in package ‘DeepBlueR’
-Execution halted
-ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
-
-```
-### CRAN
-
-```
-* installing *source* package ‘DeepBlueR’ ...
-** using staged installation
-** R
-** demo
-** inst
-** byte-compile and prepare package for lazy loading
-status 
- "503" 
-Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
-  Problems
-Error: unable to load R code in package ‘DeepBlueR’
-Execution halted
-ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
-
-```
 # DelayedMatrixStats
 
 <details>
@@ -2025,10 +1984,10 @@ Run `revdep_details(, "DEqMS")` for more info
     Loading required package: BiocFileCache
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
-    snapshotDate(): 2020-12-03
+    snapshotDate(): 2020-12-09
     > query(eh, "DEqMS")
     ExperimentHub with 0 records
-    # snapshotDate(): 2020-12-03
+    # snapshotDate(): 2020-12-09
     > dat.psm = eh[["EH1663"]]
     Error: File not previously downloaded.
       Run with 'localHub=FALSE'
@@ -2821,7 +2780,7 @@ Run `revdep_details(, "flowCore")` for more info
 * GitHub: https://github.com/JhuangLab/flowSpy
 * Source code: https://github.com/cran/flowSpy
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 244
+* Number of recursive dependencies: 243
 
 Run `revdep_details(, "flowSpy")` for more info
 
@@ -3270,7 +3229,7 @@ Run `revdep_details(, "GJRM")` for more info
 * GitHub: https://github.com/const-ae/glmGamPoi
 * Source code: https://github.com/cran/glmGamPoi
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 158
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "glmGamPoi")` for more info
 
@@ -3491,26 +3450,26 @@ Run `revdep_details(, "GWENA")` for more info
 *   checking examples ... ERROR
     ```
     ...
-    > ### Aliases: bio_enrich
+    > ### Aliases: plot_enrichment
     > 
     > ### ** Examples
     > 
     > custom_path <- system.file("extdata", "h.all.v6.2.symbols.gmt",
     +                            package = "GWENA", mustWork = TRUE)
-    > 
-    > single_module <- c("BIRC3", "PMAIP1", "CASP8", "JUN", "BCL2L11", "MCL1",
-    +                    "IL1B", "SPTAN1", "DIABLO", "BAX", "BIK", "IL1A", "BID",
-    +                    "CDKN1A", "GADD45A")
-    > single_module_enriched <- bio_enrich(single_module, custom_path)
-    > 
-    > multi_module <- list(mod1 = single_module,
+    > multi_module <- list(mod1 = c("BIRC3", "PMAIP1", "CASP8", "JUN", "BCL2L11",
+    +                               "MCL1", "IL1B", "SPTAN1", "DIABLO", "BAX",
+    +                               "BIK", "IL1A", "BID", "CDKN1A", "GADD45A"),
     +                      mod2 = c("TAF1C", "TARBP2", "POLH", "CETN2", "POLD1",
     +                               "CANT1", "PDE4B", "DGCR8", "RAD51", "SURF1",
-    +                                "PNP", "ADA", "NME3", "GTF3C5", "NT5C"))
+    +                               "PNP", "ADA", "NME3", "GTF3C5", "NT5C"))
     > multi_module_enriched <- bio_enrich(multi_module, custom_path)
-    Error in gprofiler2::upload_GMT_file(gmt) : 
-      Bad request, response code 503
-    Calls: bio_enrich ... suppressMessages -> withCallingHandlers -> force -> <Anonymous>
+    > plot_enrichment(multi_module_enriched)
+    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
+      unable to start device PNG
+    Calls: plot_enrichment ... <Anonymous> -> ggplotly.ggplot -> gg2list -> dev_fun
+    In addition: Warning message:
+    In dev_fun(file = tempfile(), width = width %||% 640, height = height %||%  :
+      unable to open connection to X11 display ''
     Execution halted
     ```
 
@@ -3731,7 +3690,7 @@ Run `revdep_details(, "LSAmitR")` for more info
 * GitHub: https://github.com/R-Lum/Luminescence
 * Source code: https://github.com/cran/Luminescence
 * Date/Publication: 2020-11-29 06:00:03 UTC
-* Number of recursive dependencies: 147
+* Number of recursive dependencies: 150
 
 Run `revdep_details(, "Luminescence")` for more info
 
@@ -3813,7 +3772,7 @@ Run `revdep_details(, "M3Drop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
 * Date/Publication: 2020-04-28
-* Number of recursive dependencies: 225
+* Number of recursive dependencies: 226
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
@@ -3878,13 +3837,6 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 *   checking tests ...
     ```
     ...
-          █
-       1. ├─MatrixGenerics::colWeightedMads(...) test-api_compatibility.R:698:8
-       2. └─MatrixGenerics::colWeightedMads(...)
-       3.   └─matrixStats::colWeightedMads(...)
-      
-      ── ERROR (test-api_compatibility.R:1466:2): rowWeightedMads works  ─────────────
-      Error: Argument 'center' should be of the same length as number of rows of 'x': 1 != 6
       Backtrace:
           █
        1. ├─MatrixGenerics::rowWeightedMads(...) test-api_compatibility.R:1466:8
@@ -3892,11 +3844,18 @@ Run `revdep_details(, "MatrixGenerics")` for more info
        3.   └─matrixStats::rowWeightedMads(...)
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
+      FAILURE (test-api_compatibility.R:89:2): colAvgsPerRowSet works 
+      ERROR (test-api_compatibility.R:360:2): colMads works 
       ERROR (test-api_compatibility.R:593:2): colSds works 
+      ERROR (test-api_compatibility.R:678:2): colVars works 
       ERROR (test-api_compatibility.R:698:2): colWeightedMads works 
+      FAILURE (test-api_compatibility.R:856:2): rowAvgsPerColSet works 
+      ERROR (test-api_compatibility.R:1127:2): rowMads works 
+      ERROR (test-api_compatibility.R:1360:2): rowSds works 
+      ERROR (test-api_compatibility.R:1445:2): rowVars works 
       ERROR (test-api_compatibility.R:1466:2): rowWeightedMads works 
       
-      [ FAIL 3 | WARN 0 | SKIP 0 | PASS 307 ]
+      [ FAIL 10 | WARN 0 | SKIP 0 | PASS 300 ]
       Error: Test failures
       Execution halted
     ```
@@ -3986,6 +3945,69 @@ Run `revdep_details(, "MEAL")` for more info
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘DMRcate’
+    ```
+
+# metabCombiner
+
+<details>
+
+* Version: 1.0.1
+* GitHub: NA
+* Source code: https://github.com/cran/metabCombiner
+* Date/Publication: 2020-12-08
+* Number of recursive dependencies: 94
+
+Run `revdep_details(, "metabCombiner")` for more info
+
+</details>
+
+## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented S4 methods:
+      generic 'getExtra' and siglist 'metabCombiner'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    ...
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
+    \S4method{getSamples}{metabCombiner}
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
+    
+    Codoc mismatches from documentation object 'nonmatched':
+    nonmatched
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
+    \S4method{nonmatched}{metabCombiner}
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    metabData: no visible global function definition for ‘is’
+    Undefined global functions or variables:
+      is
+    Consider adding
+      importFrom("methods", "is")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
     ```
 
 # metagene
@@ -4533,6 +4555,74 @@ Run `revdep_details(, "microbiomeExplorer")` for more info
         shiny     2.8Mb
     ```
 
+# microsamplingDesign
+
+<details>
+
+* Version: 1.0.7
+* GitHub: NA
+* Source code: https://github.com/cran/microsamplingDesign
+* Date/Publication: 2020-04-05 19:30:02 UTC
+* Number of recursive dependencies: 128
+
+Run `revdep_details(, "microsamplingDesign")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘microsamplingDesign’ can be installed ... ERROR
+    ```
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/00install.out’ for details.
+    ```
+
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘microsamplingDesign’ ...
+** package ‘microsamplingDesign’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c interpolation.cpp -o interpolation.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -L/usr/local/lib64 -o microsamplingDesign.so RcppExports.o interpolation.o -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRlapack -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lR
+installing to /c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/00LOCK-microsamplingDesign/00new/microsamplingDesign/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘microsamplingDesign’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/microsamplingDesign’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘microsamplingDesign’ ...
+** package ‘microsamplingDesign’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/software/c4/cbi/software/R-4.0.2/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/microsamplingDesign/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c interpolation.cpp -o interpolation.o
+g++ -std=gnu++11 -shared -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -L/usr/local/lib64 -o microsamplingDesign.so RcppExports.o interpolation.o -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRlapack -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lRblas -lgfortran -lm -lquadmath -L/software/c4/cbi/software/R-4.0.2/lib64/R/lib -lR
+installing to /c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/old/microsamplingDesign.Rcheck/00LOCK-microsamplingDesign/00new/microsamplingDesign/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘microsamplingDesign’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/microsamplingDesign/old/microsamplingDesign.Rcheck/microsamplingDesign’
+
+```
 # MinimumDistance
 
 <details>
@@ -4667,7 +4757,7 @@ Run `revdep_details(, "mixOmics")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/mnem
 * Date/Publication: 2020-11-16
-* Number of recursive dependencies: 157
+* Number of recursive dependencies: 160
 
 Run `revdep_details(, "mnem")` for more info
 
@@ -4715,7 +4805,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[65276,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[28225,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4731,7 +4821,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking replacement functions ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[65134,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[28140,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4747,7 +4837,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[64819,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[27779,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4766,7 +4856,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     ...
     --------------------------------------------------------------------------
     --------------------------------------------------------------------------
-    [[64698,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[27659,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4776,7 +4866,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     lower performance.
     --------------------------------------------------------------------------
     --------------------------------------------------------------------------
-    [[64622,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[27536,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4790,7 +4880,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[65319,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[28318,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4808,7 +4898,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking foreign function calls ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[65091,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[28122,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4824,7 +4914,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[65010,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[27938,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4838,7 +4928,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[64576,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[27404,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -5041,7 +5131,7 @@ Run `revdep_details(, "MultiBD")` for more info
 * GitHub: https://github.com/HelenaLC/muscat
 * Source code: https://github.com/cran/muscat
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 209
+* Number of recursive dependencies: 208
 
 Run `revdep_details(, "muscat")` for more info
 
@@ -5491,7 +5581,7 @@ Run `revdep_details(, "pandaR")` for more info
 * GitHub: https://github.com/mani2012/PathoStat
 * Source code: https://github.com/cran/PathoStat
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 193
+* Number of recursive dependencies: 196
 
 Run `revdep_details(, "PathoStat")` for more info
 
@@ -5499,13 +5589,48 @@ Run `revdep_details(, "PathoStat")` for more info
 
 ## In both
 
-*   checking dependencies in R code ... NOTE
+*   checking whether package ‘PathoStat’ can be installed ... ERROR
     ```
-    Namespaces in Imports field not imported from:
-      ‘ComplexHeatmap’ ‘RColorBrewer’
-      All declared Imports should be used.
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/PathoStat/new/PathoStat.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘PathoStat’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘PathoStat’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/PathoStat/new/PathoStat.Rcheck/PathoStat’
+
+```
+### CRAN
+
+```
+* installing *source* package ‘PathoStat’ ...
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘usethis’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘PathoStat’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/PathoStat/old/PathoStat.Rcheck/PathoStat’
+
+```
 # pcaMethods
 
 <details>
@@ -5551,6 +5676,32 @@ Run `revdep_details(, "pcaMethods")` for more info
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘ade4’
+    ```
+
+# phosphonormalizer
+
+<details>
+
+* Version: 1.14.3
+* GitHub: NA
+* Source code: https://github.com/cran/phosphonormalizer
+* Date/Publication: 2020-12-08
+* Number of recursive dependencies: 49
+
+Run `revdep_details(, "phosphonormalizer")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package which this enhances but not available for checking: ‘MSnbase’
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Malformed Title field: should not end in a period.
     ```
 
 # Pigengene
@@ -6025,10 +6176,10 @@ Run `revdep_details(, "RJcluster")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.4.1
 * GitHub: https://github.com/FelixErnst/RNAmodR
 * Source code: https://github.com/cran/RNAmodR
-* Date/Publication: 2020-10-27
+* Date/Publication: 2020-12-09
 * Number of recursive dependencies: 182
 
 Run `revdep_details(, "RNAmodR")` for more info
@@ -6122,7 +6273,7 @@ Run `revdep_details(, "RnBeads")` for more info
 *   checking tests ...
     ```
     ...
-      RUNIT TEST PROTOCOL -- Sun Dec  6 19:17:35 2020 
+      RUNIT TEST PROTOCOL -- Thu Dec 10 11:39:26 2020 
       *********************************************** 
       Number of test functions: 24 
       Number of errors: 1 
@@ -6320,7 +6471,7 @@ Run `revdep_details(, "scmap")` for more info
 * GitHub: https://github.com/YosefLab/scone
 * Source code: https://github.com/cran/scone
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 224
+* Number of recursive dependencies: 223
 
 Run `revdep_details(, "scone")` for more info
 
@@ -6385,7 +6536,7 @@ Run `revdep_details(, "scp")` for more info
 * GitHub: https://github.com/PhilBoileau/scPCA
 * Source code: https://github.com/cran/scPCA
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 189
+* Number of recursive dependencies: 188
 
 Run `revdep_details(, "scPCA")` for more info
 
@@ -6987,7 +7138,7 @@ Run `revdep_details(, "spathial")` for more info
 * GitHub: https://github.com/Oshlack/splatter
 * Source code: https://github.com/cran/splatter
 * Date/Publication: 2020-12-01
-* Number of recursive dependencies: 239
+* Number of recursive dependencies: 238
 
 Run `revdep_details(, "splatter")` for more info
 
@@ -7082,13 +7233,39 @@ Run `revdep_details(, "SRGnet")` for more info
 * GitHub: https://github.com/bstewart/stm
 * Source code: https://github.com/cran/stm
 * Date/Publication: 2020-09-18 13:50:02 UTC
-* Number of recursive dependencies: 125
+* Number of recursive dependencies: 128
 
 Run `revdep_details(, "stm")` for more info
 
 </details>
 
 ## In both
+
+*   checking tests ...
+    ```
+    ...
+      Model Terminated Before Convergence Reached 
+      Beginning Random Initialization 
+      ....................................................................................................
+      Completed Group 2 E-Step (2 seconds). 
+      ....................................................................................................
+      Completed Group 1 E-Step (2 seconds). 
+      Completed M-Step. 
+      Completing Iteration 1 (approx. per word bound = -10.359) 
+      ....................................................................................................
+      Completed Group 1 E-Step (2 seconds). 
+      Completed M-Step. 
+      ....................................................................................................
+      Completed Group 2 E-Step (2 seconds). 
+      Completed M-Step. 
+      Model Terminated Before Convergence Reached 
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      ERROR (test-quanteda-stm.R:8:5): Test that stm works on a quanteda dfm
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 8 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -7300,7 +7477,7 @@ Run `revdep_details(, "topGO")` for more info
 * GitHub: https://github.com/statOmics/tradeSeq
 * Source code: https://github.com/cran/tradeSeq
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 192
+* Number of recursive dependencies: 191
 
 Run `revdep_details(, "tradeSeq")` for more info
 
