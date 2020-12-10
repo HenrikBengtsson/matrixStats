@@ -49,7 +49,8 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## https://github.com/HenrikBengtsson/matrixStats/issues/187
   centerOnUse("rowVars")
 
-  dim(x) <- dim.
+  # Apply new dimensions
+  if (!identical(dim(x), dim.)) dim(x) <- dim.
   
   # Apply subset on 'center'
   if (length(center) != nrow(x)) {
@@ -152,8 +153,9 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## https://github.com/HenrikBengtsson/matrixStats/issues/187
   centerOnUse("colVars")
 
-  dim(x) <- dim.
-
+  # Apply new dimensions
+  if (!identical(dim(x), dim.)) dim(x) <- dim.
+  
   # Apply subset on 'center'
   if (length(center) != ncol(x)) {
     ## Scalar 'center'?
