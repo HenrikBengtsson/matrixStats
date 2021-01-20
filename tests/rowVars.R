@@ -28,12 +28,12 @@ colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
 
 rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
   x <- sweep(x, MARGIN = 1, STATS = as.array(center), FUN = "-")
-  rowVars(x, rows = rows, cols = cols, center = 0, na.rm = na.rm)
+  rowVars(x, rows = rows, cols = cols, center = rep(0, times = nrow(x)), na.rm = na.rm)
 }
 
 colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
   x <- sweep(x, MARGIN = 2, STATS = as.array(center), FUN = "-")
-  colVars(x, rows = rows, cols = cols, center = 0, na.rm = na.rm)
+  colVars(x, rows = rows, cols = cols, center = rep(0, times = ncol(x)), na.rm = na.rm)
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
