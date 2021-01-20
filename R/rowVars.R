@@ -107,6 +107,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   if (!validate) {
     ## The primary formula for estimating the sample variance
     x <- (x - center)^2
+    ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+    ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+    x[is.infinite(center)] <- NaN
     x <- rowMeans(x, na.rm = na.rm)
     x <- x * (n / (n - 1))
     names(x) <- names
@@ -121,10 +124,12 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## The primary formula for estimating the sample variance
   x <- (x - center)^2
   x <- rowMeans(x, na.rm = na.rm)
+  
+  ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+  ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+  x[is.infinite(center)] <- NaN
 
-  ## SPECIAL: Inf:s in 'x' might be NaN:s in 'x2'
-  keep <- !(is.infinite(x) & is.nan(x2))
-  equal <- all.equal(x[keep], x2[keep], check.attributes = FALSE)
+  equal <- all.equal(x, x2, check.attributes = FALSE)
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
@@ -216,6 +221,9 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       x[, cc] <- (x[, cc] - center[cc])^2
     }
     x <- colMeans(x, na.rm = na.rm)
+    ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+    ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+    x[is.infinite(center)] <- NaN
     x <- x * (n / (n - 1))
     names(x) <- names
     return(x)
@@ -231,10 +239,12 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     x[, cc] <- (x[, cc] - center[cc])^2
   }
   x <- colMeans(x, na.rm = na.rm)
+  
+  ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+  ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+  x[is.infinite(center)] <- NaN
 
-  ## SPECIAL: Inf:s in 'x' might be NaN:s in 'x2'
-  keep <- !(is.infinite(x) & is.nan(x2))
-  equal <- all.equal(x[keep], x2[keep])
+  equal <- all.equal(x, x2)
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")

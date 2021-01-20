@@ -2,6 +2,7 @@ library("matrixStats")
 
 ## Always allow testing of the 'center' argument (as long as it's not defunct)
 options(matrixStats.center.onUse = "ignore")
+options(matrixStats.vars.formula.freq = Inf)
 
 rowVars_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
@@ -28,11 +29,13 @@ colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
 
 rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
   x <- sweep(x, MARGIN = 1, STATS = as.array(center), FUN = "-")
+  x[is.infinite(center), ] <- NaN
   rowVars(x, rows = rows, cols = cols, center = rep(0, times = nrow(x)), na.rm = na.rm)
 }
 
 colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
   x <- sweep(x, MARGIN = 2, STATS = as.array(center), FUN = "-")
+  x[, is.infinite(center)] <- NaN
   colVars(x, rows = rows, cols = cols, center = rep(0, times = ncol(x)), na.rm = na.rm)
 }
 
@@ -85,17 +88,9 @@ for (mode in c("integer", "double")) {
       r3b <- colVars_center_naive(x, center = center, na.rm = na.rm)
       r3c <- rowVars(t(x), center = center, na.rm = na.rm)
       r3d <- rowVars_center_naive(t(x), center = center, na.rm = na.rm)
+      stopifnot(all.equal(r3b, r3))
       stopifnot(all.equal(r3c, r3))
-      stopifnot(all.equal(r3d, r3b))
-      if (is.infinite(special)) {
-        keep <- !(is.infinite(r3b) & is.nan(r3))
-        stopifnot(all.equal(r3b[keep], r3[keep]))
-        keep <- !(is.infinite(r3d) & is.nan(r3))
-        stopifnot(all.equal(r3d[keep], r3[keep]))
-      } else {
-        stopifnot(all.equal(r3b, r3))
-        stopifnot(all.equal(r3d, r3))
-      }
+      stopifnot(all.equal(r3d, r3))
     }
   } # for (special ...)
 }
@@ -170,7 +165,6 @@ stopifnot(identical(y1, y0))
 # Corner cases
 # https://github.com/HenrikBengtsson/matrixStats/issues/195
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-options(matrixStats.vars.formula.freq = Inf)
 x <- matrix(c(1,2,3,4), nrow = 2L, ncol = 2L)
 x[1,1] <- NA_real_
 x[1,2] <- Inf
