@@ -6,37 +6,49 @@ options(matrixStats.vars.formula.freq = Inf)
 
 rowVars_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 1L, FUN = var, na.rm = na.rm)
+    res <- apply(x, MARGIN = 1L, FUN = var, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colVars_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 2L, FUN = var, na.rm = na.rm)
+    res <- apply(x, MARGIN = 2L, FUN = var, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 
 rowVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm)
-  rowVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- rowVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm)
-  colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
   x <- sweep(x, MARGIN = 1, STATS = as.array(center), FUN = "-")
   x[is.infinite(center), ] <- NaN
-  rowVars(x, rows = rows, cols = cols, center = rep(0, times = nrow(x)), na.rm = na.rm)
+  res <- rowVars(x, rows = rows, cols = cols, center = rep(0, times = nrow(x)), na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE) {
   x <- sweep(x, MARGIN = 2, STATS = as.array(center), FUN = "-")
   x[, is.infinite(center)] <- NaN
-  colVars(x, rows = rows, cols = cols, center = rep(0, times = ncol(x)), na.rm = na.rm)
+  res <- colVars(x, rows = rows, cols = cols, center = rep(0, times = ncol(x)), na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -91,6 +103,20 @@ for (mode in c("integer", "double")) {
       stopifnot(all.equal(r3b, r3))
       stopifnot(all.equal(r3c, r3))
       stopifnot(all.equal(r3d, r3))
+      
+      stopifnot(
+        !any(is.infinite(r0)),
+        !any(is.infinite(r1)),
+        !any(is.infinite(r2)),
+        !any(is.infinite(r3)),
+        !any(is.infinite(r1b)),
+        !any(is.infinite(r1c)),
+        !any(is.infinite(r2b)),
+        !any(is.infinite(r2c)),
+        !any(is.infinite(r3b)),
+        !any(is.infinite(r3c)),
+        !any(is.infinite(r3d))
+      )
     }
   } # for (special ...)
 }
@@ -117,6 +143,13 @@ for (mode in c("integer", "double")) {
     stopifnot(all.equal(r2, r0))
     stopifnot(all.equal(r1b, r1))
     stopifnot(all.equal(r2b, r2))
+    stopifnot(
+      !any(is.infinite(r0)),
+      !any(is.infinite(r1)),
+      !any(is.infinite(r2)),
+      !any(is.infinite(r1b)),
+      !any(is.infinite(r2b))
+    )
   }
 }
 
@@ -137,6 +170,13 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(all.equal(r2, r0))
   stopifnot(all.equal(r1b, r1))
   stopifnot(all.equal(r2b, r2))
+  stopifnot(
+    !any(is.infinite(r0)),
+    !any(is.infinite(r1)),
+    !any(is.infinite(r2)),
+    !any(is.infinite(r1b)),
+    !any(is.infinite(r2b))
+  )
 }
 
 
@@ -152,6 +192,10 @@ print(y0)
 y1 <- rowVars(a, dim. = dim(m))
 print(y1)
 stopifnot(identical(y1, y0))
+stopifnot(
+  !any(is.infinite(y0)),
+  !any(is.infinite(y1))
+)
 
 mu <- rowMeans(m)
 y0 <- rowVars(m, center = mu, dim. = dim(m))
@@ -159,6 +203,10 @@ print(y0)
 y1 <- rowVars(a, center = mu, dim. = dim(m))
 print(y1)
 stopifnot(identical(y1, y0))
+stopifnot(
+  !any(is.infinite(y0)),
+  !any(is.infinite(y1))
+)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -171,7 +219,9 @@ x[1,2] <- Inf
 
 center <- colMeans2(x, na.rm = TRUE)
 y <- colVars(x, center = center, na.rm = TRUE)
+stopifnot(!any(is.infinite(y)))
 
 x <- t(x)
 center <- rowMeans2(x, na.rm = TRUE)
 y <- rowVars(x, center = center, na.rm = TRUE)
+stopifnot(!any(is.infinite(y)))

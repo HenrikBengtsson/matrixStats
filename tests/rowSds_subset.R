@@ -5,25 +5,33 @@ options(matrixStats.center.onUse = "ignore")
 
 rowSds_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 1L, FUN = sd, na.rm = na.rm)
+    sigma <- apply(x, MARGIN = 1L, FUN = sd, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(sigma)))
+  sigma
 }
 
 colSds_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 2L, FUN = sd, na.rm = na.rm)
+    sigma <- apply(x, MARGIN = 2L, FUN = sd, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(sigma)))
+  sigma
 }
 
 
 rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm)
-  rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  sigma <- rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(sigma)))
+  sigma
 }
 
 colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm)
-  colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  sigma <- colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(sigma)))
+  sigma
 }
 
 

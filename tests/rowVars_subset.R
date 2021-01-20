@@ -5,25 +5,33 @@ options(matrixStats.center.onUse = "ignore")
 
 rowVars_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 1L, FUN = var, na.rm = na.rm)
+    res <- apply(x, MARGIN = 1L, FUN = var, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colVars_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 2L, FUN = var, na.rm = na.rm)
+    res <- apply(x, MARGIN = 2L, FUN = var, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 
 rowVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm)
-  rowVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- rowVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm)
-  colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 
