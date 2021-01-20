@@ -37,19 +37,24 @@ colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# With and without some NAs
+# With and without some NAs or Infs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  for (add_na in c(FALSE, TRUE)) {
-    cat("add_na = ", add_na, "\n", sep = "")
-
-    x <- matrix(1:100 + 0.1, nrow = 20, ncol = 5)
-    if (add_na) {
-      x[13:17, c(2, 4)] <- NA_real_
-    }
+  if (mode == "integer") {
+    specials <- c(0L, NA_integer_)
+    delta <- 0L
+  } else {
+    specials <- c(0, NA_real_, Inf)
+    delta <- 0.1
+  }
+  
+  for (special in specials) {
+    cat("special = ", special, "\n", sep = "")
+    x <- matrix(1:100 + delta, nrow = 20, ncol = 5)
+    x[13:17, c(2, 4)] <- special
     cat("mode: ", mode, "\n", sep = "")
-    storage.mode(x) <- mode
     str(x)
+    stopifnot(storage.mode(x) == mode)
 
     # Row/column variance
     for (na.rm in c(FALSE, TRUE)) {
@@ -80,11 +85,19 @@ for (mode in c("integer", "double")) {
       r3b <- colVars_center_naive(x, center = center, na.rm = na.rm)
       r3c <- rowVars(t(x), center = center, na.rm = na.rm)
       r3d <- rowVars_center_naive(t(x), center = center, na.rm = na.rm)
-      stopifnot(all.equal(r3b, r3))
       stopifnot(all.equal(r3c, r3))
-      stopifnot(all.equal(r3d, r3))
+      stopifnot(all.equal(r3d, r3b))
+      if (is.infinite(special)) {
+        keep <- !(is.infinite(r3b) & is.nan(r3))
+        stopifnot(all.equal(r3b[keep], r3[keep]))
+        keep <- !(is.infinite(r3d) & is.nan(r3))
+        stopifnot(all.equal(r3d[keep], r3[keep]))
+      } else {
+        stopifnot(all.equal(r3b, r3))
+        stopifnot(all.equal(r3d, r3))
+      }
     }
-  } # for (add_na ...)
+  } # for (special ...)
 }
 
 
