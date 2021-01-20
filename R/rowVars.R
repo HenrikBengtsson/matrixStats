@@ -122,7 +122,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   x <- (x - center)^2
   x <- rowMeans(x, na.rm = na.rm)
 
-  equal <- all.equal(x, x2, check.attributes = FALSE)
+  ## SPECIAL: Inf:s in 'x' might be NaN:s in 'x2'
+  keep <- !(is.infinite(x) & is.nan(x2))
+  equal <- all.equal(x[keep], x2[keep], check.attributes = FALSE)
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
@@ -225,13 +227,14 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   x2 <- (x2 - center^2)
 
   ## The primary formula for estimating the sample variance
-  ## The primary formula for estimating the sample variance
   for (cc in seq_len(ncol(x))) {
     x[, cc] <- (x[, cc] - center[cc])^2
   }
   x <- colMeans(x, na.rm = na.rm)
 
-  equal <- all.equal(x, x2)
+  ## SPECIAL: Inf:s in 'x' might be NaN:s in 'x2'
+  keep <- !(is.infinite(x) & is.nan(x2))
+  equal <- all.equal(x[keep], x2[keep])
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")

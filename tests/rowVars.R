@@ -164,3 +164,20 @@ print(y0)
 y1 <- rowVars(a, center = mu, dim. = dim(m))
 print(y1)
 stopifnot(identical(y1, y0))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Corner cases
+# https://github.com/HenrikBengtsson/matrixStats/issues/195
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+options(matrixStats.vars.formula.freq = Inf)
+x <- matrix(c(1,2,3,4), nrow = 2L, ncol = 2L)
+x[1,1] <- NA_real_
+x[1,2] <- Inf
+
+center <- colMeans2(x, na.rm = TRUE)
+y <- colVars(x, center = center, na.rm = TRUE)
+
+x <- t(x)
+center <- rowMeans2(x, na.rm = TRUE)
+y <- rowVars(x, center = center, na.rm = TRUE)

@@ -1,17 +1,18 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-12-08]
+Version: 0.57.0-9000 [2021-01-19]
 
 SIGNIFICANT CHANGES:
 
  * colVars() and rowVars() with argument 'center' now calculates the sample
    variance using the n/(n-1)*avg((x-center)^2) formula rather than the
    n/(n-1)*(avg(x^2)-center^2) formula that was used in the past.  Both give
-   the same result when 'center' is the correct sample mean estimate.  The
-   main reason for this change is that, if an incorrect 'center' is provided,
-   in contrast to the old approach, the new approach is guaranteed to give at
-   least non-negative results, despite being incorrect.
+   the same result when 'center' is the correct sample mean estimate and there
+   are no infinite values.  The main reason for this change is that, if an
+   incorrect 'center' is provided, in contrast to the old approach, the new
+   approach is guaranteed to give at least non-negative results, despite being
+   incorrect.
    BACKWARD COMPATIBILITY: Out of all 307 reverse dependencies on CRAN and
    Bioconductor, only four called these functions with argument 'center'. All
    of them pass their package checks also after this update.  To further
