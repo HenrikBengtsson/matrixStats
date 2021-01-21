@@ -12,7 +12,7 @@ SIGNIFICANT CHANGES:
    main reason for this change is that, if an incorrect 'center' is provided,
    in contrast to the old approach, the new approach is guaranteed to give at
    least non-negative results, despite being incorrect.
-   BACKWARD COMPATIBILITY: Out of all 307 reverse dependencies on CRAN and
+   BACKWARD COMPATIBILITY: Out of all 313 reverse dependencies on CRAN and
    Bioconductor, only four called these functions with argument 'center'. All
    of them pass their package checks also after this update.  To further
    protect against a negative impact in existing user scripts, colVars() and
