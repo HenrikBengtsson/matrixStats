@@ -1,7 +1,7 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2021-01-19]
+Version: 0.58.0 [2021-01-21]
 
 SIGNIFICANT CHANGES:
 
@@ -53,7 +53,7 @@ BUG FIXES:
    value if both argument 'dim.' and 'center' would be specified.
 
  * The documentation was unclear on what the 'center' argument should be. They
-   would not detect when an incorrect specification was used, notibly when the
+   would not detect when an incorrect specification was used, notably when the
    length of 'center' did not match the matrix dimensions.  Now these functions
    give an informative error message when 'center' is of the incorrect length.
 
@@ -666,7 +666,7 @@ BUG FIXES:
    fabs().  Despite this, the calculated product would still be correct (at
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
-   coersion at the C level.
+   coercion at the C level.
 
 DEPRECATED AND DEFUNCT:
 
