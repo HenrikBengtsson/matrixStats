@@ -26,10 +26,10 @@ Run `revdep_details(, "abcrf")` for more info
 
 <details>
 
-* Version: 3.0.4
+* Version: 3.0.5
 * GitHub: NA
 * Source code: https://github.com/cran/AlpsNMR
-* Date/Publication: 2020-11-19
+* Date/Publication: 2021-01-20
 * Number of recursive dependencies: 163
 
 Run `revdep_details(, "AlpsNMR")` for more info
@@ -40,7 +40,8 @@ Run `revdep_details(, "AlpsNMR")` for more info
 
 *   checking Rd \usage sections ... WARNING
     ```
-    ...
+    Undocumented arguments in documentation object 'MUVR_model_plot'
+      ‘MVObj’ ‘model’ ‘factCols’ ‘sampLabels’ ‘ylim’
     
     Undocumented arguments in documentation object 'confusion_matrix'
       ‘MVObj’ ‘model’
@@ -49,9 +50,7 @@ Run `revdep_details(, "AlpsNMR")` for more info
       ‘model’
     
     Undocumented arguments in documentation object 'rdCV_PLS_RF'
-      ‘X’ ‘Y’ ‘ID’ ‘scale’ ‘nRep’ ‘nOuter’ ‘nInner’ ‘varRatio’ ‘DA’
-      ‘fitness’ ‘method’ ‘nCompMax’ ‘methParam’ ‘ML’ ‘modReturn’ ‘logg’
-      ‘parallel’
+    ...
     
     Undocumented arguments in documentation object 'rdCV_PLS_RF_ML'
       ‘scale’ ‘nRep’ ‘nOuter’ ‘nInner’ ‘varRatio’ ‘DA’ ‘fitness’ ‘method’
@@ -78,7 +77,7 @@ Run `revdep_details(, "AlpsNMR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/AMARETTO
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 147
+* Number of recursive dependencies: 152
 
 Run `revdep_details(, "AMARETTO")` for more info
 
@@ -88,18 +87,17 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
+    Running examples in ‘AMARETTO-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: AMARETTO_Download
+    > ### Title: AMARETTO_Download
     > ### Aliases: AMARETTO_Download
     > 
     > ### ** Examples
     > 
     > TargetDirectory <- file.path(getwd(),"Downloads/");dir.create(TargetDirectory)
-    > CancerSite <- 'CHOL'
-    > DataSetDirectories <- AMARETTO_Download(CancerSite,TargetDirectory = TargetDirectory)
-    Downloading Gene Expression and Copy Number Variation data for: CHOL
-    
-    This TCGA cancer site/type was not tested, continue at your own risk.
-    
+    ...
     Error: failed to load resource
       name: EH622
       title: CHOL_RNASeq2GeneNorm-20160128
@@ -132,18 +130,17 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    AMARETTO_HTMLreport: no visible binding for global variable ‘Type’
-    AMARETTO_HTMLreport: no visible binding for global variable ‘Color’
-    AMARETTO_HTMLreport: no visible binding for global variable ‘Modules’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘ModuleNr’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Weights’
     AMARETTO_HTMLreport: no visible binding for global variable
-      ‘dt_gensesetsall’
-    GeneSetDescription: no visible binding for global variable
-      ‘MsigdbMapping’
-    GeneSetDescription : <anonymous>: no visible binding for global
-      variable ‘MsigdbMapping’
-    GmtFromModules: no visible binding for global variable ‘value’
-    GmtFromModules: no visible binding for global variable ‘variable’
+      ‘RegulatorIDs’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘TargetIDs’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘moduleNr’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Testset’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘padj’
+    AMARETTO_HTMLreport: no visible binding for global variable
+      ‘n_Overlapping’
+    ...
     GmtFromModules: no visible binding for global variable ‘GeneNames’
     HyperGTestGeneEnrichment: no visible binding for global variable ‘i’
     HyperGTestGeneEnrichment: no visible binding for global variable ‘j’
@@ -274,7 +271,7 @@ Run `revdep_details(, "aroma.light")` for more info
 * GitHub: https://github.com/catavallejos/BASiCS
 * Source code: https://github.com/cran/BASiCS
 * Date/Publication: 2020-12-14
-* Number of recursive dependencies: 133
+* Number of recursive dependencies: 139
 
 Run `revdep_details(, "BASiCS")` for more info
 
@@ -299,7 +296,7 @@ Run `revdep_details(, "BASiCS")` for more info
 * GitHub: https://github.com/mani2012/BatchQC
 * Source code: https://github.com/cran/BatchQC
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 148
+* Number of recursive dependencies: 154
 
 Run `revdep_details(, "BatchQC")` for more info
 
@@ -363,18 +360,17 @@ Run `revdep_details(, "bdynsys")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    bayfacfig: no visible global function definition for ‘dev.set’
+    bayfacfig: no visible global function definition for ‘postscript’
+    bayfacfig: no visible global function definition for ‘points’
+    bayfacfig: no visible global function definition for ‘legend’
+    bayfacfig: no visible global function definition for ‘dev.off’
+    dysymod: no visible global function definition for ‘write.table’
+    errorcorr: no visible global function definition for ‘sd’
+    phaseportdat: no visible global function definition for ‘dev.set’
+    phaseportdat: no visible global function definition for ‘postscript’
+    phaseportdat: no visible global function definition for ‘grid’
     ...
-    phaseportmod: no visible binding for global variable ‘dev.off’
-    plot_data: no visible global function definition for ‘dev.set’
-    plot_data: no visible global function definition for ‘postscript’
-    plot_data: no visible global function definition for ‘matplot’
-    plot_data: no visible global function definition for ‘points’
-    plot_data: no visible global function definition for ‘legend’
-    plot_data: no visible global function definition for ‘dev.off’
-    polyfitbayes: no visible global function definition for ‘runif’
-    polyfitbayes: no visible global function definition for ‘var’
-    polyfitreg: no visible global function definition for ‘lm’
-    polyfitreg: no visible binding for global variable ‘na.exclude’
     polyfitreg: no visible global function definition for ‘var’
     Undefined global functions or variables:
       dev.off dev.set grid legend lm matplot na.exclude points postscript
@@ -395,7 +391,7 @@ Run `revdep_details(, "bdynsys")` for more info
 * GitHub: https://github.com/lindsayrutter/bigPint
 * Source code: https://github.com/cran/bigPint
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 167
+* Number of recursive dependencies: 172
 
 Run `revdep_details(, "bigPint")` for more info
 
@@ -441,7 +437,7 @@ Run `revdep_details(, "bingat")` for more info
 * GitHub: https://github.com/trichelab/biscuiteer
 * Source code: https://github.com/cran/biscuiteer
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 205
+* Number of recursive dependencies: 209
 
 Run `revdep_details(, "biscuiteer")` for more info
 
@@ -451,18 +447,17 @@ Run `revdep_details(, "biscuiteer")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
-    /c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz does not have a header. Using VCF file header information to help set column names.
-    Assuming unmerged data. Checking now... ...The file might be alright. Double check if you're worried.
-    /c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz has 254147 indexed loci.
-    /c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz looks valid for import.
-    Reading unmerged input from /c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz...
-    Excluding CpG sites with uniformly zero coverage...
-    Loaded /c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/biscuiteer/extdata/MCF7_Cunha_chr11p15.bed.gz. Creating bsseq object...
+    Running examples in ‘biscuiteer-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: CpGindex
+    > ### Title: Measure methylation status for PRCs or PMDs
+    > ### Aliases: CpGindex
     > 
-    >   cpg <- CpGindex(bisc)
-    Computing hypermethylation indices...
-    Loading HMM_CpG_islands.hg19...
+    > ### ** Examples
+    > 
+    > 
+    ...
     Loading H9state23unmeth.hg19...
     Computing hypomethylation indices...
     Loading PMDs.hg19.rda from biscuiteerData...
@@ -551,7 +546,7 @@ Run `revdep_details(, "bnclassify")` for more info
 * GitHub: https://github.com/paul-buerkner/brms
 * Source code: https://github.com/cran/brms
 * Date/Publication: 2020-11-03 06:40:22 UTC
-* Number of recursive dependencies: 210
+* Number of recursive dependencies: 215
 
 Run `revdep_details(, "brms")` for more info
 
@@ -590,18 +585,17 @@ Run `revdep_details(, "BSgenome")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘BSgenome-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: SNPlocs-class
+    > ### Title: SNPlocs objects
+    > ### Aliases: class:SNPlocs SNPlocs-class SNPlocs class:ODLT_SNPlocs
+    > ###   ODLT_SNPlocs-class ODLT_SNPlocs class:OldFashionSNPlocs
+    > ###   OldFashionSNPlocs-class OldFashionSNPlocs provider,SNPlocs-method
+    > ###   providerVersion,SNPlocs-method releaseDate,SNPlocs-method
+    > ###   releaseName,SNPlocs-method referenceGenome
     ...
-    Loading required package: GenomicFeatures
-    Loading required package: AnnotationDbi
-    Loading required package: Biobase
-    Welcome to Bioconductor
-    
-        Vignettes contain introductory material; view with
-        'browseVignettes()'. To cite Bioconductor, see
-        'citation("Biobase")', and for packages 'citation("pkgname")'.
-    
-    > txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
-    > my_cds <- cds(txdb)
     > seqlevels(my_cds, pruning.mode="coarse") <- c("chr22", "chrM")
     > seqlevelsStyle(my_cds)  # UCSC
     [1] "UCSC"
@@ -616,18 +610,17 @@ Run `revdep_details(, "BSgenome")` for more info
 
 *   checking for missing documentation entries ... WARNING
     ```
+    Undocumented code objects:
+      ‘MaskedBSgenome’ ‘OnDiskLongTable’ ‘OnDiskLongTable_old’
+      ‘as.data.frame.BSgenomeViews’ ‘batchsizes’ ‘blocksizes’ ‘breakpoints’
+      ‘forgeMaskedBSgenomeDataPkg’
+      ‘getBatchesByOverlapsFromOnDiskLongTable’
+      ‘getBatchesBySeqnameFromOnDiskLongTable’
+      ‘getBatchesFromOnDiskLongTable’ ‘getBatchesFromOnDiskLongTable_old’
+      ‘getRowsByIdFromOnDiskLongTable’ ‘getRowsByIdFromOnDiskLongTable_old’
+      ‘getRowsByIndexFromOnDiskLongTable_old’ ‘getRowsFromOnDiskLongTable’
+      ‘rowids’ ‘saveAsOnDiskLongTable_old’
     ...
-        'MaskedBSgenomeDataPkgSeed'
-      generic 'forgeMaskedBSgenomeDataPkg' and siglist 'character'
-      generic 'forgeMaskedBSgenomeDataPkg' and siglist 'list'
-      generic 'length' and siglist 'OnDiskNamedSequences'
-      generic 'names' and siglist 'FastaNamedSequences'
-      generic 'names' and siglist 'TwobitNamedSequences'
-      generic 'rowids' and siglist 'OnDiskLongTable'
-      generic 'rowids' and siglist 'OnDiskLongTable_old'
-      generic 'seqinfo' and siglist 'FastaNamedSequences'
-      generic 'seqinfo' and siglist 'RdaNamedSequences'
-      generic 'seqinfo' and siglist 'RdsNamedSequences'
       generic 'seqinfo' and siglist 'TwobitNamedSequences'
       generic 'seqnames' and siglist 'OnDiskNamedSequences'
       generic 'show' and siglist 'OnDiskLongTable'
@@ -712,18 +705,17 @@ Run `revdep_details(, "bumphunter")` for more info
 
 *   checking tests ...
     ```
-    ...
-       6. rtracklayer::import(con, ...)
-       7. rtracklayer:::.local(con, format, text, ...)
-       8. utils::download.file(resource(con), destfile)
+     ERROR
+    Running the tests in ‘tests/test-all.R’ failed.
+    Last 50 lines of output:
       
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Error (test_annotation.R:99:1): (code run outside of `test_that()`) ─────────
-      Error: download from 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz' failed
-      Backtrace:
-          █
-       1. ├─rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz") test_annotation.R:99:0
-       2. └─rtracklayer::import("ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz")
+          expand.grid
+      
+      Loading required package: IRanges
+      Loading required package: GenomeInfoDb
+      Loading required package: GenomicRanges
+      Loading required package: foreach
+    ...
        3.   ├─rtracklayer::import(FileForFormat(con), ...)
        4.   └─rtracklayer::import(FileForFormat(con), ...)
        5.     ├─rtracklayer::import(con, ...)
@@ -818,7 +810,7 @@ Run `revdep_details(, "CATALYST")` for more info
 * GitHub: https://github.com/campbio/celda
 * Source code: https://github.com/cran/celda
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 243
+* Number of recursive dependencies: 248
 
 Run `revdep_details(, "celda")` for more info
 
@@ -871,7 +863,7 @@ Run `revdep_details(, "cellWise")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/CEMiTool
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 162
+* Number of recursive dependencies: 161
 
 Run `revdep_details(, "CEMiTool")` for more info
 
@@ -897,18 +889,17 @@ Run `revdep_details(, "CEMiTool")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    plot_mean_var,CEMiTool: no visible binding for global variable
-      ‘..rr.label..’
-    plot_ora,CEMiTool : <anonymous>: no visible global function definition
+    flip_vector: no visible global function definition for ‘setNames’
+    select_genes: no visible global function definition for ‘var’
+    get_hubs,CEMiTool : <anonymous>: no visible global function definition
       for ‘head’
-    plot_qq,CEMiTool: no visible binding for global variable ‘data’
-    plot_sample_tree,CEMiTool: no visible global function definition for
-      ‘dist’
-    plot_sample_tree,CEMiTool: no visible global function definition for
-      ‘dev.off’
-    save_plots,CEMiTool : <anonymous>: no visible global function
-      definition for ‘dev.off’
+    get_merged_mods,CEMiTool: no visible global function definition for
+      ‘as.dist’
+    get_mods,CEMiTool: no visible global function definition for ‘as.dist’
+    get_phi,CEMiTool: no visible global function definition for ‘tail’
+    get_phi,CEMiTool: no visible global function definition for ‘head’
+    mod_gene_num,CEMiTool: no visible binding for global variable ‘modules’
+    ...
     save_plots,CEMiTool: no visible global function definition for
       ‘dev.off’
     Undefined global functions or variables:
@@ -929,7 +920,7 @@ Run `revdep_details(, "CEMiTool")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ChAMP
 * Date/Publication: 2020-11-03
-* Number of recursive dependencies: 243
+* Number of recursive dependencies: 248
 
 Run `revdep_details(, "ChAMP")` for more info
 
@@ -1017,7 +1008,7 @@ Run `revdep_details(, "ChAMP")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Chicago
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 163
+* Number of recursive dependencies: 168
 
 Run `revdep_details(, "Chicago")` for more info
 
@@ -1053,18 +1044,17 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘ChIPpeakAnno-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annoPeaks
+    > ### Title: Annotate peaks
+    > ### Aliases: annoPeaks
+    > ### Keywords: misc
+    > 
+    > ### ** Examples
+    > 
     ...
-    Welcome to Bioconductor
-    
-        Vignettes contain introductory material; view with
-        'browseVignettes()'. To cite Bioconductor, see
-        'citation("Biobase")', and for packages 'citation("pkgname")'.
-    
-    Loading required package: AnnotationFilter
-    
-    Attaching package: 'ensembldb'
-    
-    The following object is masked from 'package:stats':
     
         filter
     
@@ -1079,18 +1069,17 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
 
 *   checking tests ...
     ```
-    ...
-        8.         └─GenomeInfoDb::`seqlevelsStyle<-`(`*tmp*`, value = value)
-        9.           └─BiocGenerics::mapply(...)
-       10.             ├─BiocGenerics:::standardGeneric("mapply")
-       11.             │ ├─BiocGenerics::eval(mc, env)
-       12.             │ └─base::eval(mc, env)
-       13.             │   └─base::eval(mc, env)
-       14.             └─base::mapply(...)
-       15.               └─(function (seqlevels, genome, new_style) ...
-       16.                 └─GenomeInfoDb::getChromInfoFromUCSC(new_genome, map.NCBI = TRUE)
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 50 lines of output:
        17.                   └─GenomeInfoDb:::.get_chrom_info_for_registered_UCSC_genome(...)
        18.                     ├─BiocGenerics::do.call(...)
+       19.                     ├─base::do.call(...)
+       20.                     └─(function (UCSC_chrom_info, assembly_accession, AssemblyUnits = NULL, ...
+       21.                       └─GenomeInfoDb::getChromInfoFromNCBI(assembly_accession, assembly.units = AssemblyUnits)
+       22.                         └─GenomeInfoDb:::.get_NCBI_chrom_info_from_accession(...)
+       23.                           └─GenomeInfoDb:::fetch_assembly_report(accession)
+    ...
        19.                     ├─base::do.call(...)
        20.                     └─(function (UCSC_chrom_info, assembly_accession, AssemblyUnits = NULL, ...
        21.                       └─GenomeInfoDb::getChromInfoFromNCBI(assembly_accession, assembly.units = AssemblyUnits)
@@ -1300,7 +1289,7 @@ Run `revdep_details(, "cna")` for more info
 * GitHub: https://github.com/jamesdalg/CNVScope
 * Source code: https://github.com/cran/CNVScope
 * Date/Publication: 2021-01-10 23:20:07 UTC
-* Number of recursive dependencies: 204
+* Number of recursive dependencies: 209
 
 Run `revdep_details(, "CNVScope")` for more info
 
@@ -1324,7 +1313,7 @@ Run `revdep_details(, "CNVScope")` for more info
 * GitHub: https://github.com/jokergoo/cola
 * Source code: https://github.com/cran/cola
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 204
+* Number of recursive dependencies: 208
 
 Run `revdep_details(, "cola")` for more info
 
@@ -1362,7 +1351,7 @@ Run `revdep_details(, "cola")` for more info
 * GitHub: https://github.com/jokergoo/ComplexHeatmap
 * Source code: https://github.com/cran/ComplexHeatmap
 * Date/Publication: 2020-11-12
-* Number of recursive dependencies: 102
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "ComplexHeatmap")` for more info
 
@@ -1412,18 +1401,17 @@ Run `revdep_details(, "CopywriteR")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .peakCutoff: no visible global function definition for ‘dpois’
+    .peakCutoff: no visible global function definition for ‘ppois’
+    .tng: no visible global function definition for ‘png’
+    .tng: no visible global function definition for ‘par’
+    .tng: no visible global function definition for ‘dev.off’
+    .tng: no visible global function definition for ‘loess’
+    .tng: no visible global function definition for ‘predict’
+    .tng: no visible global function definition for ‘points’
+    .tng: no visible global function definition for ‘rgb’
+    .tng: no visible global function definition for ‘lines’
     ...
-      definition for ‘text’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘axis’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘abline’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘dev.off’
-    preCopywriteR: no visible global function definition for ‘as’
-    Undefined global functions or variables:
-      abline as axis dev.off dpois ecdf getClass lines loess packageVersion
-      par pdf png points ppois predict read.table rgb segments text
       write.table
     Consider adding
       importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
@@ -1528,7 +1516,7 @@ Run `revdep_details(, "crlmm")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/crossmeta
 * Date/Publication: 2020-11-02
-* Number of recursive dependencies: 159
+* Number of recursive dependencies: 165
 
 Run `revdep_details(, "crossmeta")` for more info
 
@@ -1560,7 +1548,6 @@ Run `revdep_details(, "crossmeta")` for more info
 
 *   checking Rd \usage sections ... WARNING
     ```
-    ...
     Undocumented arguments in documentation object 'ch2_subset'
       ‘prev_anal’
     
@@ -1571,7 +1558,7 @@ Run `revdep_details(, "crossmeta")` for more info
     
     Undocumented arguments in documentation object 'iqr_replicates'
       ‘eset’
-    Documented arguments not in \usage in documentation object 'iqr_replicates':
+    ...
       ‘mod’ ‘svobj’
     
     Undocumented arguments in documentation object 'run_select_contrasts'
@@ -1586,18 +1573,17 @@ Run `revdep_details(, "crossmeta")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    add_contrasts: no visible global function definition for
+      ‘select_contrasts’
+    bulkAnnot : <anonymous>: no visible global function definition for
+      ‘write.csv’
+    bulkAnnot: no visible global function definition for ‘html’
+    bulkAnnot: no visible global function definition for ‘toggleClass’
+    bulkAnnot: no visible global function definition for ‘read.csv’
+    diff_anal: no visible global function definition for ‘model.matrix’
+    getAndParseGSEMatrices: no visible global function definition for
+      ‘download.file’
     ...
-    get_palette: no visible global function definition for ‘head’
-    is_invertible: no visible global function definition for ‘is’
-    load_agil_plat : <anonymous>: no visible global function definition for
-      ‘capture.output’
-    load_raw: no visible global function definition for ‘setNames’
-    symbol_annot: no visible binding for global variable ‘SYMBOL_9606’
-    to_eset: no visible global function definition for ‘as’
-    to_ma: no visible global function definition for ‘new’
-    which_max_iqr: no visible binding for global variable ‘iqrange’
-    xls_to_txt: no visible global function definition for ‘write.table’
-    Undefined global functions or variables:
       SYMBOL_9606 as capture.output download.file head html iqrange is
       model.matrix new read.csv read.table select_contrasts setNames
       toggleClass write.csv write.table
@@ -1623,7 +1609,7 @@ Run `revdep_details(, "crossmeta")` for more info
 * GitHub: https://github.com/M-E-Rademaker/cSEM
 * Source code: https://github.com/cran/cSEM
 * Date/Publication: 2020-10-12 16:40:03 UTC
-* Number of recursive dependencies: 118
+* Number of recursive dependencies: 124
 
 Run `revdep_details(, "cSEM")` for more info
 
@@ -1645,7 +1631,7 @@ Run `revdep_details(, "cSEM")` for more info
 * GitHub: https://github.com/BodenmillerGroup/cytomapper
 * Source code: https://github.com/cran/cytomapper
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 111
+* Number of recursive dependencies: 117
 
 Run `revdep_details(, "cytomapper")` for more info
 
@@ -1836,7 +1822,7 @@ Run `revdep_details(, "DepecheR")` for more info
 * GitHub: https://github.com/yafeng/DEqMS
 * Source code: https://github.com/cran/DEqMS
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 117
+* Number of recursive dependencies: 122
 
 Run `revdep_details(, "DEqMS")` for more info
 
@@ -1846,18 +1832,17 @@ Run `revdep_details(, "DEqMS")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
     ...
-    The following objects are masked from ‘package:base’:
-    
-        Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-        as.data.frame, basename, cbind, colnames, dirname, do.call,
-        duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-        lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-        pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-        tapply, union, unique, unsplit, which.max, which.min
-    
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
     snapshotDate(): 2021-01-20
@@ -1974,7 +1959,7 @@ Run `revdep_details(, "diffloop")` for more info
 * GitHub: https://github.com/matthewcarlucci/DiscoRhythm
 * Source code: https://github.com/cran/DiscoRhythm
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 154
+* Number of recursive dependencies: 160
 
 Run `revdep_details(, "DiscoRhythm")` for more info
 
@@ -2005,7 +1990,7 @@ Run `revdep_details(, "DiscoRhythm")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/dmrseq
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 164
+* Number of recursive dependencies: 169
 
 Run `revdep_details(, "dmrseq")` for more info
 
@@ -2015,18 +2000,17 @@ Run `revdep_details(, "dmrseq")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘dmrseq-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: getAnnot
+    > ### Title: Retrieve annotation information
+    > ### Aliases: getAnnot
+    > 
+    > ### ** Examples
+    > 
+    > 
     ...
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (4 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (3 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
     Trying again (2 attempts remaining)
     Error in get(txdb_name) : 
       object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
@@ -2064,7 +2048,7 @@ Run `revdep_details(, "dmrseq")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Doscheda
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 166
+* Number of recursive dependencies: 172
 
 Run `revdep_details(, "Doscheda")` for more info
 
@@ -2113,7 +2097,7 @@ Run `revdep_details(, "DSWE")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/EasyqpcR
 * Date/Publication: 2020-04-27
-* Number of recursive dependencies: 61
+* Number of recursive dependencies: 69
 
 Run `revdep_details(, "EasyqpcR")` for more info
 
@@ -2181,18 +2165,17 @@ Run `revdep_details(, "EMDomics")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    .cvm_pairwise_q: no visible global function definition for ‘combn’
+    .cvm_pairwise_q : <anonymous>: no visible global function definition
+      for ‘median’
+    .emd_gene_pairwise: no visible global function definition for ‘hist’
+    .emd_pairwise_q: no visible global function definition for ‘combn’
+    .emd_pairwise_q : <anonymous>: no visible global function definition
+      for ‘median’
+    .ks_pairwise_table: no visible global function definition for ‘ks.test’
+    calculate_cvm: no visible global function definition for ‘combn’
     calculate_cvm : <anonymous>: no visible global function definition for
-      ‘median’
-    calculate_cvm_gene: no visible global function definition for ‘combn’
-    calculate_emd: no visible global function definition for ‘combn’
-    calculate_emd : <anonymous>: no visible global function definition for
-      ‘median’
-    calculate_emd_gene: no visible global function definition for ‘combn’
-    calculate_ks: no visible global function definition for ‘combn’
-    calculate_ks : <anonymous>: no visible global function definition for
-      ‘p.adjust’
-    calculate_ks : <anonymous>: no visible global function definition for
+    ...
       ‘median’
     calculate_ks_gene: no visible global function definition for ‘combn’
     calculate_ks_gene: no visible global function definition for ‘ks.test’
@@ -2503,7 +2486,7 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    oecg: no visible global function definition for ‘is’
     oecg: no visible global function definition for ‘seqlengths’
     oecg: no visible binding for global variable ‘Hsapiens’
     oecg: no visible global function definition for ‘seqlevels’
@@ -2513,8 +2496,7 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
     oecg: no visible global function definition for ‘start<-’
     oecg: no visible global function definition for ‘end’
     oecg: no visible global function definition for ‘end<-’
-    oecg: no visible global function definition for ‘getSeq’
-    oecg: no visible global function definition for ‘width’
+    ...
     oecg: no visible global function definition for ‘letterFrequency’
     oecg: no visible global function definition for ‘dinucleotideFrequency’
     Undefined global functions or variables:
@@ -2535,7 +2517,7 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 * GitHub: https://github.com/mikelove/fishpond
 * Source code: https://github.com/cran/fishpond
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 169
+* Number of recursive dependencies: 173
 
 Run `revdep_details(, "fishpond")` for more info
 
@@ -2667,18 +2649,17 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 *   checking Rd \usage sections ... WARNING
     ```
+    Documented arguments not in \usage in documentation object 'GatingSet-methods':
+      ‘...’
+    
+    Undocumented arguments in documentation object 'cf_append_cols'
+      ‘cred’
+    
+    Undocumented arguments in documentation object 'convert'
+      ‘backend’
+    
+    Undocumented arguments in documentation object 'cs_get_uri'
     ...
-    
-    Undocumented arguments in documentation object 'keyword-mutators'
-      ‘cs’
-    
-    Undocumented arguments in documentation object 'load_cytoframe'
-      ‘num_threads’
-    
-    Undocumented arguments in documentation object 'load_cytoframe_from_fcs'
-      ‘backend’ ‘uri’
-    
-    Undocumented arguments in documentation object 'load_cytoset_from_fcs'
       ‘backend’ ‘backend_dir’
     
     Undocumented arguments in documentation object 'save_gs'
@@ -2730,18 +2711,17 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .computeCV : <anonymous>: no visible binding for global variable
+      ‘xml.count’
+    .computeCV : <anonymous>: no visible binding for global variable
+      ‘openCyto.count’
+    .computeCV : <anonymous> : <anonymous>: no visible global function
+      definition for ‘IQR’
+    .computeCV : <anonymous> : <anonymous>: no visible global function
+      definition for ‘median’
+    .computeCV_gh : <anonymous>: no visible global function definition for
+      ‘IQR’
     ...
-    setNode,GatingSet-character-ANY: no visible global function definition
-      for ‘is’
-    show,cytoframe: no visible global function definition for
-      ‘selectMethod’
-    transform,GatingSet: no visible global function definition for ‘is’
-    transform,GatingSet : <anonymous>: no visible global function
-      definition for ‘is’
-    transform,cytoframe: no visible global function definition for ‘is’
-    transform,cytoset: no visible global function definition for ‘is’
-    transform,cytoset : <anonymous>: no visible global function definition
-      for ‘is’
     Undefined global functions or variables:
       . .hasSlot IQR Population as callNextMethod count desc extends is
       keys kwdError median na_idx new node obj old openCyto.count output
@@ -2861,7 +2841,7 @@ Run `revdep_details(, "gap")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GenEst
 * Date/Publication: 2020-11-22 00:00:06 UTC
-* Number of recursive dependencies: 86
+* Number of recursive dependencies: 92
 
 Run `revdep_details(, "GenEst")` for more info
 
@@ -2883,7 +2863,7 @@ Run `revdep_details(, "GenEst")` for more info
 * GitHub: https://github.com/federicomarini/GeneTonic
 * Source code: https://github.com/cran/GeneTonic
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 175
+* Number of recursive dependencies: 181
 
 Run `revdep_details(, "GeneTonic")` for more info
 
@@ -3062,7 +3042,7 @@ Run `revdep_details(, "GJRM")` for more info
 * GitHub: https://github.com/const-ae/glmGamPoi
 * Source code: https://github.com/cran/glmGamPoi
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 157
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "glmGamPoi")` for more info
 
@@ -3126,18 +3106,17 @@ Run `revdep_details(, "GUIDEseq")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    annotateOffTargets: no visible binding for global variable
+      'offTarget_Start'
+    annotateOffTargets: no visible global function definition for 'exons'
+    annotateOffTargets: no visible global function definition for
+      'seqlevelsStyle<-'
+    annotateOffTargets: no visible global function definition for 'genes'
+    getPeaks: no visible binding for global variable 'adjusted.p.value'
+    getPeaks: no visible binding for global variable 'SNratio'
     getUniqueCleavageEvents: no visible binding for global variable
       'qwidth.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'qwidth.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'readName'
-    getUniqueCleavageEvents: no visible binding for global variable 'UMI'
+    ...
     offTargetAnalysisOfPeakRegions: no visible binding for global variable
       'thePeak'
     offTargetAnalysisOfPeakRegions: no visible binding for global variable
@@ -3202,18 +3181,17 @@ Run `revdep_details(, "GWENA")` for more info
 
 *   checking tests ...
     ```
-    ...
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
       > library(GWENA)
       
       > 
       > test_check("GWENA")
       ══ Failed tests ════════════════════════════════════════════════════════════════
       ── Error (test-biological_integration.R:61:3): gost objects in list are compatible ──
-      Error: gost_result must be a list.
-      Backtrace:
-          █
-       1. ├─testthat::expect_warning(...) test-biological_integration.R:61:2
-       2. │ └─testthat:::quasi_capture(enquo(object), label, capture_warnings)
+    ...
        3. │   ├─testthat:::.capture(...)
        4. │   │ └─base::withCallingHandlers(...)
        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
@@ -3265,7 +3243,7 @@ Run `revdep_details(, "haploReconstruct")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/hipathia
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 121
+* Number of recursive dependencies: 126
 
 Run `revdep_details(, "hipathia")` for more info
 
@@ -3334,7 +3312,7 @@ Run `revdep_details(, "JMbayes2")` for more info
 * GitHub: https://github.com/envirometrix/landmap
 * Source code: https://github.com/cran/landmap
 * Date/Publication: 2020-11-18 23:20:14 UTC
-* Number of recursive dependencies: 142
+* Number of recursive dependencies: 141
 
 Run `revdep_details(, "landmap")` for more info
 
@@ -3355,7 +3333,7 @@ Run `revdep_details(, "landmap")` for more info
 * GitHub: https://github.com/philips-software/latrend
 * Source code: https://github.com/cran/latrend
 * Date/Publication: 2020-11-18 10:10:02 UTC
-* Number of recursive dependencies: 192
+* Number of recursive dependencies: 198
 
 Run `revdep_details(, "latrend")` for more info
 
@@ -3374,10 +3352,10 @@ Run `revdep_details(, "latrend")` for more info
 
 <details>
 
-* Version: 1.1.2
+* Version: 2.0.1
 * GitHub: https://github.com/JEFworks/liger
 * Source code: https://github.com/cran/liger
-* Date/Publication: 2020-07-16 15:10:07 UTC
+* Date/Publication: 2021-01-25 05:50:09 UTC
 * Number of recursive dependencies: 49
 
 Run `revdep_details(, "liger")` for more info
@@ -3388,11 +3366,11 @@ Run `revdep_details(, "liger")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.8Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
         data   3.3Mb
         doc    2.1Mb
-        libs   1.4Mb
+        libs   1.7Mb
     ```
 
 # LSAmitR
@@ -3424,7 +3402,7 @@ Run `revdep_details(, "LSAmitR")` for more info
 * GitHub: https://github.com/R-Lum/Luminescence
 * Source code: https://github.com/cran/Luminescence
 * Date/Publication: 2020-12-10 17:10:02 UTC
-* Number of recursive dependencies: 149
+* Number of recursive dependencies: 153
 
 Run `revdep_details(, "Luminescence")` for more info
 
@@ -3459,7 +3437,7 @@ Run `revdep_details(, "Luminescence")` for more info
 * GitHub: https://github.com/tallulandrews/M3Drop
 * Source code: https://github.com/cran/M3Drop
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 215
+* Number of recursive dependencies: 220
 
 Run `revdep_details(, "M3Drop")` for more info
 
@@ -3502,10 +3480,10 @@ Run `revdep_details(, "M3Drop")` for more info
 
 <details>
 
-* Version: 2.9.0
+* Version: 2.10.1
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
-* Date/Publication: 2020-04-28
+* Date/Publication: 2021-01-22
 * Number of recursive dependencies: 226
 
 Run `revdep_details(, "maEndToEnd")` for more info
@@ -3522,29 +3500,16 @@ Run `revdep_details(, "maEndToEnd")` for more info
       'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
       'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
       'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
-      'Rgraphviz'
+      'Rgraphviz', 'enrichplot'
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
-        doc   5.9Mb
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    License components which are templates and need '+ file LICENSE':
-      MIT
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    File
-      LICENCE
-    is not mentioned in the DESCRIPTION file.
+        doc   6.0Mb
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -3570,18 +3535,17 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 
 *   checking tests ...
     ```
-    ...
-       4.     └─matrixStats::rowSds(...)
-       5.       └─matrixStats::rowVars(...)
-      ── Error (test-api_compatibility.R:1445:2): rowVars works  ─────────────────────
-      Error: Argument 'center' should be of the same length as number of rows of 'x': 16 != 12
-      Backtrace:
-          █
-       1. ├─MatrixGenerics::rowVars(...) test-api_compatibility.R:1445:8
-       2. └─MatrixGenerics::rowVars(...)
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       1. ├─MatrixGenerics::colVars(...) test-api_compatibility.R:678:8
+       2. └─MatrixGenerics::colVars(...)
        3.   └─MatrixGenerics:::.local(x, rows, cols, na.rm, center, ...)
-       4.     └─matrixStats::rowVars(...)
-      ── Error (test-api_compatibility.R:1466:2): rowWeightedMads works  ─────────────
+       4.     └─matrixStats::colVars(...)
+      ── Error (test-api_compatibility.R:698:2): colWeightedMads works  ──────────────
+      Error: Argument 'center' should be of the same length as number of columns of 'x': 1 != 6
+      Backtrace:
+    ...
       Error: Argument 'center' should be of the same length as number of rows of 'x': 1 != 6
       Backtrace:
           █
@@ -3709,18 +3673,17 @@ Run `revdep_details(, "metabCombiner")` for more info
 
 *   checking for code/documentation mismatches ... WARNING
     ```
-    ...
-      Code: function(object, data = "x")
-      Docs: function(object, data = c("x", "y"))
-      Mismatches in argument default values:
-        Name: 'data' Code: "x" Docs: c("x", "y")
-    \S4method{getSamples}{metabCombiner}
+    Codoc mismatches from documentation object 'getExtra':
+    getExtra
       Code: function(object, data = "x")
       Docs: function(object, data = c("x", "y"))
       Mismatches in argument default values:
         Name: 'data' Code: "x" Docs: c("x", "y")
     
-    Codoc mismatches from documentation object 'nonmatched':
+    Codoc mismatches from documentation object 'getSamples':
+    getSamples
+      Code: function(object, data = "x")
+    ...
     nonmatched
       Code: function(object, data = "x")
       Docs: function(object, data = c("x", "y"))
@@ -3787,6 +3750,7 @@ Execution halted
 ERROR: lazy loading failed for package ‘metagene’
 * removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/new/metagene.Rcheck/metagene’
 
+
 ```
 ### CRAN
 
@@ -3806,6 +3770,7 @@ Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWith
 Execution halted
 ERROR: lazy loading failed for package ‘metagene’
 * removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/old/metagene.Rcheck/metagene’
+
 
 ```
 # metamicrobiomeR
@@ -3876,7 +3841,7 @@ Run `revdep_details(, "MetaNeighbor")` for more info
 * GitHub: https://github.com/TransBioInfoLab/MethReg
 * Source code: https://github.com/cran/MethReg
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 218
+* Number of recursive dependencies: 223
 
 Run `revdep_details(, "MethReg")` for more info
 
@@ -3886,18 +3851,17 @@ Run `revdep_details(, "MethReg")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
+    Running examples in ‘MethReg-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: create_triplet_distance_based
+    > ### Title: Map DNAm to target genes using distance approaches, and TF to
+    > ###   the DNAm region using JASPAR2020 TFBS.
+    > ### Aliases: create_triplet_distance_based
     > 
     > ### ** Examples
     > 
-    > regions.names <- c("chr3:189631389-189632889","chr4:43162098-43163498")
-    > triplet <- create_triplet_distance_based(
-    +    region = regions.names,
-    +    motif.search.window.size = 500,
-    +    target.method = "closest.gene"
-    + )
-    Finding target genes
-    Removing regions overlapping promoter regions
+    ...
     o Get promoter regions for hg38
     o Remove promoter regions
     Looking for TFBS
@@ -3912,18 +3876,17 @@ Run `revdep_details(, "MethReg")` for more info
 
 *   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       14. │             └─BSgenome:::.stopOnAvailablePkg(genome)
+       15. │               └─base::stop(...)
+       16. ├─SummarizedExperiment::assay(.)
+       17. └─base::.handleSimpleError(...)
+       18.   └─base:::h(simpleError(msg, call))
+      ── Error (test-get_tf_in_region.R:18:5): get_tf_in_region accepts granges as input ──
+      Error: error in evaluating the argument 'x' in selecting a method for function 'assay': BSgenome.Hsapiens.UCSC.hg19 package is not currently installed.
     ...
-      Error: sesame package is needed for this function to work. Please install it.
-      Backtrace:
-          █
-       1. └─MethReg:::map_probes_to_regions(dna.met.chr21[1:2, ]) test-utils.R:19:4
-       2.   └─MethReg::get_met_probes_info(genome, arrayType)
-       3.     └─MethReg:::check_package("sesame")
-       4.       └─base::suppressMessages(...)
-       5.         └─base::withCallingHandlers(...)
-      ── Error (test-utils.R:52:5): make_dnam_se returns a SE with regions ───────────
-      Error: sesame package is needed for this function to work. Please install it.
-      Backtrace:
           █
        1. └─MethReg::make_dnam_se(dna.met.chr21) test-utils.R:52:4
        2.   └─MethReg::get_met_probes_info(genome = genome, arrayType = arrayType)
@@ -3964,7 +3927,7 @@ Run `revdep_details(, "MethReg")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/methrix
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 152
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "methrix")` for more info
 
@@ -3989,7 +3952,7 @@ Run `revdep_details(, "methrix")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MethylAid
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 172
+* Number of recursive dependencies: 177
 
 Run `revdep_details(, "MethylAid")` for more info
 
@@ -4010,7 +3973,7 @@ Run `revdep_details(, "MethylAid")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/methylationArrayAnalysis
 * Date/Publication: 2020-10-30
-* Number of recursive dependencies: 218
+* Number of recursive dependencies: 223
 
 Run `revdep_details(, "methylationArrayAnalysis")` for more info
 
@@ -4127,6 +4090,7 @@ Run `revdep_details(, "methylumi")` for more info
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
     Namespace in Imports field not imported from: ‘graphics’
       All declared Imports should be used.
+    ...
     Packages in Depends field not imported from:
       ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘methods’
       ‘reshape2’ ‘scales’
@@ -4141,18 +4105,17 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    getBarcodes: warning in list.files(path = path, patt = "idat"): partial
+      argument match of 'patt' to 'pattern'
+    coerce,RangedSummarizedExperiment-GenomicMethylSet: warning in
+      assays(from, withDim = F): partial argument match of 'withDim' to
+      'withDimnames'
+    .getFinalReportBlock: no visible global function definition for
+      ‘read.table’
+    .mclapply: no visible global function definition for ‘mclapply’
+    .parallel : <anonymous>: no visible global function definition for
+      ‘ecdf’
     ...
-      IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
-      abline addColorChannelInfo aes allele as.dist axis box capture.output
-      channel.probes colMedians colQuantiles colSds colorRampPalette
-      coord_flip data dnorm dropouts drops ecdf facet_grid features
-      gamma.integral gamma.mle gamma.mode geom_histogram ggplot hclust
-      hm27.controls hm27.ordering hm450.controls hm450.ordering huber index
-      intensity lines log_trans mclapply melt mu offset opts p.adjust
-      packageDescription packageVersion par plot.density pnorm points
-      position_identity read.csv read.delim read.table rect rowMins
-      scale_colour_manual scale_fill_manual scale_shape_manual
-      scale_x_continuous scale_y_continuous scale_y_discrete
       subsetCommonProbes text theme_bw title value variable weighted.mean
     Consider adding
       importFrom("grDevices", "colorRampPalette")
@@ -4184,7 +4147,7 @@ Run `revdep_details(, "methylumi")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MFHD
 * Date/Publication: 2013-10-23 23:50:20
-* Number of recursive dependencies: 105
+* Number of recursive dependencies: 111
 
 Run `revdep_details(, "MFHD")` for more info
 
@@ -4194,18 +4157,17 @@ Run `revdep_details(, "MFHD")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    MFHD: no visible global function definition for ‘complete.cases’
+    MFHD: no visible global function definition for ‘quantile’
+    PIT: no visible global function definition for ‘xy.coords’
+    PIT: no visible global function definition for ‘identify’
+    PIT: no visible global function definition for ‘points’
+    mfhd_compute.bagplot : cut.z.pg: no visible global function definition
+      for ‘segments’
+    mfhd_compute.bagplot : cut.z.pg: no visible global function definition
+      for ‘points’
+    mfhd_compute.bagplot : find.cut.z.pg: no visible global function
     ...
-    plot.bagplot : cut.z.pg: no visible global function definition for
-      ‘points’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘points’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘lines’
-    plot.bagplot: no visible global function definition for ‘boxplot’
-    plot.bagplot: no visible global function definition for ‘points’
-    plot.bagplot: no visible global function definition for ‘segments’
-    plot.bagplot: no visible global function definition for ‘text’
-    plot.bagplot: no visible global function definition for ‘lines’
     plot.bagplot: no visible global function definition for ‘polygon’
     Undefined global functions or variables:
       boxplot chull complete.cases identify lines points polygon prcomp
@@ -4226,7 +4188,7 @@ Run `revdep_details(, "MFHD")` for more info
 * GitHub: https://github.com/mfasiolo/mgcViz
 * Source code: https://github.com/cran/mgcViz
 * Date/Publication: 2020-03-04 15:10:02 UTC
-* Number of recursive dependencies: 106
+* Number of recursive dependencies: 112
 
 Run `revdep_details(, "mgcViz")` for more info
 
@@ -4272,7 +4234,7 @@ Run `revdep_details(, "MHTcop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/microbiomeExplorer
 * Date/Publication: 2020-10-29
-* Number of recursive dependencies: 196
+* Number of recursive dependencies: 202
 
 Run `revdep_details(, "microbiomeExplorer")` for more info
 
@@ -4372,7 +4334,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
 * GitHub: https://github.com/mixOmicsTeam/mixOmics
 * Source code: https://github.com/cran/mixOmics
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 99
+* Number of recursive dependencies: 105
 
 Run `revdep_details(, "mixOmics")` for more info
 
@@ -4493,10 +4455,8 @@ Run `revdep_details(, "moc.gapbk")` for more info
 
 *   checking for code/documentation mismatches ... WARNING
     ```
-    ...
     --------------------------------------------------------------------------
-    --------------------------------------------------------------------------
-    [[30022,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[30059,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
@@ -4505,6 +4465,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
     Another transport will be used instead, although this may result in
     lower performance.
     --------------------------------------------------------------------------
+    ...
     --------------------------------------------------------------------------
     [[30002,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
@@ -4591,7 +4552,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/monocle
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 253
+* Number of recursive dependencies: 258
 
 Run `revdep_details(, "monocle")` for more info
 
@@ -4609,18 +4570,17 @@ Run `revdep_details(, "monocle")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    assign_cell_lineage: no visible global function definition for ‘nei’
+    buildBranchCellDataSet: no visible global function definition for ‘nei’
+    clusterCells: no visible global function definition for ‘quantile’
+    count_leaf_descendents: no visible global function definition for ‘nei’
+    cth_classifier_cds: no visible global function definition for ‘nei’
+    cth_classifier_cell: no visible global function definition for ‘nei’
+    diff_test_helper: no visible binding for global variable ‘Size_Factor’
+    exportCDS: no visible binding for global variable ‘use_for_ordering’
     extract_good_ordering: no visible global function definition for ‘nei’
     fit_model_helper: no visible binding for global variable ‘Size_Factor’
-    get_next_node_id: no visible binding for '<<-' assignment to
-      ‘next_node’
-    get_next_node_id: no visible binding for global variable ‘next_node’
-    make_canonical: no visible global function definition for ‘nei’
-    measure_diameter_path: no visible global function definition for ‘nei’
-    orderCells: no visible binding for '<<-' assignment to ‘next_node’
-    plot_multiple_branches_pseudotime: no visible binding for global
-      variable ‘pseudocount’
-    plot_multiple_branches_pseudotime: no visible binding for global
+    ...
       variable ‘Branch’
     project2MST: no visible global function definition for ‘nei’
     reverseEmbeddingCDS : <anonymous>: no visible global function
@@ -4771,7 +4731,7 @@ Run `revdep_details(, "MultiBD")` for more info
 * GitHub: https://github.com/HelenaLC/muscat
 * Source code: https://github.com/cran/muscat
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 210
+* Number of recursive dependencies: 215
 
 Run `revdep_details(, "muscat")` for more info
 
@@ -4795,7 +4755,7 @@ Run `revdep_details(, "muscat")` for more info
 * GitHub: https://github.com/HelenaLC/muscData
 * Source code: https://github.com/cran/muscData
 * Date/Publication: 2020-10-29
-* Number of recursive dependencies: 250
+* Number of recursive dependencies: 255
 
 Run `revdep_details(, "muscData")` for more info
 
@@ -4805,18 +4765,17 @@ Run `revdep_details(, "muscData")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
-    # $sourcetype: tar.gz
-    # $sourceurl: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96583
-    # $sourcesize: NA
-    # $tags: c("ExperimentHub", "ExperimentData", "ExpressionData",
-    #   "SingleCellData", "ImmunoOncologyData", "Homo_sapiens_Data") 
-    # retrieve record with 'object[["EH2259"]]' 
+    Running examples in ‘muscData-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Kang18_8vs8
+    > ### Title: 'Kang18_8vs8' dataset
+    > ### Aliases: Kang18 Kang18_8vs8
     > 
-    > # load SingleCellExperiment
-    > Kang18_8vs8(metadata = FALSE)
-    snapshotDate(): 2020-10-27
-    see ?muscData and browseVignettes('muscData') for documentation
+    > ### ** Examples
+    > 
+    > # load metadata only
+    ...
     Error: failed to load resource
       name: EH2259
       title: Kang18_8vs8
@@ -4881,18 +4840,17 @@ Run `revdep_details(, "NanoStringDiff")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘read.table’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘glm’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘poisson’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘rowVars’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘par’
     ...
-    glmfit.full: no visible global function definition for ‘lm’
-    glmfit.full: no visible global function definition for ‘median’
-    glmfit.full: no visible global function definition for ‘IQR’
-    glmfit.full : get.phi: no visible global function definition for
-      ‘optimize’
-    glmfit.full : get.beta.full: no visible global function definition for
-      ‘optim’
-    glmfit.reduce: no visible global function definition for ‘lm’
-    glmfit.reduce : get.beta.reduce: no visible global function definition
-      for ‘optim’
-    rnegbinom: no visible global function definition for ‘rpois’
     rnegbinom: no visible global function definition for ‘rgamma’
     Undefined global functions or variables:
       IQR abline glm lm median optim optimize p.adjust par pchisq poisson
@@ -4988,7 +4946,7 @@ Run `revdep_details(, "NormalyzerDE")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/omicplotR
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 76
+* Number of recursive dependencies: 84
 
 Run `revdep_details(, "omicplotR")` for more info
 
@@ -5043,7 +5001,7 @@ Run `revdep_details(, "omicsPrint")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/OptimalDesign
 * Date/Publication: 2019-12-02 08:50:07 UTC
-* Number of recursive dependencies: 47
+* Number of recursive dependencies: 55
 
 Run `revdep_details(, "OptimalDesign")` for more info
 
@@ -5143,7 +5101,7 @@ Run `revdep_details(, "pandaR")` for more info
 * GitHub: https://github.com/mani2012/PathoStat
 * Source code: https://github.com/cran/PathoStat
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 195
+* Number of recursive dependencies: 199
 
 Run `revdep_details(, "PathoStat")` for more info
 
@@ -5176,18 +5134,17 @@ Run `revdep_details(, "pcaMethods")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    BPCA_initmodel: no visible global function definition for ‘cov’
+    Q2: no visible global function definition for ‘txtProgressBar’
+    Q2: no visible global function definition for ‘setTxtProgressBar’
+    Q2: no visible global function definition for ‘cor’
+    RnipalsPca: no visible global function definition for ‘na.omit’
+    cvseg : <anonymous>: no visible global function definition for
+      ‘na.omit’
+    llsImpute: no visible global function definition for ‘cor’
+    nlpca: no visible global function definition for ‘runif’
+    nlpca: no visible global function definition for ‘rnorm’
     ...
-    svdImpute: no visible global function definition for ‘prcomp’
-    svdPca: no visible global function definition for ‘prcomp’
-    plot,pcaRes: no visible global function definition for ‘gray’
-    plot,pcaRes: no visible global function definition for ‘barplot’
-    plot,pcaRes: no visible global function definition for ‘legend’
-    slplot,pcaRes: no visible global function definition for ‘par’
-    slplot,pcaRes: no visible global function definition for ‘layout’
-    slplot,pcaRes: no visible global function definition for ‘abline’
-    slplot,pcaRes: no visible global function definition for ‘lines’
-    Undefined global functions or variables:
-      abline barplot cor cov gray layout legend lines median na.omit pairs
       par points prcomp qf rnorm runif setTxtProgressBar text
       txtProgressBar
     Consider adding
@@ -5280,7 +5237,7 @@ Run `revdep_details(, "Pigengene")` for more info
 * GitHub: https://github.com/plger/pipeComp
 * Source code: https://github.com/cran/pipeComp
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 203
+* Number of recursive dependencies: 208
 
 Run `revdep_details(, "pipeComp")` for more info
 
@@ -5311,7 +5268,8 @@ Run `revdep_details(, "pipeComp")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    scrna_describeDatasets: no visible binding for global variable
+      ‘cluster’
     scrna_describeDatasets: no visible binding for global variable ‘nb’
     scrna_describeDatasets : pf: no visible binding for global variable
       ‘.x’
@@ -5320,9 +5278,7 @@ Run `revdep_details(, "pipeComp")` for more info
       ‘cluster’
     scrna_evalPlot_filtering: no visible binding for global variable
       ‘max.lost’
-    scrna_evalPlot_filtering: no visible binding for global variable
-      ‘mean_F1’
-    scrna_evalPlot_filtering: no visible binding for global variable ‘filt’
+    ...
     scrna_evalPlot_filtering: no visible binding for global variable
       ‘doubletmethod’
     scrna_evalPlot_filtering: no visible binding for global variable
@@ -5373,7 +5329,7 @@ Run `revdep_details(, "pmp")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/PrecisionTrialDrawer
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 133
+* Number of recursive dependencies: 138
 
 Run `revdep_details(, "PrecisionTrialDrawer")` for more info
 
@@ -5438,7 +5394,7 @@ Run `revdep_details(, "QDNAseq")` for more info
 * GitHub: https://github.com/RforMassSpectrometry/QFeatures
 * Source code: https://github.com/cran/QFeatures
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 124
+* Number of recursive dependencies: 130
 
 Run `revdep_details(, "QFeatures")` for more info
 
@@ -5480,18 +5436,17 @@ Run `revdep_details(, "r2dRue")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .gdalWriteFormats: no visible global function definition for
+      ‘gdalDrivers’
+    aiObsEx: no visible global function definition for ‘readGDAL’
+    aiObsEx: no visible global function definition for ‘txtProgressBar’
+    aiObsEx: no visible global function definition for ‘setTxtProgressBar’
+    aiObsMe: no visible global function definition for ‘txtProgressBar’
+    aiObsMe: no visible global function definition for ‘readGDAL’
+    aiObsMe: no visible global function definition for ‘setTxtProgressBar’
+    assessment: no visible global function definition for ‘writeGDAL’
+    assessment: no visible global function definition for ‘readGDAL’
     ...
-    rueObsMe: no visible global function definition for ‘readGDAL’
-    rueObsMe: no visible global function definition for ‘setTxtProgressBar’
-    showInfo: no visible global function definition for ‘head’
-    solarRad: no visible global function definition for ‘is.projected’
-    solarRad: no visible global function definition for ‘coordinates’
-    solarRad12M: no visible global function definition for ‘writeGDAL’
-    summarize: no visible global function definition for ‘writeGDAL’
-    Undefined global functions or variables:
-      GDAL.close GDAL.open GDALinfo abline axis.Date barplot boxplot
-      coordinates cor density gdalDrivers head hist image is.projected
-      layout layout.show lines na.omit pf pt read.table readGDAL rect
       rowCounts rowMedians rowRanges rowSds rowVars setTxtProgressBar
       spplot title txtProgressBar write.table writeGDAL
     Consider adding
@@ -5512,7 +5467,7 @@ Run `revdep_details(, "r2dRue")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RadioGx
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 134
+* Number of recursive dependencies: 140
 
 Run `revdep_details(, "RadioGx")` for more info
 
@@ -5620,7 +5575,7 @@ Run `revdep_details(, "RJcluster")` for more info
 * GitHub: https://github.com/FelixErnst/RNAmodR
 * Source code: https://github.com/cran/RNAmodR
 * Date/Publication: 2020-12-13
-* Number of recursive dependencies: 182
+* Number of recursive dependencies: 187
 
 Run `revdep_details(, "RNAmodR")` for more info
 
@@ -5630,18 +5585,17 @@ Run `revdep_details(, "RNAmodR")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘RNAmodR-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: CoverageSequenceData-class
+    > ### Title: CoverageSequenceData
+    > ### Aliases: CoverageSequenceData-class CoverageSequenceData
+    > ###   CoverageSequenceDataFrame CoverageSequenceDataFrame-class
+    > ###   getData,CoverageSequenceData,BamFileList,GRangesList,XStringSet,ScanBamParam-method
+    > ###   aggregateData,CoverageSequenceData-method
+    > ###   getDataTrack,CoverageSequenceData-method
     ...
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
-    Loading required package: ExperimentHubData
-    Loading required package: AnnotationHubData
-    BiocCheck and BiocCheckGitClone script installed.
-    snapshotDate(): 2020-10-27
-    > library(rtracklayer)
-    > annotation <- GFF3File(RNAmodR.Data.example.man.gff3())
-    snapshotDate(): 2020-10-27
-    see ?RNAmodR.Data and browseVignettes('RNAmodR.Data') for documentation
     Error: failed to load resource
       name: EH2536
       title: RNAmodR.Data.example.man.gff3
@@ -5656,18 +5610,17 @@ Run `revdep_details(, "RNAmodR")` for more info
 
 *   checking tests ...
     ```
-    ...
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
         3. │   └─methods::new(gffFileClass(version), resource = resource)
         4. │     ├─methods::initialize(value, ...)
         5. │     └─methods::initialize(value, ...)
-        6. └─ExperimentHub:::RNAmodR.Data.example.AAS.gff3()
+        6. └─ExperimentHub:::RNAmodR.Data.example.man.gff3()
         7.   ├─eh[[ehid]]
         8.   └─eh[[ehid]]
         9.     └─ExperimentHub:::.local(x, i, j = j, ...)
-       10.       ├─methods::callNextMethod(x, i, j, ..., force = force, verbose = verbose)
-       11.       │ └─base::eval(call, callEnv)
-       12.       │   └─base::eval(call, callEnv)
-       13.       └─AnnotationHub:::.nextMethod(x, i, j, ..., force = force, verbose = verbose)
+    ...
        14.         └─AnnotationHub:::.local(x, i, j = j, ...)
        15.           └─AnnotationHub:::.Hub_get1(x[idx], force = force, verbose = verbose)
        16.             └─base::tryCatch(...)
@@ -5702,7 +5655,7 @@ Run `revdep_details(, "RNAmodR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RnBeads
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 254
+* Number of recursive dependencies: 259
 
 Run `revdep_details(, "RnBeads")` for more info
 
@@ -5766,18 +5719,17 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .stopImplicitCluster: no visible global function definition for
+      ‘stopCluster’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘phenoData’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘assayDataElementNames’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘featureNames’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘varLabels’
     ...
-      RGChannelSet Rd2HTML RefFreeEwasModel SNP Sample Segment Slide Target
-      Term UcscTrack Value addSex as.profileCGH assayDataElement
-      assayDataElementNames barcode browserSession bv calculateFDRs chrom
-      clone combinedRank combinedRank.var comma covgMedian covgPercLow
-      covgPercUp cv.glmnet daglad diffmeth diffmeth.p.adj.fdr
-      diffmeth.p.val dinucleotideFrequency eps expectedCounts featureData
-      featureData<- featureNames featureNames<- foreach geneCounts genome<-
-      getCN getDoParWorkers getGreen getManifest getMeth getRed getSex
-      getTable getUnmeth getVarCov glmnet grid.draw grid.newpage group
-      group1 group2 i impute.knn install is.subsegmentation k
-      letterFrequency lme loadRegionDB log10FDR log10P mapToGenome mclapply
       mean.diff mean.quot.log2 melt mergeRegionDBs muted n.sites num.sites
       numSites numeric.names oddsRatios p.vals.t.na.adj pData
       percent_format phenoData phenoData<- plotAlphaDistributionOneChr
@@ -5790,6 +5742,33 @@ Run `revdep_details(, "RnBeads")` for more info
       varLabels x x2 xmlValue y y2 yint
     ```
 
+# robustbase
+
+<details>
+
+* Version: 0.93-7
+* GitHub: NA
+* Source code: https://github.com/cran/robustbase
+* Date/Publication: 2021-01-04 15:30:03 UTC
+* Number of recursive dependencies: 83
+
+Run `revdep_details(, "robustbase")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'robustX', 'quantreg', 'Hmisc'
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: ‘robustX’, ‘quantreg’, ‘Hmisc’
+    ```
+
 # scDataviz
 
 <details>
@@ -5798,7 +5777,7 @@ Run `revdep_details(, "RnBeads")` for more info
 * GitHub: https://github.com/kevinblighe/scDataviz
 * Source code: https://github.com/cran/scDataviz
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 185
+* Number of recursive dependencies: 190
 
 Run `revdep_details(, "scDataviz")` for more info
 
@@ -5808,18 +5787,17 @@ Run `revdep_details(, "scDataviz")` for more info
 
 *   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 50 lines of output:
+          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+          tapply, union, unique, unsplit, which.max, which.min
+      
+      
+      Attaching package: 'S4Vectors'
+      
+      The following object is masked from 'package:base':
     ...
-      Welcome to Bioconductor
-      
-          Vignettes contain introductory material; view with
-          'browseVignettes()'. To cite Bioconductor, see
-          'citation("Biobase")', and for packages 'citation("pkgname")'.
-      
-      
-      Attaching package: 'Biobase'
-      
-      The following object is masked from 'package:MatrixGenerics':
-      
           rowMedians
       
       The following objects are masked from 'package:matrixStats':
@@ -5885,7 +5863,7 @@ Run `revdep_details(, "scmap")` for more info
 * GitHub: https://github.com/YosefLab/scone
 * Source code: https://github.com/cran/scone
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 223
+* Number of recursive dependencies: 228
 
 Run `revdep_details(, "scone")` for more info
 
@@ -5895,18 +5873,17 @@ Run `revdep_details(, "scone")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    sconeReport: no visible global function definition for
+      ‘visNetworkOutput’
+    sconeReport: no visible global function definition for ‘plotlyOutput’
+    sconeReport : server: no visible global function definition for
+      ‘renderVisNetwork’
+    sconeReport : server: no visible global function definition for ‘%>%’
+    sconeReport : server: no visible global function definition for
+      ‘visNetwork’
+    sconeReport : server: no visible global function definition for
+      ‘visHierarchicalLayout’
     ...
-    sconeReport : server: no visible global function definition for ‘theme’
-    sconeReport : server: no visible global function definition for
-      ‘element_blank’
-    sconeReport : server: no visible global function definition for
-      ‘ggplotly’
-    sconeReport : server: no visible global function definition for
-      ‘geom_violin’
-    sconeReport : server: no visible global function definition for
-      ‘coord_cartesian’
-    sconeReport : server: no visible global function definition for
-      ‘scale_fill_manual’
     sconeReport : server: no visible global function definition for
       ‘geom_point’
     sconeReport : server: no visible global function definition for
@@ -6037,7 +6014,7 @@ Run `revdep_details(, "semtree")` for more info
 * GitHub: https://github.com/zwdzwd/sesame
 * Source code: https://github.com/cran/sesame
 * Date/Publication: 2020-11-13
-* Number of recursive dependencies: 176
+* Number of recursive dependencies: 181
 
 Run `revdep_details(, "sesame")` for more info
 
@@ -6047,18 +6024,17 @@ Run `revdep_details(, "sesame")` for more info
 
 *   checking tests ...
     ```
-    ...
-        1. minfi::preprocessRaw(rgSet) test_sesamize.R:16:4
-        2. minfi::getManifestInfo(rgSet, "locusNames")
-        3. minfi::getProbeInfo(object, type = "I")
-        5. minfi::getManifest(object)
-        6. base::require(maniString, character.only = TRUE)
-       11. base::library(...)
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+          clusterExport, clusterMap, parApply, parCapply, parLapply,
+          parLapplyLB, parRapply, parSapply, parSapplyLB
       
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Error (test_sesamize.R:16:5): RGChannelSetToSigSet gives correct results ────
-      Error: cannot load manifest package IlluminaHumanMethylation450kmanifest
-      Backtrace:
+      The following objects are masked from 'package:stats':
+      
+          IQR, mad, sd, var, xtabs
+      
+    ...
           █
        1. └─minfi::preprocessRaw(rgSet) test_sesamize.R:16:4
        2.   └─minfi::getManifestInfo(rgSet, "locusNames")
@@ -6079,7 +6055,7 @@ Run `revdep_details(, "sesame")` for more info
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
 * Date/Publication: 2020-12-15 10:10:05 UTC
-* Number of recursive dependencies: 228
+* Number of recursive dependencies: 233
 
 Run `revdep_details(, "Seurat")` for more info
 
@@ -6137,7 +6113,7 @@ Run `revdep_details(, "SGP")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/shinyMethyl
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 143
+* Number of recursive dependencies: 148
 
 Run `revdep_details(, "shinyMethyl")` for more info
 
@@ -6155,18 +6131,17 @@ Run `revdep_details(, "shinyMethyl")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    addHoverDensity: no visible global function definition for ‘lines’
+    addHoverPoints: no visible global function definition for ‘points’
+    addHoverQC: no visible global function definition for ‘points’
+    densitiesPlot: no visible global function definition for ‘lines’
+    plotDesign450k: no visible global function definition for ‘par’
+    plotDiscrepancyGenders: no visible global function definition for
+      ‘legend’
+    plotInternalControls: no visible global function definition for ‘grid’
+    plotInternalControls: no visible global function definition for
+      ‘abline’
     ...
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘lines’
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘legend’
-    ui.shinyMethyl: no visible binding for '<<-' assignment to
-      ‘sampleColors’
-    shinySummarize,GenomicRatioSet: no visible global function definition
-      for ‘prcomp’
-    shinySummarize,RGChannelSet: no visible global function definition for
-      ‘prcomp’
-    Undefined global functions or variables:
       abline complete.cases current.control.type current.density.type
       current.probe.type genderCutoff grid legend lines lm
       mouse.click.indices palette par points prcomp rect write.csv
@@ -6360,7 +6335,7 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 * GitHub: https://github.com/compbiomed/singleCellTK
 * Source code: https://github.com/cran/singleCellTK
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 332
+* Number of recursive dependencies: 336
 
 Run `revdep_details(, "singleCellTK")` for more info
 
@@ -6370,7 +6345,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
+    Running examples in ‘singleCellTK-Ex.R’ failed
     The error most likely occurred in:
     
     > ### Name: importExampleData
@@ -6380,8 +6355,7 @@ Run `revdep_details(, "singleCellTK")` for more info
     > ### ** Examples
     > 
     > sce <- importExampleData("pbmc3k")
-    snapshotDate(): 2020-10-27
-    see ?TENxPBMCData and browseVignettes('TENxPBMCData') for documentation
+    ...
     Error: failed to load resource
       name: EH1607
       title: PBMC, 3k scRNA-seq gene (row) annotation
@@ -6420,18 +6394,17 @@ Run `revdep_details(, "singscore")` for more info
 
 *   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       3. plotly:::ggplotly.ggplot(p1)
+       4. plotly::gg2list(...)
+       5. plotly:::layers2traces(data, prestats_data, layout, plot)
+       7. plotly:::to_basic.GeomHex(...)
+       8. ggplot2::resolution(data[["y"]], FALSE)
+      ── Warning (test-scoring.R:12:3): checkGenes works ─────────────────────────────
+      1 genes missing: 11
     ...
-      Backtrace:
-           █
-        1. └─singscore::projectScoreLandscape(...) test-projectScoreLandscape.R:70:8
-        2.   ├─plotly::ggplotly(p1)
-        3.   └─plotly:::ggplotly.ggplot(p1)
-        4.     └─plotly::gg2list(...)
-        5.       └─plotly:::layers2traces(data, prestats_data, layout, plot)
-        6.         ├─plotly::to_basic(...)
-        7.         └─plotly:::to_basic.GeomHex(...)
-        8.           └─hexbin::hexcoords
-        9.             └─base::getExportedValue(pkg, name)
        10.               └─base::asNamespace(ns)
        11.                 └─base::getNamespace(ns)
        12.                   └─base::loadNamespace(name)
@@ -6465,6 +6438,7 @@ Run `revdep_details(, "singscore")` for more info
     plotRankDensity_intl: no visible binding for global variable
       ‘..density..’
     plotRankDensity_intl: no visible binding for global variable ‘EntrezID’
+    ...
     plotScoreLandscape: no visible binding for global variable ‘sc1’
     plotScoreLandscape: no visible binding for global variable ‘sc2’
     projectScoreLandscape: no visible binding for global variable
@@ -6485,7 +6459,7 @@ Run `revdep_details(, "singscore")` for more info
 * GitHub: https://github.com/kstreet13/slingshot
 * Source code: https://github.com/cran/slingshot
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 188
+* Number of recursive dependencies: 194
 
 Run `revdep_details(, "slingshot")` for more info
 
@@ -6530,7 +6504,7 @@ Run `revdep_details(, "spathial")` for more info
 * GitHub: https://github.com/Oshlack/splatter
 * Source code: https://github.com/cran/splatter
 * Date/Publication: 2020-12-01
-* Number of recursive dependencies: 239
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "splatter")` for more info
 
@@ -6605,6 +6579,7 @@ Run `revdep_details(, "SRGnet")` for more info
     SRGnet: no visible global function definition for ‘predict’
     SRGnet: no visible global function definition for ‘terrain.colors’
     SRGnet: no visible global function definition for ‘na.omit’
+    ...
     SRGnet: no visible global function definition for ‘write.table’
     Undefined global functions or variables:
       Differentially_expressed_genes PLCRG Transcriptomics boxplot
@@ -6761,7 +6736,7 @@ Run `revdep_details(, "TCA")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/tenXplore
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 121
+* Number of recursive dependencies: 125
 
 Run `revdep_details(, "tenXplore")` for more info
 
@@ -6811,18 +6786,17 @@ Run `revdep_details(, "topGO")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    GOplot: no visible global function definition for ‘getDefaultAttrs’
+    GOplot: no visible global function definition for ‘agopen’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘getNodeCenter’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘pieGlyph’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘getX’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘getY’
     ...
-    GOplot.counts : plotSigChart: no visible global function definition for
-      ‘getY’
-    GOplot.counts: no visible global function definition for
-      ‘getDefaultAttrs’
-    GOplot.counts: no visible global function definition for ‘agopen’
-    getPvalues: no visible global function definition for ‘mt.teststat’
-    getPvalues: no visible global function definition for ‘mt.rawp2adjp’
-    printDOT: no visible global function definition for ‘getDefaultAttrs’
-    printDOT: no visible global function definition for ‘toDot’
-    GOSumTest,classicScore: no visible binding for global variable
-      ‘.PERMSUM.MAT’
     GOSumTest,classicScore: no visible binding for global variable
       ‘.PERMSUM.LOOKUP’
     initialize,classicExpr: no visible global function definition for
@@ -6860,18 +6834,17 @@ Run `revdep_details(, "tradeSeq")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    .earlyDETest: no visible binding for global variable ‘X1’
+    .earlyDETest: no visible binding for global variable ‘X2’
+    .findKnots: no visible binding for global variable ‘t1’
+    .findKnots: no visible binding for global variable ‘l1’
+    .plotGeneCount: no visible binding for global variable ‘dim1’
+    .plotGeneCount: no visible binding for global variable ‘dim2’
     .plotSmoothers: no visible binding for global variable ‘time’
     .plotSmoothers: no visible binding for global variable ‘gene_count’
     .plotSmoothers: no visible binding for global variable ‘lineage’
     .plotSmoothers_conditions: no visible binding for global variable
-      ‘time’
-    .plotSmoothers_conditions: no visible binding for global variable
-      ‘gene_count’
-    .plotSmoothers_conditions: no visible binding for global variable
-      ‘lineage’
-    .plotSmoothers_conditions: no visible binding for global variable
-      ‘pCol’
+    ...
     .plotSmoothers_sce: no visible binding for global variable ‘time’
     .plotSmoothers_sce: no visible binding for global variable ‘gene_count’
     .plotSmoothers_sce: no visible binding for global variable ‘lineage’
@@ -7002,10 +6975,10 @@ Run `revdep_details(, "VanillaICE")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.2.4
 * GitHub: https://github.com/yuhuihui2011/vasp
 * Source code: https://github.com/cran/vasp
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-01-23
 * Number of recursive dependencies: 102
 
 Run `revdep_details(, "vasp")` for more info
@@ -7014,11 +6987,12 @@ Run `revdep_details(, "vasp")` for more info
 
 ## In both
 
-*   checking DESCRIPTION meta-information ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Authors@R field gives more than one person with maintainer role:
-      Huihui Yu <yuhuihui2011@foxmail.com> [aut, cre]
-      Qian Du [aut, cre]
+      installed size is  7.5Mb
+      sub-directories of 1Mb or more:
+        doc       4.0Mb
+        extdata   3.4Mb
     ```
 
 # wateRmelon
@@ -7068,18 +7042,17 @@ Run `revdep_details(, "wateRmelon")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    tost,MethyLumiSet: no visible global function definition for
+    IDATsToMatrices2: no visible global function definition for ‘.mclapply’
+    NChannelSetToMethyLumiSet2: no visible global function definition for
+      ‘betas’
+    NChannelSetToMethyLumiSet2: no visible global function definition for
+      ‘methylated’
+    NChannelSetToMethyLumiSet2: no visible global function definition for
       ‘unmethylated’
-    tost,MethyLumiSet: no visible global function definition for ‘pvals’
-    tost,RGChannelSet: no visible global function definition for
-      ‘detectionP’
-    tost,RGChannelSet: no visible global function definition for
-      ‘preprocessRaw’
-    tost,RGChannelSet: no visible global function definition for ‘getMeth’
-    tost,RGChannelSet: no visible global function definition for
-      ‘getUnmeth’
-    Undefined global functions or variables:
+    NChannelSetToMethyLumiSet2: no visible global function definition for
+      ‘pval.detect<-’
+    beadcount: no visible global function definition for ‘getNBeads’
+    ...
       .mclapply IlluminaHumanMethylation450kanno.ilmn12.hg19 MethylSet
       PATH_RES QCdata QCdata<- RGChannelSetExtended betas betas<- colData
       colMedians detectionP epic.controls epic.ordering getAnnotation
@@ -7126,18 +7099,17 @@ Run `revdep_details(, "XBSeq")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    Loglikhood : <anonymous>: no visible global function definition for
+      ‘ddelap’
+    Loglikhood : <anonymous>: no visible global function definition for
+      ‘dpois’
+    Loglikhood_NB : <anonymous>: no visible global function definition for
+      ‘dnbinom’
+    MAplot: no visible binding for global variable ‘baseMean’
+    MAplot: no visible global function definition for ‘quantile’
+    MAplot: no visible binding for global variable ‘log2FoldChange’
+    XBSeqDataSet: no visible global function definition for ‘DataFrame’
     ...
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay’
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay<-’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘conditions’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘dispTable<-’
-    Undefined global functions or variables:
-      ..count.. DataFrame Gamma Group Sample SummarizedExperiment assay
-      assay<- assays baseMean coefficients complete.cases conditions cor
       data ddelap dispTable dispTable<- dnbinom dpois formula glm
       log2FoldChange median optim p.adjust pbeta predict qbeta quantile
       rnbinom scvBiasCorrectionFits
@@ -7168,7 +7140,6 @@ Run `revdep_details(, "yarn")` for more info
 
 *   checking examples ... ERROR
     ```
-    ...
     Running examples in ‘yarn-Ex.R’ failed
     The error most likely occurred in:
     
@@ -7179,7 +7150,7 @@ Run `revdep_details(, "yarn")` for more info
     > ### ** Examples
     > 
     > 
-    > data(skin)
+    ...
     > # subsetting and changing column name just for a silly example
     > skin <- skin[1:10,]
     > colnames(fData(skin)) = paste("names",1:6)

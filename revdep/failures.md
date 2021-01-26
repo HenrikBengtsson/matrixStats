@@ -92,6 +92,7 @@ Execution halted
 ERROR: lazy loading failed for package ‘metagene’
 * removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/new/metagene.Rcheck/metagene’
 
+
 ```
 ### CRAN
 
@@ -111,5 +112,6 @@ Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWith
 Execution halted
 ERROR: lazy loading failed for package ‘metagene’
 * removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/old/metagene.Rcheck/metagene’
+
 
 ```
