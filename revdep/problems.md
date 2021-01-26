@@ -5742,6 +5742,33 @@ Run `revdep_details(, "RnBeads")` for more info
       varLabels x x2 xmlValue y y2 yint
     ```
 
+# robustbase
+
+<details>
+
+* Version: 0.93-7
+* GitHub: NA
+* Source code: https://github.com/cran/robustbase
+* Date/Publication: 2021-01-04 15:30:03 UTC
+* Number of recursive dependencies: 83
+
+Run `revdep_details(, "robustbase")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'robustX', 'quantreg', 'Hmisc'
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: ‘robustX’, ‘quantreg’, ‘Hmisc’
+    ```
+
 # scDataviz
 
 <details>

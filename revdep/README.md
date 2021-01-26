@@ -33,7 +33,7 @@
 |:--------------------------------------------|:-------|:------|:-------|:----|
 |[MatrixGenerics](problems.md#matrixgenerics) |1.2.0   |__+1__ |        |1    |
 
-## All (313)
+## All (314)
 
 |package                                                                        |version |error  |warning |note |
 |:------------------------------------------------------------------------------|:-------|:------|:-------|:----|
@@ -287,6 +287,7 @@
 |[RJcluster](problems.md#rjcluster)                                             |0.1.0   |       |        |1    |
 |[RNAmodR](problems.md#rnamodr)                                                 |1.4.2   |2      |        |1    |
 |[RnBeads](problems.md#rnbeads)                                                 |2.8.0   |       |        |7    |
+|[robustbase](problems.md#robustbase)                                           |0.93-7  |       |        |2    |
 |RTCC                                                                           |0.1.1   |       |        |     |
 |samr                                                                           |3.0     |       |        |     |
 |[scDataviz](problems.md#scdataviz)                                             |1.0.0   |1      |        |1    |
