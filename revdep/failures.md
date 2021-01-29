@@ -6,7 +6,7 @@
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 177
+* Number of recursive dependencies: 179
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -57,7 +57,7 @@ Run `revdep_details(, "clusterExperiment")` for more info
 * GitHub: https://github.com/CharlesJB/metagene
 * Source code: https://github.com/cran/metagene
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 136
+* Number of recursive dependencies: 138
 
 Run `revdep_details(, "metagene")` for more info
 
