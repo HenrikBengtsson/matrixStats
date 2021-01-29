@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2021-01-26                   |
+|date     |2021-01-29                   |
 
 # Dependencies
 
@@ -171,7 +171,7 @@
 |[GGPA](problems.md#ggpa)                                                       |1.2.0   |       |        |3    |
 |[GJRM](problems.md#gjrm)                                                       |0.2-3   |       |        |1    |
 |[glmGamPoi](problems.md#glmgampoi)                                             |1.2.0   |       |        |1    |
-|GLMMadaptive                                                                   |0.7-15  |       |        |     |
+|GLMMadaptive                                                                   |0.8-0   |       |        |     |
 |GNET2                                                                          |1.6.0   |       |        |     |
 |GPrank                                                                         |0.1.4   |       |        |     |
 |[graper](problems.md#graper)                                                   |1.6.0   |       |        |1    |
@@ -300,7 +300,7 @@
 |[sctransform](problems.md#sctransform)                                         |0.3.2   |       |        |1    |
 |[seeds](problems.md#seeds)                                                     |0.9.1   |       |        |1    |
 |[semtree](problems.md#semtree)                                                 |0.9.14  |       |        |1    |
-|sensobol                                                                       |0.2.2   |       |        |     |
+|sensobol                                                                       |1.0.0   |       |        |     |
 |[sesame](problems.md#sesame)                                                   |1.8.2   |1      |        |     |
 |[Seurat](problems.md#seurat)                                                   |3.2.3   |       |        |3    |
 |[SGP](problems.md#sgp)                                                         |1.9-5.0 |       |        |1    |

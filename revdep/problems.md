@@ -327,7 +327,7 @@ Run `revdep_details(, "BatchQC")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/baystability
 * Date/Publication: 2018-03-13 15:55:34 UTC
-* Number of recursive dependencies: 109
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "baystability")` for more info
 
@@ -499,7 +499,7 @@ Run `revdep_details(, "biscuiteer")` for more info
 * GitHub: https://github.com/hansenlab/bnbc
 * Source code: https://github.com/cran/bnbc
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 87
+* Number of recursive dependencies: 89
 
 Run `revdep_details(, "bnbc")` for more info
 
@@ -546,7 +546,7 @@ Run `revdep_details(, "bnclassify")` for more info
 * GitHub: https://github.com/paul-buerkner/brms
 * Source code: https://github.com/cran/brms
 * Date/Publication: 2020-11-03 06:40:22 UTC
-* Number of recursive dependencies: 215
+* Number of recursive dependencies: 214
 
 Run `revdep_details(, "brms")` for more info
 
@@ -575,7 +575,7 @@ Run `revdep_details(, "brms")` for more info
 * GitHub: https://github.com/Bioconductor/BSgenome
 * Source code: https://github.com/cran/BSgenome
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 92
+* Number of recursive dependencies: 94
 
 Run `revdep_details(, "BSgenome")` for more info
 
@@ -695,7 +695,7 @@ Run `revdep_details(, "BSgenome")` for more info
 * GitHub: https://github.com/ririzarr/bumphunter
 * Source code: https://github.com/cran/bumphunter
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 104
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "bumphunter")` for more info
 
@@ -863,7 +863,7 @@ Run `revdep_details(, "cellWise")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/CEMiTool
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 161
+* Number of recursive dependencies: 163
 
 Run `revdep_details(, "CEMiTool")` for more info
 
@@ -1034,7 +1034,7 @@ Run `revdep_details(, "Chicago")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ChIPpeakAnno
 * Date/Publication: 2020-10-30
-* Number of recursive dependencies: 183
+* Number of recursive dependencies: 185
 
 Run `revdep_details(, "ChIPpeakAnno")` for more info
 
@@ -1175,7 +1175,7 @@ Run `revdep_details(, "Clomial")` for more info
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 177
+* Number of recursive dependencies: 179
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -1432,7 +1432,7 @@ Run `revdep_details(, "CopywriteR")` for more info
 * GitHub: https://github.com/annahutch/corrcoverage
 * Source code: https://github.com/cran/corrcoverage
 * Date/Publication: 2019-12-06 23:20:12 UTC
-* Number of recursive dependencies: 73
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "corrcoverage")` for more info
 
@@ -1462,7 +1462,7 @@ Run `revdep_details(, "corrcoverage")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/crlmm
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 72
+* Number of recursive dependencies: 74
 
 Run `revdep_details(, "crlmm")` for more info
 
@@ -1663,7 +1663,7 @@ Run `revdep_details(, "cytomapper")` for more info
 * GitHub: https://github.com/JhuangLab/CytoTree
 * Source code: https://github.com/cran/CytoTree
 * Date/Publication: 2020-11-08
-* Number of recursive dependencies: 246
+* Number of recursive dependencies: 248
 
 Run `revdep_details(, "CytoTree")` for more info
 
@@ -1688,7 +1688,7 @@ Run `revdep_details(, "CytoTree")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/DeepBlueR
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 160
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "DeepBlueR")` for more info
 
@@ -1935,7 +1935,7 @@ Run `revdep_details(, "DHS.rates")` for more info
 * GitHub: https://github.com/aryeelab/diffloop
 * Source code: https://github.com/cran/diffloop
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 139
+* Number of recursive dependencies: 141
 
 Run `revdep_details(, "diffloop")` for more info
 
@@ -2196,7 +2196,7 @@ Run `revdep_details(, "EMDomics")` for more info
 * GitHub: https://github.com/jokergoo/EnrichedHeatmap
 * Source code: https://github.com/cran/EnrichedHeatmap
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 89
+* Number of recursive dependencies: 91
 
 Run `revdep_details(, "EnrichedHeatmap")` for more info
 
@@ -2244,7 +2244,7 @@ Run `revdep_details(, "evaluomeR")` for more info
 * GitHub: https://github.com/jpromeror/EventPointer
 * Source code: https://github.com/cran/EventPointer
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 154
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "EventPointer")` for more info
 
@@ -2305,7 +2305,7 @@ Run `revdep_details(, "ExCluster")` for more info
 * GitHub: https://github.com/NA/NA
 * Source code: https://github.com/cran/ExpressionNormalizationWorkflow
 * Date/Publication: 2020-10-30
-* Number of recursive dependencies: 113
+* Number of recursive dependencies: 115
 
 Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 
@@ -2447,7 +2447,7 @@ Run `revdep_details(, "FastRCS")` for more info
 * Version: 1.0.0
 * GitHub: NA
 * Source code: https://github.com/cran/FDb.FANTOM4.promoters.hg19
-* Number of recursive dependencies: 80
+* Number of recursive dependencies: 82
 
 Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 
@@ -2595,7 +2595,7 @@ Run `revdep_details(, "flowCore")` for more info
 * GitHub: https://github.com/JhuangLab/flowSpy
 * Source code: https://github.com/cran/flowSpy
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 246
+* Number of recursive dependencies: 248
 
 Run `revdep_details(, "flowSpy")` for more info
 
@@ -2761,7 +2761,7 @@ Run `revdep_details(, "flowWorkspace")` for more info
 * GitHub: https://github.com/gagneurlab/FRASER
 * Source code: https://github.com/cran/FRASER
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 182
+* Number of recursive dependencies: 184
 
 Run `revdep_details(, "FRASER")` for more info
 
@@ -2792,7 +2792,7 @@ Run `revdep_details(, "FRASER")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/funtooNorm
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 133
+* Number of recursive dependencies: 135
 
 Run `revdep_details(, "funtooNorm")` for more info
 
@@ -3089,7 +3089,7 @@ Run `revdep_details(, "graper")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GUIDEseq
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 149
+* Number of recursive dependencies: 151
 
 Run `revdep_details(, "GUIDEseq")` for more info
 
@@ -3146,7 +3146,7 @@ Run `revdep_details(, "GUIDEseq")` for more info
 * GitHub: https://github.com/ivanek/Gviz
 * Source code: https://github.com/cran/Gviz
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 144
+* Number of recursive dependencies: 146
 
 Run `revdep_details(, "Gviz")` for more info
 
@@ -3171,7 +3171,7 @@ Run `revdep_details(, "Gviz")` for more info
 * GitHub: https://github.com/Kumquatum/GWENA
 * Source code: https://github.com/cran/GWENA
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 142
+* Number of recursive dependencies: 144
 
 Run `revdep_details(, "GWENA")` for more info
 
@@ -3289,7 +3289,7 @@ Run `revdep_details(, "InfiniumPurify")` for more info
 * GitHub: https://github.com/drizopoulos/JMbayes2
 * Source code: https://github.com/cran/JMbayes2
 * Date/Publication: 2021-01-18 16:20:24 UTC
-* Number of recursive dependencies: 84
+* Number of recursive dependencies: 86
 
 Run `revdep_details(, "JMbayes2")` for more info
 
@@ -3484,7 +3484,7 @@ Run `revdep_details(, "M3Drop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
 * Date/Publication: 2021-01-22
-* Number of recursive dependencies: 226
+* Number of recursive dependencies: 228
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
@@ -3601,7 +3601,7 @@ Run `revdep_details(, "mcmcsae")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MEAL
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 212
+* Number of recursive dependencies: 214
 
 Run `revdep_details(, "MEAL")` for more info
 
@@ -3715,7 +3715,7 @@ Run `revdep_details(, "metabCombiner")` for more info
 * GitHub: https://github.com/CharlesJB/metagene
 * Source code: https://github.com/cran/metagene
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 136
+* Number of recursive dependencies: 138
 
 Run `revdep_details(, "metagene")` for more info
 
@@ -4014,7 +4014,7 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
 * GitHub: https://github.com/seandavi/methylumi
 * Source code: https://github.com/cran/methylumi
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 199
+* Number of recursive dependencies: 201
 
 Run `revdep_details(, "methylumi")` for more info
 
@@ -4259,7 +4259,7 @@ Run `revdep_details(, "microbiomeExplorer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MinimumDistance
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 73
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "MinimumDistance")` for more info
 
@@ -4359,7 +4359,7 @@ Run `revdep_details(, "mixOmics")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/mnem
 * Date/Publication: 2020-11-16
-* Number of recursive dependencies: 160
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "mnem")` for more info
 
@@ -4608,7 +4608,7 @@ Run `revdep_details(, "monocle")` for more info
 * GitHub: https://github.com/Simon-Coetzee/motifbreakR
 * Source code: https://github.com/cran/motifbreakR
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 156
+* Number of recursive dependencies: 158
 
 Run `revdep_details(, "motifbreakR")` for more info
 
@@ -4878,7 +4878,7 @@ Run `revdep_details(, "NanoStringDiff")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/nearBynding
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 124
+* Number of recursive dependencies: 126
 
 Run `revdep_details(, "nearBynding")` for more info
 
@@ -4901,7 +4901,7 @@ Run `revdep_details(, "nearBynding")` for more info
 * GitHub: https://github.com/PredictiveEcology/NetLogoR
 * Source code: https://github.com/cran/NetLogoR
 * Date/Publication: 2020-03-02 10:00:08 UTC
-* Number of recursive dependencies: 155
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "NetLogoR")` for more info
 
@@ -4977,7 +4977,7 @@ Run `revdep_details(, "omicplotR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/omicsPrint
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 121
+* Number of recursive dependencies: 123
 
 Run `revdep_details(, "omicsPrint")` for more info
 
@@ -5023,7 +5023,7 @@ Run `revdep_details(, "OptimalDesign")` for more info
 * GitHub: https://github.com/gagneurlab/OUTRIDER
 * Source code: https://github.com/cran/OUTRIDER
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 169
+* Number of recursive dependencies: 171
 
 Run `revdep_details(, "OUTRIDER")` for more info
 
@@ -5196,7 +5196,7 @@ Run `revdep_details(, "phosphonormalizer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Pigengene
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 141
+* Number of recursive dependencies: 143
 
 Run `revdep_details(, "Pigengene")` for more info
 
@@ -5350,7 +5350,7 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ProteoMM
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 99
+* Number of recursive dependencies: 101
 
 Run `revdep_details(, "ProteoMM")` for more info
 
@@ -5529,7 +5529,7 @@ Run `revdep_details(, "randomizationInference")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/regsem
 * Date/Publication: 2020-10-01 17:00:02 UTC
-* Number of recursive dependencies: 168
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "regsem")` for more info
 
@@ -5904,7 +5904,7 @@ Run `revdep_details(, "scone")` for more info
 * GitHub: https://github.com/UCLouvain-CBIO/scp
 * Source code: https://github.com/cran/scp
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 151
+* Number of recursive dependencies: 153
 
 Run `revdep_details(, "scp")` for more info
 
@@ -6089,7 +6089,7 @@ Run `revdep_details(, "Seurat")` for more info
 * GitHub: https://github.com/CenterForAssessment/SGP
 * Source code: https://github.com/cran/SGP
 * Date/Publication: 2020-01-30 22:40:09 UTC
-* Number of recursive dependencies: 111
+* Number of recursive dependencies: 113
 
 Run `revdep_details(, "SGP")` for more info
 
@@ -6311,7 +6311,7 @@ Run `revdep_details(, "sindyr")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Single.mTEC.Transcriptomes
 * Date/Publication: 2020-10-29
-* Number of recursive dependencies: 170
+* Number of recursive dependencies: 172
 
 Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
@@ -6384,7 +6384,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 * GitHub: https://github.com/DavisLaboratory/singscore
 * Source code: https://github.com/cran/singscore
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 122
+* Number of recursive dependencies: 124
 
 Run `revdep_details(, "singscore")` for more info
 
@@ -6758,7 +6758,7 @@ Run `revdep_details(, "tenXplore")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/topGO
 * Date/Publication: 2020-10-30
-* Number of recursive dependencies: 47
+* Number of recursive dependencies: 49
 
 Run `revdep_details(, "topGO")` for more info
 
@@ -6817,7 +6817,7 @@ Run `revdep_details(, "topGO")` for more info
 * GitHub: https://github.com/statOmics/tradeSeq
 * Source code: https://github.com/cran/tradeSeq
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 191
+* Number of recursive dependencies: 193
 
 Run `revdep_details(, "tradeSeq")` for more info
 
@@ -6923,7 +6923,7 @@ Run `revdep_details(, "UPG")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/VanillaICE
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 71
+* Number of recursive dependencies: 73
 
 Run `revdep_details(, "VanillaICE")` for more info
 
@@ -6979,7 +6979,7 @@ Run `revdep_details(, "VanillaICE")` for more info
 * GitHub: https://github.com/yuhuihui2011/vasp
 * Source code: https://github.com/cran/vasp
 * Date/Publication: 2021-01-23
-* Number of recursive dependencies: 102
+* Number of recursive dependencies: 104
 
 Run `revdep_details(, "vasp")` for more info
 
@@ -7003,7 +7003,7 @@ Run `revdep_details(, "vasp")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/wateRmelon
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 166
+* Number of recursive dependencies: 168
 
 Run `revdep_details(, "wateRmelon")` for more info
 
@@ -7073,7 +7073,7 @@ Run `revdep_details(, "wateRmelon")` for more info
 * GitHub: https://github.com/Liuy12/XBSeq
 * Source code: https://github.com/cran/XBSeq
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 121
+* Number of recursive dependencies: 123
 
 Run `revdep_details(, "XBSeq")` for more info
 
@@ -7130,7 +7130,7 @@ Run `revdep_details(, "XBSeq")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/yarn
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 160
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "yarn")` for more info
 
