@@ -12,7 +12,7 @@ SIGNIFICANT CHANGES:
    main reason for this change is that, if an incorrect 'center' is provided,
    in contrast to the old approach, the new approach is guaranteed to give at
    least non-negative results, despite being incorrect.
-   BACKWARD COMPATIBILITY: Out of all 307 reverse dependencies on CRAN and
+   BACKWARD COMPATIBILITY: Out of all 314 reverse dependencies on CRAN and
    Bioconductor, only four called these functions with argument 'center'. All
    of them pass their package checks also after this update.  To further
    protect against a negative impact in existing user scripts, colVars() and
@@ -53,7 +53,7 @@ BUG FIXES:
    value if both argument 'dim.' and 'center' would be specified.
 
  * The documentation was unclear on what the 'center' argument should be. They
-   would not detect when an incorrect specification was used, notibly when the
+   would not detect when an incorrect specification was used, notably when the
    length of 'center' did not match the matrix dimensions.  Now these functions
    give an informative error message when 'center' is of the incorrect length.
 
@@ -666,7 +666,7 @@ BUG FIXES:
    fabs().  Despite this, the calculated product would still be correct (at
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
-   coersion at the C level.
+   coercion at the C level.
 
 DEPRECATED AND DEFUNCT:
 

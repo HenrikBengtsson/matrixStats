@@ -1,9 +1,10 @@
 # CRAN submission matrixStats 0.58.0
 
+on 2021-01-29
+
 I've verified that this submission does not cause issues for the 314 reverse package dependencies available on CRAN and Bioconductor.
 
-Thanks in advance
-
+Thank you
 
 ## Notes not sent to CRAN
 
@@ -18,3 +19,4 @@ The package has been verified using `R CMD check --as-cran` on:
 | devel     | L M W  | L      | W        | L   W | W           |
 
 _Legend: OS: L = Linux, S = Solaris, M = macOS, W = Windows_
+
