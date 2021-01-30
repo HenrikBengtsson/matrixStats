@@ -12,10 +12,11 @@ t_tx_OP_y(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
   commute = FALSE, na.rm = FALSE)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+\item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+NxK \code{\link[base]{matrix}}.}
 
-\item{y}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-L.}
+\item{y}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+\code{\link[base]{vector}} of length L.}
 
 \item{OP}{A \code{\link[base]{character}} specifying which operator to use.}
 

@@ -1,9 +1,12 @@
 library("matrixStats")
 
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "", sep = "")
   n <- 2L
   x <- runif(n, min = -5, max = 5)
+  if (mode == "logical") {
+    x <- x > 0
+  }
   storage.mode(x) <- mode
   str(x)
 
@@ -69,7 +72,7 @@ ws <- list(A = c(1, 1, 1), B = c(NA, 1, 1), C = c(1, NA, 1))
 ##   keep <- !is.na(x); x <- x[keep]; w <- w[keep]
 ## without looking at 'w'.
 for (x in xs) {
-  for (mode in c("integer", "double")) {
+  for (mode in c("logical", "integer", "double")) {
     storage.mode(x) <- mode
     for (w in ws) {
       for (na.rm in c(FALSE, TRUE)) {

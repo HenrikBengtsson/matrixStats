@@ -6,7 +6,7 @@
 * GitHub: NA
 * Source code: https://github.com/cran/abcrf
 * Date/Publication: 2019-11-05 14:40:02 UTC
-* Number of recursive dependencies: 34
+* Number of recursive dependencies: 35
 
 Run `revdep_details(, "abcrf")` for more info
 
@@ -16,21 +16,68 @@ Run `revdep_details(, "abcrf")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.6Mb
+      installed size is  6.5Mb
       sub-directories of 1Mb or more:
         data   2.6Mb
-        libs   3.8Mb
+        libs   3.7Mb
+    ```
+
+# AlpsNMR
+
+<details>
+
+* Version: 3.0.5
+* GitHub: NA
+* Source code: https://github.com/cran/AlpsNMR
+* Date/Publication: 2021-01-20
+* Number of recursive dependencies: 163
+
+Run `revdep_details(, "AlpsNMR")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'MUVR_model_plot'
+      ‘MVObj’ ‘model’ ‘factCols’ ‘sampLabels’ ‘ylim’
+    
+    Undocumented arguments in documentation object 'confusion_matrix'
+      ‘MVObj’ ‘model’
+    
+    Undocumented arguments in documentation object 'model_VIP'
+      ‘model’
+    
+    Undocumented arguments in documentation object 'rdCV_PLS_RF'
+    ...
+    
+    Undocumented arguments in documentation object 'rdCV_PLS_RF_ML'
+      ‘scale’ ‘nRep’ ‘nOuter’ ‘nInner’ ‘varRatio’ ‘DA’ ‘fitness’ ‘method’
+      ‘ML’ ‘modReturn’ ‘logg’ ‘parallel’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘zip’
+      All declared Imports should be used.
     ```
 
 # AMARETTO
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/AMARETTO
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 141
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 152
 
 Run `revdep_details(, "AMARETTO")` for more info
 
@@ -38,28 +85,34 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking examples ... ERROR
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘amaretto.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 2-16 (amaretto.Rmd) 
-    Error: processing vignette 'amaretto.Rmd' failed with diagnostics:
-    there is no package called 'BiocStyle'
-    --- failed re-building ‘amaretto.Rmd’
+    Running examples in ‘AMARETTO-Ex.R’ failed
+    The error most likely occurred in:
     
-    SUMMARY: processing the following file failed:
-      ‘amaretto.Rmd’
-    
-    Error: Vignette re-building failed.
+    > ### Name: AMARETTO_Download
+    > ### Title: AMARETTO_Download
+    > ### Aliases: AMARETTO_Download
+    > 
+    > ### ** Examples
+    > 
+    > TargetDirectory <- file.path(getwd(),"Downloads/");dir.create(TargetDirectory)
+    ...
+    Error: failed to load resource
+      name: EH622
+      title: CHOL_RNASeq2GeneNorm-20160128
+      reason: Corrupt Cache: resource path
+      See vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/ExperimentHub
+      potential duplicate files: 
+        b93f7382989a_3697
+        b96e433cd1a3_3697
     Execution halted
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.2Mb
       sub-directories of 1Mb or more:
         data   1.5Mb
         doc    2.3Mb
@@ -77,18 +130,17 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    AMARETTO_HTMLreport: no visible binding for global variable ‘Type’
-    AMARETTO_HTMLreport: no visible binding for global variable ‘Color’
-    AMARETTO_HTMLreport: no visible binding for global variable ‘Modules’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘ModuleNr’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Weights’
     AMARETTO_HTMLreport: no visible binding for global variable
-      ‘dt_gensesetsall’
-    GeneSetDescription: no visible binding for global variable
-      ‘MsigdbMapping’
-    GeneSetDescription : <anonymous>: no visible binding for global
-      variable ‘MsigdbMapping’
-    GmtFromModules: no visible binding for global variable ‘value’
-    GmtFromModules: no visible binding for global variable ‘variable’
+      ‘RegulatorIDs’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘TargetIDs’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘moduleNr’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Testset’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘padj’
+    AMARETTO_HTMLreport: no visible binding for global variable
+      ‘n_Overlapping’
+    ...
     GmtFromModules: no visible binding for global variable ‘GeneNames’
     HyperGTestGeneEnrichment: no visible binding for global variable ‘i’
     HyperGTestGeneEnrichment: no visible binding for global variable ‘j’
@@ -110,11 +162,11 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 <details>
 
-* Version: 1.10.1
+* Version: 1.12.0
 * GitHub: https://github.com/valenlab/amplican
 * Source code: https://github.com/cran/amplican
-* Date/Publication: 2020-07-03
-* Number of recursive dependencies: 104
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "amplican")` for more info
 
@@ -122,38 +174,12 @@ Run `revdep_details(, "amplican")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Warning: Removed 1 rows containing missing values (geom_bar).
-    Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-    Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-    Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-    Warning: Removed 1 rows containing missing values (geom_bar).
-    Warning: Removed 1 rows containing missing values (geom_bar).
-    Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-    Warning: Removed 1 rows containing missing values (geom_bar).
-    Warning: Removed 1 rows containing missing values (geom_bar).
-    --- finished re-building ‘example_id_report.Rmd’
-    
-    --- re-building ‘example_index.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘example_index.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘amplicanOverview.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.1Mb
+      installed size is 16.0Mb
       sub-directories of 1Mb or more:
-        doc   13.9Mb
-        libs   1.2Mb
+        doc   13.8Mb
+        libs   1.3Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -165,10 +191,10 @@ Run `revdep_details(, "amplican")` for more info
 
 <details>
 
-* Version: 1.28.0
+* Version: 1.30.0
 * GitHub: https://github.com/HCBravoLab/antiProfiles
 * Source code: https://github.com/cran/antiProfiles
-* Date/Publication: 2020-04-27
+* Date/Publication: 2020-10-27
 * Number of recursive dependencies: 7
 
 Run `revdep_details(, "antiProfiles")` for more info
@@ -191,66 +217,15 @@ Run `revdep_details(, "antiProfiles")` for more info
     to your NAMESPACE file.
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'antiProfiles.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'antiProfiles.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `fullpage.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.13 \usepackage
-                    [numbers]{natbib}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘antiProfiles.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘antiProfiles.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# aroma.affymetrix
-
-<details>
-
-* Version: 3.2.0
-* GitHub: https://github.com/HenrikBengtsson/aroma.affymetrix
-* Source code: https://github.com/cran/aroma.affymetrix
-* Date/Publication: 2019-06-23 06:00:14 UTC
-* Number of recursive dependencies: 70
-
-Run `revdep_details(, "aroma.affymetrix")` for more info
-
-</details>
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.4Mb
-      sub-directories of 1Mb or more:
-        R             2.3Mb
-        help          1.1Mb
-        testScripts   1.1Mb
-    ```
-
 # aroma.core
 
 <details>
 
-* Version: 3.2.1
+* Version: 3.2.2
 * GitHub: https://github.com/HenrikBengtsson/aroma.core
 * Source code: https://github.com/cran/aroma.core
-* Date/Publication: 2020-02-04 15:20:21 UTC
-* Number of recursive dependencies: 46
+* Date/Publication: 2021-01-05 05:10:12 UTC
+* Number of recursive dependencies: 47
 
 Run `revdep_details(, "aroma.core")` for more info
 
@@ -268,10 +243,10 @@ Run `revdep_details(, "aroma.core")` for more info
 
 <details>
 
-* Version: 3.18.0
+* Version: 3.20.0
 * GitHub: https://github.com/HenrikBengtsson/aroma.light
 * Source code: https://github.com/cran/aroma.light
-* Date/Publication: 2020-04-27
+* Date/Publication: 2020-10-27
 * Number of recursive dependencies: 6
 
 Run `revdep_details(, "aroma.light")` for more info
@@ -292,11 +267,11 @@ Run `revdep_details(, "aroma.light")` for more info
 
 <details>
 
-* Version: 2.0.0
+* Version: 2.2.1
 * GitHub: https://github.com/catavallejos/BASiCS
 * Source code: https://github.com/cran/BASiCS
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 131
+* Date/Publication: 2020-12-14
+* Number of recursive dependencies: 139
 
 Run `revdep_details(, "BASiCS")` for more info
 
@@ -304,75 +279,30 @@ Run `revdep_details(, "BASiCS")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘BASiCS.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 23-26 (BASiCS.Rmd) 
-    Error: processing vignette 'BASiCS.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘BASiCS.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘BASiCS.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 17.3Mb
+      installed size is 11.4Mb
       sub-directories of 1Mb or more:
         data   2.0Mb
-        doc    1.7Mb
-        libs  12.8Mb
+        doc    1.4Mb
+        libs   7.2Mb
     ```
 
 # BatchQC
 
 <details>
 
-* Version: 1.16.2
+* Version: 1.18.0
 * GitHub: https://github.com/mani2012/BatchQC
 * Source code: https://github.com/cran/BatchQC
-* Date/Publication: 2020-07-13
-* Number of recursive dependencies: 147
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 154
 
 Run `revdep_details(, "BatchQC")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Found3batches
-    Adjusting for1covariate(s) or covariate level(s)
-    Standardizing Data across genes
-    Fitting L/S model and finding priors
-    Finding parametric adjustments
-    Adjusting the Data
-    
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'BatchQC_usage_advanced.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/BatchQC/new/BatchQC.Rcheck/vign_test/BatchQC/vignettes/BatchQC_usage_advanced.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See BatchQC_usage_advanced.log for more info.
-    --- failed re-building ‘BatchQC_usage_advanced.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘BatchQC_usage_advanced.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -397,7 +327,7 @@ Run `revdep_details(, "BatchQC")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/baystability
 * Date/Publication: 2018-03-13 15:55:34 UTC
-* Number of recursive dependencies: 105
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "baystability")` for more info
 
@@ -420,7 +350,7 @@ Run `revdep_details(, "baystability")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/bdynsys
 * Date/Publication: 2014-12-08 07:01:51
-* Number of recursive dependencies: 87
+* Number of recursive dependencies: 91
 
 Run `revdep_details(, "bdynsys")` for more info
 
@@ -430,18 +360,17 @@ Run `revdep_details(, "bdynsys")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    bayfacfig: no visible global function definition for ‘dev.set’
+    bayfacfig: no visible global function definition for ‘postscript’
+    bayfacfig: no visible global function definition for ‘points’
+    bayfacfig: no visible global function definition for ‘legend’
+    bayfacfig: no visible global function definition for ‘dev.off’
+    dysymod: no visible global function definition for ‘write.table’
+    errorcorr: no visible global function definition for ‘sd’
+    phaseportdat: no visible global function definition for ‘dev.set’
+    phaseportdat: no visible global function definition for ‘postscript’
+    phaseportdat: no visible global function definition for ‘grid’
     ...
-    phaseportmod: no visible binding for global variable ‘dev.off’
-    plot_data: no visible global function definition for ‘dev.set’
-    plot_data: no visible global function definition for ‘postscript’
-    plot_data: no visible global function definition for ‘matplot’
-    plot_data: no visible global function definition for ‘points’
-    plot_data: no visible global function definition for ‘legend’
-    plot_data: no visible global function definition for ‘dev.off’
-    polyfitbayes: no visible global function definition for ‘runif’
-    polyfitbayes: no visible global function definition for ‘var’
-    polyfitreg: no visible global function definition for ‘lm’
-    polyfitreg: no visible binding for global variable ‘na.exclude’
     polyfitreg: no visible global function definition for ‘var’
     Undefined global functions or variables:
       dev.off dev.set grid legend lm matplot na.exclude points postscript
@@ -458,11 +387,11 @@ Run `revdep_details(, "bdynsys")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * GitHub: https://github.com/lindsayrutter/bigPint
 * Source code: https://github.com/cran/bigPint
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 165
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 172
 
 Run `revdep_details(, "bigPint")` for more info
 
@@ -470,64 +399,12 @@ Run `revdep_details(, "bigPint")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    > ret <- plotLitre(data = soybean_ir_sub,
-    +     dataMetrics = soybean_ir_sub_metrics, threshVal = 1e-10,
-    +     saveFile = FALSE)
-    > length(ret)
-    [1] 61
-    > names(ret)[1]
-    [1] "N_P_Glyma.19G168700.Wm82.a2.v1"
-    > ret[[1]]
-    > 
-    > # Example 2: Create litre plots for each of the five most significant genes
-    > # (low FDR values). View plot for gene "N_P_Glyma.19G168700.Wm82.a2.v1".
-    > 
-    > geneList = soybean_ir_sub_metrics[["N_P"]][1:5,]$ID
-    > ret <- plotLitre(data = soybean_ir_sub, geneList = geneList,
-    +     pointColor = "deeppink")
-    Warning in jpeg(filename = paste0(outDir, "/", group1, "_", group2, "_",  :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("jpeg::", quality, ":", filename), g$width,  : 
-      unable to start device JPEG
-    Calls: plotLitre -> lapply -> FUN -> lapply -> FUN -> jpeg
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    
-    --- re-building ‘manuscripts.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘manuscripts.Rmd’
-    
-    --- re-building ‘methods.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘methods.Rmd’
-    
-    --- re-building ‘summarizedExperiment.Rmd’ using rmarkdown
-    Error: processing vignette 'summarizedExperiment.Rmd' failed with diagnostics:
-    there is no package called ‘BiocStyle’
-    --- failed re-building ‘summarizedExperiment.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘bioconductor.Rmd’ ‘summarizedExperiment.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.1Mb
+      installed size is  7.6Mb
       sub-directories of 1Mb or more:
-        data             2.1Mb
-        doc              2.7Mb
+        data             2.0Mb
+        doc              2.3Mb
         shiny-examples   3.0Mb
     ```
 
@@ -556,11 +433,11 @@ Run `revdep_details(, "bingat")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * GitHub: https://github.com/trichelab/biscuiteer
 * Source code: https://github.com/cran/biscuiteer
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 199
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 209
 
 Run `revdep_details(, "biscuiteer")` for more info
 
@@ -568,32 +445,41 @@ Run `revdep_details(, "biscuiteer")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘biscuiteer-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: CpGindex
+    > ### Title: Measure methylation status for PRCs or PMDs
+    > ### Aliases: CpGindex
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    Loading H9state23unmeth.hg19...
+    Computing hypomethylation indices...
+    Loading PMDs.hg19.rda from biscuiteerData...
+    Error: Corrupt Cache: resource path
+      See vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/ExperimentHub
+      potential duplicate files: 
+        b93f7382989a_3697
+        b96e433cd1a3_3697
+    Execution halted
+    ```
+
 *   checking whether package ‘biscuiteer’ can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
-    See ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘biscuiteer.Rmd’ using rmarkdown
-    Error: processing vignette 'biscuiteer.Rmd' failed with diagnostics:
-    there is no package called ‘BiocStyle’
-    --- failed re-building ‘biscuiteer.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘biscuiteer.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  5.8Mb
       sub-directories of 1Mb or more:
         data      1.1Mb
         extdata   3.4Mb
@@ -609,11 +495,11 @@ Run `revdep_details(, "biscuiteer")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * GitHub: https://github.com/hansenlab/bnbc
 * Source code: https://github.com/cran/bnbc
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 79
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 89
 
 Run `revdep_details(, "bnbc")` for more info
 
@@ -621,31 +507,12 @@ Run `revdep_details(, "bnbc")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘bnbc.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 45-46 (bnbc.Rmd) 
-    Error: processing vignette 'bnbc.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘bnbc.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘bnbc.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.2Mb
       sub-directories of 1Mb or more:
         data   1.7Mb
-        libs   1.2Mb
+        libs   1.3Mb
     ```
 
 # bnclassify
@@ -656,7 +523,7 @@ Run `revdep_details(, "bnbc")` for more info
 * GitHub: https://github.com/bmihaljevic/bnclassify
 * Source code: https://github.com/cran/bnclassify
 * Date/Publication: 2020-03-12 17:40:02 UTC
-* Number of recursive dependencies: 90
+* Number of recursive dependencies: 94
 
 Run `revdep_details(, "bnclassify")` for more info
 
@@ -664,80 +531,28 @@ Run `revdep_details(, "bnclassify")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘overview.Rmd’
-    
-    --- re-building ‘usage.rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'usage.rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/bnclassify/new/bnclassify.Rcheck/vign_test/bnclassify/vignettes/usage.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See usage.log for more info.
-    --- failed re-building ‘usage.rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘usage.rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.0Mb
+      installed size is  8.8Mb
       sub-directories of 1Mb or more:
-        libs   8.2Mb
+        libs   8.0Mb
     ```
 
 # brms
 
 <details>
 
-* Version: 2.13.5
+* Version: 2.14.4
 * GitHub: https://github.com/paul-buerkner/brms
 * Source code: https://github.com/cran/brms
-* Date/Publication: 2020-07-31 08:40:03 UTC
-* Number of recursive dependencies: 180
+* Date/Publication: 2020-11-03 06:40:22 UTC
+* Number of recursive dependencies: 214
 
 Run `revdep_details(, "brms")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-      unable to open connection to X11 display ''
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 57-63 (brms_phylogenetics.Rmd) 
-    Error: processing vignette 'brms_phylogenetics.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘brms_phylogenetics.Rmd’
-    
-    --- re-building ‘brms_multilevel.ltx’ using tex
-    --- finished re-building ‘brms_multilevel.ltx’
-    
-    --- re-building ‘brms_overview.ltx’ using tex
-    --- finished re-building ‘brms_overview.ltx’
-    
-    SUMMARY: processing the following files failed:
-      ‘brms_customfamilies.Rmd’ ‘brms_distreg.Rmd’ ‘brms_missings.Rmd’
-      ‘brms_monotonic.Rmd’ ‘brms_multivariate.Rmd’ ‘brms_nonlinear.Rmd’
-      ‘brms_phylogenetics.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -746,21 +561,21 @@ Run `revdep_details(, "brms")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.8Mb
+      installed size is  6.6Mb
       sub-directories of 1Mb or more:
-        R     3.1Mb
-        doc   2.6Mb
+        R     3.0Mb
+        doc   2.7Mb
     ```
 
 # BSgenome
 
 <details>
 
-* Version: 1.56.0
-* GitHub: NA
+* Version: 1.58.0
+* GitHub: https://github.com/Bioconductor/BSgenome
 * Source code: https://github.com/cran/BSgenome
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 89
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 94
 
 Run `revdep_details(, "BSgenome")` for more info
 
@@ -768,20 +583,44 @@ Run `revdep_details(, "BSgenome")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘BSgenome-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: SNPlocs-class
+    > ### Title: SNPlocs objects
+    > ### Aliases: class:SNPlocs SNPlocs-class SNPlocs class:ODLT_SNPlocs
+    > ###   ODLT_SNPlocs-class ODLT_SNPlocs class:OldFashionSNPlocs
+    > ###   OldFashionSNPlocs-class OldFashionSNPlocs provider,SNPlocs-method
+    > ###   providerVersion,SNPlocs-method releaseDate,SNPlocs-method
+    > ###   releaseName,SNPlocs-method referenceGenome
+    ...
+    > seqlevels(my_cds, pruning.mode="coarse") <- c("chr22", "chrM")
+    > seqlevelsStyle(my_cds)  # UCSC
+    [1] "UCSC"
+    > seqlevelsStyle(snps)    # NCBI
+    [1] "NCBI"
+    > seqlevelsStyle(my_cds) <- seqlevelsStyle(snps)
+    Error in .make_assembly_report_URL(assembly_accession) : 
+      don't know where to find assembly report for GCF_000001405.38
+    Calls: seqlevelsStyle<- ... .get_NCBI_chrom_info_from_accession -> fetch_assembly_report -> .make_assembly_report_URL
+    Execution halted
+    ```
+
 *   checking for missing documentation entries ... WARNING
     ```
+    Undocumented code objects:
+      ‘MaskedBSgenome’ ‘OnDiskLongTable’ ‘OnDiskLongTable_old’
+      ‘as.data.frame.BSgenomeViews’ ‘batchsizes’ ‘blocksizes’ ‘breakpoints’
+      ‘forgeMaskedBSgenomeDataPkg’
+      ‘getBatchesByOverlapsFromOnDiskLongTable’
+      ‘getBatchesBySeqnameFromOnDiskLongTable’
+      ‘getBatchesFromOnDiskLongTable’ ‘getBatchesFromOnDiskLongTable_old’
+      ‘getRowsByIdFromOnDiskLongTable’ ‘getRowsByIdFromOnDiskLongTable_old’
+      ‘getRowsByIndexFromOnDiskLongTable_old’ ‘getRowsFromOnDiskLongTable’
+      ‘rowids’ ‘saveAsOnDiskLongTable_old’
     ...
-      generic 'forgeMaskedBSgenomeDataPkg' and siglist
-        'MaskedBSgenomeDataPkgSeed'
-      generic 'forgeMaskedBSgenomeDataPkg' and siglist 'character'
-      generic 'forgeMaskedBSgenomeDataPkg' and siglist 'list'
-      generic 'length' and siglist 'OnDiskNamedSequences'
-      generic 'names' and siglist 'FastaNamedSequences'
-      generic 'names' and siglist 'TwobitNamedSequences'
-      generic 'rowids' and siglist 'OnDiskLongTable'
-      generic 'rowids' and siglist 'OnDiskLongTable_old'
-      generic 'seqinfo' and siglist 'FastaNamedSequences'
-      generic 'seqinfo' and siglist 'RdaNamedSequences'
       generic 'seqinfo' and siglist 'TwobitNamedSequences'
       generic 'seqnames' and siglist 'OnDiskNamedSequences'
       generic 'show' and siglist 'OnDiskLongTable'
@@ -790,18 +629,6 @@ Run `revdep_details(, "BSgenome")` for more info
       generic 'spatialIndex' and siglist 'OnDiskLongTable'
     All user-level objects in a package (including S4 classes and methods)
     should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking Rd \usage sections ... WARNING
-    ```
-    Documented arguments not in \usage in documentation object 'getSeq-methods':
-      ‘...’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
     ```
@@ -815,12 +642,23 @@ Run `revdep_details(, "BSgenome")` for more info
     selectively is preferable.
     ```
 
+*   checking for portable file names ... NOTE
+    ```
+    Found the following non-portable file path:
+      BSgenome/inst/extdata/GentlemanLab/BSgenome.Gmellonella.NCBI.ASM364042v2-tools/fasta_to_sorted_2bit.R
+    
+    Tarballs are only required to store paths of up to 100 bytes and cannot
+    store those of more than 256 bytes, with restrictions including to 100
+    bytes for the final component.
+    See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is  7.8Mb
       sub-directories of 1Mb or more:
         R         1.7Mb
-        extdata   5.8Mb
+        extdata   5.5Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -832,16 +670,16 @@ Run `revdep_details(, "BSgenome")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    ':::' call which should be '::': ‘S4Vectors:::makePrettyMatrixForCompactPrinting’
+    ':::' calls which should be '::':
+      ‘S4Vectors:::makeClassinfoRowForCompactPrinting’
+      ‘S4Vectors:::makePrettyMatrixForCompactPrinting’
       See the note in ?`:::` about the use of this operator.
     Unexported objects imported by ':::' calls:
       ‘GenomeInfoDb:::compactPrintNamedAtomicVector’
-      ‘GenomeInfoDb:::showGenomeDescription’
       ‘GenomicRanges:::get_out_of_bound_index’ ‘IRanges:::.normargSEW’
       ‘IRanges:::unlist_as_integer’ ‘S4Vectors:::anyMissing’
       ‘S4Vectors:::anyMissingOrOutside’ ‘S4Vectors:::decodeRle’
       ‘S4Vectors:::diffWithInitialZero’
-      ‘S4Vectors:::makeClassinfoRowForCompactPrinting’
       ‘S4Vectors:::make_zero_col_DataFrame’ ‘S4Vectors:::quick_unlist’
       ‘S4Vectors:::quick_unsplit’ ‘S4Vectors:::recycleVector’
       ‘rtracklayer:::.DNAString_to_twoBit’ ‘rtracklayer:::.TwoBits_export’
@@ -853,11 +691,11 @@ Run `revdep_details(, "BSgenome")` for more info
 
 <details>
 
-* Version: 1.30.0
+* Version: 1.32.0
 * GitHub: https://github.com/ririzarr/bumphunter
 * Source code: https://github.com/cran/bumphunter
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 99
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "bumphunter")` for more info
 
@@ -867,27 +705,26 @@ Run `revdep_details(, "bumphunter")` for more info
 
 *   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/test-all.R’ failed.
+    Last 50 lines of output:
+      
+          expand.grid
+      
+      Loading required package: IRanges
+      Loading required package: GenomeInfoDb
+      Loading required package: GenomicRanges
+      Loading required package: foreach
     ...
-      Loading required package: locfit
-      locfit 1.5-9.4 	 2020-03-24
-      trying URL 'ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_25/gencode.v25.annotation.gtf.gz'
-      Content type 'text/plain' length 38817086 bytes (37.0 MB)
-      ==================================================
-      downloaded 37.0 MB
+       3.   ├─rtracklayer::import(FileForFormat(con), ...)
+       4.   └─rtracklayer::import(FileForFormat(con), ...)
+       5.     ├─rtracklayer::import(con, ...)
+       6.     └─rtracklayer::import(con, ...)
+       7.       └─rtracklayer:::.local(con, format, text, ...)
+       8.         └─utils::download.file(resource(con), destfile)
       
-      ── 1. Error: (unknown) (@test_annotation.R#103)  ───────────────────────────────
-      don't know where to find assembly report for GCF_000001405.26
-      Backtrace:
-       1. GenomeInfoDb::fetchExtendedChromInfoFromUCSC("hg38")
-       2. GenomeInfoDb:::FUN(...)
-       3. GenomeInfoDb:::fetch_assembly_report(assembly_accession, AssemblyUnits = AssemblyUnits)
-       4. GenomeInfoDb:::.make_assembly_report_URL(assembly_accession)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 13 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: (unknown) (@test_annotation.R#103) 
-      
-      Error: testthat unit tests failed
+      [ FAIL 1 | WARN 2 | SKIP 0 | PASS 13 ]
+      Error: Test failures
       Execution halted
     ```
 
@@ -918,74 +755,6 @@ Run `revdep_details(, "bumphunter")` for more info
       bootstraps
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'bumphunter.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'bumphunter.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `fullpage.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.10 \usepackage
-                    [numbers]{natbib}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘bumphunter.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘bumphunter.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# calmate
-
-<details>
-
-* Version: 0.12.1
-* GitHub: https://github.com/HenrikBengtsson/calmate
-* Source code: https://github.com/cran/calmate
-* Date/Publication: 2015-10-27 08:09:53
-* Number of recursive dependencies: 21
-
-Run `revdep_details(, "calmate")` for more info
-
-</details>
-
-## In both
-
-*   checking tests ...
-    ```
-    ...
-      +   stopifnot(length(dim(dummy)) == 3);
-      + }
-      Warning message:
-      In rlm.default(t(TR), naiveGenoDiff, maxit = maxIter, weights = coeffs) :
-        'rlm' failed to converge in 50 steps
-      > 
-      > # Create plot
-      > Clim <- c(-0.2,4);
-      > 
-      > if (interactive()) {
-      +   devNew(type="x11", aspectRatio=1.9);
-      + } else {
-      +   devNew(type="png", "test-calmateByTheta.png", aspectRatio=1.9);
-      + }
-      Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-        unable to start device PNG
-      Calls: devNew -> do.call -> png
-      In addition: Warning message:
-      In png("test-calmateByTheta.png", width = 480, height = 912) :
-        unable to open connection to X11 display ''
-      Execution halted
-    ```
-
 # CARBayesST
 
 <details>
@@ -994,7 +763,7 @@ Run `revdep_details(, "calmate")` for more info
 * GitHub: https://github.com/duncanplee/CARBayesST
 * Source code: https://github.com/cran/CARBayesST
 * Date/Publication: 2020-03-09 15:10:11 UTC
-* Number of recursive dependencies: 100
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "CARBayesST")` for more info
 
@@ -1004,46 +773,20 @@ Run `revdep_details(, "CARBayesST")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.7Mb
+      installed size is  5.3Mb
       sub-directories of 1Mb or more:
-        libs   4.4Mb
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'CARBayesST.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'CARBayesST.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `multirow.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.13 \usepackage
-                    {multicol}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘CARBayesST.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘CARBayesST.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+        libs   4.1Mb
     ```
 
 # CATALYST
 
 <details>
 
-* Version: 1.12.2
+* Version: 1.14.0
 * GitHub: https://github.com/HelenaLC/CATALYST
 * Source code: https://github.com/cran/CATALYST
-* Date/Publication: 2020-07-02
-* Number of recursive dependencies: 215
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 241
 
 Run `revdep_details(, "CATALYST")` for more info
 
@@ -1051,101 +794,23 @@ Run `revdep_details(, "CATALYST")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-    Running examples in ‘CATALYST-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: plotDR
-    > ### Title: Plot reduced dimensions
-    > ### Aliases: plotDR
-    > 
-    > ### ** Examples
-    > 
-    > # construct SCE & run clustering
-    > data(PBMC_fs, PBMC_panel, PBMC_md)
-    > sce <- prepData(PBMC_fs, PBMC_panel, PBMC_md)
-    > 
-    > # run clustering & dimension reduction
-    > sce <- cluster(sce)
-    o running FlowSOM clustering...
-    o running ConsensusClusterPlus metaclustering...
-    > sce <- runDR(sce, dr = "UMAP", cells = 100)
-    Error in loadNamespace(name) : there is no package called ‘uwot’
-    Calls: runDR ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-    ...
-      
-      The following objects are masked from 'package:matrixStats':
-      
-          colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-      
-      The following objects are masked from 'package:base':
-      
-          aperm, apply, rowsum
-      
-      > 
-      > test_check("CATALYST")
-      ── 1. Error: plotDR() (@test_plotting-differential.R#259)  ─────────────────────
-      error in evaluating the argument 'x' in selecting a method for function 'reducedDim': there is no package called 'uwot'
-      Backtrace:
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 722 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: plotDR() (@test_plotting-differential.R#259) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘differential.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 26-27 (differential.Rmd) 
-    Error: processing vignette 'differential.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘differential.Rmd’
-    
-    --- re-building ‘preprocessing.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 39-40 (preprocessing.Rmd) 
-    Error: processing vignette 'preprocessing.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘preprocessing.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘differential.Rmd’ ‘preprocessing.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is 14.2Mb
       sub-directories of 1Mb or more:
         data   3.1Mb
-        doc    9.9Mb
+        doc    9.8Mb
     ```
 
 # celda
 
 <details>
 
-* Version: 1.4.6
+* Version: 1.6.1
 * GitHub: https://github.com/campbio/celda
 * Source code: https://github.com/cran/celda
-* Date/Publication: 2020-06-07
-* Number of recursive dependencies: 219
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 248
 
 Run `revdep_details(, "celda")` for more info
 
@@ -1153,58 +818,22 @@ Run `revdep_details(, "celda")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘celda.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 26-27 (celda.Rmd) 
-    Error: processing vignette 'celda.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘celda.Rmd’
-    
-    --- re-building ‘decontX.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 22-23 (decontX.Rmd) 
-    Error: processing vignette 'decontX.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘decontX.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘celda.Rmd’ ‘decontX.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.9Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
-        libs   5.1Mb
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    plotDecontXMarkerPercentage: no visible binding for global variable
-      ‘cellTypeLabels’
-    plotDecontXMarkerPercentage: no visible binding for global variable
-      ‘percent’
-    Undefined global functions or variables:
-      cellTypeLabels percent
+        libs   4.9Mb
     ```
 
 # cellWise
 
 <details>
 
-* Version: 2.1.1
+* Version: 2.2.3
 * GitHub: NA
 * Source code: https://github.com/cran/cellWise
-* Date/Publication: 2020-04-14 10:40:03 UTC
-* Number of recursive dependencies: 68
+* Date/Publication: 2020-12-03 11:00:02 UTC
+* Number of recursive dependencies: 89
 
 Run `revdep_details(, "cellWise")` for more info
 
@@ -1212,29 +841,29 @@ Run `revdep_details(, "cellWise")` for more info
 
 ## In both
 
-*   checking installed package size ... NOTE
+*   checking package dependencies ... NOTE
     ```
-      installed size is 12.5Mb
-      sub-directories of 1Mb or more:
-        data   3.2Mb
-        doc    1.7Mb
-        libs   7.3Mb
+    Package suggested but not available for checking: ‘GSE’
     ```
 
-*   checking Rd cross-references ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Package unavailable to check Rd xrefs: ‘rospca’
+      installed size is 14.0Mb
+      sub-directories of 1Mb or more:
+        data   3.1Mb
+        doc    2.0Mb
+        libs   8.5Mb
     ```
 
 # CEMiTool
 
 <details>
 
-* Version: 1.12.2
+* Version: 1.14.0
 * GitHub: NA
 * Source code: https://github.com/cran/CEMiTool
-* Date/Publication: 2020-09-02
-* Number of recursive dependencies: 170
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 163
 
 Run `revdep_details(, "CEMiTool")` for more info
 
@@ -1246,7 +875,7 @@ Run `revdep_details(, "CEMiTool")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘ggplot2::annotate’ by ‘ggpmisc::annotate’ when loading ‘CEMiTool’
-    See ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/CEMiTool/new/CEMiTool.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/CEMiTool/new/CEMiTool.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -1260,18 +889,17 @@ Run `revdep_details(, "CEMiTool")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    plot_mean_var,CEMiTool: no visible binding for global variable
-      ‘..rr.label..’
-    plot_ora,CEMiTool : <anonymous>: no visible global function definition
+    flip_vector: no visible global function definition for ‘setNames’
+    select_genes: no visible global function definition for ‘var’
+    get_hubs,CEMiTool : <anonymous>: no visible global function definition
       for ‘head’
-    plot_qq,CEMiTool: no visible binding for global variable ‘data’
-    plot_sample_tree,CEMiTool: no visible global function definition for
-      ‘dist’
-    plot_sample_tree,CEMiTool: no visible global function definition for
-      ‘dev.off’
-    save_plots,CEMiTool : <anonymous>: no visible global function
-      definition for ‘dev.off’
+    get_merged_mods,CEMiTool: no visible global function definition for
+      ‘as.dist’
+    get_mods,CEMiTool: no visible global function definition for ‘as.dist’
+    get_phi,CEMiTool: no visible global function definition for ‘tail’
+    get_phi,CEMiTool: no visible global function definition for ‘head’
+    mod_gene_num,CEMiTool: no visible binding for global variable ‘modules’
+    ...
     save_plots,CEMiTool: no visible global function definition for
       ‘dev.off’
     Undefined global functions or variables:
@@ -1288,11 +916,11 @@ Run `revdep_details(, "CEMiTool")` for more info
 
 <details>
 
-* Version: 2.18.3
+* Version: 2.20.1
 * GitHub: NA
 * Source code: https://github.com/cran/ChAMP
-* Date/Publication: 2020-09-14
-* Number of recursive dependencies: 237
+* Date/Publication: 2020-11-03
+* Number of recursive dependencies: 248
 
 Run `revdep_details(, "ChAMP")` for more info
 
@@ -1304,7 +932,7 @@ Run `revdep_details(, "ChAMP")` for more info
     ```
     Found the following significant warnings:
       Note: possible error in 'dmrcate(myannotation, ': unused argument (mc.cores = cores) 
-    See ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
     Information on the location(s) of code generating the ‘Note’s can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
     to ‘yes’.
@@ -1322,44 +950,18 @@ Run `revdep_details(, "ChAMP")` for more info
     Extensions’ manual.
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    [ Section 3:  Match Annotation Start ]
-    
-    
-    [ Section 3:  Match Annotation Done ]
-    
-    [<<<<<< ChAMP.DMP END >>>>>>]
-    [===========================]
-    [You may want to process DMP.GUI() or champ.GSEA() next.]
-    
-    pandoc-citeproc: PandocHttpError "http://www.zotero.org/styles/american-medical-association" (InvalidUrlException "c4-yum1:3128" "Invalid scheme")
-    Error running filter /software/c4/cbi/software/pandoc-2.10.1/bin/pandoc-citeproc:
-    Filter returned error status 1
-    Error: processing vignette 'ChAMP.Rmd' failed with diagnostics:
-    pandoc document conversion failed with error 83
-    --- failed re-building ‘ChAMP.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘ChAMP.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
       'minfi', 'ChAMPdata', 'DMRcate', 'Illumina450ProbeVariants.db',
-      'IlluminaHumanMethylationEPICmanifest', 'DT'
+      'IlluminaHumanMethylationEPICmanifest', 'DT', 'RPMM'
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
         doc       3.6Mb
         extdata   1.9Mb
@@ -1386,79 +988,33 @@ Run `revdep_details(, "ChAMP")` for more info
     champ.DMR: possible error in dmrcate(myannotation, min.cpgs =
       minProbes, lambda = lambda, C = C, mc.cores = cores): unused argument
       (mc.cores = cores)
-    champ.EpiMod: no visible global function definition for 'GenStatM'
-    champ.EpiMod: no visible global function definition for 'DoIntEpi450k'
-    champ.EpiMod: no visible global function definition for 'DoEpiMod'
-    champ.EpiMod: no visible global function definition for 'FemModShow'
     champ.ebGSEA : gseaWTfn: no visible global function definition for
       'wilcox.test'
     champ.ebGSEA: no visible global function definition for 'stopCluster'
     champ.norm: no visible global function definition for 'stopCluster'
+    champ.process: no visible global function definition for 'champ.EpiMod'
     Undefined global functions or variables:
-      DoEpiMod DoIntEpi450k FemModShow GenStatM stopCluster wilcox.test
+      champ.EpiMod stopCluster wilcox.test
     Consider adding
       importFrom("stats", "wilcox.test")
     to your NAMESPACE file.
-    ```
-
-# CHARGE
-
-<details>
-
-* Version: 1.7.0
-* GitHub: NA
-* Source code: https://github.com/cran/CHARGE
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 170
-
-Run `revdep_details(, "CHARGE")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘modes’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
     ```
 
 # Chicago
 
 <details>
 
-* Version: 1.16.1
+* Version: 1.18.0
 * GitHub: NA
 * Source code: https://github.com/cran/Chicago
-* Date/Publication: 2020-09-08
-* Number of recursive dependencies: 157
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 168
 
 Run `revdep_details(, "Chicago")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘Chicago.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-20 (Chicago.Rmd) 
-    Error: processing vignette 'Chicago.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘Chicago.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘Chicago.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -1474,11 +1030,11 @@ Run `revdep_details(, "Chicago")` for more info
 
 <details>
 
-* Version: 3.22.4
+* Version: 3.24.1
 * GitHub: NA
 * Source code: https://github.com/cran/ChIPpeakAnno
-* Date/Publication: 2020-09-02
-* Number of recursive dependencies: 178
+* Date/Publication: 2020-10-30
+* Number of recursive dependencies: 185
 
 Run `revdep_details(, "ChIPpeakAnno")` for more info
 
@@ -1486,85 +1042,74 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking examples ... ERROR
     ```
+    Running examples in ‘ChIPpeakAnno-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annoPeaks
+    > ### Title: Annotate peaks
+    > ### Aliases: annoPeaks
+    > ### Keywords: misc
+    > 
+    > ### ** Examples
+    > 
     ...
-    --- re-building ‘pipeline.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 17-32 (pipeline.Rmd) 
-    Error: processing vignette 'pipeline.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘pipeline.Rmd’
     
-    --- re-building ‘quickStart.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 13-20 (quickStart.Rmd) 
-    Error: processing vignette 'quickStart.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘quickStart.Rmd’
+        filter
     
-    SUMMARY: processing the following files failed:
-      ‘ChIPpeakAnno.Rmd’ ‘FAQs.Rmd’ ‘pipeline.Rmd’ ‘quickStart.Rmd’
-    
-    Error: Vignette re-building failed.
+    >     library(EnsDb.Hsapiens.v75)
+    >     data("myPeakList")
+    >     annoGR <- toGRanges(EnsDb.Hsapiens.v75)
+    Error in .make_assembly_report_URL(assembly_accession) : 
+      don't know where to find assembly report for GCF_000001405.25
+    Calls: toGRanges ... .get_NCBI_chrom_info_from_accession -> fetch_assembly_report -> .make_assembly_report_URL
     Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 50 lines of output:
+       17.                   └─GenomeInfoDb:::.get_chrom_info_for_registered_UCSC_genome(...)
+       18.                     ├─BiocGenerics::do.call(...)
+       19.                     ├─base::do.call(...)
+       20.                     └─(function (UCSC_chrom_info, assembly_accession, AssemblyUnits = NULL, ...
+       21.                       └─GenomeInfoDb::getChromInfoFromNCBI(assembly_accession, assembly.units = AssemblyUnits)
+       22.                         └─GenomeInfoDb:::.get_NCBI_chrom_info_from_accession(...)
+       23.                           └─GenomeInfoDb:::fetch_assembly_report(accession)
+    ...
+       19.                     ├─base::do.call(...)
+       20.                     └─(function (UCSC_chrom_info, assembly_accession, AssemblyUnits = NULL, ...
+       21.                       └─GenomeInfoDb::getChromInfoFromNCBI(assembly_accession, assembly.units = AssemblyUnits)
+       22.                         └─GenomeInfoDb:::.get_NCBI_chrom_info_from_accession(...)
+       23.                           └─GenomeInfoDb:::fetch_assembly_report(accession)
+       24.                             └─GenomeInfoDb:::.make_assembly_report_URL(assembly_accession)
+      
+      [ FAIL 3 | WARN 1 | SKIP 5 | PASS 195 ]
+      Error: Test failures
+      Execution halted
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 23.5Mb
+      installed size is 32.8Mb
       sub-directories of 1Mb or more:
-        data     12.6Mb
-        doc       4.5Mb
+        data     20.5Mb
+        doc       6.0Mb
         extdata   5.2Mb
-    ```
-
-# chromswitch
-
-<details>
-
-* Version: 1.10.0
-* GitHub: https://github.com/sjessa/chromswitch
-* Source code: https://github.com/cran/chromswitch
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 155
-
-Run `revdep_details(, "chromswitch")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘chromswitch_intro.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 33-35 (chromswitch_intro.Rmd) 
-    Error: processing vignette 'chromswitch_intro.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘chromswitch_intro.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘chromswitch_intro.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # cliqueMS
 
 <details>
 
-* Version: 1.2.1
+* Version: 1.4.0
 * GitHub: https://github.com/osenan/cliqueMS
 * Source code: https://github.com/cran/cliqueMS
-* Date/Publication: 2020-08-03
-* Number of recursive dependencies: 132
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 138
 
 Run `revdep_details(, "cliqueMS")` for more info
 
@@ -1574,9 +1119,9 @@ Run `revdep_details(, "cliqueMS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.5Mb
+      installed size is  7.2Mb
       sub-directories of 1Mb or more:
-        libs   5.8Mb
+        libs   5.6Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1589,10 +1134,10 @@ Run `revdep_details(, "cliqueMS")` for more info
 
 <details>
 
-* Version: 1.24.0
+* Version: 1.26.0
 * GitHub: NA
 * Source code: https://github.com/cran/Clomial
-* Date/Publication: 2020-04-27
+* Date/Publication: 2020-10-27
 * Number of recursive dependencies: 2
 
 Run `revdep_details(, "Clomial")` for more info
@@ -1626,11 +1171,11 @@ Run `revdep_details(, "Clomial")` for more info
 
 <details>
 
-* Version: 2.8.0
+* Version: 2.10.0
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 188
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 179
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -1638,37 +1183,22 @@ Run `revdep_details(, "clusterExperiment")` for more info
 
 ## In both
 
+*   R CMD check timed out
+    
+
 *   checking contents of ‘data’ directory ... WARNING
     ```
     Output for data("rsecFluidigm", package = "clusterExperiment"):
       Search path was changed
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘clusterExperimentTutorial.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 20-25 (clusterExperimentTutorial.Rmd) 
-    Error: processing vignette 'clusterExperimentTutorial.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘clusterExperimentTutorial.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘clusterExperimentTutorial.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.3Mb
+      installed size is 17.6Mb
       sub-directories of 1Mb or more:
         R      1.3Mb
-        doc    9.8Mb
+        data   3.6Mb
+        doc   10.3Mb
         libs   1.9Mb
     ```
 
@@ -1685,87 +1215,24 @@ Run `revdep_details(, "clusterExperiment")` for more info
 
 *   checking Rd cross-references ... NOTE
     ```
-    Package unavailable to check Rd xrefs: ‘ConsensusClusterPlus’
-    ```
-
-# clustifyr
-
-<details>
-
-* Version: 1.0.0
-* GitHub: https://github.com/rnabioco/clustifyr
-* Source code: https://github.com/cran/clustifyr
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 117
-
-Run `revdep_details(, "clustifyr")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘clustifyR.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 33-41 (clustifyR.Rmd) 
-    Error: processing vignette 'clustifyR.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘clustifyR.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘clustifyR.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Packages unavailable to check Rd xrefs: ‘scRNAseq’, ‘ConsensusClusterPlus’
     ```
 
 # cmapR
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.1
 * GitHub: https://github.com/cmap/cmapR
 * Source code: https://github.com/cran/cmapR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 67
+* Date/Publication: 2020-12-10
+* Number of recursive dependencies: 77
 
 Run `revdep_details(, "cmapR")` for more info
 
 </details>
 
 ## In both
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented code objects:
-      ‘ids<-’ ‘mat<-’ ‘meta<-’
-    All user-level objects in a package should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘tutorial.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 29-30 (tutorial.Rmd) 
-    Error: processing vignette 'tutorial.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘tutorial.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘tutorial.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -1778,129 +1245,74 @@ Run `revdep_details(, "cmapR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  5.8Mb
       sub-directories of 1Mb or more:
         data      2.3Mb
         extdata   2.1Mb
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    subset_gct,GCT: warning in meta(g, dim = "col"): partial argument match
-      of 'dim' to 'dimension'
-    ```
-
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
-    'library' or 'require' call not declared from: ‘ggplot2’
+    '::' or ':::' import not declared from: ‘BiocManager’
+    'library' or 'require' calls not declared from:
+      ‘BiocManager’ ‘ggplot2’
     ```
 
 # cna
 
 <details>
 
-* Version: 3.0.0
+* Version: 3.0.1
 * GitHub: NA
 * Source code: https://github.com/cran/cna
-* Date/Publication: 2020-09-13 13:10:14 UTC
-* Number of recursive dependencies: 63
+* Date/Publication: 2020-11-06 11:10:03 UTC
+* Number of recursive dependencies: 76
 
 Run `revdep_details(, "cna")` for more info
 
 </details>
 
-## Newly broken
-
-*   R CMD check timed out
-    
-
-## Newly fixed
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'cna_vignette.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'cna_vignette.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `nicefrac.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.12 \usepackage
-                    {float}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building 'cna_vignette.Rnw'
-    
-    SUMMARY: processing the following file failed:
-      'cna_vignette.Rnw'
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 ## In both
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.7Mb
+      installed size is  6.5Mb
       sub-directories of 1Mb or more:
-        libs   5.6Mb
+        libs   5.5Mb
     ```
 
-# coin
+# CNVScope
 
 <details>
 
-* Version: 1.3-1
-* GitHub: NA
-* Source code: https://github.com/cran/coin
-* Date/Publication: 2019-08-28 11:50:06 UTC
-* Number of recursive dependencies: 19
+* Version: 3.5.6
+* GitHub: https://github.com/jamesdalg/CNVScope
+* Source code: https://github.com/cran/CNVScope
+* Date/Publication: 2021-01-10 23:20:07 UTC
+* Number of recursive dependencies: 209
 
-Run `revdep_details(, "coin")` for more info
+Run `revdep_details(, "CNVScope")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... NOTE
+*   checking installed package size ... NOTE
     ```
-    ...
-            
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘LegoCondInf.Rnw’
-    
-    --- re-building ‘MAXtest.Rnw’ using Sweave
-    Loading required package: survival
-    --- finished re-building ‘MAXtest.Rnw’
-    
-    --- re-building ‘coin.Rnw’ using Sweave
-    Loading required package: coin
-    Loading required package: survival
-    Warning in .local(object, ...) :
-      p-values may be incorrect due to violation
-      of the subset pivotality condition
-    --- finished re-building ‘coin.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘LegoCondInf.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        doc       3.3Mb
+        extdata   1.7Mb
     ```
 
 # cola
 
 <details>
 
-* Version: 1.4.1
+* Version: 1.6.0
 * GitHub: https://github.com/jokergoo/cola
 * Source code: https://github.com/cran/cola
-* Date/Publication: 2020-05-06
+* Date/Publication: 2020-10-27
 * Number of recursive dependencies: 208
 
 Run `revdep_details(, "cola")` for more info
@@ -1909,173 +1321,58 @@ Run `revdep_details(, "cola")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘cola-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: collect_plots-ConsensusPartitionList-method
-    > ### Title: Collect plots from ConsensusPartitionList object
-    > ### Aliases: collect_plots,ConsensusPartitionList-method
-    > 
-    > ### ** Examples
-    > 
-    > data(cola_rl)
-    > collect_plots(cola_rl, k = 3)
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Documentation: https://jokergoo.github.io/cola/
-    Examples: https://jokergoo.github.io/cola_collection/
-    
-    This message can be suppressed by:
-      suppressPackageStartupMessages(library(cola))
-    ========================================
-    
-    Loading required namespace: genefilter
-    Warning: Quick-TRANSfer stage steps exceeded maximum (= 250000)
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 65-67 (functional_enrichment.Rmd) 
-    Error: processing vignette 'functional_enrichment.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘functional_enrichment.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘cola.Rmd’ ‘functional_enrichment.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.8Mb
+      installed size is 10.7Mb
       sub-directories of 1Mb or more:
-        doc       3.0Mb
-        extdata   1.0Mb
-        libs      1.3Mb
+        data   3.7Mb
+        doc    3.3Mb
+        libs   1.5Mb
     ```
 
-# collapse
+*   checking compiled code ... NOTE
+    ```
+    File ‘cola/libs/cola.so’:
+      Found ‘rand’, possibly from ‘rand’ (C)
+        Object: ‘pdist.o’
+    
+    Compiled code should not call entry points which might terminate R nor
+    write to stdout/stderr instead of to the console, nor use Fortran I/O
+    nor system RNGs.
+    
+    See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+    ```
+
+# ComplexHeatmap
 
 <details>
 
-* Version: 1.3.2
-* GitHub: https://github.com/SebKrantz/collapse
-* Source code: https://github.com/cran/collapse
-* Date/Publication: 2020-09-13 04:50:09 UTC
-* Number of recursive dependencies: 90
+* Version: 2.6.2
+* GitHub: https://github.com/jokergoo/ComplexHeatmap
+* Source code: https://github.com/cran/ComplexHeatmap
+* Date/Publication: 2020-11-12
+* Number of recursive dependencies: 108
 
-Run `revdep_details(, "collapse")` for more info
+Run `revdep_details(, "ComplexHeatmap")` for more info
 
 </details>
 
 ## In both
 
-*   checking installed package size ... NOTE
+*   checking Rd cross-references ... NOTE
     ```
-      installed size is  5.7Mb
-      sub-directories of 1Mb or more:
-        doc    1.9Mb
-        libs   2.0Mb
-    ```
-
-# consensus
-
-<details>
-
-* Version: 1.6.1
-* GitHub: NA
-* Source code: https://github.com/cran/consensus
-* Date/Publication: 2020-05-22
-* Number of recursive dependencies: 27
-
-Run `revdep_details(, "consensus")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error: processing vignette 'consensus.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'consensus.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.27 \makeatletter
-                      ^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘consensus.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘consensus.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# consensusOV
-
-<details>
-
-* Version: 1.10.0
-* GitHub: https://github.com/bhklab/consensusOV
-* Source code: https://github.com/cran/consensusOV
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 150
-
-Run `revdep_details(, "consensusOV")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘consensusOV.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 13-14 (consensusOV.Rmd) 
-    Error: processing vignette 'consensusOV.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘consensusOV.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘consensusOV.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.1Mb
-      sub-directories of 1Mb or more:
-        R   3.8Mb
+    Package unavailable to check Rd xrefs: ‘magick’
     ```
 
 # CopywriteR
 
 <details>
 
-* Version: 2.20.0
+* Version: 2.22.0
 * GitHub: https://github.com/PeeperLab/CopywriteR
 * Source code: https://github.com/cran/CopywriteR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 61
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 62
 
 Run `revdep_details(, "CopywriteR")` for more info
 
@@ -2090,9 +1387,9 @@ Run `revdep_details(, "CopywriteR")` for more info
     Errors in running code in vignettes:
     when running code in ‘CopywriteR.Rnw’
       ...
-    Plotting to file /scratch/henrik/Rtmpyxf2B3/file7467232f8189/vignettes/CNAprofiles/qc/read.counts.compensated.T43_4.bam.png 
-    Warning in png(plot, width = 700, height = 1400) :
-      unable to open connection to X11 display ''
+     --- function search by body ---
+    Function .tng in namespace CopywriteR has this body.
+     ----------- END OF FAILURE REPORT -------------- 
     
       When sourcing ‘CopywriteR.R’:
     Error: The GC-content and mappability normalization did not work due to a
@@ -2104,18 +1401,17 @@ Run `revdep_details(, "CopywriteR")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .peakCutoff: no visible global function definition for ‘dpois’
+    .peakCutoff: no visible global function definition for ‘ppois’
+    .tng: no visible global function definition for ‘png’
+    .tng: no visible global function definition for ‘par’
+    .tng: no visible global function definition for ‘dev.off’
+    .tng: no visible global function definition for ‘loess’
+    .tng: no visible global function definition for ‘predict’
+    .tng: no visible global function definition for ‘points’
+    .tng: no visible global function definition for ‘rgb’
+    .tng: no visible global function definition for ‘lines’
     ...
-      definition for ‘text’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘axis’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘abline’
-    plotCNA : <anonymous> : <anonymous>: no visible global function
-      definition for ‘dev.off’
-    preCopywriteR: no visible global function definition for ‘as’
-    Undefined global functions or variables:
-      abline as axis dev.off dpois ecdf getClass lines loess packageVersion
-      par pdf png points ppois predict read.table rgb segments text
       write.table
     Consider adding
       importFrom("grDevices", "dev.off", "pdf", "png", "rgb")
@@ -2128,32 +1424,6 @@ Run `revdep_details(, "CopywriteR")` for more info
     contains 'methods').
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-      ...
-    --- re-building ‘CopywriteR.Rnw’ using Sweave
-    Loading required package: BiocParallel
-    Warning in png(plot, width = 700, height = 1400) :
-      unable to open connection to X11 display ''
-    
-    Error: processing vignette 'CopywriteR.Rnw' failed with diagnostics:
-     chunk 10 (label = CopywriteR) 
-    Error in value[[3L]](cond) : 
-      The GC-content and mappability normalization did not work due to a
-      failure to calculate loesses. This can generally be solved by using
-      larger bin sizes. Stopping execution of the remaining part of the
-      script...
-    
-    --- failed re-building ‘CopywriteR.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘CopywriteR.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # corrcoverage
 
 <details>
@@ -2162,7 +1432,7 @@ Run `revdep_details(, "CopywriteR")` for more info
 * GitHub: https://github.com/annahutch/corrcoverage
 * Source code: https://github.com/cran/corrcoverage
 * Date/Publication: 2019-12-06 23:20:12 UTC
-* Number of recursive dependencies: 71
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "corrcoverage")` for more info
 
@@ -2188,11 +1458,11 @@ Run `revdep_details(, "corrcoverage")` for more info
 
 <details>
 
-* Version: 1.46.0
+* Version: 1.48.0
 * GitHub: NA
 * Source code: https://github.com/cran/crlmm
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 66
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 74
 
 Run `revdep_details(, "crlmm")` for more info
 
@@ -2202,7 +1472,7 @@ Run `revdep_details(, "crlmm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.8Mb
+      installed size is  5.7Mb
       sub-directories of 1Mb or more:
         R      1.2Mb
         data   2.7Mb
@@ -2242,11 +1512,11 @@ Run `revdep_details(, "crlmm")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.1
 * GitHub: NA
 * Source code: https://github.com/cran/crossmeta
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 198
+* Date/Publication: 2020-11-02
+* Number of recursive dependencies: 165
 
 Run `revdep_details(, "crossmeta")` for more info
 
@@ -2256,7 +1526,9 @@ Run `revdep_details(, "crossmeta")` for more info
 
 *   checking dependencies in R code ... WARNING
     ```
-    '::' or ':::' import not declared from: ‘shinyBS’
+    '::' or ':::' import not declared from: ‘tibble’
+    Namespace in Imports field not imported from: ‘statmod’
+      All declared Imports should be used.
     Unexported object imported by a ':::' call: ‘GEOquery:::parseGSEMatrix’
       See the note in ?`:::` about the use of this operator.
     There are ::: calls to the package's namespace in its code. A package
@@ -2264,46 +1536,80 @@ Run `revdep_details(, "crossmeta")` for more info
       ‘getDirListing’ ‘getGEO’ ‘getGEOSuppFiles’
     ```
 
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Codoc mismatches from documentation object 'add_sources':
+    add_sources
+      Code: function(diff_exprs, data_dir = getwd(), postfix = NULL)
+      Docs: function(diff_exprs, data_dir = getwd())
+      Argument names in code not in docs:
+        postfix
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'ch2_subset'
+      ‘prev_anal’
+    
+    Undocumented arguments in documentation object 'get_sva_mods'
+      ‘pdata’
+    Documented arguments not in \usage in documentation object 'get_sva_mods':
+      ‘eset’
+    
+    Undocumented arguments in documentation object 'iqr_replicates'
+      ‘eset’
+    ...
+      ‘mod’ ‘svobj’
+    
+    Undocumented arguments in documentation object 'run_select_contrasts'
+      ‘port’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
 *   checking R code for possible problems ... NOTE
     ```
+    add_contrasts: no visible global function definition for
+      ‘select_contrasts’
+    bulkAnnot : <anonymous>: no visible global function definition for
+      ‘write.csv’
+    bulkAnnot: no visible global function definition for ‘html’
+    bulkAnnot: no visible global function definition for ‘toggleClass’
+    bulkAnnot: no visible global function definition for ‘read.csv’
+    diff_anal: no visible global function definition for ‘model.matrix’
+    getAndParseGSEMatrices: no visible global function definition for
+      ‘download.file’
     ...
-      ‘download.file’
-    getDirListing: no visible global function definition for ‘read.table’
-    getGEOSuppFiles: no visible global function definition for
-      ‘download.file’
-    get_dfs: no visible global function definition for ‘head’
-    load_agil_plat : <anonymous>: no visible global function definition for
-      ‘capture.output’
-    load_agil_plat: no visible global function definition for ‘as’
-    load_illum_plat: no visible global function definition for ‘as’
-    padog: no visible global function definition for ‘is’
-    symbol_annot: no visible binding for global variable ‘SYMBOL_9606’
-    which_max_iqr: no visible binding for global variable ‘iqrange’
-    Undefined global functions or variables:
-      SYMBOL_9606 as capture.output download.file head iqrange is
-      read.table
+      SYMBOL_9606 as capture.output download.file head html iqrange is
+      model.matrix new read.csv read.table select_contrasts setNames
+      toggleClass write.csv write.table
     Consider adding
-      importFrom("methods", "as", "is")
+      importFrom("methods", "as", "is", "new")
+      importFrom("stats", "model.matrix", "setNames")
       importFrom("utils", "capture.output", "download.file", "head",
-                 "read.table")
+                 "read.csv", "read.table", "write.csv", "write.table")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
     ```
 
 *   checking Rd cross-references ... NOTE
     ```
-    Packages unavailable to check Rd xrefs: ‘PADOG’, ‘GeneMeta’
+    Package unavailable to check Rd xrefs: ‘GeneMeta’
     ```
 
 # cSEM
 
 <details>
 
-* Version: 0.2.0
+* Version: 0.3.0
 * GitHub: https://github.com/M-E-Rademaker/cSEM
 * Source code: https://github.com/cran/cSEM
-* Date/Publication: 2020-03-29 11:00:20 UTC
-* Number of recursive dependencies: 113
+* Date/Publication: 2020-10-12 16:40:03 UTC
+* Number of recursive dependencies: 124
 
 Run `revdep_details(, "cSEM")` for more info
 
@@ -2311,49 +1617,55 @@ Run `revdep_details(, "cSEM")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-     $ :List of 10
-      ..$ 1 :'data.frame':	10 obs. of  3 variables:
-      .. ..$ x1   : num [1:10] 0.919 -0.135 -0.394 0.763 1.98 ...
-      .. ..$ x2   : num [1:10] -0.506 0.9839 -0.301 -0.0569 -1.0752 ...
-      .. ..$ group: chr [1:10] "female" "male" "female" "female" ...
-      ..$ 2 :'data.frame':	10 obs. of  3 variables:
-      .. ..$ x1   : num [1:10] -0.836 1.178 -0.569 1.595 0.333 ...
-      .. ..$ x2   : num [1:10] -0.911 0.22 -1.231 0.158 -0.159 ...
-      .. ..$ group: chr [1:10] "male" "male" "female" "female" ...
-      ..$ 3 :'data.frame':	10 obs. of  3 variables:
-      .. ..$ x1   : num [1:10] 2.173 -1.471 -1.524 0.39 -0.743 ...
-      .. ..$ x2   : num [1:10] 0.2075 -0.0376 -1.4673 -0.4616 -0.6192 ...
-      .. ..$ group: chr [1:10] "male" "female" "male" "male" ...
-      .. [list output truncated]
-      [list output truncated]
-    > 
-    > # Cross-validation can be done by group if a group identifyer is provided:
-    > cv_10 <- resampleData(.data = dat, .resample_method = "cross-validation", 
-    +                       .id = "group", .R = 100)
-    Error: UNRELIABLE VALUE: Future (‘future_lapply-1’) unexpectedly generated random numbers without specifying argument '[future.]seed'. There is a risk that those random numbers are not statistically sound and the overall results might be invalid. To fix this, specify argument '[future.]seed', e.g. 'seed=TRUE'. This ensures that proper, parallel-safe random numbers are produced via the L'Ecuyer-CMRG method. To disable this check, use [future].seed=NULL, or set option 'future.rng.onMisuse' to "ignore".
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘Rdpack’
       All declared Imports should be used.
     ```
 
-# DatabionicSwarm
+# cytomapper
 
 <details>
 
-* Version: 1.1.3
-* GitHub: https://github.com/Mthrun/DatabionicSwarm
-* Source code: https://github.com/cran/DatabionicSwarm
-* Date/Publication: 2020-02-03 14:00:02 UTC
-* Number of recursive dependencies: 135
+* Version: 1.2.0
+* GitHub: https://github.com/BodenmillerGroup/cytomapper
+* Source code: https://github.com/cran/cytomapper
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 117
 
-Run `revdep_details(, "DatabionicSwarm")` for more info
+Run `revdep_details(, "cytomapper")` for more info
+
+</details>
+
+## In both
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.2Mb
+      sub-directories of 1Mb or more:
+        R     1.1Mb
+        doc   3.8Mb
+    ```
+
+# CytoTree
+
+<details>
+
+* Version: 1.0.3
+* GitHub: https://github.com/JhuangLab/CytoTree
+* Source code: https://github.com/cran/CytoTree
+* Date/Publication: 2020-11-08
+* Number of recursive dependencies: 248
+
+Run `revdep_details(, "CytoTree")` for more info
 
 </details>
 
@@ -2361,21 +1673,22 @@ Run `revdep_details(, "DatabionicSwarm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.8Mb
+      installed size is  6.8Mb
       sub-directories of 1Mb or more:
-        doc    3.4Mb
-        libs   6.1Mb
+        doc       3.2Mb
+        figures   1.2Mb
+        libs      1.2Mb
     ```
 
 # DeepBlueR
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: NA
 * Source code: https://github.com/cran/DeepBlueR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 154
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "DeepBlueR")` for more info
 
@@ -2383,159 +1696,26 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-            errors, "errors"))
-        if (!is.null(target.directory)) 
-            message(paste("All result files saved to directory", 
-                target.directory))
-        return(all.results)
-    }
-    <bytecode: 0x40fb5c28>
-    <environment: namespace:DeepBlueR>
-     --- function search by body ---
-    Function deepblue_batch_export_results in namespace DeepBlueR has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    Quitting from lines 944-945 (DeepBlueR.Rmd) 
-    Error: processing vignette 'DeepBlueR.Rmd' failed with diagnostics:
-    'length(x) = 66 > 1' in coercion to 'logical(1)'
-    --- failed re-building ‘DeepBlueR.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘DeepBlueR.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking Rd files ... NOTE
     ```
     prepare_Rd: deepblue_enrich_regions_fast.Rd:35-38: Dropping empty section \examples
-    ```
-
-# DelayedArray
-
-<details>
-
-* Version: 0.14.1
-* GitHub: NA
-* Source code: https://github.com/cran/DelayedArray
-* Date/Publication: 2020-07-14
-* Number of recursive dependencies: 68
-
-Run `revdep_details(, "DelayedArray")` for more info
-
-</details>
-
-## In both
-
-*   checking package subdirectories ... WARNING
-    ```
-    Subdirectory 'inst/doc' contains invalid file names:
-      ‘02-Implementing_a_backend.Rmd’ ‘01-Working_with_large_arrays.Rnw’
-      ‘02-Implementing_a_backend.html’ ‘01-Working_with_large_arrays.pdf’
-    Please remove or rename the files.
-    See section ‘Package subdirectories’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented code objects:
-      ‘multGrids’
-    Undocumented S4 methods:
-      generic '[' and siglist 'DelayedArray,ANY,ANY,ANY'
-      generic '[<-' and siglist 'DelayedArray,ANY,ANY,ANY'
-      generic 'crossprod' and siglist 'ANY,DelayedMatrix'
-      generic 'crossprod' and siglist 'DelayedMatrix,ANY'
-      generic 'crossprod' and siglist 'DelayedMatrix,DelayedMatrix'
-      generic 'crossprod' and siglist 'DelayedMatrix,missing'
-      generic 'dimnames<-' and siglist 'DelayedArray,ANY'
-      generic 'tcrossprod' and siglist 'ANY,DelayedMatrix'
-      generic 'tcrossprod' and siglist 'DelayedMatrix,ANY'
-      generic 'tcrossprod' and siglist 'DelayedMatrix,DelayedMatrix'
-      generic 'tcrossprod' and siglist 'DelayedMatrix,missing'
-      generic 'type<-' and siglist 'DelayedArray'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error: processing vignette '01-Working_with_large_arrays.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on '01-Working_with_large_arrays.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.40 \makeatletter
-                      ^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘01-Working_with_large_arrays.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘01-Working_with_large_arrays.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Unexported objects imported by ':::' calls:
-      ‘BiocGenerics:::replaceSlots’ ‘BiocGenerics:::testPackage’
-      ‘S4Vectors:::.list.names’ ‘S4Vectors:::anyMissing’
-      ‘S4Vectors:::anyMissingOrOutside’ ‘S4Vectors:::delete_NULLs’
-      ‘S4Vectors:::diffWithInitialZero’
-      ‘S4Vectors:::extract_positions_from_Rle’ ‘S4Vectors:::new_DataFrame’
-      ‘S4Vectors:::prepare_objects_to_bind’
-      ‘S4Vectors:::rep.int_along_ROWS’ ‘S4Vectors:::sapply_isNULL’
-      See the note in ?`:::` about the use of this operator.
     ```
 
 # DelayedMatrixStats
 
 <details>
 
-* Version: 1.10.1
+* Version: 1.12.2
 * GitHub: https://github.com/PeteHaitch/DelayedMatrixStats
 * Source code: https://github.com/cran/DelayedMatrixStats
-* Date/Publication: 2020-07-03
-* Number of recursive dependencies: 67
+* Date/Publication: 2021-01-12
+* Number of recursive dependencies: 80
 
 Run `revdep_details(, "DelayedMatrixStats")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘DelayedMatrixStatsOverview.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 15-17 (DelayedMatrixStatsOverview.Rmd) 
-    Error: processing vignette 'DelayedMatrixStatsOverview.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘DelayedMatrixStatsOverview.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘DelayedMatrixStatsOverview.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -2545,9 +1725,7 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
     Unexported objects imported by ':::' calls:
       ‘DelayedArray:::.get_ans_type’
       ‘DelayedArray:::.reduce_array_dimensions’
-      ‘DelayedArray:::RleArraySeed’ ‘DelayedArray:::colblock_APPLY’
-      ‘DelayedArray:::get_Nindex_lengths’
-      ‘DelayedArray:::get_verbose_block_processing’
+      ‘DelayedArray:::RleArraySeed’ ‘DelayedArray:::get_Nindex_lengths’
       ‘DelayedArray:::set_dim’ ‘DelayedArray:::set_dimnames’
       ‘DelayedArray:::subset_by_Nindex’ ‘DelayedArray:::to_linear_index’
       See the note in ?`:::` about the use of this operator.
@@ -2557,11 +1735,11 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/DeMixT
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 73
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 78
 
 Run `revdep_details(, "DeMixT")` for more info
 
@@ -2583,7 +1761,7 @@ Run `revdep_details(, "DeMixT")` for more info
       installed size is  7.1Mb
       sub-directories of 1Mb or more:
         data   3.8Mb
-        libs   2.8Mb
+        libs   2.6Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -2600,58 +1778,26 @@ Run `revdep_details(, "DeMixT")` for more info
     to your NAMESPACE file.
     ```
 
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    'library' or 'require' call not declared from: ‘calibrate’
+    ```
+
 # DepecheR
 
 <details>
 
-* Version: 1.4.1
+* Version: 1.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/DepecheR
-* Date/Publication: 2020-07-02
-* Number of recursive dependencies: 96
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "DepecheR")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘DepecheR_test.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 20-24 (DepecheR_test.Rmd) 
-    Error: processing vignette 'DepecheR_test.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘DepecheR_test.Rmd’
-    
-    --- re-building ‘GroupProbPlot_usage.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 20-24 (GroupProbPlot_usage.Rmd) 
-    Error: processing vignette 'GroupProbPlot_usage.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘GroupProbPlot_usage.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘DepecheR_test.Rmd’ ‘GroupProbPlot_usage.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    depecheCoFunction: no visible global function definition for
-      ‘order.dendrogram’
-    Undefined global functions or variables:
-      order.dendrogram
-    Consider adding
-      importFrom("stats", "order.dendrogram")
-    to your NAMESPACE file.
-    ```
 
 *   checking compiled code ... NOTE
     ```
@@ -2672,11 +1818,11 @@ Run `revdep_details(, "DepecheR")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * GitHub: https://github.com/yafeng/DEqMS
 * Source code: https://github.com/cran/DEqMS
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 114
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 122
 
 Run `revdep_details(, "DEqMS")` for more info
 
@@ -2686,46 +1832,26 @@ Run `revdep_details(, "DEqMS")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
     ...
-    
-    The following objects are masked from ‘package:base’:
-    
-        Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-        as.data.frame, basename, cbind, colnames, dirname, do.call,
-        duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-        lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-        pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-        tapply, union, unique, unsplit, which, which.max, which.min
-    
-    Loading required package: AnnotationHub
-    Loading required package: BiocFileCache
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
-    using temporary cache /scratch/henrik/RtmprYxuXG/BiocFileCache
-    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
-      Invalid Cache: sqlite file
-      Hub has not been added to cache
-      Run again with 'localHub=FALSE'
-    Calls: ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘DEqMS-package-vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 50-51 (DEqMS-package-vignette.Rmd) 
-    Error: processing vignette 'DEqMS-package-vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘DEqMS-package-vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘DEqMS-package-vignette.Rmd’
-    
-    Error: Vignette re-building failed.
+    snapshotDate(): 2021-01-20
+    > query(eh, "DEqMS")
+    ExperimentHub with 0 records
+    # snapshotDate(): 2021-01-20
+    > dat.psm = eh[["EH1663"]]
+    Error: File not previously downloaded.
+      Run with 'localHub=FALSE'
     Execution halted
     ```
 
@@ -2755,11 +1881,11 @@ Run `revdep_details(, "DEqMS")` for more info
 
 <details>
 
-* Version: 0.6.9
+* Version: 0.6.11
 * GitHub: https://github.com/rorynolan/detrendr
 * Source code: https://github.com/cran/detrendr
-* Date/Publication: 2020-09-03 05:20:03 UTC
-* Number of recursive dependencies: 102
+* Date/Publication: 2021-01-13 18:40:10 UTC
+* Number of recursive dependencies: 105
 
 Run `revdep_details(, "detrendr")` for more info
 
@@ -2769,9 +1895,9 @@ Run `revdep_details(, "detrendr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is  7.9Mb
       sub-directories of 1Mb or more:
-        libs   7.0Mb
+        libs   6.8Mb
     ```
 
 *   checking for GNU extensions in Makefiles ... NOTE
@@ -2779,15 +1905,37 @@ Run `revdep_details(, "detrendr")` for more info
     GNU make is a SystemRequirements.
     ```
 
+# DHS.rates
+
+<details>
+
+* Version: 0.8.0
+* GitHub: NA
+* Source code: https://github.com/cran/DHS.rates
+* Date/Publication: 2020-10-11 23:30:06 UTC
+* Number of recursive dependencies: 53
+
+Run `revdep_details(, "DHS.rates")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘rlang’
+      All declared Imports should be used.
+    ```
+
 # diffloop
 
 <details>
 
-* Version: 1.16.0
+* Version: 1.18.0
 * GitHub: https://github.com/aryeelab/diffloop
 * Source code: https://github.com/cran/diffloop
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 133
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 141
 
 Run `revdep_details(, "diffloop")` for more info
 
@@ -2807,62 +1955,17 @@ Run `revdep_details(, "diffloop")` for more info
 
 <details>
 
-* Version: 1.4.1
+* Version: 1.6.0
 * GitHub: https://github.com/matthewcarlucci/DiscoRhythm
 * Source code: https://github.com/cran/DiscoRhythm
-* Date/Publication: 2020-07-10
-* Number of recursive dependencies: 150
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 160
 
 Run `revdep_details(, "DiscoRhythm")` for more info
 
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > # Batch execute (on demo data) to generate a DiscoRhythm_report.html report.
-    > # Returns the results of discoODAs
-    > discoODAres <- discoBatch(indata,
-    + report="DiscoRhythm_report.html",
-    + osc_method="CS")
-    [WARNING] Could not parse YAML metadata at line 14 column 1: Duplicate key in mapping: Scalar (Pos {posByteOffset = 207, posCharOffset = 207, posLine = 11, posColumn = 0}) (SUnknown Nothing "date")
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    
-    
-    processing file: DiscoRhythm_report.Rmd
-       inline R code fragments
-    
-    label: unnamed-chunk-1
-    Quitting from lines 31-39 (DiscoRhythm_report.Rmd) 
-    Error in if (is.na(options$out.width.px)) options$out.width.px = options$fig.width *  : 
-      argument is of length zero
-    Calls: discoBatch ... process_group.block -> call_block -> as.strict_list -> hook
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘disco_workflow_vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 288-296 (disco_workflow_vignette.Rmd) 
-    Error: processing vignette 'disco_workflow_vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘disco_workflow_vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘disco_workflow_vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -2873,76 +1976,21 @@ Run `revdep_details(, "DiscoRhythm")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     discoApp: no visible binding for global variable ‘.discorhythm_ncores’
+    discoApp: no visible binding for global variable ‘.discorhythm_local’
     discoBatch: no visible binding for global variable ‘discoODAres’
     Undefined global functions or variables:
-      .discorhythm_ncores discoODAres
-    ```
-
-# DMCFB
-
-<details>
-
-* Version: 1.2.0
-* GitHub: https://github.com/shokoohi/DMCFB
-* Source code: https://github.com/cran/DMCFB
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 128
-
-Run `revdep_details(, "DMCFB")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘DMCFB-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: readBismark-method
-    > ### Title: readBismark method
-    > ### Aliases: readBismark-method readBismark,character,DataFrame-method
-    > ###   readBismark readBismark,character,data.frame-method
-    > ###   readBismark,character,character-method
-    > 
-    > ### ** Examples
-    > 
-    > fn <- list.files(system.file("extdata", package = "DMCHMM"))
-    > fn.f <- list.files(system.file("extdata", package = "DMCHMM"),
-    +   full.names = TRUE
-    + )
-    > OBJ <- readBismark(fn.f, fn)
-    Building BSDMC object.
-    Error in methData[[1]] : subscript out of bounds
-    Calls: readBismark -> readBismark -> .readBismark
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘DMCFB.Rmd’ using rmarkdown
-    Error: processing vignette 'DMCFB.Rmd' failed with diagnostics:
-    there is no package called ‘BiocStyle’
-    --- failed re-building ‘DMCFB.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘DMCFB.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+      .discorhythm_local .discorhythm_ncores discoODAres
     ```
 
 # dmrseq
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * GitHub: NA
 * Source code: https://github.com/cran/dmrseq
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 156
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 169
 
 Run `revdep_details(, "dmrseq")` for more info
 
@@ -2952,18 +2000,17 @@ Run `revdep_details(, "dmrseq")` for more info
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘dmrseq-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: getAnnot
+    > ### Title: Retrieve annotation information
+    > ### Aliases: getAnnot
+    > 
+    > ### ** Examples
+    > 
+    > 
     ...
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (4 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (3 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
     Trying again (2 attempts remaining)
     Error in get(txdb_name) : 
       object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
@@ -2976,28 +2023,9 @@ Run `revdep_details(, "dmrseq")` for more info
     Execution halted
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘dmrseq.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 44-47 (dmrseq.Rmd) 
-    Error: processing vignette 'dmrseq.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘dmrseq.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘dmrseq.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.4Mb
+      installed size is 10.3Mb
       sub-directories of 1Mb or more:
         data   8.8Mb
         doc    1.3Mb
@@ -3016,11 +2044,11 @@ Run `revdep_details(, "dmrseq")` for more info
 
 <details>
 
-* Version: 1.10.4
+* Version: 1.12.0
 * GitHub: NA
 * Source code: https://github.com/cran/Doscheda
-* Date/Publication: 2020-09-17
-* Number of recursive dependencies: 157
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 172
 
 Run `revdep_details(, "Doscheda")` for more info
 
@@ -3028,120 +2056,48 @@ Run `revdep_details(, "Doscheda")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘Doscheda.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 74-89 (Doscheda.Rmd) 
-    Error: processing vignette 'Doscheda.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘Doscheda.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘Doscheda.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
         data             2.1Mb
         doc              1.6Mb
-        shiny-examples   2.0Mb
+        shiny-examples   1.9Mb
     ```
 
-# doseR
+# DSWE
 
 <details>
 
-* Version: 1.4.0
-* GitHub: NA
-* Source code: https://github.com/cran/doseR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 51
+* Version: 1.5.1
+* GitHub: https://github.com/TAMU-AML/DSWE-Package
+* Source code: https://github.com/cran/DSWE
+* Date/Publication: 2021-01-11 10:30:07 UTC
+* Number of recursive dependencies: 17
 
-Run `revdep_details(, "doseR")` for more info
+Run `revdep_details(, "DSWE")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking installed package size ... NOTE
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘doseR.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 13-17 (doseR.Rmd) 
-    Error: processing vignette 'doseR.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘doseR.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘doseR.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# dplR
-
-<details>
-
-* Version: 1.7.1
-* GitHub: https://github.com/AndyBunn/dplR
-* Source code: https://github.com/cran/dplR
-* Date/Publication: 2020-03-19 13:20:02 UTC
-* Number of recursive dependencies: 87
-
-Run `revdep_details(, "dplR")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > nrad <- 16
-    > minrad <- maxrad / nrad
-    > Rad <- seq(maxrad, by = (minrad - maxrad) / (nrad - 1), length.out=nrad)
-    > xmar2 <- xmar + maxrad
-    > ymar2 <- (xmar2 / xrange) * pin[1] / pin[2] * yrange
-    > expr <- quote({
-    +     rect(xleft, usr[4] - 1.5 * ysize, xright, usr[4] - ymar,
-    +          col = rainbow(8), border = NA)
-    +     symbols(rep(usr[2] - xmar2, nrad), rep(usr[3] + ymar2, nrad),
-    +             circles = Rad, inches = FALSE, add = TRUE, fg = NA,
-    +             bg = gray.colors(nrad + 1, 1, 0)[-1])
-    +     points(y)
-    +     lines(spl)
-    + })
-    > rasterPlot(expr, res = 50)
-    Warning in png(fname, width = pngWidthHeight[1], height = pngWidthHeight[2],  :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    Calls: rasterPlot -> png
-    Execution halted
+      installed size is  6.8Mb
+      sub-directories of 1Mb or more:
+        data   2.8Mb
+        libs   3.8Mb
     ```
 
 # EasyqpcR
 
 <details>
 
-* Version: 1.30.0
+* Version: 1.31.0
 * GitHub: NA
 * Source code: https://github.com/cran/EasyqpcR
 * Date/Publication: 2020-04-27
-* Number of recursive dependencies: 61
+* Number of recursive dependencies: 69
 
 Run `revdep_details(, "EasyqpcR")` for more info
 
@@ -3170,7 +2126,7 @@ Run `revdep_details(, "EasyqpcR")` for more info
 * GitHub: https://github.com/ecospat/ecospat
 * Source code: https://github.com/cran/ecospat
 * Date/Publication: 2020-03-25 15:20:03 UTC
-* Number of recursive dependencies: 171
+* Number of recursive dependencies: 177
 
 Run `revdep_details(, "ecospat")` for more info
 
@@ -3188,11 +2144,11 @@ Run `revdep_details(, "ecospat")` for more info
 
 <details>
 
-* Version: 2.18.0
+* Version: 2.20.0
 * GitHub: NA
 * Source code: https://github.com/cran/EMDomics
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 64
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 68
 
 Run `revdep_details(, "EMDomics")` for more info
 
@@ -3209,18 +2165,17 @@ Run `revdep_details(, "EMDomics")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    .cvm_pairwise_q: no visible global function definition for ‘combn’
+    .cvm_pairwise_q : <anonymous>: no visible global function definition
+      for ‘median’
+    .emd_gene_pairwise: no visible global function definition for ‘hist’
+    .emd_pairwise_q: no visible global function definition for ‘combn’
+    .emd_pairwise_q : <anonymous>: no visible global function definition
+      for ‘median’
+    .ks_pairwise_table: no visible global function definition for ‘ks.test’
+    calculate_cvm: no visible global function definition for ‘combn’
     calculate_cvm : <anonymous>: no visible global function definition for
-      ‘median’
-    calculate_cvm_gene: no visible global function definition for ‘combn’
-    calculate_emd: no visible global function definition for ‘combn’
-    calculate_emd : <anonymous>: no visible global function definition for
-      ‘median’
-    calculate_emd_gene: no visible global function definition for ‘combn’
-    calculate_ks: no visible global function definition for ‘combn’
-    calculate_ks : <anonymous>: no visible global function definition for
-      ‘p.adjust’
-    calculate_ks : <anonymous>: no visible global function definition for
+    ...
       ‘median’
     calculate_ks_gene: no visible global function definition for ‘combn’
     calculate_ks_gene: no visible global function definition for ‘ks.test’
@@ -3233,57 +2188,15 @@ Run `revdep_details(, "EMDomics")` for more info
     to your NAMESPACE file.
     ```
 
-# ENmix
-
-<details>
-
-* Version: 1.25.1
-* GitHub: NA
-* Source code: https://github.com/cran/ENmix
-* Date/Publication: 2020-04-28
-* Number of recursive dependencies: 150
-
-Run `revdep_details(, "ENmix")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'ENmix.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'ENmix.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `fullpage.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.10 \usepackage
-                    {parskip}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘ENmix.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘ENmix.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # EnrichedHeatmap
 
 <details>
 
-* Version: 1.18.2
+* Version: 1.20.0
 * GitHub: https://github.com/jokergoo/EnrichedHeatmap
 * Source code: https://github.com/cran/EnrichedHeatmap
-* Date/Publication: 2020-05-04
-* Number of recursive dependencies: 75
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 91
 
 Run `revdep_details(, "EnrichedHeatmap")` for more info
 
@@ -3291,109 +2204,30 @@ Run `revdep_details(, "EnrichedHeatmap")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    `use_raster` is automatically set to TRUE for a matrix with more than
-    2000 rows. You can control `use_raster` arugment by explicitly setting
-    TRUE/FALSE to it. Set `ht_opt$message = FALSE` to turn off this
-    message.
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 91-112 (row_odering.Rmd) 
-    Error: processing vignette 'row_odering.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘row_odering.Rmd’
-    
-    --- re-building ‘visualize_categorical_signals_wrapper.Rmd’ using knitr
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘visualize_categorical_signals_wrapper.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘EnrichedHeatmap.Rmd’ ‘roadmap.Rmd’ ‘row_odering.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.5Mb
+      installed size is  9.7Mb
       sub-directories of 1Mb or more:
-        doc       5.8Mb
-        extdata   2.6Mb
-    ```
-
-# EpiDISH
-
-<details>
-
-* Version: 2.4.0
-* GitHub: https://github.com/sjczheng/EpiDISH
-* Source code: https://github.com/cran/EpiDISH
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 76
-
-Run `revdep_details(, "EpiDISH")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘EpiDISH.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 28-31 (EpiDISH.Rmd) 
-    Error: processing vignette 'EpiDISH.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘EpiDISH.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘EpiDISH.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+        doc       5.9Mb
+        extdata   2.5Mb
+        libs      1.0Mb
     ```
 
 # evaluomeR
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.2
 * GitHub: https://github.com/neobernad/evaluomeR
 * Source code: https://github.com/cran/evaluomeR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 113
+* Date/Publication: 2021-01-16
+* Number of recursive dependencies: 117
 
 Run `revdep_details(, "evaluomeR")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘manual.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 33-37 (manual.Rmd) 
-    Error: processing vignette 'manual.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘manual.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘manual.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking top-level files ... NOTE
     ```
@@ -3406,36 +2240,17 @@ Run `revdep_details(, "evaluomeR")` for more info
 
 <details>
 
-* Version: 2.6.0
+* Version: 2.8.0
 * GitHub: https://github.com/jpromeror/EventPointer
 * Source code: https://github.com/cran/EventPointer
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 149
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "EventPointer")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘EventPointer.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 23-28 (EventPointer.Rmd) 
-    Error: processing vignette 'EventPointer.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘EventPointer.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘EventPointer.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -3462,11 +2277,11 @@ Run `revdep_details(, "EventPointer")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * GitHub: NA
 * Source code: https://github.com/cran/ExCluster
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 31
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 32
 
 Run `revdep_details(, "ExCluster")` for more info
 
@@ -3486,11 +2301,11 @@ Run `revdep_details(, "ExCluster")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: https://github.com/NA/NA
 * Source code: https://github.com/cran/ExpressionNormalizationWorkflow
-* Date/Publication: 2020-04-28
-* Number of recursive dependencies: 107
+* Date/Publication: 2020-10-30
+* Number of recursive dependencies: 115
 
 Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 
@@ -3501,36 +2316,17 @@ Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 *   checking whether package ‘ExpressionNormalizationWorkflow’ can be installed ... WARNING
     ```
     Found the following significant warnings:
-      Warning: /home/henrik/c4/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
-      Warning: /home/henrik/c4/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
+      Warning: /c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
+      Warning: /c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
       Warning: replacing previous import ‘Biobase::anyMissing’ by ‘matrixStats::anyMissing’ when loading ‘ExpressionNormalizationWorkflow’
       Warning: replacing previous import ‘Biobase::rowMedians’ by ‘matrixStats::rowMedians’ when loading ‘ExpressionNormalizationWorkflow’
-    See ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
     ```
     prepare_Rd: ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
     prepare_Rd: ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘genExpNrm.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 70-84 (genExpNrm.Rmd) 
-    Error: processing vignette 'genExpNrm.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘genExpNrm.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘genExpNrm.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -3592,10 +2388,10 @@ Run `revdep_details(, "FastHCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.7Mb
+      installed size is 19.2Mb
       sub-directories of 1Mb or more:
         data   1.3Mb
-        libs  18.3Mb
+        libs  17.9Mb
     ```
 
 # FastPCS
@@ -3616,9 +2412,9 @@ Run `revdep_details(, "FastPCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.1Mb
+      installed size is  9.8Mb
       sub-directories of 1Mb or more:
-        libs  10.0Mb
+        libs   9.7Mb
     ```
 
 # FastRCS
@@ -3639,9 +2435,9 @@ Run `revdep_details(, "FastRCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 21.7Mb
+      installed size is 21.2Mb
       sub-directories of 1Mb or more:
-        libs  21.6Mb
+        libs  21.2Mb
     ```
 
 # FDb.FANTOM4.promoters.hg19
@@ -3651,7 +2447,7 @@ Run `revdep_details(, "FastRCS")` for more info
 * Version: 1.0.0
 * GitHub: NA
 * Source code: https://github.com/cran/FDb.FANTOM4.promoters.hg19
-* Number of recursive dependencies: 77
+* Number of recursive dependencies: 82
 
 Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 
@@ -3690,7 +2486,7 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    oecg: no visible global function definition for ‘is’
     oecg: no visible global function definition for ‘seqlengths’
     oecg: no visible binding for global variable ‘Hsapiens’
     oecg: no visible global function definition for ‘seqlevels’
@@ -3700,8 +2496,7 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
     oecg: no visible global function definition for ‘start<-’
     oecg: no visible global function definition for ‘end’
     oecg: no visible global function definition for ‘end<-’
-    oecg: no visible global function definition for ‘getSeq’
-    oecg: no visible global function definition for ‘width’
+    ...
     oecg: no visible global function definition for ‘letterFrequency’
     oecg: no visible global function definition for ‘dinucleotideFrequency’
     Undefined global functions or variables:
@@ -3718,61 +2513,17 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 
 <details>
 
-* Version: 1.4.1
+* Version: 1.6.0
 * GitHub: https://github.com/mikelove/fishpond
 * Source code: https://github.com/cran/fishpond
-* Date/Publication: 2020-05-12
-* Number of recursive dependencies: 162
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 173
 
 Run `revdep_details(, "fishpond")` for more info
 
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(fishpond)
-      > 
-      > test_check("fishpond")
-      ── 1. Error: Reading in Alevin EDS format works (@test_readEDS.R#11)  ──────────
-      cannot open the connection
-      Backtrace:
-       1. base::readLines(barcode.file)
-       2. base::file(con, "r")
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 10 | SKIPPED: 2 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: Reading in Alevin EDS format works (@test_readEDS.R#11) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘swish.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 51-60 (swish.Rmd) 
-    Error: processing vignette 'swish.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘swish.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘swish.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -3786,11 +2537,11 @@ Run `revdep_details(, "fishpond")` for more info
 
 <details>
 
-* Version: 2.0.1
+* Version: 2.2.0
 * GitHub: NA
 * Source code: https://github.com/cran/flowCore
-* Date/Publication: 2020-06-09
-* Number of recursive dependencies: 110
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 131
 
 Run `revdep_details(, "flowCore")` for more info
 
@@ -3798,40 +2549,14 @@ Run `revdep_details(, "flowCore")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'HowTo-flowCore.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.35 \makeatletter
-                      ^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘HowTo-flowCore.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘HowTo-flowCore.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.5Mb
+      installed size is 13.7Mb
       sub-directories of 1Mb or more:
-        R         1.0Mb
+        R         1.1Mb
         data      5.0Mb
         extdata   1.1Mb
-        libs      5.1Mb
+        libs      5.3Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -3840,8 +2565,13 @@ Run `revdep_details(, "flowCore")` for more info
       global variable ‘mat’
     eval,compensatedParameter-missing : <anonymous>: no visible binding for
       global variable ‘msv’
+    show,flowFrame: no visible global function definition for
+      ‘capture.output’
     Undefined global functions or variables:
-      mat msv
+      capture.output mat msv
+    Consider adding
+      importFrom("utils", "capture.output")
+    to your NAMESPACE file.
     ```
 
 *   checking compiled code ... NOTE
@@ -3857,21 +2587,90 @@ Run `revdep_details(, "flowCore")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
+# flowSpy
+
+<details>
+
+* Version: 1.4.0
+* GitHub: https://github.com/JhuangLab/flowSpy
+* Source code: https://github.com/cran/flowSpy
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 248
+
+Run `revdep_details(, "flowSpy")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘flowSpy’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: Package 'flowSpy' is deprecated and will be removed from Bioconductor
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/flowSpy/new/flowSpy.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.9Mb
+      sub-directories of 1Mb or more:
+        doc    3.2Mb
+        libs   1.2Mb
+    ```
+
 # flowWorkspace
 
 <details>
 
-* Version: 4.0.6
+* Version: 4.2.0
 * GitHub: NA
 * Source code: https://github.com/cran/flowWorkspace
-* Date/Publication: 2020-06-11
-* Number of recursive dependencies: 115
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 133
 
 Run `revdep_details(, "flowWorkspace")` for more info
 
 </details>
 
 ## In both
+
+*   checking for missing documentation entries ... WARNING
+    ```
+    Undocumented code objects:
+      ‘gs_clone’ ‘gs_copy_tree_only’
+    Undocumented S4 methods:
+      generic 'show' and siglist 'cytoframe'
+      generic 'transform' and siglist 'cytoframe'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Documented arguments not in \usage in documentation object 'GatingSet-methods':
+      ‘...’
+    
+    Undocumented arguments in documentation object 'cf_append_cols'
+      ‘cred’
+    
+    Undocumented arguments in documentation object 'convert'
+      ‘backend’
+    
+    Undocumented arguments in documentation object 'cs_get_uri'
+    ...
+      ‘backend’ ‘backend_dir’
+    
+    Undocumented arguments in documentation object 'save_gs'
+      ‘cdf’ ‘backend_readonly’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -3883,11 +2682,11 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 74.5Mb
+      installed size is 88.2Mb
       sub-directories of 1Mb or more:
-        doc    3.3Mb
-        lib   52.1Mb
-        libs  17.7Mb
+        doc    3.4Mb
+        lib   51.9Mb
+        libs  31.6Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -3912,26 +2711,25 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .computeCV : <anonymous>: no visible binding for global variable
+      ‘xml.count’
+    .computeCV : <anonymous>: no visible binding for global variable
+      ‘openCyto.count’
+    .computeCV : <anonymous> : <anonymous>: no visible global function
+      definition for ‘IQR’
+    .computeCV : <anonymous> : <anonymous>: no visible global function
+      definition for ‘median’
+    .computeCV_gh : <anonymous>: no visible global function definition for
+      ‘IQR’
     ...
-    setNode,GatingSet-character-ANY: no visible global function definition
-      for ‘is’
-    transform,GatingSet: no visible global function definition for ‘is’
-    transform,GatingSet : <anonymous>: no visible global function
-      definition for ‘is’
-    transform,cytoset: no visible global function definition for ‘is’
-    transform,cytoset : <anonymous>: no visible global function definition
-      for ‘is’
     Undefined global functions or variables:
-      . .cpp_computeGates .cpp_gating .hasSlot IQR Population as
-      callNextMethod count desc extends gray is kwdError median modifyList
-      new node obj old openCyto.count parallel percent sampleName
-      selectMethod validObject xml.count
+      . .hasSlot IQR Population as callNextMethod count desc extends is
+      keys kwdError median na_idx new node obj old openCyto.count output
+      parallel percent sampleName selectMethod validObject xml.count
     Consider adding
-      importFrom("grDevices", "gray")
       importFrom("methods", ".hasSlot", "as", "callNextMethod", "extends",
                  "is", "new", "selectMethod", "validObject")
       importFrom("stats", "IQR", "median")
-      importFrom("utils", "modifyList")
     to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
     contains 'methods').
     ```
@@ -3947,8 +2745,6 @@ Run `revdep_details(, "flowWorkspace")` for more info
       Found ‘_ZSt4cerr’, possibly from ‘std::cerr’ (C++)
         Objects: ‘R_GatingSet.o’, ‘RcppExports.o’, ‘cytoframeAPI.o’,
           ‘cytosetAPI.o’
-      Found ‘_ZSt4cout’, possibly from ‘std::cout’ (C++)
-        Object: ‘R_GatingSet.o’
     
     Compiled code should not call entry points which might terminate R nor
     write to stdout/stderr instead of to the console, nor use Fortran I/O
@@ -3961,11 +2757,11 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 <details>
 
-* Version: 1.0.2
+* Version: 1.2.0
 * GitHub: https://github.com/gagneurlab/FRASER
 * Source code: https://github.com/cran/FRASER
-* Date/Publication: 2020-09-04
-* Number of recursive dependencies: 146
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 184
 
 Run `revdep_details(, "FRASER")` for more info
 
@@ -3973,30 +2769,13 @@ Run `revdep_details(, "FRASER")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘FRASER.Rnw’ using knitr
-    Quitting from lines 13-16 (FRASER.Rnw) 
-    Error: processing vignette 'FRASER.Rnw' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘FRASER.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘FRASER.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is  8.1Mb
       sub-directories of 1Mb or more:
-        R      1.1Mb
-        doc    1.6Mb
-        libs   4.7Mb
+        R      1.3Mb
+        doc    1.5Mb
+        libs   4.5Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -4005,30 +2784,15 @@ Run `revdep_details(, "FRASER")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
-*   checking R code for possible problems ... NOTE
-    ```
-    annotateRangesWithTxDb: no visible binding for global variable
-      ‘uniqueID’
-    extractChromosomeLengths: no visible binding for global variable
-      ‘mapped’
-    extractChromosomes: no visible binding for global variable ‘mapped’
-    getAnnotationFeature: no visible binding for global variable
-      ‘first_feature’
-    getAnnotationFeature: no visible binding for global variable
-      ‘other_features’
-    Undefined global functions or variables:
-      first_feature mapped other_features uniqueID
-    ```
-
 # funtooNorm
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * GitHub: NA
 * Source code: https://github.com/cran/funtooNorm
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 129
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 135
 
 Run `revdep_details(, "funtooNorm")` for more info
 
@@ -4056,7 +2820,7 @@ Run `revdep_details(, "funtooNorm")` for more info
 * GitHub: https://github.com/jinghuazhao/R
 * Source code: https://github.com/cran/gap
 * Date/Publication: 2020-02-02 15:10:02 UTC
-* Number of recursive dependencies: 143
+* Number of recursive dependencies: 147
 
 Run `revdep_details(, "gap")` for more info
 
@@ -4069,50 +2833,15 @@ Run `revdep_details(, "gap")` for more info
     Package unavailable to check Rd xrefs: ‘genetics’
     ```
 
-# gcapc
-
-<details>
-
-* Version: 1.12.0
-* GitHub: https://github.com/tengmx/gcapc
-* Source code: https://github.com/cran/gcapc
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 55
-
-Run `revdep_details(, "gcapc")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘gcapc.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 22-27 (gcapc.Rmd) 
-    Error: processing vignette 'gcapc.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘gcapc.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘gcapc.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # GenEst
 
 <details>
 
-* Version: 1.4.4
+* Version: 1.4.5
 * GitHub: NA
 * Source code: https://github.com/cran/GenEst
-* Date/Publication: 2020-06-08 18:20:03 UTC
-* Number of recursive dependencies: 84
+* Date/Publication: 2020-11-22 00:00:06 UTC
+* Number of recursive dependencies: 92
 
 Run `revdep_details(, "GenEst")` for more info
 
@@ -4130,11 +2859,11 @@ Run `revdep_details(, "GenEst")` for more info
 
 <details>
 
-* Version: 1.0.1
+* Version: 1.2.0
 * GitHub: https://github.com/federicomarini/GeneTonic
 * Source code: https://github.com/cran/GeneTonic
-* Date/Publication: 2020-05-28
-* Number of recursive dependencies: 178
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 181
 
 Run `revdep_details(, "GeneTonic")` for more info
 
@@ -4142,56 +2871,13 @@ Run `revdep_details(, "GeneTonic")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-    ...
-      fitting model and testing
-      - Done!
-      --- Running enrichGO...
-      Found 500 gene sets in `topGOtableResult` object.
-      Converting for usage in GeneTonic...
-      - Done!
-      --- Test setup script completed!
-      ── 1. Error: Enhanced table is created (@test-enhance_tables.R#11)  ────────────
-      unable to start device PNG
-      Backtrace:
-       1. plotly::ggplotly(p)
-       2. plotly:::ggplotly.ggplot(p)
-       3. plotly::gg2list(...)
-       4. grDevices:::dev_fun(...)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 117 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: Enhanced table is created (@test-enhance_tables.R#11) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘GeneTonic_manual.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 33-45 (GeneTonic_manual.Rmd) 
-    Error: processing vignette 'GeneTonic_manual.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘GeneTonic_manual.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘GeneTonic_manual.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.9Mb
+      installed size is 16.5Mb
       sub-directories of 1Mb or more:
-        doc  12.7Mb
+        data      1.2Mb
+        doc      13.4Mb
+        extdata   1.4Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -4203,11 +2889,11 @@ Run `revdep_details(, "GeneTonic")` for more info
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.22.0
 * GitHub: https://github.com/BIMSBbioinfo/genomation
 * Source code: https://github.com/cran/genomation
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 100
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 105
 
 Run `revdep_details(, "genomation")` for more info
 
@@ -4225,30 +2911,9 @@ Run `revdep_details(, "genomation")` for more info
     See ?Deprecated.
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘GenomationManual.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 36-38 (GenomationManual.Rmd) 
-    Error: processing vignette 'GenomationManual.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘GenomationManual.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘GenomationManual.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.5Mb
+      installed size is  7.4Mb
       sub-directories of 1Mb or more:
         doc       3.5Mb
         extdata   1.2Mb
@@ -4280,101 +2945,6 @@ Run `revdep_details(, "genomation")` for more info
     Please remove from your package.
     ```
 
-# GenRank
-
-<details>
-
-* Version: 1.15.0
-* GitHub: https://github.com/chakri9/GenRank
-* Source code: https://github.com/cran/GenRank
-* Date/Publication: 2019-10-29
-* Number of recursive dependencies: 59
-
-Run `revdep_details(, "GenRank")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘GenRank-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: ComputeRP
-    > ### Title: Convergent evidence based on rank product method.
-    > ### Aliases: ComputeRP
-    > 
-    > ### ** Examples
-    > 
-    > input_file <- system.file("extdata","RP_toydata.txt",package="GenRank")
-    > signif.val <- c('L','L','H','L','H','L')
-    > RP_ranks <- ComputeRP(input_file, signif.type = signif.val)
-    Error in prod(rankrow) : invalid 'type' (character) of argument
-    Calls: ComputeRP -> apply -> FUN
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-    ...
-      ── 1. Failure: Output of CombP is correct (@test_CombP.R#8)  ───────────────────
-      `x` isn't true.
-      
-      ── 2. Failure: Output of ComputeCE is correct (@test_compute_CE.R#8)  ──────────
-      `x` isn't true.
-      
-      ── 3. Error: Output of ComputeRP is correct (@test_compute_RP.R#6)  ────────────
-      invalid 'type' (character) of argument
-      Backtrace:
-       1. GenRank::ComputeRP(input_file, signif, 100, 1234)
-       2. base::apply(ranks.matrix, 1, function(rankrow) prod(rankrow)^(1/ncol(ranks.matrix)))
-       3. GenRank:::FUN(newX[, i], ...)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 33 | SKIPPED: 0 | WARNINGS: 21 | FAILED: 3 ]
-      1. Failure: Output of CombP is correct (@test_CombP.R#8) 
-      2. Failure: Output of ComputeCE is correct (@test_compute_CE.R#8) 
-      3. Error: Output of ComputeRP is correct (@test_compute_RP.R#6) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘GenRank_Vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 115-120 (GenRank_Vignette.Rmd) 
-    Error: processing vignette 'GenRank_Vignette.Rmd' failed with diagnostics:
-    invalid 'type' (character) of argument
-    --- failed re-building ‘GenRank_Vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘GenRank_Vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    CombP: no visible global function definition for ‘read.table’
-    ComputeCE: no visible global function definition for ‘read.table’
-    ComputeCE: no visible global function definition for ‘complete.cases’
-    ComputeRP: no visible global function definition for ‘read.table’
-    ComputeRP: no visible global function definition for ‘complete.cases’
-    Undefined global functions or variables:
-      complete.cases read.table
-    Consider adding
-      importFrom("stats", "complete.cases")
-      importFrom("utils", "read.table")
-    to your NAMESPACE file.
-    ```
-
 # ggdmc
 
 <details>
@@ -4383,7 +2953,7 @@ Run `revdep_details(, "GenRank")` for more info
 * GitHub: https://github.com/yxlin/ggdmc
 * Source code: https://github.com/cran/ggdmc
 * Date/Publication: 2019-04-29 05:10:03 UTC
-* Number of recursive dependencies: 50
+* Number of recursive dependencies: 54
 
 Run `revdep_details(, "ggdmc")` for more info
 
@@ -4393,20 +2963,20 @@ Run `revdep_details(, "ggdmc")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.3Mb
+      installed size is  6.8Mb
       sub-directories of 1Mb or more:
-        libs   6.9Mb
+        libs   6.5Mb
     ```
 
 # GGPA
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.0
 * GitHub: https://github.com/dongjunchung/GGPA
 * Source code: https://github.com/cran/GGPA
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 73
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 84
 
 Run `revdep_details(, "GGPA")` for more info
 
@@ -4416,10 +2986,10 @@ Run `revdep_details(, "GGPA")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.6Mb
+      installed size is  6.3Mb
       sub-directories of 1Mb or more:
         doc    1.6Mb
-        libs   3.7Mb
+        libs   3.5Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -4443,32 +3013,6 @@ Run `revdep_details(, "GGPA")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'GGPA-example.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'GGPA-example.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `subfigure.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.16 ^^M
-            
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘GGPA-example.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘GGPA-example.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # GJRM
 
 <details>
@@ -4477,7 +3021,7 @@ Run `revdep_details(, "GGPA")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GJRM
 * Date/Publication: 2020-09-07 18:20:03 UTC
-* Number of recursive dependencies: 81
+* Number of recursive dependencies: 85
 
 Run `revdep_details(, "GJRM")` for more info
 
@@ -4490,95 +3034,38 @@ Run `revdep_details(, "GJRM")` for more info
     Package which this enhances but not available for checking: ‘sp’
     ```
 
-# GNET2
+# glmGamPoi
 
 <details>
 
-* Version: 1.4.0
-* GitHub: https://github.com/chrischen1/GNET2
-* Source code: https://github.com/cran/GNET2
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 95
+* Version: 1.2.0
+* GitHub: https://github.com/const-ae/glmGamPoi
+* Source code: https://github.com/cran/glmGamPoi
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 162
 
-Run `revdep_details(, "GNET2")` for more info
+Run `revdep_details(, "glmGamPoi")` for more info
 
 </details>
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking installed package size ... NOTE
     ```
-    ...
-    > reg_names <- paste0('TF',1:5)
-    > rownames(exp_data) <- c(reg_names,paste0('gene',1:(nrow(exp_data)-length(reg_names))))
-    > colnames(exp_data) <- paste0('condition_',1:ncol(exp_data))
-    > se <- SummarizedExperiment::SummarizedExperiment(assays=list(counts=exp_data))
-    > gnet_result <- gnet(se,reg_names,init_method,init_group_num)
-    Determining initial group number...
-    Building module networks...
-    Iteration 1
-    Iteration 2
-    Iteration 3
-    Iteration 4
-    Converged.
-    Generating final network modules...
-    Done.
-    > save_gnet(gnet_result)
-    Warning in tiff(paste0(save_path, "/module_", i, ".tiff"), compression = "lzw") :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("tiff::", comp, ":", filename), g$width,  : 
-      unable to start device TIFF
-    Calls: save_gnet -> tiff
-    Execution halted
-    ```
-
-# GPrank
-
-<details>
-
-* Version: 0.1.4
-* GitHub: https://github.com/PROBIC/GPrank
-* Source code: https://github.com/cran/GPrank
-* Date/Publication: 2018-08-17 15:00:03 UTC
-* Number of recursive dependencies: 40
-
-Run `revdep_details(, "GPrank")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘GPrank-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: bitseq_setPlot
-    > ### Title: Configuring the settings of the plots for the BitSeq example
-    > ### Aliases: bitseq_setPlot
-    > ### Keywords: internal plot
-    > 
-    > ### ** Examples
-    > 
-    > bitseq_setPlot("geneA_GPprofile.pdf")
-    > bitseq_setPlot("geneA_GPprofile.png")
-    Warning in png(filename = plotName) :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    Calls: bitseq_setPlot -> png
-    Execution halted
+      installed size is  8.1Mb
+      sub-directories of 1Mb or more:
+        libs   7.2Mb
     ```
 
 # graper
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/graper
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 66
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 69
 
 Run `revdep_details(, "graper")` for more info
 
@@ -4586,49 +3073,23 @@ Run `revdep_details(, "graper")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘example_linear.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 15-17 (example_linear.Rmd) 
-    Error: processing vignette 'example_linear.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘example_linear.Rmd’
-    
-    --- re-building ‘example_logistic.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 15-17 (example_logistic.Rmd) 
-    Error: processing vignette 'example_logistic.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘example_logistic.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘example_linear.Rmd’ ‘example_logistic.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.4Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
         doc    1.8Mb
-        libs   5.5Mb
+        libs   5.2Mb
     ```
 
 # GUIDEseq
 
 <details>
 
-* Version: 1.18.0
+* Version: 1.20.0
 * GitHub: NA
 * Source code: https://github.com/cran/GUIDEseq
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 116
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 151
 
 Run `revdep_details(, "GUIDEseq")` for more info
 
@@ -4638,25 +3099,24 @@ Run `revdep_details(, "GUIDEseq")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.1Mb
+      installed size is 11.0Mb
       sub-directories of 1Mb or more:
         extdata  10.5Mb
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    annotateOffTargets: no visible binding for global variable
+      'offTarget_Start'
+    annotateOffTargets: no visible global function definition for 'exons'
+    annotateOffTargets: no visible global function definition for
+      'seqlevelsStyle<-'
+    annotateOffTargets: no visible global function definition for 'genes'
+    getPeaks: no visible binding for global variable 'adjusted.p.value'
+    getPeaks: no visible binding for global variable 'SNratio'
     getUniqueCleavageEvents: no visible binding for global variable
       'qwidth.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'qwidth.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.last'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'strand.first'
-    getUniqueCleavageEvents: no visible binding for global variable
-      'readName'
-    getUniqueCleavageEvents: no visible binding for global variable 'UMI'
+    ...
     offTargetAnalysisOfPeakRegions: no visible binding for global variable
       'thePeak'
     offTargetAnalysisOfPeakRegions: no visible binding for global variable
@@ -4678,41 +3138,15 @@ Run `revdep_details(, "GUIDEseq")` for more info
     prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'GUIDEseq.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'GUIDEseq.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.92 \def
-             \mdhelvet{\fontfamily{phv}\selectfont\mdseries}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building 'GUIDEseq.Rnw'
-    
-    SUMMARY: processing the following file failed:
-      'GUIDEseq.Rnw'
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # Gviz
 
 <details>
 
-* Version: 1.32.0
+* Version: 1.34.0
 * GitHub: https://github.com/ivanek/Gviz
 * Source code: https://github.com/cran/Gviz
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 138
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 146
 
 Run `revdep_details(, "Gviz")` for more info
 
@@ -4720,67 +3154,62 @@ Run `revdep_details(, "Gviz")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘Gviz.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 33-59 (Gviz.Rmd) 
-    Error: processing vignette 'Gviz.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘Gviz.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘Gviz.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.4Mb
+      installed size is 10.4Mb
       sub-directories of 1Mb or more:
         R         1.7Mb
-        doc       6.6Mb
+        doc       4.7Mb
         extdata   2.5Mb
     ```
 
-# gwasurvivr
+# GWENA
 
 <details>
 
-* Version: 1.6.0
-* GitHub: https://github.com/suchestoncampbelllab/gwasurvivr
-* Source code: https://github.com/cran/gwasurvivr
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 115
+* Version: 1.0.0
+* GitHub: https://github.com/Kumquatum/GWENA
+* Source code: https://github.com/cran/GWENA
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 144
 
-Run `revdep_details(, "gwasurvivr")` for more info
+Run `revdep_details(, "GWENA")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking tests ...
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘gwasurvivr_Introduction.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 26-27 (gwasurvivr_Introduction.Rmd) 
-    Error: processing vignette 'gwasurvivr_Introduction.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘gwasurvivr_Introduction.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘gwasurvivr_Introduction.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(GWENA)
+      
+      > 
+      > test_check("GWENA")
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Error (test-biological_integration.R:61:3): gost objects in list are compatible ──
+    ...
+       3. │   ├─testthat:::.capture(...)
+       4. │   │ └─base::withCallingHandlers(...)
+       5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+       6. └─GWENA::join_gost(...)
+       7.   └─base::lapply(gost_result, .check_gost)
+       8.     └─GWENA:::FUN(X[[i]], ...)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 273 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 10.3Mb
+      sub-directories of 1Mb or more:
+        data   5.6Mb
+        doc    4.5Mb
     ```
 
 # haploReconstruct
@@ -4801,7 +3230,7 @@ Run `revdep_details(, "haploReconstruct")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.9Mb
+      installed size is  9.8Mb
       sub-directories of 1Mb or more:
         data   9.4Mb
     ```
@@ -4810,11 +3239,11 @@ Run `revdep_details(, "haploReconstruct")` for more info
 
 <details>
 
-* Version: 2.4.0
+* Version: 2.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/hipathia
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 117
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 126
 
 Run `revdep_details(, "hipathia")` for more info
 
@@ -4822,67 +3251,13 @@ Run `revdep_details(, "hipathia")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘hipathia-vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 86-90 (hipathia-vignette.Rmd) 
-    Error: processing vignette 'hipathia-vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘hipathia-vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘hipathia-vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.3Mb
+      installed size is 11.2Mb
       sub-directories of 1Mb or more:
         data      4.9Mb
         doc       1.7Mb
         extdata   4.3Mb
-    ```
-
-# IMIFA
-
-<details>
-
-* Version: 2.1.3
-* GitHub: https://github.com/Keefe-Murphy/IMIFA
-* Source code: https://github.com/cran/IMIFA
-* Date/Publication: 2020-05-12 16:10:02 UTC
-* Number of recursive dependencies: 74
-
-Run `revdep_details(, "IMIFA")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘IMIFA.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 38-40 (IMIFA.Rmd) 
-    Error: processing vignette 'IMIFA.Rmd' failed with diagnostics:
-    unused argument (type = "cairo")
-    --- failed re-building ‘IMIFA.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘IMIFA.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # InfiniumPurify
@@ -4906,164 +3281,82 @@ Run `revdep_details(, "InfiniumPurify")` for more info
     Package unavailable to check Rd xrefs: ‘minfi’
     ```
 
-# jointseg
+# JMbayes2
 
 <details>
 
-* Version: 1.0.2
-* GitHub: https://github.com/mpierrejean/jointseg
-* Source code: https://github.com/cran/jointseg
-* Date/Publication: 2019-01-11 12:30:03 UTC
-* Number of recursive dependencies: 53
+* Version: 0.1-3
+* GitHub: https://github.com/drizopoulos/JMbayes2
+* Source code: https://github.com/cran/JMbayes2
+* Date/Publication: 2021-01-18 16:20:24 UTC
+* Number of recursive dependencies: 86
 
-Run `revdep_details(, "jointseg")` for more info
+Run `revdep_details(, "JMbayes2")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking installed package size ... NOTE
     ```
-    ...
-      unable to open connection to X11 display ''
-    Quitting from lines 22-23 (PSSeg.Rmd) 
-    Error: processing vignette 'PSSeg.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘PSSeg.Rmd’
-    
-    --- re-building ‘dataGeneration.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 33-34 (dataGeneration.Rmd) 
-    Error: processing vignette 'dataGeneration.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘dataGeneration.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘PSSeg.Rmd’ ‘dataGeneration.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+      installed size is  6.8Mb
+      sub-directories of 1Mb or more:
+        libs   6.4Mb
     ```
 
-# kissDE
+# landmap
 
 <details>
 
-* Version: 1.8.0
-* GitHub: NA
-* Source code: https://github.com/cran/kissDE
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 128
+* Version: 0.0.6
+* GitHub: https://github.com/envirometrix/landmap
+* Source code: https://github.com/cran/landmap
+* Date/Publication: 2020-11-18 23:20:14 UTC
+* Number of recursive dependencies: 141
 
-Run `revdep_details(, "kissDE")` for more info
+Run `revdep_details(, "landmap")` for more info
 
 </details>
 
 ## In both
 
-*   checking tests ...
+*   checking data for non-ASCII characters ... NOTE
     ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library("testthat")
-      > library("kissDE")
-      > 
-      > test_check("kissDE")
-      ── 1. Error: qualityControl work as expected (@test_qualityControl.R#11)  ──────
-      unable to start device PNG
-      Backtrace:
-       1. kissDE::qualityControl(mySNVcounts, mySNVconditions, storeFigs = TRUE)
-       2. grDevices::png(filename)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 64 | SKIPPED: 0 | WARNINGS: 19 | FAILED: 1 ]
-      1. Error: qualityControl work as expected (@test_qualityControl.R#11) 
-      
-      Error: testthat unit tests failed
-      Execution halted
+      Note: found 23 marked UTF-8 strings
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'kissDE.rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'kissDE.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.92 \def
-             \mdhelvet{\fontfamily{phv}\selectfont\mdseries}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘kissDE.rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘kissDE.rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# LFDREmpiricalBayes
+# latrend
 
 <details>
 
-* Version: 1.0
-* GitHub: NA
-* Source code: https://github.com/cran/LFDREmpiricalBayes
-* Date/Publication: 2017-09-27 09:08:46 UTC
-* Number of recursive dependencies: 26
+* Version: 1.0.1
+* GitHub: https://github.com/philips-software/latrend
+* Source code: https://github.com/cran/latrend
+* Date/Publication: 2020-11-18 10:10:02 UTC
+* Number of recursive dependencies: 198
 
-Run `revdep_details(, "LFDREmpiricalBayes")` for more info
+Run `revdep_details(, "latrend")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... NOTE
+*   checking whether package ‘latrend’ can be installed ... WARNING
     ```
-    ...
-    Error: processing vignette 'LFDREmpiricalBayes.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'LFDREmpiricalBayes.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `changepage.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.10 \usepackage
-                    {url}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘LFDREmpiricalBayes.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘LFDREmpiricalBayes.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Found the following significant warnings:
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
     ```
 
 # liger
 
 <details>
 
-* Version: 1.1.2
+* Version: 2.0.1
 * GitHub: https://github.com/JEFworks/liger
 * Source code: https://github.com/cran/liger
-* Date/Publication: 2020-07-16 15:10:07 UTC
-* Number of recursive dependencies: 40
+* Date/Publication: 2021-01-25 05:50:09 UTC
+* Number of recursive dependencies: 49
 
 Run `revdep_details(, "liger")` for more info
 
@@ -5071,81 +3364,13 @@ Run `revdep_details(, "liger")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error: processing vignette 'permpvals.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/liger/new/liger.Rcheck/vign_test/liger/vignettes/permpvals.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See permpvals.log for more info.
-    --- failed re-building ‘permpvals.Rmd’
-    
-    --- re-building ‘simulation.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'simulation.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/liger/new/liger.Rcheck/vign_test/liger/vignettes/simulation.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See simulation.log for more info.
-    --- failed re-building ‘simulation.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘gsea.Rmd’ ‘interpreting.Rmd’ ‘permpvals.Rmd’ ‘simulation.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
         data   3.3Mb
         doc    2.1Mb
-        libs   1.4Mb
-    ```
-
-# loo
-
-<details>
-
-* Version: 2.3.1
-* GitHub: https://github.com/stan-dev/loo
-* Source code: https://github.com/cran/loo
-* Date/Publication: 2020-07-14 22:50:10 UTC
-* Number of recursive dependencies: 141
-
-Run `revdep_details(, "loo")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘loo2-weights.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 63-65 (loo2-weights.Rmd) 
-    Error: processing vignette 'loo2-weights.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘loo2-weights.Rmd’
-    
-    --- re-building ‘loo2-with-rstan.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘loo2-with-rstan.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘loo2-example.Rmd’ ‘loo2-lfo.Rmd’ ‘loo2-moment-matching.Rmd’
-      ‘loo2-non-factorized.Rmd’ ‘loo2-weights.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+        libs   1.7Mb
     ```
 
 # LSAmitR
@@ -5156,7 +3381,7 @@ Run `revdep_details(, "loo")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/LSAmitR
 * Date/Publication: 2018-06-08 13:23:05 UTC
-* Number of recursive dependencies: 163
+* Number of recursive dependencies: 167
 
 Run `revdep_details(, "LSAmitR")` for more info
 
@@ -5173,11 +3398,11 @@ Run `revdep_details(, "LSAmitR")` for more info
 
 <details>
 
-* Version: 0.9.7
+* Version: 0.9.10
 * GitHub: https://github.com/R-Lum/Luminescence
 * Source code: https://github.com/cran/Luminescence
-* Date/Publication: 2020-01-08 23:02:25 UTC
-* Number of recursive dependencies: 142
+* Date/Publication: 2020-12-10 17:10:02 UTC
+* Number of recursive dependencies: 153
 
 Run `revdep_details(, "Luminescence")` for more info
 
@@ -5192,11 +3417,11 @@ Run `revdep_details(, "Luminescence")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  7.2Mb
       sub-directories of 1Mb or more:
         R      1.6Mb
         help   1.1Mb
-        libs   2.6Mb
+        libs   3.3Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -5208,11 +3433,11 @@ Run `revdep_details(, "Luminescence")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: https://github.com/tallulandrews/M3Drop
 * Source code: https://github.com/cran/M3Drop
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 205
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 220
 
 Run `revdep_details(, "M3Drop")` for more info
 
@@ -5255,36 +3480,17 @@ Run `revdep_details(, "M3Drop")` for more info
 
 <details>
 
-* Version: 2.8.0
+* Version: 2.10.1
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
-* Date/Publication: 2020-04-28
-* Number of recursive dependencies: 227
+* Date/Publication: 2021-01-22
+* Number of recursive dependencies: 228
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MA-Workflow.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 50-71 (MA-Workflow.Rmd) 
-    Error: processing vignette 'MA-Workflow.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘MA-Workflow.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘MA-Workflow.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -5294,7 +3500,7 @@ Run `revdep_details(, "maEndToEnd")` for more info
       'limma', 'topGO', 'ReactomePA', 'clusterProfiler', 'gplots',
       'ggplot2', 'geneplotter', 'pheatmap', 'RColorBrewer', 'dplyr',
       'tidyr', 'stringr', 'matrixStats', 'genefilter', 'openxlsx',
-      'Rgraphviz'
+      'Rgraphviz', 'enrichplot'
     Adding so many packages to the search path is excessive and importing
     selectively is preferable.
     ```
@@ -5306,33 +3512,73 @@ Run `revdep_details(, "maEndToEnd")` for more info
         doc   6.0Mb
     ```
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    License components which are templates and need '+ file LICENSE':
-      MIT
-    ```
-
-*   checking top-level files ... NOTE
-    ```
-    File
-      LICENCE
-    is not mentioned in the DESCRIPTION file.
-    ```
-
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     '::' or ':::' import not declared from: ‘AnnotationDbi’
+    ```
+
+# MatrixGenerics
+
+<details>
+
+* Version: 1.2.0
+* GitHub: https://github.com/Bioconductor/MatrixGenerics
+* Source code: https://github.com/cran/MatrixGenerics
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 64
+
+Run `revdep_details(, "MatrixGenerics")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       1. ├─MatrixGenerics::colVars(...) test-api_compatibility.R:678:8
+       2. └─MatrixGenerics::colVars(...)
+       3.   └─MatrixGenerics:::.local(x, rows, cols, na.rm, center, ...)
+       4.     └─matrixStats::colVars(...)
+      ── Error (test-api_compatibility.R:698:2): colWeightedMads works  ──────────────
+      Error: Argument 'center' should be of the same length as number of columns of 'x': 1 != 6
+      Backtrace:
+    ...
+      Error: Argument 'center' should be of the same length as number of rows of 'x': 1 != 6
+      Backtrace:
+          █
+       1. ├─MatrixGenerics::rowWeightedMads(...) test-api_compatibility.R:1466:8
+       2. └─MatrixGenerics::rowWeightedMads(...)
+       3.   └─matrixStats::rowWeightedMads(...)
+      
+      [ FAIL 10 | WARN 0 | SKIP 0 | PASS 300 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘methods:::fromNextMethod’ ‘methods:::getGenericFromCall’
+      See the note in ?`:::` about the use of this operator.
+    There are ::: calls to the package's namespace in its code. A package
+      almost never needs to use ::: for its own objects:
+      ‘.load_next_suggested_package_to_search’
     ```
 
 # mcmcsae
 
 <details>
 
-* Version: 0.5.0
+* Version: 0.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/mcmcsae
-* Date/Publication: 2020-09-01 16:00:03 UTC
-* Number of recursive dependencies: 104
+* Date/Publication: 2021-01-20 08:40:02 UTC
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "mcmcsae")` for more info
 
@@ -5342,20 +3588,20 @@ Run `revdep_details(, "mcmcsae")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 15.6Mb
+      installed size is 15.7Mb
       sub-directories of 1Mb or more:
-        libs  14.3Mb
+        libs  14.4Mb
     ```
 
 # MEAL
 
 <details>
 
-* Version: 1.18.0
+* Version: 1.20.0
 * GitHub: NA
 * Source code: https://github.com/cran/MEAL
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 205
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 214
 
 Run `revdep_details(, "MEAL")` for more info
 
@@ -5371,32 +3617,6 @@ Run `revdep_details(, "MEAL")` for more info
     Deprecated functions may be defunct as soon as of the next release of
     R.
     See ?Deprecated.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘MEAL.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 26-27 (MEAL.Rmd) 
-    Error: processing vignette 'MEAL.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘MEAL.Rmd’
-    
-    --- re-building ‘caseExample.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 27-28 (caseExample.Rmd) 
-    Error: processing vignette 'caseExample.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘caseExample.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘MEAL.Rmd’ ‘caseExample.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 *   checking top-level files ... NOTE
@@ -5425,50 +3645,77 @@ Run `revdep_details(, "MEAL")` for more info
     Package unavailable to check Rd xrefs: ‘DMRcate’
     ```
 
-# MEDseq
+# metabCombiner
 
 <details>
 
-* Version: 1.1.1
-* GitHub: https://github.com/Keefe-Murphy/MEDseq
-* Source code: https://github.com/cran/MEDseq
-* Date/Publication: 2020-05-12 20:10:02 UTC
-* Number of recursive dependencies: 93
+* Version: 1.0.1
+* GitHub: NA
+* Source code: https://github.com/cran/metabCombiner
+* Date/Publication: 2020-12-08
+* Number of recursive dependencies: 94
 
-Run `revdep_details(, "MEDseq")` for more info
+Run `revdep_details(, "metabCombiner")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking for missing documentation entries ... WARNING
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MEDseq.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 36-38 (MEDseq.Rmd) 
-    Error: processing vignette 'MEDseq.Rmd' failed with diagnostics:
-    unused argument (type = "cairo")
-    --- failed re-building ‘MEDseq.Rmd’
+    Undocumented S4 methods:
+      generic 'getExtra' and siglist 'metabCombiner'
+    All user-level objects in a package (including S4 classes and methods)
+    should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Codoc mismatches from documentation object 'getExtra':
+    getExtra
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
     
-    SUMMARY: processing the following file failed:
-      ‘MEDseq.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Codoc mismatches from documentation object 'getSamples':
+    getSamples
+      Code: function(object, data = "x")
+    ...
+    nonmatched
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
+    \S4method{nonmatched}{metabCombiner}
+      Code: function(object, data = "x")
+      Docs: function(object, data = c("x", "y"))
+      Mismatches in argument default values:
+        Name: 'data' Code: "x" Docs: c("x", "y")
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    metabData: no visible global function definition for ‘is’
+    Undefined global functions or variables:
+      is
+    Consider adding
+      importFrom("methods", "is")
+    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+    contains 'methods').
     ```
 
 # metagene
 
 <details>
 
-* Version: 2.20.0
+* Version: 2.22.0
 * GitHub: https://github.com/CharlesJB/metagene
 * Source code: https://github.com/cran/metagene
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 136
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 138
 
 Run `revdep_details(, "metagene")` for more info
 
@@ -5476,118 +3723,87 @@ Run `revdep_details(, "metagene")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking whether package ‘metagene’ can be installed ... ERROR
     ```
-    ...
-    --- re-building ‘metagene.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 13-15 (metagene.Rmd) 
-    Error: processing vignette 'metagene.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘metagene.Rmd’
-    
-    --- re-building ‘metagene_rnaseq.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 13-15 (metagene_rnaseq.Rmd) 
-    Error: processing vignette 'metagene_rnaseq.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘metagene_rnaseq.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘metagene.Rmd’ ‘metagene_rnaseq.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/new/metagene.Rcheck/00install.out’ for details.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 10.3Mb
-      sub-directories of 1Mb or more:
-        doc       3.2Mb
-        extdata   5.4Mb
-    ```
+## Installation
 
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘similaRpeak’
-    A package should be listed in only one of these fields.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    avoid_gaps_update: no visible binding for global variable 'value'
-    avoid_gaps_update: no visible binding for global variable 'bam'
-    avoid_gaps_update: no visible binding for global variable 'tab'
-    avoid_gaps_update: no visible binding for global variable 'nuc'
-    permutation_test: no visible global function definition for '.'
-    permutation_test: no visible binding for global variable 'value'
-    plot_metagene: no visible binding for global variable 'bin'
-    plot_metagene: no visible binding for global variable 'value'
-    plot_metagene: no visible binding for global variable 'qinf'
-    plot_metagene: no visible binding for global variable 'qsup'
-    plot_metagene: no visible binding for global variable 'group'
-    plot_metagene: no visible binding for global variable 'nuc'
-    plot_metagene: no visible binding for global variable 'design'
-    plot_metagene: no visible binding for global variable 'nuctot'
-    Undefined global functions or variables:
-      . bam bin design group nuc nuctot qinf qsup tab value
-    ```
+```
+* installing *source* package ‘metagene’ ...
+** using staged installation
+** R
+Warning: namespace ‘metagene’ is not available and has been replaced
+by .GlobalEnv when processing object ‘demo_bh_multicore’
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘DESeq’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘metagene’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/new/metagene.Rcheck/metagene’
 
-# metagenomeSeq
+
+```
+### CRAN
+
+```
+* installing *source* package ‘metagene’ ...
+** using staged installation
+** R
+Warning: namespace ‘metagene’ is not available and has been replaced
+by .GlobalEnv when processing object ‘demo_bh_multicore’
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]) : 
+  there is no package called ‘DESeq’
+Calls: <Anonymous> ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+ERROR: lazy loading failed for package ‘metagene’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/metagene/old/metagene.Rcheck/metagene’
+
+
+```
+# metamicrobiomeR
 
 <details>
 
-* Version: 1.30.0
-* GitHub: https://github.com/nosson/metagenomeSeq
-* Source code: https://github.com/cran/metagenomeSeq
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 121
+* Version: 1.2
+* GitHub: https://github.com/nhanhocu/metamicrobiomeR
+* Source code: https://github.com/cran/metamicrobiomeR
+* Date/Publication: 2020-11-09 11:20:05 UTC
+* Number of recursive dependencies: 137
 
-Run `revdep_details(, "metagenomeSeq")` for more info
+Run `revdep_details(, "metamicrobiomeR")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking dependencies in R code ... NOTE
     ```
-    ...
-    Error: processing vignette 'metagenomeSeq.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'metagenomeSeq.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.29 \makeatletter
-                      ^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘metagenomeSeq.Rnw’
-    
-    SUMMARY: processing the following files failed:
-      ‘fitTimeSeries.Rnw’ ‘metagenomeSeq.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Namespace in Imports field not imported from: ‘lmerTest’
+      All declared Imports should be used.
     ```
 
 # MetaNeighbor
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * GitHub: NA
 * Source code: https://github.com/cran/MetaNeighbor
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 60
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 93
 
 Run `revdep_details(, "MetaNeighbor")` for more info
 
@@ -5595,91 +3811,123 @@ Run `revdep_details(, "MetaNeighbor")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    
-        colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-    
-    The following objects are masked from 'package:base':
-    
-        aperm, apply, rowsum
-    
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'MetaNeighbor.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/MetaNeighbor/new/MetaNeighbor.Rcheck/vign_test/MetaNeighbor/vignettes/MetaNeighbor.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See MetaNeighbor.log for more info.
-    --- failed re-building ‘MetaNeighbor.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘MetaNeighbor.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.8Mb
+      installed size is  7.7Mb
       sub-directories of 1Mb or more:
         data   7.1Mb
-        libs   1.0Mb
     ```
 
-*   checking dependencies in R code ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-    Namespaces in Imports field not imported from:
-      ‘GenomicRanges’ ‘RColorBrewer’ ‘gplots’
-      All declared Imports should be used.
+    MetaNeighbor : <anonymous>: no visible binding for global variable
+      ‘cell_type’
+    plotDotPlot: no visible binding for global variable ‘cluster’
+    plotDotPlot: no visible binding for global variable ‘gene’
+    plotDotPlot: no visible binding for global variable ‘cell_type’
+    plotDotPlot: no visible binding for global variable
+      ‘average_expression’
+    plotDotPlot: no visible binding for global variable
+      ‘percent_expressing’
+    Undefined global functions or variables:
+      average_expression cell_type cluster gene percent_expressing
     ```
 
-# metavizr
+# MethReg
 
 <details>
 
-* Version: 1.12.0
-* GitHub: NA
-* Source code: https://github.com/cran/metavizr
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 180
+* Version: 1.0.0
+* GitHub: https://github.com/TransBioInfoLab/MethReg
+* Source code: https://github.com/cran/MethReg
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 223
 
-Run `revdep_details(, "metavizr")` for more info
+Run `revdep_details(, "MethReg")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking examples ... ERROR
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘IntroToMetavizr.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 21-24 (IntroToMetavizr.Rmd) 
-    Error: processing vignette 'IntroToMetavizr.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘IntroToMetavizr.Rmd’
+    Running examples in ‘MethReg-Ex.R’ failed
+    The error most likely occurred in:
     
-    SUMMARY: processing the following file failed:
-      ‘IntroToMetavizr.Rmd’
-    
-    Error: Vignette re-building failed.
+    > ### Name: create_triplet_distance_based
+    > ### Title: Map DNAm to target genes using distance approaches, and TF to
+    > ###   the DNAm region using JASPAR2020 TFBS.
+    > ### Aliases: create_triplet_distance_based
+    > 
+    > ### ** Examples
+    > 
+    ...
+    o Get promoter regions for hg38
+    o Remove promoter regions
+    Looking for TFBS
+    Error in h(simpleError(msg, call)) : 
+      error in evaluating the argument 'x' in selecting a method for function 'assay': BSgenome.Hsapiens.UCSC.hg38 package is not currently installed.
+      You first need to install it, which you can do with:
+          library(BiocManager)
+          install("BSgenome.Hsapiens.UCSC.hg38")
+    Calls: create_triplet_distance_based -> get_tf_in_region
     Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       14. │             └─BSgenome:::.stopOnAvailablePkg(genome)
+       15. │               └─base::stop(...)
+       16. ├─SummarizedExperiment::assay(.)
+       17. └─base::.handleSimpleError(...)
+       18.   └─base:::h(simpleError(msg, call))
+      ── Error (test-get_tf_in_region.R:18:5): get_tf_in_region accepts granges as input ──
+      Error: error in evaluating the argument 'x' in selecting a method for function 'assay': BSgenome.Hsapiens.UCSC.hg19 package is not currently installed.
+    ...
+          █
+       1. └─MethReg::make_dnam_se(dna.met.chr21) test-utils.R:52:4
+       2.   └─MethReg::get_met_probes_info(genome = genome, arrayType = arrayType)
+       3.     └─MethReg:::check_package("sesame")
+       4.       └─base::suppressMessages(...)
+       5.         └─base::withCallingHandlers(...)
+      
+      [ FAIL 7 | WARN 2 | SKIP 0 | PASS 147 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        R     1.6Mb
+        doc   2.5Mb
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    interaction_model: no visible binding for global variable ‘.’
+    Undefined global functions or variables:
+      .
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘TCGAbiolinks’
     ```
 
 # methrix
 
 <details>
 
-* Version: 1.2.06
+* Version: 1.4.0
 * GitHub: NA
 * Source code: https://github.com/cran/methrix
-* Date/Publication: 2020-05-30
-* Number of recursive dependencies: 147
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "methrix")` for more info
 
@@ -5687,80 +3935,30 @@ Run `revdep_details(, "methrix")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    
-    Attaching package: 'DelayedArray'
-    
-    The following objects are masked from 'package:matrixStats':
-    
-        colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
-    
-    The following objects are masked from 'package:base':
-    
-        aperm, apply, rowsum
-    
-    Quitting from lines 87-89 (methrix.Rmd) 
-    Error: processing vignette 'methrix.Rmd' failed with diagnostics:
-    
-    --- failed re-building ‘methrix.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘methrix.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-*   checking for hidden files and directories ... NOTE
-    ```
-    Found the following hidden files and directories:
-      .travis.yml
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
-    write_bedgraphs: no visible global function definition for
-      ‘seqlevelsStyle<-’
+    get_region_summary: no visible binding for global variable ‘..keep’
+    write_bigwigs: no visible global function definition for ‘seqlengths<-’
+    write_bigwigs: no visible global function definition for ‘seqlengths’
     Undefined global functions or variables:
-      seqlevelsStyle<-
+      ..keep seqlengths seqlengths<-
     ```
 
 # MethylAid
 
 <details>
 
-* Version: 1.22.0
+* Version: 1.24.0
 * GitHub: NA
 * Source code: https://github.com/cran/MethylAid
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 166
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 177
 
 Run `revdep_details(, "MethylAid")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MethylAid.Rnw’ using knitr
-    Quitting from lines 22-26 (MethylAid.Rnw) 
-    Error: processing vignette 'MethylAid.Rnw' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘MethylAid.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘MethylAid.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -5771,36 +3969,17 @@ Run `revdep_details(, "MethylAid")` for more info
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * GitHub: NA
 * Source code: https://github.com/cran/methylationArrayAnalysis
-* Date/Publication: 2020-04-28
-* Number of recursive dependencies: 211
+* Date/Publication: 2020-10-30
+* Number of recursive dependencies: 223
 
 Run `revdep_details(, "methylationArrayAnalysis")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘methylationArrayAnalysis.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 38-39 (methylationArrayAnalysis.Rmd) 
-    Error: processing vignette 'methylationArrayAnalysis.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘methylationArrayAnalysis.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘methylationArrayAnalysis.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -5816,7 +3995,7 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 322.8Mb
+      installed size is 322.7Mb
       sub-directories of 1Mb or more:
         doc        2.5Mb
         extdata  320.2Mb
@@ -5831,11 +4010,11 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
 
 <details>
 
-* Version: 2.34.0
+* Version: 2.36.0
 * GitHub: https://github.com/seandavi/methylumi
 * Source code: https://github.com/cran/methylumi
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 189
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 201
 
 Run `revdep_details(, "methylumi")` for more info
 
@@ -5865,32 +4044,6 @@ Run `revdep_details(, "methylumi")` for more info
     Please use e.g. ‘inst/extdata’ for non-R data files
     ```
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error: processing vignette 'methylumi450k.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'methylumi450k.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.36 \makeatletter
-                      ^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘methylumi450k.Rnw’
-    
-    SUMMARY: processing the following files failed:
-      ‘methylumi.Rnw’ ‘methylumi450k.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking package dependencies ... NOTE
     ```
     Depends: includes the non-default packages:
@@ -5910,7 +4063,7 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.9Mb
+      installed size is 11.8Mb
       sub-directories of 1Mb or more:
         R         1.3Mb
         data      6.8Mb
@@ -5937,6 +4090,7 @@ Run `revdep_details(, "methylumi")` for more info
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
     Namespace in Imports field not imported from: ‘graphics’
       All declared Imports should be used.
+    ...
     Packages in Depends field not imported from:
       ‘FDb.InfiniumMethylation.hg19’ ‘ggplot2’ ‘matrixStats’ ‘methods’
       ‘reshape2’ ‘scales’
@@ -5951,18 +4105,17 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    getBarcodes: warning in list.files(path = path, patt = "idat"): partial
+      argument match of 'patt' to 'pattern'
+    coerce,RangedSummarizedExperiment-GenomicMethylSet: warning in
+      assays(from, withDim = F): partial argument match of 'withDim' to
+      'withDimnames'
+    .getFinalReportBlock: no visible global function definition for
+      ‘read.table’
+    .mclapply: no visible global function definition for ‘mclapply’
+    .parallel : <anonymous>: no visible global function definition for
+      ‘ecdf’
     ...
-      IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
-      abline addColorChannelInfo aes allele as.dist axis box capture.output
-      channel.probes colMedians colQuantiles colSds colorRampPalette
-      coord_flip data dnorm dropouts drops ecdf facet_grid features
-      gamma.integral gamma.mle gamma.mode geom_histogram ggplot hclust
-      hm27.controls hm27.ordering hm450.controls hm450.ordering huber index
-      intensity lines log_trans mclapply melt mu offset opts p.adjust
-      packageDescription packageVersion par plot.density pnorm points
-      position_identity read.csv read.delim read.table rect rowMins
-      scale_colour_manual scale_fill_manual scale_shape_manual
-      scale_x_continuous scale_y_continuous scale_y_discrete
       subsetCommonProbes text theme_bw title value variable weighted.mean
     Consider adding
       importFrom("grDevices", "colorRampPalette")
@@ -5994,7 +4147,7 @@ Run `revdep_details(, "methylumi")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MFHD
 * Date/Publication: 2013-10-23 23:50:20
-* Number of recursive dependencies: 58
+* Number of recursive dependencies: 111
 
 Run `revdep_details(, "MFHD")` for more info
 
@@ -6004,18 +4157,17 @@ Run `revdep_details(, "MFHD")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    MFHD: no visible global function definition for ‘complete.cases’
+    MFHD: no visible global function definition for ‘quantile’
+    PIT: no visible global function definition for ‘xy.coords’
+    PIT: no visible global function definition for ‘identify’
+    PIT: no visible global function definition for ‘points’
+    mfhd_compute.bagplot : cut.z.pg: no visible global function definition
+      for ‘segments’
+    mfhd_compute.bagplot : cut.z.pg: no visible global function definition
+      for ‘points’
+    mfhd_compute.bagplot : find.cut.z.pg: no visible global function
     ...
-    plot.bagplot : cut.z.pg: no visible global function definition for
-      ‘points’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘points’
-    plot.bagplot : find.cut.z.pg: no visible global function definition for
-      ‘lines’
-    plot.bagplot: no visible global function definition for ‘boxplot’
-    plot.bagplot: no visible global function definition for ‘points’
-    plot.bagplot: no visible global function definition for ‘segments’
-    plot.bagplot: no visible global function definition for ‘text’
-    plot.bagplot: no visible global function definition for ‘lines’
     plot.bagplot: no visible global function definition for ‘polygon’
     Undefined global functions or variables:
       boxplot chull complete.cases identify lines points polygon prcomp
@@ -6036,7 +4188,7 @@ Run `revdep_details(, "MFHD")` for more info
 * GitHub: https://github.com/mfasiolo/mgcViz
 * Source code: https://github.com/cran/mgcViz
 * Date/Publication: 2020-03-04 15:10:02 UTC
-* Number of recursive dependencies: 96
+* Number of recursive dependencies: 112
 
 Run `revdep_details(, "mgcViz")` for more info
 
@@ -6074,144 +4226,40 @@ Run `revdep_details(, "MHTcop")` for more info
       All declared Imports should be used.
     ```
 
-# microsamplingDesign
+# microbiomeExplorer
 
 <details>
 
-* Version: 1.0.7
+* Version: 1.0.1
 * GitHub: NA
-* Source code: https://github.com/cran/microsamplingDesign
-* Date/Publication: 2020-04-05 19:30:02 UTC
-* Number of recursive dependencies: 122
+* Source code: https://github.com/cran/microbiomeExplorer
+* Date/Publication: 2020-10-29
+* Number of recursive dependencies: 202
 
-Run `revdep_details(, "microsamplingDesign")` for more info
+Run `revdep_details(, "microbiomeExplorer")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking installed package size ... NOTE
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘microsamplingDesign.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Loading required package: Rcpp
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'microsamplingDesign.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/microsamplingDesign/new/microsamplingDesign.Rcheck/vign_test/microsamplingDesign/vignettes/microsamplingDesign.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See microsamplingDesign.log for more info.
-    --- failed re-building ‘microsamplingDesign.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘microsamplingDesign.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# MIGSA
-
-<details>
-
-* Version: 1.12.0
-* GitHub: NA
-* Source code: https://github.com/cran/MIGSA
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 119
-
-Run `revdep_details(, "MIGSA")` for more info
-
-</details>
-
-## In both
-
-*   checking tests ...
-    ```
-    ...
-          parLapplyLB, parRapply, parSapply, parSapplyLB
-      
-      The following objects are masked from 'package:stats':
-      
-          IQR, mad, sd, var, xtabs
-      
-      The following objects are masked from 'package:base':
-      
-          Filter, Find, Map, Position, Reduce, anyDuplicated, append,
-          as.data.frame, basename, cbind, colnames, dirname, do.call,
-          duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
-          lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
-          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-          tapply, union, unique, unsplit, which, which.max, which.min
-      
-      
-      
-      Error in library("RUnit", quietly = TRUE) : 
-        there is no package called 'RUnit'
-      Calls: <Anonymous> -> library
-      Execution halted
-    ```
-
-*   checking running R code from vignettes ...
-    ```
-      ‘MIGSA.Rnw’ using ‘UTF-8’... failed
-      ‘gettingPbcmcData.Rnw’ using ‘UTF-8’... OK
-      ‘gettingTcgaData.Rnw’ using ‘UTF-8’... OK
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘MIGSA.Rnw’
-      ...
-            term        minHeight allParents
-    target  "character" "logical" "list"    
-    defined "character" "logical" "list"    
-     --- function search by body ---
-    S4 Method getHeight:MIGSA defined in namespace MIGSA with signature character#logical#list has this body.
-     ----------- END OF FAILURE REPORT -------------- 
-    
-      When sourcing ‘MIGSA.R’:
-    Error: 'length(x) = 2 > 1' in coercion to 'logical(1)'
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'gettingTcgaData.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'gettingTcgaData.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `multirow.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.7 \DeclareMathOperator
-                            *{\argmax}{arg\,max}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘gettingTcgaData.Rnw’
-    
-    SUMMARY: processing the following files failed:
-      ‘MIGSA.Rnw’ ‘gettingPbcmcData.Rnw’ ‘gettingTcgaData.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+      installed size is 12.1Mb
+      sub-directories of 1Mb or more:
+        doc       4.6Mb
+        extdata   4.1Mb
+        shiny     2.8Mb
     ```
 
 # MinimumDistance
 
 <details>
 
-* Version: 1.32.0
+* Version: 1.34.0
 * GitHub: NA
 * Source code: https://github.com/cran/MinimumDistance
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 72
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "MinimumDistance")` for more info
 
@@ -6249,14 +4297,18 @@ Run `revdep_details(, "MinimumDistance")` for more info
 
 *   checking dependencies in R code ... NOTE
     ```
-    Unexported object imported by a ':::' call: ‘VanillaICE:::plotIdiogram’
-      See the note in ?`:::` about the use of this operator.
+    Namespace in Imports field not imported from: ‘MatrixGenerics’
+      All declared Imports should be used.
     ```
 
 *   checking R code for possible problems ... NOTE
     ```
     callDenovoSegments: no visible global function definition for
       ‘read.bsfiles’
+    combineRanges: no visible global function definition for ‘RangedData’
+    getRefGene: no visible global function definition for ‘RangedData’
+    overlapsCentromere: no visible global function definition for
+      ‘RangedData’
     pruneMD: no visible global function definition for ‘RangedDataCBS’
     pruneTrioSet: no visible global function definition for
       ‘RangedDataList’
@@ -6265,7 +4317,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
       definition for ‘read.bsfiles’
     calculateMindist,list: no visible binding for global variable ‘elt’
     Undefined global functions or variables:
-      RangedDataCBS RangedDataList elt read.bsfiles
+      RangedData RangedDataCBS RangedDataList elt read.bsfiles
     ```
 
 *   checking contents of ‘data’ directory ... NOTE
@@ -6278,11 +4330,11 @@ Run `revdep_details(, "MinimumDistance")` for more info
 
 <details>
 
-* Version: 6.12.2
+* Version: 6.14.0
 * GitHub: https://github.com/mixOmicsTeam/mixOmics
 * Source code: https://github.com/cran/mixOmics
-* Date/Publication: 2020-08-26
-* Number of recursive dependencies: 95
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 105
 
 Run `revdep_details(, "mixOmics")` for more info
 
@@ -6290,57 +4342,12 @@ Run `revdep_details(, "mixOmics")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-    ...
-      
-      Performing repeated cross-validation...
-      
-        |                                                                            
-        |                                                                      |   0%
-        |                                                                            
-        |=======================                                               |  33%
-        |                                                                            
-        |===============================================                       |  67%
-        |                                                                            
-        |======================================================================| 100%
-      Performing repeated cross-validation...
-      
-        |                                                                            
-        |                                                                      |   0%══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 101 | SKIPPED: 0 | WARNINGS: 2 | FAILED: 2 ]
-      1. Error: network works for rcc (@test-network.R#13) 
-      2. Error: network works for spls (@test-network.R#28) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 30-31 (vignette.Rmd) 
-    Error: processing vignette 'vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.8Mb
+      installed size is 10.7Mb
       sub-directories of 1Mb or more:
-        R      1.2Mb
-        data   3.0Mb
+        R      1.3Mb
+        data   2.9Mb
         doc    5.9Mb
     ```
 
@@ -6348,33 +4355,17 @@ Run `revdep_details(, "mixOmics")` for more info
 
 <details>
 
-* Version: 1.4.5
+* Version: 1.6.5
 * GitHub: NA
 * Source code: https://github.com/cran/mnem
-* Date/Publication: 2020-09-08
-* Number of recursive dependencies: 154
+* Date/Publication: 2020-11-16
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "mnem")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘mnem.Rmd’ using rmarkdown
-    Error: processing vignette 'mnem.Rmd' failed with diagnostics:
-    there is no package called ‘BiocStyle’
-    --- failed re-building ‘mnem.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘mnem.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -6383,7 +4374,7 @@ Run `revdep_details(, "mnem")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.5Mb
+      installed size is  8.3Mb
       sub-directories of 1Mb or more:
         data   2.3Mb
         doc    3.8Mb
@@ -6416,11 +4407,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking S3 generic/method consistency ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[50613,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[26769,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6432,11 +4423,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking replacement functions ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[50661,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[26633,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6448,11 +4439,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking for missing documentation entries ... WARNING
     ```
     --------------------------------------------------------------------------
-    [[51870,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[30136,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6464,24 +4455,23 @@ Run `revdep_details(, "moc.gapbk")` for more info
 
 *   checking for code/documentation mismatches ... WARNING
     ```
-    ...
     --------------------------------------------------------------------------
-    --------------------------------------------------------------------------
-    [[51932,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[30059,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
     --------------------------------------------------------------------------
+    ...
     --------------------------------------------------------------------------
-    [[51748,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[30002,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6491,11 +4481,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[50606,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[26822,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6509,11 +4499,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking foreign function calls ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[50686,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[30660,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6525,11 +4515,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking R code for possible problems ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[50437,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[30433,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6539,11 +4529,11 @@ Run `revdep_details(, "moc.gapbk")` for more info
 *   checking Rd \usage sections ... NOTE
     ```
     --------------------------------------------------------------------------
-    [[51734,1],0]: A high-performance Open MPI point-to-point messaging module
+    [[29907,1],0]: A high-performance Open MPI point-to-point messaging module
     was unable to find any relevant network interfaces:
     
     Module: OpenFabrics (openib)
-      Host: c4-dev1
+      Host: c4-dev2
     
     Another transport will be used instead, although this may result in
     lower performance.
@@ -6554,75 +4544,21 @@ Run `revdep_details(, "moc.gapbk")` for more info
     Extensions’ manual.
     ```
 
-# MoEClust
-
-<details>
-
-* Version: 1.3.1
-* GitHub: https://github.com/Keefe-Murphy/MoEClust
-* Source code: https://github.com/cran/MoEClust
-* Date/Publication: 2020-05-12 17:00:12 UTC
-* Number of recursive dependencies: 86
-
-Run `revdep_details(, "MoEClust")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MoEClust.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 44-46 (MoEClust.Rmd) 
-    Error: processing vignette 'MoEClust.Rmd' failed with diagnostics:
-    unused argument (type = "cairo")
-    --- failed re-building ‘MoEClust.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘MoEClust.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # monocle
 
 <details>
 
-* Version: 2.16.0
+* Version: 2.18.0
 * GitHub: NA
 * Source code: https://github.com/cran/monocle
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 241
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 258
 
 Run `revdep_details(, "monocle")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘monocle-vignette.Rnw’ using knitr
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 58-59 (monocle-vignette.Rnw) 
-    Error: processing vignette 'monocle-vignette.Rnw' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘monocle-vignette.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘monocle-vignette.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -6634,18 +4570,17 @@ Run `revdep_details(, "monocle")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
+    assign_cell_lineage: no visible global function definition for ‘nei’
+    buildBranchCellDataSet: no visible global function definition for ‘nei’
+    clusterCells: no visible global function definition for ‘quantile’
+    count_leaf_descendents: no visible global function definition for ‘nei’
+    cth_classifier_cds: no visible global function definition for ‘nei’
+    cth_classifier_cell: no visible global function definition for ‘nei’
+    diff_test_helper: no visible binding for global variable ‘Size_Factor’
+    exportCDS: no visible binding for global variable ‘use_for_ordering’
     extract_good_ordering: no visible global function definition for ‘nei’
     fit_model_helper: no visible binding for global variable ‘Size_Factor’
-    get_next_node_id: no visible binding for '<<-' assignment to
-      ‘next_node’
-    get_next_node_id: no visible binding for global variable ‘next_node’
-    make_canonical: no visible global function definition for ‘nei’
-    measure_diameter_path: no visible global function definition for ‘nei’
-    orderCells: no visible binding for '<<-' assignment to ‘next_node’
-    plot_multiple_branches_pseudotime: no visible binding for global
-      variable ‘pseudocount’
-    plot_multiple_branches_pseudotime: no visible binding for global
+    ...
       variable ‘Branch’
     project2MST: no visible global function definition for ‘nei’
     reverseEmbeddingCDS : <anonymous>: no visible global function
@@ -6665,61 +4600,28 @@ Run `revdep_details(, "monocle")` for more info
     Please remove from your package.
     ```
 
-# MOSim
-
-<details>
-
-* Version: 1.2.0
-* GitHub: https://github.com/Neurergus/MOSim
-* Source code: https://github.com/cran/MOSim
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 75
-
-Run `revdep_details(, "MOSim")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MOSim.Rnw’ using knitr
-    Quitting from lines 154-155 (MOSim.Rnw) 
-    Error: processing vignette 'MOSim.Rnw' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘MOSim.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘MOSim.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.0Mb
-      sub-directories of 1Mb or more:
-        data   4.2Mb
-    ```
-
 # motifbreakR
 
 <details>
 
-* Version: 2.2.0
+* Version: 2.4.0
 * GitHub: https://github.com/Simon-Coetzee/motifbreakR
 * Source code: https://github.com/cran/motifbreakR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 154
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 158
 
 Run `revdep_details(, "motifbreakR")` for more info
 
 </details>
 
 ## In both
+
+*   checking whether package ‘motifbreakR’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import ‘S4Vectors::as.data.frame’ by ‘motifStack::as.data.frame’ when loading ‘motifbreakR’
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00install.out’ for details.
+    ```
 
 *   checking for missing documentation entries ... WARNING
     ```
@@ -6782,7 +4684,7 @@ Run `revdep_details(, "motifbreakR")` for more info
 * GitHub: https://github.com/PSegaert/mrfDepth
 * Source code: https://github.com/cran/mrfDepth
 * Date/Publication: 2020-08-26 16:10:33 UTC
-* Number of recursive dependencies: 61
+* Number of recursive dependencies: 65
 
 Run `revdep_details(, "mrfDepth")` for more info
 
@@ -6792,10 +4694,10 @@ Run `revdep_details(, "mrfDepth")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 20.8Mb
+      installed size is 20.3Mb
       sub-directories of 1Mb or more:
         data   1.6Mb
-        libs  18.7Mb
+        libs  18.4Mb
     ```
 
 # MultiBD
@@ -6806,7 +4708,7 @@ Run `revdep_details(, "mrfDepth")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MultiBD
 * Date/Publication: 2016-12-05 18:28:46
-* Number of recursive dependencies: 71
+* Number of recursive dependencies: 74
 
 Run `revdep_details(, "MultiBD")` for more info
 
@@ -6814,48 +4716,22 @@ Run `revdep_details(, "MultiBD")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    Error: processing vignette 'SIRtrans.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'SIRtrans.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.27 \makeatletter
-                      ^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘SIRtrans.Rnw’
-    
-    SUMMARY: processing the following files failed:
-      ‘SIR-MCMC.Rmd’ ‘SIRtrans.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.4Mb
+      installed size is  9.0Mb
       sub-directories of 1Mb or more:
-        libs   7.9Mb
+        libs   7.5Mb
     ```
 
 # muscat
 
 <details>
 
-* Version: 1.2.1
+* Version: 1.4.0
 * GitHub: https://github.com/HelenaLC/muscat
 * Source code: https://github.com/cran/muscat
-* Date/Publication: 2020-06-10
-* Number of recursive dependencies: 200
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 215
 
 Run `revdep_details(, "muscat")` for more info
 
@@ -6863,55 +4739,54 @@ Run `revdep_details(, "muscat")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘analysis.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 44-46 (analysis.Rmd) 
-    Error: processing vignette 'analysis.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘analysis.Rmd’
-    
-    --- re-building ‘simulation.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 55-62 (simulation.Rmd) 
-    Error: processing vignette 'simulation.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘simulation.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘analysis.Rmd’ ‘simulation.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  9.0Mb
       sub-directories of 1Mb or more:
         data   2.3Mb
-        doc    5.9Mb
+        doc    6.0Mb
     ```
 
 # muscData
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * GitHub: https://github.com/HelenaLC/muscData
 * Source code: https://github.com/cran/muscData
-* Date/Publication: 2020-05-07
-* Number of recursive dependencies: 239
+* Date/Publication: 2020-10-29
+* Number of recursive dependencies: 255
 
 Run `revdep_details(, "muscData")` for more info
 
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘muscData-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Kang18_8vs8
+    > ### Title: 'Kang18_8vs8' dataset
+    > ### Aliases: Kang18 Kang18_8vs8
+    > 
+    > ### ** Examples
+    > 
+    > # load metadata only
+    ...
+    Error: failed to load resource
+      name: EH2259
+      title: Kang18_8vs8
+      reason: Corrupt Cache: resource path
+      See vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/ExperimentHub
+      potential duplicate files: 
+        b93f7382989a_3697
+        b96e433cd1a3_3697
+    Execution halted
+    ```
 
 *   checking for missing documentation entries ... WARNING
     ```
@@ -6920,25 +4795,6 @@ Run `revdep_details(, "muscData")` for more info
     All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘muscData.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 37-39 (muscData.Rmd) 
-    Error: processing vignette 'muscData.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘muscData.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘muscData.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -6960,11 +4816,11 @@ Run `revdep_details(, "muscData")` for more info
 
 <details>
 
-* Version: 1.18.0
+* Version: 1.20.0
 * GitHub: NA
 * Source code: https://github.com/cran/NanoStringDiff
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 44
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 53
 
 Run `revdep_details(, "NanoStringDiff")` for more info
 
@@ -6984,18 +4840,17 @@ Run `revdep_details(, "NanoStringDiff")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘read.table’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘glm’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘poisson’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘rowVars’
+    PlotsPositiveHousekeeping: no visible global function definition for
+      ‘par’
     ...
-    glmfit.full: no visible global function definition for ‘lm’
-    glmfit.full: no visible global function definition for ‘median’
-    glmfit.full: no visible global function definition for ‘IQR’
-    glmfit.full : get.phi: no visible global function definition for
-      ‘optimize’
-    glmfit.full : get.beta.full: no visible global function definition for
-      ‘optim’
-    glmfit.reduce: no visible global function definition for ‘lm’
-    glmfit.reduce : get.beta.reduce: no visible global function definition
-      for ‘optim’
-    rnegbinom: no visible global function definition for ‘rpois’
     rnegbinom: no visible global function definition for ‘rgamma’
     Undefined global functions or variables:
       IQR abline glm lm median optim optimize p.adjust par pchisq poisson
@@ -7015,30 +4870,27 @@ Run `revdep_details(, "NanoStringDiff")` for more info
     Please remove them from your package.
     ```
 
-*   checking re-building of vignette outputs ... NOTE
+# nearBynding
+
+<details>
+
+* Version: 1.0.0
+* GitHub: NA
+* Source code: https://github.com/cran/nearBynding
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 126
+
+Run `revdep_details(, "nearBynding")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
     ```
-    ...
-    Error: processing vignette 'NanoStringDiff.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'NanoStringDiff.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.37 \sectionfont
-                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘NanoStringDiff.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘NanoStringDiff.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+      installed size is  8.9Mb
+      sub-directories of 1Mb or more:
+        extdata   8.1Mb
     ```
 
 # NetLogoR
@@ -7049,7 +4901,7 @@ Run `revdep_details(, "NanoStringDiff")` for more info
 * GitHub: https://github.com/PredictiveEcology/NetLogoR
 * Source code: https://github.com/cran/NetLogoR
 * Date/Publication: 2020-03-02 10:00:08 UTC
-* Number of recursive dependencies: 151
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "NetLogoR")` for more info
 
@@ -7066,36 +4918,17 @@ Run `revdep_details(, "NetLogoR")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * GitHub: https://github.com/ComputationalProteomics/NormalyzerDE
 * Source code: https://github.com/cran/NormalyzerDE
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 147
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 158
 
 Run `revdep_details(, "NormalyzerDE")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-21 (vignette.Rmd) 
-    Error: processing vignette 'vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -7109,11 +4942,11 @@ Run `revdep_details(, "NormalyzerDE")` for more info
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * GitHub: NA
 * Source code: https://github.com/cran/omicplotR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 75
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 84
 
 Run `revdep_details(, "omicplotR")` for more info
 
@@ -7140,11 +4973,11 @@ Run `revdep_details(, "omicplotR")` for more info
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * GitHub: NA
 * Source code: https://github.com/cran/omicsPrint
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 117
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 123
 
 Run `revdep_details(, "omicsPrint")` for more info
 
@@ -7154,9 +4987,9 @@ Run `revdep_details(, "omicsPrint")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.7Mb
+      installed size is  8.6Mb
       sub-directories of 1Mb or more:
-        data   7.4Mb
+        data   7.3Mb
         doc    1.2Mb
     ```
 
@@ -7168,7 +5001,7 @@ Run `revdep_details(, "omicsPrint")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/OptimalDesign
 * Date/Publication: 2019-12-02 08:50:07 UTC
-* Number of recursive dependencies: 47
+* Number of recursive dependencies: 55
 
 Run `revdep_details(, "OptimalDesign")` for more info
 
@@ -7186,11 +5019,11 @@ Run `revdep_details(, "OptimalDesign")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * GitHub: https://github.com/gagneurlab/OUTRIDER
 * Source code: https://github.com/cran/OUTRIDER
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 163
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 171
 
 Run `revdep_details(, "OUTRIDER")` for more info
 
@@ -7198,101 +5031,29 @@ Run `revdep_details(, "OUTRIDER")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    ...
-     92:        312.80 124021.44    FALSE                0              0       5.5
-     93:        829.59 144898.81    FALSE                0              0       5.5
-     94:         65.67 102654.99    FALSE                0              0       5.5
-     95:         51.78  64681.51    FALSE                0              0       5.5
-     96:        176.16 153477.93    FALSE                0              0       5.5
-     97:       1416.38 107837.16    FALSE                0              0       5.5
-     98:         79.79 176300.28    FALSE                0              0       5.5
-     99:        643.74 201805.85    FALSE                0              0       5.5
-    100:       1076.47 244265.44    FALSE                0              0       5.5
-         meanCorrected     theta aberrant AberrantBySample AberrantByGene padj_rank
-    > 
-    > plotAberrantPerSample(ods)
-    Warning: Transformation introduced infinite values in continuous y-axis
-    Warning: Removed 10 rows containing missing values (geom_bar).
-    > plotVolcano(ods, 1)
-    Warning in dev_fun(file = tempfile(), width = width %||% 640, height = height %||%  :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    Calls: plotVolcano -> ggplotly -> ggplotly.ggplot -> gg2list -> dev_fun
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-    ...
-      [1] "Evaluation loss: 0.588533311804322 for q=5"
-      [1] "Thu Sep 24 16:35:11 2020: Initial PCA loss: 6.46616282459584"
-      [1] "Thu Sep 24 16:35:14 2020: Iteration: 1 loss: 4.8154263846794"
-      [1] "Thu Sep 24 16:35:16 2020: Iteration: 2 loss: 4.79016305976782"
-      Time difference of 3.222826 secs
-      [1] "Thu Sep 24 16:35:16 2020: 2 Final nb-AE loss: 4.79016305976782"
-      ── 1. Error: plotting (@test_plotting.R#17)  ───────────────────────────────────
-      unable to start device PNG
-      Backtrace:
-       1. testthat::expect_equal(...)
-       4. OUTRIDER::plotVolcano(ods, 30)
-       6. plotly:::ggplotly.ggplot(p, tooltip = "text")
-       7. plotly::gg2list(...)
-       8. grDevices:::dev_fun(...)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 81 | SKIPPED: 0 | WARNINGS: 2 | FAILED: 1 ]
-      1. Error: plotting (@test_plotting.R#17) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘OUTRIDER.Rnw’ using knitr
-    Quitting from lines 13-24 (OUTRIDER.Rnw) 
-    Error: processing vignette 'OUTRIDER.Rnw' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘OUTRIDER.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘OUTRIDER.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
         doc    2.3Mb
-        libs   2.7Mb
+        libs   2.6Mb
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking dependencies in R code ... NOTE
     ```
-    plotAberrantPerSample: no visible binding for global variable ‘y’
-    plotAberrantPerSample: no visible binding for global variable ‘fill’
-    plotSizeFactors: no visible binding for global variable ‘sizeFactor’
-    Undefined global functions or variables:
-      fill sizeFactor y
+    Namespace in Imports field not imported from: ‘Rcpp’
+      All declared Imports should be used.
     ```
 
 # pandaR
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.22.0
 * GitHub: NA
 * Source code: https://github.com/cran/pandaR
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 62
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 66
 
 Run `revdep_details(, "pandaR")` for more info
 
@@ -7308,7 +5069,7 @@ Run `revdep_details(, "pandaR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.4Mb
+      installed size is  9.3Mb
       sub-directories of 1Mb or more:
         data   9.0Mb
     ```
@@ -7336,11 +5097,11 @@ Run `revdep_details(, "pandaR")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: https://github.com/mani2012/PathoStat
 * Source code: https://github.com/cran/PathoStat
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 185
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 199
 
 Run `revdep_details(, "PathoStat")` for more info
 
@@ -7359,11 +5120,11 @@ Run `revdep_details(, "PathoStat")` for more info
 
 <details>
 
-* Version: 1.80.0
+* Version: 1.82.0
 * GitHub: https://github.com/hredestig/pcamethods
 * Source code: https://github.com/cran/pcaMethods
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 49
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 53
 
 Run `revdep_details(, "pcaMethods")` for more info
 
@@ -7373,18 +5134,17 @@ Run `revdep_details(, "pcaMethods")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    BPCA_initmodel: no visible global function definition for ‘cov’
+    Q2: no visible global function definition for ‘txtProgressBar’
+    Q2: no visible global function definition for ‘setTxtProgressBar’
+    Q2: no visible global function definition for ‘cor’
+    RnipalsPca: no visible global function definition for ‘na.omit’
+    cvseg : <anonymous>: no visible global function definition for
+      ‘na.omit’
+    llsImpute: no visible global function definition for ‘cor’
+    nlpca: no visible global function definition for ‘runif’
+    nlpca: no visible global function definition for ‘rnorm’
     ...
-    svdImpute: no visible global function definition for ‘prcomp’
-    svdPca: no visible global function definition for ‘prcomp’
-    plot,pcaRes: no visible global function definition for ‘gray’
-    plot,pcaRes: no visible global function definition for ‘barplot’
-    plot,pcaRes: no visible global function definition for ‘legend’
-    slplot,pcaRes: no visible global function definition for ‘par’
-    slplot,pcaRes: no visible global function definition for ‘layout’
-    slplot,pcaRes: no visible global function definition for ‘abline’
-    slplot,pcaRes: no visible global function definition for ‘lines’
-    Undefined global functions or variables:
-      abline barplot cor cov gray layout legend lines median na.omit pairs
       par points prcomp qf rnorm runif setTxtProgressBar text
       txtProgressBar
     Consider adding
@@ -7402,50 +5162,15 @@ Run `revdep_details(, "pcaMethods")` for more info
     Package unavailable to check Rd xrefs: ‘ade4’
     ```
 
-# PepsNMR
-
-<details>
-
-* Version: 1.6.1
-* GitHub: https://github.com/ManonMartin/PepsNMR
-* Source code: https://github.com/cran/PepsNMR
-* Date/Publication: 2020-07-21
-* Number of recursive dependencies: 69
-
-Run `revdep_details(, "PepsNMR")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘PepsNMR_minimal_example.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 53-55 (PepsNMR_minimal_example.Rmd) 
-    Error: processing vignette 'PepsNMR_minimal_example.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘PepsNMR_minimal_example.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘PepsNMR_minimal_example.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # phosphonormalizer
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.3
 * GitHub: NA
 * Source code: https://github.com/cran/phosphonormalizer
-* Date/Publication: 2020-05-07
-* Number of recursive dependencies: 40
+* Date/Publication: 2020-12-08
+* Number of recursive dependencies: 49
 
 Run `revdep_details(, "phosphonormalizer")` for more info
 
@@ -7458,75 +5183,26 @@ Run `revdep_details(, "phosphonormalizer")` for more info
     Package which this enhances but not available for checking: ‘MSnbase’
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking DESCRIPTION meta-information ... NOTE
     ```
-    normalizePhospho: no visible global function definition for ‘is’
-    Undefined global functions or variables:
-      is
-    Consider adding
-      importFrom("methods", "is")
-    to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
-    contains 'methods').
+    Malformed Title field: should not end in a period.
     ```
 
 # Pigengene
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: NA
 * Source code: https://github.com/cran/Pigengene
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 136
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 143
 
 Run `revdep_details(, "Pigengene")` for more info
 
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    ...
-    > ### Title: Infers robust biological signatures from gene expression data
-    > ### Aliases: Pigengene-package Pigengene
-    > ### Keywords: package datasets documentation models
-    > 
-    > ### ** Examples
-    > 
-    > data(aml)
-    > data(mds)
-    > d1 <- rbind(aml,mds)
-    > Labels <- c(rep("AML",nrow(aml)),rep("MDS",nrow(mds)))
-    > names(Labels) <- rownames(d1)
-    > p1 <- one.step.pigengene(Data=d1,saveDir='pigengene', bnNum=10, verbose=1,
-    +    seed=1, Labels=Labels, toCompact=FALSE, doHeat=FALSE)
-    Pigengene started analizing 366 samples using 1000 genes...
-    Warning: executing %dopar% sequentially: no parallel backend registered
-    Warning in png(filename = plotFile) :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    Calls: one.step.pigengene -> wgcna.one.step -> png
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘Pigengene_inference.Rnw’ using knitr
-    Quitting from lines 107-115 (Pigengene_inference.Rnw) 
-    Error: processing vignette 'Pigengene_inference.Rnw' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘Pigengene_inference.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘Pigengene_inference.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -7553,47 +5229,89 @@ Run `revdep_details(, "Pigengene")` for more info
       
     ```
 
-# pmp
+# pipeComp
 
 <details>
 
 * Version: 1.0.0
+* GitHub: https://github.com/plger/pipeComp
+* Source code: https://github.com/cran/pipeComp
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 208
+
+Run `revdep_details(, "pipeComp")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.1Mb
+      sub-directories of 1Mb or more:
+        doc   4.5Mb
+    ```
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENSE
+    is not mentioned in the DESCRIPTION file.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    There are ::: calls to the package's namespace in its code. A package
+      almost never needs to use ::: for its own objects:
+      ‘.compileExcludedCells’ ‘.getMM’ ‘.homogenizeDEA’ ‘.runf’
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    scrna_describeDatasets: no visible binding for global variable
+      ‘cluster’
+    scrna_describeDatasets: no visible binding for global variable ‘nb’
+    scrna_describeDatasets : pf: no visible binding for global variable
+      ‘.x’
+    scrna_describeDatasets : rd: no visible binding for global variable ‘y’
+    scrna_describeDatasets : rd: no visible binding for global variable
+      ‘cluster’
+    scrna_evalPlot_filtering: no visible binding for global variable
+      ‘max.lost’
+    ...
+    scrna_evalPlot_filtering: no visible binding for global variable
+      ‘doubletmethod’
+    scrna_evalPlot_filtering: no visible binding for global variable
+      ‘method’
+    scrna_evalPlot_overall: no visible binding for global variable
+      ‘true.nbClusts’
+    scrna_evalPlot_overall: no visible binding for global variable ‘n_clus’
+    Undefined global functions or variables:
+      .x cluster doubletmethod filt max.lost mean_F1 method n_clus nb
+      true.nbClusts y
+    ```
+
+*   checking for unstated dependencies in vignettes ... NOTE
+    ```
+    'library' or 'require' calls not declared from:
+      ‘edgeR’ ‘sva’
+    ```
+
+# pmp
+
+<details>
+
+* Version: 1.2.0
 * GitHub: NA
 * Source code: https://github.com/cran/pmp
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 96
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 100
 
 Run `revdep_details(, "pmp")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-      unable to open connection to X11 display ''
-    Quitting from lines 32-38 (pmp_vignette_sbc_spectral_quality_assessment.Rmd) 
-    Error: processing vignette 'pmp_vignette_sbc_spectral_quality_assessment.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘pmp_vignette_sbc_spectral_quality_assessment.Rmd’
-    
-    --- re-building ‘pmp_vignette_signal_batch_correction_mass_spectrometry.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 29-33 (pmp_vignette_signal_batch_correction_mass_spectrometry.Rmd) 
-    Error: processing vignette 'pmp_vignette_signal_batch_correction_mass_spectrometry.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘pmp_vignette_signal_batch_correction_mass_spectrometry.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘pmp_vignette_peak_matrix_processing_for_metabolomics_datasets.Rmd’
-      ‘pmp_vignette_sbc_spectral_quality_assessment.Rmd’
-      ‘pmp_vignette_signal_batch_correction_mass_spectrometry.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -7607,36 +5325,17 @@ Run `revdep_details(, "pmp")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.6.0
 * GitHub: NA
 * Source code: https://github.com/cran/PrecisionTrialDrawer
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 129
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 138
 
 Run `revdep_details(, "PrecisionTrialDrawer")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘PrecisionTrialDrawer.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 30-31 (PrecisionTrialDrawer.Rmd) 
-    Error: processing vignette 'PrecisionTrialDrawer.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘PrecisionTrialDrawer.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘PrecisionTrialDrawer.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -7647,11 +5346,11 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.0
 * GitHub: NA
 * Source code: https://github.com/cran/ProteoMM
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 95
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 101
 
 Run `revdep_details(, "ProteoMM")` for more info
 
@@ -7665,83 +5364,15 @@ Run `revdep_details(, "ProteoMM")` for more info
       MIT
     ```
 
-# PSCBS
-
-<details>
-
-* Version: 0.65.0
-* GitHub: https://github.com/HenrikBengtsson/PSCBS
-* Source code: https://github.com/cran/PSCBS
-* Date/Publication: 2019-05-05 22:40:09 UTC
-* Number of recursive dependencies: 85
-
-Run `revdep_details(, "PSCBS")` for more info
-
-</details>
-
-## In both
-
-*   checking running R code from vignettes ...
-    ```
-    ...
-    +     aspectRatio = 0.35, {
-    +         plotTracks(fit)
-    +     })
-    Warning in png("figures/PairedPSCBS,exData,chr01,CBS,tracks.png", width = 840,  :
-      unable to open connection to X11 display ''
-    
-      When sourcing ‘CBS.R’:
-    Error: unable to start device PNG
-    Execution halted
-    when running code in ‘PairedPSCBS.tex.rsp’
-      ...
-    > toPNG(fullname, tags = c(class(fit)[1], "tracks"), 
-    +     aspectRatio = 0.6, {
-    +         plotTracks(fit)
-    +     })
-    Warning in png("figures/PairedPSCBS,exData,chr01,PairedPSCBS,tracks.png",  :
-      unable to open connection to X11 display ''
-    
-      When sourcing ‘PairedPSCBS.R’:
-    Error: unable to start device PNG
-    Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    9           1     5    1 1.99e+08 2.07e+08         2755    2.59          784
-    10          1     6    1 2.07e+08 2.07e+08           14    3.87            9
-    11          1     7    1 2.07e+08 2.47e+08        15581    2.64         4492
-       tcnNbrOfHets  dhStart    dhEnd dhNbrOfLoci dhMean c1Mean c2Mean
-    6             0       NA       NA          NA     NA     NA     NA
-    7          3770 1.42e+08 1.86e+08        3770 0.0943  0.935   1.13
-    8          1271 1.86e+08 1.99e+08        1271 0.2563  1.007   1.70
-    9           784 1.99e+08 2.07e+08         784 0.2197  1.009   1.58
-    10            9 2.07e+08 2.07e+08           9 0.2769  1.400   2.47
-    11         4492 2.07e+08 2.47e+08        4492 0.2290  1.017   1.62
-    Warning in png("figures/PairedPSCBS,exData,chr01,PairedPSCBS,tracks.png",  :
-      unable to open connection to X11 display ''
-    Error: processing vignette 'PairedPSCBS.tex.rsp' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘PairedPSCBS.tex.rsp’
-    
-    SUMMARY: processing the following files failed:
-      ‘CBS.tex.rsp’ ‘PairedPSCBS.tex.rsp’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # QDNAseq
 
 <details>
 
-* Version: 1.24.0
+* Version: 1.26.0
 * GitHub: https://github.com/ccagc/QDNAseq
 * Source code: https://github.com/cran/QDNAseq
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 70
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 72
 
 Run `revdep_details(, "QDNAseq")` for more info
 
@@ -7749,53 +5380,32 @@ Run `revdep_details(, "QDNAseq")` for more info
 
 ## In both
 
-*   checking running R code from vignettes ...
-    ```
-      ‘QDNAseq.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘QDNAseq.Rnw’
-      ...
-    experimentData: use 'experimentData(object)'
-    Annotation:  
-    
-    > png("rawprofile.png")
-    Warning in png("rawprofile.png") :
-      unable to open connection to X11 display ''
-    
-      When sourcing ‘QDNAseq.R’:
-    Error: unable to start device PNG
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘future’
       All declared Imports should be used.
     ```
 
-*   checking re-building of vignette outputs ... NOTE
+# QFeatures
+
+<details>
+
+* Version: 1.0.0
+* GitHub: https://github.com/RforMassSpectrometry/QFeatures
+* Source code: https://github.com/cran/QFeatures
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 130
+
+Run `revdep_details(, "QFeatures")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘QDNAseq.Rnw’ using Sweave
-    Warning in png("rawprofile.png") :
-      unable to open connection to X11 display ''
-    
-    Error: processing vignette 'QDNAseq.Rnw' failed with diagnostics:
-     chunk 6 
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    
-    --- failed re-building ‘QDNAseq.Rnw’
-    
-    Warning in file.remove(f) :
-      cannot remove file '.nfs0000001e1ec38a74000000b2', reason 'Device or resource busy'
-    SUMMARY: processing the following file failed:
-      ‘QDNAseq.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Unexported object imported by a ':::' call: ‘MultiAssayExperiment:::.sampleMapFromData’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # r2dRue
@@ -7826,18 +5436,17 @@ Run `revdep_details(, "r2dRue")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .gdalWriteFormats: no visible global function definition for
+      ‘gdalDrivers’
+    aiObsEx: no visible global function definition for ‘readGDAL’
+    aiObsEx: no visible global function definition for ‘txtProgressBar’
+    aiObsEx: no visible global function definition for ‘setTxtProgressBar’
+    aiObsMe: no visible global function definition for ‘txtProgressBar’
+    aiObsMe: no visible global function definition for ‘readGDAL’
+    aiObsMe: no visible global function definition for ‘setTxtProgressBar’
+    assessment: no visible global function definition for ‘writeGDAL’
+    assessment: no visible global function definition for ‘readGDAL’
     ...
-    rueObsMe: no visible global function definition for ‘readGDAL’
-    rueObsMe: no visible global function definition for ‘setTxtProgressBar’
-    showInfo: no visible global function definition for ‘head’
-    solarRad: no visible global function definition for ‘is.projected’
-    solarRad: no visible global function definition for ‘coordinates’
-    solarRad12M: no visible global function definition for ‘writeGDAL’
-    summarize: no visible global function definition for ‘writeGDAL’
-    Undefined global functions or variables:
-      GDAL.close GDAL.open GDALinfo abline axis.Date barplot boxplot
-      coordinates cor density gdalDrivers head hist image is.projected
-      layout layout.show lines na.omit pf pt read.table readGDAL rect
       rowCounts rowMedians rowRanges rowSds rowVars setTxtProgressBar
       spplot title txtProgressBar write.table writeGDAL
     Consider adding
@@ -7848,6 +5457,34 @@ Run `revdep_details(, "r2dRue")` for more info
       importFrom("utils", "head", "read.table", "setTxtProgressBar",
                  "txtProgressBar", "write.table")
     to your NAMESPACE file.
+    ```
+
+# RadioGx
+
+<details>
+
+* Version: 1.0.0
+* GitHub: NA
+* Source code: https://github.com/cran/RadioGx
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 140
+
+Run `revdep_details(, "RadioGx")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘RadioGx’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/RadioGx/new/RadioGx.Rcheck/00install.out’ for details.
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 14 marked UTF-8 strings
     ```
 
 # randomizationInference
@@ -7888,11 +5525,11 @@ Run `revdep_details(, "randomizationInference")` for more info
 
 <details>
 
-* Version: 1.5.2
+* Version: 1.6.2
 * GitHub: NA
 * Source code: https://github.com/cran/regsem
-* Date/Publication: 2020-02-19 12:00:03 UTC
-* Number of recursive dependencies: 164
+* Date/Publication: 2020-10-01 17:00:02 UTC
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "regsem")` for more info
 
@@ -7902,9 +5539,9 @@ Run `revdep_details(, "regsem")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
-        libs   4.9Mb
+        libs   4.8Mb
     ```
 
 # RJcluster
@@ -7915,36 +5552,13 @@ Run `revdep_details(, "regsem")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RJcluster
 * Date/Publication: 2020-09-23 08:00:06 UTC
-* Number of recursive dependencies: 48
+* Number of recursive dependencies: 57
 
 Run `revdep_details(, "RJcluster")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘RJclust_Vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    ! LaTeX Error: File `framed.sty' not found.
-    
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'RJclust_Vignette.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/RJcluster/new/RJcluster.Rcheck/vign_test/RJcluster/vignettes/RJclust_Vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See RJclust_Vignette.log for more info.
-    --- failed re-building ‘RJclust_Vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘RJclust_Vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -7957,70 +5571,66 @@ Run `revdep_details(, "RJcluster")` for more info
 
 <details>
 
-* Version: 1.2.3
+* Version: 1.4.2
 * GitHub: https://github.com/FelixErnst/RNAmodR
 * Source code: https://github.com/cran/RNAmodR
-* Date/Publication: 2020-08-30
-* Number of recursive dependencies: 176
+* Date/Publication: 2020-12-13
+* Number of recursive dependencies: 187
 
 Run `revdep_details(, "RNAmodR")` for more info
 
 </details>
 
-## Newly broken
+## In both
 
 *   checking examples ... ERROR
     ```
+    Running examples in ‘RNAmodR-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: CoverageSequenceData-class
+    > ### Title: CoverageSequenceData
+    > ### Aliases: CoverageSequenceData-class CoverageSequenceData
+    > ###   CoverageSequenceDataFrame CoverageSequenceDataFrame-class
+    > ###   getData,CoverageSequenceData,BamFileList,GRangesList,XStringSet,ScanBamParam-method
+    > ###   aggregateData,CoverageSequenceData-method
+    > ###   getDataTrack,CoverageSequenceData-method
     ...
-    snapshotDate(): 2020-04-27
-    see ?RNAmodR.Data and browseVignettes('RNAmodR.Data') for documentation
-    downloading 1 resources
-    retrieving 1 resource
-    Warning: download failed
-      web resource path: 'https://experimenthub.bioconductor.org/fetch/2552'
-      local file path: '/scratch/henrik/RtmpJRLoyt/BiocFileCache/a7cb62ef9992_2552'
-      reason: Internal Server Error (HTTP 500).
-    Warning: bfcadd() failed; resource removed
-      rid: BFC3
-      fpath: 'https://experimenthub.bioconductor.org/fetch/2552'
-      reason: download failed
-    Warning: download failed
-      hub path: 'https://experimenthub.bioconductor.org/fetch/2552'
-      cache resource: 'EH2536 : 2552'
-      reason: bfcadd() failed; see warnings()
     Error: failed to load resource
       name: EH2536
       title: RNAmodR.Data.example.man.gff3
-      reason: 1 resources failed to download
+      reason: Corrupt Cache: resource path
+      See vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/ExperimentHub
+      potential duplicate files: 
+        b93f7382989a_3697
+        b96e433cd1a3_3697
     Execution halted
     ```
 
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
+*   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+        3. │   └─methods::new(gffFileClass(version), resource = resource)
+        4. │     ├─methods::initialize(value, ...)
+        5. │     └─methods::initialize(value, ...)
+        6. └─ExperimentHub:::RNAmodR.Data.example.man.gff3()
+        7.   ├─eh[[ehid]]
+        8.   └─eh[[ehid]]
+        9.     └─ExperimentHub:::.local(x, i, j = j, ...)
     ...
-    --- re-building ‘RNAmodR.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-20 (RNAmodR.Rmd) 
-    Error: processing vignette 'RNAmodR.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘RNAmodR.Rmd’
-    
-    --- re-building ‘RNAmodR.creation.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-20 (RNAmodR.creation.Rmd) 
-    Error: processing vignette 'RNAmodR.creation.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘RNAmodR.creation.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘RNAmodR.Rmd’ ‘RNAmodR.creation.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+       14.         └─AnnotationHub:::.local(x, i, j = j, ...)
+       15.           └─AnnotationHub:::.Hub_get1(x[idx], force = force, verbose = verbose)
+       16.             └─base::tryCatch(...)
+       17.               └─base:::tryCatchList(expr, classes, parentenv, handlers)
+       18.                 └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       19.                   └─value[[3L]](cond)
+      
+      [ FAIL 4 | WARN 0 | SKIP 0 | PASS 441 ]
+      Error: Test failures
+      Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -8041,43 +5651,17 @@ Run `revdep_details(, "RNAmodR")` for more info
 
 <details>
 
-* Version: 2.6.0
+* Version: 2.8.0
 * GitHub: NA
 * Source code: https://github.com/cran/RnBeads
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 245
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 259
 
 Run `revdep_details(, "RnBeads")` for more info
 
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-    ...
-      RUNIT TEST PROTOCOL -- Thu Sep 24 17:23:36 2020 
-      *********************************************** 
-      Number of test functions: 24 
-      Number of errors: 1 
-      Number of failures: 0 
-      
-       
-      1 Test Suite : 
-      RnBeads RUnit Tests - 24 test functions, 1 error, 0 failures
-      ERROR in test_report_2: Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-        unable to start device PNG
-      
-      Test files with failing tests
-      
-         test_report_2.R 
-           test_report_2 
-      
-      
-      Error in BiocGenerics:::testPackage("RnBeads") : 
-        unit tests failed for package RnBeads
-      Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -8099,7 +5683,7 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.1Mb
+      installed size is  9.0Mb
       sub-directories of 1Mb or more:
         R     3.1Mb
         doc   3.7Mb
@@ -8135,21 +5719,20 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    .stopImplicitCluster: no visible global function definition for
+      ‘stopCluster’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘phenoData’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘assayDataElementNames’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘featureNames’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘varLabels’
     ...
-      RGChannelSet Rd2HTML RefFreeEwasModel SNP Sample Segment Slide Target
-      Term UcscTrack Value addSex as.profileCGH assayDataElement
-      assayDataElementNames barcode browserSession bv calculateFDRs chrom
-      clone close.ff combinedRank combinedRank.var comma covgMedian
-      covgPercLow covgPercUp cv.glmnet daglad diffmeth diffmeth.p.adj.fdr
-      diffmeth.p.val dinucleotideFrequency eps expectedCounts featureData
-      featureData<- featureNames featureNames<- foreach geneCounts genome<-
-      getCN getDoParWorkers getGreen getManifest getMeth getRed getSex
-      getTable getUnmeth getVarCov glmnet grid.draw grid.newpage group
-      group1 group2 i impute.knn is.subsegmentation k letterFrequency lme
-      loadRegionDB log10FDR log10P mapToGenome mclapply mean.diff
-      mean.quot.log2 melt mergeRegionDBs muted n.sites num.sites numSites
-      numeric.names oddsRatios open.ff p.vals.t.na.adj pData percent_format
-      phenoData phenoData<- plotAlphaDistributionOneChr
+      mean.diff mean.quot.log2 melt mergeRegionDBs muted n.sites num.sites
+      numSites numeric.names oddsRatios p.vals.t.na.adj pData
+      percent_format phenoData phenoData<- plotAlphaDistributionOneChr
       plotFinalSegmentation plotTracks preprocessSWAN pvalues qvalue
       readMethylome readSNPTable refText reg.type region.size
       registerDoParallel relative.coord removeSNPs report runLOLA samples
@@ -8159,87 +5742,90 @@ Run `revdep_details(, "RnBeads")` for more info
       varLabels x x2 xmlValue y y2 yint
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'RnBeads_Annotations.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'RnBeads_Annotations.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `vmargin.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.10 \usepackage
-                    [english,american]{babel}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘RnBeads_Annotations.Rnw’
-    
-    SUMMARY: processing the following files failed:
-      ‘RnBeads.Rnw’ ‘RnBeads_Annotations.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# scDblFinder
+# robustbase
 
 <details>
 
-* Version: 1.2.0
-* GitHub: https://github.com/plger/scDblFinder
-* Source code: https://github.com/cran/scDblFinder
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 115
+* Version: 0.93-7
+* GitHub: NA
+* Source code: https://github.com/cran/robustbase
+* Date/Publication: 2021-01-04 15:30:03 UTC
+* Number of recursive dependencies: 83
 
-Run `revdep_details(, "scDblFinder")` for more info
+Run `revdep_details(, "robustbase")` for more info
 
 </details>
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘scDblFinder.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-20 (scDblFinder.Rmd) 
-    Error: processing vignette 'scDblFinder.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘scDblFinder.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘scDblFinder.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Packages which this enhances but not available for checking:
+      'robustX', 'quantreg', 'Hmisc'
     ```
 
-*   checking R code for possible problems ... NOTE
+*   checking Rd cross-references ... NOTE
     ```
-    plotROCs: no visible binding for global variable ‘FPR’
-    plotROCs: no visible binding for global variable ‘TPR’
-    plotROCs: no visible binding for global variable ‘method’
-    scDblFinder : <anonymous>: no visible binding for global variable
-      ‘ndims’
-    Undefined global functions or variables:
-      FPR TPR method ndims
+    Packages unavailable to check Rd xrefs: ‘robustX’, ‘quantreg’, ‘Hmisc’
+    ```
+
+# scDataviz
+
+<details>
+
+* Version: 1.0.0
+* GitHub: https://github.com/kevinblighe/scDataviz
+* Source code: https://github.com/cran/scDataviz
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 190
+
+Run `revdep_details(, "scDataviz")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 50 lines of output:
+          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+          tapply, union, unique, unsplit, which.max, which.min
+      
+      
+      Attaching package: 'S4Vectors'
+      
+      The following object is masked from 'package:base':
+    ...
+          rowMedians
+      
+      The following objects are masked from 'package:matrixStats':
+      
+          anyMissing, rowMedians
+      
+      Error in library("RUnit", quietly = TRUE) : 
+        there is no package called 'RUnit'
+      Calls: <Anonymous> -> library
+      Execution halted
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.6Mb
+      sub-directories of 1Mb or more:
+        doc   5.7Mb
     ```
 
 # scmap
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * GitHub: https://github.com/hemberg-lab/scmap
 * Source code: https://github.com/cran/scmap
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 86
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 90
 
 Run `revdep_details(, "scmap")` for more info
 
@@ -8247,29 +5833,13 @@ Run `revdep_details(, "scmap")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘scmap.Rmd’ using rmarkdown
-    Error: processing vignette 'scmap.Rmd' failed with diagnostics:
-    there is no package called ‘BiocStyle’
-    --- failed re-building ‘scmap.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘scmap.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  5.8Mb
       sub-directories of 1Mb or more:
         data   2.6Mb
         doc    1.1Mb
-        libs   1.9Mb
+        libs   1.8Mb
     ```
 
 *   checking top-level files ... NOTE
@@ -8289,11 +5859,11 @@ Run `revdep_details(, "scmap")` for more info
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * GitHub: https://github.com/YosefLab/scone
 * Source code: https://github.com/cran/scone
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 222
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 228
 
 Run `revdep_details(, "scone")` for more info
 
@@ -8301,39 +5871,19 @@ Run `revdep_details(, "scone")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘sconeTutorial.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-32 (sconeTutorial.Rmd) 
-    Error: processing vignette 'sconeTutorial.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘sconeTutorial.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘sconeTutorial.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
+    sconeReport: no visible global function definition for
+      ‘visNetworkOutput’
+    sconeReport: no visible global function definition for ‘plotlyOutput’
+    sconeReport : server: no visible global function definition for
+      ‘renderVisNetwork’
+    sconeReport : server: no visible global function definition for ‘%>%’
+    sconeReport : server: no visible global function definition for
+      ‘visNetwork’
+    sconeReport : server: no visible global function definition for
+      ‘visHierarchicalLayout’
     ...
-    sconeReport : server: no visible global function definition for ‘theme’
-    sconeReport : server: no visible global function definition for
-      ‘element_blank’
-    sconeReport : server: no visible global function definition for
-      ‘ggplotly’
-    sconeReport : server: no visible global function definition for
-      ‘geom_violin’
-    sconeReport : server: no visible global function definition for
-      ‘coord_cartesian’
-    sconeReport : server: no visible global function definition for
-      ‘scale_fill_manual’
     sconeReport : server: no visible global function definition for
       ‘geom_point’
     sconeReport : server: no visible global function definition for
@@ -8346,15 +5896,38 @@ Run `revdep_details(, "scone")` for more info
       visSelectNodes ylim
     ```
 
+# scp
+
+<details>
+
+* Version: 1.0.0
+* GitHub: https://github.com/UCLouvain-CBIO/scp
+* Source code: https://github.com/cran/scp
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 153
+
+Run `revdep_details(, "scp")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      ‘MultiAssayExperiment:::.sampleMapFromData’ ‘QFeatures:::.get_Hits’
+      See the note in ?`:::` about the use of this operator.
+    ```
+
 # scPCA
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.4.0
 * GitHub: https://github.com/PhilBoileau/scPCA
 * Source code: https://github.com/cran/scPCA
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 179
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 189
 
 Run `revdep_details(, "scPCA")` for more info
 
@@ -8362,23 +5935,31 @@ Run `revdep_details(, "scPCA")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking dependencies in R code ... NOTE
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘scpca_intro.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 17-18 (scpca_intro.Rmd) 
-    Error: processing vignette 'scpca_intro.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘scpca_intro.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘scpca_intro.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Namespace in Imports field not imported from: ‘DelayedArray’
+      All declared Imports should be used.
+    ```
+
+# sctransform
+
+<details>
+
+* Version: 0.3.2
+* GitHub: https://github.com/ChristophH/sctransform
+* Source code: https://github.com/cran/sctransform
+* Date/Publication: 2020-12-16 14:40:03 UTC
+* Number of recursive dependencies: 70
+
+Run `revdep_details(, "sctransform")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package which this enhances but not available for checking: ‘glmGamPoi’
     ```
 
 # seeds
@@ -8389,7 +5970,7 @@ Run `revdep_details(, "scPCA")` for more info
 * GitHub: https://github.com/Newmi1988/seeds
 * Source code: https://github.com/cran/seeds
 * Date/Publication: 2020-07-14 00:00:02 UTC
-* Number of recursive dependencies: 95
+* Number of recursive dependencies: 99
 
 Run `revdep_details(, "seeds")` for more info
 
@@ -8410,7 +5991,7 @@ Run `revdep_details(, "seeds")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/semtree
 * Date/Publication: 2020-01-07 22:00:02 UTC
-* Number of recursive dependencies: 86
+* Number of recursive dependencies: 89
 
 Run `revdep_details(, "semtree")` for more info
 
@@ -8429,11 +6010,11 @@ Run `revdep_details(, "semtree")` for more info
 
 <details>
 
-* Version: 1.6.0
+* Version: 1.8.2
 * GitHub: https://github.com/zwdzwd/sesame
 * Source code: https://github.com/cran/sesame
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 170
+* Date/Publication: 2020-11-13
+* Number of recursive dependencies: 181
 
 Run `revdep_details(, "sesame")` for more info
 
@@ -8443,97 +6024,44 @@ Run `revdep_details(, "sesame")` for more info
 
 *   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+          clusterExport, clusterMap, parApply, parCapply, parLapply,
+          parLapplyLB, parRapply, parSapply, parSapplyLB
+      
+      The following objects are masked from 'package:stats':
+      
+          IQR, mad, sd, var, xtabs
+      
     ...
+          █
+       1. └─minfi::preprocessRaw(rgSet) test_sesamize.R:16:4
+       2.   └─minfi::getManifestInfo(rgSet, "locusNames")
+       3.     └─minfi::getProbeInfo(object, type = "I")
+       4.       ├─minfi::getManifest(object)
+       5.       └─minfi::getManifest(object)
       
-      Loading required package: AnnotationHub
-      Loading required package: BiocFileCache
-      Loading required package: dbplyr
-      Loading sesameData.
-      > 
-      > test_check("sesame")
-      ── 1. Error: RGChannelSetToSigSet gives correct results (@test_sesamize.R#16)  ─
-      cannot load manifest package IlluminaHumanMethylation450kmanifest
-      Backtrace:
-       1. minfi::preprocessRaw(rgSet)
-       2. minfi::getManifestInfo(rgSet, "locusNames")
-       3. minfi::getProbeInfo(object, type = "I")
-       5. minfi::getManifest(object)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 15 | SKIPPED: 0 | WARNINGS: 1 | FAILED: 1 ]
-      1. Error: RGChannelSetToSigSet gives correct results (@test_sesamize.R#16) 
-      
-      Error: testthat unit tests failed
+      [ FAIL 1 | WARN 1 | SKIP 0 | PASS 15 ]
+      Error: Test failures
       Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    
-    Loading required package: IRanges
-    
-    Attaching package: 'IRanges'
-    
-    The following objects are masked from 'package:dplyr':
-    
-        collapse, desc, slice
-    
-    Loading required package: GenomeInfoDb
-    Loading required package: wheatmap
-    Loading required package: DNAcopy
-    Loading required package: ggplot2
-    Loading required package: scales
-    --- finished re-building ‘sesame.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘QC.Rmd’ ‘minfi.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # Seurat
 
 <details>
 
-* Version: 3.2.1
+* Version: 3.2.3
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
-* Date/Publication: 2020-09-07 10:20:15 UTC
-* Number of recursive dependencies: 223
+* Date/Publication: 2020-12-15 10:10:05 UTC
+* Number of recursive dependencies: 233
 
 Run `revdep_details(, "Seurat")` for more info
 
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-    ...
-      
-      ── 4. Failure: SCTransform ncells param works (@test_preprocessing.R#316)  ─────
-      as.numeric(colSums(GetAssayData(object = object[["SCT"]], slot = "counts"))[1]) not equal to 121.
-      1/1 mismatches
-      [1] 119 - 121 == -2
-      
-      ── 5. Failure: SCTransform ncells param works (@test_preprocessing.R#317)  ─────
-      as.numeric(rowSums(GetAssayData(object = object[["SCT"]], slot = "counts"))[5]) not equal to 25.
-      1/1 mismatches
-      [1] 26 - 25 == 1
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 458 | SKIPPED: 0 | WARNINGS: 3 | FAILED: 5 ]
-      1. Failure: SCTransform wrapper works as expected (@test_preprocessing.R#295) 
-      2. Failure: SCTransform wrapper works as expected (@test_preprocessing.R#299) 
-      3. Failure: SCTransform ncells param works (@test_preprocessing.R#312) 
-      4. Failure: SCTransform ncells param works (@test_preprocessing.R#316) 
-      5. Failure: SCTransform ncells param works (@test_preprocessing.R#317) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -8542,10 +6070,10 @@ Run `revdep_details(, "Seurat")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.2Mb
+      installed size is 10.8Mb
       sub-directories of 1Mb or more:
         R      1.2Mb
-        libs   9.1Mb
+        libs   8.8Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -8561,7 +6089,7 @@ Run `revdep_details(, "Seurat")` for more info
 * GitHub: https://github.com/CenterForAssessment/SGP
 * Source code: https://github.com/cran/SGP
 * Date/Publication: 2020-01-30 22:40:09 UTC
-* Number of recursive dependencies: 109
+* Number of recursive dependencies: 113
 
 Run `revdep_details(, "SGP")` for more info
 
@@ -8571,7 +6099,7 @@ Run `revdep_details(, "SGP")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.8Mb
+      installed size is  5.7Mb
       sub-directories of 1Mb or more:
         R     1.3Mb
         doc   3.4Mb
@@ -8581,34 +6109,17 @@ Run `revdep_details(, "SGP")` for more info
 
 <details>
 
-* Version: 1.24.0
+* Version: 1.26.0
 * GitHub: NA
 * Source code: https://github.com/cran/shinyMethyl
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 140
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 148
 
 Run `revdep_details(, "shinyMethyl")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘shinyMethyl.Rnw’ using knitr
-    Quitting from lines 60-63 (shinyMethyl.Rnw) 
-    Error: processing vignette 'shinyMethyl.Rnw' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘shinyMethyl.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘shinyMethyl.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -8620,18 +6131,17 @@ Run `revdep_details(, "shinyMethyl")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    addHoverDensity: no visible global function definition for ‘lines’
+    addHoverPoints: no visible global function definition for ‘points’
+    addHoverQC: no visible global function definition for ‘points’
+    densitiesPlot: no visible global function definition for ‘lines’
+    plotDesign450k: no visible global function definition for ‘par’
+    plotDiscrepancyGenders: no visible global function definition for
+      ‘legend’
+    plotInternalControls: no visible global function definition for ‘grid’
+    plotInternalControls: no visible global function definition for
+      ‘abline’
     ...
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘lines’
-    server.shinyMethyl : <anonymous>: no visible global function definition
-      for ‘legend’
-    ui.shinyMethyl: no visible binding for '<<-' assignment to
-      ‘sampleColors’
-    shinySummarize,GenomicRatioSet: no visible global function definition
-      for ‘prcomp’
-    shinySummarize,RGChannelSet: no visible global function definition for
-      ‘prcomp’
-    Undefined global functions or variables:
       abline complete.cases current.control.type current.density.type
       current.probe.type genderCutoff grid legend lines lm
       mouse.click.indices palette par points prcomp rect write.csv
@@ -8648,11 +6158,11 @@ Run `revdep_details(, "shinyMethyl")` for more info
 
 <details>
 
-* Version: 1.8.1
+* Version: 1.10.0
 * GitHub: NA
 * Source code: https://github.com/cran/SIAMCAT
-* Date/Publication: 2020-06-30
-* Number of recursive dependencies: 111
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 116
 
 Run `revdep_details(, "SIAMCAT")` for more info
 
@@ -8660,38 +6170,26 @@ Run `revdep_details(, "SIAMCAT")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking for hidden files and directories ... NOTE
     ```
-    ...
-    --- re-building ‘SIAMCAT_read-in.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 60-66 (SIAMCAT_read-in.Rmd) 
-    Error: processing vignette 'SIAMCAT_read-in.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘SIAMCAT_read-in.Rmd’
-    
-    --- re-building ‘SIAMCAT_vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 49-53 (SIAMCAT_vignette.Rmd) 
-    Error: processing vignette 'SIAMCAT_vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘SIAMCAT_vignette.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘SIAMCAT_holdout.Rmd’ ‘SIAMCAT_read-in.Rmd’ ‘SIAMCAT_vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  8.6Mb
       sub-directories of 1Mb or more:
-        doc       3.4Mb
+        doc       3.3Mb
         extdata   2.0Mb
+        help      1.9Mb
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘randomForest’
     ```
 
 *   checking data for non-ASCII characters ... NOTE
@@ -8703,10 +6201,10 @@ Run `revdep_details(, "SIAMCAT")` for more info
 
 <details>
 
-* Version: 1.18.0
+* Version: 1.20.0
 * GitHub: NA
 * Source code: https://github.com/cran/SICtools
-* Date/Publication: 2020-04-27
+* Date/Publication: 2020-10-27
 * Number of recursive dependencies: 40
 
 Run `revdep_details(, "SICtools")` for more info
@@ -8721,7 +6219,7 @@ Run `revdep_details(, "SICtools")` for more info
       errmod.c:79:8: warning: self-comparison always evaluates to false [-Wtautological-compare]
       md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
       Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
-    See ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -8758,6 +6256,30 @@ Run `revdep_details(, "SICtools")` for more info
     to your NAMESPACE file.
     ```
 
+# sigminer
+
+<details>
+
+* Version: 1.2.1
+* GitHub: https://github.com/ShixiangWang/sigminer
+* Source code: https://github.com/cran/sigminer
+* Date/Publication: 2021-01-08 09:10:02 UTC
+* Number of recursive dependencies: 202
+
+Run `revdep_details(, "sigminer")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.4Mb
+      sub-directories of 1Mb or more:
+        extdata   3.9Mb
+        libs      1.1Mb
+    ```
+
 # sindyr
 
 <details>
@@ -8766,7 +6288,7 @@ Run `revdep_details(, "SICtools")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/sindyr
 * Date/Publication: 2020-06-09 05:20:03 UTC
-* Number of recursive dependencies: 23
+* Number of recursive dependencies: 99
 
 Run `revdep_details(, "sindyr")` for more info
 
@@ -8785,11 +6307,11 @@ Run `revdep_details(, "sindyr")` for more info
 
 <details>
 
-* Version: 1.16.0
+* Version: 1.18.0
 * GitHub: NA
 * Source code: https://github.com/cran/Single.mTEC.Transcriptomes
-* Date/Publication: 2020-05-07
-* Number of recursive dependencies: 161
+* Date/Publication: 2020-10-29
+* Number of recursive dependencies: 172
 
 Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
@@ -8797,28 +6319,9 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘mTECs.Rnw’ using knitr
-    Warning in (function (filename = "Rplot%03d.png", width = 480, height = 480,  :
-      unable to open connection to X11 display ''
-    Quitting from lines 32-33 (mTECs.Rnw) 
-    Error: processing vignette 'mTECs.Rnw' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘mTECs.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘mTECs.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 904.5Mb
+      installed size is 904.4Mb
       sub-directories of 1Mb or more:
         data  895.1Mb
         doc     9.3Mb
@@ -8828,11 +6331,11 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
 <details>
 
-* Version: 1.8.0
+* Version: 2.0.0
 * GitHub: https://github.com/compbiomed/singleCellTK
 * Source code: https://github.com/cran/singleCellTK
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 257
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 336
 
 Run `revdep_details(, "singleCellTK")` for more info
 
@@ -8840,65 +6343,48 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking examples ... ERROR
     ```
+    Running examples in ‘singleCellTK-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: importExampleData
+    > ### Title: Retrieve example datasets
+    > ### Aliases: importExampleData
+    > 
+    > ### ** Examples
+    > 
+    > sce <- importExampleData("pbmc3k")
     ...
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 58-61 (v01-Introduction_to_singleCellTK.Rmd) 
-    Error: processing vignette 'v01-Introduction_to_singleCellTK.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘v01-Introduction_to_singleCellTK.Rmd’
-    
-    --- re-building ‘v02-Processing_and_Visualizing_Data_in_the_SingleCellTK.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 45-59 (v02-Processing_and_Visualizing_Data_in_the_SingleCellTK.Rmd) 
-    Error: processing vignette 'v02-Processing_and_Visualizing_Data_in_the_SingleCellTK.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘v02-Processing_and_Visualizing_Data_in_the_SingleCellTK.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘v01-Introduction_to_singleCellTK.Rmd’
-      ‘v02-Processing_and_Visualizing_Data_in_the_SingleCellTK.Rmd’
-    
-    Error: Vignette re-building failed.
+    Error: failed to load resource
+      name: EH1607
+      title: PBMC, 3k scRNA-seq gene (row) annotation
+      reason: Corrupt Cache: resource path
+      See vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/ExperimentHub
+      potential duplicate files: 
+        b93f7382989a_3697
+        b96e433cd1a3_3697
     Execution halted
-    ```
-
-*   checking for hidden files and directories ... NOTE
-    ```
-    Found the following hidden files and directories:
-      .BBSoptions
-    These were most likely included in error. See section ‘Package
-    structure’ in the ‘Writing R Extensions’ manual.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        data   1.0Mb
-        doc    3.8Mb
     ```
 
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
-      ‘celda’ ‘shinyBS’ ‘shinythemes’
+      'BiocGenerics' 'ggplotify' 'kableExtra' 'shinyBS' 'shinyFiles'
+      'shinyWidgets' 'shinyjqui' 'shinythemes'
       All declared Imports should be used.
-    Missing or unexported object: ‘SingleCellExperiment::isSpike’
     ```
 
 # singscore
 
 <details>
 
-* Version: 1.8.0
+* Version: 1.10.0
 * GitHub: https://github.com/DavisLaboratory/singscore
 * Source code: https://github.com/cran/singscore
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 119
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 124
 
 Run `revdep_details(, "singscore")` for more info
 
@@ -8906,69 +6392,29 @@ Run `revdep_details(, "singscore")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘singscore-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: plotDispersion
-    > ### Title: Plot the score v.s. despersion for all samples
-    > ### Aliases: plotDispersion
-    > 
-    > ### ** Examples
-    > 
-    > ranked <- rankGenes(toy_expr_se)
-    > scoredf <- simpleScore(ranked, upSet = toy_gs_up, downSet = toy_gs_dn)
-    > plotDispersion(scoredf)
-    > plotDispersion(scoredf, isInteractive = TRUE)
-    Warning in dev_fun(file = tempfile(), width = width %||% 640, height = height %||%  :
-      unable to open connection to X11 display ''
-    Error in .External2(C_X11, paste0("png::", filename), g$width, g$height,  : 
-      unable to start device PNG
-    Calls: plotDispersion ... <Anonymous> -> ggplotly.ggplot -> gg2list -> dev_fun
-    Execution halted
-    ```
-
 *   checking tests ...
     ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+       3. plotly:::ggplotly.ggplot(p1)
+       4. plotly::gg2list(...)
+       5. plotly:::layers2traces(data, prestats_data, layout, plot)
+       7. plotly:::to_basic.GeomHex(...)
+       8. ggplot2::resolution(data[["y"]], FALSE)
+      ── Warning (test-scoring.R:12:3): checkGenes works ─────────────────────────────
+      1 genes missing: 11
     ...
-       1. singscore::plotDispersion(scoredf, isInteractive = TRUE)
-       3. plotly:::ggplotly.ggplot(p1)
-       4. plotly::gg2list(...)
-       5. grDevices:::dev_fun(...)
+       10.               └─base::asNamespace(ns)
+       11.                 └─base::getNamespace(ns)
+       12.                   └─base::loadNamespace(name)
+       13.                     └─base::withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+       14.                       └─base:::withOneRestart(expr, restarts[[1L]])
+       15.                         └─base:::doWithOneRestart(return(expr), restart)
       
-      ── 3. Error: projectScoreLandscape works for interactive plots (@test-projectSco
-      unable to start device PNG
-      Backtrace:
-       1. singscore::projectScoreLandscape(...)
-       3. plotly:::ggplotly.ggplot(p1)
-       4. plotly::gg2list(...)
-       5. grDevices:::dev_fun(...)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 123 | SKIPPED: 0 | WARNINGS: 25 | FAILED: 3 ]
-      1. Error: plotDispersion interactive for single sigs (@test-plotDis.R#83) 
-      2. Error: plotDispersion interactive for up/dn sigs (@test-plotDis.R#112) 
-      3. Error: projectScoreLandscape works for interactive plots (@test-projectScoreLandscape.R#70) 
-      
-      Error: testthat unit tests failed
+      [ FAIL 1 | WARN 37 | SKIP 0 | PASS 133 ]
+      Error: Test failures
       Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘singscore.Rmd’ using rmarkdown
-    Error: processing vignette 'singscore.Rmd' failed with diagnostics:
-    there is no package called ‘BiocStyle’
-    --- failed re-building ‘singscore.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘singscore.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -8992,6 +6438,7 @@ Run `revdep_details(, "singscore")` for more info
     plotRankDensity_intl: no visible binding for global variable
       ‘..density..’
     plotRankDensity_intl: no visible binding for global variable ‘EntrezID’
+    ...
     plotScoreLandscape: no visible binding for global variable ‘sc1’
     plotScoreLandscape: no visible binding for global variable ‘sc2’
     projectScoreLandscape: no visible binding for global variable
@@ -9008,11 +6455,11 @@ Run `revdep_details(, "singscore")` for more info
 
 <details>
 
-* Version: 1.6.1
+* Version: 1.8.0
 * GitHub: https://github.com/kstreet13/slingshot
 * Source code: https://github.com/cran/slingshot
-* Date/Publication: 2020-06-30
-* Number of recursive dependencies: 218
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 194
 
 Run `revdep_details(, "slingshot")` for more info
 
@@ -9020,65 +6467,10 @@ Run `revdep_details(, "slingshot")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking for unstated dependencies in vignettes ... NOTE
     ```
-    ...
-    --- re-building ‘conditionsVignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 18-22 (conditionsVignette.Rmd) 
-    Error: processing vignette 'conditionsVignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘conditionsVignette.Rmd’
-    
-    --- re-building ‘vignette.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 19-29 (vignette.Rmd) 
-    Error: processing vignette 'vignette.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘vignette.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘conditionsVignette.Rmd’ ‘vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# sparseMatrixStats
-
-<details>
-
-* Version: 1.0.5
-* GitHub: NA
-* Source code: https://github.com/cran/sparseMatrixStats
-* Date/Publication: 2020-05-24
-* Number of recursive dependencies: 53
-
-Run `revdep_details(, "sparseMatrixStats")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘sparseMatrixStats.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 13-17 (sparseMatrixStats.Rmd) 
-    Error: processing vignette 'sparseMatrixStats.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘sparseMatrixStats.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘sparseMatrixStats.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    '::' or ':::' import not declared from: ‘mgcv’
+    'library' or 'require' call not declared from: ‘mgcv’
     ```
 
 # spathial
@@ -9108,11 +6500,11 @@ Run `revdep_details(, "spathial")` for more info
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.1
 * GitHub: https://github.com/Oshlack/splatter
 * Source code: https://github.com/cran/splatter
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 222
+* Date/Publication: 2020-12-01
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "splatter")` for more info
 
@@ -9120,73 +6512,28 @@ Run `revdep_details(, "splatter")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    ...
-    --- re-building ‘splat_params.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 15-19 (splat_params.Rmd) 
-    Error: processing vignette 'splat_params.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘splat_params.Rmd’
-    
-    --- re-building ‘splatter.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 15-22 (splatter.Rmd) 
-    Error: processing vignette 'splatter.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘splatter.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘splat_params.Rmd’ ‘splatter.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  9.8Mb
       sub-directories of 1Mb or more:
-        doc   6.1Mb
+        doc   8.9Mb
     ```
 
 # spqn
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.0
 * GitHub: https://github.com/hansenlab/spqn
 * Source code: https://github.com/cran/spqn
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 80
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 84
 
 Run `revdep_details(, "spqn")` for more info
 
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘spqn.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 34-37 (spqn.Rmd) 
-    Error: processing vignette 'spqn.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘spqn.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘spqn.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -9199,11 +6546,11 @@ Run `revdep_details(, "spqn")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: NA
 * Source code: https://github.com/cran/SRGnet
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 100
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 104
 
 Run `revdep_details(, "SRGnet")` for more info
 
@@ -9232,6 +6579,7 @@ Run `revdep_details(, "SRGnet")` for more info
     SRGnet: no visible global function definition for ‘predict’
     SRGnet: no visible global function definition for ‘terrain.colors’
     SRGnet: no visible global function definition for ‘na.omit’
+    ...
     SRGnet: no visible global function definition for ‘write.table’
     Undefined global functions or variables:
       Differentially_expressed_genes PLCRG Transcriptomics boxplot
@@ -9244,28 +6592,6 @@ Run `revdep_details(, "SRGnet")` for more info
     to your NAMESPACE file.
     ```
 
-# statar
-
-<details>
-
-* Version: 0.7.2
-* GitHub: https://github.com/matthieugomez/statar
-* Source code: https://github.com/cran/statar
-* Date/Publication: 2020-07-27 17:50:03 UTC
-* Number of recursive dependencies: 69
-
-Run `revdep_details(, "statar")` for more info
-
-</details>
-
-## In both
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘tidyr’
-      All declared Imports should be used.
-    ```
-
 # stm
 
 <details>
@@ -9274,7 +6600,7 @@ Run `revdep_details(, "statar")` for more info
 * GitHub: https://github.com/bstewart/stm
 * Source code: https://github.com/cran/stm
 * Date/Publication: 2020-09-18 13:50:02 UTC
-* Number of recursive dependencies: 121
+* Number of recursive dependencies: 128
 
 Run `revdep_details(, "stm")` for more info
 
@@ -9284,46 +6610,20 @@ Run `revdep_details(, "stm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.3Mb
       sub-directories of 1Mb or more:
         data   1.7Mb
         libs   2.5Mb
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'stmVignette.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'stmVignette.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `ulem.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.57 ^^M
-            
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building 'stmVignette.Rnw'
-    
-    SUMMARY: processing the following file failed:
-      'stmVignette.Rnw'
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # STROMA4
 
 <details>
 
-* Version: 1.12.0
+* Version: 1.14.0
 * GitHub: NA
 * Source code: https://github.com/cran/STROMA4
-* Date/Publication: 2020-04-27
+* Date/Publication: 2020-10-27
 * Number of recursive dependencies: 12
 
 Run `revdep_details(, "STROMA4")` for more info
@@ -9341,7 +6641,7 @@ Run `revdep_details(, "STROMA4")` for more info
       ...
     
     > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-    Installing package into ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    Installing package into ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
     (as ‘lib’ is unspecified)
     
       When sourcing ‘STROMA4-vignette.R’:
@@ -9354,36 +6654,14 @@ Run `revdep_details(, "STROMA4")` for more info
     'library' or 'require' call not declared from: ‘BiocManager’
     ```
 
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘STROMA4-vignette.Rnw’ using Sweave
-    Installing package into ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
-    (as ‘lib’ is unspecified)
-    
-    Error: processing vignette 'STROMA4-vignette.Rnw' failed with diagnostics:
-     chunk 1 
-    Error in contrib.url(repos, type) : 
-      trying to use CRAN without setting a mirror
-    
-    --- failed re-building ‘STROMA4-vignette.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘STROMA4-vignette.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # summarytools
 
 <details>
 
-* Version: 0.9.6
+* Version: 0.9.8
 * GitHub: https://github.com/dcomtois/summarytools
 * Source code: https://github.com/cran/summarytools
-* Date/Publication: 2020-03-02 07:20:02 UTC
+* Date/Publication: 2020-12-10 22:00:03 UTC
 * Number of recursive dependencies: 70
 
 Run `revdep_details(, "summarytools")` for more info
@@ -9396,31 +6674,7 @@ Run `revdep_details(, "summarytools")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/home/henrik/c4/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
-    ```
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘Introduction.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    --- finished re-building ‘Introduction.Rmd’
-    
-    --- re-building ‘Recommendations-rmarkdown.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 150-151 (Recommendations-rmarkdown.Rmd) 
-    Error: processing vignette 'Recommendations-rmarkdown.Rmd' failed with diagnostics:
-    unable to start device PNG
-    --- failed re-building ‘Recommendations-rmarkdown.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘Recommendations-rmarkdown.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
     ```
 
 *   checking data for non-ASCII characters ... NOTE
@@ -9451,48 +6705,6 @@ Run `revdep_details(, "SuperPCA")` for more info
       All declared Imports should be used.
     ```
 
-# sva
-
-<details>
-
-* Version: 3.36.0
-* GitHub: NA
-* Source code: https://github.com/cran/sva
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 81
-
-Run `revdep_details(, "sva")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    ...
-    Error: processing vignette 'sva.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'sva.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `titlesec.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.92 \def
-             \mdhelvet{\fontfamily{phv}\selectfont\mdseries}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘sva.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘sva.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # TCA
 
 <details>
@@ -9501,7 +6713,7 @@ Run `revdep_details(, "sva")` for more info
 * GitHub: https://github.com/cozygene/TCA
 * Source code: https://github.com/cran/TCA
 * Date/Publication: 2019-11-16 17:10:02 UTC
-* Number of recursive dependencies: 62
+* Number of recursive dependencies: 71
 
 Run `revdep_details(, "TCA")` for more info
 
@@ -9520,11 +6732,11 @@ Run `revdep_details(, "TCA")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.12.0
 * GitHub: NA
 * Source code: https://github.com/cran/tenXplore
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 116
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 125
 
 Run `revdep_details(, "tenXplore")` for more info
 
@@ -9532,77 +6744,21 @@ Run `revdep_details(, "tenXplore")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘tenXplore.Rmd’ using rmarkdown
-    Warning in engine$weave(file, quiet = quiet, encoding = enc) :
-      The vignette engine knitr::rmarkdown is not available because the rmarkdown package is not available. Did you forget to add it to Suggests in DESCRIPTION? Please see https://github.com/yihui/knitr/issues/1864 for more information.
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 27-58 (tenXplore.Rmd) 
-    Error: processing vignette 'tenXplore.Rmd' failed with diagnostics:
-    could not find function "Biocpkg"
-    --- failed re-building ‘tenXplore.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘tenXplore.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     apd: warning in dir(system.file("app", package = "tenXplore"), full =
       TRUE): partial argument match of 'full' to 'full.names'
     ```
 
-# TOAST
-
-<details>
-
-* Version: 1.2.0
-* GitHub: https://github.com/ziyili20/TOAST
-* Source code: https://github.com/cran/TOAST
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 51
-
-Run `revdep_details(, "TOAST")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘TOAST.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 123-127 (TOAST.Rmd) 
-    Error: processing vignette 'TOAST.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘TOAST.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘TOAST.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # topGO
 
 <details>
 
-* Version: 2.40.0
+* Version: 2.42.0
 * GitHub: NA
 * Source code: https://github.com/cran/topGO
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 41
+* Date/Publication: 2020-10-30
+* Number of recursive dependencies: 49
 
 Run `revdep_details(, "topGO")` for more info
 
@@ -9630,18 +6786,17 @@ Run `revdep_details(, "topGO")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    GOplot: no visible global function definition for ‘getDefaultAttrs’
+    GOplot: no visible global function definition for ‘agopen’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘getNodeCenter’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘pieGlyph’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘getX’
+    GOplot.counts : plotSigChart : buildDrawing : <anonymous>: no visible
+      global function definition for ‘getY’
     ...
-    GOplot.counts : plotSigChart: no visible global function definition for
-      ‘getY’
-    GOplot.counts: no visible global function definition for
-      ‘getDefaultAttrs’
-    GOplot.counts: no visible global function definition for ‘agopen’
-    getPvalues: no visible global function definition for ‘mt.teststat’
-    getPvalues: no visible global function definition for ‘mt.rawp2adjp’
-    printDOT: no visible global function definition for ‘getDefaultAttrs’
-    printDOT: no visible global function definition for ‘toDot’
-    GOSumTest,classicScore: no visible binding for global variable
-      ‘.PERMSUM.MAT’
     GOSumTest,classicScore: no visible binding for global variable
       ‘.PERMSUM.LOOKUP’
     initialize,classicExpr: no visible global function definition for
@@ -9654,30 +6809,52 @@ Run `revdep_details(, "topGO")` for more info
       mt.rawp2adjp mt.teststat name pieGlyph scoreInNode toDot txtLabel
     ```
 
-*   checking re-building of vignette outputs ... NOTE
+# tradeSeq
+
+<details>
+
+* Version: 1.4.0
+* GitHub: https://github.com/statOmics/tradeSeq
+* Source code: https://github.com/cran/tradeSeq
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 193
+
+Run `revdep_details(, "tradeSeq")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
     ```
+      installed size is  7.6Mb
+      sub-directories of 1Mb or more:
+        doc   6.6Mb
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    .earlyDETest: no visible binding for global variable ‘X1’
+    .earlyDETest: no visible binding for global variable ‘X2’
+    .findKnots: no visible binding for global variable ‘t1’
+    .findKnots: no visible binding for global variable ‘l1’
+    .plotGeneCount: no visible binding for global variable ‘dim1’
+    .plotGeneCount: no visible binding for global variable ‘dim2’
+    .plotSmoothers: no visible binding for global variable ‘time’
+    .plotSmoothers: no visible binding for global variable ‘gene_count’
+    .plotSmoothers: no visible binding for global variable ‘lineage’
+    .plotSmoothers_conditions: no visible binding for global variable
     ...
-    Error: processing vignette 'topGO.Rnw' failed with diagnostics:
-    Running 'texi2dvi' on 'topGO.tex' failed.
-    LaTeX errors:
-    ! LaTeX Error: File `sectsty.sty' not found.
-    
-    Type X to quit or <RETURN> to proceed,
-    or enter new name. (Default extension: sty)
-    
-    ! Emergency stop.
-    <read *> 
-             
-    l.11 \usepackage
-                    {caption}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘topGO.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘topGO.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    .plotSmoothers_sce: no visible binding for global variable ‘time’
+    .plotSmoothers_sce: no visible binding for global variable ‘gene_count’
+    .plotSmoothers_sce: no visible binding for global variable ‘lineage’
+    .plotSmoothers_sce: no visible binding for global variable ‘pCol’
+    extract_monocle_info: no visible binding for global variable ‘.’
+    Undefined global functions or variables:
+      . X1 X2 dim1 dim2 gene_count l1 lineage pCol t1 time
+    Consider adding
+      importFrom("stats", "time")
+    to your NAMESPACE file.
     ```
 
 # treeHMM
@@ -9688,7 +6865,7 @@ Run `revdep_details(, "topGO")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/treeHMM
 * Date/Publication: 2019-12-12 17:10:02 UTC
-* Number of recursive dependencies: 10
+* Number of recursive dependencies: 11
 
 Run `revdep_details(, "treeHMM")` for more info
 
@@ -9696,9 +6873,45 @@ Run `revdep_details(, "treeHMM")` for more info
 
 ## In both
 
+*   checking whether package ‘treeHMM’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: Strategy 'multiprocess' is deprecated in future (>= 1.20.0). Instead, explicitly specify either 'multisession' or 'multicore'. In the current R session, 'multiprocess' equals 'multicore'.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/treeHMM/new/treeHMM.Rcheck/00install.out’ for details.
+    ```
+
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘Matrix’
+      All declared Imports should be used.
+    ```
+
+# UPG
+
+<details>
+
+* Version: 0.2.2
+* GitHub: NA
+* Source code: https://github.com/cran/UPG
+* Date/Publication: 2021-01-07 09:00:05 UTC
+* Number of recursive dependencies: 67
+
+Run `revdep_details(, "UPG")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.6Mb
+      sub-directories of 1Mb or more:
+        libs   6.9Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘RcppProgress’
       All declared Imports should be used.
     ```
 
@@ -9706,11 +6919,11 @@ Run `revdep_details(, "treeHMM")` for more info
 
 <details>
 
-* Version: 1.50.0
+* Version: 1.52.0
 * GitHub: NA
 * Source code: https://github.com/cran/VanillaICE
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 71
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 73
 
 Run `revdep_details(, "VanillaICE")` for more info
 
@@ -9718,23 +6931,43 @@ Run `revdep_details(, "VanillaICE")` for more info
 
 ## In both
 
+*   checking Rd files ... WARNING
+    ```
+    checkRd: (5) VanillaICE.Rd:0-7: Must have a \description
+    ```
+
+*   checking running R code from vignettes ...
+    ```
+      ‘VanillaICE.Rnw’ using ‘UTF-8’... OK
+      ‘crlmmDownstream.Rnw’ using ‘UTF-8’... failed
+     WARNING
+    Errors in running code in vignettes:
+    when running code in ‘crlmmDownstream.Rnw’
+      ...
+    > data(cnSetExample, package = "crlmm")
+    
+    > se <- as(cnSetExample, "SnpArrayExperiment")
+    Warning: executing %dopar% sequentially: no parallel backend registered
+    
+    > library(ArrayTV)
+    
+      When sourcing ‘crlmmDownstream.R’:
+    Error: there is no package called ‘ArrayTV’
+    Execution halted
+    ```
+
 *   checking package dependencies ... NOTE
     ```
+    Package suggested but not available for checking: ‘ArrayTV’
+    
     Packages which this enhances but not available for checking:
       'doMC', 'doMPI', 'doSNOW', 'doParallel', 'doRedis'
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.1Mb
-      sub-directories of 1Mb or more:
-        R         1.2Mb
-        extdata   2.1Mb
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
-    Namespace in Imports field not imported from: ‘BSgenome.Hsapiens.UCSC.hg18’
+    Namespaces in Imports field not imported from:
+      ‘BSgenome.Hsapiens.UCSC.hg18’ ‘MatrixGenerics’
       All declared Imports should be used.
     ```
 
@@ -9742,11 +6975,11 @@ Run `revdep_details(, "VanillaICE")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.2.4
 * GitHub: https://github.com/yuhuihui2011/vasp
 * Source code: https://github.com/cran/vasp
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 99
+* Date/Publication: 2021-01-23
+* Number of recursive dependencies: 104
 
 Run `revdep_details(, "vasp")` for more info
 
@@ -9754,22 +6987,23 @@ Run `revdep_details(, "vasp")` for more info
 
 ## In both
 
-*   checking DESCRIPTION meta-information ... NOTE
+*   checking installed package size ... NOTE
     ```
-    Authors@R field gives more than one person with maintainer role:
-      Huihui Yu <yuhuihui2011@foxmail.com> [aut, cre]
-      Qian Du [aut, cre]
+      installed size is  7.5Mb
+      sub-directories of 1Mb or more:
+        doc       4.0Mb
+        extdata   3.4Mb
     ```
 
 # wateRmelon
 
 <details>
 
-* Version: 1.32.0
+* Version: 1.34.0
 * GitHub: NA
 * Source code: https://github.com/cran/wateRmelon
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 160
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 168
 
 Run `revdep_details(, "wateRmelon")` for more info
 
@@ -9808,18 +7042,17 @@ Run `revdep_details(, "wateRmelon")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
-    ...
-    tost,MethyLumiSet: no visible global function definition for
+    IDATsToMatrices2: no visible global function definition for ‘.mclapply’
+    NChannelSetToMethyLumiSet2: no visible global function definition for
+      ‘betas’
+    NChannelSetToMethyLumiSet2: no visible global function definition for
+      ‘methylated’
+    NChannelSetToMethyLumiSet2: no visible global function definition for
       ‘unmethylated’
-    tost,MethyLumiSet: no visible global function definition for ‘pvals’
-    tost,RGChannelSet: no visible global function definition for
-      ‘detectionP’
-    tost,RGChannelSet: no visible global function definition for
-      ‘preprocessRaw’
-    tost,RGChannelSet: no visible global function definition for ‘getMeth’
-    tost,RGChannelSet: no visible global function definition for
-      ‘getUnmeth’
-    Undefined global functions or variables:
+    NChannelSetToMethyLumiSet2: no visible global function definition for
+      ‘pval.detect<-’
+    beadcount: no visible global function definition for ‘getNBeads’
+    ...
       .mclapply IlluminaHumanMethylation450kanno.ilmn12.hg19 MethylSet
       PATH_RES QCdata QCdata<- RGChannelSetExtended betas betas<- colData
       colMedians detectionP epic.controls epic.ordering getAnnotation
@@ -9836,11 +7069,11 @@ Run `revdep_details(, "wateRmelon")` for more info
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.22.0
 * GitHub: https://github.com/Liuy12/XBSeq
 * Source code: https://github.com/cran/XBSeq
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 112
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 123
 
 Run `revdep_details(, "XBSeq")` for more info
 
@@ -9848,23 +7081,9 @@ Run `revdep_details(, "XBSeq")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking package dependencies ... NOTE
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘XBSeq.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 15-16 (XBSeq.Rmd) 
-    Error: processing vignette 'XBSeq.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘XBSeq.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘XBSeq.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
+    Package suggested but not available for checking: ‘DESeq’
     ```
 
 *   checking whether the namespace can be loaded with stated dependencies ... NOTE
@@ -9880,18 +7099,17 @@ Run `revdep_details(, "XBSeq")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    Loglikhood : <anonymous>: no visible global function definition for
+      ‘ddelap’
+    Loglikhood : <anonymous>: no visible global function definition for
+      ‘dpois’
+    Loglikhood_NB : <anonymous>: no visible global function definition for
+      ‘dnbinom’
+    MAplot: no visible binding for global variable ‘baseMean’
+    MAplot: no visible global function definition for ‘quantile’
+    MAplot: no visible binding for global variable ‘log2FoldChange’
+    XBSeqDataSet: no visible global function definition for ‘DataFrame’
     ...
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay’
-    estimateRealCount,XBSeqDataSet: no visible global function definition
-      for ‘assay<-’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘conditions’
-    estimateSCV,XBSeqDataSet: no visible global function definition for
-      ‘dispTable<-’
-    Undefined global functions or variables:
-      ..count.. DataFrame Gamma Group Sample SummarizedExperiment assay
-      assay<- assays baseMean coefficients complete.cases conditions cor
       data ddelap dispTable dispTable<- dnbinom dpois formula glm
       log2FoldChange median optim p.adjust pbeta predict qbeta quantile
       rnbinom scvBiasCorrectionFits
@@ -9908,11 +7126,11 @@ Run `revdep_details(, "XBSeq")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.16.0
 * GitHub: NA
 * Source code: https://github.com/cran/yarn
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 154
+* Date/Publication: 2020-10-27
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "yarn")` for more info
 
@@ -9920,61 +7138,28 @@ Run `revdep_details(, "yarn")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking examples ... ERROR
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘yarn.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    ! LaTeX Error: File `framed.sty' not found.
+    Running examples in ‘yarn-Ex.R’ failed
+    The error most likely occurred in:
     
-    ! Emergency stop.
-    <read *> 
-    
-    Error: processing vignette 'yarn.Rmd' failed with diagnostics:
-    LaTeX failed to compile /home/henrik/c4/repositories/matrixStats/revdep/checks/yarn/new/yarn.Rcheck/vign_test/yarn/vignettes/yarn.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See yarn.log for more info.
-    --- failed re-building ‘yarn.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘yarn.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# zinbwave
-
-<details>
-
-* Version: 1.10.0
-* GitHub: https://github.com/drisso/zinbwave
-* Source code: https://github.com/cran/zinbwave
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 191
-
-Run `revdep_details(, "zinbwave")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘intro.Rmd’ using rmarkdown
-    Warning in grDevices::png(f) :
-      unable to open connection to X11 display ''
-    Quitting from lines 23-25 (intro.Rmd) 
-    Error: processing vignette 'intro.Rmd' failed with diagnostics:
-    argument is of length zero
-    --- failed re-building ‘intro.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘intro.Rmd’
-    
-    Error: Vignette re-building failed.
+    > ### Name: annotateFromBiomart
+    > ### Title: Annotate your Expression Set with biomaRt
+    > ### Aliases: annotateFromBiomart
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    > # subsetting and changing column name just for a silly example
+    > skin <- skin[1:10,]
+    > colnames(fData(skin)) = paste("names",1:6)
+    > biomart<-"ENSEMBL_MART_ENSEMBL";
+    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
+    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
+    Error in getBM(attributes = attributes, filters = filters, values = genes,  : 
+      Multiple cache results found
+    Calls: annotateFromBiomart -> getBM
     Execution halted
     ```
 

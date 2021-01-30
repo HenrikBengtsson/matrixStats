@@ -25,12 +25,16 @@
 #' @param FUN The row-by-row (column-by-column) \code{\link[base]{function}}
 #' used to average over each subset of \code{X}.  This function must accept a
 #' \code{\link[base]{numeric}} NxK (KxM) \code{\link[base]{matrix}} and the
-#' \code{\link[base]{logical}} argument \code{na.rm} (which is automatically
-#' set), and return a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
-#' length N (M).
+#' \code{\link[base]{logical}} argument \code{na.rm}, and return a
+#' \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (M).
 #'
 #' @param ... Additional arguments passed to then \code{FUN}
 #' \code{\link[base]{function}}.
+#'
+#' @param na.rm (logical) Argument passed to \code{FUN()} as
+#' \code{na.rm = na.rm}.  If \code{\link[base:logical]{NA}} (default), then
+#' \code{na.rm = TRUE} is used if \code{X} or \code{S} holds missing values,
+#' otherwise \code{na.rm = FALSE}.
 #'
 #' @param tFUN If \code{\link[base:logical]{TRUE}}, the NxK (KxM)
 #' \code{\link[base]{matrix}} passed to \code{FUN()} is transposed first.
@@ -46,7 +50,7 @@
 #' @keywords internal utilities
 #' @export
 rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
-                             FUN = rowMeans, ..., tFUN = FALSE) {
+                             FUN = rowMeans, ..., na.rm = NA, tFUN = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -95,7 +99,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
 
 
   # Check if missing values have to be excluded while averaging
-  na.rm <- (anyMissing(X) || anyMissing(S))
+  if (is.na(na.rm)) na.rm <- (anyMissing(X) || anyMissing(S))
 
   # Record names of dimension
   rownamesX <- rownames(X)
@@ -132,7 +136,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
   # length nrow(X) as it should), cf. ?apply
   if (!is.matrix(Z)) {
     if (dimX[1] > 1L) stop("Internal error: dimX[1] > 1L")
-    dim(Z) <- c(length(Z), nbrOfSets)
+    dim(Z) <- c(dimX[1L], nbrOfSets)
   }
 
   # Sanity check
@@ -149,7 +153,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
 #' @rdname rowAvgsPerColSet
 #' @export
 colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
-                             FUN = colMeans, ..., tFUN = FALSE) {
+                             FUN = colMeans, ..., na.rm = NA, tFUN = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -191,7 +195,7 @@ colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
   }
 
   # ...
-  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, ..., tFUN = !tFUN)
+  tZ <- rowAvgsPerColSet(X = tX, W = tW, S = S, FUN = FUN, ..., na.rm = na.rm, tFUN = !tFUN)
   tX <- tW <- NULL  # Not needed anymore
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

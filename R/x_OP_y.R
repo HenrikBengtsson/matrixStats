@@ -4,10 +4,11 @@
 #' +, -, *, and /.  For + and *, na.rm = TRUE will drop missing values first.
 #'
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' NxK \code{\link[base]{matrix}}.
 #'
-#' @param y A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-#' L.
+#' @param y A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} of length L.
 #'
 #' @param OP A \code{\link[base]{character}} specifying which operator to use.
 #'

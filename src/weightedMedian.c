@@ -16,7 +16,7 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP
   R_xlen_t nx, nw;
 
   /* Argument 'x': */
-  assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgVector(x, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
   nx = xlength(x);
 
   /* Argument 'x': */
@@ -43,7 +43,7 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     mu = weightedMedian_dbl[idxsType](REAL(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
-  } else if (isInteger(x)) {
+  } else if (isInteger(x) | isLogical(x)) {
     mu = weightedMedian_int[idxsType](INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
   }
 

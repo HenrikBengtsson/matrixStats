@@ -106,3 +106,31 @@ for (x in xs) {
     stopifnot(all.equal(y, z))
   }
 }
+
+## Logical
+x1 <- c(TRUE, FALSE, TRUE)
+w0 <- c(0, 0, 0)
+stopifnot(!is.finite(weightedMedian(x1, w0)),
+          !is.infinite(weightedMedian(x1, w0)))
+
+w1 <- c(1, 1, 1)
+stopifnot(weightedMedian(x1, w1) == 1)
+
+w2 <- c(1, 2, 3)
+stopifnot(weightedMedian(x1, w2) == 1)
+
+### NA
+stopifnot(is.na(weightedMedian(c(TRUE, FALSE, NA),
+                               c(1, 2, 3))),
+          all.equal(weightedMedian(c(TRUE, FALSE, NA),
+                                   c(1, 2, 3),
+                                   na.rm = TRUE),
+                    weightedMedian(c(TRUE, FALSE),
+                                   c(1, 2))))
+### Identical to as.integer()
+x <- rcauchy(100)
+w <- abs(rcauchy(100))
+stopifnot(all.equal(weightedMedian(x > 0, w),
+                    weightedMedian(as.integer(x > 0), w)))
+
+

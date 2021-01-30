@@ -9,11 +9,11 @@ rowWeightedMeans_R <- function(x, w, na.rm = FALSE, ...) {
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
-for (mode in c("numeric", "integer")) {
+for (mode in c("numeric", "integer", "logical")) {
   x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
   w <- runif(6, min = 0, max = 6)
   storage.mode(x) <- mode
-  storage.mode(w) <- mode
+  storage.mode(w) <- if (mode == "logical") "integer" else mode
   if (mode == "numeric") w[1] <- Inf
 
   for (rows in index_cases) {

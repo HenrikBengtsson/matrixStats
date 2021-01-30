@@ -8,8 +8,9 @@ weightedMedian(x, w = NULL, idxs = NULL, na.rm = FALSE,
   interpolate = is.null(ties), ties = NULL, ...)
 }
 \arguments{
-\item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
-the values whose weighted median is to be computed.}
+\item{x}{a \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+\code{\link[base]{vector}} containing the values whose weighted median is
+to be computed.}
 
 \item{w}{a vector of weights the same length as \code{x} giving the weights
 to use for each element of \code{x}. Negative weights are treated as zero

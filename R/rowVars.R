@@ -11,7 +11,11 @@
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values
 #' are excluded first, otherwise not.
 #'
-#' @param center (optional) The center, defaults to the row means.
+#' @param center (optional; a vector or length N (K)) If the row (column)
+#' means are already estimated, they can be pre-specified using this argument.
+#' This avoid re-estimating them again. (*Warning: If biased estimated are
+#' given, the estimate of the spread will also be biased.*)
+#' If NULL (default), the row/column means are estimated internally.
 #'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
@@ -42,15 +46,29 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+  centerOnUse("rowVars")
+
+  # Apply new dimensions
+  if (!identical(dim(x), dim.)) dim(x) <- dim.
+  
+  # Apply subset on 'center'
+  if (length(center) != nrow(x)) {
+    ## Scalar 'center'?
+    if (length(center) == 1L && is.null(rows)) {
+      validateScalarCenter(center, nrow(x), "rows")
+      center <- rep(center, times = nrow(x))
+    } else {
+      stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+    }
+  }
+  if (!is.null(rows)) center <- center[rows]
+
   # Apply subset on 'x'
-  if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   dim. <- dim(x)
-
-  # Apply subset on 'center'
-  if (!is.null(rows)) center <- center[rows]
 
   ncol <- ncol(x)
 
@@ -80,13 +98,48 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- ncol
   }
 
-  # Spread
-  x <- x * x
-  x <- rowMeans(x, na.rm = na.rm)
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names <- rownames(x)
 
-  # Variance
-  x <- (x - center^2)
-  x * (n / (n - 1))
+  validate <- validateVarsCenterFormula()
+  if (!validate) {
+    ## The primary formula for estimating the sample variance
+    x <- (x - center)^2
+    ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+    ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+    x[is.infinite(center)] <- NaN
+    x <- rowMeans(x, na.rm = na.rm)
+    x <- x * (n / (n - 1))
+    names(x) <- names
+    return(x)
+  }
+
+  ## The alternative formula for estimating the sample variance
+  x2 <- x * x
+  x2 <- rowMeans(x2, na.rm = na.rm)
+  x2 <- (x2 - center^2)
+
+  ## The primary formula for estimating the sample variance
+  x <- (x - center)^2
+  x <- rowMeans(x, na.rm = na.rm)
+  
+  ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+  ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+  x[is.infinite(center)] <- NaN
+
+  equal <- all.equal(x, x2, check.attributes = FALSE)
+  x2 <- NULL
+  if (!isTRUE(equal)) {
+    fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+    fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
+    fcn(msg = sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
+  }
+  
+  x <- x * (n / (n - 1))
+  names(x) <- names
+  x  
 }
 
 
@@ -104,15 +157,29 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     return(sigma2)
   }
 
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+  centerOnUse("colVars")
+
+  # Apply new dimensions
+  if (!identical(dim(x), dim.)) dim(x) <- dim.
+  
+  # Apply subset on 'center'
+  if (length(center) != ncol(x)) {
+    ## Scalar 'center'?
+    if (length(center) == 1L && is.null(cols)) {
+      validateScalarCenter(center, ncol(x), "columns")
+      center <- rep(center, times = ncol(x))
+    } else {
+      stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
+    }
+  }
+  if (!is.null(cols)) center <- center[cols]
+  
   # Apply subset on 'x'
-  if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   dim. <- dim(x)
-
-  # Apply subset on 'center'
-  if (!is.null(cols)) center <- center[cols]
 
   nrow <- nrow(x)
 
@@ -142,11 +209,50 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     n <- nrow
   }
 
-  # Spread
-  x <- x * x
-  x <- colMeans(x, na.rm = na.rm)
+  ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
+  ## when !is.null(center), which is tested by DelayedMatrixStats
+  ## and sparseMatrixStats
+  names <- names(x)
+  
+  validate <- validateVarsCenterFormula()
+  if (!validate) {
+    ## The primary formula for estimating the sample variance
+    for (cc in seq_len(ncol(x))) {
+      x[, cc] <- (x[, cc] - center[cc])^2
+    }
+    x <- colMeans(x, na.rm = na.rm)
+    ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+    ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+    x[is.infinite(center)] <- NaN
+    x <- x * (n / (n - 1))
+    names(x) <- names
+    return(x)
+  }
 
-  # Variance
-  x <- (x - center^2)
-  x * (n / (n - 1))
+  ## The alternative formula for estimating the sample variance
+  x2 <- x * x
+  x2 <- colMeans(x2, na.rm = na.rm)
+  x2 <- (x2 - center^2)
+
+  ## The primary formula for estimating the sample variance
+  for (cc in seq_len(ncol(x))) {
+    x[, cc] <- (x[, cc] - center[cc])^2
+  }
+  x <- colMeans(x, na.rm = na.rm)
+  
+  ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+  ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+  x[is.infinite(center)] <- NaN
+
+  equal <- all.equal(x, x2)
+  x2 <- NULL
+  if (!isTRUE(equal)) {
+    fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+    fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
+    fcn(sprintf("colVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
+  }
+  
+  x <- x * (n / (n - 1))
+  names(x) <- names
+  x  
 }

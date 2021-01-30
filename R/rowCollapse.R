@@ -37,8 +37,10 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
   # Argument 'idxs':
   idxs <- rep(idxs, length.out = dim.[1L])
 
+  # Apply new dimensions
+  if (!identical(dim(x), dim.)) dim(x) <- dim.
+
   # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
   if (!is.null(rows)) {
     x <- x[rows, , drop = FALSE]
     idxs <- idxs[rows]
@@ -67,8 +69,10 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
   # Argument 'idxs':
   idxs <- rep(idxs, length.out = dim.[2L])
 
+  # Apply new dimensions
+  if (!identical(dim(x), dim.)) dim(x) <- dim.
+
   # Apply subset
-  if (is.vector(x)) dim(x) <- dim.
   if (!is.null(cols)) {
     x <- x[, cols, drop = FALSE]
     idxs <- idxs[cols]

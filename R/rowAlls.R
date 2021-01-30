@@ -61,10 +61,9 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 0L, na.rm, has_nas)
     as.logical(counts)
   } else {
-    if (is.vector(x)) {
-      dim(x) <- dim.
-    } else if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    if (!identical(dim(x), dim.)) dim(x) <- dim.
+    if (!is.matrix(x)) {
+      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
     }
 
     # Apply subset
@@ -102,10 +101,9 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 0L, na.rm, has_nas)
     as.logical(counts)
   } else {
-    if (is.vector(x)) {
-      dim(x) <- dim.
-    } else if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    if (!identical(dim(x), dim.)) dim(x) <- dim.
+    if (!is.matrix(x)) {
+      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
     }
 
     # Apply subset
@@ -174,10 +172,9 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 1L, na.rm, has_nas)
     as.logical(counts)
   } else {
-    if (is.vector(x)) {
-      dim(x) <- dim.
-    } else if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    if (!identical(dim(x), dim.)) dim(x) <- dim.
+    if (!is.matrix(x)) {
+      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
     }
 
     # Apply subset
@@ -215,10 +212,9 @@ colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 1L, na.rm, has_nas)
     as.logical(counts)
   } else {
-    if (is.vector(x)) {
-      dim(x) <- dim.
-    } else if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
+    if (!identical(dim(x), dim.)) dim(x) <- dim.
+    if (!is.matrix(x)) {
+      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
     }
 
     # Apply subset

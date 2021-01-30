@@ -1,6 +1,69 @@
 Package: matrixStats
 ====================
 
+Version: 0.58.0 [2021-01-26]
+
+SIGNIFICANT CHANGES:
+
+ * colVars() and rowVars() with argument 'center' now calculates the sample
+   variance using the n/(n-1)*avg((x-center)^2) formula rather than the
+   n/(n-1)*(avg(x^2)-center^2) formula that was used in the past.  Both give
+   the same result when 'center' is the correct sample mean estimate. The
+   main reason for this change is that, if an incorrect 'center' is provided,
+   in contrast to the old approach, the new approach is guaranteed to give at
+   least non-negative results, despite being incorrect.
+   BACKWARD COMPATIBILITY: Out of all 314 reverse dependencies on CRAN and
+   Bioconductor, only four called these functions with argument 'center'. All
+   of them pass their package checks also after this update.  To further
+   protect against a negative impact in existing user scripts, colVars() and
+   rowVars() will calculate both versions and assert that the result is the
+   same.  If not, an informative error is produced.  To limit the performance
+   impact, this validation is run only once every 50:th call, a frequency that
+   can be controlled by R option 'matrixStats.vars.formula.freq'.  Setting it
+   to 0 or NULL will disable the validation.  The default can also be
+   controlled by environment variable 'R_MATRIXSTATS_VARS_FORMULA_FREQ'.
+   This validation framework will be removed in a future version of the package
+   after it has been established that this change has no negative impact.
+
+NEW FEATURES:
+
+ * Now colWeightedMads() and rowWeightedMads() accept 'center' of the same
+   length as the number of columns and rows, respectively.
+
+ * colAvgsPerRowSet() and rowAvgsPerRowSet() gained argument 'na.rm'.
+
+ * Now weightedMean() and weightedMedian() and the corresponding row- and
+   column-based functions accept logical 'x', where FALSE is treated as
+   integer 0 and TRUE as 1.
+
+ * Now x_OP_y() and t_tx_OP_y() accept logical 'x' and 'y', where FALSE is
+   treated as integer 0 and TRUE as 1.
+
+BUG FIXES:
+
+ * colQuantiles() and rowQuantiles() on a logical matrix should return a
+   numeric vector for 'type = 7'. However, when there were only missing values
+   (= NA) in the matrix, then it would return a "logical" vector instead.
+
+ * colAvgsPerRowSet() on a single-column matrix would produce an error on
+   non-matching dimensions.  Analogously, for rowAvgsPerRowSet() and single-
+   row matrices.
+
+ * colVars(x) and rowVars(x) with 'x' being an array would give the wrong
+   value if both argument 'dim.' and 'center' would be specified.
+
+ * The documentation was unclear on what the 'center' argument should be. They
+   would not detect when an incorrect specification was used, notably when the
+   length of 'center' did not match the matrix dimensions.  Now these functions
+   give an informative error message when 'center' is of the incorrect length.
+
+DEPRECATED AND DEFUNCT:
+
+ * Using a scalar value for argument 'center' of colSds(), rowSds(), colVars(),
+   rowVars(), colMads(), rowMads(), colWeightedMads(), and rowWeightedMads() is
+   now deprecated.
+ 
+
 Version: 0.57.0 [2020-09-25]
 
 NEW FEATURES:
@@ -57,7 +120,7 @@ BUG FIXES:
    causing the following text to be included in a cell on an extra row in
    the table (at least when rendered on GitHub Wiki pages).
 
- 
+
 Version: 0.55.0 [2019-09-05]
 
 SIGNIFICANT CHANGES:
@@ -69,7 +132,7 @@ SIGNIFICANT CHANGES:
    also drop (x, w) elements where 'w' was missing.  With this change, we
    now have that for all functions in this package, na.rm=TRUE never applies
    to weights - only 'x' values.
-   
+
 NEW FEATURES:
 
  * colRanks() and rowRanks() now supports the same set of 'ties.method' as
@@ -78,18 +141,18 @@ NEW FEATURES:
    previous versions.  Thank to Brian Montgomery for contributing this.
 
  * colCumsums() and rowCumsums() now support also logical input.
- 
+
 BUG FIXES:
 
  * weightedVar(), weightedSd(), weightedMad(), and their row- and column-
    specific counter parts would produce an error instead of returning a
    missing value when one of the weights is a missing value.
-   
+
 DEPRECATED AND DEFUNCT:
 
  * Calling indexByRow(x) where 'x' is a matrix is now defunct. Use
    indexByRow(dim(x)) instead.
-   
+
 
 Version: 0.54.0 [2018-07-23]
 
@@ -111,7 +174,7 @@ DEPRECATED AND DEFUNCT:
 
  * Calling indexByRow(x) where 'x' is a matrix is deprecated. Use
    indexByRow(dim(x)) instead.
-  
+
 
 Version: 0.53.1 [2018-02-10]
 
@@ -123,14 +186,14 @@ CODE REFACTORING:
 DOCUMENTATION:
 
  * Added details on how weightedMedian(x, interpolate = TRUE) works.
-   
+
 BUG FIXES:
 
  * colLogSumExps(lx, cols) / rowLogSumExps(lx, rows) gave an error if 'lx'
    has rownames / colnames.
 
  * col-/rowQuantiles() would lose rownames of output in certain cases.
- 
+
 
 Version: 0.53.0 [2018-01-23]
 
@@ -144,12 +207,12 @@ NEW FEATURES:
 
  * Functions col-/rowSums2() and col-/rowMeans2() now accept also logical
    input 'x'.
- 
+
  * Function binMeans(y, x, bx) now accepts logical 'y', which corresponds
    to to using as.integer(y) but without the need for coercion to integer.
 
  * Functions col-/rowTabulates(x) now support logical input 'x'.
- 
+
  * Now count() can count beyond 2^31-1.
 
  * allocVector() can now allocate long vectors (longer than 2^31-1).
@@ -190,9 +253,9 @@ DEPRECATED AND DEFUNCT:
    and sum2() instead.
 
  * Previously deprecated weightedVar(x, w, method = "0.14.2") is defunct.
- 
+
  * Dropped previously defunct weightedMedian(..., ties = "both").
- 
+
  * Dropped previously defunct argument 'centers' for col-/rowMads(). Use
    'center' instead.
 
@@ -209,20 +272,20 @@ BUG FIXES:
    produced instead.  Similarly, some vector-based functions could potentially
    core dump R or silently return a nonsense result.  Thank you Hervé Pagès,
    Bioconductor Core, for the report.
- 
+
 DEPRECATED AND DEFUNCT:
 
  * rowVars(..., method = "0.14.2") that was added for very unlikely needs of
    backward compatibility of an invalid degree-of-freedom term is deprecated.
-   
- 
+
+
 Version: 0.52.1 [2017-04-04]
 
 BUG FIXES:
 
  * The package test on matrixStats:::benchmark() tried to run even if
    not all suggested packages were available.
- 
+
 
 Version: 0.52.0 [2017-04-03]
 
@@ -257,12 +320,12 @@ NEW FEATURES:
    an more informative error message is given.
 
  * Package is now silent when loaded; it no longer displays a startup message.
- 
+
 SOFTWARE QUALITY:
 
  * Continuous-integration testing is now also done on macOS, in addition to
    Linux and Windows.
-   
+
  * ROBUSTNESS: Package now registers the native API using also
    R_useDynamicSymbols().
 
@@ -270,7 +333,7 @@ CODE REFACTORING:
 
  * Cleaned up native low-level API and renamed native source code files
    to make it easier to navigate the native API.
- 
+
  * Now using roxygen for help and NAMESPACE (was R.oo::Rdoc).
 
 BUG FIXES:
@@ -283,7 +346,7 @@ BUG FIXES:
    intermediate sum would have that value, even if one of the following
    elements would turn the intermediate sum into NaN or NA, e.g. with 'x'
    as c(-Inf, NaN), c(-Inf, +Inf), or c(+Inf, NA).
-   
+
  * WORKAROUND: Benchmark reports generated by matrixStats:::benchmark() would
    use any custom R prompt that is currently set in the R session, which may
    not render very well.  Now it forces the prompt to be the built-in "> " one.
@@ -324,8 +387,8 @@ PERFORMANCE AND MEMORY:
 
  * SPEEDUP: Now native API is formally registered allowing for faster lookup
    of routines from R.
- 
- 
+
+
 Version: 0.50.2 [2016-04-24]
 
 BUG FIXES:
@@ -338,7 +401,7 @@ BUG FIXES:
    Jason Xu (University of Washington) for reporting and Brennan Vincent for
    troubleshooting and contributing a fix.
 
- 
+
 Version: 0.50.1 [2015-12-14]
 
 BUG FIXES:
@@ -346,8 +409,8 @@ BUG FIXES:
  * The Undefined Behavior Sanitizer (UBsan) reported on a memcall(src, dest, 0)
    call when dest == null.  Thanks to Brian Ripley and the CRAN check tools for
    catching this. We could reproduce this with gcc 5.1.1 but not with gcc 4.9.2.
- 
- 
+
+
 Version: 0.50.0 [2015-12-13]
 
 NEW FEATURES:
@@ -360,8 +423,8 @@ NEW FEATURES:
    apply(x, MARGIN = 1L, FUN = var). These features were added by Dongcan Jiang,
    Peking University, with support from the Google Summer of Code program.
    A great thank you to Dongcan and to Google for making this possible.
- 
- 
+
+
 Version: 0.15.0 [2015-10-26]
 
 NEW FEATURES:
@@ -393,15 +456,15 @@ DEPRECATED AND DEFUNCT:
 
  * weightedVar(x, w, method = "0.14.2") is deprecated.
 
- 
+
 Version: 0.14.2 [2015-06-23]
 
 BUG FIXES:
 
  * x_OP_y() and t_tx_OP_y() would return garbage on Solaris SPARC (and possibly
    other architectures as well) when input was integer and had missing values.
- 
- 
+
+
 Version: 0.14.1 [2015-06-17]
 
 BUG FIXES:
@@ -445,8 +508,8 @@ BUG FIXES:
 
  * All of the above bugs were identified and fixed by Dongcan Jiang (Peking
    University, China), who also added corresponding unit tests.
- 
- 
+
+
 Version: 0.14.0 [2015-02-13]
 
 SIGNIFICANT CHANGES:
@@ -502,8 +565,8 @@ BUG FIXES:
 
  * logSumExp(x, na.rm = TRUE) would return NA if all values were NA and
    length(x) > 1.  Now it returns -Inf for all length(x):s.
- 
- 
+
+
 Version: 0.13.1 [2015-01-21]
 
 BUG FIXES:
@@ -513,8 +576,8 @@ BUG FIXES:
    sense that the returned value was unaffected and still correct.  Thanks
    to Brian Ripley and the CRAN check tools for catching this.  I could
    reproduce it locally with 'valgrind'.
- 
- 
+
+
 Version: 0.13.0 [2015-01-20]
 
 SIGNIFICANT CHANGES:
@@ -588,7 +651,7 @@ BUG FIXES:
 
  * weightedMedian(..., ties = "both") would give an error if there was a tie.
    Added package test for this case.
- 
+
 DEPRECATED AND DEFUNCT:
 
  * weightedMedian(..., ties = "both") is now defunct.
@@ -603,13 +666,13 @@ BUG FIXES:
    fabs().  Despite this, the calculated product would still be correct (at
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
-   coersion at the C level.
+   coercion at the C level.
 
 DEPRECATED AND DEFUNCT:
 
  * weightedMedian(..., interpolate = FALSE, ties = "both") is defunct.
- 
- 
+
+
 Version: 0.12.1 [2014-12-06]
 
 SOFTWARE QUALITY:
@@ -630,13 +693,13 @@ BUG FIXES:
    value of residuals toward the median would use integer-based abs() rather
    than double-based fabs(). Now it fabs() is used when the values are double
    and abs() when they are integers.
- 
- 
+
+
 Version: 0.12.0 [2014-12-05]
 
  * Submitted to CRAN.
- 
- 
+
+
 Version: 0.11.9 [2014-11-26]
 
 NEW FEATURES:
@@ -648,8 +711,8 @@ BUG FIXES:
 
  * (col|row)WeightedMeans() with all zero weights gave mean estimates with
    values 0 instead of NaN.
- 
- 
+
+
 Version: 0.11.8 [2014-11-25]
 
 PERFORMANCE AND MEMORY:
@@ -669,8 +732,8 @@ BUG FIXES:
    case (a) it was calculated as the mean of two values ("ties"), and (b) the
    sum of those values where greater than .Machine$integer.max.  Now such ties
    are calculated using floating point precision.  Add lots of package tests.
- 
- 
+
+
 Version: 0.11.6 [2014-11-16]
 
 PERFORMANCE AND MEMORY:
@@ -689,13 +752,13 @@ DEPRECATED AND DEFUNCT:
 
  * CLEANUP: Argument 'flavor' of (col|row)Ranks() is now ignored.
 
- 
+
 Version: 0.11.5 [2014-11-15]
 
 SIGNIFICANT CHANGES:
 
  * (col|row)Prods() now uses default method = "direct" (was "expSumLog").
- 
+
 PERFORMANCE AND MEMORY:
 
  * SPEEDUP: Now colCollapse(x) no longer utilizes rowCollapse(t(x)).  Added
@@ -707,7 +770,7 @@ PERFORMANCE AND MEMORY:
  * SPEEDUP: Package no longer utilizes match.arg() due to its overhead; methods
    sumOver(), (col|row)Prods() and (col|row)Ranks() were updated.
 
- 
+
 Version: 0.11.4 [2014-11-14]
 
 NEW FEATURES:
@@ -724,8 +787,8 @@ PERFORMANCE AND MEMORY:
    (col|row)Counts() are now also implemented in native code for logical input
    (previously only for integer and double input).  Added more package tests
    and benchmarks for these functions.
- 
- 
+
+
 Version: 0.11.3 [2014-11-11]
 
 SIGNIFICANT CHANGES:
@@ -736,8 +799,8 @@ SIGNIFICANT CHANGES:
 CODE REFACTORING:
 
  * Removed unnecessary usage of '::'.
- 
- 
+
+
 Version: 0.11.2 [2014-11-09]
 
 SIGNIFICANT CHANGES:
@@ -759,7 +822,7 @@ DEPRECATED AND DEFUNCT:
  * Calling indexByRow(X) with a matrix 'X' is deprecatated.  Instead call it
    with indexByRow(dim(X)).
 
- 
+
 Version: 0.11.1 [2014-11-07]
 
 NEW FEATURES:
@@ -791,8 +854,8 @@ BUG FIXES:
 
  * Package incorrectly redefined R_xlen_t on R (>= 3.0.0) systems where
    LONG_VECTOR_SUPPORT is not supported.
- 
- 
+
+
 Version: 0.11.0 [2014-11-02]
 
 NEW FEATURES:
@@ -804,8 +867,8 @@ NEW FEATURES:
    created when coercing to numeric (this numeric copy is also twice as large
    as the integer vector).  Added package tests and benchmark reports for
    these functions.
- 
- 
+
+
 Version: 0.10.4 [2014-11-01]
 
 PERFORMANCE AND MEMORY:
@@ -816,23 +879,23 @@ PERFORMANCE AND MEMORY:
    e.g. ansp[i] = v where ansp = REAL(ans) instead of REAL(ans)[i] = v.
 
  * Added benchmark reports for anyMissing() and logSumExp().
- 
- 
+
+
 Version: 0.10.3 [2014-10-01]
 
 BUG FIXES:
 
  * binMeans() returned 0.0 instead of NA_real_ for empty bins.
- 
- 
+
+
 Version: 0.10.2 [2014-09-01]
 
 BUG FIXES:
 
  * On some systems, the package failed to build on R (<= 2.15.3) with
    compilation error: "redefinition of typedef 'R_xlen_t'".
- 
- 
+
+
 Version: 0.10.1 [2014-06-09]
 
 PERFORMANCE AND MEMORY:
@@ -842,8 +905,8 @@ PERFORMANCE AND MEMORY:
 
  * Now all colNnn() and rowNnn() methods are benchmarked in a combined report
    making it possible to also compare colNnn(x) with rowNnn(t(x)).
- 
- 
+
+
 Version: 0.10.0 [2014-06-07]
 
 SOFTWARE QUALITY:
@@ -859,7 +922,7 @@ BUG FIXES:
    prod(c(NaN, NA)) is uniquely defined.  However, as documented in
    help("is.nan"), it may be NA or NaN depending on R system/platform.
 
- 
+
 Version: 0.9.7 [2014-06-05]
 
 BUG FIXES:
@@ -868,8 +931,8 @@ BUG FIXES:
    col-/rowSds() to return garbage.  Add package tests for these now.
 
  * Submitted to CRAN.
- 
- 
+
+
 Version: 0.9.6 [2014-06-04]
 
 NEW FEATURES:
@@ -884,8 +947,8 @@ PERFORMANCE AND MEMORY:
 
  * SPEEDUP: Added product() for calculating the product of a numeric
    vector via the logarithm.
- 
- 
+
+
 Version: 0.9.5 [2014-06-04]
 
 SIGNIFICANT CHANGES:
@@ -893,7 +956,7 @@ SIGNIFICANT CHANGES:
  * SPEEDUP: Made weightedMedian() a plain function (was an S3 method).
 
  * CLEANUP: Now only exporting plain functions and generic functions.
- 
+
  * SPEEDUP: Turned more S4 methods into S3 methods, e.g. rowCounts(),
    rowAlls(), rowAnys(), rowTabulates() and rowCollapse().
 
@@ -918,23 +981,23 @@ PERFORMANCE AND MEMORY:
    rowSds() a slightly bit faster.
 
  * Added benchmark reports, e.g. matrixStats:::benchmark('colMins').
- 
- 
+
+
 Version: 0.9.4 [2014-05-23]
 
 SIGNIFICANT CHANGES:
 
  * SPEEDUP: Turned several S4 methods into S3 methods, e.g. indexByRow(),
    madDiff(), sdDiff() and varDiff().
- 
- 
+
+
 Version: 0.9.3 [2014-04-26]
 
 NEW FEATURES:
 
  * Added argument 'trim' to madDiff(), sdDiff() and varDiff().
- 
- 
+
+
 Version: 0.9.2 [2014-04-04]
 
 BUG FIXES:
@@ -944,8 +1007,8 @@ BUG FIXES:
    in 'bx'.  This bug had no impact on the results and since no assignment was
    done it should also not crash/core dump R.  This was discovered thanks to
    new memtests (ASAN and valgrind) provided by CRAN.
- 
- 
+
+
 Version: 0.9.1 [2014-03-31]
 
 BUG FIXES:
@@ -953,15 +1016,15 @@ BUG FIXES:
  * rowProds() would throw "Error in rowSums(isNeg) : 'x' must be an array of
    at least two dimensions" on matrices where all rows contained at least one
    zero.  Thanks to Roel Verbelen at KU Leuven for the report.
- 
- 
+
+
 Version: 0.9.0 [2014-03-26]
 
 NEW FEATURES:
 
  * Added weighedVar() and weightedSd().
- 
- 
+
+
 Version: 0.8.14 [2013-11-23]
 
 PERFORMANCE AND MEMORY:
@@ -972,8 +1035,8 @@ PERFORMANCE AND MEMORY:
    memory footprint.
 
  * Submitted to CRAN.
- 
- 
+
+
 Version: 0.8.13 [2013-10-08]
 
 NEW FEATURES:
@@ -985,15 +1048,15 @@ NEW FEATURES:
 CODE REFACTORING:
 
  * Bumped up package dependencies.
- 
- 
+
+
 Version: 0.8.12 [2013-09-26]
 
 PERFORMANCE AND MEMORY:
 
  * SPEEDUP: Now utilizing anyMissing() everywhere possible.
- 
- 
+
+
 Version: 0.8.11 [2013-09-21]
 
 SOFTWARE QUALITY:
@@ -1005,8 +1068,8 @@ SOFTWARE QUALITY:
 
  * ROBUSTNESS: Updates package system tests such that the can run with only
    the 'base' package loaded.
- 
- 
+
+
 Version: 0.8.10 [2013-09-15]
 
 CODE REFACTORING:
@@ -1014,23 +1077,23 @@ CODE REFACTORING:
  * CLEANUP: Now only importing two functions from the 'methods' package.
 
  * Bumped up package dependencies.
- 
- 
+
+
 Version: 0.8.9 [2013-08-29]
 
 NEW FEATURES:
 
  * CLEANUP: Now the package startup message acknowledges argument
    'quietly' of library()/require().
- 
- 
+
+
 Version: 0.8.8 [2013-07-29]
 
 DOCUMENTATION:
 
  * The dimension of the return value was swapped in help("rowQuantiles").
- 
- 
+
+
 Version: 0.8.7 [2013-07-28]
 
 PERFORMANCE AND MEMORY:
@@ -1041,34 +1104,34 @@ BUG FIXES:
 
  * rowRanges(x) on an Nx0 matrix would give an error.  Same for colRanges(x)
    on an 0xN matrix.  Added system tests for these and other special cases.
- 
- 
+
+
 Version: 0.8.6 [2013-07-20]
 
 CODE REFACTORING:
 
  * Bumped up package dependencies.
- 
+
 BUG FIXES:
 
  * Forgot to declare S3 methods (col|row)WeightedMedians().
- 
- 
+
+
 Version: 0.8.5 [2013-05-25]
 
 PERFORMANCE AND MEMORY:
 
  * Minor speedup of (col|row)Tabulates() by replacing rm() calls with NULL
    assignments.
- 
- 
+
+
 Version: 0.8.4 [2013-05-20]
 
 DOCUMENTATION:
 
  * CRAN POLICY: Now all Rd \usage{} lines are at most 90 characters long.
- 
- 
+
+
 Version: 0.8.3 [2013-05-10]
 
 PERFORMANCE AND MEMORY:
@@ -1077,23 +1140,23 @@ PERFORMANCE AND MEMORY:
    presorting 'x' before counting/averaging.  They also no longer test in
    every iteration (== for every data point) whether the last bin has been
    reached or not, but only after completing a bin.
- 
- 
+
+
 Version: 0.8.2 [2013-05-02]
 
 DOCUMENTATION:
 
  * Minor corrections and updates to help pages.
- 
- 
+
+
 Version: 0.8.1 [2013-05-02]
 
 BUG FIXES:
 
  * Native code of logSumExp() used an invalid check for missing value of an
    integer argument.  Detected by Brian Ripley upon CRAN submission.
- 
- 
+
+
 Version: 0.8.0 [2013-05-01]
 
 NEW FEATURES:
@@ -1102,8 +1165,8 @@ NEW FEATURES:
    of log(sum(exp(lx))) for standalone vectors, and row and column vectors of
    matrices. Thanks to Nakayama (Japan) for the suggestion and contributing a
    draft in R.
- 
- 
+
+
 Version: 0.7.1 [2013-04-23]
 
 NEW FEATURES:
@@ -1118,8 +1181,8 @@ BUG FIXES:
 
  * Since v0.6.4, (col|row)Medians() for integers would calculate ties as
    floor(tieAvg).
- 
- 
+
+
 Version: 0.7.0 [2013-01-14]
 
 NEW FEATURES:
@@ -1127,8 +1190,8 @@ NEW FEATURES:
  * Now (col|row)Ranks() support "max" (default), "min" and "average" for
    argument 'ties.method'.  Added system tests validation these cases.
    Thanks Peter Langfelder (UCLA) for contributing this.
- 
- 
+
+
 Version: 0.6.4 [2013-01-13]
 
 NEW FEATURES:
@@ -1142,8 +1205,8 @@ CODE REFACTORING:
    integer and double cases have been harmonized and are now generated from a
    common code template.  This was inspired by code contributions from Peter
    Langfelder (UCLA).
- 
- 
+
+
 Version: 0.6.3 [2013-01-13]
 
 NEW FEATURES:
@@ -1155,15 +1218,15 @@ SOFTWARE QUALITY:
  * ROBUSTNESS: Added system test for anyMissing().
 
  * ROBUSTNESS: Now S3 methods are declared in the namespace.
- 
- 
+
+
 Version: 0.6.2 [2012-11-15]
 
 SOFTWARE QUALITY:
 
  * CRAN POLICY: Made example(weightedMedian) faster.
- 
- 
+
+
 Version: 0.6.1 [2012-10-10]
 
 BUG FIXES:
@@ -1173,8 +1236,8 @@ BUG FIXES:
 
  * binCounts() and binMeans() would return random/garbage values for bins that
    were beyond the last data point.
- 
- 
+
+
 Version: 0.6.0 [2012-10-04]
 
 NEW FEATURES:
@@ -1184,8 +1247,8 @@ NEW FEATURES:
    for contributing the core code for this.
 
  * Added binCounts() for fast element counting in bins.
- 
- 
+
+
 Version: 0.5.3 [2012-09-10]
 
 SOFTWARE QUALITY:
@@ -1193,15 +1256,15 @@ SOFTWARE QUALITY:
  * CRAN POLICY: Replaced the .Internal(psort(...)) call with a call to a new
    internal partial sorting function, which utilizes the native rPsort() part
    of the R internals.
- 
- 
+
+
 Version: 0.5.2 [2012-07-02]
 
 CODE REFACTORING:
 
  * Updated package dependencies to match CRAN.
- 
- 
+
+
 Version: 0.5.1 [2012-06-25]
 
 NEW FEATURES:
@@ -1217,8 +1280,8 @@ BUG FIXES:
  * In certain cases, (col|row)Prods() would return NA instead of 0 for some
    elements.  Added a redundancy test for the case.  Thanks Brenton Kenkel
    at University of Rochester for reporting on this.
- 
- 
+
+
 Version: 0.5.0 [2012-04-16]
 
 NEW FEATURES:
@@ -1234,16 +1297,16 @@ CODE REFACTORING:
 
  * Now this package only imports R.methodsS3, meaning it no longer loads
    R.methodsS3 when it is loaded.
- 
- 
+
+
 Version: 0.4.5 [2012-03-19]
 
 NEW FEATURES:
 
  * Updated the default argument 'centers' of rowMads()/colMads() to explicitly
    be (col|row)Medians(x,...).  The  default behavior has not changed.
- 
- 
+
+
 Version: 0.4.4 [2012-03-05]
 
 SOFTWARE QUALITY:
@@ -1258,7 +1321,7 @@ BUG FIXES:
  * colMads() would return the incorrect estimates. This bug was introduced in
    matrixStats v0.4.0 (2011-11-11).
 
- 
+
 Version: 0.4.3 [2011-12-11]
 
 BUG FIXES:
@@ -1267,15 +1330,15 @@ BUG FIXES:
    this was the the native code used ISNA() to test for NA and NaN, but it
    should have been ISNAN(), which is opposite to how is.na() and is.nan() at
    the R level work.  Added system tests for this case.
- 
- 
+
+
 Version: 0.4.2 [2011-11-29]
 
 NEW FEATURES:
 
  * Added rowAvgsPerColSet() and colAvgsPerRowSet().
- 
- 
+
+
 Version: 0.4.1 [2011-11-25]
 
 DOCUMENTATION:
@@ -1289,21 +1352,21 @@ BUG FIXES:
  * rowIQRs() and colIQRs() would return the 25% and the 75% quantiles, not the
    difference between them.  Thanks Pierre Neuvial at CNRS, Evry, France for
    the report.
- 
- 
+
+
 Version: 0.4.0 [2011-11-11]
 
 SIGNIFICANT CHANGES:
 
  * Dropped the previously introduced expansion of 'center' in rowMads() and
    colMads().  It added unnecessary overhead if not needed.
-   
+
 NEW FEATURES:
 
  * Added rowRanks() and colRanks().  Thanks Hector Corrada Bravo (University
    of Maryland) and Harris Jaffee (John Hopkins).
- 
- 
+
+
 Version: 0.3.0 [2011-10-13]
 
 PERFORMANCE AND MEMORY:
@@ -1316,15 +1379,15 @@ PERFORMANCE AND MEMORY:
 SOFTWARE QUALITY:
 
  * Added additional unit tests for colMedians() and rowMedians().
- 
- 
+
+
 Version: 0.2.2 [2010-10-06]
 
 NEW FEATURES:
 
  * Now the result of (col|row)Quantiles() contains column names.
- 
- 
+
+
 Version: 0.2.1 [2010-04-05]
 
 NEW FEATURES:
@@ -1334,13 +1397,13 @@ NEW FEATURES:
 CODE REFACTORING:
 
  * CLEANUP: Removed obsolete internal .First.lib() and .Last.lib().
- 
- 
+
+
 Version: 0.2.0 [2010-03-30]
 
  * DOCUMENTATION: Fixed some incorrect cross references.
- 
- 
+
+
 Version: 0.1.9 [2010-02-03]
 
 BUG FIXES:
@@ -1348,8 +1411,8 @@ BUG FIXES:
  * (col|row)WeightedMeans(..., na.rm = TRUE) would incorrectly treat missing
    values as zeros.  Added corresponding redundancy tests (also for the median
    case).  Thanks Pierre Neuvial for reporting this.
- 
- 
+
+
 Version: 0.1.8 [2009-11-13]
 
 BUG FIXES:
@@ -1360,8 +1423,8 @@ BUG FIXES:
    Thanks Pierre Neuvial at UC Berkeley for reporting this.
 
  * (col|row)Ranges() return a matrix with dimension names.
- 
- 
+
+
 Version: 0.1.7 [2009-06-20]
 
 BUG FIXES:
@@ -1369,8 +1432,8 @@ BUG FIXES:
  * WORKAROUND: Cannot use "%#x" in rowTabulates() when creating the column
    names of the result matrix.  It gave an error OSX with R v2.9.0 devel
    (2009-01-13 r47593b) current the OSX server at R-forge.
- 
- 
+
+
 Version: 0.1.6 [2009-06-17]
 
 DOCUMENTATION:
@@ -1379,16 +1442,16 @@ DOCUMENTATION:
    on aroma.light, which is only a suggested package - not a required one.
    This in order to prevent R CMD check to fail on CRAN, which prevents
    it for building binaries (as it currently happens on their OSX servers).
- 
- 
+
+
 Version: 0.1.5 [2009-02-04]
 
 BUG FIXES:
 
  * For some errors in rowOrderStats(), the stack would not become UNPROTECTED
    before calling error.
- 
- 
+
+
 Version: 0.1.4 [2009-02-02]
 
 NEW FEATURES:
@@ -1402,8 +1465,8 @@ DOCUMENTATION:
 SOFTWARE QUALITY:
 
  * Package passes R CMD check flawlessly.
- 
- 
+
+
 Version: 0.1.3 [2008-07-30]
 
 NEW FEATURES:
@@ -1413,8 +1476,8 @@ NEW FEATURES:
 BUG FIXES:
 
  * rowCollapse(x) was broken and returned the wrong elements.
- 
- 
+
+
 Version: 0.1.2 [2008-04-13]
 
 NEW FEATURES:
@@ -1424,8 +1487,8 @@ NEW FEATURES:
  * Added varDiff(), sdDiff() and madDiff().
 
  * Added indexByRow().
- 
- 
+
+
 Version: 0.1.1 [2008-03-25]
 
 NEW FEATURES:
@@ -1437,8 +1500,8 @@ NEW FEATURES:
  * Added colMedians().
 
  * Now anyMissing() support most data types as structures.
- 
- 
+
+
 Version: 0.1.0 [2007-11-26]
 
 NEW FEATURES:

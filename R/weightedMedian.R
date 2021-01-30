@@ -2,8 +2,9 @@
 #'
 #' Computes a weighted median of a numeric vector.
 #'
-#' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
-#' the values whose weighted median is to be computed.
+#' @param x a \code{\link[base]{numeric}} or \code{\link[base]{logical}}
+#' \code{\link[base]{vector}} containing the values whose weighted median is
+#' to be computed.
 #'
 #' @param w a vector of weights the same length as \code{x} giving the weights
 #' to use for each element of \code{x}. Negative weights are treated as zero
@@ -53,7 +54,7 @@
 #' If one or more weights are \code{Inf}, it is the same as these weights have
 #' the same weight and the others have zero. This makes things easier for cases
 #' where the weights are result of a division with zero.
-#' 
+#'
 #' If there are missing values in \code{w} that are part of the calculation
 #' (after subsetting and dropping missing values in \code{x}), then the final
 #' result is always \code{NA} of the same type as \code{x}.
@@ -73,7 +74,7 @@
 #'
 #' @seealso \code{\link[stats]{median}}, \code{\link[base]{mean}}() and
 #' \code{\link{weightedMean}}().
-#' 
+#'
 #' @references [1] T.H. Cormen, C.E. Leiserson, R.L. Rivest, Introduction to
 #' Algorithms, The MIT Press, Massachusetts Institute of Technology, 1989.
 #'
@@ -81,7 +82,6 @@
 #' @export
 weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
                            interpolate = is.null(ties), ties = NULL, ...) {
-  # Argument 'x':
 
   # Argument 'w':
   if (is.null(w)) {

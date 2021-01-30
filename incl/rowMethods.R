@@ -24,7 +24,6 @@ print(colSds(x))
 print(colMads(x))
 print(colIQRs(x))
 
-
 # Row ranges
 print(rowRanges(x))
 print(cbind(rowMins(x), rowMaxs(x)))

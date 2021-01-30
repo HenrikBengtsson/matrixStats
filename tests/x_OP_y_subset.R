@@ -42,7 +42,7 @@ t_tx_OP_y_R <- function(x, y, OP, na.rm = FALSE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
 for (OP in c("+", "-", "*", "/")) {
-  for (mode in c("numeric", "integer")) {
+  for (mode in c("numeric", "integer", "logical")) {
     x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6L, ncol = 6L)
     y <- runif(6, min = 0, max = 6)
     storage.mode(x) <- mode

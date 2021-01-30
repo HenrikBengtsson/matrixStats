@@ -1,26 +1,37 @@
 library("matrixStats")
 
+## Always allow testing of the 'center' argument (as long as it's not defunct)
+options(matrixStats.center.onUse = "ignore")
+
 rowSds_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 1L, FUN = sd, na.rm = na.rm)
+    res <- apply(x, MARGIN = 1L, FUN = sd, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colSds_R <- function(x, na.rm = FALSE) {
   suppressWarnings({
-    apply(x, MARGIN = 2L, FUN = sd, na.rm = na.rm)
+    res <- apply(x, MARGIN = 2L, FUN = sd, na.rm = na.rm)
   })
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 
 rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm)
-  rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm)
-  colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  stopifnot(!any(is.infinite(res)))
+  res
 }
 
 
@@ -52,6 +63,12 @@ for (mode in c("integer", "double")) {
       stopifnot(all.equal(r2, r0))
       stopifnot(all.equal(r1b, r1))
       stopifnot(all.equal(r2b, r2))
+      stopifnot(
+        !any(is.infinite(r1)),
+        !any(is.infinite(r2)),
+        !any(is.infinite(r1b)),
+        !any(is.infinite(r2b))
+      )
     }
   } # for (add_na ...)
 }
@@ -78,6 +95,12 @@ for (mode in c("integer", "double")) {
     stopifnot(all.equal(r2, r0))
     stopifnot(all.equal(r1b, r1))
     stopifnot(all.equal(r2b, r2))
+    stopifnot(
+      !any(is.infinite(r1)),
+      !any(is.infinite(r2)),
+      !any(is.infinite(r1b)),
+      !any(is.infinite(r2b))
+    )
   }
 }
 
@@ -98,4 +121,10 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(all.equal(r2, r0))
   stopifnot(all.equal(r1b, r1))
   stopifnot(all.equal(r2b, r2))
+  stopifnot(
+    !any(is.infinite(r1)),
+    !any(is.infinite(r2)),
+    !any(is.infinite(r1b)),
+    !any(is.infinite(r2b))
+  )
 }

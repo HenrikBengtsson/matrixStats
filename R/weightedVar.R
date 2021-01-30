@@ -45,7 +45,7 @@
 #' The estimator used here is the same as the one used by the "unbiased"
 #' estimator of the \bold{Hmisc} package. More specifically,
 #' \code{weightedVar(x, w = w) == Hmisc::wtd.var(x, weights = w)},
-#' 
+#'
 #' @seealso For the non-weighted variance, see \code{\link[stats]{var}}.
 #'
 #' @keywords univar robust
@@ -105,7 +105,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   } else if (anyMissing(x)) {
     return(na_value)
   }
-  
+
   # Missing values in 'w'?
   if (anyMissing(w)) return(na_value)
 
@@ -132,6 +132,9 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   # Estimate the mean?
   if (is.null(center)) {
     center <- sum(w * x) / wsum
+  } else {
+    ## https://github.com/HenrikBengtsson/matrixStats/issues/187
+    centerOnUse("weightedVar")
   }
 
   # Estimate the variance
@@ -149,8 +152,8 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   if (wsum <= 1) {
     warning(sprintf("Produced invalid variance estimate, because the weights suggest at most one effective observation (sum(w) <= 1): %g (wsum = %g)", sigma2, wsum))
   }
-  
-  
+
+
   sigma2
 }
 
