@@ -2,10 +2,10 @@
 
 <details>
 
-* Version: 2.10.0
+* Version: 2.10.1
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-02-09
 * Number of recursive dependencies: 179
 
 Run `revdep_details(, "clusterExperiment")` for more info

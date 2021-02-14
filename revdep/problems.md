@@ -267,10 +267,10 @@ Run `revdep_details(, "aroma.light")` for more info
 
 <details>
 
-* Version: 2.2.1
+* Version: 2.2.2
 * GitHub: https://github.com/catavallejos/BASiCS
 * Source code: https://github.com/cran/BASiCS
-* Date/Publication: 2020-12-14
+* Date/Publication: 2021-02-03
 * Number of recursive dependencies: 139
 
 Run `revdep_details(, "BASiCS")` for more info
@@ -281,7 +281,7 @@ Run `revdep_details(, "BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.4Mb
+      installed size is 11.5Mb
       sub-directories of 1Mb or more:
         data   2.0Mb
         doc    1.4Mb
@@ -759,10 +759,10 @@ Run `revdep_details(, "bumphunter")` for more info
 
 <details>
 
-* Version: 3.1
+* Version: 3.1.1
 * GitHub: https://github.com/duncanplee/CARBayesST
 * Source code: https://github.com/cran/CARBayesST
-* Date/Publication: 2020-03-09 15:10:11 UTC
+* Date/Publication: 2021-02-04 15:30:16 UTC
 * Number of recursive dependencies: 106
 
 Run `revdep_details(, "CARBayesST")` for more info
@@ -786,7 +786,7 @@ Run `revdep_details(, "CARBayesST")` for more info
 * GitHub: https://github.com/HelenaLC/CATALYST
 * Source code: https://github.com/cran/CATALYST
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 241
+* Number of recursive dependencies: 243
 
 Run `revdep_details(, "CATALYST")` for more info
 
@@ -802,6 +802,44 @@ Run `revdep_details(, "CATALYST")` for more info
         doc    9.8Mb
     ```
 
+# CDSeq
+
+<details>
+
+* Version: 1.0.8
+* GitHub: https://github.com/kkang7/CDSeq_R_Package
+* Source code: https://github.com/cran/CDSeq
+* Date/Publication: 2021-02-10 16:10:02 UTC
+* Number of recursive dependencies: 199
+
+Run `revdep_details(, "CDSeq")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘CDSeq’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: namespace ‘DBI’ is not available and has been replaced
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/CDSeq/new/CDSeq.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.8Mb
+      sub-directories of 1Mb or more:
+        doc    2.4Mb
+        libs   2.2Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘ggpubr’ ‘matrixStats’ ‘qlcMatrix’
+      All declared Imports should be used.
+    ```
+
 # celda
 
 <details>
@@ -810,7 +848,7 @@ Run `revdep_details(, "CATALYST")` for more info
 * GitHub: https://github.com/campbio/celda
 * Source code: https://github.com/cran/celda
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 248
+* Number of recursive dependencies: 249
 
 Run `revdep_details(, "celda")` for more info
 
@@ -1171,10 +1209,10 @@ Run `revdep_details(, "Clomial")` for more info
 
 <details>
 
-* Version: 2.10.0
+* Version: 2.10.1
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-02-09
 * Number of recursive dependencies: 179
 
 Run `revdep_details(, "clusterExperiment")` for more info
@@ -1627,10 +1665,10 @@ Run `revdep_details(, "cSEM")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.2.1
 * GitHub: https://github.com/BodenmillerGroup/cytomapper
 * Source code: https://github.com/cran/cytomapper
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-01-28
 * Number of recursive dependencies: 117
 
 Run `revdep_details(, "cytomapper")` for more info
@@ -1663,7 +1701,7 @@ Run `revdep_details(, "cytomapper")` for more info
 * GitHub: https://github.com/JhuangLab/CytoTree
 * Source code: https://github.com/cran/CytoTree
 * Date/Publication: 2020-11-08
-* Number of recursive dependencies: 248
+* Number of recursive dependencies: 250
 
 Run `revdep_details(, "CytoTree")` for more info
 
@@ -1705,10 +1743,10 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 <details>
 
-* Version: 1.12.2
+* Version: 1.12.3
 * GitHub: https://github.com/PeteHaitch/DelayedMatrixStats
 * Source code: https://github.com/cran/DelayedMatrixStats
-* Date/Publication: 2021-01-12
+* Date/Publication: 2021-02-03
 * Number of recursive dependencies: 80
 
 Run `revdep_details(, "DelayedMatrixStats")` for more info
@@ -1722,12 +1760,12 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
     Namespaces in Imports field not imported from:
       ‘BiocParallel’ ‘HDF5Array’
       All declared Imports should be used.
+    Missing object imported by a ':::' call: ‘DelayedArray:::.reduce_array_dimensions’
     Unexported objects imported by ':::' calls:
-      ‘DelayedArray:::.get_ans_type’
-      ‘DelayedArray:::.reduce_array_dimensions’
-      ‘DelayedArray:::RleArraySeed’ ‘DelayedArray:::get_Nindex_lengths’
-      ‘DelayedArray:::set_dim’ ‘DelayedArray:::set_dimnames’
-      ‘DelayedArray:::subset_by_Nindex’ ‘DelayedArray:::to_linear_index’
+      ‘DelayedArray:::.get_ans_type’ ‘DelayedArray:::RleArraySeed’
+      ‘DelayedArray:::get_Nindex_lengths’ ‘DelayedArray:::set_dim’
+      ‘DelayedArray:::set_dimnames’ ‘DelayedArray:::subset_by_Nindex’
+      ‘DelayedArray:::to_linear_index’
       See the note in ?`:::` about the use of this operator.
     ```
 
@@ -1881,11 +1919,11 @@ Run `revdep_details(, "DEqMS")` for more info
 
 <details>
 
-* Version: 0.6.11
+* Version: 0.6.12
 * GitHub: https://github.com/rorynolan/detrendr
 * Source code: https://github.com/cran/detrendr
-* Date/Publication: 2021-01-13 18:40:10 UTC
-* Number of recursive dependencies: 105
+* Date/Publication: 2021-02-08 06:00:03 UTC
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "detrendr")` for more info
 
@@ -2541,7 +2579,7 @@ Run `revdep_details(, "fishpond")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/flowCore
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 131
+* Number of recursive dependencies: 133
 
 Run `revdep_details(, "flowCore")` for more info
 
@@ -2595,7 +2633,7 @@ Run `revdep_details(, "flowCore")` for more info
 * GitHub: https://github.com/JhuangLab/flowSpy
 * Source code: https://github.com/cran/flowSpy
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 248
+* Number of recursive dependencies: 250
 
 Run `revdep_details(, "flowSpy")` for more info
 
@@ -2626,7 +2664,7 @@ Run `revdep_details(, "flowSpy")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/flowWorkspace
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 133
+* Number of recursive dependencies: 135
 
 Run `revdep_details(, "flowWorkspace")` for more info
 
@@ -2757,10 +2795,10 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.2.1
 * GitHub: https://github.com/gagneurlab/FRASER
 * Source code: https://github.com/cran/FRASER
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-02-01
 * Number of recursive dependencies: 184
 
 Run `revdep_details(, "FRASER")` for more info
@@ -2775,7 +2813,7 @@ Run `revdep_details(, "FRASER")` for more info
       sub-directories of 1Mb or more:
         R      1.3Mb
         doc    1.5Mb
-        libs   4.5Mb
+        libs   4.6Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3308,10 +3346,10 @@ Run `revdep_details(, "JMbayes2")` for more info
 
 <details>
 
-* Version: 0.0.6
+* Version: 0.0.7
 * GitHub: https://github.com/envirometrix/landmap
 * Source code: https://github.com/cran/landmap
-* Date/Publication: 2020-11-18 23:20:14 UTC
+* Date/Publication: 2021-01-29 16:00:06 UTC
 * Number of recursive dependencies: 141
 
 Run `revdep_details(, "landmap")` for more info
@@ -3333,7 +3371,7 @@ Run `revdep_details(, "landmap")` for more info
 * GitHub: https://github.com/philips-software/latrend
 * Source code: https://github.com/cran/latrend
 * Date/Publication: 2020-11-18 10:10:02 UTC
-* Number of recursive dependencies: 198
+* Number of recursive dependencies: 199
 
 Run `revdep_details(, "latrend")` for more info
 
@@ -3437,7 +3475,7 @@ Run `revdep_details(, "Luminescence")` for more info
 * GitHub: https://github.com/tallulandrews/M3Drop
 * Source code: https://github.com/cran/M3Drop
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 220
+* Number of recursive dependencies: 221
 
 Run `revdep_details(, "M3Drop")` for more info
 
@@ -3521,42 +3559,15 @@ Run `revdep_details(, "maEndToEnd")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.2.1
 * GitHub: https://github.com/Bioconductor/MatrixGenerics
 * Source code: https://github.com/cran/MatrixGenerics
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-01-30
 * Number of recursive dependencies: 64
 
 Run `revdep_details(, "MatrixGenerics")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-       1. ├─MatrixGenerics::colVars(...) test-api_compatibility.R:678:8
-       2. └─MatrixGenerics::colVars(...)
-       3.   └─MatrixGenerics:::.local(x, rows, cols, na.rm, center, ...)
-       4.     └─matrixStats::colVars(...)
-      ── Error (test-api_compatibility.R:698:2): colWeightedMads works  ──────────────
-      Error: Argument 'center' should be of the same length as number of columns of 'x': 1 != 6
-      Backtrace:
-    ...
-      Error: Argument 'center' should be of the same length as number of rows of 'x': 1 != 6
-      Backtrace:
-          █
-       1. ├─MatrixGenerics::rowWeightedMads(...) test-api_compatibility.R:1466:8
-       2. └─MatrixGenerics::rowWeightedMads(...)
-       3.   └─matrixStats::rowWeightedMads(...)
-      
-      [ FAIL 10 | WARN 0 | SKIP 0 | PASS 300 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 ## In both
 
@@ -3597,10 +3608,10 @@ Run `revdep_details(, "mcmcsae")` for more info
 
 <details>
 
-* Version: 1.20.0
+* Version: 1.20.3
 * GitHub: NA
 * Source code: https://github.com/cran/MEAL
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-02-01
 * Number of recursive dependencies: 214
 
 Run `revdep_details(, "MEAL")` for more info
@@ -3608,6 +3619,18 @@ Run `revdep_details(, "MEAL")` for more info
 </details>
 
 ## In both
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'runDiffMeanAnalysis'
+      ‘...’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
 
 *   checking examples ... WARNING
     ```
@@ -4147,7 +4170,7 @@ Run `revdep_details(, "methylumi")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MFHD
 * Date/Publication: 2013-10-23 23:50:20
-* Number of recursive dependencies: 111
+* Number of recursive dependencies: 113
 
 Run `revdep_details(, "MFHD")` for more info
 
@@ -4552,7 +4575,7 @@ Run `revdep_details(, "moc.gapbk")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/monocle
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 258
+* Number of recursive dependencies: 259
 
 Run `revdep_details(, "monocle")` for more info
 
@@ -4755,7 +4778,7 @@ Run `revdep_details(, "muscat")` for more info
 * GitHub: https://github.com/HelenaLC/muscData
 * Source code: https://github.com/cran/muscData
 * Date/Publication: 2020-10-29
-* Number of recursive dependencies: 255
+* Number of recursive dependencies: 256
 
 Run `revdep_details(, "muscData")` for more info
 
@@ -5237,7 +5260,7 @@ Run `revdep_details(, "Pigengene")` for more info
 * GitHub: https://github.com/plger/pipeComp
 * Source code: https://github.com/cran/pipeComp
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 208
+* Number of recursive dependencies: 209
 
 Run `revdep_details(, "pipeComp")` for more info
 
@@ -5575,7 +5598,7 @@ Run `revdep_details(, "RJcluster")` for more info
 * GitHub: https://github.com/FelixErnst/RNAmodR
 * Source code: https://github.com/cran/RNAmodR
 * Date/Publication: 2020-12-13
-* Number of recursive dependencies: 187
+* Number of recursive dependencies: 186
 
 Run `revdep_details(, "RNAmodR")` for more info
 
@@ -5777,7 +5800,7 @@ Run `revdep_details(, "robustbase")` for more info
 * GitHub: https://github.com/kevinblighe/scDataviz
 * Source code: https://github.com/cran/scDataviz
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 190
+* Number of recursive dependencies: 191
 
 Run `revdep_details(, "scDataviz")` for more info
 
@@ -6051,11 +6074,11 @@ Run `revdep_details(, "sesame")` for more info
 
 <details>
 
-* Version: 3.2.3
+* Version: 4.0.0
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
-* Date/Publication: 2020-12-15 10:10:05 UTC
-* Number of recursive dependencies: 233
+* Date/Publication: 2021-01-30 00:00:02 UTC
+* Number of recursive dependencies: 238
 
 Run `revdep_details(, "Seurat")` for more info
 
@@ -6063,22 +6086,12 @@ Run `revdep_details(, "Seurat")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘loomR’
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.8Mb
+      installed size is 11.3Mb
       sub-directories of 1Mb or more:
         R      1.2Mb
-        libs   8.8Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘loomR’
+        libs   9.5Mb
     ```
 
 # SGP
@@ -6254,30 +6267,6 @@ Run `revdep_details(, "SICtools")` for more info
       importFrom("stats", "dist", "fisher.test")
       importFrom("utils", "read.delim")
     to your NAMESPACE file.
-    ```
-
-# sigminer
-
-<details>
-
-* Version: 1.2.1
-* GitHub: https://github.com/ShixiangWang/sigminer
-* Source code: https://github.com/cran/sigminer
-* Date/Publication: 2021-01-08 09:10:02 UTC
-* Number of recursive dependencies: 202
-
-Run `revdep_details(, "sigminer")` for more info
-
-</details>
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.4Mb
-      sub-directories of 1Mb or more:
-        extdata   3.9Mb
-        libs      1.1Mb
     ```
 
 # sindyr
@@ -6600,7 +6589,7 @@ Run `revdep_details(, "SRGnet")` for more info
 * GitHub: https://github.com/bstewart/stm
 * Source code: https://github.com/cran/stm
 * Date/Publication: 2020-09-18 13:50:02 UTC
-* Number of recursive dependencies: 128
+* Number of recursive dependencies: 111
 
 Run `revdep_details(, "stm")` for more info
 
