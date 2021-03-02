@@ -350,7 +350,7 @@ Run `revdep_details(, "baystability")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/bdynsys
 * Date/Publication: 2014-12-08 07:01:51
-* Number of recursive dependencies: 91
+* Number of recursive dependencies: 90
 
 Run `revdep_details(, "bdynsys")` for more info
 
@@ -1643,11 +1643,11 @@ Run `revdep_details(, "crossmeta")` for more info
 
 <details>
 
-* Version: 0.3.0
+* Version: 0.3.1
 * GitHub: https://github.com/M-E-Rademaker/cSEM
 * Source code: https://github.com/cran/cSEM
-* Date/Publication: 2020-10-12 16:40:03 UTC
-* Number of recursive dependencies: 124
+* Date/Publication: 2021-02-14 22:50:20 UTC
+* Number of recursive dependencies: 123
 
 Run `revdep_details(, "cSEM")` for more info
 
@@ -1661,6 +1661,29 @@ Run `revdep_details(, "cSEM")` for more info
       All declared Imports should be used.
     ```
 
+# cvCovEst
+
+<details>
+
+* Version: 0.3.1
+* GitHub: https://github.com/PhilBoileau/cvCovEst
+* Source code: https://github.com/cran/cvCovEst
+* Date/Publication: 2021-02-14 21:50:02 UTC
+* Number of recursive dependencies: 137
+
+Run `revdep_details(, "cvCovEst")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘MASS’ ‘future’ ‘future.apply’
+      All declared Imports should be used.
+    ```
+
 # cytomapper
 
 <details>
@@ -1669,7 +1692,7 @@ Run `revdep_details(, "cSEM")` for more info
 * GitHub: https://github.com/BodenmillerGroup/cytomapper
 * Source code: https://github.com/cran/cytomapper
 * Date/Publication: 2021-01-28
-* Number of recursive dependencies: 117
+* Number of recursive dependencies: 116
 
 Run `revdep_details(, "cytomapper")` for more info
 
@@ -1997,7 +2020,7 @@ Run `revdep_details(, "diffloop")` for more info
 * GitHub: https://github.com/matthewcarlucci/DiscoRhythm
 * Source code: https://github.com/cran/DiscoRhythm
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 160
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "DiscoRhythm")` for more info
 
@@ -2160,11 +2183,11 @@ Run `revdep_details(, "EasyqpcR")` for more info
 
 <details>
 
-* Version: 3.1
+* Version: 3.2
 * GitHub: https://github.com/ecospat/ecospat
 * Source code: https://github.com/cran/ecospat
-* Date/Publication: 2020-03-25 15:20:03 UTC
-* Number of recursive dependencies: 177
+* Date/Publication: 2021-02-19 09:10:03 UTC
+* Number of recursive dependencies: 193
 
 Run `revdep_details(, "ecospat")` for more info
 
@@ -2259,7 +2282,7 @@ Run `revdep_details(, "EnrichedHeatmap")` for more info
 * GitHub: https://github.com/neobernad/evaluomeR
 * Source code: https://github.com/cran/evaluomeR
 * Date/Publication: 2021-01-16
-* Number of recursive dependencies: 117
+* Number of recursive dependencies: 118
 
 Run `revdep_details(, "evaluomeR")` for more info
 
@@ -2282,7 +2305,7 @@ Run `revdep_details(, "evaluomeR")` for more info
 * GitHub: https://github.com/jpromeror/EventPointer
 * Source code: https://github.com/cran/EventPointer
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 156
+* Number of recursive dependencies: 159
 
 Run `revdep_details(, "EventPointer")` for more info
 
@@ -2875,10 +2898,10 @@ Run `revdep_details(, "gap")` for more info
 
 <details>
 
-* Version: 1.4.5
+* Version: 1.4.5.1
 * GitHub: NA
 * Source code: https://github.com/cran/GenEst
-* Date/Publication: 2020-11-22 00:00:06 UTC
+* Date/Publication: 2021-02-13 06:50:02 UTC
 * Number of recursive dependencies: 92
 
 Run `revdep_details(, "GenEst")` for more info
@@ -3205,10 +3228,10 @@ Run `revdep_details(, "Gviz")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.0.1
 * GitHub: https://github.com/Kumquatum/GWENA
 * Source code: https://github.com/cran/GWENA
-* Date/Publication: 2020-10-27
+* Date/Publication: 2021-02-15
 * Number of recursive dependencies: 144
 
 Run `revdep_details(, "GWENA")` for more info
@@ -3217,37 +3240,12 @@ Run `revdep_details(, "GWENA")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(GWENA)
-      
-      > 
-      > test_check("GWENA")
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Error (test-biological_integration.R:61:3): gost objects in list are compatible ──
-    ...
-       3. │   ├─testthat:::.capture(...)
-       4. │   │ └─base::withCallingHandlers(...)
-       5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
-       6. └─GWENA::join_gost(...)
-       7.   └─base::lapply(gost_result, .check_gost)
-       8.     └─GWENA:::FUN(X[[i]], ...)
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 273 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.3Mb
+      installed size is 10.5Mb
       sub-directories of 1Mb or more:
         data   5.6Mb
-        doc    4.5Mb
+        doc    4.6Mb
     ```
 
 # haploReconstruct
@@ -3371,7 +3369,7 @@ Run `revdep_details(, "landmap")` for more info
 * GitHub: https://github.com/philips-software/latrend
 * Source code: https://github.com/cran/latrend
 * Date/Publication: 2020-11-18 10:10:02 UTC
-* Number of recursive dependencies: 199
+* Number of recursive dependencies: 198
 
 Run `revdep_details(, "latrend")` for more info
 
@@ -3384,6 +3382,29 @@ Run `revdep_details(, "latrend")` for more info
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
     See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
+    ```
+
+# ldsep
+
+<details>
+
+* Version: 2.0.2
+* GitHub: https://github.com/dcgerard/ldsep
+* Source code: https://github.com/cran/ldsep
+* Date/Publication: 2021-02-17 09:00:15 UTC
+* Number of recursive dependencies: 154
+
+Run `revdep_details(, "ldsep")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.4Mb
+      sub-directories of 1Mb or more:
+        libs   6.7Mb
     ```
 
 # liger
@@ -3522,7 +3543,7 @@ Run `revdep_details(, "M3Drop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
 * Date/Publication: 2021-01-22
-* Number of recursive dependencies: 228
+* Number of recursive dependencies: 227
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
@@ -3946,11 +3967,11 @@ Run `revdep_details(, "MethReg")` for more info
 
 <details>
 
-* Version: 1.4.0
-* GitHub: NA
+* Version: 1.4.07
+* GitHub: https://github.com/CompEpigen/methrix
 * Source code: https://github.com/cran/methrix
-* Date/Publication: 2020-10-27
-* Number of recursive dependencies: 157
+* Date/Publication: 2021-02-11
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "methrix")` for more info
 
@@ -3960,11 +3981,21 @@ Run `revdep_details(, "methrix")` for more info
 
 *   checking R code for possible problems ... NOTE
     ```
+    extract_CPGs: no visible global function definition for
+      ‘standardChromosomes’
     get_region_summary: no visible binding for global variable ‘..keep’
+    methrix_pca: no visible global function definition for ‘barplot’
+    methrix_pca: no visible global function definition for ‘points’
+    remove_snps: no visible global function definition for
+      ‘seqlevelsStyle<-’
     write_bigwigs: no visible global function definition for ‘seqlengths<-’
     write_bigwigs: no visible global function definition for ‘seqlengths’
     Undefined global functions or variables:
-      ..keep seqlengths seqlengths<-
+      ..keep barplot points seqlengths seqlengths<- seqlevelsStyle<-
+      standardChromosomes
+    Consider adding
+      importFrom("graphics", "barplot", "points")
+    to your NAMESPACE file.
     ```
 
 # MethylAid
@@ -5219,7 +5250,7 @@ Run `revdep_details(, "phosphonormalizer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Pigengene
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 143
+* Number of recursive dependencies: 144
 
 Run `revdep_details(, "Pigengene")` for more info
 
@@ -5567,29 +5598,6 @@ Run `revdep_details(, "regsem")` for more info
         libs   4.8Mb
     ```
 
-# RJcluster
-
-<details>
-
-* Version: 0.1.0
-* GitHub: NA
-* Source code: https://github.com/cran/RJcluster
-* Date/Publication: 2020-09-23 08:00:06 UTC
-* Number of recursive dependencies: 57
-
-Run `revdep_details(, "RJcluster")` for more info
-
-</details>
-
-## In both
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘doParallel’ ‘parallel’
-      All declared Imports should be used.
-    ```
-
 # RNAmodR
 
 <details>
@@ -5800,7 +5808,7 @@ Run `revdep_details(, "robustbase")` for more info
 * GitHub: https://github.com/kevinblighe/scDataviz
 * Source code: https://github.com/cran/scDataviz
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 191
+* Number of recursive dependencies: 193
 
 Run `revdep_details(, "scDataviz")` for more info
 
@@ -5950,7 +5958,7 @@ Run `revdep_details(, "scp")` for more info
 * GitHub: https://github.com/PhilBoileau/scPCA
 * Source code: https://github.com/cran/scPCA
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 189
+* Number of recursive dependencies: 188
 
 Run `revdep_details(, "scPCA")` for more info
 
@@ -6078,7 +6086,7 @@ Run `revdep_details(, "sesame")` for more info
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
 * Date/Publication: 2021-01-30 00:00:02 UTC
-* Number of recursive dependencies: 238
+* Number of recursive dependencies: 237
 
 Run `revdep_details(, "Seurat")` for more info
 
@@ -6324,7 +6332,7 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 * GitHub: https://github.com/compbiomed/singleCellTK
 * Source code: https://github.com/cran/singleCellTK
 * Date/Publication: 2020-10-27
-* Number of recursive dependencies: 336
+* Number of recursive dependencies: 338
 
 Run `revdep_details(, "singleCellTK")` for more info
 
@@ -6651,7 +6659,7 @@ Run `revdep_details(, "STROMA4")` for more info
 * GitHub: https://github.com/dcomtois/summarytools
 * Source code: https://github.com/cran/summarytools
 * Date/Publication: 2020-12-10 22:00:03 UTC
-* Number of recursive dependencies: 70
+* Number of recursive dependencies: 72
 
 Run `revdep_details(, "summarytools")` for more info
 
@@ -6698,11 +6706,11 @@ Run `revdep_details(, "SuperPCA")` for more info
 
 <details>
 
-* Version: 1.1.0
+* Version: 1.2.1
 * GitHub: https://github.com/cozygene/TCA
 * Source code: https://github.com/cran/TCA
-* Date/Publication: 2019-11-16 17:10:02 UTC
-* Number of recursive dependencies: 71
+* Date/Publication: 2021-02-14 21:50:06 UTC
+* Number of recursive dependencies: 65
 
 Run `revdep_details(, "TCA")` for more info
 
@@ -6713,7 +6721,7 @@ Run `revdep_details(, "TCA")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
-      ‘Matrix’ ‘glmnet’ ‘quadprog’
+      ‘Matrix’ ‘quadprog’
       All declared Imports should be used.
     ```
 
@@ -6971,6 +6979,30 @@ Run `revdep_details(, "VanillaICE")` for more info
 * Number of recursive dependencies: 104
 
 Run `revdep_details(, "vasp")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.5Mb
+      sub-directories of 1Mb or more:
+        doc       4.0Mb
+        extdata   3.4Mb
+    ```
+
+# VaSP
+
+<details>
+
+* Version: 1.2.5
+* GitHub: https://github.com/yuhuihui2011/VaSP
+* Source code: https://github.com/cran/VaSP
+* Date/Publication: 2021-02-26
+* Number of recursive dependencies: 104
+
+Run `revdep_details(, "VaSP")` for more info
 
 </details>
 
