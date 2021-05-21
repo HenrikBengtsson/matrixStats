@@ -49,3 +49,5 @@ revdep
 ^[.]check
 ^.*[.]tar[.]gz$
 ^last[.]dump_.*
+^docs
+^pkgdown
