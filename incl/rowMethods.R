@@ -35,7 +35,7 @@ print(cbind(colMins(x), colMaxs(x)))
 print(cbind(colOrderStats(x, which = 1), colOrderStats(x, which = nrow(x))))
 
 
-x <- matrix(rnorm(2400), nrow = 50, ncol = 40)
+x <- matrix(rnorm(2000), nrow = 50, ncol = 40)
 
 # Row standard deviations
 d <- rowDiffs(x)
