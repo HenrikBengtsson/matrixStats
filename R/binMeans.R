@@ -59,41 +59,40 @@ binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'y':
   if (!is.numeric(y) && !is.logical(y)) {
-    stop(sprintf("Argument 'y' is neither numeric nor logical: %s", mode(y)))
+    stop(sprintf("Argument '%s' is neither numeric nor logical: %s", "y", mode(y)))
   }
   if (is.numeric(y) && !is.integer(y) && any(is.infinite(y))) {
-    stop("Argument 'y' must not contain infinite values")
+    stop(sprintf("Argument '%s' must not contain infinite values", "y"))
   }
   n <- length(y)
 
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop(sprintf("Argument 'x' is not numeric: %s", mode(x)))
+    stop(sprintf("Argument '%s' is not numeric: %s", "x", mode(x)))
   }
   if (length(x) != n) {
-    stop(sprintf("Argument 'y' and 'x' are of different lengths: %.0f != %.0f",
-         length(y), length(x)))
+    stop(sprintf("Argument '%s' and '%s' are of different lengths: %.0f != %.0f", "y", "x", length(y), length(x)))
   }
 
   # Argument 'bx':
   if (!is.numeric(bx)) {
-    stop(sprintf("Argument 'bx' is not numeric: %s", mode(bx)))
+    stop(sprintf("Argument '%s' is not numeric: %s", "bx", mode(bx)))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values")
+    stop(sprintf("Argument '%s' must not contain Inf values", "bx"))
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered")
+    stop(sprintf("Argument '%s' is not ordered", "bx"))
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop(sprintf("Argument 'na.rm' is not logical: %s", mode(na.rm)))
+    stop(sprintf("Argument '%s' is not logical: %s", "na.rm", mode(na.rm)))
   }
 
   # Argument 'count':
   if (!is.logical(count)) {
-    stop(sprintf("Argument 'count' is not logical: %s", mode(count)))
+    stop(sprintf("Argument '%s' is not logical: %s", "count", mode(count)))
   }
 
   # Apply subset

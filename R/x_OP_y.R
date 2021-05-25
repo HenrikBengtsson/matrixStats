@@ -51,7 +51,7 @@ x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
   if (is.character(OP)) {
     op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
     if (op == 0L) {
-      stop(sprintf("Unknown value on argument 'OP': %s", sQuote(OP)))
+      stop(sprintf("Unknown value of argument '%s': %s", "OP", sQuote(OP)))
     }
   } else {
     op <- as.integer(OP)
@@ -70,7 +70,7 @@ t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
   if (is.character(OP)) {
     op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
     if (op == 0L) {
-      stop(sprintf("Unknown value on argument 'OP': %s", sQuote(OP)))
+      stop(sprintf("Unknown value of argument '%s': %s", "OP", sQuote(OP)))
     }
   } else {
     op <- as.integer(OP)

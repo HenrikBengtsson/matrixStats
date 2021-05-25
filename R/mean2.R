@@ -46,17 +46,17 @@ mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x) && !is.logical(x)) {
-    stop(sprintf("Argument 'x' is neither numeric nor logical: %s", mode(x)))
+    stop(sprintf("Argument '%s' is neither numeric nor logical: %s", "x", mode(x)))
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop(sprintf("Argument 'na.rm' is not logical: %s", mode(na.rm)))
+    stop(sprintf("Argument '%s' is not logical: %s", "na.rm", mode(na.rm)))
   }
 
   # Argument 'refine':
   if (!is.logical(refine)) {
-    stop(sprintf("Argument 'refine' is not logical: %s", mode(refine)))
+    stop(sprintf("Argument '%s' is not logical: %s", "refine", mode(refine)))
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

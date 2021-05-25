@@ -9,7 +9,7 @@ validateScalarCenter <- function(center, n, dimname) {
   ## Nothing to do?
   if (is.null(fcn)) return()
 
-  msg <- sprintf("Argument 'center' should be of the same length as number of %s of 'x'. Use of a scalar value is deprecated: %s != %s", dimname, length(center), n)
+  msg <- sprintf("Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is deprecated: %s != %s", "center", dimname, "x", length(center), n)
   fcn(msg = msg, package = .packageName)
 }
 
@@ -51,7 +51,7 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
   fcn <- switch(value, deprecated = .Deprecated, defunct = .Defunct)
 
   if (is.null(msg)) {
-    msg <- sprintf("Argument 'center' of %s::%s() is %s: %s",
+    msg <- sprintf("Argument '%s' of %s::%s() is %s: %s", "center",
                    .packageName, fcnname, value, deparse(calls[[1]])[1])
   }
   

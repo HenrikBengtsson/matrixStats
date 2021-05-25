@@ -106,7 +106,7 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
   ties_method <- charmatch(ties.method, c("average", "first", "last", "random",
                                           "max", "min", "dense"), nomatch = 0L)
   if (ties_method == 0L) {
-    stop(sprintf("Unknown value of argument 'ties.method': %s", ties.method))
+    stop(sprintf("Unknown value of argument '%s': %s", "ties.method", ties.method))
   }
 
   dim. <- as.integer(dim.)
@@ -131,7 +131,7 @@ colRanks <- function(x, rows = NULL, cols = NULL,
   ties_method <- charmatch(ties.method, c("average", "first", "last", "random",
                                           "max", "min", "dense"), nomatch = 0L)
   if (ties_method == 0L) {
-    stop(sprintf("Unknown value of argument 'ties.method': %s", ties.method))
+    stop(sprintf("Unknown value of argument '%s': %s", "ties.method", ties.method))
   }
 
   dim. <- as.integer(dim.)

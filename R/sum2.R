@@ -57,12 +57,12 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   x_mode <- typeof(x)
   x_logical <- (x_mode == "logical")
   if (!is.numeric(x) && !x_logical) {
-    stop(sprintf("Argument 'x' is neither numeric nor logical: %s", x_mode))
+    stop(sprintf("Argument '%s' is neither numeric nor logical: %s", "x", x_mode))
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop(sprintf("Argument 'na.rm' is not logical: %s", mode(na.rm)))
+    stop(sprintf("Argument '%s' is not logical: %s", "na.rm", mode(na.rm)))
   }
 
   # Argument 'mode':
@@ -79,7 +79,7 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   } else if (mode == "double") {
     mode_idx <- 2L
   } else {
-    stop(sprintf("Unknown value of argument 'mode': %s", mode))
+    stop(sprintf("Unknown value of argument '%s': %s", "mode", mode))
   }
   
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
