@@ -62,7 +62,7 @@ binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
     stop(sprintf("Argument 'y' is neither numeric nor logical: %s", mode(y)))
   }
   if (is.numeric(y) && !is.integer(y) && any(is.infinite(y))) {
-    stop("Argument 'y' must not contain infinite values.")
+    stop("Argument 'y' must not contain infinite values")
   }
   n <- length(y)
 
@@ -80,10 +80,10 @@ binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
     stop(sprintf("Argument 'bx' is not numeric: %s", mode(bx)))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values.")
+    stop("Argument 'bx' must not contain Inf values")
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered.")
+    stop("Argument 'bx' is not ordered")
   }
 
   # Argument 'na.rm':

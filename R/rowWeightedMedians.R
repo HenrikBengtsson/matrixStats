@@ -54,7 +54,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
       stop(sprintf("Argument 'w' is not numeric: %s", mode(w)))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.")
+      stop("Argument 'w' has negative weights")
     }
   }
 
@@ -109,7 +109,7 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
       stop(sprintf("Argument 'w' is not numeric: %s", mode(w)))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.")
+      stop("Argument 'w' has negative weights")
     }
   }
 

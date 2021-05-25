@@ -58,10 +58,10 @@ binCounts <- function(x, idxs = NULL, bx, right = FALSE, ...) {
     stop(sprintf("Argument 'bx' is not numeric: %s", mode(bx)))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values.")
+    stop("Argument 'bx' must not contain Inf values")
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered.")
+    stop("Argument 'bx' is not ordered")
   }
 
   # Apply subset
