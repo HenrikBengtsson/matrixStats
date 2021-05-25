@@ -1,9 +1,11 @@
 Package: matrixStats
 ====================
 
-Version: 0.58.0-9000 [2021-05-20]
+Version: 0.58.0-9000 [2021-05-25]
 
- * ...
+MISCELLANEOUS:
+
+ * Harmonized error messages.
 
 BUG FIXES:
 

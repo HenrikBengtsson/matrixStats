@@ -58,7 +58,7 @@ binCounts <- function(x, idxs = NULL, bx, right = FALSE, ...) {
     stop(sprintf("Argument '%s' is not numeric: %s", "bx", mode(bx)))
   }
   if (any(is.infinite(bx))) {
-    stop(sprintf("Argument '%s' must not contain Inf values", "bx"))
+    stop(sprintf("Argument '%s' must not contain infinite values", "bx"))
   }
   if (is.unsorted(bx)) {
     stop(sprintf("Argument '%s' is not ordered", "bx"))

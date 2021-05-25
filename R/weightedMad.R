@@ -63,12 +63,14 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   }
 
   # Argument 'constant':
-  if (length(constant) != 1L || !is.numeric(constant))
-    stop(sprintf("Argument '%s' must be a numeric scalar", "constant"))
+  if (length(constant) != 1L)
+    stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
+  if (!is.numeric(constant))
+    stop(sprintf("Argument '%s' is not numeric: %s", "constant", mode(constant)))
 
   # Argument 'center':
   if (!is.null(center) && length(center) != 1L)
-    stop(sprintf("Argument '%s' must be a scalar or NULL", "center"))
+    stop(sprintf("Argument '%s' is not a scalar or NULL: %.0f", "center", length(center)))
 
 
   # Apply subset on x
@@ -155,8 +157,10 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
                             constant = 1.4826, center = NULL, ...) {
   # Argument 'constant':
-  if (length(constant) != 1L || !is.numeric(constant))
-    stop(sprintf("Argument '%s' must be a numeric scalar", "constant"))
+  if (length(constant) != 1L)
+    stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
+  if (!is.numeric(constant))
+    stop(sprintf("Argument '%s' is not numeric: %s", "constant", mode(constant)))
 
   # Apply subset on 'center'?
   if (!is.null(center)) {
@@ -166,7 +170,7 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
         validateScalarCenter(center, nrow(x), "rows")
         center <- rep(center, times = nrow(x))
       } else {
-        stop(sprintf("Argument '%s' should be of the same length as number of rows of '%s': %d != %d", "center", "x", length(center), nrow(x)))
+        stop(sprintf("Argument '%s' should be of the same length as number of %s of '%s': %d != %d", "center", "rows", "x", length(center), nrow(x)))
       }
     }
     if (!is.null(rows)) center <- center[rows]
@@ -201,8 +205,10 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
                             constant = 1.4826, center = NULL, ...) {
   # Argument 'constant':
-  if (length(constant) != 1L || !is.numeric(constant))
-    stop(sprintf("Argument '%s' must be a numeric scalar", "constant"))
+  if (length(constant) != 1L)
+    stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
+  if (!is.numeric(constant))
+    stop(sprintf("Argument '%s' is not numeric: %s", "constant", mode(constant)))
 
   # Argument 'center':
   # Apply subset on 'center'?
@@ -213,7 +219,7 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
         validateScalarCenter(center, ncol(x), "cols")
         center <- rep(center, times = ncol(x))
       } else {
-        stop(sprintf("Argument '%s' should be of the same length as number of columns of '%s': %d != %d", "center", "x", length(center), ncol(x)))
+        stop(sprintf("Argument '%s' should be of the same length as number of %s of '%s': %d != %d", "center", "columns", "x", length(center), ncol(x)))
       }
     }
     if (!is.null(cols)) center <- center[cols]

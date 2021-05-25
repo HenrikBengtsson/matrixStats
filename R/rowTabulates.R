@@ -41,7 +41,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop(sprintf("Argument '%s' must be of type integer, logical, or raw: %s", "x", class(x)[1]))
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", class(x)[1]))
   }
 
   # Apply subset
@@ -98,7 +98,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop(sprintf("Argument '%s' must be of type integer, logical, or raw: %s", "x", class(x)[1]))
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", class(x)[1]))
   }
 
   # Apply subset

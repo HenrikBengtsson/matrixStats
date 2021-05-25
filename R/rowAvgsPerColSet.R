@@ -67,7 +67,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
       stop(sprintf("Argument '%s' is not a matrix: %s", "W", class(W)[1L]))
     }
     if (any(dim(W) != dimX)) {
-      stop(sprintf("Argument '%s' does not have the same dimension as '%s': %s != %s",
+      stop(sprintf("Argument '%s' and '%s' have different dimensions: %s != %s",
            "W", "X", paste(dim(W), collapse = "x"), paste(dimX, collapse = "x")))
     }
     if (!is.numeric(W)) {

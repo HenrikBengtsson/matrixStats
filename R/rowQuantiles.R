@@ -48,7 +48,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Argument 'probs':
   if (anyMissing(probs)) {
-    stop(sprintf("Argument '%s' contains missing values", "probs"))
+    stop(sprintf("Argument '%s' must not contain missing values", "probs"))
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
@@ -168,7 +168,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Argument 'probs':
   if (anyMissing(probs)) {
-    stop(sprintf("Argument '%s' contains missing values", "probs"))
+    stop(sprintf("Argument '%s' must not contain missing values", "probs"))
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {

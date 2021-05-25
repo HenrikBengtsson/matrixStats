@@ -57,7 +57,7 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   x_mode <- typeof(x)
   x_logical <- (x_mode == "logical")
   if (!is.numeric(x) && !x_logical) {
-    stop(sprintf("Argument '%s' is neither numeric nor logical: %s", "x", x_mode))
+    stop(sprintf("Argument '%s' is not numeric or logical: %s", "x", x_mode))
   }
 
   # Argument 'na.rm':

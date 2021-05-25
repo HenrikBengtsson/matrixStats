@@ -43,7 +43,7 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
 
   # Check missing values
   if (anyMissing(x)) {
-    stop(sprintf("Argument '%s' must not contain missing value", "x"))
+    stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
   which <- as.integer(which)
@@ -59,7 +59,7 @@ colOrderStats <- function(x, rows = NULL, cols = NULL, which,
 
   # Check missing values
   if (anyMissing(x)) {
-    stop(sprintf("Argument '%s' must not contain missing value", "x"))
+    stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
   which <- as.integer(which)

@@ -55,7 +55,8 @@
 #' @keywords iteration robust univar
 #' @export
 varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop(sprintf("Argument '%s' must be non-negative: %d", "diff", diff))
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -100,7 +101,8 @@ varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @rdname varDiff
 #' @export
 sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop(sprintf("Argument '%s' must be non-negative: %d", "diff", diff))
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -146,7 +148,8 @@ sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @export
 madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
                     constant = 1.4826, ...) {
-  if (diff < 0L) stop(sprintf("Argument '%s' must be non-negative: %d", "diff", diff))
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -191,7 +194,8 @@ madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
 #' @rdname varDiff
 #' @export
 iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop(sprintf("Argument '%s' must be non-negative: %d", "diff", diff))
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
