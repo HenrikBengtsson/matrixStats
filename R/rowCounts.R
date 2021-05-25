@@ -43,7 +43,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
   } else {
-    stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
+    stop(sprintf("Argument 'x' must be a matrix or a vector: %s", mode(x)[1L]))
   }
 
   # Argument 'dim.':
@@ -51,7 +51,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 
   # Argument 'value':
   if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
+    stop(sprintf("Argument 'value' has to be a single value: %.0f", length(value)))
   }
 
   # Coerce 'value' to matrix
@@ -97,7 +97,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
   } else {
-    stop("Argument 'x' must be a matrix or a vector: ", mode(x)[1L])
+    stop(sprintf("Argument 'x' must be a matrix or a vector: %s", mode(x)[1L]))
   }
 
   # Argument 'dim.':
@@ -105,7 +105,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 
   # Argument 'value':
   if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
+    stop(sprintf("Argument 'value' has to be a single value: %.0f", length(value)))
   }
 
   # Coerce 'value' to matrix
@@ -148,12 +148,12 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   # Argument 'x':
   if (!is.vector(x)) {
-    stop("Argument 'x' must be a vector: ", mode(x)[1L])
+    stop(sprintf("Argument 'x' must be a vector: %s", mode(x)[1L]))
   }
 
   # Argument 'value':
   if (length(value) != 1L) {
-    stop("Argument 'value' has to be a single value: ", length(value))
+    stop(sprintf("Argument 'value' has to be a single value: %.0f", length(value)))
   }
 
   # Coerce 'value' to matrix

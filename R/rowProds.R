@@ -65,7 +65,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     prod <- product
   } else if (method == "direct") {
   } else {
-    stop("Unknown value of argument 'method': ", method)
+    stop(sprintf("Unknown value of argument 'method': %s", method))
   }
 
   for (ii in seq_len(n)) {
@@ -105,7 +105,7 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     prod <- product
   } else if (method == "direct") {
   } else {
-    stop("Unknown value of argument 'method': ", method)
+    stop(sprintf("Unknown value of argument 'method': %s", method))
   }
 
   for (ii in seq_len(n)) {

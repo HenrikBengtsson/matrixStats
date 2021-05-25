@@ -50,12 +50,12 @@ binCounts <- function(x, idxs = NULL, bx, right = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+    stop(sprintf("Argument 'x' is not numeric: %s", mode(x)))
   }
 
   # Argument 'bx':
   if (!is.numeric(bx)) {
-    stop("Argument 'bx' is not numeric: ", mode(bx))
+    stop(sprintf("Argument 'bx' is not numeric: %s", mode(bx)))
   }
   if (any(is.infinite(bx))) {
     stop("Argument 'bx' must not contain Inf values.")

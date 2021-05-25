@@ -110,7 +110,7 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     } else if (ties == "mean") {
       ties_id <- 8L
     } else {
-      stop("Unknown value on 'ties': ", ties)
+      stop(sprintf("Unknown value on 'ties': %s", ties))
     }
   }
 

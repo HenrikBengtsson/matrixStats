@@ -56,8 +56,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 
   # Argument 'w':
   if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ",
-         length(w), " != ", n)
+    stop(sprintf("The number of elements in arguments 'w' and 'x' does not match: %.0f != %.0f", length(w), n))
   } else if (!is.null(idxs)) {
     # Apply subset on w
     w <- w[idxs]
@@ -167,7 +166,7 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
         validateScalarCenter(center, nrow(x), "rows")
         center <- rep(center, times = nrow(x))
       } else {
-        stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+        stop(sprintf("Argument 'center' should be of the same length as number of rows of 'x': %d != %d", length(center), nrow(x)))
       }
     }
     if (!is.null(rows)) center <- center[rows]
@@ -214,7 +213,7 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
         validateScalarCenter(center, ncol(x), "cols")
         center <- rep(center, times = ncol(x))
       } else {
-        stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
+        stop(sprintf("Argument 'center' should be of the same length as number of columns of 'x': %d != %d", length(center), ncol(x)))
       }
     }
     if (!is.null(cols)) center <- center[cols]

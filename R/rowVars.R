@@ -59,7 +59,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       validateScalarCenter(center, nrow(x), "rows")
       center <- rep(center, times = nrow(x))
     } else {
-      stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+      stop(sprintf("Argument 'center' should be of the same length as number of rows of 'x': %d != %d", length(center), nrow(x)))
     }
   }
   if (!is.null(rows)) center <- center[rows]
@@ -170,7 +170,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       validateScalarCenter(center, ncol(x), "columns")
       center <- rep(center, times = ncol(x))
     } else {
-      stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
+      stop(sprintf("Argument 'center' should be of the same length as number of columns of 'x': %d != %d", length(center), ncol(x)))
     }
   }
   if (!is.null(cols)) center <- center[cols]
