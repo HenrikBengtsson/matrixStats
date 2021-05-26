@@ -31,9 +31,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Argument 'w':
   has_weights <- !is.null(w)
@@ -131,9 +129,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Argument 'w':
   has_weights <- !is.null(w)

@@ -20,9 +20,7 @@
 #' @export
 rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
   # Argument 'x':
-  if (!is.matrix(x) && !is.vector(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x) && !is.vector(x)) defunctShouldBeMatrixOrVector(x)
 
   # Argument 'idxs':
   idxs <- rep(idxs, length.out = dim.[1L])
@@ -52,9 +50,7 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ...) {
 #' @export
 colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ...) {
   # Argument 'x':
-  if (!is.matrix(x) && !is.vector(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x) && !is.vector(x)) defunctShouldBeMatrixOrVector(x)
 
   # Argument 'idxs':
   idxs <- rep(idxs, length.out = dim.[2L])

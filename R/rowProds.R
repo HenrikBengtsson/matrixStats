@@ -33,9 +33,7 @@
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ...) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -73,9 +71,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ...) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

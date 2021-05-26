@@ -69,9 +69,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -109,9 +107,7 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -180,9 +176,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -220,9 +214,7 @@ colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

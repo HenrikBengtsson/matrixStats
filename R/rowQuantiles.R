@@ -34,9 +34,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
   }
@@ -154,9 +152,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
                          na.rm = FALSE, type = 7L, ..., drop = TRUE) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
   }
