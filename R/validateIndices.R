@@ -2,9 +2,7 @@
 #'
 #' Computes validated positive indices from given indices.
 #'
-#'
-#' @param idxs A \code{\link[base]{integer}} \code{\link[base]{vector}}. If
-#' \code{\link[base]{NULL}}, all indices are considered.
+#' @inheritParams rowAlls
 #'
 #' @param maxIdx The possible max index.
 #'

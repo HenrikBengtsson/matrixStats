@@ -6,11 +6,10 @@
 #' \code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster
 #' and more memory efficient.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 #' positions for to be binned and counted.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param bx A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B + 1
 #' ordered positions specifying the B > 0 bins \code{[bx[1], bx[2])},
@@ -18,8 +17,6 @@
 #'
 #' @param right If \code{\link[base:logical]{TRUE}}, the bins are right-closed
 #' (left open), otherwise left-closed (right open).
-#'
-#' @param ... Not used.
 #'
 #' @return Returns an \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length B with non-negative integers.

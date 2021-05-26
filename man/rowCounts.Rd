@@ -15,23 +15,30 @@ colCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
 count(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 }
 \arguments{
-\item{x}{An NxK \code{\link[base]{matrix}} or an N * K
-\code{\link[base]{vector}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
+
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{value}{A value to search for.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-are excluded first, otherwise not.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
-\code{\link[base]{matrix}}.}
+\code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
+being named with a period at the end is purely technical (we get a run-time
+error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 \code{rowCounts()} (\code{colCounts()}) returns an

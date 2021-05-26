@@ -2,22 +2,19 @@
 % Please edit documentation in R/mean2.R
 \name{mean2}
 \alias{mean2}
-\alias{meanOver}
 \title{Fast averaging over subset of vector elements}
 \usage{
 mean2(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...)
-
-meanOver(...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-\code{\link[base]{vector}} of length N.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
-skipped, otherwise not.}
+excluded.}
 
 \item{refine}{If \code{\link[base:logical]{TRUE}} and \code{x} is
 \code{\link[base]{numeric}}, then extra effort is used to calculate the

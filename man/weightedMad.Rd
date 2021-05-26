@@ -16,21 +16,18 @@ colWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
   constant = 1.4826, center = NULL, ...)
 }
 \arguments{
-\item{x}{a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
-the values whose weighted MAD is to be computed.}
+\item{x}{\code{\link[base]{vector}} of type \code{\link[base]{integer}},
+\code{\link[base]{numeric}}, or \code{\link[base]{logical}}.}
 
 \item{w}{a vector of weights the same length as \code{x} giving the weights
 to use for each element of \code{x}. Negative weights are treated as zero
 weights. Default value is equal weight to all values.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{a logical value indicating whether \code{\link[base]{NA}}
-values in \code{x} should be stripped before the computation proceeds, or
-not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
-is done.  Default value is \code{\link[base]{NA}} (for efficiency).}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{constant}{A \code{\link[base]{numeric}} scale factor, cf.
 \code{\link[stats]{mad}}.}
@@ -40,6 +37,12 @@ center location of the data.  If \code{\link[base]{NULL}}, it is estimated
 from data.}
 
 \item{...}{Not used.}
+
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} scalar.

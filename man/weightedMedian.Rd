@@ -8,9 +8,8 @@ weightedMedian(x, w = NULL, idxs = NULL, na.rm = FALSE,
   interpolate = is.null(ties), ties = NULL, ...)
 }
 \arguments{
-\item{x}{a \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-\code{\link[base]{vector}} containing the values whose weighted median is
-to be computed.}
+\item{x}{\code{\link[base]{vector}} of type \code{\link[base]{integer}},
+\code{\link[base]{numeric}}, or \code{\link[base]{logical}}.}
 
 \item{w}{a vector of weights the same length as \code{x} giving the weights
 to use for each element of \code{x}. Negative weights are treated as zero
@@ -22,7 +21,7 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{na.rm}{a logical value indicating whether \code{\link[base]{NA}}
 values in \code{x} should be stripped before the computation proceeds, or
 not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
-is done.  Default value is \code{\link[base]{NA}} (for efficiency).}
+is done.}
 
 \item{interpolate}{If \code{\link[base:logical]{TRUE}}, linear interpolation
 is used to get a consistent estimate of the weighted median.}

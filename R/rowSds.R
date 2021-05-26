@@ -2,22 +2,11 @@
 #'
 #' Standard deviation estimates for each row (column) in a matrix.
 #'
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded first, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param center (optional) The center, defaults to the row means for the
 #' SD estimators and row medians for the MAD estimators.
-#'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
 #'
 #' @param ... Additional arguments passed to \code{rowMeans()} and
 #' \code{rowSums()}.

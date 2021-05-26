@@ -7,9 +7,8 @@
 weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE, ...)
 }
 \arguments{
-\item{x}{a \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-\code{\link[base]{vector}} containing the values whose weighted mean is
-to be computed.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{w}{a vector of weights the same length as \code{x} giving the weights
 to use for each element of \code{x}. Negative weights are treated as zero
@@ -19,10 +18,8 @@ If a missing-value weight exists, the result is always a missing value.}
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{a logical value indicating whether \code{\link[base]{NA}}
-values in \code{x} should be stripped before the computation proceeds, or
-not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
-is done.  Default value is \code{\link[base]{NA}} (for efficiency).}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{refine}{If \code{\link[base:logical]{TRUE}} and \code{x} is
 \code{\link[base]{numeric}}, then extra effort is used to calculate the

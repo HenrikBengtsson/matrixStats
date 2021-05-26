@@ -1,3 +1,21 @@
+defunctShouldBeMatrixOrDim <- function(x) {
+  x_class <- sQuote(class(x)[1])
+  x_name <- sQuote(as.character(substitute(x)))
+  .Defunct(msg = sprintf("Argument %s is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", x_name, x_class, x_class))  #nolint
+}
+
+defunctShouldBeMatrix <- function(x) {
+  x_class <- sQuote(class(x)[1])
+  x_name <- sQuote(as.character(substitute(x)))
+  .Defunct(msg = sprintf("Argument %s is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", x_name, x_class, x_class))  #nolint
+}
+
+defunctShouldBeMatrixOrVector <- function(x) {
+  x_class <- sQuote(class(x)[1])
+  x_name <- sQuote(as.character(substitute(x)))
+  .Defunct(msg = sprintf("Argument %s is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", x_name, x_class, x_class))  #nolint
+}
+
 validateScalarCenter <- function(center, n, dimname) {
   onScalar <- getOption("matrixStats.center.onScalar", NULL)
   

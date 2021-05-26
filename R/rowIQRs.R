@@ -2,15 +2,8 @@
 #'
 #' Estimates of the interquartile range for each row (column) in a matrix.
 #'
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are dropped
-#' first, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param ... Additional arguments passed to \code{\link{rowQuantiles}}()
 #' (\code{colQuantiles()}).

@@ -16,8 +16,6 @@ allocArray(dim, value = 0, ...)
 \item{value}{A \code{\link[base]{numeric}} scalar that all elements will
 have as value.}
 
-\item{...}{Not used.}
-
 \item{length, nrow, ncol, dim}{\code{\link[base]{numeric}}s specifying the
 dimension of the created \code{\link[base]{vector}},
 \code{\link[base]{matrix}} or \code{\link[base]{array}}.}

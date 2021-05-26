@@ -4,17 +4,7 @@
 #' Cumulative sums, products, minima and maxima for each row (column) in a
 #' matrix.
 #'
-#' @param x An NxK \code{\link[base]{matrix}}.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of elements
-#' (or rows and/or columns) to operate over. If \code{\link[base]{NULL}}, no
-#' subsetting is done.
-#'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
-#'
-#' @param ... Not used.
+#' @inheritParams rowAlls
 #'
 #' @return Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}
 #' of the same mode as \code{x}, except when \code{x} is of mode
