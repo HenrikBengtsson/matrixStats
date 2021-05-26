@@ -13,9 +13,11 @@ colSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
 \item{x}{A \code{\link[base]{numeric}} or a \code{\link[base]{logical}}
 NxK \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
 are excluded first, otherwise not.}

@@ -29,6 +29,12 @@ anyValue(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 \item{x}{An NxK \code{\link[base]{matrix}} or an N * K
 \code{\link[base]{vector}}.}
 
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
 \item{value}{A value to search for.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
@@ -40,9 +46,8 @@ length two specifying the dimension of \code{x}, also when not a
 
 \item{...}{Not used.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 \code{rowAlls()} (\code{colAlls()}) returns an

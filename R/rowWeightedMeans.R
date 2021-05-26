@@ -6,19 +6,15 @@
 #' memory.  If no weights are given, the corresponding
 #' \code{rowMeans()}/\code{colMeans()} is used.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 #'
 #' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' K (N).
 #'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
-#'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
 #' excluded from the calculation, otherwise not.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).

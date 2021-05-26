@@ -9,14 +9,11 @@
 #' The method will return \code{\link[base:logical]{TRUE}} as soon as a missing
 #' value is detected.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a
 #' \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or
 #' \code{\link[base]{NULL}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#' @param ... Not used.
 #'
 #' @return Returns \code{\link[base:logical]{TRUE}} if a missing value was
 #' detected, otherwise \code{\link[base:logical]{FALSE}}.

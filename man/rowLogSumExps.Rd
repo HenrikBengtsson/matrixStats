@@ -14,9 +14,11 @@ colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
 \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 Typically \code{lx} are \eqn{log(x)} values.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are
 ignored, otherwise not.}

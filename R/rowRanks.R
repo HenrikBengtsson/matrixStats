@@ -2,25 +2,17 @@
 #'
 #' Gets the rank of the elements in each row (column) of a matrix.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK
 #' \code{\link[base]{matrix}}.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
 #'
 #' @param ties.method A \code{\link[base]{character}} string specifying how
 #' ties are treated.  For details, see below.
 #'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
-#'
 #' @param preserveShape A \code{\link[base]{logical}} specifying whether the
 #' \code{\link[base]{matrix}} returned should preserve the input shape of
 #' \code{x}, or not.
-#'
-#' @param ... Not used.
 #'
 #' @return A \code{\link[base]{matrix}} of type \code{\link[base]{integer}} is
 #' returned, unless \code{ties.method = "average"} when it is of type

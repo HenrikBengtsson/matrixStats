@@ -2,11 +2,9 @@
 #'
 #' Variance estimates for each row (column) in a matrix.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowAlls
 #'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 #'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values
 #' are excluded first, otherwise not.
@@ -16,10 +14,6 @@
 #' This avoid re-estimating them again. (*Warning: If biased estimated are
 #' given, the estimate of the spread will also be biased.*)
 #' If NULL (default), the row/column means are estimated internally.
-#'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
 #'
 #' @param ... Additional arguments passed to \code{rowMeans()} and
 #' \code{rowSums()}.

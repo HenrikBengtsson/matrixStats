@@ -12,9 +12,14 @@
 #' @param x An NxK \code{\link[base]{matrix}} or an N * K
 #' \code{\link[base]{vector}}.
 #'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
+#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
+#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
+#'
+#' @param rows A \code{\link[base]{vector}} indicating subset of rows to
+#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
+#'
+#' @param cols A \code{\link[base]{vector}} indicating subset of columns to
+#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param value A value to search for.
 #'

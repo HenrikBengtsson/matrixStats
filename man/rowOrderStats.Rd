@@ -12,9 +12,11 @@ colOrderStats(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...)
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{which}{An \code{\link[base]{integer}} index in [1,K] ([1,N])
 indicating which order statistic to be returned.}

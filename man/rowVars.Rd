@@ -14,9 +14,11 @@ colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values
 are excluded first, otherwise not.}

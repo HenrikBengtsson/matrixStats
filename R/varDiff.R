@@ -17,15 +17,10 @@
 #' correction factor needs to be applied manually, i.e. there is no
 #' \code{constant} argument for the IQR functions.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded, otherwise not.
 #'
 #' @param diff The positional distance of elements for which the difference
 #' should be calculated.
@@ -36,8 +31,6 @@
 #'
 #' @param constant A scale factor adjusting for asymptotically normal
 #' consistency.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length 1, length N, or length K.

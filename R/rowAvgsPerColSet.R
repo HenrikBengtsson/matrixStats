@@ -9,14 +9,12 @@
 #' \code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
 #' \code{rowMeans(X)}.  Analogously, for \code{colAvgsPerRowSet()}.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
 #'
 #' @param W An optional \code{\link[base]{numeric}} NxM
 #' \code{\link[base]{matrix}} of weights.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
 #'
 #' @param S An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}}
 #' specifying the J subsets.  Each column holds K column (row) indices for the

@@ -15,11 +15,10 @@
 #' \code{mean2(..., refine = FALSE)} is almost twice as fast as
 #' \code{mean2(..., refine = TRUE)}.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
 #' \code{\link[base]{vector}} of length N.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
 #' skipped, otherwise not.
@@ -27,8 +26,6 @@
 #' @param refine If \code{\link[base:logical]{TRUE}} and \code{x} is
 #' \code{\link[base]{numeric}}, then extra effort is used to calculate the
 #' average with greater numerical precision, otherwise not.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'

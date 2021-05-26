@@ -16,9 +16,11 @@ colRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
 \item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK
 \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{ties.method}{A \code{\link[base]{character}} string specifying how
 ties are treated.  For details, see below.}

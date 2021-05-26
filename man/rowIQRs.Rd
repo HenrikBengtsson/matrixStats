@@ -15,15 +15,20 @@ iqr(x, idxs = NULL, na.rm = FALSE, ...)
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are dropped
-first, otherwise not.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
+are excluded first, otherwise not.}
 
 \item{...}{Additional arguments passed to \code{\link{rowQuantiles}}()
 (\code{colQuantiles()}).}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

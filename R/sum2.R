@@ -16,11 +16,10 @@
 #' and return \code{NA_integer_}. Instead it will return the correct sum in
 #' form of a double value.}
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
 #' \code{\link[base]{vector}} of length N.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
 #' skipped, otherwise not.
@@ -28,8 +27,6 @@
 #' @param mode A \code{\link[base]{character}} string specifying the data type
 #' of the return value.  Default is to use the same mode as argument \code{x},
 #' unless it is logical when it defaults to \code{"integer"}.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a scalar of the data type specified by argument \code{mode}.
 #' If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}

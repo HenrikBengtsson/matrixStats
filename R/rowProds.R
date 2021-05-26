@@ -8,19 +8,15 @@
 #' for numeric overflow.  If \code{method = "direct"}, the direct product is
 #' calculated via the \code{\link[base]{prod}}() function.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowAlls
 #'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
+#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 #'
 #' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
 #' ignored, otherwise not.
 #'
 #' @param method A \code{\link[base]{character}} string specifying how each
 #' product is calculated.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).

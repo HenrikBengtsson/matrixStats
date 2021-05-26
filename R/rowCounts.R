@@ -7,23 +7,12 @@
 #' but avoids having to temporarily create/allocate a matrix, if only such is
 #' needed only for these calculations.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x An NxK \code{\link[base]{matrix}} or an N * K
 #' \code{\link[base]{vector}}.
 #'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
 #' @param value A value to search for.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded first, otherwise not.
-#'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
-#'
-#' @param ... Not used.
 #'
 #' @return \code{rowCounts()} (\code{colCounts()}) returns an
 #' \code{\link[base]{integer}} \code{\link[base]{vector}} of length N (K).

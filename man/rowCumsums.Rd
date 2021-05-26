@@ -31,9 +31,11 @@ colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of elements
-(or rows and/or columns) to operate over. If \code{\link[base]{NULL}}, no
-subsetting is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a

@@ -29,9 +29,8 @@ the values whose weighted variance is to be computed.}
 to use for each element of \code{x}. Negative weights are treated as zero
 weights. Default value is equal weight to all values.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{a logical value indicating whether \code{\link[base]{NA}}
 values in \code{x} should be stripped before the computation proceeds, or
@@ -43,6 +42,12 @@ center location of the data.  If \code{\link[base]{NULL}}, it is estimated
 from data.}
 
 \item{...}{Not used.}
+
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} scalar.
