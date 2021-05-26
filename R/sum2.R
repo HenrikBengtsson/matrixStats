@@ -79,9 +79,3 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .Call(C_sum2, x, idxs, na.rm, mode_idx)
 }
-
-#' @rdname sum2
-#' @export
-sumOver <- function(...) {
-  .Defunct(new = "sum2")
-}

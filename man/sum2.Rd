@@ -2,12 +2,9 @@
 % Please edit documentation in R/sum2.R
 \name{sum2}
 \alias{sum2}
-\alias{sumOver}
 \title{Fast sum over subset of vector elements}
 \usage{
 sum2(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...)
-
-sumOver(...)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

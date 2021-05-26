@@ -51,15 +51,6 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     n <- length(x)
   }
 
-  # Argument 'na.rm':
-
-  ## See https://github.com/HenrikBengtsson/matrixStats/issues/72
-  method <- list(...)$method
-  if (identical(method, "0.14.2")) {
-    .Defunct(msg = "weightedVar(..., method = \"0.14.2\") is no longer supported since it used an incorrect degree-of-freedom term.")  #nolint
-  }
-
-
   na_value <- NA
   storage.mode(na_value) <- storage.mode(x)
 

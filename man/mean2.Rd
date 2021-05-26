@@ -2,12 +2,9 @@
 % Please edit documentation in R/mean2.R
 \name{mean2}
 \alias{mean2}
-\alias{meanOver}
 \title{Fast averaging over subset of vector elements}
 \usage{
 mean2(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...)
-
-meanOver(...)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

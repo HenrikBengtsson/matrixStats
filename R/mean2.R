@@ -56,9 +56,3 @@ mean2 <- function(x, idxs = NULL, na.rm = FALSE, refine = TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .Call(C_mean2, x, idxs, na.rm, refine)
 }
-
-#' @rdname mean2
-#' @export
-meanOver <- function(...) {
-  .Defunct(new = "mean2")
-}
