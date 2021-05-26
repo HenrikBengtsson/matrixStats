@@ -77,7 +77,7 @@ for (kk in 1:3) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: integer
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(rep(1:28, length.out = 20 * 5), nrow = 10, ncol = 5)
+x <- matrix(rep(1:28, length.out = 10 * 5), nrow = 10, ncol = 5)
 x[2, ] <- 7L
 x[3, 1] <- 7L
 x[2:3, 3:4] <- NA_integer_

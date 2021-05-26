@@ -33,12 +33,12 @@ diff2 <- function(x, idxs = NULL, lag = 1L, differences = 1L, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'lag':
   if (length(lag) != 1L) {
-    stop("Argument 'lag' is not a scalar: ", length(lag))
+    stop(sprintf("Argument '%s' is not a scalar: %.0f", "lag", length(lag)))
   }
 
   # Argument 'differences':
   if (length(differences) != 1L) {
-    stop("Argument 'differences' is not a scalar: ", length(differences))
+    stop(sprintf("Argument '%s' is not a scalar: %.0f", "differences", length(differences)))
   }
 
   lag <- as.integer(lag)

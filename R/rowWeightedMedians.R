@@ -48,13 +48,13 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
   if (has_weights) {
     n <- ncol(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)  #nolint
+      stop(sprintf("The length of argument '%s' does not match the number of %s in '%s': %d != %d", "w", "columns", "x", length(w), n))  #nolint
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w))
+      stop(sprintf("Argument '%s' is not numeric: %s", "w", mode(w)))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.")
+      stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
 
@@ -103,13 +103,13 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
   if (has_weights) {
     n <- nrow(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)  #nolint
+      stop(sprintf("The length of argument '%s' does not match the number of %s in '%s': %d != %d", "w", "rows", "x", length(w), n))  #nolint
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w))
+      stop(sprintf("Argument '%s' is not numeric: %s", "w", mode(w)))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.")
+      stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
 

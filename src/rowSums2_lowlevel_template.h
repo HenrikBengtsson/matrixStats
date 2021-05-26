@@ -18,6 +18,8 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   R_xlen_t ii, jj, idx;
   R_xlen_t *colOffset;
   X_C_TYPE value;
+  /* Use long double (if available) for higher precision */
+  /* NOTE: SIMD does not long doubles - in case we ever go there */
   LDOUBLE sum;
 
 #ifdef ROWS_TYPE

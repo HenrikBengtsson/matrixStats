@@ -59,8 +59,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   if (is.null(w)) {
     w <- rep(1, times = n)
   } else if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ",
-         length(w), " != ", n)
+    stop(sprintf("The number of elements in arguments '%s' and '%s' does not match: %.0f != %.0f", "w", "x", length(w), n))
   } else if (!is.null(idxs)) {
     # Apply subset on 'w'
     w <- w[idxs]

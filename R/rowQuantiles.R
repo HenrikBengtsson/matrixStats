@@ -48,11 +48,11 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Argument 'probs':
   if (anyMissing(probs)) {
-    stop("Argument 'probs' contains missing values")
+    stop(sprintf("Argument '%s' must not contain missing values", "probs"))
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop("Argument 'probs' is out of range [0-eps, 1+eps]")
+    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]", "probs"))
   }
 
   # Apply subset
@@ -168,11 +168,11 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Argument 'probs':
   if (anyMissing(probs)) {
-    stop("Argument 'probs' contains missing values")
+    stop(sprintf("Argument '%s' must not contain missing values", "probs"))
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop("Argument 'probs' is out of range [0-eps, 1+eps]")
+    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]", "probs"))
   }
 
   # Apply subset
