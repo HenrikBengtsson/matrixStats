@@ -4,9 +4,6 @@
 #'
 #' @inheritParams rowAlls
 #'
-#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK
-#' \code{\link[base]{matrix}}.
-#'
 #' @param ties.method A \code{\link[base]{character}} string specifying how
 #' ties are treated.  For details, see below.
 #'

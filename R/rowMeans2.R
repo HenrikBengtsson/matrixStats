@@ -7,9 +7,6 @@
 #'
 #' @inheritParams rowAlls
 #'
-#' @param x A \code{\link[base]{numeric}} or a \code{\link[base]{logical}}
-#' NxK \code{\link[base]{matrix}}.
-#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'

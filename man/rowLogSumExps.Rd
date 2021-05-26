@@ -20,8 +20,8 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are
-ignored, otherwise not.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a

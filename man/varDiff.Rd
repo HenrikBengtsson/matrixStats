@@ -55,8 +55,8 @@ N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-are excluded first, otherwise not.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{diff}{The positional distance of elements for which the difference
 should be calculated.}

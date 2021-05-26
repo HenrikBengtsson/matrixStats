@@ -10,7 +10,8 @@ rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ...)
 colCollapse(x, idxs, cols = NULL, dim. = dim(x), ...)
 }
 \arguments{
-\item{x}{An NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{idxs}{An index \code{\link[base]{vector}} of (maximum) length N (K)
 specifying the columns (rows) to be extracted.}

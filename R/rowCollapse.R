@@ -5,8 +5,6 @@
 #'
 #' @inheritParams rowAlls
 #'
-#' @param x An NxK \code{\link[base]{matrix}}.
-#'
 #' @param idxs An index \code{\link[base]{vector}} of (maximum) length N (K)
 #' specifying the columns (rows) to be extracted.
 #'

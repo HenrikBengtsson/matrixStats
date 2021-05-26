@@ -13,7 +13,8 @@ colIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
 iqr(x, idxs = NULL, na.rm = FALSE, ...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
@@ -21,8 +22,8 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-are excluded first, otherwise not.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{...}{Additional arguments passed to \code{\link{rowQuantiles}}()
 (\code{colQuantiles()}).}

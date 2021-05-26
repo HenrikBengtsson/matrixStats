@@ -3,13 +3,7 @@
 #' Calculates difference for each row (column) in a matrix.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param lag An \code{\link[base]{integer}} specifying the lag.
-#'
-#' @param differences An \code{\link[base]{integer}} specifying the order of
-#' difference.
+#' @inheritParams diff2
 #'
 #' @return Returns a \code{\link[base]{numeric}} Nx(K-1) or (N-1)xK
 #' \code{\link[base]{matrix}}.

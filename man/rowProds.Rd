@@ -15,13 +15,14 @@ colProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
   method = c("direct", "expSumLog"), ...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
-ignored, otherwise not.}
+excluded.}
 
 \item{...}{Not used.}
 

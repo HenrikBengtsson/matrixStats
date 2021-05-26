@@ -7,14 +7,10 @@
 #' \code{rowMeans()}/\code{colMeans()} is used.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowDiffs
 #'
 #' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' K (N).
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' excluded from the calculation, otherwise not.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).

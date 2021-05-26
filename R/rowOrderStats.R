@@ -8,8 +8,7 @@
 #' \code{\link[base]{integer}} matrices.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowDiffs
 #'
 #' @param which An \code{\link[base]{integer}} index in [1,K] ([1,N])
 #' indicating which order statistic to be returned.

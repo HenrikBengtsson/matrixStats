@@ -9,8 +9,8 @@
 #' having to temporarily create/allocate a matrix, if only such is needed
 #' only for these calculations.
 #'
-#' @param x An NxK \code{\link[base]{matrix}} or an N * K
-#' \code{\link[base]{vector}}.
+#' @param x An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+#' an N * K \code{\link[base]{vector}}.
 #'
 #' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
@@ -23,8 +23,8 @@
 #'
 #' @param value A value to search for.
 #'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded first, otherwise not.
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
+#' excluded.
 #'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a

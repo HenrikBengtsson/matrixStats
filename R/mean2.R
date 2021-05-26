@@ -16,12 +16,7 @@
 #' \code{mean2(..., refine = TRUE)}.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-#' \code{\link[base]{vector}} of length N.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' skipped, otherwise not.
+#' @inheritParams weightedMad
 #'
 #' @param refine If \code{\link[base:logical]{TRUE}} and \code{x} is
 #' \code{\link[base]{numeric}}, then extra effort is used to calculate the

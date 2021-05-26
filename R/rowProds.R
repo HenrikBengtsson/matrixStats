@@ -9,11 +9,7 @@
 #' calculated via the \code{\link[base]{prod}}() function.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' ignored, otherwise not.
+#' @inheritParams rowDiffs
 #'
 #' @param method A \code{\link[base]{character}} string specifying how each
 #' product is calculated.

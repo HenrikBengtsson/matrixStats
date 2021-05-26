@@ -13,8 +13,8 @@ colRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
   preserveShape = FALSE, ...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{integer}} NxK
-\code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}

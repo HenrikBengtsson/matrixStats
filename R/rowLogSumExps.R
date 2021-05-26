@@ -5,12 +5,10 @@
 #' columns.
 #'
 #' @inheritParams rowAlls
+#' @inheritParams logSumExp
 #'
 #' @param lx A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 #' Typically \code{lx} are \eqn{log(x)} values.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, any missing values are
-#' ignored, otherwise not.
 #'
 #' @return A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N
 #' (K).

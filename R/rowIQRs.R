@@ -3,8 +3,7 @@
 #' Estimates of the interquartile range for each row (column) in a matrix.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowDiffs
 #'
 #' @param ... Additional arguments passed to \code{\link{rowQuantiles}}()
 #' (\code{colQuantiles()}).

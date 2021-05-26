@@ -12,7 +12,8 @@ colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
   dim. = dim(x), ...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}

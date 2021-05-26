@@ -24,9 +24,6 @@
 #' @param lx A \code{\link[base]{numeric}} \code{\link[base]{vector}}.
 #' Typically \code{lx} are \eqn{log(x)} values.
 #'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, any missing values are
-#' ignored, otherwise not.
-#'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
 #' @section Benchmarking: This method is optimized for correctness, that

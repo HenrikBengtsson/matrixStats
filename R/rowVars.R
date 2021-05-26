@@ -3,11 +3,7 @@
 #' Variance estimates for each row (column) in a matrix.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values
-#' are excluded first, otherwise not.
+#' @inheritParams rowDiffs
 #'
 #' @param center (optional; a vector or length N (K)) If the row (column)
 #' means are already estimated, they can be pre-specified using this argument.

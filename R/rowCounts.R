@@ -9,9 +9,6 @@
 #'
 #' @inheritParams rowAlls
 #'
-#' @param x An NxK \code{\link[base]{matrix}} or an N * K
-#' \code{\link[base]{vector}}.
-#'
 #' @param value A value to search for.
 #'
 #' @return \code{rowCounts()} (\code{colCounts()}) returns an

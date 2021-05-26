@@ -12,8 +12,7 @@
 #' (\code{colMedians(x)}), but all this is avoided.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowDiffs
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).

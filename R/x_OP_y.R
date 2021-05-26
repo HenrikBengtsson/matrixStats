@@ -3,6 +3,8 @@
 #' Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)', where OP can be
 #' +, -, *, and /.  For + and *, na.rm = TRUE will drop missing values first.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
 #' NxK \code{\link[base]{matrix}}.
 #'
@@ -20,9 +22,6 @@
 #'
 #' @param commute If \code{\link[base:logical]{TRUE}}, 'y OP x' ('t(y OP
 #' t(x))') is calculated, otherwise 'x OP y' ('t(t(x) OP y)').
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' ignored, otherwise not.
 #'
 #' @return Returns a \code{\link[base]{numeric}} NxK
 #' \code{\link[base]{matrix}}.

@@ -3,8 +3,7 @@
 #' Standard deviation estimates for each row (column) in a matrix.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowDiffs
 #'
 #' @param center (optional) The center, defaults to the row means for the
 #' SD estimators and row medians for the MAD estimators.

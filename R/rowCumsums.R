@@ -6,8 +6,6 @@
 #'
 #' @inheritParams rowAlls
 #'
-#' @param x An NxK \code{\link[base]{matrix}}.
-#'
 #' @return Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}
 #' of the same mode as \code{x}, except when \code{x} is of mode
 #' \code{\link[base]{logical}}, then the return type is

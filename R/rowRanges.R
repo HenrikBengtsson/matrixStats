@@ -3,8 +3,7 @@
 #' Gets the range of values in each row (column) of a matrix.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowDiffs
 #'
 #' @return \code{rowRanges()} (\code{colRanges()}) returns a
 #' \code{\link[base]{numeric}} Nx2 (Kx2) \code{\link[base]{matrix}}, where N

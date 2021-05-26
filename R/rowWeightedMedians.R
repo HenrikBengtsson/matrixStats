@@ -7,11 +7,8 @@
 #' \code{\link{rowMedians}}()/\code{colMedians()} is used.
 #'
 #' @inheritParams rowAlls
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
-#' K (N).
+#' @inheritParams rowDiffs
+#' @inheritParams rowWeightedMeans
 #'
 #' @param ... Additional arguments passed to \code{\link{weightedMedian}}().
 #'
