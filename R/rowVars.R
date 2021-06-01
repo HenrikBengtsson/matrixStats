@@ -2,24 +2,14 @@
 #'
 #' Variance estimates for each row (column) in a matrix.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values
-#' are excluded first, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param center (optional; a vector or length N (K)) If the row (column)
 #' means are already estimated, they can be pre-specified using this argument.
 #' This avoid re-estimating them again. (*Warning: If biased estimated are
 #' given, the estimate of the spread will also be biased.*)
 #' If NULL (default), the row/column means are estimated internally.
-#'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
 #'
 #' @param ... Additional arguments passed to \code{rowMeans()} and
 #' \code{rowSums()}.
@@ -59,7 +49,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       validateScalarCenter(center, nrow(x), "rows")
       center <- rep(center, times = nrow(x))
     } else {
-      stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+      stop(sprintf("Argument '%s' should be of the same length as number of %s of '%s': %d != %d", "center", "rows", "x", length(center), nrow(x)))
     }
   }
   if (!is.null(rows)) center <- center[rows]
@@ -170,7 +160,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       validateScalarCenter(center, ncol(x), "columns")
       center <- rep(center, times = ncol(x))
     } else {
-      stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
+      stop(sprintf("Argument '%s' should be of the same length as number of %s of '%s': %d != %d", "center", "columns", "x", length(center), ncol(x)))
     }
   }
   if (!is.null(cols)) center <- center[cols]

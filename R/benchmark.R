@@ -1,6 +1,6 @@
 benchmark <- function(fcn, tags = NULL, path = NULL, workdir = "reports",
                       envir = parent.frame(), ...) {
-  requireNamespace("R.rsp") || stop("R.rsp not installed.")
+  requireNamespace("R.rsp") || stop(sprintf("Package %s is not installed", "R.rsp"))
 
   if (is.function(fcn)) {
     fcn <- deparse(substitute(fcn))

@@ -7,20 +7,11 @@
 #' allocation), there is a unique implementation for
 #' \code{\link[base]{integer}} matrices.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param which An \code{\link[base]{integer}} index in [1,K] ([1,N])
 #' indicating which order statistic to be returned.
-#'
-#' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
-#' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
@@ -43,7 +34,7 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
 
   # Check missing values
   if (anyMissing(x)) {
-    stop("Argument 'x' must not contain missing value")
+    stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
   which <- as.integer(which)
@@ -59,7 +50,7 @@ colOrderStats <- function(x, rows = NULL, cols = NULL, which,
 
   # Check missing values
   if (anyMissing(x)) {
-    stop("Argument 'x' must not contain missing value")
+    stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
   which <- as.integer(which)

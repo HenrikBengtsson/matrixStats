@@ -1,16 +1,12 @@
 #' Tabulates the values in a matrix by row (column).
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
 #' a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.
 #'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
-#'
 #' @param values An \code{\link[base]{vector}} of J values of count. If
 #' \code{\link[base]{NULL}}, all (unique) values are counted.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the
 #' number of row (column) \code{\link[base]{vector}}s tabulated and J is the
@@ -41,7 +37,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' must be of type integer, logical, or raw: ", class(x)[1])
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", class(x)[1]))
   }
 
   # Apply subset
@@ -98,7 +94,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop("Argument 'x' must be of type integer, logical, or raw: ", class(x)[1])
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", class(x)[1]))
   }
 
   # Apply subset

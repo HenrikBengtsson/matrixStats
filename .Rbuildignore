@@ -10,6 +10,10 @@ INSTALL[.]md
 OVERVIEW[.]md
 README[.]md
 CONDUCT[.]md
+CONTRIBUTING[.]md
+docs
+pkgdown
+
 
 #----------------------------
 # devtools
@@ -45,3 +49,5 @@ revdep
 ^[.]check
 ^.*[.]tar[.]gz$
 ^last[.]dump_.*
+^docs
+^pkgdown

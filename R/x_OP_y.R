@@ -3,6 +3,7 @@
 #' Fast calculation of 'z <- x OP y' and 'z <- t(t(x) OP y)', where OP can be
 #' +, -, *, and /.  For + and *, na.rm = TRUE will drop missing values first.
 #'
+#' @inheritParams rowAlls
 #'
 #' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
 #' NxK \code{\link[base]{matrix}}.
@@ -21,11 +22,6 @@
 #'
 #' @param commute If \code{\link[base:logical]{TRUE}}, 'y OP x' ('t(y OP
 #' t(x))') is calculated, otherwise 'x OP y' ('t(t(x) OP y)').
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' ignored, otherwise not.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} NxK
 #' \code{\link[base]{matrix}}.
@@ -50,7 +46,9 @@ x_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
   na.rm <- as.logical(na.rm)
   if (is.character(OP)) {
     op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
-    if (op == 0L) stop("Unknown value on argument 'OP': ", sQuote(OP))
+    if (op == 0L) {
+      stop(sprintf("Unknown value of argument '%s': %s", "OP", sQuote(OP)))
+    }
   } else {
     op <- as.integer(OP)
   }
@@ -67,7 +65,9 @@ t_tx_OP_y <- function(x, y, OP, xrows = NULL, xcols = NULL, yidxs = NULL,
   na.rm <- as.logical(na.rm)
   if (is.character(OP)) {
     op <- charmatch(OP, c("+", "-", "*", "/"), nomatch = 0L)
-    if (op == 0L) stop("Unknown value on argument 'OP': ", sQuote(OP))
+    if (op == 0L) {
+      stop(sprintf("Unknown value of argument '%s': %s", "OP", sQuote(OP)))
+    }
   } else {
     op <- as.integer(OP)
   }

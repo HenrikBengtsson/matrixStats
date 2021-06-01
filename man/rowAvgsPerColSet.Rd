@@ -18,9 +18,8 @@ colAvgsPerRowSet(X, W = NULL, cols = NULL, S, FUN = colMeans, ...,
 \item{W}{An optional \code{\link[base]{numeric}} NxM
 \code{\link[base]{matrix}} of weights.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{S}{An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}}
 specifying the J subsets.  Each column holds K column (row) indices for the
@@ -42,6 +41,9 @@ otherwise \code{na.rm = FALSE}.}
 
 \item{tFUN}{If \code{\link[base:logical]{TRUE}}, the NxK (KxM)
 \code{\link[base]{matrix}} passed to \code{FUN()} is transposed first.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} JxN (MxJ)

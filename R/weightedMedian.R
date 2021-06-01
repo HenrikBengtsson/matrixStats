@@ -2,21 +2,12 @@
 #'
 #' Computes a weighted median of a numeric vector.
 #'
-#' @param x a \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-#' \code{\link[base]{vector}} containing the values whose weighted median is
-#' to be computed.
-#'
-#' @param w a vector of weights the same length as \code{x} giving the weights
-#' to use for each element of \code{x}. Negative weights are treated as zero
-#' weights. Default value is equal weight to all values.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
+#' @inheritParams weightedMad
 #'
 #' @param na.rm a logical value indicating whether \code{\link[base]{NA}}
 #' values in \code{x} should be stripped before the computation proceeds, or
 #' not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
-#' is done.  Default value is \code{\link[base]{NA}} (for efficiency).
+#' is done.
 #'
 #' @param interpolate If \code{\link[base:logical]{TRUE}}, linear interpolation
 #' is used to get a consistent estimate of the weighted median.
@@ -31,8 +22,6 @@
 #' \code{ties} is \code{"weighted"} (or \code{\link[base]{NULL}}) a weighted
 #' average of the two are returned, where the weights are weights of all values
 #' \code{x[i] <= x[k]} and \code{x[i] >= x[k]}, respectively.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
@@ -110,7 +99,7 @@ weightedMedian <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     } else if (ties == "mean") {
       ties_id <- 8L
     } else {
-      stop("Unknown value on 'ties': ", ties)
+      stop(sprintf("Unknown value of argument '%s': %s", "ties", ties))
     }
   }
 

@@ -9,21 +9,28 @@
 #' having to temporarily create/allocate a matrix, if only such is needed
 #' only for these calculations.
 #'
-#' @param x An NxK \code{\link[base]{matrix}} or an N * K
-#' \code{\link[base]{vector}}.
+#' @param x An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+#' an N * K \code{\link[base]{vector}}.
 #'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
+#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
+#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
+#'
+#' @param rows A \code{\link[base]{vector}} indicating subset of rows to
+#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
+#'
+#' @param cols A \code{\link[base]{vector}} indicating subset of columns to
+#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param value A value to search for.
 #'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded first, otherwise not.
+#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
+#' excluded.
 #'
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
-#' \code{\link[base]{matrix}}.
+#' \code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
+#' being named with a period at the end is purely technical (we get a run-time
+#' error if we try to name it \code{dim}).
 #'
 #' @param ... Not used.
 #'
@@ -62,9 +69,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -102,9 +107,7 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -173,9 +176,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -213,9 +214,7 @@ colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
-    if (!is.matrix(x)) {
-      .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-    }
+    if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
 
     # Apply subset
     if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

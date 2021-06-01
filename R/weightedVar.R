@@ -3,28 +3,8 @@
 #' Computes a weighted variance / standard deviation of a numeric vector or
 #' across rows or columns of a matrix.
 #'
-#'
-#' @param x a \code{\link[base]{numeric}} \code{\link[base]{vector}} containing
-#' the values whose weighted variance is to be computed.
-#'
-#' @param w a vector of weights the same length as \code{x} giving the weights
-#' to use for each element of \code{x}. Negative weights are treated as zero
-#' weights. Default value is equal weight to all values.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm a logical value indicating whether \code{\link[base]{NA}}
-#' values in \code{x} should be stripped before the computation proceeds, or
-#' not.  If \code{\link[base]{NA}}, no check at all for \code{\link[base]{NA}}s
-#' is done.  Default value is \code{\link[base]{NA}} (for efficiency).
-#'
-#' @param center Optional \code{\link[base]{numeric}} scalar specifying the
-#' center location of the data.  If \code{\link[base]{NULL}}, it is estimated
-#' from data.
-#'
-#' @param ... Not used.
+#' @inheritParams weightedMad
+#' @inheritParams rowAlls
 #'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'
@@ -59,8 +39,7 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
   if (is.null(w)) {
     w <- rep(1, times = n)
   } else if (length(w) != n) {
-    stop("The number of elements in arguments 'w' and 'x' does not match: ",
-         length(w), " != ", n)
+    stop(sprintf("The number of elements in arguments '%s' and '%s' does not match: %.0f != %.0f", "w", "x", length(w), n))
   } else if (!is.null(idxs)) {
     # Apply subset on 'w'
     w <- w[idxs]
@@ -71,15 +50,6 @@ weightedVar <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
     x <- x[idxs]
     n <- length(x)
   }
-
-  # Argument 'na.rm':
-
-  ## See https://github.com/HenrikBengtsson/matrixStats/issues/72
-  method <- list(...)$method
-  if (identical(method, "0.14.2")) {
-    .Defunct(msg = "weightedVar(..., method = \"0.14.2\") is no longer supported since it used an incorrect degree-of-freedom term.")  #nolint
-  }
-
 
   na_value <- NA
   storage.mode(na_value) <- storage.mode(x)

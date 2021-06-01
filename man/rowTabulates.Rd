@@ -13,9 +13,11 @@ colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...)
 \item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
 a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{values}{An \code{\link[base]{vector}} of J values of count. If
 \code{\link[base]{NULL}}, all (unique) values are counted.}

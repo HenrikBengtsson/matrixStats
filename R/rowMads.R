@@ -23,7 +23,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
       if (length(center) == 1L && is.null(rows)) {
         validateScalarCenter(center, nrow(x), "rows")
       } else {
-        stop("Argument 'center' should be of the same length as number of rows of 'x': ", length(center), " != ", nrow(x))
+        stop(sprintf("Argument '%s' should be of the same length as number of %s of '%s': %d != %d", "center", "rows", "x", length(center), nrow(x)))
       }
     }
     if (!is.null(rows)) center <- center[rows]
@@ -67,7 +67,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
       if (length(center) == 1L && is.null(cols)) {
         validateScalarCenter(center, ncol(x), "columns")
       } else {
-        stop("Argument 'center' should be of the same length as number of columns of 'x': ", length(center), " != ", ncol(x))
+        stop(sprintf("Argument '%s' should be of the same length as number of %s of '%s': %d != %d", "center", "columns", "x", length(center), ncol(x)))
       }
     }
     if (!is.null(cols)) center <- center[cols]

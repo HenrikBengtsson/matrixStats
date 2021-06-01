@@ -52,12 +52,11 @@ colIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-are excluded, otherwise not.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{diff}{The positional distance of elements for which the difference
 should be calculated.}
@@ -70,6 +69,12 @@ estimation.}
 
 \item{constant}{A scale factor adjusting for asymptotically normal
 consistency.}
+
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

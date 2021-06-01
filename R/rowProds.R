@@ -8,19 +8,11 @@
 #' for numeric overflow.  If \code{method = "direct"}, the direct product is
 #' calculated via the \code{\link[base]{prod}}() function.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' ignored, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param method A \code{\link[base]{character}} string specifying how each
 #' product is calculated.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
@@ -41,9 +33,7 @@
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ...) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -65,7 +55,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     prod <- product
   } else if (method == "direct") {
   } else {
-    stop("Unknown value of argument 'method': ", method)
+    stop(sprintf("Unknown value of argument '%s': %s", "method", method))
   }
 
   for (ii in seq_len(n)) {
@@ -81,9 +71,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ...) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -105,7 +93,7 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     prod <- product
   } else if (method == "direct") {
   } else {
-    stop("Unknown value of argument 'method': ", method)
+    stop(sprintf("Unknown value of argument '%s': %s", "method", method))
   }
 
   for (ii in seq_len(n)) {

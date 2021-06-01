@@ -17,15 +17,10 @@
 #' correction factor needs to be applied manually, i.e. there is no
 #' \code{constant} argument for the IQR functions.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded, otherwise not.
 #'
 #' @param diff The positional distance of elements for which the difference
 #' should be calculated.
@@ -36,8 +31,6 @@
 #'
 #' @param constant A scale factor adjusting for asymptotically normal
 #' consistency.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length 1, length N, or length K.
@@ -55,7 +48,8 @@
 #' @keywords iteration robust univar
 #' @export
 varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -100,7 +94,8 @@ varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @rdname varDiff
 #' @export
 sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -146,7 +141,8 @@ sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @export
 madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
                     constant = 1.4826, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -191,7 +187,8 @@ madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
 #' @rdname varDiff
 #' @export
 iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]

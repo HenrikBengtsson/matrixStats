@@ -1,3 +1,5 @@
+## Introduction
+
 The matrixStats package provides highly optimized functions for
 computing common summaries over rows and columns of matrices,
 e.g. `rowQuantiles()`. There are also functions that operate on vectors,

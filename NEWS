@@ -1,6 +1,23 @@
 Package: matrixStats
 ====================
 
+Version: 0.59.0 [2021-05-31]
+
+MISCELLANEOUS:
+
+ * Harmonized error messages.
+
+BUG FIXES:
+
+ * Some of the examples and package tests would allocated matrices with
+   dimensions that did not match the number of elements in the input data.
+
+DEPRECATED AND DEFUNCT:
+
+ * Dropped meanOver() and sumOver(), and argument 'method' from weightedVar(),
+   that have been defunct since January 2018.
+
+
 Version: 0.58.0 [2021-01-26]
 
 SIGNIFICANT CHANGES:

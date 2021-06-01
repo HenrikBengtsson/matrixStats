@@ -23,11 +23,16 @@ rowAnyNAs(x, rows = NULL, cols = NULL, ...)
 \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or
 \code{\link[base]{NULL}}.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{...}{Not used.}
+
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns \code{\link[base:logical]{TRUE}} if a missing value was

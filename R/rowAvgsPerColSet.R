@@ -9,14 +9,12 @@
 #' \code{rowAvgsPerColSet(X, S = S, FUN = rowMeans)} gives the same result as
 #' \code{rowMeans(X)}.  Analogously, for \code{colAvgsPerRowSet()}.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param X A \code{\link[base]{numeric}} NxM \code{\link[base]{matrix}}.
 #'
 #' @param W An optional \code{\link[base]{numeric}} NxM
 #' \code{\link[base]{matrix}} of weights.
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
 #'
 #' @param S An \code{\link[base]{integer}} KxJ \code{\link[base]{matrix}}
 #' specifying the J subsets.  Each column holds K column (row) indices for the
@@ -56,7 +54,7 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
   if (!is.matrix(X)) {
-    stop("Argument 'X' is not a matrix: ", class(X)[1L])
+    stop(sprintf("Argument '%s' is not a matrix: %s", "X", class(X)[1L]))
   }
   dimX <- dim(X)
 
@@ -64,27 +62,27 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
   hasW <- !is.null(W)
   if (hasW) {
     if (!is.matrix(W)) {
-      stop("Argument 'W' is not a matrix: ", class(W)[1L])
+      stop(sprintf("Argument '%s' is not a matrix: %s", "W", class(W)[1L]))
     }
     if (any(dim(W) != dimX)) {
-      stop("Argument 'W' does not have the same dimension as 'X': ",
-           paste(dim(W), collapse = "x"), " != ", paste(dimX, collapse = "x"))
+      stop(sprintf("Argument '%s' and '%s' have different dimensions: %s != %s",
+           "W", "X", paste(dim(W), collapse = "x"), paste(dimX, collapse = "x")))
     }
     if (!is.numeric(W)) {
-      stop("Argument 'W' is not numeric: ", mode(W))
+      stop(sprintf("Argument '%s' is not numeric: %s", "W", mode(W)))
     }
   }
 
   # Argument 'S':
   if (!is.matrix(S)) {
-    stop("Argument 'S' is not a matrix: ", class(S)[1L])
+    stop(sprintf("Argument '%s' is not a matrix: %s", "S", class(S)[1L]))
   }
   nbrOfSets <- ncol(S)
   setNames <- colnames(S)
 
   # Argument 'FUN':
   if (!is.function(FUN)) {
-    stop("Argument 'FUN' is not a function: ", mode(S))
+    stop(sprintf("Argument '%s' is not a function: %s", "FUN", mode(S)))
   }
 
   # Apply subset
@@ -159,19 +157,19 @@ colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'X':
   if (!is.matrix(X)) {
-    stop("Argument 'X' is not a matrix: ", class(X)[1L])
+    stop(sprintf("Argument '%s' is not a matrix: %s", "X", class(X)[1L]))
   }
 
   # Argument 'W':
 
   # Argument 'S':
   if (!is.matrix(S)) {
-    stop("Argument 'S' is not a matrix: ", class(S)[1L])
+    stop(sprintf("Argument '%s' is not a matrix: %s", "S", class(S)[1L]))
   }
 
   # Argument 'FUN':
   if (!is.function(FUN)) {
-    stop("Argument 'FUN' is not a function: ", mode(S))
+    stop(sprintf("Argument '%s' is not a function: %s", "FUN", mode(S)))
   }
 
   # Apply subset
