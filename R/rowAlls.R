@@ -31,8 +31,13 @@
 #' \code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
 #' being named with a period at the end is purely technical (we get a run-time
 #' error if we try to name it \code{dim}).
-#'
+#' 
 #' @param ... Not used.
+#' 
+#' @param useNames If \code{\link[base]{NA}}, the default behavior of the 
+#' function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+#' no naming support is done. Else if \code{\link[base:logical]{TRUE}}, support 
+#' for names attributes is done. 
 #'
 #' @return \code{rowAlls()} (\code{colAlls()}) returns an
 #' \code{\link[base]{logical}} \code{\link[base]{vector}} of length N (K).
@@ -51,7 +56,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -89,7 +94,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowAlls
 #' @export
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -158,7 +163,7 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 #' @rdname rowAlls
 #' @export
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), useNames = NA, ...) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -196,7 +201,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowAlls
 #' @export
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), useNames = NA, ...) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE

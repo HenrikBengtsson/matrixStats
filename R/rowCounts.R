@@ -24,7 +24,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ...) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -78,7 +78,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowCounts
 #' @export
 colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ...) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -131,7 +131,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 
 #' @rdname rowCounts
 #' @export
-count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
+count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   # Argument 'x':
   if (!is.vector(x)) {
     stop(sprintf("Argument '%s' is not a vector: %s", "x", mode(x)[1L]))

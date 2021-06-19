@@ -15,7 +15,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ...) {
+                       dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
 
@@ -26,7 +26,7 @@ rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowMeans2
 #' @export
 colMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ...) {
+                       dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
 

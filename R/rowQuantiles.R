@@ -32,7 +32,7 @@
 #' @export
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -150,7 +150,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 #' @export
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {

@@ -16,7 +16,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowDiffs <- function(x, rows = NULL, cols = NULL,
-                     lag = 1L, differences = 1L, dim. = dim(x), ...) {
+                     lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowDiffs, x, dim., rows, cols,
         as.integer(lag), as.integer(differences), TRUE)
@@ -25,7 +25,7 @@ rowDiffs <- function(x, rows = NULL, cols = NULL,
 #' @rdname rowDiffs
 #' @export
 colDiffs <- function(x, rows = NULL, cols = NULL,
-                     lag = 1L, differences = 1L, dim. = dim(x), ...) {
+                     lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowDiffs, x, dim., rows, cols,
         as.integer(lag), as.integer(differences), FALSE)

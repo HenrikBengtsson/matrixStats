@@ -20,7 +20,7 @@
 #'
 #' @keywords array iteration univar
 #' @export
-rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCumsums, x, dim., rows, cols, TRUE)
 }
@@ -28,7 +28,7 @@ rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCumsums, x, dim., rows, cols, FALSE)
 }
@@ -36,7 +36,7 @@ colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-rowCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+rowCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCumprods, x, dim., rows, cols, TRUE)
 }
@@ -44,7 +44,7 @@ rowCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-colCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+colCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCumprods, x, dim., rows, cols, FALSE)
 }
@@ -52,7 +52,7 @@ colCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-rowCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+rowCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCummins, x, dim., rows, cols, TRUE)
 }
@@ -60,7 +60,7 @@ rowCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-colCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+colCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCummins, x, dim., rows, cols, FALSE)
 }
@@ -68,7 +68,7 @@ colCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-rowCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+rowCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCummaxs, x, dim., rows, cols, TRUE)
 }
@@ -76,7 +76,7 @@ rowCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
 
 #' @rdname rowCumsums
 #' @export
-colCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ...) {
+colCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
   .Call(C_rowCummaxs, x, dim., rows, cols, FALSE)
 }
