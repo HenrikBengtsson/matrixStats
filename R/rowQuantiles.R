@@ -33,6 +33,10 @@
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
                          na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -151,6 +155,10 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
                          na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {

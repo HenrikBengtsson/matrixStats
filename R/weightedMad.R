@@ -146,6 +146,10 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
                             constant = 1.4826, center = NULL, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'constant':
   if (length(constant) != 1L)
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
@@ -194,6 +198,10 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
 colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
                             constant = 1.4826, center = NULL, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'constant':
   if (length(constant) != 1L)
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))

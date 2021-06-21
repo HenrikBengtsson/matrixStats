@@ -30,6 +30,10 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -128,6 +132,10 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 

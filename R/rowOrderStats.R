@@ -30,6 +30,10 @@
 #' @export
 rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
                           dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -46,6 +50,10 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
 #' @export
 colOrderStats <- function(x, rows = NULL, cols = NULL, which,
                           dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
 
   # Check missing values

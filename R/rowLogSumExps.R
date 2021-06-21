@@ -43,6 +43,10 @@
 #' @export
 rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                           dim. = dim(lx), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   has_na <- TRUE
   res <- .Call(C_rowLogSumExps,
@@ -66,6 +70,10 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                           dim. = dim(lx), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   has_na <- TRUE
   
@@ -75,8 +83,8 @@ colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 
   # Preserve names
   names <- colnames(lx)
-  if (!is.null(names)) {
-    if (!is.null(cols)) {
+  if (!is.null(names)){
+    if (!is.null(cols)){
       names <- names[cols]
     }
     names(res) <- names

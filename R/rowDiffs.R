@@ -17,6 +17,10 @@
 #' @export
 rowDiffs <- function(x, rows = NULL, cols = NULL,
                      lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   .Call(C_rowDiffs, x, dim., rows, cols,
         as.integer(lag), as.integer(differences), TRUE)
@@ -26,6 +30,10 @@ rowDiffs <- function(x, rows = NULL, cols = NULL,
 #' @export
 colDiffs <- function(x, rows = NULL, cols = NULL,
                      lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   .Call(C_rowDiffs, x, dim., rows, cols,
         as.integer(lag), as.integer(differences), FALSE)

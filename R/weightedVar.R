@@ -139,6 +139,10 @@ weightedSd <- function(...) {
 #' @export
 rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -155,6 +159,10 @@ rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @export
 colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -171,6 +179,10 @@ colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @export
 rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
                            na.rm = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   sqrt(rowWeightedVars(x = x, w = w, rows = rows, cols = cols,
                        na.rm = na.rm, ...))
 }
@@ -180,6 +192,10 @@ rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @export
 colWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
                            na.rm = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   sqrt(colWeightedVars(x = x, w = w, rows = rows, cols = cols,
                        na.rm = na.rm, ...))
 }

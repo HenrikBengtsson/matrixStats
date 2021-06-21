@@ -32,6 +32,10 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (is.integer(x)) {
   } else if (is.logical(x)) {
@@ -89,6 +93,10 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (is.integer(x)) {
   } else if (is.logical(x)) {

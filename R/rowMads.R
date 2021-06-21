@@ -5,6 +5,10 @@
 rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -49,6 +53,10 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
 colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)

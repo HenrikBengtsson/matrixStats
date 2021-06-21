@@ -25,6 +25,10 @@
 #' @importFrom stats quantile
 #' @export
 rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   Q <- rowQuantiles(x, rows = rows, cols = cols,
                     probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
@@ -38,6 +42,10 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
 #' @rdname rowIQRs
 #' @export
 colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   Q <- colQuantiles(x, rows = rows, cols = cols,
                     probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]

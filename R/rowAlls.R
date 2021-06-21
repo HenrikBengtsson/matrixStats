@@ -57,6 +57,10 @@
 #' @export
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -95,6 +99,10 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @export
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -164,6 +172,10 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 #' @export
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), useNames = NA, ...) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
@@ -202,6 +214,10 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @export
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), useNames = NA, ...) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE

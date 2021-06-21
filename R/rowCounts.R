@@ -25,6 +25,10 @@
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
                       na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -79,6 +83,10 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @export
 colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
                       na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {

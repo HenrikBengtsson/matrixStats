@@ -21,6 +21,10 @@
 #' @export
 rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                       dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
@@ -31,6 +35,10 @@ rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
@@ -41,6 +49,10 @@ rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
@@ -51,6 +63,10 @@ rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                       dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
@@ -61,6 +77,10 @@ colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
@@ -71,6 +91,10 @@ colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)

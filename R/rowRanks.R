@@ -89,6 +89,10 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -111,6 +115,10 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), preserveShape = FALSE, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 

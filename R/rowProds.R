@@ -32,6 +32,10 @@
 #' @export
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -70,6 +74,10 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                      method = c("direct", "expSumLog"), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 

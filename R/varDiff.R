@@ -242,6 +242,10 @@ iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @export
 rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                         trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -256,6 +260,10 @@ rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                         trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -270,6 +278,10 @@ colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                        trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -284,6 +296,10 @@ rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                        trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -298,6 +314,10 @@ colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                         trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -312,6 +332,10 @@ rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                         trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -326,6 +350,10 @@ colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                         trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -340,6 +368,10 @@ rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @export
 colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
                         trim = 0, ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]

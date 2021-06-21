@@ -16,6 +16,10 @@
 #' @export
 rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
 
@@ -27,6 +31,10 @@ rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = NA) {
+  if (!is.na(useNames)) {
+    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
+  }
+  
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
 
