@@ -6,6 +6,8 @@
   ## https://github.com/HenrikBengtsson/matrixStats/issues/16
   onLoadSetVarsFormulaFreq()
   onLoadSetVarsFormulaOnMistake()
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/142
+  onLoadSetTiesMethodMissing()
 }
 
 #' @useDynLib "matrixStats", .registration = TRUE, .fixes = "C_"

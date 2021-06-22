@@ -129,3 +129,17 @@ onLoadSetCenterOnScalar <- function() {
   value <- match.arg(value, c("ignore", "deprecated", "defunct"))
   options(matrixStats.center.onScalar = value)
 }
+
+
+## matrixStats (>= 0.60.0)
+onLoadSetTiesMethodMissing <- function() {
+  ## Option is already set?
+  if (!is.null(getOption("matrixStats.ties.method.missing", NULL))) return()
+
+  ## Is environment variable set?
+  value <- Sys.getenv("R_MATRIXSTATS_TIES_METHOD_MISSING", "ignore")
+  if (is.na(value)) return()
+
+  value <- match.arg(value, c("ignore", "deprecated", "defunct"))
+  options(matrixStats.ties.method.missing = value)
+}

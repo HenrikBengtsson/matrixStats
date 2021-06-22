@@ -89,6 +89,11 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), ...) {
+  ## Deprecating old ties.method="max" default in order to align with
+  ## the default for base::rank().
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/142
+  if (missing(ties.method)) ties_method_missing()
+  
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -111,6 +116,11 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), preserveShape = FALSE, ...) {
+  ## Deprecating old ties.method="max" default in order to align with
+  ## the default for base::rank().
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/142
+  if (missing(ties.method)) ties_method_missing()
+  
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -128,4 +138,17 @@ colRanks <- function(x, rows = NULL, cols = NULL,
   y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, FALSE)
   if (!preserveShape) y <- t(y)
   y
+}
+
+
+
+ties_method_missing <- function() {
+  action <- getOption("matrixStats.ties.method.missing", "ignore")
+  if (action == "ignore") return()
+  action <- switch(action,
+    deprecated = .Deprecated,
+    defunct    = .Defunct,
+    function(...) NULL
+  )
+  action(msg = sprintf("Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank()", .packageName), package = .packageName)
 }
