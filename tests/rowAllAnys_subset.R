@@ -5,7 +5,7 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
     apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
   } else {
     y <- x == value
-    dim(y) <- dim(x) # for 0×N and M×0 cases
+    dim(y) <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
     apply(y, MARGIN = 1L, FUN = all, na.rm = na.rm)
   }
 }
@@ -15,7 +15,7 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
     apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
   } else {
     y <- x == value
-    dim(y) <- dim(x) # for 0×N and M×0 cases
+    dim(y) <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
     apply(y, MARGIN = 1L, FUN = any, na.rm = na.rm)
   }
 }
