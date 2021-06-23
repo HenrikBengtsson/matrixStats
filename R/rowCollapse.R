@@ -18,11 +18,7 @@
 #' cf. \code{\link[base]{[}}().
 #' @keywords utilities
 #' @export
-rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.matrix(x) && !is.vector(x)) defunctShouldBeMatrixOrVector(x)
 
@@ -46,17 +42,23 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA)
   # Calculate column-based indices
   idxs <- dim.[1L] * cols + seq_len(dim.[1L])
   cols <- NULL # Not needed anymore
+  
+  # Update names attributes?
+  res <- x[idxs]
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
 
-  x[idxs]
+  res
 }
 
 #' @rdname rowCollapse
 #' @export
-colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.matrix(x) && !is.vector(x)) defunctShouldBeMatrixOrVector(x)
 
@@ -80,6 +82,16 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = NA)
   # Calculate column-based indices
   idxs <- dim.[1L] * 0:(dim.[2L] - 1L) + rows
   rows <- NULL # Not needed anymore
+  
+  # Update names attributes?
+  res <- x[idxs]
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
 
-  x[idxs]
+  res
 }

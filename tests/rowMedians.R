@@ -8,7 +8,6 @@ colMedians_R <- function(x, na.rm = FALSE, ...) {
   apply(x, MARGIN = 2L, FUN = median, na.rm = na.rm)
 }
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: Non-ties
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -

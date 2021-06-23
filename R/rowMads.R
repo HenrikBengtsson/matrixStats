@@ -4,11 +4,7 @@
 #' @export
 rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -44,6 +40,16 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     x <- rowMedians(x, na.rm = na.rm, ...)
     x <- constant * x
   }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(x) <- NULL
+    }
+  }
+  
   x
 }
 
@@ -52,11 +58,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
 #' @export
 colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
@@ -96,5 +98,15 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     x <- colMedians(x, na.rm = na.rm, ...)
     x <- constant * x
   }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(x) <- NULL
+    }
+  }
+  
   x
 }

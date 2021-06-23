@@ -28,14 +28,10 @@
 #' @author Henrik Bengtsson
 #' @keywords utilities
 #' @export
-rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA) {
+rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
   # Argument 'x':
   if (is.integer(x)) {
   } else if (is.logical(x)) {
@@ -82,6 +78,15 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   for (kk in seq_len(nbr_of_values)) {
     counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
   }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(counts) <- NULL
+    }
+  }
 
   counts
 }
@@ -89,14 +94,10 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
 
 #' @rdname rowTabulates
 #' @export
-colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA) {
+colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
   # Argument 'x':
   if (is.integer(x)) {
   } else if (is.logical(x)) {
@@ -146,5 +147,15 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
       counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
     }
   }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(counts) <- NULL
+    }
+  }
+  
   counts
 }

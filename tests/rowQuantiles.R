@@ -36,10 +36,10 @@ for (mode in c("logical", "integer", "double")) {
   probs <- c(0, 0.5, 1)
   q0 <- rowQuantiles_R(x, probs = probs)
   print(q0)
-  q1 <- rowQuantiles(x, probs = probs)
+  q1 <- rowQuantiles(x, probs = probs, useNames = NA)
   print(q1)
   stopifnot(all.equal(q1, q0))
-  q2 <- colQuantiles(t(x), probs = probs)
+  q2 <- colQuantiles(t(x), probs = probs, useNames = NA)
   stopifnot(all.equal(q2, q0))
 } # for (mode ...)
 
@@ -57,10 +57,10 @@ for (mode in c("logical", "integer", "double")) {
   probs <- c(0.5)
   q0 <- rowQuantiles_R(x, probs = probs)
   print(q0)
-  q1 <- rowQuantiles(x, probs = probs)
+  q1 <- rowQuantiles(x, probs = probs, useNames = NA)
   print(q1)
   stopifnot(all.equal(q1, q0))
-  q2 <- colQuantiles(t(x), probs = probs)
+  q2 <- colQuantiles(t(x), probs = probs, useNames = NA)
   stopifnot(all.equal(q2, q0))
 } # for (mode ...)
 
@@ -109,9 +109,9 @@ for (kk in seq_len(n_sims)) {
   for (type in 1:9) {
     cat(sprintf("type=%d, has_na=%s:\n", type, has_na))
     q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type)
-    q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type)
+    q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type, useNames = NA)
     stopifnot(all.equal(q1, q0))
-    q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type)
+    q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type, useNames = NA)
     stopifnot(all.equal(q2, q0))
   }
 } # for (kk ...)
@@ -132,11 +132,11 @@ for (mode in c("logical", "integer", "double")) {
     x <- matrix(naValue, nrow = 3L, ncol = 4L)
     qr0 <- rowQuantiles_R(x, type = type)
 
-    qr <- rowQuantiles(x, type = type)
+    qr <- rowQuantiles(x, type = type, useNames = NA)
     stopifnot(identical(qr, qr0))
 
     x <- matrix(naValue, nrow = 4L, ncol = 3L)
-    qc <- colQuantiles(x, type = type)
+    qc <- colQuantiles(x, type = type, useNames = NA)
 
     stopifnot(identical(qc, qr))
 
@@ -147,19 +147,19 @@ for (mode in c("logical", "integer", "double")) {
     probs <- c(0, 0.25, 0.75, 1)
     x <- matrix(naValue, nrow = 0L, ncol = 0L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    q <- rowQuantiles(x, probs = probs, type = type)
+    q <- rowQuantiles(x, probs = probs, type = type, useNames = NA)
     stopifnot(identical(dim(q), c(nrow(x), length(probs))))
-    q <- colQuantiles(x, probs = probs, type = type)
+    q <- colQuantiles(x, probs = probs, type = type, useNames = NA)
     stopifnot(identical(dim(q), c(ncol(x), length(probs))))
     
     x <- matrix(naValue, nrow = 2L, ncol = 0L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    q <- rowQuantiles(x, probs = probs, type = type)
+    q <- rowQuantiles(x, probs = probs, type = type, useNames = NA)
     stopifnot(identical(dim(q), c(nrow(x), length(probs))))
     
     x <- matrix(naValue, nrow = 0L, ncol = 2L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    q <- colQuantiles(x, probs = probs, type = type)
+    q <- colQuantiles(x, probs = probs, type = type, useNames = NA)
     stopifnot(identical(dim(q), c(ncol(x), length(probs))))
 
 
@@ -169,12 +169,12 @@ for (mode in c("logical", "integer", "double")) {
     probs <- c(0, 0.25, 0.75, 1)
     x <- matrix(someValue, nrow = 2L, ncol = 1L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    qr <- rowQuantiles(x, probs = probs, type = type)
+    qr <- rowQuantiles(x, probs = probs, type = type, useNames = NA)
     print(qr)
     
     x <- matrix(someValue, nrow = 1L, ncol = 2L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    qc <- colQuantiles(x, probs = probs, type = type)
+    qc <- colQuantiles(x, probs = probs, type = type, useNames = NA)
     print(qc)
     
     stopifnot(identical(qc, qr))

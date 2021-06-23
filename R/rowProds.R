@@ -31,11 +31,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                     method = c("direct", "expSumLog"), ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -65,6 +61,15 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[ii, , drop = TRUE], na.rm = na.rm)
   }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(y) <- NULL
+    }
+  }
 
   y
 }
@@ -73,11 +78,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowProds
 #' @export
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                     method = c("direct", "expSumLog"), ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -106,6 +107,15 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[, ii, drop = TRUE], na.rm = na.rm)
+  }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(y) <- NULL
+    }
   }
 
   y

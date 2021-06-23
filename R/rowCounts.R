@@ -24,11 +24,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -74,7 +70,16 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       })
     }
   }
-
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(counts) <- NULL
+    }
+  }
+  
   as.integer(counts)
 }
 
@@ -82,11 +87,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowCounts
 #' @export
 colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -132,6 +133,15 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       )
     }
   }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(counts) <- NULL
+    }
+  }
 
   as.integer(counts)
 }
@@ -139,7 +149,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 
 #' @rdname rowCounts
 #' @export
-count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.vector(x)) {
     stop(sprintf("Argument '%s' is not a vector: %s", "x", mode(x)[1L]))
@@ -168,6 +178,15 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ..., useNames = N
       counts <- sum2(is.na(x))
     } else {
       counts <- sum2(x == value, na.rm = na.rm)
+    }
+  }
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(counts) <- NULL
     }
   }
 

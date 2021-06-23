@@ -26,14 +26,10 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
-                             na.rm = FALSE, ..., useNames = NA) {
+                             na.rm = FALSE, ..., useNames = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -120,6 +116,11 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
   } else {
     res <- rowMeans(x, na.rm = na.rm)
   }
+  
+  # Preserve names attributes?
+  if (!(is.na(useNames) || useNames)) {
+    names(res) <- NULL
+  }
 
   res
 }
@@ -128,14 +129,10 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMeans
 #' @export
 colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
-                             na.rm = FALSE, ..., useNames = NA) {
+                             na.rm = FALSE, ..., useNames = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -223,6 +220,11 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     res <- colSums(x, na.rm = FALSE)
   } else {
     res <- colMeans(x, na.rm = na.rm)
+  }
+  
+  # Preserve names attributes?
+  if (!(is.na(useNames) || useNames)) {
+    names(res) <- NULL
   }
 
   res

@@ -36,10 +36,10 @@ for (rows in index_cases) {
     for (na.rm in c(TRUE, FALSE)) {
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowQuantiles, fsure = rowQuantiles_R,
-                                probs = probs, na.rm = na.rm, drop = FALSE)
+                                probs = probs, na.rm = na.rm, useNames = NA, drop = FALSE)
       validateIndicesTestMatrix(x, rows, cols,
                                 fcoltest = colQuantiles, fsure = rowQuantiles_R,
-                                probs = probs, na.rm = na.rm, drop = FALSE)
+                                probs = probs, na.rm = na.rm, useNames = NA, drop = FALSE)
     }
   }
 }

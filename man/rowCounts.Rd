@@ -7,12 +7,12 @@
 \title{Counts the number of occurrences of a specific value}
 \usage{
 rowCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = NA)
+  dim. = dim(x), ..., useNames = FALSE)
 
 colCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = NA)
+  dim. = dim(x), ..., useNames = FALSE)
 
-count(x, idxs = NULL, value = TRUE, na.rm = FALSE, ..., useNames = NA)
+count(x, idxs = NULL, value = TRUE, na.rm = FALSE, ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -39,8 +39,8 @@ error if we try to name it \code{dim}).}
 
 \item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
 function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, support 
-for names attributes is done.}
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
