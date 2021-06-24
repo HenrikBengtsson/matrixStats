@@ -73,19 +73,6 @@ jobs:
         - _R_CHECK_LENGTH_1_CONDITION_=true
         - _R_CHECK_LENGTH_1_LOGIC2_=true
         - _R_CLASS_MATRIX_ARRAY_=true
-#    - os: osx
-#      r: oldrel
-#    - os: osx
-#      r: release
-    - os: linux
-      r: release
-      r_packages:
-        - covr
-      r_check_args: --no-codoc --no-examples --no-tests --ignore-vignettes
-      after_success:
-        - Rscript -e 'covr::codecov(quiet=FALSE)'
-      env:
-        - NB='w/ covr' ## Just a label
 
 before_install:
   - Rscript -e 'c(physical = parallel::detectCores(logical = FALSE), logical = parallel::detectCores())'
