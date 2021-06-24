@@ -29,11 +29,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
-                          dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                          dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -42,18 +38,25 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
   }
 
   which <- as.integer(which)
-  .Call(C_rowOrderStats, x, dim., rows, cols, which)
+  res <- .Call(C_rowOrderStats, x, dim., rows, cols, which)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowOrderStats
 #' @export
 colOrderStats <- function(x, rows = NULL, cols = NULL, which,
-                          dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                          dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -62,5 +65,16 @@ colOrderStats <- function(x, rows = NULL, cols = NULL, which,
   }
 
   which <- as.integer(which)
-  .Call(C_colOrderStats, x, dim., rows, cols, which)
+  res <- .Call(C_colOrderStats, x, dim., rows, cols, which)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }

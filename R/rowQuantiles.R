@@ -32,11 +32,7 @@
 #' @export
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                         na.rm = FALSE, type = 7L, ..., useNames = FALSE, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -139,7 +135,13 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
-  rownames(q) <- rownames(x)
+  
+  # Preserve names attributes?
+  if (is.na(useNames) || useNames) {
+    rownames(q) <- rownames(x)
+  } else {
+    rownames(q) <- NULL
+  }
   
   # Drop singleton dimensions?
   if (drop) {
@@ -154,11 +156,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 #' @export
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                         na.rm = FALSE, type = 7L, ..., useNames = FALSE, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -259,7 +257,13 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
-  rownames(q) <- colnames(x)
+  
+  # Preserve names attributes?
+  if (is.na(useNames) || useNames) {
+    rownames(q) <- colnames(x)
+  } else {
+    rownames(q) <- NULL
+  }
 
   # Drop singleton dimensions?
   if (drop) {

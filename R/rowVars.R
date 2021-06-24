@@ -26,17 +26,23 @@
 #' @keywords array iteration robust univar
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE)
+    
+    # Update names attributes?
+    if (!is.na(useNames)) {
+      if (useNames) {
+        stop("useNames = TRUE is not currently implemented")
+      } else {
+        names(sigma2) <- NULL
+      }      
+    }
+    
     return(sigma2)
   }
 
@@ -132,7 +138,14 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   }
   
   x <- x * (n / (n - 1))
-  names(x) <- names
+  
+  # Preserve names attributes?
+  if (is.na(useNames) || useNames) {
+    names(x) <- names
+  } else {
+    names(x) <- NULL
+  }
+
   x  
 }
 
@@ -140,11 +153,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @rdname rowVars
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -152,6 +161,16 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE)
+    
+    # Update names attributes?
+    if (!is.na(useNames)) {
+      if (useNames) {
+        stop("useNames = TRUE is not currently implemented")
+      } else {
+        names(sigma2) <- NULL
+      }      
+    }
+
     return(sigma2)
   }
 
@@ -251,6 +270,13 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   }
   
   x <- x * (n / (n - 1))
-  names(x) <- names
+  
+  # Preserve names attributes?
+  if (is.na(useNames) || useNames) {
+    names(x) <- names
+  } else {
+    names(x) <- NULL
+  }
+
   x  
 }

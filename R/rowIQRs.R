@@ -24,34 +24,34 @@
 #'
 #' @importFrom stats quantile
 #' @export
-rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = FALSE) {
   Q <- rowQuantiles(x, rows = rows, cols = cols,
-                    probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+                    probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
+  colnames(Q) <- NULL
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
-  attributes(ans) <- NULL
+  if (is.na(useNames)) {
+    attributes(ans) <- NULL
+  }
+  
   ans
 }
 
 
 #' @rdname rowIQRs
 #' @export
-colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = FALSE) {
   Q <- colQuantiles(x, rows = rows, cols = cols,
-                    probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+                    probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
+  colnames(Q) <- NULL
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
-  attributes(ans) <- NULL
+  if (is.na(useNames)) {
+    attributes(ans) <- NULL
+  }
+  
   ans
 }
 

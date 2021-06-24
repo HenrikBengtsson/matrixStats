@@ -7,11 +7,11 @@
 \usage{
 rowRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
   "first", "last", "random", "max", "min", "dense"), dim. = dim(x), ...,
-  useNames = NA)
+  useNames = FALSE)
 
 colRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
   "first", "last", "random", "max", "min", "dense"), dim. = dim(x),
-  preserveShape = FALSE, ..., useNames = NA)
+  preserveShape = FALSE, ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -36,8 +36,8 @@ error if we try to name it \code{dim}).}
 
 \item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
 function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, support 
-for names attributes is done.}
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 
 \item{preserveShape}{A \code{\link[base]{logical}} specifying whether the
 \code{\link[base]{matrix}} returned should preserve the input shape of

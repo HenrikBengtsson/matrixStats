@@ -5,9 +5,9 @@
 \alias{colCollapse}
 \title{Extracts one cell per row (column) from a matrix}
 \usage{
-rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA)
+rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = FALSE)
 
-colCollapse(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCollapse(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -29,8 +29,8 @@ error if we try to name it \code{dim}).}
 
 \item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
 function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, support 
-for names attributes is done.}
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}

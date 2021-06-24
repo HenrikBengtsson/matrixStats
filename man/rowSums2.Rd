@@ -6,10 +6,10 @@
 \title{Calculates the sum for each row (column) in a matrix}
 \usage{
 rowSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 
 colSums2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -34,8 +34,8 @@ error if we try to name it \code{dim}).}
 
 \item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
 function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, support 
-for names attributes is done.}
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

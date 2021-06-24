@@ -88,11 +88,7 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                     dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -104,7 +100,18 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
 
   dim. <- as.integer(dim.)
   # byrow = TRUE
-  .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, TRUE)
+  res <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
@@ -114,11 +121,7 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), preserveShape = FALSE, ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                     dim. = dim(x), preserveShape = FALSE, ..., useNames = FALSE) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -135,5 +138,15 @@ colRanks <- function(x, rows = NULL, cols = NULL,
   # byrow = FALSE
   y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, FALSE)
   if (!preserveShape) y <- t(y)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(y) <- NULL
+    }
+  }
+  
   y
 }

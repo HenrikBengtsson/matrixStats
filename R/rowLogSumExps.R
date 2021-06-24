@@ -20,10 +20,6 @@
 #' @param dim. An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length two specifying the dimension of \code{x}, also when not a
 #' \code{\link[base]{matrix}}.
-#' 
-#' @param useNames If \code{\link[base]{NA}}, leave the default behavior of func.
-#' If \code{\link[base:logical]{TRUE}}, set names of result.
-#' If \code{\link[base:logical]{FALSE}}, dismiss names of result.
 #'
 #' @param ... Not used.
 #'
@@ -42,24 +38,24 @@
 #' @keywords array
 #' @export
 rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-                          dim. = dim(lx), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                          dim. = dim(lx), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   has_na <- TRUE
   res <- .Call(C_rowLogSumExps,
                as.numeric(lx),
                dim., rows, cols, as.logical(na.rm), has_na, TRUE)
 
-  # Preserve names
-  names <- rownames(lx)
-  if (!is.null(names)) {
-    if (!is.null(rows)) {
-      names <- names[rows]
+  # Preserve names attributes?
+  if (is.na(useNames) || useNames) {
+    names <- rownames(lx)
+    if (!is.null(names)){
+      if (!is.null(rows)){
+        names <- names[rows]
+      }
+      names(res) <- names
     }
-    names(res) <- names
+  } else {
+    names(res) <- NULL
   }
 
   res
@@ -69,11 +65,7 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowLogSumExps
 #' @export
 colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-                          dim. = dim(lx), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                          dim. = dim(lx), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   has_na <- TRUE
   
@@ -81,13 +73,17 @@ colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                as.numeric(lx),
                dim., rows, cols, as.logical(na.rm), has_na, FALSE)
 
-  # Preserve names
-  names <- colnames(lx)
-  if (!is.null(names)){
-    if (!is.null(cols)){
-      names <- names[cols]
+  # Preserve names attributes?
+  if (is.na(useNames) || useNames) {
+    names <- colnames(lx)
+    if (!is.null(names)){
+      if (!is.null(cols)){
+        names <- names[cols]
+      }
+      names(res) <- names
     }
-    names(res) <- names
+  } else {
+    names(res) <- NULL
   }
 
   res

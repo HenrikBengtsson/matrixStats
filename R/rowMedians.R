@@ -40,29 +40,43 @@
 #' @keywords array iteration robust univar
 #' @export
 rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                       dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
-  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE)
+  res <- .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 #' @rdname rowMedians
 #' @export
 colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                       dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
-  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE)
+  res <- .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }

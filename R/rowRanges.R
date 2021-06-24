@@ -20,82 +20,124 @@
 #'
 #' @export
 rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                      dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                      dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
+  res <- .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowRanges
 #' @export
 rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
+  res <- .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowRanges
 #' @export
 rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
+  res <- .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowRanges
 #' @export
 colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                      dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                      dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
+  res <- .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowRanges
 #' @export
 colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
+  res <- .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowRanges
 #' @export
 colMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                    dim. = dim(x), ..., useNames = FALSE) {
   dim. <- as.integer(dim.)
   na.rm <- as.logical(na.rm)
-  .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
+  res <- .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE)
+  
+  # Update names attributes?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      stop("useNames = TRUE is not currently implemented")
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }

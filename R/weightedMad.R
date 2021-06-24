@@ -145,11 +145,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 #' @export
 rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
-                            constant = 1.4826, center = NULL, ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                            constant = 1.4826, center = NULL, ..., useNames = FALSE) {
   # Argument 'constant':
   if (length(constant) != 1L)
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
@@ -187,8 +183,12 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
   ## when !is.null(center), which is tested by DelayedMatrixStats
   ## and sparseMatrixStats
-  names(y) <- rownames(x)
-
+  if (is.na(useNames) || useNames) {
+    names(y) <- rownames(x)
+  } else {
+    names(y) <- NULL
+  }
+  
   y
 }
 
@@ -197,11 +197,7 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @export
 colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
-                            constant = 1.4826, center = NULL, ..., useNames = NA) {
-  if (!is.na(useNames)) {
-    stop(sprintf("Non-supported value of argument 'useNames': %s", useNames))
-  }
-  
+                            constant = 1.4826, center = NULL, ..., useNames = FALSE) {
   # Argument 'constant':
   if (length(constant) != 1L)
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
@@ -240,7 +236,11 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
   ## when !is.null(center), which is tested by DelayedMatrixStats
   ## and sparseMatrixStats
-  names(y) <- colnames(x)
+  if (is.na(useNames) || useNames) {
+    names(y) <- colnames(x)
+  } else {
+    names(y) <- NULL
+  }
   
   y
 }
