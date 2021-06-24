@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2021-06-22                   |
+|date     |2021-06-24                   |
 
 # Dependencies
 
@@ -20,13 +20,14 @@
 
 # Revdeps
 
-## New problems (1)
+## New problems (2)
 
-|package                                      |version |error  |warning |note |
-|:--------------------------------------------|:-------|:------|:-------|:----|
-|[MatrixGenerics](problems.md#matrixgenerics) |1.4.0   |__+1__ |        |1    |
+|package                                              |version |error  |warning |note |
+|:----------------------------------------------------|:-------|:------|:-------|:----|
+|[DelayedMatrixStats](problems.md#delayedmatrixstats) |1.14.0  |__+1__ |        |1    |
+|[MatrixGenerics](problems.md#matrixgenerics)         |1.4.0   |__+1__ |        |1    |
 
-## All (347)
+## All (349)
 
 |package                                                                        |version |error  |warning |note |
 |:------------------------------------------------------------------------------|:-------|:------|:-------|:----|
@@ -72,7 +73,7 @@
 |carx                                                                           |0.7.1   |       |        |     |
 |[CATALYST](problems.md#catalyst)                                               |1.16.0  |       |        |1    |
 |[CDSeq](problems.md#cdseq)                                                     |1.0.8   |       |        |2    |
-|[celda](problems.md#celda)                                                     |1.8.1   |       |        |3    |
+|[celda](problems.md#celda)                                                     |1.8.1   |       |        |2    |
 |[CelliD](problems.md#cellid)                                                   |1.0.0   |1      |        |2    |
 |[cellmigRation](problems.md#cellmigration)                                     |1.0.0   |       |1       |     |
 |[cellWise](problems.md#cellwise)                                               |2.2.5   |       |        |2    |
@@ -96,8 +97,8 @@
 |cointmonitoR                                                                   |0.1.0   |       |        |     |
 |cointReg                                                                       |0.2.0   |       |        |     |
 |[cola](problems.md#cola)                                                       |1.8.0   |       |        |2    |
-|collapse                                                                       |1.5.3   |       |        |     |
-|[ComplexHeatmap](problems.md#complexheatmap)                                   |2.8.0   |       |        |2    |
+|[collapse](problems.md#collapse)                                               |1.5.3   |       |        |1    |
+|[ComplexHeatmap](problems.md#complexheatmap)                                   |2.8.0   |       |        |1    |
 |conclus                                                                        |1.0.0   |       |        |     |
 |[condiments](problems.md#condiments)                                           |1.0.0   |2      |        |1    |
 |conquer                                                                        |1.0.2   |       |        |     |
@@ -117,7 +118,7 @@
 |dearseq                                                                        |1.4.0   |       |        |     |
 |[decompr](problems.md#decompr)                                                 |6.0.0   |       |        |1    |
 |[DeepBlueR](problems.md#deepbluer)                                             |1.18.0  |       |        |1    |
-|[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.14.0  |       |        |1    |
+|[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.14.0  |__+1__ |        |1    |
 |[DeMixT](problems.md#demixt)                                                   |1.8.0   |       |        |3    |
 |[DepecheR](problems.md#depecher)                                               |1.8.0   |       |1       |3    |
 |[DEqMS](problems.md#deqms)                                                     |1.10.0  |1      |        |1    |
@@ -251,8 +252,8 @@
 |[miloR](problems.md#milor)                                                     |1.0.0   |       |        |3    |
 |[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |4    |
 |miRecSurv                                                                      |1.0.1   |       |        |     |
-|[mixOmics](problems.md#mixomics)                                               |6.16.0  |1      |        |1    |
-|[mnem](problems.md#mnem)                                                       |1.8.0   |       |        |2    |
+|[mixOmics](problems.md#mixomics)                                               |6.16.1  |       |        |1    |
+|[mnem](problems.md#mnem)                                                       |1.8.0   |       |        |1    |
 |[moanin](problems.md#moanin)                                                   |1.0.0   |       |        |1    |
 |MoEClust                                                                       |1.4.0   |       |        |     |
 |[monocle](problems.md#monocle)                                                 |2.20.0  |       |1       |3    |
@@ -308,6 +309,7 @@
 |reconsi                                                                        |1.4.0   |       |        |     |
 |[regsem](problems.md#regsem)                                                   |1.8.0   |       |        |1    |
 |[rhierbaps](problems.md#rhierbaps)                                             |1.1.3   |       |        |1    |
+|RHRT                                                                           |1.0     |       |        |     |
 |RiboDiPA                                                                       |1.0.0   |       |        |     |
 |[RJcluster](problems.md#rjcluster)                                             |2.5.0   |       |        |1    |
 |[RNAmodR](problems.md#rnamodr)                                                 |1.6.0   |       |        |2    |
@@ -328,7 +330,7 @@
 |[seagull](problems.md#seagull)                                                 |1.1.0   |       |        |1    |
 |[seeds](problems.md#seeds)                                                     |0.9.1   |       |        |1    |
 |sensobol                                                                       |1.0.2   |       |        |     |
-|[sesame](problems.md#sesame)                                                   |1.10.4  |       |        |1    |
+|[sesame](problems.md#sesame)                                                   |1.10.4  |1      |        |1    |
 |[Seurat](problems.md#seurat)                                                   |4.0.3   |       |        |2    |
 |[SGP](problems.md#sgp)                                                         |1.9-5.0 |       |        |1    |
 |[shinyMethyl](problems.md#shinymethyl)                                         |1.28.0  |       |        |3    |
@@ -369,6 +371,7 @@
 |tvgarch                                                                        |2.0     |       |        |     |
 |tximport                                                                       |1.20.0  |       |        |     |
 |[UPG](problems.md#upg)                                                         |0.2.2   |       |        |2    |
+|utilities                                                                      |0.3.0   |       |        |     |
 |[VanillaICE](problems.md#vanillaice)                                           |1.54.0  |       |1       |3    |
 |[VaSP](problems.md#vasp)                                                       |1.4.0   |       |        |1    |
 |visualFields                                                                   |0.6.2   |       |        |     |

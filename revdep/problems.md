@@ -350,9 +350,9 @@ Run `revdep_details(, "BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.2Mb
+      installed size is 14.4Mb
       sub-directories of 1Mb or more:
-        data   2.0Mb
+        data   3.9Mb
         doc    1.4Mb
         libs   7.8Mb
     ```
@@ -501,7 +501,7 @@ Run `revdep_details(, "biscuiteer")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -541,7 +541,7 @@ Run `revdep_details(, "BloodGen3Module")` for more info
       Warning: replacing previous import ‘SummarizedExperiment::start’ by ‘stats::start’ when loading ‘BloodGen3Module’
       Warning: replacing previous import ‘SummarizedExperiment::end’ by ‘stats::end’ when loading ‘BloodGen3Module’
       Warning: replacing previous import ‘matrixStats::rowRanges’ by ‘SummarizedExperiment::rowRanges’ when loading ‘BloodGen3Module’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/BloodGen3Module/new/BloodGen3Module.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/BloodGen3Module/new/BloodGen3Module.Rcheck/00install.out’ for details.
     ```
 
 *   checking top-level files ... NOTE
@@ -979,11 +979,6 @@ Run `revdep_details(, "celda")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘singleCellTK’
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  8.6Mb
@@ -1074,7 +1069,7 @@ Run `revdep_details(, "cellmigRation")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/scratch/henrik/matrixStats/revdep/checks/cellmigRation/new/cellmigRation.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/cellmigRation/new/cellmigRation.Rcheck/00install.out’ for details.
     ```
 
 # cellWise
@@ -1188,7 +1183,7 @@ Run `revdep_details(, "ChAMP")` for more info
       Warning: replacing previous import 'plotly::last_plot' by 'ggplot2::last_plot' when loading 'ChAMP'
       Warning: replacing previous import 'globaltest::model.matrix' by 'stats::model.matrix' when loading 'ChAMP'
       Warning: replacing previous import 'globaltest::p.adjust' by 'stats::p.adjust' when loading 'ChAMP'
-    See ‘/scratch/henrik/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
     Information on the location(s) of code generating the ‘Note’s can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
     to ‘yes’.
@@ -1508,9 +1503,9 @@ Run `revdep_details(, "cmapR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.4Mb
+      installed size is  7.2Mb
       sub-directories of 1Mb or more:
-        data      2.3Mb
+        data      3.1Mb
         extdata   2.1Mb
     ```
 
@@ -1539,7 +1534,7 @@ Run `revdep_details(, "cna")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.2Mb
+      installed size is  7.4Mb
       sub-directories of 1Mb or more:
         libs   5.8Mb
     ```
@@ -1628,6 +1623,30 @@ Run `revdep_details(, "cola")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
+# collapse
+
+<details>
+
+* Version: 1.5.3
+* GitHub: https://github.com/SebKrantz/collapse
+* Source code: https://github.com/cran/collapse
+* Date/Publication: 2021-03-07 17:30:16 UTC
+* Number of recursive dependencies: 101
+
+Run `revdep_details(, "collapse")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.1Mb
+      sub-directories of 1Mb or more:
+        R      1.0Mb
+        libs   1.9Mb
+    ```
+
 # ComplexHeatmap
 
 <details>
@@ -1643,11 +1662,6 @@ Run `revdep_details(, "ComplexHeatmap")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘EnrichedHeatmap’
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -1990,9 +2004,9 @@ Run `revdep_details(, "cytomapper")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.9Mb
+      installed size is  7.2Mb
       sub-directories of 1Mb or more:
-        R     1.9Mb
+        R     1.2Mb
         doc   4.7Mb
     ```
 
@@ -2076,6 +2090,33 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure (test_row_and_col_functions.R:49:5): Default arguments ──────────────
+      c(R1 = NaN, R2 = NaN, R3 = NaN) not equal to c(NaN, NaN, NaN).
+      names for target but not for current
+      Backtrace:
+          █
+       1. └─base::Map(expect_equal, observeds, expecteds, check.attributes = check.attributes) test_row_and_col_functions.R:49:4
+       2.   └─base::mapply(FUN = f, ..., SIMPLIFY = FALSE)
+    ...
+      names for target but not for current
+      Backtrace:
+          █
+       1. └─base::Map(expect_equal, observeds, expecteds, check.attributes = check.attributes) test_row_and_col_functions.R:72:4
+       2.   └─base::mapply(FUN = f, ..., SIMPLIFY = FALSE)
+       3.     └─(function (object, expected, ..., tolerance = if (edition_get() >= ...
+      
+      [ FAIL 552 | WARN 0 | SKIP 0 | PASS 14180 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -2148,7 +2189,7 @@ Run `revdep_details(, "DepecheR")` for more info
     Found the following significant warnings:
       Note: possible error in 'dAllocate(inDataFrame = selectionDataSet, ': unused arguments (clusterCenters = x, log2Off = TRUE, noZeroNum = FALSE) 
       Note: possible error in 'dAllocate(inDataFrameScaled, ': unused arguments (log2Off = TRUE, noZeroNum = FALSE) 
-    See ‘/scratch/henrik/matrixStats/revdep/checks/DepecheR/new/DepecheR.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/DepecheR/new/DepecheR.Rcheck/00install.out’ for details.
     Information on the location(s) of code generating the ‘Note’s can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
     to ‘yes’.
@@ -2793,11 +2834,11 @@ Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 *   checking whether package ‘ExpressionNormalizationWorkflow’ can be installed ... WARNING
     ```
     Found the following significant warnings:
-      Warning: /scratch/henrik/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
-      Warning: /scratch/henrik/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
+      Warning: /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
+      Warning: /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
       Warning: replacing previous import ‘Biobase::anyMissing’ by ‘matrixStats::anyMissing’ when loading ‘ExpressionNormalizationWorkflow’
       Warning: replacing previous import ‘Biobase::rowMedians’ by ‘matrixStats::rowMedians’ when loading ‘ExpressionNormalizationWorkflow’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -3343,7 +3384,7 @@ Run `revdep_details(, "GeneTonic")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 17.6Mb
+      installed size is 17.5Mb
       sub-directories of 1Mb or more:
         data      1.2Mb
         doc      14.1Mb
@@ -3375,7 +3416,7 @@ Run `revdep_details(, "genomation")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘genomation’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -3606,9 +3647,9 @@ Run `revdep_details(, "Gviz")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.5Mb
+      installed size is 11.0Mb
       sub-directories of 1Mb or more:
-        R         1.7Mb
+        R         1.9Mb
         doc       4.7Mb
         extdata   2.5Mb
     ```
@@ -3704,9 +3745,9 @@ Run `revdep_details(, "hipathia")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.4Mb
+      installed size is 15.1Mb
       sub-directories of 1Mb or more:
-        data      4.9Mb
+        data      8.6Mb
         doc       1.7Mb
         extdata   4.3Mb
     ```
@@ -3840,7 +3881,7 @@ Run `revdep_details(, "latrend")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/scratch/henrik/matrixStats/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -3914,7 +3955,7 @@ Run `revdep_details(, "liminal")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.7Mb
+      installed size is  7.8Mb
       sub-directories of 1Mb or more:
         data   7.1Mb
     ```
@@ -4486,7 +4527,7 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
       Warning: replacing previous import 'rmarkdown::pdf_document' by 'BiocStyle::pdf_document' when loading 'methylationArrayAnalysis'
       Warning: replacing previous import 'rmarkdown::html_document' by 'BiocStyle::html_document' when loading 'methylationArrayAnalysis'
       Warning: replacing previous import 'rmarkdown::md_document' by 'BiocStyle::md_document' when loading 'methylationArrayAnalysis'
-    See ‘/scratch/henrik/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -4554,7 +4595,7 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'lumi', 'methyAnalysis'
+    Package suggested but not available for checking: ‘methyAnalysis’
     
     Depends: includes the non-default packages:
       'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
@@ -4573,9 +4614,9 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.6Mb
+      installed size is 11.9Mb
       sub-directories of 1Mb or more:
-        R         3.1Mb
+        R         1.3Mb
         data      6.8Mb
         doc       1.9Mb
         extdata   1.7Mb
@@ -4606,10 +4647,10 @@ Run `revdep_details(, "methylumi")` for more info
       ‘reshape2’ ‘scales’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
+    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
+      See the note in ?`:::` about the use of this operator.
     Unexported objects imported by ':::' calls:
       ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
-      See the note in ?`:::` about the use of this operator.
-    Unavailable namespace imported from by a ':::' call: ‘lumi’
       See the note in ?`:::` about the use of this operator.
     ```
 
@@ -4708,7 +4749,7 @@ Run `revdep_details(, "mgcViz")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         doc   4.4Mb
     ```
@@ -4826,7 +4867,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘ff::pattern’ by ‘grid::pattern’ when loading ‘MinimumDistance’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/MinimumDistance/new/MinimumDistance.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/MinimumDistance/new/MinimumDistance.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -4901,10 +4942,10 @@ Run `revdep_details(, "MinimumDistance")` for more info
 
 <details>
 
-* Version: 6.16.0
+* Version: 6.16.1
 * GitHub: https://github.com/mixOmicsTeam/mixOmics
 * Source code: https://github.com/cran/mixOmics
-* Date/Publication: 2021-05-19
+* Date/Publication: 2021-06-22
 * Number of recursive dependencies: 109
 
 Run `revdep_details(, "mixOmics")` for more info
@@ -4912,31 +4953,6 @@ Run `revdep_details(, "mixOmics")` for more info
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(mixOmics)
-      Loading required package: MASS
-      Loading required package: lattice
-      Loading required package: ggplot2
-      
-      Loaded mixOmics 6.16.0
-    ...
-      Performing repeated cross-validation...
-      
-        |                                                                            
-        |                                                                      |   0%══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Failure (test-plotIndiv.R:115:5): plotIndiv.rcc works without ind.names ─────
-      plotIndiv.res$graph inherits from `'NULL'` not `'character'`.
-      
-      [ FAIL 1 | WARN 3 | SKIP 0 | PASS 135 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -4962,11 +4978,6 @@ Run `revdep_details(, "mnem")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘epiNEM’
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -5103,7 +5114,7 @@ Run `revdep_details(, "motifbreakR")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘S4Vectors::as.data.frame’ by ‘motifStack::as.data.frame’ when loading ‘motifbreakR’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00install.out’ for details.
     ```
 
 *   checking for missing documentation entries ... WARNING
@@ -5267,22 +5278,22 @@ Run `revdep_details(, "muscat")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      ── Error (test-pbDS.R:34:9): defaults - pbDS.limma-trend ───────────────────────
+      > library(testthat)
+      > library(muscat)
+      > 
+      > test_check("muscat")
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Error (test-mmDS.R:70:9): mmDS-utils; .mm_vst ───────────────────────────────
       Error: statmod package required but is not installed
-      Backtrace:
-           █
-        1. └─muscat::pbDS(pb, method = method, filter = "none", verbose = FALSE) test-pbDS.R:34:8
-        2.   ├─BiocParallel::bplapply(...)
-        3.   └─BiocParallel::bplapply(...)
     ...
-      [1] 800 - 1000 == -200
-      ── Failure (test-resDS.R:36:9): resDS() ────────────────────────────────────────
-      all(table(z$gene) == v[[bind]]$nk) is not TRUE
+        6.         └─BiocParallel:::FUN(...)
+        7.           ├─base::withCallingHandlers(...)
+        8.           └─base::tryCatch(...)
+        9.             └─base:::tryCatchList(expr, classes, parentenv, handlers)
+       10.               └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       11.                 └─value[[3L]](cond)
       
-      `actual`:   FALSE
-      `expected`: TRUE 
-      
-      [ FAIL 7 | WARN 1 | SKIP 0 | PASS 532 ]
+      [ FAIL 3 | WARN 1 | SKIP 0 | PASS 536 ]
       Error: Test failures
       Execution halted
     ```
@@ -5717,7 +5728,6 @@ Run `revdep_details(, "PDATK")` for more info
     ```
       installed size is  5.6Mb
       sub-directories of 1Mb or more:
-        R     1.0Mb
         doc   3.3Mb
     ```
 
@@ -5966,12 +5976,12 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
     > 
     > # Load the panel example
     ...
-    > data(panelexample)
-    > # Create a CancerPanel object for the first 3 lines
     > mypanel <- newCancerPanel(panelexample[1:3 , ] , canonicalTranscript=FALSE)
     Checking panel construction...
     Calculating panel size...
     Connecting to ensembl biomart...
+    Ensembl site unresponsive, trying uswest mirror
+    Ensembl site unresponsive, trying asia mirror
     Error in .readFromCache(bfc, hash) : Multiple cache results found.
     Please clear your cache by running biomartCacheClear()
     Calls: newCancerPanel ... .annotateGeneLength -> <Anonymous> -> .readFromCache
@@ -6152,7 +6162,7 @@ Run `revdep_details(, "RadioGx")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/scratch/henrik/matrixStats/revdep/checks/RadioGx/new/RadioGx.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/RadioGx/new/RadioGx.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -6308,9 +6318,9 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.4Mb
+      installed size is 13.4Mb
       sub-directories of 1Mb or more:
-        R     4.0Mb
+        R     7.0Mb
         doc   3.7Mb
     ```
 
@@ -6643,6 +6653,31 @@ Run `revdep_details(, "sesame")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘sesame-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: SigSetList-methods
+    > ### Title: SigSetList methods (centralized).  Currently scarce... 'show'
+    > ###   print a summary of the SigSetList.
+    > ### Aliases: SigSetList-methods show,SigSetList-method
+    > 
+    > ### ** Examples
+    > 
+    ...
+    Reading IDATs for 4207113116_A...
+    Error in stopAndCache(title) : 
+    File needs to be cached to be used in sesame.
+    Please run
+    > sesameDataCache("HM27")
+    or cache all platforms by
+    > sesameDataCacheAll()
+    to retrieve and cache needed sesame data.
+    Calls: SigSetListFromPath ... capture.output -> withVisible -> .sesameDataGet -> stopAndCache
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 38.1Mb
@@ -6826,7 +6861,7 @@ Run `revdep_details(, "SICtools")` for more info
       errmod.c:79:8: warning: self-comparison always evaluates to false [-Wtautological-compare]
       md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
       Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
-    See ‘/scratch/henrik/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -7294,7 +7329,7 @@ Run `revdep_details(, "STROMA4")` for more info
       ...
     
     > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-    Installing package into ‘/scratch/henrik/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    Installing package into ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
     (as ‘lib’ is unspecified)
     
       When sourcing ‘STROMA4-vignette.R’:
@@ -7327,7 +7362,7 @@ Run `revdep_details(, "summarytools")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/scratch/henrik/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
+    See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
     ```
 
 *   checking data for non-ASCII characters ... NOTE
