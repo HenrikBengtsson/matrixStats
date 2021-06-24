@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2021-06-21                   |
+|date     |2021-06-22                   |
 
 # Dependencies
 
@@ -35,17 +35,17 @@
 |ActivityIndex                                                                  |0.3.7   |       |        |     |
 |adjclust                                                                       |0.5.99  |       |        |     |
 |airpart                                                                        |1.0.0   |       |        |     |
-|[AlpsNMR](problems.md#alpsnmr)                                                 |3.1.5   |2      |1       |1    |
+|[AlpsNMR](problems.md#alpsnmr)                                                 |3.1.5   |2      |1       |2    |
 |[AMARETTO](problems.md#amaretto)                                               |1.8.0   |       |        |4    |
 |[amplican](problems.md#amplican)                                               |1.14.0  |       |        |2    |
 |antiProfiles                                                                   |1.32.0  |       |        |     |
 |apollo                                                                         |0.2.4   |       |        |     |
-|aroma.affymetrix                                                               |3.2.0   |       |        |     |
+|[aroma.affymetrix](problems.md#aromaaffymetrix)                                |3.2.0   |       |        |1    |
 |aroma.cn                                                                       |1.6.1   |       |        |     |
 |[aroma.core](problems.md#aromacore)                                            |3.2.2   |       |        |1    |
 |[aroma.light](problems.md#aromalight)                                          |3.22.0  |       |        |1    |
 |aSPU                                                                           |1.49    |       |        |     |
-|[autonomics](problems.md#autonomics)                                           |1.0.1   |       |1       |1    |
+|[autonomics](problems.md#autonomics)                                           |1.0.1   |       |1       |2    |
 |[bahc](problems.md#bahc)                                                       |0.3.0   |       |        |1    |
 |[BASiCS](problems.md#basics)                                                   |2.4.0   |       |        |1    |
 |[BatchQC](problems.md#batchqc)                                                 |1.20.0  |       |        |1    |
@@ -102,7 +102,7 @@
 |[condiments](problems.md#condiments)                                           |1.0.0   |2      |        |1    |
 |conquer                                                                        |1.0.2   |       |        |     |
 |consensus                                                                      |1.10.0  |       |        |     |
-|consensusOV                                                                    |1.14.0  |       |        |     |
+|[consensusOV](problems.md#consensusov)                                         |1.14.0  |       |        |1    |
 |[CopywriteR](problems.md#copywriter)                                           |2.24.0  |1      |        |     |
 |[corrcoverage](problems.md#corrcoverage)                                       |1.2.1   |       |        |3    |
 |cosinor2                                                                       |0.2.1   |       |        |     |
@@ -172,7 +172,7 @@
 |[funtooNorm](problems.md#funtoonorm)                                           |1.16.0  |       |1       |     |
 |GAD                                                                            |1.1.1   |       |        |     |
 |gap                                                                            |1.2.3-1 |       |        |     |
-|GAPGOM                                                                         |1.8.0   |       |        |     |
+|[GAPGOM](problems.md#gapgom)                                                   |1.8.0   |       |        |1    |
 |gcapc                                                                          |1.16.0  |       |        |     |
 |[GenEst](problems.md#genest)                                                   |1.4.6   |       |        |1    |
 |[GeneTonic](problems.md#genetonic)                                             |1.4.1   |       |        |2    |
@@ -193,11 +193,11 @@
 |gwasurvivr                                                                     |1.10.0  |       |        |     |
 |[GWENA](problems.md#gwena)                                                     |1.2.0   |       |        |1    |
 |[haldensify](problems.md#haldensify)                                           |0.0.6   |       |        |1    |
-|[HDSpatialScan](problems.md#hdspatialscan)                                     |1.0.1   |       |        |1    |
+|[HDSpatialScan](problems.md#hdspatialscan)                                     |1.0.1   |       |        |2    |
 |[hipathia](problems.md#hipathia)                                               |2.8.0   |       |        |1    |
 |Hmsc                                                                           |3.0-11  |       |        |     |
 |ICBioMark                                                                      |0.1.2   |       |        |     |
-|IMIFA                                                                          |2.1.6   |       |        |     |
+|[IMIFA](problems.md#imifa)                                                     |2.1.6   |       |        |1    |
 |ImpactEffectsize                                                               |0.6.1   |       |        |     |
 |incidental                                                                     |0.1     |       |        |     |
 |InDisc                                                                         |1.1.0   |       |        |     |
@@ -212,7 +212,7 @@
 |[ldsep](problems.md#ldsep)                                                     |2.1.0   |       |        |1    |
 |LFDREmpiricalBayes                                                             |1.0     |       |        |     |
 |[liger](problems.md#liger)                                                     |2.0.1   |       |        |1    |
-|liminal                                                                        |0.1.2   |       |        |     |
+|[liminal](problems.md#liminal)                                                 |0.1.2   |       |        |1    |
 |localgauss                                                                     |0.40    |       |        |     |
 |loo                                                                            |2.4.1   |       |        |     |
 |LS2Wstat                                                                       |2.1-2   |       |        |     |
@@ -236,7 +236,7 @@
 |[metamicrobiomeR](problems.md#metamicrobiomer)                                 |1.2     |       |        |1    |
 |[MetaNeighbor](problems.md#metaneighbor)                                       |1.12.0  |       |1       |1    |
 |[metavizr](problems.md#metavizr)                                               |1.15.0  |1      |        |     |
-|[MethReg](problems.md#methreg)                                                 |1.2.1   |1      |        |1    |
+|[MethReg](problems.md#methreg)                                                 |1.2.1   |1      |        |2    |
 |methrix                                                                        |1.6.0   |       |        |     |
 |[MethylAid](problems.md#methylaid)                                             |1.26.0  |       |        |1    |
 |[methylationArrayAnalysis](problems.md#methylationarrayanalysis)               |1.16.0  |       |1       |3    |
@@ -249,15 +249,15 @@
 |microsamplingDesign                                                            |1.0.7   |       |        |     |
 |MIGSA                                                                          |1.16.0  |       |        |     |
 |[miloR](problems.md#milor)                                                     |1.0.0   |       |        |3    |
-|[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |3    |
+|[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |4    |
 |miRecSurv                                                                      |1.0.1   |       |        |     |
 |[mixOmics](problems.md#mixomics)                                               |6.16.0  |1      |        |1    |
 |[mnem](problems.md#mnem)                                                       |1.8.0   |       |        |2    |
 |[moanin](problems.md#moanin)                                                   |1.0.0   |       |        |1    |
-|MoEClust                                                                       |1.3.3   |       |        |     |
+|MoEClust                                                                       |1.4.0   |       |        |     |
 |[monocle](problems.md#monocle)                                                 |2.20.0  |       |1       |3    |
-|MOSim                                                                          |1.6.0   |       |        |     |
-|[motifbreakR](problems.md#motifbreakr)                                         |2.6.0   |       |3       |1    |
+|[MOSim](problems.md#mosim)                                                     |1.6.0   |       |        |1    |
+|[motifbreakR](problems.md#motifbreakr)                                         |2.6.0   |       |3       |2    |
 |MPAgenomics                                                                    |1.2.3   |       |        |     |
 |[mrfDepth](problems.md#mrfdepth)                                               |1.0.13  |       |        |1    |
 |msImpute                                                                       |1.2.0   |       |        |     |
@@ -276,13 +276,13 @@
 |[obfuscatoR](problems.md#obfuscator)                                           |0.2.1   |       |        |1    |
 |[omicplotR](problems.md#omicplotr)                                             |1.12.0  |       |        |1    |
 |[omicsPrint](problems.md#omicsprint)                                           |1.12.0  |       |1       |1    |
-|omicwas                                                                        |0.8.0   |       |        |     |
+|[omicwas](problems.md#omicwas)                                                 |0.8.0   |       |        |1    |
 |[OptimalDesign](problems.md#optimaldesign)                                     |1.0.1   |       |        |2    |
 |[OUTRIDER](problems.md#outrider)                                               |1.10.0  |       |        |2    |
 |[pandaR](problems.md#pandar)                                                   |1.24.0  |       |2       |3    |
 |[PathoStat](problems.md#pathostat)                                             |1.18.0  |       |        |1    |
 |[pcaMethods](problems.md#pcamethods)                                           |1.84.0  |       |        |1    |
-|[PDATK](problems.md#pdatk)                                                     |1.0.0   |       |        |2    |
+|[PDATK](problems.md#pdatk)                                                     |1.0.1   |       |        |2    |
 |[peakPick](problems.md#peakpick)                                               |0.11    |       |        |1    |
 |PepsNMR                                                                        |1.10.0  |       |        |     |
 |[phosphonormalizer](problems.md#phosphonormalizer)                             |1.16.0  |       |        |1    |
@@ -291,7 +291,7 @@
 |[pipeComp](problems.md#pipecomp)                                               |1.2.0   |       |1       |5    |
 |[pmp](problems.md#pmp)                                                         |1.4.0   |       |        |1    |
 |POMaSPU                                                                        |1.0.0   |       |        |     |
-|[PrecisionTrialDrawer](problems.md#precisiontrialdrawer)                       |1.8.0   |       |        |1    |
+|[PrecisionTrialDrawer](problems.md#precisiontrialdrawer)                       |1.8.0   |1      |        |1    |
 |[ProteoMM](problems.md#proteomm)                                               |1.10.0  |       |        |1    |
 |PSCBS                                                                          |0.65.0  |       |        |     |
 |[QDNAseq](problems.md#qdnaseq)                                                 |1.28.0  |       |        |1    |
@@ -300,7 +300,7 @@
 |RAC                                                                            |1.5     |       |        |     |
 |[RaceID](problems.md#raceid)                                                   |0.2.3   |       |        |1    |
 |[rADA](problems.md#rada)                                                       |1.1.9   |       |        |2    |
-|[RadioGx](problems.md#radiogx)                                                 |1.2.0   |       |1       |1    |
+|[RadioGx](problems.md#radiogx)                                                 |1.2.0   |       |1       |2    |
 |ramr                                                                           |1.0.0   |       |        |     |
 |RandomForestsGLS                                                               |0.1.2   |       |        |     |
 |randomizationInference                                                         |1.0.3   |       |        |     |
@@ -310,7 +310,7 @@
 |[rhierbaps](problems.md#rhierbaps)                                             |1.1.3   |       |        |1    |
 |RiboDiPA                                                                       |1.0.0   |       |        |     |
 |[RJcluster](problems.md#rjcluster)                                             |2.5.0   |       |        |1    |
-|[RNAmodR](problems.md#rnamodr)                                                 |1.6.0   |2      |        |1    |
+|[RNAmodR](problems.md#rnamodr)                                                 |1.6.0   |       |        |2    |
 |[RnBeads](problems.md#rnbeads)                                                 |2.10.0  |       |        |7    |
 |[robustlm](problems.md#robustlm)                                               |0.1.0   |       |        |1    |
 |RTCC                                                                           |0.1.1   |       |        |     |
@@ -331,13 +331,13 @@
 |[sesame](problems.md#sesame)                                                   |1.10.4  |       |        |1    |
 |[Seurat](problems.md#seurat)                                                   |4.0.3   |       |        |2    |
 |[SGP](problems.md#sgp)                                                         |1.9-5.0 |       |        |1    |
-|[shinyMethyl](problems.md#shinymethyl)                                         |1.28.0  |       |        |2    |
+|[shinyMethyl](problems.md#shinymethyl)                                         |1.28.0  |       |        |3    |
 |[SIAMCAT](problems.md#siamcat)                                                 |1.12.0  |       |        |4    |
 |[SICtools](problems.md#sictools)                                               |1.22.0  |       |1       |3    |
 |[sigminer](problems.md#sigminer)                                               |2.0.2   |       |        |1    |
 |[sindyr](problems.md#sindyr)                                                   |0.2.3   |       |        |1    |
 |[Single.mTEC.Transcriptomes](problems.md#singlemtectranscriptomes)             |1.20.0  |       |        |2    |
-|[singleCellTK](problems.md#singlecelltk)                                       |2.2.0   |1      |        |     |
+|[singleCellTK](problems.md#singlecelltk)                                       |2.2.0   |       |        |1    |
 |[singscore](problems.md#singscore)                                             |1.12.0  |1      |        |1    |
 |sizeMat                                                                        |1.1.2   |       |        |     |
 |[SkeweDF](problems.md#skewedf)                                                 |0.1.0   |       |        |1    |
@@ -349,7 +349,7 @@
 |[spqn](problems.md#spqn)                                                       |1.4.0   |       |        |1    |
 |stability                                                                      |0.5.0   |       |        |     |
 |[stapler](problems.md#stapler)                                                 |0.7.1   |       |        |1    |
-|staRdom                                                                        |1.1.21  |       |        |     |
+|[staRdom](problems.md#stardom)                                                 |1.1.21  |       |        |1    |
 |statar                                                                         |0.7.3   |       |        |     |
 |[stm](problems.md#stm)                                                         |1.3.6   |       |        |1    |
 |[STROMA4](problems.md#stroma4)                                                 |1.16.0  |1      |        |1    |
@@ -357,7 +357,7 @@
 |subtee                                                                         |0.3-7.1 |       |        |     |
 |[summarytools](problems.md#summarytools)                                       |0.9.9   |       |1       |1    |
 |sva                                                                            |3.40.0  |       |        |     |
-|target                                                                         |1.6.0   |       |        |     |
+|[target](problems.md#target)                                                   |1.6.0   |       |        |1    |
 |[TCA](problems.md#tca)                                                         |1.2.1   |       |        |2    |
 |tenXplore                                                                      |1.14.0  |       |        |     |
 |[TOAST](problems.md#toast)                                                     |1.6.0   |       |1       |     |
@@ -369,12 +369,12 @@
 |tvgarch                                                                        |2.0     |       |        |     |
 |tximport                                                                       |1.20.0  |       |        |     |
 |[UPG](problems.md#upg)                                                         |0.2.2   |       |        |2    |
-|[VanillaICE](problems.md#vanillaice)                                           |1.54.0  |       |1       |2    |
+|[VanillaICE](problems.md#vanillaice)                                           |1.54.0  |       |1       |3    |
 |[VaSP](problems.md#vasp)                                                       |1.4.0   |       |        |1    |
 |visualFields                                                                   |0.6.2   |       |        |     |
 |[wateRmelon](problems.md#watermelon)                                           |1.36.0  |       |        |4    |
-|[WGCNA](problems.md#wgcna)                                                     |1.70-3  |       |1       |     |
+|[WGCNA](problems.md#wgcna)                                                     |1.70-3  |       |1       |1    |
 |Wrench                                                                         |1.10.0  |       |        |     |
-|yarn                                                                           |1.18.0  |       |        |     |
+|[yarn](problems.md#yarn)                                                       |1.18.0  |       |        |1    |
 |zinbwave                                                                       |1.14.1  |       |        |     |
 
