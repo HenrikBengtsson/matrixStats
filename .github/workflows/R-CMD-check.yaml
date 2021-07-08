@@ -102,6 +102,8 @@ jobs:
       - name: Test coverage
         if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
         run: |
+          ## 0. Workaround: 'curl' from RSPM fails to load; install from CRAN
+          install.packages("curl", repos="https://cloud.r-project.org")
           ## 1. Get 'Repository Upload Token' from Codecov:
           ##    https://app.codecov.io/gh/<org>/<repo>/settings
           ## 2. Set 'CODECOV_TOKEN' in GitHub Secrets:
