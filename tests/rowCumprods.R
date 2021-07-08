@@ -4,7 +4,12 @@ rowCumprods_R <- function(x) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cumprod))
   })
+  
+  # Preserve dimnames attribute
   dim(y) <- dim(x)
+  dimnames <- dimnames(x)
+  if (!is.null(dimnames)) dimnames(y) <- dimnames  
+  
   y
 }
 
@@ -23,6 +28,9 @@ for (mode in c("logical", "integer", "double")) {
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode
     str(x)
+    
+    # To check dimnames attribute
+    dimnames <- list(letters[1:20], LETTERS[1:5])
 
     # Row/column ranges
     r0 <- rowCumprods_R(x)
@@ -31,6 +39,19 @@ for (mode in c("logical", "integer", "double")) {
     stopifnot(all.equal(r1, r2))
     stopifnot(all.equal(r1, r0))
     stopifnot(all.equal(r2, r0))
+    # Check dimnames attribute
+    dimnames(x) <- dimnames
+    r1 <- rowCumprods(x, useNames = FALSE)
+    r2 <- t(colCumprods(t(x), useNames = FALSE))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    r0 <- rowCumprods_R(x)
+    r1 <- rowCumprods(x, useNames = TRUE)
+    r2 <- t(colCumprods(t(x), useNames = TRUE))
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    dimnames(x) <- NULL
   } # for (add_na ...)
 } # for (mode ...)
 
@@ -50,6 +71,19 @@ for (mode in c("logical", "integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- dimnames
+  r1 <- rowCumprods(x, useNames = FALSE)
+  r2 <- t(colCumprods(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCumprods_R(x)
+  r1 <- rowCumprods(x, useNames = TRUE)
+  r2 <- t(colCumprods(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 } # for (mode ...)
 
 
@@ -68,6 +102,19 @@ for (mode in c("logical", "integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- list("a", "A")
+  r1 <- rowCumprods(x, useNames = FALSE)
+  r2 <- t(colCumprods(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCumprods_R(x)
+  r1 <- rowCumprods(x, useNames = TRUE)
+  r2 <- t(colCumprods(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -88,6 +135,19 @@ for (mode in c("logical", "integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- list(letters[1:3], LETTERS[1:2])
+  r1 <- rowCumprods(x, useNames = FALSE)
+  r2 <- t(colCumprods(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCumprods_R(x)
+  r1 <- rowCumprods(x, useNames = TRUE)
+  r2 <- t(colCumprods(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 }
 
 
@@ -119,6 +179,19 @@ for (mode in c("logical", "integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  colnames(x) <- LETTERS[1:5]
+  r1 <- rowCumprods(x, useNames = FALSE)
+  r2 <- t(colCumprods(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- matrix(value2, nrow = nrow(x), ncol = ncol(x), dimnames = dimnames(x))
+  r1 <- rowCumprods(x, useNames = TRUE)
+  r2 <- t(colCumprods(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 
   # A Nx0 matrix
   x <- matrix(value, nrow = 5L, ncol = 0L)
@@ -129,4 +202,17 @@ for (mode in c("logical", "integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  rownames(x) <- LETTERS[1:5]
+  r1 <- rowCumprods(x, useNames = FALSE)
+  r2 <- t(colCumprods(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- matrix(value2, nrow = nrow(x), ncol = ncol(x), dimnames = dimnames(x))
+  r1 <- rowCumprods(x, useNames = TRUE)
+  r2 <- t(colCumprods(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 } # for (mode ...)

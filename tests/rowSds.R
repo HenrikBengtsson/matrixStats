@@ -22,14 +22,14 @@ colSds_R <- function(x, na.rm = FALSE) {
 
 rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm)
-  res <- rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = TRUE)
   stopifnot(!any(is.infinite(res)))
   res
 }
 
 colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm)
-  res <- colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+  res <- colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = TRUE)
   stopifnot(!any(is.infinite(res)))
   res
 }
@@ -49,10 +49,30 @@ for (mode in c("integer", "double")) {
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode
     str(x)
+    
+    # To check names attribute
+    dimnames <- list(letters[1:20], LETTERS[1:5])
 
     # Row/column ranges
     for (na.rm in c(FALSE, TRUE)) {
       cat("na.rm = ", na.rm, "\n", sep = "")
+      
+      # Check names attribute
+      dimnames(x) <- dimnames
+      r0 <- rowSds_R(x, na.rm = na.rm)
+      r1 <- rowSds(x, na.rm = na.rm, useNames = TRUE)
+      r1b <- rowSds_center(x, na.rm = na.rm)
+      r2 <- colSds(t(x), na.rm = na.rm, useNames = TRUE)
+      r2b <- colSds_center(t(x), na.rm = na.rm)
+      m1 <- rowSds(x, na.rm = na.rm, useNames = FALSE)
+      stopifnot(all.equal(r1, r2))
+      stopifnot(all.equal(r1, r0))
+      stopifnot(all.equal(r2, r0))
+      stopifnot(all.equal(r1b, r1))
+      stopifnot(all.equal(r2b, r2))
+      stopifnot(is.null(names(m1)))
+      dimnames(x) <- NULL
+      
       r0 <- rowSds_R(x, na.rm = na.rm)
       r1 <- rowSds(x, na.rm = na.rm)
       r1b <- rowSds_center(x, na.rm = na.rm)
@@ -85,6 +105,23 @@ for (mode in c("integer", "double")) {
 
   for (na.rm in c(FALSE, TRUE)) {
     cat("na.rm = ", na.rm, "\n", sep = "")
+    
+    # Check names attribute
+    dimnames(x) <- dimnames
+    r0 <- rowSds_R(x, na.rm = na.rm)
+    r1 <- rowSds(x, na.rm = na.rm, useNames = TRUE)
+    r1b <- rowSds_center(x, na.rm = na.rm)
+    r2 <- colSds(t(x), na.rm = na.rm, useNames = TRUE)
+    r2b <- colSds_center(t(x), na.rm = na.rm)
+    m1 <- rowSds(x, na.rm = na.rm, useNames = FALSE)
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    stopifnot(all.equal(r1b, r1))
+    stopifnot(all.equal(r2b, r2))
+    stopifnot(is.null(names(m1)))
+    dimnames(x) <- NULL
+    
     r0 <- rowSds_R(x, na.rm = na.rm)
     r1 <- rowSds(x, na.rm = na.rm)
     r1b <- rowSds_center(x, na.rm = na.rm)
@@ -111,6 +148,23 @@ for (mode in c("integer", "double")) {
 x <- matrix(0, nrow = 1, ncol = 1)
 for (na.rm in c(FALSE, TRUE)) {
   cat("na.rm = ", na.rm, "\n", sep = "")
+  
+  # Check names attribute
+  dimnames(x) <- list("a", "A")
+  r0 <- rowSds_R(x, na.rm = na.rm)
+  r1 <- rowSds(x, na.rm = na.rm, useNames = TRUE)
+  r1b <- rowSds_center(x, na.rm = na.rm)
+  r2 <- colSds(t(x), na.rm = na.rm, useNames = TRUE)
+  r2b <- colSds_center(t(x), na.rm = na.rm)
+  m1 <- rowSds(x, na.rm = na.rm, useNames = FALSE)
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  stopifnot(all.equal(r1b, r1))
+  stopifnot(all.equal(r2b, r2))
+  stopifnot(is.null(names(m1)))
+  dimnames(x) <- NULL
+  
   r0 <- rowSds_R(x, na.rm = na.rm)
   r1 <- rowSds(x, na.rm = na.rm)
   r1b <- rowSds_center(x, na.rm = na.rm)

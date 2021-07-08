@@ -26,6 +26,9 @@ for (fcn in names(fcns)) {
       cat("mode: ", mode, "\n", sep = "")
       storage.mode(x) <- mode
       str(x)
+      
+      # To check names attribute
+      dimnames <- list(letters[1:20], LETTERS[1:5])
 
       # Row/column ranges
       for (na.rm in c(FALSE, TRUE)) {
@@ -33,6 +36,16 @@ for (fcn in names(fcns)) {
         r1 <- row_fcn(x, na.rm = na.rm)
         r2 <- col_fcn(t(x), na.rm = na.rm)
         stopifnot(all.equal(r1, r2))
+        # Check names attribute
+        dimnames(x) <- dimnames
+        r1b <- row_fcn(x, na.rm = na.rm, useNames = FALSE)
+        r2b <- col_fcn(t(x), na.rm = na.rm, useNames = FALSE)
+        stopifnot(all.equal(r1, r1b))
+        stopifnot(all.equal(r2, r2b))
+        r1 <- row_fcn(x, na.rm = na.rm, useNames = TRUE)
+        r2 <- col_fcn(t(x), na.rm = na.rm, useNames = TRUE)
+        stopifnot(all.equal(r1, r2))
+        dimnames(x) <- NULL
       }
     } # for (add_na ...)
   }
@@ -52,6 +65,16 @@ for (fcn in names(fcns)) {
       r1 <- row_fcn(x, na.rm = na.rm)
       r2 <- col_fcn(t(x), na.rm = na.rm)
       stopifnot(all.equal(r1, r2))
+      # Check names attribute
+      dimnames(x) <- dimnames
+      r1b <- row_fcn(x, na.rm = na.rm, useNames = FALSE)
+      r2b <- col_fcn(t(x), na.rm = na.rm, useNames = FALSE)
+      stopifnot(all.equal(r1, r1b))
+      stopifnot(all.equal(r2, r2b))
+      r1 <- row_fcn(x, na.rm = na.rm, useNames = TRUE)
+      r2 <- col_fcn(t(x), na.rm = na.rm, useNames = TRUE)
+      stopifnot(all.equal(r1, r2))
+      dimnames(x) <- NULL
     }
   }
 
@@ -65,6 +88,16 @@ for (fcn in names(fcns)) {
     r1 <- row_fcn(x, na.rm = na.rm)
     r2 <- col_fcn(t(x), na.rm = na.rm)
     stopifnot(all.equal(r1, r2))
+    # Check names attribute
+    dimnames(x) <- list("a", "A")
+    r1b <- row_fcn(x, na.rm = na.rm, useNames = FALSE)
+    r2b <- col_fcn(t(x), na.rm = na.rm, useNames = FALSE)
+    stopifnot(all.equal(r1, r1b))
+    stopifnot(all.equal(r2, r2b))
+    r1 <- row_fcn(x, na.rm = na.rm, useNames = TRUE)
+    r2 <- col_fcn(t(x), na.rm = na.rm, useNames = TRUE)
+    stopifnot(all.equal(r1, r2))
+    dimnames(x) <- NULL
   }
 
   cat(sprintf("%s()...DONE\n", fcn))

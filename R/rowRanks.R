@@ -88,7 +88,7 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), ...) {
+                     dim. = dim(x), ..., useNames = TRUE) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -100,7 +100,24 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
 
   dim. <- as.integer(dim.)
   # byrow = TRUE
-  .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, TRUE)
+  y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, TRUE)
+  
+  # Update dimnames attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      if (!is.null(dimnames(x))) {
+        rownames <- rownames(x)
+        if (!is.null(rows)) rownames <- rownames[rows]
+        colnames <- colnames(x)
+        if (!is.null(cols)) colnames <- colnames[cols]
+        dimnames(y) <- list(rownames, colnames)
+      }
+    } else {
+      dimnames(y) <- NULL
+    }
+  }
+  
+  y
 }
 
 
@@ -110,7 +127,7 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), preserveShape = FALSE, ...) {
+                     dim. = dim(x), preserveShape = FALSE, ..., useNames = TRUE) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -127,5 +144,21 @@ colRanks <- function(x, rows = NULL, cols = NULL,
   # byrow = FALSE
   y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, FALSE)
   if (!preserveShape) y <- t(y)
+  
+  # Update dimnames attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      if (!is.null(dimnames(x))) {
+        rownames <- colnames(x)
+        if (!is.null(cols)) rownames <- rownames[cols]        
+        colnames <- rownames(x)
+        if (!is.null(rows)) colnames <- colnames[rows]
+        dimnames(y) <- list(rownames, colnames)
+      }
+    } else {
+      dimnames(y) <- NULL
+    }
+  }
+  
   y
 }

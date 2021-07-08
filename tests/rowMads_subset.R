@@ -3,26 +3,30 @@ library("matrixStats")
 ## Always allow testing of the 'center' argument (as long as it's not defunct)
 options(matrixStats.center.onUse = "ignore")
 
-rowMads_R <- function(x, na.rm = FALSE) {
+rowMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   suppressWarnings({
-    apply(x, MARGIN = 1L, FUN = mad, na.rm = na.rm)
+    res <- apply(x, MARGIN = 1L, FUN = mad, na.rm = na.rm)
   })
+  if (!useNames) names(res) <- NULL
+  res
 }
 
-colMads_R <- function(x, na.rm = FALSE) {
+colMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   suppressWarnings({
-    apply(x, MARGIN = 2L, FUN = mad, na.rm = na.rm)
+    res <- apply(x, MARGIN = 2L, FUN = mad, na.rm = na.rm)
   })
+  if (!useNames) names(res) <- NULL
+  res
 }
 
-rowMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
-  center <- rowMedians(x, cols = cols, na.rm = na.rm)
-  rowMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+rowMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+  center <- rowMedians(x, cols = cols, na.rm = na.rm, useNames = FALSE)
+  rowMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
 }
 
-colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
-  center <- colMedians(x, rows = rows, na.rm = na.rm)
-  colMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm)
+colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+  center <- colMedians(x, rows = rows, na.rm = na.rm, useNames = FALSE)
+  colMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
 }
 
 
@@ -32,22 +36,45 @@ colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE) {
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 storage.mode(x) <- "integer"
+
+# To check names attribute
+dimnames <- list(letters[1:6], LETTERS[1:6])
+
 for (rows in index_cases) {
   for (cols in index_cases) {
     for (na.rm in c(TRUE, FALSE)) {
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowMads, fsure = rowMads_R,
-                                na.rm = na.rm)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowMads_center, fsure = rowMads_R,
-                                na.rm = na.rm)
-
-      validateIndicesTestMatrix(x, rows, cols,
-                                fcoltest = colMads, fsure = rowMads_R,
-                                na.rm = na.rm)
-      validateIndicesTestMatrix(x, rows, cols,
-                                fcoltest = colMads_center, fsure = rowMads_R,
-                                na.rm = na.rm)
+      for (useNames in c(TRUE, FALSE)){
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowMads, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowMads_center, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+  
+        validateIndicesTestMatrix(x, rows, cols,
+                                  fcoltest = colMads, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  fcoltest = colMads_center, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        
+        # Check names attribute
+        dimnames(x) <- dimnames
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowMads, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowMads_center, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        
+        validateIndicesTestMatrix(x, rows, cols,
+                                  fcoltest = colMads, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  fcoltest = colMads_center, fsure = rowMads_R,
+                                  na.rm = na.rm, useNames = useNames)
+        dimnames(x) <- NULL
+      }
     }
   }
 }

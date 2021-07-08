@@ -56,9 +56,9 @@ for (mode in c("integer", "double")) {
   # Testing names
   rownames(lx_neg) <- seq_len(nrow(x))
   colnames(lx_neg) <- seq_len(ncol(x))
-  y2 <- rowLogSumExps(lx_neg)
+  y2 <- rowLogSumExps(lx_neg, useNames = TRUE)
   stopifnot(identical(names(y2), rownames(lx_neg)))
-  y3 <- colLogSumExps(t(lx_neg))
+  y3 <- colLogSumExps(t(lx_neg), useNames = TRUE)
   stopifnot(identical(names(y3), rownames(lx_neg)))
 } # for (mode ...)
 
@@ -166,7 +166,6 @@ print(y)
 stopifnot(length(y) == nrow(lx))
 stopifnot(all(y == 5))
 
-
 ## Bug report #104 (https://github.com/HenrikBengtsson/matrixStats/issues/104)
 ## (This would core dump on Windows)
 x <- matrix(0.0, nrow = 2L, ncol = 32762L)
@@ -178,7 +177,7 @@ str(y)
 ## used)
 x <- matrix(runif(6), nrow = 2L, ncol = 3L,
             dimnames = list(c("A", "B"), c("a", "b", "c")))
-y <- colLogSumExps(x, cols = 3:1)
+y <- colLogSumExps(x, cols = 3:1, useNames = TRUE)
 stopifnot(names(y) == c("c", "b", "a"))
-y <- rowLogSumExps(x, rows = 2)
+y <- rowLogSumExps(x, rows = 2, useNames = TRUE)
 stopifnot(names(y) == "B")

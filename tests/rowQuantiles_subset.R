@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
+rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ..., useNames = TRUE) {
   q <- apply(x, MARGIN = 1L, FUN = function(x, probs, na.rm) {
     if (!na.rm && any(is.na(x))) {
       na_value <- NA_real_
@@ -18,6 +18,7 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
   rownames(q) <- rownames(x)
+  if (!useNames) rownames(q) <- NULL
 
   if (drop) q <- drop(q)
   q
@@ -29,17 +30,29 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
 x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
-dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+dimnames <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
 probs <- c(0, 0.25, 0.75, 1)
 for (rows in index_cases) {
   for (cols in index_cases) {
     for (na.rm in c(TRUE, FALSE)) {
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowQuantiles, fsure = rowQuantiles_R,
-                                probs = probs, na.rm = na.rm, drop = FALSE)
-      validateIndicesTestMatrix(x, rows, cols,
-                                fcoltest = colQuantiles, fsure = rowQuantiles_R,
-                                probs = probs, na.rm = na.rm, drop = FALSE)
+      for (useNames in c(TRUE, FALSE)){
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowQuantiles, fsure = rowQuantiles_R,
+                                  probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  fcoltest = colQuantiles, fsure = rowQuantiles_R,
+                                  probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
+        
+        # Check dimnames attribute
+        dimnames(x) <- dimnames
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowQuantiles, fsure = rowQuantiles_R,
+                                  probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  fcoltest = colQuantiles, fsure = rowQuantiles_R,
+                                  probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
+        dimnames(x) <- NULL
+      }
     }
   }
 }

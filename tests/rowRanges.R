@@ -16,7 +16,15 @@ rowRanges_R <- function(x, ...) {
   suppressWarnings({
     ans <- t(apply(x, MARGIN = 1L, FUN = range, ...))
   })
-  dim(ans) <- c(dim(x)[1], 2L)
+  
+  # Preserve rownames attribute
+  dim <- c(dim(x)[1], 2L)
+  if (!isTRUE(all.equal(dim(ans), dim))) {
+    dim(ans) <- dim
+    rownames <- rownames(x)
+    if (!is.null(dimnames)) rownames(ans) <- rownames
+  }
+  
   ans
 }
 
@@ -36,6 +44,9 @@ for (mode in c("integer", "double")) {
     }
     storage.mode(x) <- mode
     str(x)
+    
+    # To check names attribute
+    dimnames <- list(letters[1:20], LETTERS[1:5])
 
     # Row/column extremes
     for (na.rm in c(FALSE, TRUE)) {
@@ -48,6 +59,18 @@ for (mode in c("integer", "double")) {
       r2 <- colRanges(t(x), na.rm = na.rm)
       stopifnot(all.equal(r1, r2))
       stopifnot(all.equal(r1, r0))
+      # Check names attribute
+      dimnames(x) <- dimnames
+      r1 <- rowRanges(x, na.rm = na.rm, useNames = FALSE)
+      r2 <- colRanges(t(x), na.rm = na.rm, useNames = FALSE)
+      stopifnot(all.equal(r1, r2))
+      stopifnot(all.equal(r1, r0))
+      r0 <- rowRanges_R(x, na.rm = na.rm)
+      r1 <- rowRanges(x, na.rm = na.rm, useNames = TRUE)
+      r2 <- colRanges(t(x), na.rm = na.rm, useNames = TRUE)
+      stopifnot(all.equal(r1, r2))
+      stopifnot(all.equal(r1, r0))
+      dimnames(x) <- NULL
 
       # Min
       cat("min:\n")
@@ -56,6 +79,18 @@ for (mode in c("integer", "double")) {
       m2 <- colMins(t(x), na.rm = na.rm)
       stopifnot(all.equal(m1, m2))
       stopifnot(all.equal(m1, m0))
+      # Check names attribute
+      dimnames(x) <- dimnames
+      m1 <- rowMins(x, na.rm = na.rm, useNames = FALSE)
+      m2 <- colMins(t(x), na.rm = na.rm, useNames = FALSE)
+      stopifnot(all.equal(m1, m2))
+      stopifnot(all.equal(m1, m0))
+      m0 <- rowMins_R(x, na.rm = na.rm)
+      m1 <- rowMins(x, na.rm = na.rm, useNames = TRUE)
+      m2 <- colMins(t(x), na.rm = na.rm, useNames = TRUE)
+      stopifnot(all.equal(m1, m2))
+      stopifnot(all.equal(m1, m0))
+      dimnames(x) <- NULL
 
       # Max
       cat("max:\n")
@@ -64,6 +99,18 @@ for (mode in c("integer", "double")) {
       m2 <- colMaxs(t(x), na.rm = na.rm)
       stopifnot(all.equal(m1, m2))
       stopifnot(all.equal(m1, m0))
+      # Check names attribute
+      dimnames(x) <- dimnames
+      m1 <- rowMaxs(x, na.rm = na.rm, useNames = FALSE)
+      m2 <- colMaxs(t(x), na.rm = na.rm, useNames = FALSE)
+      stopifnot(all.equal(m1, m2))
+      stopifnot(all.equal(m1, m0))
+      m0 <- rowMaxs_R(x, na.rm = na.rm)
+      m1 <- rowMaxs(x, na.rm = na.rm, useNames = TRUE)
+      m2 <- colMaxs(t(x), na.rm = na.rm, useNames = TRUE)
+      stopifnot(all.equal(m1, m2))
+      stopifnot(all.equal(m1, m0))
+      dimnames(x) <- NULL
     }
   } # for (add_na ...)
 } # for (mode ...)
@@ -85,6 +132,18 @@ for (mode in c("integer", "double")) {
     r2 <- colRanges(t(x), na.rm = na.rm)
     stopifnot(all.equal(r1, r2))
     stopifnot(all.equal(r1, r0))
+    # Check names attribute
+    dimnames(x) <- dimnames
+    r1 <- rowRanges(x, na.rm = na.rm, useNames = FALSE)
+    r2 <- colRanges(t(x), na.rm = na.rm, useNames = FALSE)
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    r0 <- rowRanges_R(x, na.rm = na.rm)
+    r1 <- rowRanges(x, na.rm = na.rm, useNames = TRUE)
+    r2 <- colRanges(t(x), na.rm = na.rm, useNames = TRUE)
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    dimnames(x) <- NULL
   }
 } # for (mode ...)
 
@@ -106,15 +165,26 @@ x <- t(x)
 
 # Nx1 matrix
 x <- matrix(1:5, nrow = 5L, ncol = 1L)
+# To check names attribute
+dimnames <- list(letters[1:5], "A")
 r1 <- rowRanges(x)
 r_truth <- matrix(1:5, nrow = nrow(x), ncol = 2L, byrow = FALSE)
 stopifnot(all.equal(r1, r_truth))
+# Check names attribute
+dimnames(x) <- dimnames
+r0 <- rowRanges_R(x)
+r1 <- rowRanges(x, useNames = TRUE)
+stopifnot(all.equal(r1, r0))
+dimnames(x) <- NULL
 
 # 1xN matrix
 x <- t(x)
 r1 <- colRanges(x)
 stopifnot(all.equal(r1, r_truth))
-
+# Check names attribute
+dimnames(x) <- list("a", LETTERS[1:5])
+r1 <- colRanges(x, useNames = TRUE)
+stopifnot(identical(rownames(r1), colnames(x)))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -161,6 +231,8 @@ na <- na_list[["real w/ NA"]]
 na[2, ] <- NaN
 na_list[["real w/ NA + NaN row"]] <- na
 
+# To check names attribute
+dimnames <- list(letters[1:4], LETTERS[1:3])
 
 for (na.rm in c(FALSE, TRUE)) {
   for (name in names(na_list)) {
@@ -177,6 +249,17 @@ for (na.rm in c(FALSE, TRUE)) {
     y1c <- colMins(t(na), na.rm = na.rm)
     str(y1c)
     stopifnot(all.equal(y1c, y1))
+    # Check names attribute
+    dimnames(na) <- dimnames
+    y0 <- rowMins_R(na, na.rm = na.rm)
+    str(y0)
+    y1 <- rowMins(na, na.rm = na.rm, useNames = TRUE)
+    str(y1)
+    stopifnot(all.equal(y1, y0))
+    y1c <- colMins(t(na), na.rm = na.rm, useNames = TRUE)
+    str(y1c)
+    stopifnot(all.equal(y1c, y1))
+    dimnames(na) <- NULL
 
     cat("  max:\n")
     y0 <- rowMaxs_R(na, na.rm = na.rm)
@@ -187,6 +270,17 @@ for (na.rm in c(FALSE, TRUE)) {
     y1c <- colMaxs(t(na), na.rm = na.rm)
     str(y1c)
     stopifnot(all.equal(y1c, y1))
+    # Check names attribute
+    dimnames(x) <- dimnames
+    y0 <- rowMaxs_R(na, na.rm = na.rm)
+    str(y0)
+    y1 <- rowMaxs(na, na.rm = na.rm, useNames = TRUE)
+    str(y1)
+    stopifnot(all.equal(y1, y0))
+    y1c <- colMaxs(t(na), na.rm = na.rm, useNames = TRUE)
+    str(y1c)
+    stopifnot(all.equal(y1c, y1))
+    dimnames(na) <- NULL
 
     cat("  range:\n")
     y0 <- rowRanges_R(na, na.rm = na.rm)
@@ -197,5 +291,16 @@ for (na.rm in c(FALSE, TRUE)) {
     y1c <- colRanges(t(na), na.rm = na.rm)
     str(y1c)
     stopifnot(all.equal(y1c, y1))
+    # Check names attribute
+    dimnames(x) <- dimnames
+    y0 <- rowRanges_R(na, na.rm = na.rm)
+    str(y0)
+    y1 <- rowRanges(na, na.rm = na.rm, useNames = TRUE)
+    str(y1)
+    stopifnot(all.equal(y1, y0))
+    y1c <- colRanges(t(na), na.rm = na.rm, useNames = TRUE)
+    str(y1c)
+    stopifnot(all.equal(y1c, y1))
+    dimnames(na) <- NULL
   } # for (name ...)
 } # for (na.rm ...)

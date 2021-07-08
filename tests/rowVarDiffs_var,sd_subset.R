@@ -10,6 +10,8 @@ fcns <- list(
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
+# To check names attribute
+dimnames <- list(letters[1:6], LETTERS[1:6])
 trim <- runif(1, min = 0, max = 0.5)
 for (fcn in names(fcns)) {
   cat(sprintf("subsetted tests on %s()...\n", fcn))
@@ -25,12 +27,24 @@ for (fcn in names(fcns)) {
       for (rows in index_cases) {
         for (cols in index_cases) {
           for (na.rm in c(TRUE, FALSE)) {
-            validateIndicesTestMatrix(x, rows, cols,
-                                      ftest = row_fcn, fsure = row_fcn,
-                                      na.rm = na.rm, diff = diff, trim = trim)
-            validateIndicesTestMatrix(x, rows, cols,
-                                      fcoltest = col_fcn, fsure = row_fcn,
-                                      na.rm = na.rm, diff = diff, trim = trim)
+            for (useNames in c(TRUE, FALSE)){
+              validateIndicesTestMatrix(x, rows, cols,
+                                        ftest = row_fcn, fsure = row_fcn,
+                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+              validateIndicesTestMatrix(x, rows, cols,
+                                        fcoltest = col_fcn, fsure = row_fcn,
+                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+              
+              # Check names attribute
+              dimnames(x) <- dimnames
+              validateIndicesTestMatrix(x, rows, cols,
+                                        ftest = row_fcn, fsure = row_fcn,
+                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+              validateIndicesTestMatrix(x, rows, cols,
+                                        fcoltest = col_fcn, fsure = row_fcn,
+                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+              dimnames(x) <- NULL
+            }
           }
         }
       }

@@ -4,7 +4,12 @@ rowCummins_R <- function(x) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cummin))
   })
+  
+  # Preserve dimnames attribute
   dim(y) <- dim(x)
+  dimnames <- dimnames(x)
+  if (!is.null(dimnames)) dimnames(y) <- dimnames  
+  
   y
 }
 
@@ -15,7 +20,12 @@ rowCummaxs_R <- function(x) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cummax))
   })
+  
+  # Preserve dimnames attribute
   dim(y) <- dim(x)
+  dimnames <- dimnames(x)
+  if (!is.null(dimnames)) dimnames(y) <- dimnames  
+  
   storage.mode(y) <- mode
   y
 }
@@ -35,6 +45,9 @@ for (mode in c("integer", "double")) {
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode
     str(x)
+    
+    # To check dimnames attribute
+    dimnames <- list(letters[1:20], LETTERS[1:5])
 
     # Row/column ranges
     r0 <- rowCummins_R(x)
@@ -43,6 +56,19 @@ for (mode in c("integer", "double")) {
     stopifnot(all.equal(r1, r2))
     stopifnot(all.equal(r1, r0))
     stopifnot(all.equal(r2, r0))
+    # Check dimnames attribute
+    dimnames(x) <- dimnames
+    r1 <- rowCummins(x, useNames = FALSE)
+    r2 <- t(colCummins(t(x), useNames = FALSE))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    r0 <- rowCummins_R(x)
+    r1 <- rowCummins(x, useNames = TRUE)
+    r2 <- t(colCummins(t(x), useNames = TRUE))
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    dimnames(x) <- NULL
 
     r0 <- rowCummaxs_R(x)
     r1 <- rowCummaxs(x)
@@ -50,6 +76,19 @@ for (mode in c("integer", "double")) {
     stopifnot(all.equal(r1, r2))
     stopifnot(all.equal(r1, r0))
     stopifnot(all.equal(r2, r0))
+    # Check dimnames attribute
+    dimnames(x) <- dimnames
+    r1 <- rowCummaxs(x, useNames = FALSE)
+    r2 <- t(colCummaxs(t(x), useNames = FALSE))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    r0 <- rowCummaxs_R(x)
+    r1 <- rowCummaxs(x, useNames = TRUE)
+    r2 <- t(colCummaxs(t(x), useNames = TRUE))
+    stopifnot(all.equal(r1, r2))
+    stopifnot(all.equal(r1, r0))
+    stopifnot(all.equal(r2, r0))
+    dimnames(x) <- NULL
   } # for (add_na ...)
 } # for (mode ...)
 
@@ -69,6 +108,19 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- dimnames
+  r1 <- rowCummins(x, useNames = FALSE)
+  r2 <- t(colCummins(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCummins_R(x)
+  r1 <- rowCummins(x, useNames = TRUE)
+  r2 <- t(colCummins(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 
   r0 <- rowCummaxs_R(x)
   r1 <- rowCummaxs(x)
@@ -76,6 +128,19 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- dimnames
+  r1 <- rowCummaxs(x, useNames = FALSE)
+  r2 <- t(colCummaxs(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCummaxs_R(x)
+  r1 <- rowCummaxs(x, useNames = TRUE)
+  r2 <- t(colCummaxs(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 } # for (mode ...)
 
 
@@ -87,6 +152,9 @@ for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
+  
+  # To check dimnames attribute
+  dimnames <- list("a", "A")
 
   r0 <- rowCummins_R(x)
   r1 <- rowCummins(x)
@@ -94,6 +162,19 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- dimnames
+  r1 <- rowCummins(x, useNames = FALSE)
+  r2 <- t(colCummins(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCummins_R(x)
+  r1 <- rowCummins(x, useNames = TRUE)
+  r2 <- t(colCummins(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 
   r0 <- rowCummaxs_R(x)
   r1 <- rowCummaxs(x)
@@ -101,6 +182,19 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  dimnames(x) <- dimnames
+  r1 <- rowCummaxs(x, useNames = FALSE)
+  r2 <- t(colCummaxs(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- rowCummaxs_R(x)
+  r1 <- rowCummaxs(x, useNames = TRUE)
+  r2 <- t(colCummaxs(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 } # for (mode ...)
 
 
@@ -131,6 +225,19 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  colnames(x) <- LETTERS[1:5]
+  r1 <- rowCummins(x, useNames = FALSE)
+  r2 <- t(colCummins(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- matrix(value, nrow = nrow(x), ncol = ncol(x), dimnames = dimnames(x))
+  r1 <- rowCummins(x, useNames = TRUE)
+  r2 <- t(colCummins(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 
   # A Nx0 matrix
   x <- matrix(value, nrow = 5L, ncol = 0L)
@@ -141,4 +248,17 @@ for (mode in c("integer", "double")) {
   stopifnot(all.equal(r1, r2))
   stopifnot(all.equal(r1, r0))
   stopifnot(all.equal(r2, r0))
+  # Check dimnames attribute
+  rownames(x) <- LETTERS[1:5]
+  r1 <- rowCummins(x, useNames = FALSE)
+  r2 <- t(colCummins(t(x), useNames = FALSE))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  r0 <- matrix(value, nrow = nrow(x), ncol = ncol(x), dimnames = dimnames(x))
+  r1 <- rowCummins(x, useNames = TRUE)
+  r2 <- t(colCummins(t(x), useNames = TRUE))
+  stopifnot(all.equal(r1, r2))
+  stopifnot(all.equal(r1, r0))
+  stopifnot(all.equal(r2, r0))
+  dimnames(x) <- NULL
 } # for (mode ...)
