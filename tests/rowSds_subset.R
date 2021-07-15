@@ -13,7 +13,7 @@ rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   if (is.null(center) || ncol(x) <= 1L) {
     if (is.na(useNames) || isFALSE(useNames)) names(sigma) <- NULL
   }
-  else if (isFALSE(useNames)) names(sigma) <- NULL
+  else if (!is.na(useNames) && !useNames) names(sigma) <- NULL
   sigma
 }
 
@@ -27,7 +27,7 @@ colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   if (is.null(center) || nrow(x) <= 1L) {
     if (is.na(useNames) || isFALSE(useNames)) names(sigma) <- NULL
   }
-  else if (isFALSE(useNames)) names(sigma) <- NULL
+  else if (!is.na(useNames) && !useNames) names(sigma) <- NULL
   sigma
 }
 

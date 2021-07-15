@@ -4,7 +4,7 @@ rowLogSumExps_R <- function(x, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = function(rx, ...) {
     log(sum(exp(rx), ...))
   }, ...)
-  if (isFALSE(useNames)) names(res) <- NULL
+  if (!is.na(useNames) && !useNames) names(res) <- NULL
   res
 }
 

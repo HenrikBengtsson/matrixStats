@@ -5,7 +5,7 @@ rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   
   # Keep naming support consistency same as rowWeightedMedians()
   if (!is.null(w)) {
-    if (isFALSE(useNames)) names(res) <- NULL
+    if (!is.na(useNames) && !useNames) names(res) <- NULL
   }
   else if (is.na(useNames) || !useNames) names(res) <- NULL
   

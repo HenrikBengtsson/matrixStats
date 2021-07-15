@@ -17,7 +17,7 @@ rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, 
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
   rownames(q) <- rownames(x)
-  if (isFALSE(useNames)) rownames(q) <- NULL
+  if (!is.na(useNames) && !useNames) rownames(q) <- NULL
 
   if (drop) q <- drop(q)
   q
