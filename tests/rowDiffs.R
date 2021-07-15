@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = TRUE) {
+rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = NA) {
   ncol2 <- ncol(x) - lag * differences
   if (ncol2 <= 0) {
     y <- matrix(x[integer(0L)], nrow = nrow(x), ncol = 0L)

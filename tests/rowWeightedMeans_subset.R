@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+rowWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = weighted.mean, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as rowWeightedMeans()
@@ -15,7 +15,7 @@ rowWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-colWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+colWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = weighted.mean, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as colWeightedMeans()

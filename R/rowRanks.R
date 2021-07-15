@@ -88,7 +88,7 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), ..., useNames = TRUE) {
+                     dim. = dim(x), ..., useNames = NA) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -127,7 +127,7 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), preserveShape = FALSE, ..., useNames = TRUE) {
+                     dim. = dim(x), preserveShape = FALSE, ..., useNames = NA) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 

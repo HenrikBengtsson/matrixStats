@@ -138,7 +138,7 @@ weightedSd <- function(...) {
 #' @rdname weightedVar
 #' @export
 rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
-                            na.rm = FALSE, ..., useNames = TRUE) {
+                            na.rm = FALSE, ..., useNames = NA) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -159,7 +159,7 @@ rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname weightedVar
 #' @export
 colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
-                            na.rm = FALSE, ..., useNames = TRUE) {
+                            na.rm = FALSE, ..., useNames = NA) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -180,7 +180,7 @@ colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname weightedVar
 #' @export
 rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
-                           na.rm = FALSE, ..., useNames = TRUE) {
+                           na.rm = FALSE, ..., useNames = NA) {
   sqrt(rowWeightedVars(x = x, w = w, rows = rows, cols = cols,
                        na.rm = na.rm, useNames = useNames, ...))
 }
@@ -189,7 +189,7 @@ rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname weightedVar
 #' @export
 colWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
-                           na.rm = FALSE, ..., useNames = TRUE) {
+                           na.rm = FALSE, ..., useNames = NA) {
   sqrt(colWeightedVars(x = x, w = w, rows = rows, cols = cols,
                        na.rm = na.rm, useNames = useNames, ...))
 }

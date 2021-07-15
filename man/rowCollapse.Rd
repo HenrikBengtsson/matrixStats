@@ -5,9 +5,9 @@
 \alias{colCollapse}
 \title{Extracts one cell per row (column) from a matrix}
 \usage{
-rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = TRUE)
+rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA)
 
-colCollapse(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = TRUE)
+colCollapse(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

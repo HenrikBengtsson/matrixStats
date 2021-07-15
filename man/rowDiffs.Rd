@@ -6,10 +6,10 @@
 \title{Calculates difference for each row (column) in a matrix}
 \usage{
 rowDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
-  dim. = dim(x), ..., useNames = TRUE)
+  dim. = dim(x), ..., useNames = NA)
 
 colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
-  dim. = dim(x), ..., useNames = TRUE)
+  dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

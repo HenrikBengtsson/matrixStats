@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as rowWeightedMedians()
@@ -12,7 +12,7 @@ rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-colWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+colWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 2L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as colWeightedMedians()
@@ -38,18 +38,20 @@ x_est1 <- rowWeightedMedians(x)
 stopifnot(all.equal(x_est1, x_est0))
 x_est2 <- colWeightedMedians(t(x))
 stopifnot(all.equal(x_est2, x_est0))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, useNames = FALSE)
-x_est2 <- colWeightedMedians(t(x), useNames = FALSE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-x_est0 <- rowMedians(x)
-x_est1 <- rowWeightedMedians(x, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowMedians(x, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, useNames = useNames)
+    x_est2 <- colWeightedMedians(t(x), useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    stopifnot(all.equal(x_est2, x_est0))
+  }
+}
+
 
 # Weighted row medians (uniform weights)
 w <- rep(2.5, times = ncol(x))

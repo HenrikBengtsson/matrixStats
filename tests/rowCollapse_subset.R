@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCollapse_R <- function(x, idxs, ..., useNames = TRUE) {
+rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
   ans <- c()
   storage.mode(ans) <- storage.mode(x)
   for (ii in seq_len(length(idxs))) {

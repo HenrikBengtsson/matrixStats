@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
+rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
   } else {
@@ -20,7 +20,7 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
+rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
   } else {
@@ -40,8 +40,10 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-rowAnyMissings_R <- function(x, ...) {
-  apply(x, MARGIN = 1L, FUN = anyMissing)
+rowAnyMissings_R <- function(x, ..., useNames = NA) {
+  res <- apply(x, MARGIN = 1L, FUN = anyMissing)
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
 }
 
 
@@ -100,13 +102,14 @@ for (kk in 1:3) {
         str(list("any()", m0 = m0, m1 = m1, m2 = m2))
         stopifnot(identical(m1, m0))
         stopifnot(identical(m2, m0))
+        
+        m0 <- rowAnyMissings_R(x, useNames = useNames)
+        m1 <- rowAnyMissings(x, useNames = useNames)
+        m2 <- colAnyMissings(t(x), useNames = useNames)
+        str(list("anyMissing()", m0 = m0, m1 = m1, m2 = m2))
+        stopifnot(identical(m1, m0))
+        stopifnot(identical(m2, m0))
       }
-      m0 <- rowAnyMissings_R(x)
-      m1 <- rowAnyMissings(x)
-      m2 <- colAnyMissings(t(x))
-      str(list("anyMissing()", m0 = m0, m1 = m1, m2 = m2))
-      stopifnot(identical(m1, m0))
-      stopifnot(identical(m2, m0))
     }
   }
 } # for (kk ...)

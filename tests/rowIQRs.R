@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   quantile_na <- function(x, ..., na.rm = FALSE) {
     if (!na.rm && anyMissing(x))
       return(c(NA_real_, NA_real_))

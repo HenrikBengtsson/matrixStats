@@ -10,22 +10,22 @@
 \title{Gets the range of values in each row (column) of a matrix}
 \usage{
 rowRanges(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 rowMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = TRUE)
+  useNames = NA)
 
 rowMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = TRUE)
+  useNames = NA)
 
 colRanges(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 colMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = TRUE)
+  useNames = NA)
 
 colMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = TRUE)
+  useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

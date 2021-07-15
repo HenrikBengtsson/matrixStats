@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ..., useNames = TRUE) {
+                    dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {
@@ -197,7 +197,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @rdname rowVars
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ..., useNames = TRUE) {
+                    dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
 
   if (is.null(center)) {

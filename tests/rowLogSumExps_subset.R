@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowLogSumExps_R <- function(x, ..., useNames = TRUE) {
+rowLogSumExps_R <- function(x, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = function(rx, ...) {
     log(sum(exp(rx), ...))
   }, ...)

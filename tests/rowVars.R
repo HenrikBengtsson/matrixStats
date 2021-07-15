@@ -4,7 +4,7 @@ library("matrixStats")
 options(matrixStats.center.onUse = "ignore")
 options(matrixStats.vars.formula.freq = Inf)
 
-rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
+rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = var, na.rm = na.rm)
   })
@@ -18,7 +18,7 @@ rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
   res
 }
 
-colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
+colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 2L, FUN = var, na.rm = na.rm)
   })
@@ -33,21 +33,21 @@ colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
 }
 
 
-rowVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+rowVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm, useNames = FALSE)
   res <- rowVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(res)))
   res
 }
 
-colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm, useNames = FALSE)
   res <- colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(res)))
   res
 }
 
-rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = NA) {
   x <- sweep(x, MARGIN = 1, STATS = as.array(center), FUN = "-")
   x[is.infinite(center), ] <- NaN
   res <- rowVars(x, rows = rows, cols = cols, center = rep(0, times = nrow(x)), na.rm = na.rm, useNames = useNames)
@@ -55,7 +55,7 @@ rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.
   res
 }
 
-colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = NA) {
   x <- sweep(x, MARGIN = 2, STATS = as.array(center), FUN = "-")
   x[, is.infinite(center)] <- NaN
   res <- colVars(x, rows = rows, cols = cols, center = rep(0, times = ncol(x)), na.rm = na.rm, useNames = useNames)

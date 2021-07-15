@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCumsums_R <- function(x, ..., useNames = TRUE) {
+rowCumsums_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cumsum))
   })

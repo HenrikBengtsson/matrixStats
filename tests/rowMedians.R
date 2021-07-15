@@ -1,12 +1,12 @@
 library("matrixStats")
 
-rowMedians_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+rowMedians_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = median, na.rm = na.rm)
   if (is.na(useNames) || !useNames) names(res) <- NULL
   res
 }
 
-colMedians_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+colMedians_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 2L, FUN = median, na.rm = na.rm)
   if (is.na(useNames) || !useNames) names(res) <- NULL
   res

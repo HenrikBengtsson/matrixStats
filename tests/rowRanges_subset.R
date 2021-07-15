@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowMins_R <- function(x, ..., useNames = TRUE) {
+rowMins_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = min, ...)
   })
@@ -8,7 +8,7 @@ rowMins_R <- function(x, ..., useNames = TRUE) {
   res
 } # rowMins_R()
 
-rowMaxs_R <- function(x, ..., useNames = TRUE) {
+rowMaxs_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = max, ...)
   })
@@ -16,7 +16,7 @@ rowMaxs_R <- function(x, ..., useNames = TRUE) {
   res
 } # rowMaxs_R()
 
-rowRanges_R <- function(x, ..., useNames = TRUE) {
+rowRanges_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     ans <- t(apply(x, MARGIN = 1L, FUN = range, ...))
   })

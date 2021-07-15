@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
+rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
   if (is.na(useNames) || !useNames) names(res) <- NULL
   res
@@ -83,7 +83,7 @@ stopifnot(all.equal.na(y1, x[, 1] * x[, 2]))
 stopifnot(all.equal.na(y2, y1))
 # Check names attribute
 dimnames(x) <- dimnames
-y0 <- rowProds_R(x)
+y0 <- rowProds_R(x, useNames = TRUE)
 print(y0)
 y1 <- rowProds(x, useNames = TRUE)
 print(y1)
@@ -108,7 +108,7 @@ stopifnot(all.equal.na(y1, c(0, 0)))
 stopifnot(all.equal.na(y2, y1))
 # Check names attribute
 dimnames(x) <- dimnames
-y0 <- rowProds_R(x)
+y0 <- rowProds_R(x, useNames = TRUE)
 print(y0)
 y1 <- rowProds(x, useNames = TRUE)
 print(y1)

@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCumprods_R <- function(x, ..., useNames = TRUE) {
+rowCumprods_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cumprod))
   })

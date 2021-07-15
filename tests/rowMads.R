@@ -3,7 +3,7 @@ library("matrixStats")
 ## Always allow testing of the 'center' argument (as long as it's not defunct)
 options(matrixStats.center.onUse = "ignore")
 
-rowMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+rowMads_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = mad, na.rm = na.rm)
   })
@@ -11,7 +11,7 @@ rowMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-colMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+colMads_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 2L, FUN = mad, na.rm = na.rm)
   })
@@ -19,12 +19,12 @@ colMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-rowMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+rowMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   center <- rowMedians(x, cols = cols, na.rm = na.rm, useNames = FALSE)
   rowMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
 }
 
-colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   center <- colMedians(x, rows = rows, na.rm = na.rm, useNames = FALSE)
   colMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
 }

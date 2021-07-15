@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ..., useNames = TRUE) {
+rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ..., useNames = NA) {
   q <- apply(x, MARGIN = 1L, FUN = function(x, probs, na.rm) {
     if (!na.rm && any(is.na(x))) {
       na_value <- NA_real_

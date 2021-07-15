@@ -3,7 +3,7 @@ library("matrixStats")
 ## Always allow testing of the 'center' argument (as long as it's not defunct)
 options(matrixStats.center.onUse = "ignore")
 
-rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
+rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   suppressWarnings({
     sigma <- apply(x, MARGIN = 1L, FUN = sd, na.rm = na.rm)
   })
@@ -17,7 +17,7 @@ rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
   sigma
 }
 
-colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
+colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   suppressWarnings({
     sigma <- apply(x, MARGIN = 2L, FUN = sd, na.rm = na.rm)
   })
@@ -32,14 +32,14 @@ colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
 }
 
 
-rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm, useNames = FALSE)
   sigma <- rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(sigma)))
   sigma
 }
 
-colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
+colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm, useNames = FALSE)
   sigma <- colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(sigma)))

@@ -6,10 +6,10 @@
 \title{Calculates the median for each row (column) in a matrix}
 \usage{
 rowMedians(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 colMedians(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

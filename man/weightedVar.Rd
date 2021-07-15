@@ -14,16 +14,16 @@ weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, ...)
 weightedSd(...)
 
 rowWeightedVars(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 colWeightedVars(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 rowWeightedSds(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 colWeightedSds(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 }
 \arguments{
 \item{x}{\code{\link[base]{vector}} of type \code{\link[base]{integer}},

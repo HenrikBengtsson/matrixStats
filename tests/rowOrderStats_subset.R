@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowOrderStats_R <- function(x, probs, ..., useNames = TRUE) {
+rowOrderStats_R <- function(x, probs, ..., useNames = NA) {
   ans <- apply(x, MARGIN = 1L, FUN = quantile, probs = probs, type = 3L)
 
   # Remove Attributes

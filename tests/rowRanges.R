@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowMins_R <- function(x, ..., useNames = TRUE) {
+rowMins_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = min, ...)
   })
@@ -8,7 +8,7 @@ rowMins_R <- function(x, ..., useNames = TRUE) {
   res
 } # rowMins_R()
 
-rowMaxs_R <- function(x, ..., useNames = TRUE) {
+rowMaxs_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = max, ...)
   })
@@ -16,7 +16,7 @@ rowMaxs_R <- function(x, ..., useNames = TRUE) {
   res
 } # rowMaxs_R()
 
-rowRanges_R <- function(x, ..., useNames = TRUE) {
+rowRanges_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     ans <- t(apply(x, MARGIN = 1L, FUN = range, ...))
   })
@@ -144,7 +144,7 @@ r_truth <- matrix(1:5, nrow = nrow(x), ncol = 2L, byrow = FALSE)
 stopifnot(all.equal(r1, r_truth))
 # Check names attribute
 dimnames(x) <- dimnames
-r0 <- rowRanges_R(x)
+r0 <- rowRanges_R(x, useNames = TRUE)
 r1 <- rowRanges(x, useNames = TRUE)
 stopifnot(all.equal(r1, r0))
 dimnames(x) <- NULL

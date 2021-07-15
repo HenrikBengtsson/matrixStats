@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
+rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   if (is.na(value)) {
     counts <- apply(x, MARGIN = 1L, FUN = function(x)
       sum(is.na(x))

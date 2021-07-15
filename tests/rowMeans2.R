@@ -1,12 +1,12 @@
 library("matrixStats")
 
-rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   res <- rowMeans(x, na.rm = na.rm)
   if (is.na(useNames) || !useNames) names(res) <- NULL
   res
 }
 
-colMeans_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+colMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   res <- colMeans(x, na.rm = na.rm)
   if (is.na(useNames) || !useNames) names(res) <- NULL
   res

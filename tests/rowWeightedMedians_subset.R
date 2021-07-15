@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as rowWeightedMedians()

@@ -7,10 +7,10 @@
 \title{Counts the number of occurrences of a specific value}
 \usage{
 rowCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = TRUE)
+  dim. = dim(x), ..., useNames = NA)
 
 colCounts(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = TRUE)
+  dim. = dim(x), ..., useNames = NA)
 
 count(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 }

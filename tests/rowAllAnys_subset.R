@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
+rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
   } else {
@@ -20,7 +20,7 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
+rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
   } else {
@@ -40,8 +40,10 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-rowAnyMissings_R <- function(x, ...) {
-  apply(x, MARGIN = 1L, FUN = anyMissing)
+rowAnyMissings_R <- function(x, ..., useNames = NA) {
+  res <- apply(x, MARGIN = 1L, FUN = anyMissing)
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
 }
 
 
@@ -124,10 +126,10 @@ for (setDimnames in c(TRUE, FALSE)) {
     
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowAnyMissings,
-                                  fsure = rowAnyMissings_R)
+                                  fsure = rowAnyMissings_R, useNames = useNames)
         validateIndicesTestMatrix(x, rows, cols,
                                   fcoltest = colAnyMissings,
-                                  fsure = rowAnyMissings_R)        
+                                  fsure = rowAnyMissings_R, useNames = useNames)        
       }
     }
   }
@@ -207,10 +209,10 @@ for (setDimnames in c(TRUE, FALSE)) {
     
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowAnyMissings,
-                                  fsure = rowAnyMissings_R)
+                                  fsure = rowAnyMissings_R, useNames = useNames)
         validateIndicesTestMatrix(x, rows, cols,
                                   fcoltest = colAnyMissings,
-                                  fsure = rowAnyMissings_R)        
+                                  fsure = rowAnyMissings_R, useNames = useNames)        
       }
     }
   }

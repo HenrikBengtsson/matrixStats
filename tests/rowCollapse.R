@@ -5,7 +5,7 @@ x <- matrix(1:27, ncol = 3)
 # To check names attribute
 dimnames <- list(letters[1:9], LETTERS[1:3])
 
-rowCollapse_R <- function(x, idxs, ..., useNames = TRUE) {
+rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
   res <- x[, idxs]
   # Preserve names attribute?
   if (is.na(useNames) || !useNames) names(res) <- NULL
@@ -43,7 +43,7 @@ for (setDimnames in c(TRUE, FALSE)) {
 }
 
 
-rowCollapse_R <- function(x, idxs, ..., useNames = TRUE) {
+rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
   res <- c(x[1:5, 1], x[6:9, 3])
   # Preserve names attribute?
   if (is.na(useNames) || !useNames) names(res) <- NULL
@@ -66,7 +66,7 @@ for (setDimnames in c(TRUE, FALSE)) {
 }
 
 
-rowCollapse_R <- function(x, idxs, ..., useNames = TRUE) {
+rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
   res <- c(x[1, 1], x[2, 2], x[3, 3], x[4, 1], x[5, 2],
            x[6, 3], x[7, 1], x[8, 2], x[9, 3])
   # Preserve names attribute?

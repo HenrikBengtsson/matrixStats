@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowRanks_R <- function(x, ties.method = "average", ..., useNames = TRUE) {
+rowRanks_R <- function(x, ties.method = "average", ..., useNames = NA) {
   ans <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep",
                  ties.method = ties.method))
   
@@ -12,7 +12,7 @@ rowRanks_R <- function(x, ties.method = "average", ..., useNames = TRUE) {
   ans
 }
 
-colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = TRUE) {
+colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA) {
   ans <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties.method))
   
   # Preserve dimnames attribute?
@@ -35,7 +35,7 @@ storage.mode(x) <- "integer"
 # To check dimnames attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-colRanks_R_t <- function(x, rows, cols, ..., useNames = TRUE) {
+colRanks_R_t <- function(x, rows, cols, ..., useNames = NA) {
   t(colRanks(t(x), rows = cols, cols = rows, preserveShape = TRUE, ..., useNames = useNames))
 }
 

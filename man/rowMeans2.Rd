@@ -6,10 +6,10 @@
 \title{Calculates the mean for each row (column) in a matrix}
 \usage{
 rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 
 colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = TRUE)
+  ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

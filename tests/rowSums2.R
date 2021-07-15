@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   ## FIXME: sum() may overflow for integers, whereas
   ## base::rowSums() doesn't.  What should rowSums2() do?
   ## apply(x, MARGIN = 1L, FUN = sum, na.rm = na.rm)
@@ -9,7 +9,7 @@ rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
-colSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
+colSums2_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   ## FIXME: sum() may overflow for integers, whereas
   ## base::colSums() doesn't.  What should colSums2() do?
   ## apply(x, MARGIN = 2L, FUN = sum, na.rm = na.rm)

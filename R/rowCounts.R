@@ -24,7 +24,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -101,7 +101,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowCounts
 #' @export
 colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
