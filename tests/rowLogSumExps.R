@@ -181,3 +181,34 @@ y <- colLogSumExps(x, cols = 3:1, useNames = TRUE)
 stopifnot(names(y) == c("c", "b", "a"))
 y <- rowLogSumExps(x, rows = 2, useNames = TRUE)
 stopifnot(names(y) == "B")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Check names attributes
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+rowLogSumExps_R <- function(x, ..., useNames = TRUE) {
+  res <- apply(x, MARGIN = 1L, FUN = function(rx, ...) {
+    log(sum(exp(rx), ...))
+  }, ...)
+  if (isFALSE(useNames)) names(res) <- NULL
+  res
+}
+
+x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
+
+# To check names attribute
+dimnames <- list(letters[1:6], LETTERS[1:6])
+
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowLogSumExps_R(x, useNames = useNames)
+    y1 <- rowLogSumExps(x, useNames = useNames)
+    y2 <- colLogSumExps(t(x), useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    stopifnot(all.equal(y2, y0))
+  }
+}
+

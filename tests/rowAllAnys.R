@@ -1,8 +1,8 @@
 library("matrixStats")
 
-rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
+rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
-    apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
+    res <- apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
   } else {
     y <- x == value
     
@@ -14,13 +14,15 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
       if (!is.null(dimnames)) dimnames(y) <- dimnames
     }
     
-    apply(y, MARGIN = 1L, FUN = all, na.rm = na.rm)
+    res <- apply(y, MARGIN = 1L, FUN = all, na.rm = na.rm)
   }
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
 }
 
-rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
+rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
-    apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
+    res <- apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
   } else {
     y <- x == value
     
@@ -31,9 +33,11 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
       dimnames <- dimnames(x)
       if (!is.null(dimnames)) dimnames(y) <- dimnames
     }
-   
-    apply(y, MARGIN = 1L, FUN = any, na.rm = na.rm)
+    
+    res <- apply(y, MARGIN = 1L, FUN = any, na.rm = na.rm)
   }
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
 }
 
 rowAnyMissings_R <- function(x, ...) {
@@ -64,55 +68,46 @@ for (kk in 1:3) {
     x[2, ] <- NA
   }
 
-  # Row/column all
-  for (na.rm in c(FALSE, TRUE)) {
-    m0 <- rowAlls_R(x, na.rm = na.rm)
-    m1 <- rowAlls(x, na.rm = na.rm)
-    m2 <- colAlls(t(x), na.rm = na.rm)
-    str(list("all()", m0 = m0, m1 = m1, m2 = m2))
-    stopifnot(identical(m1, m0))
-    stopifnot(identical(m2, m0))
-    # Check names attribute
-    dimnames(x) <- dimnames
-    m1 <- rowAlls(x, na.rm = na.rm, useNames = FALSE)
-    m2 <- colAlls(t(x), na.rm = na.rm, useNames = FALSE)
-    stopifnot(all.equal(m1, m0))
-    stopifnot(all.equal(m2, m0))    
-    m0 <- rowAlls_R(x, na.rm = na.rm)
-    m1 <- rowAlls(x, na.rm = na.rm, useNames = TRUE)
-    m2 <- colAlls(t(x), na.rm = na.rm, useNames = TRUE)
-    stopifnot(all.equal(m1, m0))
-    stopifnot(all.equal(m2, m0))
-    dimnames(x) <- NULL
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL    
+    # Row/column all
+    for (na.rm in c(FALSE, TRUE)) {
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        m0 <- rowAlls_R(x, na.rm = na.rm, useNames = useNames)
+        m1 <- rowAlls(x, na.rm = na.rm, useNames = useNames)
+        m2 <- colAlls(t(x), na.rm = na.rm, useNames = useNames)
+        str(list("all()", m0 = m0, m1 = m1, m2 = m2))
+        stopifnot(identical(m1, m0))
+        stopifnot(identical(m2, m0))        
+      }
+    }
   }
-
-  # Row/column any
-  for (na.rm in c(FALSE, TRUE)) {
-    m0 <- rowAnys_R(x, na.rm = na.rm)
-    m1 <- rowAnys(x, na.rm = na.rm)
-    m2 <- colAnys(t(x), na.rm = na.rm)
-    str(list("any()", m0 = m0, m1 = m1, m2 = m2))
-    stopifnot(identical(m1, m0))
-    stopifnot(identical(m2, m0))
-    # Check names attribute
-    dimnames(x) <- dimnames
-    m1 <- rowAnys(x, na.rm = na.rm, useNames = FALSE)
-    m2 <- colAnys(t(x), na.rm = na.rm, useNames = FALSE)
-    stopifnot(all.equal(m1, m0))
-    stopifnot(all.equal(m2, m0))    
-    m0 <- rowAnys_R(x, na.rm = na.rm)
-    m1 <- rowAnys(x, na.rm = na.rm, useNames = TRUE)
-    m2 <- colAnys(t(x), na.rm = na.rm, useNames = TRUE)
-    stopifnot(all.equal(m1, m0))
-    stopifnot(all.equal(m2, m0))
-    dimnames(x) <- NULL
-
-    m0 <- rowAnyMissings_R(x)
-    m1 <- rowAnyMissings(x)
-    m2 <- colAnyMissings(t(x))
-    str(list("anyMissing()", m0 = m0, m1 = m1, m2 = m2))
-    stopifnot(identical(m1, m0))
-    stopifnot(identical(m2, m0))
+  
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL    
+    # Row/column all
+    for (na.rm in c(FALSE, TRUE)) {
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        m0 <- rowAnys_R(x, na.rm = na.rm, useNames = useNames)
+        m1 <- rowAnys(x, na.rm = na.rm, useNames = useNames)
+        m2 <- colAnys(t(x), na.rm = na.rm, useNames = useNames)
+        str(list("any()", m0 = m0, m1 = m1, m2 = m2))
+        stopifnot(identical(m1, m0))
+        stopifnot(identical(m2, m0))
+      }
+      m0 <- rowAnyMissings_R(x)
+      m1 <- rowAnyMissings(x)
+      m2 <- colAnyMissings(t(x))
+      str(list("anyMissing()", m0 = m0, m1 = m1, m2 = m2))
+      stopifnot(identical(m1, m0))
+      stopifnot(identical(m2, m0))
+    }
   }
 } # for (kk ...)
 
@@ -130,51 +125,47 @@ dimnames <- list(letters[1:10], LETTERS[1:5])
 
 # Row/column counts
 value <- 7L
+# Row/column all
 for (na.rm in c(FALSE, TRUE)) {
-  ## All
   # Check names attribute
-  dimnames(x) <- dimnames
-  r0 <- rowAlls_R(x, value = value, na.rm = na.rm)
-  r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = TRUE)
-  r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = TRUE)
-  stopifnot(all.equal(r1, r0))
-  stopifnot(all.equal(r2, r1))
-  dimnames(x) <- NULL  
-  
-  r0 <- rowAlls_R(x, value = value, na.rm = na.rm)
-  r1 <- rowAlls(x, value = value, na.rm = na.rm)
-  r2 <- colAlls(t(x), value = value, na.rm = na.rm)
-  stopifnot(identical(r1, r0))
-  stopifnot(identical(r2, r1))
-  
-  for (rr in seq_len(nrow(x))) {
-    c <- allValue(x[rr, ], value = value, na.rm = na.rm)
-    stopifnot(identical(c, r1[rr]))
-    c <- allValue(x[rr, ], value = value, na.rm = na.rm)
-    stopifnot(identical(c, r1[rr]))
-  }
-
-  ## Any
-  # Check names attribute
-  dimnames(x) <- dimnames
-  r0 <- rowAnys_R(x, value = value, na.rm = na.rm)
-  r1 <- rowAnys(x, value = value, na.rm = na.rm, useNames = TRUE)
-  r2 <- colAnys(t(x), value = value, na.rm = na.rm, useNames = TRUE)
-  stopifnot(all.equal(r1, r0))
-  stopifnot(all.equal(r2, r1))
-  dimnames(x) <- NULL
-  
-  r0 <- rowAnys_R(x, value = value, na.rm = na.rm)
-  r1 <- rowAnys(x, value = value, na.rm = na.rm)
-  r2 <- colAnys(t(x), value = value, na.rm = na.rm)
-  stopifnot(identical(r1, r0))
-  stopifnot(identical(r2, r1))
-
-  for (rr in seq_len(nrow(x))) {
-    c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
-    stopifnot(identical(c, r1[rr]))
-    c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
-    stopifnot(identical(c, r1[rr]))
+  for (useNames in c(NA, TRUE, FALSE)) {
+    ## All
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL 
+      r0 <- rowAlls_R(x, value = value, na.rm = na.rm, useNames = useNames)
+      r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = useNames)
+      r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = useNames)
+      stopifnot(identical(r1, r0))
+      stopifnot(identical(r2, r1))
+    }
+    
+    for (rr in seq_len(nrow(x))) {
+      c <- allValue(x[rr, ], value = value, na.rm = na.rm)
+      stopifnot(identical(c, r1[rr]))
+      c <- allValue(x[rr, ], value = value, na.rm = na.rm)
+      stopifnot(identical(c, r1[rr]))
+    }
+    
+    ## Any
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL
+      r0 <- rowAnys_R(x, value = value, na.rm = na.rm, useNames = useNames)
+      r1 <- rowAnys(x, value = value, na.rm = na.rm, useNames = useNames)
+      r2 <- colAnys(t(x), value = value, na.rm = na.rm, useNames = useNames)
+      stopifnot(identical(r1, r0))
+      stopifnot(identical(r2, r1))        
+    }
+    
+    for (rr in seq_len(nrow(x))) {
+      c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
+      stopifnot(identical(c, r1[rr]))
+      c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
+      stopifnot(identical(c, r1[rr]))
+    }
   }
 }
 
@@ -277,50 +268,45 @@ dimnames <- list(letters[1:20], LETTERS[1:5])
 # Row/column counts
 for (value in c("g", NA_character_)) {
   for (na.rm in c(FALSE, TRUE)) {
-    ## All
     # Check names attribute
-    dimnames(x) <- dimnames
-    r0 <- rowAlls_R(x, value = value, na.rm = na.rm)
-    r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = TRUE)
-    r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = TRUE)
-    stopifnot(all.equal(r1, r0))
-    stopifnot(all.equal(r2, r1))
-    dimnames(x) <- NULL  
-    
-    r0 <- rowAlls_R(x, value = value, na.rm = na.rm)
-    r1 <- rowAlls(x, value = value, na.rm = na.rm)
-    r2 <- colAlls(t(x), value = value, na.rm = na.rm)
-    stopifnot(identical(r1, r0))
-    stopifnot(identical(r2, r1))
-
-    for (rr in seq_len(nrow(x))) {
-      c0 <- all_R(x[rr, ], value, na.rm = na.rm)
-      c <- allValue(x[rr, ], value = value, na.rm = na.rm)
-      stopifnot(identical(c, r1[rr]))
-      stopifnot(identical(c, c0))
-    }
-
-    ## Any
-    # Check names attribute
-    dimnames(x) <- dimnames
-    r0 <- rowAnys_R(x, value = value, na.rm = na.rm)
-    r1 <- rowAnys(x, value = value, na.rm = na.rm, useNames = TRUE)
-    r2 <- colAnys(t(x), value = value, na.rm = na.rm, useNames = TRUE)
-    stopifnot(all.equal(r1, r0))
-    stopifnot(all.equal(r2, r1))
-    dimnames(x) <- NULL  
-    
-    r0 <- rowAnys_R(x, value = value, na.rm = na.rm)
-    r1 <- rowAnys(x, value = value, na.rm = na.rm)
-    r2 <- colAnys(t(x), value = value, na.rm = na.rm)
-    stopifnot(identical(r1, r0))
-    stopifnot(identical(r2, r1))
-
-    for (rr in seq_len(nrow(x))) {
-      c0 <- any_R(x[rr, ], value, na.rm = na.rm)
-      c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
-      stopifnot(identical(c, c0))
-      stopifnot(identical(c, r1[rr]))
+    for (useNames in c(NA, TRUE, FALSE)) {
+      ## All
+      # Test with and without dimnames on x
+      for (setDimnames in c(TRUE, FALSE)) {
+        if (setDimnames) dimnames(x) <- dimnames
+        else dimnames(x) <- NULL 
+        r0 <- rowAlls_R(x, value = value, na.rm = na.rm, useNames = useNames)
+        r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = useNames)
+        r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = useNames)
+        stopifnot(identical(r1, r0))
+        stopifnot(identical(r2, r1))
+      }
+      
+      for (rr in seq_len(nrow(x))) {
+        c0 <- all_R(x[rr, ], value, na.rm = na.rm)
+        c <- allValue(x[rr, ], value = value, na.rm = na.rm)
+        stopifnot(identical(c, r1[rr]))
+        stopifnot(identical(c, c0))
+      }
+      
+      ## Any
+      # Test with and without dimnames on x
+      for (setDimnames in c(TRUE, FALSE)) {
+        if (setDimnames) dimnames(x) <- dimnames
+        else dimnames(x) <- NULL
+        r0 <- rowAnys_R(x, value = value, na.rm = na.rm, useNames = useNames)
+        r1 <- rowAnys(x, value = value, na.rm = na.rm, useNames = useNames)
+        r2 <- colAnys(t(x), value = value, na.rm = na.rm, useNames = useNames)
+        stopifnot(identical(r1, r0))
+        stopifnot(identical(r2, r1))        
+      }
+      
+      for (rr in seq_len(nrow(x))) {
+        c0 <- any_R(x[rr, ], value, na.rm = na.rm)
+        c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
+        stopifnot(identical(c, c0))
+        stopifnot(identical(c, r1[rr]))
+      }
     }
   }
 }
@@ -333,14 +319,16 @@ x <- matrix(0, nrow = 3, ncol = 3)
 x[1, ] <- c(NA_real_, NA_real_, 0)
 x[3, ] <- c(1, 0, 1)
 
-r0 <- rowAnys_R(x, value = 0)
-r1 <- rowAnys(x, value = 0)
-stopifnot(identical(r0, r1))
+dimnames <- list(letters[1:3], LETTERS[1:3])
 
-# Check names attribute
-dimnames(x) <- list(letters[1:3], LETTERS[1:3])
-r1 <- rowAnys(x, value = 0, useNames = FALSE)
-stopifnot(identical(r0, r1))
-r0 <- rowAnys_R(x, value = 0)
-r1 <- rowAnys(x, value = 0, useNames = TRUE)
-stopifnot(identical(r0, r1))
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    r0 <- rowAnys_R(x, value = 0, useNames = useNames)
+    r1 <- rowAnys(x, value = 0, useNames = useNames)
+    stopifnot(identical(r0, r1))
+  }
+}

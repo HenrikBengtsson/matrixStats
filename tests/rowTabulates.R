@@ -33,7 +33,9 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- rowTabulates(x, useNames = FALSE)
+  y2 <- rowTabulates(x, useNames = NA)
   stopifnot(all.equal(y1, y))
+  stopifnot(all.equal(y2, y))
   y <- rowTabulates(x, useNames = TRUE)
   stopifnot(identical(rownames(y), rownames(x)))
   dimnames(x) <- NULL
@@ -51,7 +53,9 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- colTabulates(x, useNames = FALSE)
+  y2 <- colTabulates(x, useNames = NA)
   stopifnot(all.equal(y1, y))
+  stopifnot(all.equal(y2, y))
   y <- colTabulates(x, useNames = TRUE)
   stopifnot(identical(rownames(y), colnames(x)))
   dimnames(x) <- NULL
@@ -70,7 +74,9 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- rowTabulates(x, values = subset, useNames = FALSE)
+  y2 <- rowTabulates(x, values = subset, useNames = NA)
   stopifnot(all.equal(y1, y))
+  stopifnot(all.equal(y2, y))
   y <- rowTabulates(x, values = subset, useNames = TRUE)
   stopifnot(identical(rownames(y), rownames(x)))
   dimnames(x) <- NULL
@@ -81,7 +87,9 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- colTabulates(x, values = subset, useNames = FALSE)
+  y2 <- colTabulates(x, values = subset, useNames = NA)
   stopifnot(all.equal(y1, y))
+  stopifnot(all.equal(y2, y))
   y <- colTabulates(x, values = subset, useNames = TRUE)
   stopifnot(identical(rownames(y), colnames(x)))
   dimnames(x) <- NULL
@@ -89,17 +97,20 @@ for (mode in modes) {
   # Raw
   if (mode %in% c("integer", "raw")) {
     subset <- c(0:2)
-    # Check names attribute
-    dimnames(x) <- dimnames
-    y <- rowTabulates(x, values = as.raw(subset), useNames = TRUE)
-    y1 <- rowTabulates(x, values = as.raw(subset), useNames = FALSE)
-    stopifnot(identical(rownames(y), rownames(x)))
-    stopifnot(is.null(rownames(y1)))
-    dimnames(x) <- NULL
+
     
     y <- rowTabulates(x, values = as.raw(subset))
     print(y)
     stopifnot(identical(dim(y), c(nrow, length(subset))))
+    # Check names attribute
+    dimnames(x) <- dimnames
+    y1 <- rowTabulates(x, values = as.raw(subset), useNames = FALSE)
+    y2 <- rowTabulates(x, values = as.raw(subset), useNames = NA)
+    stopifnot(all.equal(y1, y))
+    stopifnot(all.equal(y2, y))
+    y3 <- rowTabulates(x, values = as.raw(subset), useNames = TRUE)
+    stopifnot(identical(rownames(y3), rownames(x)))
+    dimnames(x) <- NULL
     
     y2 <- colTabulates(t(x), values = as.raw(subset))
     print(y2)
@@ -110,7 +121,9 @@ for (mode in modes) {
     # Check names attribute
     dimnames(x) <- dimnames
     y1 <- colTabulates(t(x), values = as.raw(subset), useNames = FALSE)
+    y2 <- colTabulates(t(x), values = as.raw(subset), useNames = NA)
     stopifnot(all.equal(y1, y))
+    stopifnot(all.equal(y2, y))
     y <- colTabulates(t(x), values = as.raw(subset), useNames = TRUE)
     stopifnot(identical(rownames(y), colnames(t(x))))
     dimnames(x) <- NULL

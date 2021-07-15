@@ -10,35 +10,26 @@ storage.mode(x) <- "integer"
 # To check names attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-for (rows in index_cases) {
-  for (cols in index_cases) {
-    for (useNames in c(TRUE, FALSE)){
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowTabulates, fsure = rowTabulates, useNames = useNames)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowTabulates, fsure = rowTabulates,
-                                values = 1:3, useNames = useNames)
-  
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = colTabulates, fsure = colTabulates, useNames = useNames)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = colTabulates, fsure = colTabulates,
-                                values = 1:3, useNames = useNames)
-      
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (rows in index_cases) {
+    for (cols in index_cases) {
       # Check names attribute
-      dimnames(x) <- dimnames
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowTabulates, fsure = rowTabulates, useNames = useNames)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowTabulates, fsure = rowTabulates,
-                                values = 1:3, useNames = useNames)
-      
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = colTabulates, fsure = colTabulates, useNames = useNames)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = colTabulates, fsure = colTabulates,
-                                values = 1:3, useNames = useNames)
-      dimnames(x) <- NULL
+      for (useNames in c(NA, TRUE, FALSE)) {
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowTabulates, fsure = rowTabulates, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowTabulates, fsure = rowTabulates,
+                                  values = 1:3, useNames = useNames)
+    
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = colTabulates, fsure = colTabulates, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = colTabulates, fsure = colTabulates,
+                                  values = 1:3, useNames = useNames)
+      }
     }
   }
 }

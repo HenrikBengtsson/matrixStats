@@ -5,10 +5,10 @@ rowCumprods_R <- function(x, ..., useNames = TRUE) {
     y <- t(apply(x, MARGIN = 1L, FUN = cumprod))
   })
 
-  # Preserve dimnames attribute
+  # Preserve dimnames attribute?
   dim(y) <- dim(x)
   dimnames <- dimnames(x)
-  if (useNames && !is.null(dimnames)) dimnames(y) <- dimnames  
+  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
   
   y
 }
@@ -24,25 +24,21 @@ storage.mode(x) <- "integer"
 # To check dimnames attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-for (rows in index_cases) {
-  for (cols in index_cases) {
-    for (useNames in c(TRUE, FALSE)){
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowCumprods, fsure = rowCumprods_R, useNames = useNames)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = function(x, rows, cols, ..., useNames = useNames) {
-        t(colCumprods(t(x), rows = cols, cols = rows, useNames = useNames))
-      }, fsure = rowCumprods_R, useNames = useNames)
-      
-      # Check dimnames attribute
-      dimnames(x) <- dimnames
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowCumprods, fsure = rowCumprods_R, useNames = useNames)
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = function(x, rows, cols, ..., useNames = useNames) {
-        t(colCumprods(t(x), rows = cols, cols = rows, useNames = useNames))
-                                }, fsure = rowCumprods_R, useNames = useNames)
-      dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (rows in index_cases) {
+    for (cols in index_cases) {
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowCumprods, fsure = rowCumprods_R, useNames = useNames)
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = function(x, rows, cols, ..., useNames) {
+          t(colCumprods(t(x), rows = cols, cols = rows, useNames = useNames))
+        }, fsure = rowCumprods_R, useNames = useNames)
+      }
     }
   }
 }

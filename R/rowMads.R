@@ -44,7 +44,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     x <- x - center
     if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
-    x <- rowMedians(x, na.rm = na.rm, ...)
+    x <- rowMedians(x, na.rm = na.rm, ..., useNames = useNames)
     x <- constant * x
   }
   
@@ -116,7 +116,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     ## FAST:
     x <- t_tx_OP_y(x, center, OP = "-", na.rm = FALSE)
     x <- abs(x)
-    x <- colMedians(x, na.rm = na.rm, ...)
+    x <- colMedians(x, na.rm = na.rm, ..., useNames = useNames)
     x <- constant * x
   }
   

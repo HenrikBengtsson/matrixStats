@@ -30,22 +30,20 @@ for (fcn in names(fcns)) {
       # To check names attribute
       dimnames <- list(letters[1:20], LETTERS[1:5])
 
-      # Row/column ranges
-      for (na.rm in c(FALSE, TRUE)) {
-        cat("na.rm = ", na.rm, "\n", sep = "")
-        r1 <- row_fcn(x, na.rm = na.rm)
-        r2 <- col_fcn(t(x), na.rm = na.rm)
-        stopifnot(all.equal(r1, r2))
-        # Check names attribute
-        dimnames(x) <- dimnames
-        r1b <- row_fcn(x, na.rm = na.rm, useNames = FALSE)
-        r2b <- col_fcn(t(x), na.rm = na.rm, useNames = FALSE)
-        stopifnot(all.equal(r1, r1b))
-        stopifnot(all.equal(r2, r2b))
-        r1 <- row_fcn(x, na.rm = na.rm, useNames = TRUE)
-        r2 <- col_fcn(t(x), na.rm = na.rm, useNames = TRUE)
-        stopifnot(all.equal(r1, r2))
-        dimnames(x) <- NULL
+      # Test with and without dimnames on x
+      for (setDimnames in c(TRUE, FALSE)) {
+        if (setDimnames) dimnames(x) <- dimnames
+        else dimnames(x) <- NULL
+        # Row/column ranges
+        for (na.rm in c(FALSE, TRUE)) {
+          # Check names attribute
+          for (useNames in c(NA, TRUE, FALSE)) {
+            cat("na.rm = ", na.rm, "\n", sep = "")
+            r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
+            r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
+            stopifnot(all.equal(r1, r2))
+          }
+        }
       }
     } # for (add_na ...)
   }
@@ -60,21 +58,20 @@ for (fcn in names(fcns)) {
     storage.mode(x) <- mode
     str(x)
 
-    for (na.rm in c(FALSE, TRUE)) {
-      cat("na.rm = ", na.rm, "\n", sep = "")
-      r1 <- row_fcn(x, na.rm = na.rm)
-      r2 <- col_fcn(t(x), na.rm = na.rm)
-      stopifnot(all.equal(r1, r2))
-      # Check names attribute
-      dimnames(x) <- dimnames
-      r1b <- row_fcn(x, na.rm = na.rm, useNames = FALSE)
-      r2b <- col_fcn(t(x), na.rm = na.rm, useNames = FALSE)
-      stopifnot(all.equal(r1, r1b))
-      stopifnot(all.equal(r2, r2b))
-      r1 <- row_fcn(x, na.rm = na.rm, useNames = TRUE)
-      r2 <- col_fcn(t(x), na.rm = na.rm, useNames = TRUE)
-      stopifnot(all.equal(r1, r2))
-      dimnames(x) <- NULL
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL
+      # Row/column ranges
+      for (na.rm in c(FALSE, TRUE)) {
+        # Check names attribute
+        for (useNames in c(NA, TRUE, FALSE)) {
+          cat("na.rm = ", na.rm, "\n", sep = "")
+          r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
+          r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
+          stopifnot(all.equal(r1, r2))
+        }
+      }
     }
   }
 
@@ -83,21 +80,21 @@ for (fcn in names(fcns)) {
   # A 1x1 matrix
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   x <- matrix(0, nrow = 1, ncol = 1)
-  for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm = ", na.rm, "\n", sep = "")
-    r1 <- row_fcn(x, na.rm = na.rm)
-    r2 <- col_fcn(t(x), na.rm = na.rm)
-    stopifnot(all.equal(r1, r2))
-    # Check names attribute
-    dimnames(x) <- list("a", "A")
-    r1b <- row_fcn(x, na.rm = na.rm, useNames = FALSE)
-    r2b <- col_fcn(t(x), na.rm = na.rm, useNames = FALSE)
-    stopifnot(all.equal(r1, r1b))
-    stopifnot(all.equal(r2, r2b))
-    r1 <- row_fcn(x, na.rm = na.rm, useNames = TRUE)
-    r2 <- col_fcn(t(x), na.rm = na.rm, useNames = TRUE)
-    stopifnot(all.equal(r1, r2))
-    dimnames(x) <- NULL
+  dimnames <- list("a", "A")
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL
+    # Row/column ranges
+    for (na.rm in c(FALSE, TRUE)) {
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        cat("na.rm = ", na.rm, "\n", sep = "")
+        r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
+        r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
+        stopifnot(all.equal(r1, r2))
+      }
+    }
   }
 
   cat(sprintf("%s()...DONE\n", fcn))

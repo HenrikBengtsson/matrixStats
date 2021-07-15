@@ -13,7 +13,7 @@ rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   # Preserve names attribute
   dim(q) <- c(2L, nrow(x))
   names <- rownames(x)
-  if (useNames && !is.null(names)) colnames(q) <- names
+  if (isTRUE(useNames) && !is.null(names)) colnames(q) <- names
   
   q[2L, , drop = TRUE] - q[1L, , drop = TRUE]
 }
@@ -38,26 +38,21 @@ x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
 # To check names attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-for (rows in index_cases) {
-  for (cols in index_cases) {
-    for (na.rm in c(TRUE, FALSE)) {
-      for (useNames in c(TRUE, FALSE)){
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowIQRs, fsure = rowIQRs_R,
-                                  na.rm = na.rm, useNames = useNames)
-        validateIndicesTestMatrix(x, rows, cols,
-                                  fcoltest = colIQRs, fsure = rowIQRs_R,
-                                  na.rm = na.rm, useNames = useNames)
-        
-        # Check names attribute
-        dimnames(x) <- dimnames
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowIQRs, fsure = rowIQRs_R,
-                                  na.rm = na.rm, useNames = useNames)
-        validateIndicesTestMatrix(x, rows, cols,
-                                  fcoltest = colIQRs, fsure = rowIQRs_R,
-                                  na.rm = na.rm, useNames = useNames)
-        dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (rows in index_cases) {
+    for (cols in index_cases) {
+      for (na.rm in c(TRUE, FALSE)) {
+        for (useNames in c(NA, TRUE, FALSE)) {
+          validateIndicesTestMatrix(x, rows, cols,
+                                    ftest = rowIQRs, fsure = rowIQRs_R,
+                                    na.rm = na.rm, useNames = useNames)
+          validateIndicesTestMatrix(x, rows, cols,
+                                    fcoltest = colIQRs, fsure = rowIQRs_R,
+                                    na.rm = na.rm, useNames = useNames)
+        }
       }
     }
   }

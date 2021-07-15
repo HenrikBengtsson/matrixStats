@@ -1,5 +1,29 @@
 library("matrixStats")
 
+rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+  res <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
+  
+  # Keep naming support consistency same as rowWeightedMedians()
+  if (!is.null(w)) {
+    if (isFALSE(useNames)) names(res) <- NULL
+  }
+  else if (is.na(useNames) || !useNames) names(res) <- NULL
+  
+  res
+}
+
+colWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
+  res <- apply(x, MARGIN = 2L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
+  
+  # Keep naming support consistency same as colWeightedMedians()
+  if (!is.null(w)) {
+    if (isFALSE(useNames)) names(res) <- NULL
+  }
+  else if (is.na(useNames) || !useNames) names(res) <- NULL
+  
+  res
+}
+
 set.seed(1)
 
 x <- matrix(rnorm(20), nrow = 5, ncol = 4)
@@ -34,18 +58,21 @@ x_est1 <- rowWeightedMedians(x, w = w)
 stopifnot(all.equal(x_est1, x_est0))
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(x_est2, x_est0))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, useNames = FALSE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = FALSE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-x_est0 <- rowMedians(x, w = w)
-x_est1 <- rowWeightedMedians(x, w = w, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
+
 
 # Weighted row medians (excluding some columns)
 w <- c(1, 1, 0, 1)
@@ -54,18 +81,20 @@ x_est1 <- rowWeightedMedians(x, w = w)
 stopifnot(all.equal(x_est1, x_est0))
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(x_est2, x_est0))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, useNames = FALSE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = FALSE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-x_est0 <- rowMedians(x[, (w == 1), drop = FALSE])
-x_est1 <- rowWeightedMedians(x, w = w, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
 
 # Weighted row medians (excluding some columns)
 w <- c(0, 1, 0, 0)
@@ -74,18 +103,20 @@ x_est1 <- rowWeightedMedians(x, w = w)
 stopifnot(all.equal(x_est1, x_est0))
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(x_est2, x_est0))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, useNames = FALSE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = FALSE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-x_est0 <- rowMedians(x[, (w == 1), drop = FALSE])
-x_est1 <- rowWeightedMedians(x, w = w, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
 
 # Weighted row medians (all zero weights)
 w <- c(0, 0, 0, 0)
@@ -94,30 +125,40 @@ x_est1 <- rowWeightedMedians(x, w = w)
 stopifnot(all.equal(x_est1, x_est0))
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(x_est2, x_est0))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, useNames = FALSE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = FALSE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-x_est0 <- rowMedians(x[, (w == 1), drop = FALSE])
-x_est1 <- rowWeightedMedians(x, w = w, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
 
 # Weighted medians by rows and columns
 w <- 1:4
 x_est1 <- rowWeightedMedians(x, w = w)
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(x_est2, x_est1))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est2))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
 
 
 # Weighted row medians with missing values
@@ -128,30 +169,40 @@ print(x_est1)
 stopifnot(all.equal(x_est1, x_est0))
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(all.equal(x_est2, x_est0))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = FALSE)
-x_est2 <- colWeightedMedians(t(x), w = w, na.rm = TRUE, useNames = FALSE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-x_est0 <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = TRUE)
-x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, na.rm = TRUE, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, na.rm = TRUE, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, na.rm = TRUE, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, na.rm = TRUE, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
 
 # Weighted medians by rows and columns
 w <- 1:4
 x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE)
 x_est2 <- colWeightedMedians(t(x), w = w, na.rm = TRUE)
 stopifnot(all.equal(x_est2, x_est1))
-# Check names attribute
-dimnames(x) <- dimnames
-x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, na.rm = TRUE, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est2))
-dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, na.rm = TRUE, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, na.rm = TRUE, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, na.rm = TRUE, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}
 
 
 # Inf weight
@@ -161,8 +212,18 @@ x_est1 <- rowWeightedMedians(x, w = w)
 x_est2 <- colWeightedMedians(t(x), w = w)
 stopifnot(identical(2, x_est1))
 stopifnot(identical(2, x_est2))
-# Check names attribute
-dimnames(x) <- list("a", LETTERS[1:2])
-x_est1 <- rowWeightedMedians(x, w = w, useNames = TRUE)
-x_est2 <- colWeightedMedians(t(x), w = w, useNames = TRUE)
-stopifnot(all.equal(x_est1, x_est2))
+# Test with and without dimnames on x
+dimnames <- list("a", LETTERS[1:2])
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL    
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
+    x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+    x_est0 <- colWeightedMedians_R(t(x), w = w, useNames = useNames)
+    x_est1 <- colWeightedMedians(t(x), w = w, useNames = useNames)
+    stopifnot(all.equal(x_est1, x_est0))
+  }
+}

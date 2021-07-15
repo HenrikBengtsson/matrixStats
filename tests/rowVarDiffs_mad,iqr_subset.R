@@ -23,27 +23,23 @@ for (fcn in names(fcns)) {
     storage.mode(x) <- mode
     if (mode == "numeric") x[1:2, 3:4] <- Inf
 
-    for (diff in 1:2) {
-      for (rows in index_cases) {
-        for (cols in index_cases) {
-          for (na.rm in c(TRUE, FALSE)) {
-            for (useNames in c(TRUE, FALSE)){
-              validateIndicesTestMatrix(x, rows, cols,
-                                        ftest = row_fcn, fsure = row_fcn,
-                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
-              validateIndicesTestMatrix(x, rows, cols,
-                                        fcoltest = col_fcn, fsure = row_fcn,
-                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
-              
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL
+      for (diff in 1:2) {
+        for (rows in index_cases) {
+          for (cols in index_cases) {
+            for (na.rm in c(TRUE, FALSE)) {
               # Check names attribute
-              dimnames(x) <- dimnames
-              validateIndicesTestMatrix(x, rows, cols,
-                                        ftest = row_fcn, fsure = row_fcn,
-                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
-              validateIndicesTestMatrix(x, rows, cols,
-                                        fcoltest = col_fcn, fsure = row_fcn,
-                                        na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
-              dimnames(x) <- NULL
+              for (useNames in c(NA, TRUE, FALSE)) {
+                validateIndicesTestMatrix(x, rows, cols,
+                                          ftest = row_fcn, fsure = row_fcn,
+                                          na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+                validateIndicesTestMatrix(x, rows, cols,
+                                          fcoltest = col_fcn, fsure = row_fcn,
+                                          na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+              }
             }
           }
         }

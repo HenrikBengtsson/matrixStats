@@ -1,8 +1,9 @@
 library("matrixStats")
 
-rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ...) {
-  y <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
-  y
+rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
+  res <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
 }
 
 all.equal.na <- function(target, current, ...) {
@@ -21,80 +22,51 @@ for (mode in c("integer", "double")) {
   
   # To check names attribute
   dimnames <- list(letters[1:4], LETTERS[1:2])
-
-  y0 <- rowProds_R(x, na.rm = TRUE)
-  print(y0)
-  y1 <- rowProds(x, na.rm = TRUE)
-  print(y1)
-  y2 <- colProds(t(x), na.rm = TRUE)
-  print(y2)
-  stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(y1, x[, 2]))
-  stopifnot(all.equal(y2, y1))
-  # Check names attribute
-  dimnames(x) <- dimnames
-  y1 <- rowProds(x, na.rm = TRUE, useNames = FALSE)
-  y2 <- colProds(t(x), na.rm = TRUE, useNames = FALSE)
-  stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(y2, y0))
-  y0 <- rowProds_R(x, na.rm = TRUE)
-  y1 <- rowProds(x, na.rm = TRUE, useNames = TRUE)
-  y2 <- colProds(t(x), na.rm = TRUE, useNames = TRUE)
-  stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(y1, x[, 2]))
-  stopifnot(all.equal(y2, y1))
-  dimnames(x) <- NULL
-
-  # Missing values
-  y0 <- rowProds_R(x, na.rm = FALSE)
-  print(y0)
-  y1 <- rowProds(x, na.rm = FALSE)
-  print(y1)
-  y2 <- colProds(t(x), na.rm = FALSE)
-  print(y2)
-  stopifnot(all.equal.na(y1, y0))
-  stopifnot(all.equal(y2, y1))
-  y3 <- x[, 1] * x[, 2]
-  print(y3)
-  stopifnot(all.equal.na(y1, y3))
-  # Check names attribute
-  dimnames(x) <- dimnames
-  y1 <- rowProds(x, na.rm = FALSE, useNames = FALSE)
-  y2 <- colProds(t(x), na.rm = FALSE, useNames = FALSE)
-  stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(y2, y0))
-  y0 <- rowProds_R(x, na.rm = FALSE)
-  y1 <- rowProds(x, na.rm = FALSE, useNames = TRUE)
-  y2 <- colProds(t(x), na.rm = FALSE, useNames = TRUE)
-  stopifnot(all.equal.na(y1, y0))
-  stopifnot(all.equal(y2, y1))
-  y3 <- x[, 1] * x[, 2]
-  stopifnot(all.equal.na(y1, y3))
-  dimnames(x) <- NULL
-
-  # "Empty" rows
-  y0 <- rowProds_R(x[integer(0), , drop = FALSE], na.rm = FALSE)
-  print(y0)
-  y1 <- rowProds(x[integer(0), , drop = FALSE], na.rm = FALSE)
-  print(y1)
-  y2 <- colProds(t(x[integer(0), , drop = FALSE]), na.rm = FALSE)
-  print(y2)
-  stopifnot(all.equal.na(y1, y0))
-  stopifnot(all.equal(y2, y1))
-  stopifnot(length(y1) == 0L)
-
-  # Using product()
-  y1 <- rowProds(x, method = "expSumLog", na.rm = FALSE)
-  print(y1)
-  y2 <- colProds(t(x), method = "expSumLog", na.rm = FALSE)
-  print(y2)
-  stopifnot(all.equal(y2, y1))
-  # Check names attribute
-  dimnames(x) <- dimnames
-  y1 <- rowProds(x, method = "expSumLog", na.rm = FALSE)
-  y2 <- colProds(t(x), method = "expSumLog", na.rm = FALSE, useNames = TRUE)
-  stopifnot(all.equal(y2, y1))
-  dimnames(x) <- NULL
+  
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL
+    # Check names attribute
+    for (useNames in c(NA, TRUE, FALSE)) {
+      y0 <- rowProds_R(x, na.rm = TRUE, useNames = useNames)
+      print(y0)
+      y1 <- rowProds(x, na.rm = TRUE, useNames = useNames)
+      print(y1)
+      y2 <- colProds(t(x), na.rm = TRUE, useNames = useNames)
+      print(y2)
+      stopifnot(all.equal(y1, y0))
+      stopifnot(all.equal(y2, y1))
+      
+      # Missing values
+      y0 <- rowProds_R(x, na.rm = FALSE, useNames = useNames)
+      print(y0)
+      y1 <- rowProds(x, na.rm = FALSE, useNames = useNames)
+      print(y1)
+      y2 <- colProds(t(x), na.rm = FALSE, useNames = useNames)
+      print(y2)
+      stopifnot(all.equal(y1, y0))
+      stopifnot(all.equal(y2, y1))
+      
+      # "Empty" rows
+      y0 <- rowProds_R(x[integer(0), , drop = FALSE], na.rm = FALSE, useNames = useNames)
+      print(y0)
+      y1 <- rowProds(x[integer(0), , drop = FALSE], na.rm = FALSE, useNames = useNames)
+      print(y1)
+      y2 <- colProds(t(x[integer(0), , drop = FALSE]), na.rm = FALSE, useNames = useNames)
+      print(y2)
+      stopifnot(all.equal.na(y1, y0))
+      stopifnot(all.equal(y2, y1))
+      stopifnot(length(y1) == 0L)
+      
+      # Using product()
+      y1 <- rowProds(x, method = "expSumLog", na.rm = FALSE, useNames = useNames)
+      print(y1)
+      y2 <- colProds(t(x), method = "expSumLog", na.rm = FALSE, useNames = useNames)
+      print(y2)
+      stopifnot(all.equal(y2, y1))
+    }
+  }
 } # for (mode ...)
 
 

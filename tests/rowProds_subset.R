@@ -2,7 +2,7 @@ library("matrixStats")
 
 rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
-  if (!useNames) names(res) <- NULL
+  if (is.na(useNames) || !useNames) names(res) <- NULL
   res
 }
 
@@ -17,30 +17,23 @@ storage.mode(x) <- "integer"
 # To check names attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-for (rows in index_cases) {
-  for (cols in index_cases) {
-    for (na.rm in c(TRUE, FALSE)) {
-      for (useNames in c(TRUE, FALSE)){
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowProds, fsure = rowProds_R,
-                                  method = "expSumLog",
-                                  FUN = product, na.rm = na.rm, useNames = useNames)
-        validateIndicesTestMatrix(x, rows, cols,
-                                  fcoltest = colProds, fsure = rowProds_R,
-                                  method = "expSumLog",
-                                  FUN = product, na.rm = na.rm, useNames = useNames)
-        
-        # Check names attribute
-        dimnames(x) <- dimnames
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowProds, fsure = rowProds_R,
-                                  method = "expSumLog",
-                                  FUN = product, na.rm = na.rm, useNames = useNames)
-        validateIndicesTestMatrix(x, rows, cols,
-                                  fcoltest = colProds, fsure = rowProds_R,
-                                  method = "expSumLog",
-                                  FUN = product, na.rm = na.rm, useNames = useNames)
-        dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (rows in index_cases) {
+    for (cols in index_cases) {
+      for (na.rm in c(TRUE, FALSE)) {
+        for (useNames in c(NA, TRUE, FALSE)) {
+          validateIndicesTestMatrix(x, rows, cols,
+                                    ftest = rowProds, fsure = rowProds_R,
+                                    method = "expSumLog",
+                                    FUN = product, na.rm = na.rm, useNames = useNames)
+          validateIndicesTestMatrix(x, rows, cols,
+                                    fcoltest = colProds, fsure = rowProds_R,
+                                    method = "expSumLog",
+                                    FUN = product, na.rm = na.rm, useNames = useNames)
+        }
       }
     }
   }

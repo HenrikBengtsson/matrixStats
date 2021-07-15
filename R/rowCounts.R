@@ -148,9 +148,9 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
         sum(is.na(x))
       )
     } else {
-      counts <- apply(x, MARGIN = 2L, FUN = function(x)
+      counts <- apply(x, MARGIN = 2L, FUN = function(x) {
         sum(x == value, na.rm = na.rm)
-      )
+      })
     }
   }
   counts <- as.integer(counts)

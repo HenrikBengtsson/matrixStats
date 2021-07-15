@@ -5,7 +5,7 @@ rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = TRUE) {
   if (ncol2 <= 0) {
     y <- matrix(x[integer(0L)], nrow = nrow(x), ncol = 0L)
     # Preserve names attribute
-    if (useNames && !is.null(rownames(x))) rownames(y) <- rownames(x)
+    if (isTRUE(useNames) && !is.null(rownames(x))) rownames(y) <- rownames(x)
     return(y)
   }
   suppressWarnings({
@@ -15,7 +15,7 @@ rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = TRUE) {
   
   # Preserve dimnames attribute
   dim(y) <- c(nrow(x), ncol2)
-  if (useNames && !is.null(dimnames(x))) {
+  if (isTRUE(useNames) && !is.null(dimnames(x))) {
     colnames <- colnames(x)
     if (!is.null(colnames)) {
       len <- length(colnames)
@@ -39,31 +39,25 @@ storage.mode(x) <- "integer"
 # To check dimnames attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-for (rows in index_cases) {
-  for (cols in index_cases) {
-    for (lag in 1:2) {
-      for (differences in 1:3) {
-        for (useNames in c(TRUE, FALSE)){
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = rowDiffs, fsure = rowDiffs_R,
-                                    lag = lag, differences = differences, useNames = useNames)
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = function(x, rows, cols, ..., useNames) {
-            t(colDiffs(t(x), rows = cols, cols = rows, ..., useNames = useNames))
-                                    }, fsure = rowDiffs_R,
-            lag = lag, differences = differences, useNames = useNames)
-          
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (rows in index_cases) {
+    for (cols in index_cases) {
+      for (lag in 1:2) {
+        for (differences in 1:3) {
           # Check dimnames attribute
-          dimnames(x) <- dimnames
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = rowDiffs, fsure = rowDiffs_R,
-                                    lag = lag, differences = differences, useNames = useNames)
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = function(x, rows, cols, ..., useNames) {
-            t(colDiffs(t(x), rows = cols, cols = rows, ..., useNames = useNames))
-                                    }, fsure = rowDiffs_R,
-                                    lag = lag, differences = differences, useNames = useNames)
-          dimnames(x) <- NULL
+          for (useNames in c(NA, TRUE, FALSE)) {
+            validateIndicesTestMatrix(x, rows, cols,
+                                      ftest = rowDiffs, fsure = rowDiffs_R,
+                                      lag = lag, differences = differences, useNames = useNames)
+            validateIndicesTestMatrix(x, rows, cols,
+                                      ftest = function(x, rows, cols, ..., useNames) {
+              t(colDiffs(t(x), rows = cols, cols = rows, ..., useNames = useNames))
+                                      }, fsure = rowDiffs_R,
+                                      lag = lag, differences = differences, useNames = useNames)
+          }
         }
       }
     }

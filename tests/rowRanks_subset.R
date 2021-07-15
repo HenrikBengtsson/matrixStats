@@ -4,11 +4,24 @@ rowRanks_R <- function(x, ties.method = "average", ..., useNames = TRUE) {
   ans <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep",
                  ties.method = ties.method))
   
-  # Preserve dimnames attribute
+  # Preserve dimnames attribute?
   dim(ans) <- dim(x)
   dimnames <- dimnames(x)
-  if (useNames && !is.null(dimnames)) dimnames(ans) <- dimnames
+  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(ans) <- dimnames
 
+  ans
+}
+
+colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = TRUE) {
+  ans <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties.method))
+  
+  # Preserve dimnames attribute?
+  tx <- t(x)
+  dim(ans) <- dim(tx)
+  dimnames <- dimnames(tx)
+  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(ans) <- dimnames
+  
+  if (preserveShape) ans <- t(ans)
   ans
 }
 
@@ -26,31 +39,29 @@ colRanks_R_t <- function(x, rows, cols, ..., useNames = TRUE) {
   t(colRanks(t(x), rows = cols, cols = rows, preserveShape = TRUE, ..., useNames = useNames))
 }
 
-colRanks_R <- function(x, rows, cols, ..., useNames = TRUE) {
-  colRanks(t(x), rows = cols, cols = rows, preserveShape = FALSE, ..., useNames = useNames)
-}
-
-for (rows in index_cases) {
-  for (cols in index_cases) {
-    for (useNames in c(TRUE, FALSE)){
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowRanks, fsure = rowRanks_R,
-                                ties.method = "average", useNames = useNames)
-  
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = colRanks_R_t, fsure = rowRanks_R,
-                                ties.method = "average", useNames = useNames)
-      
-      # Check dimnames attribute
-      dimnames(x) <- dimnames
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = rowRanks, fsure = rowRanks_R,
-                                ties.method = "average", useNames = useNames)
-      
-      validateIndicesTestMatrix(x, rows, cols,
-                                ftest = colRanks_R, fsure = rowRanks_R,
-                                ties.method = "average", useNames = useNames)
-      dimnames(x) <- NULL
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (rows in index_cases) {
+    for (cols in index_cases) {
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = rowRanks, fsure = rowRanks_R,
+                                  ties.method = "average", useNames = useNames)
+        
+        validateIndicesTestMatrix(x, rows, cols,
+                                  ftest = colRanks_R_t, fsure = rowRanks_R,
+                                  ties.method = "average", useNames = useNames)
+        
+        for (perserveShape in c(TRUE, FALSE)) {
+          validateIndicesTestMatrix(x, rows, cols,
+                                    ftest = colRanks, fsure = colRanks_R,
+                                    ties.method = "average", perserveShape = perserveShape,
+                                    useNames = useNames)          
+        }
+      }
     }
   }
 }
