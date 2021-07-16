@@ -10,7 +10,7 @@ rowWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   if ((!is.null(w) && nw == 0L) || isFALSE(na.rm)) {
     if (is.na(useNames) || !useNames) names(res) <- NULL
   }
-  else if (isFALSE(useNames)) names(res) <- NULL
+  else if (!is.na(useNames) && !useNames) names(res) <- NULL
   
   res
 }
@@ -24,7 +24,7 @@ colWeightedMeans_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   if (!is.null(w) && nw == 0L) {
     if (is.na(useNames) || !useNames) names(res) <- NULL
   }
-  else if (isFALSE(useNames)) names(res) <- NULL
+  else if (!is.na(useNames) && !useNames) names(res) <- NULL
   
   res
 }

@@ -14,7 +14,7 @@ rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   if (is.null(center) || ncol(x) <= 1L) {
     if (is.na(useNames) || isFALSE(useNames)) names(res) <- NULL
   }
-  else if (isFALSE(useNames)) names(res) <- NULL
+  else if (!is.na(useNames) && !useNames) names(res) <- NULL
   res
 }
 
@@ -28,7 +28,7 @@ colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   if (is.null(center) || ncol(x) <= 1L) {
     if (is.na(useNames) || isFALSE(useNames)) names(res) <- NULL
   }
-  else if (isFALSE(useNames)) names(res) <- NULL
+  else if (!is.na(useNames) && !useNames) names(res) <- NULL
   res
 }
 
