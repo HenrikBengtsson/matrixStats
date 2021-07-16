@@ -22,31 +22,6 @@ Run `revdep_details(, "abcrf")` for more info
         libs   4.4Mb
     ```
 
-# airpart
-
-<details>
-
-* Version: 1.0.0
-* GitHub: NA
-* Source code: https://github.com/cran/airpart
-* Date/Publication: 2021-05-19
-* Number of recursive dependencies: 148
-
-Run `revdep_details(, "airpart")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Packages required but not available:
-      'scater', 'smurf', 'apeglm', 'emdbook', 'ComplexHeatmap'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
 # AlpsNMR
 
 <details>
@@ -63,14 +38,66 @@ Run `revdep_details(, "AlpsNMR")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking examples ... ERROR
     ```
-    Packages required but not available: 'mixOmics', 'speaq', 'baseline'
+    Running examples in ‘AlpsNMR-Ex.R’ failed
+    The error most likely occurred in:
     
-    Package suggested but not available for checking: ‘ChemoSpec’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    > ### Name: nmr_pca_plots
+    > ### Title: Plotting functions for PCA
+    > ### Aliases: nmr_pca_plots nmr_pca_plot_variance nmr_pca_scoreplot
+    > ###   nmr_pca_loadingplot
+    > 
+    > ### ** Examples
+    > 
+    ...
+        █
+     1. ├─AlpsNMR::nmr_pca_scoreplot(dataset_1D, model)
+     2. │ └─`%>%`(...)
+     3. ├─dplyr::left_join(., nmr_metadata, by = "NMRExperiment")
+     4. └─dplyr:::left_join.data.frame(., nmr_metadata, by = "NMRExperiment")
+     5.   └─dplyr:::join_mutate(...)
+     6.     └─dplyr:::join_cols(...)
+     7.       └─dplyr:::standardise_join_by(by, x_names = x_names, y_names = y_names)
+     8.         └─dplyr:::check_join_vars(by$x, x_names)
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(AlpsNMR)
+      Loading required package: dplyr
+      
+      Attaching package: 'dplyr'
+      
+      The following object is masked from 'package:testthat':
+    ...
+       3. ├─dplyr::left_join(., nmr_metadata, by = "NMRExperiment")
+       4. └─dplyr:::left_join.data.frame(., nmr_metadata, by = "NMRExperiment")
+       5.   └─dplyr:::join_mutate(...)
+       6.     └─dplyr:::join_cols(...)
+       7.       └─dplyr:::standardise_join_by(by, x_names = x_names, y_names = y_names)
+       8.         └─dplyr:::check_join_vars(by$x, x_names)
+      
+      [ FAIL 1 | WARN 1 | SKIP 1 | PASS 73 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking Rd contents ... WARNING
+    ```
+    Argument items with no description in Rd object 'MUVR_model_plot':
+      ‘ylim’
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘zip’
+      All declared Imports should be used.
     ```
 
 # AMARETTO
@@ -89,13 +116,52 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Packages required but not available:
-      'ComplexHeatmap', 'circlize', 'curatedTCGAData'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        data   1.5Mb
+        doc    2.3Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    License components with restrictions not permitted:
+      Apache License (== 2.0) + file LICENSE
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘knitr’
+    A package should be listed in only one of these fields.
+    'LinkingTo' field is unused: package has no 'src' directory
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    AMARETTO_HTMLreport: no visible binding for global variable ‘ModuleNr’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Weights’
+    AMARETTO_HTMLreport: no visible binding for global variable
+      ‘RegulatorIDs’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘TargetIDs’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘moduleNr’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘Testset’
+    AMARETTO_HTMLreport: no visible binding for global variable ‘padj’
+    AMARETTO_HTMLreport: no visible binding for global variable
+      ‘n_Overlapping’
+    ...
+    GmtFromModules: no visible binding for global variable ‘GeneNames’
+    HyperGTestGeneEnrichment: no visible binding for global variable ‘i’
+    HyperGTestGeneEnrichment: no visible binding for global variable ‘j’
+    read_gct: no visible binding for global variable ‘Description’
+    Undefined global functions or variables:
+      Color Description GeneNames Genes Geneset Geneset_length ModuleNr
+      Modules MsigdbMapping NumberGenes Overlapping_genes RegulatorIDs
+      TargetIDs Testset Type Weights dt_gensesetsall i j moduleNr
+      n_Overlapping overlap_perc p.value p_value padj q.value value
+      variable
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 152 marked UTF-8 strings
     ```
 
 # amplican
@@ -114,84 +180,17 @@ Run `revdep_details(, "amplican")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Packages required but not available: 'ShortRead', 'waffle'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-# apollo
-
-<details>
-
-* Version: 0.2.4
-* GitHub: NA
-* Source code: https://github.com/cran/apollo
-* Date/Publication: 2021-02-25 15:30:05 UTC
-* Number of recursive dependencies: 69
-
-Run `revdep_details(, "apollo")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Packages required but not available: 'maxLik', 'randtoolbox'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
-# aroma.affymetrix
-
-<details>
-
-* Version: 3.2.0
-* GitHub: https://github.com/HenrikBengtsson/aroma.affymetrix
-* Source code: https://github.com/cran/aroma.affymetrix
-* Date/Publication: 2019-06-23 06:00:14 UTC
-* Number of recursive dependencies: 73
-
-Run `revdep_details(, "aroma.affymetrix")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'affy', 'affyPLM', 'gcrma', 'oligo', 'oligoClasses', 'pdInfoBuilder'
+      installed size is 16.1Mb
+      sub-directories of 1Mb or more:
+        doc   13.9Mb
+        libs   1.3Mb
     ```
 
 *   checking Rd cross-references ... NOTE
     ```
-    Packages unavailable to check Rd xrefs: ‘affy’, ‘gcrma’, ‘affyPLM’, ‘oligo’, ‘oligoClasses’
-    ```
-
-# aroma.cn
-
-<details>
-
-* Version: 1.6.1
-* GitHub: https://github.com/HenrikBengtsson/aroma.cn
-* Source code: https://github.com/cran/aroma.cn
-* Date/Publication: 2015-10-28 00:08:16
-* Number of recursive dependencies: 25
-
-Run `revdep_details(, "aroma.cn")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘GLAD’
+    Package unavailable to check Rd xrefs: ‘CrispRVariants’
     ```
 
 # aroma.core
@@ -213,12 +212,7 @@ Run `revdep_details(, "aroma.core")` for more info
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      'EBImage', 'GLAD', 'sfit', 'expectile', 'HaarSeg', 'mpcbs'
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘GLAD’
+      'sfit', 'expectile', 'HaarSeg', 'mpcbs'
     ```
 
 # aroma.light
@@ -261,16 +255,21 @@ Run `revdep_details(, "autonomics")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking for missing documentation entries ... WARNING
     ```
-    Package required but not available: ‘assertive’
-    
-    Packages suggested but not available for checking:
-      'affy', 'hgu95av2.db', 'ICSNP', 'mixOmics', 'org.Hs.eg.db',
-      'org.Mm.eg.db', 'ropls', 'seqinr'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Undocumented code objects:
+      ‘translate’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
     ```
 
 # bahc
@@ -308,14 +307,42 @@ Run `revdep_details(, "BASiCS")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+          Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+          as.data.frame, basename, cbind, colnames, dirname, do.call,
+          duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+          lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+          tapply, union, unique, unsplit, which.max, which.min
+    ...
+      ── Failure (test_data_examples.R:40:3): Generated data does not match given seed (all cases) ──
+      `TechCount03` not equal to `TechCount3`.
+      names for current but not for target
+      ── Failure (test_data_examples.R:41:3): Generated data does not match given seed (all cases) ──
+      `TechCount04` not equal to `TechCount4`.
+      names for current but not for target
+      
+      [ FAIL 2 | WARN 61 | SKIP 0 | PASS 400 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Packages required but not available: 'scran', 'scuttle'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+      installed size is 12.1Mb
+      sub-directories of 1Mb or more:
+        data   2.0Mb
+        doc    1.4Mb
+        libs   7.8Mb
     ```
 
 # BatchQC
@@ -334,12 +361,19 @@ Run `revdep_details(, "BatchQC")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking R code for possible problems ... NOTE
     ```
-    Package required but not available: ‘sva’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    gene_plot: no visible global function definition for ‘boxplot’
+    gene_plot: no visible binding for global variable ‘batch’
+    gls.series.C: no visible global function definition for ‘lm.fit’
+    sample_plot: no visible global function definition for ‘boxplot’
+    sample_plot: no visible binding for global variable ‘batch’
+    Undefined global functions or variables:
+      batch boxplot lm.fit
+    Consider adding
+      importFrom("graphics", "boxplot")
+      importFrom("stats", "lm.fit")
+    to your NAMESPACE file.
     ```
 
 # baystability
@@ -365,30 +399,6 @@ Run `revdep_details(, "baystability")` for more info
       All declared Imports should be used.
     ```
 
-# bdynsys
-
-<details>
-
-* Version: 1.3
-* GitHub: NA
-* Source code: https://github.com/cran/bdynsys
-* Date/Publication: 2014-12-08 07:01:51
-* Number of recursive dependencies: 75
-
-Run `revdep_details(, "bdynsys")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Package required but not available: ‘plm’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
 # bigPint
 
 <details>
@@ -404,11 +414,6 @@ Run `revdep_details(, "bigPint")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘EDASeq’
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -435,12 +440,9 @@ Run `revdep_details(, "bingat")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking Rd cross-references ... NOTE
     ```
-    Package required but not available: ‘network’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Package unavailable to check Rd xrefs: ‘genalg’
     ```
 
 # BioNERO
@@ -459,13 +461,49 @@ Run `revdep_details(, "BioNERO")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Packages required but not available:
-      'DESeq2', 'sva', 'ComplexHeatmap', 'ggnetwork', 'intergraph'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+      installed size is  7.0Mb
+      sub-directories of 1Mb or more:
+        data   2.2Mb
+        doc    4.4Mb
+    ```
+
+# biscuiteer
+
+<details>
+
+* Version: 1.6.0
+* GitHub: https://github.com/trichelab/biscuiteer
+* Source code: https://github.com/cran/biscuiteer
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 214
+
+Run `revdep_details(, "biscuiteer")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘biscuiteer’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.8Mb
+      sub-directories of 1Mb or more:
+        data      1.1Mb
+        extdata   3.4Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported object imported by a ':::' call: ‘QDNAseq:::expectedVariance’
+      See the note in ?`:::` about the use of this operator.
     ```
 
 # BloodGen3Module
@@ -484,13 +522,21 @@ Run `revdep_details(, "BloodGen3Module")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking whether package ‘BloodGen3Module’ can be installed ... WARNING
     ```
-    Packages required but not available:
-      'ExperimentHub', 'circlize', 'ComplexHeatmap'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Found the following significant warnings:
+      Warning: replacing previous import ‘SummarizedExperiment::rowRanges’ by ‘matrixStats::rowRanges’ when loading ‘BloodGen3Module’
+      Warning: replacing previous import ‘SummarizedExperiment::start’ by ‘stats::start’ when loading ‘BloodGen3Module’
+      Warning: replacing previous import ‘SummarizedExperiment::end’ by ‘stats::end’ when loading ‘BloodGen3Module’
+      Warning: replacing previous import ‘matrixStats::rowRanges’ by ‘SummarizedExperiment::rowRanges’ when loading ‘BloodGen3Module’
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/BloodGen3Module/new/BloodGen3Module.Rcheck/00install.out’ for details.
+    ```
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENSE
+    is not mentioned in the DESCRIPTION file.
     ```
 
 # bnbc
@@ -509,12 +555,12 @@ Run `revdep_details(, "bnbc")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Packages required but not available: 'rhdf5', 'sva', 'EBImage'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        data   1.7Mb
+        libs   1.4Mb
     ```
 
 # bnclassify
@@ -556,12 +602,22 @@ Run `revdep_details(, "bnem")` for more info
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking tests ...
     ```
-    Packages required but not available: 'epiNEM', 'mnem', 'affy', 'vsn'
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Complete output:
+      > BiocGenerics:::testPackage("bnem")
+      Error in library("RUnit", quietly = TRUE) : 
+        there is no package called 'RUnit'
+      Calls: <Anonymous> -> library
+      Execution halted
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘rmarkdown’
+      All declared Imports should be used.
     ```
 
 # brms
@@ -582,7 +638,7 @@ Run `revdep_details(, "brms")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'emmeans', 'cmdstanr'
+    Package suggested but not available for checking: ‘cmdstanr’
     ```
 
 *   checking installed package size ... NOTE
@@ -815,28 +871,28 @@ Run `revdep_details(, "CARBayesST")` for more info
         libs   6.1Mb
     ```
 
-# carx
+# CATALYST
 
 <details>
 
-* Version: 0.7.1
-* GitHub: NA
-* Source code: https://github.com/cran/carx
-* Date/Publication: 2017-11-20 04:24:20 UTC
-* Number of recursive dependencies: 10
+* Version: 1.16.2
+* GitHub: https://github.com/HelenaLC/CATALYST
+* Source code: https://github.com/cran/CATALYST
+* Date/Publication: 2021-07-13
+* Number of recursive dependencies: 255
 
-Run `revdep_details(, "carx")` for more info
+Run `revdep_details(, "CATALYST")` for more info
 
 </details>
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking installed package size ... NOTE
     ```
-    Package required but not available: ‘tmvtnorm’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+      installed size is 14.3Mb
+      sub-directories of 1Mb or more:
+        data   3.1Mb
+        doc    9.9Mb
     ```
 
 # CDSeq
@@ -870,6 +926,37 @@ Run `revdep_details(, "CDSeq")` for more info
       All declared Imports should be used.
     ```
 
+# celda
+
+<details>
+
+* Version: 1.8.1
+* GitHub: https://github.com/campbio/celda
+* Source code: https://github.com/cran/celda
+* Date/Publication: 2021-05-30
+* Number of recursive dependencies: 356
+
+Run `revdep_details(, "celda")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  8.0Mb
+      sub-directories of 1Mb or more:
+        libs   5.9Mb
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    featureModuleTable : <anonymous>: no visible global function definition
+      for ‘rowData’
+    Undefined global functions or variables:
+      rowData
+    ```
+
 # CelliD
 
 <details>
@@ -899,9 +986,9 @@ Run `revdep_details(, "CelliD")` for more info
     > 
     > seuratPbmc <- RunMCA(seuratPbmc, nmcs = 5)
     ...
-    0.027 sec elapsed
+    0.041 sec elapsed
     Computing Coordinates
-    0.004 sec elapsed
+    0.006 sec elapsed
     > seuratPbmc <- RunMCDMAP(seuratPbmc, dims = seq(5), k = 5)
     
     getting feature and cell coordinates
@@ -944,7 +1031,7 @@ Run `revdep_details(, "cellmigRation")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/cellmigRation/new/cellmigRation.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/cellmigRation/new/cellmigRation.Rcheck/00install.out’ for details.
     ```
 
 # cellWise
@@ -1027,6 +1114,105 @@ Run `revdep_details(, "CEMiTool")` for more info
     to your NAMESPACE file.
     ```
 
+# ChAMP
+
+<details>
+
+* Version: 2.22.0
+* GitHub: NA
+* Source code: https://github.com/cran/ChAMP
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 240
+
+Run `revdep_details(, "ChAMP")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘ChAMP’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Note: possible error in 'dmrcate(myannotation, ': unused argument (mc.cores = cores) 
+      Warning: replacing previous import 'plyr::summarise' by 'plotly::summarise' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::rename' by 'plotly::rename' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::arrange' by 'plotly::arrange' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::mutate' by 'plotly::mutate' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::is.discrete' by 'Hmisc::is.discrete' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::summarize' by 'Hmisc::summarize' when loading 'ChAMP'
+      Warning: replacing previous import 'plotly::subplot' by 'Hmisc::subplot' when loading 'ChAMP'
+      Warning: replacing previous import 'GenomicRanges::sort' by 'globaltest::sort' when loading 'ChAMP'
+      Warning: replacing previous import 'plotly::last_plot' by 'ggplot2::last_plot' when loading 'ChAMP'
+      Warning: replacing previous import 'globaltest::model.matrix' by 'stats::model.matrix' when loading 'ChAMP'
+      Warning: replacing previous import 'globaltest::p.adjust' by 'stats::p.adjust' when loading 'ChAMP'
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
+    Information on the location(s) of code generating the ‘Note’s can be
+    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+    to ‘yes’.
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Duplicated \argument entries in documentation object 'champ.SVD':
+      ‘Rplot’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'minfi', 'ChAMPdata', 'DMRcate', 'Illumina450ProbeVariants.db',
+      'IlluminaHumanMethylationEPICmanifest', 'DT', 'RPMM'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.9Mb
+      sub-directories of 1Mb or more:
+        doc       3.6Mb
+        extdata   1.9Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘rmarkdown’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: 'prettydoc'
+      All declared Imports should be used.
+    Package in Depends field not imported from: 'DT'
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    champ.DMR: possible error in dmrcate(myannotation, min.cpgs =
+      minProbes, lambda = lambda, C = C, mc.cores = cores): unused argument
+      (mc.cores = cores)
+    champ.ebGSEA : gseaWTfn: no visible global function definition for
+      'wilcox.test'
+    champ.ebGSEA: no visible global function definition for 'stopCluster'
+    champ.norm: no visible global function definition for 'stopCluster'
+    champ.process: no visible global function definition for 'champ.EpiMod'
+    Undefined global functions or variables:
+      champ.EpiMod stopCluster wilcox.test
+    Consider adding
+      importFrom("stats", "wilcox.test")
+    to your NAMESPACE file.
+    ```
+
 # Chicago
 
 <details>
@@ -1051,6 +1237,81 @@ Run `revdep_details(, "Chicago")` for more info
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘PCHiCdata’
+    ```
+
+# ChIPpeakAnno
+
+<details>
+
+* Version: 3.26.1
+* GitHub: NA
+* Source code: https://github.com/cran/ChIPpeakAnno
+* Date/Publication: 2021-07-13
+* Number of recursive dependencies: 207
+
+Run `revdep_details(, "ChIPpeakAnno")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘ChIPpeakAnno-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: findEnhancers
+    > ### Title: Find possible enhancers depend on DNA interaction data
+    > ### Aliases: findEnhancers
+    > ### Keywords: misc
+    > 
+    > ### ** Examples
+    > 
+    ...
+    don't know where to find assembly report for GCF_000001405.25
+     Try to keep the seqname style consistent.
+    
+     Try to keep the seqname style consistent.
+    >   data("myPeakList")
+    >   findEnhancers(myPeakList[500:1000], annoData, DNAinteractiveData)
+    Error in findEnhancers(myPeakList[500:1000], annoData, DNAinteractiveData) : 
+      length(intersect(seqlevelsStyle(peaks), seqlevelsStyle(annoData))) >  .... is not TRUE
+    Calls: findEnhancers -> stopifnot
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/runTests.R’ failed.
+    Last 50 lines of output:
+      The following object is masked from 'package:AnnotationFilter':
+      
+          not
+      
+      [1] TRUE
+      > test_check("ChIPpeakAnno")
+      ══ Skipped tests ═══════════════════════════════════════════════════════════════
+    ...
+       4.     └─ChIPpeakAnno:::EnsDb2GR(data, feature)
+       5.       └─ChIPpeakAnno:::formatSeqnames(...)
+       6.         └─base::tryCatch(...)
+       7.           └─base:::tryCatchList(expr, classes, parentenv, handlers)
+       8.             └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       9.               └─value[[3L]](cond)
+      
+      [ FAIL 3 | WARN 1 | SKIP 5 | PASS 209 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 25.0Mb
+      sub-directories of 1Mb or more:
+        data     12.6Mb
+        doc       6.0Mb
+        extdata   5.2Mb
     ```
 
 # cifti
@@ -1193,51 +1454,6 @@ Run `revdep_details(, "cmapR")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘cmapR-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: rank.gct
-    > ### Title: Convert a GCT object's matrix to ranks
-    > ### Aliases: rank.gct rank_gct rank_gct,GCT-method
-    > 
-    > ### ** Examples
-    > 
-    > (ranked <- rank_gct(ds, dim="column"))
-    Error in dimnames(y) <- list(rownames, colnames) : 
-      length of 'dimnames' [1] not equal to array extent
-    Calls: rank_gct -> rank_gct -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(cmapR)
-      > 
-      > test_check("cmapR")
-      Saving file to  foo.gct 
-      Dimensions of matrix: [10x5]
-      Setting precision to 4
-    ...
-       4. │   │ └─base::withCallingHandlers(...)
-       5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
-       6. └─cmapR::rank.gct(ds) test_deprecated.R:52:4
-       7.   ├─cmapR::rank_gct(...)
-       8.   └─cmapR::rank_gct(...)
-       9.     └─matrixStats::colRanks(m, ties.method = "average", preserveShape = TRUE)
-      
-      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 164 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 ## In both
 
 *   checking for hidden files and directories ... NOTE
@@ -1354,10 +1570,10 @@ Run `revdep_details(, "cola")` for more info
 
 <details>
 
-* Version: 1.6.2
+* Version: 1.6.4
 * GitHub: https://github.com/SebKrantz/collapse
 * Source code: https://github.com/cran/collapse
-* Date/Publication: 2021-07-04 21:00:01 UTC
+* Date/Publication: 2021-07-13 12:10:03 UTC
 * Number of recursive dependencies: 131
 
 Run `revdep_details(, "collapse")` for more info
@@ -1388,11 +1604,6 @@ Run `revdep_details(, "ComplexHeatmap")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘EnrichedHeatmap’
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -1938,7 +2149,7 @@ Run `revdep_details(, "DepecheR")` for more info
     Found the following significant warnings:
       Note: possible error in 'dAllocate(inDataFrame = selectionDataSet, ': unused arguments (clusterCenters = x, log2Off = TRUE, noZeroNum = FALSE) 
       Note: possible error in 'dAllocate(inDataFrameScaled, ': unused arguments (log2Off = TRUE, noZeroNum = FALSE) 
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DepecheR/new/DepecheR.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/DepecheR/new/DepecheR.Rcheck/00install.out’ for details.
     Information on the location(s) of code generating the ‘Note’s can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
     to ‘yes’.
@@ -2583,11 +2794,11 @@ Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 *   checking whether package ‘ExpressionNormalizationWorkflow’ can be installed ... WARNING
     ```
     Found the following significant warnings:
-      Warning: /c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
-      Warning: /c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
+      Warning: /c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:29: All text must be in a section
+      Warning: /c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00_pkg_src/ExpressionNormalizationWorkflow/man/ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
       Warning: replacing previous import ‘Biobase::anyMissing’ by ‘matrixStats::anyMissing’ when loading ‘ExpressionNormalizationWorkflow’
       Warning: replacing previous import ‘Biobase::rowMedians’ by ‘matrixStats::rowMedians’ when loading ‘ExpressionNormalizationWorkflow’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -2974,7 +3185,7 @@ Run `revdep_details(, "flowWorkspace")` for more info
       installed size is 70.4Mb
       sub-directories of 1Mb or more:
         doc    3.4Mb
-        libs  65.6Mb
+        libs  65.7Mb
     ```
 
 *   checking DESCRIPTION meta-information ... NOTE
@@ -3142,7 +3353,7 @@ Run `revdep_details(, "genomation")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘genomation’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -3374,6 +3585,33 @@ Run `revdep_details(, "GUIDEseq")` for more info
 Run `revdep_details(, "Gviz")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+      The following objects are masked from 'package:base':
+      
+          I, expand.grid, unname
+      
+      Loading required package: IRanges
+      Loading required package: GenomicRanges
+    ...
+       12.               └─biomaRt:::bmRequest(...)
+       13.                 └─httr::GET(request2, config = httr_config, content_type("text/plain"))
+       14.                   └─httr:::request_perform(req, hu$handle$handle)
+       15.                     ├─httr:::request_fetch(req$output, req$url, handle)
+       16.                     └─httr:::request_fetch.write_memory(req$output, req$url, handle)
+       17.                       └─curl::curl_fetch_memory(url, handle = handle)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 293 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -3633,7 +3871,7 @@ Run `revdep_details(, "latrend")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/latrend/new/latrend.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -3963,6 +4201,76 @@ Run `revdep_details(, "mcmcsae")` for more info
         libs  14.8Mb
     ```
 
+# MEAL
+
+<details>
+
+* Version: 1.22.0
+* GitHub: NA
+* Source code: https://github.com/cran/MEAL
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 218
+
+Run `revdep_details(, "MEAL")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... WARNING
+    ```
+    '::' or ':::' import not declared from: 'sva'
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Undocumented arguments in documentation object 'getProbeResults'
+      ‘robust’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking examples ... WARNING
+    ```
+    Found the following significant warnings:
+    
+      Warning: 'runRegionAnalysis' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
+    ```
+
+*   checking top-level files ... NOTE
+    ```
+    File
+      LICENSE
+    is not mentioned in the DESCRIPTION file.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    plotRegion: no visible global function definition for
+      ‘subsetByOverlaps’
+    plotRegion: no visible global function definition for ‘mcols<-’
+    runRDA: no visible global function definition for ‘rowData’
+    runSVA: no visible global function definition for ‘resid’
+    runSVA: no visible global function definition for ‘quantile’
+    Undefined global functions or variables:
+      mcols<- quantile resid rowData subsetByOverlaps
+    Consider adding
+      importFrom("stats", "quantile", "resid")
+    to your NAMESPACE file.
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘DMRcate’
+    ```
+
 # metagene
 
 <details>
@@ -4096,33 +4404,6 @@ Run `revdep_details(, "MetaNeighbor")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘MetaNeighbor-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: plotUpset
-    > ### Title: Plot Upset plot showing how replicability depends on input
-    > ###   dataset.
-    > ### Aliases: plotUpset
-    > 
-    > ### ** Examples
-    > 
-    ...
-    > var_genes = variableGenes(dat = mn_data, exp_labels = mn_data$study_id)
-    > celltype_NV = MetaNeighborUS(var_genes = var_genes,
-    +                              dat = mn_data,
-    +                              study_id = mn_data$study_id,
-    +                              cell_type = mn_data$cell_type,
-    +                              fast_version = TRUE, one_vs_best = TRUE)
-    Error in dimnames(y) <- list(rownames, colnames) : 
-      length of 'dimnames' [1] not equal to array extent
-    Calls: MetaNeighborUS ... MetaNeighborUSLowMem -> normalize_cols -> <Anonymous>
-    Execution halted
-    ```
-
 ## In both
 
 *   checking LazyData ... WARNING
@@ -4246,6 +4527,56 @@ Run `revdep_details(, "MethylAid")` for more info
     Package suggested but not available for checking: ‘MethylAidData’
     ```
 
+# methylationArrayAnalysis
+
+<details>
+
+* Version: 1.16.0
+* GitHub: NA
+* Source code: https://github.com/cran/methylationArrayAnalysis
+* Date/Publication: 2021-05-21
+* Number of recursive dependencies: 215
+
+Run `revdep_details(, "methylationArrayAnalysis")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘methylationArrayAnalysis’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import 'rmarkdown::pdf_document' by 'BiocStyle::pdf_document' when loading 'methylationArrayAnalysis'
+      Warning: replacing previous import 'rmarkdown::html_document' by 'BiocStyle::html_document' when loading 'methylationArrayAnalysis'
+      Warning: replacing previous import 'rmarkdown::md_document' by 'BiocStyle::md_document' when loading 'methylationArrayAnalysis'
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'knitr', 'rmarkdown', 'BiocStyle', 'limma', 'minfi',
+      'IlluminaHumanMethylation450kanno.ilmn12.hg19',
+      'IlluminaHumanMethylation450kmanifest', 'RColorBrewer', 'missMethyl',
+      'matrixStats', 'minfiData', 'Gviz', 'DMRcate', 'stringr',
+      'FlowSorted.Blood.450k'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 322.8Mb
+      sub-directories of 1Mb or more:
+        doc        2.6Mb
+        extdata  320.2Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Malformed Title field: should not end in a period.
+    ```
+
 # methylumi
 
 <details>
@@ -4286,7 +4617,7 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'lumi', 'methyAnalysis'
+    Package suggested but not available for checking: ‘methyAnalysis’
     
     Depends: includes the non-default packages:
       'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
@@ -4338,10 +4669,10 @@ Run `revdep_details(, "methylumi")` for more info
       ‘reshape2’ ‘scales’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
+    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
+      See the note in ?`:::` about the use of this operator.
     Unexported objects imported by ':::' calls:
       ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
-      See the note in ?`:::` about the use of this operator.
-    Unavailable namespace imported from by a ':::' call: ‘lumi’
       See the note in ?`:::` about the use of this operator.
     ```
 
@@ -4558,7 +4889,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘ff::pattern’ by ‘grid::pattern’ when loading ‘MinimumDistance’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/MinimumDistance/new/MinimumDistance.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/MinimumDistance/new/MinimumDistance.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -4661,11 +4992,6 @@ Run `revdep_details(, "mnem")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘epiNEM’
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -4779,7 +5105,7 @@ Run `revdep_details(, "motifbreakR")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘S4Vectors::as.data.frame’ by ‘motifStack::as.data.frame’ when loading ‘motifbreakR’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/motifbreakR/new/motifbreakR.Rcheck/00install.out’ for details.
     ```
 
 *   checking for missing documentation entries ... WARNING
@@ -5087,6 +5413,54 @@ Run `revdep_details(, "nempi")` for more info
         there is no package called 'RUnit'
       Calls: <Anonymous> -> library
       Execution halted
+    ```
+
+# NetLogoR
+
+<details>
+
+* Version: 0.3.8
+* GitHub: https://github.com/PredictiveEcology/NetLogoR
+* Source code: https://github.com/cran/NetLogoR
+* Date/Publication: 2021-07-10 10:40:02 UTC
+* Number of recursive dependencies: 157
+
+Run `revdep_details(, "NetLogoR")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/test-all.R’ failed.
+    Last 50 lines of output:
+      > test_check("NetLogoR")
+      Loading required package: NetLogoR
+      Loading required package: raster
+      Loading required package: sp
+      code for methods in class "Rcpp_SpExtent" was not checked for suspicious field assignments (recommended package 'codetools' not available?)
+      code for methods in class "Rcpp_SpExtent" was not checked for suspicious field assignments (recommended package 'codetools' not available?)
+      code for methods in class "Rcpp_SpPoly" was not checked for suspicious field assignments (recommended package 'codetools' not available?)
+    ...
+      Attributes: < Component "bbox": Attributes: < Component "dimnames": Component 1: target is character, current is NULL > >
+      ── Failure (test-agentMatrix.R:319:3): agentMatrix subsetting ──────────────────
+      all.equal(tmpA, tmpB) is not TRUE
+      
+      `actual` is a character vector ('Attributes: < Component "bbox": Attributes: < Component "dimnames": Component 1: Modes: character, NULL > >', 'Attributes: < Component "bbox": Attributes: < Component "dimnames": Component 1: Lengths: 2, 0 > >', 'Attributes: < Component "bbox": Attributes: < Component "dimnames": Component 1: target is character, current is NULL > >')
+      `expected` is a logical vector (TRUE)
+      
+      [ FAIL 5 | WARN 0 | SKIP 1 | PASS 1159 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘fastshp’
     ```
 
 # NormalyzerDE
@@ -5457,31 +5831,6 @@ Run `revdep_details(, "Pigengene")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘Pigengene-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: gene.mapping
-    > ### Title: Maps gene IDs
-    > ### Aliases: gene.mapping
-    > ### Keywords: misc
-    > 
-    > ### ** Examples
-    > 
-    ...
-    +         outputDb=list(org.Hs.eg.db,org.Mm.eg.db), verbose=1)
-    [1] "Mapping to:"
-    [1] "org.Hs.eg.db-SYMBOL"
-    'select()' returned 1:1 mapping between keys and columns
-    Loading required package: biomaRt
-    Ensembl site unresponsive, trying www mirror
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Peer's Certificate issuer is not recognized.
-    Calls: gene.mapping ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
 *   checking whether the namespace can be loaded with stated dependencies ... WARNING
     ```
     Warning: S4 exports specified in 'NAMESPACE' but not defined in package ‘Pigengene’
@@ -5644,15 +5993,15 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
     > 
     > # Load the panel example
     ...
-    > data(panelexample)
-    > # Create a CancerPanel object for the first 3 lines
-    > mypanel <- newCancerPanel(panelexample[1:3 , ] , canonicalTranscript=FALSE)
-    Checking panel construction...
-    Calculating panel size...
-    Connecting to ensembl biomart...
-    Error in .readFromCache(bfc, hash) : Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    Calls: newCancerPanel ... .annotateGeneLength -> <Anonymous> -> .readFromCache
+    Ensembl site unresponsive, trying uswest mirror
+    Ensembl site unresponsive, trying asia mirror
+    Ensembl site unresponsive, trying uswest mirror
+    Ensembl site unresponsive, trying useast mirror
+    Ensembl site unresponsive, trying www mirror
+    Ensembl site unresponsive, trying useast mirror
+    Error in textConnection(text, encoding = "UTF-8") : 
+      invalid 'text' argument
+    Calls: newCancerPanel ... .getAttributes -> .getAttrFilt -> read.table -> textConnection
     Execution halted
     ```
 
@@ -5830,53 +6179,12 @@ Run `revdep_details(, "RadioGx")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/RadioGx/new/RadioGx.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/RadioGx/new/RadioGx.Rcheck/00install.out’ for details.
     ```
 
 *   checking data for non-ASCII characters ... NOTE
     ```
       Note: found 14 marked UTF-8 strings
-    ```
-
-# reconsi
-
-<details>
-
-* Version: 1.4.0
-* GitHub: https://github.com/CenterForStatistics-UGent/reconsi
-* Source code: https://github.com/cran/reconsi
-* Date/Publication: 2021-05-19
-* Number of recursive dependencies: 93
-
-Run `revdep_details(, "reconsi")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘reconsi-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: testDAA
-    > ### Title: A function to test for differential absolute abundance on a
-    > ###   phyloseq object
-    > ### Aliases: testDAA testDAA,phyloseq-method testDAA,matrix-method
-    > 
-    > ### ** Examples
-    > 
-    ...
-    > #Test for phyloseq object
-    > library(phyloseq)
-    > VandeputtePruned = prune_samples(Vandeputte,
-    + samples = sample_names(Vandeputte)[20:40])
-    > testVanDePutte = testDAA(VandeputtePruned, "Health.status", "absCountFrozen",
-    + B = 15)
-    Error in dimnames(y) <- list(rownames, colnames) : 
-      length of 'dimnames' [1] not equal to array extent
-    Calls: testDAA ... testDAA -> .local -> reconsi -> getTestStats -> colRanks
-    Execution halted
     ```
 
 # regsem
@@ -5927,10 +6235,10 @@ Run `revdep_details(, "rhierbaps")` for more info
 
 <details>
 
-* Version: 3.0.0
+* Version: 3.0.1
 * GitHub: NA
 * Source code: https://github.com/cran/RJcluster
-* Date/Publication: 2021-07-07 21:10:02 UTC
+* Date/Publication: 2021-07-15 15:40:10 UTC
 * Number of recursive dependencies: 53
 
 Run `revdep_details(, "RJcluster")` for more info
@@ -5977,6 +6285,101 @@ Run `revdep_details(, "RNAmodR")` for more info
     There are ::: calls to the package's namespace in its code. A package
       almost never needs to use ::: for its own objects:
       '.get_inosine_score'
+    ```
+
+# RnBeads
+
+<details>
+
+* Version: 2.10.0
+* GitHub: NA
+* Source code: https://github.com/cran/RnBeads
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 264
+
+Run `revdep_details(, "RnBeads")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'BiocGenerics', 'S4Vectors', 'GenomicRanges', 'MASS', 'cluster',
+      'ff', 'fields', 'ggplot2', 'gplots', 'gridExtra', 'limma',
+      'matrixStats', 'illuminaio', 'methylumi', 'plyr'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .travis.yml
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  9.0Mb
+      sub-directories of 1Mb or more:
+        R     3.1Mb
+        doc   3.7Mb
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘qvalue’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... NOTE
+    ```
+    Warning: no function found corresponding to methods exports from ‘RnBeads’ for: ‘samples’
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Unexported objects imported by ':::' calls:
+      'Gviz:::.getBMFeatureMap' 'doParallel:::.options'
+      'grDevices:::.smoothScatterCalcDensity'
+      'minfi:::.default.450k.annotation' 'minfi:::.extractFromRGSet450k'
+      'minfi:::.normalizeFunnorm450k'
+      See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    .stopImplicitCluster: no visible global function definition for
+      ‘stopCluster’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘phenoData’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘assayDataElementNames’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘featureNames’
+    MethyLumiSet2RnBeadSet: no visible global function definition for
+      ‘varLabels’
+    ...
+      preprocessSWAN pvalues qvalue readMethylome readSNPTable refText
+      reg.type region.size registerDoParallel relative.coord removeSNPs
+      report runLOLA samples segmentPMDs segmentUMRsLMRs seqlengths
+      seqlevels<- setNames sigCategories sites2ignore size solve.QP
+      stopCluster sva target texthere tsne type types ucscTableQuery
+      universeCounts useMart v var.diff varFit varLabels x x2 xmlValue y y2
+      yint
+    Consider adding
+      importFrom("stats", "setNames")
+    to your NAMESPACE file.
     ```
 
 # robustlm
@@ -6100,6 +6503,31 @@ Run `revdep_details(, "scone")` for more info
 </details>
 
 ## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+      Loading required package: S4Vectors
+      
+      Attaching package: 'S4Vectors'
+      
+      The following objects are masked from 'package:base':
+      
+    ...
+        7.       │ └─base::withCallingHandlers(...)
+        8.       ├─base::do.call(BatchJobs::makeRegistry, reg.pars)
+        9.       └─(function (id, file.dir, sharding = TRUE, work.dir, multiple.result.files = FALSE, ...
+       10.         └─BatchJobs:::makeRegistryInternal(...)
+       11.           └─BatchJobs:::checkDir(...)
+       12.             └─BBmisc::stopf(...)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 62 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -6430,33 +6858,6 @@ Run `revdep_details(, "SIAMCAT")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘SIAMCAT-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: normalize.features
-    > ### Title: Perform feature normalization
-    > ### Aliases: normalize.features
-    > ### Keywords: SIAMCAT normalize.features
-    > 
-    > ### ** Examples
-    > 
-    ...
-    > # Example data
-    > data(siamcat_example)
-    > 
-    > # Simple example
-    > siamcat_norm <- normalize.features(siamcat_example,
-    +     norm.method='rank.unit')
-    Error in dimnames(y) <- list(rownames, colnames) : 
-      length of 'dimnames' [1] not equal to array extent
-    Calls: normalize.features -> colRanks
-    Execution halted
-    ```
-
 ## In both
 
 *   checking for hidden files and directories ... NOTE
@@ -6508,7 +6909,7 @@ Run `revdep_details(, "SICtools")` for more info
       errmod.c:79:8: warning: self-comparison always evaluates to false [-Wtautological-compare]
       md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
       Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -6639,51 +7040,29 @@ Run `revdep_details(, "singscore")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘singscore-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: generateNull
-    > ### Title: Permutation test for the derived scores of each sample
-    > ### Aliases: generateNull generateNull,vector,ANY-method
-    > ###   generateNull,GeneSet,ANY-method generateNull,vector,vector-method
-    > ###   generateNull,GeneSet,GeneSet-method
-    > 
-    > ### ** Examples
-    > 
-    > ranked <- rankGenes(toy_expr_se)
-    Error in dimnames(y) <- list(rownames, colnames) : 
-      length of 'dimnames' [1] not equal to array extent
-    Calls: rankGenes ... rankGenes -> rankGenes -> rankGenes -> rankExpr -> <Anonymous>
-    Execution halted
-    ```
-
 ## In both
 
 *   checking tests ...
     ```
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-        4. │     └─testthat::quasi_label(enquo(object), label, arg = "object")
-        5. │       └─rlang::eval_bare(expr, quo_get_env(quo))
-        6. ├─singscore::rankGenes(e, "min")
-        7. └─singscore::rankGenes(e, "min")
-        8.   ├─singscore::rankGenes(...)
-        9.   └─singscore::rankGenes(...)
-       10.     └─singscore:::rankExpr(expreMatrix, tiesMethod)
+    Complete output:
+      > library(testthat)
+      > library(singscore)
+      > 
+      > test_check("singscore")
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Error (test-projectScoreLandscape.R:70:2): projectScoreLandscape works for interactive plots ──
+      Error: there is no package called 'hexbin'
     ...
-       1. ├─singscore::rankGenes(df, tiesMethod = "min") test-scoring.R:77:2
-       2. └─singscore::rankGenes(df, tiesMethod = "min")
-       3.   ├─singscore::rankGenes(as.matrix(expreMatrix), tiesMethod, stableGenes)
-       4.   └─singscore::rankGenes(as.matrix(expreMatrix), tiesMethod, stableGenes)
-       5.     └─singscore:::rankExpr(expreMatrix, tiesMethod)
-       6.       └─matrixStats::colRanks(...)
+        6. │       ├─plotly::to_basic(...)
+        7. │       └─plotly:::to_basic.GeomHex(...)
+        8. └─base::loadNamespace(x)
+        9.   └─base::withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+       10.     └─base:::withOneRestart(expr, restarts[[1L]])
+       11.       └─base:::doWithOneRestart(return(expr), restart)
       
-      [ FAIL 21 | WARN 26 | SKIP 0 | PASS 60 ]
+      [ FAIL 1 | WARN 39 | SKIP 0 | PASS 133 ]
       Error: Test failures
       Execution halted
     ```
@@ -6978,7 +7357,7 @@ Run `revdep_details(, "STROMA4")` for more info
       ...
     
     > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-    Installing package into ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    Installing package into ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
     (as ‘lib’ is unspecified)
     
       When sourcing ‘STROMA4-vignette.R’:
@@ -7011,7 +7390,7 @@ Run `revdep_details(, "summarytools")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/useNames=TRUE/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
     ```
 
 *   checking data for non-ASCII characters ... NOTE
@@ -7404,46 +7783,5 @@ Run `revdep_details(, "WGCNA")` for more info
       ‘rlm’
     
     See section 'Cross-references' in the 'Writing R Extensions' manual.
-    ```
-
-# yarn
-
-<details>
-
-* Version: 1.18.0
-* GitHub: NA
-* Source code: https://github.com/cran/yarn
-* Date/Publication: 2021-05-19
-* Number of recursive dependencies: 167
-
-Run `revdep_details(, "yarn")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘yarn-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: annotateFromBiomart
-    > ### Title: Annotate your Expression Set with biomaRt
-    > ### Aliases: annotateFromBiomart
-    > 
-    > ### ** Examples
-    > 
-    > 
-    ...
-    > skin <- skin[1:10,]
-    > colnames(fData(skin)) = paste("names",1:6)
-    > biomart<-"ENSEMBL_MART_ENSEMBL";
-    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
-    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
-    Ensembl site unresponsive, trying uswest mirror
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Peer's Certificate issuer is not recognized.
-    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
     ```
 
