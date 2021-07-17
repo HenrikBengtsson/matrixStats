@@ -1,11 +1,16 @@
 library("matrixStats")
 
+## Create isFALSE() if running on an old version of R
+if (!exists("isFALSE", mode="function")) {
+  isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
+}
+
 rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   res <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as rowWeightedMedians()
   if (!is.null(w)) {
-    if (!is.na(useNames) && !useNames) names(res) <- NULL
+    if (isFALSE(useNames)) names(res) <- NULL
   }
   else if (is.na(useNames) || !useNames) names(res) <- NULL
   
