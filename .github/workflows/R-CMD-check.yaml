@@ -26,7 +26,7 @@ jobs:
           - {os: ubuntu-20.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-20.04,   r: '3.3',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-20.04,   r: '3.2',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04,   r: '3.1',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+#          - {os: ubuntu-20.04,   r: '3.1',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -50,18 +50,19 @@ jobs:
         if: runner.os == 'Linux' && (matrix.config.r == '3.0' || matrix.config.r == '3.1' || matrix.config.r == '3.2')
         run: |
           ## R (<= 3.1.0) requires HTTP - they don't support HTTPS
+          install.packages("digest", repos="http://cran.microsoft.com/snapshot/2016-05-03")
           ## digest 0.6.15 requires R (>= 2.4.1)
           ## digest 0.6.16 requires R (>= 3.1.0)
-          install.packages("http://cran.r-project.org/src/contrib/Archive/digest/digest_0.6.15.tar.gz")
+#          install.packages("http://cran.r-project.org/src/contrib/Archive/digest/digest_0.6.15.tar.gz")
           ## remotes requires (>= 3.0.0)
-          install.packages("remotes", repos="http://cloud.r-project.org")
+#          install.packages("remotes", repos="http://cloud.r-project.org")
           ## Specific to matrixStats:
           ## ggplot2 3.0.0 requires R (>= 3.0)
           ## ggplot2 3.1.1 requires R (>= 3.1)
           ## ggplot2 3.2.0 requires R (>= 3.2)
           ## ggplot2 3.3.3 requires R (>= 3.2)
           ## ggplot2 3.3.4 requires R (>= 3.3)
-          install.packages("http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_3.1.1.tar.gz")
+          install.packages("ggplot2", repos="http://cran.microsoft.com/snapshot/2016-05-03")
         shell: Rscript {0}
 
       - name: Query dependencies
