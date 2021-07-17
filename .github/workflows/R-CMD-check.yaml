@@ -26,7 +26,6 @@ jobs:
           - {os: ubuntu-20.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-20.04,   r: '3.3',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-20.04,   r: '3.2',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04,   r: '3.1',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -47,10 +46,11 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@master
 
       - name: Install dependencies for legacy versions of R
-        if: runner.os == 'Linux' && (matrix.config.r == '3.1' || matrix.config.r == '3.2')
+        if: runner.os == 'Linux' && (matrix.config.r == '3.2')
         run: |
-          install.packages("digest", repos="https://cloud.r-project.org")
-          install.packages("remotes", repos="https://cloud.r-project.org")
+          ## digest 0.6.15 requires R (>= 2.4.1)
+          ## digest 0.6.16 requires R (>= 3.1.0)
+          install.packages("https://cran.r-project.org/src/contrib/Archive/digest/digest_0.6.15.tar.gz")
         shell: Rscript {0}
 
       - name: Query dependencies
