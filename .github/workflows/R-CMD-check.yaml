@@ -46,6 +46,13 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install dependencies for legacy versions of R
+        if: runner.os == 'Linux' && (matrix.config.r == '3.1' || matrix.config.r == '3.2')
+        run: |
+          install.packages("digest", repos="https://cloud.r-project.org")
+          install.packages("remotes", repos="https://cloud.r-project.org")
+        shell: Rscript {0}
+
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -97,7 +104,7 @@ jobs:
           path: check
 
       - name: Test coverage - Install dependencies
-        if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+        if: runner.os == 'Linux' && matrix.config.r == 'release'
         run: |
             sudo apt-get install --yes libcurl4-openssl-dev
             ## Workaround: 'curl' from RSPM fails to load; install from CRAN
@@ -105,7 +112,7 @@ jobs:
             Rscript -e "install.packages('covr')"
             
       - name: Test coverage
-        if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+        if: runner.os == 'Linux' && matrix.config.r == 'release'
         run: |
           ## 1. Get 'Repository Upload Token' from Codecov:
           ##    https://app.codecov.io/gh/<org>/<repo>/settings
