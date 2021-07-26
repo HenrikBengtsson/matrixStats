@@ -166,7 +166,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
   x[is.infinite(center)] <- NaN
 
-  equal <- all.equal(x, x2, check.attribute = FALSE)
+  equal <- all.equal(x, x2, check.attributes = FALSE)
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
