@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
-                               na.rm = FALSE, ...) {
+                               na.rm = FALSE, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,10 +66,15 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- apply(x, MARGIN = 1L, FUN = function(x) {
       weightedMedian(x, w = w, na.rm = na.rm, ...)
     })
+    
+    # Preserve names attribute?
+    if (!(is.na(useNames) || useNames)) {
+      names(res) <- NULL
+    }
 
     w <- NULL  # Not needed anymore
   } else {
-    res <- rowMedians(x, na.rm = na.rm)
+    res <- rowMedians(x, na.rm = na.rm, useNames = useNames)
   }
 
   res
@@ -79,7 +84,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMedians
 #' @export
 colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
-                               na.rm = FALSE, ...) {
+                               na.rm = FALSE, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -118,10 +123,15 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- apply(x, MARGIN = 2L, FUN = function(x) {
       weightedMedian(x, w = w, na.rm = na.rm, ...)
     })
+    
+    # Preserve names attribute?
+    if (!(is.na(useNames) || useNames)) {
+      names(res) <- NULL
+    }
 
     w <- NULL  # Not needed anymore
   } else {
-    res <- colMedians(x, na.rm = na.rm)
+    res <- colMedians(x, na.rm = na.rm, useNames = useNames)
   }
 
   res

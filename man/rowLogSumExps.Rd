@@ -6,30 +6,33 @@
 \title{Accurately computes the logarithm of the sum of exponentials across rows or
 columns}
 \usage{
-rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
+rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(lx), ..., useNames = NA)
 
-colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
+colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(lx), ..., useNames = NA)
 }
 \arguments{
 \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 Typically \code{lx} are \eqn{log(x)} values.}
 
-\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
-operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
+(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
+is done.}
 
-\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
-operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
-
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
-excluded.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are
+ignored, otherwise not.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
-\code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
-being named with a period at the end is purely technical (we get a run-time
-error if we try to name it \code{dim}).}
+\code{\link[base]{matrix}}.}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N

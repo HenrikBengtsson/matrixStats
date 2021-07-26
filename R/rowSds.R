@@ -22,8 +22,8 @@
 #'
 #' @export
 rowSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ...) {
-  x <- rowVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., ...)
+                    dim. = dim(x), ..., useNames = NA) {
+  x <- rowVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., useNames = useNames, ...)
   sqrt(x)
 }
 
@@ -31,7 +31,7 @@ rowSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @rdname rowSds
 #' @export
 colSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ...) {
-  x <- colVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., ...)
+                    dim. = dim(x), ..., useNames = NA) {
+  x <- colVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., useNames = useNames, ...)
   sqrt(x)
 }

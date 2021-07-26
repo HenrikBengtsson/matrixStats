@@ -6,9 +6,9 @@
 \alias{iqr}
 \title{Estimates of the interquartile range for each row (column) in a matrix}
 \usage{
-rowIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
+rowIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA)
 
-colIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
+colIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA)
 
 iqr(x, idxs = NULL, na.rm = FALSE, ...)
 }
@@ -27,6 +27,11 @@ excluded.}
 
 \item{...}{Additional arguments passed to \code{\link{rowQuantiles}}()
 (\code{colQuantiles()}).}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}

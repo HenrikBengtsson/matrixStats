@@ -5,9 +5,11 @@
 \alias{colWeightedMeans}
 \title{Calculates the weighted means for each row (column) in a matrix}
 \usage{
-rowWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
+rowWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
+  ..., useNames = NA)
 
-colWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE, ...)
+colWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
+  ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -26,6 +28,11 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 excluded.}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

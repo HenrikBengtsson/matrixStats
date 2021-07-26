@@ -29,7 +29,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
-                          dim. = dim(x), ...) {
+                          dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -38,14 +38,33 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
   }
 
   which <- as.integer(which)
-  .Call(C_rowOrderStats, x, dim., rows, cols, which)
+  res <- .Call(C_rowOrderStats, x, dim., rows, cols, which)
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- rownames(x)
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
+        }
+        names(res) <- names
+      }
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowOrderStats
 #' @export
 colOrderStats <- function(x, rows = NULL, cols = NULL, which,
-                          dim. = dim(x), ...) {
+                          dim. = dim(x), ..., useNames = NA) {
   dim. <- as.integer(dim.)
 
   # Check missing values
@@ -54,5 +73,24 @@ colOrderStats <- function(x, rows = NULL, cols = NULL, which,
   }
 
   which <- as.integer(which)
-  .Call(C_colOrderStats, x, dim., rows, cols, which)
+  res <- .Call(C_colOrderStats, x, dim., rows, cols, which)
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- colnames(x)
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL         
+        }
+        names(res) <- names
+      }
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }

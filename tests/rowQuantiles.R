@@ -1,6 +1,11 @@
 library("matrixStats")
 
-rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, drop = TRUE, type = 7L, ...) {
+## Create isFALSE() if running on an old version of R
+if (!exists("isFALSE", mode="function")) {
+  isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
+}
+
+rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, drop = TRUE, type = 7L, ..., useNames = NA) {
   q <- apply(x, MARGIN = 1L, FUN = function(x, probs, na.rm) {
     if (!na.rm && any(is.na(x))) {
       na_value <- NA_real_
@@ -17,6 +22,7 @@ rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, 
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
   rownames(q) <- rownames(x)
+  if (isFALSE(useNames)) rownames(q) <- NULL
 
   if (drop) q <- drop(q)
   q
@@ -30,17 +36,29 @@ for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(1:40 + 0.1, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
-  dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+  dimnames <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
   str(x)
 
   probs <- c(0, 0.5, 1)
-  q0 <- rowQuantiles_R(x, probs = probs)
-  print(q0)
-  q1 <- rowQuantiles(x, probs = probs)
-  print(q1)
-  stopifnot(all.equal(q1, q0))
-  q2 <- colQuantiles(t(x), probs = probs)
-  stopifnot(all.equal(q2, q0))
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL    
+    # Check names attribute
+    for (useNames in c(NA, TRUE, FALSE)) {
+      q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
+      print(q0)
+      q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
+      print(q1)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q1) <- storage.mode(q0)
+      stopifnot(all.equal(q1, q0))
+      q2 <- colQuantiles(t(x), probs = probs, useNames = useNames)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q2) <- storage.mode(q0)
+      stopifnot(all.equal(q2, q0))      
+    }
+  }
 } # for (mode ...)
 
 
@@ -51,17 +69,29 @@ for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(1:40, nrow = 8, ncol = 5)
   storage.mode(x) <- mode
-  dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+  dimnames <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
   str(x)
 
   probs <- c(0.5)
-  q0 <- rowQuantiles_R(x, probs = probs)
-  print(q0)
-  q1 <- rowQuantiles(x, probs = probs)
-  print(q1)
-  stopifnot(all.equal(q1, q0))
-  q2 <- colQuantiles(t(x), probs = probs)
-  stopifnot(all.equal(q2, q0))
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL    
+    # Check names attribute
+    for (useNames in c(NA, TRUE, FALSE)) {
+      q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
+      print(q0)
+      q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q1) <- storage.mode(q0)
+      print(q1)
+      stopifnot(all.equal(q1, q0))
+      q2 <- colQuantiles(t(x), probs = probs, useNames = useNames)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q2) <- storage.mode(q0)
+      stopifnot(all.equal(q2, q0))      
+    }
+  }
 } # for (mode ...)
 
 
@@ -82,7 +112,7 @@ for (kk in seq_len(n_sims)) {
   n <- prod(dim)
   x <- rnorm(n, sd = 100)
   dim(x) <- dim
-  dimnames(x) <- lapply(dim(x), FUN = function(n) rep(letters, length.out = n))
+  dimnames <- lapply(dim(x), FUN = function(n) rep(letters, length.out = n))
 
   # Add NAs?
   has_na <- ((kk %% 2) == 0L)
@@ -95,24 +125,38 @@ for (kk in seq_len(n_sims)) {
   }
 
   # Logical, integer, or double?
+  mode <- "numeric"
   if ((kk %% 6) %in% 1:2) {
     cat("Coercing to logical\n")
-    storage.mode(x) <- "logical"
+    mode <- "logical"
   } else if ((kk %% 6) %in% 3:4) {
     cat("Coercing to integers\n")
-    storage.mode(x) <- "integer"
+    mode <- "integer"
   }
-
+  storage.mode(x) <- mode
+  
   str(x)
 
   # rowQuantiles():
   for (type in 1:9) {
     cat(sprintf("type=%d, has_na=%s:\n", type, has_na))
-    q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type)
-    q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type)
-    stopifnot(all.equal(q1, q0))
-    q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type)
-    stopifnot(all.equal(q2, q0))
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL    
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
+        q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
+        ## FIXME: Workaround for R (< 3.0.0)
+        if (getRversion() < "3.0.0" && mode == "logical" && !has_na && type == 7L) storage.mode(q1) <- storage.mode(q0)
+        stopifnot(all.equal(q1, q0))
+        q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type, useNames = useNames)
+        ## FIXME: Workaround for R (< 3.0.0)
+        if (getRversion() < "3.0.0" && mode == "logical" && !has_na && type == 7L) storage.mode(q2) <- storage.mode(q0)
+        stopifnot(all.equal(q2, q0))
+      }
+    }
   }
 } # for (kk ...)
 
@@ -130,15 +174,24 @@ for (mode in c("logical", "integer", "double")) {
     # All NA
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     x <- matrix(naValue, nrow = 3L, ncol = 4L)
-    qr0 <- rowQuantiles_R(x, type = type)
-
-    qr <- rowQuantiles(x, type = type)
-    stopifnot(identical(qr, qr0))
-
-    x <- matrix(naValue, nrow = 4L, ncol = 3L)
-    qc <- colQuantiles(x, type = type)
-
-    stopifnot(identical(qc, qr))
+    dimnames <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL    
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        qr0 <- rowQuantiles_R(x, type = type, useNames = useNames)
+        
+        qr <- rowQuantiles(x, type = type, useNames = useNames)
+        stopifnot(identical(qr, qr0))
+        
+        # x <- matrix(naValue, nrow = 4L, ncol = 3L)
+        qc <- colQuantiles(t(x), type = type, useNames = useNames)
+        
+        stopifnot(identical(qc, qr))
+      }
+    }
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -147,19 +200,19 @@ for (mode in c("logical", "integer", "double")) {
     probs <- c(0, 0.25, 0.75, 1)
     x <- matrix(naValue, nrow = 0L, ncol = 0L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    q <- rowQuantiles(x, probs = probs, type = type)
+    q <- rowQuantiles(x, probs = probs, type = type, useNames = TRUE)
     stopifnot(identical(dim(q), c(nrow(x), length(probs))))
-    q <- colQuantiles(x, probs = probs, type = type)
+    q <- colQuantiles(x, probs = probs, type = type, useNames = TRUE)
     stopifnot(identical(dim(q), c(ncol(x), length(probs))))
     
     x <- matrix(naValue, nrow = 2L, ncol = 0L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    q <- rowQuantiles(x, probs = probs, type = type)
+    q <- rowQuantiles(x, probs = probs, type = type, useNames = TRUE)
     stopifnot(identical(dim(q), c(nrow(x), length(probs))))
     
     x <- matrix(naValue, nrow = 0L, ncol = 2L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    q <- colQuantiles(x, probs = probs, type = type)
+    q <- colQuantiles(x, probs = probs, type = type, useNames = TRUE)
     stopifnot(identical(dim(q), c(ncol(x), length(probs))))
 
 
@@ -169,16 +222,14 @@ for (mode in c("logical", "integer", "double")) {
     probs <- c(0, 0.25, 0.75, 1)
     x <- matrix(someValue, nrow = 2L, ncol = 1L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    qr <- rowQuantiles(x, probs = probs, type = type)
+    qr <- rowQuantiles(x, probs = probs, type = type, useNames = TRUE)
     print(qr)
     
     x <- matrix(someValue, nrow = 1L, ncol = 2L)
     dimnames(x) <- lapply(dim(x), FUN = function(n) letters[seq_len(n)])
-    qc <- colQuantiles(x, probs = probs, type = type)
+    qc <- colQuantiles(x, probs = probs, type = type, useNames = TRUE)
     print(qc)
     
     stopifnot(identical(qc, qr))
   }
 }
-
-

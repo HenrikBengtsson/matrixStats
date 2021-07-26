@@ -31,8 +31,13 @@
 #' \code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
 #' being named with a period at the end is purely technical (we get a run-time
 #' error if we try to name it \code{dim}).
-#'
+#' 
 #' @param ... Not used.
+#' 
+#' @param useNames If \code{\link[base]{NA}}, the default behavior of the 
+#' function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+#' no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+#' attributes of result are set. 
 #'
 #' @return \code{rowAlls()} (\code{colAlls()}) returns an
 #' \code{\link[base]{logical}} \code{\link[base]{vector}} of length N (K).
@@ -51,22 +56,22 @@
 #' @keywords array logic iteration univar
 #' @export
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas)
-      (counts == 0L)
+      res <- (counts == 0L)
     } else {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas)
-      (counts == 1L)
+      res <- (counts == 1L)
     }
   } else if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 0L, na.rm, has_nas)
-    as.logical(counts)
+    res <- as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
     if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
@@ -78,33 +83,56 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     dim. <- dim(x)
 
     if (is.na(value)) {
-      rowAlls(is.na(x), na.rm = na.rm, dim. = dim., ...)
+      return(rowAlls(is.na(x), na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     } else {
-      rowAlls(x == value, na.rm = na.rm, dim. = dim., ...)
+      z <- (x == value)
+      dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
+      if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
+      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      return(rowAlls(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
+
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- rownames(x)
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
+        }
+        names(res) <- names
+      }
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res 
 }
 
 
 #' @rdname rowAlls
 #' @export
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas)
-      (counts == 0L)
+      res <- (counts == 0L)
     } else {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas)
-      (counts == 1L)
+      res <- (counts == 1L)
     }
   } else if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 0L, na.rm, has_nas)
-    as.logical(counts)
+    res <- as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
     if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
@@ -116,11 +144,34 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     dim. <- dim(x)
 
     if (is.na(value)) {
-      colAlls(is.na(x), na.rm = na.rm, dim. = dim., ...)
+      return(colAlls(is.na(x), na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     } else {
-      colAlls(x == value, na.rm = na.rm, dim. = dim., ...)
+      z <- (x == value)
+      dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
+      if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
+      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      return(colAlls(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- colnames(x)
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL       
+        }
+        names(res) <- names
+      }
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
@@ -158,22 +209,22 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 #' @rdname rowAlls
 #' @export
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas)
-      (counts == 0L)
+      res <- (counts == 0L)
     } else {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas)
-      (counts == 1L)
+      res <- (counts == 1L)
     }
   } else if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 1L, na.rm, has_nas)
-    as.logical(counts)
+    res <- as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
     if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
@@ -185,33 +236,56 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     dim. <- dim(x)
 
     if (is.na(value)) {
-      rowAnys(is.na(x), na.rm = na.rm, dim. = dim., ...)
+      return(rowAnys(is.na(x), na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     } else {
-      rowAnys(x == value, na.rm = na.rm, dim. = dim., ...)
+      z <- (x == value)
+      dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
+      if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
+      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      return(rowAnys(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- rownames(x)
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
+        }
+        names(res) <- names
+      }
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 
 #' @rdname rowAlls
 #' @export
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ...) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas)
-      (counts == 0L)
+      res <- (counts == 0L)
     } else {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas)
-      (counts == 1L)
+      res <- (counts == 1L)
     }
   } else if (is.numeric(x) || is.logical(x)) {
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 1L, na.rm, has_nas)
-    as.logical(counts)
+    res <- as.logical(counts)
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
     if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
@@ -223,11 +297,34 @@ colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
     dim. <- dim(x)
 
     if (is.na(value)) {
-      colAnys(is.na(x), na.rm = na.rm, dim. = dim., ...)
+      return(colAnys(is.na(x), na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     } else {
-      colAnys(x == value, na.rm = na.rm, dim. = dim., ...)
+      z <- (x == value)
+      dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
+      if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
+      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      return(colAnys(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- colnames(x)
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL       
+        }
+        names(res) <- names
+      }
+    } else {
+      names(res) <- NULL
+    }
+  }
+  
+  res
 }
 
 

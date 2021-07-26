@@ -9,10 +9,10 @@
 product(x, idxs = NULL, na.rm = FALSE, ...)
 
 rowProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
-  method = c("direct", "expSumLog"), ...)
+  method = c("direct", "expSumLog"), ..., useNames = NA)
 
 colProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
-  method = c("direct", "expSumLog"), ...)
+  method = c("direct", "expSumLog"), ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -34,6 +34,11 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{method}{A \code{\link[base]{character}} string specifying how each
 product is calculated.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

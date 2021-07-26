@@ -4,16 +4,23 @@
 #' @export
 rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), ...) {
+                    dim. = dim(x), ..., useNames = NA) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
     constant <- as.numeric(constant)
     has_nas <- TRUE
+    
+    # Preserve names
+    names <- rownames(x)
+    
     x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, TRUE)
   } else {
     ## https://github.com/HenrikBengtsson/matrixStats/issues/187
     centerOnUse("rowMads")
+    
+    # Preserve names
+    names <- rownames(x)
     
     # Apply new dimensions
     if (!identical(dim(x), dim.)) dim(x) <- dim.
@@ -37,9 +44,26 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     x <- x - center
     if (is.null(dim(x))) dim(x) <- dim. # prevent from dim dropping
     x <- abs(x)
-    x <- rowMedians(x, na.rm = na.rm, ...)
+    x <- rowMedians(x, na.rm = na.rm, ..., useNames = useNames)
     x <- constant * x
   }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
+        }
+        names(x) <- names
+      }
+    } else {
+      names(x) <- NULL
+    }
+  }
+  
   x
 }
 
@@ -48,16 +72,23 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
 #' @export
 colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), ...) {
+                    dim. = dim(x), ..., useNames = NA) {
   if (is.null(center)) {
     dim. <- as.integer(dim.)
     na.rm <- as.logical(na.rm)
     constant <- as.numeric(constant)
     has_nas <- TRUE
+    
+    # Preserve names
+    names <- colnames(x)
+    
     x <- .Call(C_rowMads, x, dim., rows, cols, constant, na.rm, has_nas, FALSE)
   } else {
     ## https://github.com/HenrikBengtsson/matrixStats/issues/187
     centerOnUse("colMads")
+    
+    # Preserve names
+    names <- colnames(x)
     
     # Apply new dimensions
     if (!identical(dim(x), dim.)) dim(x) <- dim.
@@ -85,8 +116,25 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     ## FAST:
     x <- t_tx_OP_y(x, center, OP = "-", na.rm = FALSE)
     x <- abs(x)
-    x <- colMedians(x, na.rm = na.rm, ...)
+    x <- colMedians(x, na.rm = na.rm, ..., useNames = useNames)
     x <- constant * x
   }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL         
+        }
+        names(x) <- names
+      }
+    } else {
+      names(x) <- NULL
+    }
+  }
+
   x
 }

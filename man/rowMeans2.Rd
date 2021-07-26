@@ -5,9 +5,11 @@
 \alias{colMeans2}
 \title{Calculates the mean for each row (column) in a matrix}
 \usage{
-rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
+rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+  ..., useNames = NA)
 
-colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...)
+colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
+  ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -29,6 +31,11 @@ being named with a period at the end is purely technical (we get a run-time
 error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

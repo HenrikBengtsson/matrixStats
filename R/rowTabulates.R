@@ -28,7 +28,7 @@
 #' @author Henrik Bengtsson
 #' @keywords utilities
 #' @export
-rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
+rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -78,6 +78,16 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
   for (kk in seq_len(nbr_of_values)) {
     counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
   }
+  
+  # Update rownames attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      rownames <- rownames(x)
+      if (!is.null(rownames)) rownames(counts) <- rownames
+    } else {
+      rownames(counts) <- NULL
+    }
+  }
 
   counts
 }
@@ -85,7 +95,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
 
 #' @rdname rowTabulates
 #' @export
-colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
+colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -138,5 +148,16 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ...) {
       counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
     }
   }
+  
+  # Update rownames attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      colnames <- colnames(x)
+      if (!is.null(colnames)) rownames(counts) <- colnames
+    } else {
+      rownames(counts) <- NULL
+    }
+  }
+  
   counts
 }

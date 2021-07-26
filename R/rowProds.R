@@ -31,10 +31,10 @@
 #' @keywords array iteration robust univar
 #' @export
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ...) {
+                     method = c("direct", "expSumLog"), ..., useNames = NA) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
-
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -61,6 +61,16 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[ii, , drop = TRUE], na.rm = na.rm)
   }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- rownames(x)
+      if (!is.null(names)) names(y) <- names
+    } else {
+      names(y) <- NULL
+    }
+  }
 
   y
 }
@@ -69,7 +79,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowProds
 #' @export
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ...) {
+                     method = c("direct", "expSumLog"), ..., useNames = NA) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -98,6 +108,16 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[, ii, drop = TRUE], na.rm = na.rm)
+  }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- colnames(x)
+      if (!is.null(names)) names(y) <- names
+    } else {
+      names(y) <- NULL
+    }
   }
 
   y

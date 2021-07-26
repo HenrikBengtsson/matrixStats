@@ -8,16 +8,16 @@
 \title{Standard deviation estimates for each row (column) in a matrix}
 \usage{
 rowMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), ...)
+  na.rm = FALSE, dim. = dim(x), ..., useNames = NA)
 
 colMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), ...)
+  na.rm = FALSE, dim. = dim(x), ..., useNames = NA)
 
 rowSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 
 colSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -45,6 +45,11 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Additional arguments passed to \code{rowMeans()} and
 \code{rowSums()}.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

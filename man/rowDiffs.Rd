@@ -6,10 +6,10 @@
 \title{Calculates difference for each row (column) in a matrix}
 \usage{
 rowDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 
 colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -33,6 +33,11 @@ being named with a period at the end is purely technical (we get a run-time
 error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} Nx(K-1) or (N-1)xK

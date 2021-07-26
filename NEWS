@@ -1,6 +1,17 @@
 Package: matrixStats
 ====================
 
+Version: 0.60.0 [2021-07-26]
+
+NEW FEATURES:
+
+ * Add row and column names support to all row and column functions. To
+   return row and column names, set argument useNames=TRUE. To drop them,
+   set useNames=FALSE. To preserve the current, inconsistent behavior,
+   set useNames=NA, which, for backward compatibility reasons, remains the
+   default for now.
+
+
 Version: 0.59.0 [2021-05-31]
 
 MISCELLANEOUS:

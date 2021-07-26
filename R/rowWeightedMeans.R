@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
-                             na.rm = FALSE, ...) {
+                             na.rm = FALSE, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,7 +66,21 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     idxs <- which(is.na(w) | w != 0)
     nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times = m))
+      res <- rep(NaN, times = m)
+      
+      # Update names attribute?
+      if (!is.na(useNames)) {
+        if (useNames) {
+          names <- rownames(x)
+          if (!is.null(names)) {
+            names(res) <- names
+          }
+        } else {
+          names(res) <- NULL
+        }
+      }
+      
+      return(res)
     } else if (nw < n) {
       w <- w[idxs]
       x <- x[, idxs, drop = FALSE]
@@ -97,16 +111,36 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       nas <- NULL  # Not needed anymore
 
       x <- W * x
+      
+      # Preserve dimnames attribute?
+      if (!(is.na(useNames) || useNames)) {
+        dimnames(x) <- NULL
+      }
+      
       W <- NULL  # Not needed anymore
     } else {
       wS <- sum(w)
       # Standardize weights summing to one.
       w <- w / wS
+      
+      # Preserve dimnames attribute
+      dimnames <- dimnames(x)
 
       # Weighted values
       ## SLOW: for (rr in 1:m) x[rr, ] <- w * x[rr, , drop = TRUE]
       ## FAST:
       x <- t_tx_OP_y(x, w, OP = "*", na.rm = FALSE)
+      
+      # Update dimnames attribute?
+      if (!is.na(useNames)) {
+        if (useNames) {
+          if (!is.null(dimnames)) {
+            dimnames(x) <- dimnames
+          }
+        } else {
+          dimnames(x) <- NULL
+        }
+      }
 
       w <- NULL  # Not needed anymore
     }
@@ -115,6 +149,11 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- rowSums(x, na.rm = FALSE)
   } else {
     res <- rowMeans(x, na.rm = na.rm)
+    
+    # Preserve names attribute?
+    if (!(is.na(useNames) || useNames)) {
+      names(res) <- NULL
+    }    
   }
 
   res
@@ -124,7 +163,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMeans
 #' @export
 colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
-                             na.rm = FALSE, ...) {
+                             na.rm = FALSE, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -164,7 +203,21 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     idxs <- which(is.na(w) | w != 0)
     nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times = m))
+      res <- rep(NaN, times = m)
+      
+      # Update names attribute?
+      if (!is.na(useNames)) {
+        if (useNames) {
+          names <- colnames(x)
+          if (!is.null(names)) {
+            names(res) <- names
+          }
+        } else {
+          names(res) <- NULL
+        }
+      }
+      
+      return(res)
     } else if (nw < n) {
       w <- w[idxs]
       x <- x[idxs, , drop = FALSE]
@@ -215,6 +268,11 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     res <- colSums(x, na.rm = FALSE)
   } else {
     res <- colMeans(x, na.rm = na.rm)
+  }
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    names(res) <- NULL
   }
 
   res

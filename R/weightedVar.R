@@ -138,7 +138,7 @@ weightedSd <- function(...) {
 #' @rdname weightedVar
 #' @export
 rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
-                            na.rm = FALSE, ...) {
+                            na.rm = FALSE, ..., useNames = NA) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -146,6 +146,11 @@ rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 
   # Apply subset on 'w'
   if (!is.null(w) && !is.null(cols)) w <- w[cols]
+  
+  # Preserve names attributes?
+  if (!(is.na(useNames) || useNames)) {
+    rownames(x) <- NULL
+  }
 
   apply(x, MARGIN = 1L, FUN = weightedVar, w = w, na.rm = na.rm, ...)
 }
@@ -154,7 +159,7 @@ rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname weightedVar
 #' @export
 colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
-                            na.rm = FALSE, ...) {
+                            na.rm = FALSE, ..., useNames = NA) {
   # Apply subset on 'x'
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -162,6 +167,11 @@ colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 
   # Apply subset on 'w'
   if (!is.null(w) && !is.null(rows)) w <- w[rows]
+  
+  # Preserve names attributes?
+  if (!(is.na(useNames) || useNames)) {
+    colnames(x) <- NULL
+  }
 
   apply(x, MARGIN = 2L, FUN = weightedVar, w = w, na.rm = na.rm, ...)
 }
@@ -170,16 +180,16 @@ colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname weightedVar
 #' @export
 rowWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
-                           na.rm = FALSE, ...) {
+                           na.rm = FALSE, ..., useNames = NA) {
   sqrt(rowWeightedVars(x = x, w = w, rows = rows, cols = cols,
-                       na.rm = na.rm, ...))
+                       na.rm = na.rm, useNames = useNames, ...))
 }
 
 
 #' @rdname weightedVar
 #' @export
 colWeightedSds <- function(x, w = NULL, rows = NULL, cols = NULL,
-                           na.rm = FALSE, ...) {
+                           na.rm = FALSE, ..., useNames = NA) {
   sqrt(colWeightedVars(x = x, w = w, rows = rows, cols = cols,
-                       na.rm = na.rm, ...))
+                       na.rm = na.rm, useNames = useNames, ...))
 }

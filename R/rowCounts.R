@@ -24,7 +24,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ...) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -47,10 +47,16 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
+    # Preserve rownames
+    names <- rownames(x)
+    
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
   } else {
+    # Preserve rownames
+    names <- rownames(x)
+    
     # Apply new dimensions
     if (!identical(dim(x), dim.)) dim(x) <- dim.
 
@@ -70,15 +76,32 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       })
     }
   }
-
-  as.integer(counts)
+  counts <- as.integer(counts)
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
+        }
+        names(counts) <- names
+      }
+    } else {
+      names(counts) <- NULL
+    }
+  }
+  
+  counts
 }
 
 
 #' @rdname rowCounts
 #' @export
 colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ...) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -101,10 +124,16 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
+    # Preserve colnames
+    names <- colnames(x)
+    
     na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
   } else {
+    # Preserve colnames
+    names <- colnames(x)
+    
     # Apply new dimensions
     if (!identical(dim(x), dim.)) dim(x) <- dim.
 
@@ -119,13 +148,30 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
         sum(is.na(x))
       )
     } else {
-      counts <- apply(x, MARGIN = 2L, FUN = function(x)
+      counts <- apply(x, MARGIN = 2L, FUN = function(x) {
         sum(x == value, na.rm = na.rm)
-      )
+      })
+    }
+  }
+  counts <- as.integer(counts)
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL        
+        }
+        names(counts) <- names
+      }
+    } else {
+      names(counts) <- NULL
     }
   }
 
-  as.integer(counts)
+  counts
 }
 
 
@@ -162,6 +208,5 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
       counts <- sum2(x == value, na.rm = na.rm)
     }
   }
-
   counts
 }

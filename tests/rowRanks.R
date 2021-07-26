@@ -2,20 +2,36 @@ library("matrixStats")
 
 dense_rank <- function(x) match(x, table = sort(unique(x)))
 
-rowRanks_R <- function(X, ties.method, ...) {
+rowRanks_R <- function(x, ties.method, ..., useNames = NA) {
   if (ties.method == "dense") {
-    t(apply(X, MARGIN = 1L, FUN = dense_rank))
+    res <- t(apply(x, MARGIN = 1L, FUN = dense_rank))
   } else {
-    t(apply(X, MARGIN = 1L, FUN = rank, na.last = "keep", ties.method = ties.method))
+    res <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep", ties.method = ties.method))
   }
+  
+  # Preserve dimnames attribute?
+  dim(res) <- dim(x)
+  dimnames <- dimnames(x)
+  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(res) <- dimnames
+  
+  res
 }
 
-colRanks_R <- function(X, ties.method, ...) {
+colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA) {
   if (ties.method == "dense") {
-    t(apply(X, MARGIN = 2L, FUN = dense_rank))
+    res <- t(apply(x, MARGIN = 2L, FUN = dense_rank))
   } else {
-    t(apply(X, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties.method))
+    res <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties.method))
   }
+  
+  # Preserve dimnames attribute?
+  tx <- t(x)
+  dim(res) <- dim(tx)
+  dimnames <- dimnames(tx)
+  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(res) <- dimnames
+  
+  if (preserveShape) res <- t(res)
+  res
 }
 
 set.seed(1)
@@ -135,3 +151,42 @@ stopifnot(inherits(y, "try-error"))
 
 y <- try(colRanks(x, ties.method = "unknown"), silent = TRUE)
 stopifnot(inherits(y, "try-error"))
+
+dimnames <- list(letters[1:3], LETTERS[1:4])
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    for (ties in c("max", "min", "average", "first", "last", "dense")) {
+      cat(sprintf("ties.method = %s\n", ties))
+      # rowRanks():
+      y1 <- matrixStats::rowRanks(x, ties.method = ties, useNames = useNames)
+      if (ties != "last" || getRversion() >= "3.3.0") {
+        y2 <- rowRanks_R(x, ties.method = ties, useNames = useNames)
+        stopifnot(identical(y1, y2))
+      }
+      
+      y3 <- matrixStats::colRanks(t(x), ties.method = ties, useNames = useNames)
+      stopifnot(identical(y1, y3))
+      
+      # colRanks():
+      y1 <- matrixStats::colRanks(x, ties.method = ties, useNames = useNames)
+      if (ties != "last" || getRversion() >= "3.3.0") {
+        y2 <- colRanks_R(x, ties.method = ties, useNames = useNames)
+        stopifnot(identical(y1, y2))
+      }
+      
+      y3 <- matrixStats::rowRanks(t(x), ties.method = ties, useNames = useNames)
+      stopifnot(identical(y1, y3))
+      
+      # Check preserveShape
+      y1 <- matrixStats::colRanks(x, ties.method = ties, preserveShape = TRUE, useNames = useNames)
+      if (ties != "last" || getRversion() >= "3.3.0") {
+        y2 <- colRanks_R(x, ties.method = ties, preserveShape = TRUE, useNames = useNames)
+        stopifnot(identical(y1, y2))
+      }
+    }
+  }
+}
