@@ -50,8 +50,12 @@ for (mode in c("logical", "integer", "double")) {
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
       print(q1)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q1) <- storage.mode(q0)
       stopifnot(all.equal(q1, q0))
       q2 <- colQuantiles(t(x), probs = probs, useNames = useNames)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q2) <- storage.mode(q0)
       stopifnot(all.equal(q2, q0))      
     }
   }
@@ -78,9 +82,13 @@ for (mode in c("logical", "integer", "double")) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q1) <- storage.mode(q0)
       print(q1)
       stopifnot(all.equal(q1, q0))
       q2 <- colQuantiles(t(x), probs = probs, useNames = useNames)
+      ## FIXME: Workaround for R (< 3.0.0)
+      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q2) <- storage.mode(q0)
       stopifnot(all.equal(q2, q0))      
     }
   }
@@ -117,14 +125,16 @@ for (kk in seq_len(n_sims)) {
   }
 
   # Logical, integer, or double?
+  mode <- "numeric"
   if ((kk %% 6) %in% 1:2) {
     cat("Coercing to logical\n")
-    storage.mode(x) <- "logical"
+    mode <- "logical"
   } else if ((kk %% 6) %in% 3:4) {
     cat("Coercing to integers\n")
-    storage.mode(x) <- "integer"
+    mode <- "integer"
   }
-
+  storage.mode(x) <- mode
+  
   str(x)
 
   # rowQuantiles():
@@ -138,8 +148,12 @@ for (kk in seq_len(n_sims)) {
       for (useNames in c(NA, TRUE, FALSE)) {
         q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
         q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
+        ## FIXME: Workaround for R (< 3.0.0)
+        if (getRversion() < "3.0.0" && mode == "logical" && !has_na && type == 7L) storage.mode(q1) <- storage.mode(q0)
         stopifnot(all.equal(q1, q0))
         q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type, useNames = useNames)
+        ## FIXME: Workaround for R (< 3.0.0)
+        if (getRversion() < "3.0.0" && mode == "logical" && !has_na && type == 7L) storage.mode(q2) <- storage.mode(q0)
         stopifnot(all.equal(q2, q0))
       }
     }
