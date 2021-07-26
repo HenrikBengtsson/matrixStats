@@ -1,5 +1,5 @@
 Package: matrixStats
-Version: 0.60.0
+Version: 0.60.0-9000
 Depends:
   R (>= 2.12.0)
 Suggests:
@@ -25,8 +25,9 @@ Authors@R: c(
   person("Peter", "Langfelder", role="ctb"),
   person("Brian", "Montgomery", role="ctb"),
   person("Angelina", "Panagopoulou", role="ctb"),
-  person("Hugh", "Parsonage", role="ctb"))
-Author: Henrik Bengtsson [aut, cre, cph], Constantin Ahlmann-Eltze [ctb], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Jan Gleixner [ctb], Peter Hickey [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Brian Montgomery [ctb], Angelina Panagopoulou [ctb], Hugh Parsonage [ctb]
+  person("Hugh", "Parsonage", role="ctb"),
+  person("Jakob Peder", "Pettersen", role="ctb"))
+Author: Henrik Bengtsson [aut, cre, cph], Constantin Ahlmann-Eltze [ctb], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Jan Gleixner [ctb], Peter Hickey [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Brian Montgomery [ctb], Angelina Panagopoulou [ctb], Hugh Parsonage [ctb], Jakob Peder Pettersen [ctb]
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
 Description: High-performing functions operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  Functions optimized per data type and for subsetted calculations such that both memory usage and processing time is minimized.  There are also optimized vector-based methods, e.g. binMeans(), madDiff() and weightedMedian().
 License: Artistic-2.0
