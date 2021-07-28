@@ -8,7 +8,7 @@ jobs:
 
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) ${{ matrix.config.label }}
 
     strategy:
       fail-fast: false
@@ -20,15 +20,15 @@ jobs:
           - {os: macOS-latest,   r: 'devel'}
 #2020-09-24#          - {os: macOS-latest,   r: 'release'}
           - {os: macOS-latest,   r: 'oldrel'}
-          - {os: ubuntu-20.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
-          - {os: ubuntu-20.04,   r: '3.3',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+          - {os: ubuntu-20.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", covr: 'true', label: 'w/ covr' }
+          - {os: ubuntu-20.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04,   r: '3.3',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      R_FUTURE_RNG_ONMISUSE: error
+      _R_CHECK_CRAN_INCOMING_: false
       _R_CHECK_LENGTH_1_CONDITION_: true
       _R_CHECK_LENGTH_1_LOGIC2_: true
       _R_CHECK_MATRIX_DATA_: true
@@ -82,8 +82,6 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
-        env:
-          _R_CHECK_CRAN_INCOMING_: false
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
@@ -95,15 +93,13 @@ jobs:
           path: check
 
       - name: Test coverage - Install dependencies
-        if: runner.os == 'Linux' && matrix.config.r == 'release'
+        if: && matrix.config.covr == 'true'
         run: |
             sudo apt-get install --yes libcurl4-openssl-dev
-            ## Workaround: 'curl' from RSPM fails to load; install from CRAN
-            Rscript -e "install.packages('curl', repos='https://cloud.r-project.org')"
             Rscript -e "install.packages('covr')"
             
       - name: Test coverage
-        if: runner.os == 'Linux' && matrix.config.r == 'release'
+        if: matrix.config.covr == 'true'
         run: |
           ## 1. Get 'Repository Upload Token' from Codecov:
           ##    https://app.codecov.io/gh/<org>/<repo>/settings
