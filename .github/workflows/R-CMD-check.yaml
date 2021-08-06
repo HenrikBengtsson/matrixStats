@@ -4,8 +4,6 @@ name: R-CMD-check
 
 jobs:
   R-CMD-check:
-    if: "! contains(github.event.head_commit.message, '[ci skip]')"    
-
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }}) ${{ matrix.config.label }}
@@ -22,7 +20,6 @@ jobs:
           - {os: macOS-latest,   r: 'oldrel'}
           - {os: ubuntu-20.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
-          - {os: ubuntu-20.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest", valgrind: 'true', label: 'w/ valgrind' }
           - {os: ubuntu-20.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04,   r: '3.3',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
@@ -36,8 +33,6 @@ jobs:
       _R_CHECK_LENGTH_1_CONDITION_: true
       _R_CHECK_LENGTH_1_LOGIC2_: true
       _R_CHECK_MATRIX_DATA_: true
-      ## Specific to package
-      _R_CHECK_USE_VALGRIND_: ${{ matrix.config.valgrind }}
 
     steps:
       - uses: actions/checkout@v2
@@ -71,7 +66,6 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-          if [[ -n $_R_CHECK_USE_VALGRIND_ ]]; then sudo apt-get install --yes valgrind; fi
 
       - name: Install dependencies
         run: |
@@ -87,15 +81,9 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
-        if: matrix.config.valgrind != 'true'
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
-      - name: Check (valgrind)
-        if: matrix.config.valgrind == 'true'
-        run: rcmdcheck::rcmdcheck(args = c("--use-valgrind", "--no-manual", "--no-build-vignettes", "--no-codoc", "--no-examples", "--ignore-vignettes"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
-        
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
