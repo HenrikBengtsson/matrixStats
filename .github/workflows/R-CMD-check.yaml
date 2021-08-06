@@ -71,7 +71,7 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-          ${{ matrix.config.valgrind }} && sudo apt-get install --yes valgrind
+          [[ -n $_R_CHECK_USE_VALGRIND_ ]] && sudo apt-get install --yes valgrind
 
       - name: Install dependencies
         run: |
