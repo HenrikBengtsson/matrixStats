@@ -6,11 +6,11 @@
 \title{Estimates quantiles for each row (column) in a matrix}
 \usage{
 rowQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1,
-  by = 0.25), na.rm = FALSE, type = 7L, ..., useNames = TRUE,
+  by = 0.25), na.rm = FALSE, type = 7L, ..., useNames = NA,
   drop = TRUE)
 
 colQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1,
-  by = 0.25), na.rm = FALSE, type = 7L, ..., useNames = TRUE,
+  by = 0.25), na.rm = FALSE, type = 7L, ..., useNames = NA,
   drop = TRUE)
 }
 \arguments{

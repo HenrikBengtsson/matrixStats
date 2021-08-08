@@ -1,9 +1,12 @@
 Package: matrixStats
 ====================
 
-Version: 0.60.0-9000 [2021-07-26]
+Version: 0.60.0-9001 [2021-08-06]
 
- * ...
+BUG FIXES:
+
+ * Contrary to other functions which gained new argument useNames=NA in the
+   previous release, colQuantiles() and rowQuantiles() got useNames=TRUE.
  
 
 Version: 0.60.0 [2021-07-26]
