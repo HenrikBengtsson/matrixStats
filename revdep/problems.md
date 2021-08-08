@@ -292,14 +292,19 @@ Run `revdep_details(, "autonomics")` for more info
     Running examples in ‘autonomics-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: fit_limma
-    > ### Title: Fit model and test for differential expression
-    > ### Aliases: fit_limma fit_lm fit_lme fit_lmer fit_wilcoxon
+    > ### Name: create_design
+    > ### Title: Create design
+    > ### Aliases: create_design
     > 
     > ### ** Examples
     > 
-    > require(magrittr)
-    Loading required package: magrittr
+    > file <- download_data('billing19.rnacounts.txt')
+    ...
+    > unique(create_design(object))
+    		Design: ~1
+           Intercept
+    E00_R1         1
+    > 
     > file <- download_data('atkin18.somascan.adat')
     > object <- read_somascan(file, plot=FALSE)
     Error in file(con, "r") : invalid 'description' argument
@@ -395,9 +400,9 @@ Run `revdep_details(, "BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is 12.1Mb
       sub-directories of 1Mb or more:
-        data   3.9Mb
+        data   2.0Mb
         doc    1.4Mb
         libs   7.8Mb
     ```
@@ -506,11 +511,11 @@ Run `revdep_details(, "bingat")` for more info
 
 <details>
 
-* Version: 1.0.1
+* Version: 1.0.3
 * GitHub: https://github.com/almeidasilvaf/BioNERO
 * Source code: https://github.com/cran/BioNERO
-* Date/Publication: 2021-07-04
-* Number of recursive dependencies: 210
+* Date/Publication: 2021-08-01
+* Number of recursive dependencies: 213
 
 Run `revdep_details(, "BioNERO")` for more info
 
@@ -520,10 +525,10 @@ Run `revdep_details(, "BioNERO")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.2Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
         data   2.2Mb
-        doc    4.4Mb
+        doc    4.3Mb
     ```
 
 # biscuiteer
@@ -700,9 +705,9 @@ Run `revdep_details(, "brms")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.8Mb
+      installed size is  7.3Mb
       sub-directories of 1Mb or more:
-        R      5.0Mb
+        R      3.4Mb
         doc    2.4Mb
         help   1.0Mb
     ```
@@ -1045,9 +1050,9 @@ Run `revdep_details(, "CelliD")` for more info
     > 
     > seuratPbmc <- RunMCA(seuratPbmc, nmcs = 5)
     ...
-    0.055 sec elapsed
+    0.027 sec elapsed
     Computing Coordinates
-    0.012 sec elapsed
+    0.005 sec elapsed
     > seuratPbmc <- RunMCDMAP(seuratPbmc, dims = seq(5), k = 5)
     
     getting feature and cell coordinates
@@ -1234,7 +1239,7 @@ Run `revdep_details(, "ChAMP")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  6.2Mb
       sub-directories of 1Mb or more:
         doc       3.6Mb
         extdata   1.9Mb
@@ -1345,14 +1350,16 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
+      The following object is masked from 'package:AnnotationFilter':
+      
+          not
       
       [1] TRUE
       > test_check("ChIPpeakAnno")
-      Error in x$.self$finalize() : attempt to apply non-function
       ══ Skipped tests ═══════════════════════════════════════════════════════════════
-      • empty test (5)
-      
     ...
+       4.     └─ChIPpeakAnno:::EnsDb2GR(data, feature)
+       5.       └─ChIPpeakAnno:::formatSeqnames(...)
        6.         └─base::tryCatch(...)
        7.           └─base:::tryCatchList(expr, classes, parentenv, handlers)
        8.             └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
@@ -1360,8 +1367,6 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
       
       [ FAIL 3 | WARN 1 | SKIP 5 | PASS 209 ]
       Error: Test failures
-      In addition: Warning message:
-      call dbDisconnect() when finished working with a connection 
       Execution halted
     ```
 
@@ -1684,16 +1689,41 @@ Run `revdep_details(, "conclus")` for more info
     > 
     > outputDirectory <- "./YourOutputDirectory"
     ...
-    GSE96982-GPL19057_series_matrix.txt.gz
-    trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE96nnn/GSE96982/matrix/GSE96982-GPL19057_series_matrix.txt.gz'
-    Content type 'application/x-gzip' length 27102 bytes (26 KB)
-    ==================================================
-    downloaded 26 KB
-    
-    Error: The size of the connection buffer (131072) was not large enough
-    to fit a complete line:
-      * Increase it by setting `Sys.setenv("VROOM_CONNECTION_SIZE")`
+    > 
+    > result <- retrieveFromGEO(matrixURL, countMatrixPath, species,
+    + seriesMatrixName=seriesMatrix)
+    Warning in FUN(X[[i]], ...) :
+      'rnames' exact pattern
+        'GSE96982%5FcountMatrix%2Etxt%2Egz'
+      is not unique; use 'bfcquery()' to see matches.
+    Error in bfcrpath(bfc, rnames = name) : not all 'rnames' found or unique.
+    Calls: retrieveFromGEO ... .retrieveMatrix -> .checkCache -> bfcrpath -> bfcrpath
     Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/test-all.R’ failed.
+    Complete output:
+      > library("testthat")
+      > library("conclus")
+      Setting options('download.file.method.GEOquery'='auto')
+      Setting options('GEOquery.inmemory.gpl'=FALSE)
+      
+      > test_check("conclus")
+         Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ...
+        5.       ├─base::merge(...)
+        6.       ├─base::merge.data.frame(...)
+        7.       │ ├─base::nrow(y <- as.data.frame(y))
+        8.       │ └─base::as.data.frame(y)
+        9.       └─conclus:::.returnDB2(genes, ensembl)
+       10.         └─conclus:::.tryGetBM(...)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 79 ]
+      Error: Test failures
+      Execution halted
     ```
 
 # condiments
@@ -2108,10 +2138,10 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 <details>
 
-* Version: 1.14.0
+* Version: 1.14.1
 * GitHub: https://github.com/PeteHaitch/DelayedMatrixStats
 * Source code: https://github.com/cran/DelayedMatrixStats
-* Date/Publication: 2021-05-19
+* Date/Publication: 2021-08-05
 * Number of recursive dependencies: 70
 
 Run `revdep_details(, "DelayedMatrixStats")` for more info
@@ -2158,9 +2188,9 @@ Run `revdep_details(, "DeMixT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.3Mb
+      installed size is  8.2Mb
       sub-directories of 1Mb or more:
-        data   6.7Mb
+        data   4.7Mb
         libs   2.7Mb
     ```
 
@@ -2260,10 +2290,10 @@ Run `revdep_details(, "DEqMS")` for more info
     ...
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
-    snapshotDate(): 2021-07-16
+    snapshotDate(): 2021-08-04
     > query(eh, "DEqMS")
     ExperimentHub with 0 records
-    # snapshotDate(): 2021-07-16
+    # snapshotDate(): 2021-08-04
     > dat.psm = eh[["EH1663"]]
     Error: File not previously downloaded.
       Run with 'localHub=FALSE'
@@ -3330,13 +3360,13 @@ Run `revdep_details(, "funtooNorm")` for more info
 * GitHub: https://github.com/Berghopper/GAPGOM
 * Source code: https://github.com/cran/GAPGOM
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 149
+* Number of recursive dependencies: 150
 
 Run `revdep_details(, "GAPGOM")` for more info
 
 </details>
 
-## Newly broken
+## In both
 
 *   checking installed package size ... NOTE
     ```
@@ -3623,33 +3653,6 @@ Run `revdep_details(, "Gviz")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      
-      The following objects are masked from 'package:base':
-      
-          I, expand.grid, unname
-      
-      Loading required package: IRanges
-      Loading required package: GenomicRanges
-    ...
-       12.               └─biomaRt:::bmRequest(...)
-       13.                 └─httr::GET(request2, config = httr_config, content_type("text/plain"))
-       14.                   └─httr:::request_perform(req, hu$handle$handle)
-       15.                     ├─httr:::request_fetch(req$output, req$url, handle)
-       16.                     └─httr:::request_fetch.write_memory(req$output, req$url, handle)
-       17.                       └─curl::curl_fetch_memory(url, handle = handle)
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 293 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 ## In both
 
 *   checking installed package size ... NOTE
@@ -3747,9 +3750,9 @@ Run `revdep_details(, "hipathia")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 15.1Mb
+      installed size is 11.3Mb
       sub-directories of 1Mb or more:
-        data      8.6Mb
+        data      4.9Mb
         doc       1.7Mb
         extdata   4.3Mb
     ```
@@ -3953,7 +3956,7 @@ Run `revdep_details(, "liminal")` for more info
 
 </details>
 
-## Newly broken
+## In both
 
 *   checking installed package size ... NOTE
     ```
@@ -4143,42 +4146,15 @@ Run `revdep_details(, "maEndToEnd")` for more info
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.4.1
 * GitHub: https://github.com/Bioconductor/MatrixGenerics
 * Source code: https://github.com/cran/MatrixGenerics
-* Date/Publication: 2021-05-19
+* Date/Publication: 2021-08-03
 * Number of recursive dependencies: 50
 
 Run `revdep_details(, "MatrixGenerics")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
-      Length mismatch: comparison on first 6 components
-      ── Failure (test-api_compatibility.R:1242:2): rowProds works  ──────────────────
-      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
-      Length mismatch: comparison on first 6 components
-      ── Failure (test-api_compatibility.R:1262:2): rowQuantiles works  ──────────────
-      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
-    ...
-      ── Failure (test-api_compatibility.R:1518:2): rowWeightedSds works  ────────────
-      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
-      Length mismatch: comparison on first 6 components
-      ── Failure (test-api_compatibility.R:1539:2): rowWeightedVars works  ───────────
-      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
-      Length mismatch: comparison on first 6 components
-      
-      [ FAIL 70 | WARN 0 | SKIP 0 | PASS 240 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 ## In both
 
@@ -4954,6 +4930,14 @@ Run `revdep_details(, "MinimumDistance")` for more info
     Package which this enhances but not available for checking: ‘doSNOW’
     ```
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.9Mb
+      sub-directories of 1Mb or more:
+        R     3.0Mb
+        doc   1.6Mb
+    ```
+
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘MatrixGenerics’
@@ -4983,10 +4967,10 @@ Run `revdep_details(, "MinimumDistance")` for more info
 
 <details>
 
-* Version: 6.16.2
+* Version: 6.16.3
 * GitHub: https://github.com/mixOmicsTeam/mixOmics
 * Source code: https://github.com/cran/mixOmics
-* Date/Publication: 2021-07-18
+* Date/Publication: 2021-07-29
 * Number of recursive dependencies: 90
 
 Run `revdep_details(, "mixOmics")` for more info
@@ -5022,7 +5006,7 @@ Run `revdep_details(, "mnem")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.6Mb
+      installed size is  8.8Mb
       sub-directories of 1Mb or more:
         data   2.3Mb
         doc    3.8Mb
@@ -5067,17 +5051,16 @@ Run `revdep_details(, "monocle")` for more info
 
 ## In both
 
-*   checking dependencies in R code ... WARNING
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘destiny’
+    ```
+
+*   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
       ‘Rcpp’ ‘biocViews’
       All declared Imports should be used.
-    Missing or unexported object: ‘scater::newSCESet’
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘destiny’
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5149,6 +5132,16 @@ Run `revdep_details(, "motifbreakR")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.5Mb
+      sub-directories of 1Mb or more:
+        data   3.6Mb
+        doc    1.3Mb
+    ```
+
 ## In both
 
 *   checking whether package ‘motifbreakR’ can be installed ... WARNING
@@ -5185,14 +5178,6 @@ Run `revdep_details(, "motifbreakR")` for more info
     The \usage entries must correspond to syntactically valid R code.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.5Mb
-      sub-directories of 1Mb or more:
-        data   3.6Mb
-        doc    1.3Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -5318,23 +5303,23 @@ Run `revdep_details(, "muscat")` for more info
     ```
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(muscat)
-      > 
-      > test_check("muscat")
-      ══ Failed tests ════════════════════════════════════════════════════════════════
+    Last 50 lines of output:
       ── Error (test-mmDS.R:70:9): mmDS-utils; .mm_vst ───────────────────────────────
       Error: statmod package required but is not installed
-    ...
-        first error: statmod package required but is not installed
       Backtrace:
           █
-       1. └─muscat::pbDS(...) test-pbDS.R:52:12
-       2.   ├─BiocParallel::bplapply(...)
-       3.   └─BiocParallel::bplapply(...)
+       1. ├─base::suppressWarnings(get(fun)(x[gs, cs], verbose = FALSE)) test-mmDS.R:70:8
+       2. │ └─base::withCallingHandlers(...)
+       3. └─get(fun)(x[gs, cs], verbose = FALSE)
+    ...
+      [1] 800 - 1000 == -200
+      ── Failure (test-resDS.R:36:9): resDS() ────────────────────────────────────────
+      all(table(z$gene) == v[[bind]]$nk) is not TRUE
       
-      [ FAIL 3 | WARN 1 | SKIP 0 | PASS 536 ]
+      `actual`:   FALSE
+      `expected`: TRUE 
+      
+      [ FAIL 7 | WARN 1 | SKIP 0 | PASS 532 ]
       Error: Test failures
       Execution halted
     ```
@@ -6034,31 +6019,6 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘PrecisionTrialDrawer-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: newCancerPanel
-    > ### Title: CancerPanel object constructor
-    > ### Aliases: newCancerPanel
-    > 
-    > ### ** Examples
-    > 
-    > # Load the panel example
-    ...
-    > mypanel <- newCancerPanel(panelexample[1:3 , ] , canonicalTranscript=FALSE)
-    Checking panel construction...
-    Calculating panel size...
-    Connecting to ensembl biomart...
-    Ensembl site unresponsive, trying uswest mirror
-    Ensembl site unresponsive, trying asia mirror
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Peer's Certificate issuer is not recognized.
-    Calls: newCancerPanel ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘LowMACA’
@@ -6389,9 +6349,9 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.1Mb
+      installed size is 13.4Mb
       sub-directories of 1Mb or more:
-        R     3.1Mb
+        R     7.0Mb
         doc   3.7Mb
     ```
 
@@ -6446,6 +6406,33 @@ Run `revdep_details(, "RnBeads")` for more info
     Consider adding
       importFrom("stats", "setNames")
     to your NAMESPACE file.
+    ```
+
+# robustbase
+
+<details>
+
+* Version: 0.93-8
+* GitHub: NA
+* Source code: https://github.com/cran/robustbase
+* Date/Publication: 2021-06-02 10:20:02 UTC
+* Number of recursive dependencies: 66
+
+Run `revdep_details(, "robustbase")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'robustX', 'quantreg', 'Hmisc'
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: ‘robustX’, ‘quantreg’, ‘Hmisc’
     ```
 
 # robustlm
@@ -6726,7 +6713,7 @@ Run `revdep_details(, "sesame")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 38.1Mb
+      installed size is 37.9Mb
       sub-directories of 1Mb or more:
         doc  36.5Mb
     ```
@@ -6799,15 +6786,6 @@ Run `revdep_details(, "shinyMethyl")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.0Mb
-      sub-directories of 1Mb or more:
-        doc   4.5Mb
-    ```
-
 ## In both
 
 *   checking for hidden files and directories ... NOTE
@@ -6816,6 +6794,13 @@ Run `revdep_details(, "shinyMethyl")` for more info
       .travis.yml
     These were most likely included in error. See section ‘Package
     structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.0Mb
+      sub-directories of 1Mb or more:
+        doc   4.5Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -6950,10 +6935,10 @@ Run `revdep_details(, "SICtools")` for more info
 
 <details>
 
-* Version: 2.0.3
+* Version: 2.0.4
 * GitHub: https://github.com/ShixiangWang/sigminer
 * Source code: https://github.com/cran/sigminer
-* Date/Publication: 2021-07-18 23:10:07 UTC
+* Date/Publication: 2021-08-03 12:10:02 UTC
 * Number of recursive dependencies: 207
 
 Run `revdep_details(, "sigminer")` for more info
@@ -6964,9 +6949,9 @@ Run `revdep_details(, "sigminer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  5.8Mb
       sub-directories of 1Mb or more:
-        extdata   2.7Mb
+        extdata   2.1Mb
         libs      1.1Mb
     ```
 
@@ -7202,9 +7187,26 @@ Run `revdep_details(, "sparseMatrixStats")` for more info
 
 ## In both
 
+*   checking for code/documentation mismatches ... WARNING
+    ```
+    Codoc mismatches from documentation object 'colProds,xgCMatrix-method':
+    \S4method{colProds}{xgCMatrix}
+      Code: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...,
+                     useNames = NA)
+      Docs: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
+      Argument names in code not in docs:
+        useNames
+    \S4method{rowProds}{xgCMatrix}
+      Code: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...,
+                     useNames = NA)
+      Docs: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
+      Argument names in code not in docs:
+        useNames
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.5Mb
       sub-directories of 1Mb or more:
         libs   3.5Mb
     ```
@@ -7394,11 +7396,11 @@ Run `revdep_details(, "STROMA4")` for more info
 
 <details>
 
-* Version: 0.9.9
+* Version: 1.0.0
 * GitHub: https://github.com/dcomtois/summarytools
 * Source code: https://github.com/cran/summarytools
-* Date/Publication: 2021-03-19 08:50:02 UTC
-* Number of recursive dependencies: 71
+* Date/Publication: 2021-07-28 05:00:02 UTC
+* Number of recursive dependencies: 73
 
 Run `revdep_details(, "summarytools")` for more info
 
@@ -7416,6 +7418,29 @@ Run `revdep_details(, "summarytools")` for more info
 *   checking data for non-ASCII characters ... NOTE
     ```
       Note: found 78 marked UTF-8 strings
+    ```
+
+# SuperPCA
+
+<details>
+
+* Version: 0.4.0
+* GitHub: NA
+* Source code: https://github.com/cran/SuperPCA
+* Date/Publication: 2021-07-26 12:30:07 UTC
+* Number of recursive dependencies: 37
+
+Run `revdep_details(, "SuperPCA")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘R.matlab’ ‘fBasics’ ‘spls’
+      All declared Imports should be used.
     ```
 
 # target
