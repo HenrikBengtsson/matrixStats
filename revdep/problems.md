@@ -287,56 +287,6 @@ Run `revdep_details(, "autonomics")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘autonomics-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: create_design
-    > ### Title: Create design
-    > ### Aliases: create_design
-    > 
-    > ### ** Examples
-    > 
-    > file <- download_data('billing19.rnacounts.txt')
-    ...
-    > unique(create_design(object))
-    		Design: ~1
-           Intercept
-    E00_R1         1
-    > 
-    > file <- download_data('atkin18.somascan.adat')
-    > object <- read_somascan(file, plot=FALSE)
-    Error in file(con, "r") : invalid 'description' argument
-    Calls: read_somascan -> .read_somascan -> readLines -> file
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      ── Error (test_3_read_somascan_atkin18.R:30:5): read_somascan(file, pca=TRUE) ──
-      Error: invalid 'description' argument
-      Backtrace:
-          █
-       1. └─autonomics::read_somascan(file, pca = TRUE, plot = FALSE) test_3_read_somascan_atkin18.R:30:4
-       2.   └─autonomics::.read_somascan(...)
-       3.     └─base::readLines(file)
-    ...
-      Backtrace:
-          █
-       1. └─autonomics::read_somascan(file, plot = FALSE) test_8_fit.R:33:8
-       2.   └─autonomics::.read_somascan(...)
-       3.     └─base::readLines(file)
-       4.       └─base::file(con, "r")
-      
-      [ FAIL 9 | WARN 0 | SKIP 0 | PASS 73 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
@@ -400,9 +350,9 @@ Run `revdep_details(, "BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.1Mb
+      installed size is 14.4Mb
       sub-directories of 1Mb or more:
-        data   2.0Mb
+        data   3.9Mb
         doc    1.4Mb
         libs   7.8Mb
     ```
@@ -705,9 +655,9 @@ Run `revdep_details(, "brms")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.3Mb
+      installed size is  8.8Mb
       sub-directories of 1Mb or more:
-        R      3.4Mb
+        R      5.0Mb
         doc    2.4Mb
         help   1.0Mb
     ```
@@ -1052,7 +1002,7 @@ Run `revdep_details(, "CelliD")` for more info
     ...
     0.027 sec elapsed
     Computing Coordinates
-    0.005 sec elapsed
+    0.004 sec elapsed
     > seuratPbmc <- RunMCDMAP(seuratPbmc, dims = seq(5), k = 5)
     
     getting feature and cell coordinates
@@ -1239,7 +1189,7 @@ Run `revdep_details(, "ChAMP")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         doc       3.6Mb
         extdata   1.9Mb
@@ -1689,41 +1639,16 @@ Run `revdep_details(, "conclus")` for more info
     > 
     > outputDirectory <- "./YourOutputDirectory"
     ...
-    > 
-    > result <- retrieveFromGEO(matrixURL, countMatrixPath, species,
-    + seriesMatrixName=seriesMatrix)
-    Warning in FUN(X[[i]], ...) :
-      'rnames' exact pattern
-        'GSE96982%5FcountMatrix%2Etxt%2Egz'
-      is not unique; use 'bfcquery()' to see matches.
-    Error in bfcrpath(bfc, rnames = name) : not all 'rnames' found or unique.
-    Calls: retrieveFromGEO ... .retrieveMatrix -> .checkCache -> bfcrpath -> bfcrpath
+    GSE96982-GPL19057_series_matrix.txt.gz
+    trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE96nnn/GSE96982/matrix/GSE96982-GPL19057_series_matrix.txt.gz'
+    Content type 'application/x-gzip' length 27102 bytes (26 KB)
+    ==================================================
+    downloaded 26 KB
+    
+    Error: The size of the connection buffer (131072) was not large enough
+    to fit a complete line:
+      * Increase it by setting `Sys.setenv("VROOM_CONNECTION_SIZE")`
     Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/test-all.R’ failed.
-    Complete output:
-      > library("testthat")
-      > library("conclus")
-      Setting options('download.file.method.GEOquery'='auto')
-      Setting options('GEOquery.inmemory.gpl'=FALSE)
-      
-      > test_check("conclus")
-         Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ...
-        5.       ├─base::merge(...)
-        6.       ├─base::merge.data.frame(...)
-        7.       │ ├─base::nrow(y <- as.data.frame(y))
-        8.       │ └─base::as.data.frame(y)
-        9.       └─conclus:::.returnDB2(genes, ensembl)
-       10.         └─conclus:::.tryGetBM(...)
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 79 ]
-      Error: Test failures
-      Execution halted
     ```
 
 # condiments
@@ -1916,9 +1841,9 @@ Run `revdep_details(, "crlmm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
-        R      1.5Mb
+        R      1.2Mb
         data   2.7Mb
     ```
 
@@ -2188,9 +2113,9 @@ Run `revdep_details(, "DeMixT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is 10.3Mb
       sub-directories of 1Mb or more:
-        data   4.7Mb
+        data   6.7Mb
         libs   2.7Mb
     ```
 
@@ -3653,6 +3578,33 @@ Run `revdep_details(, "Gviz")` for more info
 
 </details>
 
+## Newly fixed
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+      Attaching package: 'S4Vectors'
+      
+      The following objects are masked from 'package:base':
+      
+          I, expand.grid, unname
+      
+    ...
+       10.           └─biomaRt:::bmRequest(...)
+       11.             └─httr::GET(request2, config = httr_config, content_type("text/plain"))
+       12.               └─httr:::request_perform(req, hu$handle$handle)
+       13.                 ├─httr:::request_fetch(req$output, req$url, handle)
+       14.                 └─httr:::request_fetch.write_memory(req$output, req$url, handle)
+       15.                   └─curl::curl_fetch_memory(url, handle = handle)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 293 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking installed package size ... NOTE
@@ -3748,11 +3700,61 @@ Run `revdep_details(, "hipathia")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘hipathia-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: create_report
+    > ### Title: Create visualization HTML
+    > ### Aliases: create_report
+    > 
+    > ### ** Examples
+    > 
+    > data(comp)
+    ...
+    > pathways <- load_pathways(species = "hsa", pathways_list = c("hsa03320",
+    + "hsa04012"))
+    snapshotDate(): 2021-05-18
+    Error in h(simpleError(msg, call)) : 
+      error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /scratch/henrik/revdepcheck.extras/matrixStats/revdep/cache/R/AnnotationHub
+      filename: annotationhub.index.rds
+    Calls: load_pathways ... hub -> query -> AnnotationHub -> .Hub -> .db_create_index
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+        cache: /scratch/henrik/revdepcheck.extras/matrixStats/revdep/cache/R/AnnotationHub
+        filename: annotationhub.index.rds
+      Backtrace:
+           █
+        1. ├─hipathia::load_pathways("hsa", pathways_list = pathways_list) test-path-summary.R:9:0
+        2. │ └─hipathia:::load_mgi(species)
+        3. │   └─hipathia:::hub()
+    ...
+        5. │     └─AnnotationHub::AnnotationHub()
+        6. │       └─AnnotationHub::.Hub(...)
+        7. │         └─AnnotationHub:::.db_create_index(hub)
+        8. │           └─base::stop(...)
+        9. └─base::.handleSimpleError(...)
+       10.   └─base:::h(simpleError(msg, call))
+      
+      [ FAIL 10 | WARN 0 | SKIP 0 | PASS 46 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.3Mb
+      installed size is 15.1Mb
       sub-directories of 1Mb or more:
-        data      4.9Mb
+        data      8.6Mb
         doc       1.7Mb
         extdata   4.3Mb
     ```
@@ -4156,6 +4158,33 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(MatrixGenerics)
+      Loading required package: matrixStats
+      
+      Attaching package: 'MatrixGenerics'
+      
+      The following objects are masked from 'package:matrixStats':
+    ...
+      ── Failure (test-api_compatibility.R:495:2): colQuantiles works  ───────────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 0 in current 1 in target
+      ── Failure (test-api_compatibility.R:1262:2): rowQuantiles works  ──────────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 0 in current 1 in target
+      
+      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 308 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -4475,11 +4504,10 @@ Run `revdep_details(, "MethReg")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.1Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
-        R      2.6Mb
-        data   1.9Mb
-        doc    2.3Mb
+        R     1.7Mb
+        doc   2.3Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -5051,16 +5079,17 @@ Run `revdep_details(, "monocle")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘destiny’
-    ```
-
-*   checking dependencies in R code ... NOTE
+*   checking dependencies in R code ... WARNING
     ```
     Namespaces in Imports field not imported from:
       ‘Rcpp’ ‘biocViews’
       All declared Imports should be used.
+    Missing or unexported object: ‘scater::newSCESet’
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘destiny’
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -5132,16 +5161,6 @@ Run `revdep_details(, "motifbreakR")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.5Mb
-      sub-directories of 1Mb or more:
-        data   3.6Mb
-        doc    1.3Mb
-    ```
-
 ## In both
 
 *   checking whether package ‘motifbreakR’ can be installed ... WARNING
@@ -5178,6 +5197,14 @@ Run `revdep_details(, "motifbreakR")` for more info
     The \usage entries must correspond to syntactically valid R code.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.5Mb
+      sub-directories of 1Mb or more:
+        data   3.6Mb
+        doc    1.3Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -5303,23 +5330,23 @@ Run `revdep_details(, "muscat")` for more info
     ```
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
+    Complete output:
+      > library(testthat)
+      > library(muscat)
+      > 
+      > test_check("muscat")
+      ══ Failed tests ════════════════════════════════════════════════════════════════
       ── Error (test-mmDS.R:70:9): mmDS-utils; .mm_vst ───────────────────────────────
       Error: statmod package required but is not installed
+    ...
+        first error: statmod package required but is not installed
       Backtrace:
           █
-       1. ├─base::suppressWarnings(get(fun)(x[gs, cs], verbose = FALSE)) test-mmDS.R:70:8
-       2. │ └─base::withCallingHandlers(...)
-       3. └─get(fun)(x[gs, cs], verbose = FALSE)
-    ...
-      [1] 800 - 1000 == -200
-      ── Failure (test-resDS.R:36:9): resDS() ────────────────────────────────────────
-      all(table(z$gene) == v[[bind]]$nk) is not TRUE
+       1. └─muscat::pbDS(...) test-pbDS.R:52:12
+       2.   ├─BiocParallel::bplapply(...)
+       3.   └─BiocParallel::bplapply(...)
       
-      `actual`:   FALSE
-      `expected`: TRUE 
-      
-      [ FAIL 7 | WARN 1 | SKIP 0 | PASS 532 ]
+      [ FAIL 3 | WARN 1 | SKIP 0 | PASS 536 ]
       Error: Test failures
       Execution halted
     ```
@@ -5929,7 +5956,7 @@ Run `revdep_details(, "pipeComp")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.7Mb
+      installed size is  6.3Mb
       sub-directories of 1Mb or more:
         doc   4.5Mb
     ```
@@ -6349,9 +6376,9 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.4Mb
+      installed size is  9.1Mb
       sub-directories of 1Mb or more:
-        R     7.0Mb
+        R     3.1Mb
         doc   3.7Mb
     ```
 
@@ -6406,33 +6433,6 @@ Run `revdep_details(, "RnBeads")` for more info
     Consider adding
       importFrom("stats", "setNames")
     to your NAMESPACE file.
-    ```
-
-# robustbase
-
-<details>
-
-* Version: 0.93-8
-* GitHub: NA
-* Source code: https://github.com/cran/robustbase
-* Date/Publication: 2021-06-02 10:20:02 UTC
-* Number of recursive dependencies: 66
-
-Run `revdep_details(, "robustbase")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages which this enhances but not available for checking:
-      'robustX', 'quantreg', 'Hmisc'
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Packages unavailable to check Rd xrefs: ‘robustX’, ‘quantreg’, ‘Hmisc’
     ```
 
 # robustlm
@@ -6713,7 +6713,7 @@ Run `revdep_details(, "sesame")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 37.9Mb
+      installed size is 38.1Mb
       sub-directories of 1Mb or more:
         doc  36.5Mb
     ```
@@ -6854,9 +6854,8 @@ Run `revdep_details(, "SIAMCAT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 24.8Mb
+      installed size is 23.9Mb
       sub-directories of 1Mb or more:
-        data      1.3Mb
         doc      18.4Mb
         extdata   2.1Mb
         help      2.0Mb
@@ -6949,7 +6948,7 @@ Run `revdep_details(, "sigminer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.8Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         extdata   2.1Mb
         libs      1.1Mb
@@ -7077,7 +7076,7 @@ Run `revdep_details(, "singscore")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.5Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         R      1.3Mb
         data   1.9Mb
@@ -7206,7 +7205,7 @@ Run `revdep_details(, "sparseMatrixStats")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.5Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         libs   3.5Mb
     ```
@@ -7884,6 +7883,33 @@ Run `revdep_details(, "WGCNA")` for more info
 Run `revdep_details(, "yarn")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘yarn-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annotateFromBiomart
+    > ### Title: Annotate your Expression Set with biomaRt
+    > ### Aliases: annotateFromBiomart
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    > skin <- skin[1:10,]
+    > colnames(fData(skin)) = paste("names",1:6)
+    > biomart<-"ENSEMBL_MART_ENSEMBL";
+    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
+    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
+    Ensembl site unresponsive, trying uswest mirror
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Peer's Certificate issuer is not recognized.
+    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    Execution halted
+    ```
 
 ## In both
 
