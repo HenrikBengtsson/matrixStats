@@ -1,9 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  double anyMissing[idxsType](ARGUMENTS_LIST)
+  int anyMissing_internal(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  SEXP x, void *idxs, R_xlen_t nidxs
+  SEXP x, R_xlen_t *idxs, R_xlen_t nidxs
  ***********************************************************************/
 #include <Rdefines.h>
 #include "000.types.h"
@@ -19,36 +19,32 @@
 #endif
 
 
-RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
+int anyMissing_internal(SEXP x, R_xlen_t *idxs, R_xlen_t nidxs) {
   R_xlen_t ii;
   double *xdp;
   int *xip, *xlp;
   Rcomplex *xcp;
 
-#ifdef IDXS_TYPE
-  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
-#endif
-
   switch (TYPEOF(x)) {
     case REALSXP:
       xdp = REAL(x);
-      CHECK_MISSING(ISNAN(R_INDEX_GET(xdp, IDX_INDEX(cidxs,ii), NA_REAL)));
+      CHECK_MISSING(ISNAN(R_INDEX_GET(xdp, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL)));
       break;
 
     case INTSXP:
       xip = INTEGER(x);
-      CHECK_MISSING(R_INDEX_GET(xip, IDX_INDEX(cidxs,ii), NA_INTEGER) == NA_INTEGER);
+      CHECK_MISSING(R_INDEX_GET(xip, ((idxs == NULL) ? (ii) : idxs[ii]), NA_INTEGER) == NA_INTEGER);
       break;
 
     case LGLSXP:
       xlp = LOGICAL(x);
-      CHECK_MISSING(R_INDEX_GET(xlp, IDX_INDEX(cidxs,ii), NA_LOGICAL) == NA_LOGICAL);
+      CHECK_MISSING(R_INDEX_GET(xlp, ((idxs == NULL) ? (ii) : idxs[ii]), NA_LOGICAL) == NA_LOGICAL);
       break;
 
     case CPLXSXP:
       xcp = COMPLEX(x);
 #ifdef IDXS_TYPE
-      CHECK_MISSING(IDX_INDEX(cidxs,ii) == NA_R_XLEN_T || ISNAN(xcp[IDX_INDEX_NONA(cidxs,ii)].r) || ISNAN(xcp[IDX_INDEX_NONA(cidxs,ii)].i));
+      CHECK_MISSING(((idxs == NULL) ? (ii) : idxs[ii]) == NA_R_XLEN_T || ISNAN(xcp[((idxs == NULL) ? (ii) : idxs[ii])].r) || ISNAN(xcp[((idxs == NULL) ? (ii) : idxs[ii])].i));
 #else
       CHECK_MISSING(ISNAN(xcp[ii].r) || ISNAN(xcp[ii].i));
 #endif
@@ -56,7 +52,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
 
     case STRSXP:
 #ifdef IDXS_TYPE
-      CHECK_MISSING(IDX_INDEX(cidxs,ii) == NA_R_XLEN_T || STRING_ELT(x, IDX_INDEX_NONA(cidxs,ii)) == NA_STRING);
+      CHECK_MISSING(((idxs == NULL) ? (ii) : idxs[ii]) == NA_R_XLEN_T || STRING_ELT(x, ((idxs == NULL) ? (ii) : idxs[ii])) == NA_STRING);
 #else
       CHECK_MISSING(STRING_ELT(x, ii) == NA_STRING);
 #endif

@@ -30,14 +30,13 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  int idxsType;
-  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
-    sum = sum2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm);
+    sum = sum2_dbl(REAL(x), nx, cidxs, nidxs, narm);
   } else if (isInteger(x) || isLogical(x)) {
-    sum = sum2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm);
+    sum = sum2_int(INTEGER(x), nx, cidxs, nidxs, narm);
   }
 
 

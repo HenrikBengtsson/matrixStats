@@ -32,9 +32,6 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     stop(sprintf("Argument '%s' is not a matrix or a vector: %s", "x", mode(x)[1L]))
   }
 
-  # Argument 'dim.':
-  dim. <- as.integer(dim.)
-
   # Argument 'value':
   if (length(value) != 1L) {
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "value", length(value)))
@@ -50,9 +47,12 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     # Preserve rownames
     names <- rownames(x)
     
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
-    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
+    counts <- .Call(C_rowCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas, useNames)
+    # Preserve names attribute
+    names <- names(counts)
+    counts <- as.integer(counts)
+    names(counts) <- names
   } else {
     # Preserve rownames
     names <- rownames(x)
@@ -75,25 +75,25 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
         sum(x == value, na.rm = na.rm)
       })
     }
-  }
-  counts <- as.integer(counts)
-  
-  # Update names attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(names)) {
-        if (!is.null(rows)) {
-          names <- names[rows]
-          # Zero-length attribute? Keep behavior same as base R function
-          if (length(names) == 0L) names <- NULL
+    
+    counts <- as.integer(counts)
+    
+    # Update names attribute?
+    if (!is.na(useNames)) {
+      if (useNames) {
+        if (!is.null(names)) {
+          if (!is.null(rows)) {
+            names <- names[rows]
+            # Zero-length attribute? Keep behavior same as base R function
+            if (length(names) == 0L) names <- NULL
+          }
+          names(counts) <- names
         }
-        names(counts) <- names
+      } else {
+        names(counts) <- NULL
       }
-    } else {
-      names(counts) <- NULL
-    }
+    }    
   }
-  
   counts
 }
 
@@ -108,9 +108,6 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   } else {
     stop(sprintf("Argument '%s' is not a matrix or a vector: %s", "x", mode(x)[1L]))
   }
-
-  # Argument 'dim.':
-  dim. <- as.integer(dim.)
 
   # Argument 'value':
   if (length(value) != 1L) {
@@ -127,9 +124,12 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     # Preserve colnames
     names <- colnames(x)
     
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
-    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas)
+    counts <- .Call(C_colCounts, x, dim., rows, cols, value, 2L, na.rm, has_nas, useNames)
+    # Preserve names attribute
+    names <- names(counts)
+    counts <- as.integer(counts)
+    names(counts) <- names
   } else {
     # Preserve colnames
     names <- colnames(x)
@@ -152,25 +152,25 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
         sum(x == value, na.rm = na.rm)
       })
     }
-  }
-  counts <- as.integer(counts)
-  
-  # Update names attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(names)) {
-        if (!is.null(cols)) {
-          names <- names[cols]
-          # Zero-length attribute? Keep behavior same as base R function
-          if (length(names) == 0L) names <- NULL        
+    
+    counts <- as.integer(counts)
+    
+    # Update names attribute?
+    if (!is.na(useNames)) {
+      if (useNames) {
+        if (!is.null(names)) {
+          if (!is.null(cols)) {
+            names <- names[cols]
+            # Zero-length attribute? Keep behavior same as base R function
+            if (length(names) == 0L) names <- NULL        
+          }
+          names(counts) <- names
         }
-        names(counts) <- names
+      } else {
+        names(counts) <- NULL
       }
-    } else {
-      names(counts) <- NULL
-    }
+    }    
   }
-
   counts
 }
 
@@ -195,7 +195,6 @@ count <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
     counts <- .Call(C_count, x, idxs, value, 2L, na.rm, has_nas)
   } else {

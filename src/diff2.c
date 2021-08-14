@@ -31,8 +31,7 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  int idxsType;
-  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
 
   /* Length of result vector */
   nans = (R_xlen_t)((double)nidxs - ((double)diff*(double)lagg));
@@ -41,11 +40,11 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences) {
   /* Dispatch to low-level C function */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, nans));
-    diff2_dbl[idxsType](REAL(x), nx, cidxs, nidxs, lagg, diff, REAL(ans), nans);
+    diff2_dbl(REAL(x), nx, cidxs, nidxs, lagg, diff, REAL(ans), nans);
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nans));
-    diff2_int[idxsType](INTEGER(x), nx, cidxs, nidxs, lagg, diff, INTEGER(ans), nans);
+    diff2_int(INTEGER(x), nx, cidxs, nidxs, lagg, diff, INTEGER(ans), nans);
     UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");

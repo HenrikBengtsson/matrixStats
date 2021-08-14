@@ -26,14 +26,13 @@ SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  int idxsType;
-  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    res = productExpSumLog_dbl[idxsType](REAL(x), nx, cidxs, nidxs, narm, hasna);
+    res = productExpSumLog_dbl(REAL(x), nx, cidxs, nidxs, narm, hasna);
   } else if (isInteger(x)) {
-    res = productExpSumLog_int[idxsType](INTEGER(x), nx, cidxs, nidxs, narm, hasna);
+    res = productExpSumLog_int(INTEGER(x), nx, cidxs, nidxs, narm, hasna);
   }
 
   /* Return results */

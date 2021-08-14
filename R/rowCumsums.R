@@ -21,198 +21,54 @@
 #' @keywords array iteration univar
 #' @export
 rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCumsums, x, dim., rows, cols, TRUE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCumsums, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCumsums, x, dim., rows, cols, FALSE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCumsums, x, dim., rows, cols, FALSE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 rowCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCumprods, x, dim., rows, cols, TRUE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCumprods, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 colCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCumprods, x, dim., rows, cols, FALSE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCumprods, x, dim., rows, cols, FALSE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 rowCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCummins, x, dim., rows, cols, TRUE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCummins, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 colCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCummins, x, dim., rows, cols, FALSE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCummins, x, dim., rows, cols, FALSE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 rowCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCummaxs, x, dim., rows, cols, TRUE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCummaxs, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
 colCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  res <- .Call(C_rowCummaxs, x, dim., rows, cols, FALSE)
-  
-  # Update dimnames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      if (!is.null(dimnames(x))) {
-        rownames <- rownames(x)
-        if (!is.null(rows)) rownames <- rownames[rows]
-        colnames <- colnames(x)
-        if (!is.null(cols)) colnames <- colnames[cols]
-        dimnames(res) <- list(rownames, colnames)
-      }
-    } else {
-      dimnames(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowCummaxs, x, dim., rows, cols, FALSE, useNames)
 }

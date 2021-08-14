@@ -18,17 +18,16 @@ SEXP signTabulate(SEXP x, SEXP idxs) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  int idxsType;
-  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, 6));
-    signTabulate_dbl[idxsType](REAL(x), nx, cidxs, nidxs, REAL(ans));
+    signTabulate_dbl(REAL(x), nx, cidxs, nidxs, REAL(ans));
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(REALSXP, 4));
-    signTabulate_int[idxsType](INTEGER(x), nx, cidxs, nidxs, REAL(ans));
+    signTabulate_int(INTEGER(x), nx, cidxs, nidxs, REAL(ans));
     UNPROTECT(1);
   }
 
