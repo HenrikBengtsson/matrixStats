@@ -46,6 +46,9 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   R_xlen_t nrows, ncols;
   R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
   R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
 
   is_counted = (int *) R_alloc(nrows, sizeof(int));
 
@@ -56,6 +59,22 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
       PROTECT(ans = allocVector(REALSXP, nrows));
     }
     rowRanges_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (what2 == 2) {
+          if (nrows != 0) {
+            setDimnames(ans, dimnames, nrows, crows, 0, ccols, FALSE);
+          }
+          /* (else) Zero-length rownames attribute? Keep behavior same as base R function */
+        } else{
+          SEXP namesVec = VECTOR_ELT(dimnames, 0);
+          if (namesVec != R_NilValue) {
+            setNames(ans, namesVec, nrows, crows);
+          }        
+        }
+      }
+    }
     UNPROTECT(1);
   } else if (isInteger(x)) {
     if (what2 == 2) {
@@ -121,28 +140,24 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
 
       ans = ans2;
     }
-
-    UNPROTECT(1); /* ans */
-  }
-  
-  /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
-  
-  if (usenames != NA_LOGICAL && usenames){
-    SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
-    if (dimnames != R_NilValue) {
-      if (what2 == 2) {
-        if (nrows != 0) {
-          setDimnames(ans, dimnames, nrows, crows, 0, ccols, FALSE);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (what2 == 2) {
+          if (nrows != 0) {
+            setDimnames(ans, dimnames, nrows, crows, 0, ccols, FALSE);
+          }
+          /* (else) Zero-length rownames attribute? Keep behavior same as base R function */
+        } else{
+          SEXP namesVec = VECTOR_ELT(dimnames, 0);
+          if (namesVec != R_NilValue) {
+            setNames(ans, namesVec, nrows, crows);
+          }        
         }
-        /* (else) Zero-length rownames attribute? Keep behavior same as base R function */
-      } else{
-        SEXP namesVec = VECTOR_ELT(dimnames, 0);
-        if (namesVec != R_NilValue) {
-          setNames(ans, namesVec, nrows, crows);
-        }        
       }
     }
+
+    UNPROTECT(1); /* ans */
   }
   
   UNPROTECT(1); /* PROTECT(dim = ...) */

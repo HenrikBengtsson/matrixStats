@@ -45,6 +45,9 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
 
   /* Dimension of result matrix */
   if (byrow) {
@@ -60,25 +63,31 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrow_ans, ncol_ans));
     rowDiffs_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (byrow) {
+          set_rowDiffs_Dimnames(ans, dimnames, nrows, crows, ncols, ncol_ans, ccols);
+        } else {
+          set_colDiffs_Dimnames(ans, dimnames, nrows, nrow_ans, crows, ncols, ccols);
+        }
+      }
+    }
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrow_ans, ncol_ans));
     rowDiffs_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
-    UNPROTECT(1);
-  }
-  
-  /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
-  
-  if (usenames != NA_LOGICAL && usenames){
-    SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
-    if (dimnames != R_NilValue) {
-      if (byrow) {
-        set_rowDiffs_Dimnames(ans, dimnames, nrows, crows, ncols, ncol_ans, ccols);
-      } else {
-        set_colDiffs_Dimnames(ans, dimnames, nrows, nrow_ans, crows, ncols, ccols);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (byrow) {
+          set_rowDiffs_Dimnames(ans, dimnames, nrows, crows, ncols, ncol_ans, ccols);
+        } else {
+          set_colDiffs_Dimnames(ans, dimnames, nrows, nrow_ans, crows, ncols, ccols);
+        }
       }
     }
+    UNPROTECT(1);
   }
   
   UNPROTECT(1); /* PROTECT(dim = ...) */
