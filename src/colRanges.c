@@ -46,6 +46,9 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   R_xlen_t nrows, ncols;
   R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
   R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
 
   is_counted = (int *) R_alloc(ncols, sizeof(int));
 
@@ -56,6 +59,23 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
       PROTECT(ans = allocVector(REALSXP, ncols));
     }
     colRanges_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, what2, narm, hasna, REAL(ans), is_counted);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (what2 == 2) {
+          if (ncols != 0) {
+            /* colRanges() returns a numeric Kx2 matrix, reverse dimnames */
+            setDimnames(ans, dimnames, ncols, ccols, 0, crows, TRUE);
+          }
+          /* (else) Zero-length colnames attribute? Keep behavior same as base R function */
+        } else{
+          SEXP namesVec = VECTOR_ELT(dimnames, 1);
+          if (namesVec != R_NilValue) {
+            setNames(ans, namesVec, ncols, ccols);
+          }        
+        }
+      }
+    }
     UNPROTECT(1);
   } else if (isInteger(x)) {
     if (what2 == 2) {
@@ -121,29 +141,25 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
 
       ans = ans2;
     }
-
-    UNPROTECT(1); /* ans */
-  }
-  
-  /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
-  
-  if (usenames != NA_LOGICAL && usenames){
-    SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
-    if (dimnames != R_NilValue) {
-      if (what2 == 2) {
-        if (ncols != 0) {
-          /* colRanges() returns a numeric Kx2 matrix, reverse dimnames */
-          setDimnames(ans, dimnames, ncols, ccols, 0, crows, TRUE);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (what2 == 2) {
+          if (ncols != 0) {
+            /* colRanges() returns a numeric Kx2 matrix, reverse dimnames */
+            setDimnames(ans, dimnames, ncols, ccols, 0, crows, TRUE);
+          }
+          /* (else) Zero-length colnames attribute? Keep behavior same as base R function */
+        } else{
+          SEXP namesVec = VECTOR_ELT(dimnames, 1);
+          if (namesVec != R_NilValue) {
+            setNames(ans, namesVec, ncols, ccols);
+          }        
         }
-        /* (else) Zero-length colnames attribute? Keep behavior same as base R function */
-      } else{
-        SEXP namesVec = VECTOR_ELT(dimnames, 1);
-        if (namesVec != R_NilValue) {
-          setNames(ans, namesVec, ncols, ccols);
-        }        
       }
     }
+
+    UNPROTECT(1); /* ans */
   }
   
   UNPROTECT(1); /* PROTECT(dim = ...) */

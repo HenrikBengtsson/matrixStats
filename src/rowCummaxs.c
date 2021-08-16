@@ -32,26 +32,31 @@ SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
     rowCummaxs_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
+      }
+    }
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
     rowCummaxs_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
-    UNPROTECT(1);
-  }
-  
-  /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
-  
-  if (usenames != NA_LOGICAL && usenames){
-    SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
-    if (dimnames != R_NilValue) {
-      setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
+      }
     }
+    UNPROTECT(1);
   }
   
   UNPROTECT(1); /* PROTECT(dim = ...) */
