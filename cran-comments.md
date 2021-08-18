@@ -1,8 +1,8 @@
-# CRAN submission matrixStats 0.60.0
+# CRAN submission matrixStats 0.60.1
 
-on 2021-07-26
+on 2021-08-18
 
-I've verified that this submission does not cause issues for the 354 reverse package dependencies available on CRAN and Bioconductor. In addition, the package have been validated on R oldrel, R release, and R devel on Linux, macOS, and Windows. On Linux it's also been checked with Valgrind and ASan/UBSan as well as as far back as R 2.15.0. On Solaris, it's been checked with R release.
+I've verified that this submission does not cause issues for the 359 reverse package dependencies available on CRAN and Bioconductor. In addition, the package have been validated on R oldrel, R release, and R devel on Linux, macOS, and Windows. On Linux it's also been checked as far back as R 2.15.0, and with Valgrind and ASan/UBSan on R release. On Solaris, it's been checked with R release.
 
 Thank you
 
