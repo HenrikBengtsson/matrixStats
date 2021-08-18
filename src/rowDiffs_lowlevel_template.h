@@ -3,7 +3,7 @@
   void rowDiffs_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -17,7 +17,7 @@
 #include "000.types.h"
 
 /* Expand arguments:
-    X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
+    X_TYPE => (X_C_TYPE, X_IN_C)
  */
 #include "000.templates-types.h"
 #include <R_ext/Error.h>
@@ -75,52 +75,29 @@
 #endif
 
 
-#undef DIFF_X_MATRIX_ROWS
-#ifdef ROWS_TYPE
-  #if ROWS_TYPE == 'i'
-    #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, irows)
-  #elif ROWS_TYPE == 'r'
-    #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, drows)
-  #endif
-#else
-  #define DIFF_X_MATRIX_ROWS CONCAT_MACROS(DIFF_X_MATRIX, arows)
+#undef DIFF_X_MATRIX_TYPE
+#if X_TYPE == 'i'
+  #define DIFF_X_MATRIX_TYPE CONCAT_MACROS(DIFF_X_MATRIX_TYPE, int)
+#elif X_TYPE == 'r'
+  #define DIFF_X_MATRIX_TYPE CONCAT_MACROS(DIFF_X_MATRIX_TYPE, double)
 #endif
 
 
-#undef DIFF_X_MATRIX_ROWS_COLS
-#ifdef COLS_TYPE
-  #if COLS_TYPE == 'i'
-    #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, icols)
-  #elif COLS_TYPE == 'r'
-    #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, dcols)
-  #endif
-#else
-  #define DIFF_X_MATRIX_ROWS_COLS CONCAT_MACROS(DIFF_X_MATRIX_ROWS, acols)
-#endif
-
-
-static R_INLINE void DIFF_X_MATRIX_ROWS_COLS(X_C_TYPE *x, R_xlen_t nrow, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
+static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t ii, jj, ss;
   R_xlen_t idx, colBegin1, colBegin2;
   X_C_TYPE xvalue1, xvalue2;
 
-#ifdef ROWS_TYPE
-  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
-#endif
-#ifdef COLS_TYPE
-  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
-#endif
-
   ss = 0;
   if (byrow) {
     for (jj=0; jj < ncol_ans; jj++) {
-      colBegin1 = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
-      colBegin2 = R_INDEX_OP(COL_INDEX(ccols,(jj+lag)), *, nrow);
+      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+      colBegin2 = R_INDEX_OP(((cols == NULL) ? (jj+lag) : cols[jj+lag]), *, nrow);
 
       for (ii=0; ii < nrow_ans; ii++) {
-        idx = R_INDEX_OP(colBegin1, +, ROW_INDEX(crows,ii));
+        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]));
         xvalue1 = R_INDEX_GET(x, idx, X_NA);
-        idx = R_INDEX_OP(colBegin2, +, ROW_INDEX(crows,ii));
+        idx = R_INDEX_OP(colBegin2, +, ((rows == NULL) ? (ii) : rows[ii]));
         xvalue2 = R_INDEX_GET(x, idx, X_NA);
 
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
@@ -128,12 +105,12 @@ static R_INLINE void DIFF_X_MATRIX_ROWS_COLS(X_C_TYPE *x, R_xlen_t nrow, void *r
     }
   } else {
     for (jj=0; jj < ncol_ans; jj++) {
-      colBegin1 = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
+      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
 
       for (ii=0; ii < nrow_ans; ii++) {
-        idx = R_INDEX_OP(colBegin1, +, ROW_INDEX(crows,ii));
+        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]));
         xvalue1 = R_INDEX_GET(x, idx, X_NA);
-        idx = R_INDEX_OP(colBegin1, +, ROW_INDEX(crows,ii+lag));
+        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii+lag) : rows[ii+lag]));
         xvalue2 = R_INDEX_GET(x, idx, X_NA);
 
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
@@ -143,8 +120,9 @@ static R_INLINE void DIFF_X_MATRIX_ROWS_COLS(X_C_TYPE *x, R_xlen_t nrow, void *r
 }
 
 
-
-RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
+                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t nrow_tmp, ncol_tmp;
   X_C_TYPE *tmp = NULL;
 
@@ -153,7 +131,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
   /* Special case (difference == 1) */
   if (differences == 1) {
-    DIFF_X_MATRIX_ROWS_COLS(x, nrow, rows, nrows, cols, ncols, byrow, lag, ans, nrow_ans, ncol_ans);
+    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, cols, ncols, byrow, lag, ans, nrow_ans, ncol_ans);
   } else {
     /* Allocate temporary work matrix (to hold intermediate differences) */
     if (byrow) {
@@ -166,7 +144,7 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     tmp = Calloc(nrow_tmp*ncol_tmp, X_C_TYPE);
 
     /* (a) First order of differences */
-    DIFF_X_MATRIX_ROWS_COLS(x, nrow, rows, nrows, cols, ncols, byrow, lag, tmp, nrow_tmp, ncol_tmp);
+    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, cols, ncols, byrow, lag, tmp, nrow_tmp, ncol_tmp);
     if (byrow) {
       ncol_tmp = ncol_tmp - lag;
     } else {

@@ -1,7 +1,6 @@
 #include <string.h>
 #include "000.utils.h"
-
-#define METHOD validateIndices
+#include "000.macros.h"
 
 #define RETURN_VALIDATED_ANS(type, n, cond, item, poststmt) \
 type *ans = (type*) R_alloc(count, sizeof(type));           \
@@ -22,9 +21,11 @@ for (ii = 0; ii < n; ++ ii) {             \
 #define X_TYPE 'i'
 #define SUBSETTED_DEFAULT SUBSETTED_INTEGER
 #include "validateIndices_lowlevel_template.h"
+#include "000.templates-types_undef.h"
 #undef SUBSETTED_DEFAULT
 
 #define X_TYPE 'r'
 #define SUBSETTED_DEFAULT SUBSETTED_REAL
 #include "validateIndices_lowlevel_template.h"
+#include "000.templates-types_undef.h"
 #undef SUBSETTED_DEFAULT

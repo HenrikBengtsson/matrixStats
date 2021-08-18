@@ -22,7 +22,7 @@ colWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
   
   # Keep naming support consistency same as colWeightedMedians()
   if (!is.null(w)) {
-    if (!is.na(useNames) && !useNames) names(res) <- NULL
+    if (isFALSE(useNames)) names(res) <- NULL
   }
   else if (is.na(useNames) || !useNames) names(res) <- NULL
   

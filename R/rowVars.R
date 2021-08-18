@@ -27,30 +27,10 @@
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
                     dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
 
   if (is.null(center)) {
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE)
-    
-    # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        names <- rownames(x)
-        if (!is.null(names)) {
-          if (!is.null(rows)) {
-            names <- names[rows]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL
-          }
-          names(sigma2) <- names
-        }
-      } else {
-        names(sigma2) <- NULL
-      }      
-    }
-    
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
     return(sigma2)
   }
 
@@ -166,7 +146,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
   x[is.infinite(center)] <- NaN
 
-  equal <- all.equal(x, x2, check.attributes = FALSE)
+  equal <- all.equal(x, x2, check.attribute = FALSE)
   x2 <- NULL
   if (!isTRUE(equal)) {
     fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
@@ -198,31 +178,10 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
                     dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
 
   if (is.null(center)) {
-    dim. <- as.integer(dim.)
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE)
-    
-    # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        names <- colnames(x)
-        if (!is.null(names)) {
-          if (!is.null(cols)) {
-            names <- names[cols]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL         
-          }
-          names(sigma2) <- names
-        }
-      } else {
-        names(sigma2) <- NULL
-      }      
-    }
-
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
     return(sigma2)
   }
 

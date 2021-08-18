@@ -1,7 +1,11 @@
 Package: matrixStats
 ====================
 
-Version: 0.60.0-9001 [2021-08-06]
+Version: 0.60.0-9002 [2021-08-14]
+
+PERFORMANCE:
+
+ * Handling of 'useNames' argument is now done in the native code.
 
 BUG FIXES:
 

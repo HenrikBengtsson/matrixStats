@@ -3,7 +3,7 @@
   void rowMads_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, double scale, int narm, int hasna, int byrow, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -24,24 +24,19 @@
 #include <stdlib.h> /* abs() and fabs() */
 
 /* Expand arguments:
-    X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
+    X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN)
  */
 #include "000.templates-types.h"
 
 
-RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+void CONCAT_MACROS(rowMads, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
+                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        double scale, int narm, int hasna, int byrow, double *ans) {
   int isOdd;
   R_xlen_t ii, jj, kk, qq, idx;
   R_xlen_t *colOffset;
   X_C_TYPE *values, value, mu;
   double *values_d, value_d, mu_d;
-
-#ifdef ROWS_TYPE
-  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
-#endif
-#ifdef COLS_TYPE
-  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
-#endif
 
   /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
@@ -64,26 +59,41 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   value = 0;
 
   /* Pre-calculate the column offsets */
-  colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
-
-  // HJ begin
-  if (byrow) {
-    for (jj=0; jj < ncols; jj++)
-      colOffset[jj] = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
-  } else {
-    for (jj=0; jj < ncols; jj++)
-      colOffset[jj] = COL_INDEX(ccols,jj);
+  if (cols == NULL) {
+    colOffset = NULL;
   }
-  // HJ end
+  else {
+    colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
+    // HJ begin
+    if (byrow) {
+      for (jj=0; jj < ncols; jj++)
+        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow);
+    } else {
+      for (jj=0; jj < ncols; jj++)
+        colOffset[jj] = cols[jj];
+    }
+    // HJ end
+  }
 
   hasna = TRUE;
   if (hasna == TRUE) {
     for (ii=0; ii < nrows; ii++) {
-      R_xlen_t rowIdx = byrow ? ROW_INDEX(crows,ii) : R_INDEX_OP(ROW_INDEX(crows,ii), *, ncol); //HJ
+      //HJ
+      R_xlen_t rowIdx;
+      if (rows == NULL) {
+        rowIdx = byrow ? (ii) : R_INDEX_OP(ii, *, ncol);
+      } else {
+        rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol);
+      }
 
       kk = 0;  /* The index of the last non-NA value detected */
       for (jj=0; jj < ncols; jj++) {
-        idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+        if (colOffset == NULL) {
+          if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow);
+          else idx = R_INDEX_OP(rowIdx, +, jj);
+        } else {
+          idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+        }
         value = R_INDEX_GET(x, idx, X_NA); //HJ
 
         if (X_ISNAN(value)) {
@@ -197,10 +207,22 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
     } /* for (ii ...) */
   } else {
     for (ii=0; ii < nrows; ii++) {
-      R_xlen_t rowIdx = byrow ? ROW_INDEX_NONA(crows,ii) : ROW_INDEX_NONA(crows,ii)*ncol; //HJ
+      //HJ
+      R_xlen_t rowIdx;
+      if (rows == NULL) {
+        rowIdx = byrow ? (ii) : (ii)*ncol;
+      } else {
+        rowIdx = byrow ? rows[ii] : rows[ii]*ncol;
+      }
 
-      for (jj=0; jj < ncols; jj++)
-        values[jj] = x[rowIdx+colOffset[jj]]; //HJ
+      for (jj=0; jj < ncols; jj++) {
+        if (colOffset == NULL) {
+          if (byrow) values[jj] = x[rowIdx+(jj)*nrow];
+          else values[jj] = x[rowIdx+(jj)];
+        } else {
+          values[jj] = x[rowIdx+colOffset[jj]];
+        }
+      } //HJ
 
       /* Permute x[0:ncols-1] so that x[qq] is in the correct
          place with smaller values to the left, ... */

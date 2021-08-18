@@ -9,11 +9,15 @@
 #include <Rdefines.h>
 #include "000.types.h"
 #include "rowCumprods_lowlevel.h"
+#include "naming.h"
 
-SEXP rowCumprods(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
-  int byrow;
+SEXP rowCumprods(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useNames) {
+  int byrow, usenames;
   SEXP ans = NILSXP;
   R_xlen_t nrow, ncol;
+  
+  /* Coercion moved down to C */
+  PROTECT(dim = coerceVector(dim, INTSXP));
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
@@ -22,23 +26,39 @@ SEXP rowCumprods(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow) {
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  int rowsType, colsType;
-  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
-  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
+  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-    rowCumprods_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
+    rowCumprods_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
+      }
+    }
     UNPROTECT(1);
   } else if (isInteger(x) | isLogical(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-    rowCumprods_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
+    rowCumprods_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
+      }
+    }
     UNPROTECT(1);
   }
+  
+  UNPROTECT(1); /* PROTECT(dim = ...) */
 
   return(ans);
 } /* rowCumprods() */

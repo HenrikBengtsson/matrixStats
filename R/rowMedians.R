@@ -41,58 +41,16 @@
 #' @export
 rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  na.rm <- as.logical(na.rm)
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
-  res <- .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE)
-  
-  # Update names attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      names <- rownames(x)
-      if (!is.null(names)) {
-        if (!is.null(rows)) {
-          names <- names[rows]
-          # Zero-length attribute? Keep behavior same as base R function
-          if (length(names) == 0L) names <- NULL
-        }
-        names(res) <- names
-      }
-    } else {
-      names(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
 }
 
 #' @rdname rowMedians
 #' @export
 colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
-  na.rm <- as.logical(na.rm)
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
-  res <- .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE)
-  
-  # Update names attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      names <- colnames(x)
-      if (!is.null(names)) {
-        if (!is.null(cols)) {
-          names <- names[cols]
-          # Zero-length attribute? Keep behavior same as base R function
-          if (length(names) == 0L) names <- NULL         
-        }
-        names(res) <- names
-      }
-    } else {
-      names(res) <- NULL
-    }
-  }
-  
-  res
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
 }

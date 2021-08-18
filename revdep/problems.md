@@ -22,6 +22,62 @@ Run `revdep_details(, "abcrf")` for more info
         libs   4.4Mb
     ```
 
+# airpart
+
+<details>
+
+* Version: 1.0.0
+* GitHub: NA
+* Source code: https://github.com/cran/airpart
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 148
+
+Run `revdep_details(, "airpart")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘airpart-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: makeForest
+    > ### Title: Plot allelic ratio result as forest
+    > ### Aliases: makeForest
+    > 
+    > ### ** Examples
+    > 
+    > sce <- makeSimulatedData()
+    > sce <- preprocess(sce)
+    > sce <- geneCluster(sce, G = 1:4)
+    model-based optimal number of clusters: 3 
+    > sce_sub <- wilcoxExt(sce, genecluster = 1)
+    > sce_sub <- allelicRatio(sce_sub)
+    > makeForest(sce_sub, showtext = TRUE)
+    svalue shown in columns per cell type
+    Error: The package tidyr is needed for this function to work. Please install it.
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘airpart.Rmd’ using rmarkdown
+    Quitting from lines 338-340 (airpart.Rmd) 
+    Error: processing vignette 'airpart.Rmd' failed with diagnostics:
+    The package tidyr is needed for this function to work. Please install it.
+    --- failed re-building ‘airpart.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘airpart.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # AlpsNMR
 
 <details>
@@ -123,6 +179,23 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘amaretto.Rmd’ using rmarkdown
+    Quitting from lines 2-16 (amaretto.Rmd) 
+    Error: processing vignette 'amaretto.Rmd' failed with diagnostics:
+    there is no package called 'BiocStyle'
+    --- failed re-building ‘amaretto.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘amaretto.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  7.3Mb
@@ -179,7 +252,7 @@ Run `revdep_details(, "AMARETTO")` for more info
 * GitHub: https://github.com/valenlab/amplican
 * Source code: https://github.com/cran/amplican
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 105
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "amplican")` for more info
 
@@ -294,6 +367,22 @@ Run `revdep_details(, "autonomics")` for more info
     All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘using_autonomics.Rmd’ using rmarkdown
+    Error: processing vignette 'using_autonomics.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘using_autonomics.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘using_autonomics.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -427,6 +516,31 @@ Run `revdep_details(, "bigPint")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘bioconductor.Rmd’ using rmarkdown
+    Error: processing vignette 'bioconductor.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘bioconductor.Rmd’
+    
+    --- re-building ‘manuscripts.Rmd’ using rmarkdown
+    Error: processing vignette 'manuscripts.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    ...
+    --- re-building ‘summarizedExperiment.Rmd’ using rmarkdown
+    Error: processing vignette 'summarizedExperiment.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘summarizedExperiment.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘bioconductor.Rmd’ ‘manuscripts.Rmd’ ‘summarizedExperiment.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 11.7Mb
@@ -465,7 +579,7 @@ Run `revdep_details(, "bingat")` for more info
 * GitHub: https://github.com/almeidasilvaf/BioNERO
 * Source code: https://github.com/cran/BioNERO
 * Date/Publication: 2021-08-01
-* Number of recursive dependencies: 213
+* Number of recursive dependencies: 214
 
 Run `revdep_details(, "BioNERO")` for more info
 
@@ -502,6 +616,22 @@ Run `revdep_details(, "biscuiteer")` for more info
     Found the following significant warnings:
       Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
     See ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘biscuiteer.Rmd’ using rmarkdown
+    Error: processing vignette 'biscuiteer.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘biscuiteer.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘biscuiteer.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -559,7 +689,7 @@ Run `revdep_details(, "BloodGen3Module")` for more info
 * GitHub: https://github.com/hansenlab/bnbc
 * Source code: https://github.com/cran/bnbc
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 92
+* Number of recursive dependencies: 93
 
 Run `revdep_details(, "bnbc")` for more info
 
@@ -569,7 +699,7 @@ Run `revdep_details(, "bnbc")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.3Mb
       sub-directories of 1Mb or more:
         data   1.7Mb
         libs   1.4Mb
@@ -624,6 +754,22 @@ Run `revdep_details(, "bnem")` for more info
         there is no package called 'RUnit'
       Calls: <Anonymous> -> library
       Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘bnem.rmd’ using rmarkdown
+    Error: processing vignette 'bnem.rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘bnem.rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘bnem.rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -892,7 +1038,7 @@ Run `revdep_details(, "CARBayesST")` for more info
 * GitHub: https://github.com/HelenaLC/CATALYST
 * Source code: https://github.com/cran/CATALYST
 * Date/Publication: 2021-07-13
-* Number of recursive dependencies: 259
+* Number of recursive dependencies: 260
 
 Run `revdep_details(, "CATALYST")` for more info
 
@@ -955,6 +1101,31 @@ Run `revdep_details(, "celda")` for more info
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘celda.Rmd’ using rmarkdown
+    Loading required package: SummarizedExperiment
+    Loading required package: MatrixGenerics
+    Loading required package: matrixStats
+    
+    Attaching package: 'MatrixGenerics'
+    
+    The following objects are masked from 'package:matrixStats':
+    
+    ...
+    
+    Error: processing vignette 'decontX.Rmd' failed with diagnostics:
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/decontX.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See decontX.log for more info.
+    --- failed re-building ‘decontX.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘celda.Rmd’ ‘decontX.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -1244,6 +1415,28 @@ Run `revdep_details(, "Chicago")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘Chicago.Rmd’ using rmarkdown
+    Loading required package: data.table
+    
+    Welcome to CHiCAGO - version 1.20.0
+    If you are new to CHiCAGO, please consider reading the vignette through the command: vignette("Chicago").
+    NOTE: Default values of tlb.minProxOEPerBin and tlb.minProxB2BPerBin changed as of Version 1.1.5. No action is required unless you specified non-default values, or wish to re-run the pipeline on old chicagoData objects. See news(package="Chicago")
+    Quitting from lines 44-46 (Chicago.Rmd) 
+    Error: processing vignette 'Chicago.Rmd' failed with diagnostics:
+    there is no package called 'PCHiCdata'
+    --- failed re-building ‘Chicago.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘Chicago.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking package dependencies ... NOTE
     ```
     Package suggested but not available for checking: ‘PCHiCdata’
@@ -1320,6 +1513,31 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘ChIPpeakAnno.Rmd’ using rmarkdown
+    duplicated or NA names found. Rename all the names by numbers.
+    If you are importing files downloaded from ensembl, 
+              it will be better to import the files into a TxDb object,
+              and then convert to GRanges by toGRanges. Here is the sample code:
+              library(GenomicFeatures)
+              txdb <- makeTxDbFromGFF('/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/ChIPpeakAnno/extdata/GFF_peaks.gff')
+              anno <- toGRanges(txdb, format='gene')
+    duplicated or NA names found. 
+    ...
+    Quitting from lines 59-62 (quickStart.Rmd) 
+    Error: processing vignette 'quickStart.Rmd' failed with diagnostics:
+    don't know where to find assembly report for GCF_000001405.25
+    --- failed re-building ‘quickStart.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘ChIPpeakAnno.Rmd’ ‘pipeline.Rmd’ ‘quickStart.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 26.1Mb
@@ -1388,7 +1606,7 @@ Run `revdep_details(, "cliqueMS")` for more info
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 181
+* Number of recursive dependencies: 182
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -1461,13 +1679,23 @@ Run `revdep_details(, "clustifyr")` for more info
 * GitHub: https://github.com/cmap/cmapR
 * Source code: https://github.com/cran/cmapR
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 74
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "cmapR")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘tutorial.Rmd’ using rmarkdown
+    trying URL 'https://bioconductor.org/packages/3.13/bioc/src/contrib/BiocVersion_3.13.1.tar.gz'
+    Content type 'application/x-gzip' length 985 bytes
+    ==================================================
+    downloaded 985 bytes
+    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -1516,6 +1744,31 @@ Run `revdep_details(, "cna")` for more info
         libs   5.8Mb
     ```
 
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘cna.Rnw’ using Sweave
+    Registered S3 method overwritten by 'cna':
+      method          from
+      some.data.frame car 
+    Error: processing vignette 'cna.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'cna.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `nicefrac.sty' not found.
+    
+    ...
+    l.12 \usepackage
+                    {float}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building 'cna.Rnw'
+    
+    SUMMARY: processing the following file failed:
+      'cna.Rnw'
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # CNVScope
 
 <details>
@@ -1534,10 +1787,51 @@ Run `revdep_details(, "CNVScope")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.2Mb
       sub-directories of 1Mb or more:
         doc       3.2Mb
         extdata   1.7Mb
+    ```
+
+# coin
+
+<details>
+
+* Version: 1.4-1
+* GitHub: NA
+* Source code: https://github.com/cran/coin
+* Date/Publication: 2021-02-08 16:50:07 UTC
+* Number of recursive dependencies: 20
+
+Run `revdep_details(, "coin")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘Implementation.Rnw’ using Sweave
+    Loading required package: survival
+    Loading required package: grid
+    --- finished re-building ‘Implementation.Rnw’
+    
+    --- re-building ‘LegoCondInf.Rnw’ using Sweave
+    Loading required package: coin
+    Loading required package: survival
+    Error: processing vignette 'LegoCondInf.Rnw' failed with diagnostics:
+    ...
+    Warning in .local(object, ...) :
+      p-values may be incorrect due to violation
+      of the subset pivotality condition
+    --- finished re-building ‘coin.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘LegoCondInf.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # cola
@@ -1618,7 +1912,7 @@ Run `revdep_details(, "ComplexHeatmap")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/conclus
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 250
+* Number of recursive dependencies: 251
 
 Run `revdep_details(, "conclus")` for more info
 
@@ -1648,6 +1942,24 @@ Run `revdep_details(, "conclus")` for more info
     Error: The size of the connection buffer (131072) was not large enough
     to fit a complete line:
       * Increase it by setting `Sys.setenv("VROOM_CONNECTION_SIZE")`
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘conclus_vignette.Rmd’ using rmarkdown
+    ! LaTeX Error: Missing \begin{document}.
+    
+    Error: processing vignette 'conclus_vignette.Rmd' failed with diagnostics:
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/conclus/new/conclus.Rcheck/vign_test/conclus/vignettes/conclus_vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See conclus_vignette.log for more info.
+    --- failed re-building ‘conclus_vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘conclus_vignette.Rmd’
+    
+    Error: Vignette re-building failed.
     Execution halted
     ```
 
@@ -1717,6 +2029,31 @@ Run `revdep_details(, "condiments")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘condiments.Rmd’ using rmarkdown
+    Loading required package: princurve
+    Loading required package: TrajectoryUtils
+    Loading required package: SingleCellExperiment
+    Loading required package: SummarizedExperiment
+    Loading required package: MatrixGenerics
+    Loading required package: matrixStats
+    
+    Attaching package: 'MatrixGenerics'
+    ...
+    --- failed re-building ‘controls.Rmd’
+    
+    --- re-building ‘examples.Rmd’ using rmarkdown
+    --- finished re-building ‘examples.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘condiments.Rmd’ ‘controls.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking R code for possible problems ... NOTE
     ```
     .differentiationTest: no visible binding for global variable ‘pair’
@@ -1738,13 +2075,38 @@ Run `revdep_details(, "condiments")` for more info
 * GitHub: https://github.com/bhklab/consensusOV
 * Source code: https://github.com/cran/consensusOV
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 151
+* Number of recursive dependencies: 152
 
 Run `revdep_details(, "consensusOV")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘consensusOV.Rmd’ using rmarkdown
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:parallel':
+    
+        clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    ...
+    Quitting from lines 30-33 (consensusOV.Rmd) 
+    Error: processing vignette 'consensusOV.Rmd' failed with diagnostics:
+    there is no package called 'codetools'
+    --- failed re-building ‘consensusOV.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘consensusOV.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -1761,7 +2123,7 @@ Run `revdep_details(, "consensusOV")` for more info
 * GitHub: https://github.com/PeeperLab/CopywriteR
 * Source code: https://github.com/cran/CopywriteR
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 62
+* Number of recursive dependencies: 63
 
 Run `revdep_details(, "CopywriteR")` for more info
 
@@ -1785,6 +2147,31 @@ Run `revdep_details(, "CopywriteR")` for more info
       failure to calculate loesses. This can generally be solved by using
       larger bin sizes. Stopping execution of the remaining part of the
       script...
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘CopywriteR.Rnw’ using Sweave
+    Loading required package: BiocParallel
+    Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+      pseudoinverse used at 0.979
+    Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+      neighborhood radius 0.001
+    Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+      reciprocal condition number  0
+    Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+    ...
+      larger bin sizes. Stopping execution of the remaining part of the
+      script...
+    
+    --- failed re-building ‘CopywriteR.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘CopywriteR.Rnw’
+    
+    Error: Vignette re-building failed.
     Execution halted
     ```
 
@@ -1841,9 +2228,9 @@ Run `revdep_details(, "crlmm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  6.2Mb
       sub-directories of 1Mb or more:
-        R      1.2Mb
+        R      1.5Mb
         data   2.7Mb
     ```
 
@@ -2001,7 +2388,7 @@ Run `revdep_details(, "cytomapper")` for more info
 * GitHub: https://github.com/JhuangLab/CytoTree
 * Source code: https://github.com/cran/CytoTree
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 243
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "CytoTree")` for more info
 
@@ -2054,6 +2441,31 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘DeepBlueR.Rmd’ using rmarkdown
+    Loading required package: XML
+    Loading required package: RCurl
+    Welcome to the DeepBlueR package
+    DeepBlue is online
+    Called method: deepblue_search
+    Reported status was: okay
+    Warning in deepblue_search(keyword = "'H3k27AC' 'blood' 'peak'", type = "experiments") :
+      NAs introduced by coercion
+    ...
+    Quitting from lines 944-945 (DeepBlueR.Rmd) 
+    Error: processing vignette 'DeepBlueR.Rmd' failed with diagnostics:
+    'length(x) = 66 > 1' in coercion to 'logical(1)'
+    --- failed re-building ‘DeepBlueR.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘DeepBlueR.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking Rd files ... NOTE
     ```
     prepare_Rd: deepblue_enrich_regions_fast.Rd:35-38: Dropping empty section \examples
@@ -2063,11 +2475,11 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 <details>
 
-* Version: 1.14.1
+* Version: 1.14.2
 * GitHub: https://github.com/PeteHaitch/DelayedMatrixStats
 * Source code: https://github.com/cran/DelayedMatrixStats
-* Date/Publication: 2021-08-05
-* Number of recursive dependencies: 70
+* Date/Publication: 2021-08-08
+* Number of recursive dependencies: 71
 
 Run `revdep_details(, "DelayedMatrixStats")` for more info
 
@@ -2132,7 +2544,7 @@ Run `revdep_details(, "DeMixT")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/DepecheR
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 110
+* Number of recursive dependencies: 111
 
 Run `revdep_details(, "DepecheR")` for more info
 
@@ -2198,7 +2610,7 @@ Run `revdep_details(, "DEqMS")` for more info
 
 </details>
 
-## In both
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
@@ -2213,17 +2625,19 @@ Run `revdep_details(, "DEqMS")` for more info
     > ### ** Examples
     > 
     ...
+    Loading required package: AnnotationHub
+    Loading required package: BiocFileCache
     Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
-    snapshotDate(): 2021-08-04
-    > query(eh, "DEqMS")
-    ExperimentHub with 0 records
-    # snapshotDate(): 2021-08-04
-    > dat.psm = eh[["EH1663"]]
-    Error: File not previously downloaded.
-      Run with 'localHub=FALSE'
+    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
+      Invalid Cache: sqlite file
+      Hub has not been added to cache
+      Run again with 'localHub=FALSE'
+    Calls: ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
     Execution halted
     ```
+
+## In both
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -2312,7 +2726,7 @@ Run `revdep_details(, "diffloop")` for more info
 * GitHub: https://github.com/ETHZ-INS/diffUTR
 * Source code: https://github.com/cran/diffUTR
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 143
+* Number of recursive dependencies: 144
 
 Run `revdep_details(, "diffUTR")` for more info
 
@@ -2374,6 +2788,38 @@ Run `revdep_details(, "DiscoRhythm")` for more info
       .discorhythm_local .discorhythm_ncores discoODAres
     ```
 
+# DMCFB
+
+<details>
+
+* Version: 1.6.0
+* GitHub: https://github.com/shokoohi/DMCFB
+* Source code: https://github.com/cran/DMCFB
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 132
+
+Run `revdep_details(, "DMCFB")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘DMCFB.Rmd’ using rmarkdown
+    Error: processing vignette 'DMCFB.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘DMCFB.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘DMCFB.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # dmrseq
 
 <details>
@@ -2419,6 +2865,31 @@ Run `revdep_details(, "dmrseq")` for more info
     ```
       LazyData DB of 8.8 MB without LazyDataCompression set
       See §1.1.6 of 'Writing R Extensions'
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘dmrseq.Rmd’ using rmarkdown
+    Loading required package: bsseq
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:parallel':
+    
+    ...
+    Quitting from lines 543-548 (dmrseq.Rmd) 
+    Error: processing vignette 'dmrseq.Rmd' failed with diagnostics:
+    Annotation could not be retrieved.
+    --- failed re-building ‘dmrseq.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘dmrseq.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -2577,7 +3048,7 @@ Run `revdep_details(, "EnrichedHeatmap")` for more info
 * GitHub: https://github.com/sjczheng/EpiDISH
 * Source code: https://github.com/cran/EpiDISH
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 84
+* Number of recursive dependencies: 85
 
 Run `revdep_details(, "EpiDISH")` for more info
 
@@ -2615,6 +3086,47 @@ Run `revdep_details(, "EstimationTools")` for more info
       All declared Imports should be used.
     ```
 
+# estudy2
+
+<details>
+
+* Version: 0.9.2
+* GitHub: https://github.com/irudnyts/estudy2
+* Source code: https://github.com/cran/estudy2
+* Date/Publication: 2020-04-30 23:10:06 UTC
+* Number of recursive dependencies: 26
+
+Run `revdep_details(, "estudy2")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘estudy2-intro.Rmd’ using rmarkdown
+    'getSymbols' currently uses auto.assign=TRUE by default, but will
+    use auto.assign=FALSE in 0.5-0. You will still be able to use
+    'loadSymbols' to automatically load data. getOption("getSymbols.env")
+    and getOption("getSymbols.auto.assign") will still be checked for
+    alternate defaults.
+    
+    This message is shown once per session and may be disabled by setting 
+    ...
+    Error: processing vignette 'estudy2-intro.Rmd' failed with diagnostics:
+    Unable to import "RSA.L".
+    argument "conn" is missing, with no default
+    --- failed re-building ‘estudy2-intro.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘estudy2-intro.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # evaluomeR
 
 <details>
@@ -2623,7 +3135,7 @@ Run `revdep_details(, "EstimationTools")` for more info
 * GitHub: https://github.com/neobernad/evaluomeR
 * Source code: https://github.com/cran/evaluomeR
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 107
+* Number of recursive dependencies: 108
 
 Run `revdep_details(, "evaluomeR")` for more info
 
@@ -2665,7 +3177,7 @@ Run `revdep_details(, "evaluomeR")` for more info
 * GitHub: https://github.com/jpromeror/EventPointer
 * Source code: https://github.com/cran/EventPointer
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 161
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "EventPointer")` for more info
 
@@ -2779,7 +3291,7 @@ Run `revdep_details(, "ExpHunterSuite")` for more info
 * GitHub: https://github.com/NA/NA
 * Source code: https://github.com/cran/ExpressionNormalizationWorkflow
 * Date/Publication: 2021-05-21
-* Number of recursive dependencies: 106
+* Number of recursive dependencies: 107
 
 Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 
@@ -2889,6 +3401,29 @@ Run `revdep_details(, "FastRCS")` for more info
       installed size is 21.9Mb
       sub-directories of 1Mb or more:
         libs  21.8Mb
+    ```
+
+# fastverse
+
+<details>
+
+* Version: 0.1.8
+* GitHub: https://github.com/SebKrantz/fastverse
+* Source code: https://github.com/cran/fastverse
+* Date/Publication: 2021-08-12 09:10:02 UTC
+* Number of recursive dependencies: 43
+
+Run `revdep_details(, "fastverse")` for more info
+
+</details>
+
+## In both
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘data.table’ ‘fst’ ‘kit’ ‘magrittr’ ‘matrixStats’
+      All declared Imports should be used.
     ```
 
 # FDb.FANTOM4.promoters.hg19
@@ -3074,6 +3609,31 @@ Run `revdep_details(, "flowCore")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘HowTo-flowCore.Rnw’ using knitr
+    Warning: 'getData' is deprecated.
+    Use 'gs_pop_get_data' instead.
+    See help("Deprecated")
+    Warning: 'flowJo_biexp_trans' is deprecated.
+    Use 'flowjo_biexp_trans' instead.
+    See help("Deprecated")
+    Warning: 'getData' is deprecated.
+    Use 'gs_pop_get_data' instead.
+    ...
+    l.65 \usepackage
+                    {graphicx}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘HowTo-flowCore.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘HowTo-flowCore.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 19.4Mb
@@ -3092,13 +3652,38 @@ Run `revdep_details(, "flowCore")` for more info
 * GitHub: https://github.com/aya49/flowGraph
 * Source code: https://github.com/cran/flowGraph
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 83
+* Number of recursive dependencies: 84
 
 Run `revdep_details(, "flowGraph")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘flowGraph.Rmd’ using rmarkdown
+    - 8 pops @ layer 1
+    05:39:23-05:39:23 > 16:00:00
+    - 24 pops @ layer 2
+    05:39:23-05:39:23 > 16:00:00
+    - 32 pops @ layer 3
+    05:39:23-05:39:23 > 16:00:00
+    - 16 pops @ layer 4
+    05:39:23-05:39:23 > 16:00:00
+    ...
+    Quitting from lines 557-561 (flowGraph.Rmd) 
+    Error: processing vignette 'flowGraph.Rmd' failed with diagnostics:
+    `map_df()` requires dplyr
+    --- failed re-building ‘flowGraph.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘flowGraph.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking R code for possible problems ... NOTE
     ```
@@ -3226,13 +3811,38 @@ Run `revdep_details(, "flowWorkspace")` for more info
 * GitHub: https://github.com/gagneurlab/FRASER
 * Source code: https://github.com/cran/FRASER
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 185
+* Number of recursive dependencies: 186
 
 Run `revdep_details(, "FRASER")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘FRASER.Rnw’ using knitr
+    Tue Aug 17 08:31:24 2021: Start counting the split reads ...
+    Tue Aug 17 08:31:25 2021: Count split reads for sample: sample1
+    Tue Aug 17 08:31:26 2021: Count split reads for sample: sample2
+    Tue Aug 17 08:31:27 2021: Count split reads for sample: sample3
+    Tue Aug 17 08:31:29 2021 : count ranges need to be merged ...
+    Tue Aug 17 08:31:31 2021: Create splice site indices ...
+    Tue Aug 17 08:31:31 2021: Writing split counts to folder: /scratch/henrik/RtmpppbfSG/savedObjects/Data_Analysis/splitCounts
+    Tue Aug 17 08:31:32 2021: Identifying introns with read count <= 20 in all samples...
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘FRASER.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘FRASER.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3390,6 +4000,47 @@ Run `revdep_details(, "genomation")` for more info
       See the note in ?`:::` about the use of this operator.
     ```
 
+# geva
+
+<details>
+
+* Version: 1.0.0
+* GitHub: https://github.com/sbcblab/geva
+* Source code: https://github.com/cran/geva
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 105
+
+Run `revdep_details(, "geva")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘geva.Rmd’ using rmarkdown
+    Warning in Sys.setlocale("LC_TIME", "English_United States") :
+      OS reports request to set locale to "English_United States" cannot be honored
+    A new version of TeX Live has been released. If you need to install or update any LaTeX packages, you have to upgrade TinyTeX with tinytex::reinstall_tinytex(). If it fails to upgrade, you might be using a default random CTAN mirror that has not been fully synced to the main CTAN repository, and you need to wait for a few more days or use a CTAN mirror that is known to be up-to-date (see the "repository" argument on the help page ?tinytex::install_tinytex).
+    
+    tlmgr: Local TeX Live (2020) is older than remote repository (2021).
+    Cross release updates are only supported with
+      update-tlmgr-latest(.sh/.exe) --update
+    See https://tug.org/texlive/upgrade.html for details.
+    ...
+    
+    Error: processing vignette 'geva.Rmd' failed with diagnostics:
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/geva/new/geva.Rcheck/vign_test/geva/vignettes/geva.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See geva.log for more info.
+    --- failed re-building ‘geva.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘geva.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # ggdmc
 
 <details>
@@ -3426,7 +4077,7 @@ Run `revdep_details(, "ggdmc")` for more info
 * GitHub: https://github.com/dongjunchung/GGPA
 * Source code: https://github.com/cran/GGPA
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 68
+* Number of recursive dependencies: 69
 
 Run `revdep_details(, "GGPA")` for more info
 
@@ -3516,7 +4167,7 @@ Run `revdep_details(, "glmGamPoi")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/graper
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 66
+* Number of recursive dependencies: 67
 
 Run `revdep_details(, "graper")` for more info
 
@@ -3540,7 +4191,7 @@ Run `revdep_details(, "graper")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GUIDEseq
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 142
+* Number of recursive dependencies: 143
 
 Run `revdep_details(, "GUIDEseq")` for more info
 
@@ -3564,6 +4215,31 @@ Run `revdep_details(, "GUIDEseq")` for more info
     prepare_Rd: getUsedBarcodes.Rd:39-41: Dropping empty section \references
     ```
 
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘GUIDEseq.Rnw’ using Sweave
+    Loading required package: GenomicRanges
+    Loading required package: stats4
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: ‘BiocGenerics’
+    
+    The following objects are masked from ‘package:parallel’:
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building 'GUIDEseq.Rnw'
+    
+    SUMMARY: processing the following file failed:
+      'GUIDEseq.Rnw'
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # Gviz
 
 <details>
@@ -3572,38 +4248,11 @@ Run `revdep_details(, "GUIDEseq")` for more info
 * GitHub: https://github.com/ivanek/Gviz
 * Source code: https://github.com/cran/Gviz
 * Date/Publication: 2021-07-04
-* Number of recursive dependencies: 150
+* Number of recursive dependencies: 151
 
 Run `revdep_details(, "Gviz")` for more info
 
 </details>
-
-## Newly fixed
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      
-      Attaching package: 'S4Vectors'
-      
-      The following objects are masked from 'package:base':
-      
-          I, expand.grid, unname
-      
-    ...
-       10.           └─biomaRt:::bmRequest(...)
-       11.             └─httr::GET(request2, config = httr_config, content_type("text/plain"))
-       12.               └─httr:::request_perform(req, hu$handle$handle)
-       13.                 ├─httr:::request_fetch(req$output, req$url, handle)
-       14.                 └─httr:::request_fetch.write_memory(req$output, req$url, handle)
-       15.                   └─curl::curl_fetch_memory(url, handle = handle)
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 293 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 ## In both
 
@@ -3624,7 +4273,7 @@ Run `revdep_details(, "Gviz")` for more info
 * GitHub: https://github.com/Kumquatum/GWENA
 * Source code: https://github.com/cran/GWENA
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 143
+* Number of recursive dependencies: 144
 
 Run `revdep_details(, "GWENA")` for more info
 
@@ -3700,54 +4349,29 @@ Run `revdep_details(, "hipathia")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking re-building of vignette outputs ... WARNING
     ```
-    Running examples in ‘hipathia-Ex.R’ failed
-    The error most likely occurred in:
+    Error(s) in re-building vignettes:
+    --- re-building ‘hipathia-vignette.Rmd’ using rmarkdown
+    Loading required package: igraph
     
-    > ### Name: create_report
-    > ### Title: Create visualization HTML
-    > ### Aliases: create_report
-    > 
-    > ### ** Examples
-    > 
-    > data(comp)
+    Attaching package: 'igraph'
+    
+    The following objects are masked from 'package:stats':
+    
+        decompose, spectrum
+    
     ...
-    > pathways <- load_pathways(species = "hsa", pathways_list = c("hsa03320",
-    + "hsa04012"))
-    snapshotDate(): 2021-05-18
-    Error in h(simpleError(msg, call)) : 
-      error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /scratch/henrik/revdepcheck.extras/matrixStats/revdep/cache/R/AnnotationHub
-      filename: annotationhub.index.rds
-    Calls: load_pathways ... hub -> query -> AnnotationHub -> .Hub -> .db_create_index
+    
+    Error: processing vignette 'hipathia-vignette.Rmd' failed with diagnostics:
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/hipathia/new/hipathia.Rcheck/vign_test/hipathia/vignettes/hipathia-vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See hipathia-vignette.log for more info.
+    --- failed re-building ‘hipathia-vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘hipathia-vignette.Rmd’
+    
+    Error: Vignette re-building failed.
     Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-        cache: /scratch/henrik/revdepcheck.extras/matrixStats/revdep/cache/R/AnnotationHub
-        filename: annotationhub.index.rds
-      Backtrace:
-           █
-        1. ├─hipathia::load_pathways("hsa", pathways_list = pathways_list) test-path-summary.R:9:0
-        2. │ └─hipathia:::load_mgi(species)
-        3. │   └─hipathia:::hub()
-    ...
-        5. │     └─AnnotationHub::AnnotationHub()
-        6. │       └─AnnotationHub::.Hub(...)
-        7. │         └─AnnotationHub:::.db_create_index(hub)
-        8. │           └─base::stop(...)
-        9. └─base::.handleSimpleError(...)
-       10.   └─base:::h(simpleError(msg, call))
-      
-      [ FAIL 10 | WARN 0 | SKIP 0 | PASS 46 ]
-      Error: Test failures
-      Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -3847,6 +4471,47 @@ Run `revdep_details(, "kgschart")` for more info
       'LazyData' is specified without a 'data' directory
     ```
 
+# kissDE
+
+<details>
+
+* Version: 1.12.0
+* GitHub: NA
+* Source code: https://github.com/cran/kissDE
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 144
+
+Run `revdep_details(, "kissDE")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘kissDE.rnw’ using Sweave
+    Warning in DESeqDataSet(se, design = design, ignoreRank) :
+      some variables in design formula are characters, converting to factors
+    Warning in DESeqDataSet(se, design = design, ignoreRank) :
+      some variables in design formula are characters, converting to factors
+    Pre-processing the data...
+    Warning in DESeqDataSet(se, design = design, ignoreRank) :
+      some variables in design formula are characters, converting to factors
+    Warning in DESeqDataSet(se, design = design, ignoreRank) :
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘kissDE.rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘kissDE.rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # landmap
 
 <details>
@@ -3900,10 +4565,10 @@ Run `revdep_details(, "latrend")` for more info
 
 <details>
 
-* Version: 2.1.0
+* Version: 2.1.2
 * GitHub: https://github.com/dcgerard/ldsep
 * Source code: https://github.com/cran/ldsep
-* Date/Publication: 2021-06-11 18:00:02 UTC
+* Date/Publication: 2021-08-10 13:50:02 UTC
 * Number of recursive dependencies: 159
 
 Run `revdep_details(, "ldsep")` for more info
@@ -3917,6 +4582,47 @@ Run `revdep_details(, "ldsep")` for more info
       installed size is  8.3Mb
       sub-directories of 1Mb or more:
         libs   7.3Mb
+    ```
+
+# LFDREmpiricalBayes
+
+<details>
+
+* Version: 1.0
+* GitHub: NA
+* Source code: https://github.com/cran/LFDREmpiricalBayes
+* Date/Publication: 2017-09-27 09:08:46 UTC
+* Number of recursive dependencies: 33
+
+Run `revdep_details(, "LFDREmpiricalBayes")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘LFDREmpiricalBayes.Rnw’ using Sweave
+    Error: processing vignette 'LFDREmpiricalBayes.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'LFDREmpiricalBayes.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `changepage.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    ...
+    l.10 \usepackage
+                    {url}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘LFDREmpiricalBayes.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘LFDREmpiricalBayes.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # liger
@@ -4099,7 +4805,7 @@ Run `revdep_details(, "M3Drop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
 * Date/Publication: 2021-05-21
-* Number of recursive dependencies: 227
+* Number of recursive dependencies: 228
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
@@ -4110,6 +4816,31 @@ Run `revdep_details(, "maEndToEnd")` for more info
 *   checking DESCRIPTION meta-information ... WARNING
     ```
     Invalid license file pointers: LICENSE
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘MA-Workflow.Rmd’ using rmarkdown
+    trying URL 'https://www.ebi.ac.uk/arrayexpress/files/A-AFFY-141/A-AFFY-141.adf.txt'
+    Content type 'text/plain' length 94175098 bytes (89.8 MB)
+    ==================================================
+    downloaded 89.8 MB
+    
+    trying URL 'https://www.ebi.ac.uk/arrayexpress/files/E-MTAB-2967/E-MTAB-2967.sdrf.txt'
+    Content type 'text/plain' length 22516 bytes (21 KB)
+    ==================================================
+    ...
+    Quitting from lines 1964-1966 (MA-Workflow.Rmd) 
+    Error: processing vignette 'MA-Workflow.Rmd' failed with diagnostics:
+    there is no package called 'ggnewscale'
+    --- failed re-building ‘MA-Workflow.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘MA-Workflow.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking package dependencies ... NOTE
@@ -4148,10 +4879,10 @@ Run `revdep_details(, "maEndToEnd")` for more info
 
 <details>
 
-* Version: 1.4.1
+* Version: 1.4.2
 * GitHub: https://github.com/Bioconductor/MatrixGenerics
 * Source code: https://github.com/cran/MatrixGenerics
-* Date/Publication: 2021-08-03
+* Date/Publication: 2021-08-08
 * Number of recursive dependencies: 50
 
 Run `revdep_details(, "MatrixGenerics")` for more info
@@ -4249,7 +4980,7 @@ Run `revdep_details(, "mcmcsae")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MEAL
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 220
+* Number of recursive dependencies: 221
 
 Run `revdep_details(, "MEAL")` for more info
 
@@ -4319,7 +5050,7 @@ Run `revdep_details(, "MEAL")` for more info
 * GitHub: https://github.com/CharlesJB/metagene
 * Source code: https://github.com/cran/metagene
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 125
+* Number of recursive dependencies: 126
 
 Run `revdep_details(, "metagene")` for more info
 
@@ -4461,6 +5192,31 @@ Run `revdep_details(, "metavizr")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘IntroToMetavizr.Rmd’ using rmarkdown
+    Loading required package: metavizr
+    Loading required package: metagenomeSeq
+    Loading required package: Biobase
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    ...
+    Quitting from lines 231-236 (IntroToMetavizr.Rmd) 
+    Error: processing vignette 'IntroToMetavizr.Rmd' failed with diagnostics:
+    no resources available in curatedMetagenomicData
+    --- failed re-building ‘IntroToMetavizr.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘IntroToMetavizr.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # MethReg
 
 <details>
@@ -4504,15 +5260,57 @@ Run `revdep_details(, "MethReg")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
-        R     1.7Mb
-        doc   2.3Mb
+        R      2.6Mb
+        data   1.9Mb
+        doc    2.3Mb
     ```
 
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘TCGAbiolinks’
+    ```
+
+# methrix
+
+<details>
+
+* Version: 1.6.0
+* GitHub: https://github.com/CompEpigen/methrix
+* Source code: https://github.com/cran/methrix
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 160
+
+Run `revdep_details(, "methrix")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘methrix.Rmd’ using rmarkdown
+    Loading required package: data.table
+    Loading required package: SummarizedExperiment
+    Loading required package: MatrixGenerics
+    Loading required package: matrixStats
+    
+    Attaching package: 'MatrixGenerics'
+    
+    The following objects are masked from 'package:matrixStats':
+    ...
+    Quitting from lines 108-110 (methrix.Rmd) 
+    Error: processing vignette 'methrix.Rmd' failed with diagnostics:
+    
+    --- failed re-building ‘methrix.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘methrix.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # MethylAid
@@ -4530,6 +5328,31 @@ Run `revdep_details(, "MethylAid")` for more info
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘MethylAid.Rnw’ using knitr
+    Setting options('download.file.method.GEOquery'='auto')
+    Setting options('GEOquery.inmemory.gpl'=FALSE)
+    Loading required package: minfi
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘MethylAid.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘MethylAid.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -4958,14 +5781,6 @@ Run `revdep_details(, "MinimumDistance")` for more info
     Package which this enhances but not available for checking: ‘doSNOW’
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.9Mb
-      sub-directories of 1Mb or more:
-        R     3.0Mb
-        doc   1.6Mb
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘MatrixGenerics’
@@ -4999,7 +5814,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
 * GitHub: https://github.com/mixOmicsTeam/mixOmics
 * Source code: https://github.com/cran/mixOmics
 * Date/Publication: 2021-07-29
-* Number of recursive dependencies: 90
+* Number of recursive dependencies: 91
 
 Run `revdep_details(, "mixOmics")` for more info
 
@@ -5032,6 +5847,22 @@ Run `revdep_details(, "mnem")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘mnem.Rmd’ using rmarkdown
+    Error: processing vignette 'mnem.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘mnem.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘mnem.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  8.8Mb
@@ -5049,13 +5880,38 @@ Run `revdep_details(, "mnem")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/moanin
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 116
+* Number of recursive dependencies: 117
 
 Run `revdep_details(, "moanin")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘documentation.Rmd’ using knitr
+    Loading required package: SummarizedExperiment
+    Loading required package: MatrixGenerics
+    Loading required package: matrixStats
+    
+    Attaching package: 'MatrixGenerics'
+    
+    The following objects are masked from 'package:matrixStats':
+    
+    ...
+    Quitting from lines 45-49 (documentation.Rmd) 
+    Error: processing vignette 'documentation.Rmd' failed with diagnostics:
+    there is no package called 'codetools'
+    --- failed re-building ‘documentation.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘documentation.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -5085,6 +5941,31 @@ Run `revdep_details(, "monocle")` for more info
       ‘Rcpp’ ‘biocViews’
       All declared Imports should be used.
     Missing or unexported object: ‘scater::newSCESet’
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘monocle-vignette.Rnw’ using knitr
+    Error: processing vignette 'monocle-vignette.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'monocle-vignette.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `sectsty.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    ...
+    l.36 \sectionfont
+                     {\sffamily\bfseries\color{RoyalBlue}\sectionrule{0pt}{0pt}{...
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘monocle-vignette.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘monocle-vignette.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking package dependencies ... NOTE
@@ -5132,7 +6013,7 @@ Run `revdep_details(, "monocle")` for more info
 * GitHub: https://github.com/Neurergus/MOSim
 * Source code: https://github.com/cran/MOSim
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 75
+* Number of recursive dependencies: 76
 
 Run `revdep_details(, "MOSim")` for more info
 
@@ -5140,9 +6021,34 @@ Run `revdep_details(, "MOSim")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘MOSim.Rnw’ using knitr
+    Generating simulation settings for RNA-seq.
+    Finishing generation of configuration settings.
+    Configuration generated.
+    
+    Starting simulation of RNA-seq.
+    - Simulating count values for group 1.
+    	- Making replicates for group 1 on time 0.
+    	- Making replicates for group 1 on time 2.
+    ...
+    Quitting from lines 223-249 (MOSim.Rnw) 
+    Error: processing vignette 'MOSim.Rnw' failed with diagnostics:
+    there is no package called 'codetools'
+    --- failed re-building ‘MOSim.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘MOSim.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
         data   4.2Mb
     ```
@@ -5155,7 +6061,7 @@ Run `revdep_details(, "MOSim")` for more info
 * GitHub: https://github.com/Simon-Coetzee/motifbreakR
 * Source code: https://github.com/cran/motifbreakR
 * Date/Publication: 2021-07-22
-* Number of recursive dependencies: 150
+* Number of recursive dependencies: 151
 
 Run `revdep_details(, "motifbreakR")` for more info
 
@@ -5197,6 +6103,31 @@ Run `revdep_details(, "motifbreakR")` for more info
     The \usage entries must correspond to syntactically valid R code.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘motifbreakR-vignette.Rmd’ using rmarkdown
+    Loading required package: grid
+    Loading required package: MotifDb
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:parallel':
+    ...
+    Quitting from lines 68-71 (motifbreakR-vignette.Rmd) 
+    Error: processing vignette 'motifbreakR-vignette.Rmd' failed with diagnostics:
+    there is no package called 'codetools'
+    --- failed re-building ‘motifbreakR-vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘motifbreakR-vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking installed package size ... NOTE
@@ -5256,6 +6187,31 @@ Run `revdep_details(, "MultiBD")` for more info
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘SIR-MCMC.Rmd’ using rmarkdown
+    Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
+    --- finished re-building ‘SIR-MCMC.Rmd’
+    
+    --- re-building ‘SIRtrans.Rnw’ using knitr
+    Error: processing vignette 'SIRtrans.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'SIRtrans.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `bbm.sty' not found.
+    ...
+    l.75 \usepackage
+                    {amsmath}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘SIRtrans.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘SIRtrans.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -5351,6 +6307,31 @@ Run `revdep_details(, "muscat")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘analysis.Rmd’ using rmarkdown
+    
+    Attaching package: 'dplyr'
+    
+    The following objects are masked from 'package:stats':
+    
+        filter, lag
+    
+    The following objects are masked from 'package:base':
+    ...
+    
+        ident, sql
+    
+    snapshotDate(): 2021-05-18
+    Bioconductor version 3.13 (BiocManager 1.30.16), R 4.1.1 (2021-08-10)
+    Installing package(s) 'muscData'
+    trying URL 'https://bioconductor.org/packages/3.13/data/experiment/src/contrib/muscData_1.6.0.tar.gz'
+    Content type 'application/x-gzip' length 237765 bytes (232 KB)
+    ==================================================
+    downloaded 232 KB
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  9.0Mb
@@ -5409,7 +6390,7 @@ Run `revdep_details(, "muscData")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/NanoStringDiff
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 50
+* Number of recursive dependencies: 51
 
 Run `revdep_details(, "NanoStringDiff")` for more info
 
@@ -5432,6 +6413,31 @@ Run `revdep_details(, "NanoStringDiff")` for more info
     The following files look like leftovers/mistakes:
       ‘NanoStringDiff.log’
     Please remove them from your package.
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘NanoStringDiff.Rnw’ using Sweave
+    Loading required package: Biobase
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: ‘BiocGenerics’
+    
+    The following objects are masked from ‘package:parallel’:
+    
+    ...
+    l.37 \sectionfont
+                     {\sffamily\bfseries\color{BiocBlue}\sectionrule{0pt}{0pt}{-...
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘NanoStringDiff.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘NanoStringDiff.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # nearBynding
@@ -5485,6 +6491,22 @@ Run `revdep_details(, "nempi")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘nempi.Rmd’ using rmarkdown
+    Error: processing vignette 'nempi.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘nempi.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘nempi.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # NetLogoR
 
 <details>
@@ -5514,13 +6536,38 @@ Run `revdep_details(, "NetLogoR")` for more info
 * GitHub: https://github.com/ComputationalProteomics/NormalyzerDE
 * Source code: https://github.com/cran/NormalyzerDE
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 159
+* Number of recursive dependencies: 160
 
 Run `revdep_details(, "NormalyzerDE")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘vignette.Rmd’ using rmarkdown
+    A new version of TeX Live has been released. If you need to install or update any LaTeX packages, you have to upgrade TinyTeX with tinytex::reinstall_tinytex(). If it fails to upgrade, you might be using a default random CTAN mirror that has not been fully synced to the main CTAN repository, and you need to wait for a few more days or use a CTAN mirror that is known to be up-to-date (see the "repository" argument on the help page ?tinytex::install_tinytex).
+    
+    tlmgr: Local TeX Live (2020) is older than remote repository (2021).
+    Cross release updates are only supported with
+      update-tlmgr-latest(.sh/.exe) --update
+    See https://tug.org/texlive/upgrade.html for details.
+    Warning in system2("tlmgr", args, ...) :
+    ...
+    
+    Error: processing vignette 'vignette.Rmd' failed with diagnostics:
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/NormalyzerDE/new/NormalyzerDE.Rcheck/vign_test/NormalyzerDE/vignettes/vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See vignette.log for more info.
+    --- failed re-building ‘vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -5582,7 +6629,7 @@ Run `revdep_details(, "omicplotR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/omicsPrint
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 130
+* Number of recursive dependencies: 131
 
 Run `revdep_details(, "omicsPrint")` for more info
 
@@ -5598,9 +6645,9 @@ Run `revdep_details(, "omicsPrint")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.6Mb
+      installed size is  8.7Mb
       sub-directories of 1Mb or more:
-        data  15.3Mb
+        data   7.4Mb
         doc    1.2Mb
     ```
 
@@ -5662,13 +6709,38 @@ Run `revdep_details(, "OptimalDesign")` for more info
 * GitHub: https://github.com/gagneurlab/OUTRIDER
 * Source code: https://github.com/cran/OUTRIDER
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 172
+* Number of recursive dependencies: 173
 
 Run `revdep_details(, "OUTRIDER")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘OUTRIDER.Rnw’ using knitr
+    The magick package is required to crop "figure/deVsOutlier-1.png" but not available.
+    229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.
+    Tue Aug 17 10:30:01 2021: SizeFactor estimation ...
+    Tue Aug 17 10:30:02 2021: Controlling for confounders ...
+    Using estimated q with: 23
+    Tue Aug 17 10:30:02 2021: Using the autoencoder implementation for controlling.
+    Tue Aug 17 10:36:01 2021: Used the autoencoder implementation for controlling.
+    Tue Aug 17 10:36:01 2021: P-value calculation ...
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘OUTRIDER.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘OUTRIDER.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -5889,7 +6961,7 @@ Run `revdep_details(, "phosphonormalizer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Pigengene
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 139
+* Number of recursive dependencies: 140
 
 Run `revdep_details(, "Pigengene")` for more info
 
@@ -5900,6 +6972,31 @@ Run `revdep_details(, "Pigengene")` for more info
 *   checking whether the namespace can be loaded with stated dependencies ... WARNING
     ```
     Warning: S4 exports specified in 'NAMESPACE' but not defined in package ‘Pigengene’
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘Pigengene_inference.Rnw’ using knitr
+    Warning in has_utility("pdfcrop") :
+      pdfcrop not installed or not in PATH
+    sh: pdfcrop: command not found
+    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
+      error in running command
+    sh: pdfcrop: command not found
+    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
+      error in running command
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘Pigengene_inference.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘Pigengene_inference.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -6006,6 +7103,32 @@ Run `revdep_details(, "pipeComp")` for more info
       ‘edgeR’ ‘sva’
     ```
 
+# PlackettLuce
+
+<details>
+
+* Version: 0.4.1
+* GitHub: https://github.com/hturner/PlackettLuce
+* Source code: https://github.com/cran/PlackettLuce
+* Date/Publication: 2021-08-16 15:40:02 UTC
+* Number of recursive dependencies: 176
+
+Run `revdep_details(, "PlackettLuce")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking: 'BayesMallows', 'PLMIX'
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘BayesMallows’
+    ```
+
 # pmp
 
 <details>
@@ -6014,7 +7137,7 @@ Run `revdep_details(, "pipeComp")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/pmp
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 97
+* Number of recursive dependencies: 98
 
 Run `revdep_details(, "pmp")` for more info
 
@@ -6059,7 +7182,7 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ProteoMM
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 96
+* Number of recursive dependencies: 97
 
 Run `revdep_details(, "ProteoMM")` for more info
 
@@ -6081,7 +7204,7 @@ Run `revdep_details(, "ProteoMM")` for more info
 * GitHub: https://github.com/ccagc/QDNAseq
 * Source code: https://github.com/cran/QDNAseq
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 75
+* Number of recursive dependencies: 76
 
 Run `revdep_details(, "QDNAseq")` for more info
 
@@ -6093,6 +7216,31 @@ Run `revdep_details(, "QDNAseq")` for more info
     ```
     Namespace in Imports field not imported from: ‘future’
       All declared Imports should be used.
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘QDNAseq.Rnw’ using Sweave
+    EM algorithm started ... 
+    
+    Warning in allprior/tot :
+      Recycling array of length 1 in vector-array arithmetic is deprecated.
+      Use c() or as.vector() instead.
+    
+    Warning in allprior/tot :
+      Recycling array of length 1 in vector-array arithmetic is deprecated.
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘QDNAseq.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘QDNAseq.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # QFeatures
@@ -6186,6 +7334,31 @@ Run `revdep_details(, "rADA")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘rada_vignette.Rmd’ using knitr
+    Loading required package: grid
+    Loading required package: magrittr
+    Loading required package: checkmate
+    Quitting from lines 62-70 (rada_vignette.Rmd) 
+    Error: processing vignette 'rada_vignette.Rmd' failed with diagnostics:
+    there is no package called 'codetools'
+    --- failed re-building ‘rada_vignette.Rmd’
+    ...
+    Quitting from lines 62-70 (rada_vignette_supplemental.Rmd) 
+    Error: processing vignette 'rada_vignette_supplemental.Rmd' failed with diagnostics:
+    there is no package called 'codetools'
+    --- failed re-building ‘rada_vignette_supplemental.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘rada_vignette.Rmd’ ‘rada_vignette_supplemental.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  5.7Mb
@@ -6225,7 +7398,7 @@ Run `revdep_details(, "RadioGx")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.0Mb
       sub-directories of 1Mb or more:
         data   3.5Mb
     ```
@@ -6277,6 +7450,47 @@ Run `revdep_details(, "rhierbaps")` for more info
 *   checking LazyData ... NOTE
     ```
       'LazyData' is specified without a 'data' directory
+    ```
+
+# RiboDiPA
+
+<details>
+
+* Version: 1.0.0
+* GitHub: NA
+* Source code: https://github.com/cran/RiboDiPA
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 142
+
+Run `revdep_details(, "RiboDiPA")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘RiboDiPA.Rmd’ using rmarkdown
+    Loading required package: dbplyr
+    Warning in FUN(X[[i]], ...) :
+      'rnames' exact pattern
+        'https://github.com/jipingw/RiboDiPA-data/raw/master/MUT1.bam'
+      is not unique; use 'bfcquery()' to see matches.
+    Warning in FUN(X[[i]], ...) :
+      'rnames' exact pattern
+    ...
+    Quitting from lines 152-158 (RiboDiPA.Rmd) 
+    Error: processing vignette 'RiboDiPA.Rmd' failed with diagnostics:
+    not all 'rnames' found or unique.
+    --- failed re-building ‘RiboDiPA.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘RiboDiPA.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # RJcluster
@@ -6376,9 +7590,9 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.1Mb
+      installed size is 13.4Mb
       sub-directories of 1Mb or more:
-        R     3.1Mb
+        R     7.0Mb
         doc   3.7Mb
     ```
 
@@ -6433,6 +7647,31 @@ Run `revdep_details(, "RnBeads")` for more info
     Consider adding
       importFrom("stats", "setNames")
     to your NAMESPACE file.
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘RnBeads.Rnw’ using Sweave
+    Error: processing vignette 'RnBeads.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'RnBeads.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `vmargin.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    
+    ...
+    l.10 \usepackage
+                    [english,american]{babel}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘RnBeads_Annotations.Rnw’
+    
+    SUMMARY: processing the following files failed:
+      ‘RnBeads.Rnw’ ‘RnBeads_Annotations.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # robustlm
@@ -6519,6 +7758,22 @@ Run `revdep_details(, "scmap")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘scmap.Rmd’ using rmarkdown
+    Error: processing vignette 'scmap.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘scmap.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘scmap.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  6.1Mb
@@ -6590,7 +7845,7 @@ Run `revdep_details(, "scone")` for more info
 * GitHub: https://github.com/UCLouvain-CBIO/scp
 * Source code: https://github.com/cran/scp
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 166
+* Number of recursive dependencies: 167
 
 Run `revdep_details(, "scp")` for more info
 
@@ -6615,7 +7870,7 @@ Run `revdep_details(, "scp")` for more info
 * GitHub: https://github.com/PhilBoileau/scPCA
 * Source code: https://github.com/cran/scPCA
 * Date/Publication: 2021-05-27
-* Number of recursive dependencies: 188
+* Number of recursive dependencies: 189
 
 Run `revdep_details(, "scPCA")` for more info
 
@@ -6711,6 +7966,31 @@ Run `revdep_details(, "sesame")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘QC.Rmd’ using rmarkdown
+    Loading required package: sesameData
+    Loading required package: ExperimentHub
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:parallel':
+    ...
+    Quitting from lines 377-379 (sesame.Rmd) 
+    Error: processing vignette 'sesame.Rmd' failed with diagnostics:
+    cannot load annotation package IlluminaHumanMethylation450kanno.ilmn12.hg19
+    --- failed re-building ‘sesame.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘sesame.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 38.1Mb
@@ -6788,6 +8068,31 @@ Run `revdep_details(, "shinyMethyl")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘shinyMethyl.Rnw’ using knitr
+    Loading required package: minfi
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:parallel':
+    
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘shinyMethyl.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘shinyMethyl.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking for hidden files and directories ... NOTE
     ```
     Found the following hidden files and directories:
@@ -6836,7 +8141,7 @@ Run `revdep_details(, "shinyMethyl")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/SIAMCAT
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 188
+* Number of recursive dependencies: 189
 
 Run `revdep_details(, "SIAMCAT")` for more info
 
@@ -6854,8 +8159,9 @@ Run `revdep_details(, "SIAMCAT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 23.9Mb
+      installed size is 24.8Mb
       sub-directories of 1Mb or more:
+        data      1.3Mb
         doc      18.4Mb
         extdata   2.1Mb
         help      2.0Mb
@@ -6985,13 +8291,38 @@ Run `revdep_details(, "sindyr")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Single.mTEC.Transcriptomes
 * Date/Publication: 2021-05-20
-* Number of recursive dependencies: 164
+* Number of recursive dependencies: 165
 
 Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘mTECs.Rnw’ using knitr
+    Loading required package: S4Vectors
+    Loading required package: stats4
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: 'BiocGenerics'
+    
+    The following objects are masked from 'package:parallel':
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘mTECs.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘mTECs.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking for hidden files and directories ... NOTE
     ```
@@ -7028,7 +8359,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.1Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
         extdata   1.5Mb
     ```
@@ -7074,9 +8405,25 @@ Run `revdep_details(, "singscore")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘singscore.Rmd’ using rmarkdown
+    Error: processing vignette 'singscore.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘singscore.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘singscore.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.5Mb
       sub-directories of 1Mb or more:
         R      1.3Mb
         data   1.9Mb
@@ -7112,7 +8459,7 @@ Run `revdep_details(, "SkeweDF")` for more info
 * GitHub: https://github.com/kstreet13/slingshot
 * Source code: https://github.com/cran/slingshot
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 183
+* Number of recursive dependencies: 184
 
 Run `revdep_details(, "slingshot")` for more info
 
@@ -7170,38 +8517,46 @@ Run `revdep_details(, "slingshot")` for more info
       Execution halted
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘conditionsVignette.Rmd’ using rmarkdown
+    The magick package is required to crop "/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/slingshot/new/slingshot.Rcheck/vign_test/slingshot/vignettes/conditionsVignette_files/figure-html/unnamed-chunk-1-1.png" but not available.
+    Quitting from lines 68-69 (conditionsVignette.Rmd) 
+    Error: processing vignette 'conditionsVignette.Rmd' failed with diagnostics:
+    there is no package called 'DelayedMatrixStats'
+    --- failed re-building ‘conditionsVignette.Rmd’
+    
+    --- re-building ‘vignette.Rmd’ using rmarkdown
+    Loading required package: SummarizedExperiment
+    ...
+    Quitting from lines 276-277 (vignette.Rmd) 
+    Error: processing vignette 'vignette.Rmd' failed with diagnostics:
+    there is no package called 'DelayedMatrixStats'
+    --- failed re-building ‘vignette.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘conditionsVignette.Rmd’ ‘vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # sparseMatrixStats
 
 <details>
 
-* Version: 1.4.0
+* Version: 1.4.2
 * GitHub: https://github.com/const-ae/sparseMatrixStats
 * Source code: https://github.com/cran/sparseMatrixStats
-* Date/Publication: 2021-05-19
-* Number of recursive dependencies: 53
+* Date/Publication: 2021-08-08
+* Number of recursive dependencies: 54
 
 Run `revdep_details(, "sparseMatrixStats")` for more info
 
 </details>
 
 ## In both
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    Codoc mismatches from documentation object 'colProds,xgCMatrix-method':
-    \S4method{colProds}{xgCMatrix}
-      Code: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...,
-                     useNames = NA)
-      Docs: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
-      Argument names in code not in docs:
-        useNames
-    \S4method{rowProds}{xgCMatrix}
-      Code: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...,
-                     useNames = NA)
-      Docs: function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...)
-      Argument names in code not in docs:
-        useNames
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -7269,7 +8624,7 @@ Run `revdep_details(, "splatter")` for more info
 * GitHub: https://github.com/hansenlab/spqn
 * Source code: https://github.com/cran/spqn
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 68
+* Number of recursive dependencies: 69
 
 Run `revdep_details(, "spqn")` for more info
 
@@ -7353,6 +8708,31 @@ Run `revdep_details(, "stm")` for more info
         libs   2.7Mb
     ```
 
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘stmVignette.Rnw’ using Sweave
+    stm v1.3.6 successfully loaded. See ?stm for help. 
+     Papers, resources, and other materials at structuraltopicmodel.com
+    Error: processing vignette 'stmVignette.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'stmVignette.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `ulem.sty' not found.
+    
+    ...
+    l.57 ^^M
+            
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building 'stmVignette.Rnw'
+    
+    SUMMARY: processing the following file failed:
+      'stmVignette.Rnw'
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # STROMA4
 
 <details>
@@ -7389,6 +8769,28 @@ Run `revdep_details(, "STROMA4")` for more info
 *   checking for unstated dependencies in vignettes ... NOTE
     ```
     'library' or 'require' call not declared from: ‘BiocManager’
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘STROMA4-vignette.Rnw’ using Sweave
+    Installing package into ‘/scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    (as ‘lib’ is unspecified)
+    
+    Error: processing vignette 'STROMA4-vignette.Rnw' failed with diagnostics:
+     chunk 1 
+    Error in contrib.url(repos, type) : 
+      trying to use CRAN without setting a mirror
+    
+    --- failed re-building ‘STROMA4-vignette.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘STROMA4-vignette.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # summarytools
@@ -7440,6 +8842,47 @@ Run `revdep_details(, "SuperPCA")` for more info
     Namespaces in Imports field not imported from:
       ‘R.matlab’ ‘fBasics’ ‘spls’
       All declared Imports should be used.
+    ```
+
+# sva
+
+<details>
+
+* Version: 3.40.0
+* GitHub: NA
+* Source code: https://github.com/cran/sva
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 100
+
+Run `revdep_details(, "sva")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘sva.Rnw’ using Sweave
+    Loading required package: mgcv
+    Loading required package: nlme
+    This is mgcv 1.8-36. For overview type 'help("mgcv-package")'.
+    Loading required package: genefilter
+    Loading required package: BiocParallel
+    Loading required package: Biobase
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    ...
+    l.189 \RequirePackage
+                         {parnotes}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘sva.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘sva.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # target
@@ -7494,6 +8937,38 @@ Run `revdep_details(, "TCA")` for more info
       'LazyData' is specified without a 'data' directory
     ```
 
+# tenXplore
+
+<details>
+
+* Version: 1.14.1
+* GitHub: NA
+* Source code: https://github.com/cran/tenXplore
+* Date/Publication: 2021-07-29
+* Number of recursive dependencies: 129
+
+Run `revdep_details(, "tenXplore")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘tenXplore.Rmd’ using rmarkdown
+    Error: processing vignette 'tenXplore.Rmd' failed with diagnostics:
+    there is no package called ‘BiocStyle’
+    --- failed re-building ‘tenXplore.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘tenXplore.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # TOAST
 
 <details>
@@ -7502,7 +8977,7 @@ Run `revdep_details(, "TCA")` for more info
 * GitHub: https://github.com/ziyili20/TOAST
 * Source code: https://github.com/cran/TOAST
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 54
+* Number of recursive dependencies: 55
 
 Run `revdep_details(, "TOAST")` for more info
 
@@ -7548,6 +9023,31 @@ Run `revdep_details(, "topGO")` for more info
       Please use :: or requireNamespace() instead.
       See section 'Suggested packages' in the 'Writing R Extensions' manual.
     Missing object imported by a ':::' call: ‘globaltest:::globaltest’
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘topGO.Rnw’ using Sweave
+    
+    Loading required package: xtable
+    Loading required package: BiocGenerics
+    Loading required package: parallel
+    
+    Attaching package: ‘BiocGenerics’
+    
+    The following objects are masked from ‘package:parallel’:
+    ...
+    l.11 \usepackage
+                    {caption}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘topGO.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘topGO.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # tradeSeq
@@ -7656,7 +9156,7 @@ Run `revdep_details(, "tradeSeq")` for more info
 * GitHub: https://github.com/ubioinformat/TraRe
 * Source code: https://github.com/cran/TraRe
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 91
+* Number of recursive dependencies: 92
 
 Run `revdep_details(, "TraRe")` for more info
 
@@ -7884,33 +9384,6 @@ Run `revdep_details(, "yarn")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘yarn-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: annotateFromBiomart
-    > ### Title: Annotate your Expression Set with biomaRt
-    > ### Aliases: annotateFromBiomart
-    > 
-    > ### ** Examples
-    > 
-    > 
-    ...
-    > skin <- skin[1:10,]
-    > colnames(fData(skin)) = paste("names",1:6)
-    > biomart<-"ENSEMBL_MART_ENSEMBL";
-    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
-    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
-    Ensembl site unresponsive, trying uswest mirror
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Peer's Certificate issuer is not recognized.
-    Calls: annotateFromBiomart ... request_fetch -> request_fetch.write_memory -> <Anonymous>
-    Execution halted
-    ```
-
 ## In both
 
 *   checking installed package size ... NOTE
@@ -7918,5 +9391,46 @@ Run `revdep_details(, "yarn")` for more info
       installed size is  7.6Mb
       sub-directories of 1Mb or more:
         data   7.1Mb
+    ```
+
+# zinbwave
+
+<details>
+
+* Version: 1.14.1
+* GitHub: https://github.com/drisso/zinbwave
+* Source code: https://github.com/cran/zinbwave
+* Date/Publication: 2021-05-25
+* Number of recursive dependencies: 160
+
+Run `revdep_details(, "zinbwave")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      The following objects are masked from 'package:base':
+      
+          I, expand.grid, unname
+      
+      Loading required package: IRanges
+      Loading required package: GenomeInfoDb
+      Loading required package: Biobase
+    ...
+      ── Failure (test_initialize_nb.R:25:5): Initialization works without zero inflation ──
+      `sf <- zinbFit(SE, K = 2, zeroinflation = FALSE)` produced warnings.
+      ── Failure (test_initialize_nb.R:26:5): Initialization works without zero inflation ──
+      `sf <- zinbFit(SE, K = 2, zeroinflation = FALSE)` produced warnings.
+      ── Failure (test_initialize_nb.R:27:5): Initialization works without zero inflation ──
+      `sf <- zinbFit(SE, K = 2, zeroinflation = FALSE)` produced warnings.
+      
+      [ FAIL 6 | WARN 15 | SKIP 0 | PASS 214 ]
+      Error: Test failures
+      Execution halted
     ```
 

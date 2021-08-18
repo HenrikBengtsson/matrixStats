@@ -1,6 +1,6 @@
 /***************************************************************************
  Public methods:
- SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow)
+ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP useNames)
 
  Authors: Henrik Bengtsson
 
@@ -9,12 +9,17 @@
 #include <Rdefines.h>
 #include "000.types.h"
 #include "rowLogSumExp_lowlevel.h"
+#include "naming.h"
 
-SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow) {
+SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP useNames) {
   SEXP ans;
-  int narm, hasna, byrow;
+  int narm, hasna, byrow, usenames;
   R_xlen_t nrow, ncol;
-
+  
+  /* Coercion moved down to C */
+  PROTECT(lx = coerceVector(lx, REALSXP));
+  PROTECT(dim = coerceVector(dim, INTSXP));
+  
   /* Argument 'lx' and 'dim': */
   assertArgMatrix(lx, dim, (R_TYPE_REAL), "lx");
   nrow = asR_xlen_t(dim, 0);
@@ -28,22 +33,41 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasN
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  int rowsType, colsType;
-  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
-  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
+  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
   if (byrow) {
     ans = PROTECT(allocVector(REALSXP, nrows));
-    rowLogSumExps_double[rowsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 1, REAL(ans));
+    rowLogSumExps_double(REAL(lx), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, 1, REAL(ans));
   } else {
     ans = PROTECT(allocVector(REALSXP, ncols));
-    rowLogSumExps_double[colsType](REAL(lx), nrow, ncol, crows, nrows, rowsType, ccols, ncols, colsType, narm, hasna, 0, REAL(ans));
+    rowLogSumExps_double(REAL(lx), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, 0, REAL(ans)); 
+  }
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
+  
+  if (usenames == NA_LOGICAL || usenames){
+    SEXP dimnames = getAttrib(lx, R_DimNamesSymbol);
+    if (dimnames != R_NilValue) {
+      if (byrow) {
+        SEXP namesVec = VECTOR_ELT(dimnames, 0);
+        if (namesVec != R_NilValue) {
+          setNames(ans, namesVec, nrows, crows);
+        }
+      } else {
+        SEXP namesVec = VECTOR_ELT(dimnames, 1);
+        if (namesVec != R_NilValue) {
+          setNames(ans, namesVec, ncols, ccols);
+        }
+      }
+    }
   }
 
-  UNPROTECT(1); /* ans = PROTECT(...) */
+  UNPROTECT(3); /* ans = PROTECT(...), PROTECT(lx = ...), PROTECT(dim = ...) */
 
   return(ans);
 } /* rowLogSumExps() */

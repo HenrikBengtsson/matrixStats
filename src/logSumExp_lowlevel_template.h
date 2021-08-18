@@ -1,9 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  double logSumExp_double[idxsType](ARGUMENTS_LIST)
+  double logSumExp_double(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  double *x, void *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx
+  double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna, int by, double *xx
  ***********************************************************************/
 #include <Rdefines.h>
 #include <Rmath.h>
@@ -33,16 +33,12 @@
   the "contigous" 'xx' vector once.  This is more likely to create
   cache hits.
 */
-RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
+double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx) {
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
   int hasna2 = FALSE; /* Indicates whether NAs where detected or not */
   int xMaxIsNA;
-
-#ifdef IDXS_TYPE
-  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
-#endif
 
   /* Quick return? */
   if (nidxs == 0) {
@@ -52,10 +48,10 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   /* Find the maximum value */
   iMax = 0;
   if (by) {
-    idx = R_INDEX_OP(IDX_INDEX(cidxs,0), *, by);
+    idx = R_INDEX_OP(((idxs == NULL) ? (0) : idxs[0]), *, by);
     xMax = R_INDEX_GET(x, idx, NA_REAL);
   } else {
-    xMax = R_INDEX_GET(x, IDX_INDEX(cidxs,0), NA_REAL);
+    xMax = R_INDEX_GET(x, ((idxs == NULL) ? (0) : idxs[0]), NA_REAL);
   }
   xMaxIsNA = ISNAN(xMax);
 
@@ -77,7 +73,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
     xx[0] = xMax;
     for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      idx = R_INDEX_OP(IDX_INDEX(cidxs,ii), *, by);
+      idx = R_INDEX_OP(((idxs == NULL) ? (ii) : idxs[ii]), *, by);
       xii = R_INDEX_GET(x, idx, NA_REAL);
 
       /* Copy */
@@ -103,7 +99,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   } else {
     for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      xii = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), NA_REAL);
+      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL);
 
       if (hasna && ISNAN(xii)) {
         if (narm) {
@@ -165,7 +161,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       }
 
       /* Get the ii:th value */
-      xii = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), NA_REAL);
+      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL);
 
       if (!hasna2 || !ISNAN(xii)) {
         sum += exp(xii - xMax);
