@@ -28,7 +28,7 @@
 #' @author Henrik Bengtsson
 #' @keywords utilities
 #' @export
-rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA) {
+rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -95,7 +95,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
 
 #' @rdname rowTabulates
 #' @export
-colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA) {
+colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
