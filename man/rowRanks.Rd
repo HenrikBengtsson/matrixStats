@@ -7,11 +7,11 @@
 \usage{
 rowRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
   "first", "last", "random", "max", "min", "dense"), dim. = dim(x), ...,
-  useNames = NA)
+  useNames = FALSE)
 
 colRanks(x, rows = NULL, cols = NULL, ties.method = c("max", "average",
   "first", "last", "random", "max", "min", "dense"), dim. = dim(x),
-  preserveShape = FALSE, ..., useNames = NA)
+  preserveShape = FALSE, ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

@@ -10,18 +10,18 @@
 \title{Checks if a value exists / does not exist in each row (column) of a matrix}
 \usage{
 rowAlls(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = NA)
+  dim. = dim(x), ..., useNames = FALSE)
 
 colAlls(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = NA)
+  dim. = dim(x), ..., useNames = FALSE)
 
 allValue(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 
 rowAnys(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = NA)
+  dim. = dim(x), ..., useNames = FALSE)
 
 colAnys(x, rows = NULL, cols = NULL, value = TRUE, na.rm = FALSE,
-  dim. = dim(x), ..., useNames = NA)
+  dim. = dim(x), ..., useNames = FALSE)
 
 anyValue(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...)
 }

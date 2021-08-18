@@ -25,28 +25,28 @@ madDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
 iqrDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...)
 
 rowVarDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 colVarDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 rowSdDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 colSdDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 rowMadDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 colMadDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 rowIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 
 colIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length

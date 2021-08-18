@@ -18,7 +18,7 @@
 #' cf. \code{\link[base]{[}}().
 #' @keywords utilities
 #' @export
-rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA) {
+rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.matrix(x) && !is.vector(x)) defunctShouldBeMatrixOrVector(x)
 
@@ -61,7 +61,7 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA)
 
 #' @rdname rowCollapse
 #' @export
-colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = FALSE) {
   # Argument 'x':
   if (!is.matrix(x) && !is.vector(x)) defunctShouldBeMatrixOrVector(x)
 
