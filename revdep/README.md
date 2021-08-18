@@ -2,7 +2,7 @@
 
 |field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 4.1.0 (2021-05-18) |
+|version  |R version 4.1.1 (2021-08-10) |
 |os       |CentOS Linux 7 (Core)        |
 |system   |x86_64, linux-gnu            |
 |ui       |X11                          |
@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2021-08-16                   |
+|date     |2021-08-18                   |
 
 # Dependencies
 
@@ -98,7 +98,7 @@
 |[cola](problems.md#cola)                                                       |1.8.1   |       |        |1    |
 |[collapse](problems.md#collapse)                                               |1.6.5   |       |        |1    |
 |[ComplexHeatmap](problems.md#complexheatmap)                                   |2.8.0   |       |        |1    |
-|[conclus](problems.md#conclus)                                                 |1.0.0   |2      |1       |     |
+|[conclus](problems.md#conclus)                                                 |1.0.0   |1      |1       |     |
 |[condiments](problems.md#condiments)                                           |1.0.0   |2      |1       |1    |
 |conquer                                                                        |1.0.2   |       |        |     |
 |consensus                                                                      |1.10.0  |       |        |     |
@@ -121,7 +121,7 @@
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.14.2  |       |        |1    |
 |[DeMixT](problems.md#demixt)                                                   |1.8.0   |       |        |3    |
 |[DepecheR](problems.md#depecher)                                               |1.8.0   |       |1       |3    |
-|[DEqMS](problems.md#deqms)                                                     |1.10.0  |       |1       |1    |
+|[DEqMS](problems.md#deqms)                                                     |1.10.0  |-1     |        |1    |
 |[detrendr](problems.md#detrendr)                                               |0.6.14  |       |        |2    |
 |DGCA                                                                           |1.0.2   |       |        |     |
 |[DHS.rates](problems.md#dhsrates)                                              |0.9.0   |       |        |1    |
@@ -254,7 +254,7 @@
 |[migest](problems.md#migest)                                                   |2.0.0   |       |        |1    |
 |MIGSA                                                                          |1.16.0  |       |        |     |
 |[miloR](problems.md#milor)                                                     |1.0.0   |       |        |3    |
-|[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |4    |
+|[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |3    |
 |miRecSurv                                                                      |1.0.1   |       |        |     |
 |[mixOmics](problems.md#mixomics)                                               |6.16.3  |       |        |1    |
 |[mnem](problems.md#mnem)                                                       |1.8.0   |       |1       |1    |
@@ -262,7 +262,7 @@
 |MoEClust                                                                       |1.4.0   |       |        |     |
 |[monocle](problems.md#monocle)                                                 |2.20.0  |       |2       |3    |
 |[MOSim](problems.md#mosim)                                                     |1.6.0   |       |1       |1    |
-|[motifbreakR](problems.md#motifbreakr)                                         |2.6.1   |       |4       |1    |
+|[motifbreakR](problems.md#motifbreakr)                                         |2.6.1   |       |4       |2    |
 |MPAgenomics                                                                    |1.2.3   |       |        |     |
 |[mrfDepth](problems.md#mrfdepth)                                               |1.0.13  |       |        |1    |
 |msImpute                                                                       |1.2.0   |       |        |     |
@@ -297,6 +297,7 @@
 |[Pigengene](problems.md#pigengene)                                             |1.18.0  |       |2       |2    |
 |PINSPlus                                                                       |2.0.5   |       |        |     |
 |[pipeComp](problems.md#pipecomp)                                               |1.2.0   |       |1       |5    |
+|[PlackettLuce](problems.md#plackettluce)                                       |0.4.1   |       |        |2    |
 |[pmp](problems.md#pmp)                                                         |1.4.0   |       |        |1    |
 |POMaSPU                                                                        |1.0.0   |       |        |     |
 |[PrecisionTrialDrawer](problems.md#precisiontrialdrawer)                       |1.8.0   |       |        |1    |
@@ -309,7 +310,7 @@
 |[RaceID](problems.md#raceid)                                                   |0.2.3   |       |        |1    |
 |[rADA](problems.md#rada)                                                       |1.1.9   |       |1       |2    |
 |[RadioGx](problems.md#radiogx)                                                 |1.2.0   |       |1       |2    |
-|ramr                                                                           |1.0.2   |       |        |     |
+|ramr                                                                           |1.0.3   |       |        |     |
 |RandomForestsGLS                                                               |0.1.2   |       |        |     |
 |randomizationInference                                                         |1.0.3   |       |        |     |
 |RCarb                                                                          |0.1.4   |       |        |     |
@@ -319,7 +320,7 @@
 |RHRT                                                                           |1.0.1   |       |        |     |
 |[RiboDiPA](problems.md#ribodipa)                                               |1.0.0   |       |1       |     |
 |[RJcluster](problems.md#rjcluster)                                             |3.1.0   |       |        |1    |
-|[RNAmodR](problems.md#rnamodr)                                                 |1.6.0   |       |        |1    |
+|[RNAmodR](problems.md#rnamodr)                                                 |1.6.0   |       |        |2    |
 |[RnBeads](problems.md#rnbeads)                                                 |2.10.0  |       |        |8    |
 |[robustlm](problems.md#robustlm)                                               |0.1.0   |       |        |1    |
 |RTCC                                                                           |0.1.1   |       |        |     |
@@ -382,10 +383,9 @@
 |utilities                                                                      |0.3.0   |       |        |     |
 |[VanillaICE](problems.md#vanillaice)                                           |1.54.0  |       |1       |3    |
 |[VaSP](problems.md#vasp)                                                       |1.4.0   |       |        |1    |
-|visualFields                                                                   |0.6.2   |       |        |     |
 |[wateRmelon](problems.md#watermelon)                                           |1.36.0  |       |        |4    |
 |[WGCNA](problems.md#wgcna)                                                     |1.70-3  |       |1       |1    |
 |Wrench                                                                         |1.10.0  |       |        |     |
-|yarn                                                                           |1.18.0  |       |        |     |
-|zinbwave                                                                       |1.14.1  |       |        |     |
+|[yarn](problems.md#yarn)                                                       |1.18.0  |       |        |1    |
+|[zinbwave](problems.md#zinbwave)                                               |1.14.1  |1      |        |     |
 

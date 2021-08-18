@@ -699,7 +699,7 @@ Run `revdep_details(, "bnbc")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.3Mb
       sub-directories of 1Mb or more:
         data   1.7Mb
         libs   1.4Mb
@@ -801,9 +801,9 @@ Run `revdep_details(, "brms")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.3Mb
+      installed size is  8.8Mb
       sub-directories of 1Mb or more:
-        R      3.4Mb
+        R      5.0Mb
         doc    2.4Mb
         help   1.0Mb
     ```
@@ -1048,9 +1048,9 @@ Run `revdep_details(, "CATALYST")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.6Mb
+      installed size is 18.1Mb
       sub-directories of 1Mb or more:
-        data   3.1Mb
+        data   6.6Mb
         doc    9.9Mb
     ```
 
@@ -1171,7 +1171,7 @@ Run `revdep_details(, "CelliD")` for more info
     > 
     > seuratPbmc <- RunMCA(seuratPbmc, nmcs = 5)
     ...
-    0.028 sec elapsed
+    0.027 sec elapsed
     Computing Coordinates
     0.004 sec elapsed
     > seuratPbmc <- RunMCDMAP(seuratPbmc, dims = seq(5), k = 5)
@@ -1360,7 +1360,7 @@ Run `revdep_details(, "ChAMP")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         doc       3.6Mb
         extdata   1.9Mb
@@ -1540,9 +1540,10 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 25.1Mb
+      installed size is 26.1Mb
       sub-directories of 1Mb or more:
-        data     12.6Mb
+        R         1.0Mb
+        data     13.3Mb
         doc       6.0Mb
         extdata   5.2Mb
     ```
@@ -1786,7 +1787,7 @@ Run `revdep_details(, "CNVScope")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.2Mb
       sub-directories of 1Mb or more:
         doc       3.2Mb
         extdata   1.7Mb
@@ -1924,49 +1925,24 @@ Run `revdep_details(, "conclus")` for more info
     Running examples in ‘conclus-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: addClustering,scRNAseq-method
-    > ### Title: addClustering
-    > ### Aliases: addClustering,scRNAseq-method addClustering
+    > ### Name: retrieveFromGEO
+    > ### Title: retrieveFromGEO
+    > ### Aliases: retrieveFromGEO
     > 
     > ### ** Examples
     > 
-    > ## Object scr containing the results of previous steps
+    > outputDirectory <- "./YourOutputDirectory"
     ...
-    # Attempt 5/5 # Retrieving information about genes from biomaRt ...
-    Error in .readFromCache(bfc, hash) : Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    Error in .tryGetBM(attributes = attributes, ensembl = ensembl, values = values,  : 
-      Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    Calls: addClustering ... .defineDatabase -> .queryBiomart -> merge -> .returnDB1 -> .tryGetBM
+    GSE96982-GPL19057_series_matrix.txt.gz
+    trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE96nnn/GSE96982/matrix/GSE96982-GPL19057_series_matrix.txt.gz'
+    Content type 'application/x-gzip' length 27102 bytes (26 KB)
+    ==================================================
+    downloaded 26 KB
+    
+    Error: The size of the connection buffer (131072) was not large enough
+    to fit a complete line:
+      * Increase it by setting `Sys.setenv("VROOM_CONNECTION_SIZE")`
     Execution halted
-    ```
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/test-all.R’ failed.
-    Complete output:
-      > library("testthat")
-      > library("conclus")
-      Setting options('download.file.method.GEOquery'='auto')
-      Setting options('GEOquery.inmemory.gpl'=FALSE)
-      
-      > test_check("conclus")
-      Error in curl::curl_fetch_memory(url, handle = handle) : 
-    ...
-        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
-        6. ├─conclus::normaliseCountMatrix(...)
-        7. └─conclus::normaliseCountMatrix(...)
-        8.   └─conclus:::.annotateGenes(...)
-        9.     └─conclus:::.retrieveGenesInfoBiomart(ensembl, rowdata)
-       10.       └─conclus:::.tryGetBM(attributes, ensembl, values = genes, "ensembl_gene_id")
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 276 ]
-      Error: Test failures
-      Execution halted
     ```
 
 *   checking re-building of vignette outputs ... WARNING
@@ -1974,9 +1950,10 @@ Run `revdep_details(, "conclus")` for more info
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘conclus_vignette.Rmd’ using rmarkdown
-    Quitting from lines 177-214 (conclus_vignette.Rmd) 
+    ! LaTeX Error: Missing \begin{document}.
+    
     Error: processing vignette 'conclus_vignette.Rmd' failed with diagnostics:
-    not all 'rnames' found or unique.
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/conclus/new/conclus.Rcheck/vign_test/conclus/vignettes/conclus_vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See conclus_vignette.log for more info.
     --- failed re-building ‘conclus_vignette.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -2633,25 +2610,34 @@ Run `revdep_details(, "DEqMS")` for more info
 
 </details>
 
-## In both
+## Newly fixed
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking examples ... ERROR
     ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘DEqMS-package-vignette.Rmd’ using rmarkdown
-    trying URL 'ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2016/06/PXD004163/Yan_miR_Protein_table.flatprottable.txt'
-    Quitting from lines 64-69 (DEqMS-package-vignette.Rmd) 
-    Error: processing vignette 'DEqMS-package-vignette.Rmd' failed with diagnostics:
-    cannot open URL 'ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2016/06/PXD004163/Yan_miR_Protein_table.flatprottable.txt'
-    --- failed re-building ‘DEqMS-package-vignette.Rmd’
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
     
-    SUMMARY: processing the following file failed:
-      ‘DEqMS-package-vignette.Rmd’
-    
-    Error: Vignette re-building failed.
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
+    ...
+    Loading required package: AnnotationHub
+    Loading required package: BiocFileCache
+    Loading required package: dbplyr
+    > eh = ExperimentHub(localHub=TRUE)
+    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
+      Invalid Cache: sqlite file
+      Hub has not been added to cache
+      Run again with 'localHub=FALSE'
+    Calls: ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
     Execution halted
     ```
+
+## In both
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -3679,13 +3665,13 @@ Run `revdep_details(, "flowGraph")` for more info
     Error(s) in re-building vignettes:
     --- re-building ‘flowGraph.Rmd’ using rmarkdown
     - 8 pops @ layer 1
-    05:21:56-05:21:56 > 16:00:00
+    05:39:23-05:39:23 > 16:00:00
     - 24 pops @ layer 2
-    05:21:56-05:21:56 > 16:00:00
+    05:39:23-05:39:23 > 16:00:00
     - 32 pops @ layer 3
-    05:21:56-05:21:56 > 16:00:00
+    05:39:23-05:39:23 > 16:00:00
     - 16 pops @ layer 4
-    05:21:56-05:21:56 > 16:00:00
+    05:39:23-05:39:23 > 16:00:00
     ...
     Quitting from lines 557-561 (flowGraph.Rmd) 
     Error: processing vignette 'flowGraph.Rmd' failed with diagnostics:
@@ -3837,14 +3823,14 @@ Run `revdep_details(, "FRASER")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘FRASER.Rnw’ using knitr
-    Sat Aug 14 05:51:27 2021: Start counting the split reads ...
-    Sat Aug 14 05:51:27 2021: Count split reads for sample: sample1
-    Sat Aug 14 05:51:29 2021: Count split reads for sample: sample2
-    Sat Aug 14 05:51:31 2021: Count split reads for sample: sample3
-    Sat Aug 14 05:51:33 2021 : count ranges need to be merged ...
-    Sat Aug 14 05:51:35 2021: Create splice site indices ...
-    Sat Aug 14 05:51:36 2021: Writing split counts to folder: /scratch/henrik/RtmpYzdRcu/savedObjects/Data_Analysis/splitCounts
-    Sat Aug 14 05:51:36 2021: Identifying introns with read count <= 20 in all samples...
+    Tue Aug 17 08:31:24 2021: Start counting the split reads ...
+    Tue Aug 17 08:31:25 2021: Count split reads for sample: sample1
+    Tue Aug 17 08:31:26 2021: Count split reads for sample: sample2
+    Tue Aug 17 08:31:27 2021: Count split reads for sample: sample3
+    Tue Aug 17 08:31:29 2021 : count ranges need to be merged ...
+    Tue Aug 17 08:31:31 2021: Create splice site indices ...
+    Tue Aug 17 08:31:31 2021: Writing split counts to folder: /scratch/henrik/RtmpppbfSG/savedObjects/Data_Analysis/splitCounts
+    Tue Aug 17 08:31:32 2021: Identifying introns with read count <= 20 in all samples...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -4215,7 +4201,7 @@ Run `revdep_details(, "GUIDEseq")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.1Mb
+      installed size is 11.2Mb
       sub-directories of 1Mb or more:
         extdata  10.5Mb
     ```
@@ -4272,9 +4258,9 @@ Run `revdep_details(, "Gviz")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.1Mb
+      installed size is 11.0Mb
       sub-directories of 1Mb or more:
-        R         3.1Mb
+        R         1.9Mb
         doc       4.7Mb
         extdata   2.5Mb
     ```
@@ -4376,9 +4362,9 @@ Run `revdep_details(, "hipathia")` for more info
         decompose, spectrum
     
     ...
-    Quitting from lines 774-775 (hipathia-vignette.Rmd) 
+    
     Error: processing vignette 'hipathia-vignette.Rmd' failed with diagnostics:
-    Failed to create server
+    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/hipathia/new/hipathia.Rcheck/vign_test/hipathia/vignettes/hipathia-vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See hipathia-vignette.log for more info.
     --- failed re-building ‘hipathia-vignette.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -4752,9 +4738,9 @@ Run `revdep_details(, "Luminescence")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.6Mb
+      installed size is  7.9Mb
       sub-directories of 1Mb or more:
-        R      1.7Mb
+        R      1.9Mb
         help   1.3Mb
         libs   3.4Mb
     ```
@@ -5099,8 +5085,10 @@ Run `revdep_details(, "metagene")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.3Mb
+      installed size is 11.6Mb
       sub-directories of 1Mb or more:
+        R         1.1Mb
+        data      1.6Mb
         doc       3.2Mb
         extdata   5.4Mb
     ```
@@ -5793,14 +5781,6 @@ Run `revdep_details(, "MinimumDistance")` for more info
     Package which this enhances but not available for checking: ‘doSNOW’
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.9Mb
-      sub-directories of 1Mb or more:
-        R     3.0Mb
-        doc   1.6Mb
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     Namespace in Imports field not imported from: ‘MatrixGenerics’
@@ -6068,7 +6048,7 @@ Run `revdep_details(, "MOSim")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
         data   4.2Mb
     ```
@@ -6148,6 +6128,14 @@ Run `revdep_details(, "motifbreakR")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.5Mb
+      sub-directories of 1Mb or more:
+        data   3.6Mb
+        doc    1.3Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -6336,7 +6324,7 @@ Run `revdep_details(, "muscat")` for more info
         ident, sql
     
     snapshotDate(): 2021-05-18
-    Bioconductor version 3.13 (BiocManager 1.30.16), R 4.1.0 (2021-05-18)
+    Bioconductor version 3.13 (BiocManager 1.30.16), R 4.1.1 (2021-08-10)
     Installing package(s) 'muscData'
     trying URL 'https://bioconductor.org/packages/3.13/data/experiment/src/contrib/muscData_1.6.0.tar.gz'
     Content type 'application/x-gzip' length 237765 bytes (232 KB)
@@ -6470,7 +6458,7 @@ Run `revdep_details(, "nearBynding")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.0Mb
+      installed size is  9.1Mb
       sub-directories of 1Mb or more:
         extdata   8.1Mb
     ```
@@ -6657,9 +6645,9 @@ Run `revdep_details(, "omicsPrint")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.6Mb
+      installed size is  8.7Mb
       sub-directories of 1Mb or more:
-        data  15.3Mb
+        data   7.4Mb
         doc    1.2Mb
     ```
 
@@ -6735,12 +6723,12 @@ Run `revdep_details(, "OUTRIDER")` for more info
     --- re-building ‘OUTRIDER.Rnw’ using knitr
     The magick package is required to crop "figure/deVsOutlier-1.png" but not available.
     229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.
-    Sat Aug 14 08:36:32 2021: SizeFactor estimation ...
-    Sat Aug 14 08:36:33 2021: Controlling for confounders ...
+    Tue Aug 17 10:30:01 2021: SizeFactor estimation ...
+    Tue Aug 17 10:30:02 2021: Controlling for confounders ...
     Using estimated q with: 23
-    Sat Aug 14 08:36:33 2021: Using the autoencoder implementation for controlling.
-    Sat Aug 14 08:42:03 2021: Used the autoencoder implementation for controlling.
-    Sat Aug 14 08:42:03 2021: P-value calculation ...
+    Tue Aug 17 10:30:02 2021: Using the autoencoder implementation for controlling.
+    Tue Aug 17 10:36:01 2021: Used the autoencoder implementation for controlling.
+    Tue Aug 17 10:36:01 2021: P-value calculation ...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -7065,7 +7053,7 @@ Run `revdep_details(, "pipeComp")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.7Mb
+      installed size is  6.3Mb
       sub-directories of 1Mb or more:
         doc   4.5Mb
     ```
@@ -7113,6 +7101,32 @@ Run `revdep_details(, "pipeComp")` for more info
     ```
     'library' or 'require' calls not declared from:
       ‘edgeR’ ‘sva’
+    ```
+
+# PlackettLuce
+
+<details>
+
+* Version: 0.4.1
+* GitHub: https://github.com/hturner/PlackettLuce
+* Source code: https://github.com/cran/PlackettLuce
+* Date/Publication: 2021-08-16 15:40:02 UTC
+* Number of recursive dependencies: 176
+
+Run `revdep_details(, "PlackettLuce")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking: 'BayesMallows', 'PLMIX'
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Package unavailable to check Rd xrefs: ‘BayesMallows’
     ```
 
 # pmp
@@ -7384,7 +7398,7 @@ Run `revdep_details(, "RadioGx")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  5.0Mb
       sub-directories of 1Mb or more:
         data   3.5Mb
     ```
@@ -7462,7 +7476,7 @@ Run `revdep_details(, "RiboDiPA")` for more info
     Loading required package: dbplyr
     Warning in FUN(X[[i]], ...) :
       'rnames' exact pattern
-        'https://github.com/jipingw/RiboDiPA-data/raw/master/MUT2.bam'
+        'https://github.com/jipingw/RiboDiPA-data/raw/master/MUT1.bam'
       is not unique; use 'bfcquery()' to see matches.
     Warning in FUN(X[[i]], ...) :
       'rnames' exact pattern
@@ -7518,6 +7532,14 @@ Run `revdep_details(, "RNAmodR")` for more info
 
 ## In both
 
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.0Mb
+      sub-directories of 1Mb or more:
+        R     2.0Mb
+        doc   2.4Mb
+    ```
+
 *   checking dependencies in R code ... NOTE
     ```
     Unexported objects imported by ':::' calls:
@@ -7568,9 +7590,9 @@ Run `revdep_details(, "RnBeads")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.4Mb
+      installed size is 13.4Mb
       sub-directories of 1Mb or more:
-        R     4.0Mb
+        R     7.0Mb
         doc   3.7Mb
     ```
 
@@ -8337,7 +8359,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.1Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
         extdata   1.5Mb
     ```
@@ -8656,9 +8678,10 @@ Run `revdep_details(, "staRdom")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
-        doc   2.8Mb
+        data   1.9Mb
+        doc    2.8Mb
     ```
 
 # stm
@@ -9340,10 +9363,74 @@ Run `revdep_details(, "WGCNA")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.4Mb
+      installed size is  6.2Mb
       sub-directories of 1Mb or more:
-        R      1.2Mb
+        R      1.9Mb
         help   2.0Mb
         libs   1.5Mb
+    ```
+
+# yarn
+
+<details>
+
+* Version: 1.18.0
+* GitHub: NA
+* Source code: https://github.com/cran/yarn
+* Date/Publication: 2021-05-19
+* Number of recursive dependencies: 169
+
+Run `revdep_details(, "yarn")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  7.6Mb
+      sub-directories of 1Mb or more:
+        data   7.1Mb
+    ```
+
+# zinbwave
+
+<details>
+
+* Version: 1.14.1
+* GitHub: https://github.com/drisso/zinbwave
+* Source code: https://github.com/cran/zinbwave
+* Date/Publication: 2021-05-25
+* Number of recursive dependencies: 160
+
+Run `revdep_details(, "zinbwave")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      The following objects are masked from 'package:base':
+      
+          I, expand.grid, unname
+      
+      Loading required package: IRanges
+      Loading required package: GenomeInfoDb
+      Loading required package: Biobase
+    ...
+      ── Failure (test_initialize_nb.R:25:5): Initialization works without zero inflation ──
+      `sf <- zinbFit(SE, K = 2, zeroinflation = FALSE)` produced warnings.
+      ── Failure (test_initialize_nb.R:26:5): Initialization works without zero inflation ──
+      `sf <- zinbFit(SE, K = 2, zeroinflation = FALSE)` produced warnings.
+      ── Failure (test_initialize_nb.R:27:5): Initialization works without zero inflation ──
+      `sf <- zinbFit(SE, K = 2, zeroinflation = FALSE)` produced warnings.
+      
+      [ FAIL 6 | WARN 15 | SKIP 0 | PASS 214 ]
+      Error: Test failures
+      Execution halted
     ```
 
