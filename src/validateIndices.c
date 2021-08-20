@@ -167,7 +167,7 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
         break;
       }
     }
-  } else { 
+  } else {
     if (Rf_length(idxs) > 0) { // "Pick all indices" case, if all(idxs > 0)
       switch (mode) {
         case INTSXP:
@@ -179,8 +179,6 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
         case LGLSXP:
           if (LOGICAL(idxs)[0] == TRUE) return R_NilValue;
           break;
-        case NILSXP:
-          return R_NilValue;
       }
       // else, "Pick an empty subset of indices"
     }
