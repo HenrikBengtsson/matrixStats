@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2021-08-18                   |
+|date     |2021-08-22                   |
 
 # Dependencies
 
@@ -63,7 +63,7 @@
 |[bnclassify](problems.md#bnclassify)                                           |0.4.5   |       |        |1    |
 |[bnem](problems.md#bnem)                                                       |1.0.0   |1      |1       |1    |
 |BRISC                                                                          |1.0.1   |       |        |     |
-|[brms](problems.md#brms)                                                       |2.15.0  |       |        |2    |
+|[brms](problems.md#brms)                                                       |2.16.0  |       |        |2    |
 |[BSgenome](problems.md#bsgenome)                                               |1.60.0  |1      |2       |6    |
 |[BSW](problems.md#bsw)                                                         |0.1.1   |       |        |1    |
 |[bumphunter](problems.md#bumphunter)                                           |1.34.0  |       |        |4    |
@@ -81,7 +81,7 @@
 |ChemoSpec2D                                                                    |0.4.187 |       |        |     |
 |[Chicago](problems.md#chicago)                                                 |1.20.0  |       |1       |2    |
 |childhoodmortality                                                             |0.3.0   |       |        |     |
-|[ChIPpeakAnno](problems.md#chippeakanno)                                       |3.26.2  |2      |1       |1    |
+|[ChIPpeakAnno](problems.md#chippeakanno)                                       |3.26.3  |2      |1       |1    |
 |chromswitch                                                                    |1.14.0  |       |        |     |
 |[cifti](problems.md#cifti)                                                     |0.4.5   |       |        |1    |
 |[cliqueMS](problems.md#cliquems)                                               |1.6.0   |       |        |2    |
@@ -121,7 +121,7 @@
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)                           |1.14.2  |       |        |1    |
 |[DeMixT](problems.md#demixt)                                                   |1.8.0   |       |        |3    |
 |[DepecheR](problems.md#depecher)                                               |1.8.0   |       |1       |3    |
-|[DEqMS](problems.md#deqms)                                                     |1.10.0  |-1     |        |1    |
+|[DEqMS](problems.md#deqms)                                                     |1.10.0  |1      |1       |1    |
 |[detrendr](problems.md#detrendr)                                               |0.6.14  |       |        |2    |
 |DGCA                                                                           |1.0.2   |       |        |     |
 |[DHS.rates](problems.md#dhsrates)                                              |0.9.0   |       |        |1    |
@@ -148,7 +148,7 @@
 |epivizrData                                                                    |1.20.0  |       |        |     |
 |eseis                                                                          |0.5.0   |       |        |     |
 |[EstimationTools](problems.md#estimationtools)                                 |2.1.0   |       |        |1    |
-|[estudy2](problems.md#estudy2)                                                 |0.9.2   |       |1       |     |
+|estudy2                                                                        |0.9.3   |       |        |     |
 |[evaluomeR](problems.md#evaluomer)                                             |1.8.0   |       |        |3    |
 |[EventPointer](problems.md#eventpointer)                                       |3.0.0   |       |        |3    |
 |[ExCluster](problems.md#excluster)                                             |1.10.0  |       |        |1    |
@@ -167,7 +167,7 @@
 |[FEAST](problems.md#feast)                                                     |1.0.0   |       |        |2    |
 |[fergm](problems.md#fergm)                                                     |1.1.4   |       |1       |     |
 |[fipp](problems.md#fipp)                                                       |1.0.0   |       |        |1    |
-|[fishpond](problems.md#fishpond)                                               |1.8.0   |       |        |1    |
+|[fishpond](problems.md#fishpond)                                               |1.8.0   |       |-1      |1    |
 |[flowCore](problems.md#flowcore)                                               |2.4.0   |       |1       |1    |
 |[flowGraph](problems.md#flowgraph)                                             |1.0.0   |       |1       |2    |
 |[flowWorkspace](problems.md#flowworkspace)                                     |4.4.0   |       |3       |5    |
@@ -180,7 +180,7 @@
 |[GenEst](problems.md#genest)                                                   |1.4.6   |       |        |1    |
 |[GeneTonic](problems.md#genetonic)                                             |1.4.1   |       |        |2    |
 |[genomation](problems.md#genomation)                                           |1.24.0  |       |1       |2    |
-|[geva](problems.md#geva)                                                       |1.0.0   |       |1       |     |
+|geva                                                                           |1.0.0   |       |        |     |
 |[ggdmc](problems.md#ggdmc)                                                     |0.2.6.0 |       |        |2    |
 |[GGPA](problems.md#ggpa)                                                       |1.4.0   |       |        |3    |
 |[GJRM](problems.md#gjrm)                                                       |0.2-4   |       |        |1    |
@@ -191,7 +191,7 @@
 |[graper](problems.md#graper)                                                   |1.8.0   |       |        |1    |
 |greeks                                                                         |0.3.1   |       |        |     |
 |[GUIDEseq](problems.md#guideseq)                                               |1.22.0  |       |        |3    |
-|GUniFrac                                                                       |1.2     |       |        |     |
+|GUniFrac                                                                       |1.3     |       |        |     |
 |[Gviz](problems.md#gviz)                                                       |1.36.2  |       |        |1    |
 |gwasurvivr                                                                     |1.10.0  |       |        |     |
 |[GWENA](problems.md#gwena)                                                     |1.2.0   |       |        |1    |
@@ -254,8 +254,8 @@
 |[migest](problems.md#migest)                                                   |2.0.0   |       |        |1    |
 |MIGSA                                                                          |1.16.0  |       |        |     |
 |[miloR](problems.md#milor)                                                     |1.0.0   |       |        |3    |
-|[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |3    |
-|miRecSurv                                                                      |1.0.1   |       |        |     |
+|[MinimumDistance](problems.md#minimumdistance)                                 |1.36.0  |       |5       |4    |
+|miRecSurv                                                                      |1.0.2   |       |        |     |
 |[mixOmics](problems.md#mixomics)                                               |6.16.3  |       |        |1    |
 |[mnem](problems.md#mnem)                                                       |1.8.0   |       |1       |1    |
 |[moanin](problems.md#moanin)                                                   |1.0.0   |       |1       |1    |
@@ -318,8 +318,8 @@
 |[regsem](problems.md#regsem)                                                   |1.8.0   |       |        |1    |
 |[rhierbaps](problems.md#rhierbaps)                                             |1.1.3   |       |        |1    |
 |RHRT                                                                           |1.0.1   |       |        |     |
-|[RiboDiPA](problems.md#ribodipa)                                               |1.0.0   |       |1       |     |
-|[RJcluster](problems.md#rjcluster)                                             |3.1.0   |       |        |1    |
+|RiboDiPA                                                                       |1.0.0   |       |        |     |
+|[RJcluster](problems.md#rjcluster)                                             |3.1.1   |       |        |1    |
 |[RNAmodR](problems.md#rnamodr)                                                 |1.6.0   |       |        |2    |
 |[RnBeads](problems.md#rnbeads)                                                 |2.10.0  |       |        |8    |
 |[robustlm](problems.md#robustlm)                                               |0.1.0   |       |        |1    |
