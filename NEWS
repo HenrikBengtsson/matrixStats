@@ -17,10 +17,11 @@ CODE DESIGN:
    of index that is passed for subsetting of vectors, rows, and columns.
    This was done to avoid the complex use of macros that was cumbersome to
    maintain and added an extra threshold for new contributors to overcome.
-   It also increased the size of the compiled library code so that it would
-   always produce an 'R CMD check' NOTE on the package installation size
-   being larger than CRAN's guidelines. The downside is that extra overhead
-   when passing integer indices (see above comment).
+   Also, the previous design increased the size of the compiled library code
+   so that it would always produce an 'R CMD check' NOTE on the package
+   installation size being larger than CRAN's guidelines. This is no longer
+   the case.  The downside is that extra overhead when passing integer
+   indices (see above comment).
 
 BUG FIXES:
 

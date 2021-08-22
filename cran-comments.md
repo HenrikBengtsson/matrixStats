@@ -20,4 +20,4 @@ The package has been verified using `R CMD check --as-cran` on:
 | 4.1.x     | Lv   W  | W        | Ls S M   | W           |           |
 | devel     | L  M W  | W        | L      W | W           |           |
 
-_Legend: OS: L = Linux, S = Solaris, M = macOS, W = Windows, s = ASan/UBSan, v = Valgrind _
+_Legend: OS: L = Linux, S = Solaris, M = macOS, W = Windows, s = ASan/UBSan, v = Valgrind_
