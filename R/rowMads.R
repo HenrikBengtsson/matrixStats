@@ -44,8 +44,6 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
         if (!is.null(names)) {
           if (!is.null(rows)) {
             names <- names[rows]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL
           }
           rownames(x) <- names
         }

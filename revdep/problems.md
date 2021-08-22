@@ -439,9 +439,9 @@ Run `revdep_details(, "BASiCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is 12.2Mb
       sub-directories of 1Mb or more:
-        data   3.9Mb
+        data   2.0Mb
         doc    1.4Mb
         libs   7.8Mb
     ```
@@ -699,7 +699,7 @@ Run `revdep_details(, "bnbc")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         data   1.7Mb
         libs   1.4Mb
@@ -782,11 +782,11 @@ Run `revdep_details(, "bnem")` for more info
 
 <details>
 
-* Version: 2.15.0
+* Version: 2.16.0
 * GitHub: https://github.com/paul-buerkner/brms
 * Source code: https://github.com/cran/brms
-* Date/Publication: 2021-03-14 15:50:31 UTC
-* Number of recursive dependencies: 227
+* Date/Publication: 2021-08-18 22:00:02 UTC
+* Number of recursive dependencies: 229
 
 Run `revdep_details(, "brms")` for more info
 
@@ -801,9 +801,9 @@ Run `revdep_details(, "brms")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.8Mb
+      installed size is  9.0Mb
       sub-directories of 1Mb or more:
-        R      5.0Mb
+        R      5.2Mb
         doc    2.4Mb
         help   1.0Mb
     ```
@@ -1025,7 +1025,7 @@ Run `revdep_details(, "CARBayesST")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.9Mb
+      installed size is  7.7Mb
       sub-directories of 1Mb or more:
         libs   6.1Mb
     ```
@@ -1094,7 +1094,7 @@ Run `revdep_details(, "CDSeq")` for more info
 * GitHub: https://github.com/campbio/celda
 * Source code: https://github.com/cran/celda
 * Date/Publication: 2021-05-30
-* Number of recursive dependencies: 356
+* Number of recursive dependencies: 357
 
 Run `revdep_details(, "celda")` for more info
 
@@ -1129,7 +1129,7 @@ Run `revdep_details(, "celda")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.6Mb
+      installed size is  8.3Mb
       sub-directories of 1Mb or more:
         libs   5.9Mb
     ```
@@ -1258,7 +1258,7 @@ Run `revdep_details(, "cellWise")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/CEMiTool
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 183
+* Number of recursive dependencies: 184
 
 Run `revdep_details(, "CEMiTool")` for more info
 
@@ -1360,7 +1360,7 @@ Run `revdep_details(, "ChAMP")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.1Mb
+      installed size is  6.2Mb
       sub-directories of 1Mb or more:
         doc       3.6Mb
         extdata   1.9Mb
@@ -1451,10 +1451,10 @@ Run `revdep_details(, "Chicago")` for more info
 
 <details>
 
-* Version: 3.26.2
+* Version: 3.26.3
 * GitHub: NA
 * Source code: https://github.com/cran/ChIPpeakAnno
-* Date/Publication: 2021-07-15
+* Date/Publication: 2021-08-17
 * Number of recursive dependencies: 207
 
 Run `revdep_details(, "ChIPpeakAnno")` for more info
@@ -1787,7 +1787,7 @@ Run `revdep_details(, "CNVScope")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.2Mb
+      installed size is  5.3Mb
       sub-directories of 1Mb or more:
         doc       3.2Mb
         extdata   1.7Mb
@@ -1842,7 +1842,7 @@ Run `revdep_details(, "coin")` for more info
 * GitHub: https://github.com/jokergoo/cola
 * Source code: https://github.com/cran/cola
 * Date/Publication: 2021-07-18
-* Number of recursive dependencies: 233
+* Number of recursive dependencies: 234
 
 Run `revdep_details(, "cola")` for more info
 
@@ -1912,7 +1912,7 @@ Run `revdep_details(, "ComplexHeatmap")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/conclus
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 251
+* Number of recursive dependencies: 252
 
 Run `revdep_details(, "conclus")` for more info
 
@@ -2110,9 +2110,9 @@ Run `revdep_details(, "consensusOV")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.1Mb
+      installed size is  5.5Mb
       sub-directories of 1Mb or more:
-        R   6.4Mb
+        R   3.8Mb
     ```
 
 # CopywriteR
@@ -2610,7 +2610,7 @@ Run `revdep_details(, "DEqMS")` for more info
 
 </details>
 
-## Newly fixed
+## In both
 
 *   checking examples ... ERROR
     ```
@@ -2637,7 +2637,23 @@ Run `revdep_details(, "DEqMS")` for more info
     Execution halted
     ```
 
-## In both
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘DEqMS-package-vignette.Rmd’ using rmarkdown
+    trying URL 'ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2016/06/PXD004163/Yan_miR_Protein_table.flatprottable.txt'
+    Quitting from lines 64-69 (DEqMS-package-vignette.Rmd) 
+    Error: processing vignette 'DEqMS-package-vignette.Rmd' failed with diagnostics:
+    cannot open URL 'ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2016/06/PXD004163/Yan_miR_Protein_table.flatprottable.txt'
+    --- failed re-building ‘DEqMS-package-vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘DEqMS-package-vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -3086,47 +3102,6 @@ Run `revdep_details(, "EstimationTools")` for more info
       All declared Imports should be used.
     ```
 
-# estudy2
-
-<details>
-
-* Version: 0.9.2
-* GitHub: https://github.com/irudnyts/estudy2
-* Source code: https://github.com/cran/estudy2
-* Date/Publication: 2020-04-30 23:10:06 UTC
-* Number of recursive dependencies: 26
-
-Run `revdep_details(, "estudy2")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘estudy2-intro.Rmd’ using rmarkdown
-    'getSymbols' currently uses auto.assign=TRUE by default, but will
-    use auto.assign=FALSE in 0.5-0. You will still be able to use
-    'loadSymbols' to automatically load data. getOption("getSymbols.env")
-    and getOption("getSymbols.auto.assign") will still be checked for
-    alternate defaults.
-    
-    This message is shown once per session and may be disabled by setting 
-    ...
-    Error: processing vignette 'estudy2-intro.Rmd' failed with diagnostics:
-    Unable to import "RSA.L".
-    argument "conn" is missing, with no default
-    --- failed re-building ‘estudy2-intro.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘estudy2-intro.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # evaluomeR
 
 <details>
@@ -3262,7 +3237,7 @@ Run `revdep_details(, "ExCluster")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ExpHunterSuite
 * Date/Publication: 2021-05-21
-* Number of recursive dependencies: 215
+* Number of recursive dependencies: 216
 
 Run `revdep_details(, "ExpHunterSuite")` for more info
 
@@ -3583,6 +3558,33 @@ Run `revdep_details(, "fishpond")` for more info
 
 </details>
 
+## Newly fixed
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘swish.Rmd’ using rmarkdown
+    NOTE: linkedTxome with source='GENCODE', set useHub=FALSE in tximeta
+    to avoid download of reference txome from AnnotationHub.
+    alternatively use a different string for source argument
+    saving linkedTxome in bfc (first time)
+    importing quantifications
+    reading in files with read.delim (install 'readr' package for speed up)
+    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 
+    found matching linked transcriptome:
+    ...
+      name: AH75173
+      title: TxDb for Gencode v29 on hg38 coordinates
+      reason: database disk image is malformed
+    --- failed re-building ‘swish.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘swish.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -3665,13 +3667,13 @@ Run `revdep_details(, "flowGraph")` for more info
     Error(s) in re-building vignettes:
     --- re-building ‘flowGraph.Rmd’ using rmarkdown
     - 8 pops @ layer 1
-    05:39:23-05:39:23 > 16:00:00
+    07:12:09-07:12:09 > 16:00:00
     - 24 pops @ layer 2
-    05:39:23-05:39:23 > 16:00:00
+    07:12:09-07:12:09 > 16:00:00
     - 32 pops @ layer 3
-    05:39:23-05:39:23 > 16:00:00
+    07:12:09-07:12:09 > 16:00:00
     - 16 pops @ layer 4
-    05:39:23-05:39:23 > 16:00:00
+    07:12:09-07:12:09 > 16:00:00
     ...
     Quitting from lines 557-561 (flowGraph.Rmd) 
     Error: processing vignette 'flowGraph.Rmd' failed with diagnostics:
@@ -3823,14 +3825,14 @@ Run `revdep_details(, "FRASER")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘FRASER.Rnw’ using knitr
-    Tue Aug 17 08:31:24 2021: Start counting the split reads ...
-    Tue Aug 17 08:31:25 2021: Count split reads for sample: sample1
-    Tue Aug 17 08:31:26 2021: Count split reads for sample: sample2
-    Tue Aug 17 08:31:27 2021: Count split reads for sample: sample3
-    Tue Aug 17 08:31:29 2021 : count ranges need to be merged ...
-    Tue Aug 17 08:31:31 2021: Create splice site indices ...
-    Tue Aug 17 08:31:31 2021: Writing split counts to folder: /scratch/henrik/RtmpppbfSG/savedObjects/Data_Analysis/splitCounts
-    Tue Aug 17 08:31:32 2021: Identifying introns with read count <= 20 in all samples...
+    Fri Aug 20 07:38:05 2021: Start counting the split reads ...
+    Fri Aug 20 07:38:05 2021: Count split reads for sample: sample1
+    Fri Aug 20 07:38:07 2021: Count split reads for sample: sample2
+    Fri Aug 20 07:38:08 2021: Count split reads for sample: sample3
+    Fri Aug 20 07:38:10 2021 : count ranges need to be merged ...
+    Fri Aug 20 07:38:12 2021: Create splice site indices ...
+    Fri Aug 20 07:38:13 2021: Writing split counts to folder: /scratch/henrik/RtmpjmqTqw/savedObjects/Data_Analysis/splitCounts
+    Fri Aug 20 07:38:13 2021: Identifying introns with read count <= 20 in all samples...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -3940,7 +3942,7 @@ Run `revdep_details(, "GenEst")` for more info
 * GitHub: https://github.com/federicomarini/GeneTonic
 * Source code: https://github.com/cran/GeneTonic
 * Date/Publication: 2021-06-06
-* Number of recursive dependencies: 200
+* Number of recursive dependencies: 201
 
 Run `revdep_details(, "GeneTonic")` for more info
 
@@ -3998,47 +4000,6 @@ Run `revdep_details(, "genomation")` for more info
     ```
     Unexported object imported by a ':::' call: ‘BiocGenerics:::testPackage’
       See the note in ?`:::` about the use of this operator.
-    ```
-
-# geva
-
-<details>
-
-* Version: 1.0.0
-* GitHub: https://github.com/sbcblab/geva
-* Source code: https://github.com/cran/geva
-* Date/Publication: 2021-05-19
-* Number of recursive dependencies: 105
-
-Run `revdep_details(, "geva")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘geva.Rmd’ using rmarkdown
-    Warning in Sys.setlocale("LC_TIME", "English_United States") :
-      OS reports request to set locale to "English_United States" cannot be honored
-    A new version of TeX Live has been released. If you need to install or update any LaTeX packages, you have to upgrade TinyTeX with tinytex::reinstall_tinytex(). If it fails to upgrade, you might be using a default random CTAN mirror that has not been fully synced to the main CTAN repository, and you need to wait for a few more days or use a CTAN mirror that is known to be up-to-date (see the "repository" argument on the help page ?tinytex::install_tinytex).
-    
-    tlmgr: Local TeX Live (2020) is older than remote repository (2021).
-    Cross release updates are only supported with
-      update-tlmgr-latest(.sh/.exe) --update
-    See https://tug.org/texlive/upgrade.html for details.
-    ...
-    
-    Error: processing vignette 'geva.Rmd' failed with diagnostics:
-    LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/geva/new/geva.Rcheck/vign_test/geva/vignettes/geva.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See geva.log for more info.
-    --- failed re-building ‘geva.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘geva.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # ggdmc
@@ -4401,8 +4362,9 @@ Run `revdep_details(, "IMIFA")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.0Mb
+      installed size is  8.1Mb
       sub-directories of 1Mb or more:
+        R      1.0Mb
         data   6.4Mb
     ```
 
@@ -4805,7 +4767,7 @@ Run `revdep_details(, "M3Drop")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/maEndToEnd
 * Date/Publication: 2021-05-21
-* Number of recursive dependencies: 228
+* Number of recursive dependencies: 229
 
 Run `revdep_details(, "maEndToEnd")` for more info
 
@@ -5593,7 +5555,7 @@ Run `revdep_details(, "MFHD")` for more info
 * GitHub: https://github.com/mfasiolo/mgcViz
 * Source code: https://github.com/cran/mgcViz
 * Date/Publication: 2020-03-04 15:10:02 UTC
-* Number of recursive dependencies: 106
+* Number of recursive dependencies: 107
 
 Run `revdep_details(, "mgcViz")` for more info
 
@@ -5779,6 +5741,14 @@ Run `revdep_details(, "MinimumDistance")` for more info
 *   checking package dependencies ... NOTE
     ```
     Package which this enhances but not available for checking: ‘doSNOW’
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.9Mb
+      sub-directories of 1Mb or more:
+        R     3.0Mb
+        doc   1.6Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -6048,7 +6018,7 @@ Run `revdep_details(, "MOSim")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  5.0Mb
       sub-directories of 1Mb or more:
         data   4.2Mb
     ```
@@ -6295,14 +6265,14 @@ Run `revdep_details(, "muscat")` for more info
       ── Error (test-mmDS.R:70:9): mmDS-utils; .mm_vst ───────────────────────────────
       Error: statmod package required but is not installed
     ...
-        first error: statmod package required but is not installed
-      Backtrace:
-          █
-       1. └─muscat::pbDS(...) test-pbDS.R:52:12
-       2.   ├─BiocParallel::bplapply(...)
        3.   └─BiocParallel::bplapply(...)
+      ── Failure (test-resDS.R:63:5): resDS() - 'cpm = TRUE' ─────────────────────────
+      all(u%%2 == 0 | is.na(u)) is not TRUE
       
-      [ FAIL 3 | WARN 1 | SKIP 0 | PASS 536 ]
+      `actual`:   FALSE
+      `expected`: TRUE 
+      
+      [ FAIL 4 | WARN 1 | SKIP 0 | PASS 535 ]
       Error: Test failures
       Execution halted
     ```
@@ -6549,14 +6519,7 @@ Run `revdep_details(, "NormalyzerDE")` for more info
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘vignette.Rmd’ using rmarkdown
-    A new version of TeX Live has been released. If you need to install or update any LaTeX packages, you have to upgrade TinyTeX with tinytex::reinstall_tinytex(). If it fails to upgrade, you might be using a default random CTAN mirror that has not been fully synced to the main CTAN repository, and you need to wait for a few more days or use a CTAN mirror that is known to be up-to-date (see the "repository" argument on the help page ?tinytex::install_tinytex).
-    
-    tlmgr: Local TeX Live (2020) is older than remote repository (2021).
-    Cross release updates are only supported with
-      update-tlmgr-latest(.sh/.exe) --update
-    See https://tug.org/texlive/upgrade.html for details.
-    Warning in system2("tlmgr", args, ...) :
-    ...
+    ! LaTeX Error: Missing \begin{document}.
     
     Error: processing vignette 'vignette.Rmd' failed with diagnostics:
     LaTeX failed to compile /scratch/henrik/revdepcheck.extras/matrixStats/revdep/checks/NormalyzerDE/new/NormalyzerDE.Rcheck/vign_test/NormalyzerDE/vignettes/vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See vignette.log for more info.
@@ -6645,9 +6608,9 @@ Run `revdep_details(, "omicsPrint")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.7Mb
+      installed size is 16.6Mb
       sub-directories of 1Mb or more:
-        data   7.4Mb
+        data  15.3Mb
         doc    1.2Mb
     ```
 
@@ -6723,12 +6686,12 @@ Run `revdep_details(, "OUTRIDER")` for more info
     --- re-building ‘OUTRIDER.Rnw’ using knitr
     The magick package is required to crop "figure/deVsOutlier-1.png" but not available.
     229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.
-    Tue Aug 17 10:30:01 2021: SizeFactor estimation ...
-    Tue Aug 17 10:30:02 2021: Controlling for confounders ...
+    Fri Aug 20 10:14:14 2021: SizeFactor estimation ...
+    Fri Aug 20 10:14:14 2021: Controlling for confounders ...
     Using estimated q with: 23
-    Tue Aug 17 10:30:02 2021: Using the autoencoder implementation for controlling.
-    Tue Aug 17 10:36:01 2021: Used the autoencoder implementation for controlling.
-    Tue Aug 17 10:36:01 2021: P-value calculation ...
+    Fri Aug 20 10:14:14 2021: Using the autoencoder implementation for controlling.
+    Fri Aug 20 10:19:24 2021: Used the autoencoder implementation for controlling.
+    Fri Aug 20 10:19:24 2021: P-value calculation ...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -7398,7 +7361,7 @@ Run `revdep_details(, "RadioGx")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  5.4Mb
       sub-directories of 1Mb or more:
         data   3.5Mb
     ```
@@ -7452,55 +7415,14 @@ Run `revdep_details(, "rhierbaps")` for more info
       'LazyData' is specified without a 'data' directory
     ```
 
-# RiboDiPA
-
-<details>
-
-* Version: 1.0.0
-* GitHub: NA
-* Source code: https://github.com/cran/RiboDiPA
-* Date/Publication: 2021-05-19
-* Number of recursive dependencies: 142
-
-Run `revdep_details(, "RiboDiPA")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... WARNING
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘RiboDiPA.Rmd’ using rmarkdown
-    Loading required package: dbplyr
-    Warning in FUN(X[[i]], ...) :
-      'rnames' exact pattern
-        'https://github.com/jipingw/RiboDiPA-data/raw/master/MUT1.bam'
-      is not unique; use 'bfcquery()' to see matches.
-    Warning in FUN(X[[i]], ...) :
-      'rnames' exact pattern
-    ...
-    Quitting from lines 152-158 (RiboDiPA.Rmd) 
-    Error: processing vignette 'RiboDiPA.Rmd' failed with diagnostics:
-    not all 'rnames' found or unique.
-    --- failed re-building ‘RiboDiPA.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘RiboDiPA.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # RJcluster
 
 <details>
 
-* Version: 3.1.0
+* Version: 3.1.1
 * GitHub: NA
 * Source code: https://github.com/cran/RJcluster
-* Date/Publication: 2021-07-21 22:10:13 UTC
+* Date/Publication: 2021-08-19 20:10:06 UTC
 * Number of recursive dependencies: 53
 
 Run `revdep_details(, "RJcluster")` for more info
@@ -8016,9 +7938,9 @@ Run `revdep_details(, "Seurat")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.4Mb
+      installed size is 11.9Mb
       sub-directories of 1Mb or more:
-        R      1.8Mb
+        R      1.3Mb
         libs   9.9Mb
     ```
 
@@ -8349,7 +8271,7 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 * GitHub: https://github.com/compbiomed/singleCellTK
 * Source code: https://github.com/cran/singleCellTK
 * Date/Publication: 2021-05-19
-* Number of recursive dependencies: 371
+* Number of recursive dependencies: 372
 
 Run `revdep_details(, "singleCellTK")` for more info
 
@@ -8359,7 +8281,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         extdata   1.5Mb
     ```

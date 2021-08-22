@@ -37,3 +37,8 @@ for (rows in index_cases) {
     validateIndicesTestMatrix(x, rows, cols, ftest = ftest, fsure = identity)
   }
 }
+
+# Testing for 64-bit builds (64 bits = 8 bytes)
+if (.Machine$sizeof.pointer == 8L) {
+  validateIndices(c(1.25*2^40, 3, 1*2^38, 1, 1.4*2^39), maxIdx = 1*2^41)
+}
