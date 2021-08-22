@@ -1,11 +1,26 @@
 Package: matrixStats
 ====================
 
-Version: 0.60.0-9002 [2021-08-14]
+Version: 0.60.0-9002 [2021-08-22]
 
 PERFORMANCE:
 
- * Handling of 'useNames' argument is now done in the native code.
+ * Handling of the 'useNames' argument is now done in the native code.
+
+ * Passing 'idxs', 'rows', and 'cols' arguments of type integer is now less
+   efficient than it used to, because the new code re-design (see below)
+   requires them to be coerced from 'R_len_t' integers to 'R_xlen_t' integers.
+
+CODE DESIGN:
+
+ * No longer using native-code implementations that are specific to the type
+   of index that is passed for subsetting of vectors, rows, and columns.
+   This was done to avoid the complex use of macros that was cumbersome to
+   maintain and added an extra threshold for new contributors to overcome.
+   It also increased the size of the compiled library code so that it would
+   always produce an 'R CMD check' NOTE on the package installation size
+   being larger than CRAN's guidelines. The downside is that extra overhead
+   when passing integer indices (see above comment).
 
 BUG FIXES:
 
