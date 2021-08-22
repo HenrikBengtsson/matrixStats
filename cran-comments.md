@@ -2,7 +2,7 @@
 
 on 2021-08-22
 
-I've verified that this submission does not cause issues for the 358 reverse package dependencies available on CRAN and Bioconductor. In addition, the package have been validated on R oldrel, R release, and R devel on Linux, macOS, and Windows. On Linux it's also been checked as far back as R 2.15.0, and with Valgrind and ASan/UBSan on R release. On Solaris, it's been checked with R release.
+I've verified that this submission does not cause issues for the 358 reverse package dependencies available on CRAN and Bioconductor. In addition, the package have been validated on R oldrel, R release, and R devel on Linux, macOS, and Windows. On Linux, it's also been checked as far back as R 2.15.0, and with Valgrind and ASan/UBSan on R release. On Solaris, it's been checked with R release.
 
 Thank you
 
