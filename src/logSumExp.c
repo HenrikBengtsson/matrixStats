@@ -31,10 +31,9 @@ SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  int idxsType;
-  void *cidxs = validateIndices(idxs, xlength(lx), 1, &nidxs, &idxsType);
+  R_xlen_t *cidxs = validateIndices(idxs, xlength(lx), 1, &nidxs);
 
-  return(Rf_ScalarReal(logSumExp_double[idxsType](REAL(lx), cidxs, nidxs, narm, hasna, 0, NULL)));
+  return(Rf_ScalarReal(logSumExp_double(REAL(lx), cidxs, nidxs, narm, hasna, 0, NULL)));
 } /* logSumExp() */
 
 

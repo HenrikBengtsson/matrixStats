@@ -23,15 +23,14 @@ SEXP anyMissing(SEXP x, SEXP idxs) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  int idxsType;
-  void *cidxs = validateIndices(idxs, nx, 1, &nidxs, &idxsType);
+  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
   
   if (nidxs == 0) return(ScalarLogical(FALSE));
-
-  if (anyMissing_internal[idxsType](x, cidxs, nidxs)) {
+  
+  if (anyMissing_internal(x, cidxs, nidxs)) {
     return(ScalarLogical(TRUE));
   }
-
+  
   return(ScalarLogical(FALSE));  
 } // anyMissing()
 

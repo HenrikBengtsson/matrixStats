@@ -1,9 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  <col|row>Ranks_dbl_ties<Min|Max|Average>[rowsType][colsType](ARGUMENTS_LIST)
+  <col|row>Ranks_dbl_ties<Min|Max|Average>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, ANS_C_TYPE *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, ANS_C_TYPE *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -39,7 +39,7 @@
 #endif
 
 /* Expand arguments:
-    X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN, [METHOD_NAME])
+    X_TYPE => (X_C_TYPE, X_IN_C, X_ISNAN)
     ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
 #include "000.templates-types.h"
@@ -60,7 +60,8 @@ void SHUFFLE_INT(int *array, size_t i, size_t j); /* prototype for use with "ran
 #endif
 
 
-void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
+                 R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, ANS_C_TYPE *ans) {
   ANS_C_TYPE rank;
   X_C_TYPE *values, current, tmp;
   R_xlen_t *colOffset;
@@ -69,21 +70,19 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
   int lastFinite, firstTie, aboveTie, dense_rank_adj;
   int nvalues, nVec;
 
-#ifdef ROWS_TYPE
-  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
-#endif
-#ifdef COLS_TYPE
-  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
-#endif
-
 #if MARGIN == 'r'
   nvalues = ncols;
   nVec = nrows;
 
   /* Pre-calculate the column offsets */
   colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
-  for (jj=0; jj < ncols; jj++)
-    colOffset[jj] = R_INDEX_OP(COL_INDEX(ccols,jj), *, nrow);
+  if (cols == NULL) {
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = R_INDEX_OP(jj, *, nrow);
+  } else {
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow);
+  }
 
 #elif MARGIN == 'c'
   nvalues = nrows;
@@ -91,8 +90,13 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
   /* Pre-calculate the column offsets */
   colOffset = (R_xlen_t *) R_alloc(nrows, sizeof(R_xlen_t));
-  for (jj=0; jj < nrows; jj++)
-    colOffset[jj] = ROW_INDEX(crows,jj);
+  if (rows == NULL) {
+    for (jj=0; jj < nrows; jj++)
+      colOffset[jj] = jj;
+  } else {
+    for (jj=0; jj < nrows; jj++)
+      colOffset[jj] = rows[jj];
+  }
 #endif
 
   values = (X_C_TYPE *) R_alloc(nvalues, sizeof(X_C_TYPE));
@@ -100,9 +104,9 @@ void METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
 
   for (ii=0; ii < nVec; ii++) {
 #if MARGIN == 'r'
-    rowIdx = ROW_INDEX(crows,ii);
+    rowIdx = ((rows == NULL) ? (ii) : rows[ii]);
 #elif MARGIN == 'c'
-    rowIdx = R_INDEX_OP(COL_INDEX(ccols,ii), *, nrow);
+    rowIdx = R_INDEX_OP(((cols == NULL) ? (ii) : cols[ii]), *, nrow);
 #endif
     lastFinite = nvalues-1;
 

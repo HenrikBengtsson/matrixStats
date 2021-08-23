@@ -1,9 +1,12 @@
 #include "000.types.h"
 #include "000.templates-types.h"
 
+#define X_C_Y_C_SIGNATURE CONCAT_MACROS(X_C_SIGNATURE, Y_C_SIGNATURE)
+#define METHOD_NAME CONCAT_MACROS(METHOD, X_C_Y_C_SIGNATURE)
+
 
 #if OP == '+'
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -13,7 +16,7 @@
 #endif
     return (double)x + (double)y;
   }
-  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_ROWS_COLS_IDXS)
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME)
   static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
     if (X_ISNAN(x)) {
       return (double)y;
@@ -24,7 +27,7 @@
     }
   }
 #elif OP == '-'
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -36,7 +39,7 @@
   }
   #define FUN_narm FUN_no_NA
 #elif OP == '*'
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -46,7 +49,7 @@
 #endif
     return (double)x * (double)y;
   }
-  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME_ROWS_COLS_IDXS)
+  #define FUN_narm CONCAT_MACROS(FUN, METHOD_NAME)
   static R_INLINE double FUN_narm(X_C_TYPE x, Y_C_TYPE y) {
     if (X_ISNAN(x)) {
       return (double)y;
@@ -57,7 +60,7 @@
     }
   }
 #elif OP == '/'
-  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME_ROWS_COLS_IDXS)
+  #define FUN_no_NA CONCAT_MACROS(FUN_no_NA, METHOD_NAME)
   static R_INLINE double FUN_no_NA(X_C_TYPE x, Y_C_TYPE y) {
 #if X_TYPE == 'i'
     if (X_ISNAN(x)) return NA_REAL;
@@ -72,8 +75,14 @@
   #error "INTERNAL ERROR: Failed to set C inline function FUN(x, y): Unknown OP"
 #endif
 
-
-RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
+  
+void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
+                        Y_C_TYPE *y, R_xlen_t ny,
+                        R_xlen_t *xrows, R_xlen_t nxrows, R_xlen_t *xcols, R_xlen_t nxcols,
+                        R_xlen_t *yidxs, R_xlen_t nyidxs,
+                        int byrow, int commute,
+                        int narm, int hasna,
+                        ANS_C_TYPE *ans, R_xlen_t n) {
   R_xlen_t ii, jj, kk, idx, colBegin;
   R_xlen_t txi, yi;
   X_C_TYPE xvalue;
@@ -85,16 +94,6 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
          R_INT_MAX_d = (double)R_INT_MAX;
 #endif
 
-#ifdef ROWS_TYPE
-  ROWS_C_TYPE *cxrows = (ROWS_C_TYPE*) xrows;
-#endif
-#ifdef COLS_TYPE
-  COLS_C_TYPE *cxcols = (COLS_C_TYPE*) xcols;
-#endif
-#ifdef IDXS_TYPE
-  IDXS_C_TYPE *cyidxs = (IDXS_C_TYPE*) yidxs;
-#endif
-
   yi = 0;
   kk = 0;
 
@@ -102,13 +101,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
     if (commute) {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_narm(yvalue, xvalue);
@@ -127,13 +126,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_no_NA(yvalue, xvalue);
@@ -154,13 +153,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
     } else {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_narm(xvalue, yvalue);
@@ -179,13 +178,13 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, txi%nyidxs);
+            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_no_NA(xvalue, yvalue);
@@ -208,12 +207,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
     if (commute) {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, yi);
+            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_narm(yvalue, xvalue);
@@ -232,12 +231,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, yi);
+            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_no_NA(yvalue, xvalue);
@@ -258,12 +257,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
     } else {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, yi);
+            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_narm(xvalue, yvalue);
@@ -282,12 +281,12 @@ RETURN_TYPE METHOD_NAME_ROWS_COLS_IDXS(ARGUMENTS_LIST) {
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(COL_INDEX(cxcols,jj), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ROW_INDEX(cxrows,ii));
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
             xvalue = R_INDEX_GET(x, idx, X_NA);
 
-            idx = IDX_INDEX(cyidxs, yi);
+            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
             yvalue = R_INDEX_GET(y, idx, Y_NA);
 
             value = FUN_no_NA(xvalue, yvalue);

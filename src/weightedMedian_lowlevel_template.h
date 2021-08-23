@@ -1,9 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  double weightedMedian_<int|dbl>[idxsType](ARGUMENTS_LIST)
+  double weightedMedian_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nx, double *w, void *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties
+  X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
@@ -11,13 +11,13 @@
 #include "000.types.h"
 
 /* Expand arguments:
-    X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
+    X_TYPE => (X_C_TYPE, X_IN_C)
  */
 #include "000.templates-types.h"
 #include <R_ext/Error.h>
 
 
-RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
+double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties) {
   X_C_TYPE value;
   X_C_TYPE *xtmp;
   double weight, res;
@@ -26,10 +26,6 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   R_xlen_t nxt, ii, jj, half;
   int *idxs_int;
   int equalweights = 0;
-
-#ifdef IDXS_TYPE
-  IDXS_C_TYPE *cidxs = (IDXS_C_TYPE*) idxs;
-#endif
 
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* Weights                                                             */
@@ -43,7 +39,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
        that the signals is missing and should be dropped */
     wtmp[ii] = 0;
 
-    weight = R_INDEX_GET(w, IDX_INDEX(cidxs,ii), NA_REAL);
+    weight = R_INDEX_GET(w, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL);
     if (ISNAN(weight)) {
       if (!narm) {
         Free(wtmp);
@@ -59,9 +55,9 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
         /* Assume non-infinite weight by default */
         wtmp[jj] = 0;
 
-        weight = R_INDEX_GET(w, IDX_INDEX(cidxs,jj), NA_REAL);
+        weight = R_INDEX_GET(w, ((idxs == NULL) ? (jj) : idxs[jj]), NA_REAL);
         if (isinf(weight)) {
-          value = R_INDEX_GET(x, IDX_INDEX(cidxs,jj), X_NA);
+          value = R_INDEX_GET(x, ((idxs == NULL) ? (jj) : idxs[jj]), X_NA);
           if (X_ISNAN(value)) {
             if (!narm) {
               Free(wtmp);
@@ -83,7 +79,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
       break;
     } else {
       /* A data points with a finite positive weight */
-      value = R_INDEX_GET(x, IDX_INDEX(cidxs,ii), X_NA);
+      value = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
       if (X_ISNAN(value)) {
         if (!narm) {
           Free(wtmp);
@@ -118,7 +114,7 @@ RETURN_TYPE METHOD_NAME_IDXS(ARGUMENTS_LIST) {
   for (ii=0; ii < nidxs; ii++) {
     if (wtmp[ii] > 0) {
       /*    printf("ii=%d, jj=%d, wtmp[%d]=%g\n", (int)ii, (int)jj, (int)ii, wtmp[ii]); */
-      xtmp[jj] = x[IDX_INDEX(cidxs,ii)]; // sure that xvalue is not NA
+      xtmp[jj] = x[((idxs == NULL) ? (ii) : idxs[ii])]; // sure that xvalue is not NA
       wtmp[jj] = wtmp[ii];
       wtotal += wtmp[jj];
       jj++;

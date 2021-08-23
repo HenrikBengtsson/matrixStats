@@ -1,9 +1,9 @@
 /***********************************************************************
  TEMPLATE:
-  void rowOrderStats_<int|dbl>[rowsType][colsType](ARGUMENTS_LIST)
+  void rowOrderStats_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, void *rows, R_xlen_t nrows, void *cols, R_xlen_t ncols, R_xlen_t qq, X_C_TYPE *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, R_xlen_t qq, X_C_TYPE *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -24,51 +24,57 @@
 #include "000.types.h"
 
 /* Expand arguments:
-    X_TYPE => (X_C_TYPE, X_IN_C, [METHOD_NAME])
+    X_TYPE => (X_C_TYPE, X_IN_C)
     ANS_TYPE => (ANS_SXP, ANS_NA, ANS_C_TYPE, ANS_IN_C)
  */
 #include "000.templates-types.h"
 
 
-RETURN_TYPE METHOD_NAME_ROWS_COLS(ARGUMENTS_LIST) {
+void CONCAT_MACROS(rowOrderStats, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
+                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, 
+                        R_xlen_t ncols, R_xlen_t qq, X_C_TYPE *ans) {
   R_xlen_t ii, jj;
   R_xlen_t *colOffset, rowIdx;
   X_C_TYPE *values;
 
-#ifdef ROWS_TYPE
-  ROWS_C_TYPE *crows = (ROWS_C_TYPE*) rows;
   // Check missing rows
-  for (ii=0; ii < nrows; ++ii) {
-    if (ROW_INDEX(crows,ii) == NA_R_XLEN_T) break;
+  if (rows != NULL) {
+    for (ii=0; ii < nrows; ++ii) {
+      if (rows[ii] == NA_R_XLEN_T) break;
+    }    
+    if (ii < nrows && ncols > 0) {
+      error("Argument 'rows' must not contain missing value");
+    }    
   }
-  if (ii < nrows && ncols > 0) {
-    error("Argument 'rows' must not contain missing value");
-  }
-#endif
-#ifdef COLS_TYPE
-  COLS_C_TYPE *ccols = (COLS_C_TYPE*) cols;
+
   // Check missing cols
-  for (jj=0; jj < ncols; ++jj) {
-    if (COL_INDEX(ccols,jj) == NA_R_XLEN_T) break;
+  if (cols != NULL) {
+    for (jj=0; jj < ncols; ++jj) {
+      if (cols[jj] == NA_R_XLEN_T) break;
+    }
+    if (jj < ncols && nrows > 0) {
+      error("Argument 'cols' must not contain missing value");
+    }    
   }
-  if (jj < ncols && nrows > 0) {
-    error("Argument 'cols' must not contain missing value");
-  }
-#endif
 
   /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
   values = (X_C_TYPE *) R_alloc(ncols, sizeof(X_C_TYPE));
 
   /* Pre-calculate the column offsets */
-  colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
-  for (jj=0; jj < ncols; jj++)
-    colOffset[jj] = COL_INDEX_NONA(ccols,jj) * nrow;
+  if (cols == NULL) {
+    colOffset = NULL;
+  }
+  else {
+    colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
+    for (jj=0; jj < ncols; jj++)
+      colOffset[jj] = cols[jj] * nrow;  
+  }
 
   for (ii=0; ii < nrows; ii++) {
-    rowIdx = ROW_INDEX_NONA(crows,ii);
+    rowIdx = ((rows == NULL) ? (ii) : rows[ii]);
     for (jj=0; jj < ncols; jj++)
-      values[jj] = x[rowIdx + colOffset[jj]];
+      values[jj] = x[rowIdx + ((colOffset == NULL) ? (jj*nrow) : colOffset[jj])];
 
     /* Sort vector of length 'ncol' up to position 'qq'.
        "...partial sorting: they permute x so that x[qq] is in the

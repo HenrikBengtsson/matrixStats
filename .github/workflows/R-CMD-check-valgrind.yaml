@@ -1,45 +1,36 @@
 on: [push, pull_request]
 
-name: R-CMD-check
+name: R-CMD-check-with-valgrind
 
 jobs:
-  R-CMD-check:
-    runs-on: ${{ matrix.config.os }}
+  R-CMD-check-with-valgrind:
+    if: contains(github.ref, 'release') || contains(github.event.head_commit.message, '[valgrind]')
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) ${{ matrix.config.label }}
+    runs-on: ubuntu-20.04
+
+    name: ubuntu-20.04 (release) w/ valgrind
 
     strategy:
       fail-fast: false
-      matrix:
-        config:
-          - {os: windows-latest, r: 'devel'}
-          - {os: windows-latest, r: 'release'}
-          - {os: windows-latest, r: 'oldrel'}
-          - {os: macOS-latest,   r: 'devel'}
-#2020-09-24#          - {os: macOS-latest,   r: 'release'}
-          - {os: macOS-latest,   r: 'oldrel'}
-          - {os: ubuntu-20.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-20.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest" }
-          - {os: ubuntu-20.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-20.04,   r: '3.4',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-20.04,   r: '3.3',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      RSPM: ${{ matrix.config.rspm }}
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       ## R CMD check
       _R_CHECK_CRAN_INCOMING_: false
       _R_CHECK_LENGTH_1_CONDITION_: true
       _R_CHECK_LENGTH_1_LOGIC2_: true
       _R_CHECK_MATRIX_DATA_: true
+      ## Specific to package
+      _R_CHECK_USE_VALGRIND_: true
 
     steps:
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-r@master
         with:
-          r-version: ${{ matrix.config.r }}
+          r-version: release
 
       - uses: r-lib/actions/setup-pandoc@master
 
@@ -51,7 +42,6 @@ jobs:
         shell: Rscript {0}
 
       - name: Cache R packages
-        if: runner.os != 'Windows'
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
@@ -59,13 +49,13 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install system dependencies
-        if: runner.os == 'Linux'
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+          sudo apt-get install --yes valgrind
 
       - name: Install dependencies
         run: |
@@ -80,13 +70,13 @@ jobs:
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
 
-      - name: Check
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+      - name: Check with valgrind
+        run: rcmdcheck::rcmdcheck(build_args = "--no-build-vignettes", args = c("--use-valgrind", "--no-codoc", "--no-examples", "--no-manual", "--ignore-vignettes"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
-
+        
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          name: ${{ runner.os }}-rrelease-results
           path: check

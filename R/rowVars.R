@@ -27,30 +27,10 @@
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
                     dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
 
   if (is.null(center)) {
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE)
-    
-    # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        names <- rownames(x)
-        if (!is.null(names)) {
-          if (!is.null(rows)) {
-            names <- names[rows]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL
-          }
-          names(sigma2) <- names
-        }
-      } else {
-        names(sigma2) <- NULL
-      }      
-    }
-    
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
     return(sigma2)
   }
 
@@ -136,44 +116,28 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
     x[is.infinite(center)] <- NaN
     x <- rowMeans(x, na.rm = na.rm)
-    x <- x * (n / (n - 1))
-    # Preserve names attribute?
-    if (is.na(useNames) || useNames) {
-      if (!is.null(names)) {
-        if (!is.null(rows)) {
-          names <- names[rows]
-          # Zero-length attribute? Keep behavior same as base R function
-          if (length(names) == 0L) names <- NULL
-        }
-        names(x) <- names
-      }
-    } else {
-      names(x) <- NULL
+  } else {
+    ## The alternative formula for estimating the sample variance
+    x2 <- x * x
+    x2 <- rowMeans(x2, na.rm = na.rm)
+    x2 <- (x2 - center^2)
+    
+    ## The primary formula for estimating the sample variance
+    x <- (x - center)^2
+    x <- rowMeans(x, na.rm = na.rm)
+    
+    ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+    ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+    x[is.infinite(center)] <- NaN
+    
+    equal <- all.equal(x, x2, check.attribute = FALSE)
+    x2 <- NULL
+    if (!isTRUE(equal)) {
+      fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+      fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
+      fcn(msg = sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
     }
-    return(x)
   }
-
-  ## The alternative formula for estimating the sample variance
-  x2 <- x * x
-  x2 <- rowMeans(x2, na.rm = na.rm)
-  x2 <- (x2 - center^2)
-
-  ## The primary formula for estimating the sample variance
-  x <- (x - center)^2
-  x <- rowMeans(x, na.rm = na.rm)
-  
-  ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
-  ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
-  x[is.infinite(center)] <- NaN
-
-  equal <- all.equal(x, x2, check.attributes = FALSE)
-  x2 <- NULL
-  if (!isTRUE(equal)) {
-    fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
-    fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
-    fcn(msg = sprintf("rowVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
-  }
-  
   x <- x * (n / (n - 1))
   
   # Preserve names attribute?
@@ -198,31 +162,10 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
                     dim. = dim(x), ..., useNames = NA) {
-  dim. <- as.integer(dim.)
 
   if (is.null(center)) {
-    dim. <- as.integer(dim.)
-    na.rm <- as.logical(na.rm)
     has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE)
-    
-    # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        names <- colnames(x)
-        if (!is.null(names)) {
-          if (!is.null(cols)) {
-            names <- names[cols]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL         
-          }
-          names(sigma2) <- names
-        }
-      } else {
-        names(sigma2) <- NULL
-      }      
-    }
-
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
     return(sigma2)
   }
 
@@ -259,7 +202,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
   # Nothing to do?
   if (nrow <= 1L) {
-    
+
     x <- rep(NA_real_, times = ncol(x))
     
     # Update names attribute?
@@ -310,47 +253,31 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
     ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
     ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
     x[is.infinite(center)] <- NaN
-    x <- x * (n / (n - 1))
-    # Preserve names attribute?
-    if (is.na(useNames) || useNames) {
-      if (!is.null(names)) {
-        if (!is.null(cols)) {
-          names <- names[cols]
-          # Zero-length attribute? Keep behavior same as base R function
-          if (length(names) == 0L) names <- NULL         
-        }
-        names(x) <- names
-      }
-    } else {
-      names(x) <- NULL
+  } else {
+    ## The alternative formula for estimating the sample variance
+    x2 <- x * x
+    x2 <- colMeans(x2, na.rm = na.rm)
+    x2 <- (x2 - center^2)
+    
+    ## The primary formula for estimating the sample variance
+    for (cc in seq_len(ncol(x))) {
+      x[, cc] <- (x[, cc] - center[cc])^2
     }
-    return(x)
+    x <- colMeans(x, na.rm = na.rm)
+    
+    ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
+    ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
+    x[is.infinite(center)] <- NaN
+    
+    equal <- all.equal(x, x2)
+    x2 <- NULL
+    if (!isTRUE(equal)) {
+      fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+      fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
+      fcn(sprintf("colVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
+    }
   }
-
-  ## The alternative formula for estimating the sample variance
-  x2 <- x * x
-  x2 <- colMeans(x2, na.rm = na.rm)
-  x2 <- (x2 - center^2)
-
-  ## The primary formula for estimating the sample variance
-  for (cc in seq_len(ncol(x))) {
-    x[, cc] <- (x[, cc] - center[cc])^2
-  }
-  x <- colMeans(x, na.rm = na.rm)
-  
-  ## SPECIAL: The variance estimate when the mean estimate is infinite should be NaN
-  ## just like for stats::var() - not Inf, e.g. var(c(0,Inf)) == NaN
-  x[is.infinite(center)] <- NaN
-
-  equal <- all.equal(x, x2)
-  x2 <- NULL
-  if (!isTRUE(equal)) {
-    fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
-    fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
-    fcn(sprintf("colVars() was called with a 'center' argument that does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results. This suggests a misunderstanding on what argument 'center' should be. The reason was: %s", equal))
-  }
-  
-  x <- x * (n / (n - 1))
+  x <- x * (n / (n - 1))  
   
   # Preserve names attribute?
   if (is.na(useNames) || useNames) {

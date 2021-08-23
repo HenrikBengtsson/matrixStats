@@ -1,6 +1,35 @@
 Package: matrixStats
 ====================
 
+Version: 0.60.1 [2021-08-22]
+
+PERFORMANCE:
+
+ * Handling of the 'useNames' argument is now done in the native code.
+
+ * Passing 'idxs', 'rows', and 'cols' arguments of type integer is now less
+   efficient than it used to, because the new code re-design (see below)
+   requires an internal allocation of an equally long 'R_xlen_t' vector that
+   is populated by indices coerced from 'R_len_t' to 'R_xlen_t' integers.
+
+CODE DESIGN:
+
+ * No longer using native-code implementations that are specific to the type
+   of index that is passed for subsetting of vectors, rows, and columns.
+   This was done to avoid the complex use of macros that was cumbersome to
+   maintain and added an extra threshold for new contributors to overcome.
+   Another advantage is that faster compilation time when built from source
+   and a smaller size of compiled library.  In previous version 'R CMD check'
+   would produce a NOTE on the package installation size being large, which
+   no longer is the case. The downside is that extra overhead when passing
+   integer indices (see above comment).
+
+BUG FIXES:
+
+ * Contrary to other functions which gained new argument useNames=NA in the
+   previous release, colQuantiles() and rowQuantiles() got useNames=TRUE.
+ 
+
 Version: 0.60.0 [2021-07-26]
 
 NEW FEATURES:
