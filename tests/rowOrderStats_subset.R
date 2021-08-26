@@ -33,11 +33,11 @@ for (setDimnames in c(TRUE, FALSE)) {
           xxrows <- rows
           suppressWarnings({
             xx <- tryCatch(x[, cols, drop = FALSE], error = function(c) "error")
-            if (identical(xx, "error")) which <- 0
+            if (identical(xx, "error")) which <- 0L
             else which <- round(probs * ncol(xx))
           })
         }
-        if (which == 0) next
+        if (which == 0L) next
     
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowOrderStats, fsure = rowOrderStats_R,

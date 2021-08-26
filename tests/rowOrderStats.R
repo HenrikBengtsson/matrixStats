@@ -1,6 +1,16 @@
 library("matrixStats")
 library("stats")
 
+asWhich <- function(probs, max) {
+  idx <- as.integer(round(probs * max))
+  if (idx < 1L) {
+    idx <- 1L
+  } else if (idx > max) {
+    idx <- max
+  }
+  idx
+} # asWhich()
+
 rowOrderStats_R <- function(x, probs, ..., useNames = NA) {
   ans <- apply(x, MARGIN = 1L, FUN = quantile, probs = probs, type = 3L)
   
@@ -19,7 +29,7 @@ ncol <- 100
 x <- rnorm(nrow * ncol)
 dim(x) <- c(nrow, ncol)
 probs <- 0.3
-which <- round(probs * ncol)
+which <- asWhich(probs, max = ncol)
 
 y0 <- rowOrderStats_R(x, probs = probs)
 y1 <- rowOrderStats(x, which = which)
@@ -48,7 +58,7 @@ for (mode in c("integer", "double")) {
     str(x)
 
     probs <- runif(1)
-    which <- round(probs * ncol)
+    which <- asWhich(probs, max = ncol)
 
     y0 <- rowOrderStats_R(x, probs = probs)
     y1 <- rowOrderStats(x, which = which)
@@ -63,10 +73,7 @@ for (mode in c("integer", "double")) {
 x <- matrix(1:9 + 0.1, nrow = 3, ncol = 3)
 
 probs <- runif(1)
-which <- round(probs * ncol(x))
-if(which == 0L){
-  which <- 1L
-}
+which <- asWhich(probs, max = ncol(x))
 
 dimnames <- list(letters[1:3], LETTERS[1:3])
 
