@@ -50,7 +50,7 @@ for (mode in c("integer", "double")) {
 # All NAs
 na_list <- list(NA_integer_, NA_real_, NaN)
 for (na_value in na_list) {
-  x <- rep(na_value, times = 100L)
+  x <- rep(na_value, times = 10L)
   for (na.rm in c(FALSE, TRUE)) {
     n0 <- count_R(x, na.rm = na.rm)
     n1 <- count(x, na.rm = na.rm)
@@ -71,8 +71,8 @@ for (na_value in na_list) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: logical
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- logical(length = 100L)
-x[13:17] <- TRUE
+x <- logical(length = 10L)
+x[3:7] <- TRUE
 
 # Row/column counts
 for (na.rm in c(FALSE, TRUE)) {

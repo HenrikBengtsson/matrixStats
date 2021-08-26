@@ -40,14 +40,14 @@ for (mode in c("integer", "double")) {
   for (add_na in c(FALSE, TRUE)) {
     cat("add_na = ", add_na, "\n", sep = "")
 
-    x <- matrix(sample(20 * 8) + 0.1, nrow = 20, ncol = 8)
+    x <- matrix(sample(10 * 8) + 0.1, nrow = 10L, ncol = 8L)
     if (add_na) {
-      x[13:17, c(2, 4)] <- NA_real_
+      x[3:7, c(2, 4)] <- NA_real_
     }
     storage.mode(x) <- mode
     str(x)
     
-    dimnames <- list(letters[1:20], LETTERS[1:8])
+    dimnames <- list(letters[1:10], LETTERS[1:8])
 
     # Test with and without dimnames on x
     for (setDimnames in c(TRUE, FALSE)) {
@@ -79,11 +79,11 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
-  x <- matrix(NA_real_, nrow = 20, ncol = 5)
+  x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
   storage.mode(x) <- mode
   str(x)
   
-  dimnames <- list(letters[1:20], LETTERS[1:5])
+  dimnames <- list(letters[1:10], LETTERS[1:5])
   
   # Test with and without dimnames on x
   for (setDimnames in c(TRUE, FALSE)) {
@@ -104,7 +104,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(0, nrow = 1, ncol = 1)
+x <- matrix(0, nrow = 1L, ncol = 1L)
 dimnames <- list("a", "A")
 # Test with and without dimnames on x
 for (setDimnames in c(TRUE, FALSE)) {

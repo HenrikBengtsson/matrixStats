@@ -22,11 +22,11 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
 # Data type: integer and numeric
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- matrix(runif(20 * 5, min = -3, max = 3), nrow = 20, ncol = 5)
-  x[sample.int(length(x), size = 7)] <- 0
+  x <- matrix(runif(10 * 5, min = -3, max = 3), nrow = 10L, ncol = 5L)
+  x[sample.int(length(x), size = 7L)] <- 0
   storage.mode(x) <- mode
   
-  dimnames = list(letters[1:20], LETTERS[1:5])
+  dimnames = list(letters[1:10], LETTERS[1:5])
   
   # Test with and without dimnames on x
   for (setDimnames in c(TRUE, FALSE)) {
@@ -70,7 +70,7 @@ for (mode in c("integer", "double")) {
 # All NAs
 na_list <- list(NA_integer_, NA_real_, NaN)
 for (na_value in na_list) {
-  x <- matrix(na_value, nrow = 20, ncol = 5)
+  x <- matrix(na_value, nrow = 10L, ncol = 5L)
   # Test with and without dimnames on x
   for (setDimnames in c(TRUE, FALSE)) {
     if (setDimnames) dimnames(x) <- dimnames
@@ -100,12 +100,17 @@ for (na_value in na_list) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: logical
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(FALSE, nrow = 20, ncol = 5)
-x[13:17, c(2, 4)] <- TRUE
-x[2:4, ] <- TRUE
+x <- matrix(FALSE, nrow = 10L, ncol = 4L)
+x[7:8, 2:3] <- TRUE
+x[1:3, ] <- TRUE
 x[, 1] <- TRUE
-x[5, ] <- FALSE
-x[, 5] <- FALSE
+x[4, ] <- FALSE
+x[, 4] <- FALSE
+x[2, ] <- FALSE
+x[3, ] <- TRUE
+
+# To check names attribute
+dimnames <- list(letters[1:10], LETTERS[1:4])
 
 # Test with and without dimnames on x
 for (setDimnames in c(TRUE, FALSE)) {
@@ -143,7 +148,7 @@ for (setDimnames in c(TRUE, FALSE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Data type: character (not sure if this should be supported)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(rep(letters, length.out = 20 * 5), nrow = 20, ncol = 5)
+x <- matrix(rep(letters, length.out = 10 * 5), nrow = 10L, ncol = 5L)
 x[2:3, 3:4] <- NA_character_
 
 # Row/column counts
@@ -164,7 +169,7 @@ for (na.rm in c(FALSE, TRUE)) {
 }
 
 # NA row
-x <- matrix(0, nrow = 2, ncol = 2)
+x <- matrix(0, nrow = 2L, ncol = 2L)
 x[1, ] <- NA_integer_
 
 dimnames <- list(letters[1:2], LETTERS[1:2])

@@ -145,7 +145,7 @@ for (kk in 1:4) {
 
 
 ## Exception handling
-x <- matrix(1:12, nrow = 3L)
+x <- matrix(1:12, nrow = 3L, ncol = 4L)
 y <- try(rowRanks(x, ties.method = "unknown"), silent = TRUE)
 stopifnot(inherits(y, "try-error"))
 

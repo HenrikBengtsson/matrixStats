@@ -82,14 +82,14 @@ for (mode in c("integer", "double")) {
   
   for (special in specials) {
     cat("special = ", special, "\n", sep = "")
-    x <- matrix(1:100 + delta, nrow = 20, ncol = 5)
-    x[13:17, c(2, 4)] <- special
+    x <- matrix(1:50 + delta, nrow = 10L, ncol = 5L)
+    x[3:7, c(2, 4)] <- special
     cat("mode: ", mode, "\n", sep = "")
     str(x)
     stopifnot(storage.mode(x) == mode)
     
     # To check names attribute
-    dimnames <- list(letters[1:20], LETTERS[1:5])
+    dimnames <- list(letters[1:10], LETTERS[1:5])
     
     # Test with and without dimnames on x
     for (setDimnames in c(TRUE, FALSE)) {
@@ -153,7 +153,7 @@ for (mode in c("integer", "double")) {
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
-  x <- matrix(NA_real_, nrow = 20, ncol = 5)
+  x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
@@ -193,7 +193,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(0, nrow = 1, ncol = 1)
+x <- matrix(0, nrow = 1L, ncol = 1L)
 dimnames <- list("a", "A")
 # Test with and without dimnames on x
 for (setDimnames in c(TRUE, FALSE)) {
@@ -229,7 +229,7 @@ for (setDimnames in c(TRUE, FALSE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # center and .dim
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-m <- matrix(1:12, nrow = 3, ncol = 4)
+m <- matrix(1:12, nrow = 3L, ncol = 4L)
 a <- array(m, dim = c(3, 2, 2))
 stopifnot(prod(dim(a)) == prod(dim(m)))
 

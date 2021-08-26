@@ -19,16 +19,16 @@ for (fcn in names(fcns)) {
     for (add_na in c(FALSE, TRUE)) {
       cat("add_na = ", add_na, "\n", sep = "")
 
-      x <- matrix(1:100 + 0.1, nrow = 20, ncol = 5)
+      x <- matrix(1:50 + 0.1, nrow = 10L, ncol = 5L)
       if (add_na) {
-        x[13:17, c(2, 4)] <- NA_real_
+        x[3:7, c(2, 4)] <- NA_real_
       }
       cat("mode: ", mode, "\n", sep = "")
       storage.mode(x) <- mode
       str(x)
       
       # To check names attribute
-      dimnames <- list(letters[1:20], LETTERS[1:5])
+      dimnames <- list(letters[1:10], LETTERS[1:5])
 
       # Test with and without dimnames on x
       for (setDimnames in c(TRUE, FALSE)) {
@@ -53,7 +53,7 @@ for (fcn in names(fcns)) {
   # All NAs
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   for (mode in c("integer", "double")) {
-    x <- matrix(NA_real_, nrow = 20, ncol = 5)
+    x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode
     str(x)
@@ -79,7 +79,7 @@ for (fcn in names(fcns)) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # A 1x1 matrix
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  x <- matrix(0, nrow = 1, ncol = 1)
+  x <- matrix(0, nrow = 1L, ncol = 1L)
   dimnames <- list("a", "A")
   # Test with and without dimnames on x
   for (setDimnames in c(TRUE, FALSE)) {

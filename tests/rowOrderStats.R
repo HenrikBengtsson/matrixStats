@@ -24,8 +24,8 @@ set.seed(1)
 
 
 # Simulate data in a matrix of any shape
-nrow <- 300
-ncol <- 100
+nrow <- 60L
+ncol <- 30L
 x <- rnorm(nrow * ncol)
 dim(x) <- c(nrow, ncol)
 probs <- 0.3
@@ -48,8 +48,8 @@ for (mode in c("integer", "double")) {
     cat("Random test #", kk, "\n", sep = "")
 
     # Simulate data in a matrix of any shape
-    nrow <- sample(100, size = 1)
-    ncol <- sample(100, size = 1)
+    nrow <- sample(20L, size = 1L)
+    ncol <- sample(20L, size = 1L)
     x <- rnorm(nrow * ncol)
     dim(x) <- c(nrow, ncol)
 
@@ -70,7 +70,7 @@ for (mode in c("integer", "double")) {
 
 
 # Check names attribute
-x <- matrix(1:9 + 0.1, nrow = 3, ncol = 3)
+x <- matrix(1:9 + 0.1, nrow = 3L, ncol = 3L)
 
 probs <- runif(1)
 which <- asWhich(probs, max = ncol(x))

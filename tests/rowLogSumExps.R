@@ -9,12 +9,12 @@ logSumExp0 <- function(lx) {
   log1p(sum(exp(lx[-idx_max] - lx[idx_max]))) + lx[idx_max]
 }
 
-n <- 1e3
+n <- 200L
 set.seed(1)
 
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
-  x <- matrix(runif(n, min = 1.0, max = 3.0), nrow = 50L)
+  x <- matrix(runif(n, min = 1.0, max = 3.0), nrow = 20L)
   storage.mode(x) <- mode
   str(x)
 
@@ -77,7 +77,7 @@ print(y)
 stopifnot(length(y) == ncol(lx))
 
 ## Zero-height matrices
-lx <- matrix(numeric(0L), nrow = 0L, ncol = 10L)
+lx <- matrix(numeric(0L), nrow = 0L, ncol = 5L)
 y <- rowLogSumExps(lx)
 print(y)
 stopifnot(length(y) == nrow(lx))
@@ -88,7 +88,7 @@ stopifnot(length(y) == ncol(lx))
 stopifnot(all(y == -Inf))
 
 ## Zero-width matrices
-lx <- matrix(numeric(0L), nrow = 10L, ncol = 0L)
+lx <- matrix(numeric(0L), nrow = 5L, ncol = 0L)
 y <- colLogSumExps(lx)
 print(y)
 stopifnot(length(y) == ncol(lx))
@@ -200,7 +200,7 @@ rowLogSumExps_R <- function(x, ..., useNames = NA) {
   res
 }
 
-x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6, ncol = 6)
+x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6L, ncol = 6L)
 
 # To check names attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])

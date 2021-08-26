@@ -42,15 +42,15 @@ for (mode in c("integer", "double")) {
   for (add_na in c(FALSE, TRUE)) {
     cat("add_na = ", add_na, "\n", sep = "")
 
-    x <- matrix(1:100 + 0.1, nrow = 20, ncol = 5)
+    x <- matrix(1:50 + 0.1, nrow = 10L, ncol = 5L)
     if (add_na) {
-      x[13:17, c(2, 4)] <- NA_real_
+      x[3:7, c(2, 4)] <- NA_real_
     }
     storage.mode(x) <- mode
     str(x)
     
     # To check names attribute
-    dimnames <- list(letters[1:20], LETTERS[1:5])
+    dimnames <- list(letters[1:10], LETTERS[1:5])
     
     # Test with and without dimnames on x
     for (setDimnames in c(TRUE, FALSE)) {
@@ -97,7 +97,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
-  x <- matrix(NA_real_, nrow = 20, ncol = 5)
+  x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
   storage.mode(x) <- mode
   str(x)
   
@@ -162,13 +162,13 @@ stopifnot(identical(rownames(r1), colnames(x)))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Additional tests with NA_integer_, NA_real, NaN, -Inf, +Inf
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- matrix(1:12, nrow = 4, ncol = 3)
+x <- matrix(1:12, nrow = 4L, ncol = 3L)
 
 na_list <- list(
-  "integer"       = matrix(1:12, nrow = 4, ncol = 3),
-  "integer w/ NA" = matrix(NA_integer_, nrow = 4, ncol = 3),
-  "real"          = matrix(as.double(1:12), nrow = 4, ncol = 3),
-  "real w/ NA"    = matrix(NA_real_, nrow = 4, ncol = 3)
+  "integer"       = matrix(1:12, nrow = 4L, ncol = 3L),
+  "integer w/ NA" = matrix(NA_integer_, nrow = 4L, ncol = 3L),
+  "real"          = matrix(as.double(1:12), nrow = 4L, ncol = 3L),
+  "real w/ NA"    = matrix(NA_real_, nrow = 4L, ncol = 3L)
 )
 
 na <- na_list[["real"]]

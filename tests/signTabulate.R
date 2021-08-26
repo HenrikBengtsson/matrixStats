@@ -17,7 +17,7 @@ signTabulate0 <- function(x, ...) {
 
 # Simulate data
 set.seed(0xBEEF)
-n <- 1e3
+n <- 100L
 x <- runif(n)
 x[sample(n, size = 0.1 * n)] <- 0
 x[sample(n, size = 0.1 * n)] <- NA_real_
