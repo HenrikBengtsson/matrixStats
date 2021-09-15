@@ -43,21 +43,23 @@ dimnames <- list(letters[1:6], LETTERS[1:6])
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
+
+  count <- 0L
   for (rows in index_cases) {
     for (cols in index_cases) {
+      count <- count + 1L
       for (lag in 1:2) {
         for (differences in 1:3) {
           # Check dimnames attribute
-          for (useNames in c(NA, TRUE, FALSE)) {
-            validateIndicesTestMatrix(x, rows, cols,
-                                      ftest = rowDiffs, fsure = rowDiffs_R,
-                                      lag = lag, differences = differences, useNames = useNames)
-            validateIndicesTestMatrix(x, rows, cols,
-                                      ftest = function(x, rows, cols, ..., useNames) {
-              t(colDiffs(t(x), rows = cols, cols = rows, ..., useNames = useNames))
-                                      }, fsure = rowDiffs_R,
-                                      lag = lag, differences = differences, useNames = useNames)
-          }
+          useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+          validateIndicesTestMatrix(x, rows, cols,
+                                    ftest = rowDiffs, fsure = rowDiffs_R,
+                                    lag = lag, differences = differences, useNames = useNames)
+          validateIndicesTestMatrix(x, rows, cols,
+                                    ftest = function(x, rows, cols, ..., useNames) {
+            t(colDiffs(t(x), rows = cols, cols = rows, ..., useNames = useNames))
+                                    }, fsure = rowDiffs_R,
+                                    lag = lag, differences = differences, useNames = useNames)
         }
       }
     }

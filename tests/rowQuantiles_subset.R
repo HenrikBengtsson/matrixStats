@@ -41,18 +41,21 @@ probs <- c(0, 0.25, 0.75, 1)
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
+  
+  count <- 0L
   for (rows in index_cases) {
     for (cols in index_cases) {
-      for (na.rm in c(TRUE, FALSE)) {
-        for (useNames in c(NA, TRUE, FALSE)) {
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = rowQuantiles, fsure = rowQuantiles_R,
-                                    probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
-          validateIndicesTestMatrix(x, rows, cols,
-                                    fcoltest = colQuantiles, fsure = rowQuantiles_R,
-                                    probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
-        }
-      }
+      count <- count + 1L
+      na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowQuantiles, fsure = rowQuantiles_R,
+                                probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
+      validateIndicesTestMatrix(x, rows, cols,
+                                fcoltest = colQuantiles, fsure = rowQuantiles_R,
+                                probs = probs, na.rm = na.rm, drop = FALSE, useNames = useNames)
     }
   }
 }
+

@@ -62,24 +62,27 @@ x[2:3, 3:4] <- NA_character_
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
+  
+  count <- 0L
   for (rows in index_cases) {
     for (cols in index_cases) {
-      # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      count <- count + 1L
+      na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowCounts, fsure = rowCounts_R,
+                                value = "g", na.rm = TRUE, useNames = useNames)
+      validateIndicesTestMatrix(x, rows, cols,
+                                fcoltest = colCounts, fsure = rowCounts_R,
+                                value = "g", na.rm = TRUE, useNames = useNames)
+      for (value in c("g", NA_character_)) {
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowCounts, fsure = rowCounts_R,
-                                  value = "g", na.rm = TRUE, useNames = useNames)
+                                  value = value, useNames = useNames)
         validateIndicesTestMatrix(x, rows, cols,
                                   fcoltest = colCounts, fsure = rowCounts_R,
-                                  value = "g", na.rm = TRUE, useNames = useNames)
-        for (value in c("g", NA_character_)) {
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = rowCounts, fsure = rowCounts_R,
-                                    value = value, useNames = useNames)
-          validateIndicesTestMatrix(x, rows, cols,
-                                    fcoltest = colCounts, fsure = rowCounts_R,
-                                    value = value, useNames = useNames)
-        }
+                                  value = value, useNames = useNames)
       }
     }
   }
