@@ -4,11 +4,11 @@ library("matrixStats")
 # Setup
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 data <- data.frame(
-  logical = c(TRUE, FALSE, TRUE, FALSE),
-  integer = 1:4,
-  double = seq(from = 1.0, to = 4.0, by = 1.0),
-  complex = seq(from = 1.0, to = 4.0, by = 1.0) + 1.0i,
-  character = letters[1:4],
+  logical   = c(TRUE, FALSE, TRUE),
+  integer   = 1:3,
+  double    = seq(from = 1.0, to = 3.0, by = 1.0),
+  complex   = seq(from = 1.0, to = 3.0, by = 1.0) + 1.0i,
+  character = letters[1:3],
   stringsAsFactors = FALSE
 )
 
@@ -22,7 +22,7 @@ stopifnot(identical(anyMissing(NULL), FALSE))
 cat("NULL...done\n")
 
 cat("raw...\n")
-stopifnot(identical(anyMissing(as.raw(0:3)), FALSE))
+stopifnot(identical(anyMissing(as.raw(0:2)), FALSE))
 cat("raw...done\n")
 
 cat("list(NULL)...\n")

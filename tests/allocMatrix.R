@@ -12,11 +12,13 @@ values <- list(
   FALSE, TRUE, NA
 )
 
-nrow <- 3L
-ncol <- 4L
+nrow <- 2L
+ncol <- 3L
 for (value in values) {
   x0 <- allocMatrix_R(nrow, ncol, value = value)
   x <- allocMatrix(nrow, ncol, value = value)
-  str(list(nrow = nrow, ncol = ncol, value = value, x = x, x0 = x0))
-  stopifnot(identical(x, x0))
+  if (!identical(x, x0)) {
+    str(list(nrow = nrow, ncol = ncol, value = value, x = x, x0 = x0))
+    stopifnot(identical(x, x0))
+  }
 }

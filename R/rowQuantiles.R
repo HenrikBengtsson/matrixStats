@@ -45,7 +45,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]", "probs"))
+    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]: %g", "probs", probs))
   }
 
   # Apply subset
@@ -169,7 +169,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]", "probs"))
+    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]: %g", "probs", probs))
   }
 
   # Apply subset

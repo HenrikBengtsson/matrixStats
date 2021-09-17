@@ -97,7 +97,6 @@ for (mode in modes) {
   # Raw
   if (mode %in% c("integer", "raw")) {
     subset <- c(0:2)
-
     
     y <- rowTabulates(x, values = as.raw(subset))
     print(y)

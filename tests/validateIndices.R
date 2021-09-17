@@ -1,6 +1,7 @@
 library(matrixStats)
-
 source("utils/validateIndicesFramework.R")
+
+oopts <- options(matrixStats.validateIndices = NULL)
 
 ftest <- function(x, idxs) validateIndices(idxs, length(x))
 
@@ -42,3 +43,5 @@ for (rows in index_cases) {
 if (.Machine$sizeof.pointer == 8L) {
   validateIndices(c(1.25*2^40, 3, 1*2^38, 1, 1.4*2^39), maxIdx = 1*2^41)
 }
+
+options(oopts)

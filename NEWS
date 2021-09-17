@@ -1,6 +1,26 @@
 Package: matrixStats
 ====================
 
+Version: 0.61.0 [2021-09-12]
+
+NEW FEATURES:
+
+ * When argument 'which' for colOrderStats() and rowOrderStats() is out of
+   range, the error message now reports on the value of 'which'.  Similarly,
+   when argument 'probs' for colQuantiles() and rowQuantiles() is out of
+   range, the error message reports on its value too.
+ 
+DEPRECATED AND DEFUNCT:
+
+ * validateIndices() is deprecated and will eventually be removed from the
+   package API.
+
+MISCELLANEOUS:
+
+ * The package test for benchmark reports failed because the 'markdown'
+   package was not declared as a suggested package.
+
+
 Version: 0.60.1 [2021-08-22]
 
 PERFORMANCE:

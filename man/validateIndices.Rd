@@ -17,6 +17,8 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a validated integers list indicating the indices.
+If some of the indices cannot be represented as an integer, the
+indices are returned as doubles.
 }
 \description{
 Computes validated positive indices from given indices.

@@ -36,15 +36,15 @@ binMeans0 <- function(y, x, bx, na.rm = TRUE, count = TRUE, right = FALSE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Case #1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- 1:200
+x <- 1:100
 nx <- length(x)
 y <- double(nx)
-y[1:50] <- 5
-y[101:150] <- -5
+y[1:25] <- 5
+y[51:75] <- -5
 y <- y + rnorm(nx)
 
 # Bins
-bx <- c(0.5, 50.5, 100.5, 150.5, 200.5)
+bx <- c(0.5, 25.5, 50.5, 75.5, 100.5)
 
 y_smooth0 <- binMeans0(y, x = x, bx = bx)
 y_smooth <- binMeans(y, x = x, bx = bx)
@@ -86,11 +86,11 @@ stopifnot(is.logical(y),
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Case #2
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-nx <- 1e4
+nx <- 1e3
 x <- runif(nx)
 y <- runif(nx)
 
-nb <- 20
+nb <- 10
 bx <- do.call(seq, c(as.list(range(x)), length.out = nb))
 bx1 <- c(bx[-1], bx[nb] + 1)
 
@@ -122,17 +122,17 @@ stopifnot(all.equal(y_smooth, y_smooth0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Missing values
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- 1:200
-x[100] <- NA_integer_
+x <- 1:100
+x[50] <- NA_integer_
 nx <- length(x)
 y <- double(nx)
-y[1:50] <- 5
-y[101:150] <- -5
-y[123:125] <- NA_real_
+y[1:25] <- 5
+y[51:75] <- -5
+y[82:92] <- NA_real_
 y <- y + rnorm(nx)
 
 # Bins
-bx <- c(0.5, 50.5, 100.5, 150.5, 200.5)
+bx <- c(0.5, 25.5, 75.5, 82.5, 100.5)
 
 y_smooth0 <- binMeans0(y, x = x, bx = bx)
 y_smooth <- binMeans(y, x = x, bx = bx)
@@ -145,10 +145,10 @@ stopifnot(all.equal(y_smooth, y_smooth0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Zero bin bounderies (invalid bin definition)
 bx <- double(0L)
-res <- try(y_smooth <- binMeans(x = 1:10, y = 1:10, bx = bx), silent = TRUE)
+res <- try(y_smooth <- binMeans(x = 1:5, y = 1:5, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))
 
 # One bin boundery (invalid bin definition)
 bx <- double(1L)
-res <- try(y_smooth <- binMeans(x = 1:10, y = 1:10, bx = bx), silent = TRUE)
+res <- try(y_smooth <- binMeans(x = 1:5, y = 1:5, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))

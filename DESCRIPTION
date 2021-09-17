@@ -1,11 +1,12 @@
 Package: matrixStats
-Version: 0.60.1
+Version: 0.61.0
 Depends:
   R (>= 2.12.0)
 Suggests:
   base64enc,
   ggplot2,
   knitr,
+  markdown,
   microbenchmark,
   R.devices,
   R.rsp
@@ -36,5 +37,5 @@ NeedsCompilation: yes
 ByteCompile: TRUE
 URL: https://github.com/HenrikBengtsson/matrixStats
 BugReports: https://github.com/HenrikBengtsson/matrixStats/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(old_usage = TRUE)
