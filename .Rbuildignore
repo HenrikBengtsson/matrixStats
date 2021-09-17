@@ -45,5 +45,3 @@ revdep
 ^[.]check
 ^.*[.]tar[.]gz$
 ^last[.]dump_.*
-^.*\.Rproj$
-^\.Rproj\.user$

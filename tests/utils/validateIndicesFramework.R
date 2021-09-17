@@ -41,11 +41,12 @@ validateIndicesTestVector_w <- function(x, w, idxs, ftest, fsure,
 }
 
 validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcoltest, fsure,
-                                      debug = FALSE,useNames = FALSE, ...) {
+                                      debug = FALSE, ...) {
   if (debug) {
     cat(sprintf("rows=%s; type=%s\n", toString(rows), toString(typeof(rows))))
     cat(sprintf("cols=%s; type=%s\n", toString(cols), toString(typeof(cols))))
   }
+
   suppressWarnings({
     if (missing(fcoltest)) {
       actual <- tryCatch(ftest(x, rows = rows, cols = cols, ...),
@@ -69,10 +70,7 @@ validateIndicesTestMatrix <- function(x, rows, cols, ftest, fcoltest, fsure,
   if (debug) cat(sprintf("actual=%s\nexpect=%s\n",
                          toString(actual), toString(expect)))
 
-  stopifnot(all.equal(unname(actual), unname(expect)))
-  if (debug && useNames) cat(sprintf("namesActual=%s\nnamesExpect=%s\n",
-                         toString(names(actual)), toString(names(expect))))
-  if (useNames) stopifnot(all.equal(names(actual), names(expect)))
+  stopifnot(all.equal(actual, expect))
 }
 
 validateIndicesTestMatrix_w <- function(x, w, rows, cols, ftest,

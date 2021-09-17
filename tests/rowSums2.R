@@ -14,91 +14,35 @@ colSums2_R <- function(x, na.rm = FALSE, ...) {
   colSums(x, na.rm = na.rm)
 }
 
-refRownames <- letters[1:3]
-refColnames <- LETTERS[1:3]
-refDimnames <- list(refRownames,refColnames)
 for (mode in c("integer", "logical", "double")) {
-  x <- matrix(-4:4, nrow = 3, ncol = 3,dimnames = refDimnames)
+  x <- matrix(-4:4, nrow = 3, ncol = 3)
   storage.mode(x) <- mode
   if (mode == "double") x <- x + 0.1
  
   y0 <- rowSums_R(x, na.rm = FALSE)
   y1 <- rowSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(names(y1),names(y0)))
 
   y0 <- colSums2_R(x, na.rm = FALSE)
   y1 <- colSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(names(y1),names(y0)))
 }
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Special case: Dimnames have NA values
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Special case: Dimnames have NA values:\n")
-dimnamesWithNA <- list(c("a",NA_character_,"c"),c("A","B",NA_character_))
-x <- matrix(-4:4, nrow = 3, ncol = 3, dimnames = dimnamesWithNA)
-
-y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
-
-y0 <- colSums2_R(x, na.rm = FALSE)
-y1 <- colSums2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Special case: Only rows are named
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Special case: Only rows are named:\n")
-x <- matrix(-4:4, nrow = 3, ncol = 3,dimnames = list(refRownames,NULL))
-
-y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
-
-y0 <- colSums2_R(x, na.rm = FALSE)
-y1 <- colSums2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Special case: Only columns are named
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Special case: Only columns are named:\n")
-x <- matrix(-4:4, nrow = 3, ncol = 3,dimnames = list(NULL,refColnames))
-
-y0 <- rowSums_R(x, na.rm = FALSE)
-y1 <- rowSums2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
-
-y0 <- colSums2_R(x, na.rm = FALSE)
-y1 <- colSums2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: Single-element matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Single-element matrix:\n")
 for (mode in c("integer", "logical", "double")) {
-  x <- matrix(1, nrow = 1, ncol = 1,dimnames = list("a","A"))
+  x <- matrix(1, nrow = 1, ncol = 1)
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = FALSE)
   y1 <- rowSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(names(y1),names(y0)))
 
   y0 <- colSums2_R(x, na.rm = FALSE)
   y1 <- colSums2(x, na.rm = FALSE)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(names(y1),names(y0)))
 }
 
 
@@ -107,9 +51,7 @@ for (mode in c("integer", "logical", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Empty matrix:\n")
 for (mode in c("integer", "logical", "double")) {
-  x <- matrix(integer(0), nrow = 0, ncol = 0, dimnames = list(character(0),character(0)))
-  # No reason to check names here, but we still have to keep in mind that the particular
-  # dimname configuration of the matrix may cause trouble
+  x <- matrix(integer(0), nrow = 0, ncol = 0)
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = FALSE)
@@ -127,18 +69,16 @@ for (mode in c("integer", "logical", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: All NAs:\n")
 for (mode in c("integer", "logical", "double")) {
-  x <- matrix(NA_integer_, nrow = 3, ncol = 3,dimnames = refDimnames)
+  x <- matrix(NA_integer_, nrow = 3, ncol = 3)
   storage.mode(x) <- mode
 
   y0 <- rowSums_R(x, na.rm = TRUE)
   y1 <- rowSums2(x, na.rm = TRUE)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(names(y1),names(y0)))
 
   y0 <- colSums2_R(x, na.rm = TRUE)
   y1 <- colSums2(x, na.rm = TRUE)
   stopifnot(all.equal(y1, y0))
-  stopifnot(all.equal(names(y1),names(y0)))
 }
 
 
@@ -146,50 +86,46 @@ for (mode in c("integer", "logical", "double")) {
 # Special case: All NaNs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: All NaNs:\n")
-x <- matrix(NA_real_, nrow = 3, ncol = 3,dimnames = refDimnames)
+x <- matrix(NA_real_, nrow = 3, ncol = 3)
 
 y0 <- rowSums_R(x, na.rm = TRUE)
 y1 <- rowSums2(x, na.rm = TRUE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 y0 <- colSums2_R(x, na.rm = TRUE)
 y1 <- colSums2(x, na.rm = TRUE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: All Infs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: All Infs:\n")
-x <- matrix(Inf, nrow = 3, ncol = 3,dimnames = refDimnames)
+x <- matrix(Inf, nrow = 3, ncol = 3)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
 y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
 y1 <- colSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: All -Infs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: All -Infs:\n")
-x <- matrix(-Inf, nrow = 3, ncol = 3,dimnames = refDimnames)
+x <- matrix(-Inf, nrow = 3, ncol = 3)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
 y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
 y1 <- colSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: Infs and -Infs
@@ -209,8 +145,8 @@ stopifnot(all.equal(y1, y0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: NaNs and NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Special case: NaNs and NAs:\n")
-x <- matrix(c(NaN, NA_real_), nrow = 4, ncol = 4, dimnames = list(letters[1:4],LETTERS[1:4]))
+cat("Special case: Infs and -Infs:\n")
+x <- matrix(c(NaN, NA_real_), nrow = 4, ncol = 4)
 
 y0 <- rowSums(x, na.rm = FALSE)
 str(y0)
@@ -219,7 +155,6 @@ y1 <- rowSums2(x, na.rm = FALSE)
 str(y0)
 stopifnot(all(is.na(y1)), length(unique(y1)) >= 1L)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 y0 <- colSums(x, na.rm = FALSE)
 stopifnot(all(is.na(y0)), length(unique(y0)) == 1L)
@@ -237,18 +172,15 @@ stopifnot(all(is.na(y1)), length(unique(y1)) == 1L)
 # Special case: Integer overflow with ties
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cat("Special case: Integer overflow with ties:\n")
-fourDimnames <- list(letters[1:4],LETTERS[1:4])
-x <- matrix(.Machine$integer.max, nrow = 4, ncol = 4,dimnames = fourDimnames)
+x <- matrix(.Machine$integer.max, nrow = 4, ncol = 4)
 
 y0 <- rowSums_R(x, na.rm = FALSE)
 y1 <- rowSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 y0 <- colSums2_R(x, na.rm = FALSE)
 y1 <- colSums2(x, na.rm = FALSE)
 stopifnot(all.equal(y1, y0))
-stopifnot(all.equal(names(y1),names(y0)))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -266,7 +198,6 @@ for (kk in seq_len(n_sims)) {
   n <- prod(dim)
   x <- rnorm(n, sd = 100)
   dim(x) <- dim
-  dimnames(x) <- list(as.character(1:dim[1]),as.character(1:dim[2]))
 
   # Add NAs?
   if ((kk %% 4) %in% c(3, 0)) {
@@ -295,18 +226,14 @@ for (kk in seq_len(n_sims)) {
     y0 <- rowSums_R(x, na.rm = na.rm)
     y1 <- rowSums2(x, na.rm = na.rm)
     stopifnot(all.equal(y1, y0))
-    stopifnot(all.equal(names(y1),names(y0)))
     y2 <- colSums2(t(x), na.rm = na.rm)
     stopifnot(all.equal(y2, y0))
-    stopifnot(all.equal(names(y2),names(y0)))
   
     # colSums2():
     y0 <- colSums2_R(x, na.rm = na.rm)
     y1 <- colSums2(x, na.rm = na.rm)
     stopifnot(all.equal(y1, y0))
-    stopifnot(all.equal(names(y1),names(y0)))
     y2 <- rowSums2(t(x), na.rm = na.rm)
     stopifnot(all.equal(y2, y0))
-    stopifnot(all.equal(names(y2),names(y0)))
   }
 } # for (kk ...)
