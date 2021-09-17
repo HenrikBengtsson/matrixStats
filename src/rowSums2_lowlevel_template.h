@@ -23,10 +23,14 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
   /* Use long double (if available) for higher precision */
   /* NOTE: SIMD does not long doubles - in case we ever go there */
   LDOUBLE sum;
+  int nocols, norows;
 
   /* If there are no missing values, don't try to remove them. */
   if (hasna == FALSE)
     narm = FALSE;
+
+  if (cols == NULL) { nocols = 1; } else { nocols = 0; }
+  if (rows == NULL) { norows = 1; } else { norows = 0; }
 
   /* Pre-calculate the column offsets */
   if (cols == NULL) {
@@ -45,7 +49,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 
   for (ii=0; ii < nrows; ii++) {
     R_xlen_t rowIdx;
-    if (rows == NULL) {
+    if (norows) {
       rowIdx = byrow ? ii : R_INDEX_OP(ii, *, ncol);
     } else {
       rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol);
@@ -54,7 +58,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     sum = 0.0;
 
     for (jj=0; jj < ncols; jj++) {
-      if (colOffset == NULL) {
+      if (nocols) {
         if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow);
         else idx = R_INDEX_OP(rowIdx, +, jj);
       } else {
