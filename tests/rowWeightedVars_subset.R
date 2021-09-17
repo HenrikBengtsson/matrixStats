@@ -29,18 +29,20 @@ for (fcn in names(fcns)) {
     for (setDimnames in c(TRUE, FALSE)) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL
+
+      count <- 0L
       for (rows in index_cases) {
         for (cols in index_cases) {
-          for (na.rm in c(TRUE, FALSE)) {
-            for (useNames in c(NA, TRUE, FALSE)) {
-              validateIndicesTestMatrix_w(x, w, rows, cols,
-                                          ftest = row_fcn, fsure = row_fcn,
-                                          na.rm = na.rm, useNames = useNames)
-              validateIndicesTestMatrix_w(x, w, rows, cols,
-                                          fcoltest = col_fcn, fsure = row_fcn,
-                                          na.rm = na.rm, useNames = useNames)
-            }
-          }
+          count <- count + 1L
+          na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+          useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+
+          validateIndicesTestMatrix_w(x, w, rows, cols,
+                                      ftest = row_fcn, fsure = row_fcn,
+                                      na.rm = na.rm, useNames = useNames)
+          validateIndicesTestMatrix_w(x, w, rows, cols,
+                                      fcoltest = col_fcn, fsure = row_fcn,
+                                      na.rm = na.rm, useNames = useNames)
         }
       }
     }

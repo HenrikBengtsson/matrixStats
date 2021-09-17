@@ -14,22 +14,24 @@ dimnames <- list(letters[1:6], LETTERS[1:6])
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
+  
+  count <- 0L
   for (rows in index_cases) {
     for (cols in index_cases) {
-      # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowTabulates, fsure = rowTabulates, useNames = useNames)
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowTabulates, fsure = rowTabulates,
-                                  values = 1:3, useNames = useNames)
-    
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = colTabulates, fsure = colTabulates, useNames = useNames)
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = colTabulates, fsure = colTabulates,
-                                  values = 1:3, useNames = useNames)
-      }
+      count <- count + 1L
+      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowTabulates, fsure = rowTabulates, useNames = useNames)
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowTabulates, fsure = rowTabulates,
+                                values = 1:3, useNames = useNames)
+  
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = colTabulates, fsure = colTabulates, useNames = useNames)
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = colTabulates, fsure = colTabulates,
+                                values = 1:3, useNames = useNames)
     }
   }
 }

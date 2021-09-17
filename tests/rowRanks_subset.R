@@ -43,24 +43,27 @@ colRanks_R_t <- function(x, rows, cols, ..., useNames = NA) {
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
+
+  count <- 0L
   for (rows in index_cases) {
     for (cols in index_cases) {
-      # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      count <- count + 1L
+      na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowRanks, fsure = rowRanks_R,
+                                ties.method = "average", useNames = useNames)
+      
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = colRanks_R_t, fsure = rowRanks_R,
+                                ties.method = "average", useNames = useNames)
+      
+      for (perserveShape in c(TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowRanks, fsure = rowRanks_R,
-                                  ties.method = "average", useNames = useNames)
-        
-        validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = colRanks_R_t, fsure = rowRanks_R,
-                                  ties.method = "average", useNames = useNames)
-        
-        for (perserveShape in c(TRUE, FALSE)) {
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = colRanks, fsure = colRanks_R,
-                                    ties.method = "average", perserveShape = perserveShape,
-                                    useNames = useNames)          
-        }
+                                  ftest = colRanks, fsure = colRanks_R,
+                                  ties.method = "average", perserveShape = perserveShape,
+                                  useNames = useNames)          
       }
     }
   }

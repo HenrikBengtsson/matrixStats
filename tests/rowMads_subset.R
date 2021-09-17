@@ -44,25 +44,27 @@ dimnames <- list(letters[1:6], LETTERS[1:6])
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
+
+  count <- 0L
   for (rows in index_cases) {
     for (cols in index_cases) {
-      for (na.rm in c(TRUE, FALSE)) {
-        for (useNames in c(NA, TRUE, FALSE)) {
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = rowMads, fsure = rowMads_R,
-                                    na.rm = na.rm, useNames = useNames)
-          validateIndicesTestMatrix(x, rows, cols,
-                                    ftest = rowMads_center, fsure = rowMads_R,
-                                    na.rm = na.rm, useNames = useNames)
-    
-          validateIndicesTestMatrix(x, rows, cols,
-                                    fcoltest = colMads, fsure = rowMads_R,
-                                    na.rm = na.rm, useNames = useNames)
-          validateIndicesTestMatrix(x, rows, cols,
-                                    fcoltest = colMads_center, fsure = rowMads_R,
-                                    na.rm = na.rm, useNames = useNames)
-        }
-      }
+      count <- count + 1L
+      na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowMads, fsure = rowMads_R,
+                                na.rm = na.rm, useNames = useNames)
+      validateIndicesTestMatrix(x, rows, cols,
+                                ftest = rowMads_center, fsure = rowMads_R,
+                                na.rm = na.rm, useNames = useNames)
+
+      validateIndicesTestMatrix(x, rows, cols,
+                                fcoltest = colMads, fsure = rowMads_R,
+                                na.rm = na.rm, useNames = useNames)
+      validateIndicesTestMatrix(x, rows, cols,
+                                fcoltest = colMads_center, fsure = rowMads_R,
+                                na.rm = na.rm, useNames = useNames)
     }
   }
 }
