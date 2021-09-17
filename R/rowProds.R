@@ -3,24 +3,16 @@
 #' Calculates the product for each row (column) in a matrix.
 #'
 #' If \code{method = "expSumLog"}, then then \code{\link{product}}() function is
-#' used, which calculates the produce via the logarithmic transform (treating
+#' used, which calculates the product via the logarithmic transform (treating
 #' negative values specially).  This improves the precision and lowers the risk
 #' for numeric overflow.  If \code{method = "direct"}, the direct product is
 #' calculated via the \code{\link[base]{prod}}() function.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' ignored, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param method A \code{\link[base]{character}} string specifying how each
 #' product is calculated.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
@@ -39,12 +31,10 @@
 #' @keywords array iteration robust univar
 #' @export
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ...) {
+                     method = c("direct", "expSumLog"), ..., useNames = NA) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
-
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
+  
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -65,11 +55,21 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     prod <- product
   } else if (method == "direct") {
   } else {
-    stop("Unknown value of argument 'method': ", method)
+    stop(sprintf("Unknown value of argument '%s': %s", "method", method))
   }
 
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[ii, , drop = TRUE], na.rm = na.rm)
+  }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- rownames(x)
+      if (!is.null(names)) names(y) <- names
+    } else {
+      names(y) <- NULL
+    }
   }
 
   y
@@ -79,11 +79,9 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowProds
 #' @export
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ...) {
+                     method = c("direct", "expSumLog"), ..., useNames = NA) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -105,11 +103,21 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     prod <- product
   } else if (method == "direct") {
   } else {
-    stop("Unknown value of argument 'method': ", method)
+    stop(sprintf("Unknown value of argument '%s': %s", "method", method))
   }
 
   for (ii in seq_len(n)) {
     y[ii] <- prod(x[, ii, drop = TRUE], na.rm = na.rm)
+  }
+  
+  # Update names attribute?
+  if (!is.na(useNames)) {
+    if (useNames) {
+      names <- colnames(x)
+      if (!is.null(names)) names(y) <- names
+    } else {
+      names(y) <- NULL
+    }
   }
 
   y

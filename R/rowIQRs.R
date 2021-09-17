@@ -2,15 +2,8 @@
 #'
 #' Estimates of the interquartile range for each row (column) in a matrix.
 #'
-#'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are dropped
-#' first, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param ... Additional arguments passed to \code{\link{rowQuantiles}}()
 #' (\code{colQuantiles()}).
@@ -31,26 +24,34 @@
 #'
 #' @importFrom stats quantile
 #' @export
-rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   Q <- rowQuantiles(x, rows = rows, cols = cols,
-                    probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+                    probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
+  colnames(Q) <- NULL # Not needed anymore
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
-  attributes(ans) <- NULL
+  if (is.na(useNames)) {
+    attributes(ans) <- NULL
+  }
+  
   ans
 }
 
 
 #' @rdname rowIQRs
 #' @export
-colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ...) {
+colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
   Q <- colQuantiles(x, rows = rows, cols = cols,
-                    probs = c(0.25, 0.75), na.rm = na.rm, drop = FALSE, ...)
+                    probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
+  colnames(Q) <- NULL # Not needed anymore
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
 
   # Remove attributes
-  attributes(ans) <- NULL
+  if (is.na(useNames)) {
+    attributes(ans) <- NULL
+  }
+  
   ans
 }
 

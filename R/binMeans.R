@@ -5,14 +5,13 @@
 #' \code{binMeans(x, bx, right = TRUE)} gives equivalent results as
 #' \code{rev(binMeans(-x, bx = sort(-bx), right = FALSE))}, but is faster.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param y A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
 #' \code{\link[base]{vector}} of K values to calculate means on.
 #'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 #' positions for to be binned.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param bx A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B + 1
 #' ordered positions specifying the B > 0 bins \code{[bx[1], bx[2])},
@@ -27,8 +26,6 @@
 #'
 #' @param right If \code{\link[base:logical]{TRUE}}, the bins are right-closed
 #' (left open), otherwise left-closed (right open).
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length B.
@@ -59,41 +56,40 @@ binMeans <- function(y, x, idxs = NULL, bx, na.rm = TRUE, count = TRUE,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'y':
   if (!is.numeric(y) && !is.logical(y)) {
-    stop("Argument 'y' is neither numeric nor logical: ", mode(y))
+    stop(sprintf("Argument '%s' is not numeric or logical: %s", "y", mode(y)))
   }
   if (is.numeric(y) && !is.integer(y) && any(is.infinite(y))) {
-    stop("Argument 'y' must not contain infinite values.")
+    stop(sprintf("Argument '%s' must not contain infinite values", "y"))
   }
   n <- length(y)
 
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+    stop(sprintf("Argument '%s' is not numeric: %s", "x", mode(x)))
   }
   if (length(x) != n) {
-    stop("Argument 'y' and 'x' are of different lengths: ",
-         length(y), " != ", length(x))
+    stop(sprintf("Argument '%s' and '%s' have different lengths: %.0f != %.0f", "y", "x", length(y), length(x)))
   }
 
   # Argument 'bx':
   if (!is.numeric(bx)) {
-    stop("Argument 'bx' is not numeric: ", mode(bx))
+    stop(sprintf("Argument '%s' is not numeric: %s", "bx", mode(bx)))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values.")
+    stop(sprintf("Argument '%s' must not contain infinite values", "bx"))
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered.")
+    stop(sprintf("Argument '%s' is not ordered", "bx"))
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop("Argument 'na.rm' is not logical: ", mode(na.rm))
+    stop(sprintf("Argument '%s' is not logical: %s", "na.rm", mode(na.rm)))
   }
 
   # Argument 'count':
   if (!is.logical(count)) {
-    stop("Argument 'count' is not logical: ", mode(count))
+    stop(sprintf("Argument '%s' is not logical: %s", "count", mode(count)))
   }
 
   # Apply subset

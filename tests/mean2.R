@@ -19,7 +19,7 @@ for (kk in 1:20) {
   cat("Random test #", kk, "\n", sep = "")
 
   # Simulate data in a matrix of any shape
-  n <- sample(1e3, size = 1L)
+  n <- sample(100L, size = 1L)
   x <- rnorm(n, sd = 100)
 
   # Add NAs?
@@ -75,20 +75,20 @@ for (na.rm in c(FALSE, TRUE)) {
   s2 <- mean2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
-  x <- 1:10
+  x <- 1:5
   idxs <- integer(0)
   s1 <- mean(x[idxs], na.rm = na.rm)
   s2 <- mean2(x, idxs = idxs, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
   # Averaging over NA_integer_:s
-  x <- rep(NA_integer_, times = 10L)
+  x <- rep(NA_integer_, times = 5L)
   s1 <- mean(x, na.rm = na.rm)
   s2 <- mean2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
-  x <- rep(NA_integer_, times = 10L)
-  idxs <- 1:5
+  x <- rep(NA_integer_, times = 5L)
+  idxs <- 1:3
   s1 <- mean(x[idxs], na.rm = na.rm)
   s2 <- mean2(x, idxs = idxs, na.rm = na.rm)
   stopifnot(identical(s1, s2))
@@ -107,13 +107,13 @@ for (na.rm in c(FALSE, TRUE)) {
   stopifnot(identical(s1, s2))
 
   # Averaging over NA_real_:s
-  x <- rep(NA_real_, times = 10L)
+  x <- rep(NA_real_, times = 5L)
   s1 <- mean(x, na.rm = na.rm)
   s2 <- mean2(x, na.rm = na.rm)
   stopifnot(identical(s1, s2))
 
-  x <- rep(NA_real_, times = 10L)
-  idxs <- 1:5
+  x <- rep(NA_real_, times = 5L)
+  idxs <- 1:3
   s1 <- mean(x[idxs], na.rm = na.rm)
   s2 <- mean2(x, idxs = idxs, na.rm = na.rm)
   stopifnot(identical(s1, s2))
@@ -179,11 +179,11 @@ for (na.rm in c(FALSE, TRUE)) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Argument 'idxs'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-x <- 1:10
+x <- 1:5
 idxs_list <- list(
-  integer = 1:5,
-  double = as.double(1:5),
-  logical = (x <= 5)
+  integer = 1:3,
+  double  = as.double(1:3),
+  logical = (x <= 3)
 )
 
 for (idxs in idxs_list) {

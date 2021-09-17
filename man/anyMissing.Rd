@@ -10,24 +10,34 @@
 \usage{
 anyMissing(x, idxs = NULL, ...)
 
-colAnyMissings(x, rows = NULL, cols = NULL, ...)
+colAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = NA)
 
-rowAnyMissings(x, rows = NULL, cols = NULL, ...)
+rowAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = NA)
 
-colAnyNAs(x, rows = NULL, cols = NULL, ...)
+colAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = NA)
 
-rowAnyNAs(x, rows = NULL, cols = NULL, ...)
+rowAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = NA)
 }
 \arguments{
 \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a
 \code{\link[base]{matrix}}, a \code{\link[base]{data.frame}}, or
 \code{\link[base]{NULL}}.}
 
-\item{idxs, rows, cols}{A \code{\link[base]{vector}} indicating subset of
-elements (or rows and/or columns) to operate over. If
-\code{\link[base]{NULL}}, no subsetting is done.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{...}{Not used.}
+
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns \code{\link[base:logical]{TRUE}} if a missing value was

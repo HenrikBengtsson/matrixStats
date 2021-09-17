@@ -1,23 +1,23 @@
-# CRAN submission matrixStats 0.57.0
+# CRAN submission matrixStats 0.61.0
 
-I've verified that this submission does not cause issues for the 287 reverse package dependencies available on CRAN and Bioconductor.
+on 2021-09-15
 
-Thanks in advance
+This is a submission in response to the CRAN Team's request to address a check problem.  I've verified that this submission does not cause issues for the 361 reverse package dependencies available on CRAN and Bioconductor.
 
+Thank you
 
 
 ## Notes not sent to CRAN
 
-### R CMD check validation
-
 The package has been verified using `R CMD check --as-cran` on:
 
-| R version | GitHub Actions | Travis CI | AppVeyor CI | Rhub    | Win-builder |
-| --------- | -------------- | --------- | ----------- | ------- | ----------- |
-| 3.2.x     | L              |           |             |         |             |
-| 3.4.x     | L              |           |             |         |             |
-| 3.6.x     | L  M  W        | L, M      |             | L       |             |
-| 4.0.x     | L,    W        | L, M      | W           |    S    |             |
-| devel     | L  M  W        | L         | W (32 & 64) | L,    W | W           |
+| R version | GitHub  | AppVeyor | R-hub    | win-builder | CentOS 7  |
+| --------- | ------- | -------- | -------- | ----------- | --------- |
+| 2.15.0    |         |          |          |             |           |
+| 3.3.x     | L       |          |          |             |           |
+| 3.4.x     | L       |          |          |             |           |
+| 4.0.x     | L  M W  |          |          |             |           |
+| 4.1.x     | Lv   W  | W        |          | W           |           |
+| devel     | L  M W  | W        |          | W           |           |
 
-*Legend: OS: L = Linux, S = Solaris, M = macOS, W = Windows. Architecture: 32 = 32-bit, 64 = 64-bit. L! = Linux with GCC ASAN/UBSAN*
+_Legend: OS: L = Linux, S = Solaris, M = macOS, W = Windows, s = ASan/UBSan, v = Valgrind_

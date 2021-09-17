@@ -2,18 +2,13 @@
 #'
 #' Estimates quantiles for each row (column) in a matrix.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x An \code{\link[base]{integer}}, \code{\link[base]{numeric}} or
 #' \code{\link[base]{logical}} NxK \code{\link[base]{matrix}} with N >= 0.
 #'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
-#'
 #' @param probs A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J
 #' probabilities in [0, 1].
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded first, otherwise not.
 #'
 #' @param type An \code{\link[base]{integer}} specify the type of estimator.
 #' See \code{\link[stats]{quantile}} for more details.
@@ -37,22 +32,20 @@
 #' @export
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
   }
 
   # Argument 'probs':
   if (anyMissing(probs)) {
-    stop("Argument 'probs' contains missing values")
+    stop(sprintf("Argument '%s' must not contain missing values", "probs"))
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop("Argument 'probs' is out of range [0-eps, 1+eps]")
+    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]: %g", "probs", probs))
   }
 
   # Apply subset
@@ -142,7 +135,13 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
-  rownames(q) <- rownames(x)
+  
+  # Preserve names attribute?
+  if (is.na(useNames) || useNames) {
+    rownames(q) <- rownames(x)
+  } else {
+    rownames(q) <- NULL
+  }
   
   # Drop singleton dimensions?
   if (drop) {
@@ -157,22 +156,20 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 #' @export
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., drop = TRUE) {
+                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
     .Defunct(msg = sprintf("Argument 'x' is of type %s. Only 'integer', 'numeric', and 'logical' is supported.", sQuote(storage.mode(x))))  #nolint
   }
 
   # Argument 'probs':
   if (anyMissing(probs)) {
-    stop("Argument 'probs' contains missing values")
+    stop(sprintf("Argument '%s' must not contain missing values", "probs"))
   }
   eps <- 100 * .Machine$double.eps
   if (any((probs < -eps | probs > 1 + eps))) {
-    stop("Argument 'probs' is out of range [0-eps, 1+eps]")
+    stop(sprintf("Argument '%s' is out of range [0-eps, 1+eps]: %g", "probs", probs))
   }
 
   # Apply subset
@@ -260,7 +257,13 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   # Add dim names
   digits <- max(2L, getOption("digits"))
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
-  rownames(q) <- colnames(x)
+  
+  # Preserve names attribute?
+  if (is.na(useNames) || useNames) {
+    rownames(q) <- colnames(x)
+  } else {
+    rownames(q) <- NULL
+  }
 
   # Drop singleton dimensions?
   if (drop) {

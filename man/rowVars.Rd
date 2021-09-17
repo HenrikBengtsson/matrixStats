@@ -6,20 +6,23 @@
 \title{Variance estimates for each row (column) in a matrix}
 \usage{
 rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 
 colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values
-are excluded first, otherwise not.}
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{center}{(optional; a vector or length N (K)) If the row (column)
 means are already estimated, they can be pre-specified using this argument.
@@ -29,10 +32,17 @@ If NULL (default), the row/column means are estimated internally.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
-\code{\link[base]{matrix}}.}
+\code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
+being named with a period at the end is purely technical (we get a run-time
+error if we try to name it \code{dim}).}
 
 \item{...}{Additional arguments passed to \code{rowMeans()} and
 \code{rowSums()}.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
@@ -79,7 +89,7 @@ print(cbind(colMins(x), colMaxs(x)))
 print(cbind(colOrderStats(x, which = 1), colOrderStats(x, which = nrow(x))))
 
 
-x <- matrix(rnorm(2400), nrow = 50, ncol = 40)
+x <- matrix(rnorm(2000), nrow = 50, ncol = 40)
 
 # Row standard deviations
 d <- rowDiffs(x)

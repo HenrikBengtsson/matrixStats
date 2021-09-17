@@ -12,34 +12,44 @@
 \title{Cumulative sums, products, minima and maxima for each row (column) in a
 matrix}
 \usage{
-rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 
-colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...)
+colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
-\item{x}{An NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of elements
-(or rows and/or columns) to operate over. If \code{\link[base]{NULL}}, no
-subsetting is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
-\code{\link[base]{matrix}}.}
+\code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
+being named with a period at the end is purely technical (we get a run-time
+error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}

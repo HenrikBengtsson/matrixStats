@@ -9,13 +9,17 @@
 #include <Rdefines.h>
 #include "000.types.h"
 #include "rowDiffs_lowlevel.h"
+#include "naming.h"
 
-SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences, SEXP byRow) {
-  int byrow;
+SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences, SEXP byRow, SEXP useNames) {
+  int byrow, usenames;
   SEXP ans = NILSXP;
   R_xlen_t lagg, diff;
   R_xlen_t nrow, ncol;
   R_xlen_t nrow_ans, ncol_ans;
+  
+  /* Coercion moved down to C */
+  PROTECT(dim = coerceVector(dim, INTSXP));
 
   /* Argument 'x' and 'dim': */
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
@@ -36,13 +40,14 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  int rowsType, colsType;
-  void *crows = validateIndices(rows, nrow, 0, &nrows, &rowsType);
-  void *ccols = validateIndices(cols, ncol, 0, &ncols, &colsType);
+  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
+  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
-
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
 
   /* Dimension of result matrix */
   if (byrow) {
@@ -57,13 +62,35 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
 
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrow_ans, ncol_ans));
-    rowDiffs_dbl[rowsType][colsType](REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
+    rowDiffs_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (byrow) {
+          set_rowDiffs_Dimnames(ans, dimnames, nrows, crows, ncols, ncol_ans, ccols);
+        } else {
+          set_colDiffs_Dimnames(ans, dimnames, nrows, nrow_ans, crows, ncols, ccols);
+        }
+      }
+    }
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrow_ans, ncol_ans));
-    rowDiffs_int[rowsType][colsType](INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
+    rowDiffs_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
+    if (usenames != NA_LOGICAL && usenames){
+      SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
+      if (dimnames != R_NilValue) {
+        if (byrow) {
+          set_rowDiffs_Dimnames(ans, dimnames, nrows, crows, ncols, ncol_ans, ccols);
+        } else {
+          set_colDiffs_Dimnames(ans, dimnames, nrows, nrow_ans, crows, ncols, ccols);
+        }
+      }
+    }
     UNPROTECT(1);
   }
+  
+  UNPROTECT(1); /* PROTECT(dim = ...) */
 
   return(ans);
 } /* rowDiffs() */

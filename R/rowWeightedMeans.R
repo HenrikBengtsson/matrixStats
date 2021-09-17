@@ -6,19 +6,11 @@
 #' memory.  If no weights are given, the corresponding
 #' \code{rowMeans()}/\code{colMeans()} is used.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param w A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' K (N).
-#'
-#' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
-#' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-#' is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' excluded from the calculation, otherwise not.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
@@ -34,27 +26,25 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
-                             na.rm = FALSE, ...) {
+                             na.rm = FALSE, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Argument 'w':
   has_weights <- !is.null(w)
   if (has_weights) {
     n <- ncol(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of column in 'x': ", length(w), " != ", n)  #nolint
+      stop(sprintf("The length of argument '%s' does not match the number of %s in '%s': %d != %d", "w", "columns", "x", length(w), n))  #nolint
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w))
+      stop(sprintf("Argument '%s' is not numeric: %s", "w", mode(w)))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.")
+      stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
 
@@ -76,7 +66,21 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     idxs <- which(is.na(w) | w != 0)
     nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times = m))
+      res <- rep(NaN, times = m)
+      
+      # Update names attribute?
+      if (!is.na(useNames)) {
+        if (useNames) {
+          names <- rownames(x)
+          if (!is.null(names)) {
+            names(res) <- names
+          }
+        } else {
+          names(res) <- NULL
+        }
+      }
+      
+      return(res)
     } else if (nw < n) {
       w <- w[idxs]
       x <- x[, idxs, drop = FALSE]
@@ -107,16 +111,36 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       nas <- NULL  # Not needed anymore
 
       x <- W * x
+      
+      # Preserve dimnames attribute?
+      if (!(is.na(useNames) || useNames)) {
+        dimnames(x) <- NULL
+      }
+      
       W <- NULL  # Not needed anymore
     } else {
       wS <- sum(w)
       # Standardize weights summing to one.
       w <- w / wS
+      
+      # Preserve dimnames attribute
+      dimnames <- dimnames(x)
 
       # Weighted values
       ## SLOW: for (rr in 1:m) x[rr, ] <- w * x[rr, , drop = TRUE]
       ## FAST:
       x <- t_tx_OP_y(x, w, OP = "*", na.rm = FALSE)
+      
+      # Update dimnames attribute?
+      if (!is.na(useNames)) {
+        if (useNames) {
+          if (!is.null(dimnames)) {
+            dimnames(x) <- dimnames
+          }
+        } else {
+          dimnames(x) <- NULL
+        }
+      }
 
       w <- NULL  # Not needed anymore
     }
@@ -125,6 +149,11 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- rowSums(x, na.rm = FALSE)
   } else {
     res <- rowMeans(x, na.rm = na.rm)
+    
+    # Preserve names attribute?
+    if (!(is.na(useNames) || useNames)) {
+      names(res) <- NULL
+    }    
   }
 
   res
@@ -134,27 +163,25 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMeans
 #' @export
 colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
-                             na.rm = FALSE, ...) {
+                             na.rm = FALSE, ..., useNames = NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
-  if (!is.matrix(x)) {
-    .Defunct(msg = sprintf("Argument 'x' is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", sQuote(class(x)[1]), sQuote(class(x)[1])))  #nolint
-  }
+  if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
   # Argument 'w':
   has_weights <- !is.null(w)
   if (has_weights) {
     n <- nrow(x)
     if (length(w) != n) {
-      stop("The length of argument 'w' is does not match the number of rows in 'x': ", length(w), " != ", n)  #nolint
+      stop(sprintf("The length of argument '%s' does not match the number of %s in '%s': %d != %d", "w", "rows", "x", length(w), n))  #nolint
     }
     if (!is.numeric(w)) {
-      stop("Argument 'w' is not numeric: ", mode(w))
+      stop(sprintf("Argument '%s' is not numeric: %s", "w", mode(w)))
     }
     if (any(!is.na(w) & w < 0)) {
-      stop("Argument 'w' has negative weights.")
+      stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
 
@@ -176,7 +203,21 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     idxs <- which(is.na(w) | w != 0)
     nw <- length(idxs)
     if (nw == 0L) {
-      return(rep(NaN, times = m))
+      res <- rep(NaN, times = m)
+      
+      # Update names attribute?
+      if (!is.na(useNames)) {
+        if (useNames) {
+          names <- colnames(x)
+          if (!is.null(names)) {
+            names(res) <- names
+          }
+        } else {
+          names(res) <- NULL
+        }
+      }
+      
+      return(res)
     } else if (nw < n) {
       w <- w[idxs]
       x <- x[idxs, , drop = FALSE]
@@ -227,6 +268,11 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     res <- colSums(x, na.rm = FALSE)
   } else {
     res <- colMeans(x, na.rm = na.rm)
+  }
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    names(res) <- NULL
   }
 
   res

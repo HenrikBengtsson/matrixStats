@@ -7,8 +7,8 @@
 validateIndices(idxs = NULL, maxIdx, allowOutOfBound = TRUE)
 }
 \arguments{
-\item{idxs}{A \code{\link[base]{integer}} \code{\link[base]{vector}}. If
-\code{\link[base]{NULL}}, all indices are considered.}
+\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{maxIdx}{The possible max index.}
 
@@ -17,6 +17,8 @@ validateIndices(idxs = NULL, maxIdx, allowOutOfBound = TRUE)
 }
 \value{
 Returns a validated integers list indicating the indices.
+If some of the indices cannot be represented as an integer, the
+indices are returned as doubles.
 }
 \description{
 Computes validated positive indices from given indices.

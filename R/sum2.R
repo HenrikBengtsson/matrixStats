@@ -16,20 +16,12 @@
 #' and return \code{NA_integer_}. Instead it will return the correct sum in
 #' form of a double value.}
 #'
-#' @param x A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-#' \code{\link[base]{vector}} of length N.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, missing values are
-#' skipped, otherwise not.
+#' @inheritParams rowAlls
+#' @inheritParams weightedMad
 #'
 #' @param mode A \code{\link[base]{character}} string specifying the data type
 #' of the return value.  Default is to use the same mode as argument \code{x},
 #' unless it is logical when it defaults to \code{"integer"}.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a scalar of the data type specified by argument \code{mode}.
 #' If \code{mode = "integer"}, then integer overflow occurs if the \emph{sum}
@@ -57,12 +49,12 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   x_mode <- typeof(x)
   x_logical <- (x_mode == "logical")
   if (!is.numeric(x) && !x_logical) {
-    stop("Argument 'x' is neither numeric nor logical: ", x_mode)
+    stop(sprintf("Argument '%s' is not numeric or logical: %s", "x", x_mode))
   }
 
   # Argument 'na.rm':
   if (!is.logical(na.rm)) {
-    stop("Argument 'na.rm' is not logical: ", mode(na.rm))
+    stop(sprintf("Argument '%s' is not logical: %s", "na.rm", mode(na.rm)))
   }
 
   # Argument 'mode':
@@ -79,17 +71,11 @@ sum2 <- function(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...) {
   } else if (mode == "double") {
     mode_idx <- 2L
   } else {
-    stop("Unknown value of argument 'mode': ", mode)
+    stop(sprintf("Unknown value of argument '%s': %s", "mode", mode))
   }
   
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Summing
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .Call(C_sum2, x, idxs, na.rm, mode_idx)
-}
-
-#' @rdname sum2
-#' @export
-sumOver <- function(...) {
-  .Defunct(new = "sum2")
 }

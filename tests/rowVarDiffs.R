@@ -19,20 +19,31 @@ for (fcn in names(fcns)) {
     for (add_na in c(FALSE, TRUE)) {
       cat("add_na = ", add_na, "\n", sep = "")
 
-      x <- matrix(1:100 + 0.1, nrow = 20, ncol = 5)
+      x <- matrix(1:50 + 0.1, nrow = 10L, ncol = 5L)
       if (add_na) {
-        x[13:17, c(2, 4)] <- NA_real_
+        x[3:7, c(2, 4)] <- NA_real_
       }
       cat("mode: ", mode, "\n", sep = "")
       storage.mode(x) <- mode
       str(x)
+      
+      # To check names attribute
+      dimnames <- list(letters[1:10], LETTERS[1:5])
 
-      # Row/column ranges
-      for (na.rm in c(FALSE, TRUE)) {
-        cat("na.rm = ", na.rm, "\n", sep = "")
-        r1 <- row_fcn(x, na.rm = na.rm)
-        r2 <- col_fcn(t(x), na.rm = na.rm)
-        stopifnot(all.equal(r1, r2))
+      # Test with and without dimnames on x
+      for (setDimnames in c(TRUE, FALSE)) {
+        if (setDimnames) dimnames(x) <- dimnames
+        else dimnames(x) <- NULL
+        # Row/column ranges
+        for (na.rm in c(FALSE, TRUE)) {
+          # Check names attribute
+          for (useNames in c(NA, TRUE, FALSE)) {
+            cat("na.rm = ", na.rm, "\n", sep = "")
+            r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
+            r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
+            stopifnot(all.equal(r1, r2))
+          }
+        }
       }
     } # for (add_na ...)
   }
@@ -42,16 +53,25 @@ for (fcn in names(fcns)) {
   # All NAs
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   for (mode in c("integer", "double")) {
-    x <- matrix(NA_real_, nrow = 20, ncol = 5)
+    x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
     cat("mode: ", mode, "\n", sep = "")
     storage.mode(x) <- mode
     str(x)
 
-    for (na.rm in c(FALSE, TRUE)) {
-      cat("na.rm = ", na.rm, "\n", sep = "")
-      r1 <- row_fcn(x, na.rm = na.rm)
-      r2 <- col_fcn(t(x), na.rm = na.rm)
-      stopifnot(all.equal(r1, r2))
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL
+      # Row/column ranges
+      for (na.rm in c(FALSE, TRUE)) {
+        # Check names attribute
+        for (useNames in c(NA, TRUE, FALSE)) {
+          cat("na.rm = ", na.rm, "\n", sep = "")
+          r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
+          r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
+          stopifnot(all.equal(r1, r2))
+        }
+      }
     }
   }
 
@@ -59,12 +79,22 @@ for (fcn in names(fcns)) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # A 1x1 matrix
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  x <- matrix(0, nrow = 1, ncol = 1)
-  for (na.rm in c(FALSE, TRUE)) {
-    cat("na.rm = ", na.rm, "\n", sep = "")
-    r1 <- row_fcn(x, na.rm = na.rm)
-    r2 <- col_fcn(t(x), na.rm = na.rm)
-    stopifnot(all.equal(r1, r2))
+  x <- matrix(0, nrow = 1L, ncol = 1L)
+  dimnames <- list("a", "A")
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL
+    # Row/column ranges
+    for (na.rm in c(FALSE, TRUE)) {
+      # Check names attribute
+      for (useNames in c(NA, TRUE, FALSE)) {
+        cat("na.rm = ", na.rm, "\n", sep = "")
+        r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
+        r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
+        stopifnot(all.equal(r1, r2))
+      }
+    }
   }
 
   cat(sprintf("%s()...DONE\n", fcn))

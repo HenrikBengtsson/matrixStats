@@ -11,6 +11,8 @@ fcns <- list(
 # Subsetted tests
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 source("utils/validateIndicesFramework.R")
+# To check names attribute
+dimnames <- list(letters[1:6], LETTERS[1:6])
 for (fcn in names(fcns)) {
   cat(sprintf("subsetted tests on matrix %s()...\n", fcn))
   row_fcn <- fcns[[fcn]][[1]]
@@ -23,15 +25,24 @@ for (fcn in names(fcns)) {
     storage.mode(w) <- mode
     if (mode == "numeric") w[1] <- Inf
 
-    for (rows in index_cases) {
-      for (cols in index_cases) {
-        for (na.rm in c(TRUE, FALSE)) {
+    # Test with and without dimnames on x
+    for (setDimnames in c(TRUE, FALSE)) {
+      if (setDimnames) dimnames(x) <- dimnames
+      else dimnames(x) <- NULL
+
+      count <- 0L
+      for (rows in index_cases) {
+        for (cols in index_cases) {
+          count <- count + 1L
+          na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+          useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+
           validateIndicesTestMatrix_w(x, w, rows, cols,
                                       ftest = row_fcn, fsure = row_fcn,
-                                      na.rm = na.rm)
+                                      na.rm = na.rm, useNames = useNames)
           validateIndicesTestMatrix_w(x, w, rows, cols,
                                       fcoltest = col_fcn, fsure = row_fcn,
-                                      na.rm = na.rm)
+                                      na.rm = na.rm, useNames = useNames)
         }
       }
     }

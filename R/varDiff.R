@@ -17,15 +17,10 @@
 #' correction factor needs to be applied manually, i.e. there is no
 #' \code{constant} argument for the IQR functions.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
 #' N or a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
-#'
-#' @param idxs,rows,cols A \code{\link[base]{vector}} indicating subset of
-#' elements (or rows and/or columns) to operate over. If
-#' \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, \code{\link[base]{NA}}s
-#' are excluded, otherwise not.
 #'
 #' @param diff The positional distance of elements for which the difference
 #' should be calculated.
@@ -36,8 +31,6 @@
 #'
 #' @param constant A scale factor adjusting for asymptotically normal
 #' consistency.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length 1, length N, or length K.
@@ -55,7 +48,8 @@
 #' @keywords iteration robust univar
 #' @export
 varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -100,7 +94,8 @@ varDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @rdname varDiff
 #' @export
 sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -146,7 +141,8 @@ sdDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @export
 madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
                     constant = 1.4826, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -191,7 +187,8 @@ madDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
 #' @rdname varDiff
 #' @export
 iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
-  if (diff < 0L) stop("Argument 'diff' must be non-negative: ", diff)
+  if (length(diff) != 1L) stop(sprintf("Argument '%s' is not scalar: %d", "diff", length(diff)))
+  if (diff < 0L) stop(sprintf("Argument '%s' must not be negative: %d", "diff", diff))
   
   # Apply subset
   if (!is.null(idxs)) x <- x[idxs]
@@ -244,11 +241,16 @@ iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @rdname varDiff
 #' @export
 rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ...) {
+                        trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+      rownames(x) <- NULL
+  }
 
   apply(x, MARGIN = 1L, FUN = varDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -258,11 +260,16 @@ rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ...) {
+                        trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    colnames(x) <- NULL
+  }
 
   apply(x, MARGIN = 2L, FUN = varDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -272,11 +279,16 @@ colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                       trim = 0, ...) {
+                       trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    rownames(x) <- NULL
+  }
 
   apply(x, MARGIN = 1L, FUN = sdDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -286,11 +298,16 @@ rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                       trim = 0, ...) {
+                       trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    colnames(x) <- NULL
+  }
 
   apply(x, MARGIN = 2L, FUN = sdDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -300,11 +317,16 @@ colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ...) {
+                        trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    rownames(x) <- NULL
+  }
 
   apply(x, MARGIN = 1L, FUN = madDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -314,11 +336,16 @@ rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ...) {
+                        trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    colnames(x) <- NULL
+  }
 
   apply(x, MARGIN = 2L, FUN = madDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -328,11 +355,16 @@ colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ...) {
+                        trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    rownames(x) <- NULL
+  }
 
   apply(x, MARGIN = 1L, FUN = iqrDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)
@@ -342,11 +374,16 @@ rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ...) {
+                        trim = 0, ..., useNames = NA) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
+  
+  # Preserve names attribute?
+  if (!(is.na(useNames) || useNames)) {
+    colnames(x) <- NULL
+  }
 
   apply(x, MARGIN = 2L, FUN = iqrDiff,
         na.rm = na.rm, diff = diff, trim = trim, ...)

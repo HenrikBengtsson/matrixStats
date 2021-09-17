@@ -2,22 +2,19 @@
 % Please edit documentation in R/sum2.R
 \name{sum2}
 \alias{sum2}
-\alias{sumOver}
 \title{Fast sum over subset of vector elements}
 \usage{
 sum2(x, idxs = NULL, na.rm = FALSE, mode = typeof(x), ...)
-
-sumOver(...)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} or \code{\link[base]{logical}}
-\code{\link[base]{vector}} of length N.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
-skipped, otherwise not.}
+excluded.}
 
 \item{mode}{A \code{\link[base]{character}} string specifying the data type
 of the return value.  Default is to use the same mode as argument \code{x},

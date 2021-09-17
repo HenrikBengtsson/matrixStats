@@ -5,25 +5,35 @@
 \alias{colCollapse}
 \title{Extracts one cell per row (column) from a matrix}
 \usage{
-rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ...)
+rowCollapse(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = NA)
 
-colCollapse(x, idxs, cols = NULL, dim. = dim(x), ...)
+colCollapse(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
-\item{x}{An NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
 \item{idxs}{An index \code{\link[base]{vector}} of (maximum) length N (K)
 specifying the columns (rows) to be extracted.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
-\code{\link[base]{matrix}}.}
+\code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
+being named with a period at the end is purely technical (we get a run-time
+error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{vector}} of length N (K).

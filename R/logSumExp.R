@@ -19,16 +19,10 @@
 #' finds the maximum value of \code{lx} and subtracts it from the remaining
 #' values in \code{lx}.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param lx A \code{\link[base]{numeric}} \code{\link[base]{vector}}.
 #' Typically \code{lx} are \eqn{log(x)} values.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
-#'
-#' @param na.rm If \code{\link[base:logical]{TRUE}}, any missing values are
-#' ignored, otherwise not.
-#'
-#' @param ... Not used.
 #'
 #' @return Returns a \code{\link[base]{numeric}} scalar.
 #'

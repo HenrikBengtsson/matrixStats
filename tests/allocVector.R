@@ -14,10 +14,12 @@ values <- list(
   FALSE, TRUE, NA
 )
 
-n <- 100
+n <- 10L
 for (value in values) {
   x0 <- allocVector_R(n, value = value)
   x <- allocVector(n, value = value)
-  str(list(n = n, value = value, x = x, x0 = x0))
-  stopifnot(identical(x, x0))
+  if (!identical(x, x0)) {
+    str(list(n = n, value = value, x = x, x0 = x0))
+    stopifnot(identical(x, x0))
+  }
 }

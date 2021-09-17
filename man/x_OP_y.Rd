@@ -28,12 +28,10 @@ subsetting is done.}
 t(x))') is calculated, otherwise 'x OP y' ('t(t(x) OP y)').}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
-ignored, otherwise not.}
+excluded.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over 'y'. If \code{\link[base]{NULL}}, no subsetting is done.}
-
-\item{...}{Not used.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} NxK

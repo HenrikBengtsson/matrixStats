@@ -4,6 +4,8 @@
 #' Accurately computes the logarithm of the sum of exponentials across rows or
 #' columns.
 #'
+#' @inheritParams rowAlls
+#' @inheritParams logSumExp
 #'
 #' @param lx A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
 #' Typically \code{lx} are \eqn{log(x)} values.
@@ -36,44 +38,16 @@
 #' @keywords array
 #' @export
 rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-                          dim. = dim(lx), ...) {
-  dim. <- as.integer(dim.)
+                          dim. = dim(lx), ..., useNames = NA) {
   has_na <- TRUE
-  res <- .Call(C_rowLogSumExps,
-               as.numeric(lx),
-               dim., rows, cols, as.logical(na.rm), has_na, TRUE)
-
-  # Preserve names
-  names <- rownames(lx)
-  if (!is.null(names)) {
-    if (!is.null(rows)) {
-      names <- names[rows]
-    }
-    names(res) <- names
-  }
-
-  res
+  .Call(C_rowLogSumExps, lx, dim., rows, cols, na.rm, has_na, TRUE, useNames)
 }
 
 
 #' @rdname rowLogSumExps
 #' @export
 colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-                          dim. = dim(lx), ...) {
-  dim. <- as.integer(dim.)
+                          dim. = dim(lx), ..., useNames = NA) {
   has_na <- TRUE
-  res <- .Call(C_rowLogSumExps,
-               as.numeric(lx),
-               dim., rows, cols, as.logical(na.rm), has_na, FALSE)
-
-  # Preserve names
-  names <- colnames(lx)
-  if (!is.null(names)) {
-    if (!is.null(cols)) {
-      names <- names[cols]
-    }
-    names(res) <- names
-  }
-
-  res
+  .Call(C_rowLogSumExps, lx, dim., rows, cols, na.rm, has_na, FALSE, useNames)
 }

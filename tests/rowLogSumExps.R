@@ -9,12 +9,12 @@ logSumExp0 <- function(lx) {
   log1p(sum(exp(lx[-idx_max] - lx[idx_max]))) + lx[idx_max]
 }
 
-n <- 1e3
+n <- 200L
 set.seed(1)
 
 for (mode in c("integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
-  x <- matrix(runif(n, min = 1.0, max = 3.0), nrow = 50L)
+  x <- matrix(runif(n, min = 1.0, max = 3.0), nrow = 20L)
   storage.mode(x) <- mode
   str(x)
 
@@ -56,9 +56,9 @@ for (mode in c("integer", "double")) {
   # Testing names
   rownames(lx_neg) <- seq_len(nrow(x))
   colnames(lx_neg) <- seq_len(ncol(x))
-  y2 <- rowLogSumExps(lx_neg)
+  y2 <- rowLogSumExps(lx_neg, useNames = TRUE)
   stopifnot(identical(names(y2), rownames(lx_neg)))
-  y3 <- colLogSumExps(t(lx_neg))
+  y3 <- colLogSumExps(t(lx_neg), useNames = TRUE)
   stopifnot(identical(names(y3), rownames(lx_neg)))
 } # for (mode ...)
 
@@ -77,7 +77,7 @@ print(y)
 stopifnot(length(y) == ncol(lx))
 
 ## Zero-height matrices
-lx <- matrix(numeric(0L), nrow = 0L, ncol = 10L)
+lx <- matrix(numeric(0L), nrow = 0L, ncol = 5L)
 y <- rowLogSumExps(lx)
 print(y)
 stopifnot(length(y) == nrow(lx))
@@ -88,7 +88,7 @@ stopifnot(length(y) == ncol(lx))
 stopifnot(all(y == -Inf))
 
 ## Zero-width matrices
-lx <- matrix(numeric(0L), nrow = 10L, ncol = 0L)
+lx <- matrix(numeric(0L), nrow = 5L, ncol = 0L)
 y <- colLogSumExps(lx)
 print(y)
 stopifnot(length(y) == ncol(lx))
@@ -166,7 +166,6 @@ print(y)
 stopifnot(length(y) == nrow(lx))
 stopifnot(all(y == 5))
 
-
 ## Bug report #104 (https://github.com/HenrikBengtsson/matrixStats/issues/104)
 ## (This would core dump on Windows)
 x <- matrix(0.0, nrow = 2L, ncol = 32762L)
@@ -178,7 +177,43 @@ str(y)
 ## used)
 x <- matrix(runif(6), nrow = 2L, ncol = 3L,
             dimnames = list(c("A", "B"), c("a", "b", "c")))
-y <- colLogSumExps(x, cols = 3:1)
+y <- colLogSumExps(x, cols = 3:1, useNames = TRUE)
 stopifnot(names(y) == c("c", "b", "a"))
-y <- rowLogSumExps(x, rows = 2)
+y <- rowLogSumExps(x, rows = 2, useNames = TRUE)
 stopifnot(names(y) == "B")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Check names attributes
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+## Create isFALSE() if running on an old version of R
+if (!exists("isFALSE", mode="function")) {
+  isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
+}
+
+rowLogSumExps_R <- function(x, ..., useNames = NA) {
+  res <- apply(x, MARGIN = 1L, FUN = function(rx, ...) {
+    log(sum(exp(rx), ...))
+  }, ...)
+  if (isFALSE(useNames)) names(res) <- NULL
+  res
+}
+
+x <- matrix(runif(6 * 6, min = -6, max = 6), nrow = 6L, ncol = 6L)
+
+# To check names attribute
+dimnames <- list(letters[1:6], LETTERS[1:6])
+
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowLogSumExps_R(x, useNames = useNames)
+    y1 <- rowLogSumExps(x, useNames = useNames)
+    y2 <- colLogSumExps(t(x), useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    stopifnot(all.equal(y2, y0))
+  }
+}

@@ -6,9 +6,11 @@
 \title{Accurately computes the logarithm of the sum of exponentials across rows or
 columns}
 \usage{
-rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
+rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(lx), ..., useNames = NA)
 
-colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(lx), ...)
+colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
+  dim. = dim(lx), ..., useNames = NA)
 }
 \arguments{
 \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
@@ -26,6 +28,11 @@ length two specifying the dimension of \code{x}, also when not a
 \code{\link[base]{matrix}}.}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N

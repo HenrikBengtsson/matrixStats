@@ -1,18 +1,100 @@
 Package: matrixStats
 ====================
 
-Version: 0.57.0-9000 [2020-12-08]
+Version: 0.61.0-9000 [2021-09-17]
+
+ * ...
+ 
+
+Version: 0.61.0 [2021-09-12]
+
+NEW FEATURES:
+
+ * When argument 'which' for colOrderStats() and rowOrderStats() is out of
+   range, the error message now reports on the value of 'which'.  Similarly,
+   when argument 'probs' for colQuantiles() and rowQuantiles() is out of
+   range, the error message reports on its value too.
+ 
+DEPRECATED AND DEFUNCT:
+
+ * validateIndices() is deprecated and will eventually be removed from the
+   package API.
+
+MISCELLANEOUS:
+
+ * The package test for benchmark reports failed because the 'markdown'
+   package was not declared as a suggested package.
+
+
+Version: 0.60.1 [2021-08-22]
+
+PERFORMANCE:
+
+ * Handling of the 'useNames' argument is now done in the native code.
+
+ * Passing 'idxs', 'rows', and 'cols' arguments of type integer is now less
+   efficient than it used to, because the new code re-design (see below)
+   requires an internal allocation of an equally long 'R_xlen_t' vector that
+   is populated by indices coerced from 'R_len_t' to 'R_xlen_t' integers.
+
+CODE DESIGN:
+
+ * No longer using native-code implementations that are specific to the type
+   of index that is passed for subsetting of vectors, rows, and columns.
+   This was done to avoid the complex use of macros that was cumbersome to
+   maintain and added an extra threshold for new contributors to overcome.
+   Another advantage is that faster compilation time when built from source
+   and a smaller size of compiled library.  In previous version 'R CMD check'
+   would produce a NOTE on the package installation size being large, which
+   no longer is the case. The downside is that extra overhead when passing
+   integer indices (see above comment).
+
+BUG FIXES:
+
+ * Contrary to other functions which gained new argument useNames=NA in the
+   previous release, colQuantiles() and rowQuantiles() got useNames=TRUE.
+ 
+
+Version: 0.60.0 [2021-07-26]
+
+NEW FEATURES:
+
+ * Add row and column names support to all row and column functions. To
+   return row and column names, set argument useNames=TRUE. To drop them,
+   set useNames=FALSE. To preserve the current, inconsistent behavior,
+   set useNames=NA, which, for backward compatibility reasons, remains the
+   default for now.
+
+
+Version: 0.59.0 [2021-05-31]
+
+MISCELLANEOUS:
+
+ * Harmonized error messages.
+
+BUG FIXES:
+
+ * Some of the examples and package tests would allocated matrices with
+   dimensions that did not match the number of elements in the input data.
+
+DEPRECATED AND DEFUNCT:
+
+ * Dropped meanOver() and sumOver(), and argument 'method' from weightedVar(),
+   that have been defunct since January 2018.
+
+
+Version: 0.58.0 [2021-01-26]
 
 SIGNIFICANT CHANGES:
 
  * colVars() and rowVars() with argument 'center' now calculates the sample
    variance using the n/(n-1)*avg((x-center)^2) formula rather than the
    n/(n-1)*(avg(x^2)-center^2) formula that was used in the past.  Both give
-   the same result when 'center' is the correct sample mean estimate.  The
+   the same result when 'center' is the correct sample mean estimate. The
    main reason for this change is that, if an incorrect 'center' is provided,
    in contrast to the old approach, the new approach is guaranteed to give at
    least non-negative results, despite being incorrect.
-   BACKWARD COMPATIBILITY: Out of all 307 reverse dependencies on CRAN and
+   BACKWARD COMPATIBILITY: Out of all 314 reverse dependencies on CRAN and
    Bioconductor, only four called these functions with argument 'center'. All
    of them pass their package checks also after this update.  To further
    protect against a negative impact in existing user scripts, colVars() and
@@ -53,7 +135,7 @@ BUG FIXES:
    value if both argument 'dim.' and 'center' would be specified.
 
  * The documentation was unclear on what the 'center' argument should be. They
-   would not detect when an incorrect specification was used, notibly when the
+   would not detect when an incorrect specification was used, notably when the
    length of 'center' did not match the matrix dimensions.  Now these functions
    give an informative error message when 'center' is of the incorrect length.
 
@@ -666,7 +748,7 @@ BUG FIXES:
    fabs().  Despite this, the calculated product would still be correct (at
    least when validated on several local setups as well as on the CRAN servers).
    Again, thanks to Brian Ripley for pointing out another invalid integer-double
-   coersion at the C level.
+   coercion at the C level.
 
 DEPRECATED AND DEFUNCT:
 

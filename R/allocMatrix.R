@@ -3,11 +3,8 @@
 #' Allocates an empty vector, matrix or array faster than the corresponding
 #' function in R.
 #'
-#'
 #' @param value A \code{\link[base]{numeric}} scalar that all elements will
 #' have as value.
-#'
-#' @param ... Not used.
 #'
 #' @param length,nrow,ncol,dim \code{\link[base]{numeric}}s specifying the
 #' dimension of the created \code{\link[base]{vector}},

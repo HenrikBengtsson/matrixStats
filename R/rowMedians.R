@@ -11,7 +11,8 @@
 #' require three times the memory of \code{rowMedians(x)}
 #' (\code{colMedians(x)}), but all this is avoided.
 #'
-#' @param x A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
+#' @inheritParams rowAlls
+#' @inheritParams rowDiffs
 #'
 #' @param rows,cols A \code{\link[base]{vector}} indicating subset of rows
 #' (and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
@@ -39,19 +40,17 @@
 #' @keywords array iteration robust univar
 #' @export
 rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ...) {
-  dim. <- as.integer(dim.)
-  na.rm <- as.logical(na.rm)
+                       dim. = dim(x), ..., useNames = NA) {
   has_nas <- TRUE  # Add as an argument? /2007-08-24
-  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE)
+  
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
 }
 
 #' @rdname rowMedians
 #' @export
 colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ...) {
-  dim. <- as.integer(dim.)
-  na.rm <- as.logical(na.rm)
+                       dim. = dim(x), ..., useNames = NA) {
   has_nas <- TRUE  # Add as an argument? /2007-08-24
-  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE)
+  
+  .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
 }

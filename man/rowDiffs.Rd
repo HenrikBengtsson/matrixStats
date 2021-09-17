@@ -6,17 +6,20 @@
 \title{Calculates difference for each row (column) in a matrix}
 \usage{
 rowDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 
 colDiffs(x, rows = NULL, cols = NULL, lag = 1L, differences = 1L,
-  dim. = dim(x), ...)
+  dim. = dim(x), ..., useNames = NA)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.}
+\item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
+an N * K \code{\link[base]{vector}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{lag}{An \code{\link[base]{integer}} specifying the lag.}
 
@@ -25,9 +28,16 @@ difference.}
 
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
-\code{\link[base]{matrix}}.}
+\code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
+being named with a period at the end is purely technical (we get a run-time
+error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} Nx(K-1) or (N-1)xK

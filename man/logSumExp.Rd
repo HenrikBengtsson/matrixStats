@@ -13,8 +13,8 @@ Typically \code{lx} are \eqn{log(x)} values.}
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{na.rm}{If \code{\link[base:logical]{TRUE}}, any missing values are
-ignored, otherwise not.}
+\item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
+excluded.}
 
 \item{...}{Not used.}
 }

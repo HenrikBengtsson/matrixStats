@@ -6,11 +6,10 @@
 #' \code{rev(binCounts(-x, bx = rev(-bx), right = FALSE))}, but is faster
 #' and more memory efficient.
 #'
+#' @inheritParams rowAlls
+#'
 #' @param x A \code{\link[base]{numeric}} \code{\link[base]{vector}} of K
 #' positions for to be binned and counted.
-#'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
-#' operate over. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param bx A \code{\link[base]{numeric}} \code{\link[base]{vector}} of B + 1
 #' ordered positions specifying the B > 0 bins \code{[bx[1], bx[2])},
@@ -18,8 +17,6 @@
 #'
 #' @param right If \code{\link[base:logical]{TRUE}}, the bins are right-closed
 #' (left open), otherwise left-closed (right open).
-#'
-#' @param ... Not used.
 #'
 #' @return Returns an \code{\link[base]{integer}} \code{\link[base]{vector}} of
 #' length B with non-negative integers.
@@ -50,18 +47,18 @@ binCounts <- function(x, idxs = NULL, bx, right = FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'x':
   if (!is.numeric(x)) {
-    stop("Argument 'x' is not numeric: ", mode(x))
+    stop(sprintf("Argument '%s' is not numeric: %s", "x", mode(x)))
   }
 
   # Argument 'bx':
   if (!is.numeric(bx)) {
-    stop("Argument 'bx' is not numeric: ", mode(bx))
+    stop(sprintf("Argument '%s' is not numeric: %s", "bx", mode(bx)))
   }
   if (any(is.infinite(bx))) {
-    stop("Argument 'bx' must not contain Inf values.")
+    stop(sprintf("Argument '%s' must not contain infinite values", "bx"))
   }
   if (is.unsorted(bx)) {
-    stop("Argument 'bx' is not ordered.")
+    stop(sprintf("Argument '%s' is not ordered", "bx"))
   }
 
   # Apply subset

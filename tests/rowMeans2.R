@@ -1,17 +1,40 @@
 library("matrixStats")
 
+rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+  res <- rowMeans(x, na.rm = na.rm)
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
+}
+
+colMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+  res <- colMeans(x, na.rm = na.rm)
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
+}
+
 for (mode in c("integer", "logical", "double")) {
   x <- matrix(-4:4, nrow = 3, ncol = 3)
   storage.mode(x) <- mode
   if (mode == "double") x <- x + 0.1
-
-  y0 <- rowMeans(x, na.rm = FALSE)
-  y1 <- rowMeans2(x, na.rm = FALSE)
-  stopifnot(all.equal(y1, y0))
-
-  y0 <- colMeans(x, na.rm = FALSE)
-  y1 <- colMeans2(x, na.rm = FALSE)
-  stopifnot(all.equal(y1, y0))
+  
+  # To check names attribute
+  dimnames <- list(letters[1:3], LETTERS[1:3])
+  
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL
+    # Check names attribute
+    for (useNames in c(NA, TRUE, FALSE)) {
+      y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+      y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+      stopifnot(all.equal(y1, y0))
+      
+      y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+      y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+      stopifnot(all.equal(y1, y0))
+    }
+  }
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -21,14 +44,25 @@ cat("Special case: Single-element matrix:\n")
 for (mode in c("integer", "logical", "double")) {
   x <- matrix(1, nrow = 1, ncol = 1)
   storage.mode(x) <- mode
-
-  y0 <- rowMeans(x, na.rm = FALSE)
-  y1 <- rowMeans2(x, na.rm = FALSE)
-  stopifnot(all.equal(y1, y0))
-
-  y0 <- colMeans(x, na.rm = FALSE)
-  y1 <- colMeans2(x, na.rm = FALSE)
-  stopifnot(all.equal(y1, y0))
+  
+  # To check names attribute
+  dimnames <- list("a", "A")
+  
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL
+    # Check names attribute
+    for (useNames in c(NA, TRUE, FALSE)) {
+      y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+      y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+      stopifnot(all.equal(y1, y0))
+      
+      y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+      y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+      stopifnot(all.equal(y1, y0))
+    }
+  }
 }
 
 
@@ -57,14 +91,25 @@ cat("Special case: All NAs:\n")
 for (mode in c("integer", "logical", "double")) {
   x <- matrix(NA_integer_, nrow = 3, ncol = 3)
   storage.mode(x) <- mode
-
-  y0 <- rowMeans(x, na.rm = TRUE)
-  y1 <- rowMeans2(x, na.rm = TRUE)
-  stopifnot(all.equal(y1, y0))
-
-  y0 <- colMeans(x, na.rm = TRUE)
-  y1 <- colMeans2(x, na.rm = TRUE)
-  stopifnot(all.equal(y1, y0))
+  
+  # To check names attribute
+  dimnames <- list(letters[1:3], LETTERS[1:3])
+  
+  # Test with and without dimnames on x
+  for (setDimnames in c(TRUE, FALSE)) {
+    if (setDimnames) dimnames(x) <- dimnames
+    else dimnames(x) <- NULL
+    # Check names attribute
+    for (useNames in c(NA, TRUE, FALSE)) {
+      y0 <- rowMeans_R(x, na.rm = TRUE, useNames = useNames)
+      y1 <- rowMeans2(x, na.rm = TRUE, useNames = useNames)
+      stopifnot(all.equal(y1, y0))
+      
+      y0 <- colMeans_R(x, na.rm = TRUE, useNames = useNames)
+      y1 <- colMeans2(x, na.rm = TRUE, useNames = useNames)
+      stopifnot(all.equal(y1, y0))
+    }
+  }
 }
 
 
@@ -74,13 +119,21 @@ for (mode in c("integer", "logical", "double")) {
 cat("Special case: All NaNs:\n")
 x <- matrix(NA_real_, nrow = 3, ncol = 3)
 
-y0 <- rowMeans(x, na.rm = TRUE)
-y1 <- rowMeans2(x, na.rm = TRUE)
-stopifnot(all.equal(y1, y0))
-
-y0 <- colMeans(x, na.rm = TRUE)
-y1 <- colMeans2(x, na.rm = TRUE)
-stopifnot(all.equal(y1, y0))
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowMeans_R(x, na.rm = TRUE, useNames = useNames)
+    y1 <- rowMeans2(x, na.rm = TRUE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- colMeans_R(x, na.rm = TRUE, useNames = useNames)
+    y1 <- colMeans2(x, na.rm = TRUE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+  }
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -89,13 +142,21 @@ stopifnot(all.equal(y1, y0))
 cat("Special case: All Infs:\n")
 x <- matrix(Inf, nrow = 3, ncol = 3)
 
-y0 <- rowMeans(x, na.rm = FALSE)
-y1 <- rowMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-
-y0 <- colMeans(x, na.rm = FALSE)
-y1 <- colMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+  }
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -104,13 +165,21 @@ stopifnot(all.equal(y1, y0))
 cat("Special case: All -Infs:\n")
 x <- matrix(-Inf, nrow = 3, ncol = 3)
 
-y0 <- rowMeans(x, na.rm = FALSE)
-y1 <- rowMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-
-y0 <- colMeans(x, na.rm = FALSE)
-y1 <- colMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+  }
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -119,32 +188,53 @@ stopifnot(all.equal(y1, y0))
 cat("Special case: Infs and -Infs:\n")
 x <- matrix(c(-Inf, +Inf), nrow = 4, ncol = 4)
 
-y0 <- rowMeans(x, na.rm = FALSE)
-y1 <- rowMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
+# To check names attribute
+dimnames <- list(letters[1:4], LETTERS[1:4])
 
-y0 <- colMeans(x, na.rm = FALSE)
-y1 <- colMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+  }
+}
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Special case: NaNs and NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat("Special case: Infs and -Infs:\n")
+cat("Special case: NaNs and NAs:\n")
 x <- matrix(c(NaN, NA_real_), nrow = 4, ncol = 4)
 
-y0 <- rowMeans(x, na.rm = FALSE)
-str(y0)
-stopifnot(all(is.na(y0)), length(unique(y0)) >= 1L)
-y1 <- rowMeans2(x, na.rm = FALSE)
-str(y1)
-stopifnot(all(is.na(y1)), length(unique(y1)) >= 1L)
-stopifnot(all.equal(y1, y0))
-
-y0 <- colMeans(x, na.rm = FALSE)
-stopifnot(all(is.na(y0)), length(unique(y0)) == 1L)
-y1 <- colMeans2(x, na.rm = FALSE)
-stopifnot(all(is.na(y1)), length(unique(y1)) == 1L)
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+    str(y0)
+    stopifnot(all(is.na(y0)), length(unique(y0)) >= 1L)
+    y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+    str(y1)
+    stopifnot(all(is.na(y1)), length(unique(y1)) >= 1L)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all(is.na(y0)), length(unique(y0)) == 1L)
+    y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all(is.na(y1)), length(unique(y1)) == 1L)
+    stopifnot(all.equal(y1, y0))
+  }
+}
 ## NOTE, due to compiler optimization, it is not guaranteed that NA is
 ## returned here (as one would expect). NaN might very well be returned,
 ## when both NA and NaN are involved.  This is an accepted feature in R,
@@ -161,13 +251,21 @@ stopifnot(all(is.na(y1)), length(unique(y1)) == 1L)
 cat("Special case: Integer overflow with ties:\n")
 x <- matrix(.Machine$integer.max, nrow = 4, ncol = 4)
 
-y0 <- rowMeans(x, na.rm = FALSE)
-y1 <- rowMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
-
-y0 <- colMeans(x, na.rm = FALSE)
-y1 <- colMeans2(x, na.rm = FALSE)
-stopifnot(all.equal(y1, y0))
+# Test with and without dimnames on x
+for (setDimnames in c(TRUE, FALSE)) {
+  if (setDimnames) dimnames(x) <- dimnames
+  else dimnames(x) <- NULL
+  # Check names attribute
+  for (useNames in c(NA, TRUE, FALSE)) {
+    y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+    
+    y0 <- colMeans_R(x, na.rm = FALSE, useNames = useNames)
+    y1 <- colMeans2(x, na.rm = FALSE, useNames = useNames)
+    stopifnot(all.equal(y1, y0))
+  }
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -

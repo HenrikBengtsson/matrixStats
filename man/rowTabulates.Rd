@@ -5,22 +5,29 @@
 \alias{colTabulates}
 \title{Tabulates the values in a matrix by row (column).}
 \usage{
-rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ...)
+rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA)
 
-colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...)
+colTabulates(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA)
 }
 \arguments{
 \item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
 a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
 
-\item{rows, cols}{A \code{\link[base]{vector}} indicating subset of rows
-(and/or columns) to operate over. If \code{\link[base]{NULL}}, no subsetting
-is done.}
+\item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
+
+\item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
+operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{values}{An \code{\link[base]{vector}} of J values of count. If
 \code{\link[base]{NULL}}, all (unique) values are counted.}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the
