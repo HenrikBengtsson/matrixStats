@@ -35,8 +35,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
   /* Pre-calculate the column offsets */
   if (nocols) {
     colOffset = NULL;
-  }
-  else {
+  } else {
     colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
     if (byrow) {
       for (jj=0; jj < ncols; jj++)
@@ -49,6 +48,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 
   for (ii=0; ii < nrows; ii++) {
     R_xlen_t rowIdx;
+    
     if (norows) {
       /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
       rowIdx = byrow ? ii : ii*ncol;
@@ -59,7 +59,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     sum = 0.0;
 
     for (jj=0; jj < ncols; jj++) {
-      if (norows && nocols){
+      if (norows && nocols) {
         /*
          * In this special case, we can eliminate
          * the possibility of having NA indicies
@@ -67,8 +67,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         if (byrow) idx = rowIdx + jj*nrow;
         else idx = rowIdx + jj;
         value = x[idx];
-      }
-      else {
+      } else {
         if (nocols) {
             if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow);
             else idx = R_INDEX_OP(rowIdx, +, jj);
@@ -77,6 +76,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         }
         value = R_INDEX_GET(x, idx, X_NA);
       }
+      
   #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (LDOUBLE)value;
