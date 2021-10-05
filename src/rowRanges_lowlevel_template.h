@@ -3,7 +3,7 @@
   void rowRanges_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -29,7 +29,8 @@
 
 
 void CONCAT_MACROS(rowRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
                         int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted) {
   R_xlen_t ii, jj;
   R_xlen_t colBegin, idx;
@@ -55,13 +56,13 @@ void CONCAT_MACROS(rowRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       mins = ans;
 
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
 
         for (ii=0; ii < nrows; ii++) {
           if (!narm && skip[ii]) continue;
 
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          value = R_INDEX_GET(x, idx, X_NA);
+          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+          value = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
 
           if (X_ISNAN(value)) {
             if (!narm) {
@@ -96,13 +97,13 @@ void CONCAT_MACROS(rowRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       maxs = ans;
 
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
 
         for (ii=0; ii < nrows; ii++) {
           if (!narm && skip[ii]) continue;
 
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          value = R_INDEX_GET(x, idx, X_NA);
+          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+          value = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
 
           if (X_ISNAN(value)) {
             if (!narm) {
@@ -138,13 +139,13 @@ void CONCAT_MACROS(rowRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       maxs = &ans[nrows];
 
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
 
         for (ii=0; ii < nrows; ii++) {
           if (!narm && skip[ii]) continue;
 
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          value = R_INDEX_GET(x, idx, X_NA);
+          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+          value = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
 
           if (X_ISNAN(value)) {
             if (!narm) {

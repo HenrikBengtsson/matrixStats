@@ -24,6 +24,8 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = asR_xlen_t(dim, 0);
   ncol = asR_xlen_t(dim, 1);
+  Rprintf("nrow: %d\n", nrow);
+  Rprintf("ncol: %d\n", ncol);
 
   /* Argument 'constant': */
   if (!isNumeric(constant))
@@ -38,9 +40,12 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
-
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
+  Rprintf("Value of rowsHasNA: %d\n", rowsHasNA);
+  Rprintf("Value of colsHasNA: %d\n", colsHasNA);
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
@@ -48,6 +53,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
     SWAP(R_xlen_t, nrow, ncol);
     SWAP(R_xlen_t*, crows, ccols);
     SWAP(R_xlen_t, nrows, ncols);
+    SWAP(int, rowsHasNA, colsHasNA);
   }
 
   /* R allocate a double vector of length 'nrow'
@@ -56,9 +62,9 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMads_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, scale, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowMads_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, scale, narm, hasna, byrow, REAL(ans));
   }
   
   /* Argument 'useNames': */ 

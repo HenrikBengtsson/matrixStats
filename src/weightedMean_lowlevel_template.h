@@ -3,7 +3,7 @@
   double weightedMean_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int refine
+  X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int refine
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
@@ -17,7 +17,9 @@
 #include <R_ext/Error.h>
 
 
-double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int refine) {
+double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, double *w,
+                     R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA,
+                     int narm, int refine) {
   X_C_TYPE value;
   double weight;
   R_xlen_t i;
@@ -25,14 +27,18 @@ double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, doub
   LDOUBLE avg = R_NaN;
 
   for (i=0; i < nidxs; i++) {
-    weight = R_INDEX_GET(w, ((idxs == NULL) ? (i) : idxs[i]), NA_REAL);
+    /*
+     * Unlike the indices, the weights are not pre-checked for NA values in any way,
+     * meaning that we must pretend that the weights have NA-values in them
+     */
+    weight = R_INDEX_GET(w, ((idxs == NULL) ? (i) : idxs[i]), NA_REAL, 1);
 
     /* Skip or early stopping? */
     if (weight == 0) {
       continue;
     }
 
-    value = R_INDEX_GET(x, ((idxs == NULL) ? (i) : idxs[i]), X_NA);
+    value = R_INDEX_GET(x, ((idxs == NULL) ? (i) : idxs[i]), X_NA, idxsHasNA);
 #if X_TYPE == 'i'
     if (X_ISNAN(value)) {
       /* Skip or early stopping? */
@@ -73,13 +79,13 @@ double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, doub
     if (refine && R_FINITE(avg)) {
       sum = 0;
       for (i=0; i < nidxs; i++) {
-        weight = R_INDEX_GET(w, ((idxs == NULL) ? (i) : idxs[i]), NA_REAL);
+        weight = R_INDEX_GET(w, ((idxs == NULL) ? (i) : idxs[i]), NA_REAL, 1);
         /* Skip? */
         if (weight == 0) {
           continue;
         }
 
-        value = R_INDEX_GET(x, ((idxs == NULL) ? (i) : idxs[i]), X_NA);
+        value = R_INDEX_GET(x, ((idxs == NULL) ? (i) : idxs[i]), X_NA, idxsHasNA);
         if (!narm) {
           sum += (LDOUBLE)weight * (value - avg);
           /* Early stopping? Special for long LDOUBLE vectors */

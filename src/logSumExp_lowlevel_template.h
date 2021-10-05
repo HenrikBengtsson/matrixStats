@@ -33,7 +33,7 @@
   the "contigous" 'xx' vector once.  This is more likely to create
   cache hits.
 */
-double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx) {
+double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna, R_xlen_t by, double *xx) {
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
   LDOUBLE sum;
@@ -48,10 +48,10 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int
   /* Find the maximum value */
   iMax = 0;
   if (by) {
-    idx = R_INDEX_OP(((idxs == NULL) ? (0) : idxs[0]), *, by);
-    xMax = R_INDEX_GET(x, idx, NA_REAL);
+    idx = R_INDEX_OP(((idxs == NULL) ? (0) : idxs[0]), *, by, idxsHasNA, 0);
+    xMax = R_INDEX_GET(x, idx, NA_REAL, idxsHasNA);
   } else {
-    xMax = R_INDEX_GET(x, ((idxs == NULL) ? (0) : idxs[0]), NA_REAL);
+    xMax = R_INDEX_GET(x, ((idxs == NULL) ? (0) : idxs[0]), NA_REAL, idxsHasNA);
   }
   xMaxIsNA = ISNAN(xMax);
 
@@ -73,8 +73,8 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int
     xx[0] = xMax;
     for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      idx = R_INDEX_OP(((idxs == NULL) ? (ii) : idxs[ii]), *, by);
-      xii = R_INDEX_GET(x, idx, NA_REAL);
+      idx = R_INDEX_OP(((idxs == NULL) ? (ii) : idxs[ii]), *, by, idxsHasNA, 0);
+      xii = R_INDEX_GET(x, idx, NA_REAL, idxsHasNA);
 
       /* Copy */
       xx[ii] = xii;
@@ -99,7 +99,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int
   } else {
     for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL);
+      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL, idxsHasNA);
 
       if (hasna && ISNAN(xii)) {
         if (narm) {
@@ -161,7 +161,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int
       }
 
       /* Get the ii:th value */
-      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL);
+      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL, idxsHasNA);
 
       if (!hasna2 || !ISNAN(xii)) {
         sum += exp(xii - xMax);
