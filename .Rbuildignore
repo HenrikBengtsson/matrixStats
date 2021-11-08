@@ -30,6 +30,7 @@ revdep
 ^covr-utils.R$
 ^[.]covr[.]R$
 ^[.]covr[.]rds$
+scratch.R
 
 #----------------------------
 # R related
@@ -51,3 +52,5 @@ revdep
 ^last[.]dump_.*
 ^docs
 ^pkgdown
+^.*\.Rproj$
+^\.Rproj\.user$
