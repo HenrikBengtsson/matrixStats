@@ -20,3 +20,6 @@ revdep/cache
 revdep/checks
 revdep/library
 docs
+.Rproj.user
+scratch.R
+

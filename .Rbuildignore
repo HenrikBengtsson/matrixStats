@@ -51,3 +51,5 @@ revdep
 ^last[.]dump_.*
 ^docs
 ^pkgdown
+^.*\.Rproj$
+^\.Rproj\.user$

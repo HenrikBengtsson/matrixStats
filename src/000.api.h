@@ -9,7 +9,7 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 SEXP colOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useNames);
 SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA, SEXP useNames);
 SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA);
-SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences);
+SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames);
 SEXP indexByRow(SEXP dim, SEXP idxs);
 SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA);
 SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine);

@@ -26,6 +26,37 @@ void setNames(SEXP vec/*Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_
   }
 }
 
+void setNamesDiff(SEXP vec/* Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_t length_ans, R_xlen_t *subscripts){
+  
+  /* For some reason, base::diff() actually sets an empty name attribute
+  when the argument is a name character of length zero, so
+  we skip the special case handled in setNames()
+  */
+  
+  SEXP ansNames = PROTECT(allocVector(STRSXP, length_ans));
+  R_xlen_t j = 0;
+  if (subscripts == NULL) {
+    for (R_xlen_t i = (length - length_ans); i < length; i++) {
+      SEXP eltElement = STRING_ELT(namesVec, i);
+      SET_STRING_ELT(ansNames, j++, eltElement);
+    }
+  } else {
+    R_xlen_t thisIdx;            
+    for (R_xlen_t i = (length - length_ans); i < length; i++) {
+      thisIdx = subscripts[i];
+      if (thisIdx == NA_R_XLEN_T) {                                                   
+        SET_STRING_ELT(ansNames, j++, NA_STRING);                                       
+      }                                                                             
+      else {                                                                  
+        SEXP eltElement = STRING_ELT(namesVec, thisIdx);                  
+        SET_STRING_ELT(ansNames, j++, eltElement);
+      }
+    }
+  }
+  namesgets(vec, ansNames);
+  UNPROTECT(1); 
+}
+  
 
 void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
                  R_xlen_t *crows, R_xlen_t ncols, R_xlen_t *ccols, Rboolean reverseDimnames) {

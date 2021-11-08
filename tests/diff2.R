@@ -1,5 +1,11 @@
 library("matrixStats")
 
+diff2_R <- function(..., useNames = NA){
+  res <- diff(...)
+  if (is.na(useNames) || !useNames) names(res) <- NULL
+  res
+}
+
 set.seed(0x42)
 
 for (mode in c("integer", "double")) {
@@ -8,19 +14,25 @@ for (mode in c("integer", "double")) {
   str(x)
 
   for (has_na in c(FALSE, TRUE)) {
-    if (has_na) {
-      x[sample(1:10, size = 3)] <- NA
-    }
-
-    for (l in 1:3) {
-      for (d in 1:4) {
-        cat(sprintf("%s: NAs = %s, lag = %d, differences = %d\n",
-                    mode, has_na, l, d))
-        y0 <- diff(x, lag = l, differences = d)
-        str(y0)
-        y1 <- diff2(x, lag = l, differences = d)
-        str(y1)
-        stopifnot(identical(y1, y0))
+    for (setNames in c(TRUE, FALSE)) {
+      for (useNames in c(NA, TRUE, FALSE)) {
+        if (has_na) {
+          x[sample(1:10, size = 3)] <- NA
+        }
+        if (setNames) {
+          names(x) <- LETTERS[1:10]
+        }
+        for (l in 1:3) {
+          for (d in 1:4) {
+            cat(sprintf("%s: NAs = %s, lag = %d, differences = %d, setNames = %d, useNames = %d\n",
+                        mode, has_na, l, d, setNames, useNames))
+            y0 <- diff2_R(x, lag = l, differences = d, useNames = useNames)
+            str(y0)
+            y1 <- diff2(x, lag = l, differences = d, useNames = useNames)
+            str(y1)
+            stopifnot(identical(y1, y0))
+          }
+        }  
       }
     }
   } # for (has_na ...)
