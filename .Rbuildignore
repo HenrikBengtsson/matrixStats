@@ -30,6 +30,7 @@ revdep
 ^covr-utils.R$
 ^[.]covr[.]R$
 ^[.]covr[.]rds$
+scratch.R
 
 #----------------------------
 # R related
