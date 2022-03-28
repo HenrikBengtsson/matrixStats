@@ -1,7 +1,12 @@
 Package: matrixStats
 ====================
 
-Version: 0.61.0-9002 [2022-03-28]
+Version: 0.61.0-9003 [2022-03-28]
+
+NEW FEATURES:
+
+ * colCummins(), colCummaxs(), rowCummins(), and rowCummaxs() now support
+   also logical input.
 
 MISCELLANEOUS:
 
