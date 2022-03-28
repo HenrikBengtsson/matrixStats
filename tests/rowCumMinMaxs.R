@@ -38,6 +38,7 @@ for (mode in c("logical", "integer", "double")) {
     cat("add_na = ", add_na, "\n", sep = "")
 
     x <- matrix(1:50, nrow = 10L, ncol = 5L)
+    diag(x) <- 0
     if (add_na) {
       x[3:7, c(2, 4)] <- NA_real_
     }
