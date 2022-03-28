@@ -85,9 +85,9 @@ double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, 
     }
 
     /* 2flow or underflow? */
-    if (y > DOUBLE_XMAX) {
+    if (y > DBL_MAX) {
       y = R_PosInf;
-    } else if (y < -DOUBLE_XMAX) {
+    } else if (y < -DBL_MAX) {
       y = R_NegInf;
     }
   }

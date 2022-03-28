@@ -83,9 +83,9 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
 #endif
     } /* for (jj ...) */
 
-    if (sum > DOUBLE_XMAX) {
+    if (sum > DBL_MAX) {
       avg = R_PosInf;
-    } else if (sum < -DOUBLE_XMAX) {
+    } else if (sum < -DBL_MAX) {
       avg = R_NegInf;
     } else {
       avg = sum / count;

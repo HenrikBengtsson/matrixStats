@@ -94,9 +94,9 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
   #endif
     } /* for (jj ...) */
 
-    if (sum > DOUBLE_XMAX) {
+    if (sum > DBL_MAX) {
       ans[ii] = R_PosInf;
-    } else if (sum < -DOUBLE_XMAX) {
+    } else if (sum < -DBL_MAX) {
       ans[ii] = R_NegInf;
     } else {
       ans[ii] = (double)sum;

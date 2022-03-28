@@ -57,9 +57,9 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   case 2: /* numeric */
     PROTECT(ans = allocVector(REALSXP, 1));
-    if (sum > DOUBLE_XMAX) {
+    if (sum > DBL_MAX) {
       REAL(ans)[0] = R_PosInf;
-    } else if (sum < -DOUBLE_XMAX) {
+    } else if (sum < -DBL_MAX) {
       REAL(ans)[0] = R_NegInf;
     } else {
       REAL(ans)[0] = sum;
