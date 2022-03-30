@@ -24,8 +24,6 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = asR_xlen_t(dim, 0);
   ncol = asR_xlen_t(dim, 1);
-  Rprintf("nrow: %d\n", nrow);
-  Rprintf("ncol: %d\n", ncol);
 
   /* Argument 'constant': */
   if (!isNumeric(constant))
@@ -44,8 +42,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   int colsHasNA;
   R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
   R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
-  Rprintf("Value of rowsHasNA: %d\n", rowsHasNA);
-  Rprintf("Value of colsHasNA: %d\n", colsHasNA);
+
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
