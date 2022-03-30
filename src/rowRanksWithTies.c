@@ -52,8 +52,10 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
   }
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
@@ -67,7 +69,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          rowRanksWithTies_Average_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          rowRanksWithTies_Average_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, REAL(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -78,7 +80,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 2:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_First_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_First_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -89,7 +91,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Last_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Last_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -101,7 +103,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
         case 4:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           GetRNGstate();
-          rowRanksWithTies_Random_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Random_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           PutRNGstate();
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
@@ -113,7 +115,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 5:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Max_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Max_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -124,7 +126,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 6:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Min_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Min_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -135,7 +137,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 7:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Dense_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Dense_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -149,7 +151,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          colRanksWithTies_Average_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          colRanksWithTies_Average_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, REAL(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -160,7 +162,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 2:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_First_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_First_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -171,7 +173,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Last_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Last_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -183,7 +185,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
         case 4:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           GetRNGstate();
-          colRanksWithTies_Random_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Random_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           PutRNGstate();
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
@@ -195,7 +197,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 5:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Max_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Max_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -206,7 +208,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 6:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Min_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Min_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -217,7 +219,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 7:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Dense_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Dense_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -233,7 +235,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          rowRanksWithTies_Average_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          rowRanksWithTies_Average_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, REAL(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -244,7 +246,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 2:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_First_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_First_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -255,7 +257,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Last_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Last_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -267,7 +269,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
         case 4:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           GetRNGstate();
-          rowRanksWithTies_Random_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Random_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           PutRNGstate();
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
@@ -279,7 +281,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 5:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Max_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Max_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -290,7 +292,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 6:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Min_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Min_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -301,7 +303,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 7:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          rowRanksWithTies_Dense_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          rowRanksWithTies_Dense_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -315,7 +317,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-          colRanksWithTies_Average_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, REAL(ans));
+          colRanksWithTies_Average_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, REAL(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -326,7 +328,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 2:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_First_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_First_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -337,7 +339,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 3:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Last_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Last_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -349,7 +351,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
         case 4:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           GetRNGstate();
-          colRanksWithTies_Random_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Random_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           PutRNGstate();
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
@@ -361,7 +363,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 5:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Max_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Max_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -372,7 +374,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 6:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Min_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Min_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {
@@ -383,7 +385,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           break;
         case 7:
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-          colRanksWithTies_Dense_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, INTEGER(ans));
+          colRanksWithTies_Dense_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, INTEGER(ans));
           if (usenames != NA_LOGICAL && usenames){
             SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
             if (dimnames != R_NilValue) {

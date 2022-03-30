@@ -15,7 +15,8 @@
 
 
 void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
                         int narm, int hasna, int byrow, double *ans) {
   R_xlen_t ii, jj, idx;
   R_xlen_t *colOffset;
@@ -35,7 +36,7 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
     colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
     if (byrow) {
       for (jj=0; jj < ncols; jj++)
-        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow);
+        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow, colsHasNA, 0);
     } else {
       for (jj=0; jj < ncols; jj++)
         colOffset[jj] = cols[jj];
@@ -45,10 +46,10 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
   for (ii=0; ii < nrows; ii++) {
     R_xlen_t rowIdx;
     if (rows == NULL) {
-      rowIdx = byrow ? ii : R_INDEX_OP(ii, *, ncol);
+      rowIdx = byrow ? ii : R_INDEX_OP(ii, *, ncol, 0, 0);
     }
     else {
-      rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol);
+      rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol, rowsHasNA, 0);
     }
 
     sum = 0.0;
@@ -56,13 +57,13 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
 
     for (jj=0; jj < ncols; jj++) {
       if (colOffset == NULL) {
-        if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow);
-        else idx = R_INDEX_OP(rowIdx, +, jj);
+        if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow, rowsHasNA, 0);
+        else idx = R_INDEX_OP(rowIdx, +, jj, rowsHasNA, 0);
       }
       else {
-        idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+        idx = R_INDEX_OP(rowIdx, +, colOffset[jj], rowsHasNA, colsHasNA);
       }
-      value = R_INDEX_GET(x, idx, X_NA);
+      value = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
         sum += (LDOUBLE)value;

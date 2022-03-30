@@ -3,7 +3,7 @@
   void rowMedians_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int narm, int hasna, int byrow, double *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int narm, int hasna, int byrow, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -29,7 +29,8 @@
 
 
 void CONCAT_MACROS(rowMedians, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
                         int narm, int hasna, int byrow, double *ans) {
   int isOdd;
   R_xlen_t ii, jj, kk, qq, idx;
@@ -64,7 +65,7 @@ void CONCAT_MACROS(rowMedians, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
     // HJ begin
     if (byrow) {
       for (jj=0; jj < ncols; jj++)
-        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow);
+        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow, colsHasNA, 0);
     } else {
       for (jj=0; jj < ncols; jj++)
         colOffset[jj] = cols[jj];
@@ -77,20 +78,20 @@ void CONCAT_MACROS(rowMedians, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
       //HJ
       R_xlen_t rowIdx;
       if (rows == NULL) {
-        rowIdx = byrow ? ii : R_INDEX_OP(ii, *, ncol);
+        rowIdx = byrow ? ii : R_INDEX_OP(ii, *, ncol, 0, 0);
       } else {
-        rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol);
+        rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol, rowsHasNA, 0);
       }
 
       kk = 0;  /* The index of the last non-NA value detected */
       for (jj=0; jj < ncols; jj++) {
         if (colOffset == NULL) {
-          if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow);
-          else idx = R_INDEX_OP(rowIdx, +, jj);
+          if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow, rowsHasNA, 0);
+          else idx = R_INDEX_OP(rowIdx, +, jj, rowsHasNA, 0);
         } else {
-          idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
+          idx = R_INDEX_OP(rowIdx, +, colOffset[jj], rowsHasNA, colsHasNA);
         }
-        value = R_INDEX_GET(x, idx, X_NA); //HJ
+        value = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA); //HJ
 
         if (X_ISNAN(value)) {
           if (narm == FALSE) {

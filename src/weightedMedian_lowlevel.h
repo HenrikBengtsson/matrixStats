@@ -7,8 +7,8 @@
 /*
 Native API (dynamically generated via macros):
  
-double weightedMedian_int(int *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
-double weightedMedian_dbl(double *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties)
+double weightedMedian_int(int *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA int narm, int interpolate, int ties)
+double weightedMedian_dbl(double *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA int narm, int interpolate, int ties)
 */
 
 #define X_TYPE 'i'
