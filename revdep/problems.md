@@ -1487,38 +1487,6 @@ Run `revdep_details(, "clusterExperiment")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking tests ...
-    ```
-      Running ‘testthat_a-c.R’
-     ERROR
-    Running the tests in ‘tests/testthat_a-c.R’ failed.
-    Last 50 lines of output:
-      Note: Not all of the methods requested in 'reduceMethod' have been calculated. Will calculate all the methods requested (any pre-existing values -- filtering statistics or dimensionality reductions -- with these names will be recalculated and overwritten): PCA.
-      Found more than one class "Annotated" in cache; using the first, from namespace 'S4Vectors'
-      Also defined by 'RNeXML'
-      Note: Not all of the methods requested in 'reduceMethod' have been calculated. Will calculate all the methods requested (any pre-existing values -- filtering statistics or dimensionality reductions -- with these names will be recalculated and overwritten): var.
-      Note: Not all of the methods requested in 'reduceMethod' have been calculated. Will calculate all the methods requested (any pre-existing values -- filtering statistics or dimensionality reductions -- with these names will be recalculated and overwritten): var.
-      nrow: 153
-    ...
-      ── Failure (test-clusterMany.R:304:5): `clusterMany` works changing parameters ──
-      `... <- NULL` produced output.
-      ── Failure (test-clusterSingle.R:428:6): `clusterSingle` works with filtering ──
-      `clusterSingle(...)` produced output.
-      ── Failure (test-constructor.R:431:2): assigning unassigned samples works as promised ──
-      `assignUnassigned(ceSim, reduceMethod = "mad")` produced output.
-      
-      [ FAIL 4 | WARN 0 | SKIP 0 | PASS 832 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-## Newly fixed
-
-*   R CMD check timed out
-    
-
 ## In both
 
 *   checking contents of ‘data’ directory ... WARNING
@@ -1819,24 +1787,49 @@ Run `revdep_details(, "conclus")` for more info
     Running examples in ‘conclus-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: retrieveFromGEO
-    > ### Title: retrieveFromGEO
-    > ### Aliases: retrieveFromGEO
+    > ### Name: normaliseCountMatrix,scRNAseq-method
+    > ### Title: normaliseCountMatrix
+    > ### Aliases: normaliseCountMatrix,scRNAseq-method normaliseCountMatrix
     > 
     > ### ** Examples
     > 
-    > outputDirectory <- "./YourOutputDirectory"
+    > ## Load the count matrix
     ...
-    > 
-    > result <- retrieveFromGEO(matrixURL, countMatrixPath, species,
-    + seriesMatrixName=seriesMatrix)
-    Warning in FUN(X[[i]], ...) :
-      'rnames' exact pattern
-        'GSE96982-GPL19057_series_matrix.txt'
-      is not unique; use 'bfcquery()' to see matches.
-    Error in bfcrpath(bfc, rnames = name) : not all 'rnames' found or unique.
-    Calls: retrieveFromGEO ... .retrieveColMetaDataFromSeries -> .checkCache -> bfcrpath -> bfcrpath
+    Peer's Certificate issuer is not recognized.
+    # Attempt 5/5 # Connection to Ensembl ... 
+    Ensembl site unresponsive, trying uswest mirror
+    Error in curl::curl_fetch_memory(url, handle = handle) : 
+      Peer's Certificate issuer is not recognized.
+    Peer's Certificate issuer is not recognized.
+    Error in .tryUseMart(biomart = "ensembl", dataset) : 
+      Peer's Certificate issuer is not recognized.
+    Calls: normaliseCountMatrix ... normaliseCountMatrix -> .annotateGenes -> .defineMartVar -> .tryUseMart
     Execution halted
+    ```
+
+*   checking tests ...
+    ```
+      Running ‘test-all.R’
+     ERROR
+    Running the tests in ‘tests/test-all.R’ failed.
+    Complete output:
+      > library("testthat")
+      > library("conclus")
+      Setting options('download.file.method.GEOquery'='auto')
+      Setting options('GEOquery.inmemory.gpl'=FALSE)
+      
+      > test_check("conclus")
+    ...
+          ▆
+       1. ├─conclus::normaliseCountMatrix(...) at test_scRNAseq-methods.R:55:0
+       2. └─conclus::normaliseCountMatrix(...)
+       3.   └─conclus:::.annotateGenes(...)
+       4.     └─conclus:::.defineMartVar(species)
+       5.       └─conclus:::.tryUseMart(biomart = "ensembl", dataset)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 81 ]
+      Error: Test failures
+      Execution halted
     ```
 
 *   checking re-building of vignette outputs ... WARNING
@@ -1844,17 +1837,9 @@ Run `revdep_details(, "conclus")` for more info
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘conclus_vignette.Rmd’ using rmarkdown
-    trying URL 'https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4923493&format=file&file=GSM4923493%5FE11%5F5%5Frawcounts%5Fmatrix%2Etsv%2Egz'
-    Content type 'application/octet-stream' length 2417248 bytes (2.3 MB)
-    ==================================================
-    downloaded 2.3 MB
-    
-    trying URL 'https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSM4923493&format=file&file=GSM4923493%5FMetadata%5FE11%5F5%2Etxt%2Egz'
-    Content type 'application/octet-stream' length 10997 bytes (10 KB)
-    ...
-    
+    Quitting from lines 177-214 (conclus_vignette.Rmd) 
     Error: processing vignette 'conclus_vignette.Rmd' failed with diagnostics:
-    LaTeX failed to compile /c4/home/henrik/repositories/matrixStats/revdep/checks/conclus/new/conclus.Rcheck/vign_test/conclus/vignettes/conclus_vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See conclus_vignette.log for more info.
+    not all 'rnames' found or unique.
     --- failed re-building ‘conclus_vignette.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -2165,7 +2150,7 @@ Run `revdep_details(, "crossmeta")` for more info
 
 </details>
 
-## In both
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
@@ -2191,6 +2176,8 @@ Run `revdep_details(, "crossmeta")` for more info
     Calls: es_meta ... FUN -> get_es -> lapply -> FUN -> [ -> [.data.frame
     Execution halted
     ```
+
+## In both
 
 *   checking Rd \usage sections ... WARNING
     ```
@@ -2241,47 +2228,6 @@ Run `revdep_details(, "cSEM")` for more info
     ```
     Namespace in Imports field not imported from: ‘Rdpack’
       All declared Imports should be used.
-    ```
-
-# cvCovEst
-
-<details>
-
-* Version: 1.0.2
-* GitHub: https://github.com/PhilBoileau/cvCovEst
-* Source code: https://github.com/cran/cvCovEst
-* Date/Publication: 2022-01-19 22:12:45 UTC
-* Number of recursive dependencies: 124
-
-Run `revdep_details(, "cvCovEst")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(cvCovEst)
-      cvCovEst v1.0.2: Cross-Validated Covariance Matrix Estimation
-      > 
-      > test_check("cvCovEst")
-    ...
-      Value of colsHasNA: 0
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 144 ]
-      
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Failure (test-foldFunctions.R:21:3): Estimators not throw error ─────────────
-      `cvFrobeniusLoss(...)` produced output.
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 144 ]
-      Error: Test failures
-      Execution halted
     ```
 
 # cytomapper
@@ -2708,31 +2654,6 @@ Run `revdep_details(, "DMCFB")` for more info
 </details>
 
 ## In both
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      DMCFB is a pipeline for identifying differentially methylated 
-          cytosines using a Bayesian functional regression model in bisulfite
-          sequencing data. By using a functional regression data model, it tries to
-          capture position-specific, group-specific and other covariates-specific
-          methylation patterns as well as spatial correlation patterns and unknown
-          underlying models of methylation data. It is robust and flexible with
-    ...
-       11.               └─BiocParallel:::.bpstart_makeCluster(cargs)
-       12.                 ├─base::do.call(parallel::makeCluster, cargs)
-       13.                 └─parallel `<fn>`(...)
-       14.                   └─snow::makeSOCKcluster(names = spec, ...)
-       15.                     └─snow::newSOCKnode(names[[i]], options = options, rank = i)
-       16.                       └─base::socketConnection(...)
-      
-      [ FAIL 1 | WARN 1 | SKIP 0 | PASS 0 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -5769,36 +5690,6 @@ Run `revdep_details(, "moanin")` for more info
     Unknown package ‘KEGGprofile’ in Rd xrefs
     ```
 
-# MoEClust
-
-<details>
-
-* Version: 1.5.0
-* GitHub: https://github.com/Keefe-Murphy/MoEClust
-* Source code: https://github.com/cran/MoEClust
-* Date/Publication: 2022-03-28 14:50:09 UTC
-* Number of recursive dependencies: 77
-
-Run `revdep_details(, "MoEClust")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... ERROR
-    ```
-    Packages required but not available:
-      'lattice', 'mclust', 'mvnfast', 'nnet', 'vcd'
-    
-    Packages suggested but not available for checking:
-      'cluster', 'clustMD', 'geometry', 'knitr', 'rmarkdown', 'snow'
-    
-    VignetteBuilder package required for checking but not installed: ‘knitr’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
-    ```
-
 # monocle
 
 <details>
@@ -6723,12 +6614,12 @@ Run `revdep_details(, "Pigengene")` for more info
     > ### ** Examples
     > 
     ...
+    +         outputDb=list(org.Hs.eg.db,org.Mm.eg.db), verbose=1)
+    Mapping to:  org.Hs.eg.db-SYMBOL 
     'select()' returned 1:1 mapping between keys and columns
-    Mapping to:  org.Hs.eg.db-ENTREZID 
-    'select()' returned 1:1 mapping between keys and columns
+    Loading required package: biomaRt
     Warning: Ensembl will soon enforce the use of https.
     Ensure the 'host' argument includes "https://"
-    Ensembl site unresponsive, trying www mirror
     Error in .readFromCache(bfc, hash) : Multiple cache results found.
     Please clear your cache by running biomartCacheClear()
     Calls: gene.mapping ... gene.mapping -> hu.mouse -> <Anonymous> -> .readFromCache
@@ -6920,15 +6811,40 @@ Run `revdep_details(, "PrecisionTrialDrawer")` for more info
     > 
     > # Load the panel example
     ...
-    Connecting to ensembl biomart...
     Warning: Ensembl will soon enforce the use of https.
     Ensure the 'host' argument includes "https://"
     Ensembl site unresponsive, trying uswest mirror
+    Ensembl site unresponsive, trying asia mirror
     Warning: Ensembl will soon enforce the use of https.
     Ensure the 'host' argument includes "https://"
-    Error in .readFromCache(bfc, hash) : Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    Calls: newCancerPanel ... .annotateGeneLength -> <Anonymous> -> .readFromCache
+    Ensembl site unresponsive, trying www mirror
+    Error: Your query has been redirected to http://status.ensembl.org indicating this Ensembl service is currently unavailable.
+    Look at ?useEnsembl for details on how to try a mirror site.
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘PrecisionTrialDrawer.Rmd’ using rmarkdown
+    Creating a generic function for 'toJSON' from package 'jsonlite' in package 'googleVis'
+    Warning: Ensembl will soon enforce the use of https.
+    Ensure the 'host' argument includes "https://"
+    Warning: Ensembl will soon enforce the use of https.
+    Ensure the 'host' argument includes "https://"
+    Warning in if (BioMartVersion == "\n" | BioMartVersion == "") { :
+      the condition has length > 1 and only the first element will be used
+    ...
+    Quitting from lines 165-166 (PrecisionTrialDrawer.Rmd) 
+    Error: processing vignette 'PrecisionTrialDrawer.Rmd' failed with diagnostics:
+    invalid 'text' argument
+    --- failed re-building ‘PrecisionTrialDrawer.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘PrecisionTrialDrawer.Rmd’
+    
+    Error: Vignette re-building failed.
     Execution halted
     ```
 
@@ -7353,12 +7269,12 @@ Run `revdep_details(, "RNAmodR")` for more info
     --- re-building ‘RNAmodR.Rmd’ using rmarkdown
     Testing for internet connectivity via https_proxy... success!
     see ?RNAmodR.Data and browseVignettes('RNAmodR.Data') for documentation
-    downloading 1 resources
-    retrieving 1 resource
     loading from cache
     see ?RNAmodR.Data and browseVignettes('RNAmodR.Data') for documentation
-    downloading 2 resources
-    retrieving 2 resources
+    loading from cache
+    see ?RNAmodR.Data and browseVignettes('RNAmodR.Data') for documentation
+    loading from cache
+    see ?RNAmodR.Data and browseVignettes('RNAmodR.Data') for documentation
     ...
     --- failed re-building ‘RNAmodR.Rmd’
     
@@ -7867,20 +7783,23 @@ Run `revdep_details(, "sesame")` for more info
     Running examples in ‘sesame-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: attachManifest
-    > ### Title: Annotate a data.frame using manifest
-    > ### Aliases: attachManifest
+    > ### Name: qualityRank
+    > ### Title: This function looks at public data of similar nature e.g.,
+    > ###   tissue, FFPE vs non-FFPE, etc to evaluate the quality of the target
+    > ###   data quality
+    > ### Aliases: qualityRank
     > 
     > ### ** Examples
-    > 
-    > df = data.frame(Probe_ID = c("cg00101675_BC21", "cg00116289_BC21"))
-    > attachManifest(df)
-    Error in stopAndCache(title) : 
-    | File MM285.mm10.manifest needs to be cached to be used in sesame.
-    | Please make sure you have updated ExperimentHub and try
-    | > sesameDataCacheAll()
-    | to retrieve and cache needed sesame data.
-    Calls: attachManifest ... capture.output -> withVisible -> .sesameDataGet -> stopAndCache
+    ...
+    [1] TRUE
+    > sdf <- sesameDataGet('EPIC.1.SigDF')
+    > ranks <- qualityRank(sdf)
+    Warning: file ‘533eb2e2fc4_3720’ has magic number '<h1>I'
+      Use of save versions prior to 2 is deprecated
+    Error: failed to load resource
+      name: EH3684
+      title: detection.stats
+      reason: error in evaluating the argument 'x' in selecting a method for function 'get': bad restore file magic number (file may be corrupted) -- no data loaded
     Execution halted
     ```
 
@@ -7924,7 +7843,7 @@ Run `revdep_details(, "sesame")` for more info
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
 * Date/Publication: 2022-01-14 18:32:42 UTC
-* Number of recursive dependencies: 257
+* Number of recursive dependencies: 254
 
 Run `revdep_details(, "Seurat")` for more info
 
@@ -8493,7 +8412,7 @@ Run `revdep_details(, "sparrow")` for more info
       Component 1: Component 5: target is logical, current is character
       ...
       
-      [ FAIL 1 | WARN 0 | SKIP 1 | PASS 1493 ]
+      [ FAIL 1 | WARN 0 | SKIP 1 | PASS 1485 ]
       Error: Test failures
       Execution halted
     ```
@@ -8711,7 +8630,7 @@ Run `revdep_details(, "STROMA4")` for more info
 
 </details>
 
-## Newly broken
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
@@ -8731,7 +8650,7 @@ Run `revdep_details(, "STROMA4")` for more info
     ----206 out of 297 total genes matching for D.stroma.property----
     ----1064 out of 1105 total genes matching for MSL.property----
     Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
-      port 11297 cannot be opened
+      port 11412 cannot be opened
     Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
       cannot open the connection
     Calls: assign.properties ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
@@ -9013,7 +8932,7 @@ Run `revdep_details(, "tenXplore")` for more info
 * GitHub: https://github.com/ziyili20/TOAST
 * Source code: https://github.com/cran/TOAST
 * Date/Publication: 2021-05-31
-* Number of recursive dependencies: 59
+* Number of recursive dependencies: 98
 
 Run `revdep_details(, "TOAST")` for more info
 
