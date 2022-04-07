@@ -38,7 +38,8 @@
 #endif
 
 
-void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs,
+void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
+                        R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA,
                         R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans) {
   R_xlen_t ii, tt, uu;
   X_C_TYPE xvalue1, xvalue2;
@@ -50,8 +51,8 @@ void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idx
   /* Special case (difference == 1) */
   if (differences == 1) {
     for (ii=0; ii < nans; ii++) {
-      xvalue1 = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
-      xvalue2 = R_INDEX_GET(x, ((idxs == NULL) ? (ii+lag) : idxs[ii+lag]), X_NA);
+      xvalue1 = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
+      xvalue2 = R_INDEX_GET(x, ((idxs == NULL) ? (ii+lag) : idxs[ii+lag]), X_NA, idxsHasNA);
       ans[ii] = X_DIFF(xvalue2, xvalue1);
     }
   } else {
@@ -60,8 +61,8 @@ void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idx
 
     /* (a) First order of differences */
     for (ii=0; ii < nidxs-lag; ii++) {
-      xvalue1 = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
-      xvalue2 = R_INDEX_GET(x, ((idxs == NULL) ? (ii+lag) : idxs[ii+lag]), X_NA);
+      xvalue1 = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
+      xvalue2 = R_INDEX_GET(x, ((idxs == NULL) ? (ii+lag) : idxs[ii+lag]), X_NA, idxsHasNA);
       tmp[ii] = X_DIFF(xvalue2, xvalue1);
     }
     nidxs -= lag;

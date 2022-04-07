@@ -3,7 +3,7 @@
   double weightedMedian_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties
+  X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int interpolate, int ties
 
  Copyright: Henrik Bengtsson, 2014
  ***********************************************************************/
@@ -17,7 +17,9 @@
 #include <R_ext/Error.h>
 
 
-double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int interpolate, int ties) {
+double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, double *w,
+                     R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA,
+                     int narm, int interpolate, int ties) {
   X_C_TYPE value;
   X_C_TYPE *xtmp;
   double weight, res;
@@ -39,7 +41,11 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
        that the signals is missing and should be dropped */
     wtmp[ii] = 0;
 
-    weight = R_INDEX_GET(w, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL);
+    /*
+     * Unlike the indices, the weights are not pre-checked for NA values in any way,
+     * meaning that we must pretend that the weights have NA-values in them
+     */
+    weight = R_INDEX_GET(w, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL, 1);
     if (ISNAN(weight)) {
       if (!narm) {
         Free(wtmp);
@@ -55,9 +61,9 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
         /* Assume non-infinite weight by default */
         wtmp[jj] = 0;
 
-        weight = R_INDEX_GET(w, ((idxs == NULL) ? (jj) : idxs[jj]), NA_REAL);
+        weight = R_INDEX_GET(w, ((idxs == NULL) ? (jj) : idxs[jj]), NA_REAL, 1);
         if (isinf(weight)) {
-          value = R_INDEX_GET(x, ((idxs == NULL) ? (jj) : idxs[jj]), X_NA);
+          value = R_INDEX_GET(x, ((idxs == NULL) ? (jj) : idxs[jj]), X_NA, idxsHasNA);
           if (X_ISNAN(value)) {
             if (!narm) {
               Free(wtmp);
@@ -79,7 +85,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
       break;
     } else {
       /* A data points with a finite positive weight */
-      value = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
+      value = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
       if (X_ISNAN(value)) {
         if (!narm) {
           Free(wtmp);

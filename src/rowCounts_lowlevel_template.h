@@ -23,7 +23,8 @@
 
 
 void CONCAT_MACROS(rowCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
                         X_C_TYPE value, int what, int narm, int hasna, int *ans) {
   R_xlen_t ii, jj;
   R_xlen_t colBegin, idx;
@@ -36,12 +37,12 @@ void CONCAT_MACROS(rowCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
         for (ii=0; ii < nrows; ii++) {
           /* Skip? */
           if (ans[ii]) {
-            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
             if (!X_ISNAN(xvalue)) {
               ans[ii] = 0;
               /* Found another value! Skip from now on */
@@ -51,12 +52,12 @@ void CONCAT_MACROS(rowCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
         for (ii=0; ii < nrows; ii++) {
           /* Skip? */
           if (ans[ii]) {
-            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
             if (xvalue == value) {
             } else if (narm && X_ISNAN(xvalue)) {
               /* Skip */
@@ -81,12 +82,12 @@ void CONCAT_MACROS(rowCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
         for (ii=0; ii < nrows; ii++) {
           /* Skip? */
           if (!ans[ii]) {
-            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
             if (X_ISNAN(xvalue)) {
               ans[ii] = 1;
               /* Found value! Skip from now on */
@@ -96,12 +97,12 @@ void CONCAT_MACROS(rowCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
         for (ii=0; ii < nrows; ii++) {
           /* Skip? */
           if (ans[ii] == 0 || ans[ii] == NA_INTEGER) {
-            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
             if (xvalue == value) {
               /* Found value! Skip from now on */
               ans[ii] = 1;
@@ -125,23 +126,23 @@ void CONCAT_MACROS(rowCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          xvalue = R_INDEX_GET(x, idx, X_NA);
+          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+          xvalue = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
           if (X_ISNAN(xvalue)) ans[ii] = ans[ii] + 1;
         }
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
         for (ii=0; ii < nrows; ii++) {
           count = ans[ii];
           /* Nothing more to do on this row? */
           if (count == NA_INTEGER) continue;
 
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          xvalue = R_INDEX_GET(x, idx, X_NA);
+          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+          xvalue = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
           if (xvalue == value) {
             ans[ii] = count + 1;
           } else {

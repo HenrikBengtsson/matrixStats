@@ -26,7 +26,6 @@ rowCummaxs_R <- function(x, ..., useNames = NA) {
   dimnames <- dimnames(x)
   if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
   
-  storage.mode(y) <- mode
   y
 }
 
@@ -34,11 +33,12 @@ rowCummaxs_R <- function(x, ..., useNames = NA) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   for (add_na in c(FALSE, TRUE)) {
     cat("add_na = ", add_na, "\n", sep = "")
 
     x <- matrix(1:50, nrow = 10L, ncol = 5L)
+    diag(x) <- 0
     if (add_na) {
       x[3:7, c(2, 4)] <- NA_real_
     }
@@ -78,7 +78,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
@@ -111,12 +111,12 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # A 1x1 matrix
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   x <- matrix(0, nrow = 1L, ncol = 1L)
   cat("mode: ", mode, "\n", sep = "")
   storage.mode(x) <- mode
   str(x)
-  
+
   # To check dimnames attribute
   dimnames <- list("a", "A")
   
@@ -147,15 +147,16 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Corner cases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   value <- 0
   storage.mode(value) <- mode
+  value0 <- if (mode == "logical") 0L else value
 
   # A 0x0 matrix
   x <- matrix(value, nrow = 0L, ncol = 0L)
   str(x)
-  r0 <- matrix(value, nrow = nrow(x), ncol = ncol(x))
+  r0 <- matrix(value0, nrow = nrow(x), ncol = ncol(x))
   r1 <- rowCummins(x)
   r2 <- t(colCummins(t(x)))
   stopifnot(all.equal(r1, r2))
@@ -178,7 +179,6 @@ for (mode in c("integer", "double")) {
       stopifnot(all.equal(r1, r2))
       stopifnot(all.equal(r1, r0))
       stopifnot(all.equal(r2, r0))
-      
       r0 <- rowCummaxs_R(x, useNames = useNames)
       r1 <- rowCummaxs(x, useNames = useNames)
       r2 <- t(colCummaxs(t(x), useNames = useNames))

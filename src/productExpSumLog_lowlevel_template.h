@@ -3,7 +3,7 @@
   double productExpSumLog_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna
+  X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -23,7 +23,9 @@
 #include "000.templates-types.h"
 
 
-double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna) {
+double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
+                     R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA,
+                     int narm, int hasna) {
   LDOUBLE y = 0.0, t;
   R_xlen_t ii;
   int isneg = 0;
@@ -31,7 +33,7 @@ double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, 
 
   /* Calculate sum(log(abs(x))) */
   for (ii = 0 ; ii < nidxs; ii++) {
-    t = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
+    t = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
     /* Missing values? */
     if (narm) {
       if (X_ISNAN(t)) continue;
@@ -85,9 +87,9 @@ double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, 
     }
 
     /* 2flow or underflow? */
-    if (y > DOUBLE_XMAX) {
+    if (y > DBL_MAX) {
       y = R_PosInf;
-    } else if (y < -DOUBLE_XMAX) {
+    } else if (y < -DBL_MAX) {
       y = R_NegInf;
     }
   }

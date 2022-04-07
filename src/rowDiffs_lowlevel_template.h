@@ -83,7 +83,10 @@
 #endif
 
 
-static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
+static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow,
+                                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
+                                        int byrow, R_xlen_t lag, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t ii, jj, ss;
   R_xlen_t idx, colBegin1, colBegin2;
   X_C_TYPE xvalue1, xvalue2;
@@ -91,27 +94,27 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t *ro
   ss = 0;
   if (byrow) {
     for (jj=0; jj < ncol_ans; jj++) {
-      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
-      colBegin2 = R_INDEX_OP(((cols == NULL) ? (jj+lag) : cols[jj+lag]), *, nrow);
+      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
+      colBegin2 = R_INDEX_OP(((cols == NULL) ? (jj+lag) : cols[jj+lag]), *, nrow, colsHasNA, 0);
 
       for (ii=0; ii < nrow_ans; ii++) {
-        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]));
-        xvalue1 = R_INDEX_GET(x, idx, X_NA);
-        idx = R_INDEX_OP(colBegin2, +, ((rows == NULL) ? (ii) : rows[ii]));
-        xvalue2 = R_INDEX_GET(x, idx, X_NA);
+        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+        xvalue1 = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
+        idx = R_INDEX_OP(colBegin2, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+        xvalue2 = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
 
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
       }
     }
   } else {
     for (jj=0; jj < ncol_ans; jj++) {
-      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow, colsHasNA, 0);
 
       for (ii=0; ii < nrow_ans; ii++) {
-        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]));
-        xvalue1 = R_INDEX_GET(x, idx, X_NA);
-        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii+lag) : rows[ii+lag]));
-        xvalue2 = R_INDEX_GET(x, idx, X_NA);
+        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]), colsHasNA, rowsHasNA);
+        xvalue1 = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
+        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii+lag) : rows[ii+lag]), colsHasNA, rowsHasNA);
+        xvalue2 = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA);
 
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
       }
@@ -121,7 +124,8 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t *ro
 
 
 void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, 
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, 
                         int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t nrow_tmp, ncol_tmp;
   X_C_TYPE *tmp = NULL;
@@ -131,7 +135,7 @@ void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 
   /* Special case (difference == 1) */
   if (differences == 1) {
-    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, cols, ncols, byrow, lag, ans, nrow_ans, ncol_ans);
+    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, rowsHasNA, cols, ncols, colsHasNA, byrow, lag, ans, nrow_ans, ncol_ans);
   } else {
     /* Allocate temporary work matrix (to hold intermediate differences) */
     if (byrow) {
@@ -144,7 +148,7 @@ void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     tmp = Calloc(nrow_tmp*ncol_tmp, X_C_TYPE);
 
     /* (a) First order of differences */
-    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, cols, ncols, byrow, lag, tmp, nrow_tmp, ncol_tmp);
+    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, rowsHasNA, cols, ncols, colsHasNA, byrow, lag, tmp, nrow_tmp, ncol_tmp);
     if (byrow) {
       ncol_tmp = ncol_tmp - lag;
     } else {
