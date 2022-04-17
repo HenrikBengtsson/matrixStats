@@ -6,6 +6,8 @@ jobs:
   R-CMD-check-with-valgrind:
     if: contains(github.ref, 'release') || contains(github.event.head_commit.message, '[valgrind]')
 
+    timeout-minutes: 90
+    
     runs-on: ubuntu-20.04
 
     name: ubuntu-20.04 (release) w/ valgrind
