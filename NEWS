@@ -1,6 +1,20 @@
 Package: matrixStats
 ====================
 
+Version: 0.62.0 [2022-04-18]
+
+NEW FEATURES:
+
+ * colCummins(), colCummaxs(), rowCummins(), and rowCummaxs() now support
+   also logical input.
+
+MISCELLANEOUS:
+
+ * Updated native code to use the C99 constant 'DBL_MAX' instead of
+   legacy S constant 'DOUBLE_XMAX', which is planned to be unsupported
+   in R (>= 4.2.0).
+ 
+
 Version: 0.61.0 [2021-09-12]
 
 NEW FEATURES:

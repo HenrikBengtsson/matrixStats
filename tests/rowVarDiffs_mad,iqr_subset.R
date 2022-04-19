@@ -27,20 +27,20 @@ for (fcn in names(fcns)) {
     for (setDimnames in c(TRUE, FALSE)) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL
+      
+      count <- 0L
       for (diff in 1:2) {
         for (rows in index_cases) {
           for (cols in index_cases) {
-            for (na.rm in c(TRUE, FALSE)) {
-              # Check names attribute
-              for (useNames in c(NA, TRUE, FALSE)) {
-                validateIndicesTestMatrix(x, rows, cols,
-                                          ftest = row_fcn, fsure = row_fcn,
-                                          na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
-                validateIndicesTestMatrix(x, rows, cols,
-                                          fcoltest = col_fcn, fsure = row_fcn,
-                                          na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
-              }
-            }
+            count <- count + 1L
+            na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+            useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+            validateIndicesTestMatrix(x, rows, cols,
+                                      ftest = row_fcn, fsure = row_fcn,
+                                      na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
+            validateIndicesTestMatrix(x, rows, cols,
+                                      fcoltest = col_fcn, fsure = row_fcn,
+                                      na.rm = na.rm, diff = diff, trim = trim, useNames = useNames)
           }
         }
       }

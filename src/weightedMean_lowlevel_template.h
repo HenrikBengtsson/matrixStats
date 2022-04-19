@@ -59,11 +59,11 @@ double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, doub
 #endif
   } /* for (i ...) */
 
-  if (wtotal > DOUBLE_XMAX || wtotal < -DOUBLE_XMAX) {
+  if (wtotal > DBL_MAX || wtotal < -DBL_MAX) {
     avg = R_NaN;
-  } else if (sum > DOUBLE_XMAX) {
+  } else if (sum > DBL_MAX) {
     avg = R_PosInf;
-  } else if (sum < -DOUBLE_XMAX) {
+  } else if (sum < -DBL_MAX) {
     avg = R_NegInf;
   } else {
     avg = sum / wtotal;

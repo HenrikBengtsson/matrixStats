@@ -52,18 +52,20 @@ for (mode in c("numeric", "integer", "logical")) {
   for (setDimnames in c(TRUE, FALSE)) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
+
+    count <- 0L
     for (rows in index_cases) {
       for (cols in index_cases) {
-        for (na.rm in c(TRUE, FALSE)) {
-          for (useNames in c(NA, TRUE, FALSE)) {
-            validateIndicesTestMatrix_w(x, w, rows, cols, 
-                                        ftest = rowWeightedMeans, fsure = rowWeightedMeans_R,
-                                        na.rm = na.rm, useNames = useNames)
-            validateIndicesTestMatrix_w(x, w, rows, cols,
-                                        fcoltest = colWeightedMeans, fsure = colWeightedMeans_R,
-                                        na.rm = na.rm, useNames = useNames)
-          }
-        }
+        count <- count + 1L
+        na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
+        useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+
+        validateIndicesTestMatrix_w(x, w, rows, cols, 
+                                    ftest = rowWeightedMeans, fsure = rowWeightedMeans_R,
+                                    na.rm = na.rm, useNames = useNames)
+        validateIndicesTestMatrix_w(x, w, rows, cols,
+                                    fcoltest = colWeightedMeans, fsure = colWeightedMeans_R,
+                                    na.rm = na.rm, useNames = useNames)
       }
     }
   }
