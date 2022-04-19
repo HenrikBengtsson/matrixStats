@@ -1,17 +1,20 @@
 Package: matrixStats
 ====================
 
-Version: 0.61.0-9003 [2022-03-29]
-
-NEW FEATURES:
-
- * colCummins(), colCummaxs(), rowCummins(), and rowCummaxs() now support
-   also logical input.
+Version: 0.62.0-9900 [2022-04-19]
 
 PERFORMANCE:
 
  * Fix parts of the performance regression introduced in 0.61.0 that was
    due to looking for missing values in row and column indices.
+
+
+Version: 0.62.0 [2022-04-18]
+
+NEW FEATURES:
+
+ * colCummins(), colCummaxs(), rowCummins(), and rowCummaxs() now support
+   also logical input.
 
 MISCELLANEOUS:
 
