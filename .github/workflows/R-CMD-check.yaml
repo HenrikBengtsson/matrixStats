@@ -19,8 +19,8 @@ jobs:
           - {os: windows-latest, r: 'oldrel'   }
           - {os: macOS-latest,   r: 'devel'    }
           - {os: macOS-latest,   r: 'release'  }
-#          - {os: macOS-latest,   r: 'oldrel'   }
-#          - {os: ubuntu-20.04,   r: 'devel'    }
+          - {os: macOS-latest,   r: 'oldrel'   }
+          - {os: ubuntu-20.04,   r: 'devel'    }
           - {os: ubuntu-20.04,   r: 'release'  }
           - {os: ubuntu-20.04,   r: 'oldrel'   }
           - {os: ubuntu-20.04,   r: 'oldrel-1' }
@@ -86,7 +86,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "note", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
