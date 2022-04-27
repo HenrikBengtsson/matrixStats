@@ -6,9 +6,9 @@
 /*
 Native API (dynamically generated via macros):
  
-void rowCounts_int(int *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, int value, int what, int narm, int hasna, int *ans)
-void rowCounts_dbl(double *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, int value, int what, int narm, int hasna, int *ans)
-void rowCounts_lgl(int *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, int value, int what, int narm, int hasna, int *ans)
+void rowCounts_int(int *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int value, int what, int narm, int hasna, int *ans)
+void rowCounts_dbl(double *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int value, int what, int narm, int hasna, int *ans)
+void rowCounts_lgl(int *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int value, int what, int narm, int hasna, int *ans)
 */
 
 #define X_TYPE 'i'

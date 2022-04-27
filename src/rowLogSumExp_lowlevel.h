@@ -5,7 +5,7 @@
 /*
 Native API (dynamically generated via macros):
  
-void rowLogSumExps_double(double *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, int narm, int hasna, R_xlen_t byrow, double *ans)
+void rowLogSumExps_double(double *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int narm, int hasna, R_xlen_t byrow, double *ans)
 */
 
 #include "rowLogSumExp_lowlevel_template.h"

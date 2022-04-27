@@ -78,8 +78,9 @@
   
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                         Y_C_TYPE *y, R_xlen_t ny,
-                        R_xlen_t *xrows, R_xlen_t nxrows, R_xlen_t *xcols, R_xlen_t nxcols,
-                        R_xlen_t *yidxs, R_xlen_t nyidxs,
+                        R_xlen_t *xrows, R_xlen_t nxrows, int xrowsHasNA,
+                        R_xlen_t *xcols, R_xlen_t nxcols, int xcolsHasNA,
+                        R_xlen_t *yidxs, R_xlen_t nyidxs, int yidxsHasNA,
                         int byrow, int commute,
                         int narm, int hasna,
                         ANS_C_TYPE *ans, R_xlen_t n) {
@@ -101,14 +102,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     if (commute) {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_narm(yvalue, xvalue);
 #if ANS_TYPE == 'i'
@@ -126,14 +127,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_no_NA(yvalue, xvalue);
 #if ANS_TYPE == 'i'
@@ -153,14 +154,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     } else {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_narm(xvalue, yvalue);
 #if ANS_TYPE == 'i'
@@ -178,14 +179,14 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_no_NA(xvalue, yvalue);
 #if ANS_TYPE == 'i'
@@ -207,13 +208,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     if (commute) {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_narm(yvalue, xvalue);
 #if ANS_TYPE == 'i'
@@ -231,13 +232,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_no_NA(yvalue, xvalue);
 #if ANS_TYPE == 'i'
@@ -257,13 +258,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     } else {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_narm(xvalue, yvalue);
 #if ANS_TYPE == 'i'
@@ -281,13 +282,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow, xcolsHasNA, 0);
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
+            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]), xcolsHasNA, xrowsHasNA);
+            xvalue = R_INDEX_GET(x, idx, X_NA, xcolsHasNA || xrowsHasNA);
 
             idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+            yvalue = R_INDEX_GET(y, idx, Y_NA, yidxsHasNA);
 
             value = FUN_no_NA(xvalue, yvalue);
 #if ANS_TYPE == 'i'

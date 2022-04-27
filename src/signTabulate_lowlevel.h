@@ -6,8 +6,8 @@
 /*
 Native API (dynamically generated via macros):
  
-void signTabulate_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, double *ans)
-void signTabulate_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, double *ans)
+void signTabulate_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, double *ans)
+void signTabulate_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, double *ans)
 */
 
 #define X_TYPE 'i'

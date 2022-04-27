@@ -23,11 +23,12 @@ SEXP anyMissing(SEXP x, SEXP idxs) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
+  int idxsHasNA;
+  R_xlen_t *cidxs = validateIndicesCheckNA(idxs, nx, 1, &nidxs, &idxsHasNA);
   
   if (nidxs == 0) return(ScalarLogical(FALSE));
   
-  if (anyMissing_internal(x, cidxs, nidxs)) {
+  if (anyMissing_internal(x, cidxs, nidxs, idxsHasNA)) {
     return(ScalarLogical(TRUE));
   }
   

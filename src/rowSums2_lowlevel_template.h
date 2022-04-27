@@ -15,7 +15,8 @@
 
 
 void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                  R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, 
+                  R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                  R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
                   int narm, int hasna, int byrow, double *ans) {
   R_xlen_t ii, jj, idx;
   R_xlen_t *colOffset;
@@ -31,6 +32,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 
   if (cols == NULL) { nocols = 1; } else { nocols = 0; }
   if (rows == NULL) { norows = 1; } else { norows = 0; }
+  
 
   /* Pre-calculate the column offsets */
   if (nocols) {
@@ -39,7 +41,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
     if (byrow) {
       for (jj=0; jj < ncols; jj++)
-        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow);
+        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow, colsHasNA, 0);
     } else {
       for (jj=0; jj < ncols; jj++)
         colOffset[jj] = cols[jj];
@@ -48,55 +50,45 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 
   for (ii=0; ii < nrows; ii++) {
     R_xlen_t rowIdx;
-    
-    if (norows) {
-      /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
-      rowIdx = byrow ? ii : ii*ncol;
+    if (norows){
+      /*
+       * Of course R_INDEX_OP(ii, *, ncol, 0, 0) could be written
+       * ii * ncol, but we prefer this style for consistency 
+       */
+      rowIdx = byrow ? ii : R_INDEX_OP(ii, *, ncol, 0, 0);
     } else {
-      rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol);
+      rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol, rowsHasNA, 0);
     }
-
     sum = 0.0;
 
     for (jj=0; jj < ncols; jj++) {
-      if (norows && nocols) {
-        /*
-         * In this special case, we can eliminate
-         * the possibility of having NA indicies
-         */
-        if (byrow) idx = rowIdx + jj*nrow;
-        else idx = rowIdx + jj;
-        value = x[idx];
+      if (nocols) {
+        idx = R_INDEX_OP(rowIdx, +, byrow ? jj*nrow : jj, rowsHasNA, 0);
       } else {
-        if (nocols) {
-            if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow);
-            else idx = R_INDEX_OP(rowIdx, +, jj);
-          } else {
-            idx = R_INDEX_OP(rowIdx, +, colOffset[jj]);
-        }
-        value = R_INDEX_GET(x, idx, X_NA);
+        idx = R_INDEX_OP(rowIdx, +, colOffset[jj], rowsHasNA, colsHasNA);
       }
-      
-  #if X_TYPE == 'i'
-      if (!X_ISNAN(value)) {
-        sum += (LDOUBLE)value;
-      } else if (!narm) {
-        sum = R_NaReal;
-        break;
-      }
-  #elif X_TYPE == 'r'
-      if (!narm) {
-        sum += (LDOUBLE)value;
-        if (jj % 1048576 == 0 && ISNA(sum)) break;
-      } else if (!ISNAN(value)) {
-        sum += (LDOUBLE)value;
-      }
-  #endif
+      value = R_INDEX_GET(x, idx, X_NA, rowsHasNA || colsHasNA);
+  
+      #if X_TYPE == 'i'
+          if (!X_ISNAN(value)) {
+            sum += (LDOUBLE)value;
+          } else if (!narm) {
+            sum = R_NaReal;
+            break;
+          }
+      #elif X_TYPE == 'r'
+          if (!narm) {
+            sum += (LDOUBLE)value;
+            if (jj % 1048576 == 0 && ISNA(sum)) break;
+          } else if (!ISNAN(value)) {
+            sum += (LDOUBLE)value;
+          }
+      #endif
     } /* for (jj ...) */
 
-    if (sum > DOUBLE_XMAX) {
+    if (sum > DBL_MAX) {
       ans[ii] = R_PosInf;
-    } else if (sum < -DOUBLE_XMAX) {
+    } else if (sum < -DBL_MAX) {
       ans[ii] = R_NegInf;
     } else {
       ans[ii] = (double)sum;

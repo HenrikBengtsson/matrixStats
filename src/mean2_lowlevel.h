@@ -6,8 +6,8 @@
 /*
 Native API (dynamically generated via macros):
  
-double mean2_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int refine)
-double mean2_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int refine)
+double mean2_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int refine)
+double mean2_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int refine)
 */
 
 #define X_TYPE 'i'
