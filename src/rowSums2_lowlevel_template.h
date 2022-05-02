@@ -68,17 +68,16 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         sum = 0.0;
         
         for (jj=0; jj < ncols; jj++) {
-            if (!rowsHasNA && !colsHasNA) {
+            if (!rowsHasNA && nocols) {
                 /*
                  * In this special case, we can eliminate
                  * the possibility of having NA indicies
                  */
-                if (nocols) {
-                    if (byrow) idx = rowIdx + jj*nrow;
-                    else idx = rowIdx + jj;
-                } else {
-                    idx = rowIdx + colOffset[jj];
-                }
+                if (byrow) idx = rowIdx + jj*nrow;
+                else idx = rowIdx + jj;
+                value = x[idx];
+            } else if (!rowsHasNA && !colsHasNA && !nocols) {
+                idx = rowIdx + colOffset[jj];
                 value = x[idx];
             } else {
                 if (nocols) {
