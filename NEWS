@@ -1,9 +1,12 @@
 Package: matrixStats
 ====================
 
-Version: 0.62.0-9000 [2022-04-19]
+Version: 0.62.0-9001 [2022-09-02]
 
- * ...
+MISCELLANEOUS:
+
+ * Added more information to the error message produced when argument 'center'
+   for col- and rowVars() holds an invalid value.
  
 
 Version: 0.62.0 [2022-04-18]
