@@ -163,7 +163,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
       fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
       when <- attr(validate, "when", exact = TRUE)
-      fcn(msg = sprintf("Detected incorrect use of argument 'center' for rowVars() or rowCols(). The value of 'center' does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results, which suggests a misunderstanding on what argument 'center' should be. Please see help(\"rowVars\", package = \"%s\"). The reason was: %s (this validation is performed %s per R option 'matrixStats.vars.formula.freq')", .packageName, equal, when))
+      fcn(msg = sprintf("Detected incorrect use of argument 'center' for rowVars() or rowSds(). The value of 'center' does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results, which suggests a misunderstanding on what argument 'center' should be. Please see help(\"rowVars\", package = \"%s\"). The reason was: %s (this validation is performed %s per R option 'matrixStats.vars.formula.freq')", .packageName, equal, when))
     }
   }
   x <- x * (n / (n - 1))
@@ -303,7 +303,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
       fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
       when <- attr(validate, "when", exact = TRUE)
-      fcn(msg = sprintf("Detected incorrect use of argument 'center' for colVars() or colCols(). The value of 'center' does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results, which suggests a misunderstanding on what argument 'center' should be. Please see help(\"rowVars\", package = \"%s\"). The reason was: %s (this validation is performed %s per R option 'matrixStats.vars.formula.freq')", .packageName, equal, when))
+      fcn(msg = sprintf("Detected incorrect use of argument 'center' for colVars() or colSds(). The value of 'center' does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results, which suggests a misunderstanding on what argument 'center' should be. Please see help(\"rowVars\", package = \"%s\"). The reason was: %s (this validation is performed %s per R option 'matrixStats.vars.formula.freq')", .packageName, equal, when))
     }
   }
   x <- x * (n / (n - 1))  
