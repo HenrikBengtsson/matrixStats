@@ -9,7 +9,8 @@
 \alias{colWeightedSds}
 \title{Weighted variance and weighted standard deviation}
 \usage{
-weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, ...)
+weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL,
+  ...)
 
 weightedSd(...)
 

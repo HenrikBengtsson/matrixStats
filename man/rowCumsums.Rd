@@ -12,21 +12,29 @@
 \title{Cumulative sums, products, minima and maxima for each row (column) in a
 matrix}
 \usage{
-rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 
-colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = NA)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
