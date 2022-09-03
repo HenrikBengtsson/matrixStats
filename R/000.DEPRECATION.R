@@ -54,9 +54,11 @@ validateVarsCenterFormula <- local({
 
     ## once in a while?
     .curr <<- .curr + 1
+    .next <<- freq  ## update .next according to R option
+
+    ## Skip or not?
     if (.curr <= .next) return(FALSE)
     .curr <<- 1 ## reset
-    .next <<- freq
     structure(TRUE, when = sprintf("every %g call to this function", freq))
   }
 })
