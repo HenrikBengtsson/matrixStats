@@ -4,7 +4,11 @@
 
  * Added more information to the error message produced when argument
    `center` for `col-` and `rowVars()` holds an invalid value.
- 
+
+ * Fix two compilation warnings on `a function declaration without a
+   prototype is deprecated in all versions of C
+   [-Wstrict-prototypes]`.
+
 
 # Version 0.62.0 [2022-04-18]
 
