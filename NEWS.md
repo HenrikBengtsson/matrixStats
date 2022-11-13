@@ -9,6 +9,11 @@
    prototype is deprecated in all versions of C
    [-Wstrict-prototypes]`.
 
+## Deprecated and Defunct
+
+ * `validateIndices()` is now defunct and will eventually be removed
+   from the package API.
+
 
 # Version 0.62.0 [2022-04-18]
 
