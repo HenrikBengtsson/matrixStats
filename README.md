@@ -53,10 +53,17 @@ is much faster and more memory efficient than
 ```
 
 
-
 ## Benchmarks
 For formal benchmarking of matrixStats functions relative to
 alternatives, see the [Benchmark reports].
+
+
+## Design goals 
+
+The objectives of the **matrixStats** package is to perform operations
+on matrices (i) as faster as possible, while (ii) not using
+unnecessary amounts of memory.  These objectives drive the design,
+including the choice of the different defaults.
 
 
 [many times faster]: https://www.jottr.org/2015/01/matrixStats-0.13.1.html
