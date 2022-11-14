@@ -2,6 +2,10 @@
 
 ## Miscellaneous
 
+ * Package compiles again with older compilers not supporting the C99
+   standard (e.g. GCC 4.8.5 (2015), which is the default on RHEL /
+   CentOS 7.9).  This was the case also for matrixStats (<= 0.54.0).
+
  * Added more information to the error message produced when argument
    `center` for `col-` and `rowVars()` holds an invalid value.
 
