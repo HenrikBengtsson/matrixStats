@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
-                               na.rm = FALSE, ..., useNames = NA) {
+                               na.rm = FALSE, ..., useNames = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -84,7 +84,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMedians
 #' @export
 colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
-                               na.rm = FALSE, ..., useNames = NA) {
+                               na.rm = FALSE, ..., useNames = FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
