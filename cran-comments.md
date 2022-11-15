@@ -6,7 +6,6 @@ I've verified this submission has no negative impact on any of the 421
 reverse package dependencies available on CRAN (n = 216) and
 Bioconductor (n = 205).
 
-
 Thanks in advance
 
 
@@ -72,12 +71,12 @@ gives
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-── matrixStats 0.63.0: IN-PROGRESS
+── matrixStats 0.63.0: OK
 
   Build ID:   matrixStats_0.63.0.tar.gz-fd9370ecb1704b4abaadcce40185b0d1
   Platform:   Debian Linux, R-devel, GCC ASAN/UBSAN
   Submitted:  1h 4m 54.1s ago
-
+  Build time: 1h 42m 32.3s
 
 ── matrixStats 0.63.0: OK
 
