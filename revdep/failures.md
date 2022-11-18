@@ -6,7 +6,7 @@
 * GitHub: NA
 * Source code: https://github.com/cran/ExpHunterSuite
 * Date/Publication: 2022-05-13
-* Number of recursive dependencies: 225
+* Number of recursive dependencies: 224
 
 Run `revdep_details(, "ExpHunterSuite")` for more info
 

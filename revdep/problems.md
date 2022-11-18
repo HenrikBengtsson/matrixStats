@@ -606,7 +606,7 @@ Run `revdep_details(, "bnbc")` for more info
 * GitHub: https://github.com/bmihaljevic/bnclassify
 * Source code: https://github.com/cran/bnclassify
 * Date/Publication: 2021-10-29 23:10:05 UTC
-* Number of recursive dependencies: 99
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "bnclassify")` for more info
 
@@ -859,7 +859,7 @@ Run `revdep_details(, "BSW")` for more info
 * GitHub: https://github.com/Core-Bioinformatics/bulkAnalyseR
 * Source code: https://github.com/cran/bulkAnalyseR
 * Date/Publication: 2022-04-07 10:12:29 UTC
-* Number of recursive dependencies: 187
+* Number of recursive dependencies: 185
 
 Run `revdep_details(, "bulkAnalyseR")` for more info
 
@@ -1499,7 +1499,7 @@ Run `revdep_details(, "cliqueMS")` for more info
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 183
+* Number of recursive dependencies: 181
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -1749,7 +1749,7 @@ Run `revdep_details(, "coin")` for more info
 * GitHub: https://github.com/jokergoo/cola
 * Source code: https://github.com/cran/cola
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 246
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "cola")` for more info
 
@@ -2862,7 +2862,7 @@ Run `revdep_details(, "dwp")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/easier
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 197
+* Number of recursive dependencies: 196
 
 Run `revdep_details(, "easier")` for more info
 
@@ -3249,7 +3249,7 @@ Run `revdep_details(, "ExCluster")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ExpHunterSuite
 * Date/Publication: 2022-05-13
-* Number of recursive dependencies: 225
+* Number of recursive dependencies: 224
 
 Run `revdep_details(, "ExpHunterSuite")` for more info
 
@@ -3434,7 +3434,7 @@ Run `revdep_details(, "FastRCS")` for more info
 * GitHub: https://github.com/fastverse/fastverse
 * Source code: https://github.com/cran/fastverse
 * Date/Publication: 2022-05-31 22:20:19 UTC
-* Number of recursive dependencies: 60
+* Number of recursive dependencies: 68
 
 Run `revdep_details(, "fastverse")` for more info
 
@@ -3622,7 +3622,7 @@ Run `revdep_details(, "fipp")` for more info
 * GitHub: https://github.com/mikelove/fishpond
 * Source code: https://github.com/cran/fishpond
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 204
+* Number of recursive dependencies: 203
 
 Run `revdep_details(, "fishpond")` for more info
 
@@ -3969,7 +3969,7 @@ Run `revdep_details(, "footBayes")` for more info
 * GitHub: https://github.com/gagneurlab/FRASER
 * Source code: https://github.com/cran/FRASER
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 188
+* Number of recursive dependencies: 186
 
 Run `revdep_details(, "FRASER")` for more info
 
@@ -4091,7 +4091,7 @@ Run `revdep_details(, "gap")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GenEst
 * Date/Publication: 2021-06-17 07:10:08 UTC
-* Number of recursive dependencies: 92
+* Number of recursive dependencies: 77
 
 Run `revdep_details(, "GenEst")` for more info
 
@@ -4164,7 +4164,7 @@ Run `revdep_details(, "geneticae")` for more info
 * GitHub: https://github.com/federicomarini/GeneTonic
 * Source code: https://github.com/cran/GeneTonic
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 205
+* Number of recursive dependencies: 203
 
 Run `revdep_details(, "GeneTonic")` for more info
 
@@ -4362,7 +4362,7 @@ Run `revdep_details(, "GJRM")` for more info
 * GitHub: https://github.com/const-ae/glmGamPoi
 * Source code: https://github.com/cran/glmGamPoi
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 169
+* Number of recursive dependencies: 167
 
 Run `revdep_details(, "glmGamPoi")` for more info
 
@@ -4386,7 +4386,7 @@ Run `revdep_details(, "glmGamPoi")` for more info
 * GitHub: https://github.com/erhard-lab/grandR
 * Source code: https://github.com/cran/grandR
 * Date/Publication: 2022-09-20 07:56:10 UTC
-* Number of recursive dependencies: 251
+* Number of recursive dependencies: 250
 
 Run `revdep_details(, "grandR")` for more info
 
@@ -4408,7 +4408,7 @@ Run `revdep_details(, "grandR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GRaNIE
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 247
+* Number of recursive dependencies: 245
 
 Run `revdep_details(, "GRaNIE")` for more info
 
@@ -4713,7 +4713,7 @@ Run `revdep_details(, "HDSpatialScan")` for more info
 * GitHub: https://github.com/insightsengineering/hermes
 * Source code: https://github.com/cran/hermes
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 163
+* Number of recursive dependencies: 161
 
 Run `revdep_details(, "hermes")` for more info
 
@@ -4868,7 +4868,7 @@ Run `revdep_details(, "kgschart")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/kissDE
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 207
+* Number of recursive dependencies: 206
 
 Run `revdep_details(, "kissDE")` for more info
 
@@ -5797,7 +5797,7 @@ Run `revdep_details(, "mgcViz")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/microbiomeExplorer
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 196
+* Number of recursive dependencies: 195
 
 Run `revdep_details(, "microbiomeExplorer")` for more info
 
@@ -6472,7 +6472,7 @@ Run `revdep_details(, "muscat")` for more info
 * GitHub: https://github.com/HelenaLC/muscData
 * Source code: https://github.com/cran/muscData
 * Date/Publication: 2022-11-03
-* Number of recursive dependencies: 273
+* Number of recursive dependencies: 272
 
 Run `revdep_details(, "muscData")` for more info
 
@@ -6898,7 +6898,7 @@ Run `revdep_details(, "OptimalDesign")` for more info
 * GitHub: https://github.com/gagneurlab/OUTRIDER
 * Source code: https://github.com/cran/OUTRIDER
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 176
+* Number of recursive dependencies: 174
 
 Run `revdep_details(, "OUTRIDER")` for more info
 
@@ -7030,7 +7030,7 @@ Run `revdep_details(, "pARI")` for more info
 * GitHub: https://github.com/mani2012/PathoStat
 * Source code: https://github.com/cran/PathoStat
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 204
+* Number of recursive dependencies: 203
 
 Run `revdep_details(, "PathoStat")` for more info
 
@@ -7179,7 +7179,7 @@ Run `revdep_details(, "Pigengene")` for more info
 
 </details>
 
-## Newly broken
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
@@ -7194,14 +7194,14 @@ Run `revdep_details(, "Pigengene")` for more info
     > ### ** Examples
     > 
     ...
-      Some genes with multiple homologs are selected arbitrarily.
+    +         outputDb=list(org.Hs.eg.db,org.Mm.eg.db), verbose=1)
+    Mapping to:  org.Hs.eg.db-SYMBOL 
     'select()' returned 1:1 mapping between keys and columns
-    Mapping to:  org.Hs.eg.db-ENTREZID 
-    'select()' returned 1:1 mapping between keys and columns
+    Loading required package: biomaRt
     Warning: Ensembl will soon enforce the use of https.
     Ensure the 'host' argument includes "https://"
     Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Timeout was reached: [www.ensembl.org:80] Operation timed out after 10001 milliseconds with 0 out of -1 bytes received
+      Timeout was reached: [www.ensembl.org:80] Operation timed out after 10000 milliseconds with 499053 out of -1 bytes received
     Calls: gene.mapping ... request_fetch -> request_fetch.write_memory -> <Anonymous>
     Execution halted
     ```
@@ -7212,14 +7212,14 @@ Run `revdep_details(, "Pigengene")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘Pigengene_inference.Rnw’ using knitr
-    Warning in has_utility("pdfcrop") :
-      pdfcrop not installed or not in PATH
-    sh: pdfcrop: command not found
-    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
-      error in running command
-    sh: pdfcrop: command not found
-    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
-      error in running command
+    /bin/bash: line 1: /tmp/pdfcrop_0632/figure/loading-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0632/figure/loading-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0173/figure/tree-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0173/figure/tree-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0591/figure/pigengene-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0591/figure/pigengene-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0024/figure/bn-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0024/figure/bn-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -7552,7 +7552,7 @@ Run `revdep_details(, "QFeatures")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RaceID
 * Date/Publication: 2022-11-01 14:02:40 UTC
-* Number of recursive dependencies: 149
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "RaceID")` for more info
 
@@ -7756,7 +7756,7 @@ Run `revdep_details(, "rhierbaps")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RiboDiPA
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 148
+* Number of recursive dependencies: 146
 
 Run `revdep_details(, "RiboDiPA")` for more info
 
@@ -7859,7 +7859,7 @@ Run `revdep_details(, "RNAmodR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RNAseqQC
 * Date/Publication: 2022-06-15 09:50:06 UTC
-* Number of recursive dependencies: 178
+* Number of recursive dependencies: 176
 
 Run `revdep_details(, "RNAseqQC")` for more info
 
@@ -8103,33 +8103,6 @@ Run `revdep_details(, "SCFA")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘SCFA-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: SCFA
-    > ### Title: SCFA
-    > ### Aliases: SCFA
-    > 
-    > ### ** Examples
-    > 
-    > #Load example data (GBM dataset)
-    ...
-    > #Survival information
-    > survival <- GBM$survival
-    > library(survival)
-    > #Generating subtyping result
-    > set.seed(1)
-    > subtype <- SCFA(dataList, seed = 1, ncores = 2L)
-    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
-      cannot open the connection
-    Calls: SCFA ... generating.latent -> suppressMessages -> withCallingHandlers
-    Execution halted
-    ```
-
 ## In both
 
 *   checking re-building of vignette outputs ... ERROR
@@ -8178,7 +8151,7 @@ Run `revdep_details(, "scISR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/scITD
 * Date/Publication: 2022-03-23 18:20:02 UTC
-* Number of recursive dependencies: 232
+* Number of recursive dependencies: 230
 
 Run `revdep_details(, "scITD")` for more info
 
@@ -8282,7 +8255,7 @@ Run `revdep_details(, "scMET")` for more info
 * GitHub: https://github.com/YosefLab/scone
 * Source code: https://github.com/cran/scone
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 263
+* Number of recursive dependencies: 262
 
 Run `revdep_details(, "scone")` for more info
 
@@ -8507,7 +8480,7 @@ Run `revdep_details(, "seqArchR")` for more info
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
 * Date/Publication: 2022-11-08 00:00:02 UTC
-* Number of recursive dependencies: 252
+* Number of recursive dependencies: 251
 
 Run `revdep_details(, "Seurat")` for more info
 
@@ -9076,7 +9049,7 @@ Run `revdep_details(, "slasso")` for more info
 * GitHub: https://github.com/lianos/sparrow
 * Source code: https://github.com/cran/sparrow
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 207
+* Number of recursive dependencies: 205
 
 Run `revdep_details(, "sparrow")` for more info
 
@@ -9257,7 +9230,7 @@ Run `revdep_details(, "SpliceWiz")` for more info
 * GitHub: https://github.com/MarcElosua/SPOTlight
 * Source code: https://github.com/cran/SPOTlight
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 252
+* Number of recursive dependencies: 251
 
 Run `revdep_details(, "SPOTlight")` for more info
 
@@ -9773,7 +9746,7 @@ Run `revdep_details(, "topGO")` for more info
 * GitHub: https://github.com/statOmics/tradeSeq
 * Source code: https://github.com/cran/tradeSeq
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 176
+* Number of recursive dependencies: 174
 
 Run `revdep_details(, "tradeSeq")` for more info
 
