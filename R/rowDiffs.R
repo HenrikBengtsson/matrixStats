@@ -17,6 +17,7 @@
 #' @export
 rowDiffs <- function(x, rows = NULL, cols = NULL,
                      lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = FALSE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowDiffs, x, dim., rows, cols, lag, differences, TRUE, useNames)
 }
 
@@ -24,5 +25,6 @@ rowDiffs <- function(x, rows = NULL, cols = NULL,
 #' @export
 colDiffs <- function(x, rows = NULL, cols = NULL,
                      lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = FALSE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowDiffs, x, dim., rows, cols, lag, differences, FALSE, useNames)
 }

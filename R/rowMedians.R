@@ -41,6 +41,7 @@
 #' @export
 rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = FALSE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
   .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
@@ -50,6 +51,7 @@ rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = FALSE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
   .Call(C_rowMedians, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)

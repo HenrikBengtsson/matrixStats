@@ -48,6 +48,8 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     }
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
+
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -68,9 +70,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     })
     
     # Preserve names attribute?
-    if (is.na(useNames)) {
-      deprecatedUseNamesNA()
-    } else if (!useNames) {
+    if (!(is.na(useNames) || useNames)) {
       names(res) <- NULL
     }
 
@@ -108,6 +108,8 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     }
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
+
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -127,9 +129,7 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     })
     
     # Preserve names attribute?
-    if (is.na(useNames)) {
-      deprecatedUseNamesNA()
-    } else if (!useNames) {
+    if (!(is.na(useNames) || useNames)) {
       names(res) <- NULL
     }
 

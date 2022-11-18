@@ -34,10 +34,9 @@
 #' 
 #' @param ... Not used.
 #' 
-#' @param useNames If \code{\link[base]{NA}}, the default behavior of the 
-#' function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-#' no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-#' attributes of result are set. 
+#' @param useNames If \code{\link[base:logical]{FALSE}} (default), no naming
+#' support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+#' of result are set. 
 #'
 #' @return \code{rowAlls()} (\code{colAlls()}) returns an
 #' \code{\link[base]{logical}} \code{\link[base]{vector}} of length N (K).
@@ -58,6 +57,7 @@
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas, useNames)
@@ -119,6 +119,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas, useNames)
@@ -207,6 +208,7 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas, useNames)
@@ -253,6 +255,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas, useNames)

@@ -44,6 +44,8 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
+    
     # Preserve rownames
     names <- rownames(x)
     
@@ -123,6 +125,8 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
+    
     # Preserve colnames
     names <- colnames(x)
     

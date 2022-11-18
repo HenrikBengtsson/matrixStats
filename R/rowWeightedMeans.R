@@ -48,6 +48,8 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     }
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
+
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -78,8 +80,6 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
         } else {
           names(res) <- NULL
         }
-      } else {
-        deprecatedUseNamesNA()
       }
       
       return(res)
@@ -115,9 +115,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       x <- W * x
       
       # Preserve dimnames attribute?
-      if (is.na(useNames)) {
-        deprecatedUseNamesNA()
-      } else if (!useNames) {
+      if (!(is.na(useNames) || useNames)) {
         dimnames(x) <- NULL
       }
       
@@ -144,8 +142,6 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
         } else {
           dimnames(x) <- NULL
         }
-      } else {
-        deprecatedUseNamesNA()
       }
 
       w <- NULL  # Not needed anymore
@@ -157,9 +153,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- rowMeans(x, na.rm = na.rm)
     
     # Preserve names attribute?
-    if (is.na(useNames)) {
-      deprecatedUseNamesNA()
-    } else if (!useNames) {
+    if (!(is.na(useNames) || useNames)) {
       names(res) <- NULL
     }
   }
@@ -193,6 +187,8 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     }
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
+
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -223,8 +219,6 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
         } else {
           names(res) <- NULL
         }
-      } else {
-        deprecatedUseNamesNA()
       }      
       
       return(res)
@@ -281,9 +275,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   }
   
   # Preserve names attribute?
-  if (is.na(useNames)) {
-    deprecatedUseNamesNA()
-  } else if (!useNames) {
+  if (!(is.na(useNames) || useNames)) {
     names(res) <- NULL
   }
 

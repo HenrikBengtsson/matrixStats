@@ -34,10 +34,9 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 
 \item{preserveShape}{A \code{\link[base]{logical}} specifying whether the
 \code{\link[base]{matrix}} returned should preserve the input shape of

@@ -54,7 +54,7 @@
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
                     dim. = dim(x), ..., useNames = FALSE) {
-
+  if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
@@ -111,8 +111,6 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       } else {
         names(x) <- NULL
       }
-    } else {
-      deprecatedUseNamesNA()
     }
     return(x)
   }
@@ -172,9 +170,6 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   
   # Preserve names attribute?
   if (is.na(useNames) || useNames) {
-    if (is.na(useNames)) {
-      deprecatedUseNamesNA()
-    }
     if (!is.null(names)) {
       if (!is.null(rows)) {
         names <- names[rows]
@@ -195,7 +190,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
                     dim. = dim(x), ..., useNames = FALSE) {
-
+  if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
@@ -317,9 +312,6 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   
   # Preserve names attribute?
   if (is.na(useNames) || useNames) {
-    if (is.na(useNames)) {
-      deprecatedUseNamesNA()
-    }
     if (!is.null(names)) {
       if (!is.null(cols)) {
         names <- names[cols]

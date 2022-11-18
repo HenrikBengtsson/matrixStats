@@ -26,10 +26,9 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the

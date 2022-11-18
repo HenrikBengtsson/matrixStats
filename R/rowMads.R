@@ -6,6 +6,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = FALSE) {
   if (is.null(center)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
     constant <- as.numeric(constant)
     has_nas <- TRUE
     
@@ -47,8 +48,6 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
           }
           rownames(x) <- names
         }
-      } else if (is.na(useNames)) {
-        deprecatedUseNamesNA()
       }
     }
     x <- abs(x)
@@ -66,6 +65,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = FALSE) {
   if (is.null(center)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
     constant <- as.numeric(constant)
     has_nas <- TRUE
     
@@ -116,8 +116,6 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
       } else {
         colnames(x) <- NULL
       }
-    } else {
-      deprecatedUseNamesNA()
     }
     x <- abs(x)
     x <- colMedians(x, na.rm = na.rm, ..., useNames = useNames)
