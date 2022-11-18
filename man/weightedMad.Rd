@@ -10,10 +10,10 @@ weightedMad(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.4826,
   center = NULL, ...)
 
 rowWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  constant = 1.4826, center = NULL, ..., useNames = NA)
+  constant = 1.4826, center = NULL, ..., useNames = FALSE)
 
 colWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  constant = 1.4826, center = NULL, ..., useNames = NA)
+  constant = 1.4826, center = NULL, ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{\code{\link[base]{vector}} of type \code{\link[base]{integer}},

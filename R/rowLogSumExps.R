@@ -38,7 +38,7 @@
 #' @keywords array
 #' @export
 rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-                          dim. = dim(lx), ..., useNames = NA) {
+                          dim. = dim(lx), ..., useNames = FALSE) {
   has_na <- TRUE
   .Call(C_rowLogSumExps, lx, dim., rows, cols, na.rm, has_na, TRUE, useNames)
 }
@@ -47,7 +47,7 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowLogSumExps
 #' @export
 colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-                          dim. = dim(lx), ..., useNames = NA) {
+                          dim. = dim(lx), ..., useNames = FALSE) {
   has_na <- TRUE
   .Call(C_rowLogSumExps, lx, dim., rows, cols, na.rm, has_na, FALSE, useNames)
 }

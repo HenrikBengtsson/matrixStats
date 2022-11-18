@@ -6,10 +6,10 @@
 \title{Calculates the weighted means for each row (column) in a matrix}
 \usage{
 rowWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 
 colWeightedMeans(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

@@ -6,9 +6,11 @@
 \alias{iqr}
 \title{Estimates of the interquartile range for each row (column) in a matrix}
 \usage{
-rowIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA)
+rowIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ...,
+  useNames = FALSE)
 
-colIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA)
+colIQRs(x, rows = NULL, cols = NULL, na.rm = FALSE, ...,
+  useNames = FALSE)
 
 iqr(x, idxs = NULL, na.rm = FALSE, ...)
 }

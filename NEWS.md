@@ -1,7 +1,10 @@
 # Version (development version)
 
- * ...
- 
+## Significant Changes
+
+ * `useNames = FALSE` is the new default for all functions.  For
+   backward compatibility, it used to be `useNames = NA` .
+
 
 # Version 0.63.0 [2022-11-14]
 
