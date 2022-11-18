@@ -10,8 +10,8 @@ void setNames(SEXP vec/*Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_
     namesgets(vec, namesVec);
   } else {
     SEXP ansNames = PROTECT(allocVector(STRSXP, length));
-    R_xlen_t thisIdx;            
-    for (R_xlen_t i = 0; i < length; i++) {
+    R_xlen_t i, thisIdx;
+    for (i = 0; i < length; i++) {
       thisIdx = subscripts[i];
       if (thisIdx == NA_R_XLEN_T) {                                                   
         SET_STRING_ELT(ansNames, i, NA_STRING);                                       
@@ -43,8 +43,8 @@ void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
     SET_VECTOR_ELT(ansDimnames, 0, rownames);
   } else {
     SEXP ansRownames = PROTECT(allocVector(STRSXP, nrows));
-    R_xlen_t thisIdx;            
-    for (R_xlen_t i = 0; i < nrows; i++) {
+    R_xlen_t i, thisIdx;            
+    for (i = 0; i < nrows; i++) {
       thisIdx = crows[i];
       if (thisIdx == NA_R_XLEN_T) {                                                   
         SET_STRING_ELT(ansRownames, i, NA_STRING);                                
@@ -65,8 +65,8 @@ void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
   } else {
     if (colnames != R_NilValue) {
       SEXP ansColnames = PROTECT(allocVector(STRSXP, ncols));
-      R_xlen_t thisIdx;            
-      for (R_xlen_t i = 0; i < ncols; i++) {
+      R_xlen_t i, thisIdx;            
+      for (i = 0; i < ncols; i++) {
         thisIdx = ccols[i];
         if (thisIdx == NA_R_XLEN_T) {                                                   
           SET_STRING_ELT(ansColnames, i, NA_STRING);                                       
@@ -105,8 +105,8 @@ void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
     SET_VECTOR_ELT(ansDimnames, 0, rownames);
   } else {
     SEXP ansRownames = PROTECT(allocVector(STRSXP, nrows));
-    R_xlen_t thisIdx;            
-    for (R_xlen_t i = 0; i < nrows; i++) {
+    R_xlen_t i, thisIdx;            
+    for (i = 0; i < nrows; i++) {
       thisIdx = crows[i];
       if (thisIdx == NA_R_XLEN_T) {                                                   
         SET_STRING_ELT(ansRownames, i, NA_STRING);                                       
@@ -124,15 +124,15 @@ void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
     SET_VECTOR_ELT(ansDimnames, 1, R_NilValue);
   } else {
     SEXP ansColnames = PROTECT(allocVector(STRSXP, ncol_ans));
-    R_xlen_t j = 0;
+    R_xlen_t i, j = 0;
     if (ccols == NULL) {
-      for (R_xlen_t i = (ncols - ncol_ans); i < ncols; i++) {
+      for (i = (ncols - ncol_ans); i < ncols; i++) {
         SEXP eltElement = STRING_ELT(colnames, i);
         SET_STRING_ELT(ansColnames, j++, eltElement);
       }
     } else {
       R_xlen_t thisIdx;            
-      for (R_xlen_t i = (ncols - ncol_ans); i < ncols; i++) {
+      for (i = (ncols - ncol_ans); i < ncols; i++) {
         thisIdx = ccols[i];
         if (thisIdx == NA_R_XLEN_T) {                                                   
           SET_STRING_ELT(ansColnames, j++, NA_STRING);                                       
@@ -168,15 +168,15 @@ void set_colDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
     SET_VECTOR_ELT(ansDimnames, 0, R_NilValue);
   } else {
     SEXP ansRownames = PROTECT(allocVector(STRSXP, nrow_ans));
-    R_xlen_t j = 0;
+    R_xlen_t i, j = 0;
     if (crows == NULL) {
-      for (R_xlen_t i = (nrows - nrow_ans); i < nrows; i++) {
+      for (i = (nrows - nrow_ans); i < nrows; i++) {
         SEXP eltElement = STRING_ELT(rownames, i);
         SET_STRING_ELT(ansRownames, j++, eltElement);
       }
     } else {
       R_xlen_t thisIdx;            
-      for (R_xlen_t i = (nrows - nrow_ans); i < nrows; i++) {
+      for (i = (nrows - nrow_ans); i < nrows; i++) {
         thisIdx = crows[i];
         if (thisIdx == NA_R_XLEN_T) {                                                   
           SET_STRING_ELT(ansRownames, j++, NA_STRING);                                       
@@ -197,8 +197,8 @@ void set_colDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
     SET_VECTOR_ELT(ansDimnames, 1, colnames);
   } else {
     SEXP ansColnames = PROTECT(allocVector(STRSXP, ncols));
-    R_xlen_t thisIdx;            
-    for (R_xlen_t i = 0; i < ncols; i++) {
+    R_xlen_t i, thisIdx;            
+    for (i = 0; i < ncols; i++) {
       thisIdx = ccols[i];
       if (thisIdx == NA_R_XLEN_T) {                                                   
         SET_STRING_ELT(ansColnames, i, NA_STRING);                                       

@@ -5,9 +5,11 @@
 \alias{colTabulates}
 \title{Tabulates the values in a matrix by row (column).}
 \usage{
-rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA)
+rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
+  useNames = NA)
 
-colTabulates(x, rows = NULL, cols = NULL, values = NULL, ..., useNames = NA)
+colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
+  useNames = NA)
 }
 \arguments{
 \item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or

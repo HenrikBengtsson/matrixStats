@@ -7,13 +7,13 @@
    corresponds to assigning a zero value.  Note that the bit
    representation of int's and double's may not be the same
    on all architectures. */
-int memset_zero_ok_int() {
+int memset_zero_ok_int(void) {
   int t = 1;
   memset(&t, 0, sizeof(t));
   return (t == 0);
 }
 
-int memset_zero_ok_double() {
+int memset_zero_ok_double(void) {
   double t = 1;
   memset(&t, 0, sizeof(t));
   return (t == 0);
@@ -21,7 +21,7 @@ int memset_zero_ok_double() {
 
 /* For debugging purposes */
 /*
-SEXP memsetZeroable() {
+SEXP memsetZeroable(void) {
   SEXP ans;
   PROTECT(ans = allocVector(LGLSXP, 2));
   LOGICAL(ans)[1] = memset_zero_ok_int();

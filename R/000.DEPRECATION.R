@@ -35,6 +35,7 @@ validateScalarCenter <- function(center, n, dimname) {
 validateVarsCenterFormula <- local({
   .curr <- 1
   .next <- 1
+  always <- structure(TRUE, when = "each time this function is called")
   
   function() {
     freq <- getOption("matrixStats.vars.formula.freq", NULL)
@@ -46,17 +47,19 @@ validateVarsCenterFormula <- local({
     if (freq <= 0) return(FALSE)
 
     ## always?
-    if (is.infinite(freq)) return(TRUE)
+    if (is.infinite(freq)) return(always)
 
     ## each time?
-    if (freq == 1) return(TRUE)
+    if (freq == 1) return(always)
 
     ## once in a while?
     .curr <<- .curr + 1
+    .next <<- freq  ## update .next according to R option
+
+    ## Skip or not?
     if (.curr <= .next) return(FALSE)
     .curr <<- 1 ## reset
-    .next <<- freq
-    TRUE
+    structure(TRUE, when = sprintf("every %g call to this function", freq))
   }
 })
 
