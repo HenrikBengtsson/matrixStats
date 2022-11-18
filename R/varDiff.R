@@ -248,8 +248,10 @@ rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
-      rownames(x) <- NULL
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
+    rownames(x) <- NULL
   }
 
   apply(x, MARGIN = 1L, FUN = varDiff,
@@ -267,7 +269,9 @@ colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 
@@ -286,7 +290,9 @@ rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     rownames(x) <- NULL
   }
 
@@ -305,7 +311,9 @@ colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 
@@ -324,7 +332,9 @@ rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     rownames(x) <- NULL
   }
 
@@ -343,7 +353,9 @@ colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 
@@ -362,7 +374,9 @@ rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     rownames(x) <- NULL
   }
 
@@ -381,7 +395,9 @@ colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 

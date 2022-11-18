@@ -78,6 +78,8 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
         } else {
           names(res) <- NULL
         }
+      } else {
+        deprecatedUseNamesNA()
       }
       
       return(res)
@@ -113,7 +115,9 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       x <- W * x
       
       # Preserve dimnames attribute?
-      if (!(is.na(useNames) || useNames)) {
+      if (is.na(useNames)) {
+        deprecatedUseNamesNA()
+      } else if (!useNames) {
         dimnames(x) <- NULL
       }
       
@@ -140,6 +144,8 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
         } else {
           dimnames(x) <- NULL
         }
+      } else {
+        deprecatedUseNamesNA()
       }
 
       w <- NULL  # Not needed anymore
@@ -151,9 +157,11 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- rowMeans(x, na.rm = na.rm)
     
     # Preserve names attribute?
-    if (!(is.na(useNames) || useNames)) {
+    if (is.na(useNames)) {
+      deprecatedUseNamesNA()
+    } else if (!useNames) {
       names(res) <- NULL
-    }    
+    }
   }
 
   res
@@ -215,7 +223,9 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
         } else {
           names(res) <- NULL
         }
-      }
+      } else {
+        deprecatedUseNamesNA()
+      }      
       
       return(res)
     } else if (nw < n) {
@@ -271,7 +281,9 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   }
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     names(res) <- NULL
   }
 

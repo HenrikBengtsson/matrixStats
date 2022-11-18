@@ -110,7 +110,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
         }
       } else {
         names(x) <- NULL
-      }      
+      }
+    } else {
+      deprecatedUseNamesNA()
     }
     return(x)
   }
@@ -170,6 +172,9 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   
   # Preserve names attribute?
   if (is.na(useNames) || useNames) {
+    if (is.na(useNames)) {
+      deprecatedUseNamesNA()
+    }
     if (!is.null(names)) {
       if (!is.null(rows)) {
         names <- names[rows]
@@ -247,6 +252,8 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
       } else {
         names(x) <- NULL
       }      
+    } else {
+      deprecatedUseNamesNA()
     }
     return(x)
   }
@@ -310,6 +317,9 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
   
   # Preserve names attribute?
   if (is.na(useNames) || useNames) {
+    if (is.na(useNames)) {
+      deprecatedUseNamesNA()
+    }
     if (!is.null(names)) {
       if (!is.null(cols)) {
         names <- names[cols]

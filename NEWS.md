@@ -5,6 +5,11 @@
  * `useNames = FALSE` is the new default for all functions.  For
    backward compatibility, it used to be `useNames = NA` .
 
+## Deprecated and Defunct
+
+ * `useNames = NA` is now deprecated. Use `useNames = TRUE` or
+   `useNames = FALSE` instead.
+
 
 # Version 0.63.0 [2022-11-14]
 

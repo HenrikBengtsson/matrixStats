@@ -92,7 +92,9 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       } else {
         names(counts) <- NULL
       }
-    }    
+    } else {
+      deprecatedUseNamesNA()
+    }  
   }
   counts
 }
@@ -169,7 +171,9 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       } else {
         names(counts) <- NULL
       }
-    }    
+    } else {
+      deprecatedUseNamesNA()
+    }
   }
   counts
 }

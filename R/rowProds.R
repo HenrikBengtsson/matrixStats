@@ -70,6 +70,8 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     } else {
       names(y) <- NULL
     }
+  } else {
+    deprecatedUseNamesNA()
   }
 
   y
@@ -118,6 +120,8 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     } else {
       names(y) <- NULL
     }
+  } else {
+    deprecatedUseNamesNA()
   }
 
   y

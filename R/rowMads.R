@@ -47,7 +47,9 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
           }
           rownames(x) <- names
         }
-      }      
+      } else if (is.na(useNames)) {
+        deprecatedUseNamesNA()
+      }
     }
     x <- abs(x)
     x <- rowMedians(x, na.rm = na.rm, ..., useNames = useNames)
@@ -114,6 +116,8 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
       } else {
         colnames(x) <- NULL
       }
+    } else {
+      deprecatedUseNamesNA()
     }
     x <- abs(x)
     x <- colMedians(x, na.rm = na.rm, ..., useNames = useNames)

@@ -86,6 +86,8 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
       } else {
         names(res) <- NULL
       }
+    } else {
+      deprecatedUseNamesNA()
     }
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.

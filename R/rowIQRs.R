@@ -32,6 +32,7 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
 
   # Remove attributes
   if (is.na(useNames)) {
+    deprecatedUseNamesNA()
     attributes(ans) <- NULL
   }
   
@@ -49,6 +50,7 @@ colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
 
   # Remove attributes
   if (is.na(useNames)) {
+    deprecatedUseNamesNA()
     attributes(ans) <- NULL
   }
   
