@@ -10,13 +10,13 @@
 \usage{
 anyMissing(x, idxs = NULL, ...)
 
-colAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = FALSE)
+colAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 
-rowAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = FALSE)
+rowAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 
-colAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = FALSE)
+colAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 
-rowAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = FALSE)
+rowAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a

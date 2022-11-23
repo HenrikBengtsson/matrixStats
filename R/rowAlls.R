@@ -55,7 +55,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
@@ -117,7 +117,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowAlls
 #' @export
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
@@ -206,7 +206,7 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 #' @rdname rowAlls
 #' @export
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE
@@ -253,7 +253,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowAlls
 #' @export
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                    na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE) {
+                    na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
     if (is.na(useNames)) deprecatedUseNamesNA()
     has_nas <- TRUE

@@ -40,7 +40,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = FALSE) {
+                       dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   
@@ -50,7 +50,7 @@ rowMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowMedians
 #' @export
 colMedians <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = FALSE) {
+                       dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE  # Add as an argument? /2007-08-24
   

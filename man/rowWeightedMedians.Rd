@@ -6,10 +6,10 @@
 \title{Calculates the weighted medians for each row (column) in a matrix}
 \usage{
 rowWeightedMedians(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ..., useNames = FALSE)
+  na.rm = FALSE, ..., useNames = TRUE)
 
 colWeightedMedians(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ..., useNames = FALSE)
+  na.rm = FALSE, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

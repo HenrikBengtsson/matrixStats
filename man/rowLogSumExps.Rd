@@ -7,10 +7,10 @@
 columns}
 \usage{
 rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-  dim. = dim(lx), ..., useNames = FALSE)
+  dim. = dim(lx), ..., useNames = TRUE)
 
 colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-  dim. = dim(lx), ..., useNames = FALSE)
+  dim. = dim(lx), ..., useNames = TRUE)
 }
 \arguments{
 \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.

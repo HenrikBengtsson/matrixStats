@@ -9,10 +9,10 @@
 product(x, idxs = NULL, na.rm = FALSE, ...)
 
 rowProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
-  method = c("direct", "expSumLog"), ..., useNames = FALSE)
+  method = c("direct", "expSumLog"), ..., useNames = TRUE)
 
 colProds(x, rows = NULL, cols = NULL, na.rm = FALSE,
-  method = c("direct", "expSumLog"), ..., useNames = FALSE)
+  method = c("direct", "expSumLog"), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

@@ -6,10 +6,10 @@
 \title{Gets an order statistic for each row (column) in a matrix}
 \usage{
 rowOrderStats(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 colOrderStats(x, rows = NULL, cols = NULL, which, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
