@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                                                 |
 |ctype    |en_US.UTF-8                                                 |
 |tz       |America/Los_Angeles                                         |
-|date     |2022-11-18                                                  |
+|date     |2022-11-23                                                  |
 |pandoc   |2.19.2 @ /software/c4/cbi/software/pandoc-2.19.2/bin/pandoc |
 
 # Dependencies
@@ -27,16 +27,15 @@
 |:--------------|:-------|:-----|:-------|:----|
 |[ExpHunterSuite](failures.md#exphuntersuite)|1.5.0   |1     |        |     |
 
-## New problems (4)
+## New problems (3)
 
 |package            |version |error  |warning |note |
 |:------------------|:-------|:------|:-------|:----|
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)|1.20.0  |__+1__ |        |1    |
-|[GenEst](problems.md#genest)|1.4.6   |__+1__ |        |1    |
 |[MatrixGenerics](problems.md#matrixgenerics)|1.10.0  |__+1__ |        |1    |
 |[sparseMatrixStats](problems.md#sparsematrixstats)|1.10.0  |__+1__ |        |1    |
 
-## All (421)
+## All (423)
 
 |package                         |version |error  |warning |note |
 |:-------------------------------|:-------|:------|:-------|:----|
@@ -51,13 +50,13 @@
 |apollo                          |0.2.8   |       |        |     |
 |aroma.affymetrix                |3.2.1   |       |        |     |
 |aroma.cn                        |1.7.0   |       |        |     |
-|[aroma.core](problems.md#aromacore)|3.2.2   |       |        |1    |
+|[aroma.core](problems.md#aromacore)|3.3.0   |       |        |1    |
 |[aroma.light](problems.md#aromalight)|3.28.0  |       |        |1    |
 |aSPU                            |1.50    |       |        |     |
 |atena                           |1.4.0   |       |        |     |
 |[autonomics](problems.md#autonomics)|1.6.0   |1      |2       |2    |
 |[bahc](problems.md#bahc)        |0.3.0   |       |        |1    |
-|[BASiCS](problems.md#basics)    |2.10.0  |       |        |1    |
+|[BASiCS](problems.md#basics)    |2.10.1  |       |        |1    |
 |[BatchQC](problems.md#batchqc)  |1.26.0  |       |        |1    |
 |BayesTwin                       |1.0     |       |        |     |
 |[baystability](problems.md#baystability)|0.1.0   |       |        |1    |
@@ -71,7 +70,7 @@
 |[BloodGen3Module](problems.md#bloodgen3module)|1.6.0   |       |1       |1    |
 |bmrm                            |4.1     |       |        |     |
 |[bnbc](problems.md#bnbc)        |1.20.0  |       |        |1    |
-|[bnclassify](problems.md#bnclassify)|0.4.6   |       |        |1    |
+|[bnclassify](problems.md#bnclassify)|0.4.7   |       |        |1    |
 |[bnem](problems.md#bnem)        |1.6.0   |2      |        |1    |
 |BRISC                           |1.0.5   |       |        |     |
 |[brms](problems.md#brms)        |2.18.0  |       |        |2    |
@@ -136,13 +135,14 @@
 |DCLEAR                          |1.0.8   |       |        |     |
 |dearseq                         |1.10.0  |       |        |     |
 |[decompr](problems.md#decompr)  |6.4.0   |       |        |1    |
-|deconvR                         |1.4.0   |       |        |     |
+|deconvR                         |1.4.2   |       |        |     |
 |[DeepBlueR](problems.md#deepbluer)|1.24.0  |       |        |1    |
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)|1.20.0  |__+1__ |        |1    |
 |[DeMixT](problems.md#demixt)    |1.14.0  |       |2       |4    |
 |[DepecheR](problems.md#depecher)|1.14.0  |       |        |1    |
 |[DepInfeR](problems.md#depinfer)|1.2.0   |1      |        |     |
 |[DEqMS](problems.md#deqms)      |1.16.0  |       |        |2    |
+|[DESeq2](problems.md#deseq2)    |1.38.1  |       |        |1    |
 |[detrendr](problems.md#detrendr)|0.6.14  |       |        |2    |
 |DGCA                            |1.0.2   |       |        |     |
 |[DHS.rates](problems.md#dhsrates)|0.9.1   |       |        |1    |
@@ -185,7 +185,7 @@
 |[FastPCS](problems.md#fastpcs)  |0.1.3   |       |        |1    |
 |[FastRCS](problems.md#fastrcs)  |0.0.8   |       |        |1    |
 |fastshap                        |0.0.7   |       |        |     |
-|[fastverse](problems.md#fastverse)|0.2.4   |       |        |1    |
+|[fastverse](problems.md#fastverse)|0.3.0   |       |        |1    |
 |FateID                          |0.2.2   |       |        |     |
 |[FDb.FANTOM4.promoters.hg19](problems.md#fdbfantom4promotershg19)|1.0.0   |       |1       |3    |
 |[FEAST](problems.md#feast)      |1.6.0   |       |        |2    |
@@ -203,7 +203,7 @@
 |GAD                             |1.1.1   |       |        |     |
 |[gap](problems.md#gap)          |1.3-1   |       |        |2    |
 |gcapc                           |1.22.0  |       |        |     |
-|[GenEst](problems.md#genest)    |1.4.6   |__+1__ |        |1    |
+|GenEst                          |1.4.8   |       |        |     |
 |[geneticae](problems.md#geneticae)|0.4.0   |       |        |1    |
 |[GeneTonic](problems.md#genetonic)|2.2.0   |       |        |2    |
 |[genomation](problems.md#genomation)|1.30.0  |       |1       |3    |
@@ -283,7 +283,7 @@
 |[microbiomeExplorer](problems.md#microbiomeexplorer)|1.8.0   |       |        |1    |
 |[MicrobiomeStat](problems.md#microbiomestat)|1.1     |       |        |1    |
 |microsamplingDesign             |1.0.8   |       |        |     |
-|miesmuschel                     |0.0.1   |       |        |     |
+|miesmuschel                     |0.0.2   |       |        |     |
 |[migest](problems.md#migest)    |2.0.3   |       |        |1    |
 |[MIGSA](problems.md#migsa)      |1.21.0  |       |1       |2    |
 |[miloR](problems.md#milor)      |1.6.0   |       |        |4    |
@@ -351,7 +351,7 @@
 |[QFeatures](problems.md#qfeatures)|1.8.0   |       |1       |2    |
 |Qindex                          |0.1.0   |       |        |     |
 |RAC                             |1.5     |       |        |     |
-|[RaceID](problems.md#raceid)    |0.2.7   |       |        |1    |
+|[RaceID](problems.md#raceid)    |0.2.8   |       |        |1    |
 |[rADA](problems.md#rada)        |1.1.9   |1      |        |2    |
 |[RadioGx](problems.md#radiogx)  |2.2.0   |       |1       |3    |
 |ramr                            |1.6.0   |       |        |     |
@@ -364,13 +364,14 @@
 |reconsi                         |1.10.0  |       |        |     |
 |Rediscover                      |0.3.0   |       |        |     |
 |[regsem](problems.md#regsem)    |1.9.3   |       |        |1    |
-|[rhierbaps](problems.md#rhierbaps)|1.1.3   |       |        |1    |
+|rhierbaps                       |1.1.4   |       |        |     |
 |RHRT                            |1.0.1   |       |        |     |
 |[RiboDiPA](problems.md#ribodipa)|1.6.0   |       |        |1    |
 |[RJcluster](problems.md#rjcluster)|3.2.4   |       |        |1    |
 |[RNAmodR](problems.md#rnamodr)  |1.12.0  |1      |        |1    |
 |[RNAseqQC](problems.md#rnaseqqc)|0.1.4   |       |        |1    |
 |[RnBeads](problems.md#rnbeads)  |2.16.0  |1      |        |8    |
+|[robustbase](problems.md#robustbase)|0.95-0  |       |        |3    |
 |[robustlm](problems.md#robustlm)|0.1.0   |       |        |1    |
 |Rogue                           |2.1.3   |       |        |     |
 |RolDE                           |1.2.0   |       |        |     |
@@ -395,9 +396,9 @@
 |[seagull](problems.md#seagull)  |1.1.0   |       |        |1    |
 |[sechm](problems.md#sechm)      |1.6.0   |       |        |1    |
 |seeds                           |0.9.1   |       |        |     |
-|sensobol                        |1.1.1   |       |        |     |
+|sensobol                        |1.1.2   |       |        |     |
 |[seqArchR](problems.md#seqarchr)|1.2.0   |2      |        |     |
-|[Seurat](problems.md#seurat)    |4.2.1   |       |        |2    |
+|[Seurat](problems.md#seurat)    |4.3.0   |       |        |2    |
 |[SGP](problems.md#sgp)          |2.0-0.0 |       |        |1    |
 |[shinyMethyl](problems.md#shinymethyl)|1.34.0  |       |1       |2    |
 |[SIAMCAT](problems.md#siamcat)  |2.2.0   |       |        |3    |
@@ -423,7 +424,7 @@
 |splitFeas                       |0.1.0   |       |        |     |
 |[SPOTlight](problems.md#spotlight)|1.2.0   |       |        |1    |
 |[spqn](problems.md#spqn)        |1.10.0  |       |        |1    |
-|[SRTsim](problems.md#srtsim)    |0.99.2  |1      |        |     |
+|SRTsim                          |0.99.3  |       |        |     |
 |[stabiliser](problems.md#stabiliser)|1.0.2   |       |        |1    |
 |stability                       |0.5.0   |       |        |     |
 |[stapler](problems.md#stapler)  |0.7.1   |       |        |1    |
