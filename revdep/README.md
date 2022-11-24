@@ -195,7 +195,7 @@
 |[fishpond](problems.md#fishpond)|2.4.0   |1      |        |3    |
 |[flowCore](problems.md#flowcore)|2.10.0  |       |1       |2    |
 |[flowGraph](problems.md#flowgraph)|1.6.0   |       |        |2    |
-|[flowWorkspace](problems.md#flowworkspace)|4.10.0  |1      |5       |7    |
+|[flowWorkspace](problems.md#flowworkspace)|4.10.0  |       |5       |6    |
 |[footBayes](problems.md#footbayes)|0.1.0   |       |        |1    |
 |[FRASER](problems.md#fraser)    |1.10.0  |       |1       |2    |
 |funcharts                       |1.2.0   |       |        |     |
