@@ -6,7 +6,7 @@
 * GitHub: NA
 * Source code: https://github.com/cran/ExpHunterSuite
 * Date/Publication: 2022-05-13
-* Number of recursive dependencies: 225
+* Number of recursive dependencies: 224
 
 Run `revdep_details(, "ExpHunterSuite")` for more info
 
@@ -17,7 +17,7 @@ Run `revdep_details(, "ExpHunterSuite")` for more info
 *   checking whether package ‘ExpHunterSuite’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/00install.out’ for details.
     ```
 
 ## Installation
@@ -39,7 +39,7 @@ Error: .onLoad failed in loadNamespace() for 'dbplyr', details:
   error: error in contained classes ("character") for class “ident”; class definition removed from ‘dbplyr’
 Execution halted
 ERROR: lazy loading failed for package ‘ExpHunterSuite’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/ExpHunterSuite’
+* removing ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/ExpHunterSuite’
 
 
 ```
@@ -60,7 +60,7 @@ Error: .onLoad failed in loadNamespace() for 'dbplyr', details:
   error: error in contained classes ("character") for class “ident”; class definition removed from ‘dbplyr’
 Execution halted
 ERROR: lazy loading failed for package ‘ExpHunterSuite’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/old/ExpHunterSuite.Rcheck/ExpHunterSuite’
+* removing ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpHunterSuite/old/ExpHunterSuite.Rcheck/ExpHunterSuite’
 
 
 ```

@@ -42,16 +42,16 @@ Run `revdep_details(, "AlpsNMR")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘Vig01-introduction-to-alpsnmr.Rmd’ using rmarkdown
-    Warning in has_utility("pdfcrop") :
-      pdfcrop not installed or not in PATH
-    sh: pdfcrop: command not found
-    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
-      error in running command
-    sh: pdfcrop: command not found
-    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
-      error in running command
+    /bin/bash: line 1: /tmp/pdfcrop_0425//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-9-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0425//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-9-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0364//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-10-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0364//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-10-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0725//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-12-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0725//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-12-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0577//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-13-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0577//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig01-introduction-to-alpsnmr_files/figure-latex/unnamed-chunk-13-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
     ...
-    LaTeX failed to compile /c4/home/henrik/repositories/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig02-handling-metadata-and-annotations.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips.
+    LaTeX failed to compile /c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig02-handling-metadata-and-annotations.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips.
     --- failed re-building ‘Vig02-handling-metadata-and-annotations.Rmd’
     
     SUMMARY: processing the following files failed:
@@ -202,10 +202,10 @@ Run `revdep_details(, "amplican")` for more info
 
 <details>
 
-* Version: 3.2.2
+* Version: 3.3.0
 * GitHub: https://github.com/HenrikBengtsson/aroma.core
 * Source code: https://github.com/cran/aroma.core
-* Date/Publication: 2021-01-05 05:10:12 UTC
+* Date/Publication: 2022-11-15 18:30:13 UTC
 * Number of recursive dependencies: 48
 
 Run `revdep_details(, "aroma.core")` for more info
@@ -334,15 +334,42 @@ Run `revdep_details(, "bahc")` for more info
 
 <details>
 
-* Version: 2.10.0
+* Version: 2.10.1
 * GitHub: https://github.com/catavallejos/BASiCS
 * Source code: https://github.com/cran/BASiCS
-* Date/Publication: 2022-11-01
+* Date/Publication: 2022-11-14
 * Number of recursive dependencies: 138
 
 Run `revdep_details(, "BASiCS")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      Loading required package: GenomeInfoDb
+      Loading required package: Biobase
+      Welcome to Bioconductor
+      
+          Vignettes contain introductory material; view with
+          'browseVignettes()'. To cite Bioconductor, see
+    ...
+      `names(expected)` is absent
+      ── Failure ('test_lvg_hvg.R:9'): HVG/LVG - check if parameters are correct ─────
+      matrixStats::colMedians(displayChainBASiCS(ChainSC, "mu")) (`actual`) not equal to test@Table$Mu (`expected`).
+      
+      `names(actual)` is a character vector ('1700094D03Rik', '1700097N02Rik', '1810026B05Rik', '2310008H04Rik', '2410137M14Rik', ...)
+      `names(expected)` is absent
+      
+      [ FAIL 4 | WARN 311 | SKIP 0 | PASS 443 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -524,7 +551,7 @@ Run `revdep_details(, "biscuiteer")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘BiocParallel::bpstart’ by ‘QDNAseq::bpstart’ when loading ‘biscuiteer’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/biscuiteer/new/biscuiteer.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -564,7 +591,7 @@ Run `revdep_details(, "BloodGen3Module")` for more info
       Warning: replacing previous import ‘SummarizedExperiment::start’ by ‘stats::start’ when loading ‘BloodGen3Module’
       Warning: replacing previous import ‘SummarizedExperiment::end’ by ‘stats::end’ when loading ‘BloodGen3Module’
       Warning: replacing previous import ‘matrixStats::rowRanges’ by ‘SummarizedExperiment::rowRanges’ when loading ‘BloodGen3Module’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/BloodGen3Module/new/BloodGen3Module.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/BloodGen3Module/new/BloodGen3Module.Rcheck/00install.out’ for details.
     ```
 
 *   checking top-level files ... NOTE
@@ -602,11 +629,11 @@ Run `revdep_details(, "bnbc")` for more info
 
 <details>
 
-* Version: 0.4.6
+* Version: 0.4.7
 * GitHub: https://github.com/bmihaljevic/bnclassify
 * Source code: https://github.com/cran/bnclassify
-* Date/Publication: 2021-10-29 23:10:05 UTC
-* Number of recursive dependencies: 99
+* Date/Publication: 2022-11-16 12:11:13 UTC
+* Number of recursive dependencies: 106
 
 Run `revdep_details(, "bnclassify")` for more info
 
@@ -859,7 +886,7 @@ Run `revdep_details(, "BSW")` for more info
 * GitHub: https://github.com/Core-Bioinformatics/bulkAnalyseR
 * Source code: https://github.com/cran/bulkAnalyseR
 * Date/Publication: 2022-04-07 10:12:29 UTC
-* Number of recursive dependencies: 187
+* Number of recursive dependencies: 185
 
 Run `revdep_details(, "bulkAnalyseR")` for more info
 
@@ -916,6 +943,44 @@ Run `revdep_details(, "bumphunter")` for more info
     bumphunterEngine: no visible binding for global variable ‘bootstraps’
     Undefined global functions or variables:
       bootstraps
+    ```
+
+# Canek
+
+<details>
+
+* Version: 0.2.1
+* GitHub: NA
+* Source code: https://github.com/cran/Canek
+* Date/Publication: 2022-05-10 10:50:02 UTC
+* Number of recursive dependencies: 187
+
+Run `revdep_details(, "Canek")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(Canek)
+      > 
+      > test_check("Canek")
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 89 ]
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Failure ('test-Estimation.R:29'): Median Method ─────────────────────────────
+      y$`Correction Vector`[1] not equal to 0.00523153.
+      names for target but not for current
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 89 ]
+      Error: Test failures
+      Execution halted
     ```
 
 # CARBayesST
@@ -1019,6 +1084,33 @@ Run `revdep_details(, "cardelino")` for more info
 Run `revdep_details(, "CATALYST")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+          IQR, mad, sd, var, xtabs
+      
+      The following objects are masked from 'package:base':
+      
+          Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+          as.data.frame, basename, cbind, colnames, dirname, do.call,
+    ...
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Failure ('test_plotting-differential.R:83'): pbMDS() - by = 'sample_id' ─────
+      `p <- pbMDS(filterSCE(x0, !sample_id %in% s))` produced warnings.
+      ── Failure ('test_plotting-differential.R:96'): pbMDS() - by = 'cluster_id' ────
+      `p <- pbMDS(y, by = "cluster_id", k = k)` produced warnings.
+      
+      [ FAIL 2 | WARN 27 | SKIP 0 | PASS 739 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -1143,7 +1235,7 @@ Run `revdep_details(, "CelliD")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘data.table::shift’ by ‘tictoc::shift’ when loading ‘CelliD’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/CelliD/new/CelliD.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/CelliD/new/CelliD.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -1265,7 +1357,7 @@ Run `revdep_details(, "ChAMP")` for more info
       Warning: replacing previous import 'plotly::last_plot' by 'ggplot2::last_plot' when loading 'ChAMP'
       Warning: replacing previous import 'globaltest::model.matrix' by 'stats::model.matrix' when loading 'ChAMP'
       Warning: replacing previous import 'globaltest::p.adjust' by 'stats::p.adjust' when loading 'ChAMP'
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
     Information on the location(s) of code generating the ‘Note’s can be
     obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
     to ‘yes’.
@@ -1408,7 +1500,7 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
               it will be better to import the files into a TxDb object,
               and then convert to GRanges by toGRanges. Here is the sample code:
               library(GenomicFeatures)
-              txdb <- makeTxDbFromGFF('/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/ChIPpeakAnno/extdata/GFF_peaks.gff')
+              txdb <- makeTxDbFromGFF('/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/ChIPpeakAnno/extdata/GFF_peaks.gff')
               anno <- toGRanges(txdb, format='gene')
     duplicated or NA names found. 
     ...
@@ -1499,7 +1591,7 @@ Run `revdep_details(, "cliqueMS")` for more info
 * GitHub: https://github.com/epurdom/clusterExperiment
 * Source code: https://github.com/cran/clusterExperiment
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 183
+* Number of recursive dependencies: 181
 
 Run `revdep_details(, "clusterExperiment")` for more info
 
@@ -1749,7 +1841,7 @@ Run `revdep_details(, "coin")` for more info
 * GitHub: https://github.com/jokergoo/cola
 * Source code: https://github.com/cran/cola
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 246
+* Number of recursive dependencies: 244
 
 Run `revdep_details(, "cola")` for more info
 
@@ -1786,7 +1878,7 @@ Run `revdep_details(, "compcodeR")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/compcodeR/new/compcodeR.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/compcodeR/new/compcodeR.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -1810,11 +1902,6 @@ Run `revdep_details(, "ComplexHeatmap")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘EnrichedHeatmap’
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -2266,6 +2353,33 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test_row_and_col_functions.R:72'): Non-NULL rows and cols ─────────
+      c(0, -1) not equal to c(R3 = 0, R2 = -1).
+      names for current but not for target
+      Backtrace:
+          ▆
+       1. └─base::Map(expect_equal, observeds, expecteds, check.attributes = check.attributes) at test_row_and_col_functions.R:72:4
+    ...
+      names for current but not for target
+      Backtrace:
+          ▆
+       1. └─base::Map(expect_equal, observeds, expecteds, check.attributes = check.attributes) at test_row_and_col_functions.R:72:4
+       2.   └─base::mapply(FUN = f, ..., SIMPLIFY = FALSE)
+       3.     └─testthat (local) `<fn>`(dots[[1L]][[26L]], dots[[2L]][[2L]], check.attributes = dots[[3L]][[26L]])
+      
+      [ FAIL 8496 | WARN 13241 | SKIP 0 | PASS 6236 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -2301,7 +2415,7 @@ Run `revdep_details(, "DeMixT")` for more info
       Warning: replacing previous import ‘ggplot2::alpha’ by ‘psych::alpha’ when loading ‘DeMixT’
       Warning: replacing previous import ‘SummarizedExperiment::distance’ by ‘psych::distance’ when loading ‘DeMixT’
       Warning: replacing previous import ‘ggplot2::%+%’ by ‘psych::%+%’ when loading ‘DeMixT’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeMixT/new/DeMixT.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/DeMixT/new/DeMixT.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd \usage sections ... WARNING
@@ -2442,6 +2556,31 @@ Run `revdep_details(, "DEqMS")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
+    ...
+    Using 'localHub=TRUE'
+      If offline, please also see BiocManager vignette section on offline use
+    snapshotDate(): 2022-11-21
+    > query(eh, "DEqMS")
+    ExperimentHub with 0 records
+    # snapshotDate(): 2022-11-21
+    > dat.psm = eh[["EH1663"]]
+    Error: File not previously downloaded.
+      Run with 'localHub=FALSE'
+    Execution halted
+    ```
+
 *   checking DESCRIPTION meta-information ... NOTE
     ```
     Malformed Title field: should not end in a period.
@@ -2452,6 +2591,30 @@ Run `revdep_details(, "DEqMS")` for more info
     Package in Depends field not imported from: ‘matrixStats’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
+    ```
+
+# DESeq2
+
+<details>
+
+* Version: 1.38.1
+* GitHub: https://github.com/mikelove/DESeq2
+* Source code: https://github.com/cran/DESeq2
+* Date/Publication: 2022-11-15
+* Number of recursive dependencies: 196
+
+Run `revdep_details(, "DESeq2")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  8.1Mb
+      sub-directories of 1Mb or more:
+        doc    2.5Mb
+        libs   4.3Mb
     ```
 
 # detrendr
@@ -2668,33 +2831,6 @@ Run `revdep_details(, "DMCFB")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘DMCFB-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: findDMCFB-method
-    > ### Title: findDMCFB method
-    > ### Aliases: findDMCFB-method findDMCFB,BSDMC-method findDMCFB
-    > 
-    > ### ** Examples
-    > 
-    > set.seed(1980)
-    ...
-    logit(MethRead/ReadDepth) ~ F(Group)
-    ------------------------------------------------------------
-    Creating 1 batches of genomic positions ...
-    Running batch 1/1; chr1; 1000 positions; Region [   1, 1000]; Date 2022-11-13 21:55:12
-    Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
-      port 11031 cannot be opened
-    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
-      cannot open the connection
-    Calls: findDMCFB ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
-    Execution halted
-    ```
-
 ## In both
 
 *   checking re-building of vignette outputs ... ERROR
@@ -2867,7 +3003,7 @@ Run `revdep_details(, "dwp")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/easier
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 197
+* Number of recursive dependencies: 196
 
 Run `revdep_details(, "easier")` for more info
 
@@ -3018,7 +3154,7 @@ Run `revdep_details(, "epimutacions")` for more info
 
 </details>
 
-## Newly fixed
+## In both
 
 *   checking re-building of vignette outputs ... ERROR
     ```
@@ -3033,9 +3169,9 @@ Run `revdep_details(, "epimutacions")` for more info
     
     The following objects are masked from 'package:stats':
     ...
-      name: EH6691
-      title: Reference panel
-      reason: error in evaluating the argument 'x' in selecting a method for function 'get': error reading from connection
+    Quitting from lines 595-596 (epimutacions.Rmd) 
+    Error: processing vignette 'epimutacions.Rmd' failed with diagnostics:
+    Timeout was reached: [grch37.ensembl.org:443] Operation timed out after 10001 milliseconds with 0 out of -1 bytes received
     --- failed re-building ‘epimutacions.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -3044,8 +3180,6 @@ Run `revdep_details(, "epimutacions")` for more info
     Error: Vignette re-building failed.
     Execution halted
     ```
-
-## In both
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -3281,7 +3415,7 @@ Run `revdep_details(, "ExCluster")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/ExpHunterSuite
 * Date/Publication: 2022-05-13
-* Number of recursive dependencies: 225
+* Number of recursive dependencies: 224
 
 Run `revdep_details(, "ExpHunterSuite")` for more info
 
@@ -3292,7 +3426,7 @@ Run `revdep_details(, "ExpHunterSuite")` for more info
 *   checking whether package ‘ExpHunterSuite’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/00install.out’ for details.
     ```
 
 ## Installation
@@ -3314,7 +3448,7 @@ Error: .onLoad failed in loadNamespace() for 'dbplyr', details:
   error: error in contained classes ("character") for class “ident”; class definition removed from ‘dbplyr’
 Execution halted
 ERROR: lazy loading failed for package ‘ExpHunterSuite’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/ExpHunterSuite’
+* removing ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/ExpHunterSuite’
 
 
 ```
@@ -3335,7 +3469,7 @@ Error: .onLoad failed in loadNamespace() for 'dbplyr', details:
   error: error in contained classes ("character") for class “ident”; class definition removed from ‘dbplyr’
 Execution halted
 ERROR: lazy loading failed for package ‘ExpHunterSuite’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/old/ExpHunterSuite.Rcheck/ExpHunterSuite’
+* removing ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpHunterSuite/old/ExpHunterSuite.Rcheck/ExpHunterSuite’
 
 
 ```
@@ -3362,7 +3496,7 @@ Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
       Warning: ExpressionNormalizationWorkflow-package.Rd:30: All text must be in a section
       Warning: replacing previous import ‘Biobase::anyMissing’ by ‘matrixStats::anyMissing’ when loading ‘ExpressionNormalizationWorkflow’
       Warning: replacing previous import ‘Biobase::rowMedians’ by ‘matrixStats::rowMedians’ when loading ‘ExpressionNormalizationWorkflow’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ExpressionNormalizationWorkflow/new/ExpressionNormalizationWorkflow.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -3462,11 +3596,11 @@ Run `revdep_details(, "FastRCS")` for more info
 
 <details>
 
-* Version: 0.2.4
+* Version: 0.3.0
 * GitHub: https://github.com/fastverse/fastverse
 * Source code: https://github.com/cran/fastverse
-* Date/Publication: 2022-05-31 22:20:19 UTC
-* Number of recursive dependencies: 60
+* Date/Publication: 2022-11-15 23:30:04 UTC
+* Number of recursive dependencies: 68
 
 Run `revdep_details(, "fastverse")` for more info
 
@@ -3477,7 +3611,7 @@ Run `revdep_details(, "fastverse")` for more info
 *   checking dependencies in R code ... NOTE
     ```
     Namespaces in Imports field not imported from:
-      ‘collapse’ ‘data.table’ ‘fst’ ‘kit’ ‘magrittr’ ‘matrixStats’
+      ‘collapse’ ‘data.table’ ‘kit’ ‘magrittr’
       All declared Imports should be used.
     ```
 
@@ -3654,7 +3788,7 @@ Run `revdep_details(, "fipp")` for more info
 * GitHub: https://github.com/mikelove/fishpond
 * Source code: https://github.com/cran/fishpond
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 204
+* Number of recursive dependencies: 203
 
 Run `revdep_details(, "fishpond")` for more info
 
@@ -3667,17 +3801,17 @@ Run `revdep_details(, "fishpond")` for more info
     Error(s) in re-building vignettes:
     --- re-building ‘allelic.Rmd’ using rmarkdown
     using posterior mean for calculating ratio
-    using posterior mean for calculating ratio
-    Quitting from lines 264-266 (allelic.Rmd) 
-    Error: processing vignette 'allelic.Rmd' failed with diagnostics:
-    unable to find FTP dir for assembly GCF_000001405.39
-    --- failed re-building ‘allelic.Rmd’
-    
-    --- re-building ‘swish.Rmd’ using rmarkdown
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+    Warning: useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
     ...
     [ myGENCODE - Homo sapiens - release 29 ]
-    loading existing TxDb created: 2022-11-14 21:44:42
-    loading existing transcript ranges created: 2022-11-14 21:44:44
+    loading existing TxDb created: 2022-11-23 20:56:04
+    loading existing transcript ranges created: 2022-11-23 20:56:06
     --- finished re-building ‘swish.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -3727,49 +3861,22 @@ Run `revdep_details(, "flowCore")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘flowCore-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: filterResultList-class
-    > ### Title: Class "filterResultList"
-    > ### Aliases: filterResultList-class filterResultList
-    > ###   [,filterResultList,ANY-method [[,filterResultList,ANY-method
-    > ###   names,filterResultList-method parameters,filterResultList-method
-    > ###   show,filterResultList-method split,flowSet,filterResultList-method
-    > ###   summary,filterResultList-method
-    > ### Keywords: classes
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > library(flowStats)
-    Error in library(flowStats) : there is no package called ‘flowStats’
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(flowCore)
-      > library(flowStats)
-      Error in library(flowStats) : there is no package called 'flowStats'
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
+*   checking re-building of vignette outputs ... WARNING
     ```
     Error(s) in re-building vignettes:
-      ...
     --- re-building ‘HowTo-flowCore.Rnw’ using knitr
-    Quitting from lines 462-464 (HowTo-flowCore.Rnw) 
-    Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
-    there is no package called 'ggcyto'
+    Warning: replacing previous import 'flowViz::contour' by 'graphics::contour' when loading 'flowStats'
+    Warning: 'getData' is deprecated.
+    Use 'gs_pop_get_data' instead.
+    See help("Deprecated")
+    Warning: 'flowJo_biexp_trans' is deprecated.
+    Use 'flowjo_biexp_trans' instead.
+    See help("Deprecated")
+    Warning: 'getData' is deprecated.
+    ...
+    l.65 \usepackage
+                    {graphicx}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
     --- failed re-building ‘HowTo-flowCore.Rnw’
     
     SUMMARY: processing the following file failed:
@@ -3777,12 +3884,6 @@ Run `revdep_details(, "flowCore")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'flowStats', 'flowWorkspace', 'openCyto', 'ggcyto'
     ```
 
 *   checking installed package size ... NOTE
@@ -3793,11 +3894,6 @@ Run `revdep_details(, "flowCore")` for more info
         data      5.4Mb
         extdata   1.1Mb
         libs      9.4Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Unknown packages ‘flowStats’, ‘ggcyto’ in Rd xrefs
     ```
 
 *   checking compiled code ... NOTE
@@ -3859,56 +3955,6 @@ Run `revdep_details(, "flowWorkspace")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-          intersect, setdiff, setequal, union
-      
-      Loading required package: BiocGenerics
-      
-      Attaching package: 'BiocGenerics'
-      
-    ...
-      ── Error (???): (code run outside of `test_that()`) ────────────────────────────
-      <packageNotFoundError/error/condition>
-      Error in `library(CytoML)`: there is no package called 'CytoML'
-      Backtrace:
-          ▆
-       1. └─base::library(CytoML)
-      
-      [ FAIL 1 | WARN 1 | SKIP 4 | PASS 883 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘HowToMergeGatingSet.Rmd’ using rmarkdown
-    As part of improvements to flowWorkspace, some behavior of
-    GatingSet objects has changed. For details, please read the section
-    titled "The cytoframe and cytoset classes" in the package vignette:
-    
-      vignette("flowWorkspace-Introduction", "flowWorkspace")
-    Comparing the tree structures
-    processing group: 1
-    Searching for uncommon nodes ..
-    ...
-    Quitting from lines 91-93 (flowWorkspace-Introduction.Rmd) 
-    Error: processing vignette 'flowWorkspace-Introduction.Rmd' failed with diagnostics:
-    there is no package called 'ggcyto'
-    --- failed re-building ‘flowWorkspace-Introduction.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘flowWorkspace-Introduction.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking Rd cross-references ... WARNING
     ```
     Package unavailable to check Rd xrefs: ‘flowStats’
@@ -3968,12 +4014,6 @@ Run `revdep_details(, "flowWorkspace")` for more info
 *   checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... WARNING
     ```
       apparently using $(BLAS_LIBS) without following $(FLIBS) in ‘src/Makevars’
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'ggcyto', 'CytoML', 'openCyto'
     ```
 
 *   checking installed package size ... NOTE
@@ -4065,7 +4105,7 @@ Run `revdep_details(, "footBayes")` for more info
 * GitHub: https://github.com/gagneurlab/FRASER
 * Source code: https://github.com/cran/FRASER
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 188
+* Number of recursive dependencies: 186
 
 Run `revdep_details(, "FRASER")` for more info
 
@@ -4077,14 +4117,14 @@ Run `revdep_details(, "FRASER")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘FRASER.Rnw’ using knitr
-    Sun Nov 13 19:24:29 2022: Start counting the split reads ...
-    Sun Nov 13 19:24:29 2022: Count split reads for sample: sample1
-    Sun Nov 13 19:24:31 2022: Count split reads for sample: sample2
-    Sun Nov 13 19:24:32 2022: Count split reads for sample: sample3
-    Sun Nov 13 19:24:34 2022 : count ranges need to be merged ...
-    Sun Nov 13 19:24:34 2022: Create splice site indices ...
-    Sun Nov 13 19:24:35 2022: Writing split counts to folder: FRASER_output/savedObjects/Data_Analysis/splitCounts
-    Sun Nov 13 19:24:35 2022: Identifying introns with read count <= 20 in all samples...
+    Wed Nov 23 13:11:15 2022: Start counting the split reads ...
+    Wed Nov 23 13:11:15 2022: Count split reads for sample: sample1
+    Wed Nov 23 13:11:17 2022: Count split reads for sample: sample2
+    Wed Nov 23 13:11:18 2022: Count split reads for sample: sample3
+    Wed Nov 23 13:11:20 2022 : count ranges need to be merged ...
+    Wed Nov 23 13:11:20 2022: Create splice site indices ...
+    Wed Nov 23 13:11:21 2022: Writing split counts to folder: FRASER_output/savedObjects/Data_Analysis/splitCounts
+    Wed Nov 23 13:11:21 2022: Identifying introns with read count <= 20 in all samples...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -4179,28 +4219,6 @@ Run `revdep_details(, "gap")` for more info
         doc   5.5Mb
     ```
 
-# GenEst
-
-<details>
-
-* Version: 1.4.6
-* GitHub: NA
-* Source code: https://github.com/cran/GenEst
-* Date/Publication: 2021-06-17 07:10:08 UTC
-* Number of recursive dependencies: 92
-
-Run `revdep_details(, "GenEst")` for more info
-
-</details>
-
-## In both
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespace in Imports field not imported from: ‘htmlwidgets’
-      All declared Imports should be used.
-    ```
-
 # geneticae
 
 <details>
@@ -4233,7 +4251,7 @@ Run `revdep_details(, "geneticae")` for more info
 * GitHub: https://github.com/federicomarini/GeneTonic
 * Source code: https://github.com/cran/GeneTonic
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 205
+* Number of recursive dependencies: 203
 
 Run `revdep_details(, "GeneTonic")` for more info
 
@@ -4275,7 +4293,7 @@ Run `revdep_details(, "genomation")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘genomation’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/genomation/new/genomation.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
@@ -4431,11 +4449,38 @@ Run `revdep_details(, "GJRM")` for more info
 * GitHub: https://github.com/const-ae/glmGamPoi
 * Source code: https://github.com/cran/glmGamPoi
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 169
+* Number of recursive dependencies: 167
 
 Run `revdep_details(, "glmGamPoi")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(glmGamPoi)
+      > 
+      > test_check("glmGamPoi")
+      [ FAIL 5 | WARN 703 | SKIP 5 | PASS 394 ]
+      
+    ...
+       2.   └─glmGamPoi:::test_de_q(...)
+       3.     └─glmGamPoi:::parse_contrast_q(...)
+       4.       └─base::tryCatch(...)
+       5.         └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+       6.           └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       7.             └─value[[3L]](cond)
+      
+      [ FAIL 5 | WARN 703 | SKIP 5 | PASS 394 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -4455,7 +4500,7 @@ Run `revdep_details(, "glmGamPoi")` for more info
 * GitHub: https://github.com/erhard-lab/grandR
 * Source code: https://github.com/cran/grandR
 * Date/Publication: 2022-09-20 07:56:10 UTC
-* Number of recursive dependencies: 251
+* Number of recursive dependencies: 250
 
 Run `revdep_details(, "grandR")` for more info
 
@@ -4477,7 +4522,7 @@ Run `revdep_details(, "grandR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/GRaNIE
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 247
+* Number of recursive dependencies: 245
 
 Run `revdep_details(, "GRaNIE")` for more info
 
@@ -4620,6 +4665,31 @@ Run `revdep_details(, "Gviz")` for more info
 
 ## In both
 
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘Gviz.Rmd’ using rmarkdown
+    Warning in download.file("http://www.biomart.org", tempfile(), quiet = TRUE) :
+      downloaded length 7616 != reported length 0
+    Loading required package: S4Vectors
+    Loading required package: stats4
+    Loading required package: BiocGenerics
+    
+    Attaching package: 'BiocGenerics'
+    
+    ...
+    Quitting from lines 1808-1820 (Gviz.Rmd) 
+    Error: processing vignette 'Gviz.Rmd' failed with diagnostics:
+    Timeout was reached: [grch37.ensembl.org:443] Operation timed out after 10000 milliseconds with 0 out of -1 bytes received
+    --- failed re-building ‘Gviz.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘Gviz.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is  9.7Mb
@@ -4724,6 +4794,47 @@ Run `revdep_details(, "HDSpatialScan")` for more info
         libs   5.7Mb
     ```
 
+# hermes
+
+<details>
+
+* Version: 1.2.0
+* GitHub: https://github.com/insightsengineering/hermes
+* Source code: https://github.com/cran/hermes
+* Date/Publication: 2022-11-01
+* Number of recursive dependencies: 161
+
+Run `revdep_details(, "hermes")` for more info
+
+</details>
+
+## In both
+
+*   checking tests ...
+    ```
+      Running ‘test_dplyr_compatibility.R’
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+          Vignettes contain introductory material; view with
+          'browseVignettes()'. To cite Bioconductor, see
+          'citation("Biobase")', and for packages 'citation("pkgname")'.
+      
+    ...
+          ▆
+       1. ├─hermes::query(genes(object), connection) at test-connections.R:171:2
+       2. └─hermes::query(genes(object), connection)
+       3.   └─hermes::h_get_annotation_biomart(gene_ids, id_var = id_var, mart = mart)
+       4.     └─biomaRt::getBM(...)
+       5.       └─biomaRt:::.readFromCache(bfc, hash)
+      
+      [ FAIL 2 | WARN 3 | SKIP 16 | PASS 836 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 # hipathia
 
 <details>
@@ -4739,6 +4850,31 @@ Run `revdep_details(, "hipathia")` for more info
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘hipathia-vignette.Rmd’ using rmarkdown
+    Loading required package: igraph
+    
+    Attaching package: 'igraph'
+    
+    The following objects are masked from 'package:stats':
+    
+        decompose, spectrum
+    
+    ...
+    
+    Error: processing vignette 'hipathia-vignette.Rmd' failed with diagnostics:
+    LaTeX failed to compile /c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/hipathia/new/hipathia.Rcheck/vign_test/hipathia/vignettes/hipathia-vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See hipathia-vignette.log for more info.
+    --- failed re-building ‘hipathia-vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘hipathia-vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -4846,7 +4982,7 @@ Run `revdep_details(, "kgschart")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/kissDE
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 207
+* Number of recursive dependencies: 206
 
 Run `revdep_details(, "kissDE")` for more info
 
@@ -4966,27 +5102,6 @@ Run `revdep_details(, "liger")` for more info
         data   3.3Mb
         doc    2.1Mb
         libs   2.2Mb
-    ```
-
-# loo
-
-<details>
-
-* Version: 2.5.1
-* GitHub: https://github.com/stan-dev/loo
-* Source code: https://github.com/cran/loo
-* Date/Publication: 2022-03-24 10:30:02 UTC
-* Number of recursive dependencies: 145
-
-Run `revdep_details(, "loo")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking: 'brms', 'rstanarm'
     ```
 
 # LSAmitR
@@ -5193,6 +5308,33 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test-api_compatibility.R:1217'): rowOrderStats works  ─────────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+      ── Failure ('test-api_compatibility.R:1242'): rowProds works  ──────────────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+    ...
+      ── Failure ('test-api_compatibility.R:1518'): rowWeightedSds works  ────────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+      ── Failure ('test-api_compatibility.R:1539'): rowWeightedVars works  ───────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+      
+      [ FAIL 70 | WARN 261 | SKIP 0 | PASS 242 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -5347,6 +5489,47 @@ Run `revdep_details(, "metagene")` for more info
     to your NAMESPACE file.
     ```
 
+# metagenomeSeq
+
+<details>
+
+* Version: 1.40.0
+* GitHub: https://github.com/nosson/metagenomeSeq
+* Source code: https://github.com/cran/metagenomeSeq
+* Date/Publication: 2022-11-01
+* Number of recursive dependencies: 140
+
+Run `revdep_details(, "metagenomeSeq")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      > # but now you have the flexibility as requested by CRAN maintainers.
+      > test_check("metagenomeSeq")
+      Loading required package: metagenomeSeq
+      Loading required package: Biobase
+      Loading required package: BiocGenerics
+      
+    ...
+      ── Failure ('test-norm.R:28'): `cumNormStat` returns the correct value ─────────
+      cumNormStat(lungData) not equal to 0.7014946.
+      names for target but not for current
+      ── Failure ('test-norm.R:34'): `cumNormStatFast` returns the correct value ─────
+      cumNormStatFast(lungData) not equal to 0.7014946.
+      names for target but not for current
+      
+      [ FAIL 2 | WARN 6 | SKIP 0 | PASS 13 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 # metamicrobiomeR
 
 <details>
@@ -5423,55 +5606,6 @@ Run `revdep_details(, "metavizr")` for more info
 Run `revdep_details(, "MethReg")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘MethReg.Rmd’ using rmarkdown
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/MethReg/new/MethReg.Rcheck/vign_test/MethReg/vignettes/MethReg_files/figure-html/workflow-1.png" but not available.
-    Quitting from lines 174-181 (MethReg.Rmd) 
-    Error: processing vignette 'MethReg.Rmd' failed with diagnostics:
-    failed to connect
-      reason: Encountered end of file
-      Consider rerunning with 'localHub=TRUE'
-    --- failed re-building ‘MethReg.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘MethReg.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-## Newly fixed
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      ── Failure ('test-get_promoter_avg.R:4'): get_promoter_avg throws error if not promoter regions/probes ──
-      `... <- NULL` threw an error with unexpected message.
-      Expected match: "No overlap found between promoter regions and DNA methylation array found"
-      Actual message: "failed to connect\n  reason: Encountered end of file\n  Consider rerunning with 'localHub=TRUE'"
-      Backtrace:
-           ▆
-    ...
-       3.     └─ExperimentHub::ExperimentHub()
-       4.       └─AnnotationHub::.Hub(...)
-       5.         └─base::tryCatch(...)
-       6.           └─base (local) tryCatchList(expr, classes, parentenv, handlers)
-       7.             └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
-       8.               └─value[[3L]](cond)
-      
-      [ FAIL 3 | WARN 9 | SKIP 4 | PASS 154 ]
-      Error: Test failures
-      Execution halted
-    ```
 
 ## In both
 
@@ -5648,7 +5782,7 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
       Warning: replacing previous import 'rmarkdown::pdf_document' by 'BiocStyle::pdf_document' when loading 'methylationArrayAnalysis'
       Warning: replacing previous import 'rmarkdown::html_document' by 'BiocStyle::html_document' when loading 'methylationArrayAnalysis'
       Warning: replacing previous import 'rmarkdown::md_document' by 'BiocStyle::md_document' when loading 'methylationArrayAnalysis'
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
     ```
 
 *   checking package dependencies ... NOTE
@@ -5818,7 +5952,7 @@ Run `revdep_details(, "mgcViz")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/microbiomeExplorer
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 196
+* Number of recursive dependencies: 195
 
 Run `revdep_details(, "microbiomeExplorer")` for more info
 
@@ -6026,7 +6160,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘ff::pattern’ by ‘grid::pattern’ when loading ‘MinimumDistance’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/MinimumDistance/new/MinimumDistance.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/MinimumDistance/new/MinimumDistance.Rcheck/00install.out’ for details.
     ```
 
 *   checking Rd files ... WARNING
@@ -6144,19 +6278,6 @@ Run `revdep_details(, "mnem")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
-    ```
-
-*   checking package dependencies ...Warning: unable to access index for repository https://bioconductor.org/packages/3.16/bioc/src/contrib:
-    ```
-      cannot open URL 'https://bioconductor.org/packages/3.16/bioc/src/contrib/PACKAGES'
-    Warning: unable to access index for repository https://bioconductor.org/packages/3.16/data/annotation/src/contrib:
-      cannot open URL 'https://bioconductor.org/packages/3.16/data/annotation/src/contrib/PACKAGES'
-    Warning: unable to access index for repository https://bioconductor.org/packages/3.16/data/experiment/src/contrib:
-      cannot open URL 'https://bioconductor.org/packages/3.16/data/experiment/src/contrib/PACKAGES'
-    Warning: unable to access index for repository https://bioconductor.org/packages/3.16/workflows/src/contrib:
-      cannot open URL 'https://bioconductor.org/packages/3.16/workflows/src/contrib/PACKAGES'
-     NOTE
-    Package suggested but not available for checking: ‘epiNEM’
     ```
 
 *   checking installed package size ... NOTE
@@ -6447,14 +6568,14 @@ Run `revdep_details(, "MultiBD")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘SIR-MCMC.Rmd’ using rmarkdown
+    /bin/bash: line 1: /tmp/pdfcrop_0390//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/MultiBD/new/MultiBD.Rcheck/vign_test/MultiBD/vignettes/SIR-MCMC_files/figure-latex/unnamed-chunk-6-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0390//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/MultiBD/new/MultiBD.Rcheck/vign_test/MultiBD/vignettes/SIR-MCMC_files/figure-latex/unnamed-chunk-6-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0506//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/MultiBD/new/MultiBD.Rcheck/vign_test/MultiBD/vignettes/SIR-MCMC_files/figure-latex/unnamed-chunk-6-2.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0506//c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/MultiBD/new/MultiBD.Rcheck/vign_test/MultiBD/vignettes/SIR-MCMC_files/figure-latex/unnamed-chunk-6-2.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
     Warning: The dot-dot notation (`..level..`) was deprecated in ggplot2 3.4.0.
     i Please use `after_stat(level)` instead.
     Warning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in
     ggplot2 3.3.4.
-    i Please use "none" instead.
-    --- finished re-building ‘SIR-MCMC.Rmd’
-    
-    --- re-building ‘SIRtrans.Rnw’ using knitr
     ...
     l.75 \usepackage
                     {amsmath}^^M
@@ -6489,33 +6610,6 @@ Run `revdep_details(, "muscat")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(muscat)
-      > 
-      > test_check("muscat")
-      [ FAIL 3 | WARN 4 | SKIP 0 | PASS 548 ]
-      
-    ...
-      `expected`: TRUE 
-      ── Failure ('test-pbDS.R:72'): pbDS.limma-trend ────────────────────────────────
-      all(unlist(map(top, setequal, degs))) is not TRUE
-      
-      `actual`:   FALSE
-      `expected`: TRUE 
-      
-      [ FAIL 3 | WARN 4 | SKIP 0 | PASS 548 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 ## In both
 
 *   checking installed package size ... NOTE
@@ -6533,7 +6627,7 @@ Run `revdep_details(, "muscat")` for more info
 * GitHub: https://github.com/HelenaLC/muscData
 * Source code: https://github.com/cran/muscData
 * Date/Publication: 2022-11-03
-* Number of recursive dependencies: 273
+* Number of recursive dependencies: 272
 
 Run `revdep_details(, "muscData")` for more info
 
@@ -6543,36 +6637,11 @@ Run `revdep_details(, "muscData")` for more info
 
 *   checking for missing documentation entries ... WARNING
     ```
-    Error: package ‘SummarizedExperiment’ could not be loaded
-    Call sequence:
-    5: stop(gettextf("package %s could not be loaded", sQuote(pkg)), 
-           call. = FALSE, domain = NA)
-    4: .getRequiredPackages2(pkgInfo, quietly = quietly)
-    3: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
-           quietly = quietly)
-    2: .getRequiredPackages2(pkgInfo, quietly = quietly)
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
+    Undocumented code objects:
+      ‘Crowell19_4vs4’
     All user-level objects in a package should have documentation entries.
     See chapter ‘Writing R documentation files’ in the ‘Writing R
     Extensions’ manual.
-    ```
-
-*   checking for code/documentation mismatches ... WARNING
-    ```
-    Error: package ‘BiocFileCache’ could not be loaded
-    Call sequence:
-    7: stop(gettextf("package %s could not be loaded", sQuote(pkg)), 
-           call. = FALSE, domain = NA)
-    6: .getRequiredPackages2(pkgInfo, quietly = quietly)
-    5: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
-           quietly = quietly)
-    4: .getRequiredPackages2(pkgInfo, quietly = quietly)
-    3: library(pkg, character.only = TRUE, logical.return = TRUE, lib.loc = lib.loc, 
-           quietly = quietly)
-    2: .getRequiredPackages2(pkgInfo, quietly = quietly)
-    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
-    Execution halted
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -6984,21 +7053,11 @@ Run `revdep_details(, "OptimalDesign")` for more info
 * GitHub: https://github.com/gagneurlab/OUTRIDER
 * Source code: https://github.com/cran/OUTRIDER
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 176
+* Number of recursive dependencies: 174
 
 Run `revdep_details(, "OUTRIDER")` for more info
 
 </details>
-
-## Newly fixed
-
-*   checking R code for possible problems ... NOTE
-    ```
-    Error in get(n, envir = env) : 
-      read failed on /c4/home/henrik/repositories/matrixStats/revdep/checks/OUTRIDER/old/OUTRIDER.Rcheck/OUTRIDER/R/OUTRIDER.rdb
-    Calls: <Anonymous> ... withCallingHandlers -> do.call -> <Anonymous> -> get
-    Execution halted
-    ```
 
 ## In both
 
@@ -7008,12 +7067,12 @@ Run `revdep_details(, "OUTRIDER")` for more info
     --- re-building ‘OUTRIDER.Rnw’ using knitr
     The magick package is required to crop "figure/deVsOutlier-1.png" but not available.
     229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.
-    Sun Nov 13 20:04:49 2022: SizeFactor estimation ...
-    Sun Nov 13 20:04:49 2022: Controlling for confounders ...
+    Wed Nov 23 13:44:52 2022: SizeFactor estimation ...
+    Wed Nov 23 13:44:52 2022: Controlling for confounders ...
     Using estimated q with: 23
-    Sun Nov 13 20:04:49 2022: Using the autoencoder implementation for controlling.
-    Sun Nov 13 20:07:35 2022: Used the autoencoder implementation for controlling.
-    Sun Nov 13 20:07:35 2022: P-value calculation ...
+    Wed Nov 23 13:44:53 2022: Using the autoencoder implementation for controlling.
+    Wed Nov 23 13:47:59 2022: Used the autoencoder implementation for controlling.
+    Wed Nov 23 13:47:59 2022: P-value calculation ...
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -7126,7 +7185,7 @@ Run `revdep_details(, "pARI")` for more info
 * GitHub: https://github.com/mani2012/PathoStat
 * Source code: https://github.com/cran/PathoStat
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 204
+* Number of recursive dependencies: 203
 
 Run `revdep_details(, "PathoStat")` for more info
 
@@ -7178,31 +7237,6 @@ Run `revdep_details(, "PDATK")` for more info
 
 ## In both
 
-*   checking replacement functions ... WARNING
-    ```
-    Error: package or namespace load failed for ‘PDATK’ in runHook(".onLoad", env, package.lib, package):
-     read failed on /c4/home/henrik/repositories/matrixStats/revdep/library/PDATK/checkmate/R/checkmate.rdb
-    Call sequence:
-    
-    5: value[[3L]](cond)
-    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
-    3: tryCatchList(expr, classes, parentenv, handlers)
-    2: tryCatch({
-           attr(package, "LibPath") <- which.lib.loc
-           ns <- loadNamespace(package, lib.loc)
-    ...
-           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
-               sQuote(package), P, conditionMessage(e))
-           if (logical.return && !quietly) 
-               message(paste("Error:", msg), domain = NA)
-           else stop(msg, call. = FALSE, domain = NA)
-       })
-    1: library(package, lib.loc = lib.loc, character.onl
-    Execution halted
-    The argument of a replacement function which corresponds to the right
-    hand side must be named ‘value’.
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  5.3Mb
@@ -7210,23 +7244,29 @@ Run `revdep_details(, "PDATK")` for more info
         doc   3.3Mb
     ```
 
-*   checking foreign function calls ... NOTE
-    ```
-    /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: line 8: /usr/bin/uname: Argument list too long
-    /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: line 271: /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/exec/R: Argument list too long
-    /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: line 271: /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/exec/R: Success
-    See chapter ‘System and foreign language interfaces’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
-    /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: line 8: /usr/bin/uname: Argument list too long
-    /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: line 271: /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/exec/R: Argument list too long
-    /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: line 271: /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/exec/R: Success
-    
-    Found the following possibly unsafe calls:
-    sh: /software/c4/cbi/software/R-4.2.2-gcc10/lib64/R/bin/R: Argument list too long
+    .calculateMSMthresholds: no visible binding for global variable
+      ‘funContext’
+    .plotNetwork: no visible global function definition for ‘legend’
+    NCSModel: no visible binding for global variable ‘metric’
+    NCSModel: no visible binding for global variable ‘comparison’
+    NCSModel: no visible binding for global variable ‘centroid_K’
+    NCSModel: no visible binding for global variable ‘assay_K’
+    NetworkCommunitySearchModel: no visible binding for global variable
+      ‘metric’
+    NetworkCommunitySearchModel: no visible binding for global variable
+    ...
+    trainModel,NCSModel: no visible binding for global variable
+      ‘cor_threshold’
+    Undefined global functions or variables:
+      .error assay_K assay_cohort centroid_K centroid_cohort cluster_label
+      comparison cor_threshold dev.off feature feature_rank feature_score
+      funContext ingroup_proportion legend metric missignAssays pdf tmp
+    Consider adding
+      importFrom("grDevices", "dev.off", "pdf")
+      importFrom("graphics", "legend")
+    to your NAMESPACE file.
     ```
 
 # penppml
@@ -7294,47 +7334,20 @@ Run `revdep_details(, "Pigengene")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘Pigengene-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: gene.mapping
-    > ### Title: Maps gene IDs
-    > ### Aliases: gene.mapping
-    > ### Keywords: misc
-    > 
-    > ### ** Examples
-    > 
-    ...
-    +         outputDb=list(org.Hs.eg.db,org.Mm.eg.db), verbose=1)
-    Mapping to:  org.Hs.eg.db-SYMBOL 
-    'select()' returned 1:1 mapping between keys and columns
-    Loading required package: biomaRt
-    Warning: Ensembl will soon enforce the use of https.
-    Ensure the 'host' argument includes "https://"
-    Error in bmRequest(request = request, httr_config = httr_config, verbose = verbose) : 
-      Internal Server Error (HTTP 500).
-    Calls: gene.mapping ... .useMart -> .listMarts -> bmRequest -> stop_for_status
-    Execution halted
-    ```
-
 ## In both
 
 *   checking re-building of vignette outputs ... WARNING
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘Pigengene_inference.Rnw’ using knitr
-    Warning in has_utility("pdfcrop") :
-      pdfcrop not installed or not in PATH
-    sh: pdfcrop: command not found
-    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
-      error in running command
-    sh: pdfcrop: command not found
-    Warning in system2("pdfcrop", shQuote(c(x, x)), stdout = if (quiet) FALSE else "") :
-      error in running command
+    /bin/bash: line 1: /tmp/pdfcrop_0856/figure/loading-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0856/figure/loading-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0022/figure/tree-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0022/figure/tree-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0823/figure/pigengene-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0823/figure/pigengene-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
+    /bin/bash: line 1: /tmp/pdfcrop_0878/figure/bn-1.pdf.gs.out: No such file or directory
+    could not overwrite /tmp/pdfcrop_0878/figure/bn-1.pdf.fix.qs at /software/c4/cbi/software/pdfcrop-0.4b/pdfcrop line 74.
     ...
     l.189 \RequirePackage
                          {parnotes}^^M
@@ -7470,7 +7483,7 @@ Run `revdep_details(, "PlackettLuce")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'PLMIX', 'hyper2'
+    Package suggested but not available for checking: ‘PLMIX’
     ```
 
 # pmp
@@ -7525,7 +7538,7 @@ Run `revdep_details(, "ProteoDisco")` for more info
       Warning: replacing previous import ‘dplyr::arrange’ by ‘plyr::arrange’ when loading ‘ProteoDisco’
       Warning: replacing previous import ‘dplyr::rename’ by ‘plyr::rename’ when loading ‘ProteoDisco’
       Warning: replacing previous import ‘dplyr::summarise’ by ‘plyr::summarise’ when loading ‘ProteoDisco’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ProteoDisco/new/ProteoDisco.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/ProteoDisco/new/ProteoDisco.Rcheck/00install.out’ for details.
     ```
 
 *   checking for missing documentation entries ... WARNING
@@ -7595,12 +7608,6 @@ Run `revdep_details(, "QDNAseq")` for more info
 
 ## In both
 
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'QDNAseq.hg19', 'QDNAseq.mm10'
-    ```
-
 *   checking re-building of vignette outputs ... NOTE
     ```
     Error(s) in re-building vignettes:
@@ -7669,11 +7676,11 @@ Run `revdep_details(, "QFeatures")` for more info
 
 <details>
 
-* Version: 0.2.7
+* Version: 0.2.8
 * GitHub: NA
 * Source code: https://github.com/cran/RaceID
-* Date/Publication: 2022-11-01 14:02:40 UTC
-* Number of recursive dependencies: 149
+* Date/Publication: 2022-11-16 07:20:02 UTC
+* Number of recursive dependencies: 156
 
 Run `revdep_details(, "RaceID")` for more info
 
@@ -7848,27 +7855,6 @@ Run `revdep_details(, "regsem")` for more info
         libs   5.9Mb
     ```
 
-# rhierbaps
-
-<details>
-
-* Version: 1.1.3
-* GitHub: https://github.com/gtonkinhill/rhierbaps
-* Source code: https://github.com/cran/rhierbaps
-* Date/Publication: 2019-12-11 14:20:05 UTC
-* Number of recursive dependencies: 98
-
-Run `revdep_details(, "rhierbaps")` for more info
-
-</details>
-
-## In both
-
-*   checking LazyData ... NOTE
-    ```
-      'LazyData' is specified without a 'data' directory
-    ```
-
 # RiboDiPA
 
 <details>
@@ -7877,38 +7863,11 @@ Run `revdep_details(, "rhierbaps")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RiboDiPA
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 148
+* Number of recursive dependencies: 146
 
 Run `revdep_details(, "RiboDiPA")` for more info
 
 </details>
-
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘RiboDiPA-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: psiteMapping
-    > ### Title: P-site mapping
-    > ### Aliases: psiteMapping
-    > ### Keywords: P-site A-site
-    > 
-    > ### ** Examples
-    > 
-    ...
-    +     condition = c("mutant", "mutant", "wildtype", "wildtype"),
-    +     comparison = c(2, 2, 1, 1)
-    + )
-    > rownames(classlabel) <- c("mutant1","mutant2","wildtype1","wildtype2") 
-    > 
-    > data.psite <- psiteMapping(bam_file_list = bam_path[1:4], 
-    +     gtf_file = bam_path[5], psite.mapping = "auto", cores = 2)
-    Import genomic features from the file as a GRanges object ... Error in while (grepl("^#", line)) { : argument is of length zero
-    Calls: psiteMapping ... import -> import -> import -> .local -> .sniffGFFVersion
-    Execution halted
-    ```
 
 ## In both
 
@@ -7966,12 +7925,12 @@ Run `revdep_details(, "RNAmodR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/3646963461f0c_2549'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/3646970d8920f_2537'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/3646965b03d84_2539'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/364692eccd278_2541'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/3646972eee1ce_2543'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/3646970d8920f_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/85122f39b020_2549'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/85126975aef3_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/8512756c8565_2539'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/851224afe18f_2541'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/8512362aea78_2543'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/84f42e03b0cf_2545'
     ...
        1. ├─testthat::expect_error(...) at test-2Modifier.R:137:2
        2. │ └─testthat:::quasi_capture(...)
@@ -7980,7 +7939,7 @@ Run `revdep_details(, "RNAmodR")` for more info
        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
        6. └─RNAmodR:::.get_classname_for_ModifierSet_from_modifier_type("DataFrame")
       
-      [ FAIL 1 | WARN 4 | SKIP 0 | PASS 898 ]
+      [ FAIL 1 | WARN 12 | SKIP 0 | PASS 898 ]
       Error: Test failures
       Execution halted
     ```
@@ -8007,7 +7966,7 @@ Run `revdep_details(, "RNAmodR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RNAseqQC
 * Date/Publication: 2022-06-15 09:50:06 UTC
-* Number of recursive dependencies: 178
+* Number of recursive dependencies: 176
 
 Run `revdep_details(, "RNAseqQC")` for more info
 
@@ -8253,31 +8212,6 @@ Run `revdep_details(, "SCFA")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘SCFA-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: SCFA
-    > ### Title: SCFA
-    > ### Aliases: SCFA
-    > 
-    > ### ** Examples
-    > 
-    > #Load example data (GBM dataset)
-    ...
-    > #Survival information
-    > survival <- GBM$survival
-    > library(survival)
-    > #Generating subtyping result
-    > set.seed(1)
-    > subtype <- SCFA(dataList, seed = 1, ncores = 2L)
-    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
-      cannot open the connection
-    Calls: SCFA ... generating.latent -> suppressMessages -> withCallingHandlers
-    Execution halted
-    ```
-
 *   checking re-building of vignette outputs ... ERROR
     ```
     Error(s) in re-building vignettes:
@@ -8324,7 +8258,7 @@ Run `revdep_details(, "scISR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/scITD
 * Date/Publication: 2022-03-23 18:20:02 UTC
-* Number of recursive dependencies: 232
+* Number of recursive dependencies: 230
 
 Run `revdep_details(, "scITD")` for more info
 
@@ -8428,7 +8362,7 @@ Run `revdep_details(, "scMET")` for more info
 * GitHub: https://github.com/YosefLab/scone
 * Source code: https://github.com/cran/scone
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 263
+* Number of recursive dependencies: 262
 
 Run `revdep_details(, "scone")` for more info
 
@@ -8475,6 +8409,33 @@ Run `revdep_details(, "scp")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      Attaching package: 'S4Vectors'
+      
+      The following objects are masked from 'package:base':
+      
+          I, expand.grid, unname
+      
+    ...
+      ── Failure ('test-compute_metrics.R:159'): medianCVperCell ─────────────────────
+      colData(scp2)[colnames(scp2)[[1]], "MedianCV"] not identical to `cvs`.
+      names for current but not for target
+      ── Failure ('test-compute_metrics.R:167'): medianCVperCell ─────────────────────
+      colData(scp2)[unlist(colnames(scp2)[1:2]), "MedianCV"] not identical to c(cvs1, cvs2).
+      names for current but not for target
+      
+      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 89 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking installed package size ... NOTE
@@ -8504,6 +8465,33 @@ Run `revdep_details(, "scp")` for more info
 Run `revdep_details(, "scPCA")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test-fitGrid.R:423'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:430'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:437'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+    ...
+      ── Failure ('test-fitGrid.R:570'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:649'): The grid can be fit using user-defined clusterings ──
+      `fitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:654'): The grid can be fit using user-defined clusterings ──
+      `bpFitGrid(...)` produced warnings.
+      
+      [ FAIL 76 | WARN 65 | SKIP 0 | PASS 291 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -8649,11 +8637,11 @@ Run `revdep_details(, "seqArchR")` for more info
 
 <details>
 
-* Version: 4.2.1
+* Version: 4.3.0
 * GitHub: https://github.com/satijalab/seurat
 * Source code: https://github.com/cran/Seurat
-* Date/Publication: 2022-11-08 00:00:02 UTC
-* Number of recursive dependencies: 252
+* Date/Publication: 2022-11-18 23:30:08 UTC
+* Number of recursive dependencies: 254
 
 Run `revdep_details(, "Seurat")` for more info
 
@@ -8663,9 +8651,9 @@ Run `revdep_details(, "Seurat")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is 14.5Mb
       sub-directories of 1Mb or more:
-        R      1.3Mb
+        R      1.4Mb
         libs  12.4Mb
     ```
 
@@ -8834,7 +8822,7 @@ Run `revdep_details(, "SICtools")` for more info
       errmod.c:79:8: warning: self-comparison always evaluates to false [-Wtautological-compare]
       md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
       Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/SICtools/new/SICtools.Rcheck/00install.out’ for details.
     ```
 
 *   checking examples ... WARNING
@@ -8937,7 +8925,7 @@ Run `revdep_details(, "SimBu")` for more info
     +   cell_type_col = "group", # this will use the 'group' column of the metadata as cell type info
     +   cells_in_obs = TRUE
     + ) # in case your cell information is stored in the var layer, switch to FALSE
-    Could not access h5ad file: /c4/home/henrik/repositories/matrixStats/revdep/checks/SimBu/new/SimBu.Rcheck/SimBu/extdata/anndata.h5ad
+    Could not access h5ad file: /c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/SimBu/new/SimBu.Rcheck/SimBu/extdata/anndata.h5ad
     Error in SimBu::dataset_h5ad(h5ad_file_counts = h5, name = "h5ad_dataset",  : 
       Cannot find "id" column in cell annotation of h5ad_file_counts.
     Execution halted
@@ -9007,7 +8995,7 @@ Run `revdep_details(, "SimBu")` for more info
     ```
     Found the following notes/warnings:
       Non-staged installation was used
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/SimBu/new/SimBu.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/SimBu/new/SimBu.Rcheck/00install.out’ for details.
     ```
 
 # simPop
@@ -9222,7 +9210,7 @@ Run `revdep_details(, "slasso")` for more info
 * GitHub: https://github.com/lianos/sparrow
 * Source code: https://github.com/cran/sparrow
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 207
+* Number of recursive dependencies: 205
 
 Run `revdep_details(, "sparrow")` for more info
 
@@ -9259,6 +9247,33 @@ Run `revdep_details(, "sparrow")` for more info
 Run `revdep_details(, "sparseMatrixStats")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test-row_functions.R:196'): rowIQRs works ─────────────────────────
+      rowIQRs(sp_mat, rows = row_subset, cols = col_subset) not equal to matrixStats::rowIQRs(mat, rows = row_subset, cols = col_subset).
+      names for current but not for target
+      ── Failure ('test-row_functions.R:200'): rowRanges works ───────────────────────
+      rowRanges(sp_mat) not equal to matrixStats::rowRanges(mat).
+      Attributes: < Length mismatch: comparison on first 1 components >
+    ...
+      ── Failure ('test-row_functions.R:297'): rowCollapse works ─────────────────────
+      rowCollapse(sp_mat, idxs = 1:5, rows = 3) not equal to matrixStats::rowCollapse(mat, idxs = 1:5, rows = 3).
+      names for current but not for target
+      ── Failure ('test-row_functions.R:299'): rowCollapse works ─────────────────────
+      rowCollapse(sp_mat, idxs = 1, rows = row_subset) not equal to matrixStats::rowCollapse(mat, idxs = 1, rows = row_subset).
+      names for current but not for target
+      
+      [ FAIL 564 | WARN 136 | SKIP 21 | PASS 1191 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -9376,7 +9391,7 @@ Run `revdep_details(, "SpliceWiz")` for more info
 * GitHub: https://github.com/MarcElosua/SPOTlight
 * Source code: https://github.com/cran/SPOTlight
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 252
+* Number of recursive dependencies: 251
 
 Run `revdep_details(, "SPOTlight")` for more info
 
@@ -9384,29 +9399,29 @@ Run `revdep_details(, "SPOTlight")` for more info
 
 ## Newly fixed
 
-*   checking examples ... ERROR
+*   checking tests ...
     ```
-    Running examples in ‘SPOTlight-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: SPOTlight
-    > ### Title: Deconvolution of mixture using single-cell data
-    > ### Aliases: SPOTlight
-    > 
-    > ### ** Examples
-    > 
-    > library(scater)
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > set.seed(321)
+      > library(testthat)
+      > library(SPOTlight)
+      > # plotImage() ----
+      > test_check("SPOTlight")
+      [ FAIL 1 | WARN 2 | SKIP 0 | PASS 327 ]
     ...
-    > # Load SCE data
-    > sce <- TabulaMurisSenisDroplet(tissues = "Kidney")$Kidney
-    snapshotDate(): 2022-10-24
-    see ?TabulaMurisSenisData and browseVignettes('TabulaMurisSenisData') for documentation
-    loading from cache
-    require(“rhdf5”)
-    Error in H5Fopen(filepath, flags = "H5F_ACC_RDONLY") : 
-      HDF5. File accessibility. Unable to open file.
-    Calls: TabulaMurisSenisDroplet ... HDF5ArraySeed -> h5dim -> .get_h5dataset -> H5Fopen
-    Execution halted
+        8.       └─AnnotationHub (local) .local(x, i, j = j, ...)
+        9.         └─AnnotationHub:::.Hub_get1(x[idx], force = force, verbose = verbose)
+       10.           └─base::tryCatch(...)
+       11.             └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+       12.               └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       13.                 └─value[[3L]](cond)
+      
+      [ FAIL 1 | WARN 2 | SKIP 0 | PASS 327 ]
+      Error: Test failures
+      Execution halted
     ```
 
 ## In both
@@ -9440,39 +9455,6 @@ Run `revdep_details(, "spqn")` for more info
     Package in Depends field not imported from: ‘BiocGenerics’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
-    ```
-
-# SRTsim
-
-<details>
-
-* Version: 0.99.2
-* GitHub: NA
-* Source code: https://github.com/cran/SRTsim
-* Date/Publication: 2022-06-24 08:10:02 UTC
-* Number of recursive dependencies: 162
-
-Run `revdep_details(, "SRTsim")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘SRTsim.Rmd’ using rmarkdown
-    Quitting from lines 26-47 (SRTsim.Rmd) 
-    Error: processing vignette 'SRTsim.Rmd' failed with diagnostics:
-    there is no package called 'BiocFileCache'
-    --- failed re-building ‘SRTsim.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘SRTsim.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 # stabiliser
@@ -9592,7 +9574,7 @@ Run `revdep_details(, "STROMA4")` for more info
       ...
     
     > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-    Installing package into ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    Installing package into ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
     (as ‘lib’ is unspecified)
     
       When sourcing ‘STROMA4-vignette.R’:
@@ -9610,7 +9592,7 @@ Run `revdep_details(, "STROMA4")` for more info
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘STROMA4-vignette.Rnw’ using Sweave
-    Installing package into ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
+    Installing package into ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/STROMA4/new/STROMA4.Rcheck’
     (as ‘lib’ is unspecified)
     
     Error: processing vignette 'STROMA4-vignette.Rnw' failed with diagnostics:
@@ -9647,7 +9629,7 @@ Run `revdep_details(, "summarytools")` for more info
     ```
     Found the following significant warnings:
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/tmp/matrixStats/revdep/checks/summarytools/new/summarytools.Rcheck/00install.out’ for details.
     ```
 
 *   checking data for non-ASCII characters ... NOTE
@@ -9919,7 +9901,7 @@ Run `revdep_details(, "topGO")` for more info
 * GitHub: https://github.com/statOmics/tradeSeq
 * Source code: https://github.com/cran/tradeSeq
 * Date/Publication: 2022-11-01
-* Number of recursive dependencies: 176
+* Number of recursive dependencies: 174
 
 Run `revdep_details(, "tradeSeq")` for more info
 
