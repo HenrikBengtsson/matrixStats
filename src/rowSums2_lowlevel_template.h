@@ -55,7 +55,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     
     for (ii=0; ii < nrows; ii++) {
         R_xlen_t rowIdx;
-        
         if (norows) {
             /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
             rowIdx = byrow ? ii : ii*ncol;
