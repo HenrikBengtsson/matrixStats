@@ -86,7 +86,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
                 } else {
                     idx = R_INDEX_OP(rowIdx, +, colOffset[jj],1,1);
                 }
-                value = R_INDEX_GET(x, idx, X_NA,1);
+                value = R_INDEX_GET(x, idx, X_NA, 1);
             }
             
 #if X_TYPE == 'i'

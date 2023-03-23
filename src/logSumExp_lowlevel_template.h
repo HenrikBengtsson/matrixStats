@@ -39,6 +39,8 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
   LDOUBLE sum;
   int hasna2 = FALSE; /* Indicates whether NAs where detected or not */
   int xMaxIsNA;
+  int noidxs;
+  if (idxs == NULL) { noidxs = 1; } else { noidxs = 0; }
 
   /* Quick return? */
   if (nidxs == 0) {
@@ -48,10 +50,31 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
   /* Find the maximum value */
   iMax = 0;
   if (by) {
-    idx = R_INDEX_OP(((idxs == NULL) ? (0) : idxs[0]), *, by, idxsHasNA, 0);
-    xMax = R_INDEX_GET(x, idx, NA_REAL, idxsHasNA);
+    if (noidxs){
+        idx = 0;
+        xMax = x[idx];
+    }
+    else if (!idxsHasNA) {
+        idx = idxs[0] * by;
+        xMax = x[idx];
+    }
+    else {
+        idx = R_INDEX_OP(idxs[0], *, by, 1, 1);
+        xMax = R_INDEX_GET(x, idx, NA_REAL, 1);
+    }
   } else {
-    xMax = R_INDEX_GET(x, ((idxs == NULL) ? (0) : idxs[0]), NA_REAL, idxsHasNA);
+      if (noidxs){
+          idx = 0;
+          xMax = x[idx];
+      }
+      else if (!idxsHasNA) {
+          idx = idxs[0];
+          xMax = x[idx];
+      }
+      else {
+          idx = idxs[0];
+          xMax = R_INDEX_GET(x, idx, NA_REAL, 1);
+      }
   }
   xMaxIsNA = ISNAN(xMax);
 
@@ -62,6 +85,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
       return(xMax);
     }
   }
+  
 
   if (xMaxIsNA) hasna2 = TRUE;
 
@@ -73,8 +97,18 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
     xx[0] = xMax;
     for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      idx = R_INDEX_OP(((idxs == NULL) ? (ii) : idxs[ii]), *, by, idxsHasNA, 0);
-      xii = R_INDEX_GET(x, idx, NA_REAL, idxsHasNA);
+      if (noidxs){
+          idx = ii * by;
+          xii = x[idx];
+      }
+      else if (!idxsHasNA) {
+          idx = idxs[ii] * by;
+          xii = x[idx];
+      }
+      else {
+          idx = R_INDEX_OP(idxs[ii], *, by, 1, 1);
+          xii = R_INDEX_GET(x, idx, NA_REAL, 1);
+      }
 
       /* Copy */
       xx[ii] = xii;
@@ -99,7 +133,18 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
   } else {
     for (ii=1; ii < nidxs; ii++) {
       /* Get the ii:th value */
-      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL, idxsHasNA);
+      if (noidxs){
+          idx = ii;
+          xii = x[idx];
+      }
+      else if (!idxsHasNA) {
+          idx = idxs[ii];
+          xii = x[idx];
+      }
+      else {
+          idx = idxs[ii];
+          xii = R_INDEX_GET(x, idx, NA_REAL, 1);
+      }
 
       if (hasna && ISNAN(xii)) {
         if (narm) {
@@ -161,7 +206,18 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
       }
 
       /* Get the ii:th value */
-      xii = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL, idxsHasNA);
+      if (noidxs){
+          idx = ii;
+          xii = x[idx];
+      }
+      else if (!idxsHasNA) {
+          idx = idxs[ii];
+          xii = x[idx];
+      }
+      else {
+          idx = idxs[ii];
+          xii = R_INDEX_GET(x, idx, NA_REAL, 1);
+      }
 
       if (!hasna2 || !ISNAN(xii)) {
         sum += exp(xii - xMax);
