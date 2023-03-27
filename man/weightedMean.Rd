@@ -4,7 +4,8 @@
 \alias{weightedMean}
 \title{Weighted Arithmetic Mean}
 \usage{
-weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE, ...)
+weightedMean(x, w = NULL, idxs = NULL, na.rm = FALSE, refine = FALSE,
+  ...)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

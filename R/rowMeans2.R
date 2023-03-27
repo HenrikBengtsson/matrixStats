@@ -15,7 +15,8 @@
 #' @keywords array iteration robust univar
 #' @export
 rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = NA) {
+                       dim. = dim(x), ..., useNames = FALSE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
 }
@@ -23,7 +24,8 @@ rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowMeans2
 #' @export
 colMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = NA) {
+                       dim. = dim(x), ..., useNames = FALSE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
 }

@@ -1,5 +1,5 @@
 Package: matrixStats
-Version: 0.62.0-9900
+Version: 0.63.0-9004
 Depends:
   R (>= 2.12.0)
 Suggests:
@@ -37,5 +37,5 @@ NeedsCompilation: yes
 ByteCompile: TRUE
 URL: https://github.com/HenrikBengtsson/matrixStats
 BugReports: https://github.com/HenrikBengtsson/matrixStats/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.2
 Roxygen: list(old_usage = TRUE)

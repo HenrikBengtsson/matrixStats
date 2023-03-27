@@ -9,21 +9,22 @@
 \alias{colWeightedSds}
 \title{Weighted variance and weighted standard deviation}
 \usage{
-weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL, ...)
+weightedVar(x, w = NULL, idxs = NULL, na.rm = FALSE, center = NULL,
+  ...)
 
 weightedSd(...)
 
 rowWeightedVars(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 
 colWeightedVars(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 
 rowWeightedSds(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 
 colWeightedSds(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  ..., useNames = NA)
+  ..., useNames = FALSE)
 }
 \arguments{
 \item{x}{\code{\link[base]{vector}} of type \code{\link[base]{integer}},
@@ -51,10 +52,9 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} scalar.

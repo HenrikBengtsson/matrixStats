@@ -23,9 +23,8 @@ indices are returned as doubles.
 \description{
 Computes validated positive indices from given indices.
 }
-\examples{
-idxs <- validateIndices(c(-4, 0, -3, -1), 5)  # [2, 5]
-
-idxs <- validateIndices(c(4, 4, 8, 2, 3), 8)  # [4, 4, 8, 2, 3]
+\details{
+\emph{WARNING: This function is defunct and will be removed in a future
+version.}
 }
 \keyword{internal}

@@ -32,7 +32,7 @@
 #' @export
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
+                         na.rm = FALSE, type = 7L, ..., useNames = FALSE, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -137,7 +137,10 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
   
   # Preserve names attribute?
-  if (is.na(useNames) || useNames) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+    rownames(q) <- rownames(x)
+  } else if (useNames) {
     rownames(q) <- rownames(x)
   } else {
     rownames(q) <- NULL
@@ -156,7 +159,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 #' @export
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., useNames = NA, drop = TRUE) {
+                         na.rm = FALSE, type = 7L, ..., useNames = FALSE, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -259,7 +262,10 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
   
   # Preserve names attribute?
-  if (is.na(useNames) || useNames) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+    rownames(q) <- colnames(x)
+  } else if (useNames) {
     rownames(q) <- colnames(x)
   } else {
     rownames(q) <- NULL

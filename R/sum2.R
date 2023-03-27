@@ -29,7 +29,7 @@
 #' Note that the intermediate sum (\code{sum(x[1:n])}) is internally
 #' represented as a floating point value and will therefore never be outside of
 #' the range.
-#' If \code{mode = "integer"} and \code{typeof{x} == "double"}, then a warning
+#' If \code{mode = "integer"} and \code{typeof(x) == "double"}, then a warning
 #' is generated.
 #'
 #' @example incl/sum2.R
