@@ -829,56 +829,56 @@ Run `revdep_details(, "BSgenome")` for more info
 
 ## Newly broken
 
-*   checking examples ...sh: line 1: 78472 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla > 'BSgenome-Ex.Rout' 2>&1 < 'BSgenome-Ex.R'
+*   checking examples ...sh: line 1: 76932 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla > 'BSgenome-Ex.Rout' 2>&1 < 'BSgenome-Ex.R'
     ```
      ERROR
     Running examples in ‘BSgenome-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: SNPlocs-class
-    > ### Title: SNPlocs objects
-    > ### Aliases: class:SNPlocs SNPlocs-class SNPlocs class:ODLT_SNPlocs
-    > ###   ODLT_SNPlocs-class ODLT_SNPlocs class:OldFashionSNPlocs
-    > ###   OldFashionSNPlocs-class OldFashionSNPlocs provider,SNPlocs-method
-    > ###   providerVersion,SNPlocs-method releaseDate,SNPlocs-method releaseName
+    > ### Name: BSgenomeViews-class
+    > ### Title: BSgenomeViews objects
+    > ### Aliases: class:BSgenomeViews BSgenomeViews-class BSgenomeViews
+    > ###   Views,BSgenome-method subject,BSgenomeViews-method
+    > ###   granges,BSgenomeViews-method length,BSgenomeViews-method
+    > ###   names,BSgenomeViews-method seqnames,BSgenomeViews-method
     ...
-    Loading required package: AnnotationDbi
-    Loading required package: Biobase
-    Welcome to Bioconductor
-    
-        Vignettes contain introductory material; view with
-        'browseVignettes()'. To cite Bioconductor, see
-        'citation("Biobase")', and for packages 'citation("pkgname")'.
-    
-    > txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
-    > my_cds <- cds(txdb)
+      chr3                160039680      FALSE   mm10
+      chr4                156508116      FALSE   mm10
+      chr5                151834684      FALSE   mm10
+      ...                       ...        ...    ...
+      chr11_KZ289077_alt     186144      FALSE   mm10
+      chr11_KZ289078_alt     390920      FALSE   mm10
+      chr11_KZ289079_alt     368967      FALSE   mm10
+      chr11_KZ289080_alt     394982      FALSE   mm10
+      chr11_KZ289081_alt     369973      FALSE   mm10
+    > as(v, "DNAStringSet")
     ```
 
 ## Newly fixed
 
-*   checking examples ...sh: line 1: 77812 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla > 'BSgenome-Ex.Rout' 2>&1 < 'BSgenome-Ex.R'
+*   checking examples ...sh: line 1: 76166 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla > 'BSgenome-Ex.Rout' 2>&1 < 'BSgenome-Ex.R'
     ```
      ERROR
     Running examples in ‘BSgenome-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: SNPlocs-class
-    > ### Title: SNPlocs objects
-    > ### Aliases: class:SNPlocs SNPlocs-class SNPlocs class:ODLT_SNPlocs
-    > ###   ODLT_SNPlocs-class ODLT_SNPlocs class:OldFashionSNPlocs
-    > ###   OldFashionSNPlocs-class OldFashionSNPlocs provider,SNPlocs-method
-    > ###   providerVersion,SNPlocs-method releaseDate,SNPlocs-method releaseName
+    > ### Name: BSgenomeViews-class
+    > ### Title: BSgenomeViews objects
+    > ### Aliases: class:BSgenomeViews BSgenomeViews-class BSgenomeViews
+    > ###   Views,BSgenome-method subject,BSgenomeViews-method
+    > ###   granges,BSgenomeViews-method length,BSgenomeViews-method
+    > ###   names,BSgenomeViews-method seqnames,BSgenomeViews-method
     ...
-      [1823223]       MT     16529      * | rs386829316                Y
-      -------
-      seqinfo: 25 sequences (1 circular) from GRCh38.p2 genome
-    > 
-    > ## ---------------------------------------------------------------------
-    > ## snpsByOverlaps()
-    > ## ---------------------------------------------------------------------
-    > 
-    > ## Get all SNPs overlapping some genomic region of interest:
-    > snpsByOverlaps(snps, "X:3e6-33e6")
+      chr3                160039680      FALSE   mm10
+      chr4                156508116      FALSE   mm10
+      chr5                151834684      FALSE   mm10
+      ...                       ...        ...    ...
+      chr11_KZ289077_alt     186144      FALSE   mm10
+      chr11_KZ289078_alt     390920      FALSE   mm10
+      chr11_KZ289079_alt     368967      FALSE   mm10
+      chr11_KZ289080_alt     394982      FALSE   mm10
+      chr11_KZ289081_alt     369973      FALSE   mm10
+    > as(v, "DNAStringSet")
     ```
 
 ## In both
@@ -1134,6 +1134,33 @@ Run `revdep_details(, "cardelino")` for more info
 Run `revdep_details(, "CATALYST")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+          Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+          as.data.frame, basename, cbind, colnames, dirname, do.call,
+          duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+          lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+          pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+          tapply, union, unique, unsplit, which.max, which.min
+    ...
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Failure ('test_plotting-differential.R:84:5'): pbMDS() - by = 'sample_id' ───
+      `p <- pbMDS(filterSCE(x0, !sample_id %in% s))` produced warnings.
+      ── Failure ('test_plotting-differential.R:97:5'): pbMDS() - by = 'cluster_id' ──
+      `p <- pbMDS(y, by = "cluster_id", k = k)` produced warnings.
+      
+      [ FAIL 2 | WARN 20 | SKIP 0 | PASS 739 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -1560,12 +1587,12 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2023-05-22 10:53:21] $cat.fontfamily
-      INFO [2023-05-22 10:53:21] [1] "serif"
-      INFO [2023-05-22 10:53:21] 
-      INFO [2023-05-22 10:53:21] $x
-      INFO [2023-05-22 10:53:21] $x$TF1
-      INFO [2023-05-22 10:53:21] [1] 3 4 5
+      INFO [2023-05-23 12:11:32] $cat.fontfamily
+      INFO [2023-05-23 12:11:32] [1] "serif"
+      INFO [2023-05-23 12:11:32] 
+      INFO [2023-05-23 12:11:32] $x
+      INFO [2023-05-23 12:11:32] $x$TF1
+      INFO [2023-05-23 12:11:32] [1] 3 4 5
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -1956,16 +1983,6 @@ Run `revdep_details(, "CNVScope")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking whether the namespace can be unloaded cleanly ... WARNING
-    ```
-    Error in .getGeneric(f, where, package) : 
-      read failed on /c4/home/henrik/repositories/matrixStats/revdep/library/CNVScope/GenomicInteractions/R/GenomicInteractions.rdb
-    Calls: suppressMessages ... loadNamespace -> <Anonymous> -> getGeneric -> .getGeneric
-    Execution halted
-    ```
-
 ## In both
 
 *   checking installed package size ... NOTE
@@ -2037,7 +2054,7 @@ Run `revdep_details(, "cola")` for more info
 
 </details>
 
-## Newly broken
+## In both
 
 *   checking installed package size ... NOTE
     ```
@@ -2463,6 +2480,33 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test_row_and_col_functions.R:72:5'): Non-NULL rows and cols ───────
+      c(R3 = 18, R2 = 18) not equal to c(18, 18).
+      names for target but not for current
+      Backtrace:
+          ▆
+       1. └─base::Map(expect_equal, observeds, expecteds, check.attributes = check.attributes) at test_row_and_col_functions.R:72:4
+    ...
+      names for target but not for current
+      Backtrace:
+          ▆
+       1. └─base::Map(expect_equal, observeds, expecteds, check.attributes = check.attributes) at test_row_and_col_functions.R:72:4
+       2.   └─base::mapply(FUN = f, ..., SIMPLIFY = FALSE)
+       3.     └─testthat (local) `<fn>`(dots[[1L]][[26L]], dots[[2L]][[2L]], check.attributes = dots[[3L]][[26L]])
+      
+      [ FAIL 3369 | WARN 13241 | SKIP 0 | PASS 11363 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -2650,6 +2694,56 @@ Run `revdep_details(, "DEqMS")` for more info
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
+    ...
+    Loading required package: dbplyr
+    > eh = ExperimentHub(localHub=TRUE)
+    Using 'localHub=TRUE'
+      If offline, please also see BiocManager vignette section on offline use
+    Error in .updateHubDB(hub_bfc, .class, url, proxy, localHub) : 
+      Invalid Cache: sqlite file
+      Hub has not been added to cache
+      Run again with 'localHub=FALSE'
+    Calls: ExperimentHub -> .Hub -> .create_cache -> .updateHubDB
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘DEqMS-package-vignette.Rmd’ using rmarkdown
+    trying URL 'https://ftp.ebi.ac.uk/pride-archive/2016/06/PXD004163/Yan_miR_Protein_table.flatprottable.txt'
+    Content type 'text/plain; charset=UTF-8' length 3515045 bytes (3.4 MB)
+    ==================================================
+    downloaded 3.4 MB
+    
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/DEqMS/new/DEqMS.Rcheck/vign_test/DEqMS/vignettes/DEqMS-package-vignette_files/figure-html/boxplot1-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/DEqMS/new/DEqMS.Rcheck/vign_test/DEqMS/vignettes/DEqMS-package-vignette_files/figure-html/plot-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/DEqMS/new/DEqMS.Rcheck/vign_test/DEqMS/vignettes/DEqMS-package-vignette_files/figure-html/plot-2.png" but not available.
+    ...
+      See  AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
+    --- failed re-building ‘DEqMS-package-vignette.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘DEqMS-package-vignette.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -2931,10 +3025,11 @@ Run `revdep_details(, "dmrseq")` for more info
 
 </details>
 
-## In both
+## Newly broken
 
-*   checking examples ... ERROR
+*   checking examples ...sh: line 1: 79680 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla > 'dmrseq-Ex.Rout' 2>&1 < 'dmrseq-Ex.R'
     ```
+     ERROR
     Running examples in ‘dmrseq-Ex.R’ failed
     The error most likely occurred in:
     
@@ -2945,18 +3040,30 @@ Run `revdep_details(, "dmrseq")` for more info
     > ### ** Examples
     > 
     > 
-    ...
-    Trying again (2 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Trying again (1 attempts remaining)
-    Error in get(txdb_name) : 
-      object 'TxDb.Hsapiens.UCSC.hg19.knownGene' not found
-    
-    Error in getAnnot("hg19") : Annotation could not be retrieved.
-    Execution halted
+    > # get annotation information for hg19
+    > annoTrack <- getAnnot('hg19')
     ```
+
+## Newly fixed
+
+*   checking examples ...sh: line 1: 80050 Killed                  LANGUAGE=en _R_CHECK_INTERNALS2_=1 '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla > 'dmrseq-Ex.Rout' 2>&1 < 'dmrseq-Ex.R'
+    ```
+     ERROR
+    Running examples in ‘dmrseq-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: getAnnot
+    > ### Title: Retrieve annotation information
+    > ### Aliases: getAnnot
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > # get annotation information for hg19
+    > annoTrack <- getAnnot('hg19')
+    ```
+
+## In both
 
 *   checking re-building of vignette outputs ... ERROR
     ```
@@ -3087,15 +3194,15 @@ Run `revdep_details(, "easier")` for more info
     > 
     > # using a SummarizedExperiment object
     ...
-    > # Computation of TF activity (Garcia-Alonso et al., Genome Res, 2019)
-    > tf_activities <- compute_TF_activity(
-    +   RNA_tpm = RNA_tpm
-    + )
-    Regulated transcripts found in data set: 3084/3254 (94.8%)
-    Warning: This function is deprecated, please check the package decoupleR to infer activities.
-    Error in check_nas_infs(mat) : 
-      Mat contains NAs or Infs, please remove them.
-    Calls: compute_TF_activity ... <Anonymous> -> do.call -> <Anonymous> -> check_nas_infs
+    > # from easierData. Original processed data is available from
+    > # IMvigor210CoreBiologies package.
+    > library("easierData")
+    > 
+    > dataset_mariathasan <- easierData::get_Mariathasan2018_PDL1_treatment()
+    Error: Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
     Execution halted
     ```
 
@@ -3106,20 +3213,20 @@ Run `revdep_details(, "easier")` for more info
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
       
-      The following objects are masked from 'package:matrixStats':
+          I, expand.grid, unname
       
-          anyMissing, rowMedians
-      
-      Retrieving Mariathasan2018_PDL1_treatment dataset...
+      Loading required package: IRanges
+      Loading required package: GenomeInfoDb
+      Loading required package: Biobase
     ...
-        7. │     └─decoupleR:::check_nas_infs(mat)
-        8. ├─base::as.matrix(.)
-        9. ├─tibble::column_to_rownames(., "source")
-       10. │ ├─base::stopifnot(is.data.frame(.data))
-       11. │ └─base::is.data.frame(.data)
-       12. └─tidyr::pivot_wider(...)
+      Backtrace:
+          ▆
+       1. └─easierData::get_Mariathasan2018_PDL1_treatment() at test-easier_run.R:39:2
+       2.   └─ExperimentHub::ExperimentHub()
+       3.     └─AnnotationHub::.Hub(...)
+       4.       └─AnnotationHub:::.db_create_index(hub)
       
-      [ FAIL 2 | WARN 2 | SKIP 0 | PASS 0 ]
+      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 0 ]
       Error: Test failures
       Execution halted
     ```
@@ -3129,9 +3236,12 @@ Run `revdep_details(, "easier")` for more info
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘easier_user_manual.Rmd’ using rmarkdown
-    Quitting from lines 261-263 (easier_user_manual.Rmd) 
+    Quitting from lines 169-228 (easier_user_manual.Rmd) 
     Error: processing vignette 'easier_user_manual.Rmd' failed with diagnostics:
-    Mat contains NAs or Infs, please remove them.
+    Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
     --- failed re-building ‘easier_user_manual.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -3293,6 +3403,26 @@ Run `revdep_details(, "epimutacions")` for more info
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘epimutacions.Rmd’ using rmarkdown
+    Quitting from lines 227-230 (epimutacions.Rmd) 
+    Error: processing vignette 'epimutacions.Rmd' failed with diagnostics:
+    Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
+    --- failed re-building ‘epimutacions.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘epimutacions.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -3936,13 +4066,8 @@ Run `revdep_details(, "fishpond")` for more info
     ```
     Error(s) in re-building vignettes:
       ...
+    sh: line 1: 79333 Killed                  '/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/R' --vanilla --no-echo > '/scratch/henrik/1328670/RtmpPjeLgu/file135646a74889a' 2>&1 < '/scratch/henrik/1328670/RtmpPjeLgu/file13564121e037c'
     --- re-building ‘allelic.Rmd’ using rmarkdown
-    Quitting from lines 306-308 (allelic.Rmd) 
-    Error: processing vignette 'allelic.Rmd' failed with diagnostics:
-    unable to find FTP dir for assembly GCF_000001405.40 in
-      https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/
-    --- failed re-building ‘allelic.Rmd’
-    
     --- re-building ‘swish.Rmd’ using rmarkdown
     --- finished re-building ‘swish.Rmd’
     
@@ -4647,7 +4772,59 @@ Run `revdep_details(, "glmGamPoi")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(glmGamPoi)
+      > 
+      > test_check("glmGamPoi")
+      [ FAIL 2 | WARN 886 | SKIP 5 | PASS 423 ]
+      
+    ...
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+      ── Failure ('test-glm_gp.R:3:3'): glm_gp works for simple cases ────────────────
+      `{ ... }` produced warnings.
+      ── Failure ('test-glm_gp.R:242:3'): glm_gp can handle intercept model ──────────
+      `{ ... }` produced warnings.
+      
+      [ FAIL 2 | WARN 886 | SKIP 5 | PASS 423 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘glmGamPoi.Rmd’ using rmarkdown
+    Quitting from lines 83-91 (glmGamPoi.Rmd) 
+    Error: processing vignette 'glmGamPoi.Rmd' failed with diagnostics:
+    Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
+    --- failed re-building ‘glmGamPoi.Rmd’
+    
+    ...
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
+    --- failed re-building ‘pseudobulk.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘glmGamPoi.Rmd’ ‘pseudobulk.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking C++ specification ... NOTE
     ```
@@ -4704,6 +4881,48 @@ Run `revdep_details(, "GRaNIE")` for more info
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘GRaNIE-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: addConnections_peak_gene
+    > ### Title: Add peak-gene connections to a 'GRN' object
+    > ### Aliases: addConnections_peak_gene
+    > 
+    > ### ** Examples
+    > 
+    > # See the Workflow vignette on the GRaNIE website for examples
+    > GRN = loadExampleObject()
+    Downloading GRaNIE example object from https://git.embl.de/grp-zaugg/GRaNIE/-/raw/master/data/GRN.rds
+    Error in gzfile(file, "rb") : invalid 'description' argument
+    Calls: loadExampleObject -> readRDS -> gzfile
+    Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘GRaNIE_packageDetails.Rmd’ using rmarkdown
+    --- finished re-building ‘GRaNIE_packageDetails.Rmd’
+    
+    --- re-building ‘GRaNIE_singleCell_eGRNs.Rmd’ using rmarkdown
+    --- finished re-building ‘GRaNIE_singleCell_eGRNs.Rmd’
+    
+    --- re-building ‘GRaNIE_workflow.Rmd’ using rmarkdown
+    Quitting from lines 212-213 (GRaNIE_workflow.Rmd) 
+    Error: processing vignette 'GRaNIE_workflow.Rmd' failed with diagnostics:
+    invalid 'description' argument
+    --- failed re-building ‘GRaNIE_workflow.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘GRaNIE_workflow.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking Rd \usage sections ... WARNING
     ```
@@ -5521,6 +5740,33 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test-api_compatibility.R:1217:2'): rowOrderStats works  ───────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+      ── Failure ('test-api_compatibility.R:1242:2'): rowProds works  ────────────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+    ...
+      ── Failure ('test-api_compatibility.R:1518:2'): rowWeightedSds works  ──────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+      ── Failure ('test-api_compatibility.R:1539:2'): rowWeightedVars works  ─────────
+      `matrixStats_formals` not identical to `MatrixGenerics_default_method_formals`.
+      Component "useNames": 'is.NA' value mismatch: 1 in current 0 in target
+      
+      [ FAIL 70 | WARN 261 | SKIP 0 | PASS 242 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking package subdirectories ... NOTE
@@ -5691,27 +5937,27 @@ Run `revdep_details(, "metagene")` for more info
 
 *   checking tests ...
     ```
-      Running ‘runTests.R’
+      Running ‘runTests.R’/software/c4/cbi/software/R-4.3.0-gcc10/lib64/R/bin/BATCH: line 60: 78007 Killed                  ${R_HOME}/bin/R -f ${in} ${opts} ${R_BATCH_OPTIONS} > ${out} 2>&1
+    
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      [1] TRUE
       produce data table : ChIP-Seq
-      [1] TRUE
+      produce data frame : ChIP-Seq
       produce data table : ChIP-Seq
+      produce data frame : ChIP-Seq
       produce data table : ChIP-Seq
-      ChIP-Seq flip/unflip
     ...
-      
-         test_parallel_job.R 
-           test.parallel_job_get_core_count_valid_multiple_core_biocparallelparam 
-           test.parallel_job_set_core_count_valid_multiple_core_biocparallelparam 
-      
-      
-      Error in BiocGenerics:::testPackage("metagene") : 
-        unit tests failed for package metagene
-      In addition: There were 50 or more warnings (use warnings() to see the first 50)
-      Execution halted
+       
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
+      produce data table : ChIP-Seq
     ```
 
 *   checking Rd files ... WARNING
@@ -5845,7 +6091,80 @@ Run `revdep_details(, "MethReg")` for more info
 
 </details>
 
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘MethReg-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: get_human_tfs
+    > ### Title: Access human TF from Lambert et al 2018
+    > ### Aliases: get_human_tfs
+    > 
+    > ### ** Examples
+    > 
+    >  human.tfs <- get_human_tfs()
+    ...
+      6. │   └─dplyr:::filter_eval(...)
+      7. │     ├─base::withCallingHandlers(...)
+      8. │     └─mask$eval_all_filter(dots, env_filter)
+      9. │       └─dplyr (local) eval()
+     10. ├─Is TF?
+     11. ├─rlang:::`$.rlang_data_pronoun`(.data, `Is TF?`)
+     12. │ └─rlang:::data_pronoun_get(...)
+     13. └─rlang:::abort_data_pronoun(x, call = y)
+     14.   └─rlang::abort(msg, "rlang_error_data_pronoun_not_found", call = call)
+    Execution halted
+    ```
+
 ## In both
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      [ FAIL 3 | WARN 7 | SKIP 4 | PASS 154 ]
+      
+      ══ Skipped tests ═══════════════════════════════════════════════════════════════
+      • On CRAN (2)
+      • empty test (2)
+      
+    ...
+          ▆
+       1. └─MethReg::make_dnam_se(dna.met.chr21) at test-utils.R:52:4
+       2.   └─MethReg::get_met_probes_info(genome = genome, arrayType = arrayType)
+       3.     └─ExperimentHub::ExperimentHub()
+       4.       └─AnnotationHub::.Hub(...)
+       5.         └─AnnotationHub:::.db_create_index(hub)
+      
+      [ FAIL 3 | WARN 7 | SKIP 4 | PASS 154 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘MethReg.Rmd’ using rmarkdown
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/MethReg/new/MethReg.Rcheck/vign_test/MethReg/vignettes/MethReg_files/figure-html/workflow-1.png" but not available.
+    Quitting from lines 174-181 (MethReg.Rmd) 
+    Error: processing vignette 'MethReg.Rmd' failed with diagnostics:
+    Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
+    --- failed re-building ‘MethReg.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘MethReg.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking dependencies in R code ... WARNING
     ```
@@ -6301,6 +6620,33 @@ Run `revdep_details(, "miloR")` for more info
 
 </details>
 
+## Newly fixed
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘milo_contrasts.Rmd’ using rmarkdown
+    --- finished re-building ‘milo_contrasts.Rmd’
+    
+    --- re-building ‘milo_demo.Rmd’ using rmarkdown
+    --- finished re-building ‘milo_demo.Rmd’
+    
+    --- re-building ‘milo_gastrulation.Rmd’ using rmarkdown
+    Quitting from lines 53-60 (milo_gastrulation.Rmd) 
+    ...
+      name: EH2710
+      title: Atlas processed counts (sample 10)
+      reason: error reading from connection
+    --- failed re-building ‘milo_gastrulation.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘milo_gastrulation.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 ## In both
 
 *   checking installed package size ... NOTE
@@ -6752,6 +7098,47 @@ Run `revdep_details(, "mrfDepth")` for more info
         libs  20.7Mb
     ```
 
+# msqrob2
+
+<details>
+
+* Version: 1.8.0
+* GitHub: https://github.com/statOmics/msqrob2
+* Source code: https://github.com/cran/msqrob2
+* Date/Publication: 2023-04-25
+* Number of recursive dependencies: 194
+
+Run `revdep_details(, "msqrob2")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘cptac.Rmd’ using rmarkdown
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-5-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-5-2.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-6-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-11-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-12-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-13-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-15-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/msqrob2/new/msqrob2.Rcheck/vign_test/msqrob2/vignettes/cptac_files/figure-html/unnamed-chunk-19-1.png" but not available.
+    ...
+    Quitting from lines 407-419 (cptac.Rmd) 
+    Error: processing vignette 'cptac.Rmd' failed with diagnostics:
+    wrong args for environment subassignment
+    --- failed re-building ‘cptac.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘cptac.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 # MultiBD
 
 <details>
@@ -6839,6 +7226,33 @@ Run `revdep_details(, "multinomialLogitMix")` for more info
 Run `revdep_details(, "muscat")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(muscat)
+      Warning message:
+      In checkMatrixPackageVersion() : Package version inconsistency detected.
+      TMB was built with Matrix version 1.5.4
+      Current Matrix version is 1.5.4.1
+    ...
+          ▆
+       1. └─base::replicate(...) at test-simData.R:49:4
+       2.   └─base::sapply(...)
+       3.     └─base::lapply(X = X, FUN = FUN, ...)
+       4.       └─muscat (local) FUN(X[[i]], ...)
+       5.         └─testthat::expect_gte(...) at test-simData.R:60:8
+      
+      [ FAIL 1 | WARN 1 | SKIP 0 | PASS 550 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -8366,29 +8780,79 @@ Run `revdep_details(, "RNAmodR")` for more info
 
 ## In both
 
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘RNAmodR-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: CoverageSequenceData-class
+    > ### Title: CoverageSequenceData
+    > ### Aliases: CoverageSequenceData-class CoverageSequenceData
+    > ###   CoverageSequenceDataFrame CoverageSequenceDataFrame-class
+    > ###   getData,CoverageSequenceData,BamFileList,GRangesList,XStringSet,ScanBamParam-method
+    > ###   aggregateData,CoverageSequenceData-method
+    > ###   getDataTrack,CoverageSequenceData-method
+    ...
+    Warning: replacing previous import 'utils::findMatches' by 'S4Vectors::findMatches' when loading 'AnnotationForge'
+    Warning: replacing previous import 'utils::findMatches' by 'S4Vectors::findMatches' when loading 'ExperimentHubData'
+    Error: package or namespace load failed for 'RNAmodR.Data':
+     .onLoad failed in loadNamespace() for 'RNAmodR.Data', details:
+      call: h(simpleError(msg, call))
+      error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.index.rds
+    Execution halted
+    ```
+
 *   checking tests ...
     ```
       Running ‘testthat.R’
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/6f7a2dbd54db_2543'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/6f7a66be0283_2539'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/6f7a6f9ffa6c_2537'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/6f7a23715336_2545'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/6f7a3ed7f477_2541'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/6f7a66be0283_2539'
+       3.     └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+       4.       └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       5.         └─value[[3L]](cond)
+      ── Error ('test-2Modifier.R:88:3'): Modifier/ModifierSet: ──────────────────────
+      Error: package or namespace load failed for 'RNAmodR.Data':
+       .onLoad failed in loadNamespace() for 'RNAmodR.Data', details:
     ...
-       3. │   ├─testthat (local) .capture(...)
-       4. │   │ └─base::withCallingHandlers(...)
-       5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
-       6. └─RNAmodR:::.get_classname_for_ModifierSet_from_modifier_type("DataFrame")
+          ▆
+       1. └─base::library(RNAmodR.Data) at test-3zcomparison.R:19:2
+       2.   └─base::tryCatch(...)
+       3.     └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+       4.       └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+       5.         └─value[[3L]](cond)
       
-      [ FAIL 1 | WARN 6 | SKIP 0 | PASS 898 ]
+      [ FAIL 4 | WARN 5 | SKIP 0 | PASS 446 ]
       Error: Test failures
-      In addition: Warning message:
-      call dbDisconnect() when finished working with a connection 
       Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘RNAmodR.Rmd’ using rmarkdown
+    Quitting from lines 58-65 (RNAmodR.Rmd) 
+    Error: processing vignette 'RNAmodR.Rmd' failed with diagnostics:
+    package or namespace load failed for 'RNAmodR.Data':
+     .onLoad failed in loadNamespace() for 'RNAmodR.Data', details:
+      call: h(simpleError(msg, call))
+      error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+    ...
+    --- failed re-building ‘RNAmodR.Rmd’
+    
+    --- re-building ‘RNAmodR.creation.Rmd’ using rmarkdown
+    --- finished re-building ‘RNAmodR.creation.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘RNAmodR.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -8464,7 +8928,7 @@ Run `revdep_details(, "RnBeads")` for more info
     | Please make sure you have updated ExperimentHub and try
     | > sesameDataCache()
     | to retrieve and cache needed sesame data.
-    Calls: rnb.execute.pOOBAH ... capture.output -> withVisible -> .sesameDataGet -> stopAndCache
+    Calls: rnb.execute.pOOBAH ... tryCatchList -> tryCatchOne -> <Anonymous> -> stopAndCache
     Execution halted
     ```
 
@@ -8571,6 +9035,58 @@ Run `revdep_details(, "RnBeads")` for more info
     
     SUMMARY: processing the following files failed:
       ‘RnBeads.Rnw’ ‘RnBeads_Annotations.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
+# robustbase
+
+<details>
+
+* Version: 0.95-1
+* GitHub: NA
+* Source code: https://github.com/cran/robustbase
+* Date/Publication: 2023-03-29 22:30:02 UTC
+* Number of recursive dependencies: 65
+
+Run `revdep_details(, "robustbase")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages which this enhances but not available for checking:
+      'robustX', 'quantreg', 'Hmisc'
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Packages unavailable to check Rd xrefs: ‘robustX’, ‘quantreg’, ‘Hmisc’
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘fastMcd-kmini.Rnw’ using Sweave
+    Loading required package: robustbase
+    Error: processing vignette 'fastMcd-kmini.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'fastMcd-kmini.tex' failed.
+    BibTeX errors:
+    The top-level auxiliary file: fastMcd-kmini.aux
+    I couldn't open style file chicago.bst
+    ---line 43 of file fastMcd-kmini.aux
+     : \bibstyle{chicago
+    ...
+     :                  }
+    I'm skipping whatever remains of this command
+    I found no style file---while reading file psi_functions.aux
+    --- failed re-building ‘psi_functions.Rnw’
+    
+    SUMMARY: processing the following files failed:
+      ‘fastMcd-kmini.Rnw’ ‘lmrob_simulation.Rnw’ ‘psi_functions.Rnw’
     
     Error: Vignette re-building failed.
     Execution halted
@@ -8990,6 +9506,33 @@ Run `revdep_details(, "scp")` for more info
 Run `revdep_details(, "scPCA")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test-fitGrid.R:423:3'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:430:3'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:437:3'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+    ...
+      ── Failure ('test-fitGrid.R:570:3'): All cluster methods (kmeans, pam, hclust) run without errors ──
+      `bpFitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:649:3'): The grid can be fit using user-defined clusterings ──
+      `fitGrid(...)` produced warnings.
+      ── Failure ('test-fitGrid.R:654:3'): The grid can be fit using user-defined clusterings ──
+      `bpFitGrid(...)` produced warnings.
+      
+      [ FAIL 76 | WARN 65 | SKIP 0 | PASS 291 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -9692,10 +10235,10 @@ Run `revdep_details(, "sparrow")` for more info
 
 <details>
 
-* Version: 1.0.4
+* Version: 1.0.6
 * GitHub: https://github.com/Bioconductor/SparseArray
 * Source code: https://github.com/cran/SparseArray
-* Date/Publication: 2023-05-14
+* Date/Publication: 2023-05-21
 * Number of recursive dependencies: 64
 
 Run `revdep_details(, "SparseArray")` for more info
@@ -9724,7 +10267,7 @@ Run `revdep_details(, "SparseArray")` for more info
        1. └─SparseArray (local) .test_sym_crossprod_SparseMatrix(m0, svt0) at test-SparseMatrix-mult.R:56:4
        2.   └─testthat (local) EXPECT_FUN(cp, crossprod(m, svt)) at test-SparseMatrix-mult.R:37:4
       
-      [ FAIL 2 | WARN 1 | SKIP 0 | PASS 5412 ]
+      [ FAIL 2 | WARN 9 | SKIP 0 | PASS 5517 ]
       Error: Test failures
       Execution halted
     ```
@@ -9752,6 +10295,33 @@ Run `revdep_details(, "SparseArray")` for more info
 Run `revdep_details(, "sparseMatrixStats")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      ── Failure ('test-row_functions.R:271:3'): rowXXDiffs work ─────────────────────
+      rowVarDiffs(sp_mat, diff = 0, rows = row_subset, cols = col_subset) not equal to matrixStats::rowVarDiffs(mat, diff = 0, rows = row_subset, cols = col_subset).
+      names for target but not for current
+      ── Failure ('test-row_functions.R:273:3'): rowXXDiffs work ─────────────────────
+      rowSdDiffs(sp_mat, diff = 0) not equal to matrixStats::rowSdDiffs(mat, diff = 0).
+      names for target but not for current
+    ...
+      ── Failure ('test-row_functions.R:288:3'): rowXXDiffs work ─────────────────────
+      rowIQRDiffs(sp_mat, na.rm = TRUE) not equal to matrixStats::rowIQRDiffs(mat, na.rm = TRUE).
+      names for target but not for current
+      ── Failure ('test-row_functions.R:289:3'): rowXXDiffs work ─────────────────────
+      rowIQRDiffs(sp_mat, diff = 0, rows = row_subset, cols = col_subset) not equal to matrixStats::rowIQRDiffs(mat, diff = 0, rows = row_subset, cols = col_subset).
+      names for target but not for current
+      
+      [ FAIL 372 | WARN 136 | SKIP 22 | PASS 1381 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -9845,10 +10415,10 @@ Run `revdep_details(, "splatter")` for more info
 
 <details>
 
-* Version: 1.2.0
+* Version: 1.2.1
 * GitHub: https://github.com/alexchwong/SpliceWiz
 * Source code: https://github.com/cran/SpliceWiz
-* Date/Publication: 2023-04-25
+* Date/Publication: 2023-05-21
 * Number of recursive dependencies: 201
 
 Run `revdep_details(, "SpliceWiz")` for more info
@@ -9856,6 +10426,81 @@ Run `revdep_details(, "SpliceWiz")` for more info
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘SpliceWiz-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: getAvailableGO
+    > ### Title: Builds reference files used by SpliceWiz
+    > ### Aliases: getAvailableGO Build-Reference-methods getResources buildRef
+    > ###   buildFullRef getNonPolyARef
+    > 
+    > ### ** Examples
+    > 
+    ...
+    [1] "/c4/home/henrik/repositories/matrixStats/revdep/checks/SpliceWiz/new/SpliceWiz.Rcheck/SpliceWiz/extra-input-files/Human_hg19_nonPolyA_ROI.bed"
+    > 
+    > # View available species for AnnotationHub's Ensembl/orgDB-based GO resources
+    > 
+    > availSpecies <- getAvailableGO()
+    Error: Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/AnnotationHub
+      filename: annotationhub.index.rds
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+      May 23 12:11:23 PM Calculating Mappability Exclusion regions from: /scratch/henrik/1328670/RtmpmieqHm/refWithMapExcl/Mappability/AlignedReads.bam
+      Calculating Mappability Exclusions: /scratch/henrik/1328670/RtmpmieqHm/refWithMapExcl/Mappability/AlignedReads.bam
+      0%   10   20   30   40   50   60   70   80   90   100%
+      [----|----|----|----|----|----|----|----|----|----|
+      **************************************************|
+    ...
+       1. └─SpliceWiz::SpliceWiz_example_bams() at test-SpliceWiz-Novel.R:2:4
+      ── Error ('test-SpliceWiz.R:2:5'): SpliceWiz pipeline reproduces NxtSE object ──
+      Error in `SpliceWiz_example_bams()`: Example bam fetching failed
+      Backtrace:
+          ▆
+       1. └─SpliceWiz::SpliceWiz_example_bams() at test-SpliceWiz.R:2:4
+      
+      [ FAIL 3 | WARN 0 | SKIP 0 | PASS 1 ]
+      Error: Test failures
+      Execution halted
+    ```
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘SW_Cookbook.Rmd’ using rmarkdown
+    Quitting from lines 162-166 (SW_Cookbook.Rmd) 
+    Error: processing vignette 'SW_Cookbook.Rmd' failed with diagnostics:
+    Corrupt Cache: index file
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/AnnotationHub
+      filename: annotationhub.index.rds
+    --- failed re-building ‘SW_Cookbook.Rmd’
+    ...
+      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/AnnotationHub
+      filename: annotationhub.index.rds
+    --- failed re-building ‘SW_QuickStart.Rmd’
+    
+    SUMMARY: processing the following files failed:
+      ‘SW_Cookbook.Rmd’ ‘SW_QuickStart.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking C++ specification ... NOTE
     ```
@@ -9999,6 +10644,33 @@ Run `revdep_details(, "stm")` for more info
 Run `revdep_details(, "STROMA4")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘STROMA4-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: assign.properties
+    > ### Title: Function to assign properties to an expression matrix
+    > ### Aliases: assign.properties
+    > 
+    > ### ** Examples
+    > 
+    > library(breastCancerMAINZ)
+    ...
+    ----1146 out of 1205 total genes matching for LAR.property----
+    ----670 out of 705 total genes matching for IM.property----
+    ----315 out of 458 total genes matching for T.stroma.property----
+    ----449 out of 473 total genes matching for BL1.property----
+    Warning in socketConnection(port = port, server = TRUE, blocking = TRUE,  :
+      port 11692 cannot be opened
+    Error in socketConnection(port = port, server = TRUE, blocking = TRUE,  : 
+      cannot open the connection
+    Calls: assign.properties ... <Anonymous> -> <Anonymous> -> newSOCKnode -> socketConnection
+    Execution halted
+    ```
 
 ## In both
 
