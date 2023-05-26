@@ -6,8 +6,8 @@
 /*
 Native API (dynamically generated via macros):
  
-void rowDiffs_int(int *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, int byrow, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans)
-void rowDiffs_dbl(double *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t Rf_nrows, R_xlen_t *cols, R_xlen_t Rf_ncols, int byrow, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans)
+void rowDiffs_int(int *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int byrow, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans)
+void rowDiffs_dbl(double *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int byrow, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans)
 */
 
 #define X_TYPE 'i'

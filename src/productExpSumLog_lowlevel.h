@@ -6,8 +6,8 @@
 /*
 Native API (dynamically generated via macros):
  
-double productExpSumLog_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna)
-double productExpSumLog_dbl(bouble *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna)
+double productExpSumLog_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna)
+double productExpSumLog_dbl(bouble *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna)
 */
 
 #define X_TYPE 'i'

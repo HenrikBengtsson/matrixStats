@@ -7,8 +7,8 @@
 /*
 Native API (dynamically generated via macros):
  
-double sum2_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm)
-double sum2_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int narm)
+double sum2_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm)
+double sum2_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm)
 */
 
 #define X_TYPE 'i'

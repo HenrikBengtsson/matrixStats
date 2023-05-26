@@ -1,9 +1,15 @@
 # Version (development version)
 
+
 ## Significant Changes
 
  * `useNames = FALSE` is the new default for all functions.  For
    backward compatibility, it used to be `useNames = NA` .
+
+## Performance:
+
+* Unnecessary checks for NA indices are eliminated, yielding better performance.
+  This change does not affect user-facing API.
 
 ## Deprecated and Defunct
 

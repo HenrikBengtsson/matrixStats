@@ -78,8 +78,9 @@
   
 void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                         Y_C_TYPE *y, R_xlen_t ny,
-                        R_xlen_t *xrows, R_xlen_t nxrows, R_xlen_t *xcols, R_xlen_t nxcols,
-                        R_xlen_t *yidxs, R_xlen_t nyidxs,
+                        R_xlen_t *xrows, R_xlen_t nxrows, int xrowsHasNA,
+                        R_xlen_t *xcols, R_xlen_t nxcols, int xcolsHasNA,
+                        R_xlen_t *yidxs, R_xlen_t nyidxs, int yidxsHasNA,
                         int byrow, int commute,
                         int narm, int hasna,
                         ANS_C_TYPE *ans, R_xlen_t n) {
@@ -87,7 +88,13 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
   R_xlen_t txi, yi;
   X_C_TYPE xvalue;
   Y_C_TYPE yvalue;
+  int noxcols, noxrows, noyidxs;
   double value;
+  
+  if (xcols == NULL) { noxcols = 1; } else { noxcols = 0; }
+  if (xrows == NULL) { noxrows = 1; } else { noxrows = 0; }
+  if (yidxs == NULL) { noyidxs = 1; } else { noyidxs = 0; }
+  
 #if ANS_TYPE == 'i'
   int ok = 1; /* OK, i.e. no integer overflow yet? */
   double R_INT_MIN_d = (double)R_INT_MIN,
@@ -101,15 +108,50 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     if (commute) {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
-
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+            
+            if (noyidxs) {
+                idx = txi%nyidxs;
+                yvalue = y[idx];
+            } else {
+                idx = yidxs[txi%nyidxs];
+                if (!yidxsHasNA) {
+                    yvalue = y[idx];
+                }
+                else {
+                    yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+                }
+            }
+            
             value = FUN_narm(yvalue, xvalue);
 #if ANS_TYPE == 'i'
             if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
@@ -126,15 +168,50 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
-
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = txi%nyidxs;
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[txi%nyidxs];
+                  if (!yidxsHasNA) {
+                      yvalue = y[idx];
+                  }
+                  else {
+                      yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+                  }
+              }
+              
             value = FUN_no_NA(yvalue, xvalue);
 #if ANS_TYPE == 'i'
             if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
@@ -153,15 +230,50 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     } else {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
-
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = txi%nyidxs;
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[txi%nyidxs];
+                  if (!yidxsHasNA) {
+                      yvalue = y[idx];
+                  }
+                  else {
+                      yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+                  }
+              }
+              
             value = FUN_narm(xvalue, yvalue);
 #if ANS_TYPE == 'i'
             if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
@@ -178,14 +290,49 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           txi = jj;
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (txi%nyidxs) : yidxs[txi%nyidxs]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = txi%nyidxs;
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[txi%nyidxs];
+                  if (!yidxsHasNA) {
+                      yvalue = y[idx];
+                  }
+                  else {
+                      yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+                  }
+              }
 
             value = FUN_no_NA(xvalue, yvalue);
 #if ANS_TYPE == 'i'
@@ -203,18 +350,52 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       }
     }
-  } else {
+  } else { /* if (byrow) */
     if (commute) {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
+            
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
-
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = yi;
+                  yvalue = y[idx];
+              } else if (!yidxsHasNA) {
+                  idx = yidxs[yi];
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[yi];
+                  yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+              }
+              
             value = FUN_narm(yvalue, xvalue);
 #if ANS_TYPE == 'i'
             if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
@@ -231,14 +412,46 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
-
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = yi;
+                  yvalue = y[idx];
+              } else if (!yidxsHasNA) {
+                  idx = yidxs[yi];
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[yi];
+                  yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+              }
             value = FUN_no_NA(yvalue, xvalue);
 #if ANS_TYPE == 'i'
             if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
@@ -257,14 +470,47 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
     } else {
       if (narm) {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
-
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = yi;
+                  yvalue = y[idx];
+              } else if (!yidxsHasNA) {
+                  idx = yidxs[yi];
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[yi];
+                  yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+              }
+              
             value = FUN_narm(xvalue, yvalue);
 #if ANS_TYPE == 'i'
             if (ok && (value < R_INT_MIN_d || value > R_INT_MAX_d)) {
@@ -281,13 +527,46 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
         }
       } else {
         for (jj=0; jj < nxcols; ++jj) {
-          colBegin = R_INDEX_OP(((xcols == NULL) ? (jj) : xcols[jj]), *, nrow);
+            if (noxcols) {
+                colBegin = jj * nrow;
+            } else {
+                R_xlen_t colsElement = xcols[jj];
+                if (!xcolsHasNA || colsElement != NA_R_XLEN_T) {
+                    colBegin = colsElement * nrow;
+                } else {
+                    colBegin = NA_R_XLEN_T;
+                }
+            }
           for (ii=0; ii < nxrows; ++ii) {
-            idx = R_INDEX_OP(colBegin, +, ((xrows == NULL) ? (ii) : xrows[ii]));
-            xvalue = R_INDEX_GET(x, idx, X_NA);
-
-            idx = ((yidxs == NULL) ? (yi) : yidxs[yi]);
-            yvalue = R_INDEX_GET(y, idx, Y_NA);
+              if (noxrows) {
+                  if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
+                      /*
+                       * In this special case, we can eliminate
+                       * the possibility of having NA indicies
+                       */
+                      idx = colBegin + ii;
+                      xvalue = x[idx];
+                  } else {
+                      xvalue = X_NA;
+                  }
+              } else if (!xrowsHasNA && !xcolsHasNA) {
+                  idx = colBegin + xrows[ii];
+                  xvalue = x[idx];
+              } else {
+                  idx = R_INDEX_OP(colBegin, +, (xrows[ii]), 1, 1);
+                  xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+              }
+              
+              if (noyidxs) {
+                  idx = yi;
+                  yvalue = y[idx];
+              } else if (!yidxsHasNA) {
+                  idx = yidxs[yi];
+                  yvalue = y[idx];
+              } else {
+                  idx = yidxs[yi];
+                  yvalue = R_INDEX_GET(y, idx, Y_NA, 1);
+              }
 
             value = FUN_no_NA(xvalue, yvalue);
 #if ANS_TYPE == 'i'

@@ -7,8 +7,8 @@
 /*
 Native API (dynamically generated via macros):
  
-void diff2_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
-void diff2_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_int(int *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
+void diff2_dbl(double *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA R_xlen_t lag, R_xlen_t differences, int *ans, R_xlen_t nans)
 */
 
 #define X_TYPE 'i'

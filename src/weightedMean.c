@@ -34,13 +34,14 @@ SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
+  int idxsHasNA;
+  R_xlen_t *cidxs = validateIndicesCheckNA(idxs, nx, 1, &nidxs, &idxsHasNA);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    avg = weightedMean_dbl(REAL(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
+    avg = weightedMean_dbl(REAL(x), nx, REAL(w), cidxs, nidxs, idxsHasNA, narm, refine2);
   } else if (isInteger(x) | isLogical(x)) {
-    avg = weightedMean_int(INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, refine2);
+    avg = weightedMean_int(INTEGER(x), nx, REAL(w), cidxs, nidxs, idxsHasNA, narm, refine2);
   }
 
   /* Return results */
