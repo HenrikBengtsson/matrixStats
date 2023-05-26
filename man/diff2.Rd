@@ -4,7 +4,8 @@
 \alias{diff2}
 \title{Fast lagged differences}
 \usage{
-diff2(x, idxs = NULL, lag = 1L, differences = 1L, ..., useNames = NA)
+diff2(x, idxs = NULL, lag = 1L, differences = 1L, ...,
+  useNames = FALSE)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
