@@ -16,7 +16,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowDiffs <- function(x, rows = NULL, cols = NULL,
-                     lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = FALSE) {
+                     lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowDiffs, x, dim., rows, cols, lag, differences, TRUE, useNames)
 }
@@ -24,7 +24,7 @@ rowDiffs <- function(x, rows = NULL, cols = NULL,
 #' @rdname rowDiffs
 #' @export
 colDiffs <- function(x, rows = NULL, cols = NULL,
-                     lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = FALSE) {
+                     lag = 1L, differences = 1L, dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowDiffs, x, dim., rows, cols, lag, differences, FALSE, useNames)
 }

@@ -3,7 +3,7 @@
 
 ## Significant Changes
 
- * `useNames = FALSE` is the new default for all functions.  For
+ * `useNames = TRUE` is the new default for all functions.  For
    backward compatibility, it used to be `useNames = NA` .
 
 ## Performance

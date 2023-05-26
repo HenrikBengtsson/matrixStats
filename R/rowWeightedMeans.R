@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
-                             na.rm = FALSE, ..., useNames = FALSE) {
+                             na.rm = FALSE, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -165,7 +165,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMeans
 #' @export
 colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
-                             na.rm = FALSE, ..., useNames = FALSE) {
+                             na.rm = FALSE, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

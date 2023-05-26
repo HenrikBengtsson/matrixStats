@@ -13,28 +13,28 @@
 matrix}
 \usage{
 rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = FALSE)
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

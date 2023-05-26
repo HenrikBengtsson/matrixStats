@@ -6,10 +6,10 @@
 \title{Variance estimates for each row (column) in a matrix}
 \usage{
 rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = FALSE)
+  dim. = dim(x), ..., useNames = TRUE)
 
 colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = FALSE)
+  dim. = dim(x), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,

@@ -4,7 +4,7 @@
 #' @export
 rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.null(center)) {
     if (is.na(useNames)) deprecatedUseNamesNA()
     constant <- as.numeric(constant)
@@ -63,7 +63,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
 #' @export
 colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.null(center)) {
     if (is.na(useNames)) deprecatedUseNamesNA()
     constant <- as.numeric(constant)

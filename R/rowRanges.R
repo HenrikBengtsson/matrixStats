@@ -20,7 +20,7 @@
 #'
 #' @export
 rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                      dim. = dim(x), ..., useNames = FALSE) {
+                      dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowRanges, x, dim., rows, cols, 2L, na.rm, TRUE, useNames)
 }
@@ -29,7 +29,7 @@ rowRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowRanges
 #' @export
 rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowRanges, x, dim., rows, cols, 0L, na.rm, TRUE, useNames)
 }
@@ -38,7 +38,7 @@ rowMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowRanges
 #' @export
 rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowRanges, x, dim., rows, cols, 1L, na.rm, TRUE, useNames)
 }
@@ -47,7 +47,7 @@ rowMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowRanges
 #' @export
 colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                      dim. = dim(x), ..., useNames = FALSE) {
+                      dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_colRanges, x, dim., rows, cols, 2L, na.rm, TRUE, useNames)
 }
@@ -56,7 +56,7 @@ colRanges <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowRanges
 #' @export
 colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_colRanges, x, dim., rows, cols, 0L, na.rm, TRUE, useNames)
 }
@@ -65,7 +65,7 @@ colMins <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowRanges
 #' @export
 colMaxs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_colRanges, x, dim., rows, cols, 1L, na.rm, TRUE, useNames)
 }

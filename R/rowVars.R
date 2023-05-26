@@ -53,7 +53,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
@@ -189,7 +189,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 #' @rdname rowVars
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-                    dim. = dim(x), ..., useNames = FALSE) {
+                    dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE

@@ -6,10 +6,10 @@
 \title{Tabulates the values in a matrix by row (column).}
 \usage{
 rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
-  useNames = FALSE)
+  useNames = TRUE)
 
 colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
-  useNames = FALSE)
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or

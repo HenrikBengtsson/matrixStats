@@ -15,7 +15,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = FALSE) {
+                       dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
@@ -24,7 +24,7 @@ rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowSums2
 #' @export
 colSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = FALSE) {
+                       dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)

@@ -8,16 +8,16 @@
 \title{Standard deviation estimates for each row (column) in a matrix}
 \usage{
 rowMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE)
+  na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE)
 
 colMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), ..., useNames = FALSE)
+  na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE)
 
 rowSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = FALSE)
+  dim. = dim(x), ..., useNames = TRUE)
 
 colSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = FALSE)
+  dim. = dim(x), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
