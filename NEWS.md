@@ -6,6 +6,15 @@
  * `useNames = TRUE` is the new default for all functions.  For
    backward compatibility, it used to be `useNames = NA` .
 
+## New Features
+
+ * `colMeans2()` and `rowMeans2()` gained argument `refine`.  If
+   `refine = TRUE`, then the sample averaged for numeric matrices are
+   calculated using a two-pass scan, resulting in higher precision.
+   The default is `refine = TRUE` to align it with `colMeans()`, but
+   also `mean2()` in this package.  If the higher precision is not
+   needed, using `refine = FALSE` will be almost twice as fast.
+ 
 ## Performance
 
  * Unnecessary checks for missing indices are eliminated, yielding

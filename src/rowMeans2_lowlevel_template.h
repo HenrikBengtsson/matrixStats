@@ -17,7 +17,8 @@
 void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
                         R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
                         R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
-                        int narm, int hasna, int byrow, double *ans) {
+                        int narm, int refine,
+                        int hasna, int byrow, double *ans) {
   R_xlen_t ii, jj, idx;
   R_xlen_t *colOffset;
   X_C_TYPE value;
@@ -61,7 +62,7 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       if(!rowsHasNA && !colsHasNA) {
           rowIdx = byrow ? rows[ii] : rows[ii] * ncol;
       }
-      rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol,1,1);
+      rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol, 1, 1);
     }
     sum = 0.0;
     count = 0;
@@ -80,10 +81,10 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
             value = x[idx];
         } else {
             if (nocols) {
-                if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow,1,1);
-                else idx = R_INDEX_OP(rowIdx, +, jj,1,1);
+                if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow, 1, 1);
+                else idx = R_INDEX_OP(rowIdx, +, jj, 1, 1);
             } else {
-                idx = R_INDEX_OP(rowIdx, +, colOffset[jj],1,1);
+                idx = R_INDEX_OP(rowIdx, +, colOffset[jj], 1, 1);
             }
             value = R_INDEX_GET(x, idx, X_NA,1);
         }
@@ -114,6 +115,43 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       avg = R_NegInf;
     } else {
       avg = sum / count;
+
+#if X_TYPE == 'r'
+      if (refine) {
+        sum = 0.0;
+        
+        for (jj=0; jj < ncols; jj++) {
+          if (!rowsHasNA && nocols) {
+              /*
+               * In this special case, we can eliminate
+               * the possibility of having NA indicies
+               */
+              if (byrow) idx = rowIdx + jj*nrow;
+              else idx = rowIdx + jj;
+              value = x[idx];
+          } else if (!rowsHasNA && !colsHasNA && !nocols) {
+              idx = rowIdx + colOffset[jj];
+              value = x[idx];
+          } else {
+              if (nocols) {
+                  if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow, 1, 1);
+                  else idx = R_INDEX_OP(rowIdx, +, jj, 1, 1);
+              } else {
+                  idx = R_INDEX_OP(rowIdx, +, colOffset[jj], 1, 1);
+              }
+              value = R_INDEX_GET(x, idx, X_NA,1);
+          }
+        
+          if (!narm) {
+            sum += (LDOUBLE)(value) - avg;
+            if (jj % 1048576 == 0 && ISNA(sum)) break;
+          } else if (!ISNAN(value)) {
+            sum += (LDOUBLE)(value) - avg;
+          }
+        }
+        avg = avg + sum / count;
+      } /* for (jj ...) */
+#endif
     }
 
     ans[ii] = (double)avg;
