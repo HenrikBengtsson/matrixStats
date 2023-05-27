@@ -4,6 +4,7 @@
 #'
 #' @inheritParams rowAlls
 #' @inheritParams rowDiffs
+#' @inheritParams rowVars
 #'
 #' @param center (optional) The center, defaults to the row means for the
 #' SD estimators and row medians for the MAD estimators.
@@ -21,17 +22,17 @@
 #' @keywords array iteration robust univar
 #'
 #' @export
-rowSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+rowSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, center = NULL,
                     dim. = dim(x), ..., useNames = TRUE) {
-  x <- rowVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., useNames = useNames, ...)
+  x <- rowVars(x, rows = rows, cols = cols, na.rm = na.rm, refine = refine, center = center, dim. = dim., useNames = useNames, ...)
   sqrt(x)
 }
 
 
 #' @rdname rowSds
 #' @export
-colSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+colSds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, center = NULL,
                     dim. = dim(x), ..., useNames = TRUE) {
-  x <- colVars(x, rows = rows, cols = cols, na.rm = na.rm, center = center, dim. = dim., useNames = useNames, ...)
+  x <- colVars(x, rows = rows, cols = cols, na.rm = na.rm, refine = refine, center = center, dim. = dim., useNames = useNames, ...)
   sqrt(x)
 }

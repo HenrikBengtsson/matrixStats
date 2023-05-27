@@ -5,11 +5,11 @@
 \alias{colVars}
 \title{Variance estimates for each row (column) in a matrix}
 \usage{
-rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = TRUE)
+rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  center = NULL, dim. = dim(x), ..., useNames = TRUE)
 
-colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = TRUE)
+colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  center = NULL, dim. = dim(x), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -23,6 +23,10 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
 excluded.}
+
+\item{refine}{If \code{\link[base:logical]{TRUE}}, `center` is NULL, and
+\code{x} is \code{\link[base]{numeric}}, then extra effort is used to
+calculate the average with greater numerical precision, otherwise not.}
 
 \item{center}{(optional; a vector or length N (K)) If the row (column)
 means are already estimated, they can be pre-specified using this argument.

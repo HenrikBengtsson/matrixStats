@@ -29,7 +29,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
 SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEXP hasNA, SEXP useNames);
 SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, SEXP byRow, SEXP useNames);
 SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP useNames);
-SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP useNames);
+SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP refine, SEXP hasNA, SEXP byRow, SEXP useNames);
 SEXP signTabulate(SEXP x, SEXP idxs);
 SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode);
 SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound);

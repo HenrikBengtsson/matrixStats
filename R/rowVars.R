@@ -5,6 +5,10 @@
 #' @inheritParams rowAlls
 #' @inheritParams rowDiffs
 #'
+#' @param refine If \code{\link[base:logical]{TRUE}}, `center` is NULL, and
+#' \code{x} is \code{\link[base]{numeric}}, then extra effort is used to
+#' calculate the average with greater numerical precision, otherwise not.
+#'
 #' @param center (optional; a vector or length N (K)) If the row (column)
 #' means are already estimated, they can be pre-specified using this argument.
 #' This avoid re-estimating them again.
@@ -52,12 +56,12 @@
 #' \code{\link[base]{colSums}}().
 #' @keywords array iteration robust univar
 #' @export
-rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, center = NULL,
                     dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, refine, has_nas, TRUE, useNames)
     return(sigma2)
   }
 
@@ -188,12 +192,12 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
 
 #' @rdname rowVars
 #' @export
-colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
+colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, center = NULL,
                     dim. = dim(x), ..., useNames = TRUE) {
   if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
-    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
+    sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, refine, has_nas, FALSE, useNames)
     return(sigma2)
   }
 

@@ -3,7 +3,7 @@
   void rowVars_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int narm, int hasna, int byrow, double *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int narm, int refine, int hasna, int byrow, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -30,11 +30,11 @@
 
 void CONCAT_MACROS(rowVars, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                         R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, 
-                        int narm, int hasna, int byrow, double *ans) {
+                        int narm, int refine, int hasna, int byrow, double *ans) {
   R_xlen_t ii, jj, kk, idx;
   R_xlen_t *colOffset;
   X_C_TYPE *values, value;
-  double value_d, mu_d, sigma2_d;
+  double value_d, sum_d, mu_d, sigma2_d;
   int nocols, norows;
   
   if (cols == NULL) { nocols = 1; } else { nocols = 0; }
@@ -121,12 +121,22 @@ void CONCAT_MACROS(rowVars, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t 
       ans[ii] = NA_REAL;
     } else {
       /* (a) Calculate mu = sum(x)/length(x) */
-      mu_d = 0;
+      sum_d = 0.0;
       for (jj=0; jj < kk; jj++) {
-        mu_d += (double)values[jj];
+        sum_d += (double)values[jj];
       }
-      mu_d /= (double)kk;
+      mu_d = sum_d / (double)kk;
 
+#if X_TYPE == 'r'
+      if (refine) {
+        sum_d = 0.0;
+        for (jj=0; jj < kk; jj++) {
+          sum_d += (double)(values[jj] - mu_d);
+        }
+        mu_d = mu_d + sum_d / (double)kk;
+      } /* for (jj ...) */
+#endif
+      
       /* (b) Calculate sigma^2 */
       sigma2_d = 0;
       for (jj=0; jj < kk; jj++) {

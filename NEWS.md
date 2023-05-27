@@ -1,6 +1,5 @@
 # Version (development version)
 
-
 ## Significant Changes
 
  * `useNames = TRUE` is the new default for all functions.  For
@@ -9,12 +8,18 @@
 ## New Features
 
  * `colMeans2()` and `rowMeans2()` gained argument `refine`.  If
-   `refine = TRUE`, then the sample averaged for numeric matrices are
+   `refine = TRUE`, then the sample average for numeric matrices are
    calculated using a two-pass scan, resulting in higher precision.
    The default is `refine = TRUE` to align it with `colMeans()`, but
    also `mean2()` in this package.  If the higher precision is not
    needed, using `refine = FALSE` will be almost twice as fast.
- 
+
+ * `colSds()`, `rowSds()`, `colVars()`, and `rowVars()` gained
+   argument `refine`.  If `refine = TRUE`, then the sample average for
+   numeric matrices are calculated using a two-pass scan, resulting in
+   higher precision for the estimate of the center and therefore also
+   the variance.
+
 ## Performance
 
  * Unnecessary checks for missing indices are eliminated, yielding
