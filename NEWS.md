@@ -25,6 +25,16 @@
  * Unnecessary checks for missing indices are eliminated, yielding
    better performance. This change does not affect user-facing API.
 
+## Bug Fixes
+
+ * Contrary to other functions in the package, and how it works in
+   base R, functions `colCumsums()`, `colCumprods()`, `colCummins()`,
+   `colCummaxs()`, `colRanges()` and `colRanks()`, plus the
+   corresponding row-based versions, did not drop the `names`
+   attribute when both row and column names were `NULL`. Now also
+   these functions behaves the same as the case when neither row or
+   column names are set.
+
 ## Deprecated and Defunct
 
  * `useNames = NA` is now deprecated. Use `useNames = TRUE` or

@@ -60,14 +60,22 @@ void setNamesDiff(SEXP vec/* Answer vector*/, SEXP namesVec, R_xlen_t length, R_
 
 void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
                  R_xlen_t *crows, R_xlen_t ncols, R_xlen_t *ccols, Rboolean reverseDimnames) {
+  SEXP rownames = VECTOR_ELT(dimnames, reverseDimnames ? 1 : 0);
+  SEXP colnames = VECTOR_ELT(dimnames, reverseDimnames ? 0 : 1);
+
+  /* In case both elements of the dimnames is NULL, we disregard the name
+     attribute completely in order to conform to base R behavior */
+  if (rownames == R_NilValue && colnames == R_NilValue) {
+    return;
+  }
+  
   if (crows == NULL && ccols == NULL && nrows > 0 && ncols > 0) {
     dimnamesgets(mat, dimnames);
     return;
   }
-  SEXP rownames = VECTOR_ELT(dimnames,  reverseDimnames ? 1 : 0);
-  SEXP colnames = VECTOR_ELT(dimnames,  reverseDimnames ? 0 : 1);
-  SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
   
+  SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
+
   if (nrows == 0 || rownames == R_NilValue) {
     SET_VECTOR_ELT(ansDimnames, 0, R_NilValue);
   } else if (crows == NULL) {
