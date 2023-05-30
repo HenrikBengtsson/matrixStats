@@ -62,7 +62,7 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, ncols));
     colOrderStats_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, qq, REAL(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         SEXP namesVec = VECTOR_ELT(dimnames, 1);
@@ -75,7 +75,7 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, ncols));
     colOrderStats_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, qq, INTEGER(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         SEXP namesVec = VECTOR_ELT(dimnames, 1);

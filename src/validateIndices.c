@@ -163,7 +163,7 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
   
   if (cidxs != NULL) {
     for (i = 0; i < ansNidxs; i++) {
-      if (cidxs[i] > INT_MAX){
+      if (cidxs[i] > INT_MAX) {
         need_double = TRUE;
         break;
       }
@@ -202,7 +202,7 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
     // Copy from cidxs to ans and coerce to double
     if (cidxs && ansNidxs > 0) {
       double *ans_ptr = REAL(ans);
-      for (i = 0; i < ansNidxs; i++){
+      for (i = 0; i < ansNidxs; i++) {
         ans_ptr[i] = cidxs[i] == NA_R_XLEN_T ? NA_REAL : (double)cidxs[i] + 1;
       }    
     }

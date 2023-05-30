@@ -61,7 +61,7 @@ SEXP rowMedians(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, S
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {

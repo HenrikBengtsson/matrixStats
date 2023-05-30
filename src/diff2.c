@@ -58,7 +58,7 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
     error("Argument 'x' must be numeric.");
   }
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP namesVec = getAttrib(x, R_NamesSymbol);
     if (namesVec != R_NilValue) {
       setNamesDiff(ans, namesVec, nidxs, nans, cidxs);

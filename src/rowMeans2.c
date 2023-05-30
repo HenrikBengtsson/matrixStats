@@ -63,7 +63,7 @@ SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP refine2, 
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {

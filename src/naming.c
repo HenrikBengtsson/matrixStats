@@ -26,7 +26,7 @@ void setNames(SEXP vec/*Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_
   }
 }
 
-void setNamesDiff(SEXP vec/* Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_t length_ans, R_xlen_t *subscripts){
+void setNamesDiff(SEXP vec/* Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_t length_ans, R_xlen_t *subscripts) {
   
   /* For some reason, base::diff() actually sets an empty name attribute
   when the argument is a name character of length zero, so
@@ -60,7 +60,7 @@ void setNamesDiff(SEXP vec/* Answer vector*/, SEXP namesVec, R_xlen_t length, R_
 
 void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
                  R_xlen_t *crows, R_xlen_t ncols, R_xlen_t *ccols, Rboolean reverseDimnames) {
-  if (crows == NULL && ccols == NULL && nrows > 0 && ncols > 0){
+  if (crows == NULL && ccols == NULL && nrows > 0 && ncols > 0) {
     dimnamesgets(mat, dimnames);
     return;
   }

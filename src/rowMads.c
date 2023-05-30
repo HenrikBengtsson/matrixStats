@@ -67,7 +67,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {
