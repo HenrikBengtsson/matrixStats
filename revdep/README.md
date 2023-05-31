@@ -10,14 +10,14 @@
 |collate  |en_US.UTF-8                                               |
 |ctype    |en_US.UTF-8                                               |
 |tz       |America/Los_Angeles                                       |
-|date     |2023-05-28                                                |
+|date     |2023-05-30                                                |
 |pandoc   |3.1.2 @ /software/c4/cbi/software/pandoc-3.1.2/bin/pandoc |
 
 # Dependencies
 
 |package     |old    |new         |Δ  |
 |:-----------|:------|:-----------|:--|
-|matrixStats |0.63.0 |0.63.0-9008 |*  |
+|matrixStats |0.63.0 |0.63.0-9010 |*  |
 
 # Revdeps
 
@@ -144,7 +144,7 @@
 |DAMOCLES                        |2.3     |       |        |     |
 |[DCEtool](problems.md#dcetool)  |1.0.0   |       |        |1    |
 |DCLEAR                          |1.0.12  |       |        |     |
-|dearseq                         |1.12.0  |       |        |     |
+|dearseq                         |1.12.1  |       |        |     |
 |decompr                         |6.4.0   |       |        |     |
 |deconvR                         |1.6.0   |       |        |     |
 |[DeepBlueR](problems.md#deepbluer)|1.26.0  |       |        |1    |
@@ -330,7 +330,7 @@
 |nbconv                          |1.0.0   |       |        |     |
 |[nearBynding](problems.md#nearbynding)|1.10.0  |       |1       |1    |
 |nempi                           |1.8.0   |       |        |     |
-|nestedcv                        |0.6.2   |       |        |     |
+|nestedcv                        |0.6.4   |       |        |     |
 |[netZooR](problems.md#netzoor)  |1.4.0   |1      |        |3    |
 |neurobase                       |1.32.3  |       |        |     |
 |nnSVG                           |1.4.1   |       |        |     |
@@ -441,7 +441,7 @@
 |slingshot                       |2.8.0   |       |        |     |
 |SPARRAfairness                  |0.0.0.1 |       |        |     |
 |[sparrow](problems.md#sparrow)  |1.6.0   |       |        |2    |
-|[SparseArray](problems.md#sparsearray)|1.0.7   |1      |        |1    |
+|[SparseArray](problems.md#sparsearray)|1.0.8   |1      |        |1    |
 |[sparseMatrixStats](problems.md#sparsematrixstats)|1.12.0  |__+1__ |        |2    |
 |[spathial](problems.md#spathial)|0.1.2   |       |        |2    |
 |[spatzie](problems.md#spatzie)  |1.6.0   |       |        |1    |

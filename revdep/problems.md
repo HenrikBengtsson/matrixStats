@@ -1223,7 +1223,7 @@ Run `revdep_details(, "CATALYST")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/causalOT
 * Date/Publication: 2022-09-04 14:30:12 UTC
-* Number of recursive dependencies: 106
+* Number of recursive dependencies: 114
 
 Run `revdep_details(, "causalOT")` for more info
 
@@ -1613,12 +1613,12 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2023-05-27 11:04:46] $cat.fontfamily
-      INFO [2023-05-27 11:04:46] [1] "serif"
-      INFO [2023-05-27 11:04:46] 
-      INFO [2023-05-27 11:04:46] $x
-      INFO [2023-05-27 11:04:46] $x$TF1
-      INFO [2023-05-27 11:04:46] [1] 3 4 5
+      INFO [2023-05-30 14:19:55] $cat.fontfamily
+      INFO [2023-05-30 14:19:55] [1] "serif"
+      INFO [2023-05-30 14:19:55] 
+      INFO [2023-05-30 14:19:55] $x
+      INFO [2023-05-30 14:19:55] $x$TF1
+      INFO [2023-05-30 14:19:55] [1] 3 4 5
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -9974,10 +9974,10 @@ Run `revdep_details(, "sparrow")` for more info
 
 <details>
 
-* Version: 1.0.7
+* Version: 1.0.8
 * GitHub: https://github.com/Bioconductor/SparseArray
 * Source code: https://github.com/cran/SparseArray
-* Date/Publication: 2023-05-25
+* Date/Publication: 2023-05-28
 * Number of recursive dependencies: 64
 
 Run `revdep_details(, "SparseArray")` for more info
@@ -10057,7 +10057,7 @@ Run `revdep_details(, "sparseMatrixStats")` for more info
       rowCollapse(sp_mat, idxs = 1, rows = row_subset) not equal to matrixStats::rowCollapse(mat, idxs = 1, rows = row_subset).
       names for current but not for target
       
-      [ FAIL 564 | WARN 136 | SKIP 22 | PASS 1189 ]
+      [ FAIL 557 | WARN 136 | SKIP 22 | PASS 1196 ]
       Error: Test failures
       Execution halted
     ```
