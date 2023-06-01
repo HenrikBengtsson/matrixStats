@@ -28,6 +28,10 @@
  * Unnecessary checks for missing indices are eliminated, yielding
    better performance. This change does not affect user-facing API.
 
+ * Made `colQuantiles()` and `rowQuantiles()` a bit faster for `type
+   != 7L`, by making sure percentage names are only generated once,
+   instead of once per column or row.
+
 ## Bug Fixes
 
  * Contrary to other functions in the package, and how it works in

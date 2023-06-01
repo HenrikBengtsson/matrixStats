@@ -132,7 +132,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
       for (kk in rows) {
         xkk <- x[kk, ]
         if (na.rm) xkk <- xkk[!is.na(xkk)]
-        q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
+        q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, names = FALSE, ...)
       }
     } # if (type ...)
   }
@@ -259,7 +259,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
       for (kk in cols) {
         xkk <- x[, kk]
         if (na.rm) xkk <- xkk[!is.na(xkk)]
-        q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, ...)
+        q[kk, ] <- quantile(xkk, probs = probs, na.rm = FALSE, type = type, names = FALSE, ...)
       }
     } # if (type ...)    
   }
@@ -297,7 +297,7 @@ quantile_probs_names <- function(probs, digits) {
   if (length(probs) < 100) {
     names <- formatC(probs, format = "fg", width = 1L, digits = digits)
   } else {
-    names <- format(probs, trim = TRUE, digits = digits, ...)
+    names <- format(probs, trim = TRUE, digits = digits)
   }
   names <- paste(names, "%", sep = "")
   names[is.na(probs)] <- ""
