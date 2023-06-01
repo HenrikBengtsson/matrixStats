@@ -1075,44 +1075,6 @@ Run `revdep_details(, "bumphunter")` for more info
       bootstraps
     ```
 
-# Canek
-
-<details>
-
-* Version: 0.2.1
-* GitHub: NA
-* Source code: https://github.com/cran/Canek
-* Date/Publication: 2022-05-10 10:50:02 UTC
-* Number of recursive dependencies: 188
-
-Run `revdep_details(, "Canek")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(Canek)
-      > 
-      > test_check("Canek")
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 89 ]
-      
-      ══ Failed tests ════════════════════════════════════════════════════════════════
-      ── Failure ('test-Estimation.R:29:3'): Median Method ───────────────────────────
-      y$`Correction Vector`[1] not equal to 0.00523153.
-      names for target but not for current
-      
-      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 89 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 # CARBayesST
 
 <details>
