@@ -10,8 +10,12 @@
 #' @param probs A \code{\link[base]{numeric}} \code{\link[base]{vector}} of J
 #' probabilities in [0, 1].
 #'
-#' @param type An \code{\link[base]{integer}} specify the type of estimator.
+#' @param type An \code{\link[base]{integer}} specifying the type of estimator.
 #' See \code{\link[stats]{quantile}} for more details.
+#'
+#' @param digits An \code{\link[base]{integer}} specifying the precision of
+#' the formatted percentages.  In **matrixStats** (< 0.63.0), the default
+#' used to be `max(2L, getOption("digits"))` inline with R (< 4.1.0).
 #'
 #' @param ... Additional arguments passed to \code{\link[stats]{quantile}}.
 #'
@@ -32,7 +36,8 @@
 #' @export
 rowQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., useNames = TRUE, drop = TRUE) {
+                         na.rm = FALSE, type = 7L, digits = 7L,
+                         ..., useNames = TRUE, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -133,8 +138,12 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   }
 
   # Add dim names
-  digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  if (length(probs) > 0) {
+    if (!is.numeric(digits) || is.na(digits) || digits < 1L) {
+      stop("Argument 'digits' is not a single positive numeric")
+    }
+    colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  }
   
   # Preserve names attribute?
   if (is.na(useNames)) {
@@ -159,7 +168,8 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 #' @export
 colQuantiles <- function(x, rows = NULL, cols = NULL,
                          probs = seq(from = 0, to = 1, by = 0.25),
-                         na.rm = FALSE, type = 7L, ..., useNames = TRUE, drop = TRUE) {
+                         na.rm = FALSE, type = 7L, digits = 7L,
+                         ..., useNames = TRUE, drop = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   if (!is.numeric(x) && !is.integer(x) && !is.logical(x)) {
@@ -258,8 +268,12 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   }
 
   # Add dim names
-  digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  if (length(probs) > 0) {
+    if (!is.numeric(digits) || is.na(digits) || digits < 1L) {
+      stop("Argument 'digits' is not a single positive numeric")
+    }
+    colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  }
   
   # Preserve names attribute?
   if (is.na(useNames)) {

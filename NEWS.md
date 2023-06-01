@@ -3,7 +3,10 @@
 ## Significant Changes
 
  * `useNames = TRUE` is the new default for all functions.  For
-   backward compatibility, it used to be `useNames = NA` .
+   backward compatibility, it used to be `useNames = NA`.
+
+ * `colQuantiles()` and `rowQuantiles()` gained argument `digits`,
+   just like `stats::quantile()` gained that argument in R 4.1.0.
 
 ## New Features
 
