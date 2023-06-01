@@ -127,7 +127,6 @@ void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
 
 void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
                            R_xlen_t *crows, R_xlen_t ncols, R_xlen_t ncol_ans, R_xlen_t *ccols) {
-  
   if (nrows == 0 && ncol_ans == 0) {
     /* Zero-length attributes? Keep behavior same as base R function */
     return;
@@ -135,6 +134,12 @@ void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
   
   SEXP rownames = VECTOR_ELT(dimnames, 0);
   SEXP colnames = VECTOR_ELT(dimnames, 1);
+
+  /* In case both elements of the dimnames is NULL, we disregard the name
+     attribute completely in order to conform to base R behavior */
+  if (rownames == R_NilValue && colnames == R_NilValue) {
+    return;
+  }
   
   SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
   
@@ -192,7 +197,6 @@ void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
 
 void set_colDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows, R_xlen_t nrow_ans,
                       R_xlen_t *crows, R_xlen_t ncols, R_xlen_t *ccols) {
-  
   if (nrow_ans == 0 && ncols == 0) {
     /* Zero-length attributes? Keep behavior same as base R function */
     return;
@@ -200,7 +204,13 @@ void set_colDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
   
   SEXP rownames = VECTOR_ELT(dimnames, 0);
   SEXP colnames = VECTOR_ELT(dimnames, 1);
-  
+
+  /* In case both elements of the dimnames is NULL, we disregard the name
+     attribute completely in order to conform to base R behavior */
+  if (rownames == R_NilValue && colnames == R_NilValue) {
+    return;
+  }
+
   SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
   
   if (nrow_ans == 0 || rownames == R_NilValue) {
