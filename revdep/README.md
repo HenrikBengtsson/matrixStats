@@ -10,14 +10,14 @@
 |collate  |en_US.UTF-8                                               |
 |ctype    |en_US.UTF-8                                               |
 |tz       |America/Los_Angeles                                       |
-|date     |2023-05-30                                                |
+|date     |2023-06-01                                                |
 |pandoc   |3.1.2 @ /software/c4/cbi/software/pandoc-3.1.2/bin/pandoc |
 
 # Dependencies
 
 |package     |old    |new         |Δ  |
 |:-----------|:------|:-----------|:--|
-|matrixStats |0.63.0 |0.63.0-9010 |*  |
+|matrixStats |0.63.0 |0.63.0-9011 |*  |
 
 # Revdeps
 
@@ -27,12 +27,11 @@
 |:-------|:-------|:-----|:-------|:----|
 |[RNAmodR](failures.md#rnamodr)|1.14.0  |1     |        |1    |
 
-## New problems (10)
+## New problems (9)
 
 |package            |version |error  |warning |note |
 |:------------------|:-------|:------|:-------|:----|
 |[BASiCS](problems.md#basics)|2.12.1  |__+1__ |        |2    |
-|[Canek](problems.md#canek)|0.2.1   |__+1__ |        |     |
 |[CATALYST](problems.md#catalyst)|1.24.0  |__+1__ |        |2    |
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)|1.22.0  |__+1__ |        |1    |
 |[glmGamPoi](problems.md#glmgampoi)|1.12.1  |__+1__ |        |2    |
@@ -89,7 +88,7 @@
 |[bulkAnalyseR](problems.md#bulkanalyser)|1.1.0   |       |        |1    |
 |[bumphunter](problems.md#bumphunter)|1.42.0  |       |        |4    |
 |calmate                         |0.13.0  |       |        |     |
-|[Canek](problems.md#canek)      |0.2.1   |__+1__ |        |     |
+|Canek                           |0.2.2   |       |        |     |
 |[CARBayesST](problems.md#carbayesst)|3.3.1   |       |        |1    |
 |[cardelino](problems.md#cardelino)|1.2.0   |       |        |1    |
 |[CATALYST](problems.md#catalyst)|1.24.0  |__+1__ |        |2    |
