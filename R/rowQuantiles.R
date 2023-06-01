@@ -14,8 +14,9 @@
 #' See \code{\link[stats]{quantile}} for more details.
 #'
 #' @param digits An \code{\link[base]{integer}} specifying the precision of
-#' the formatted percentages.  In **matrixStats** (< 0.63.0), the default
-#' used to be `max(2L, getOption("digits"))` inline with R (< 4.1.0).
+#' the formatted percentages. Not used when `useNames = FALSE`.
+#' In **matrixStats** (< 0.63.0), the default used to be
+#' `max(2L, getOption("digits"))` inline with R (< 4.1.0).
 #'
 #' @param ... Additional arguments passed to \code{\link[stats]{quantile}}.
 #'
@@ -137,17 +138,20 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
     } # if (type ...)
   }
 
-  # Add dim names
-  if (length(probs) > 0) {
-    colnames(q) <- quantile_probs_names(probs, digits = digits)
-  }
-  
   # Preserve names attribute?
   if (is.na(useNames)) {
     deprecatedUseNamesNA()
     rownames(q) <- rownames(x)
+    # Add percentage names
+    if (length(probs) > 0) {
+      colnames(q) <- quantile_probs_names(probs, digits = digits)
+    }
   } else if (useNames) {
     rownames(q) <- rownames(x)
+    # Add percentage names
+    if (length(probs) > 0) {
+      colnames(q) <- quantile_probs_names(probs, digits = digits)
+    }
   } else {
     rownames(q) <- NULL
   }
@@ -264,17 +268,20 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
     } # if (type ...)    
   }
 
-  # Add dim names
-  if (length(probs) > 0) {
-    colnames(q) <- quantile_probs_names(probs, digits = digits)
-  }
-  
   # Preserve names attribute?
   if (is.na(useNames)) {
     deprecatedUseNamesNA()
     rownames(q) <- colnames(x)
+    # Add percentage names
+    if (length(probs) > 0) {
+      colnames(q) <- quantile_probs_names(probs, digits = digits)
+    }
   } else if (useNames) {
     rownames(q) <- colnames(x)
+    # Add percentage names
+    if (length(probs) > 0) {
+      colnames(q) <- quantile_probs_names(probs, digits = digits)
+    }
   } else {
     rownames(q) <- NULL
   }
@@ -288,7 +295,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 }
 
 
-quantile_probs_names <- function(probs, digits) {
+quantile_probs_names <- function(probs, digits = 7L) {
   if (!is.numeric(digits) || is.na(digits) || digits < 1L) {
     stop("Argument 'digits' is not a single positive numeric")
   }
