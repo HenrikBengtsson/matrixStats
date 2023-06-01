@@ -139,10 +139,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Add dim names
   if (length(probs) > 0) {
-    if (!is.numeric(digits) || is.na(digits) || digits < 1L) {
-      stop("Argument 'digits' is not a single positive numeric")
-    }
-    colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+    colnames(q) <- quantile_probs_names(probs, digits = digits)
   }
   
   # Preserve names attribute?
@@ -269,10 +266,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Add dim names
   if (length(probs) > 0) {
-    if (!is.numeric(digits) || is.na(digits) || digits < 1L) {
-      stop("Argument 'digits' is not a single positive numeric")
-    }
-    colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+    colnames(q) <- quantile_probs_names(probs, digits = digits)
   }
   
   # Preserve names attribute?
@@ -291,4 +285,21 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   }
 
   q
+}
+
+
+quantile_probs_names <- function(probs, digits) {
+  if (!is.numeric(digits) || is.na(digits) || digits < 1L) {
+    stop("Argument 'digits' is not a single positive numeric")
+  }
+  ## Adopted from stats:::format_perc()
+  probs <- 100 * probs
+  if (length(probs) < 100) {
+    names <- formatC(probs, format = "fg", width = 1L, digits = digits)
+  } else {
+    names <- format(probs, trim = TRUE, digits = digits, ...)
+  }
+  names <- paste(names, "%", sep = "")
+  names[is.na(probs)] <- ""
+  names
 }

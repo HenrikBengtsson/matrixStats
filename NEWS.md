@@ -38,6 +38,11 @@
    these functions behaves the same as the case when neither row or
    column names are set.
 
+ * `colQuantiles()` and `rowQuantiles()` did not generate quantile
+   percentage names exactly the same way as `stats::quantile()`, which
+   would reveal itself for certain combinations of `probs` and
+   `digits`.
+
 ## Deprecated and Defunct
 
  * `useNames = NA` is now deprecated. Use `useNames = TRUE` or
