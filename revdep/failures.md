@@ -1,33 +1,64 @@
-# RNAmodR
+# DeepBlueR
 
 <details>
 
-* Version: 1.14.0
-* GitHub: https://github.com/FelixErnst/RNAmodR
-* Source code: https://github.com/cran/RNAmodR
+* Version: 1.26.0
+* GitHub: NA
+* Source code: https://github.com/cran/DeepBlueR
 * Date/Publication: 2023-04-25
-* Number of recursive dependencies: 192
+* Number of recursive dependencies: 159
 
-Run `revdep_details(, "RNAmodR")` for more info
+Run `revdep_details(, "DeepBlueR")` for more info
 
 </details>
 
 ## In both
 
-*   R CMD check timed out
-    
-
-*   checking dependencies in R code ... NOTE
+*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
     ```
-    Unexported objects imported by ':::' calls:
-      'BiocGenerics:::replaceSlots' 'Biostrings:::XString'
-      'IRanges:::.valid.CompressedList' 'IRanges:::coerceToCompressedList'
-      'S4Vectors:::.valid.DataFrame' 'S4Vectors:::labeledLine'
-      'S4Vectors:::make_zero_col_DataFrame'
-      'S4Vectors:::prepare_objects_to_bind'
-      See the note in ?`:::` about the use of this operator.
-    There are ::: calls to the package's namespace in its code. A package
-      almost never needs to use ::: for its own objects:
-      '.get_inosine_score'
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
+Execution halted
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
+Execution halted
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
+
+
+```
