@@ -74,7 +74,7 @@ It is important that the sample mean estimate is passed.
 If not, then the variance estimate of the spread will be biased.
 
 For the time being, in order to lower the risk for such mistakes,
-argument `center` is occassionally validated against the sample-mean
+argument `center` is occasionally validated against the sample-mean
 estimate.  If a discrepancy is detected, an informative error is
 provided to prevent incorrect variance estimates from being used.
 For performance reasons, this check is only performed once every 50 times.
