@@ -17,15 +17,15 @@
 
 |package     |old    |new         |Δ  |
 |:-----------|:------|:-----------|:--|
-|matrixStats |0.63.0 |0.63.0-9011 |*  |
+|matrixStats |0.63.0 |0.63.0-9014 |*  |
 
 # Revdeps
 
 ## Failed to check (1)
 
-|package |version |error |warning |note |
-|:-------|:-------|:-----|:-------|:----|
-|[RNAmodR](failures.md#rnamodr)|1.14.0  |1     |        |1    |
+|package   |version |error |warning |note |
+|:---------|:-------|:-----|:-------|:----|
+|[DeepBlueR](failures.md#deepbluer)|1.26.0  |1     |        |     |
 
 ## New problems (9)
 
@@ -146,7 +146,7 @@
 |dearseq                         |1.12.1  |       |        |     |
 |decompr                         |6.4.0   |       |        |     |
 |deconvR                         |1.6.0   |       |        |     |
-|[DeepBlueR](problems.md#deepbluer)|1.26.0  |       |        |1    |
+|[DeepBlueR](failures.md#deepbluer)|1.26.0  |1      |        |     |
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)|1.22.0  |__+1__ |        |1    |
 |[DELocal](problems.md#delocal)  |1.0.0   |1      |        |1    |
 |[DeMixT](problems.md#demixt)    |1.16.0  |       |2       |4    |
@@ -390,7 +390,7 @@
 |RHRT                            |1.0.1   |       |        |     |
 |[RiboDiPA](problems.md#ribodipa)|1.8.0   |       |        |1    |
 |[RJcluster](problems.md#rjcluster)|3.2.4   |       |1       |2    |
-|[RNAmodR](failures.md#rnamodr)  |1.14.0  |1      |        |1    |
+|[RNAmodR](problems.md#rnamodr)  |1.14.0  |1      |        |1    |
 |[RNAseqQC](problems.md#rnaseqqc)|0.1.4   |       |        |1    |
 |[RnBeads](problems.md#rnbeads)  |2.18.0  |1      |1       |7    |
 |[robustbase](problems.md#robustbase)|0.95-1  |       |        |3    |
@@ -440,7 +440,7 @@
 |slingshot                       |2.8.0   |       |        |     |
 |SPARRAfairness                  |0.0.0.1 |       |        |     |
 |[sparrow](problems.md#sparrow)  |1.6.0   |       |        |2    |
-|[SparseArray](problems.md#sparsearray)|1.0.8   |1      |        |1    |
+|[SparseArray](problems.md#sparsearray)|1.0.9   |1      |        |1    |
 |[sparseMatrixStats](problems.md#sparsematrixstats)|1.12.0  |__+1__ |        |2    |
 |[spathial](problems.md#spathial)|0.1.2   |       |        |2    |
 |[spatzie](problems.md#spatzie)  |1.6.0   |       |        |1    |

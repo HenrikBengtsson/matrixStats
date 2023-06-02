@@ -8,6 +8,10 @@
  * `colQuantiles()` and `rowQuantiles()` gained argument `digits`,
    just like `stats::quantile()` gained that argument in R 4.1.0.
 
+ * `colQuantiles()` and `rowQuantiles()` only sets quantile percentage
+   names when `useNames = TRUE`, to align with how argument `names` of
+   `stats::quantile()` works in base R.
+
 ## New Features
 
  * `colMeans2()` and `rowMeans2()` gained argument `refine`.  If

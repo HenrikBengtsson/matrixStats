@@ -42,14 +42,14 @@ Run `revdep_details(, "AlpsNMR")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘Vig01-introduction-to-alpsnmr.Rmd’ using rmarkdown
+    
+    Quitting from lines 95-99 [load-samples] (Vig01-introduction-to-alpsnmr.Rmd)
+    Error: processing vignette 'Vig01-introduction-to-alpsnmr.Rmd' failed with diagnostics:
+    cannot open the connection
+    --- failed re-building ‘Vig01-introduction-to-alpsnmr.Rmd’
+    
+    --- re-building ‘Vig01b-introduction-to-alpsnmr-old-api.Rmd’ using rmarkdown
     ! LuaTeX error .../texlive/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua:55: b
-    ad argument #1 to 'insert' (table expected, got nil)
-    stack traceback:
-    	[C]: in function 'insert'
-    	.../texlive/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua:55: in main chunk
-    	[C]: in function 'dofile'
-    	[string "\directlua "]:6: in main chunk.
-    l.139   }
     ...
     LaTeX failed to compile /c4/home/henrik/repositories/matrixStats/revdep/checks/AlpsNMR/new/AlpsNMR.Rcheck/vign_test/AlpsNMR/vignettes/Vig02-handling-metadata-and-annotations.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See Vig02-handling-metadata-and-annotations.log for more info.
     --- failed re-building ‘Vig02-handling-metadata-and-annotations.Rmd’
@@ -1575,12 +1575,12 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2023-05-30 14:19:55] $cat.fontfamily
-      INFO [2023-05-30 14:19:55] [1] "serif"
-      INFO [2023-05-30 14:19:55] 
-      INFO [2023-05-30 14:19:55] $x
-      INFO [2023-05-30 14:19:55] $x$TF1
-      INFO [2023-05-30 14:19:55] [1] 3 4 5
+      INFO [2023-06-01 12:04:57] $cat.fontfamily
+      INFO [2023-06-01 12:04:57] [1] "serif"
+      INFO [2023-06-01 12:04:57] 
+      INFO [2023-06-01 12:04:57] $x
+      INFO [2023-06-01 12:04:57] $x$TF1
+      INFO [2023-06-01 12:04:57] [1] 3 4 5
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -2408,11 +2408,54 @@ Run `revdep_details(, "DeepBlueR")` for more info
 
 ## In both
 
-*   checking Rd files ... NOTE
+*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
     ```
-    prepare_Rd: deepblue_enrich_regions_fast.Rd:35-38: Dropping empty section \examples
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
     ```
 
+## Installation
+
+### Devel
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
+Execution halted
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘DeepBlueR’ ...
+** using staged installation
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
+Execution halted
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
+
+
+```
 # DelayedMatrixStats
 
 <details>
@@ -3112,7 +3155,7 @@ Run `revdep_details(, "easier")` for more info
        11. │ └─base::is.data.frame(.data)
        12. └─tidyr::pivot_wider(...)
       
-      [ FAIL 2 | WARN 2 | SKIP 0 | PASS 0 ]
+      [ FAIL 2 | WARN 3 | SKIP 0 | PASS 0 ]
       Error: Test failures
       Execution halted
     ```
@@ -8524,8 +8567,30 @@ Run `revdep_details(, "RNAmodR")` for more info
 
 ## In both
 
-*   R CMD check timed out
-    
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db5d6595ad_2549'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db77bf49f_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db18cfc140_2539'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db7d389eab_2541'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db7c4ad494_2543'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db77bf49f_2537'
+    ...
+       1. ├─testthat::expect_error(...) at test-2Modifier.R:137:2
+       2. │ └─testthat:::quasi_capture(...)
+       3. │   ├─testthat (local) .capture(...)
+       4. │   │ └─base::withCallingHandlers(...)
+       5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+       6. └─RNAmodR:::.get_classname_for_ModifierSet_from_modifier_type("DataFrame")
+      
+      [ FAIL 1 | WARN 6 | SKIP 0 | PASS 898 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -9936,10 +10001,10 @@ Run `revdep_details(, "sparrow")` for more info
 
 <details>
 
-* Version: 1.0.8
+* Version: 1.0.9
 * GitHub: https://github.com/Bioconductor/SparseArray
 * Source code: https://github.com/cran/SparseArray
-* Date/Publication: 2023-05-28
+* Date/Publication: 2023-05-30
 * Number of recursive dependencies: 64
 
 Run `revdep_details(, "SparseArray")` for more info
@@ -9968,7 +10033,7 @@ Run `revdep_details(, "SparseArray")` for more info
        1. └─SparseArray (local) .test_sym_crossprod_SparseMatrix(m0, svt0) at test-SparseMatrix-mult.R:56:4
        2.   └─testthat (local) EXPECT_FUN(cp, crossprod(m, svt)) at test-SparseMatrix-mult.R:37:4
       
-      [ FAIL 2 | WARN 15 | SKIP 0 | PASS 5763 ]
+      [ FAIL 2 | WARN 15 | SKIP 0 | PASS 5771 ]
       Error: Test failures
       Execution halted
     ```
@@ -10019,7 +10084,7 @@ Run `revdep_details(, "sparseMatrixStats")` for more info
       rowCollapse(sp_mat, idxs = 1, rows = row_subset) not equal to matrixStats::rowCollapse(mat, idxs = 1, rows = row_subset).
       names for current but not for target
       
-      [ FAIL 557 | WARN 136 | SKIP 22 | PASS 1196 ]
+      [ FAIL 558 | WARN 136 | SKIP 22 | PASS 1195 ]
       Error: Test failures
       Execution halted
     ```
