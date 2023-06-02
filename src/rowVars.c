@@ -12,8 +12,8 @@
 #include "rowVars_lowlevel.h"
 #include "naming.h"
 
-SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP useNames) {
-  int narm, hasna, byrow, usenames;
+SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP refine2, SEXP hasNA, SEXP byRow, SEXP useNames) {
+  int narm, hasna, refine, byrow, usenames;
   SEXP ans;
   R_xlen_t nrow, ncol;
   
@@ -28,14 +28,19 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
   /* Argument 'naRm': */
   narm = asLogicalNoNA(naRm, "na.rm");
 
+  /* Argument 'refine': */
+  refine = asLogicalNoNA(refine2, "refine");
+  
   /* Argument 'hasNA': */
   hasna = asLogicalNoNA(hasNA, "hasNA");
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
-
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
+  
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
@@ -43,6 +48,7 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
     SWAP(R_xlen_t, nrow, ncol);
     SWAP(R_xlen_t*, crows, ccols);
     SWAP(R_xlen_t, nrows, ncols);
+    SWAP(int, rowsHasNA, colsHasNA);
   }
 
   /* R allocate a double vector of length 'nrow'
@@ -51,15 +57,15 @@ SEXP rowVars(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowVars_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowVars_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, narm, refine, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowVars_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowVars_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, narm, FALSE, hasna, byrow, REAL(ans));
   }
   
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {

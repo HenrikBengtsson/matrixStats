@@ -40,9 +40,11 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
-
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
+  
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
   
@@ -62,8 +64,8 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
 
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrow_ans, ncol_ans));
-    rowDiffs_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
-    if (usenames != NA_LOGICAL && usenames){
+    rowDiffs_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         if (byrow) {
@@ -76,8 +78,8 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
     UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrow_ans, ncol_ans));
-    rowDiffs_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
-    if (usenames != NA_LOGICAL && usenames){
+    rowDiffs_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         if (byrow) {

@@ -38,8 +38,10 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
@@ -48,6 +50,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
     SWAP(R_xlen_t, nrow, ncol);
     SWAP(R_xlen_t*, crows, ccols);
     SWAP(R_xlen_t, nrows, ncols);
+    SWAP(int, rowsHasNA, colsHasNA);
   }
 
   /* R allocate a double vector of length 'nrow'
@@ -56,15 +59,15 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMads_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, scale, narm, hasna, byrow, REAL(ans));
   } else if (isInteger(x)) {
-    rowMads_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, scale, narm, hasna, byrow, REAL(ans));
+    rowMads_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, scale, narm, hasna, byrow, REAL(ans));
   }
   
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {

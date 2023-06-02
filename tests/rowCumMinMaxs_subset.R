@@ -50,12 +50,12 @@ for (setDimnames in c(TRUE, FALSE)) {
       # Check names attribute
       for (useNames in c(NA, TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
-                                  ftest = rowCummins, fsure = rowCummins_R, useNames = useNames)
+                                  ftest = rowCummins, fsure = rowCummins_R, useNames = useNames,verbose=TRUE)
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = function(x, rows, cols, ..., useNames) {
           t(colCummins(t(x), rows = cols, cols = rows, useNames = useNames))
         }, fsure = rowCummins_R, useNames = useNames)
-        
+
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowCummaxs, fsure = rowCummaxs_R, useNames = useNames)
         validateIndicesTestMatrix(x, rows, cols,

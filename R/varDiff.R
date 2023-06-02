@@ -241,15 +241,17 @@ iqrDiff <- function(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...) {
 #' @rdname varDiff
 #' @export
 rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ..., useNames = NA) {
+                        trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
-      rownames(x) <- NULL
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
+    rownames(x) <- NULL
   }
 
   apply(x, MARGIN = 1L, FUN = varDiff,
@@ -260,14 +262,16 @@ rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ..., useNames = NA) {
+                        trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 
@@ -279,14 +283,16 @@ colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                       trim = 0, ..., useNames = NA) {
+                       trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     rownames(x) <- NULL
   }
 
@@ -298,14 +304,16 @@ rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                       trim = 0, ..., useNames = NA) {
+                       trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 
@@ -317,14 +325,16 @@ colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ..., useNames = NA) {
+                        trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     rownames(x) <- NULL
   }
 
@@ -336,14 +346,16 @@ rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ..., useNames = NA) {
+                        trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 
@@ -355,14 +367,16 @@ colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ..., useNames = NA) {
+                        trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     rownames(x) <- NULL
   }
 
@@ -374,14 +388,16 @@ rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
 #' @rdname varDiff
 #' @export
 colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-                        trim = 0, ..., useNames = NA) {
+                        trim = 0, ..., useNames = TRUE) {
   # Apply subset
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+  } else if (!useNames) {
     colnames(x) <- NULL
   }
 

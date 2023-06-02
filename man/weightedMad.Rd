@@ -10,10 +10,10 @@ weightedMad(x, w = NULL, idxs = NULL, na.rm = FALSE, constant = 1.4826,
   center = NULL, ...)
 
 rowWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  constant = 1.4826, center = NULL, ..., useNames = NA)
+  constant = 1.4826, center = NULL, ..., useNames = TRUE)
 
 colWeightedMads(x, w = NULL, rows = NULL, cols = NULL, na.rm = FALSE,
-  constant = 1.4826, center = NULL, ..., useNames = NA)
+  constant = 1.4826, center = NULL, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{\code{\link[base]{vector}} of type \code{\link[base]{integer}},
@@ -44,10 +44,9 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} scalar.

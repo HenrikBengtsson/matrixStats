@@ -46,24 +46,24 @@ anyMissing <- function(x, idxs = NULL, ...) {
 
 #' @rdname anyMissing
 #' @export
-colAnyMissings <- function(x, rows = NULL, cols = NULL, ..., useNames = NA) {
+colAnyMissings <- function(x, rows = NULL, cols = NULL, ..., useNames = TRUE) {
   colAnys(x, rows, cols, value = NA, ..., useNames = useNames)
 }
 
 #' @rdname anyMissing
 #' @export
-rowAnyMissings <- function(x, rows = NULL, cols = NULL, ..., useNames = NA) {
+rowAnyMissings <- function(x, rows = NULL, cols = NULL, ..., useNames = TRUE) {
   rowAnys(x, rows, cols, value = NA, ..., useNames = useNames)
 }
 
 #' @rdname anyMissing
 #' @export
-colAnyNAs <- function(x, rows = NULL, cols = NULL, ..., useNames = NA) {
+colAnyNAs <- function(x, rows = NULL, cols = NULL, ..., useNames = TRUE) {
   colAnys(x, rows, cols, value = NA, ..., useNames = useNames)
 }
 
 #' @rdname anyMissing
 #' @export
-rowAnyNAs <- function(x, rows = NULL, cols = NULL, ..., useNames = NA) {
+rowAnyNAs <- function(x, rows = NULL, cols = NULL, ..., useNames = TRUE) {
   rowAnys(x, rows, cols, value = NA, ..., useNames = useNames)
 }

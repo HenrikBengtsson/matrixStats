@@ -42,25 +42,27 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
-
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
+  
   /* R allocate a double vector of length 'nrow' */
   PROTECT(ans = allocVector(INTSXP, nrows));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowCounts_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, asReal(value), what2, narm, hasna, INTEGER(ans));
+    rowCounts_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, asReal(value), what2, narm, hasna, INTEGER(ans));
   } else if (isInteger(x)) {
-    rowCounts_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, asInteger(value), what2, narm, hasna, INTEGER(ans));
+    rowCounts_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, asInteger(value), what2, narm, hasna, INTEGER(ans));
   } else if (isLogical(x)) {
-    rowCounts_lgl(LOGICAL(x), nrow, ncol, crows, nrows, ccols, ncols, asLogical(value), what2, narm, hasna, INTEGER(ans));
+    rowCounts_lgl(LOGICAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, asLogical(value), what2, narm, hasna, INTEGER(ans));
   }
   
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       SEXP namesVec = VECTOR_ELT(dimnames, 0);

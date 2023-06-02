@@ -10,22 +10,22 @@
 \title{Gets the range of values in each row (column) of a matrix}
 \usage{
 rowRanges(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = NA)
+  ..., useNames = TRUE)
 
 rowMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 rowMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colRanges(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = NA)
+  ..., useNames = TRUE)
 
 colMins(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colMaxs(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -48,10 +48,9 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 \code{rowRanges()} (\code{colRanges()}) returns a

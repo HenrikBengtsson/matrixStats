@@ -1,3 +1,62 @@
+# Version 1.0.0 [2023-06-01]
+
+## Significant Changes
+
+ * `useNames = TRUE` is the new default for all functions.  For
+   backward compatibility, it used to be `useNames = NA`.
+
+ * `colQuantiles()` and `rowQuantiles()` gained argument `digits`,
+   just like `stats::quantile()` gained that argument in R 4.1.0.
+
+ * `colQuantiles()` and `rowQuantiles()` only sets quantile percentage
+   names when `useNames = TRUE`, to align with how argument `names` of
+   `stats::quantile()` works in base R.
+
+## New Features
+
+ * `colMeans2()` and `rowMeans2()` gained argument `refine`.  If
+   `refine = TRUE`, then the sample average for numeric matrices are
+   calculated using a two-pass scan, resulting in higher precision.
+   The default is `refine = TRUE` to align it with `colMeans()`, but
+   also `mean2()` in this package.  If the higher precision is not
+   needed, using `refine = FALSE` will be almost twice as fast.
+
+ * `colSds()`, `rowSds()`, `colVars()`, and `rowVars()` gained
+   argument `refine`.  If `refine = TRUE`, then the sample average for
+   numeric matrices are calculated using a two-pass scan, resulting in
+   higher precision for the estimate of the center and therefore also
+   the variance.
+
+## Performance
+
+ * Unnecessary checks for missing indices are eliminated, yielding
+   better performance. This change does not affect user-facing API.
+
+ * Made `colQuantiles()` and `rowQuantiles()` a bit faster for `type
+   != 7L`, by making sure percentage names are only generated once,
+   instead of once per column or row.
+
+## Bug Fixes
+
+ * Contrary to other functions in the package, and how it works in
+   base R, functions `colCumsums()`, `colCumprods()`, `colCummins()`,
+   `colCummaxs()`, `colRanges()`, `colRanks()`, and `colDiffs()`, plus
+   the corresponding row-based versions, did not drop the `names`
+   attribute when both row and column names were `NULL`. Now also
+   these functions behaves the same as the case when neither row or
+   column names are set.
+
+ * `colQuantiles()` and `rowQuantiles()` did not generate quantile
+   percentage names exactly the same way as `stats::quantile()`, which
+   would reveal itself for certain combinations of `probs` and
+   `digits`.
+
+## Deprecated and Defunct
+
+ * `useNames = NA` is now deprecated. Use `useNames = TRUE` or
+   `useNames = FALSE` instead.
+
+
 # Version 0.63.0 [2022-11-14]
 
 ## Miscellaneous

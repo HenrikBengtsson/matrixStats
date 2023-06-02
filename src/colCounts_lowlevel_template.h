@@ -3,7 +3,7 @@
   void colCounts_<int|dbl|lgl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, X_C_TYPE value, int what, int narm, int hasna, double *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, X_C_TYPE value, int what, int narm, int hasna, double *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -23,22 +23,52 @@
 
 
 void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, 
                         X_C_TYPE value, int what, int narm, int hasna, double *ans) {
   R_xlen_t ii, jj;
   R_xlen_t colBegin, idx;
   R_xlen_t count;
   X_C_TYPE xvalue;
+  int norows, nocols;
+  if (cols == NULL) { nocols = 1; } else { nocols = 0; }
+  if (rows == NULL) { norows = 1; } else { norows = 0; }
 
   if (what == 0L) {  /* all */
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
         count = 1;
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          if (!X_ISNAN(R_INDEX_GET(x, idx, X_NA))) {
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
+          if (!X_ISNAN(xvalue)) {
             count = 0;
             /* Found another value! Early stopping */
             break;
@@ -48,11 +78,37 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
         count = 1;
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          xvalue = R_INDEX_GET(x, idx, X_NA);
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
+            
           if (xvalue == value) {
           } else if (narm && X_ISNAN(xvalue)) {
             /* Skip */
@@ -76,11 +132,37 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
         count = 0;
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          if (X_ISNAN(R_INDEX_GET(x, idx, X_NA))) {
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
+          if (X_ISNAN(xvalue)) {
             count = 1;
             /* Found value! Early stopping */
             break;
@@ -90,11 +172,36 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
         count = 0;
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          xvalue = R_INDEX_GET(x, idx, X_NA);
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
           if (xvalue == value) {
             count = 1;
             /* Found value! Early stopping */
@@ -117,11 +224,37 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
     /* Count missing values? [sic!] */
     if (X_ISNAN(value)) {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
         count = 0;
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          if (X_ISNAN(R_INDEX_GET(x, idx, X_NA))) {
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
+          if (X_ISNAN(xvalue)) {
             ++count;
           }
         }
@@ -129,11 +262,36 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
     } else {
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
         count = 0;
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          xvalue = R_INDEX_GET(x, idx, X_NA);
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
           if (xvalue == value) {
             ++count;
           } else if (!narm && X_ISNAN(xvalue)) {

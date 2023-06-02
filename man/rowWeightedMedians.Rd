@@ -6,10 +6,10 @@
 \title{Calculates the weighted medians for each row (column) in a matrix}
 \usage{
 rowWeightedMedians(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ..., useNames = NA)
+  na.rm = FALSE, ..., useNames = TRUE)
 
 colWeightedMedians(x, w = NULL, rows = NULL, cols = NULL,
-  na.rm = FALSE, ..., useNames = NA)
+  na.rm = FALSE, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -29,10 +29,9 @@ excluded.}
 
 \item{...}{Additional arguments passed to \code{\link{weightedMedian}}().}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

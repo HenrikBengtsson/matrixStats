@@ -1,7 +1,6 @@
 /***************************************************************************
  Public methods:
  SEXP rowMeans2(SEXP x, SEXP naRm, SEXP hasNA)
- SEXP colMeans2(SEXP x, SEXP naRm, SEXP hasNA)
 
  Authors: Henrik Bengtsson
 
@@ -12,8 +11,8 @@
 #include "rowMeans2_lowlevel.h"
 #include "naming.h"
 
-SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEXP byRow, SEXP useNames) {
-  int narm, hasna, byrow, usenames;
+SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP refine2, SEXP hasNA, SEXP byRow, SEXP useNames) {
+  int narm, hasna, byrow, refine, usenames;
   SEXP ans;
   R_xlen_t nrow, ncol;
   
@@ -33,9 +32,10 @@ SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SE
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
-
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
@@ -43,23 +43,27 @@ SEXP rowMeans2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SE
     SWAP(R_xlen_t, nrow, ncol);
     SWAP(R_xlen_t*, crows, ccols);
     SWAP(R_xlen_t, nrows, ncols);
+    SWAP(int, rowsHasNA, colsHasNA);
   }
 
+  /* Argument 'refine': */
+  refine = asLogicalNoNA(refine2, "refine");
+  
   /* R allocate a double vector of length 'nrow'
      Note that 'nrow' means 'ncol' if byrow=FALSE. */
   PROTECT(ans = allocVector(REALSXP, nrows));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    rowMeans2_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowMeans2_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, narm, refine, hasna, byrow, REAL(ans));
   } else if (isInteger(x) || isLogical(x)) {
-    rowMeans2_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, byrow, REAL(ans));
+    rowMeans2_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, narm, FALSE, hasna, byrow, REAL(ans));
   }
-  
+
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames != NA_LOGICAL && usenames){
+  if (usenames != NA_LOGICAL && usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {

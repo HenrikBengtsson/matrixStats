@@ -20,55 +20,63 @@
 #'
 #' @keywords array iteration univar
 #' @export
-rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+rowCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCumsums, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+colCumsums <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCumsums, x, dim., rows, cols, FALSE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-rowCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+rowCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCumprods, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-colCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+colCumprods <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCumprods, x, dim., rows, cols, FALSE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-rowCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+rowCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCummins, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-colCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+colCummins <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCummins, x, dim., rows, cols, FALSE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-rowCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+rowCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCummaxs, x, dim., rows, cols, TRUE, useNames)
 }
 
 
 #' @rdname rowCumsums
 #' @export
-colCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA) {
+colCummaxs <- function(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowCummaxs, x, dim., rows, cols, FALSE, useNames)
 }

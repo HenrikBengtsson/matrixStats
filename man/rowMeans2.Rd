@@ -5,11 +5,11 @@
 \alias{colMeans2}
 \title{Calculates the mean for each row (column) in a matrix}
 \usage{
-rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = NA)
+rowMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  dim. = dim(x), ..., useNames = TRUE)
 
-colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, dim. = dim(x),
-  ..., useNames = NA)
+colMeans2(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  dim. = dim(x), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -24,6 +24,10 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
 excluded.}
 
+\item{refine}{If \code{\link[base:logical]{TRUE}} and
+\code{x} is \code{\link[base]{numeric}}, then extra effort is used to
+calculate the average with greater numerical precision, otherwise not.}
+
 \item{dim.}{An \code{\link[base]{integer}} \code{\link[base]{vector}} of
 length two specifying the dimension of \code{x}, also when not a
 \code{\link[base]{matrix}}.  \emph{Comment:} The reason for this argument
@@ -32,10 +36,9 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

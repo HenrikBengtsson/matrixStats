@@ -26,9 +26,10 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
-
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
   
@@ -38,8 +39,8 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-    rowCumsums_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, REAL(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    rowCumsums_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, rowsHasNA, byrow, REAL(ans));
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
@@ -48,8 +49,8 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
     UNPROTECT(1);
   } else if (isInteger(x) | isLogical(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
-    rowCumsums_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, byrow, INTEGER(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    rowCumsums_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, INTEGER(ans));
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);

@@ -10,13 +10,13 @@
 \usage{
 anyMissing(x, idxs = NULL, ...)
 
-colAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = NA)
+colAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 
-rowAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = NA)
+rowAnyMissings(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 
-colAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = NA)
+colAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 
-rowAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = NA)
+rowAnyNAs(x, rows = NULL, cols = NULL, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link[base]{vector}}, a \code{\link[base]{list}}, a
@@ -34,10 +34,9 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns \code{\link[base:logical]{TRUE}} if a missing value was

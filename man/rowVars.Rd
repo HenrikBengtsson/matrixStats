@@ -5,11 +5,11 @@
 \alias{colVars}
 \title{Variance estimates for each row (column) in a matrix}
 \usage{
-rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = NA)
+rowVars(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  center = NULL, dim. = dim(x), ..., useNames = TRUE)
 
-colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = NA)
+colVars(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  center = NULL, dim. = dim(x), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -23,6 +23,10 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
 excluded.}
+
+\item{refine}{If \code{\link[base:logical]{TRUE}}, `center` is NULL, and
+\code{x} is \code{\link[base]{numeric}}, then extra effort is used to
+calculate the average with greater numerical precision, otherwise not.}
 
 \item{center}{(optional; a vector or length N (K)) If the row (column)
 means are already estimated, they can be pre-specified using this argument.
@@ -40,10 +44,9 @@ error if we try to name it \code{dim}).}
 \item{...}{Additional arguments passed to \code{rowMeans()} and
 \code{rowSums()}.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
@@ -71,7 +74,7 @@ It is important that the sample mean estimate is passed.
 If not, then the variance estimate of the spread will be biased.
 
 For the time being, in order to lower the risk for such mistakes,
-argument `center` is occassionally validated against the sample-mean
+argument `center` is occasionally validated against the sample-mean
 estimate.  If a discrepancy is detected, an informative error is
 provided to prevent incorrect variance estimates from being used.
 For performance reasons, this check is only performed once every 50 times.

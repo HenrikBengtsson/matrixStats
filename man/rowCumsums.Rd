@@ -13,28 +13,28 @@
 matrix}
 \usage{
 rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
-  useNames = NA)
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -54,10 +54,9 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}

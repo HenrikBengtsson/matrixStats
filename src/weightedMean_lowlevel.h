@@ -6,8 +6,8 @@
 /*
 Native API (dynamically generated via macros):
  
-double weightedMean_int(int *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int refine)
-double weightedMean_dbl(double *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int refine)
+double weightedMean_int(int *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int refine)
+double weightedMean_dbl(double *x, R_xlen_t nx, double *w, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int refine)
 */
 
 #define X_TYPE 'i'

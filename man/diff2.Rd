@@ -4,7 +4,7 @@
 \alias{diff2}
 \title{Fast lagged differences}
 \usage{
-diff2(x, idxs = NULL, lag = 1L, differences = 1L, ...)
+diff2(x, idxs = NULL, lag = 1L, differences = 1L, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
@@ -19,6 +19,11 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 difference.}
 
 \item{...}{Not used.}
+
+\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
+function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
+no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
+attributes of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

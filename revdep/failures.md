@@ -1,23 +1,23 @@
-# ExpHunterSuite
+# DeepBlueR
 
 <details>
 
-* Version: 1.5.0
+* Version: 1.26.0
 * GitHub: NA
-* Source code: https://github.com/cran/ExpHunterSuite
-* Date/Publication: 2022-05-13
-* Number of recursive dependencies: 225
+* Source code: https://github.com/cran/DeepBlueR
+* Date/Publication: 2023-04-25
+* Number of recursive dependencies: 159
 
-Run `revdep_details(, "ExpHunterSuite")` for more info
+Run `revdep_details(, "DeepBlueR")` for more info
 
 </details>
 
 ## In both
 
-*   checking whether package ‘ExpHunterSuite’ can be installed ... ERROR
+*   checking whether package ‘DeepBlueR’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
     ```
 
 ## Installation
@@ -25,42 +25,40 @@ Run `revdep_details(, "ExpHunterSuite")` for more info
 ### Devel
 
 ```
-* installing *source* package ‘ExpHunterSuite’ ...
+* installing *source* package ‘DeepBlueR’ ...
 ** using staged installation
 ** R
-** data
-*** moving datasets to lazyload DB
+** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
-Error in completeSubclasses(classDef2, class1, obj, where) : 
-  trying to get slot "subclasses" from an object of a basic class ("NULL") with no slots
-Error: .onLoad failed in loadNamespace() for 'dbplyr', details:
-  call: setClass(cl, contains = c(prevClass, "VIRTUAL"), where = where)
-  error: error in contained classes ("character") for class “ident”; class definition removed from ‘dbplyr’
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
-ERROR: lazy loading failed for package ‘ExpHunterSuite’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/ExpHunterSuite’
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
 
 
 ```
 ### CRAN
 
 ```
-* installing *source* package ‘ExpHunterSuite’ ...
+* installing *source* package ‘DeepBlueR’ ...
 ** using staged installation
 ** R
-** data
-*** moving datasets to lazyload DB
+** demo
 ** inst
 ** byte-compile and prepare package for lazy loading
-Error in completeSubclasses(classDef2, class1, obj, where) : 
-  trying to get slot "subclasses" from an object of a basic class ("NULL") with no slots
-Error: .onLoad failed in loadNamespace() for 'dbplyr', details:
-  call: setClass(cl, contains = c(prevClass, "VIRTUAL"), where = where)
-  error: error in contained classes ("character") for class “ident”; class definition removed from ‘dbplyr’
+status 
+ "503" 
+Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) : 
+  Problems
+Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
-ERROR: lazy loading failed for package ‘ExpHunterSuite’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/old/ExpHunterSuite.Rcheck/ExpHunterSuite’
+ERROR: lazy loading failed for package ‘DeepBlueR’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
 
 
 ```

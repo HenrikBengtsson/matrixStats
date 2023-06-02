@@ -8,16 +8,16 @@
 \title{Standard deviation estimates for each row (column) in a matrix}
 \usage{
 rowMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), ..., useNames = NA)
+  na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE)
 
 colMads(x, rows = NULL, cols = NULL, center = NULL, constant = 1.4826,
-  na.rm = FALSE, dim. = dim(x), ..., useNames = NA)
+  na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE)
 
-rowSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = NA)
+rowSds(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  center = NULL, dim. = dim(x), ..., useNames = TRUE)
 
-colSds(x, rows = NULL, cols = NULL, na.rm = FALSE, center = NULL,
-  dim. = dim(x), ..., useNames = NA)
+colSds(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE,
+  center = NULL, dim. = dim(x), ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -46,10 +46,13 @@ error if we try to name it \code{dim}).}
 \item{...}{Additional arguments passed to \code{rowMeans()} and
 \code{rowSums()}.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
+
+\item{refine}{If \code{\link[base:logical]{TRUE}}, `center` is NULL, and
+\code{x} is \code{\link[base]{numeric}}, then extra effort is used to
+calculate the average with greater numerical precision, otherwise not.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of

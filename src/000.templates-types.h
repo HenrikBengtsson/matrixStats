@@ -144,9 +144,16 @@
 
 /*
  Subsetted indexing: whether to check NA according to indexing
+ For optimization purposes, these macros can skip checking
+ whether the arguments are NA based on the macro arguments.
+ This may seem like a futile optimiztion (we do branching),
+ but such checking flags are often loop invariants meaning
+ the compiler will optimize out the branches and put the
+ before the loop.
  */
 #undef R_INDEX_OP
 #undef R_INDEX_GET
 
-#define R_INDEX_OP(a, OP, b) (a == NA_R_XLEN_T || b == NA_R_XLEN_T ? NA_R_XLEN_T : a OP b)
-#define R_INDEX_GET(x, i, NA) (i == NA_R_XLEN_T ? NA : x[i])
+#define R_INDEX_OP(a, OP, b, check_a_NA, check_b_NA) ((check_a_NA ? a == NA_R_XLEN_T : 0) || (check_b_NA ? b == NA_R_XLEN_T : 0) ? NA_R_XLEN_T : (a) OP (b))
+    
+#define R_INDEX_GET(x, i, NA, check_i_NA) ((check_i_NA ? (i) == NA_R_XLEN_T : 0) ? NA : x[(i)])

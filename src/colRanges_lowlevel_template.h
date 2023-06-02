@@ -3,7 +3,7 @@
   void colRanges_<int|dbl>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -29,11 +29,15 @@
 
 
 void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, 
                         int what, int narm, int hasna, X_C_TYPE *ans, int *is_counted) {
   R_xlen_t ii, jj;
   R_xlen_t colBegin, idx;
-  X_C_TYPE value, *mins = NULL, *maxs = NULL;
+  X_C_TYPE xvalue, *mins = NULL, *maxs = NULL;
+  int norows, nocols;
+  if (cols == NULL) { nocols = 1; } else { nocols = 0; }
+  if (rows == NULL) { norows = 1; } else { norows = 0; }
 
   /* Rprintf("(nrow,ncol)=(%d,%d), what=%d\n", nrow, ncol, what); */
 
@@ -50,28 +54,53 @@ void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       mins = ans;
 
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
 
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          value = R_INDEX_GET(x, idx, X_NA);
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
 
-          if (X_ISNAN(value)) {
+          if (X_ISNAN(xvalue)) {
             if (!narm) {
-              mins[jj] = value;
+              mins[jj] = xvalue;
               is_counted[jj] = 1;
               /* Early stopping? */
 #if X_TYPE == 'i'
               break;
 #elif X_TYPE == 'r'
-              if (X_ISNA(value)) break;
+              if (X_ISNA(xvalue)) break;
 #endif
             }
           } else if (!is_counted[jj]) {
-            mins[jj] = value;
+            mins[jj] = xvalue;
             is_counted[jj] = 1;
-          } else if (value < mins[jj]) {
-            mins[jj] = value;
+          } else if (xvalue < mins[jj]) {
+            mins[jj] = xvalue;
           }
         }
       } /* for (jj ...) */
@@ -89,28 +118,53 @@ void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       maxs = ans;
 
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
 
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          value = R_INDEX_GET(x, idx, X_NA);
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
 
-          if (X_ISNAN(value)) {
+          if (X_ISNAN(xvalue)) {
             if (!narm) {
-              maxs[jj] = value;
+              maxs[jj] = xvalue;
               is_counted[jj] = 1;
               /* Early stopping? */
 #if X_TYPE == 'i'
               break;
 #elif X_TYPE == 'r'
-              if (X_ISNA(value)) break;
+              if (X_ISNA(xvalue)) break;
 #endif
             }
           } else if (!is_counted[jj]) {
-            maxs[jj] = value;
+            maxs[jj] = xvalue;
             is_counted[jj] = 1;
-          } else if (value > maxs[jj]) {
-            maxs[jj] = value;
+          } else if (xvalue > maxs[jj]) {
+            maxs[jj] = xvalue;
           }
         }
       } /* for (jj ...) */
@@ -129,32 +183,57 @@ void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       maxs = &ans[ncols];
 
       for (jj=0; jj < ncols; jj++) {
-        colBegin = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              R_xlen_t colsElement = cols[jj];
+              if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                  colBegin = colsElement * nrow;
+              } else {
+                  colBegin = NA_R_XLEN_T;
+              }
+          }
 
         for (ii=0; ii < nrows; ii++) {
-          idx = R_INDEX_OP(colBegin, +, ((rows == NULL) ? (ii) : rows[ii]));
-          value = R_INDEX_GET(x, idx, X_NA);
+            if (norows) {
+                if (!colsHasNA || colBegin != NA_R_XLEN_T){
+                    /*
+                     * In this special case, we can eliminate
+                     * the possibility of having NA indicies
+                     */
+                    idx = colBegin + ii;
+                    xvalue = x[idx];
+                } else {
+                    xvalue = X_NA;
+                }
+            } else if (!rowsHasNA && !colsHasNA) {
+                idx = colBegin + rows[ii];
+                xvalue = x[idx];
+            } else {
+                idx = R_INDEX_OP(colBegin, +, (rows[ii]), 1, 1);
+                xvalue = R_INDEX_GET(x, idx, X_NA, 1);
+            }
 
-          if (X_ISNAN(value)) {
+          if (X_ISNAN(xvalue)) {
             if (!narm) {
-              mins[jj] = value;
-              maxs[jj] = value;
+              mins[jj] = xvalue;
+              maxs[jj] = xvalue;
               is_counted[jj] = 1;
               /* Early stopping? */
 #if X_TYPE == 'i'
               break;
 #elif X_TYPE == 'r'
-              if (X_ISNA(value)) break;
+              if (X_ISNA(xvalue)) break;
 #endif
             }
           } else if (!is_counted[jj]) {
-            mins[jj] = value;
-            maxs[jj] = value;
+            mins[jj] = xvalue;
+            maxs[jj] = xvalue;
             is_counted[jj] = 1;
-          } else if (value < mins[jj]) {
-            mins[jj] = value;
-          } else if (value > maxs[jj]) {
-            maxs[jj] = value;
+          } else if (xvalue < mins[jj]) {
+            mins[jj] = xvalue;
+          } else if (xvalue > maxs[jj]) {
+            maxs[jj] = xvalue;
           }
         }
       } /* for (jj ...) */
@@ -181,10 +260,19 @@ void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
 
       for (jj=1; jj < ncols; jj++) {
-        colBegin = ((cols == NULL) ? (jj) : cols[jj]) * nrow;
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              colBegin = cols[jj] * nrow;
+          }
         for (ii=0; ii < nrows; ii++) {
-          value = x[((rows == NULL) ? (ii) : rows[ii])+colBegin];
-          if (value < mins[jj]) mins[jj] = value;
+          if (norows){
+              idx = ii + colBegin;
+          } else {
+              idx = rows[ii] + colBegin;
+          }
+          xvalue = x[idx];
+          if (xvalue < mins[jj]) mins[jj] = xvalue;
         }
       }
     } else if (what == 1) {
@@ -197,10 +285,19 @@ void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
 
       for (jj=1; jj < ncols; jj++) {
-        colBegin = ((cols == NULL) ? (jj) : cols[jj]) * nrow;
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              colBegin = cols[jj] * nrow;
+          }
         for (ii=0; ii < nrows; ii++) {
-          value = x[((rows == NULL) ? (ii) : rows[ii])+colBegin];
-          if (value > maxs[jj]) maxs[jj] = value;
+            if (norows){
+                idx = ii + colBegin;
+            } else {
+                idx = rows[ii] + colBegin;
+            }
+            xvalue = x[idx];
+          if (xvalue > maxs[jj]) maxs[jj] = xvalue;
         }
       }
     } else if (what == 2) {
@@ -215,13 +312,22 @@ void CONCAT_MACROS(colRanges, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
 
       for (jj=1; jj < ncols; jj++) {
-        colBegin = ((cols == NULL) ? (jj) : cols[jj]) * nrow;
+          if (nocols) {
+              colBegin = jj * nrow;
+          } else {
+              colBegin = cols[jj] * nrow;
+          }
         for (ii=0; ii < nrows; ii++) {
-          value = x[((rows == NULL) ? (ii) : rows[ii])+colBegin];
-          if (value < mins[jj]) {
-            mins[jj] = value;
-          } else if (value > maxs[jj]) {
-            maxs[jj] = value;
+            if (norows){
+                idx = ii +colBegin;
+            } else {
+                idx = rows[ii] + colBegin;
+            }
+            xvalue = x[idx];
+          if (xvalue < mins[jj]) {
+            mins[jj] = xvalue;
+          } else if (xvalue > maxs[jj]) {
+            maxs[jj] = xvalue;
           }
         }
       }

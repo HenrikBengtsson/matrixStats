@@ -6,10 +6,10 @@
 \title{Tabulates the values in a matrix by row (column).}
 \usage{
 rowTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
-  useNames = NA)
+  useNames = TRUE)
 
 colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
-  useNames = NA)
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
@@ -26,10 +26,9 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a NxJ (KxJ) \code{\link[base]{matrix}} where N (K) is the

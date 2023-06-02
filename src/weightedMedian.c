@@ -34,16 +34,17 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
-  R_xlen_t *cidxs = validateIndices(idxs, nx, 1, &nidxs);
+  int idxsHasNA;
+  R_xlen_t *cidxs = validateIndicesCheckNA(idxs, nx, 1, &nidxs, &idxsHasNA);
 
   /* Argument 'ties': */
   ties2 = asInteger(ties);
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
-    mu = weightedMedian_dbl(REAL(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
+    mu = weightedMedian_dbl(REAL(x), nx, REAL(w), cidxs, nidxs, idxsHasNA, narm, interpolate2, ties2);
   } else if (isInteger(x) | isLogical(x)) {
-    mu = weightedMedian_int(INTEGER(x), nx, REAL(w), cidxs, nidxs, narm, interpolate2, ties2);
+    mu = weightedMedian_int(INTEGER(x), nx, REAL(w), cidxs, nidxs, idxsHasNA, narm, interpolate2, ties2);
   }
 
   /* Return results */

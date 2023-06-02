@@ -3,7 +3,7 @@
   <col|row>Ranks_dbl_ties<Min|Max|Average>(ARGUMENTS_LIST)
 
  ARGUMENTS_LIST:
-  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, ANS_C_TYPE *ans
+  X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, ANS_C_TYPE *ans
 
  Arguments:
    The following macros ("arguments") should be defined for the
@@ -61,7 +61,9 @@ void SHUFFLE_INT(int *array, size_t i, size_t j); /* prototype for use with "ran
 
 
 void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                 R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, ANS_C_TYPE *ans) {
+                 R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                 R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
+                 ANS_C_TYPE *ans) {
   ANS_C_TYPE rank;
   X_C_TYPE *values, current, tmp;
   R_xlen_t *colOffset;
@@ -78,10 +80,10 @@ void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t n
   colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
   if (cols == NULL) {
     for (jj=0; jj < ncols; jj++)
-      colOffset[jj] = R_INDEX_OP(jj, *, nrow);
+      colOffset[jj] = R_INDEX_OP(jj, *, nrow, 0, 0);
   } else {
     for (jj=0; jj < ncols; jj++)
-      colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow);
+      colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow, colsHasNA, 0);
   }
 
 #elif MARGIN == 'c'
@@ -106,7 +108,7 @@ void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t n
 #if MARGIN == 'r'
     rowIdx = ((rows == NULL) ? (ii) : rows[ii]);
 #elif MARGIN == 'c'
-    rowIdx = R_INDEX_OP(((cols == NULL) ? (ii) : cols[ii]), *, nrow);
+    rowIdx = R_INDEX_OP(((cols == NULL) ? (ii) : cols[ii]), *, nrow, colsHasNA, 0);
 #endif
     lastFinite = nvalues-1;
 
@@ -117,16 +119,38 @@ void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t n
        there are missing values. /PL (2012-12-14)
     */
     for (jj = 0; jj <= lastFinite; jj++) {
-      tmp = R_INDEX_GET(x, R_INDEX_OP(rowIdx,+,colOffset[jj]), X_NA);
+      /*
+       * Checking for the colsHasNA when we already have to check colsHasNA || rowsHasNA
+       * is indeed useless, but for keeping the code ideomatic, we still do it
+       * Hopefully, the compiler will optimize out the unnecessary instructions [JPP].
+       */
+#if MARGIN == 'r'
+      tmp = R_INDEX_GET(x, R_INDEX_OP(rowIdx, +, colOffset[jj], rowsHasNA, colsHasNA), X_NA, colsHasNA || rowsHasNA);
+#elif MARGIN == 'c'
+      tmp = R_INDEX_GET(x, R_INDEX_OP(rowIdx, +, colOffset[jj], colsHasNA, rowsHasNA), X_NA, colsHasNA || rowsHasNA);
+#endif
+      
       if (X_ISNAN(tmp)) {
-        while (lastFinite > jj && X_ISNAN(R_INDEX_GET(x, R_INDEX_OP(rowIdx,+,colOffset[lastFinite]), X_NA))) {
+        while (lastFinite > jj && X_ISNAN(R_INDEX_GET(x, R_INDEX_OP(rowIdx,+,colOffset[lastFinite],
+#if MARGIN == 'r'
+                                                                    rowsHasNA, colsHasNA
+#elif MARGIN == 'c'
+                                                                    colsHasNA, rowsHasNA
+#endif
+                                                                    ), X_NA, colsHasNA || rowsHasNA))) {
           I[lastFinite] = lastFinite;
           lastFinite--;
         }
 
         I[lastFinite] = jj;
         I[jj] = lastFinite;
-        values[ jj ] = R_INDEX_GET(x, R_INDEX_OP(rowIdx,+,colOffset[lastFinite]), X_NA);
+        values[ jj ] = R_INDEX_GET(x, R_INDEX_OP(rowIdx,+,colOffset[lastFinite],
+#if MARGIN == 'r'
+                                                 rowsHasNA, colsHasNA
+#elif MARGIN == 'c'
+                                                 colsHasNA, rowsHasNA
+#endif
+        ), X_NA, colsHasNA || rowsHasNA);
         values[ lastFinite ] = tmp;
         lastFinite--;
       } else {

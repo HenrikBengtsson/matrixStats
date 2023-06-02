@@ -83,36 +83,123 @@
 #endif
 
 
-static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, int byrow, R_xlen_t lag, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
+static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow,
+                                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
+                                        int byrow, R_xlen_t lag, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t ii, jj, ss;
   R_xlen_t idx, colBegin1, colBegin2;
   X_C_TYPE xvalue1, xvalue2;
+  int norows, nocols;
+  if (cols == NULL) { nocols = 1; } else { nocols = 0; }
+  if (rows == NULL) { norows = 1; } else { norows = 0; }
 
   ss = 0;
   if (byrow) {
     for (jj=0; jj < ncol_ans; jj++) {
-      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
-      colBegin2 = R_INDEX_OP(((cols == NULL) ? (jj+lag) : cols[jj+lag]), *, nrow);
-
+        if (nocols) {
+            colBegin1 = jj * nrow;
+        } else if (!colsHasNA) {
+            colBegin1 = cols[jj] * nrow;
+        } else {
+            colBegin1 = R_INDEX_OP(cols[jj], *, nrow, 1, 1);
+        }
+        if (nocols) {
+            colBegin2 = (jj+lag) * nrow;
+        } else if (!colsHasNA) {
+            colBegin2 = cols[jj+lag] * nrow;
+        } else {
+            colBegin2 = R_INDEX_OP(cols[jj+lag], *, nrow, 1, 1);
+        }
       for (ii=0; ii < nrow_ans; ii++) {
-        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]));
-        xvalue1 = R_INDEX_GET(x, idx, X_NA);
-        idx = R_INDEX_OP(colBegin2, +, ((rows == NULL) ? (ii) : rows[ii]));
-        xvalue2 = R_INDEX_GET(x, idx, X_NA);
-
+          if (norows) {
+              if (!colsHasNA || colBegin1 != NA_R_XLEN_T){
+                  /*
+                   * In this special case, we can eliminate
+                   * the possibility of having NA indicies
+                   */
+                  idx = colBegin1 + ii;
+                  xvalue1 = x[idx];
+              } else {
+                  xvalue1 = X_NA;
+              }
+          } else if (!rowsHasNA && !colsHasNA) {
+              idx = colBegin1 + rows[ii];
+              xvalue1 = x[idx];
+          } else {
+              idx = R_INDEX_OP(colBegin1, +, (rows[ii]), 1, 1);
+              xvalue1 = R_INDEX_GET(x, idx, X_NA, 1);
+          }
+          if (norows) {
+              if (!colsHasNA || colBegin2 != NA_R_XLEN_T){
+                  /*
+                   * In this special case, we can eliminate
+                   * the possibility of having NA indicies
+                   */
+                  idx = colBegin2 + ii;
+                  xvalue2 = x[idx];
+              } else {
+                  xvalue2 = X_NA;
+              }
+          } else if (!rowsHasNA && !colsHasNA) {
+              idx = colBegin2 + rows[ii];
+              xvalue2 = x[idx];
+          } else {
+              idx = R_INDEX_OP(colBegin2, +, (rows[ii]), 1, 1);
+              xvalue2 = R_INDEX_GET(x, idx, X_NA, 1);
+          }
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
       }
     }
   } else {
     for (jj=0; jj < ncol_ans; jj++) {
-      colBegin1 = R_INDEX_OP(((cols == NULL) ? (jj) : cols[jj]), *, nrow);
-
+        if (nocols) {
+            colBegin1 = jj * nrow;
+        } else {
+            R_xlen_t colsElement = cols[jj];
+            if (!colsHasNA || colsElement != NA_R_XLEN_T) {
+                colBegin1 = colsElement * nrow;
+            } else {
+                colBegin1 = NA_R_XLEN_T;
+            }
+        }
       for (ii=0; ii < nrow_ans; ii++) {
-        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii) : rows[ii]));
-        xvalue1 = R_INDEX_GET(x, idx, X_NA);
-        idx = R_INDEX_OP(colBegin1, +, ((rows == NULL) ? (ii+lag) : rows[ii+lag]));
-        xvalue2 = R_INDEX_GET(x, idx, X_NA);
-
+          if (norows) {
+              if (!colsHasNA || colBegin1 != NA_R_XLEN_T){
+                  /*
+                   * In this special case, we can eliminate
+                   * the possibility of having NA indicies
+                   */
+                  idx = colBegin1 + ii;
+                  xvalue1 = x[idx];
+              } else {
+                  xvalue1 = X_NA;
+              }
+          } else if (!rowsHasNA && !colsHasNA) {
+              idx = colBegin1 + rows[ii];
+              xvalue1 = x[idx];
+          } else {
+              idx = R_INDEX_OP(colBegin1, +, (rows[ii]), 1, 1);
+              xvalue1 = R_INDEX_GET(x, idx, X_NA, 1);
+          }
+        if (norows) {
+            if (!colsHasNA || colBegin1 != NA_R_XLEN_T){
+                /*
+                 * In this special case, we can eliminate
+                 * the possibility of having NA indicies
+                 */
+                idx = colBegin1 + ii + lag;
+                xvalue2 = x[idx];
+            } else {
+                xvalue2 = X_NA;
+            }
+        } else if (!rowsHasNA && !colsHasNA) {
+            idx = colBegin1 + rows[ii+lag];
+            xvalue2 = x[idx];
+        } else {
+            idx = R_INDEX_OP(colBegin1, +, (rows[ii+lag]), 1, 1);
+            xvalue2 = R_INDEX_GET(x, idx, X_NA, 1);
+        }
         ans[ss++] = X_DIFF(xvalue2, xvalue1);
       }
     }
@@ -121,7 +208,8 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t *ro
 
 
 void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA, 
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, 
                         int byrow, R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nrow_ans, R_xlen_t ncol_ans) {
   R_xlen_t nrow_tmp, ncol_tmp;
   X_C_TYPE *tmp = NULL;
@@ -131,7 +219,7 @@ void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 
   /* Special case (difference == 1) */
   if (differences == 1) {
-    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, cols, ncols, byrow, lag, ans, nrow_ans, ncol_ans);
+    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, rowsHasNA, cols, ncols, colsHasNA, byrow, lag, ans, nrow_ans, ncol_ans);
   } else {
     /* Allocate temporary work matrix (to hold intermediate differences) */
     if (byrow) {
@@ -144,7 +232,7 @@ void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     tmp = Calloc(nrow_tmp*ncol_tmp, X_C_TYPE);
 
     /* (a) First order of differences */
-    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, cols, ncols, byrow, lag, tmp, nrow_tmp, ncol_tmp);
+    DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, rowsHasNA, cols, ncols, colsHasNA, byrow, lag, tmp, nrow_tmp, ncol_tmp);
     if (byrow) {
       ncol_tmp = ncol_tmp - lag;
     } else {

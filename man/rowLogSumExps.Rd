@@ -7,10 +7,10 @@
 columns}
 \usage{
 rowLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-  dim. = dim(lx), ..., useNames = NA)
+  dim. = dim(lx), ..., useNames = TRUE)
 
 colLogSumExps(lx, rows = NULL, cols = NULL, na.rm = FALSE,
-  dim. = dim(lx), ..., useNames = NA)
+  dim. = dim(lx), ..., useNames = TRUE)
 }
 \arguments{
 \item{lx}{A \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}.
@@ -29,10 +29,9 @@ length two specifying the dimension of \code{x}, also when not a
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N

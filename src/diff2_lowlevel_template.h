@@ -38,20 +38,36 @@
 #endif
 
 
-void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idxs, R_xlen_t nidxs,
+void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
+                        R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA,
                         R_xlen_t lag, R_xlen_t differences, X_C_TYPE *ans, R_xlen_t nans) {
   R_xlen_t ii, tt, uu;
   X_C_TYPE xvalue1, xvalue2;
   X_C_TYPE *tmp = NULL;
-
+  int noidxs;
+  if (idxs == NULL) { noidxs = 1; } else { noidxs = 0;}
+  
   /* Nothing to do? */
   if (nans <= 0) return;
 
   /* Special case (difference == 1) */
   if (differences == 1) {
     for (ii=0; ii < nans; ii++) {
-      xvalue1 = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
-      xvalue2 = R_INDEX_GET(x, ((idxs == NULL) ? (ii+lag) : idxs[ii+lag]), X_NA);
+      if(noidxs) {
+          xvalue1 = x[ii];
+          xvalue2 = x[ii+lag];    
+      } else {
+          R_xlen_t idx1 = idxs[ii];
+          R_xlen_t idx2 = idxs[ii+lag];
+          if (!idxsHasNA) {
+              xvalue1 = x[idx1];
+              xvalue2 = x[idx2];
+          } else{
+              xvalue1 = R_INDEX_GET(x, idx1, X_NA, 1);
+              xvalue2 = R_INDEX_GET(x, idx2, X_NA, 1);        
+          }
+      }
+      
       ans[ii] = X_DIFF(xvalue2, xvalue1);
     }
   } else {
@@ -60,8 +76,21 @@ void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, R_xlen_t *idx
 
     /* (a) First order of differences */
     for (ii=0; ii < nidxs-lag; ii++) {
-      xvalue1 = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA);
-      xvalue2 = R_INDEX_GET(x, ((idxs == NULL) ? (ii+lag) : idxs[ii+lag]), X_NA);
+    
+    if(noidxs) {
+        xvalue1 = x[ii];
+        xvalue2 = x[ii+lag];    
+    } else {
+        R_xlen_t idx1 = idxs[ii];
+        R_xlen_t idx2 = idxs[ii+lag];
+        if (!idxsHasNA) {
+            xvalue1 = x[idx1];
+            xvalue2 = x[idx2];
+        } else{
+            xvalue1 = R_INDEX_GET(x, idx1, X_NA, 1);
+            xvalue2 = R_INDEX_GET(x, idx2, X_NA, 1);        
+        }
+    }
       tmp[ii] = X_DIFF(xvalue2, xvalue1);
     }
     nidxs -= lag;

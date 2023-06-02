@@ -6,12 +6,12 @@
 \title{Estimates quantiles for each row (column) in a matrix}
 \usage{
 rowQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1,
-  by = 0.25), na.rm = FALSE, type = 7L, ..., useNames = NA,
-  drop = TRUE)
+  by = 0.25), na.rm = FALSE, type = 7L, digits = 7L, ...,
+  useNames = TRUE, drop = TRUE)
 
 colQuantiles(x, rows = NULL, cols = NULL, probs = seq(from = 0, to = 1,
-  by = 0.25), na.rm = FALSE, type = 7L, ..., useNames = NA,
-  drop = TRUE)
+  by = 0.25), na.rm = FALSE, type = 7L, digits = 7L, ...,
+  useNames = TRUE, drop = TRUE)
 }
 \arguments{
 \item{x}{An \code{\link[base]{integer}}, \code{\link[base]{numeric}} or
@@ -29,15 +29,19 @@ probabilities in [0, 1].}
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
 excluded.}
 
-\item{type}{An \code{\link[base]{integer}} specify the type of estimator.
+\item{type}{An \code{\link[base]{integer}} specifying the type of estimator.
 See \code{\link[stats]{quantile}} for more details.}
+
+\item{digits}{An \code{\link[base]{integer}} specifying the precision of
+the formatted percentages. Not used when `useNames = FALSE`.
+In **matrixStats** (< 0.63.0), the default used to be
+`max(2L, getOption("digits"))` inline with R (< 4.1.0).}
 
 \item{...}{Additional arguments passed to \code{\link[stats]{quantile}}.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 
 \item{drop}{If TRUE, singleton dimensions in the result are dropped,
 otherwise not.}

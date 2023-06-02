@@ -7,6 +7,10 @@
 #'
 #' @inheritParams rowAlls
 #'
+#' @param refine If \code{\link[base:logical]{TRUE}} and
+#' \code{x} is \code{\link[base]{numeric}}, then extra effort is used to
+#' calculate the average with greater numerical precision, otherwise not.
+#'
 #' @return Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
 #' length N (K).
 #'
@@ -15,15 +19,17 @@
 #' @keywords array iteration robust univar
 #' @export
 rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = NA) {
+                      refine = TRUE, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE
-  .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
+  .Call(C_rowMeans2, x, dim., rows, cols, na.rm, refine, has_nas, TRUE, useNames)
 }
 
 #' @rdname rowMeans2
 #' @export
 colMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                       dim. = dim(x), ..., useNames = NA) {
+                      refine= TRUE, dim. = dim(x), ..., useNames = TRUE) {
+  if (is.na(useNames)) deprecatedUseNamesNA()
   has_nas <- TRUE
-  .Call(C_rowMeans2, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
+  .Call(C_rowMeans2, x, dim., rows, cols, na.rm, refine, has_nas, FALSE, useNames)
 }

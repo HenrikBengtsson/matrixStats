@@ -31,9 +31,10 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
 
   /* Argument 'xrows', 'xcols' and 'yidxs': */
   R_xlen_t nxrows, nxcols, nyidxs;
-  R_xlen_t *cxrows = validateIndices(xrows, nrow, 0, &nxrows);
-  R_xlen_t *cxcols = validateIndices(xcols, ncol, 0, &nxcols);
-  R_xlen_t *cyidxs = validateIndices(yidxs, ny, 1, &nyidxs);
+  int xrowsHasNA, xcolsHasNA, yidxsHasNA;
+  R_xlen_t *cxrows = validateIndicesCheckNA(xrows, nrow, 0, &nxrows, &xrowsHasNA);
+  R_xlen_t *cxcols = validateIndicesCheckNA(xcols, ncol, 0, &nxcols, &xcolsHasNA);
+  R_xlen_t *cyidxs = validateIndicesCheckNA(yidxs, ny, 1, &nyidxs, &yidxsHasNA);
 
   /* Argument 'operator': */
   op = asInteger(operator);
@@ -45,19 +46,19 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
       if (isReal(x) && isReal(y)) {
         x_OP_y_Add_dbl_dbl(
-            REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
         x_OP_y_Add_dbl_int(
-            REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
         x_OP_y_Add_int_dbl(
-            INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nxrows, nxcols));
       x_OP_y_Add_int_int(
-          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
+          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
   } else if (op == 2) {
@@ -66,19 +67,19 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
       if (isReal(x) && isReal(y)) {
         x_OP_y_Sub_dbl_dbl(
-            REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
         x_OP_y_Sub_dbl_int(
-            REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
         x_OP_y_Sub_int_dbl(
-            INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nxrows, nxcols));
       x_OP_y_Sub_int_int(
-          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
+          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
   } else if (op == 3) {
@@ -87,19 +88,19 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
       PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
       if (isReal(x) && isReal(y)) {
         x_OP_y_Mul_dbl_dbl(
-            REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
         x_OP_y_Mul_dbl_int(
-            REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
         x_OP_y_Mul_int_dbl(
-            INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+            INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
       }
       UNPROTECT(1);
     } else {
       PROTECT(ans = allocMatrix(INTSXP, nxrows, nxcols));
       x_OP_y_Mul_int_int(
-          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
+          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, INTEGER(ans), xlength(ans));
       UNPROTECT(1);
     }
   } else if (op == 4) {
@@ -107,16 +108,16 @@ SEXP x_OP_y(SEXP x, SEXP y, SEXP dim, SEXP operator, SEXP xrows, SEXP xcols, SEX
     PROTECT(ans = allocMatrix(REALSXP, nxrows, nxcols));
     if (isReal(x) && isReal(y)) {
       x_OP_y_Div_dbl_dbl(
-          REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+          REAL(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if (isReal(x) && (isInteger(y) || isLogical(y))) {
       x_OP_y_Div_dbl_int(
-          REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+          REAL(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if ((isInteger(x) || isLogical(x)) && isReal(y)) {
       x_OP_y_Div_int_dbl(
-          INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+          INTEGER(x), nrow, ncol, REAL(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     } else if ((isInteger(x) || isLogical(x)) && (isInteger(y) || isLogical(y))) {
       x_OP_y_Div_int_int(
-          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, cxcols, nxcols, cyidxs, nyidxs, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
+          INTEGER(x), nrow, ncol, INTEGER(y), ny, cxrows, nxrows, xrowsHasNA, cxcols, nxcols, xcolsHasNA, cyidxs, nyidxs, yidxsHasNA, byrow, commute2, narm, hasna, REAL(ans), xlength(ans));
     }
     UNPROTECT(1);
   } else {

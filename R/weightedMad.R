@@ -145,7 +145,7 @@ weightedMad <- function(x, w = NULL, idxs = NULL, na.rm = FALSE,
 #' @export
 rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
-                            constant = 1.4826, center = NULL, ..., useNames = NA) {
+                            constant = 1.4826, center = NULL, ..., useNames = TRUE) {
   # Argument 'constant':
   if (length(constant) != 1L)
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
@@ -183,7 +183,10 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
   ## when !is.null(center), which is tested by DelayedMatrixStats
   ## and sparseMatrixStats
-  if (is.na(useNames) || useNames) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+    names(y) <- rownames(x)
+  } else if (useNames) {
     names(y) <- rownames(x)
   } else {
     names(y) <- NULL
@@ -197,7 +200,7 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @export
 colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
                             na.rm = FALSE,
-                            constant = 1.4826, center = NULL, ..., useNames = NA) {
+                            constant = 1.4826, center = NULL, ..., useNames = TRUE) {
   # Argument 'constant':
   if (length(constant) != 1L)
     stop(sprintf("Argument '%s' is not a scalar: %.0f", "constant", length(constant)))
@@ -236,7 +239,10 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   ## BACKWARD COMPATIBILITY: matrixStats (<= 0.57.0) returns names
   ## when !is.null(center), which is tested by DelayedMatrixStats
   ## and sparseMatrixStats
-  if (is.na(useNames) || useNames) {
+  if (is.na(useNames)) {
+    deprecatedUseNamesNA()
+    names(y) <- colnames(x)
+  } else if (useNames) {
     names(y) <- colnames(x)
   } else {
     names(y) <- NULL

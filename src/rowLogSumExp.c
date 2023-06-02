@@ -33,24 +33,26 @@ SEXP rowLogSumExps(SEXP lx, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasN
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;
-  R_xlen_t *crows = validateIndices(rows, nrow, 0, &nrows);
-  R_xlen_t *ccols = validateIndices(cols, ncol, 0, &ncols);
+  int rowsHasNA;
+  int colsHasNA;
+  R_xlen_t *crows = validateIndicesCheckNA(rows, nrow, 0, &nrows, &rowsHasNA);
+  R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasNA);
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
 
   if (byrow) {
     ans = PROTECT(allocVector(REALSXP, nrows));
-    rowLogSumExps_double(REAL(lx), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, 1, REAL(ans));
+    rowLogSumExps_double(REAL(lx), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, narm, hasna, 1, REAL(ans));
   } else {
     ans = PROTECT(allocVector(REALSXP, ncols));
-    rowLogSumExps_double(REAL(lx), nrow, ncol, crows, nrows, ccols, ncols, narm, hasna, 0, REAL(ans)); 
+    rowLogSumExps_double(REAL(lx), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, narm, hasna, 0, REAL(ans)); 
   }
   
   /* Argument 'useNames': */ 
   usenames = asLogical(useNames);
   
-  if (usenames == NA_LOGICAL || usenames){
+  if (usenames == NA_LOGICAL || usenames) {
     SEXP dimnames = getAttrib(lx, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       if (byrow) {

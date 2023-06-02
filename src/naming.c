@@ -26,17 +26,56 @@ void setNames(SEXP vec/*Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_
   }
 }
 
+void setNamesDiff(SEXP vec/* Answer vector*/, SEXP namesVec, R_xlen_t length, R_xlen_t length_ans, R_xlen_t *subscripts) {
+  
+  /* For some reason, base::diff() actually sets an empty name attribute
+  when the argument is a name character of length zero, so
+  we skip the special case handled in setNames()
+  */
+  
+  SEXP ansNames = PROTECT(allocVector(STRSXP, length_ans));
+  R_xlen_t j = 0;
+  if (subscripts == NULL) {
+    for (R_xlen_t i = (length - length_ans); i < length; i++) {
+      SEXP eltElement = STRING_ELT(namesVec, i);
+      SET_STRING_ELT(ansNames, j++, eltElement);
+    }
+  } else {
+    R_xlen_t thisIdx;            
+    for (R_xlen_t i = (length - length_ans); i < length; i++) {
+      thisIdx = subscripts[i];
+      if (thisIdx == NA_R_XLEN_T) {                                                   
+        SET_STRING_ELT(ansNames, j++, NA_STRING);                                       
+      }                                                                             
+      else {                                                                  
+        SEXP eltElement = STRING_ELT(namesVec, thisIdx);                  
+        SET_STRING_ELT(ansNames, j++, eltElement);
+      }
+    }
+  }
+  namesgets(vec, ansNames);
+  UNPROTECT(1); 
+}
+  
 
 void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
                  R_xlen_t *crows, R_xlen_t ncols, R_xlen_t *ccols, Rboolean reverseDimnames) {
-  if (crows == NULL && ccols == NULL && nrows > 0 && ncols > 0){
+  SEXP rownames = VECTOR_ELT(dimnames, reverseDimnames ? 1 : 0);
+  SEXP colnames = VECTOR_ELT(dimnames, reverseDimnames ? 0 : 1);
+
+  /* In case both elements of the dimnames is NULL, we disregard the name
+     attribute completely in order to conform to base R behavior */
+  if (rownames == R_NilValue && colnames == R_NilValue) {
+    return;
+  }
+  
+  if (crows == NULL && ccols == NULL && nrows > 0 && ncols > 0) {
     dimnamesgets(mat, dimnames);
     return;
   }
-  SEXP rownames = VECTOR_ELT(dimnames,  reverseDimnames ? 1 : 0);
-  SEXP colnames = VECTOR_ELT(dimnames,  reverseDimnames ? 0 : 1);
-  SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
   
+  SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
+
   if (nrows == 0 || rownames == R_NilValue) {
     SET_VECTOR_ELT(ansDimnames, 0, R_NilValue);
   } else if (crows == NULL) {
@@ -88,7 +127,6 @@ void setDimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
 
 void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows,
                            R_xlen_t *crows, R_xlen_t ncols, R_xlen_t ncol_ans, R_xlen_t *ccols) {
-  
   if (nrows == 0 && ncol_ans == 0) {
     /* Zero-length attributes? Keep behavior same as base R function */
     return;
@@ -96,6 +134,12 @@ void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
   
   SEXP rownames = VECTOR_ELT(dimnames, 0);
   SEXP colnames = VECTOR_ELT(dimnames, 1);
+
+  /* In case both elements of the dimnames is NULL, we disregard the name
+     attribute completely in order to conform to base R behavior */
+  if (rownames == R_NilValue && colnames == R_NilValue) {
+    return;
+  }
   
   SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
   
@@ -153,7 +197,6 @@ void set_rowDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
 
 void set_colDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nrows, R_xlen_t nrow_ans,
                       R_xlen_t *crows, R_xlen_t ncols, R_xlen_t *ccols) {
-  
   if (nrow_ans == 0 && ncols == 0) {
     /* Zero-length attributes? Keep behavior same as base R function */
     return;
@@ -161,7 +204,13 @@ void set_colDiffs_Dimnames(SEXP mat/*Answer matrix*/, SEXP dimnames, R_xlen_t nr
   
   SEXP rownames = VECTOR_ELT(dimnames, 0);
   SEXP colnames = VECTOR_ELT(dimnames, 1);
-  
+
+  /* In case both elements of the dimnames is NULL, we disregard the name
+     attribute completely in order to conform to base R behavior */
+  if (rownames == R_NilValue && colnames == R_NilValue) {
+    return;
+  }
+
   SEXP ansDimnames = PROTECT(allocVector(VECSXP, 2));
   
   if (nrow_ans == 0 || rownames == R_NilValue) {

@@ -24,7 +24,7 @@
 #' @keywords array logic iteration univar
 #' @export
 rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -44,6 +44,8 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
+    
     # Preserve rownames
     names <- rownames(x)
     
@@ -92,7 +94,9 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       } else {
         names(counts) <- NULL
       }
-    }    
+    } else {
+      deprecatedUseNamesNA()
+    }  
   }
   counts
 }
@@ -101,7 +105,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
 #' @rdname rowCounts
 #' @export
 colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
-                      na.rm = FALSE, dim. = dim(x), ..., useNames = NA) {
+                      na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   # Argument 'x':
   if (is.matrix(x)) {
   } else if (is.vector(x)) {
@@ -121,6 +125,8 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
+    if (is.na(useNames)) deprecatedUseNamesNA()
+    
     # Preserve colnames
     names <- colnames(x)
     
@@ -169,7 +175,9 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
       } else {
         names(counts) <- NULL
       }
-    }    
+    } else {
+      deprecatedUseNamesNA()
+    }
   }
   counts
 }

@@ -11,11 +11,12 @@
 
 
 /* extern 1-D function 'logSumExp' */
-extern double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int narm, int hasna, R_xlen_t by, double *xx);
+extern double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna, R_xlen_t by, double *xx);
 
 
 void rowLogSumExps_double(double *x, R_xlen_t nrow, R_xlen_t ncol, 
-                        R_xlen_t *rows, R_xlen_t nrows, R_xlen_t *cols, R_xlen_t ncols, 
+                        R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
+                        R_xlen_t *cols, R_xlen_t ncols, int colsHasNA, 
                         int narm, int hasna, R_xlen_t byrow, double *ans) {
   R_xlen_t ii, idx;
   double navalue;
@@ -33,18 +34,18 @@ void rowLogSumExps_double(double *x, R_xlen_t nrow, R_xlen_t ncol,
       if (idx == NA_R_XLEN_T) {
         ans[ii] = navalue;
       } else {
-        ans[ii] = logSumExp_double(x+idx, cols, ncols, narm, hasna, nrow, xx);
+        ans[ii] = logSumExp_double(x+idx, cols, ncols, colsHasNA, narm, hasna, nrow, xx);
       }
     }
   } else {
     navalue = (narm || nrows == 0) ? R_NegInf : NA_REAL;
 
     for (ii=0; ii < ncols; ++ii) {
-      idx = R_INDEX_OP(((cols == NULL) ? (ii) : cols[ii]), *, nrow);
+      idx = R_INDEX_OP(((cols == NULL) ? (ii) : cols[ii]), *, nrow, colsHasNA, 0);
       if (idx == NA_R_XLEN_T) {
         ans[ii] = navalue;
       } else {
-        ans[ii] = logSumExp_double(x+idx, rows, nrows, narm, hasna, 0, NULL);
+        ans[ii] = logSumExp_double(x+idx, rows, nrows, rowsHasNA, narm, hasna, 0, NULL);
       }
     }
   } /* if (byrow) */

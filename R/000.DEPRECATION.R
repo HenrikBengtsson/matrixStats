@@ -1,3 +1,8 @@
+deprecatedUseNamesNA <- function() {
+  .Deprecated(msg = "useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.", package = .packageName)
+}
+
+
 defunctShouldBeMatrixOrDim <- function(x) {
   x_class <- sQuote(class(x)[1])
   x_name <- sQuote(as.character(substitute(x)))

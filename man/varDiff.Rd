@@ -25,28 +25,28 @@ madDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0,
 iqrDiff(x, idxs = NULL, na.rm = FALSE, diff = 1L, trim = 0, ...)
 
 rowVarDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 colVarDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 rowSdDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 colSdDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 rowMadDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 colMadDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 rowIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 
 colIQRDiffs(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
-  trim = 0, ..., useNames = NA)
+  trim = 0, ..., useNames = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length
@@ -76,10 +76,9 @@ operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 \item{cols}{A \code{\link[base]{vector}} indicating subset of columns to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
+support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
+of result are set.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}} of
