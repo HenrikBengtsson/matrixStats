@@ -1,6 +1,9 @@
 # Version (development version)
 
- * ...
+## Deprecated and Defunct
+
+ * The deprecation warning for using `useNames = NA`, suggested using
+   `useNames = TRUE` twice instead of also `useNames = FALSE`.
  
 
 # Version 1.0.0 [2023-06-01]

@@ -1,5 +1,5 @@
 deprecatedUseNamesNA <- function() {
-  .Deprecated(msg = "useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.", package = .packageName)
+  .Deprecated(msg = "useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE.", package = .packageName)
 }
 
 
