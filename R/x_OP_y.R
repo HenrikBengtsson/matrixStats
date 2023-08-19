@@ -17,7 +17,7 @@
 #' (and/or columns) to operate over 'x'. If \code{\link[base]{NULL}}, no
 #' subsetting is done.
 #'
-#' @param idxs A \code{\link[base]{vector}} indicating subset of elements to
+#' @param yidxs A \code{\link[base]{vector}} indicating subset of elements to
 #' operate over 'y'. If \code{\link[base]{NULL}}, no subsetting is done.
 #'
 #' @param commute If \code{\link[base:logical]{TRUE}}, 'y OP x' ('t(y OP
