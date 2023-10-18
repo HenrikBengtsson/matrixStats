@@ -54,9 +54,8 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
-support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
-of result are set.}
+\item{useNames}{If \code{\link[base:logical]{TRUE}} (default), names
+attributes of the result are set, otherwise not.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}
