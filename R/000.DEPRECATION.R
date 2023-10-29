@@ -1,5 +1,11 @@
 deprecatedUseNamesNA <- function() {
-  .Deprecated(msg = "useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE.", package = .packageName)
+  action <- if (getRversion() >= "4.4.0") "defunct" else "deprecated"
+  action <- getOption("matrixStats.useNames.NA", action)
+  if (action == "defunct") {
+    .Defunct(msg = "useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE.", package = .packageName)
+  } else {
+    .Deprecated(msg = "useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE.", package = .packageName)
+  }
 }
 
 

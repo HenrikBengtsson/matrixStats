@@ -86,7 +86,8 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      useNames <- c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)
+      useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowAlls, fsure = rowAlls_R,
@@ -169,7 +170,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowAlls, fsure = rowAlls_R,
                                   value = "0", na.rm = TRUE, useNames = useNames)

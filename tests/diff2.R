@@ -15,7 +15,7 @@ for (mode in c("integer", "double")) {
 
   for (has_na in c(FALSE, TRUE)) {
     for (setNames in c(TRUE, FALSE)) {
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
         if (has_na) {
           x[sample(1:10, size = 3)] <- NA
         }

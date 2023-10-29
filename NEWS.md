@@ -2,6 +2,11 @@
 
 ## Deprecated and Defunct
 
+ * `useNames = NA` is defunct in R (>= 4.4.0). Remains deprecated in
+   R (< 4.4.0) for now.
+
+## Miscellaneous
+
  * The deprecation warning for using `useNames = NA`, suggested using
    `useNames = TRUE` twice instead of also `useNames = FALSE`.
  

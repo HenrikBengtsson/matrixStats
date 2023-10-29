@@ -39,7 +39,7 @@ for (mode in c("integer", "double")) {
       else dimnames(x) <- NULL
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(NA, TRUE, FALSE)) {
+        for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
           probs <- c(0, 0.5, 1)
           q0 <- rowIQRs_R(x, na.rm = na.rm, useNames = useNames)
           print(q0)
@@ -91,7 +91,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
     q0 <- rowIQRs_R(x, useNames = useNames)
     q1 <- rowIQRs(x, useNames = useNames)
     q2 <- colIQRs(t(x), useNames = useNames)

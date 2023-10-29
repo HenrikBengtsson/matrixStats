@@ -30,7 +30,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowCumprods, fsure = rowCumprods_R, useNames = useNames)
         validateIndicesTestMatrix(x, rows, cols,
