@@ -4,12 +4,10 @@ rowCummins_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cummin))
   })
-  
+ 
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
-  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   y
 }
 
@@ -23,8 +21,7 @@ rowCummaxs_R <- function(x, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   
   y
 }
@@ -62,7 +59,7 @@ for (mode in c("logical", "integer", "double")) {
         stopifnot(all.equal(r1, r2))
         stopifnot(all.equal(r1, r0))
         stopifnot(all.equal(r2, r0))
-        
+
         r0 <- rowCummaxs_R(x, useNames = useNames)
         r1 <- rowCummaxs(x, useNames = useNames)
         r2 <- t(colCummaxs(t(x), useNames = useNames))

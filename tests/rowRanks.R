@@ -11,8 +11,7 @@ rowRanks_R <- function(x, ties.method, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(res) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(res) <- dimnames
+  dimnames(res) <- if (isTRUE(useNames)) dimnames(x) else NULL
   
   res
 }
@@ -27,8 +26,7 @@ colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA
   # Preserve dimnames attribute?
   tx <- t(x)
   dim(res) <- dim(tx)
-  dimnames <- dimnames(tx)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(res) <- dimnames
+  dimnames(res) <- if (isTRUE(useNames)) dimnames(tx) else NULL
   
   if (preserveShape) res <- t(res)
   res

@@ -7,10 +7,7 @@ rowCumsums_R <- function(x, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  if (isTRUE(useNames)) {
-    dimnames <- dimnames(x)
-    if (!is.null(dimnames)) dimnames(y) <- dimnames      
-  }
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
 
   y
 }

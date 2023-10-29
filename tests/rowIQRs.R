@@ -12,8 +12,7 @@ rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   
   # Preserve names attribute
   dim(q) <- c(2L, nrow(x))
-  names <- rownames(x)
-  if (isTRUE(useNames) && !is.null(names)) colnames(q) <- names
+  colnames(q) <- if (isTRUE(useNames)) rownames(x) else NULL
   
   q[2L, , drop = TRUE] - q[1L, , drop = TRUE]
 }

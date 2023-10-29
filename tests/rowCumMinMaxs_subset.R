@@ -7,8 +7,7 @@ rowCummins_R <- function(x, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   
   y
 }
@@ -23,8 +22,7 @@ rowCummaxs_R <- function(x, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   
   storage.mode(y) <- mode
   y
