@@ -41,7 +41,7 @@ for (mode in c("numeric", "integer", "logical")) {
       for (cols in index_cases) {
         count <- count + 1L
         na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-        useNames <- c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)
+        useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
         useNames <- useNames[count %% length(useNames) + 1]
 
         validateIndicesTestMatrix_w(x, w, rows, cols,

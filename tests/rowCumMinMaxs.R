@@ -51,7 +51,7 @@ for (mode in c("logical", "integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         # Row/column ranges
         r0 <- rowCummins_R(x, useNames = useNames)
         r1 <- rowCummins(x, useNames = useNames)
@@ -86,7 +86,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))
@@ -122,7 +122,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))
@@ -169,7 +169,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) colnames(x) <- colnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))
@@ -194,7 +194,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) rownames(x) <- rownames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))

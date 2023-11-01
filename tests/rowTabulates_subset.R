@@ -19,7 +19,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       count <- count + 1L
-      useNames <- c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)
+      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
       useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,

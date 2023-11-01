@@ -51,7 +51,7 @@ for (setDimnames in c(TRUE, FALSE)) {
       for (lag in 1:2) {
         for (differences in 1:3) {
           # Check dimnames attribute
-          useNames <- c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)
+          useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
           useNames <- useNames[count %% length(useNames) + 1]
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowDiffs, fsure = rowDiffs_R,

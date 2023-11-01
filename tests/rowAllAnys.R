@@ -74,7 +74,7 @@ for (kk in 1:3) {
 
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         m0 <- rowAlls_R(x, na.rm = na.rm, useNames = useNames)
         m1 <- rowAlls(x, na.rm = na.rm, useNames = useNames)
         m2 <- colAlls(t(x), na.rm = na.rm, useNames = useNames)
@@ -120,7 +120,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   dimnames(x) <- if (setDimnames) dimnames else NULL
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowAlls_R(x, value = value, na.rm = na.rm, useNames = useNames)
       r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = useNames)
       r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = useNames)
@@ -256,7 +256,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (value in c("g", NA_character_)) {
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         r0 <- rowAlls_R(x, value = value, na.rm = na.rm, useNames = useNames)
         r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = useNames)
         r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = useNames)
@@ -303,7 +303,7 @@ dimnames <- list(letters[1:3], LETTERS[1:3])
 for (setDimnames in c(TRUE, FALSE)) {
   dimnames(x) <- if (setDimnames) dimnames else NULL
   # Check names attribute
-  for (useNames in c(if (getRversion() < "4.4.0") NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     r0 <- rowAnys_R(x, value = 0, useNames = useNames)
     r1 <- rowAnys(x, value = 0, useNames = useNames)
     stopifnot(identical(r0, r1))
