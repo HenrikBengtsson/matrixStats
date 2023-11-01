@@ -18,7 +18,7 @@
   action <- Sys.getenv("R_MATRIXSTATS_USENAMES_NA", NA_character_)
   if (!is.na(action)) {
     action <- match.arg(action, choices = c("deprecated", "defunct"))
-    options(matrixStats..useNames.NA = action)
+    options(matrixStats.useNames.NA = action)
   }
 }
 
