@@ -2,11 +2,11 @@
 
 <details>
 
-* Version: 1.26.0
+* Version: 1.27.0
 * GitHub: NA
 * Source code: https://github.com/cran/DeepBlueR
 * Date/Publication: 2023-04-25
-* Number of recursive dependencies: 159
+* Number of recursive dependencies: 161
 
 Run `revdep_details(, "DeepBlueR")` for more info
 
