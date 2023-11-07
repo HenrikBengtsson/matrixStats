@@ -34,9 +34,8 @@
 #' 
 #' @param ... Not used.
 #' 
-#' @param useNames If \code{\link[base:logical]{FALSE}} (default), no naming
-#' support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
-#' of result are set. 
+#' @param useNames If \code{\link[base:logical]{TRUE}} (default), names
+#' attributes of the result are set, otherwise not.
 #'
 #' @return \code{rowAlls()} (\code{colAlls()}) returns an
 #' \code{\link[base]{logical}} \code{\link[base]{vector}} of length N (K).

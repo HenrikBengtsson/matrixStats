@@ -59,7 +59,7 @@ for (mode in c("integer", "double")) {
       # Row/column extremes
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(NA, TRUE, FALSE)) {
+        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
           cat("na.rm = ", na.rm, "\n", sep = "")
           
           # Ranges
@@ -107,7 +107,7 @@ for (mode in c("integer", "double")) {
     else dimnames(x) <- NULL
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         cat("na.rm = ", na.rm, "\n", sep = "")
         r0 <- rowRanges_R(x, na.rm = na.rm, useNames = useNames)
         r1 <- rowRanges(x, na.rm = na.rm, useNames = useNames)
@@ -213,7 +213,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (na.rm in c(FALSE, TRUE)) {
     for (name in names(na_list)) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         na <- na_list[[name]]
         cat(sprintf("%s (%s) w/ na.rm = %s:\n", name, typeof(na), na.rm))
         print(na)

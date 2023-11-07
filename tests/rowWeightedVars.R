@@ -24,10 +24,12 @@ x_est2 <- colWeightedVars(t(x), w = w, useNames = FALSE)
 stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x_est0 <- rowVars(x, useNames = TRUE)
-x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
-x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
+  x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}
 x_est1 <- rowWeightedVars(x, w = w, useNames = TRUE)
 x_est2 <- colWeightedVars(t(x), w = w, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))
@@ -52,10 +54,12 @@ stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x3 <- cbind(x, x, x)
 x_est0 <- rowVars(x3, useNames = TRUE)
-x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
-x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
+  x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}
 x_est1 <- rowWeightedVars(x, w = w, useNames = TRUE)
 x_est2 <- colWeightedVars(t(x), w = w, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))
@@ -78,10 +82,12 @@ x_est2 <- colWeightedVars(t(x), w = w, useNames = FALSE)
 stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x_est0 <- rowVars(x[, (w == 1), drop = FALSE], useNames = TRUE)
-x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
-x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
+  x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}
 x_est1 <- rowWeightedVars(x, w = w, useNames = TRUE)
 x_est2 <- colWeightedVars(t(x), w = w, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))
@@ -103,10 +109,12 @@ x_est2 <- colWeightedVars(t(x), w = w, useNames = FALSE)
 stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x_est0 <- rowVars(x[, (w == 1), drop = FALSE], useNames = TRUE)
-x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
-x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
+  x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}
 x_est1 <- rowWeightedVars(x, w = w, useNames = TRUE)
 x_est2 <- colWeightedVars(t(x), w = w, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))
@@ -128,10 +136,12 @@ x_est2 <- colWeightedVars(t(x), w = w, useNames = FALSE)
 stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x_est0 <- rowVars(x[, (w == 1), drop = FALSE], useNames = TRUE)
-x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
-x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedVars(x, w = w, useNames = NA)
+  x_est2 <- colWeightedVars(t(x), w = w, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}
 x_est1 <- rowWeightedVars(x, w = w, useNames = TRUE)
 x_est2 <- colWeightedVars(t(x), w = w, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))
@@ -145,7 +155,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     x_est1 <- rowWeightedVars(x, w = w, useNames = useNames)
     print(x_est1)
     x_est2 <- colWeightedVars(t(x), w = w, useNames = useNames)
@@ -184,7 +194,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     x_est1 <- rowWeightedVars(x, w = w, na.rm = TRUE, useNames = useNames)
     print(x_est1)
     x_est2 <- colWeightedVars(t(x), w = w, na.rm = TRUE, useNames = useNames)
@@ -200,7 +210,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     x_est1 <- rowWeightedVars(x, w = w, na.rm = TRUE, useNames = useNames)
     print(x_est1)
     x_est2 <- colWeightedVars(t(x), w = w, na.rm = TRUE, useNames = useNames)
@@ -225,10 +235,12 @@ x_est2 <- colWeightedSds(t(x), w = w, na.rm = FALSE, useNames = FALSE)
 stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x_est0 <- rowSds(x[, (w == 1), drop = FALSE], na.rm = FALSE, useNames = TRUE)
-x_est1 <- rowWeightedSds(x, w = w, na.rm = FALSE, useNames = NA)
-x_est2 <- colWeightedSds(t(x), w = w, na.rm = FALSE, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedSds(x, w = w, na.rm = FALSE, useNames = NA)
+  x_est2 <- colWeightedSds(t(x), w = w, na.rm = FALSE, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}  
 x_est1 <- rowWeightedSds(x, w = w, na.rm = FALSE, useNames = TRUE)
 x_est2 <- colWeightedSds(t(x), w = w, na.rm = FALSE, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))
@@ -251,10 +263,12 @@ x_est2 <- colWeightedMads(t(x), w = w, useNames = FALSE)
 stopifnot(all.equal(x_est1, x_est0))
 stopifnot(all.equal(x_est2, x_est0))
 x_est0 <- rowMads(x[, (w == 1), drop = FALSE], useNames = TRUE)
-x_est1 <- rowWeightedMads(x, w = w, useNames = NA)
-x_est2 <- colWeightedMads(t(x), w = w, useNames = NA)
-stopifnot(all.equal(x_est1, x_est0))
-stopifnot(all.equal(x_est2, x_est0))
+if (!matrixStats:::isUseNamesNADefunct()) {
+  x_est1 <- rowWeightedMads(x, w = w, useNames = NA)
+  x_est2 <- colWeightedMads(t(x), w = w, useNames = NA)
+  stopifnot(all.equal(x_est1, x_est0))
+  stopifnot(all.equal(x_est2, x_est0))
+}
 x_est1 <- rowWeightedMads(x, w = w, useNames = TRUE)
 x_est2 <- colWeightedMads(t(x), w = w, useNames = TRUE)
 stopifnot(all.equal(x_est1, x_est0))

@@ -7,8 +7,7 @@ rowCumprods_R <- function(x, ..., useNames = NA) {
 
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   
   y
 }
@@ -31,7 +30,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowCumprods, fsure = rowCumprods_R, useNames = useNames)
         validateIndicesTestMatrix(x, rows, cols,

@@ -18,7 +18,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     y_truth <- rowCollapse_R(x, idxs, useNames = useNames)
     y <- rowCollapse(x, idxs, useNames = useNames)
     stopifnot(identical(y, y_truth))
@@ -33,7 +33,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     y_truth <- rowCollapse_R(x, idxs, useNames = useNames)
     y <- rowCollapse(x, idxs, useNames = useNames)
     stopifnot(identical(y, y_truth))
@@ -56,7 +56,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     y_truth <- rowCollapse_R(x, idxs, useNames = useNames)
     y <- rowCollapse(x, idxs, useNames = useNames)
     stopifnot(identical(y, y_truth))
@@ -83,7 +83,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     y_truth <- rowCollapse_R(x, idxs, useNames = useNames)
     y <- rowCollapse(x, idxs, useNames = useNames)
     stopifnot(identical(y, y_truth))

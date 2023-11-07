@@ -1078,10 +1078,10 @@ Run `revdep_details(, "bumphunter")` for more info
 
 <details>
 
-* Version: 3.3.1
+* Version: 4.0
 * GitHub: https://github.com/duncanplee/CARBayesST
 * Source code: https://github.com/cran/CARBayesST
-* Date/Publication: 2023-01-17 13:30:02 UTC
+* Date/Publication: 2023-10-30 16:40:02 UTC
 * Number of recursive dependencies: 107
 
 Run `revdep_details(, "CARBayesST")` for more info
@@ -1092,8 +1092,9 @@ Run `revdep_details(, "CARBayesST")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.0Mb
+      installed size is 11.3Mb
       sub-directories of 1Mb or more:
+        R      1.0Mb
         libs   9.2Mb
     ```
 
@@ -1610,12 +1611,12 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2023-10-29 20:39:58] 
-      INFO [2023-10-29 20:39:58] $x
-      INFO [2023-10-29 20:39:58] $x$TF1
-      INFO [2023-10-29 20:39:58] [1] 3 4 5
-      INFO [2023-10-29 20:39:58] 
-      INFO [2023-10-29 20:39:58] $x$TF2
+      INFO [2023-11-01 23:52:30] 
+      INFO [2023-11-01 23:52:30] $x
+      INFO [2023-11-01 23:52:30] $x$TF1
+      INFO [2023-11-01 23:52:30] [1] 3 4 5
+      INFO [2023-11-01 23:52:30] 
+      INFO [2023-11-01 23:52:30] $x$TF2
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -2473,6 +2474,25 @@ Run `revdep_details(, "DELocal")` for more info
 </details>
 
 ## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘DELocal.Rmd’ using rmarkdown
+    
+    Quitting from lines 78-85 [unnamed-chunk-5] (DELocal.Rmd)
+    Error: processing vignette 'DELocal.Rmd' failed with diagnostics:
+    Multiple cache results found.
+    Please clear your cache by running biomartCacheClear()
+    --- failed re-building ‘DELocal.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘DELocal.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -3438,71 +3458,68 @@ Run `revdep_details(, "ExpHunterSuite")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
+*   checking whether package ‘ExpHunterSuite’ can be installed ... ERROR
     ```
-    Running examples in ‘ExpHunterSuite-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: write_functional_report
-    > ### Title: Write Main DEgenes Hunter functional report This function allows
-    > ###   you to report the Functional analysis.
-    > ### Aliases: write_functional_report
-    > 
-    > ### ** Examples
-    > 
-    ...
-    
-    
-    processing file: ./func_top_genes.Rmd
-    
-    Quitting from lines 2-73 [ORA_analysis] (functional_report.Rmd)
-    Error in upsetplot.enrichResult(x, n, ...) : 
-      The package "ggupset" is required for `upsetplot()`.
-    Calls: write_functional_report ... .local -> upsetplot.enrichResult -> check_installed
-    Calling clean_tmpfiles_mod()
-    Execution halted
+    Installation failed.
+    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/00install.out’ for details.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.2Mb
-      sub-directories of 1Mb or more:
-        example   1.9Mb
-        extData   3.9Mb
-    ```
+## Installation
 
-*   checking dependencies in R code ... NOTE
-    ```
-    Namespaces in Imports field not imported from:
-      ‘BiocGenerics’ ‘EnhancedVolcano’ ‘biomaRt’
-      All declared Imports should be used.
-    ```
+### Devel
 
-*   checking R code for possible problems ... NOTE
-    ```
-    Found the following possibly unsafe calls:
-    File ‘ExpHunterSuite/R/write_report.R’:
-      assignInNamespace("clean_tmpfiles", clean_tmpfiles_mod, ns = "rmarkdown")
-      assignInNamespace("clean_tmpfiles", clean_tmpfiles_mod, ns = "rmarkdown")
-    
-    catched_pairwise_termsim : <anonymous>: no visible global function
-      definition for ‘prepare_for_fortify’
-    get_kegg_db_path: no visible binding for global variable ‘root_path’
-    get_miRNA_ct: no visible binding for global variable ‘known_miRNA’
-    get_sig_genes: no visible binding for global variable ‘genes_tag’
-    ...
-    get_stats_by_group: no visible binding for global variable
-      ‘known_miRNA’
-    get_stats_by_group: no visible binding for global variable
-      ‘possible_positives’
-    main_degenes_Hunter: no visible binding for global variable ‘Row.names’
-    write_functional_report : <anonymous>: no visible binding for global
-      variable ‘fil_clusters’
-    Undefined global functions or variables:
-      Row.names fil_clusters genes_tag known_miRNA possible_positives
-      prepare_for_fortify root_path
-    ```
+```
+* installing *source* package ‘ExpHunterSuite’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
 
+Warning: namespace ‘ExpHunterSuite’ is not available and has been replaced
+by .GlobalEnv when processing object ‘degh_output’
+Warning: namespace ‘ExpHunterSuite’ is not available and has been replaced
+by .GlobalEnv when processing object ‘degh_output’
+...
+** byte-compile and prepare package for lazy loading
+Error: .onLoad failed in loadNamespace() for 'HPO.db', details:
+  call: NULL
+  error: Corrupt Cache: index file
+  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+  cache: /c4/home/henrik/.cache/R/AnnotationHub
+  filename: annotationhub.index.rds
+Execution halted
+ERROR: lazy loading failed for package ‘ExpHunterSuite’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/new/ExpHunterSuite.Rcheck/ExpHunterSuite’
+
+
+```
+### CRAN
+
+```
+* installing *source* package ‘ExpHunterSuite’ ...
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+
+Warning: namespace ‘ExpHunterSuite’ is not available and has been replaced
+by .GlobalEnv when processing object ‘degh_output’
+Warning: namespace ‘ExpHunterSuite’ is not available and has been replaced
+by .GlobalEnv when processing object ‘degh_output’
+...
+** byte-compile and prepare package for lazy loading
+Error: .onLoad failed in loadNamespace() for 'HPO.db', details:
+  call: NULL
+  error: Corrupt Cache: index file
+  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
+  cache: /c4/home/henrik/.cache/R/AnnotationHub
+  filename: annotationhub.index.rds
+Execution halted
+ERROR: lazy loading failed for package ‘ExpHunterSuite’
+* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/ExpHunterSuite/old/ExpHunterSuite.Rcheck/ExpHunterSuite’
+
+
+```
 # ExpressionNormalizationWorkflow
 
 <details>
@@ -6253,8 +6270,6 @@ Run `revdep_details(, "methylumi")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘lumi’
-    
     Depends: includes the non-default packages:
       'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
       'FDb.InfiniumMethylation.hg19', 'minfi'
@@ -6305,10 +6320,10 @@ Run `revdep_details(, "methylumi")` for more info
       ‘reshape2’ ‘scales’
       These packages need to be imported from (in the NAMESPACE file)
       for when this namespace is loaded but not attached.
+    ':::' call which should be '::': ‘lumi:::produceMethylationGEOSubmissionFile’
+      See the note in ?`:::` about the use of this operator.
     Unexported objects imported by ':::' calls:
       ‘Biobase:::unsafeSetSlot’ ‘genefilter:::.findCentralMap’
-      See the note in ?`:::` about the use of this operator.
-    Unavailable namespace imported from by a ':::' call: ‘lumi’
       See the note in ?`:::` about the use of this operator.
     ```
 
@@ -7982,55 +7997,8 @@ Run `revdep_details(, "QDNAseq")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-      Running ‘QDNAseq,copyneutral.R’
-      Running ‘QDNAseq,gain-copyneutral-gain.R’
-      Running ‘QDNAseq,parallel-reproducibility.R’
-      Running ‘QDNAseq.R’
-     ERROR
-    Running the tests in ‘tests/QDNAseq.R’ failed.
-    Last 50 lines of output:
-      EM algorithm done ...
-      
-      Computing posterior probabilities for all segments ...
-    ...
-        featureNames: 7:1-15000 7:15001-30000 ... 10:135525001-135534747
-          (38819 total)
-        fvarLabels: chromosome start ... use (9 total)
-        fvarMetadata: labelDescription
-      experimentData: use 'experimentData(object)'
-      Annotation:  
-      > plot(fitC)
-      Error in diff2(x, differences = diff) : names() applied to a non-vector
-      Calls: plot -> plot -> .local -> apply -> FUN -> sdDiff -> diff2
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘QDNAseq.Rnw’ using Sweave
-    EM algorithm started ... 
+*   R CMD check timed out
     
-    Warning in allprior/tot :
-      Recycling array of length 1 in vector-array arithmetic is deprecated.
-      Use c() or as.vector() instead.
-    
-    Warning in allprior/tot :
-      Recycling array of length 1 in vector-array arithmetic is deprecated.
-    ...
-    l.196 \RequirePackage
-                         {parnotes}^^M
-    !  ==> Fatal error occurred, no output PDF file produced!
-    --- failed re-building ‘QDNAseq.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘QDNAseq.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 # Qest
 
@@ -8455,12 +8423,12 @@ Run `revdep_details(, "RNAmodR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db5d6595ad_2549'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db77bf49f_2537'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db18cfc140_2539'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db7d389eab_2541'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db7c4ad494_2543'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/94db6c61d0d5_2545'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/1491ca97848_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/1491cd7cffc0_2549'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/1491c74f971cc_2539'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/1491c729e5372_2541'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/1477b1b7a8295_2543'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/1491c206ed2db_2545'
     ...
        1. ├─testthat::expect_error(...) at test-2Modifier.R:137:2
        2. │ └─testthat:::quasi_capture(...)
@@ -8469,7 +8437,7 @@ Run `revdep_details(, "RNAmodR")` for more info
        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
        6. └─RNAmodR:::.get_classname_for_ModifierSet_from_modifier_type("DataFrame")
       
-      [ FAIL 1 | WARN 5 | SKIP 0 | PASS 898 ]
+      [ FAIL 1 | WARN 27 | SKIP 0 | PASS 898 ]
       Error: Test failures
       Execution halted
     ```
@@ -9258,13 +9226,13 @@ Run `revdep_details(, "Seurat")` for more info
       Running ‘testthat.R’
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
+    Last 50 lines of output:
       > library(Seurat)
       Attaching SeuratObject
+      'SeuratObject' was built under R 4.3.1 but the current version is
+      4.3.2; it is recomended that you reinstall 'SeuratObject' as the ABI
+      for R may have changed
       Seurat v4 was just loaded with SeuratObject v5; disabling v5 assays and
-      validation routines, and ensuring assays work in strict v3/v4
-      compatibility mode
     ...
       
       ══ Failed tests ════════════════════════════════════════════════════════════════
@@ -9683,7 +9651,7 @@ Run `revdep_details(, "singleCellTK")` for more info
        3.     ├─methods (local) `[[<-`(`*tmp*`, "ident", value = `<fct>`)
        4.     └─SeuratObject (local) `[[<-`(`*tmp*`, "ident", value = `<fct>`)
       
-      [ FAIL 1 | WARN 40 | SKIP 0 | PASS 209 ]
+      [ FAIL 1 | WARN 39 | SKIP 0 | PASS 209 ]
       Error: Test failures
       Execution halted
     ```
@@ -9785,27 +9753,6 @@ Run `revdep_details(, "slasso")` for more info
       All declared Imports should be used.
     ```
 
-# slingshot
-
-<details>
-
-* Version: 2.10.0
-* GitHub: https://github.com/kstreet13/slingshot
-* Source code: https://github.com/cran/slingshot
-* Date/Publication: 2023-10-24
-* Number of recursive dependencies: 188
-
-Run `revdep_details(, "slingshot")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘clusterExperiment’
-    ```
-
 # sparrow
 
 <details>
@@ -9853,6 +9800,31 @@ Run `revdep_details(, "SparseArray")` for more info
 </details>
 
 ## In both
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 50 lines of output:
+      
+      The following objects are masked from 'package:Matrix':
+      
+          expand, unname
+      
+      The following object is masked from 'package:utils':
+    ...
+      1/9 mismatches
+      [7] NaN - Inf == NaN
+      Backtrace:
+          ▆
+       1. └─SparseArray (local) .test_sym_crossprod_SparseMatrix(m0, svt0) at test-SparseMatrix-mult.R:56:4
+       2.   └─testthat (local) EXPECT_FUN(cp, crossprod(m, svt)) at test-SparseMatrix-mult.R:37:4
+      
+      [ FAIL 2 | WARN 1 | SKIP 0 | PASS 5796 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 *   checking compiled code ... NOTE
     ```
@@ -9940,11 +9912,6 @@ Run `revdep_details(, "spatzie")` for more info
 </details>
 
 ## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘TxDb.Hsapiens.UCSC.hg38.knownGene’
-    ```
 
 *   checking files in ‘vignettes’ ... NOTE
     ```
@@ -10042,7 +10009,7 @@ Run `revdep_details(, "SPOTlight")` for more info
        15.             └─methods (local) initMatrix(.Object, ...)
        16.               └─methods::validObject(.Object)
       
-      [ FAIL 3 | WARN 2 | SKIP 0 | PASS 154 ]
+      [ FAIL 3 | WARN 6 | SKIP 0 | PASS 154 ]
       Error: Test failures
       Execution halted
     ```

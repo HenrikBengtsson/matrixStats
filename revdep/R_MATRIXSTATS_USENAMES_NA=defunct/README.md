@@ -2,7 +2,7 @@
 
 |field    |value                                                     |
 |:--------|:---------------------------------------------------------|
-|version  |R version 4.3.1 (2023-06-16)                              |
+|version  |R version 4.3.2 (2023-10-31)                              |
 |os       |CentOS Linux 7 (Core)                                     |
 |system   |x86_64, linux-gnu                                         |
 |ui       |X11                                                       |
@@ -10,22 +10,24 @@
 |collate  |en_US.UTF-8                                               |
 |ctype    |en_US.UTF-8                                               |
 |tz       |America/Los_Angeles                                       |
-|date     |2023-10-30                                                |
-|pandoc   |3.1.8 @ /software/c4/cbi/software/pandoc-3.1.8/bin/pandoc |
+|date     |2023-11-02                                                |
+|pandoc   |3.1.9 @ /software/c4/cbi/software/pandoc-3.1.9/bin/pandoc |
 
 # Dependencies
 
 |package     |old   |new        |Δ  |
 |:-----------|:-----|:----------|:--|
-|matrixStats |1.0.0 |1.0.0-9005 |*  |
+|matrixStats |1.0.0 |1.0.0-9006 |*  |
 
 # Revdeps
 
-## Failed to check (1)
+## Failed to check (3)
 
-|package   |version |error |warning |note |
-|:---------|:-------|:-----|:-------|:----|
+|package        |version |error |warning |note |
+|:--------------|:-------|:-----|:-------|:----|
 |[DeepBlueR](failures.md#deepbluer)|1.27.0  |1     |        |     |
+|[ExpHunterSuite](failures.md#exphuntersuite)|1.8.0   |1     |        |     |
+|[QDNAseq](failures.md#qdnaseq)|1.38.0  |1     |        |     |
 
 ## All (463)
 
@@ -76,7 +78,7 @@
 |[bumphunter](problems.md#bumphunter)|1.44.0  |      |        |4    |
 |calmate                         |0.13.0  |      |        |     |
 |Canek                           |0.2.3   |      |        |     |
-|[CARBayesST](problems.md#carbayesst)|3.3.1   |      |        |1    |
+|[CARBayesST](problems.md#carbayesst)|4.0     |      |        |1    |
 |[cardelino](problems.md#cardelino)|1.4.0   |      |        |1    |
 |[CATALYST](problems.md#catalyst)|1.26.0  |      |        |2    |
 |[causalOT](problems.md#causalot)|0.1.2   |      |        |2    |
@@ -138,7 +140,7 @@
 |deconvR                         |1.8.0   |      |        |     |
 |[DeepBlueR](failures.md#deepbluer)|1.27.0  |1     |        |     |
 |[DelayedMatrixStats](problems.md#delayedmatrixstats)|1.24.0  |      |        |1    |
-|[DELocal](problems.md#delocal)  |1.2.0   |      |        |1    |
+|[DELocal](problems.md#delocal)  |1.2.0   |1     |        |1    |
 |[DeMixT](problems.md#demixt)    |1.16.0  |      |2       |4    |
 |DepCens                         |0.2.3   |      |        |     |
 |[DepecheR](problems.md#depecher)|1.18.0  |      |        |2    |
@@ -180,7 +182,7 @@
 |[EventPointer](problems.md#eventpointer)|3.10.0  |      |        |3    |
 |ExceedanceTools                 |1.3.6   |      |        |     |
 |[ExCluster](problems.md#excluster)|1.20.0  |      |        |1    |
-|[ExpHunterSuite](problems.md#exphuntersuite)|1.8.0   |1     |        |3    |
+|[ExpHunterSuite](failures.md#exphuntersuite)|1.8.0   |1     |        |     |
 |[ExpressionNormalizationWorkflow](problems.md#expressionnormalizationworkflow)|1.28.0  |      |2       |4    |
 |expss                           |0.11.6  |      |        |     |
 |[extraChIPs](problems.md#extrachips)|1.6.0   |      |        |2    |
@@ -361,11 +363,11 @@
 |PlackettLuce                    |0.4.3   |      |        |     |
 |[pmp](problems.md#pmp)          |1.14.0  |      |        |1    |
 |POMaSPU                         |1.0.0   |      |        |     |
-|posterior                       |1.4.1   |      |        |     |
+|posterior                       |1.5.0   |      |        |     |
 |[ProteoDisco](problems.md#proteodisco)|1.8.0   |      |2       |2    |
 |[ProteoMM](problems.md#proteomm)|1.20.0  |      |        |1    |
 |PSCBS                           |0.66.0  |      |        |     |
-|[QDNAseq](problems.md#qdnaseq)  |1.38.0  |1     |        |1    |
+|[QDNAseq](failures.md#qdnaseq)  |1.38.0  |1     |        |     |
 |[Qest](problems.md#qest)        |1.0.0   |      |        |1    |
 |[QFeatures](problems.md#qfeatures)|1.12.0  |      |1       |2    |
 |Qindex                          |0.1.5   |      |        |     |
@@ -438,13 +440,13 @@
 |sizeMat                         |1.1.2   |      |        |     |
 |[SkeweDF](problems.md#skewedf)  |0.1.0   |      |        |1    |
 |[slasso](problems.md#slasso)    |1.0.0   |      |        |2    |
-|[slingshot](problems.md#slingshot)|2.10.0  |      |        |1    |
+|slingshot                       |2.10.0  |      |        |     |
 |SPARRAfairness                  |0.0.0.1 |      |        |     |
 |[sparrow](problems.md#sparrow)  |1.8.0   |      |        |2    |
-|[SparseArray](problems.md#sparsearray)|1.2.0   |      |        |1    |
+|[SparseArray](problems.md#sparsearray)|1.2.0   |1     |        |1    |
 |[sparseMatrixStats](problems.md#sparsematrixstats)|1.14.0  |      |        |3    |
 |[spathial](problems.md#spathial)|0.1.2   |      |        |2    |
-|[spatzie](problems.md#spatzie)  |1.8.0   |      |        |2    |
+|[spatzie](problems.md#spatzie)  |1.8.0   |      |        |1    |
 |spdesign                        |0.0.2   |      |        |     |
 |[splatter](problems.md#splatter)|1.26.0  |      |        |1    |
 |[SpliceWiz](problems.md#splicewiz)|1.4.0   |      |        |2    |

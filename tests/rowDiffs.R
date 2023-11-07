@@ -54,7 +54,7 @@ for (mode in c("integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL
       # Check dimnames attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         for (lag in 1:4) {
           for (differences in 1:3) {
             cat(sprintf("mode: %s, lag = %d, differences = %d\n",
@@ -90,7 +90,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check dimnames attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowDiffs_R(x, useNames = useNames)
       r1 <- rowDiffs(x, useNames = useNames)
       r2 <- t(colDiffs(t(x), useNames = useNames))
@@ -111,7 +111,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check dimnames attribute
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     r0 <- rowDiffs_R(x, useNames = useNames)
     r1 <- rowDiffs(x, useNames = useNames)
     r2 <- t(colDiffs(t(x), useNames = useNames))

@@ -44,7 +44,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
@@ -77,7 +77,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
@@ -144,7 +144,7 @@ for (kk in seq_len(n_sims)) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
         q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
         ## FIXME: Workaround for R (< 3.0.0)
@@ -179,7 +179,7 @@ for (mode in c("logical", "integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         qr0 <- rowQuantiles_R(x, type = type, useNames = useNames)
         
         qr <- rowQuantiles(x, type = type, useNames = useNames)

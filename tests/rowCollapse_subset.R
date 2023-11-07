@@ -31,7 +31,7 @@ for (rows in index_cases) {
   if (is.null(rows)) rows <- seq_len(nrow(x))
 
   for (idxs in list(2L, seq_len(6L))) {
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       suppressWarnings({
         actual <- tryCatch(rowCollapse(x, idxs, rows = rows, useNames = useNames),
                            error = function(c) "error")

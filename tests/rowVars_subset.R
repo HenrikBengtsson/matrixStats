@@ -72,7 +72,8 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowVars, fsure = rowVars_R,

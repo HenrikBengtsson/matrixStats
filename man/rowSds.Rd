@@ -46,9 +46,8 @@ error if we try to name it \code{dim}).}
 \item{...}{Additional arguments passed to \code{rowMeans()} and
 \code{rowSums()}.}
 
-\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
-support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
-of result are set.}
+\item{useNames}{If \code{\link[base:logical]{TRUE}} (default), names
+attributes of the result are set, otherwise not.}
 
 \item{refine}{If \code{\link[base:logical]{TRUE}}, `center` is NULL, and
 \code{x} is \code{\link[base]{numeric}}, then extra effort is used to

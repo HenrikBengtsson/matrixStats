@@ -37,9 +37,8 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base:logical]{FALSE}} (default), no naming
-support is done. Else if \code{\link[base:logical]{TRUE}}, names attributes
-of result are set.}
+\item{useNames}{If \code{\link[base:logical]{TRUE}} (default), names
+attributes of the result are set, otherwise not.}
 
 \item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}
