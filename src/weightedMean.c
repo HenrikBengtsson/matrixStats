@@ -23,7 +23,7 @@ SEXP weightedMean(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP refine) {
   assertArgVector(w, (R_TYPE_REAL), "w");
   nw = xlength(w);
   if (nx != nw) {
-    error("Argument 'x' and 'w' are of different lengths: %d != %d", nx, nw);
+    error("Argument 'x' and 'w' are of different lengths: %ld != %ld", nx, nw);
   }
 
   /* Argument 'naRm': */

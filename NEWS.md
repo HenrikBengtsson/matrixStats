@@ -1,6 +1,9 @@
 # Version (development version)
 
- * ...
+## Bug Fixes
+
+ * Error messages that report on large integers (> 2^31 - 1), would
+   not render those integers correctly.
  
 
 # Version 1.1.0 [2023-11-06]

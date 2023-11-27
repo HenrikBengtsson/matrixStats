@@ -27,9 +27,9 @@ void indexByRow_i(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_pt
     for (i = 0; i < nidxs; i++) {
       idx = idxs_ptr[i] - 1;
       if (idx < 0) {
-        error("Argument 'idxs' may only contain positive indices: %d", idx + 1);
+        error("Argument 'idxs' may only contain positive indices: %ld", idx + 1);
       } if (idx >= n_max) {
-        error("Argument 'idxs' contains indices larger than %d: %d",
+        error("Argument 'idxs' contains indices larger than %ld: %ld",
               n_max, idx + 1);
       }
       col = idx / ncol;
@@ -66,7 +66,7 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
     }
 #endif
     if (n_max > R_INT_MAX) {
-      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %d", INTEGER(dim)[0], INTEGER(dim)[1], n_max);
+      error("Argument 'dim' (%d,%d) specifies a matrix that has more than 2^31-1 elements: %ld", INTEGER(dim)[0], INTEGER(dim)[1], n_max);
     }
   }
 
