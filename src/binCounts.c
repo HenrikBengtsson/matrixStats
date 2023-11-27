@@ -22,7 +22,7 @@ SEXP binCounts(SEXP x, SEXP bx, SEXP right) {
   assertArgVector(bx, (R_TYPE_REAL), "bx");
   nbins = xlength(bx)-1;
   if (nbins <= 0) {
-    error("Argument 'bx' must specify at least two bin boundaries (= one bin): %ld", xlength(bx));
+    error("Argument 'bx' must specify at least two bin boundaries (= one bin): %td", xlength(bx));
   }
 
   /* Argument 'right': */

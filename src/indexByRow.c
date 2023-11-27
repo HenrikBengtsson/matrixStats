@@ -27,9 +27,9 @@ void indexByRow_i(int nrow, int ncol, int *idxs_ptr, R_xlen_t nidxs, int *ans_pt
     for (i = 0; i < nidxs; i++) {
       idx = idxs_ptr[i] - 1;
       if (idx < 0) {
-        error("Argument 'idxs' may only contain positive indices: %ld", idx + 1);
+        error("Argument 'idxs' may only contain positive indices: %td", idx + 1);
       } if (idx >= n_max) {
-        error("Argument 'idxs' contains indices larger than %ld: %ld",
+        error("Argument 'idxs' contains indices larger than %td: %td",
               n_max, idx + 1);
       }
       col = idx / ncol;
