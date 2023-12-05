@@ -17,7 +17,7 @@ Run `revdep_details(, "DeepBlueR")` for more info
 *   checking whether package ‘DeepBlueR’ can be installed ... ERROR
     ```
     Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/00install.out’ for details.
     ```
 
 ## Installation
@@ -38,7 +38,7 @@ Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) :
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/new/DeepBlueR.Rcheck/DeepBlueR’
 
 
 ```
@@ -58,7 +58,26 @@ Error in xml.rpc(deepblue_options("url"), "list_column_types", user_key) :
 Error: unable to load R code in package ‘DeepBlueR’
 Execution halted
 ERROR: lazy loading failed for package ‘DeepBlueR’
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
+* removing ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/DeepBlueR/old/DeepBlueR.Rcheck/DeepBlueR’
 
 
 ```
+# QDNAseq
+
+<details>
+
+* Version: 1.38.0
+* GitHub: https://github.com/ccagc/QDNAseq
+* Source code: https://github.com/cran/QDNAseq
+* Date/Publication: 2023-10-24
+* Number of recursive dependencies: 93
+
+Run `revdep_details(, "QDNAseq")` for more info
+
+</details>
+
+## In both
+
+*   R CMD check timed out
+    
+
