@@ -1022,10 +1022,10 @@ Run `revdep_details(, "celda")` for more info
 
 <details>
 
-* Version: 1.10.0
+* Version: 1.10.1
 * GitHub: NA
 * Source code: https://github.com/cran/CelliD
-* Date/Publication: 2023-10-24
+* Date/Publication: 2023-11-30
 * Number of recursive dependencies: 279
 
 Run `revdep_details(, "CelliD")` for more info
@@ -1034,79 +1034,21 @@ Run `revdep_details(, "CelliD")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘CelliD-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: DimPlotMC
-    > ### Title: Seurat DimPlot for MCA like Dimensionality Reduction
-    > ### Aliases: DimPlotMC
-    > 
-    > ### ** Examples
-    > 
-    > seuratPbmc <- RunMCA(seuratPbmc, nmcs = 5)
-    Error in (function (cond)  : 
-      error in evaluating the argument 'x' in selecting a method for function 'as.matrix': `assay` must be one of "RNA", not "data".
-    Calls: RunMCA ... abort -> signal_abort -> signalCondition -> <Anonymous>
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-        2. ├─CelliD:::RunMCA.Seurat(seurat, nmcs = 10)
-        3. │ ├─base::as.matrix(GetAssayData(X, slot))
-        4. │ ├─SeuratObject::GetAssayData(X, slot)
-        5. │ └─SeuratObject:::GetAssayData.Seurat(X, slot)
-        6. │   └─rlang::arg_match(arg = assay, values = Assays(object = object))
-        7. │     └─rlang::arg_match0(arg, values, error_arg, error_call = error_call)
-    ...
-        7. │     └─rlang::arg_match0(arg, values, error_arg, error_call = error_call)
-        8. ├─rlang:::stop_arg_match(w, values = x, error_arg = y, error_call = z)
-        9. │ └─rlang::abort(msg, call = error_call, arg = error_arg)
-       10. │   └─rlang:::signal_abort(cnd, .file)
-       11. │     └─base::signalCondition(cnd)
-       12. └─base (local) `<fn>`(`<rlng_rrr>`)
-      
-      [ FAIL 4 | WARN 5 | SKIP 0 | PASS 9 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘BioconductorVignette.Rmd’ using rmarkdown
-    Performing log-normalization
-    0%   10   20   30   40   50   60   70   80   90   100%
-    [----|----|----|----|----|----|----|----|----|----|
-    **************************************************|
-    
-      |                                                                            
-      |                                                                      |   0%
-      |                                                                            
-    ...
-    Quitting from lines 98-99 [MCA1] (BioconductorVignette.Rmd)
-    Error: processing vignette 'BioconductorVignette.Rmd' failed with diagnostics:
-    error in evaluating the argument 'x' in selecting a method for function 'as.matrix': `assay` must be one of "RNA", not "data".
-    --- failed re-building ‘BioconductorVignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘BioconductorVignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking whether package ‘CelliD’ can be installed ... WARNING
     ```
     Found the following significant warnings:
       Warning: replacing previous import ‘data.table::shift’ by ‘tictoc::shift’ when loading ‘CelliD’
     See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/CelliD/new/CelliD.Rcheck/00install.out’ for details.
+    ```
+
+*   checking examples ... WARNING
+    ```
+    Found the following significant warnings:
+    
+      Warning: 'as(<dsCMatrix>, "dsTMatrix")' is deprecated.
+    Deprecated functions may be defunct as soon as of the next release of
+    R.
+    See ?Deprecated.
     ```
 
 *   checking C++ specification ... NOTE
@@ -1269,12 +1211,12 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2023-11-30 05:18:00] 
-      INFO [2023-11-30 05:18:00] $x
-      INFO [2023-11-30 05:18:00] $x$TF1
-      INFO [2023-11-30 05:18:00] [1] 3 4 5
-      INFO [2023-11-30 05:18:00] 
-      INFO [2023-11-30 05:18:00] $x$TF2
+      INFO [2023-12-04 19:29:36] 
+      INFO [2023-12-04 19:29:36] $x
+      INFO [2023-12-04 19:29:36] $x$TF1
+      INFO [2023-12-04 19:29:36] [1] 3 4 5
+      INFO [2023-12-04 19:29:36] 
+      INFO [2023-12-04 19:29:36] $x$TF2
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -1315,9 +1257,9 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.0Mb
+      installed size is 11.2Mb
       sub-directories of 1Mb or more:
-        data   9.0Mb
+        data  10.2Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3197,50 +3139,15 @@ Run `revdep_details(, "flowCore")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘flowCore-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: filterResultList-class
-    > ### Title: Class "filterResultList"
-    > ### Aliases: filterResultList-class filterResultList
-    > ###   [,filterResultList,ANY-method [[,filterResultList,ANY-method
-    > ###   names,filterResultList-method parameters,filterResultList-method
-    > ###   show,filterResultList-method split,flowSet,filterResultList-method
-    > ###   summary,filterResultList-method
-    > ### Keywords: classes
-    > 
-    > ### ** Examples
-    > 
-    > 
-    > library(flowStats)
-    Error in library(flowStats) : there is no package called ‘flowStats’
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(flowCore)
-      > library(flowStats)
-      Error in library(flowStats) : there is no package called 'flowStats'
-      Execution halted
-    ```
-
 *   checking re-building of vignette outputs ... ERROR
     ```
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘HowTo-flowCore.Rnw’ using knitr
     
-    Quitting from lines 561-571 [Comp4] (HowTo-flowCore.Rnw)
+    Quitting from lines 1005-1015 [addTrans] (HowTo-flowCore.Rnw)
     Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
-    there is no package called 'flowStats'
+    'trans' must be a list of transformer objects (generated by scales::trans_new method)
     --- failed re-building ‘HowTo-flowCore.Rnw’
     
     SUMMARY: processing the following file failed:
@@ -3280,11 +3187,6 @@ Run `revdep_details(, "flowCore")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘flowStats’
-    ```
-
 *   checking C++ specification ... NOTE
     ```
       Specified C++11: please drop specification unless essential
@@ -3308,11 +3210,6 @@ Run `revdep_details(, "flowCore")` for more info
     checkRd: (-1) identifier-methods.Rd:36: Escaped LaTeX specials: \^
     checkRd: (-1) quadraticTransform.Rd:26: Escaped LaTeX specials: \^
     checkRd: (-1) read.FCS.Rd:26: Escaped LaTeX specials: \$
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘flowStats’
     ```
 
 # flowGraph
@@ -5540,7 +5437,7 @@ Run `revdep_details(, "miloR")` for more info
     ...
     
     --- re-building ‘milo_gastrulation.Rmd’ using rmarkdown
-    Warning: ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps
+    Warning: ggrepel: 3 unlabeled data points (too many overlaps). Consider increasing max.overlaps
     --- finished re-building ‘milo_gastrulation.Rmd’
     
     SUMMARY: processing the following files failed:
@@ -6841,8 +6738,30 @@ Run `revdep_details(, "QDNAseq")` for more info
 
 ## In both
 
-*   R CMD check timed out
+*   checking tests ...
+    ```
+      Running ‘QDNAseq,copyneutral.R’
+      Running ‘QDNAseq,gain-copyneutral-gain.R’
+      Running ‘QDNAseq,parallel-reproducibility.R’
+      Running ‘QDNAseq.R’/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/bin/BATCH: line 60: 2201506 Segmentation fault      (core dumped) ${R_HOME}/bin/R -f ${in} ${opts} ${R_BATCH_OPTIONS} > ${out} 2>&1
     
+     ERROR
+    Running the tests in ‘tests/QDNAseq.R’ failed.
+    Last 50 lines of output:
+      Adjusting normalized data for cellularity ... 
+      
+    ...
+      
+      Traceback:
+       1: diff2(x, differences = diff)
+       2: sdDiff(x, ..., trim = trim)
+       3: FUN(newX[, i], ...)
+       4: apply(copynumber, MARGIN = 2L, FUN = sdFUN, na.rm = TRUE)
+       5: .local(x, y = y, ...)
+       6: plot(fitC)
+       7: plot(fitC)
+      An irrecoverable exception occurred. R is aborting now ...
+    ```
 
 # Qest
 
@@ -7052,10 +6971,10 @@ Run `revdep_details(, "reservr")` for more info
     --- finished re-building ‘distributions.Rmd’
     
     --- re-building ‘tensorflow.Rmd’ using rmarkdown
-    2023-12-02 19:22:33.537177: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/JAGS-4.3.2/lib:/wynton/home/cbi/shared/software/CBI/gsl-2.7/lib:/opt/rh/gcc-toolset-10/root/usr/lib64:/opt/rh/gcc-toolset-10/root/usr/lib:/opt/rh/gcc-toolset-10/root/usr/lib64/dyninst:/opt/rh/gcc-toolset-10/root/usr/lib/dyninst:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/lib64/openmpi/lib:/wynton/home/cbi/shared/software/CBI/mosh-1.4.0/lib64::
-    2023-12-02 19:22:33.537225: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
-    2023-12-02 19:22:33.537251: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (dev3): /proc/driver/nvidia/version does not exist
-    2023-12-02 19:22:33.537789: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+    2023-12-04 21:29:40.713628: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/JAGS-4.3.2/lib:/wynton/home/cbi/shared/software/CBI/gsl-2.7/lib:/opt/rh/gcc-toolset-10/root/usr/lib64:/opt/rh/gcc-toolset-10/root/usr/lib:/opt/rh/gcc-toolset-10/root/usr/lib64/dyninst:/opt/rh/gcc-toolset-10/root/usr/lib/dyninst:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/lib64/openmpi/lib:/wynton/home/cbi/shared/software/CBI/mosh-1.4.0/lib64::
+    2023-12-04 21:29:40.713742: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+    2023-12-04 21:29:40.713784: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (dev3): /proc/driver/nvidia/version does not exist
+    2023-12-04 21:29:40.714422: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
     ...
     Error: processing vignette 'tensorflow.Rmd' failed with diagnostics:
     tensorflow.python.framework.errors_impl.InvalidArgumentError: In[0] is not a matrix. Instead it has shape [100] [Op:MatMul]
@@ -7071,7 +6990,7 @@ Run `revdep_details(, "reservr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.7Mb
+      installed size is  7.6Mb
       sub-directories of 1Mb or more:
         R      1.5Mb
         libs   6.1Mb
@@ -7085,7 +7004,7 @@ Run `revdep_details(, "reservr")` for more info
 *   checking for detritus in the temp directory ... NOTE
     ```
     Found the following files/directories:
-      ‘__pycache__’ ‘tmp_cz6qc3p.py’ ‘tmphkc4lg9v.py’
+      ‘__pycache__’ ‘tmp0mtbu8rf.py’ ‘tmpxhrlq_dj.py’
     ```
 
 # RGCCA
@@ -7168,15 +7087,13 @@ Run `revdep_details(, "RNAmodR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c8973130bf5fb_2549'
-      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c897321b3576f_2537'
-      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89738017990_2539'
       [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89735425d82_2541'
       [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89732f985ad8_2543'
       [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c8973301ccf40_2545'
+      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89735425d82_2541'
+      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c897321b3576f_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89738017990_2539'
     ...
-       1. ├─testthat::expect_error(...) at test-2Modifier.R:137:3
-       2. │ └─testthat:::quasi_capture(...)
        3. │   ├─testthat (local) .capture(...)
        4. │   │ └─base::withCallingHandlers(...)
        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
@@ -7184,6 +7101,8 @@ Run `revdep_details(, "RNAmodR")` for more info
       
       [ FAIL 1 | WARN 5 | SKIP 0 | PASS 898 ]
       Error: Test failures
+      In addition: Warning message:
+      call dbDisconnect() when finished working with a connection 
       Execution halted
     ```
 

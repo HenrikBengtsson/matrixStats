@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                                                          |
 |ctype    |en_US.UTF-8                                                          |
 |tz       |America/Los_Angeles                                                  |
-|date     |2023-12-04                                                           |
+|date     |2023-12-05                                                           |
 |pandoc   |3.1.9 @ /wynton/home/cbi/shared/software/CBI/pandoc-3.1.9/bin/pandoc |
 
 # Dependencies
@@ -21,12 +21,11 @@
 
 # Revdeps
 
-## Failed to check (2)
+## Failed to check (1)
 
 |package   |version |error |warning |note |
 |:---------|:-------|:-----|:-------|:----|
 |[DeepBlueR](failures.md#deepbluer)|1.27.0  |1     |        |     |
-|[QDNAseq](failures.md#qdnaseq)|1.38.0  |1     |        |     |
 
 ## All (451)
 
@@ -81,7 +80,7 @@
 |causalOT                        |1.0.1   |      |        |     |
 |[ccImpute](problems.md#ccimpute)|1.4.0   |      |        |1    |
 |[celda](problems.md#celda)      |1.18.1  |2     |        |1    |
-|[CelliD](problems.md#cellid)    |1.10.0  |3     |1       |1    |
+|[CelliD](problems.md#cellid)    |1.10.1  |      |2       |1    |
 |cellmigRation                   |1.10.0  |      |        |     |
 |[cellWise](problems.md#cellwise)|2.5.3   |      |        |1    |
 |[CEMiTool](problems.md#cemitool)|1.26.0  |      |        |2    |
@@ -192,7 +191,7 @@
 |[fipp](problems.md#fipp)        |1.0.0   |      |        |2    |
 |[fishpond](problems.md#fishpond)|2.8.0   |1     |        |1    |
 |flexmsm                         |0.1.1   |      |        |     |
-|[flowCore](problems.md#flowcore)|2.14.0  |3     |2       |6    |
+|[flowCore](problems.md#flowcore)|2.14.0  |1     |2       |4    |
 |[flowGraph](problems.md#flowgraph)|1.10.0  |      |        |3    |
 |[flowWorkspace](problems.md#flowworkspace)|4.14.0  |3     |5       |8    |
 |fMRItools                       |0.4.2   |      |        |     |
@@ -356,7 +355,7 @@
 |[ProteoDisco](problems.md#proteodisco)|1.8.0   |      |2       |3    |
 |[ProteoMM](problems.md#proteomm)|1.20.0  |      |        |1    |
 |PSCBS                           |0.66.0  |      |        |     |
-|[QDNAseq](failures.md#qdnaseq)  |1.38.0  |1     |        |     |
+|[QDNAseq](problems.md#qdnaseq)  |1.38.0  |1     |        |     |
 |[Qest](problems.md#qest)        |1.0.0   |      |        |1    |
 |[QFeatures](problems.md#qfeatures)|1.12.0  |      |1       |1    |
 |Qindex                          |0.1.5   |      |        |     |
