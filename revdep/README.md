@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                                                          |
 |ctype    |en_US.UTF-8                                                          |
 |tz       |America/Los_Angeles                                                  |
-|date     |2023-12-05                                                           |
+|date     |2023-12-07                                                           |
 |pandoc   |3.1.9 @ /wynton/home/cbi/shared/software/CBI/pandoc-3.1.9/bin/pandoc |
 
 # Dependencies
@@ -71,7 +71,7 @@
 |[BSgenome](problems.md#bsgenome)|1.70.1  |1     |1       |4    |
 |[BSW](problems.md#bsw)          |0.1.1   |      |        |1    |
 |bulkAnalyseR                    |1.1.0   |      |        |     |
-|[bumphunter](problems.md#bumphunter)|1.44.0  |-1    |        |4    |
+|[bumphunter](problems.md#bumphunter)|1.44.0  |      |        |4    |
 |calmate                         |0.13.0  |      |        |     |
 |Canek                           |0.2.4   |      |        |     |
 |CARBayesST                      |4.0     |      |        |     |

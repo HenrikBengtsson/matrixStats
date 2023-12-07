@@ -751,33 +751,6 @@ Run `revdep_details(, "bumphunter")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking tests ...
-    ```
-      Running ‘runTests.R’
-      Running ‘test-all.R’
-     ERROR
-    Running the tests in ‘tests/test-all.R’ failed.
-    Last 50 lines of output:
-      The following objects are masked from 'package:stats':
-      
-          IQR, mad, sd, var, xtabs
-      
-      The following objects are masked from 'package:base':
-    ...
-       3.   ├─BiocIO::import(FileForFormat(con), ...)
-       4.   └─BiocIO::import(FileForFormat(con), ...)
-       5.     ├─BiocIO::import(con, ...)
-       6.     └─rtracklayer::import(con, ...)
-       7.       └─rtracklayer (local) .local(con, format, text, ...)
-       8.         └─utils::download.file(resource(con), destfile)
-      
-      [ FAIL 1 | WARN 1 | SKIP 0 | PASS 13 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 ## In both
 
 *   checking package dependencies ... NOTE
@@ -1566,7 +1539,7 @@ Run `revdep_details(, "compcodeR")` for more info
 * GitHub: https://github.com/HectorRDB/condiments
 * Source code: https://github.com/cran/condiments
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 226
+* Number of recursive dependencies: 222
 
 Run `revdep_details(, "condiments")` for more info
 
