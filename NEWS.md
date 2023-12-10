@@ -4,7 +4,11 @@
 
  * Error messages that report on large integers (> 2^31 - 1), would
    not render those integers correctly.
- 
+
+## Deprecated and Defunct
+
+ * `useNames = NA` is defunct.
+
 
 # Version 1.1.0 [2023-11-06]
 
