@@ -129,7 +129,7 @@ Run `revdep_details(, "AMARETTO")` for more info
 * GitHub: https://github.com/valenlab/amplican
 * Source code: https://github.com/cran/amplican
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 131
+* Number of recursive dependencies: 130
 
 Run `revdep_details(, "amplican")` for more info
 
@@ -337,7 +337,7 @@ Run `revdep_details(, "BASiCS")` for more info
 * GitHub: https://github.com/mani2012/BatchQC
 * Source code: https://github.com/cran/BatchQC
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 164
+* Number of recursive dependencies: 163
 
 Run `revdep_details(, "BatchQC")` for more info
 
@@ -375,7 +375,7 @@ Run `revdep_details(, "BatchQC")` for more info
 * GitHub: https://github.com/mandymejia/BayesfMRI
 * Source code: https://github.com/cran/BayesfMRI
 * Date/Publication: 2023-06-08 17:52:54 UTC
-* Number of recursive dependencies: 125
+* Number of recursive dependencies: 124
 
 Run `revdep_details(, "BayesfMRI")` for more info
 
@@ -403,7 +403,7 @@ Run `revdep_details(, "BayesfMRI")` for more info
 * GitHub: https://github.com/ZXW834/BayesianPlatformDesignTimeTrend
 * Source code: https://github.com/cran/BayesianPlatformDesignTimeTrend
 * Date/Publication: 2023-11-22 01:00:02 UTC
-* Number of recursive dependencies: 123
+* Number of recursive dependencies: 122
 
 Run `revdep_details(, "BayesianPlatformDesignTimeTrend")` for more info
 
@@ -724,7 +724,7 @@ Run `revdep_details(, "BSgenome")` for more info
 * GitHub: https://github.com/adam-bec/BSW
 * Source code: https://github.com/cran/BSW
 * Date/Publication: 2021-03-22 16:20:09 UTC
-* Number of recursive dependencies: 56
+* Number of recursive dependencies: 55
 
 Run `revdep_details(, "BSW")` for more info
 
@@ -809,7 +809,7 @@ Run `revdep_details(, "cardelino")` for more info
 * GitHub: https://github.com/HelenaLC/CATALYST
 * Source code: https://github.com/cran/CATALYST
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 218
+* Number of recursive dependencies: 217
 
 Run `revdep_details(, "CATALYST")` for more info
 
@@ -1060,7 +1060,7 @@ Run `revdep_details(, "cellWise")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/CEMiTool
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 203
+* Number of recursive dependencies: 202
 
 Run `revdep_details(, "CEMiTool")` for more info
 
@@ -1350,7 +1350,7 @@ Run `revdep_details(, "clusterExperiment")` for more info
 * GitHub: https://github.com/rnabioco/clustifyr
 * Source code: https://github.com/cran/clustifyr
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 205
+* Number of recursive dependencies: 204
 
 Run `revdep_details(, "clustifyr")` for more info
 
@@ -1376,7 +1376,7 @@ Run `revdep_details(, "clustifyr")` for more info
 * GitHub: https://github.com/cmap/cmapR
 * Source code: https://github.com/cran/cmapR
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 85
+* Number of recursive dependencies: 84
 
 Run `revdep_details(, "cmapR")` for more info
 
@@ -1413,7 +1413,7 @@ Run `revdep_details(, "cmapR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/cna
 * Date/Publication: 2023-08-10 18:00:11 UTC
-* Number of recursive dependencies: 72
+* Number of recursive dependencies: 71
 
 Run `revdep_details(, "cna")` for more info
 
@@ -1517,7 +1517,7 @@ Run `revdep_details(, "coin")` for more info
 * GitHub: https://github.com/csoneson/compcodeR
 * Source code: https://github.com/cran/compcodeR
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 206
+* Number of recursive dependencies: 205
 
 Run `revdep_details(, "compcodeR")` for more info
 
@@ -1539,7 +1539,7 @@ Run `revdep_details(, "compcodeR")` for more info
 * GitHub: https://github.com/HectorRDB/condiments
 * Source code: https://github.com/cran/condiments
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 222
+* Number of recursive dependencies: 221
 
 Run `revdep_details(, "condiments")` for more info
 
@@ -1603,7 +1603,7 @@ Run `revdep_details(, "conquer")` for more info
 * GitHub: https://github.com/annahutch/corrcoverage
 * Source code: https://github.com/cran/corrcoverage
 * Date/Publication: 2019-12-06 23:20:12 UTC
-* Number of recursive dependencies: 77
+* Number of recursive dependencies: 76
 
 Run `revdep_details(, "corrcoverage")` for more info
 
@@ -1737,7 +1737,7 @@ Run `revdep_details(, "crossmeta")` for more info
 * GitHub: https://github.com/M-E-Rademaker/cSEM
 * Source code: https://github.com/cran/cSEM
 * Date/Publication: 2022-11-24 17:50:05 UTC
-* Number of recursive dependencies: 129
+* Number of recursive dependencies: 128
 
 Run `revdep_details(, "cSEM")` for more info
 
@@ -1759,7 +1759,7 @@ Run `revdep_details(, "cSEM")` for more info
 * GitHub: https://github.com/BodenmillerGroup/cytomapper
 * Source code: https://github.com/cran/cytomapper
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 163
+* Number of recursive dependencies: 162
 
 Run `revdep_details(, "cytomapper")` for more info
 
@@ -1896,7 +1896,7 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 * GitHub: https://github.com/PeteHaitch/DelayedMatrixStats
 * Source code: https://github.com/cran/DelayedMatrixStats
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 76
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "DelayedMatrixStats")` for more info
 
@@ -1924,7 +1924,7 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/DepecheR
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 120
+* Number of recursive dependencies: 119
 
 Run `revdep_details(, "DepecheR")` for more info
 
@@ -2201,7 +2201,7 @@ Run `revdep_details(, "Dino")` for more info
 * GitHub: https://github.com/chjackson/disbayes
 * Source code: https://github.com/cran/disbayes
 * Date/Publication: 2023-09-09 20:10:02 UTC
-* Number of recursive dependencies: 113
+* Number of recursive dependencies: 112
 
 Run `revdep_details(, "disbayes")` for more info
 
@@ -2247,7 +2247,7 @@ Run `revdep_details(, "disbayes")` for more info
 * GitHub: https://github.com/matthewcarlucci/DiscoRhythm
 * Source code: https://github.com/cran/DiscoRhythm
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 164
+* Number of recursive dependencies: 163
 
 Run `revdep_details(, "DiscoRhythm")` for more info
 
@@ -2313,7 +2313,7 @@ Run `revdep_details(, "dwp")` for more info
 * GitHub: https://github.com/MLopez-Ibanez/eaf
 * Source code: https://github.com/cran/eaf
 * Date/Publication: 2023-11-28 19:30:02 UTC
-* Number of recursive dependencies: 49
+* Number of recursive dependencies: 48
 
 Run `revdep_details(, "eaf")` for more info
 
@@ -2334,7 +2334,7 @@ Run `revdep_details(, "eaf")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/easier
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 198
+* Number of recursive dependencies: 197
 
 Run `revdep_details(, "easier")` for more info
 
@@ -2627,7 +2627,7 @@ Run `revdep_details(, "ExCluster")` for more info
 * GitHub: https://github.com/NA/NA
 * Source code: https://github.com/cran/ExpressionNormalizationWorkflow
 * Date/Publication: 2023-10-25
-* Number of recursive dependencies: 129
+* Number of recursive dependencies: 128
 
 Run `revdep_details(, "ExpressionNormalizationWorkflow")` for more info
 
@@ -2731,7 +2731,7 @@ Run `revdep_details(, "extraChIPs")` for more info
 * GitHub: https://github.com/ryan-thompson/familial
 * Source code: https://github.com/cran/familial
 * Date/Publication: 2023-06-26 04:30:02 UTC
-* Number of recursive dependencies: 92
+* Number of recursive dependencies: 91
 
 Run `revdep_details(, "familial")` for more info
 
@@ -2994,7 +2994,7 @@ Run `revdep_details(, "FDb.FANTOM4.promoters.hg19")` for more info
 * GitHub: https://github.com/suke18/FEAST
 * Source code: https://github.com/cran/FEAST
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 225
+* Number of recursive dependencies: 224
 
 Run `revdep_details(, "FEAST")` for more info
 
@@ -3104,7 +3104,7 @@ Run `revdep_details(, "fishpond")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/flowCore
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 122
+* Number of recursive dependencies: 121
 
 Run `revdep_details(, "flowCore")` for more info
 
@@ -3193,7 +3193,7 @@ Run `revdep_details(, "flowCore")` for more info
 * GitHub: https://github.com/aya49/flowGraph
 * Source code: https://github.com/cran/flowGraph
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 95
+* Number of recursive dependencies: 94
 
 Run `revdep_details(, "flowGraph")` for more info
 
@@ -3229,7 +3229,7 @@ Run `revdep_details(, "flowGraph")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/flowWorkspace
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 112
+* Number of recursive dependencies: 111
 
 Run `revdep_details(, "flowWorkspace")` for more info
 
@@ -3619,7 +3619,7 @@ Run `revdep_details(, "geneticae")` for more info
 * GitHub: https://github.com/federicomarini/GeneTonic
 * Source code: https://github.com/cran/GeneTonic
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 206
+* Number of recursive dependencies: 205
 
 Run `revdep_details(, "GeneTonic")` for more info
 
@@ -3729,7 +3729,7 @@ Run `revdep_details(, "geva")` for more info
 * GitHub: https://github.com/yxlin/ggdmc
 * Source code: https://github.com/cran/ggdmc
 * Date/Publication: 2019-04-29 05:10:03 UTC
-* Number of recursive dependencies: 52
+* Number of recursive dependencies: 51
 
 Run `revdep_details(, "ggdmc")` for more info
 
@@ -3824,7 +3824,7 @@ Run `revdep_details(, "GJRM")` for more info
 * GitHub: https://github.com/const-ae/glmGamPoi
 * Source code: https://github.com/cran/glmGamPoi
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 169
+* Number of recursive dependencies: 168
 
 Run `revdep_details(, "glmGamPoi")` for more info
 
@@ -3944,7 +3944,7 @@ Run `revdep_details(, "GRaNIE")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/graper
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 75
+* Number of recursive dependencies: 74
 
 Run `revdep_details(, "graper")` for more info
 
@@ -4052,7 +4052,7 @@ Run `revdep_details(, "gwasurvivr")` for more info
 * GitHub: https://github.com/Kumquatum/GWENA
 * Source code: https://github.com/cran/GWENA
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 150
+* Number of recursive dependencies: 149
 
 Run `revdep_details(, "GWENA")` for more info
 
@@ -4129,7 +4129,7 @@ Run `revdep_details(, "Harman")` for more info
 * GitHub: https://github.com/jbolstad/hbamr
 * Source code: https://github.com/cran/hbamr
 * Date/Publication: 2023-09-25 15:00:02 UTC
-* Number of recursive dependencies: 83
+* Number of recursive dependencies: 80
 
 Run `revdep_details(, "hbamr")` for more info
 
@@ -4198,7 +4198,7 @@ Run `revdep_details(, "hermes")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/hipathia
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 172
+* Number of recursive dependencies: 171
 
 Run `revdep_details(, "hipathia")` for more info
 
@@ -4340,7 +4340,7 @@ Run `revdep_details(, "IntOMICS")` for more info
 * GitHub: https://github.com/suke18/iPath
 * Source code: https://github.com/cran/iPath
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 132
+* Number of recursive dependencies: 131
 
 Run `revdep_details(, "iPath")` for more info
 
@@ -4369,7 +4369,7 @@ Run `revdep_details(, "iPath")` for more info
 * GitHub: https://github.com/drizopoulos/JMbayes2
 * Source code: https://github.com/cran/JMbayes2
 * Date/Publication: 2023-06-26 13:30:05 UTC
-* Number of recursive dependencies: 80
+* Number of recursive dependencies: 79
 
 Run `revdep_details(, "JMbayes2")` for more info
 
@@ -4392,7 +4392,7 @@ Run `revdep_details(, "JMbayes2")` for more info
 * GitHub: https://github.com/kota7/kgschart
 * Source code: https://github.com/cran/kgschart
 * Date/Publication: 2017-07-02 22:16:15 UTC
-* Number of recursive dependencies: 76
+* Number of recursive dependencies: 75
 
 Run `revdep_details(, "kgschart")` for more info
 
@@ -4550,7 +4550,7 @@ Run `revdep_details(, "lemur")` for more info
 * GitHub: https://github.com/hugheylab/limorhyde
 * Source code: https://github.com/cran/limorhyde
 * Date/Publication: 2022-02-18 08:20:05 UTC
-* Number of recursive dependencies: 110
+* Number of recursive dependencies: 109
 
 Run `revdep_details(, "limorhyde")` for more info
 
@@ -4589,7 +4589,7 @@ Run `revdep_details(, "limorhyde")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/Linnorm
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 108
+* Number of recursive dependencies: 107
 
 Run `revdep_details(, "Linnorm")` for more info
 
@@ -4673,7 +4673,7 @@ Run `revdep_details(, "lspartition")` for more info
 * GitHub: https://github.com/tallulandrews/M3Drop
 * Source code: https://github.com/cran/M3Drop
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 235
+* Number of recursive dependencies: 234
 
 Run `revdep_details(, "M3Drop")` for more info
 
@@ -4786,7 +4786,7 @@ Run `revdep_details(, "magpie")` for more info
 * GitHub: https://github.com/Bioconductor/MatrixGenerics
 * Source code: https://github.com/cran/MatrixGenerics
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 54
+* Number of recursive dependencies: 53
 
 Run `revdep_details(, "MatrixGenerics")` for more info
 
@@ -4812,7 +4812,7 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/mcmcsae
 * Date/Publication: 2023-10-10 20:40:02 UTC
-* Number of recursive dependencies: 115
+* Number of recursive dependencies: 114
 
 Run `revdep_details(, "mcmcsae")` for more info
 
@@ -4960,7 +4960,7 @@ Run `revdep_details(, "memes")` for more info
 * GitHub: https://github.com/nosson/metagenomeSeq
 * Source code: https://github.com/cran/metagenomeSeq
 * Date/Publication: 2023-04-25
-* Number of recursive dependencies: 147
+* Number of recursive dependencies: 146
 
 Run `revdep_details(, "metagenomeSeq")` for more info
 
@@ -5001,7 +5001,7 @@ Run `revdep_details(, "metagenomeSeq")` for more info
 * GitHub: https://github.com/nhanhocu/metamicrobiomeR
 * Source code: https://github.com/cran/metamicrobiomeR
 * Date/Publication: 2020-11-09 11:20:05 UTC
-* Number of recursive dependencies: 159
+* Number of recursive dependencies: 158
 
 Run `revdep_details(, "metamicrobiomeR")` for more info
 
@@ -5138,7 +5138,7 @@ Run `revdep_details(, "MethReg")` for more info
 * GitHub: https://github.com/CompEpigen/methrix
 * Source code: https://github.com/cran/methrix
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 166
+* Number of recursive dependencies: 165
 
 Run `revdep_details(, "methrix")` for more info
 
@@ -5276,7 +5276,7 @@ Run `revdep_details(, "methylumi")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MicrobiomeStat
 * Date/Publication: 2022-01-24 00:02:41 UTC
-* Number of recursive dependencies: 106
+* Number of recursive dependencies: 105
 
 Run `revdep_details(, "MicrobiomeStat")` for more info
 
@@ -5362,7 +5362,7 @@ Run `revdep_details(, "migest")` for more info
 * GitHub: https://github.com/MarioniLab/miloR
 * Source code: https://github.com/cran/miloR
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 197
+* Number of recursive dependencies: 196
 
 Run `revdep_details(, "miloR")` for more info
 
@@ -5410,7 +5410,7 @@ Run `revdep_details(, "miloR")` for more info
     ...
     
     --- re-building ‘milo_gastrulation.Rmd’ using rmarkdown
-    Warning: ggrepel: 3 unlabeled data points (too many overlaps). Consider increasing max.overlaps
+    Warning: ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps
     --- finished re-building ‘milo_gastrulation.Rmd’
     
     SUMMARY: processing the following files failed:
@@ -5550,7 +5550,7 @@ Run `revdep_details(, "MinimumDistance")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/moanin
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 128
+* Number of recursive dependencies: 127
 
 Run `revdep_details(, "moanin")` for more info
 
@@ -5617,7 +5617,7 @@ Run `revdep_details(, "MOCHA")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/monocle
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 257
+* Number of recursive dependencies: 256
 
 Run `revdep_details(, "monocle")` for more info
 
@@ -5641,7 +5641,7 @@ Run `revdep_details(, "monocle")` for more info
 * GitHub: https://github.com/ConesaLab/MOSim
 * Source code: https://github.com/cran/MOSim
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 84
+* Number of recursive dependencies: 83
 
 Run `revdep_details(, "MOSim")` for more info
 
@@ -5741,7 +5741,7 @@ Run `revdep_details(, "mrfDepth")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/MultiBD
 * Date/Publication: 2016-12-05 18:28:46
-* Number of recursive dependencies: 79
+* Number of recursive dependencies: 78
 
 Run `revdep_details(, "MultiBD")` for more info
 
@@ -5868,7 +5868,7 @@ Run `revdep_details(, "muscData")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/NanoStringDiff
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 59
+* Number of recursive dependencies: 58
 
 Run `revdep_details(, "NanoStringDiff")` for more info
 
@@ -6025,7 +6025,7 @@ Run `revdep_details(, "netZooR")` for more info
 * GitHub: https://github.com/ComputationalProteomics/NormalyzerDE
 * Source code: https://github.com/cran/NormalyzerDE
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 127
+* Number of recursive dependencies: 126
 
 Run `revdep_details(, "NormalyzerDE")` for more info
 
@@ -6128,7 +6128,7 @@ Run `revdep_details(, "omicsPrint")` for more info
 * GitHub: https://github.com/mengchen18/omicsViewer
 * Source code: https://github.com/cran/omicsViewer
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 191
+* Number of recursive dependencies: 190
 
 Run `revdep_details(, "omicsViewer")` for more info
 
@@ -6152,7 +6152,7 @@ Run `revdep_details(, "omicsViewer")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/OncoBayes2
 * Date/Publication: 2023-07-20 18:40:05 UTC
-* Number of recursive dependencies: 102
+* Number of recursive dependencies: 101
 
 Run `revdep_details(, "OncoBayes2")` for more info
 
@@ -6466,7 +6466,7 @@ Run `revdep_details(, "PepsNMR")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/phosphonormalizer
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 55
+* Number of recursive dependencies: 54
 
 Run `revdep_details(, "phosphonormalizer")` for more info
 
@@ -6771,7 +6771,7 @@ Run `revdep_details(, "Qest")` for more info
 * GitHub: https://github.com/RforMassSpectrometry/QFeatures
 * Source code: https://github.com/cran/QFeatures
 * Date/Publication: 2023-10-25
-* Number of recursive dependencies: 158
+* Number of recursive dependencies: 157
 
 Run `revdep_details(, "QFeatures")` for more info
 
@@ -6803,7 +6803,7 @@ Run `revdep_details(, "QFeatures")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/rADA
 * Date/Publication: 2021-03-23 19:40:06 UTC
-* Number of recursive dependencies: 115
+* Number of recursive dependencies: 114
 
 Run `revdep_details(, "rADA")` for more info
 
@@ -6875,7 +6875,7 @@ Run `revdep_details(, "RadioGx")` for more info
 * GitHub: https://github.com/Novartis/RBesT
 * Source code: https://github.com/cran/RBesT
 * Date/Publication: 2023-08-22 00:00:02 UTC
-* Number of recursive dependencies: 144
+* Number of recursive dependencies: 143
 
 Run `revdep_details(, "RBesT")` for more info
 
@@ -6903,7 +6903,7 @@ Run `revdep_details(, "RBesT")` for more info
 * GitHub: https://github.com/AshesITR/reservr
 * Source code: https://github.com/cran/reservr
 * Date/Publication: 2023-10-18 20:50:05 UTC
-* Number of recursive dependencies: 144
+* Number of recursive dependencies: 143
 
 Run `revdep_details(, "reservr")` for more info
 
@@ -7025,7 +7025,7 @@ Run `revdep_details(, "RGCCA")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/RJcluster
 * Date/Publication: 2022-02-14 21:30:02 UTC
-* Number of recursive dependencies: 63
+* Number of recursive dependencies: 62
 
 Run `revdep_details(, "RJcluster")` for more info
 
@@ -7237,7 +7237,7 @@ Run `revdep_details(, "robustlm")` for more info
 * GitHub: https://github.com/handcock/rpm
 * Source code: https://github.com/cran/rpm
 * Date/Publication: 2023-04-21 23:30:02 UTC
-* Number of recursive dependencies: 67
+* Number of recursive dependencies: 66
 
 Run `revdep_details(, "rpm")` for more info
 
@@ -7281,7 +7281,7 @@ Run `revdep_details(, "rsvddpd")` for more info
 * GitHub: https://github.com/rpkgs/rtrend
 * Source code: https://github.com/cran/rtrend
 * Date/Publication: 2022-11-07 08:20:02 UTC
-* Number of recursive dependencies: 71
+* Number of recursive dependencies: 70
 
 Run `revdep_details(, "rtrend")` for more info
 
@@ -7354,7 +7354,7 @@ Run `revdep_details(, "samr")` for more info
 * GitHub: https://github.com/duct317/scDHA
 * Source code: https://github.com/cran/scDHA
 * Date/Publication: 2023-04-04 12:10:02 UTC
-* Number of recursive dependencies: 64
+* Number of recursive dependencies: 63
 
 Run `revdep_details(, "scDHA")` for more info
 
@@ -7395,7 +7395,7 @@ Run `revdep_details(, "scDHA")` for more info
 * GitHub: https://github.com/duct317/scISR
 * Source code: https://github.com/cran/scISR
 * Date/Publication: 2022-06-30 06:20:08 UTC
-* Number of recursive dependencies: 55
+* Number of recursive dependencies: 54
 
 Run `revdep_details(, "scISR")` for more info
 
@@ -7464,7 +7464,7 @@ Run `revdep_details(, "scmap")` for more info
 * GitHub: https://github.com/andreaskapou/scMET
 * Source code: https://github.com/cran/scMET
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 112
+* Number of recursive dependencies: 111
 
 Run `revdep_details(, "scMET")` for more info
 
@@ -7546,7 +7546,7 @@ Run `revdep_details(, "scone")` for more info
 * GitHub: https://github.com/UCLouvain-CBIO/scp
 * Source code: https://github.com/cran/scp
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 196
+* Number of recursive dependencies: 195
 
 Run `revdep_details(, "scp")` for more info
 
@@ -7603,7 +7603,7 @@ Run `revdep_details(, "scp")` for more info
 * GitHub: https://github.com/PhilBoileau/scPCA
 * Source code: https://github.com/cran/scPCA
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 168
+* Number of recursive dependencies: 167
 
 Run `revdep_details(, "scPCA")` for more info
 
@@ -7626,7 +7626,7 @@ Run `revdep_details(, "scPCA")` for more info
 * GitHub: https://github.com/satijalab/sctransform
 * Source code: https://github.com/cran/sctransform
 * Date/Publication: 2023-10-19 04:40:02 UTC
-* Number of recursive dependencies: 69
+* Number of recursive dependencies: 68
 
 Run `revdep_details(, "sctransform")` for more info
 
@@ -7891,7 +7891,7 @@ Run `revdep_details(, "signifinder")` for more info
 * GitHub: https://github.com/omnideconv/SimBu
 * Source code: https://github.com/cran/SimBu
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 201
+* Number of recursive dependencies: 200
 
 Run `revdep_details(, "SimBu")` for more info
 
@@ -8110,7 +8110,7 @@ Run `revdep_details(, "singleCellTK")` for more info
 * GitHub: https://github.com/DavisLaboratory/singscore
 * Source code: https://github.com/cran/singscore
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 148
+* Number of recursive dependencies: 147
 
 Run `revdep_details(, "singscore")` for more info
 
@@ -8151,7 +8151,7 @@ Run `revdep_details(, "singscore")` for more info
 * GitHub: https://github.com/unina-sfere/slasso
 * Source code: https://github.com/cran/slasso
 * Date/Publication: 2021-10-15 07:40:02 UTC
-* Number of recursive dependencies: 101
+* Number of recursive dependencies: 100
 
 Run `revdep_details(, "slasso")` for more info
 
@@ -8242,7 +8242,7 @@ Run `revdep_details(, "sparrow")` for more info
 * GitHub: https://github.com/Bioconductor/SparseArray
 * Source code: https://github.com/cran/SparseArray
 * Date/Publication: 2023-11-07
-* Number of recursive dependencies: 67
+* Number of recursive dependencies: 66
 
 Run `revdep_details(, "SparseArray")` for more info
 
@@ -8268,7 +8268,7 @@ Run `revdep_details(, "SparseArray")` for more info
 * GitHub: https://github.com/const-ae/sparseMatrixStats
 * Source code: https://github.com/cran/sparseMatrixStats
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 62
+* Number of recursive dependencies: 61
 
 Run `revdep_details(, "sparseMatrixStats")` for more info
 
@@ -8374,7 +8374,7 @@ Run `revdep_details(, "SpliceWiz")` for more info
 * GitHub: https://github.com/MarcElosua/SPOTlight
 * Source code: https://github.com/cran/SPOTlight
 * Date/Publication: 2023-11-17
-* Number of recursive dependencies: 258
+* Number of recursive dependencies: 257
 
 Run `revdep_details(, "SPOTlight")` for more info
 
@@ -8438,7 +8438,7 @@ Run `revdep_details(, "spqn")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/stabiliser
 * Date/Publication: 2023-05-17 11:00:05 UTC
-* Number of recursive dependencies: 151
+* Number of recursive dependencies: 150
 
 Run `revdep_details(, "stabiliser")` for more info
 
@@ -8460,7 +8460,7 @@ Run `revdep_details(, "stabiliser")` for more info
 * GitHub: https://github.com/muschellij2/stapler
 * Source code: https://github.com/cran/stapler
 * Date/Publication: 2020-01-09 18:50:06 UTC
-* Number of recursive dependencies: 67
+* Number of recursive dependencies: 66
 
 Run `revdep_details(, "stapler")` for more info
 
@@ -8481,7 +8481,7 @@ Run `revdep_details(, "stapler")` for more info
 * GitHub: https://github.com/bstewart/stm
 * Source code: https://github.com/cran/stm
 * Date/Publication: 2023-12-01 22:30:02 UTC
-* Number of recursive dependencies: 87
+* Number of recursive dependencies: 86
 
 Run `revdep_details(, "stm")` for more info
 
@@ -8550,7 +8550,7 @@ Run `revdep_details(, "summarytools")` for more info
 * GitHub: https://github.com/stephenslab/susieR
 * Source code: https://github.com/cran/susieR
 * Date/Publication: 2023-02-17 17:50:02 UTC
-* Number of recursive dependencies: 81
+* Number of recursive dependencies: 80
 
 Run `revdep_details(, "susieR")` for more info
 
@@ -8591,7 +8591,7 @@ Run `revdep_details(, "susieR")` for more info
 * GitHub: https://github.com/cozygene/TCA
 * Source code: https://github.com/cran/TCA
 * Date/Publication: 2021-02-14 21:50:06 UTC
-* Number of recursive dependencies: 71
+* Number of recursive dependencies: 70
 
 Run `revdep_details(, "TCA")` for more info
 
@@ -8619,7 +8619,7 @@ Run `revdep_details(, "TCA")` for more info
 * GitHub: https://github.com/mandymejia/templateICAr
 * Source code: https://github.com/cran/templateICAr
 * Date/Publication: 2023-01-27 09:10:02 UTC
-* Number of recursive dependencies: 110
+* Number of recursive dependencies: 109
 
 Run `revdep_details(, "templateICAr")` for more info
 
@@ -9025,7 +9025,7 @@ Run `revdep_details(, "Voyager")` for more info
 * GitHub: NA
 * Source code: https://github.com/cran/vsclust
 * Date/Publication: 2023-10-24
-* Number of recursive dependencies: 171
+* Number of recursive dependencies: 170
 
 Run `revdep_details(, "vsclust")` for more info
 

@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                                                          |
 |ctype    |en_US.UTF-8                                                          |
 |tz       |America/Los_Angeles                                                  |
-|date     |2023-12-07                                                           |
+|date     |2023-12-10                                                           |
 |pandoc   |3.1.9 @ /wynton/home/cbi/shared/software/CBI/pandoc-3.1.9/bin/pandoc |
 
 # Dependencies
