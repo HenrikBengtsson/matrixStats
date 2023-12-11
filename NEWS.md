@@ -1,10 +1,5 @@
 # Version (development version)
 
-## New Features
-
- * Add `anyNA()` for R (< 3.1.0), where it doesn't already exist in
-   base R. This is part of the plan for deprecating `anyMissing()`.
-
 ## Bug Fixes
 
  * Error messages that report on large integers (> 2^31 - 1), would

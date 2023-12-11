@@ -44,11 +44,6 @@ anyMissing <- function(x, idxs = NULL, ...) {
   }
 }
 
-#' @rawNamespace if (getRversion() < "3.1.0") export(anyNA)
-if (getRversion() < "3.1.0") {
-  anyNA <- anyMissing
-}
-
 #' @rdname anyMissing
 #' @export
 colAnyMissings <- function(x, rows = NULL, cols = NULL, ..., useNames = TRUE) {
