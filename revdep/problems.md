@@ -399,10 +399,10 @@ Run `revdep_details(, "BayesfMRI")` for more info
 
 <details>
 
-* Version: 1.2.2
+* Version: 1.2.3
 * GitHub: https://github.com/ZXW834/BayesianPlatformDesignTimeTrend
 * Source code: https://github.com/cran/BayesianPlatformDesignTimeTrend
-* Date/Publication: 2023-11-22 01:00:02 UTC
+* Date/Publication: 2023-12-07 11:00:02 UTC
 * Number of recursive dependencies: 122
 
 Run `revdep_details(, "BayesianPlatformDesignTimeTrend")` for more info
@@ -1101,6 +1101,105 @@ Run `revdep_details(, "CEMiTool")` for more info
       ‘summary_median.tsv’
     ```
 
+# ChAMP
+
+<details>
+
+* Version: 2.32.0
+* GitHub: NA
+* Source code: https://github.com/cran/ChAMP
+* Date/Publication: 2023-12-05
+* Number of recursive dependencies: 246
+
+Run `revdep_details(, "ChAMP")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘ChAMP’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Note: possible error in 'dmrcate(myannotation, ': unused argument (mc.cores = cores) 
+      Warning: replacing previous import 'plyr::mutate' by 'plotly::mutate' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::rename' by 'plotly::rename' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::arrange' by 'plotly::arrange' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::summarise' by 'plotly::summarise' when loading 'ChAMP'
+      Warning: replacing previous import 'plotly::subplot' by 'Hmisc::subplot' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::summarize' by 'Hmisc::summarize' when loading 'ChAMP'
+      Warning: replacing previous import 'plyr::is.discrete' by 'Hmisc::is.discrete' when loading 'ChAMP'
+      Warning: replacing previous import 'GenomicRanges::sort' by 'globaltest::sort' when loading 'ChAMP'
+      Warning: replacing previous import 'plotly::last_plot' by 'ggplot2::last_plot' when loading 'ChAMP'
+      Warning: replacing previous import 'globaltest::model.matrix' by 'stats::model.matrix' when loading 'ChAMP'
+      Warning: replacing previous import 'globaltest::p.adjust' by 'stats::p.adjust' when loading 'ChAMP'
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/ChAMP/new/ChAMP.Rcheck/00install.out’ for details.
+    Information on the location(s) of code generating the ‘Note’s can be
+    obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+    to ‘yes’.
+    ```
+
+*   checking Rd \usage sections ... WARNING
+    ```
+    Duplicated \argument entries in documentation object 'champ.SVD':
+      ‘Rplot’
+    
+    Functions with \usage entries need to have the appropriate \alias
+    entries, and all their arguments documented.
+    The \usage entries must correspond to syntactically valid R code.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'minfi', 'ChAMPdata', 'DMRcate', 'Illumina450ProbeVariants.db',
+      'IlluminaHumanMethylationEPICmanifest', 'DT', 'RPMM'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Package listed in more than one of Depends, Imports, Suggests, Enhances:
+      ‘rmarkdown’
+    A package should be listed in only one of these fields.
+    ```
+
+*   checking startup messages can be suppressed ... NOTE
+    ```
+    No methods found in package 'RSQLite' for request: 'dbListFields' when loading 'lumi'
+    
+    It looks like this package (or a package it requires) has a startup
+    message which cannot be suppressed: see ?packageStartupMessage.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: 'prettydoc'
+      All declared Imports should be used.
+    Package in Depends field not imported from: 'DT'
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    champ.DMR: possible error in dmrcate(myannotation, min.cpgs =
+      minProbes, lambda = lambda, C = C, mc.cores = cores): unused argument
+      (mc.cores = cores)
+    champ.ebGSEA : gseaWTfn: no visible global function definition for
+      'wilcox.test'
+    champ.ebGSEA: no visible global function definition for 'stopCluster'
+    champ.norm: no visible global function definition for 'stopCluster'
+    champ.process: no visible global function definition for 'champ.EpiMod'
+    Undefined global functions or variables:
+      champ.EpiMod stopCluster wilcox.test
+    Consider adding
+      importFrom("stats", "wilcox.test")
+    to your NAMESPACE file.
+    ```
+
 # ChemoSpec2D
 
 <details>
@@ -1184,12 +1283,12 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2023-12-04 19:29:36] 
-      INFO [2023-12-04 19:29:36] $x
-      INFO [2023-12-04 19:29:36] $x$TF1
-      INFO [2023-12-04 19:29:36] [1] 3 4 5
-      INFO [2023-12-04 19:29:36] 
-      INFO [2023-12-04 19:29:36] $x$TF2
+      INFO [2023-12-10 12:48:41] 
+      INFO [2023-12-10 12:48:41] $x
+      INFO [2023-12-10 12:48:41] $x$TF1
+      INFO [2023-12-10 12:48:41] [1] 3 4 5
+      INFO [2023-12-10 12:48:41] 
+      INFO [2023-12-10 12:48:41] $x$TF2
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -1230,9 +1329,9 @@ Run `revdep_details(, "ChIPpeakAnno")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 11.2Mb
+      installed size is 10.4Mb
       sub-directories of 1Mb or more:
-        data  10.2Mb
+        data   9.4Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -3112,24 +3211,6 @@ Run `revdep_details(, "flowCore")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘HowTo-flowCore.Rnw’ using knitr
-    
-    Quitting from lines 1005-1015 [addTrans] (HowTo-flowCore.Rnw)
-    Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
-    'trans' must be a list of transformer objects (generated by scales::trans_new method)
-    --- failed re-building ‘HowTo-flowCore.Rnw’
-    
-    SUMMARY: processing the following file failed:
-      ‘HowTo-flowCore.Rnw’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking for missing documentation entries ... WARNING
     ```
     Undocumented code objects:
@@ -3160,6 +3241,31 @@ Run `revdep_details(, "flowCore")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
+*   checking re-building of vignette outputs ... WARNING
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘HowTo-flowCore.Rnw’ using knitr
+    Error: processing vignette 'HowTo-flowCore.Rnw' failed with diagnostics:
+    Running 'texi2dvi' on 'HowTo-flowCore.tex' failed.
+    LaTeX errors:
+    ! LaTeX Error: File `comment.sty' not found.
+    
+    Type X to quit or <RETURN> to proceed,
+    or enter new name. (Default extension: sty)
+    ...
+    l.65 \usepackage
+                    {graphicx}^^M
+    !  ==> Fatal error occurred, no output PDF file produced!
+    --- failed re-building ‘HowTo-flowCore.Rnw’
+    
+    SUMMARY: processing the following file failed:
+      ‘HowTo-flowCore.Rnw’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
+
 *   checking C++ specification ... NOTE
     ```
       Specified C++11: please drop specification unless essential
@@ -3167,7 +3273,7 @@ Run `revdep_details(, "flowCore")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  5.2Mb
       sub-directories of 1Mb or more:
         libs   4.2Mb
     ```
@@ -3225,10 +3331,10 @@ Run `revdep_details(, "flowGraph")` for more info
 
 <details>
 
-* Version: 4.14.0
+* Version: 4.14.1
 * GitHub: NA
 * Source code: https://github.com/cran/flowWorkspace
-* Date/Publication: 2023-10-24
+* Date/Publication: 2023-12-05
 * Number of recursive dependencies: 111
 
 Run `revdep_details(, "flowWorkspace")` for more info
@@ -3236,77 +3342,6 @@ Run `revdep_details(, "flowWorkspace")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘flowWorkspace-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: transformerList
-    > ### Title: Constructor for transformerList object
-    > ### Aliases: transformerList
-    > 
-    > ### ** Examples
-    > 
-    > library(flowCore)
-    ...
-    > trans <- logicleTransform(w = 0.5, t = 262144, m = 4.5, a = 0)
-    > inv <- inverseLogicleTransform(trans = trans)
-    > trans.obj <- flow_trans("logicle", trans, inv, n = 5, equal.space = FALSE)
-    > 
-    > #or simply use convenient constructor
-    > #trans.obj <- logicle_trans(n = 5, equal.space = FALSE, w = 0.5, t = 262144, m = 4.5, a = 0)
-    > 
-    > transformerList(c("FL1-H", "FL2-H"), trans.obj)
-    Error: 'trans' must be a list of transformer objects (generated by scales::trans_new method)
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      The following object is masked from 'package:flowCore':
-      
-          normalize
-      
-      The following objects are masked from 'package:dplyr':
-      
-    ...
-      ── Error ('test-main.R:11:1'): (code run outside of `test_that()`) ─────────────
-      <packageNotFoundError/error/condition>
-      Error in `library(CytoML)`: there is no package called 'CytoML'
-      Backtrace:
-          ▆
-       1. └─base::library(CytoML)
-      
-      [ FAIL 2 | WARN 1 | SKIP 4 | PASS 895 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘HowToMergeGatingSet.Rmd’ using rmarkdown
-    --- finished re-building ‘HowToMergeGatingSet.Rmd’
-    
-    --- re-building ‘flowWorkspace-Introduction.Rmd’ using rmarkdown
-    
-    Quitting from lines 191-193 [transformerList] (flowWorkspace-Introduction.Rmd)
-    Error: processing vignette 'flowWorkspace-Introduction.Rmd' failed with diagnostics:
-    'trans' must be a list of transformer objects (generated by scales::trans_new method)
-    --- failed re-building ‘flowWorkspace-Introduction.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘flowWorkspace-Introduction.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking Rd cross-references ... WARNING
     ```
@@ -3367,11 +3402,6 @@ Run `revdep_details(, "flowWorkspace")` for more info
 *   checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... WARNING
     ```
       apparently using $(BLAS_LIBS) without following $(FLIBS) in ‘src/Makevars’
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘CytoML’
     ```
 
 *   checking C++ specification ... NOTE
@@ -3625,15 +3655,6 @@ Run `revdep_details(, "GeneTonic")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.3Mb
-      sub-directories of 1Mb or more:
-        doc   5.9Mb
-    ```
-
 ## In both
 
 *   checking Rd cross-references ... NOTE
@@ -3792,7 +3813,7 @@ Run `revdep_details(, "GGPA")` for more info
     Loading required package: ggplot2
     Loading required package: network
     
-    ‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+    ‘network’ 1.18.2 (2023-12-04), part of the Statnet Project
     ```
 
 # GJRM
@@ -3871,10 +3892,10 @@ Run `revdep_details(, "GNET2")` for more info
 
 <details>
 
-* Version: 1.0.0
+* Version: 1.0.1
 * GitHub: NA
 * Source code: https://github.com/cran/GPUmatrix
-* Date/Publication: 2023-11-27 14:30:09 UTC
+* Date/Publication: 2023-12-01 15:20:05 UTC
 * Number of recursive dependencies: 59
 
 Run `revdep_details(, "GPUmatrix")` for more info
@@ -4379,7 +4400,7 @@ Run `revdep_details(, "JMbayes2")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  5.1Mb
       sub-directories of 1Mb or more:
         libs   4.7Mb
     ```
@@ -4456,10 +4477,10 @@ Run `revdep_details(, "ldsep")` for more info
 
 <details>
 
-* Version: 1.0.4
+* Version: 1.0.5
 * GitHub: https://github.com/const-ae/lemur
 * Source code: https://github.com/cran/lemur
-* Date/Publication: 2023-11-20
+* Date/Publication: 2023-12-06
 * Number of recursive dependencies: 172
 
 Run `revdep_details(, "lemur")` for more info
@@ -4468,65 +4489,22 @@ Run `revdep_details(, "lemur")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘lemur-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: align_harmony
-    > ### Title: Enforce additional alignment of cell clusters beyond the direct
-    > ###   differential embedding
-    > ### Aliases: align_harmony align_by_grouping
-    > 
-    > ### ** Examples
-    > 
-    ...
-    > # Creating some grouping for illustration
-    > cell_types <- sample(c("tumor cell", "neuron", "leukocyte"), size = ncol(fit), replace = TRUE)
-    > fit_al1 <- align_by_grouping(fit, grouping = cell_types)
-    Received sets of cells that are considered close
-    > 
-    > # Alternatively, use harmony to automatically group cells
-    > fit_al2 <- align_harmony(fit)
-    Select cells that are considered close with 'harmony'
-    Error: Expecting a single value: [extent=2].
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > library(testthat)
-      > library(lemur)
-      > 
-      > test_check("lemur")
-      [ FAIL 4 | WARN 0 | SKIP 4 | PASS 276 ]
-      
-    ...
-      Error: Expecting a single value: [extent=2].
-      Backtrace:
-          ▆
-       1. └─lemur::align_harmony(fit, verbose = FALSE) at test-lemur.R:204:3
-       2.   └─lemur:::harmony_init(...)
-       3.     └─harmonyObj$setup(...)
-      
-      [ FAIL 4 | WARN 0 | SKIP 4 | PASS 276 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 *   checking re-building of vignette outputs ... ERROR
     ```
     Error(s) in re-building vignettes:
-      ...
     --- re-building ‘Introduction.Rmd’ using rmarkdown
-    
-    Quitting from lines 74-81 [quick_start] (Introduction.Rmd)
+    0%   10   20   30   40   50   60   70   80   90   100%
+    [----|----|----|----|----|----|----|----|----|----|
+    **************************************************|
+    0%   10   20   30   40   50   60   70   80   90   100%
+    [----|----|----|----|----|----|----|----|----|----|
+    **************************************************|
+    0%   10   20   30   40   50   60   70   80   90   100%
+    [----|----|----|----|----|----|----|----|----|----|
+    ...
+    Quitting from lines 106-113 [raw_umap] (Introduction.Rmd)
     Error: processing vignette 'Introduction.Rmd' failed with diagnostics:
-    Expecting a single value: [extent=2].
+    function 'as_cholmod_sparse' not provided by package 'Matrix'
     --- failed re-building ‘Introduction.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -4540,6 +4518,17 @@ Run `revdep_details(, "lemur")` for more info
     ```
     Unexported object imported by a ':::' call: ‘S4Vectors:::disableValidity’
       See the note in ?`:::` about the use of this operator.
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    harmony_init: no visible global function definition for
+      ‘packageVersion’
+    Undefined global functions or variables:
+      packageVersion
+    Consider adding
+      importFrom("utils", "packageVersion")
+    to your NAMESPACE file.
     ```
 
 # limorhyde
@@ -4808,10 +4797,10 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 
 <details>
 
-* Version: 0.7.5
+* Version: 0.7.6
 * GitHub: NA
 * Source code: https://github.com/cran/mcmcsae
-* Date/Publication: 2023-10-10 20:40:02 UTC
+* Date/Publication: 2023-12-02 22:00:02 UTC
 * Number of recursive dependencies: 114
 
 Run `revdep_details(, "mcmcsae")` for more info
@@ -4822,7 +4811,7 @@ Run `revdep_details(, "mcmcsae")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.7Mb
+      installed size is  8.8Mb
       sub-directories of 1Mb or more:
         libs   7.9Mb
     ```
@@ -4919,7 +4908,7 @@ Run `revdep_details(, "MEAL")` for more info
 
 *   checking Rd cross-references ... NOTE
     ```
-    Unknown package ‘DMRcate’ in Rd xrefs
+    Package unavailable to check Rd xrefs: ‘DMRcate’
     ```
 
 *   checking for non-standard things in the check directory ... NOTE
@@ -5076,7 +5065,7 @@ Run `revdep_details(, "MethReg")` for more info
        3.     └─base::suppressMessages(...)
        4.       └─base::withCallingHandlers(...)
       
-      [ FAIL 2 | WARN 8 | SKIP 3 | PASS 156 ]
+      [ FAIL 2 | WARN 6 | SKIP 3 | PASS 156 ]
       Error: Test failures
       Execution halted
     ```
@@ -5164,6 +5153,79 @@ Run `revdep_details(, "methrix")` for more info
     ```
     Found the following files/directories:
       ‘temp’ ‘temp1’
+    ```
+
+# methylationArrayAnalysis
+
+<details>
+
+* Version: 1.26.0
+* GitHub: NA
+* Source code: https://github.com/cran/methylationArrayAnalysis
+* Date/Publication: 2023-12-08
+* Number of recursive dependencies: 221
+
+Run `revdep_details(, "methylationArrayAnalysis")` for more info
+
+</details>
+
+## In both
+
+*   checking re-building of vignette outputs ... ERROR
+    ```
+    Error(s) in re-building vignettes:
+    
+    Quitting from lines 461-465 [figure10] (methylationArrayAnalysis.Rmd)
+    Error: processing vignette 'methylationArrayAnalysis.Rmd' failed with diagnostics:
+    attempt to set an attribute on NULL
+    --- failed re-building ‘methylationArrayAnalysis.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘methylationArrayAnalysis.Rmd’
+    
+    ...
+    
+    trying URL 'https://cloud.r-project.org/src/contrib/readxl_1.4.3.tar.gz'
+    Content type 'application/x-gzip' length 2093488 bytes (2.0 MB)
+    ==================================================
+    downloaded 2.0 MB
+    
+    trying URL 'https://bioconductor.org/packages/3.18/data/experiment/src/contrib/DMRcatedata_2.20.0.tar.gz'
+    Content type 'application/x-gzip' length 105209 bytes (102 KB)
+    ==================================================
+    downloaded 102 KB
+    ```
+
+*   checking whether package ‘methylationArrayAnalysis’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: replacing previous import 'rmarkdown::pdf_document' by 'BiocStyle::pdf_document' when loading 'methylationArrayAnalysis'
+      Warning: replacing previous import 'rmarkdown::html_document' by 'BiocStyle::html_document' when loading 'methylationArrayAnalysis'
+      Warning: replacing previous import 'rmarkdown::md_document' by 'BiocStyle::md_document' when loading 'methylationArrayAnalysis'
+    See ‘/wynton/home/cbi/hb/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/00install.out’ for details.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Depends: includes the non-default packages:
+      'knitr', 'rmarkdown', 'BiocStyle', 'limma', 'minfi',
+      'IlluminaHumanMethylation450kanno.ilmn12.hg19',
+      'IlluminaHumanMethylation450kmanifest', 'RColorBrewer', 'missMethyl',
+      'matrixStats', 'minfiData', 'Gviz', 'DMRcate', 'stringr',
+      'FlowSorted.Blood.450k'
+    Adding so many packages to the search path is excessive and importing
+    selectively is preferable.
+    ```
+
+*   checking DESCRIPTION meta-information ... NOTE
+    ```
+    Malformed Title field: should not end in a period.
+    ```
+
+*   checking for non-standard things in the check directory ... NOTE
+    ```
+    Found the following files/directories:
+      ‘DMRcatedata’ ‘cellranger’ ‘readxl’ ‘rematch’
     ```
 
 # methylumi
@@ -5410,7 +5472,7 @@ Run `revdep_details(, "miloR")` for more info
     ...
     
     --- re-building ‘milo_gastrulation.Rmd’ using rmarkdown
-    Warning: ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps
+    Warning: ggrepel: 3 unlabeled data points (too many overlaps). Consider increasing max.overlaps
     --- finished re-building ‘milo_gastrulation.Rmd’
     
     SUMMARY: processing the following files failed:
@@ -5728,7 +5790,7 @@ Run `revdep_details(, "mrfDepth")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.5Mb
+      installed size is  7.4Mb
       sub-directories of 1Mb or more:
         libs   7.2Mb
     ```
@@ -5981,21 +6043,21 @@ Run `revdep_details(, "netZooR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
+      [1] 182
+      [1] 183
+      [1] 184
+      [1] 185
+      [1] 186
       [1] 187
-      [1] 188
-      [1] 189
-      [1] 190
-      [1] 191
-      [1] 192
     ...
-      Backtrace:
           ▆
-       1. └─netZooR::pandaPy(...) at test-panda.R:29:4
-       2.   └─reticulate::source_python(pandapath, convert = TRUE)
-       3.     └─reticulate::py_run_file(file, local = FALSE, convert = convert)
-       4.       └─reticulate:::py_run_file_impl(file, local, convert)
+       1. └─netZooR::sourcePPI(tf, "11", 83332) at test-source.PPI.R:16:5
+       2.   └─string_db$map(TF, "TF", removeUnmappedRows = FALSE)
+       3.     └─STRINGdb (local) get_aliases(takeFirst)
+       4.       └─STRINGdb::downloadAbsentFile(...)
+       5.         └─utils::download.file(urlStr, temp)
       
-      [ FAIL 1 | WARN 1 | SKIP 1 | PASS 48 ]
+      [ FAIL 2 | WARN 2 | SKIP 1 | PASS 47 ]
       Error: Test failures
       Execution halted
     ```
@@ -6711,30 +6773,8 @@ Run `revdep_details(, "QDNAseq")` for more info
 
 ## In both
 
-*   checking tests ...
-    ```
-      Running ‘QDNAseq,copyneutral.R’
-      Running ‘QDNAseq,gain-copyneutral-gain.R’
-      Running ‘QDNAseq,parallel-reproducibility.R’
-      Running ‘QDNAseq.R’/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/bin/BATCH: line 60: 2201506 Segmentation fault      (core dumped) ${R_HOME}/bin/R -f ${in} ${opts} ${R_BATCH_OPTIONS} > ${out} 2>&1
+*   R CMD check timed out
     
-     ERROR
-    Running the tests in ‘tests/QDNAseq.R’ failed.
-    Last 50 lines of output:
-      Adjusting normalized data for cellularity ... 
-      
-    ...
-      
-      Traceback:
-       1: diff2(x, differences = diff)
-       2: sdDiff(x, ..., trim = trim)
-       3: FUN(newX[, i], ...)
-       4: apply(copynumber, MARGIN = 2L, FUN = sdFUN, na.rm = TRUE)
-       5: .local(x, y = y, ...)
-       6: plot(fitC)
-       7: plot(fitC)
-      An irrecoverable exception occurred. R is aborting now ...
-    ```
 
 # Qest
 
@@ -6885,7 +6925,7 @@ Run `revdep_details(, "RBesT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 27.9Mb
+      installed size is 28.0Mb
       sub-directories of 1Mb or more:
         libs  27.4Mb
     ```
@@ -6944,10 +6984,10 @@ Run `revdep_details(, "reservr")` for more info
     --- finished re-building ‘distributions.Rmd’
     
     --- re-building ‘tensorflow.Rmd’ using rmarkdown
-    2023-12-04 21:29:40.713628: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/JAGS-4.3.2/lib:/wynton/home/cbi/shared/software/CBI/gsl-2.7/lib:/opt/rh/gcc-toolset-10/root/usr/lib64:/opt/rh/gcc-toolset-10/root/usr/lib:/opt/rh/gcc-toolset-10/root/usr/lib64/dyninst:/opt/rh/gcc-toolset-10/root/usr/lib/dyninst:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/lib64/openmpi/lib:/wynton/home/cbi/shared/software/CBI/mosh-1.4.0/lib64::
-    2023-12-04 21:29:40.713742: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
-    2023-12-04 21:29:40.713784: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (dev3): /proc/driver/nvidia/version does not exist
-    2023-12-04 21:29:40.714422: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+    2023-12-10 18:27:44.856977: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/local/lib64:/usr/lib/jvm/java-1.8.0/jre/lib/amd64/server:/wynton/home/cbi/shared/software/CBI/_rocky8/JAGS-4.3.2/lib:/wynton/home/cbi/shared/software/CBI/gsl-2.7/lib:/opt/rh/gcc-toolset-10/root/usr/lib64:/opt/rh/gcc-toolset-10/root/usr/lib:/opt/rh/gcc-toolset-10/root/usr/lib64/dyninst:/opt/rh/gcc-toolset-10/root/usr/lib/dyninst:/wynton/home/cbi/shared/software/CBI/_rocky8/R-4.3.2-gcc10/lib64/R/lib:/usr/lib64/openmpi/lib:/wynton/home/cbi/shared/software/CBI/mosh-1.4.0/lib64::
+    2023-12-10 18:27:44.857032: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+    2023-12-10 18:27:44.857074: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (dev3): /proc/driver/nvidia/version does not exist
+    2023-12-10 18:27:44.857660: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
     ...
     Error: processing vignette 'tensorflow.Rmd' failed with diagnostics:
     tensorflow.python.framework.errors_impl.InvalidArgumentError: In[0] is not a matrix. Instead it has shape [100] [Op:MatMul]
@@ -6963,7 +7003,7 @@ Run `revdep_details(, "reservr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.6Mb
+      installed size is  7.7Mb
       sub-directories of 1Mb or more:
         R      1.5Mb
         libs   6.1Mb
@@ -6977,7 +7017,7 @@ Run `revdep_details(, "reservr")` for more info
 *   checking for detritus in the temp directory ... NOTE
     ```
     Found the following files/directories:
-      ‘__pycache__’ ‘tmp0mtbu8rf.py’ ‘tmpxhrlq_dj.py’
+      ‘__pycache__’ ‘tmpx2o15rqy.py’ ‘tmpxz1igxta.py’
     ```
 
 # RGCCA
@@ -7060,13 +7100,15 @@ Run `revdep_details(, "RNAmodR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
+      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c8973130bf5fb_2549'
+      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c897321b3576f_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89738017990_2539'
       [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89735425d82_2541'
       [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89732f985ad8_2543'
       [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c8973301ccf40_2545'
-      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89735425d82_2541'
-      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c897321b3576f_2537'
-      [E::idx_find_and_load] Could not retrieve index file for '/wynton/home/cbi/hb/.cache/R/ExperimentHub/1c89738017990_2539'
     ...
+       1. ├─testthat::expect_error(...) at test-2Modifier.R:137:3
+       2. │ └─testthat:::quasi_capture(...)
        3. │   ├─testthat (local) .capture(...)
        4. │   │ └─base::withCallingHandlers(...)
        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
@@ -7074,8 +7116,6 @@ Run `revdep_details(, "RNAmodR")` for more info
       
       [ FAIL 1 | WARN 5 | SKIP 0 | PASS 898 ]
       Error: Test failures
-      In addition: Warning message:
-      call dbDisconnect() when finished working with a connection 
       Execution halted
     ```
 
@@ -7742,7 +7782,7 @@ Run `revdep_details(, "Seurat")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.7Mb
+      installed size is  7.3Mb
       sub-directories of 1Mb or more:
         R      1.6Mb
         libs   5.0Mb
@@ -8035,9 +8075,9 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 647.7Mb
+      installed size is 150.1Mb
       sub-directories of 1Mb or more:
-        data  647.7Mb
+        data  150.0Mb
     ```
 
 # singleCellTK
@@ -8360,7 +8400,7 @@ Run `revdep_details(, "SpliceWiz")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.1Mb
+      installed size is  7.3Mb
       sub-directories of 1Mb or more:
         R      2.2Mb
         libs   4.9Mb
@@ -8636,10 +8676,10 @@ Run `revdep_details(, "templateICAr")` for more info
 
 <details>
 
-* Version: 1.14.2
+* Version: 1.14.3
 * GitHub: https://github.com/stemangiola/tidybulk
 * Source code: https://github.com/cran/tidybulk
-* Date/Publication: 2023-11-17
+* Date/Publication: 2023-12-04
 * Number of recursive dependencies: 352
 
 Run `revdep_details(, "tidybulk")` for more info
@@ -8647,11 +8687,6 @@ Run `revdep_details(, "tidybulk")` for more info
 </details>
 
 ## In both
-
-*   checking dependencies in R code ... WARNING
-    ```
-    '::' or ':::' import not declared from: ‘pkgconfig’
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -9240,10 +9275,10 @@ Run `revdep_details(, "WeMix")` for more info
 
 <details>
 
-* Version: 1.72-1
+* Version: 1.72-5
 * GitHub: NA
 * Source code: https://github.com/cran/WGCNA
-* Date/Publication: 2023-01-18 12:10:05 UTC
+* Date/Publication: 2023-12-07 15:40:03 UTC
 * Number of recursive dependencies: 110
 
 Run `revdep_details(, "WGCNA")` for more info

@@ -62,3 +62,22 @@ ERROR: lazy loading failed for package ‘DeepBlueR’
 
 
 ```
+# QDNAseq
+
+<details>
+
+* Version: 1.38.0
+* GitHub: https://github.com/ccagc/QDNAseq
+* Source code: https://github.com/cran/QDNAseq
+* Date/Publication: 2023-10-24
+* Number of recursive dependencies: 93
+
+Run `revdep_details(, "QDNAseq")` for more info
+
+</details>
+
+## In both
+
+*   R CMD check timed out
+    
+

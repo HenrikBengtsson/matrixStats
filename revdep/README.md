@@ -10,24 +10,25 @@
 |collate  |en_US.UTF-8                                                          |
 |ctype    |en_US.UTF-8                                                          |
 |tz       |America/Los_Angeles                                                  |
-|date     |2023-12-10                                                           |
+|date     |2023-12-11                                                           |
 |pandoc   |3.1.9 @ /wynton/home/cbi/shared/software/CBI/pandoc-3.1.9/bin/pandoc |
 
 # Dependencies
 
 |package     |old   |new        |Δ  |
 |:-----------|:-----|:----------|:--|
-|matrixStats |1.1.0 |1.1.0-9004 |*  |
+|matrixStats |1.1.0 |1.1.0-9005 |*  |
 
 # Revdeps
 
-## Failed to check (1)
+## Failed to check (2)
 
 |package   |version |error |warning |note |
 |:---------|:-------|:-----|:-------|:----|
 |[DeepBlueR](failures.md#deepbluer)|1.27.0  |1     |        |     |
+|[QDNAseq](failures.md#qdnaseq)|1.38.0  |1     |        |     |
 
-## All (451)
+## All (455)
 
 |package                         |version |error |warning |note |
 |:-------------------------------|:-------|:-----|:-------|:----|
@@ -52,7 +53,7 @@
 |[BASiCS](problems.md#basics)    |2.14.0  |      |        |1    |
 |[BatchQC](problems.md#batchqc)  |1.30.0  |      |        |2    |
 |[BayesfMRI](problems.md#bayesfmri)|0.3.5   |      |        |2    |
-|[BayesianPlatformDesignTimeTrend](problems.md#bayesianplatformdesigntimetrend)|1.2.2   |      |        |2    |
+|[BayesianPlatformDesignTimeTrend](problems.md#bayesianplatformdesigntimetrend)|1.2.3   |      |        |2    |
 |BayesTwin                       |1.0     |      |        |     |
 |[baystability](problems.md#baystability)|0.1.0   |      |        |1    |
 |bigstep                         |1.1.1   |      |        |     |
@@ -61,7 +62,7 @@
 |binsreg                         |1.0     |      |        |     |
 |BioNERO                         |1.10.0  |      |        |     |
 |[biscuiteer](problems.md#biscuiteer)|1.16.0  |      |1       |3    |
-|blackbox                        |1.1.43  |      |        |     |
+|blackbox                        |1.1.46  |      |        |     |
 |[BloodGen3Module](problems.md#bloodgen3module)|1.10.0  |      |1       |2    |
 |[bnbc](problems.md#bnbc)        |1.23.0  |      |1       |     |
 |[bnem](problems.md#bnem)        |1.10.0  |      |        |1    |
@@ -73,17 +74,19 @@
 |bulkAnalyseR                    |1.1.0   |      |        |     |
 |[bumphunter](problems.md#bumphunter)|1.44.0  |      |        |4    |
 |calmate                         |0.13.0  |      |        |     |
-|Canek                           |0.2.4   |      |        |     |
+|Canek                           |0.2.5   |      |        |     |
 |CARBayesST                      |4.0     |      |        |     |
 |[cardelino](problems.md#cardelino)|1.4.0   |      |        |1    |
 |[CATALYST](problems.md#catalyst)|1.26.0  |3     |        |1    |
 |causalOT                        |1.0.1   |      |        |     |
 |[ccImpute](problems.md#ccimpute)|1.4.0   |      |        |1    |
+|CDI                             |1.0.2   |      |        |     |
 |[celda](problems.md#celda)      |1.18.1  |2     |        |1    |
 |[CelliD](problems.md#cellid)    |1.10.1  |      |2       |1    |
 |cellmigRation                   |1.10.0  |      |        |     |
 |[cellWise](problems.md#cellwise)|2.5.3   |      |        |1    |
 |[CEMiTool](problems.md#cemitool)|1.26.0  |      |        |2    |
+|[ChAMP](problems.md#champ)      |2.32.0  |      |2       |5    |
 |[ChemoSpec2D](problems.md#chemospec2d)|0.5.0   |1     |        |     |
 |Chicago                         |1.30.0  |      |        |     |
 |[ChIPpeakAnno](problems.md#chippeakanno)|3.36.0  |3     |        |3    |
@@ -191,9 +194,9 @@
 |[fipp](problems.md#fipp)        |1.0.0   |      |        |2    |
 |[fishpond](problems.md#fishpond)|2.8.0   |1     |        |1    |
 |flexmsm                         |0.1.1   |      |        |     |
-|[flowCore](problems.md#flowcore)|2.14.0  |1     |2       |4    |
+|[flowCore](problems.md#flowcore)|2.14.0  |      |3       |4    |
 |[flowGraph](problems.md#flowgraph)|1.10.0  |      |        |3    |
-|[flowWorkspace](problems.md#flowworkspace)|4.14.0  |3     |5       |8    |
+|[flowWorkspace](problems.md#flowworkspace)|4.14.1  |      |5       |7    |
 |fMRItools                       |0.4.2   |      |        |     |
 |[footBayes](problems.md#footbayes)|0.2.0   |      |        |1    |
 |[FRASER](problems.md#fraser)    |1.14.0  |      |1       |3    |
@@ -204,7 +207,7 @@
 |gcapc                           |1.26.0  |      |        |     |
 |GenEst                          |1.4.9   |      |        |     |
 |[geneticae](problems.md#geneticae)|0.4.0   |      |        |1    |
-|[GeneTonic](problems.md#genetonic)|2.6.0   |      |        |1 -1 |
+|[GeneTonic](problems.md#genetonic)|2.6.0   |      |        |1    |
 |[genomation](problems.md#genomation)|1.34.0  |      |1       |2    |
 |geocmeans                       |0.3.4   |      |        |     |
 |[geva](problems.md#geva)        |1.10.0  |      |1       |     |
@@ -215,7 +218,7 @@
 |GLMMadaptive                    |0.9-1   |      |        |     |
 |[GNET2](problems.md#gnet2)      |1.18.0  |      |        |1    |
 |GPGame                          |1.2.0   |      |        |     |
-|[GPUmatrix](problems.md#gpumatrix)|1.0.0   |      |1       |     |
+|[GPUmatrix](problems.md#gpumatrix)|1.0.1   |      |1       |     |
 |grandR                          |0.2.2   |      |        |     |
 |[GRaNIE](problems.md#granie)    |1.6.1   |      |        |3    |
 |[graper](problems.md#graper)    |1.18.0  |      |        |1    |
@@ -243,6 +246,7 @@
 |Infusion                        |2.1.0   |      |        |     |
 |[IntOMICS](problems.md#intomics)|1.2.0   |      |1       |     |
 |[iPath](problems.md#ipath)      |1.8.0   |      |        |2    |
+|iperform                        |0.0.1   |      |        |     |
 |iraceplot                       |1.2     |      |        |     |
 |[JMbayes2](problems.md#jmbayes2)|0.4-5   |      |        |1    |
 |jointseg                        |1.0.2   |      |        |     |
@@ -251,7 +255,7 @@
 |[latrend](problems.md#latrend)  |1.5.1   |      |        |2    |
 |LDM                             |6.0.1   |      |        |     |
 |[ldsep](problems.md#ldsep)      |2.1.5   |      |        |1    |
-|[lemur](problems.md#lemur)      |1.0.4   |3     |        |1    |
+|[lemur](problems.md#lemur)      |1.0.5   |1     |        |2    |
 |LFDREmpiricalBayes              |1.0     |      |        |     |
 |liger                           |2.0.1   |      |        |     |
 |liminal                         |0.1.2   |      |        |     |
@@ -272,7 +276,7 @@
 |[MatrixGenerics](problems.md#matrixgenerics)|1.14.0  |      |        |1    |
 |matrixTests                     |0.2.3   |      |        |     |
 |mbsts                           |3.0     |      |        |     |
-|[mcmcsae](problems.md#mcmcsae)  |0.7.5   |      |        |1    |
+|[mcmcsae](problems.md#mcmcsae)  |0.7.6   |      |        |1    |
 |[MEAL](problems.md#meal)        |1.32.0  |1     |3       |4    |
 |MEDseq                          |1.4.0   |      |        |     |
 |[memes](problems.md#memes)      |1.10.0  |1     |        |     |
@@ -284,6 +288,7 @@
 |[MethReg](problems.md#methreg)  |1.12.0  |3     |1       |4    |
 |[methrix](problems.md#methrix)  |1.16.0  |      |        |3    |
 |MethylAid                       |1.36.0  |      |        |     |
+|[methylationArrayAnalysis](problems.md#methylationarrayanalysis)|1.26.0  |1     |1       |3    |
 |[methylumi](problems.md#methylumi)|2.48.0  |      |        |7    |
 |mgcViz                          |0.1.11  |      |        |     |
 |miclust                         |1.2.8   |      |        |     |
@@ -318,7 +323,7 @@
 |nbconv                          |1.0.1   |      |        |     |
 |[nearBynding](problems.md#nearbynding)|1.12.0  |      |        |1    |
 |nempi                           |1.10.0  |      |        |     |
-|nestedcv                        |0.7.0   |      |        |     |
+|nestedcv                        |0.7.3   |      |        |     |
 |[netZooR](problems.md#netzoor)  |1.6.0   |1     |        |2    |
 |neurobase                       |1.32.3  |      |        |     |
 |nnSVG                           |1.6.0   |      |        |     |
@@ -355,7 +360,7 @@
 |[ProteoDisco](problems.md#proteodisco)|1.8.0   |      |2       |3    |
 |[ProteoMM](problems.md#proteomm)|1.20.0  |      |        |1    |
 |PSCBS                           |0.66.0  |      |        |     |
-|[QDNAseq](problems.md#qdnaseq)  |1.38.0  |1     |        |     |
+|[QDNAseq](failures.md#qdnaseq)  |1.38.0  |1     |        |     |
 |[Qest](problems.md#qest)        |1.0.0   |      |        |1    |
 |[QFeatures](problems.md#qfeatures)|1.12.0  |      |1       |1    |
 |Qindex                          |0.1.5   |      |        |     |
@@ -459,7 +464,7 @@
 |[templateICAr](problems.md#templateicar)|0.6.2   |      |        |1    |
 |tenXplore                       |1.24.0  |      |        |     |
 |ThurMod                         |1.1.11  |      |        |     |
-|[tidybulk](problems.md#tidybulk)|1.14.2  |      |1       |2    |
+|[tidybulk](problems.md#tidybulk)|1.14.3  |      |        |2    |
 |TOAST                           |1.16.0  |      |        |     |
 |TopDom                          |0.10.1  |      |        |     |
 |[topGO](problems.md#topgo)      |2.54.0  |      |        |4    |
@@ -478,7 +483,7 @@
 |[WaverideR](problems.md#waverider)|0.3.2   |      |1       |     |
 |weakARMA                        |1.0.3   |      |        |     |
 |[WeMix](problems.md#wemix)      |4.0.3   |      |        |1    |
-|[WGCNA](problems.md#wgcna)      |1.72-1  |      |1       |     |
+|[WGCNA](problems.md#wgcna)      |1.72-5  |      |1       |     |
 |Wrench                          |1.20.0  |      |        |     |
 |yarn                            |1.28.0  |      |        |     |
 |zinbwave                        |1.24.0  |      |        |     |
