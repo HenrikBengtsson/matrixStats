@@ -1,8 +1,8 @@
-# CRAN submission matrixStats 1.1.0
+# CRAN submission matrixStats 1.2.0
 
-on 2023-11-06
+on 2023-12-11
 
-I've verified this submission has no negative impact on any of the 463 reverse package dependencies available on CRAN (n=249) and Bioconductor (n=214).
+I've verified this submission has no negative impact on any of the 455 reverse package dependencies available on CRAN (n=247) and Bioconductor (n=208).
 
 Thanks in advance
 
@@ -15,7 +15,7 @@ The package has been verified using `R CMD check --as-cran` on:
 
 | R version | GitHub | R-hub  | mac/win-builder |
 | --------- | ------ | ------ | --------------- |
-| 3.5.x     | L      |        |                 |
+| 3.6.x     | L      |        |                 |
 | 4.1.x     | L      |        |                 |
 | 4.2.x     | L   W  |   M    |                 |
 | 4.3.x     | L M W  | L   W  | M1 W            |
@@ -32,7 +32,7 @@ res <- rhub::check(platforms = c(
   "fedora-gcc-devel",
   "debian-gcc-patched", 
   "linux-x86_64-rocker-gcc-san",
-##  "windows-x86_64-release"  ## not available
+  "windows-x86_64-release"
 ))
 print(res)
 ```
@@ -40,39 +40,48 @@ print(res)
 gives
 
 ```
-── matrixStats 1.1.0: OK
+── matrixStats 1.2.0: OK
 
-  Build ID:   matrixStats_1.1.0.tar.gz-584775420c10477fa32a5680a238bb26
+  Build ID:   matrixStats_1.2.0.tar.gz-b5bc92d3e89346558e3bb947e1b92a2a
   Platform:   Debian Linux, R-devel, clang, ISO-8859-15 locale
-  Submitted:  34m 23.4s ago
-  Build time: 26m 7.9s
+  Submitted:  1h 4m 25.4s ago
+  Build time: 41m 6.5s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-── matrixStats 1.1.0: OK
+── matrixStats 1.2.0: OK
 
-  Build ID:   matrixStats_1.1.0.tar.gz-e2f19f2b63ea4769b081dd1e7647dc51
+  Build ID:   matrixStats_1.2.0.tar.gz-be1b3eb2c6374c15aa2eabd764025296
   Platform:   Fedora Linux, R-devel, GCC
-  Submitted:  34m 23.4s ago
-  Build time: 19m 29.6s
+  Submitted:  1h 4m 25.4s ago
+  Build time: 30m 23.5s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-── matrixStats 1.1.0: OK
+── matrixStats 1.2.0: OK
 
-  Build ID:   matrixStats_1.1.0.tar.gz-68cb91d4ec36497c9862e036422f005e
+  Build ID:   matrixStats_1.2.0.tar.gz-52106b4b9e0b4544bfcd7209aa673062
   Platform:   Debian Linux, R-patched, GCC
-  Submitted:  34m 23.4s ago
-  Build time: 26m 3.3s
+  Submitted:  1h 4m 25.4s ago
+  Build time: 36m 53.5s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-── matrixStats 1.1.0: OK
+── matrixStats 1.2.0: IN-PROGRESS
 
-  Build ID:   matrixStats_1.1.0.tar.gz-1ed6b2434fad4d5eab44c077bf994eba
+  Build ID:   matrixStats_1.2.0.tar.gz-e600ff00048d4e5d81f9f76ccb9f3b1b
   Platform:   Debian Linux, R-devel, GCC ASAN/UBSAN
-  Submitted:  46m 39.8s ago
-  Build time: 43m 59.6s
+  Submitted:  1h 14m 11.4s ago
+  Build time: 1h 13m 36.3s
+
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+── matrixStats 1.2.0: OK
+
+  Build ID:   matrixStats_1.2.0.tar.gz-4e95853005884e11b61c5d1923bf0984
+  Platform:   Windows Server 2022, R-release, 32/64 bit
+  Submitted:  1h 4m 25.4s ago
+  Build time: 7m 16s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 ```
