@@ -28,7 +28,7 @@ jobs:
       _R_CHECK_USE_VALGRIND_: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
 

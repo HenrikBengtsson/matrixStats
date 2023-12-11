@@ -55,7 +55,7 @@ SEXP colOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
 
   /* Assert that 'qq' is a valid index */
   if (qq < 0 || qq >= nrows) {
-    error("Argument 'which' is out of range: %d", qq + 1);
+    error("Argument 'which' is out of range: %lld", (long long int)(qq + 1));
   }
 
   /* Double matrices are more common to use. */

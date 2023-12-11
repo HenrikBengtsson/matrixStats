@@ -54,3 +54,4 @@ scratch.R
 ^pkgdown
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$

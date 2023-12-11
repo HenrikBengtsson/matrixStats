@@ -1,6 +1,5 @@
 isUseNamesNADefunct <- function() {
-  action <- if (getRversion() >= "4.4.0") "defunct" else "deprecated"
-  action <- getOption("matrixStats.useNames.NA", action)
+  action <- getOption("matrixStats.useNames.NA", "defunct")
   action <- match.arg(action, choices = c("deprecated", "defunct"))
   (action == "defunct")
 }
