@@ -27,7 +27,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         if (is.null(cols)) which <- round(probs * ncol(x))
         else {
           xxrows <- rows

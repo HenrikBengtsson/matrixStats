@@ -2,6 +2,9 @@
 #'
 #' Computes validated positive indices from given indices.
 #'
+#' \emph{WARNING: This function is defunct and will be removed in a future
+#' version.}
+#'
 #' @inheritParams rowAlls
 #'
 #' @param maxIdx The possible max index.
@@ -13,14 +16,12 @@
 #' If some of the indices cannot be represented as an integer, the
 #' indices are returned as doubles.
 #'
-#' @example incl/validateIndices.R
-#'
 #' @keywords internal
 #' @export
 validateIndices <- function(idxs = NULL, maxIdx, allowOutOfBound = TRUE) {
-  action <- getOption("matrixStats.validateIndices", "deprecated")
+  action <- getOption("matrixStats.validateIndices", "defunct")
   if (!is.null(action)) {
-    fcn <- switch(action, deprecated = .Deprecated, defunct = .Defunct)
+    fcn <- switch(action, deprecated = .Deprecated, defunct = .Defunct, ignore = function(...) NULL)
     fcn(msg = sprintf("validateIndices() is %s and will eventually be removed from %s", action, .packageName))
   }
 

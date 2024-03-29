@@ -24,14 +24,14 @@ NxK \code{\link[base]{matrix}}.}
 (and/or columns) to operate over 'x'. If \code{\link[base]{NULL}}, no
 subsetting is done.}
 
+\item{yidxs}{A \code{\link[base]{vector}} indicating subset of elements to
+operate over 'y'. If \code{\link[base]{NULL}}, no subsetting is done.}
+
 \item{commute}{If \code{\link[base:logical]{TRUE}}, 'y OP x' ('t(y OP
 t(x))') is calculated, otherwise 'x OP y' ('t(t(x) OP y)').}
 
 \item{na.rm}{If \code{\link[base:logical]{TRUE}}, missing values are
 excluded.}
-
-\item{idxs}{A \code{\link[base]{vector}} indicating subset of elements to
-operate over 'y'. If \code{\link[base]{NULL}}, no subsetting is done.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} NxK

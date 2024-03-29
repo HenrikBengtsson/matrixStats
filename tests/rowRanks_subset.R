@@ -6,8 +6,7 @@ rowRanks_R <- function(x, ties.method = "average", ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(ans) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(ans) <- dimnames
+  dimnames(ans) <- if (isTRUE(useNames)) dimnames(x) else NULL
 
   ans
 }
@@ -18,8 +17,7 @@ colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA
   # Preserve dimnames attribute?
   tx <- t(x)
   dim(ans) <- dim(tx)
-  dimnames <- dimnames(tx)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(ans) <- dimnames
+  dimnames(ans) <- if (isTRUE(useNames)) dimnames(tx) else NULL
   
   if (preserveShape) ans <- t(ans)
   ans
@@ -49,7 +47,8 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- useNames[count %% length(useNames) + 1]
 
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowRanks, fsure = rowRanks_R,

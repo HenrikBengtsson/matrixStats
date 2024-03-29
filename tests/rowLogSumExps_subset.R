@@ -30,7 +30,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       for (na.rm in c(TRUE, FALSE)) {
-        for (useNames in c(NA, TRUE, FALSE)) {
+        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowLogSumExps,
                                     fsure = rowLogSumExps_R,

@@ -13,17 +13,16 @@ rowQuantiles_R <- function(x, probs, na.rm = FALSE, drop = TRUE, ..., useNames =
       rep(na_value, times = length(probs))
 
     } else {
-      as.vector(quantile(x, probs = probs, na.rm = na.rm, ...))
+      as.vector(quantile(x, probs = probs, na.rm = na.rm, names = FALSE, ...))
     }
   }, probs = probs, na.rm = na.rm)
 
   if (!is.null(dim(q))) q <- t(q)
   else dim(q) <- c(nrow(x), length(probs))
 
-  digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  colnames(q) <- matrixStats:::quantile_probs_names(probs)
   rownames(q) <- rownames(x)
-  if (isFALSE(useNames)) rownames(q) <- NULL
+  if (isFALSE(useNames)) dimnames(q) <- NULL
 
   if (drop) q <- drop(q)
   q
@@ -47,7 +46,8 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- useNames[count %% length(useNames) + 1]
 
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowQuantiles, fsure = rowQuantiles_R,

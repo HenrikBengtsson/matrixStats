@@ -209,7 +209,7 @@ dimnames <- list(letters[1:6], LETTERS[1:6])
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
-  for (useNames in c(NA, TRUE, FALSE)) {
+  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
     y0 <- rowLogSumExps_R(x, useNames = useNames)
     y1 <- rowLogSumExps(x, useNames = useNames)
     y2 <- colLogSumExps(t(x), useNames = useNames)

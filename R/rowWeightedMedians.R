@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
-                               na.rm = FALSE, ..., useNames = NA) {
+                               na.rm = FALSE, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -47,6 +47,8 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
       stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
+
+  if (is.na(useNames)) deprecatedUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -84,7 +86,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMedians
 #' @export
 colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
-                               na.rm = FALSE, ..., useNames = NA) {
+                               na.rm = FALSE, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -105,6 +107,8 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
       stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
+
+  if (is.na(useNames)) deprecatedUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

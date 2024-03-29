@@ -12,17 +12,16 @@ rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, 
       if (type != 7L) storage.mode(na_value) <- storage.mode(x)
       rep(na_value, times = length(probs))
     } else {
-      as.vector(quantile(x, probs = probs, na.rm = na.rm, type = type, ...))
+      as.vector(quantile(x, probs = probs, na.rm = na.rm, type = type, names = FALSE, ...))
     }
   }, probs = probs, na.rm = na.rm)
 
   if (!is.null(dim(q))) q <- t(q)
   else dim(q) <- c(nrow(x), length(probs))
 
-  digits <- max(2L, getOption("digits"))
-  colnames(q) <- sprintf("%.*g%%", digits, 100 * probs)
+  colnames(q) <- matrixStats:::quantile_probs_names(probs)
   rownames(q) <- rownames(x)
-  if (isFALSE(useNames)) rownames(q) <- NULL
+  if (isFALSE(useNames)) dimnames(q) <- NULL
 
   if (drop) q <- drop(q)
   q
@@ -45,7 +44,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
@@ -78,7 +77,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
@@ -145,7 +144,7 @@ for (kk in seq_len(n_sims)) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
         q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
         ## FIXME: Workaround for R (< 3.0.0)
@@ -180,7 +179,7 @@ for (mode in c("logical", "integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         qr0 <- rowQuantiles_R(x, type = type, useNames = useNames)
         
         qr <- rowQuantiles(x, type = type, useNames = useNames)

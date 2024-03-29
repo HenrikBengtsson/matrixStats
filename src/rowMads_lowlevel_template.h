@@ -38,6 +38,10 @@ void CONCAT_MACROS(rowMads, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t 
   R_xlen_t *colOffset;
   X_C_TYPE *values, value, mu;
   double *values_d, value_d, mu_d;
+  int nocols, norows;
+  if (cols == NULL) { nocols = 1; } else { nocols = 0; }
+  if (rows == NULL) { norows = 1; } else { norows = 0; }
+  
 
   /* R allocate memory for the 'values'.  This will be
      taken care of by the R garbage collector later on. */
@@ -60,21 +64,22 @@ void CONCAT_MACROS(rowMads, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t 
   value = 0;
 
   /* Pre-calculate the column offsets */
-  if (cols == NULL) {
-    colOffset = NULL;
-  }
-  else {
-    colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
-    // HJ begin
-    if (byrow) {
-      for (jj=0; jj < ncols; jj++)
-        colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow, colsHasNA, 0);
-    } else {
-      for (jj=0; jj < ncols; jj++) {
-        colOffset[jj] = cols[jj];
-      }
-    }
-    // HJ end
+  if (nocols) {
+      colOffset = NULL;
+  } else {
+      colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
+      if (byrow) {
+          for (jj=0; jj < ncols; jj++)
+              if(!rowsHasNA && !colsHasNA){
+                  colOffset[jj] = cols[jj] * nrow;
+              }
+              else{
+                  colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow,1,1);
+              }
+      } else {
+          for (jj=0; jj < ncols; jj++)
+              colOffset[jj] = cols[jj];
+      }    
   }
 
   hasna = TRUE;
@@ -82,21 +87,38 @@ void CONCAT_MACROS(rowMads, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t 
     for (ii=0; ii < nrows; ii++) {
       //HJ
       R_xlen_t rowIdx;
-      if (rows == NULL) {
-        rowIdx = byrow ? (ii) : R_INDEX_OP(ii, *, ncol, 0, 0);
-      } else {
-        rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol, rowsHasNA, 0);
-      }
+        if (norows) {
+            /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
+            rowIdx = byrow ? ii : ii*ncol;
+        } else {
+            if(!rowsHasNA && !colsHasNA) {
+                rowIdx = byrow ? rows[ii] : rows[ii] * ncol;
+            }
+            rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol,1,1);
+        }
 
       kk = 0;  /* The index of the last non-NA value detected */
       for (jj=0; jj < ncols; jj++) {
-        if (colOffset == NULL) {
-          if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow, rowsHasNA, 0);
-          else idx = R_INDEX_OP(rowIdx, +, jj, rowsHasNA, 0);
-        } else {
-          idx = R_INDEX_OP(rowIdx, +, colOffset[jj], rowsHasNA, colsHasNA);
-        }
-        value = R_INDEX_GET(x, idx, X_NA, colsHasNA || rowsHasNA); //HJ
+          if (!rowsHasNA && nocols) {
+              /*
+               * In this special case, we can eliminate
+               * the possibility of having NA indicies
+               */
+              if (byrow) idx = rowIdx + jj*nrow;
+              else idx = rowIdx + jj;
+              value = x[idx];
+          } else if (!rowsHasNA && !colsHasNA && !nocols) {
+              idx = rowIdx + colOffset[jj];
+              value = x[idx];
+          } else {
+              if (nocols) {
+                  if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow,1,1);
+                  else idx = R_INDEX_OP(rowIdx, +, jj,1,1);
+              } else {
+                  idx = R_INDEX_OP(rowIdx, +, colOffset[jj],1,1);
+              }
+              value = R_INDEX_GET(x, idx, X_NA, 1);
+          }
 
         if (X_ISNAN(value)) {
           if (narm == FALSE) {
@@ -211,18 +233,24 @@ void CONCAT_MACROS(rowMads, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t 
     for (ii=0; ii < nrows; ii++) {
       //HJ
       R_xlen_t rowIdx;
-      if (rows == NULL) {
-        rowIdx = byrow ? (ii) : (ii)*ncol;
-      } else {
-        rowIdx = byrow ? rows[ii] : rows[ii]*ncol;
-      }
+        if (norows) {
+            /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
+            rowIdx = byrow ? ii : ii*ncol;
+        } else {
+            if(!rowsHasNA && !colsHasNA) {
+                rowIdx = byrow ? rows[ii] : rows[ii] * ncol;
+            }
+            rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol,1,1);
+        }
 
       for (jj=0; jj < ncols; jj++) {
-        if (colOffset == NULL) {
-          if (byrow) values[jj] = x[rowIdx+(jj)*nrow];
-          else values[jj] = x[rowIdx+(jj)];
+        if (!nocols) {
+            if (byrow) idx = rowIdx + jj*nrow;
+            else idx = rowIdx + jj;
+            values[jj] = x[idx];
         } else {
-          values[jj] = x[rowIdx+colOffset[jj]];
+            idx = rowIdx + colOffset[jj];
+            values[jj] = x[idx];
         }
       } //HJ
 

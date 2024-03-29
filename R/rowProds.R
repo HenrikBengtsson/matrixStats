@@ -31,7 +31,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ..., useNames = NA) {
+                     method = c("direct", "expSumLog"), ..., useNames = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
   
@@ -70,6 +70,8 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     } else {
       names(y) <- NULL
     }
+  } else {
+    deprecatedUseNamesNA()
   }
 
   y
@@ -79,7 +81,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @rdname rowProds
 #' @export
 colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
-                     method = c("direct", "expSumLog"), ..., useNames = NA) {
+                     method = c("direct", "expSumLog"), ..., useNames = TRUE) {
   # Argument 'x':
   if (!is.matrix(x)) defunctShouldBeMatrix(x)
 
@@ -118,6 +120,8 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
     } else {
       names(y) <- NULL
     }
+  } else {
+    deprecatedUseNamesNA()
   }
 
   y

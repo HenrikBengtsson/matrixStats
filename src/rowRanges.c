@@ -61,7 +61,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
       PROTECT(ans = allocVector(REALSXP, nrows));
     }
     rowRanges_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, what2, narm, hasna, REAL(ans), is_counted);
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         if (what2 == 2) {
@@ -142,7 +142,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
 
       ans = ans2;
     }
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         if (what2 == 2) {

@@ -4,12 +4,10 @@ rowCummins_R <- function(x, ..., useNames = NA) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cummin))
   })
-  
+ 
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
-  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   y
 }
 
@@ -23,8 +21,7 @@ rowCummaxs_R <- function(x, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames <- dimnames(x)
-  if (isTRUE(useNames) && !is.null(dimnames)) dimnames(y) <- dimnames  
+  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
   
   y
 }
@@ -54,7 +51,7 @@ for (mode in c("logical", "integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         # Row/column ranges
         r0 <- rowCummins_R(x, useNames = useNames)
         r1 <- rowCummins(x, useNames = useNames)
@@ -62,7 +59,7 @@ for (mode in c("logical", "integer", "double")) {
         stopifnot(all.equal(r1, r2))
         stopifnot(all.equal(r1, r0))
         stopifnot(all.equal(r2, r0))
-        
+
         r0 <- rowCummaxs_R(x, useNames = useNames)
         r1 <- rowCummaxs(x, useNames = useNames)
         r2 <- t(colCummaxs(t(x), useNames = useNames))
@@ -89,7 +86,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))
@@ -125,7 +122,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))
@@ -172,7 +169,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) colnames(x) <- colnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))
@@ -197,7 +194,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) rownames(x) <- rownames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       r0 <- rowCummins_R(x, useNames = useNames)
       r1 <- rowCummins(x, useNames = useNames)
       r2 <- t(colCummins(t(x), useNames = useNames))

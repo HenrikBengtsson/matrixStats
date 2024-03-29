@@ -40,7 +40,7 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
     rowCumsums_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, rowsHasNA, byrow, REAL(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);
@@ -50,7 +50,7 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
   } else if (isInteger(x) | isLogical(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
     rowCumsums_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, INTEGER(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);

@@ -98,7 +98,7 @@ for (mode in c("integer", "double")) {
       # Row/column variance
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(NA, TRUE, FALSE)) {
+        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
           cat("na.rm = ", na.rm, "\n", sep = "")
           center <- rowMeans(x, na.rm = na.rm)
           
@@ -165,7 +165,7 @@ for (mode in c("integer", "double")) {
     # Row/column variance
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         cat("na.rm = ", na.rm, "\n", sep = "")
         
         r0 <- rowVars_R(x, na.rm = na.rm, useNames = useNames)
@@ -202,7 +202,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   # Row/column variance
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       cat("na.rm = ", na.rm, "\n", sep = "")
       
       r0 <- rowVars_R(x, na.rm = na.rm, useNames = useNames)

@@ -77,7 +77,7 @@ for (mode in c("integer", "double")) {
       # Row/column ranges
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(NA, TRUE, FALSE)) {
+        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
           r0 <- rowSds_R(x, na.rm = na.rm, useNames = useNames)
           r1 <- rowSds(x, na.rm = na.rm, useNames = useNames)
           r1b <- rowSds_center(x, na.rm = na.rm, useNames = useNames)
@@ -116,7 +116,7 @@ for (mode in c("integer", "double")) {
     # Row/column ranges
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         r0 <- rowSds_R(x, na.rm = na.rm, useNames = useNames)
         r1 <- rowSds(x, na.rm = na.rm, useNames = useNames)
         r1b <- rowSds_center(x, na.rm = na.rm, useNames = useNames)
@@ -153,7 +153,7 @@ for (na.rm in c(FALSE, TRUE)) {
     # Row/column ranges
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         r0 <- rowSds_R(x, na.rm = na.rm, useNames = useNames)
         r1 <- rowSds(x, na.rm = na.rm, useNames = useNames)
         r1b <- rowSds_center(x, na.rm = na.rm, useNames = useNames)

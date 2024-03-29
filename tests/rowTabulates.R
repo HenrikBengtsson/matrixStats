@@ -33,9 +33,11 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- rowTabulates(x, useNames = FALSE)
-  y2 <- rowTabulates(x, useNames = NA)
   stopifnot(all.equal(y1, y))
-  stopifnot(all.equal(y2, y))
+  if (!matrixStats:::isUseNamesNADefunct()) {
+    y2 <- rowTabulates(x, useNames = NA)
+    stopifnot(all.equal(y2, y))
+  }
   y <- rowTabulates(x, useNames = TRUE)
   stopifnot(identical(rownames(y), rownames(x)))
   dimnames(x) <- NULL
@@ -53,9 +55,11 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- colTabulates(x, useNames = FALSE)
-  y2 <- colTabulates(x, useNames = NA)
   stopifnot(all.equal(y1, y))
-  stopifnot(all.equal(y2, y))
+  if (!matrixStats:::isUseNamesNADefunct()) {
+    y2 <- colTabulates(x, useNames = NA)
+    stopifnot(all.equal(y2, y))
+  }
   y <- colTabulates(x, useNames = TRUE)
   stopifnot(identical(rownames(y), colnames(x)))
   dimnames(x) <- NULL
@@ -74,9 +78,11 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- rowTabulates(x, values = subset, useNames = FALSE)
-  y2 <- rowTabulates(x, values = subset, useNames = NA)
   stopifnot(all.equal(y1, y))
-  stopifnot(all.equal(y2, y))
+  if (!matrixStats:::isUseNamesNADefunct()) {
+    y2 <- rowTabulates(x, values = subset, useNames = NA)
+    stopifnot(all.equal(y2, y))
+  }  
   y <- rowTabulates(x, values = subset, useNames = TRUE)
   stopifnot(identical(rownames(y), rownames(x)))
   dimnames(x) <- NULL
@@ -87,9 +93,11 @@ for (mode in modes) {
   # Check names attribute
   dimnames(x) <- dimnames
   y1 <- colTabulates(x, values = subset, useNames = FALSE)
-  y2 <- colTabulates(x, values = subset, useNames = NA)
   stopifnot(all.equal(y1, y))
-  stopifnot(all.equal(y2, y))
+  if (!matrixStats:::isUseNamesNADefunct()) {
+    y2 <- colTabulates(x, values = subset, useNames = NA)
+    stopifnot(all.equal(y2, y))
+  }
   y <- colTabulates(x, values = subset, useNames = TRUE)
   stopifnot(identical(rownames(y), colnames(x)))
   dimnames(x) <- NULL
@@ -104,9 +112,11 @@ for (mode in modes) {
     # Check names attribute
     dimnames(x) <- dimnames
     y1 <- rowTabulates(x, values = as.raw(subset), useNames = FALSE)
-    y2 <- rowTabulates(x, values = as.raw(subset), useNames = NA)
     stopifnot(all.equal(y1, y))
-    stopifnot(all.equal(y2, y))
+    if (!matrixStats:::isUseNamesNADefunct()) {
+      y2 <- rowTabulates(x, values = as.raw(subset), useNames = NA)
+      stopifnot(all.equal(y2, y))
+    }
     y3 <- rowTabulates(x, values = as.raw(subset), useNames = TRUE)
     stopifnot(identical(rownames(y3), rownames(x)))
     dimnames(x) <- NULL
@@ -120,9 +130,11 @@ for (mode in modes) {
     # Check names attribute
     dimnames(x) <- dimnames
     y1 <- colTabulates(t(x), values = as.raw(subset), useNames = FALSE)
-    y2 <- colTabulates(t(x), values = as.raw(subset), useNames = NA)
     stopifnot(all.equal(y1, y))
-    stopifnot(all.equal(y2, y))
+    if (!matrixStats:::isUseNamesNADefunct()) {
+      y2 <- colTabulates(t(x), values = as.raw(subset), useNames = NA)
+      stopifnot(all.equal(y2, y))
+    }
     y <- colTabulates(t(x), values = as.raw(subset), useNames = TRUE)
     stopifnot(identical(rownames(y), colnames(t(x))))
     dimnames(x) <- NULL

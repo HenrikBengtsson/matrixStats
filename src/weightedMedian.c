@@ -23,7 +23,7 @@ SEXP weightedMedian(SEXP x, SEXP w, SEXP idxs, SEXP naRm, SEXP interpolate, SEXP
   assertArgVector(w, (R_TYPE_REAL), "w");
   nw = xlength(w);
   if (nx != nw) {
-    error("Argument 'x' and 'w' are of different lengths: %d != %d", nx, nw);
+    error("Argument 'x' and 'w' are of different lengths: %lld != %lld", (long long int)nx, (long long int)nw);
   }
 
   /* Argument 'naRm': */

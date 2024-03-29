@@ -29,13 +29,14 @@
 #' @keywords array iteration robust univar
 #' @export
 rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
-                          dim. = dim(x), ..., useNames = NA) {
+                          dim. = dim(x), ..., useNames = TRUE) {
 
   # Check missing values
   if (anyMissing(x)) {
     stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowOrderStats, x, dim., rows, cols, which, useNames)
 }
 
@@ -43,12 +44,13 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
 #' @rdname rowOrderStats
 #' @export
 colOrderStats <- function(x, rows = NULL, cols = NULL, which,
-                          dim. = dim(x), ..., useNames = NA) {
+                          dim. = dim(x), ..., useNames = TRUE) {
 
   # Check missing values
   if (anyMissing(x)) {
     stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_colOrderStats, x, dim., rows, cols, which, useNames)
 }

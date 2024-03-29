@@ -24,7 +24,7 @@
 #'
 #' @importFrom stats quantile
 #' @export
-rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   Q <- rowQuantiles(x, rows = rows, cols = cols,
                     probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
   colnames(Q) <- NULL # Not needed anymore
@@ -32,6 +32,7 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
 
   # Remove attributes
   if (is.na(useNames)) {
+    deprecatedUseNamesNA()
     attributes(ans) <- NULL
   }
   
@@ -41,7 +42,7 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
 
 #' @rdname rowIQRs
 #' @export
-colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   Q <- colQuantiles(x, rows = rows, cols = cols,
                     probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
   colnames(Q) <- NULL # Not needed anymore
@@ -49,6 +50,7 @@ colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
 
   # Remove attributes
   if (is.na(useNames)) {
+    deprecatedUseNamesNA()
     attributes(ans) <- NULL
   }
   

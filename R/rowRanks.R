@@ -88,7 +88,7 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), ..., useNames = NA) {
+                     dim. = dim(x), ..., useNames = TRUE) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -98,6 +98,8 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
     stop(sprintf("Unknown value of argument '%s': %s", "ties.method", ties.method))
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
+  
   # byrow = TRUE
   .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, TRUE, useNames)
 }
@@ -109,7 +111,7 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      # max is listed twice so that it remains the default for now
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
-                     dim. = dim(x), preserveShape = FALSE, ..., useNames = NA) {
+                     dim. = dim(x), preserveShape = FALSE, ..., useNames = TRUE) {
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -122,6 +124,8 @@ colRanks <- function(x, rows = NULL, cols = NULL,
     stop(sprintf("Unknown value of argument '%s': %s", "ties.method", ties.method))
   }
 
+  if (is.na(useNames)) deprecatedUseNamesNA()
+  
   # byrow = FALSE
   y <- .Call(C_rowRanksWithTies, x, dim., rows, cols, ties_method, FALSE, useNames)
 

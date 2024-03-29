@@ -8,10 +8,12 @@
 #include <R_ext/Constants.h>
 #include "000.types.h"
 #include "diff2_lowlevel.h"
+#include "naming.h"
 
-SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences) {
+SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
   SEXP ans = NILSXP;
   R_xlen_t nx, nans, lagg, diff;
+  int usenames;
 
   /* Argument 'x': */
   assertArgVector(x, (R_TYPE_INT | R_TYPE_REAL), "x");
@@ -31,12 +33,17 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences) {
 
   /* Argument 'idxs': */
   R_xlen_t nidxs;
+  
+  /* Argument 'useNames': */ 
+  usenames = asLogical(useNames);
+  
   int idxsHasNA;
   R_xlen_t *cidxs = validateIndicesCheckNA(idxs, nx, 1, &nidxs, &idxsHasNA);
 
   /* Length of result vector */
   nans = (R_xlen_t)((double)nidxs - ((double)diff*(double)lagg));
   if (nans < 0) nans = 0;
+
 
   /* Dispatch to low-level C function */
   if (isReal(x)) {
@@ -49,6 +56,13 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences) {
     UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");
+  }
+  
+  if (usenames != NA_LOGICAL && usenames) {
+    SEXP namesVec = getAttrib(x, R_NamesSymbol);
+    if (namesVec != R_NilValue) {
+      setNamesDiff(ans, namesVec, nidxs, nans, cidxs);
+    }
   }
 
   return ans;

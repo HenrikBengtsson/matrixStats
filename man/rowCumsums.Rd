@@ -12,21 +12,29 @@
 \title{Cumulative sums, products, minima and maxima for each row (column) in a
 matrix}
 \usage{
-rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCumsums(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCumprods(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCummins(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+rowCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 
-colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ..., useNames = NA)
+colCummaxs(x, rows = NULL, cols = NULL, dim. = dim(x), ...,
+  useNames = TRUE)
 }
 \arguments{
 \item{x}{An NxK \code{\link[base]{matrix}} or, if \code{dim.} is specified,
@@ -46,10 +54,8 @@ error if we try to name it \code{dim}).}
 
 \item{...}{Not used.}
 
-\item{useNames}{If \code{\link[base]{NA}}, the default behavior of the 
-function about naming support is remained. If \code{\link[base:logical]{FALSE}}, 
-no naming support is done. Else if \code{\link[base:logical]{TRUE}}, names 
-attributes of result are set.}
+\item{useNames}{If \code{\link[base:logical]{TRUE}} (default), names
+attributes of the result are set, otherwise not.}
 }
 \value{
 Returns a \code{\link[base]{numeric}} NxK \code{\link[base]{matrix}}

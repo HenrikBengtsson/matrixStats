@@ -8,7 +8,7 @@ test: $(R_OUTDIR)/tests/%.R
 
 spelling:
 	$(R_SCRIPT) -e "spelling::spell_check_package()"
-	$(R_SCRIPT) -e "spelling::spell_check_files(c('NEWS', dir('vignettes', pattern='[.]rsp$$', full.names=TRUE)), ignore=readLines('inst/WORDLIST', warn=FALSE))"
+	$(R_SCRIPT) -e "spelling::spell_check_files(c('NEWS.md', dir('vignettes', pattern='[.]rsp$$', full.names=TRUE)), ignore=readLines('inst/WORDLIST', warn=FALSE))"
 
 
 build-old-r: $(PKG_FILES)

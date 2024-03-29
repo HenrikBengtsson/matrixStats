@@ -37,7 +37,7 @@ for (fcn in names(fcns)) {
         # Row/column ranges
         for (na.rm in c(FALSE, TRUE)) {
           # Check names attribute
-          for (useNames in c(NA, TRUE, FALSE)) {
+          for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
             cat("na.rm = ", na.rm, "\n", sep = "")
             r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
             r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
@@ -65,7 +65,7 @@ for (fcn in names(fcns)) {
       # Row/column ranges
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(NA, TRUE, FALSE)) {
+        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
           cat("na.rm = ", na.rm, "\n", sep = "")
           r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
           r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)
@@ -88,7 +88,7 @@ for (fcn in names(fcns)) {
     # Row/column ranges
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         cat("na.rm = ", na.rm, "\n", sep = "")
         r1 <- row_fcn(x, na.rm = na.rm, useNames = useNames)
         r2 <- col_fcn(t(x), na.rm = na.rm, useNames = useNames)

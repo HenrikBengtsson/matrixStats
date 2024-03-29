@@ -26,7 +26,7 @@
 #' @keywords array iteration robust univar
 #' @export
 rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
-                             na.rm = FALSE, ..., useNames = NA) {
+                             na.rm = FALSE, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -47,6 +47,8 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
+
+  if (is.na(useNames)) deprecatedUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -153,7 +155,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     # Preserve names attribute?
     if (!(is.na(useNames) || useNames)) {
       names(res) <- NULL
-    }    
+    }
   }
 
   res
@@ -163,7 +165,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
 #' @rdname rowWeightedMeans
 #' @export
 colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
-                             na.rm = FALSE, ..., useNames = NA) {
+                             na.rm = FALSE, ..., useNames = TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -184,6 +186,8 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
       stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
+
+  if (is.na(useNames)) deprecatedUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -215,7 +219,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
         } else {
           names(res) <- NULL
         }
-      }
+      }      
       
       return(res)
     } else if (nw < n) {

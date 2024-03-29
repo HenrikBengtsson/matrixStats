@@ -29,9 +29,21 @@ double CONCAT_MACROS(sum2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
   X_C_TYPE value;
   R_xlen_t ii;
   LDOUBLE sum = 0;
+  int noidxs;
+  if (idxs == NULL) { noidxs = 1; } else { noidxs = 0; }
 
   for (ii=0; ii < nidxs; ++ii) {
-    value = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
+    if (noidxs) {
+        value = x[ii];
+    } else {
+        R_xlen_t idx = idxs[ii];
+        if (!idxsHasNA) {
+            value = x[idx];
+        } else {
+            value = R_INDEX_GET(x, idx, X_NA, 1);    
+        }
+    }
+    
 #if X_TYPE == 'i'
     if (!X_ISNAN(value)) {
       sum += (LDOUBLE)value;

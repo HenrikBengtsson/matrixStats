@@ -1,7 +1,7 @@
 library(matrixStats)
 source("utils/validateIndicesFramework.R")
 
-oopts <- options(matrixStats.validateIndices = NULL)
+oopts <- options(matrixStats.validateIndices = "ignore")
 
 ftest <- function(x, idxs) validateIndices(idxs, length(x))
 

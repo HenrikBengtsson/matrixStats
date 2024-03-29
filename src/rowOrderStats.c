@@ -55,14 +55,14 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
 
   /* Assert that 'qq' is a valid index */
   if (qq < 0 || qq >= ncols) {
-    error("Argument 'which' is out of range: %d", qq + 1);
+    error("Argument 'which' is out of range: %lld", (long long int)(qq + 1));
   }
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, nrows));
     rowOrderStats_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, qq, REAL(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         SEXP namesVec = VECTOR_ELT(dimnames, 0);
@@ -75,7 +75,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nrows));
     rowOrderStats_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, qq, INTEGER(ans));
-    if (usenames != NA_LOGICAL && usenames){
+    if (usenames != NA_LOGICAL && usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         SEXP namesVec = VECTOR_ELT(dimnames, 0);

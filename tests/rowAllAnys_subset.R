@@ -10,8 +10,7 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
     dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
     if (!isTRUE(all.equal(dim(y), dim))) {
       dim(y) <- dim
-      dimnames <- dimnames(x)
-      if (!is.null(dimnames)) dimnames(y) <- dimnames
+      dimnames(y) <- dimnames(x)
     }
     
     res <- apply(y, MARGIN = 1L, FUN = all, na.rm = na.rm)
@@ -30,8 +29,7 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
     dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
     if (!isTRUE(all.equal(dim(y), dim))) {
       dim(y) <- dim
-      dimnames <- dimnames(x)
-      if (!is.null(dimnames)) dimnames(y) <- dimnames
+      dimnames(y) <- dimnames(x)
     }
     
     res <- apply(y, MARGIN = 1L, FUN = any, na.rm = na.rm)
@@ -88,7 +86,8 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(NA, TRUE, FALSE)[count %% 3 + 1]
+      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,
                                 ftest = rowAlls, fsure = rowAlls_R,
@@ -171,7 +170,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(NA, TRUE, FALSE)) {
+      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowAlls, fsure = rowAlls_R,
                                   value = "0", na.rm = TRUE, useNames = useNames)

@@ -28,7 +28,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(NA, TRUE, FALSE)) {
+    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
       y0 <- rowProds_R(x, na.rm = TRUE, useNames = useNames)
       print(y0)
       y1 <- rowProds(x, na.rm = TRUE, useNames = useNames)
