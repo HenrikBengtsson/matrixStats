@@ -19,6 +19,14 @@ Columns of Matrices (and to Vectors). R package version 0.52.2.
 https://github.com/HenrikBengtsson/matrixStats
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/HenrikBengtsson/matrixStats}
+  \item Report bugs at \url{https://github.com/HenrikBengtsson/matrixStats/issues}
+}
+
+}
 \author{
 Henrik Bengtsson, Hector Corrada Bravo, Robert Gentleman, Ola
 Hossjer, Harris Jaffee, Dongcan Jiang, Peter Langfelder

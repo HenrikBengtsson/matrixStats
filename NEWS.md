@@ -1,3 +1,10 @@
+# Version (development version)
+
+## Bug Fixes
+
+ * Fixed two PROTECT/UNPROTECT issues detected by the 'rchk' tool.
+ 
+
 # Version 1.2.0 [2023-12-11]
 
 ## Bug Fixes
