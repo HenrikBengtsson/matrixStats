@@ -6,9 +6,9 @@ isUseNamesNADefunct <- function() {
 
 deprecatedUseNamesNA <- function() {
   if (isUseNamesNADefunct()) {
-    .Defunct(msg = "useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE.", package = .packageName)
+    .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE.", .packageName), package = .packageName)
   } else {
-    .Deprecated(msg = "useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE.", package = .packageName)
+    .Deprecated(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE.", .packageName), package = .packageName)
   }
 }
 
@@ -16,19 +16,19 @@ deprecatedUseNamesNA <- function() {
 defunctShouldBeMatrixOrDim <- function(x) {
   x_class <- sQuote(class(x)[1])
   x_name <- sQuote(as.character(substitute(x)))
-  .Defunct(msg = sprintf("Argument %s is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", x_name, x_class, x_class))  #nolint
+  .Defunct(msg = sprintf("[%s] Argument %s is of class %s, but should be a matrix or 'dim.' should specify one. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", .packageName, x_name, x_class, x_class))  #nolint
 }
 
 defunctShouldBeMatrix <- function(x) {
   x_class <- sQuote(class(x)[1])
   x_name <- sQuote(as.character(substitute(x)))
-  .Defunct(msg = sprintf("Argument %s is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", x_name, x_class, x_class))  #nolint
+  .Defunct(msg = sprintf("[%s] Argument %s is of class %s, but should be a matrix. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", .packageName, x_name, x_class, x_class))  #nolint
 }
 
 defunctShouldBeMatrixOrVector <- function(x) {
   x_class <- sQuote(class(x)[1])
   x_name <- sQuote(as.character(substitute(x)))
-  .Defunct(msg = sprintf("Argument %s is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", x_name, x_class, x_class))  #nolint
+  .Defunct(msg = sprintf("[%s] Argument %s is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", .packageName, x_name, x_class, x_class))  #nolint
 }
 
 validateScalarCenter <- function(center, n, dimname) {
@@ -42,7 +42,7 @@ validateScalarCenter <- function(center, n, dimname) {
   ## Nothing to do?
   if (is.null(fcn)) return()
 
-  msg <- sprintf("Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is deprecated: %s != %s", "center", dimname, "x", length(center), n)
+  msg <- sprintf("[%s (>= 0.58.0)] Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is deprecated: %s != %s", .packageName, "center", dimname, "x", length(center), n)
   fcn(msg = msg, package = .packageName)
 }
 
@@ -87,8 +87,9 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
   fcn <- switch(value, deprecated = .Deprecated, defunct = .Defunct)
 
   if (is.null(msg)) {
-    msg <- sprintf("Argument '%s' of %s::%s() is %s: %s", "center",
-                   .packageName, fcnname, value, deparse(calls[[1]])[1])
+    msg <- sprintf("[%s] Argument '%s' of %s::%s() is %s: %s",
+                   .packageName, "center", .packageName, fcnname,
+                   value, deparse(calls[[1]])[1])
   }
   
   fcn(msg = msg, package = .packageName)
