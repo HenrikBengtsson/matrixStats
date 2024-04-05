@@ -18,5 +18,4 @@
 #'
 #' @name matrixStats-package
 #' @aliases matrixStats
-#' @docType package
-NULL
+"_PACKAGE"

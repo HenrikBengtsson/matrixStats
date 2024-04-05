@@ -7,8 +7,7 @@ all: vignettes tex index.html
 
 # Build all vignettes that has a %\VignetteBuild{} markup
 vignettes:
-	"$(R)" -e "if (getRversion() < 3) R.rsp::buildNonSweaveVignettes()"
-	"$(R)" -e "if (getRversion() >= 3) unlink('dummy.Rnw')"
+	"$(R)" -e "if (getRversion() < '3') R.rsp::buildNonSweaveVignettes() else unlink('dummy.Rnw')"
 
 # Compile any TeX files for which a PDF is missing
 tex:
@@ -16,7 +15,7 @@ tex:
 
 # Create an HTML vignette index page
 index.html:
-	"$(R)" -e "if (getRversion() < 3) R.rsp::buildPkgIndexHtml()"
+	"$(R)" -e "if (getRversion() < '3') R.rsp::buildPkgIndexHtml()"
 
 # Certain LaTeX files (e.g. bib, bst, sty) must be part of the build 
 # such that they are available for R CMD check.  These are excluded
