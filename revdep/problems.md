@@ -88,31 +88,6 @@ Run `revdep_details(, "AMARETTO")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘AMARETTO-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: AMARETTO_Download
-    > ### Title: AMARETTO_Download
-    > ### Aliases: AMARETTO_Download
-    > 
-    > ### ** Examples
-    > 
-    > TargetDirectory <- file.path(getwd(),"Downloads/");dir.create(TargetDirectory)
-    ...
-    > DataSetDirectories <- AMARETTO_Download(CancerSite,TargetDirectory = TargetDirectory)
-    Downloading Gene Expression and Copy Number Variation data for: CHOL
-    
-    This TCGA cancer site/type was not tested, continue at your own risk.
-    
-    Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    Execution halted
-    ```
-
 *   checking for code/documentation mismatches ... WARNING
     ```
     Codoc mismatches from documentation object 'get_firehoseData':
@@ -880,77 +855,6 @@ Run `revdep_details(, "BloodGen3Module")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘BloodGen3Module-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: Groupcomparison
-    > ### Title: Group comparison analysis
-    > ### Aliases: Groupcomparison
-    > 
-    > ### ** Examples
-    > 
-    > ## data could be downloaded from ExperimentHub("GSE13015")
-    ...
-    The following object is masked from ‘package:AnnotationHub’:
-    
-        cache
-    
-    > dat = ExperimentHub()
-    Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘test-fold_change.R’
-     ERROR
-    Running the tests in ‘tests/test-fold_change.R’ failed.
-    Last 50 lines of output:
-          rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-          rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-          rowWeightedSds, rowWeightedVars
-      
-      Loading required package: GenomicRanges
-      Loading required package: stats4
-    ...
-      The following object is masked from 'package:AnnotationHub':
-      
-          cache
-      
-      > dat = ExperimentHub()
-      Error: Corrupt Cache: sqlite file
-        See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-        cache: /c4/home/henrik/.cache/R/ExperimentHub
-        filename: experimenthub.sqlite3
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘BloodGen3Module.Rmd’ using rmarkdown
-    
-    Quitting from lines 62-71 [raw data and annotaion preparation] (BloodGen3Module.Rmd)
-    Error: processing vignette 'BloodGen3Module.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘BloodGen3Module.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘BloodGen3Module.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking whether package ‘BloodGen3Module’ can be installed ... WARNING
     ```
     Found the following significant warnings:
@@ -1402,27 +1306,6 @@ Run `revdep_details(, "ccImpute")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘ccImpute.Rmd’ using rmarkdown
-    
-    Quitting from lines 64-66 [unnamed-chunk-3] (ccImpute.Rmd)
-    Error: processing vignette 'ccImpute.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘ccImpute.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘ccImpute.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking C++ specification ... NOTE
     ```
       Specified C++11: please drop specification unless essential
@@ -1474,31 +1357,6 @@ Run `revdep_details(, "celda")` for more info
       [ FAIL 1 | WARN 1 | SKIP 2 | PASS 100 ]
       Error: Test failures
       Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘celda.Rmd’ using rmarkdown
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/plot_umap-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/plot_umap-2.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/plot_umap-3.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/celda_heatmap-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/propmap-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/module_heatmap-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/unnamed-chunk-3-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/celda/new/celda.Rcheck/vign_test/celda/vignettes/celda_files/figure-html/module_split_rpc-1.png" but not available.
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘decontX.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘decontX.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 *   checking package dependencies ... NOTE
@@ -2945,7 +2803,7 @@ Run `revdep_details(, "DEqMS")` for more info
 
 </details>
 
-## In both
+## Newly fixed
 
 *   checking examples ... ERROR
     ```
@@ -2960,42 +2818,19 @@ Run `revdep_details(, "DEqMS")` for more info
     > ### ** Examples
     > 
     ...
-    Loading required package: BiocFileCache
-    Loading required package: dbplyr
     > eh = ExperimentHub(localHub=TRUE)
     Using 'localHub=TRUE'
       If offline, please also see BiocManager vignette section on offline use
-    Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
+    > query(eh, "DEqMS")
+    ExperimentHub with 0 records
+    # snapshotDate(): 2024-04-02
+    > dat.psm = eh[["EH1663"]]
+    Error: File not previously downloaded.
+      Run with 'localHub=FALSE'
     Execution halted
     ```
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘DEqMS-package-vignette.Rmd’ using rmarkdown
-    trying URL 'https://ftp.ebi.ac.uk/pride-archive/2016/06/PXD004163/Yan_miR_Protein_table.flatprottable.txt'
-    Content type 'text/plain; charset=UTF-8' length 3515045 bytes (3.4 MB)
-    ==================================================
-    downloaded 3.4 MB
-    
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/DEqMS/new/DEqMS.Rcheck/vign_test/DEqMS/vignettes/DEqMS-package-vignette_files/figure-html/boxplot1-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/DEqMS/new/DEqMS.Rcheck/vign_test/DEqMS/vignettes/DEqMS-package-vignette_files/figure-html/plot-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/DEqMS/new/DEqMS.Rcheck/vign_test/DEqMS/vignettes/DEqMS-package-vignette_files/figure-html/plot-2.png" but not available.
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘DEqMS-package-vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘DEqMS-package-vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
+## In both
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -3383,77 +3218,6 @@ Run `revdep_details(, "easier")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘easier-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: assess_immune_response
-    > ### Title: Assess easier score as predictor of patients' immune response
-    > ### Aliases: assess_immune_response
-    > 
-    > ### ** Examples
-    > 
-    > # using a SummarizedExperiment object
-    ...
-    > # from easierData. Original processed data is available from
-    > # IMvigor210CoreBiologies package.
-    > library("easierData")
-    > 
-    > dataset_mariathasan <- easierData::get_Mariathasan2018_PDL1_treatment()
-    Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      
-      Loading required package: IRanges
-      Loading required package: GenomeInfoDb
-      Loading required package: Biobase
-      Welcome to Bioconductor
-      
-    ...
-          ▆
-       1. └─easierData::get_Mariathasan2018_PDL1_treatment() at test-easier_run.R:39:3
-       2.   └─ExperimentHub::ExperimentHub()
-       3.     └─AnnotationHub::.Hub(...)
-       4.       └─AnnotationHub:::.create_cache(...)
-       5.         └─AnnotationHub:::.updateHubDB(hub_bfc, .class, url, proxy, localHub)
-      
-      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 0 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘easier_user_manual.Rmd’ using rmarkdown
-    
-    Quitting from lines 169-228 [unnamed-chunk-5] (easier_user_manual.Rmd)
-    Error: processing vignette 'easier_user_manual.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘easier_user_manual.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘easier_user_manual.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking dependencies in R code ... NOTE
     ```
     There are ::: calls to the package's namespace in its code. A package
@@ -3641,27 +3405,6 @@ Run `revdep_details(, "epimutacions")` for more info
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘epimutacions.Rmd’ using rmarkdown
-    
-    Quitting from lines 227-230 [unnamed-chunk-5] (epimutacions.Rmd)
-    Error: processing vignette 'epimutacions.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘epimutacions.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘epimutacions.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
@@ -5073,31 +4816,6 @@ Run `revdep_details(, "glmGamPoi")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘glmGamPoi.Rmd’ using rmarkdown
-    
-    Quitting from lines 83-91 [unnamed-chunk-5] (glmGamPoi.Rmd)
-    Error: processing vignette 'glmGamPoi.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    ...
-    Quitting from lines 38-44 [unnamed-chunk-3] (pseudobulk.Rmd)
-    Error: processing vignette 'pseudobulk.Rmd' failed with diagnostics:
-    there is no package called 'muscData'
-    --- failed re-building ‘pseudobulk.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘glmGamPoi.Rmd’ ‘pseudobulk.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking whether package ‘glmGamPoi’ can be installed ... WARNING
     ```
     Found the following significant warnings:
@@ -5105,11 +4823,6 @@ Run `revdep_details(, "glmGamPoi")` for more info
       /c4/home/henrik/repositories/matrixStats/revdep/library/glmGamPoi/RcppArmadillo/include/armadillo_bits/fn_reshape.hpp:65:7: warning: ‘arma::Mat<typename T1::elem_type> arma::reshape(const arma::Base<typename T1::elem_type, T1>&, arma::uword, arma::uword, arma::uword)’ is deprecated: don't use this form: it will be removed [-Wdeprecated-declarations]
       /c4/home/henrik/repositories/matrixStats/revdep/library/glmGamPoi/RcppArmadillo/include/armadillo_bits/fn_reshape.hpp:74:9: warning: ‘arma::Mat<typename T1::elem_type> arma::reshape(const arma::Base<typename T1::elem_type, T1>&, arma::uword, arma::uword, arma::uword)’ is deprecated: don't use this form: it will be removed [-Wdeprecated-declarations]
     See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/glmGamPoi/new/glmGamPoi.Rcheck/00install.out’ for details.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘muscData’
     ```
 
 *   checking C++ specification ... NOTE
@@ -5199,30 +4912,11 @@ Run `revdep_details(, "GRaNIE")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘GRaNIE-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: addConnections_TF_peak
-    > ### Title: Add TF-peak connections to a 'GRN' object
-    > ### Aliases: addConnections_TF_peak
-    > 
-    > ### ** Examples
-    > 
-    > # See the Workflow vignette on the GRaNIE website for examples
-    > GRN = loadExampleObject()
-    Error: table metadata already exists
-    Execution halted
-    ```
-
 ## In both
 
 *   checking package dependencies ... NOTE
     ```
-    Packages suggested but not available for checking: 'IHW', 'JASPAR2022'
+    Package suggested but not available for checking: ‘JASPAR2022’
     ```
 
 *   checking installed package size ... NOTE
@@ -5765,27 +5459,6 @@ Run `revdep_details(, "IntOMICS")` for more info
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘IntOMICS_vignette.Rmd’ using rmarkdown
-    
-    Quitting from lines 162-185 [unnamed-chunk-3] (IntOMICS_vignette.Rmd)
-    Error: processing vignette 'IntOMICS_vignette.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘IntOMICS_vignette.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘IntOMICS_vignette.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking data for ASCII and uncompressed saves ... WARNING
     ```
@@ -6802,21 +6475,21 @@ Run `revdep_details(, "MethReg")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      Backtrace:
-           ▆
-        1. ├─testthat::expect_error(...) at test-get_promoter_avg.R:4:5
-        2. │ └─testthat:::quasi_capture(...)
-        3. │   ├─testthat (local) .capture(...)
-        4. │   │ └─base::withCallingHandlers(...)
-    ...
-       1. └─MethReg::make_dnam_se(dna.met.chr21) at test-utils.R:52:5
-       2.   └─MethReg::get_met_probes_info(genome = genome, arrayType = arrayType)
-       3.     └─ExperimentHub::ExperimentHub()
-       4.       └─AnnotationHub::.Hub(...)
-       5.         └─AnnotationHub:::.create_cache(...)
-       6.           └─AnnotationHub:::.updateHubDB(hub_bfc, .class, url, proxy, localHub)
       
-      [ FAIL 5 | WARN 6 | SKIP 3 | PASS 150 ]
+      |                                                    |  0%                      
+      |====================================================|100% ~0 s remaining       
+      |====================================================|100%                      Completed after 1 s 
+      
+      |                                                    |  0%                      
+    ...
+      Backtrace:
+          ▆
+       1. └─MethReg::get_tf_in_region(...) at test-get_tf_in_region.R:18:5
+       2.   └─MethReg:::check_package("JASPAR2022")
+       3.     └─base::suppressMessages(...)
+       4.       └─base::withCallingHandlers(...)
+      
+      [ FAIL 2 | WARN 6 | SKIP 3 | PASS 156 ]
       Error: Test failures
       Execution halted
     ```
@@ -6827,13 +6500,11 @@ Run `revdep_details(, "MethReg")` for more info
       ...
     --- re-building ‘MethReg.Rmd’ using rmarkdown
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/MethReg/new/MethReg.Rcheck/vign_test/MethReg/vignettes/MethReg_files/figure-html/workflow-1.png" but not available.
+    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/MethReg/new/MethReg.Rcheck/vign_test/MethReg/vignettes/MethReg_files/figure-html/plot-1.png" but not available.
     
-    Quitting from lines 174-181 [unnamed-chunk-5] (MethReg.Rmd)
+    Quitting from lines 323-333 [unnamed-chunk-9] (MethReg.Rmd)
     Error: processing vignette 'MethReg.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
+    JASPAR2022 package is needed for this function to work. Please install it.
     --- failed re-building ‘MethReg.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -7251,31 +6922,6 @@ Run `revdep_details(, "miloR")` for more info
 </details>
 
 ## In both
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘milo_contrasts.Rmd’ using rmarkdown
-    
-    Quitting from lines 47-50 [unnamed-chunk-2] (milo_contrasts.Rmd)
-    Error: processing vignette 'milo_contrasts.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘milo_contrasts.Rmd’
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘milo_gastrulation.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘milo_contrasts.Rmd’ ‘milo_gastrulation.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking installed package size ... NOTE
     ```
@@ -7830,31 +7476,6 @@ Run `revdep_details(, "muscat")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘analysis.Rmd’ using rmarkdown
-    
-    Quitting from lines 96-99 [eh] (analysis.Rmd)
-    Error: processing vignette 'analysis.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘analysis.Rmd’
-    ...
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/muscat/new/muscat.Rcheck/vign_test/muscat/vignettes/simulation_files/figure-html/heatmap-phylo-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/muscat/new/muscat.Rcheck/vign_test/muscat/vignettes/simulation_files/figure-html/iCOBRA-comparison-1.png" but not available.
-    [WARNING] Citeproc: citation Crowell2019-muscat not found
-    --- finished re-building ‘simulation.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘analysis.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  7.8Mb
@@ -7887,10 +7508,13 @@ Run `revdep_details(, "muscData")` for more info
 
 ## In both
 
-*   checking whether package ‘muscData’ can be installed ... ERROR
+*   checking for missing documentation entries ... WARNING
     ```
-    Installation failed.
-    See ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/muscData/new/muscData.Rcheck/00install.out’ for details.
+    Undocumented code objects:
+      ‘Crowell19_4vs4’
+    All user-level objects in a package should have documentation entries.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
 *   checking for hidden files and directories ... NOTE
@@ -7901,62 +7525,13 @@ Run `revdep_details(, "muscData")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-## Installation
+*   checking dependencies in R code ... NOTE
+    ```
+    Package in Depends field not imported from: ‘SingleCellExperiment’
+      These packages need to be imported from (in the NAMESPACE file)
+      for when this namespace is loaded but not attached.
+    ```
 
-### Devel
-
-```
-* installing *source* package ‘muscData’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: sqlite file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.sqlite3
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/muscData/new/muscData.Rcheck/muscData’
-
-
-```
-### CRAN
-
-```
-* installing *source* package ‘muscData’ ...
-** using staged installation
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-...
- .onLoad failed in loadNamespace() for 'muscData', details:
-  call: h(simpleError(msg, call))
-  error: error in evaluating the argument 'x' in selecting a method for function 'query': Corrupt Cache: sqlite file
-  See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-  cache: /c4/home/henrik/.cache/R/ExperimentHub
-  filename: experimenthub.sqlite3
-Error: loading failed
-Execution halted
-ERROR: loading failed
-* removing ‘/c4/home/henrik/repositories/matrixStats/revdep/checks/muscData/old/muscData.Rcheck/muscData’
-
-
-```
 # NanoStringDiff
 
 <details>
@@ -8855,31 +8430,6 @@ Run `revdep_details(, "Pigengene")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘Pigengene-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: gene.mapping
-    > ### Title: Maps gene IDs
-    > ### Aliases: gene.mapping
-    > ### Keywords: misc
-    > 
-    > ### ** Examples
-    > 
-    ...
-    +         outputDb=list(org.Hs.eg.db,org.Mm.eg.db), verbose=1)
-    Mapping to:  org.Hs.eg.db-SYMBOL 
-    'select()' returned 1:1 mapping between keys and columns
-    Loading required package: biomaRt
-    Warning: Ensembl will soon enforce the use of https.
-    Ensure the 'host' argument includes "https://"
-    Error in .readFromCache(bfc, hash) : Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    Calls: gene.mapping ... gene.mapping -> hu.mouse -> <Anonymous> -> .readFromCache
-    Execution halted
-    ```
 
 *   checking re-building of vignette outputs ... WARNING
     ```
@@ -10285,31 +9835,6 @@ Run `revdep_details(, "scone")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-    --- re-building ‘PsiNorm.Rmd’ using rmarkdown
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/scone/new/scone.Rcheck/vign_test/scone/vignettes/PsiNorm_files/figure-html/unnamed-chunk-4-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/scone/new/scone.Rcheck/vign_test/scone/vignettes/PsiNorm_files/figure-html/unnamed-chunk-6-1.png" but not available.
-    
-    Quitting from lines 181-185 [pbmc] (PsiNorm.Rmd)
-    Error: processing vignette 'PsiNorm.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-    ...
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘sconeTutorial.Rmd’
-    
-    SUMMARY: processing the following files failed:
-      ‘PsiNorm.Rmd’ ‘sconeTutorial.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     sconeReport: no visible global function definition for
@@ -11045,50 +10570,6 @@ Run `revdep_details(, "singleCellTK")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘singleCellTK-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: importExampleData
-    > ### Title: Retrieve example datasets
-    > ### Aliases: importExampleData
-    > 
-    > ### ** Examples
-    > 
-    > sce <- importExampleData("pbmc3k")
-    Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘spelling.R’
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      
-        |                                                                            
-        |                                                                      |   0%
-        |                                                                            
-        |======================================================================| 100%
-    ...
-       4.     └─celldex:::.create_se(...)
-       5.       └─celldex:::.ExperimentHub()
-       6.         └─ExperimentHub::ExperimentHub()
-       7.           └─AnnotationHub::.Hub(...)
-       8.             └─AnnotationHub:::.create_cache(...)
-       9.               └─AnnotationHub:::.updateHubDB(hub_bfc, .class, url, proxy, localHub)
-      
-      [ FAIL 1 | WARN 22 | SKIP 0 | PASS 219 ]
-      Error: Test failures
-      Execution halted
-    ```
-
 *   checking installed package size ... NOTE
     ```
       installed size is  7.0Mb
@@ -11385,79 +10866,6 @@ Run `revdep_details(, "SpliceWiz")` for more info
 </details>
 
 ## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘SpliceWiz-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: NxtSE-class
-    > ### Title: The NxtSE class
-    > ### Aliases: NxtSE-class NxtSE-methods up_inc up_inc,NxtSE-method up_inc<-
-    > ###   up_inc<-,NxtSE-method down_inc down_inc,NxtSE-method down_inc<-
-    > ###   down_inc<-,NxtSE-method up_exc up_exc,NxtSE-method up_exc<-
-    > ###   up_exc<-,NxtSE-method down_exc down_exc,NxtSE-method down_exc<-
-    > ###   down_exc<-,NxtSE-method covfile covfile,NxtSE-method covfile<-
-    ...
-    > 
-    > bams <- SpliceWiz_example_bams()
-    ExperimentHub failed to load, error message: Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    
-    Failed establishing ExperimentHub connection.
-    Error in SpliceWiz_example_bams() : Example bam fetching failed
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘testthat.R’
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      **************************************************|
-      ExperimentHub failed to load, error message: Error: Corrupt Cache: sqlite file
-        See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-        cache: /c4/home/henrik/.cache/R/ExperimentHub
-        filename: experimenthub.sqlite3
-      
-    ...
-       1. └─SpliceWiz::SpliceWiz_example_bams() at test-SpliceWiz-Novel.R:2:5
-      ── Error ('test-SpliceWiz.R:2:5'): SpliceWiz pipeline reproduces NxtSE object ──
-      Error in `SpliceWiz_example_bams()`: Example bam fetching failed
-      Backtrace:
-          ▆
-       1. └─SpliceWiz::SpliceWiz_example_bams() at test-SpliceWiz.R:2:5
-      
-      [ FAIL 4 | WARN 0 | SKIP 0 | PASS 1 ]
-      Error: Test failures
-      Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘SW_Cookbook.Rmd’ using rmarkdown
-    which: no STAR in (/software/c4/cbi/software/_centos7/R-4.3.3-gcc10/lib64/R/bin:/c4/home/henrik/.yarn/bin:/c4/home/henrik/.config/yarn/global/node_modules/.bin:/software/c4/cbi/software/rstudio-server-controller-0.16.0/bin:/software/c4/cbi/software/rstudio-server-2023.12.0-369/bin:/opt/rh/devtoolset-10/root/usr/bin:/software/c4/cbi/software/_centos7/R-4.3.3-gcc10/bin:/software/c4/cbi/software/pdfcrop-1.42:/software/c4/cbi/software/Clp-1.17.2/bin:/software/c4/cbi/software/JAGS-4.3.0/bin:/software/c4/cbi/software/gsl-2.7/bin:/software/c4/cbi/software/gdal-3.6.4/bin:/software/c4/cbi/software/proj-8.2.1/bin:/software/c4/cbi/software/sqlite-3.42.0/bin:/software/c4/cbi/software/geos-3.11.2/bin:/software/c4/cbi/software/hdf5-1.12.2/bin:/software/c4/cbi/software/cmake-3.27.7/bin:/usr/lib64/openmpi3/bin:/software/c4/cbi/software/shellcheck-0.9.0:/software/c4/cbi/software/pandoc-3.1.11.1/bin:/software/c4/cbi/software/cluster-utils-23.03.1/bin:/software/c4/cbi/software/fzf-0.46.0/bin:/software/c4/cbi/software/_centos7/htop-3.3.0/bin:/software/c4/cbi/software/_centos7/emacs-29.1/bin:/software/c4/cbi/software/byobu-5.133/bin:/software/c4/cbi/software/glow-1.5.1:/software/c4/cbi/software/bat-0.24.0:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/c4/home/henrik/repositories/git-r/bin:/c4/home/henrik/.local/bin:/c4/home/henrik/bin)
-    which: no STAR in (/software/c4/cbi/software/_centos7/R-4.3.3-gcc10/lib64/R/bin:/c4/home/henrik/.yarn/bin:/c4/home/henrik/.config/yarn/global/node_modules/.bin:/software/c4/cbi/software/rstudio-server-controller-0.16.0/bin:/software/c4/cbi/software/rstudio-server-2023.12.0-369/bin:/opt/rh/devtoolset-10/root/usr/bin:/software/c4/cbi/software/_centos7/R-4.3.3-gcc10/bin:/software/c4/cbi/software/pdfcrop-1.42:/software/c4/cbi/software/Clp-1.17.2/bin:/software/c4/cbi/software/JAGS-4.3.0/bin:/software/c4/cbi/software/gsl-2.7/bin:/software/c4/cbi/software/gdal-3.6.4/bin:/software/c4/cbi/software/proj-8.2.1/bin:/software/c4/cbi/software/sqlite-3.42.0/bin:/software/c4/cbi/software/geos-3.11.2/bin:/software/c4/cbi/software/hdf5-1.12.2/bin:/software/c4/cbi/software/cmake-3.27.7/bin:/usr/lib64/openmpi3/bin:/software/c4/cbi/software/shellcheck-0.9.0:/software/c4/cbi/software/pandoc-3.1.11.1/bin:/software/c4/cbi/software/cluster-utils-23.03.1/bin:/software/c4/cbi/software/fzf-0.46.0/bin:/software/c4/cbi/software/_centos7/htop-3.3.0/bin:/software/c4/cbi/software/_centos7/emacs-29.1/bin:/software/c4/cbi/software/byobu-5.133/bin:/software/c4/cbi/software/glow-1.5.1:/software/c4/cbi/software/bat-0.24.0:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/c4/home/henrik/repositories/git-r/bin:/c4/home/henrik/.local/bin:/c4/home/henrik/bin)
-    --- finished re-building ‘SW_Cookbook.Rmd’
-    
-    --- re-building ‘SW_QuickStart.Rmd’ using rmarkdown
-    
-    Quitting from lines 489-490 [unnamed-chunk-22] (SW_QuickStart.Rmd)
-    Error: processing vignette 'SW_QuickStart.Rmd' failed with diagnostics:
-    Example bam fetching failed
-    --- failed re-building ‘SW_QuickStart.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘SW_QuickStart.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
 
 *   checking C++ specification ... NOTE
     ```
@@ -12233,75 +11641,29 @@ Run `revdep_details(, "Voyager")` for more info
 
 ## In both
 
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘Voyager-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: ElbowPlot
-    > ### Title: Plot the elbow plot or scree plot for PCA
-    > ### Aliases: ElbowPlot
-    > 
-    > ### ** Examples
-    > 
-    > library(SFEData)
-    ...
-        anyMissing, rowMedians
-    
-    Loading required package: scuttle
-    Loading required package: ggplot2
-    > sfe <- McKellarMuscleData("small")
-    Error: Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    Execution halted
-    ```
-
 *   checking tests ...
     ```
       Running ‘testthat.R’
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      • bivariate/plot-cross-variograms-no-np.svg
-      • bivariate/plot-cross-variograms-with-anisotropy.svg
-      • bivariate/plot-cross-variograms.svg
-      • gstat/multiple-samples-multiple-features.svg
-      • gstat/multiple-samples-one-feature.svg
-      • gstat/one-sample-one-feature-variogram-map.svg
+      Error in `loadNamespace(x)`: there is no package called 'DropletUtils'
+      Backtrace:
+           ▆
+        1. ├─SpatialFeatureExperiment::read10xVisiumSFE(".", images = "lowres") at test-plot.R:925:1
+        2. │ └─base::lapply(...)
+        3. │   └─SpatialFeatureExperiment (local) FUN(X[[i]], ...)
     ...
+      • plot/plotcorrelogram-coldata-i.svg
+      • plot/plotcorrelogram-continuous-color-by.svg
       • plot/plotcorrelogram-one-gene-c.svg
       • plot/plotcorrelogram-one-gene-corr.svg
-      • plot/plotcorrelogram-one-gene-i.svg
       • plot/plotcorrelogram-specify-gene-and-coldata-i.svg
-      • plot/plotdimloadings-balanced.svg
       • plot/plotdimloadings-not-balanced.svg
       • plot/with-subset-freqpoly.svg
       • plot/with-subset.svg
       Error: Test failures
       Execution halted
-    ```
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘overview.Rmd’ using rmarkdown
-    
-    Quitting from lines 84-85 [unnamed-chunk-6] (overview.Rmd)
-    Error: processing vignette 'overview.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘overview.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘overview.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
     ```
 
 *   checking Rd cross-references ... WARNING
@@ -12622,43 +11984,6 @@ Run `revdep_details(, "yarn")` for more info
     
     SUMMARY: processing the following file failed:
       ‘yarn.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
-# zinbwave
-
-<details>
-
-* Version: 1.24.0
-* GitHub: https://github.com/drisso/zinbwave
-* Source code: https://github.com/cran/zinbwave
-* Date/Publication: 2023-10-24
-* Number of recursive dependencies: 164
-
-Run `revdep_details(, "zinbwave")` for more info
-
-</details>
-
-## In both
-
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘intro.Rmd’ using rmarkdown
-    
-    Quitting from lines 84-88 [pollen] (intro.Rmd)
-    Error: processing vignette 'intro.Rmd' failed with diagnostics:
-    Corrupt Cache: sqlite file
-      See AnnotationHub's TroubleshootingTheCache vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      filename: experimenthub.sqlite3
-    --- failed re-building ‘intro.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘intro.Rmd’
     
     Error: Vignette re-building failed.
     Execution halted
