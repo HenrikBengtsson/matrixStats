@@ -96,6 +96,10 @@ stopf <- function(fmt, ..., call. = TRUE, domain = NULL) {
   stop(cond)
 }
 
+trim <- function(x) {
+  sub("[\t\n\f\r ]+$", "", sub("^[\t\n\f\r ]+", "", s))
+}
+
 
 # Set an R option from an environment variable
 update_package_option <- function(name, mode = "character", default = NULL, split = NULL, trim = TRUE, disallow = c("NA"), choices = NULL, force = FALSE) {
