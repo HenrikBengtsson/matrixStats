@@ -96,7 +96,7 @@ stopf <- function(fmt, ..., call. = TRUE, domain = NULL) {
   stop(cond)
 }
 
-trim <- function(x) {
+trim <- function(s) {
   sub("[\t\n\f\r ]+$", "", sub("^[\t\n\f\r ]+", "", s))
 }
 
