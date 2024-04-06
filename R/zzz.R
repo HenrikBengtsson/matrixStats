@@ -20,6 +20,9 @@
     action <- match.arg(action, choices = c("deprecated", "defunct"))
     options(matrixStats.useNames.NA = action)
   }
+
+  ## Set options based on environment variables
+  update_package_options()
 }
 
 #' @useDynLib "matrixStats", .registration = TRUE, .fixes = "C_"
