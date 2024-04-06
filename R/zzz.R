@@ -1,12 +1,4 @@
 .onLoad <- function(libname, pkgname) {
-  ## https://github.com/HenrikBengtsson/matrixStats/issues/183
-  onLoadSetCenterOnScalar()
-  ## https://github.com/HenrikBengtsson/matrixStats/issues/187
-  onLoadSetCenterOnUse()
-  ## https://github.com/HenrikBengtsson/matrixStats/issues/16
-  onLoadSetVarsFormulaFreq()
-  onLoadSetVarsFormulaOnMistake()
-
   ## Set options based on environment variables
   update_package_options()
 }

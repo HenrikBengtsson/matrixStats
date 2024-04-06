@@ -164,7 +164,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
     equal <- all.equal(x, x2, check.attribute = FALSE)
     x2 <- NULL
     if (!isTRUE(equal)) {
-      fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+      fcn <- getOption("matrixStats.vars.formula.onMistake", "defunct")
       fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
       when <- attr(validate, "when", exact = TRUE)
       fcn(msg = sprintf("Detected incorrect use of argument 'center' for rowVars() or rowSds(). The value of 'center' does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results, which suggests a misunderstanding on what argument 'center' should be. Please see help(\"rowVars\", package = \"%s\"). The reason was: %s (this validation is performed %s per R option 'matrixStats.vars.formula.freq')", .packageName, equal, when))
@@ -306,7 +306,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
     equal <- all.equal(x, x2)
     x2 <- NULL
     if (!isTRUE(equal)) {
-      fcn <- getOption("matrixStats.vars.formula.onMistake", "deprecated")
+      fcn <- getOption("matrixStats.vars.formula.onMistake", "defunct")
       fcn <- switch(fcn, deprecated = .Deprecated, .Defunct)
       when <- attr(validate, "when", exact = TRUE)
       fcn(msg = sprintf("Detected incorrect use of argument 'center' for colVars() or colSds(). The value of 'center' does not meet the assumption that estimating the variance using the 'primary' or the 'alternative' formula does not matter as they should give the same results, which suggests a misunderstanding on what argument 'center' should be. Please see help(\"rowVars\", package = \"%s\"). The reason was: %s (this validation is performed %s per R option 'matrixStats.vars.formula.freq')", .packageName, equal, when))

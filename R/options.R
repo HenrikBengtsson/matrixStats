@@ -23,7 +23,7 @@
 #'    If \code{"defunct"}, an error is thrown.
 #'    If \code{"deprecated"}, a warning is signalled.
 #'    If \code{"ignore"}, it's silently ignored.
-#'    (Default: \code{"ignore"})}
+#'    (Default: \code{"deprecated"})}
 #' }
 #'
 #' \describe{
@@ -183,7 +183,7 @@ update_package_options <- function() {
   
   update_package_option("matrixStats.vars.center.onUse", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
   
-  update_package_option("matrixStats.center.onScalar", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
+  update_package_option("matrixStats.center.onScalar", default = "deprecated", choices = c("deprecated", "defunct", "ignore"))
   
   ## Deprecate validateIndices() /HB 2021-08-26
   update_package_option("matrixStats.validateIndices", default = "defunct", choices = c("deprecated", "defunct", "ignore"))

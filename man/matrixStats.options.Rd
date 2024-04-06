@@ -40,7 +40,7 @@ Below are the \R options and environment variables that are used by the
    If \code{"defunct"}, an error is thrown.
    If \code{"deprecated"}, a warning is signalled.
    If \code{"ignore"}, it's silently ignored.
-   (Default: \code{"ignore"})}
+   (Default: \code{"deprecated"})}
 }
 
 \describe{
