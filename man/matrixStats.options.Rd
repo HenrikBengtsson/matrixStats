@@ -2,8 +2,6 @@
 % Please edit documentation in R/options.R
 \name{matrixStats.options}
 \alias{matrixStats.options}
-\alias{matrixStats.validateIndices}
-\alias{R_MATRIXSTATS_VALIDATEINDICES}
 \alias{matrixStats.useNames.NA}
 \alias{R_MATRIXSTATS_USENAMES_NA}
 \alias{matrixStats.vars.formula.freq}
@@ -61,14 +59,6 @@ Below are the \R options and environment variables that are used by the
 \describe{
  \item{\option{matrixStats.useNames.NA}:}{(string)
    Action taken when argument \code{useNames} is set to \code{NA}.
-   If \code{"defunct"}, an error is thrown.
-   If \code{"deprecated"}, a warning is signalled.
-   (Default: \code{"defunct"})}
-}
-
-\describe{
- \item{\option{matrixStats.validateIndices}:}{(string)
-   Action taken when \code{validateIndicies()} is called.
    If \code{"defunct"}, an error is thrown.
    If \code{"deprecated"}, a warning is signalled.
    (Default: \code{"defunct"})}

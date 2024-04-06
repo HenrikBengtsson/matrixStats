@@ -49,14 +49,6 @@
 #'    (Default: \code{"defunct"})}
 #' }
 #'
-#' \describe{
-#'  \item{\option{matrixStats.validateIndices}:}{(string)
-#'    Action taken when \code{validateIndicies()} is called.
-#'    If \code{"defunct"}, an error is thrown.
-#'    If \code{"deprecated"}, a warning is signalled.
-#'    (Default: \code{"defunct"})}
-#' }
-#'
 #' @section Environment variables that set R options:
 #' All of the above \R \option{matrixStats.*} options can be set by
 #' corresponding environment variable \env{R_MATRIXSTATS_*}
@@ -70,8 +62,6 @@
 #' }
 #'
 #' @aliases
-#' matrixStats.validateIndices
-#' R_MATRIXSTATS_VALIDATEINDICES
 #' matrixStats.useNames.NA
 #' R_MATRIXSTATS_USENAMES_NA
 #' matrixStats.vars.formula.freq
@@ -185,9 +175,6 @@ update_package_options <- function() {
   
   update_package_option("matrixStats.center.onScalar", default = "deprecated", choices = c("deprecated", "defunct", "ignore"))
   
-  ## Deprecate validateIndices() /HB 2021-08-26
-  update_package_option("matrixStats.validateIndices", default = "defunct", choices = c("deprecated", "defunct", "ignore"))
-
   ## Deprecate/defunct useNames = NA /HB 2023-10-31
   update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
 }

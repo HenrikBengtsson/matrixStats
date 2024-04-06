@@ -3,7 +3,12 @@
 ## Bug Fixes
 
  * Fixed two PROTECT/UNPROTECT issues detected by the 'rchk' tool.
- 
+
+## Deprecated and Defunct
+
+ * `validateIndices()` has been removed. It had been defunct since
+   version 0.63.0 (2022-11-14).
+
 
 # Version 1.2.0 [2023-12-11]
 
