@@ -32,11 +32,9 @@ defunctShouldBeMatrixOrVector <- function(x) {
 }
 
 validateScalarCenter <- function(center, n, dimname) {
-  onScalar <- getOption("matrixStats.center.onScalar", NULL)
+  onScalar <- getOption("matrixStats.center.onScalar", "deprecated")
+  if (identical(onScalar, "ignore")) return()
   
-  ## Nothing to do?
-  if (is.null(onScalar) || identical(onScalar, "ignore")) return()
-
   fcn <- switch(onScalar, deprecated = .Deprecated, defunct = .Defunct, NULL)
   
   ## Nothing to do?
@@ -53,7 +51,7 @@ validateVarsCenterFormula <- local({
   always <- structure(TRUE, when = "each time this function is called")
   
   function() {
-    freq <- getOption("matrixStats.vars.formula.freq", NULL)
+    freq <- getOption("matrixStats.vars.formula.freq", 50L)
     
     ## Nothing to do?
     if (is.null(freq)) return(FALSE)
@@ -80,8 +78,8 @@ validateVarsCenterFormula <- local({
 
 
 centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
-  value <- getOption("matrixStats.center.onUse")
-  if (is.null(value) || identical(value, "ignore")) return()
+  value <- getOption("matrixStats.center.onUse", "ignore")
+  if (identical(value, "ignore")) return()
   
   value <- match.arg(value, c("deprecated", "defunct"))
   fcn <- switch(value, deprecated = .Deprecated, defunct = .Defunct)
