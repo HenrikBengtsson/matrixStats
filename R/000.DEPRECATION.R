@@ -35,7 +35,7 @@ validateScalarCenter <- function(center, n, dimname) {
   onScalar <- getOption("matrixStats.center.onScalar", NULL)
   
   ## Nothing to do?
-  if (is.null(onScalar)) return()
+  if (is.null(onScalar) || identical(onScalar, "ignore")) return()
 
   fcn <- switch(onScalar, deprecated = .Deprecated, defunct = .Defunct, NULL)
   

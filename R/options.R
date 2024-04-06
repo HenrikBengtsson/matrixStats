@@ -186,8 +186,9 @@ update_package_options <- function() {
   update_package_option("matrixStats.center.onScalar", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
   
   ## Deprecate validateIndices() /HB 2021-08-26
-  update_package_option("matrixStats.validateIndices", default = "defunct", choices = c("deprecated", "defunct"))
+  update_package_option("matrixStats.validateIndices", default = "defunct", choices = c("deprecated", "defunct", "ignore"))
 
   ## Deprecate/defunct useNames = NA /HB 2023-10-31
   update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
 }
+
