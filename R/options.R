@@ -171,6 +171,12 @@ update_package_option <- function(name, mode = "character", default = NULL, spli
 
 ## Set package options based on environment variables
 update_package_options <- function() {
+  update_package_option("matrixStats.envs.min.version", mode = "character")
+
+  ## Nothing to do?
+  v <- getOption("matrixStats.envs.min.version", NULL)
+  if (!is.null(v) && packageVersion(.packageName) < v) return()
+
   update_package_option("matrixStats.vars.formula.freq", mode = "numeric", default = "50")
   
   update_package_option("matrixStats.vars.formula.onMistake", default = "defunct", choices = c("deprecated", "defunct"))
