@@ -32,7 +32,7 @@ defunctShouldBeMatrixOrVector <- function(x) {
 }
 
 validateScalarCenter <- function(center, n, dimname) {
-  onScalar <- getOption("matrixStats.center.onScalar", "deprecated")
+  onScalar <- getOption("matrixStats.center.onScalar", "defunct")
   if (identical(onScalar, "ignore")) return()
   
   fcn <- switch(onScalar, deprecated = .Deprecated, defunct = .Defunct, NULL)

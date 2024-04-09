@@ -204,8 +204,4 @@ update_package_options <- function() {
   update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
 
   update_package_option("matrixStats.ties.method.missing", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
-
-  update_package_option("matrixStats.ties.method.freq", mode = "numeric", default = "50")
 }
-
-
