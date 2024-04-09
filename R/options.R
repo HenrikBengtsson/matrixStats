@@ -42,6 +42,16 @@
 #' }
 #'
 #' \describe{
+#'  \item{\option{matrixStats.ties.method.missing}:}{(string)
+#'    Controls whether argument \code{ties.method} for \code{colRanks()}
+#'    and \code{rowRanks()} should be explicitly specified.
+#'    If \code{"defunct"}, an error is produced if not.
+#'    If \code{"deprecated"}, a warning is signalled.
+#'    If \code{"ignore"}, it's silently ignored.
+#'    (Default: \code{"ignore"})}
+#' }
+#'
+#' \describe{
 #'  \item{\option{matrixStats.useNames.NA}:}{(string)
 #'    Action taken when argument \code{useNames} is set to \code{NA}.
 #'    If \code{"defunct"}, an error is thrown.
@@ -72,6 +82,8 @@
 #' R_MATRIXSTATS_VARS_CENTER_ONUSE
 #' matrixStats.center.onScalar
 #' R_MATRIXSTATS_CENTER_ONSCALAR
+#' matrixStats.ties.method.missing
+#' R_MATRIXSTATS_TIES_METHOD_MISSING
 #'
 #' @keywords internal
 #' @name matrixStats.options
@@ -181,15 +193,19 @@ update_package_options <- function() {
     if (pkgV < v) return()
   }
 
-  update_package_option("matrixStats.vars.formula.freq", mode = "numeric", default = "50")
-  
   update_package_option("matrixStats.vars.formula.onMistake", default = "defunct", choices = c("deprecated", "defunct"))
+  
+  update_package_option("matrixStats.vars.formula.freq", mode = "numeric", default = "50")
   
   update_package_option("matrixStats.vars.center.onUse", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
   
   update_package_option("matrixStats.center.onScalar", default = "deprecated", choices = c("deprecated", "defunct", "ignore"))
   
-  ## Deprecate/defunct useNames = NA /HB 2023-10-31
   update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
+
+  update_package_option("matrixStats.ties.method.missing", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
+
+  update_package_option("matrixStats.ties.method.freq", mode = "numeric", default = "50")
 }
+
 

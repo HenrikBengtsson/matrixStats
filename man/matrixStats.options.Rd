@@ -12,6 +12,8 @@
 \alias{R_MATRIXSTATS_VARS_CENTER_ONUSE}
 \alias{matrixStats.center.onScalar}
 \alias{R_MATRIXSTATS_CENTER_ONSCALAR}
+\alias{matrixStats.ties.method.missing}
+\alias{R_MATRIXSTATS_TIES_METHOD_MISSING}
 \title{Options used for matrixStats}
 \description{
 Below are the \R options and environment variables that are used by the
@@ -54,6 +56,16 @@ Below are the \R options and environment variables that are used by the
  \item{\option{matrixStats.formula.freq}:}{(numeric)
    Controls how often the above assumption is checked.
    (Default: \code{50} - every 50th call)}
+}
+
+\describe{
+ \item{\option{matrixStats.ties.method.missing}:}{(string)
+   Controls whether argument \code{ties.method} for \code{colRanks()}
+   and \code{rowRanks()} should be explicitly specified.
+   If \code{"defunct"}, an error is produced if not.
+   If \code{"deprecated"}, a warning is signalled.
+   If \code{"ignore"}, it's silently ignored.
+   (Default: \code{"ignore"})}
 }
 
 \describe{

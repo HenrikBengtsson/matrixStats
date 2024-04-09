@@ -92,3 +92,16 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
   
   fcn(msg = msg, package = .packageName)
 }
+
+
+tiesMethodMissing <- function() {
+  action <- getOption("matrixStats.ties.method.missing", "ignore")
+  if (action == "ignore") return()
+
+  action <- switch(action,
+    deprecated = .Deprecated,
+    defunct    = .Defunct,
+    function(...) NULL
+  )
+  action(msg = sprintf("[%s] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank()", .packageName, .packageName), package = .packageName)
+}
