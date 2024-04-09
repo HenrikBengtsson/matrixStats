@@ -175,7 +175,11 @@ update_package_options <- function() {
 
   ## Nothing to do?
   v <- getOption("matrixStats.envs.min.version", NULL)
-  if (!is.null(v) && packageVersion(.packageName) < v) return()
+  if (!is.null(v)) {
+    ns <- getNamespace(.packageName)
+    pkgV <- ns[[".__NAMESPACE__."]][["spec"]][["version"]]
+    if (pkgV < v) return()
+  }
 
   update_package_option("matrixStats.vars.formula.freq", mode = "numeric", default = "50")
   
