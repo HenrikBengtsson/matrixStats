@@ -199,7 +199,7 @@ update_package_options <- function() {
   
   update_package_option("matrixStats.vars.center.onUse", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
   
-  update_package_option("matrixStats.center.onScalar", default = "deprecated", choices = c("deprecated", "defunct", "ignore"))
+  update_package_option("matrixStats.center.onScalar", default = "defunct", choices = c("deprecated", "defunct", "ignore"))
   
   update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
 
