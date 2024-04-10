@@ -47,8 +47,7 @@ validateScalarCenter <- function(center, n, dimname) {
 
 
 validateVarsCenterFormula <- local({
-  .curr <- 1
-  .next <- 1
+  countdown <- NA_integer_
   always <- structure(TRUE, when = "each time this function is called")
   
   function() {
@@ -66,13 +65,12 @@ validateVarsCenterFormula <- local({
     ## each time?
     if (freq == 1) return(always)
 
-    ## once in a while?
-    .curr <<- .curr + 1
-    .next <<- freq  ## update .next according to R option
-
-    ## Skip or not?
-    if (.curr <= .next) return(FALSE)
-    .curr <<- 1 ## reset
+    ## Not first incident?
+    if (!is.na(countdown)) {
+      countdown <<- countdown - 1L
+      if (countdown > 0L) return(FALSE)
+    }
+    countdown <<- freq ## reset
     structure(TRUE, when = sprintf("every %g call to this function", freq))
   }
 })
@@ -100,8 +98,7 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
 
 
 validateTiesMethodMissing <- local({
-  .curr <- 1
-  .next <- 1
+  countdown <- NA_integer_
   always <- structure(TRUE, when = "each time this function is called")
   
   function() {
@@ -117,15 +114,14 @@ validateTiesMethodMissing <- local({
     if (is.infinite(freq)) return(always)
 
     ## each time?
-    if (freq == 1) return(always)
+    if (freq == 1L) return(always)
 
-    ## once in a while?
-    .curr <<- .curr + 1
-    .next <<- freq  ## update .next according to R option
-
-    ## Skip or not?
-    if (.curr <= .next) return(FALSE)
-    .curr <<- 1 ## reset
+    ## Not first incident?
+    if (!is.na(countdown)) {
+      countdown <<- countdown - 1L
+      if (countdown > 0L) return(FALSE)
+    }
+    countdown <<- freq ## reset
     structure(TRUE, when = sprintf("every %g call to this function", freq))
   }
 })

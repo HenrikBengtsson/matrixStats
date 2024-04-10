@@ -38,7 +38,7 @@
 #' \describe{
 #'  \item{\option{matrixStats.formula.freq}:}{(numeric)
 #'    Controls how often the above assumption is checked.
-#'    (Default: \code{50} - every 50th call)}
+#'    (Default: \code{50} - every 50:th call starting with the first)}
 #' }
 #'
 #' \describe{
@@ -54,7 +54,7 @@
 #' \describe{
 #'  \item{\option{matrixStats.ties.method.freq}:}{(numeric)
 #'    Controls how often the above validation is checked.
-#'    (Default: \code{50} - every 50th call)}
+#'    (Default: \code{50} - every 50:th call starting with the first)}
 #' }
 #'
 #' \describe{
