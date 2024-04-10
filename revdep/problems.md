@@ -172,6 +172,31 @@ Run `revdep_details(, "amplican")` for more info
 
 ## In both
 
+*   checking running R code from vignettes ...
+    ```
+      ‘amplicanFAQ.Rmd’ using ‘UTF-8’... OK
+      ‘amplicanOverview.Rmd’ using ‘UTF-8’... OK
+      ‘example_amplicon_report.Rmd’ using ‘UTF-8’... failed
+      ‘example_barcode_report.Rmd’ using ‘UTF-8’... OK
+      ‘example_group_report.Rmd’ using ‘UTF-8’... failed
+      ‘example_guide_report.Rmd’ using ‘UTF-8’... failed
+      ‘example_id_report.Rmd’ using ‘UTF-8’... failed
+      ‘example_index.Rmd’ using ‘UTF-8’... OK
+     ERROR
+    Errors in running code in vignettes:
+    ...
+    
+    > src = sapply(config$ID, function(i) {
+    +     knitr::knit_expand(text = c("## {{i}}  \n", "### Deletions  \n", 
+    +         paste("```{r del-{{i}}, echo ..." ... [TRUNCATED] 
+    
+    > res = knitr::knit_child(text = src, quiet = TRUE)
+    
+      When sourcing ‘example_id_report.R’:
+    Error: character argument expected
+    Execution halted
+    ```
+
 *   checking installed package size ... NOTE
     ```
       installed size is 16.2Mb
@@ -489,7 +514,22 @@ Run `revdep_details(, "BatchQC")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking R code for possible problems ... NOTE
+    ```
+    gene_plot: no visible global function definition for ‘boxplot’
+    gene_plot: no visible binding for global variable ‘batch’
+    gls.series.C: no visible global function definition for ‘lm.fit’
+    sample_plot: no visible global function definition for ‘boxplot’
+    sample_plot: no visible binding for global variable ‘batch’
+    Undefined global functions or variables:
+      batch boxplot lm.fit
+    Consider adding
+      importFrom("graphics", "boxplot")
+      importFrom("stats", "lm.fit")
+    to your NAMESPACE file.
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
     ```
     Error(s) in re-building vignettes:
       ...
@@ -512,21 +552,6 @@ Run `revdep_details(, "BatchQC")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    gene_plot: no visible global function definition for ‘boxplot’
-    gene_plot: no visible binding for global variable ‘batch’
-    gls.series.C: no visible global function definition for ‘lm.fit’
-    sample_plot: no visible global function definition for ‘boxplot’
-    sample_plot: no visible binding for global variable ‘batch’
-    Undefined global functions or variables:
-      batch boxplot lm.fit
-    Consider adding
-      importFrom("graphics", "boxplot")
-      importFrom("stats", "lm.fit")
-    to your NAMESPACE file.
     ```
 
 # BayesfMRI
@@ -747,6 +772,41 @@ Run `revdep_details(, "bigPint")` for more info
     Execution halted
     ```
 
+# bigstep
+
+<details>
+
+* Version: 1.1.1
+* GitHub: https://github.com/pmszulc/bigstep
+* Source code: https://github.com/cran/bigstep
+* Date/Publication: 2023-05-13 23:12:03 UTC
+* Number of recursive dependencies: 111
+
+Run `revdep_details(, "bigstep")` for more info
+
+</details>
+
+## In both
+
+*   checking running R code from vignettes ...
+    ```
+      ‘bigstep.Rmd’ using ‘UTF-8’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘bigstep.Rmd’
+      ...
+    Starting stepwise, 14 variables, crit = 180.8, MSE = 0.978.
+    Done.
+    
+    
+    > Xbig <- read.big.matrix("X.txt", sep = " ", header = TRUE, 
+    +     backingfile = "X.bin", descriptorfile = "X.desc")
+    
+      When sourcing ‘bigstep.R’:
+    Error: The file X.txt could not be found
+    Execution halted
+    ```
+
 # bingat
 
 <details>
@@ -932,7 +992,14 @@ Run `revdep_details(, "bnclassify")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... WARNING
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.2Mb
+      sub-directories of 1Mb or more:
+        libs  10.5Mb
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘methods.Rmd’ using rmarkdown
@@ -955,13 +1022,6 @@ Run `revdep_details(, "bnclassify")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 11.2Mb
-      sub-directories of 1Mb or more:
-        libs  10.5Mb
     ```
 
 # bnem
@@ -2748,10 +2808,10 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
     Errors in running code in vignettes:
     when running code in ‘DelayedMatrixStatsOverview.Rmd’
       ...
-    166.211   6.981 173.203 
+    130.894   3.069 134.116 
     
     > head(row_sds)
-    [1] 6.603627 7.739169 8.464166 9.113322 9.095979 7.975456
+    [1]  9.304639  9.242920 10.401796  9.208692  7.822202  7.119100
     
     > matrixStats::rowSds(x)
     
@@ -4790,7 +4850,7 @@ Run `revdep_details(, "geva")` for more info
     
       When sourcing ‘geva.R’:
     Error: Could not find a root 'DESCRIPTION' file that starts with '^Package' in
-    '/scratch/henrik/RtmpcstDRF/file6d83509d3c12/vignettes'.
+    '/scratch/henrik/1758269/RtmpS9oH00/file10ccd1a55e5b6/vignettes'.
     ℹ Are you in your project directory and does your project have a 'DESCRIPTION'
       file?
     Execution halted
@@ -6232,7 +6292,7 @@ Run `revdep_details(, "MEAL")` for more info
     
     > plotRegion(rset = methRes, rset2 = gexpRes, range = targetRange)
     Warning in curlSetOpt(..., .opts = .opts, curl = h, .encoding = .encoding) :
-      Error setting the option for # 3 (status = 43) (enum = 81) (value = 0x2f4250d0): A libcurl function was given a bad argument CURLOPT_SSL_VERIFYHOST no longer supports 1 as value!
+      Error setting the option for # 3 (status = 43) (enum = 81) (value = 0xaed0cdc0): A libcurl function was given a bad argument CURLOPT_SSL_VERIFYHOST no longer supports 1 as value!
     
       When sourcing 'caseExample.R':
     Error: attempt to set an attribute on NULL
@@ -6826,8 +6886,8 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
     +     phen.col = cols, what = "Beta", arraytype = "450K", genome = "hg19")
     
       When sourcing 'methylationArrayAnalysis.R':
-    Error: Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
+    Error: Your query has been redirected to https://status.ensembl.org indicating this Ensembl service is currently unavailable.
+    Look at ?useEnsembl for details on how to try a mirror site.
     Execution halted
     ```
 
@@ -6879,8 +6939,8 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/vign_test/methylationArrayAnalysis/vignettes/methylationArrayAnalysis_files/figure-html/figure8-1.png" but not available.
     ...
     Error: processing vignette 'methylationArrayAnalysis.Rmd' failed with diagnostics:
-    Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
+    Your query has been redirected to https://status.ensembl.org indicating this Ensembl service is currently unavailable.
+    Look at ?useEnsembl for details on how to try a mirror site.
     --- failed re-building ‘methylationArrayAnalysis.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -9443,11 +9503,11 @@ Run `revdep_details(, "RNAmodR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b08511d0e6b_2547'
       [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b084ef97239_2549'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b082b8b466f_2539'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b08116ccdbf_2537'
       [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b084b0a79a_2541'
       [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b08aca1b33_2543'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b082b8b466f_2539'
       [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b083e52ffaf_2545'
     ...
        1. ├─testthat::expect_error(...) at test-2Modifier.R:137:3

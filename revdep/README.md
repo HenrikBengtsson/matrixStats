@@ -10,14 +10,14 @@
 |collate  |en_US.UTF-8                                                     |
 |ctype    |en_US.UTF-8                                                     |
 |tz       |America/Los_Angeles                                             |
-|date     |2024-04-08                                                      |
+|date     |2024-04-09                                                      |
 |pandoc   |3.1.11.1 @ /software/c4/cbi/software/pandoc-3.1.11.1/bin/pandoc |
 
 # Dependencies
 
 |package     |old   |new        |Δ  |
 |:-----------|:-----|:----------|:--|
-|matrixStats |1.2.0 |1.2.0-9010 |*  |
+|matrixStats |1.2.0 |1.2.0-9013 |*  |
 
 # Revdeps
 
@@ -39,7 +39,7 @@
 |airpart                         |1.10.0  |      |        |     |
 |[AlpsNMR](problems.md#alpsnmr)  |4.4.0   |      |        |1    |
 |[AMARETTO](problems.md#amaretto)|1.18.0  |      |1       |4    |
-|[amplican](problems.md#amplican)|1.24.0  |      |        |2    |
+|[amplican](problems.md#amplican)|1.24.0  |1     |        |2    |
 |antiProfiles                    |1.42.0  |      |        |     |
 |[apollo](problems.md#apollo)    |0.3.1   |      |1       |     |
 |aroma.affymetrix                |3.2.2   |      |        |     |
@@ -51,14 +51,14 @@
 |[autonomics](problems.md#autonomics)|1.10.2  |3     |        |2    |
 |[bahc](problems.md#bahc)        |0.3.0   |      |        |1    |
 |[BASiCS](failures.md#basics)    |2.14.0  |1     |        |     |
-|[BatchQC](problems.md#batchqc)  |1.30.0  |      |1       |1    |
+|[BatchQC](problems.md#batchqc)  |1.30.0  |      |        |2    |
 |[BayesfMRI](problems.md#bayesfmri)|0.3.11  |      |        |2    |
 |[BayesianPlatformDesignTimeTrend](problems.md#bayesianplatformdesigntimetrend)|1.2.3   |      |        |2    |
 |BayesTwin                       |1.0     |      |        |     |
 |[baystability](problems.md#baystability)|0.1.0   |      |        |1    |
 |[bcf](problems.md#bcf)          |2.0.2   |      |1       |2    |
 |[bigPint](problems.md#bigpint)  |1.15.0  |2     |        |2    |
-|bigstep                         |1.1.1   |      |        |     |
+|[bigstep](problems.md#bigstep)  |1.1.1   |1     |        |     |
 |BindingSiteFinder               |2.0.0   |      |        |     |
 |[bingat](problems.md#bingat)    |1.3     |      |        |1    |
 |binsreg                         |1.0     |      |        |     |
@@ -67,7 +67,7 @@
 |[blackbox](problems.md#blackbox)|1.1.46  |      |        |1    |
 |[BloodGen3Module](problems.md#bloodgen3module)|1.10.0  |      |1       |1    |
 |[bnbc](problems.md#bnbc)        |1.24.2  |      |        |1    |
-|[bnclassify](problems.md#bnclassify)|0.4.8   |      |1       |1    |
+|[bnclassify](problems.md#bnclassify)|0.4.8   |      |        |2    |
 |[bnem](problems.md#bnem)        |1.10.0  |      |        |1    |
 |BREADR                          |1.0.1   |      |        |     |
 |BRISC                           |1.0.5   |      |        |     |
