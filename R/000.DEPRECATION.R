@@ -94,14 +94,51 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
 }
 
 
-tiesMethodMissing <- function() {
-  action <- getOption("matrixStats.ties.method.missing", "ignore")
-  if (action == "ignore") return()
 
-  action <- switch(action,
-    deprecated = .Deprecated,
-    defunct    = .Defunct,
-    function(...) NULL
-  )
-  action(msg = sprintf("[%s] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank()", .packageName, .packageName), package = .packageName)
-}
+validateTiesMethodMissing <- local({
+  .curr <- 1
+  .next <- 1
+  always <- structure(TRUE, when = "each time this function is called")
+  
+  function() {
+    freq <- getOption("matrixStats.ties.method.freq", 50L)
+    
+    ## Nothing to do?
+    if (is.null(freq)) return(FALSE)
+
+    ## never?
+    if (freq <= 0) return(FALSE)
+
+    ## always?
+    if (is.infinite(freq)) return(always)
+
+    ## each time?
+    if (freq == 1) return(always)
+
+    ## once in a while?
+    .curr <<- .curr + 1
+    .next <<- freq  ## update .next according to R option
+
+    ## Skip or not?
+    if (.curr <= .next) return(FALSE)
+    .curr <<- 1 ## reset
+    structure(TRUE, when = sprintf("every %g call to this function", freq))
+  }
+})
+
+tiesMethodMissing <- local({
+  function() {
+    action <- getOption("matrixStats.ties.method.missing", "ignore")
+    if (action == "ignore") return()
+
+    ## How often should we check?
+    if (!validateTiesMethodMissing()) return()
+    
+    action <- switch(action,
+      deprecated = .Deprecated,
+      defunct    = .Defunct,
+      function(...) NULL
+    )
+    action(msg = sprintf("[%s] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank()", .packageName, .packageName), package = .packageName)
+  }
+})
