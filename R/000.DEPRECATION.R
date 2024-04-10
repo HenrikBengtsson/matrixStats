@@ -128,7 +128,7 @@ validateTiesMethodMissing <- local({
 
 tiesMethodMissing <- local({
   function() {
-    action <- getOption("matrixStats.ties.method.missing", "ignore")
+    action <- getOption("matrixStats.ties.method.missing", if (getRversion() >= "4.4.0") "deprecated" else "ignore")
     if (action == "ignore") return()
 
     ## How often should we check?
