@@ -6,9 +6,9 @@ isUseNamesNADefunct <- function() {
 
 deprecatedUseNamesNA <- function() {
   if (isUseNamesNADefunct()) {
-    .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE.", .packageName), package = .packageName)
+    .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE. See also ?matrixStats::matrixStats.options", .packageName), package = .packageName)
   } else {
-    .Deprecated(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE.", .packageName), package = .packageName)
+    .Deprecated(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE. See also ?matrixStats::matrixStats.options", .packageName), package = .packageName)
   }
 }
 
@@ -35,13 +35,14 @@ validateScalarCenter <- function(center, n, dimname) {
   onScalar <- getOption("matrixStats.center.onScalar", "defunct")
   if (identical(onScalar, "ignore")) return()
   
-  fcn <- switch(onScalar, deprecated = .Deprecated, defunct = .Defunct, NULL)
+  action <- switch(onScalar,
+    deprecated = .Deprecated,
+       defunct = .Defunct,
+    function(...) NULL
+  )
   
-  ## Nothing to do?
-  if (is.null(fcn)) return()
-
-  msg <- sprintf("[%s (>= 0.58.0)] Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is deprecated: %s != %s", .packageName, "center", dimname, "x", length(center), n)
-  fcn(msg = msg, package = .packageName)
+  msg <- sprintf("[%s (>= 0.58.0)] Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is %s: %s != %s (See also ?matrixStats::matrixStats.options)", .packageName, "center", dimname, "x", onScalar, length(center), n)
+  action(msg = msg, package = .packageName)
 }
 
 
@@ -82,15 +83,18 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
   if (identical(value, "ignore")) return()
   
   value <- match.arg(value, c("deprecated", "defunct"))
-  fcn <- switch(value, deprecated = .Deprecated, defunct = .Defunct)
+  action <- switch(value,
+    deprecated = .Deprecated,
+       defunct = .Defunct,
+    function(...) NULL
+  )
 
   if (is.null(msg)) {
-    msg <- sprintf("[%s] Argument '%s' of %s::%s() is %s: %s",
+    msg <- sprintf("[%s] Argument '%s' of %s::%s() is %s: %s (See also ?matrixStats::matrixStats.options)",
                    .packageName, "center", .packageName, fcnname,
                    value, deparse(calls[[1]])[1])
   }
-  
-  fcn(msg = msg, package = .packageName)
+  action(msg = msg, package = .packageName)
 }
 
 
@@ -139,6 +143,7 @@ tiesMethodMissing <- local({
       defunct    = .Defunct,
       function(...) NULL
     )
-    action(msg = sprintf("[%s] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank()", .packageName, .packageName), package = .packageName)
+    msg <- sprintf("[%s] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options", .packageName, .packageName)
+    action(msg = msg, package = .packageName)
   }
 })
