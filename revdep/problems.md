@@ -47,6 +47,27 @@ Run `revdep_details(, "AlpsNMR")` for more info
 
 ## In both
 
+*   checking running R code from vignettes ...
+    ```
+      ‘Vig01-introduction-to-alpsnmr.Rmd’ using ‘UTF-8’... failed
+      ‘Vig01b-introduction-to-alpsnmr-old-api.Rmd’ using ‘UTF-8’... OK
+      ‘Vig02-handling-metadata-and-annotations.Rmd’ using ‘UTF-8’... OK
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘Vig01-introduction-to-alpsnmr.Rmd’
+      ...
+      NMRExperiment SubjectID TimePoint
+      <chr>         <chr>     <chr>    
+    1 10            Ana       baseline 
+    
+    > pca_outliers_rob <- nmr_pca_outliers_robust(dataset, 
+    +     ncomp = 3)
+    
+      When sourcing ‘Vig01-introduction-to-alpsnmr.R’:
+    Error: x$k <= ncol(x$x) is not TRUE
+    Execution halted
+    ```
+
 *   checking re-building of vignette outputs ... NOTE
     ```
     Error(s) in re-building vignettes:
@@ -310,12 +331,12 @@ Run `revdep_details(, "autonomics")` for more info
     > 
     > file <- download_data('billing19.rnacounts.txt')
     ...
-    > unique(create_design(object))
     		Design: ~1
            Intercept
     E00_R1         1
     > 
     > file <- download_data('atkin18.somascan.adat')
+    Downloading atkin18.somascan.adat
     > object <- read_somascan(file, plot=FALSE)
     Error in (1 + f_col):n_col : NA/NaN argument
     Calls: read_somascan -> .read_somascan
@@ -354,15 +375,15 @@ Run `revdep_details(, "autonomics")` for more info
     Errors in running code in vignettes:
     when running code in ‘using_autonomics.Rmd’
       ...
-    			1:    t1-t0   326    20
-    			2:    t2-t1    39    28
-    			3:    t3-t2    58   359
-    
-    > object <- read_somascan(file = download_data("atkin18.somascan.adat"), 
-    +     pca = TRUE, fit = "limma", block = "Subject_ID", plot = TRUE)
-    
       When sourcing ‘using_autonomics.R’:
-    Error: NA/NaN argument
+    Error: is_existing_file : Some or all of the files specified by file do not exist.
+    There was 1 failure:
+      Position
+    1        1
+                                                                      Value
+    1 /scratch/henrik/RtmpnCrIMk/datasets/GSE161731/GSE161731_counts.csv.gz
+            Cause
+    1 nonexistent
     Execution halted
     ```
 
@@ -377,19 +398,19 @@ Run `revdep_details(, "autonomics")` for more info
 *   checking re-building of vignette outputs ... NOTE
     ```
     Error(s) in re-building vignettes:
+      ...
     --- re-building ‘using_autonomics.Rmd’ using rmarkdown
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/autonomics/new/autonomics.Rcheck/vign_test/autonomics/vignettes/using_autonomics_files/figure-html/unnamed-chunk-2-1.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/autonomics/new/autonomics.Rcheck/vign_test/autonomics/vignettes/using_autonomics_files/figure-html/unnamed-chunk-2-2.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/autonomics/new/autonomics.Rcheck/vign_test/autonomics/vignettes/using_autonomics_files/figure-html/unnamed-chunk-2-3.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/autonomics/new/autonomics.Rcheck/vign_test/autonomics/vignettes/using_autonomics_files/figure-html/unnamed-chunk-2-4.png" but not available.
-    trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161731/suppl//GSE161731_counts.csv.gz?tool=geoquery'
-    Content type 'application/x-gzip' length 8347405 bytes (8.0 MB)
-    ==================================================
-    downloaded 8.0 MB
-    ...
-    Quitting from lines  at lines 199-202 [unnamed-chunk-11] (using_autonomics.Rmd)
+    
+    Quitting from lines  at lines 63-76 [unnamed-chunk-3] (using_autonomics.Rmd)
     Error: processing vignette 'using_autonomics.Rmd' failed with diagnostics:
-    NA/NaN argument
+    ...
+    1 /scratch/henrik/Rtmp2GcwV8/datasets/GSE161731/GSE161731_counts.csv.gz
+            Cause
+    1 nonexistent
     --- failed re-building ‘using_autonomics.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -1062,30 +1083,8 @@ Run `revdep_details(, "brms")` for more info
 
 ## In both
 
-*   checking running R code from vignettes ...
-    ```
-      ‘brms_customfamilies.Rmd’ using ‘UTF-8’... OK
-      ‘brms_distreg.Rmd’ using ‘UTF-8’... OK
-      ‘brms_families.Rmd’ using ‘UTF-8’... OK
-      ‘brms_missings.Rmd’ using ‘UTF-8’... OK
-      ‘brms_monotonic.Rmd’ using ‘UTF-8’... OK
-      ‘brms_multivariate.Rmd’ using ‘UTF-8’... OK
-      ‘brms_nonlinear.Rmd’ using ‘UTF-8’... OK
-      ‘brms_phylogenetics.Rmd’ using ‘UTF-8’... OK
-      ‘brms_threading.Rmd’ using ‘UTF-8’... failed
-      ‘brms_multilevel.ltx’ using ‘UTF-8’... OK
-    ...
+*   R CMD check timed out
     
-    > rownames(fake) <- NULL
-    
-    > model_poisson <- brm(y ~ 1 + x1 + x2 + (1 | g), data = fake, 
-    +     family = poisson(), iter = 500, chains = 2, prior = prior(normal(0, 
-    +         1 .... [TRUNCATED] 
-    
-      When sourcing ‘brms_threading.R’:
-    Error: Please install the 'cmdstanr' package.
-    Execution halted
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -2557,6 +2556,33 @@ Run `revdep_details(, "crossmeta")` for more info
 
 </details>
 
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘crossmeta-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: es_meta
+    > ### Title: Effect size combination meta analysis.
+    > ### Aliases: es_meta
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    > data_dir <- system.file("extdata", package = "lydata")
+    > 
+    > # gather GSE names
+    > gse_names  <- c("GSE9601", "GSE15069", "GSE50841", "GSE34817", "GSE29689")
+    > 
+    > # load previous analysis
+    > anals <- load_diff(gse_names, data_dir)
+    Error in readRDS(path) : unknown input format
+    Calls: load_diff -> readRDS
+    Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -2808,10 +2834,10 @@ Run `revdep_details(, "DelayedMatrixStats")` for more info
     Errors in running code in vignettes:
     when running code in ‘DelayedMatrixStatsOverview.Rmd’
       ...
-    130.894   3.069 134.116 
+    149.601   4.605 154.345 
     
     > head(row_sds)
-    [1]  9.304639  9.242920 10.401796  9.208692  7.822202  7.119100
+    [1]  9.196538  6.580673  7.633720  5.974507  8.274247 10.438290
     
     > matrixStats::rowSds(x)
     
@@ -2990,6 +3016,31 @@ Run `revdep_details(, "DEqMS")` for more info
 </details>
 
 ## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
+    ...
+    > eh = ExperimentHub(localHub=TRUE)
+    Using 'localHub=TRUE'
+      If offline, please also see BiocManager vignette section on offline use
+    > query(eh, "DEqMS")
+    ExperimentHub with 0 records
+    # snapshotDate(): 2024-04-08
+    > dat.psm = eh[["EH1663"]]
+    Error: File not previously downloaded.
+      Run with 'localHub=FALSE'
+    Execution halted
+    ```
 
 *   checking DESCRIPTION meta-information ... NOTE
     ```
@@ -3565,9 +3616,47 @@ Run `revdep_details(, "epimutacions")` for more info
 
 ## In both
 
+*   checking running R code from vignettes ...
+    ```
+      ‘epimutacions.Rmd’ using ‘UTF-8’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘epimutacions.Rmd’
+      ...
+    > reference_panel <- eh[["EH6691"]]
+    see ?epimutacionsData and browseVignettes('epimutacionsData') for documentation
+    loading from cache
+    
+      When sourcing 'epimutacions.R':
+    Error: failed to load resource
+      name: EH6691
+      title: Reference panel
+      reason: error in evaluating the argument 'x' in selecting a method for function 'get': error reading from connection
+    Execution halted
+    ```
+
 *   checking Rd cross-references ... NOTE
     ```
     Packages unavailable to check Rd xrefs: ‘CompQuadForm’, ‘car’
+    ```
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+      ...
+    --- re-building ‘epimutacions.Rmd’ using rmarkdown
+    
+    Quitting from lines  at lines 610-611 [annot] (epimutacions.Rmd)
+    Error: processing vignette 'epimutacions.Rmd' failed with diagnostics:
+    Multiple cache results found.
+    Please clear your cache by running biomartCacheClear()
+    --- failed re-building ‘epimutacions.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘epimutacions.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
     ```
 
 # epistasisGA
@@ -3952,6 +4041,9 @@ Run `revdep_details(, "fastcpd")` for more info
 </details>
 
 ## In both
+
+*   R CMD check timed out
+    
 
 *   checking whether package ‘fastcpd’ can be installed ... WARNING
     ```
@@ -4850,7 +4942,7 @@ Run `revdep_details(, "geva")` for more info
     
       When sourcing ‘geva.R’:
     Error: Could not find a root 'DESCRIPTION' file that starts with '^Package' in
-    '/scratch/henrik/1758269/RtmpS9oH00/file10ccd1a55e5b6/vignettes'.
+    '/scratch/henrik/RtmpDq40Lr/file428d26607f3/vignettes'.
     ℹ Are you in your project directory and does your project have a 'DESCRIPTION'
       file?
     Execution halted
@@ -5487,20 +5579,20 @@ Run `revdep_details(, "hermes")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      • On CRAN (16): 'test-calc_cor.R:42:3', 'test-calc_cor.R:53:3',
-        'test-differential.R:122:3', 'test-differential.R:130:3',
-        'test-draw_barplot.R:11:3', 'test-draw_boxplot.R:12:3',
-        'test-draw_scatterplot.R:15:3', 'test-graphs.R:6:3', 'test-graphs.R:14:3',
-        'test-graphs.R:22:3', 'test-graphs.R:31:3', 'test-graphs.R:37:3',
-    ...
-          ▆
-       1. ├─hermes::query(genes(object), connection) at test-connections.R:171:3
-       2. └─hermes::query(genes(object), connection)
-       3.   └─hermes::h_get_annotation_biomart(gene_ids, id_var = id_var, mart = mart)
-       4.     └─biomaRt::getBM(...)
-       5.       └─biomaRt:::.readFromCache(bfc, hash)
+      Loading required package: Biobase
+      Welcome to Bioconductor
       
-      [ FAIL 4 | WARN 2 | SKIP 16 | PASS 831 ]
+          Vignettes contain introductory material; view with
+          'browseVignettes()'. To cite Bioconductor, see
+    ...
+       1. └─hermes::connect_biomart("GeneID") at test-connections.R:27:3
+       2.   ├─base::tryCatch(...)
+       3.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+       4.   ├─base::withCallingHandlers(...)
+       5.   └─biomaRt::useEnsembl("ensembl", version = version)
+       6.     └─biomaRt:::.chooseEnsemblMirror(mirror = mirror, httr_config = httr_config)
+      
+      [ FAIL 1 | WARN 2 | SKIP 16 | PASS 839 ]
       Error: Test failures
       Execution halted
     ```
@@ -5560,13 +5652,11 @@ Run `revdep_details(, "hipathia")` for more info
     Error(s) in re-building vignettes:
       ...
     --- re-building ‘hipathia-vignette.Rmd’ using rmarkdown
-    ! LaTeX Error: File `titling.sty' not found.
+    createTcpServer: address already in use
     
-    ! Emergency stop.
-    <read *> 
-    
+    Quitting from lines  at lines 775-776 [unnamed-chunk-36] (hipathia-vignette.Rmd)
     Error: processing vignette 'hipathia-vignette.Rmd' failed with diagnostics:
-    LaTeX failed to compile /c4/home/henrik/repositories/matrixStats/revdep/checks/hipathia/new/hipathia.Rcheck/vign_test/hipathia/vignettes/hipathia-vignette.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See hipathia-vignette.log for more info.
+    Failed to create server
     --- failed re-building ‘hipathia-vignette.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -5651,6 +5741,27 @@ Run `revdep_details(, "InfiniumPurify")` for more info
 Run `revdep_details(, "IntOMICS")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking running R code from vignettes ...
+    ```
+      ‘IntOMICS_vignette.Rmd’ using ‘UTF-8’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘IntOMICS_vignette.Rmd’
+      ...
+    Attaching package: ‘HDF5Array’
+    
+    The following object is masked from ‘package:rhdf5’:
+    
+        h5ls
+    
+    
+      When sourcing ‘IntOMICS_vignette.R’:
+    Error: HDF5. File accessibility. Unable to open file.
+    Execution halted
+    ```
 
 ## In both
 
@@ -5789,6 +5900,67 @@ Run `revdep_details(, "kissDE")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
+    ```
+
+# LDM
+
+<details>
+
+* Version: 6.0.1
+* GitHub: https://github.com/yijuanhu/LDM
+* Source code: https://github.com/cran/LDM
+* Date/Publication: 2023-09-07 08:40:07 UTC
+* Number of recursive dependencies: 95
+
+Run `revdep_details(, "LDM")` for more info
+
+</details>
+
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘LDM-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: ldm
+    > ### Title: Testing hypotheses about the microbiome using a linear
+    > ###   decomposition model (LDM)
+    > ### Aliases: ldm
+    > ### Keywords: microbiome
+    > 
+    > ### ** Examples
+    > 
+    > res.ldm <- ldm(formula=throat.otu.tab5 | (Sex+AntibioticUse) ~ SmokingStatus+PackYears, 
+    +               data=throat.meta, seed=67817, fdr.nominal=0.1, n.perm.max=1000, n.cores=1, 
+    +               verbose=FALSE) 
+    Error: [matrixStats] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank()
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > test_check("LDM")
+      Loading required package: LDM
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 1 ]
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+    ...
+          ▆
+       1. └─LDM::ldm(...) at test-ldm.R:10:5
+       2.   ├─base::array(colRanks(mat), c(n.var1, n.otu.smallp, n.perm.completed))
+       3.   └─matrixStats::colRanks(mat)
+       4.     └─matrixStats:::tiesMethodMissing()
+       5.       └─base (local) action(...)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 1 ]
+      Error: Test failures
+      Execution halted
     ```
 
 # ldsep
@@ -6009,6 +6181,25 @@ Run `revdep_details(, "Linnorm")` for more info
     Execution halted
     ```
 
+# loo
+
+<details>
+
+* Version: 2.7.0
+* GitHub: https://github.com/stan-dev/loo
+* Source code: https://github.com/cran/loo
+* Date/Publication: 2024-02-24 23:20:02 UTC
+* Number of recursive dependencies: 146
+
+Run `revdep_details(, "loo")` for more info
+
+</details>
+
+## In both
+
+*   R CMD check timed out
+    
+
 # LSAmitR
 
 <details>
@@ -6222,6 +6413,33 @@ Run `revdep_details(, "MatrixGenerics")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(MatrixGenerics)
+      Loading required package: matrixStats
+      
+      Attaching package: 'MatrixGenerics'
+      
+    ...
+      Error: [matrixStats] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank()
+      Backtrace:
+          ▆
+       1. └─matrixStats::rowRanks(x = mat) at test-api_compatibility.R:1207:9
+       2.   └─matrixStats:::tiesMethodMissing()
+       3.     └─base (local) action(...)
+      
+      [ FAIL 2 | WARN 0 | SKIP 0 | PASS 374 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 ## In both
 
 *   checking dependencies in R code ... NOTE
@@ -6292,7 +6510,7 @@ Run `revdep_details(, "MEAL")` for more info
     
     > plotRegion(rset = methRes, rset2 = gexpRes, range = targetRange)
     Warning in curlSetOpt(..., .opts = .opts, curl = h, .encoding = .encoding) :
-      Error setting the option for # 3 (status = 43) (enum = 81) (value = 0xaed0cdc0): A libcurl function was given a bad argument CURLOPT_SSL_VERIFYHOST no longer supports 1 as value!
+      Error setting the option for # 3 (status = 43) (enum = 81) (value = 0x318a75c0): A libcurl function was given a bad argument CURLOPT_SSL_VERIFYHOST no longer supports 1 as value!
     
       When sourcing 'caseExample.R':
     Error: attempt to set an attribute on NULL
@@ -6556,6 +6774,28 @@ Run `revdep_details(, "metagene")` for more info
 Run `revdep_details(, "metagenomeSeq")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking running R code from vignettes ...
+    ```
+      ‘fitTimeSeries.Rnw’... OK
+      ‘metagenomeSeq.Rnw’... failed
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘metagenomeSeq.Rnw’
+      ...
+    [5] "Campylobacter curvus"              
+    [6] "Prevotella intermedia"             
+    
+    > classes = pData(mouseData)$diet
+    
+    > res = fitPA(mouseData[1:5, ], cl = classes)
+    
+      When sourcing ‘metagenomeSeq.R’:
+    Error: creation of server socket failed: port 11150 cannot be opened
+    Execution halted
+    ```
 
 ## In both
 
@@ -6879,15 +7119,15 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
     Errors in running code in vignettes:
     when running code in ‘methylationArrayAnalysis.Rmd’
       ...
-    
     > par(mfrow = c(1, 1))
     
     > DMR.plot(ranges = results.ranges, dmr = 2, CpGs = bVals, 
     +     phen.col = cols, what = "Beta", arraytype = "450K", genome = "hg19")
+    Warning in curlSetOpt(..., .opts = .opts, curl = h, .encoding = .encoding) :
+      Error setting the option for # 3 (status = 43) (enum = 81) (value = 0xbdaa7a10): A libcurl function was given a bad argument CURLOPT_SSL_VERIFYHOST no longer supports 1 as value!
     
       When sourcing 'methylationArrayAnalysis.R':
-    Error: Your query has been redirected to https://status.ensembl.org indicating this Ensembl service is currently unavailable.
-    Look at ?useEnsembl for details on how to try a mirror site.
+    Error: attempt to set an attribute on NULL
     Execution halted
     ```
 
@@ -6938,9 +7178,9 @@ Run `revdep_details(, "methylationArrayAnalysis")` for more info
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/vign_test/methylationArrayAnalysis/vignettes/methylationArrayAnalysis_files/figure-html/figure7-1.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/vign_test/methylationArrayAnalysis/vignettes/methylationArrayAnalysis_files/figure-html/figure8-1.png" but not available.
     ...
+    Quitting from lines  at lines 461-465 [figure10] (methylationArrayAnalysis.Rmd)
     Error: processing vignette 'methylationArrayAnalysis.Rmd' failed with diagnostics:
-    Your query has been redirected to https://status.ensembl.org indicating this Ensembl service is currently unavailable.
-    Look at ?useEnsembl for details on how to try a mirror site.
+    attempt to set an attribute on NULL
     --- failed re-building ‘methylationArrayAnalysis.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -7173,6 +7413,29 @@ Run `revdep_details(, "migest")` for more info
 Run `revdep_details(, "miloR")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking running R code from vignettes ...
+    ```
+      ‘milo_contrasts.Rmd’ using ‘UTF-8’... failed
+      ‘milo_demo.Rmd’ using ‘UTF-8’... OK
+      ‘milo_gastrulation.Rmd’ using ‘UTF-8’... OK
+     ERROR
+    Errors in running code in vignettes:
+    when running code in ‘milo_contrasts.Rmd’
+      ...
+      hub path: ‘https://experimenthub.bioconductor.org/fetch/4641’
+      cache resource: ‘EH4598 : 4641’
+      reason: bfcadd() failed; see warnings()
+    
+      When sourcing ‘milo_contrasts.R’:
+    Error: failed to load resource
+      name: EH4598
+      title: SMARTseq colData (day 1)
+      reason: 1 resources failed to download
+    Execution halted
+    ```
 
 ## In both
 
@@ -8571,6 +8834,28 @@ Run `revdep_details(, "pecora")` for more info
 
 </details>
 
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘pecora-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: pecora-package
+    > ### Title: pecora-package
+    > ### Aliases: pecora-package pecora.package pecorapackage
+    > ### Keywords: package
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > X <- matrix(rnorm(100*20), nrow=20)
+    > out <- oneSample(X = X)
+    > pv <- t2p(Test = out, alternative = "two.sided")
+    Error: [matrixStats] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank()
+    Execution halted
+    ```
+
 ## In both
 
 *   checking whether package ‘pecora’ can be installed ... WARNING
@@ -9503,12 +9788,12 @@ Run `revdep_details(, "RNAmodR")` for more info
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
     Last 50 lines of output:
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b084ef97239_2549'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b08116ccdbf_2537'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b084b0a79a_2541'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b08aca1b33_2543'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b082b8b466f_2539'
-      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/9b083e52ffaf_2545'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/55485c326a2c_2549'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/545cd44bb50_2537'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/545c59376ca5_2541'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/545c6bdc006a_2539'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/545c62013e41_2543'
+      [E::idx_find_and_load] Could not retrieve index file for '/c4/home/henrik/.cache/R/ExperimentHub/545c5837b49b_2545'
     ...
        1. ├─testthat::expect_error(...) at test-2Modifier.R:137:3
        2. │ └─testthat:::quasi_capture(...)
@@ -9517,7 +9802,7 @@ Run `revdep_details(, "RNAmodR")` for more info
        5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
        6. └─RNAmodR:::.get_classname_for_ModifierSet_from_modifier_type("DataFrame")
       
-      [ FAIL 1 | WARN 13 | SKIP 0 | PASS 898 ]
+      [ FAIL 1 | WARN 21 | SKIP 0 | PASS 898 ]
       Error: Test failures
       Execution halted
     ```
@@ -9717,6 +10002,33 @@ Run `revdep_details(, "robustlm")` for more info
 Run `revdep_details(, "rpm")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking tests ...
+    ```
+      Running ‘tests.R’
+     ERROR
+    Running the tests in ‘tests/tests.R’ failed.
+    Complete output:
+      > 
+      > library(testthat)
+      > library(rpm)
+      Loading required package: abind
+      Loading required package: future
+      Loading required package: doRNG
+    ...
+       2.   └─rpm::rpm_MLPLE(...)
+       3.     └─rpm:::rpm.bootstrap.small(...)
+       4.       └─rpm::Gale_Shapley(...)
+       5.         └─matrixStats::rowRanks(U)
+       6.           └─matrixStats:::tiesMethodMissing()
+       7.             └─base (local) action(...)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 ## In both
 
@@ -10638,35 +10950,6 @@ Run `revdep_details(, "sigminer")` for more info
         libs   1.4Mb
     ```
 
-# signifinder
-
-<details>
-
-* Version: 1.4.0
-* GitHub: https://github.com/CaluraLab/signifinder
-* Source code: https://github.com/cran/signifinder
-* Date/Publication: 2023-10-24
-* Number of recursive dependencies: 269
-
-Run `revdep_details(, "signifinder")` for more info
-
-</details>
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.2Mb
-      sub-directories of 1Mb or more:
-        data   1.4Mb
-        doc    5.1Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Packages unavailable to check Rd xrefs: ‘curatedTCGAData’, ‘EDASeq’
-    ```
-
 # SimBu
 
 <details>
@@ -10851,30 +11134,6 @@ Run `revdep_details(, "Single.mTEC.Transcriptomes")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
-    ```
-
-# singleCellTK
-
-<details>
-
-* Version: 2.12.2
-* GitHub: https://github.com/compbiomed/singleCellTK
-* Source code: https://github.com/cran/singleCellTK
-* Date/Publication: 2024-02-09
-* Number of recursive dependencies: 394
-
-Run `revdep_details(, "singleCellTK")` for more info
-
-</details>
-
-## In both
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  7.0Mb
-      sub-directories of 1Mb or more:
-        extdata   1.5Mb
-        shiny     2.7Mb
     ```
 
 # singscore
@@ -11117,39 +11376,6 @@ Run `revdep_details(, "spatzie")` for more info
     Please remove from your package.
     ```
 
-# splatter
-
-<details>
-
-* Version: 1.26.0
-* GitHub: https://github.com/Oshlack/splatter
-* Source code: https://github.com/cran/splatter
-* Date/Publication: 2023-10-24
-* Number of recursive dependencies: 264
-
-Run `revdep_details(, "splatter")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘BASiCS’
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is 10.0Mb
-      sub-directories of 1Mb or more:
-        doc   9.1Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Package unavailable to check Rd xrefs: ‘BASiCS’
-    ```
-
 # SpliceWiz
 
 <details>
@@ -11163,6 +11389,33 @@ Run `revdep_details(, "splatter")` for more info
 Run `revdep_details(, "SpliceWiz")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘SpliceWiz-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: getAvailableGO
+    > ### Title: Builds reference files used by SpliceWiz
+    > ### Aliases: getAvailableGO Build-Reference-methods getResources buildRef
+    > ###   buildFullRef getNonPolyARef
+    > 
+    > ### ** Examples
+    > 
+    ...
+    ...CDS
+    ...exons
+    done
+    Apr 10 10:19:52 AM Retrieving gene GO-term pairings
+    Warning: Couldn't set synchronous mode: database disk image is malformed
+    Use `synchronous` = NULL to turn off this warning.
+    Error in (function (classes, fdef, mtable)  : 
+      unable to find an inherited method for function ‘removeResources’ for signature ‘"AnnotationHub"’
+    Calls: buildRef ... .check_cached_resource -> removeResources -> <Anonymous>
+    Execution halted
+    ```
 
 ## In both
 
@@ -11180,27 +11433,28 @@ Run `revdep_details(, "SpliceWiz")` for more info
         libs  10.3Mb
     ```
 
-# SPOTlight
+# splitFeas
 
 <details>
 
-* Version: 1.6.7
-* GitHub: https://github.com/MarcElosua/SPOTlight
-* Source code: https://github.com/cran/SPOTlight
-* Date/Publication: 2024-01-15
-* Number of recursive dependencies: 256
+* Version: 0.1.0
+* GitHub: NA
+* Source code: https://github.com/cran/splitFeas
+* Date/Publication: 2018-04-11 08:15:34 UTC
+* Number of recursive dependencies: 2
 
-Run `revdep_details(, "SPOTlight")` for more info
+Run `revdep_details(, "splitFeas")` for more info
 
 </details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... ERROR
     ```
-    .set_groups_if_null: no visible global function definition for ‘Idents’
-    Undefined global functions or variables:
-      Idents
+    Package required but not available: ‘corpcor’
+    
+    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+    manual.
     ```
 
 # spqn
@@ -11340,6 +11594,33 @@ Run `revdep_details(, "stm")` for more info
 Run `revdep_details(, "STROMA4")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘STROMA4-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: assign.properties
+    > ### Title: Function to assign properties to an expression matrix
+    > ### Aliases: assign.properties
+    > 
+    > ### ** Examples
+    > 
+    > library(breastCancerMAINZ)
+    ...
+    + 	genelists=c('Stroma4', 'TNBCType'), n=10)
+    --Assigning properties to expression data--
+    --There are duplicated genes. Using most variable to collapse--
+    ----206 out of 297 total genes matching for D.stroma.property----
+    Error: BiocParallel errors
+      10 remote errors, element index: 1, 2, 3, 4, 5, 6, ...
+      0 unevaluated and other errors
+      first remote error:
+    Error: [matrixStats] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank()
+    Execution halted
+    ```
 
 ## In both
 
@@ -11553,82 +11834,6 @@ Run `revdep_details(, "templateICAr")` for more info
         libs  16.6Mb
     ```
 
-# tidybulk
-
-<details>
-
-* Version: 1.14.3
-* GitHub: https://github.com/stemangiola/tidybulk
-* Source code: https://github.com/cran/tidybulk
-* Date/Publication: 2023-12-04
-* Number of recursive dependencies: 400
-
-Run `revdep_details(, "tidybulk")` for more info
-
-</details>
-
-## In both
-
-*   checking running R code from vignettes ...
-    ```
-      ‘introduction.Rmd’ using ‘UTF-8’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘introduction.Rmd’
-      ...
-    
-    > knitr::include_graphics("../man/figures/new_SE_usage-01.png")
-    
-      When sourcing ‘introduction.R’:
-    Error: Cannot find the file(s): "../man/figures/new_SE_usage-01.png"
-    Execution halted
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    .adjust_abundance_se: no visible binding for global variable ‘x’
-    .aggregate_duplicates_se: no visible binding for global variable
-      ‘group_name’
-    .aggregate_duplicates_se: no visible binding for global variable
-      ‘group’
-    .deconvolve_cellularity_se: no visible binding for global variable
-      ‘X_cibersort’
-    .describe_transcript_SE: no visible binding for global variable
-      ‘transcript’
-    .describe_transcript_SE: no visible binding for global variable
-    ...
-      predict prop rc read count ref_genome rotated dimensions sample 1
-      sample 2 sample a sample b sample_idx samples sdev seurat_clusters
-      surv_test temp term test tot tot_filt transcript transcript_upper
-      tt_columns update.formula upper value variable vcov web_page where
-      with_groups x
-    Consider adding
-      importFrom("base", "sample")
-      importFrom("stats", "AIC", "anova", "coef", "kmeans", "logLik",
-                 "predict", "update.formula", "vcov")
-    to your NAMESPACE file.
-    ```
-
-*   checking re-building of vignette outputs ... NOTE
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘introduction.Rmd’ using knitr
-    Warning in base::gregexpr(..., perl = perl) :
-      PCRE pattern compilation error
-    	'invalid range in character class'
-    	at '-]+)(?= |$)'
-    Error: processing vignette 'introduction.Rmd' failed with diagnostics:
-    invalid regular expression '(?<=^| )[.#]([[:alnum:]-]+)(?= |$)'
-    --- failed re-building ‘introduction.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘introduction.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 # topGO
 
 <details>
@@ -11833,6 +12038,33 @@ Run `revdep_details(, "VanillaICE")` for more info
 Run `revdep_details(, "variancePartition")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking re-building of vignette outputs ... NOTE
+    ```
+    Error(s) in re-building vignettes:
+    --- re-building ‘FAQ.Rmd’ using rmarkdown
+    --- finished re-building ‘FAQ.Rmd’
+    
+    --- re-building ‘additional_visualization.Rmd’ using rmarkdown
+    --- finished re-building ‘additional_visualization.Rmd’
+    
+    --- re-building ‘dream.Rmd’ using rmarkdown
+    
+    Quitting from lines  at lines 145-161 [lmm] (dream.Rmd)
+    ...
+    --- finished re-building ‘rnd_effects.Rmd’
+    
+    --- re-building ‘variancePartition.Rmd’ using rmarkdown
+    --- finished re-building ‘variancePartition.Rmd’
+    
+    SUMMARY: processing the following file failed:
+      ‘dream.Rmd’
+    
+    Error: Vignette re-building failed.
+    Execution halted
+    ```
 
 ## In both
 
@@ -12041,114 +12273,6 @@ Run `revdep_details(, "vsclust")` for more info
     prepare_Rd: vsclust-package.Rd:32-33: Dropping empty section \examples
     ```
 
-# wateRmelon
-
-<details>
-
-* Version: 2.8.0
-* GitHub: NA
-* Source code: https://github.com/cran/wateRmelon
-* Date/Publication: 2023-10-24
-* Number of recursive dependencies: 193
-
-Run `revdep_details(, "wateRmelon")` for more info
-
-</details>
-
-## In both
-
-*   checking Rd metadata ... WARNING
-    ```
-    Rd files with duplicated alias 'fot':
-      ‘dot-getManifestString.Rd’ ‘got.Rd’
-    Rd files with duplicated alias 'got':
-      ‘dot-getManifestString.Rd’ ‘got.Rd’
-    ```
-
-*   checking for missing documentation entries ... WARNING
-    ```
-    Undocumented code objects:
-      ‘epicv2clean’ ‘epicv2clean.default’ ‘epicv2clean.gds.class’
-    Undocumented data sets:
-      ‘sex_coef’
-    Undocumented S4 methods:
-      generic 'adjustedDasen' and siglist 'MethyLumiSet'
-      generic 'adjustedDasen' and siglist 'MethylSet'
-      generic 'adjustedDasen' and siglist 'RGChannelSet'
-    All user-level objects in a package (including S4 classes and methods)
-    should have documentation entries.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking Rd \usage sections ... WARNING
-    ```
-    Undocumented arguments in documentation object '.getManifestString'
-      ‘annotation’
-    Documented arguments not in \usage in documentation object '.getManifestString':
-      ‘x’ ‘obj’ ‘fd’ ‘rn’
-    
-    Functions with \usage entries need to have the appropriate \alias
-    entries, and all their arguments documented.
-    The \usage entries must correspond to syntactically valid R code.
-    See chapter ‘Writing R documentation files’ in the ‘Writing R
-    Extensions’ manual.
-    ```
-
-*   checking package dependencies ... NOTE
-    ```
-    Depends: includes the non-default packages:
-      'Biobase', 'limma', 'matrixStats', 'methylumi', 'lumi', 'ROC',
-      'IlluminaHumanMethylation450kanno.ilmn12.hg19', 'illuminaio'
-    Adding so many packages to the search path is excessive and importing
-    selectively is preferable.
-    ```
-
-*   checking DESCRIPTION meta-information ... NOTE
-    ```
-    Package listed in more than one of Depends, Imports, Suggests, Enhances:
-      ‘Biobase’
-    A package should be listed in only one of these fields.
-    ```
-
-*   checking dependencies in R code ... NOTE
-    ```
-    Packages in Depends field not imported from:
-      ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘matrixStats’
-      ‘methylumi’
-      These packages need to be imported from (in the NAMESPACE file)
-      for when this namespace is loaded but not attached.
-    Unexported objects imported by ':::' calls:
-      ‘minfi:::.annoGet’ ‘minfi:::.availableAnnotation’
-      ‘minfi:::.isRGOrStop’
-      See the note in ?`:::` about the use of this operator.
-    ```
-
-*   checking R code for possible problems ... NOTE
-    ```
-    .adjusted_normalizeFunnorm450k : unbiased_normalizeQuantiles: no
-      visible global function definition for ‘colQuantiles’
-    .adjusted_normalizeFunnorm450k: no visible global function definition
-      for ‘getMeth’
-    .adjusted_normalizeFunnorm450k: no visible global function definition
-      for ‘getUnmeth’
-    .adjusted_normalizeFunnorm450k: no visible global function definition
-      for ‘assay<-’
-    .buildControlMatrix450k: no visible global function definition for
-      ‘colMeans2’
-    ...
-      getMeth getNBeads getOOB getProbeInfo getProbeType getRed getSex
-      getSnpBeta getUnmeth head hm27.controls hm27.ordering hm450.controls
-      hm450.ordering intensitiesByChannel mapToGenome mclapply metadata
-      methylated methylated<- methylumiR n.sd preprocessNoob preprocessRaw
-      preprocessSWAN probeAnnotationsCategory projectName pval.detect<-
-      pvals rowMeans2 seqnames sex_coef subsetByLoci unmethylated
-      unmethylated<- warn
-    Consider adding
-      importFrom("utils", "head")
-    to your NAMESPACE file.
-    ```
-
 # WaverideR
 
 <details>
@@ -12250,6 +12374,33 @@ Run `revdep_details(, "WGCNA")` for more info
 Run `revdep_details(, "yarn")` for more info
 
 </details>
+
+## Newly broken
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘yarn-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: annotateFromBiomart
+    > ### Title: Annotate your Expression Set with biomaRt
+    > ### Aliases: annotateFromBiomart
+    > 
+    > ### ** Examples
+    > 
+    > 
+    ...
+    > # subsetting and changing column name just for a silly example
+    > skin <- skin[1:10,]
+    > colnames(fData(skin)) = paste("names",1:6)
+    > biomart<-"ENSEMBL_MART_ENSEMBL";
+    > genes <- sapply(strsplit(rownames(skin),split="\\."),function(i)i[1])
+    > newskin <-annotateFromBiomart(skin,genes=genes,biomar=biomart)
+    Error in checkDataset(dataset = dataset, mart = mart) : 
+      The given dataset:  hsapiens_gene_ensembl , is not valid.  Correct dataset names can be obtained with the listDatasets() function.
+    Calls: annotateFromBiomart -> useMart -> .useMart -> useDataset -> checkDataset
+    Execution halted
+    ```
 
 ## In both
 
