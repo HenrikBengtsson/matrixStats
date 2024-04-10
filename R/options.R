@@ -38,7 +38,7 @@
 #' \describe{
 #'  \item{\option{matrixStats.formula.freq}:}{(numeric)
 #'    Controls how often the above assumption is checked.
-#'    (Default: \code{50} - every 50th call)}
+#'    (Default: \code{50} - every 50:th call starting with the first)}
 #' }
 #'
 #' \describe{
@@ -48,13 +48,13 @@
 #'    If \code{"defunct"}, an error is produced, if not.
 #'    If \code{"deprecated"}, a warning is signalled.
 #'    If \code{"ignore"}, it's silently ignored.
-#'    (Default: \code{"ignore"})}
+#'    (Default: \code{"deprecated"} in R (>= 4.4.0), otherwise \code{"ignore"})}
 #' }
 #'
 #' \describe{
 #'  \item{\option{matrixStats.ties.method.freq}:}{(numeric)
 #'    Controls how often the above validation is checked.
-#'    (Default: \code{50} - every 50th call)}
+#'    (Default: \code{50} - every 50:th call starting with the first)}
 #' }
 #'
 #' \describe{
@@ -213,7 +213,7 @@ update_package_options <- function() {
   
   update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
 
-  update_package_option("matrixStats.ties.method.missing", default = "ignore", choices = c("deprecated", "defunct", "ignore"))
+  update_package_option("matrixStats.ties.method.missing", default = if (getRversion() >= "4.4.0") "deprecated" else "ignore", choices = c("deprecated", "defunct", "ignore"))
 
   update_package_option("matrixStats.ties.method.freq", mode = "numeric", default = "50")
 }
