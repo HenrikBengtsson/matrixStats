@@ -49,21 +49,23 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, nans));
     diff2_dbl(REAL(x), nx, cidxs, nidxs, idxsHasNA, lagg, diff, REAL(ans), nans);
-    UNPROTECT(1);
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nans));
     diff2_int(INTEGER(x), nx, cidxs, nidxs, idxsHasNA, lagg, diff, INTEGER(ans), nans);
-    UNPROTECT(1);
   } else {
     error("Argument 'x' must be numeric.");
   }
   
   if (usenames != NA_LOGICAL && usenames) {
-    SEXP namesVec = getAttrib(x, R_NamesSymbol);
+    SEXP namesVec;
+    PROTECT(namesVec = getAttrib(x, R_NamesSymbol));
     if (namesVec != R_NilValue) {
       setNamesDiff(ans, namesVec, nidxs, nans, cidxs);
     }
+    UNPROTECT(1);
   }
+  
+  UNPROTECT(1);
 
   return ans;
 } // diff2()

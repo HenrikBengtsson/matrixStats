@@ -1,3 +1,32 @@
+# Version 1.3.0 [2024-04-10]
+
+## Significant Changes
+
+ * `validateIndices()` has been removed. It had been defunct since
+   version 0.63.0 (2022-11-14).
+
+## Bug Fixes
+
+ * Fixed two PROTECT/UNPROTECT issues detected by the 'rchk' tool.
+
+## Deprecated and Defunct
+
+ * Calling `colRanks()` and `rowRanks()` without explicitly specifying
+   argument `ties.method` will be deprecated when using R (>=
+   4.4.0). The reason is that the current default is `ties.method =
+   "max"`, but we want to change that to `ties.method = "average"` to
+   align it with `base::rank()`. In order to minimize the risk for
+   sudden changes in results, we ask everyone to explicitly specify
+   their intent. The first notice will be through deprecation
+   warnings, which will only occur every 50:th call to keep the noise
+   level down.  We will make it more noisy in future releases, and
+   eventually also escalated to defunct errors.
+ 
+ * Using a scalar value for argument `center` of `colSds()`,
+   `rowSds()`, `colVars()`, `rowVars()`, `colMads()`, `rowMads()`,
+   `colWeightedMads()`, and `rowWeightedMads()` is now defunct.
+
+
 # Version 1.2.0 [2023-12-11]
 
 ## Bug Fixes

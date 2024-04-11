@@ -89,6 +89,11 @@ rowRanks <- function(x, rows = NULL, cols = NULL,
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), ..., useNames = TRUE) {
+  ## Deprecating old ties.method="max" default in order to align with
+  ## the default for base::rank().
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/142
+  if (missing(ties.method)) tiesMethodMissing()
+
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
@@ -112,6 +117,11 @@ colRanks <- function(x, rows = NULL, cols = NULL,
                      ties.method = c("max", "average", "first", "last", "random",
                                      "max", "min", "dense"),
                      dim. = dim(x), preserveShape = FALSE, ..., useNames = TRUE) {
+  ## Deprecating old ties.method="max" default in order to align with
+  ## the default for base::rank().
+  ## https://github.com/HenrikBengtsson/matrixStats/issues/142
+  if (missing(ties.method)) tiesMethodMissing()
+
   # Argument 'ties.method':
   ties.method <- ties.method[1L]
 
