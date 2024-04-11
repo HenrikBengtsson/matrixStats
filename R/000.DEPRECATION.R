@@ -139,7 +139,7 @@ tiesMethodMissing <- local({
       defunct    = .Defunct,
       function(...) NULL
     )
-    msg <- sprintf("[%s] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options", .packageName, .packageName)
+    msg <- sprintf("[%s (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options", .packageName, .packageName)
     action(msg = msg, package = .packageName)
   }
 })
