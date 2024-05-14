@@ -76,21 +76,20 @@ void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
 
     /* (a) First order of differences */
     for (ii=0; ii < nidxs-lag; ii++) {
-    
-    if(noidxs) {
-        xvalue1 = x[ii];
-        xvalue2 = x[ii+lag];    
-    } else {
-        R_xlen_t idx1 = idxs[ii];
-        R_xlen_t idx2 = idxs[ii+lag];
-        if (!idxsHasNA) {
-            xvalue1 = x[idx1];
-            xvalue2 = x[idx2];
-        } else{
-            xvalue1 = R_INDEX_GET(x, idx1, X_NA, 1);
-            xvalue2 = R_INDEX_GET(x, idx2, X_NA, 1);        
-        }
-    }
+      if(noidxs) {
+          xvalue1 = x[ii];
+          xvalue2 = x[ii+lag];    
+      } else {
+          R_xlen_t idx1 = idxs[ii];
+          R_xlen_t idx2 = idxs[ii+lag];
+          if (!idxsHasNA) {
+              xvalue1 = x[idx1];
+              xvalue2 = x[idx2];
+          } else{
+              xvalue1 = R_INDEX_GET(x, idx1, X_NA, 1);
+              xvalue2 = R_INDEX_GET(x, idx2, X_NA, 1);        
+          }
+      }
       tmp[ii] = X_DIFF(xvalue2, xvalue1);
     }
     nidxs -= lag;
