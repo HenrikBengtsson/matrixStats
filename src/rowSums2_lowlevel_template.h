@@ -5,6 +5,7 @@
  Copyright: Henrik Bengtsson, 2017
  ***********************************************************************/
 #include <R_ext/Memory.h>
+#include <Rdefines.h>
 #include <Rmath.h>
 #include "000.types.h"
 
@@ -21,9 +22,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     R_xlen_t ii, jj, idx;
     R_xlen_t *colOffset;
     X_C_TYPE value;
-    /* Use long double (if available) for higher precision */
-    /* NOTE: SIMD does not long doubles - in case we ever go there */
-    LDOUBLE sum;
     int nocols, norows;
     
     /* If there are no missing values, don't try to remove them. */
@@ -53,16 +51,74 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         }    
     }
     
+    if (byrow){
+      /* Use long double (if available) for higher precision */
+      /* NOTE: SIMD does not long doubles - in case we ever go there */
+      LDOUBLE* sum = LDOUBLE_ALLOC(nrows);
+      memset(sum, 0, nrows*sizeof(LDOUBLE));
+      for (jj=0; jj < nrows; jj++) {
+        R_xlen_t colOffset;
+        if (nocols){
+          colOffset = jj * nrow;
+        } else if (!colsHasNA) {
+          colOffset = cols[jj] * nrow;
+        } else{
+          colOffset = R_INDEX_OP(cols[jj], *, nrow,1,1);
+        }
+        for (ii=0; ii < nrows; ii++) {
+          R_xlen_t rowIdx;
+          if (norows) {
+            /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
+            rowIdx = ii;
+          } else {
+            rowIdx = rows[ii];
+          }
+          if (!colsHasNA && !rowsHasNA) {
+            idx = rowIdx + colOffset;
+          } else {
+            idx = R_INDEX_OP(rowIdx, +, colOffset,1,1);
+          }
+          value = R_INDEX_GET(x, idx, X_NA, 1);
+#if X_TYPE == 'i'
+          if (!X_ISNAN(value)) {
+            sum[ii] += (LDOUBLE)value;
+          } else if (!narm) {
+            sum[ii] = R_NaReal;
+          }
+#elif X_TYPE == 'r'
+          if (!narm) {
+            sum[ii] += (LDOUBLE)value;
+          } else if (!ISNAN(value)) {
+            sum[ii] += (LDOUBLE)value;
+          }
+#endif
+        } /* for (ii ...) */
+        R_CHECK_USER_INTERRUPT(jj);
+        
+        } /* for (jj ...) */ 
+        for (ii=0; ii < nrows; ii++){
+          if (sum[ii] > DBL_MAX) {
+            ans[ii] = R_PosInf;
+          } else if (sum[ii] < -DBL_MAX) {
+            ans[ii] = R_NegInf;
+          } else {
+            ans[ii] = (double)sum[ii];
+          }
+        }
+      }  else { /* if (byrow) */
+            /* Use long double (if available) for higher precision */
+            /* NOTE: SIMD does not long doubles - in case we ever go there */
+    LDOUBLE sum;
     for (ii=0; ii < nrows; ii++) {
         R_xlen_t rowIdx;
         if (norows) {
             /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
-            rowIdx = byrow ? ii : ii*ncol;
+            rowIdx = ii*ncol;
         } else {
             if(!rowsHasNA && !colsHasNA) {
-                rowIdx = byrow ? rows[ii] : rows[ii] * ncol;
+                rowIdx = rows[ii] * ncol;
             }
-            rowIdx = byrow ? rows[ii] : R_INDEX_OP(rows[ii], *, ncol,1,1);
+            rowIdx = R_INDEX_OP(rows[ii], *, ncol,1,1);
         }
         sum = 0.0;
         
@@ -72,16 +128,14 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
                  * In this special case, we can eliminate
                  * the possibility of having NA indicies
                  */
-                if (byrow) idx = rowIdx + jj*nrow;
-                else idx = rowIdx + jj;
+                idx = rowIdx + jj;
                 value = x[idx];
             } else if (!rowsHasNA && !colsHasNA && !nocols) {
                 idx = rowIdx + colOffset[jj];
                 value = x[idx];
             } else {
                 if (nocols) {
-                    if (byrow) idx = R_INDEX_OP(rowIdx, +, jj*nrow,1,1);
-                    else idx = R_INDEX_OP(rowIdx, +, jj,1,1);
+                    idx = R_INDEX_OP(rowIdx, +, jj,1,1);
                 } else {
                     idx = R_INDEX_OP(rowIdx, +, colOffset[jj],1,1);
                 }
@@ -115,4 +169,5 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
                 
                 R_CHECK_USER_INTERRUPT(ii);
     } /* for (ii ...) */
+    } /* else */
 }
