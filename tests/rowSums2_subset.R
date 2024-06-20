@@ -39,10 +39,10 @@ for (setDimnames in c(TRUE, FALSE)) {
         for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowSums2, fsure = rowSums2_R,
-                                    na.rm = na.rm, useNames = useNames)
+                                    na.rm = na.rm, useNames = useNames, debug=TRUE)
           validateIndicesTestMatrix(x, rows, cols,
                                     fcoltest = colSums2, fsure = rowSums2_R,
-                                    na.rm = na.rm, useNames = useNames)
+                                    na.rm = na.rm, useNames = useNames, debug=TRUE)
         }
       }
     }

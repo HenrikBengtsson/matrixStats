@@ -56,7 +56,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
       /* NOTE: SIMD does not long doubles - in case we ever go there */
       LDOUBLE* sum = LDOUBLE_ALLOC(nrows);
       memset(sum, 0, nrows*sizeof(LDOUBLE));
-      for (jj=0; jj < nrows; jj++) {
+      for (jj=0; jj < ncols; jj++) {
         R_xlen_t colOffset;
         if (nocols){
           colOffset = jj * nrow;
@@ -78,6 +78,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
           } else {
             idx = R_INDEX_OP(rowIdx, +, colOffset,1,1);
           }
+          Rprintf("idx=%d\n",idx);
           value = R_INDEX_GET(x, idx, X_NA, 1);
 #if X_TYPE == 'i'
           if (!X_ISNAN(value)) {
@@ -110,16 +111,14 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
             /* NOTE: SIMD does not long doubles - in case we ever go there */
     LDOUBLE sum;
     for (ii=0; ii < nrows; ii++) {
-        R_xlen_t rowIdx;
-        if (norows) {
-            /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
-            rowIdx = ii*ncol;
-        } else {
-            if(!rowsHasNA && !colsHasNA) {
-                rowIdx = rows[ii] * ncol;
-            }
-            rowIdx = R_INDEX_OP(rows[ii], *, ncol,1,1);
-        }
+      R_xlen_t colOffset;
+      if (norows) {
+        colOffset = ii * ncol;
+      } else if (!colsHasNA) {
+        colOffset = rows[ii] * ncol;
+      } else{
+        colOffset = R_INDEX_OP(rows[ii], *, ncol,1,1);
+      }
         sum = 0.0;
         
         for (jj=0; jj < ncols; jj++) {
@@ -128,19 +127,23 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
                  * In this special case, we can eliminate
                  * the possibility of having NA indicies
                  */
-                idx = rowIdx + jj;
+                idx = colOffset + jj;
+                
                 value = x[idx];
             } else if (!rowsHasNA && !colsHasNA && !nocols) {
-                idx = rowIdx + colOffset[jj];
+                idx = colOffset + cols[jj];
                 value = x[idx];
             } else {
                 if (nocols) {
-                    idx = R_INDEX_OP(rowIdx, +, jj,1,1);
+                    idx = R_INDEX_OP(colOffset, +, jj,1,1);
                 } else {
-                    idx = R_INDEX_OP(rowIdx, +, colOffset[jj],1,1);
+                    idx = R_INDEX_OP(colOffset, +, cols[jj],1,1);
                 }
+                Rprintf("idx=%d\n",idx);
                 value = R_INDEX_GET(x, idx, X_NA, 1);
             }
+            
+            
             
 #if X_TYPE == 'i'
             if (!X_ISNAN(value)) {
