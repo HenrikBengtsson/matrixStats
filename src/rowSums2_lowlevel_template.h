@@ -78,7 +78,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
           } else {
             idx = R_INDEX_OP(rowIdx, +, colOffset,1,1);
           }
-          Rprintf("idx=%d\n",idx);
           value = R_INDEX_GET(x, idx, X_NA, 1);
 #if X_TYPE == 'i'
           if (!X_ISNAN(value)) {
@@ -114,7 +113,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
       R_xlen_t colOffset;
       if (norows) {
         colOffset = ii * ncol;
-      } else if (!colsHasNA) {
+      } else if (!rowsHasNA) {
         colOffset = rows[ii] * ncol;
       } else{
         colOffset = R_INDEX_OP(rows[ii], *, ncol,1,1);
@@ -128,7 +127,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
                  * the possibility of having NA indicies
                  */
                 idx = colOffset + jj;
-                
                 value = x[idx];
             } else if (!rowsHasNA && !colsHasNA && !nocols) {
                 idx = colOffset + cols[jj];
@@ -139,7 +137,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
                 } else {
                     idx = R_INDEX_OP(colOffset, +, cols[jj],1,1);
                 }
-                Rprintf("idx=%d\n",idx);
                 value = R_INDEX_GET(x, idx, X_NA, 1);
             }
             
