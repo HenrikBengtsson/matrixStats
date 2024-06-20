@@ -31,54 +31,40 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     if (cols == NULL) { nocols = 1; } else { nocols = 0; }
     if (rows == NULL) { norows = 1; } else { norows = 0; }
     
-    
-    /* Pre-calculate the column offsets */
-    if (nocols) {
-        colOffset = NULL;
-    } else {
-        colOffset = (R_xlen_t *) R_alloc(ncols, sizeof(R_xlen_t));
-        if (byrow) {
-            for (jj=0; jj < ncols; jj++)
-                if(!rowsHasNA && !colsHasNA){
-                    colOffset[jj] = cols[jj] * nrow;
-                }
-                else{
-                    colOffset[jj] = R_INDEX_OP(cols[jj], *, nrow,1,1);
-                }
-        } else {
-            for (jj=0; jj < ncols; jj++)
-                colOffset[jj] = cols[jj];
-        }    
-    }
-    
-    if (byrow){
+    if (byrow) {
       /* Use long double (if available) for higher precision */
       /* NOTE: SIMD does not long doubles - in case we ever go there */
       LDOUBLE* sum = LDOUBLE_ALLOC(nrows);
       memset(sum, 0, nrows*sizeof(LDOUBLE));
       for (jj=0; jj < ncols; jj++) {
         R_xlen_t colOffset;
-        if (nocols){
+        if (nocols) {
           colOffset = jj * nrow;
         } else if (!colsHasNA) {
           colOffset = cols[jj] * nrow;
-        } else{
+        } else {
           colOffset = R_INDEX_OP(cols[jj], *, nrow,1,1);
         }
         for (ii=0; ii < nrows; ii++) {
           R_xlen_t rowIdx;
-          if (norows) {
-            /* ii and ncols cannot be NA-values, so we do not need R_INDEX_OP */
-            rowIdx = ii;
+          if (!colsHasNA && norows) {
+            /*
+             * In this special case, we can eliminate
+             * the possibility of having NA indicies
+             */
+            idx = colOffset + ii;
+            value = x[idx];
+          } else if (!colsHasNA && !rowsHasNA && !norows) {
+            idx = colOffset + rows[ii];
+            value = x[idx];
           } else {
-            rowIdx = rows[ii];
+            if (norows) {
+              idx = R_INDEX_OP(colOffset, +, ii,1,1);
+            } else {
+              idx = R_INDEX_OP(colOffset, +, rows[ii],1,1);
+            }
+            value = R_INDEX_GET(x, idx, X_NA, 1);
           }
-          if (!colsHasNA && !rowsHasNA) {
-            idx = rowIdx + colOffset;
-          } else {
-            idx = R_INDEX_OP(rowIdx, +, colOffset,1,1);
-          }
-          value = R_INDEX_GET(x, idx, X_NA, 1);
 #if X_TYPE == 'i'
           if (!X_ISNAN(value)) {
             sum[ii] += (LDOUBLE)value;
