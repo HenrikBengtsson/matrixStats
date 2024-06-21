@@ -32,11 +32,8 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     /* NOTE: For maintaining a tidy codebase, we bring variables for both
      * colsums and rowsums in scope, but only one of them will ever be used
      * at given call to the function */
-    LDOUBLE* rowSum;
+    LDOUBLE *rowSum;
     LDOUBLE colSum;
-    /* Convenience pointer effectively used as an alias to current memory location
-     * to add to. Otherwise, the code would be slightly more convoluted */
-    LDOUBLE* sum;
     
     /* If there are no missing values, don't try to remove them. */
     if (hasna == FALSE)
@@ -55,7 +52,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     for (jj=0; jj < ncols; jj++) {
       if (!byrow) {
         colSum = 0.0;
-        sum = &colSum;
       }
       if (nocols) {
         colOffset = jj * nrow;
@@ -65,9 +61,6 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         colOffset = R_INDEX_OP(cols[jj], *, nrow,1,1);
       }
       for (ii=0; ii < nrows; ii++) {
-        if (byrow) {
-          sum = &rowSum[ii];
-        }
         if (!colsHasNA && norows) {
           /*
            * In this special case, we can eliminate
@@ -88,29 +81,38 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         }
         
 #if X_TYPE == 'i'
-        // Rprintf("idx=%d\n", idx);
-        // Rprintf("sum=%f\n", *sum);
-        // Rprintf("value=%d\n", value);
-        if (!X_ISNAN(value)) {
-          *sum += (LDOUBLE)value;
-        } else if (!narm) {
-          *sum = R_NaReal;
-          if (!byrow) {
+        if (byrow) {
+          if (!X_ISNAN(value)) {
+            rowSum[ii] += (LDOUBLE)value;
+          } else if (!narm) {
+            rowSum[ii] = R_NaReal;
+          }
+        } else {
+          if (!X_ISNAN(value)) {
+            colSum += (LDOUBLE)value;
+          } else if (!narm) {
+            colSum = R_NaReal;
             /* This optimization is harder to make for row sums
              * as we cannot just break the loop
              */
             break;
-          }
+          }  
         }
 #elif X_TYPE == 'r'
-        if (!narm) {
-          *sum += (LDOUBLE)value;
-        } else if (!ISNAN(value)) {
-          *sum += (LDOUBLE)value;
-          if (byrow) {
-            if (jj % 1048576 == 0 && ISNA(*sum)) {
-              break;
+        if (byrow) {
+          if (!narm) {
+            rowSum[ii] += (LDOUBLE)value;
+          } else if (!ISNAN(value)) {
+            rowSum[ii] += (LDOUBLE)value;
             }
+        } else {
+          if (!narm) {
+            colSum += (LDOUBLE)value;
+          } else if (!ISNAN(value)) {
+            colSum += (LDOUBLE)value;
+              if (jj % 1048576 == 0 && ISNA(colSum)) {
+                break;
+              }
           }
         }
 #endif
