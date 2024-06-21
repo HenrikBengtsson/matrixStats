@@ -14,15 +14,29 @@
  */
 #include "000.templates-types.h"
 
-
+/* NOTE: Unlike the other functions in the API,
+ * elements are always iterated through in-order.
+ * Hence, rows and cols really mean rows and cols no matter
+ * the flag byrow
+ */
 void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol, 
                   R_xlen_t *rows, R_xlen_t nrows, int rowsHasNA,
                   R_xlen_t *cols, R_xlen_t ncols, int colsHasNA,
                   int narm, int hasna, int byrow, double *ans) {
     R_xlen_t ii, jj, idx;
-    R_xlen_t *colOffset;
+    R_xlen_t colOffset;
     X_C_TYPE value;
     int nocols, norows;
+    /* Use long double (if available) for higher precision */
+    /* NOTE: SIMD does not long doubles - in case we ever go there */
+    /* NOTE: For maintaining a tidy codebase, we bring variables for both
+     * colsums and rowsums in scope, but only one of them will ever be used
+     * at given call to the function */
+    LDOUBLE* rowSum;
+    LDOUBLE colSum;
+    /* Convenience pointer effectively used as an alias to current memory location
+     * to add to. Otherwise, the code would be slightly more convoluted */
+    LDOUBLE* sum;
     
     /* If there are no missing values, don't try to remove them. */
     if (hasna == FALSE)
@@ -32,128 +46,98 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     if (rows == NULL) { norows = 1; } else { norows = 0; }
     
     if (byrow) {
-      /* Use long double (if available) for higher precision */
-      /* NOTE: SIMD does not long doubles - in case we ever go there */
-      LDOUBLE* sum = LDOUBLE_ALLOC(nrows);
-      memset(sum, 0, nrows*sizeof(LDOUBLE));
-      for (jj=0; jj < ncols; jj++) {
-        R_xlen_t colOffset;
-        if (nocols) {
-          colOffset = jj * nrow;
-        } else if (!colsHasNA) {
-          colOffset = cols[jj] * nrow;
-        } else {
-          colOffset = R_INDEX_OP(cols[jj], *, nrow,1,1);
+      rowSum = LDOUBLE_ALLOC(nrows);
+      /* Ensures that all elements of array are intialized to zero,
+       * this is VERY important */
+      memset(rowSum, 0, nrows*sizeof(LDOUBLE));
+    }
+    
+    for (jj=0; jj < ncols; jj++) {
+      if (!byrow) {
+        colSum = 0.0;
+        sum = &colSum;
+      }
+      if (nocols) {
+        colOffset = jj * nrow;
+      } else if (!colsHasNA) {
+        colOffset = cols[jj] * nrow;
+      } else {
+        colOffset = R_INDEX_OP(cols[jj], *, nrow,1,1);
+      }
+      for (ii=0; ii < nrows; ii++) {
+        if (byrow) {
+          sum = &rowSum[ii];
         }
-        for (ii=0; ii < nrows; ii++) {
-          R_xlen_t rowIdx;
-          if (!colsHasNA && norows) {
-            /*
-             * In this special case, we can eliminate
-             * the possibility of having NA indicies
-             */
-            idx = colOffset + ii;
-            value = x[idx];
-          } else if (!colsHasNA && !rowsHasNA && !norows) {
-            idx = colOffset + rows[ii];
-            value = x[idx];
+        if (!colsHasNA && norows) {
+          /*
+           * In this special case, we can eliminate
+           * the possibility of having NA indicies
+           */
+          idx = colOffset + ii;
+          value = x[idx];
+        } else if (!colsHasNA && !rowsHasNA && !norows) {
+          idx = colOffset + rows[ii];
+          value = x[idx];
+        } else {
+          if (norows) {
+            idx = R_INDEX_OP(colOffset, +, ii,1,1);
           } else {
-            if (norows) {
-              idx = R_INDEX_OP(colOffset, +, ii,1,1);
-            } else {
-              idx = R_INDEX_OP(colOffset, +, rows[ii],1,1);
-            }
-            value = R_INDEX_GET(x, idx, X_NA, 1);
+            idx = R_INDEX_OP(colOffset, +, rows[ii],1,1);
           }
-#if X_TYPE == 'i'
-          if (!X_ISNAN(value)) {
-            sum[ii] += (LDOUBLE)value;
-          } else if (!narm) {
-            sum[ii] = R_NaReal;
-          }
-#elif X_TYPE == 'r'
-          if (!narm) {
-            sum[ii] += (LDOUBLE)value;
-          } else if (!ISNAN(value)) {
-            sum[ii] += (LDOUBLE)value;
-          }
-#endif
-        } /* for (ii ...) */
-        R_CHECK_USER_INTERRUPT(jj);
+          value = R_INDEX_GET(x, idx, X_NA, 1);
+        }
         
-        } /* for (jj ...) */ 
-        for (ii=0; ii < nrows; ii++){
-          if (sum[ii] > DBL_MAX) {
+#if X_TYPE == 'i'
+        // Rprintf("idx=%d\n", idx);
+        // Rprintf("sum=%f\n", *sum);
+        // Rprintf("value=%d\n", value);
+        if (!X_ISNAN(value)) {
+          *sum += (LDOUBLE)value;
+        } else if (!narm) {
+          *sum = R_NaReal;
+          if (!byrow) {
+            /* This optimization is harder to make for row sums
+             * as we cannot just break the loop
+             */
+            break;
+          }
+        }
+#elif X_TYPE == 'r'
+        if (!narm) {
+          *sum += (LDOUBLE)value;
+        } else if (!ISNAN(value)) {
+          *sum += (LDOUBLE)value;
+          if (byrow) {
+            if (jj % 1048576 == 0 && ISNA(*sum)) {
+              break;
+            }
+          }
+        }
+#endif
+      } /* for (ii ...) */
+      
+      if (!byrow) {      
+          if (colSum > DBL_MAX) {
+            ans[jj] = R_PosInf;
+          } else if (colSum < -DBL_MAX) {
+            ans[jj] = R_NegInf;
+          } else {
+            ans[jj] = (double)colSum;
+          }
+      }
+      R_CHECK_USER_INTERRUPT(jj);
+      
+      } /* for (jj ...) */ 
+        
+      if (byrow) {
+        for (ii=0; ii < nrows; ii++) {
+          if (rowSum[ii] > DBL_MAX) {
             ans[ii] = R_PosInf;
-          } else if (sum[ii] < -DBL_MAX) {
+          } else if (rowSum[ii] < -DBL_MAX) {
             ans[ii] = R_NegInf;
           } else {
-            ans[ii] = (double)sum[ii];
+            ans[ii] = (double)rowSum[ii];
           }
         }
-      }  else { /* if (byrow) */
-            /* Use long double (if available) for higher precision */
-            /* NOTE: SIMD does not long doubles - in case we ever go there */
-    LDOUBLE sum;
-    for (ii=0; ii < nrows; ii++) {
-      R_xlen_t colOffset;
-      if (norows) {
-        colOffset = ii * ncol;
-      } else if (!rowsHasNA) {
-        colOffset = rows[ii] * ncol;
-      } else{
-        colOffset = R_INDEX_OP(rows[ii], *, ncol,1,1);
       }
-        sum = 0.0;
-        
-        for (jj=0; jj < ncols; jj++) {
-            if (!rowsHasNA && nocols) {
-                /*
-                 * In this special case, we can eliminate
-                 * the possibility of having NA indicies
-                 */
-                idx = colOffset + jj;
-                value = x[idx];
-            } else if (!rowsHasNA && !colsHasNA && !nocols) {
-                idx = colOffset + cols[jj];
-                value = x[idx];
-            } else {
-                if (nocols) {
-                    idx = R_INDEX_OP(colOffset, +, jj,1,1);
-                } else {
-                    idx = R_INDEX_OP(colOffset, +, cols[jj],1,1);
-                }
-                value = R_INDEX_GET(x, idx, X_NA, 1);
-            }
-            
-            
-            
-#if X_TYPE == 'i'
-            if (!X_ISNAN(value)) {
-                sum += (LDOUBLE)value;
-            } else if (!narm) {
-                sum = R_NaReal;
-                break;
-            }
-#elif X_TYPE == 'r'
-            if (!narm) {
-                sum += (LDOUBLE)value;
-                if (jj % 1048576 == 0 && ISNA(sum)) break;
-            } else if (!ISNAN(value)) {
-                sum += (LDOUBLE)value;
-            }
-#endif
-        } /* for (jj ...) */
-                
-                if (sum > DBL_MAX) {
-                    ans[ii] = R_PosInf;
-                } else if (sum < -DBL_MAX) {
-                    ans[ii] = R_NegInf;
-                } else {
-                    ans[ii] = (double)sum;
-                }
-                
-                R_CHECK_USER_INTERRUPT(ii);
-    } /* for (ii ...) */
-    } /* else */
 }
