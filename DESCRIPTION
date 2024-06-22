@@ -1,5 +1,5 @@
 Package: matrixStats
-Version: 1.3.0-9002
+Version: 1.3.0-9003
 Depends:
   R (>= 2.12.0)
 Suggests:

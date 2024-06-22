@@ -91,7 +91,7 @@ R_xlen_t* validateIndices_lgl(int *idxs, R_xlen_t nidxs, R_xlen_t maxIdx, int al
   * If `idxs` is NULL, NULL will be returned, which indicates selecting.
   * the whole to-be-computed vector(matrix).
   * `maxIdx` is the to-be-computed vector(matrix)'s length (rows/cols).
-  * `allowOutOfBound` indicates whether to allow positve out of bound indexing.
+  * `allowOutOfBound` indicates whether to allow positive out of bound indexing.
   * `ansNidxs` is used for returning the new idxs array's length.
   * `subsettedType` is used for returning the new idxs array's datatype.
   * `hasna` is TRUE, if NA is included in returned result.
@@ -130,7 +130,7 @@ R_xlen_t *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound
   * If `idxs` is NULL, NULL will be returned, which indicates selecting.
   * the whole to-be-computed vector(matrix).
   * `maxIdx` is the to-be-computed vector(matrix)'s length (rows/cols).
-  * `allowOutOfBound` indicates whether to allow positve out of bound indexing.
+  * `allowOutOfBound` indicates whether to allow positive out of bound indexing.
   ************************************************************/
 SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
   SEXP ans;

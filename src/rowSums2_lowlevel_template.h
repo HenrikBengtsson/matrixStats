@@ -64,7 +64,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
         if (!colsHasNA && norows) {
           /*
            * In this special case, we can eliminate
-           * the possibility of having NA indicies
+           * the possibility of having NA indices
            */
           idx = colOffset + ii;
           value = x[idx];

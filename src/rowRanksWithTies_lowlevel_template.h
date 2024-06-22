@@ -121,7 +121,7 @@ void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t n
     for (jj = 0; jj <= lastFinite; jj++) {
       /*
        * Checking for the colsHasNA when we already have to check colsHasNA || rowsHasNA
-       * is indeed useless, but for keeping the code ideomatic, we still do it
+       * is indeed useless, but for keeping the code idiomatic, we still do it
        * Hopefully, the compiler will optimize out the unnecessary instructions [JPP].
        */
 #if MARGIN == 'r'
@@ -247,7 +247,7 @@ void CONCAT_MACROS(METHOD, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t n
  2013-04-23 [HB]
  o BUG FIX: Ranks did not work for integers with NAs; now using X_ISNAN().
  2013-01-13 [HB]
- o Template cleanup.  Extened tempate to integer matrices.
+ o Template cleanup.  Extended template to integer matrices.
  o Added argument 'tiesMethod' to rowRanks().
  2012-12-14 [PL]
  o Added internal support for "min", "max" and "average" ties.  Using

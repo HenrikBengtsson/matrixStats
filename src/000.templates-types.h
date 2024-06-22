@@ -146,7 +146,7 @@
  Subsetted indexing: whether to check NA according to indexing
  For optimization purposes, these macros can skip checking
  whether the arguments are NA based on the macro arguments.
- This may seem like a futile optimiztion (we do branching),
+ This may seem like a futile optimization (we do branching),
  but such checking flags are often loop invariants meaning
  the compiler will optimize out the branches and put the
  before the loop.

@@ -1112,7 +1112,7 @@
 
 ## Deprecated and Defunct
 
- * Calling `indexByRow(X)` with a matrix `X` is deprecatated.  Instead
+ * Calling `indexByRow(X)` with a matrix `X` is deprecated.  Instead
    call it with `indexByRow(dim(X))`.
 
 

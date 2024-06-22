@@ -269,7 +269,7 @@ stopifnot(
   identical(s1, s2)
 )
 
-# Input is double but coersing result to integer
+# Input is double but coercing result to integer
 x <- c(1, 2, 3.1)
 s1 <- sum2(x)
 s2 <- sum2(x, mode = "integer")

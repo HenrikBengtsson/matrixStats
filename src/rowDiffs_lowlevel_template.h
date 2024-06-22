@@ -116,7 +116,7 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow,
               if (!colsHasNA || colBegin1 != NA_R_XLEN_T){
                   /*
                    * In this special case, we can eliminate
-                   * the possibility of having NA indicies
+                   * the possibility of having NA indices
                    */
                   idx = colBegin1 + ii;
                   xvalue1 = x[idx];
@@ -134,7 +134,7 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow,
               if (!colsHasNA || colBegin2 != NA_R_XLEN_T){
                   /*
                    * In this special case, we can eliminate
-                   * the possibility of having NA indicies
+                   * the possibility of having NA indices
                    */
                   idx = colBegin2 + ii;
                   xvalue2 = x[idx];
@@ -168,7 +168,7 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow,
               if (!colsHasNA || colBegin1 != NA_R_XLEN_T){
                   /*
                    * In this special case, we can eliminate
-                   * the possibility of having NA indicies
+                   * the possibility of having NA indices
                    */
                   idx = colBegin1 + ii;
                   xvalue1 = x[idx];
@@ -186,7 +186,7 @@ static R_INLINE void DIFF_X_MATRIX_TYPE(X_C_TYPE *x, R_xlen_t nrow,
             if (!colsHasNA || colBegin1 != NA_R_XLEN_T){
                 /*
                  * In this special case, we can eliminate
-                 * the possibility of having NA indicies
+                 * the possibility of having NA indices
                  */
                 idx = colBegin1 + ii + lag;
                 xvalue2 = x[idx];

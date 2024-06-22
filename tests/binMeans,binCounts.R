@@ -143,12 +143,12 @@ stopifnot(all.equal(y_smooth, y_smooth0))
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Exception handling
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Zero bin bounderies (invalid bin definition)
+# Zero bin boundaries (invalid bin definition)
 bx <- double(0L)
 res <- try(y_smooth <- binMeans(x = 1:5, y = 1:5, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))
 
-# One bin boundery (invalid bin definition)
+# One bin boundary (invalid bin definition)
 bx <- double(1L)
 res <- try(y_smooth <- binMeans(x = 1:5, y = 1:5, bx = bx), silent = TRUE)
 stopifnot(inherits(res, "try-error"))

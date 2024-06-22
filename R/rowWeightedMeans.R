@@ -105,7 +105,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       W[nas] <- NA
       wS <- rowSums(W, na.rm = TRUE)
 
-      # Standarized weights summing to one w/out missing values
+      # Standardized weights summing to one w/out missing values
       W[nas] <- 0
       W <- W / wS
 
@@ -244,7 +244,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
       W[nas] <- NA
       wS <- colSums(W, na.rm = TRUE)
 
-      # Standarized weights summing to one w/out missing values
+      # Standardized weights summing to one w/out missing values
       W[nas] <- 0
       for (cc in 1:m) {
         W[, cc] <- W[, cc, drop = TRUE] / wS[cc]

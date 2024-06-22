@@ -124,7 +124,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -184,7 +184,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -246,7 +246,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -306,7 +306,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -370,7 +370,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -427,7 +427,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -485,7 +485,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];
@@ -542,7 +542,7 @@ void METHOD_NAME(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t ncol,
                   if (!xcolsHasNA || colBegin != NA_R_XLEN_T) {
                       /*
                        * In this special case, we can eliminate
-                       * the possibility of having NA indicies
+                       * the possibility of having NA indices
                        */
                       idx = colBegin + ii;
                       xvalue = x[idx];

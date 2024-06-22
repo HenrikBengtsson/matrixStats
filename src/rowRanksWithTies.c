@@ -13,7 +13,7 @@
 /* Peter Langfelder's modifications:
  * byrow: 0 => rank columns, !0 => rank rows
  * tiesMethod: 1: maximum, 2: average, 3:minimum
- * The returned rank is a REAL matrix to accomodate average ranks
+ * The returned rank is a REAL matrix to accommodate average ranks
  */
 /* Brian Montgomery's modifications:
  * added tiesMethods first, last, random, and dense

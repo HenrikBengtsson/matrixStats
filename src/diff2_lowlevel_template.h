@@ -114,7 +114,7 @@ void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
       ans[ii] = X_DIFF(tmp[uu++], tmp[tt++]);
     }
 
-    /* Deallocate temorary work vector */
+    /* Deallocate temporary work vector */
     Free(tmp);
   } /* if (differences ...) */
 }

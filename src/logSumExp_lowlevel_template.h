@@ -30,7 +30,7 @@
   2. Computes result from 'xx'.
 
   NOTE: The above sweeps the "scattered" 'x' vector only once, and then
-  the "contigous" 'xx' vector once.  This is more likely to create
+  the "contiguous" 'xx' vector once.  This is more likely to create
   cache hits.
 */
 double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna, R_xlen_t by, double *xx) {
@@ -92,7 +92,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
   if (by) {
     /* To increase the chances for cache hits below, which
        sweeps through the data twice, we copy data into a
-       temporary contigous vector while scanning for the
+       temporary contiguous vector while scanning for the
        maximum value. */
     xx[0] = xMax;
     for (ii=1; ii < nidxs; ii++) {
@@ -245,7 +245,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
   o Merge 'logSumExp_double_by' to 'logSumExp_double'
  2015-01-26 [HB]
  o SPEEDUP: Now step 2 ("summing") only checks where NAs if NAs were
-   detected in step 1 ("max value"), which should be noticibly faster
+   detected in step 1 ("max value"), which should be noticeably faster
    since testing for NA is expensive for double values.
  o SPEEDUP: Now function returns early after step 1 ("max value") if
    the maximum value found is +Inf, or if all values where NAs.

@@ -71,7 +71,7 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
         if (!rowsHasNA && nocols) {
             /*
              * In this special case, we can eliminate
-             * the possibility of having NA indicies
+             * the possibility of having NA indices
              */
             if (byrow) idx = rowIdx + jj*nrow;
             else idx = rowIdx + jj;
@@ -124,7 +124,7 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
           if (!rowsHasNA && nocols) {
               /*
                * In this special case, we can eliminate
-               * the possibility of having NA indicies
+               * the possibility of having NA indices
                */
               if (byrow) idx = rowIdx + jj*nrow;
               else idx = rowIdx + jj;

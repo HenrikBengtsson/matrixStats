@@ -54,7 +54,7 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
                 if (!colsHasNA || colBegin != NA_R_XLEN_T){
                     /*
                      * In this special case, we can eliminate
-                     * the possibility of having NA indicies
+                     * the possibility of having NA indices
                      */
                     idx = colBegin + ii;
                     xvalue = x[idx];
@@ -94,7 +94,7 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
                 if (!colsHasNA || colBegin != NA_R_XLEN_T){
                     /*
                      * In this special case, we can eliminate
-                     * the possibility of having NA indicies
+                     * the possibility of having NA indices
                      */
                     idx = colBegin + ii;
                     xvalue = x[idx];
@@ -148,7 +148,7 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
                 if (!colsHasNA || colBegin != NA_R_XLEN_T){
                     /*
                      * In this special case, we can eliminate
-                     * the possibility of having NA indicies
+                     * the possibility of having NA indices
                      */
                     idx = colBegin + ii;
                     xvalue = x[idx];
@@ -188,7 +188,7 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
                 if (!colsHasNA || colBegin != NA_R_XLEN_T){
                     /*
                      * In this special case, we can eliminate
-                     * the possibility of having NA indicies
+                     * the possibility of having NA indices
                      */
                     idx = colBegin + ii;
                     xvalue = x[idx];
@@ -240,7 +240,7 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
                 if (!colsHasNA || colBegin != NA_R_XLEN_T){
                     /*
                      * In this special case, we can eliminate
-                     * the possibility of having NA indicies
+                     * the possibility of having NA indices
                      */
                     idx = colBegin + ii;
                     xvalue = x[idx];
@@ -278,7 +278,7 @@ void CONCAT_MACROS(colCounts, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
                 if (!colsHasNA || colBegin != NA_R_XLEN_T){
                     /*
                      * In this special case, we can eliminate
-                     * the possibility of having NA indicies
+                     * the possibility of having NA indices
                      */
                     idx = colBegin + ii;
                     xvalue = x[idx];

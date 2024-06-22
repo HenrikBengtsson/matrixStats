@@ -145,7 +145,6 @@ cummax
 cummin
 cumprod
 cumsum
-deprecatated
 dest
 df
 env

@@ -97,7 +97,7 @@ void CONCAT_MACROS(rowMedians, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
             if (!rowsHasNA && nocols) {
                 /*
                  * In this special case, we can eliminate
-                 * the possibility of having NA indicies
+                 * the possibility of having NA indices
                  */
                 if (byrow) idx = rowIdx + jj*nrow;
                 else idx = rowIdx + jj;

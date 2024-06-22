@@ -34,7 +34,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   wtmp = Calloc(nidxs, double);
 
-  /* Check for missing, negative, and infite weights */
+  /* Check for missing, negative, and infinite weights */
   nxt = 0;
   for (ii=0; ii < nidxs; ii++) {
     /* Assume negative or missing weight by default or
