@@ -40,17 +40,12 @@ SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEX
 
   /* Argument 'byRow': */
   byrow = asLogical(byRow);
+  /* Note that there are not SWAP statements here as the elements are iterated through
+  in-order column-major irrespective of byrow
+  */
 
-  if (!byrow) {
-    SWAP(R_xlen_t, nrow, ncol);
-    SWAP(R_xlen_t*, crows, ccols);
-    SWAP(R_xlen_t, nrows, ncols);
-    SWAP(int, rowsHasNA, colsHasNA);
-  }
-
-  /* R allocate a double vector of length 'nrow'
-     Note that 'nrow' means 'ncol' if byrow=FALSE. */
-  PROTECT(ans = allocVector(REALSXP, nrows));
+  /* R allocate a double vector of the desired length */
+  PROTECT(ans = allocVector(REALSXP, byrow ? nrows: ncols));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
@@ -73,7 +68,7 @@ SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEX
       } else {
         SEXP namesVec = VECTOR_ELT(dimnames, 1);
         if (namesVec != R_NilValue) {
-          setNames(ans, namesVec, nrows, crows);
+          setNames(ans, namesVec, ncols, ccols);
         }
       }
     }

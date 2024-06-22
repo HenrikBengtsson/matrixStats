@@ -27,8 +27,10 @@
 /* As in <R>/src/include/Defn.h */
 #ifdef HAVE_LONG_DOUBLE
 #define LDOUBLE long double
+#define LDOUBLE_ALLOC(n) R_allocLD(n)
 #else
 #define LDOUBLE double
+#define LDOUBLE_ALLOC(n) ((double*) R_alloc(n, sizeof(double)))
 #endif
 
 /* Backward compatibility with R (< 3.0.0)
