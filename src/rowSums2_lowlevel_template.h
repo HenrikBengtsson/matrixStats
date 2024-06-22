@@ -46,7 +46,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
       rowSum = LDOUBLE_ALLOC(nrows);
       /* Ensures that all elements of array are intialized to zero,
        * this is VERY important */
-      memset(rowSum, 0, nrows*sizeof(LDOUBLE));
+      memset(rowSum, 0, nrows*  sizeof(LDOUBLE));
     }
     
     for (jj=0; jj < ncols; jj++) {
@@ -58,7 +58,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
       } else if (!colsHasNA) {
         colOffset = cols[jj] * nrow;
       } else {
-        colOffset = R_INDEX_OP(cols[jj], *, nrow,1,1);
+        colOffset = R_INDEX_OP(cols[jj], *, nrow, 1, 1);
       }
       for (ii=0; ii < nrows; ii++) {
         if (!colsHasNA && norows) {
@@ -73,9 +73,9 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
           value = x[idx];
         } else {
           if (norows) {
-            idx = R_INDEX_OP(colOffset, +, ii,1,1);
+            idx = R_INDEX_OP(colOffset, +, ii, 1, 1);
           } else {
-            idx = R_INDEX_OP(colOffset, +, rows[ii],1,1);
+            idx = R_INDEX_OP(colOffset, +, rows[ii], 1, 1);
           }
           value = R_INDEX_GET(x, idx, X_NA, 1);
         }

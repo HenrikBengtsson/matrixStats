@@ -1,6 +1,8 @@
 # Version (development version)
 
- * ...
+## Performance
+
+ * `rowSums2()` is now significantly faster for larger matrices.
  
 
 # Version 1.3.0 [2024-04-10]

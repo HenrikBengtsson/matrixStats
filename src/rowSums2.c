@@ -45,7 +45,7 @@ SEXP rowSums2(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP naRm, SEXP hasNA, SEX
   */
 
   /* R allocate a double vector of the desired length */
-  PROTECT(ans = allocVector(REALSXP, byrow ? nrows: ncols));
+  PROTECT(ans = allocVector(REALSXP, byrow ? nrows : ncols));
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
