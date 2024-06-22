@@ -27,10 +27,10 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
 
   /* Argument 'which': */
   if (length(which) != 1)
-    error("Argument 'which' must be a single number.");
+    error("Argument 'which' must be a single number");
 
   if (!isNumeric(which))
-    error("Argument 'which' must be a numeric number.");
+    error("Argument 'which' must be a numeric number");
 
   /* Argument 'rows' and 'cols': */
   R_xlen_t nrows, ncols;

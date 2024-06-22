@@ -22,13 +22,13 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
   /* Argument 'lag': */
   lagg = asInteger(lag);
   if (lagg < 1) {
-    error("Argument 'lag' must be a positive integer.");
+    error("Argument 'lag' must be a positive integer");
   }
 
   /* Argument 'differences': */
   diff = asInteger(differences);
   if (diff < 1) {
-    error("Argument 'differences' must be a positive integer.");
+    error("Argument 'differences' must be a positive integer");
   }
 
   /* Argument 'idxs': */
@@ -53,7 +53,7 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
     PROTECT(ans = allocVector(INTSXP, nans));
     diff2_int(INTEGER(x), nx, cidxs, nidxs, idxsHasNA, lagg, diff, INTEGER(ans), nans);
   } else {
-    error("Argument 'x' must be numeric.");
+    error("Argument 'x' must be numeric");
   }
   
   if (usenames != NA_LOGICAL && usenames) {

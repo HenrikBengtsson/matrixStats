@@ -27,7 +27,7 @@ SEXP rowMads(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP constant, SEXP naRm, S
 
   /* Argument 'constant': */
   if (!isNumeric(constant))
-    error("Argument 'constant' must be a numeric scale.");
+    error("Argument 'constant' must be a numeric scale");
   scale = asReal(constant);
 
   /* Argument 'naRm': */

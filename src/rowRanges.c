@@ -29,9 +29,9 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
 
   /* Argument 'what': */
   if (length(what) != 1)
-    error("Argument 'what' must be a single number.");
+    error("Argument 'what' must be a single number");
   if (!isNumeric(what))
-    error("Argument 'what' must be a numeric number.");
+    error("Argument 'what' must be a numeric number");
   what2 = asInteger(what);
   if (what2 < 0 || what2 > 2)
     error("Invalid value of 'what': %d", what2);

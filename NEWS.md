@@ -4,6 +4,10 @@
 
  * `rowSums2()` is now significantly faster for larger matrices.
  
+## Miscellaneous
+
+ * None of the error messages use a trailing period.
+ 
 
 # Version 1.3.0 [2024-04-10]
 

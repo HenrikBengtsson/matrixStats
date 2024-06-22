@@ -118,7 +118,7 @@ R_xlen_t *validateIndicesCheckNA(SEXP idxs, R_xlen_t maxIdx, int allowOutOfBound
       *ansNidxs = maxIdx;
       return NULL;
     default:
-      error("idxs can only be integer, numeric, or logical.");
+      error("idxs can only be integer, numeric, or logical");
   }
   return NULL; // useless sentence. won't be executed.
 }
@@ -158,7 +158,7 @@ SEXP validate(SEXP idxs, SEXP maxIdx, SEXP allowOutOfBound) {
     case NILSXP:
       return R_NilValue;
     default:
-      error("idxs can only be integer, numeric, or logical.");
+      error("idxs can only be integer, numeric, or logical");
   }
   
   if (cidxs != NULL) {

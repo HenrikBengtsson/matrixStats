@@ -58,35 +58,35 @@ SEXP psortKM(SEXP x, SEXP k, SEXP m) {
   assertArgVector(x, (R_TYPE_REAL), "x");
   nx = xlength(x);
   if (nx == 0) {
-    error("Argument 'x' must not be empty.");
+    error("Argument 'x' must not be empty");
   }
 
   /* Argument 'k': */
   if (!isInteger(k)) {
-    error("Argument 'k' must be an integer.");
+    error("Argument 'k' must be an integer");
   }
   if (length(k) != 1) {
-    error("Argument 'k' must be a single integer.");
+    error("Argument 'k' must be a single integer");
   }
   kk = asInteger(k);
   if (kk <= 0) {
-    error("Argument 'k' must be a positive integer.");
+    error("Argument 'k' must be a positive integer");
   } if (kk > nx) {
-    error("Argument 'k' must not be greater than number of elements in 'x'.");
+    error("Argument 'k' must not be greater than number of elements in 'x'");
   }
 
   /* Argument 'm': */
   if (!isInteger(m)) {
-    error("Argument 'm' must be an integer.");
+    error("Argument 'm' must be an integer");
   }
   if (length(m) != 1) {
-    error("Argument 'm' must be a single integer.");
+    error("Argument 'm' must be a single integer");
   }
   mm = asInteger(m);
   if (mm <= 0) {
-    error("Argument 'm' must be a positive integer.");
+    error("Argument 'm' must be a positive integer");
   } else if (mm > kk) {
-    error("Argument 'm' must not be greater than argument 'k'.");
+    error("Argument 'm' must not be greater than argument 'k'");
   }
 
 

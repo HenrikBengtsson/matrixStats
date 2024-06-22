@@ -40,13 +40,13 @@ void fillWithValue(SEXP ans, SEXP value) {
 
   /* Argument 'ans': */
   if (!isVectorAtomic(ans)) {
-    error("Argument 'ans' must be a vector.");
+    error("Argument 'ans' must be a vector");
   }
   n = xlength(ans);
 
   /* Argument 'value': */
   if (!isVectorAtomic(value) || xlength(value) != 1) {
-    error("Argument 'value' must be a scalar.");
+    error("Argument 'value' must be a scalar");
   }
   type = TYPEOF(value);
 
@@ -79,7 +79,7 @@ void fillWithValue(SEXP ans, SEXP value) {
       }
       break;
     default:
-      error("Argument 'value' must be either of type integer, numeric or logical.");
+      error("Argument 'value' must be either of type integer, numeric or logical");
       break;
   }
 } /* fillWithValue() */
@@ -96,13 +96,13 @@ SEXP allocVector2(SEXP length, SEXP value) {
   } else if (isReal(length) && xlength(length) == 1) {
     n = (R_xlen_t)asReal(length);
   } else {
-    error("Argument 'length' must be a single numeric.");
+    error("Argument 'length' must be a single numeric");
   }
-  if (n < 0) error("Argument 'length' is negative.");
+  if (n < 0) error("Argument 'length' is negative");
 
   /* Argument 'value': */
   if (!isVectorAtomic(value) || xlength(value) != 1) {
-    error("Argument 'value' must be a scalar.");
+    error("Argument 'value' must be a scalar");
   }
   type = TYPEOF(value);
 
@@ -121,19 +121,19 @@ SEXP allocMatrix2(SEXP nrow, SEXP ncol, SEXP value) {
 
   /* Argument 'nrow' & 'ncol': */
   if (!isInteger(nrow) || xlength(nrow) != 1) {
-    error("Argument 'nrow' must be a single integer.");
+    error("Argument 'nrow' must be a single integer");
   }
   if (!isInteger(ncol) || xlength(ncol) != 1) {
-    error("Argument 'ncol' must be a single integer.");
+    error("Argument 'ncol' must be a single integer");
   }
   nr = asInteger(nrow);
   nc = asInteger(ncol);
-  if (nr < 0) error("Argument 'nrow' is negative.");
-  if (nr < 0) error("Argument 'ncol' is negative.");
+  if (nr < 0) error("Argument 'nrow' is negative");
+  if (nr < 0) error("Argument 'ncol' is negative");
 
   /* Argument 'value': */
   if (!isVectorAtomic(value) || xlength(value) != 1) {
-    error("Argument 'value' must be a scalar.");
+    error("Argument 'value' must be a scalar");
   }
   type = TYPEOF(value);
 
@@ -154,7 +154,7 @@ SEXP allocArray2(SEXP dim, SEXP value) {
 
   /* Argument 'dim': */
   if (!isInteger(dim) || xlength(dim) == 0) {
-    error("Argument 'dim' must be an integer vector of at least length one.");
+    error("Argument 'dim' must be an integer vector of at least length one");
   }
 
   for (i = 0; i < xlength(dim); i++) {
@@ -170,7 +170,7 @@ SEXP allocArray2(SEXP dim, SEXP value) {
 
   /* Argument 'value': */
   if (!isVectorAtomic(value) || xlength(value) != 1) {
-    error("Argument 'value' must be a scalar.");
+    error("Argument 'value' must be a scalar");
   }
   type = TYPEOF(value);
 

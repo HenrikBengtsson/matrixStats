@@ -50,7 +50,7 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
 
   /* Argument 'dim': */
   if (!isInteger(dim) || xlength(dim) != 2) {
-    error("Argument 'dim' must be an integer vector of length two.");
+    error("Argument 'dim' must be an integer vector of length two");
   }
 
   n_max = 1.0;
@@ -81,7 +81,7 @@ SEXP indexByRow(SEXP dim, SEXP idxs) {
     /* To please compiler */
     idxs_ptr = NULL;
     nidxs = 0;
-    error("Argument 'idxs' must be NULL or a vector.");
+    error("Argument 'idxs' must be NULL or a vector");
   }
 
   PROTECT(ans = allocVector(INTSXP, nidxs));

@@ -24,10 +24,10 @@ SEXP colCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
 
   /* Argument 'value': */
   if (length(value) != 1)
-    error("Argument 'value' must be a single value.");
+    error("Argument 'value' must be a single value");
 
   if (!isNumeric(value))
-    error("Argument 'value' must be a numeric or a logical value.");
+    error("Argument 'value' must be a numeric or a logical value");
 
   /* Argument 'what': */
   what2 = asInteger(what);
@@ -104,10 +104,10 @@ SEXP count(SEXP x, SEXP idxs, SEXP value, SEXP what, SEXP naRm, SEXP hasNA) {
 
   /* Argument 'value': */
   if (length(value) != 1)
-    error("Argument 'value' must be a single value.");
+    error("Argument 'value' must be a single value");
 
   if (!isNumeric(value))
-    error("Argument 'value' must be a numeric or a logical value.");
+    error("Argument 'value' must be a numeric or a logical value");
 
   /* Argument 'what': */
   what2 = asInteger(what);

@@ -29,13 +29,13 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   /* Argument 'lag': */
   lagg = asInteger(lag);
   if (lagg < 1) {
-    error("Argument 'lag' must be a positive integer.");
+    error("Argument 'lag' must be a positive integer");
   }
 
   /* Argument 'differences': */
   diff = asInteger(differences);
   if (diff < 1) {
-    error("Argument 'differences' must be a positive integer.");
+    error("Argument 'differences' must be a positive integer");
   }
 
   /* Argument 'rows' and 'cols': */

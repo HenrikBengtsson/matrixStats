@@ -9,26 +9,26 @@
 static R_INLINE void assertArgVector(SEXP x, int type, char *xlabel) {
   /* Argument 'x': */
   if (!isVectorAtomic(x)) {
-    error("Argument '%s' must be a matrix or a vector.", xlabel);
+    error("Argument '%s' must be a matrix or a vector", xlabel);
   }
   switch (TYPEOF(x)) {
     case LGLSXP:
       if (!(type & R_TYPE_LGL))
-        error("Argument '%s' cannot be logical.", xlabel);
+        error("Argument '%s' cannot be logical", xlabel);
       break;
 
     case INTSXP:
       if (!(type & R_TYPE_INT))
-        error("Argument '%s' cannot be integer.", xlabel);
+        error("Argument '%s' cannot be integer", xlabel);
       break;
 
     case REALSXP:
       if (!(type & R_TYPE_REAL))
-        error("Argument '%s' cannot be numeric.", xlabel);
+        error("Argument '%s' cannot be numeric", xlabel);
       break;
       
     default:
-      error("Argument '%s' must be of type logical, integer or numeric, not '%s'.", xlabel, type2char(TYPEOF(x)));
+      error("Argument '%s' must be of type logical, integer or numeric, not '%s'", xlabel, type2char(TYPEOF(x)));
   } /* switch */
 } /* assertArgVector() */
 
@@ -39,7 +39,7 @@ static R_INLINE void assertArgDim(SEXP dim, double max, char *maxlabel) {
 
   /* Argument 'dim': */
   if (!isVectorAtomic(dim) || xlength(dim) != 2 || !isInteger(dim)) {
-    error("Argument '%s' must be an integer vector of length two.", dimlabel);
+    error("Argument '%s' must be an integer vector of length two", dimlabel);
   }
   nrow = (double)INTEGER(dim)[0];
   ncol = (double)INTEGER(dim)[1];
@@ -58,26 +58,26 @@ static R_INLINE void assertArgMatrix(SEXP x, SEXP dim, int type, char *xlabel) {
   if (isMatrix(x)) {
   } else if (isVectorAtomic(x)) {
   } else {
-    error("Argument '%s' must be a matrix or a vector.", xlabel);
+    error("Argument '%s' must be a matrix or a vector", xlabel);
   }
   switch (TYPEOF(x)) {
     case LGLSXP:
       if (!(type & R_TYPE_LGL))
-        error("Argument '%s' cannot be logical.", xlabel);
+        error("Argument '%s' cannot be logical", xlabel);
       break;
 
     case INTSXP:
       if (!(type & R_TYPE_INT))
-        error("Argument '%s' cannot be integer.", xlabel);
+        error("Argument '%s' cannot be integer", xlabel);
       break;
 
     case REALSXP:
       if (!(type & R_TYPE_REAL))
-        error("Argument '%s' cannot be numeric.", xlabel);
+        error("Argument '%s' cannot be numeric", xlabel);
       break;
       
     default:
-      error("Argument '%s' must be of type logical, integer or numeric, not '%s'.", xlabel, type2char(TYPEOF(x)));
+      error("Argument '%s' must be of type logical, integer or numeric, not '%s'", xlabel, type2char(TYPEOF(x)));
   } /* switch */
 
   /* Argument 'dim': */
@@ -89,16 +89,16 @@ static R_INLINE int asLogicalNoNA(SEXP x, char *xlabel) {
   int value = 0;
 
   if (length(x) != 1)
-    error("Argument '%s' must be a single value.", xlabel);
+    error("Argument '%s' must be a single value", xlabel);
   if (isLogical(x)) {
     value = asLogical(x);
   } else if (isInteger(x)) {
     value = asInteger(x);
   } else {
-    error("Argument '%s' must be a logical.", xlabel);
+    error("Argument '%s' must be a logical", xlabel);
   }
   if (value != TRUE && value != FALSE)
-    error("Argument '%s' must be either TRUE or FALSE.", xlabel);
+    error("Argument '%s' must be either TRUE or FALSE", xlabel);
 
   return value;
 } /* asLogicalNoNA() */
@@ -110,7 +110,7 @@ static R_INLINE R_xlen_t asR_xlen_t(SEXP x, R_xlen_t i) {
   switch (mode) {
     case INTSXP: return INTEGER(x)[i];
     case REALSXP: return REAL(x)[i];
-    default: error("only integer and numeric are supported, not '%s'.", type2char(TYPEOF(x)));
+    default: error("only integer and numeric are supported, not '%s'", type2char(TYPEOF(x)));
   }
   return 0;
 } /* asR_xlen_t() */

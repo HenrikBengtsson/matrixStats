@@ -24,7 +24,7 @@ SEXP sum2(SEXP x, SEXP idxs, SEXP naRm, SEXP mode) {
 
   /* Argument 'mode': */
   if (!isInteger(mode)) {
-    error("Argument 'mode' must be a single integer.");
+    error("Argument 'mode' must be a single integer");
   }
   mode2 = asInteger(mode);
 
