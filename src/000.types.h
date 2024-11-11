@@ -1,4 +1,5 @@
 #include <Rinternals.h> /* R_xlen_t, ... */
+#include <Rversion.h>   /* R_VERSION, R_Version() */
 
 #ifndef R_INT_MIN
 #define R_INT_MIN -INT_MAX
@@ -46,18 +47,17 @@
 #endif
 
 
-/* With strict headers (becoming the default), 
- * the prefixed variants R_Calloc and R_Free 
+/* With strict headers (the default in R (>=4.5.0)), 
+ * the prefixed variants R_Calloc and R_Free
  * must be used instead of Calloc and Free. However, the prefixed variants 
  * do not exist prior to R 3.4.0, so we check whether strict headers are used and
- * apply the legacy functions if not. 
- * If future versions of R remove the un-prefixed variants
- * and no longer display the macro STRICT_R_HEADERS, this workaround will fail.
+ * apply the legacy functions if not.
+ * If future versions of R remove the un-prefixed variants, this workaround will fail.
  * In such a case, we must enforce the prefixed variants and increase the version
  * requirement of the package to R 3.4.0.
  * 
  */
-#ifdef STRICT_R_HEADERS
+#if (R_VERSION >= R_Version(4, 5, 0))
   #define R_CALLOC(num, size) R_Calloc(num, size)
   #define R_FREE(ptr) R_Free(ptr)
 #else
