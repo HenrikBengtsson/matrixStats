@@ -68,8 +68,9 @@ void CONCAT_MACROS(diff2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
           }
       }
       
-      ans[ii] = X_DIFF(xvalue2, xvalue1)
-  } else {
+      ans[ii] = X_DIFF(xvalue2, xvalue1); 
+    }
+    } else {
     /* Allocate temporary work vector (to hold intermediate differences) */
     tmp = R_Calloc(nidxs - lag, X_C_TYPE);
 
