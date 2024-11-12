@@ -95,7 +95,7 @@ R_xlen_t* CONCAT_MACROS(validateIndices, X_C_SIGNATURE)(X_C_TYPE *idxs, R_xlen_t
 
   // state < 0
   // use filter as bitset to find out all required idxs
-  Rboolean *filter = R_CALLOC(maxIdx, Rboolean);
+  Rboolean *filter = R_Calloc(maxIdx, Rboolean);
   count = maxIdx;
   memset(filter, 0, maxIdx*sizeof(Rboolean)); // set to FALSE
   for (ii = 0; ii < nidxs; ++ ii) {
@@ -110,7 +110,7 @@ R_xlen_t* CONCAT_MACROS(validateIndices, X_C_SIGNATURE)(X_C_TYPE *idxs, R_xlen_t
 
   *ansNidxs = count;
   if (count == 0) {
-    R_FREE(filter);
+    R_Free(filter);
     return NULL;
   }
 
@@ -123,7 +123,7 @@ R_xlen_t* CONCAT_MACROS(validateIndices, X_C_SIGNATURE)(X_C_TYPE *idxs, R_xlen_t
 
   // fill required idxs into ans
   // NOTE: braces is needed here, because of macro-defined function
-  RETURN_VALIDATED_ANS(R_xlen_t, upperBound, !filter[ii], ii, R_FREE(filter););
+  RETURN_VALIDATED_ANS(R_xlen_t, upperBound, !filter[ii], ii, R_Free(filter););
 }
 
 

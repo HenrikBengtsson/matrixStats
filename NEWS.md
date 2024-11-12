@@ -1,6 +1,7 @@
 # Version (development version)
 
- * ...
+ * Minimum version requirement lifted to 3.4.0 due to
+ removal of the flag `STRICT_R_HEADERS` in R 4.5.0.
  
  
 # Version 1.4.1 [2024-09-06]
