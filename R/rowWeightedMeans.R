@@ -48,7 +48,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     }
   }
 
-  if (is.na(useNames)) deprecatedUseNamesNA()
+  if (is.na(useNames)) defunctUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
@@ -187,7 +187,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
     }
   }
 
-  if (is.na(useNames)) deprecatedUseNamesNA()
+  if (is.na(useNames)) defunctUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

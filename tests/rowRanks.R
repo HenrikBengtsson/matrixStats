@@ -154,7 +154,7 @@ for (mode in c("integer", "double")){
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       for (ties in c("max", "min", "average", "first", "last", "dense", "random")) {
         cat(sprintf("ties.method = %s\n", ties))
         # rowRanks():

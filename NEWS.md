@@ -5,7 +5,12 @@
  * Package now requires R (>= 3.4.0), because the next release of R
    will have stricter C header requirements that are not backward
    compatible with older versions of R.
-   
+
+## Deprecated and Defunct
+
+ * The hidden R options for deescalating the error for using `useNames
+   = NA` to a warning has been removed; `useNames = NA`.
+
  
 # Version 1.4.1 [2024-09-06]
 

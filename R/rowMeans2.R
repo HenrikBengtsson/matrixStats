@@ -20,7 +20,7 @@
 #' @export
 rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                       refine = TRUE, dim. = dim(x), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
+  if (is.na(useNames)) defunctUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowMeans2, x, dim., rows, cols, na.rm, refine, has_nas, TRUE, useNames)
 }
@@ -29,7 +29,7 @@ rowMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colMeans2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                       refine= TRUE, dim. = dim(x), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
+  if (is.na(useNames)) defunctUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowMeans2, x, dim., rows, cols, na.rm, refine, has_nas, FALSE, useNames)
 }

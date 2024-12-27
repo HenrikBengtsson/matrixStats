@@ -88,7 +88,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
       rownames(counts) <- NULL
     }
   } else {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   }
 
   counts
@@ -160,7 +160,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
       rownames(counts) <- NULL
     }
   } else {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   }
   
   counts

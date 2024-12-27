@@ -149,7 +149,7 @@ rowWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
   
   # Preserve names attributes?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     rownames(x) <- NULL
   }
@@ -172,7 +172,7 @@ colWeightedVars <- function(x, w = NULL, rows = NULL, cols = NULL,
   
   # Preserve names attributes?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     colnames(x) <- NULL
   }

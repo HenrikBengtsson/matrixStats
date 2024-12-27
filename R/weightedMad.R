@@ -184,7 +184,7 @@ rowWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   ## when !is.null(center), which is tested by DelayedMatrixStats
   ## and sparseMatrixStats
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
     names(y) <- rownames(x)
   } else if (useNames) {
     names(y) <- rownames(x)
@@ -240,7 +240,7 @@ colWeightedMads <- function(x, w = NULL, rows = NULL, cols = NULL,
   ## when !is.null(center), which is tested by DelayedMatrixStats
   ## and sparseMatrixStats
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
     names(y) <- colnames(x)
   } else if (useNames) {
     names(y) <- colnames(x)

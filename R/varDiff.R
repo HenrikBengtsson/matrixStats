@@ -249,7 +249,7 @@ rowVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     rownames(x) <- NULL
   }
@@ -270,7 +270,7 @@ colVarDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     colnames(x) <- NULL
   }
@@ -291,7 +291,7 @@ rowSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     rownames(x) <- NULL
   }
@@ -312,7 +312,7 @@ colSdDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     colnames(x) <- NULL
   }
@@ -333,7 +333,7 @@ rowMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     rownames(x) <- NULL
   }
@@ -354,7 +354,7 @@ colMadDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     colnames(x) <- NULL
   }
@@ -375,7 +375,7 @@ rowIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     rownames(x) <- NULL
   }
@@ -396,7 +396,7 @@ colIQRDiffs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, diff = 1L,
   
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   } else if (!useNames) {
     colnames(x) <- NULL
   }

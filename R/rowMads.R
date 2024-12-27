@@ -6,7 +6,7 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = TRUE) {
   if (is.null(center)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     constant <- as.numeric(constant)
     has_nas <- TRUE
     
@@ -65,7 +65,7 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = TRUE) {
   if (is.null(center)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     constant <- as.numeric(constant)
     has_nas <- TRUE
     

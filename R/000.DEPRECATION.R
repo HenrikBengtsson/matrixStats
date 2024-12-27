@@ -1,15 +1,5 @@
-isUseNamesNADefunct <- function() {
-  action <- getOption("matrixStats.useNames.NA", "defunct")
-  action <- match.arg(action, choices = c("deprecated", "defunct"))
-  (action == "defunct")
-}
-
-deprecatedUseNamesNA <- function() {
-  if (isUseNamesNADefunct()) {
-    .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE. See also ?matrixStats::matrixStats.options", .packageName), package = .packageName)
-  } else {
-    .Deprecated(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE. See also ?matrixStats::matrixStats.options", .packageName), package = .packageName)
-  }
+defunctUseNamesNA <- function() {
+  .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE", .packageName), package = .packageName)
 }
 
 
