@@ -16,7 +16,7 @@
 #' @export
 rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
+  if (is.na(useNames)) defunctUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, TRUE, useNames)
 }
@@ -25,7 +25,7 @@ rowSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colSums2 <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
                        dim. = dim(x), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
+  if (is.na(useNames)) defunctUseNamesNA()
   has_nas <- TRUE
   .Call(C_rowSums2, x, dim., rows, cols, na.rm, has_nas, FALSE, useNames)
 }

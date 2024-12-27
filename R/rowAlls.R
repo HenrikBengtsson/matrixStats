@@ -56,7 +56,7 @@
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas, useNames)
@@ -86,7 +86,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
         names(res) <- NULL
       }
     } else {
-      deprecatedUseNamesNA()
+      defunctUseNamesNA()
     }
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
@@ -118,7 +118,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas, useNames)
@@ -207,7 +207,7 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas, useNames)
@@ -254,7 +254,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas, useNames)

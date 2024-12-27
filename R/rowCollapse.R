@@ -55,7 +55,7 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = TRU
       names(res) <- NULL
     }
   } else {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   }  
 
   res

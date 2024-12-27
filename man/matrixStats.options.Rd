@@ -2,8 +2,6 @@
 % Please edit documentation in R/options.R
 \name{matrixStats.options}
 \alias{matrixStats.options}
-\alias{matrixStats.useNames.NA}
-\alias{R_MATRIXSTATS_USENAMES_NA}
 \alias{matrixStats.vars.formula.freq}
 \alias{R_MATRIXSTATS_VARS_FORMULA_FREQ}
 \alias{matrixStats.vars.formula.onMistake}
@@ -77,14 +75,6 @@ Below are the \R options and environment variables that are used by the
    Controls how often the above validation is checked.
    (Default: \code{25} - every 25:th call starting with the first)}
 }
-
-\describe{
- \item{\option{matrixStats.useNames.NA}:}{(string)
-   Action taken when argument \code{useNames} is set to \code{NA}.
-   If \code{"defunct"}, an error is thrown.
-   If \code{"deprecated"}, a warning is signaled.
-   (Default: \code{"defunct"})}
-}
 }
 
 \section{Environment variables that set R options}{
@@ -92,13 +82,13 @@ Below are the \R options and environment variables that are used by the
 All of the above \R \option{matrixStats.*} options can be set by
 corresponding environment variable \env{R_MATRIXSTATS_*}
 \emph{when the \pkg{matrixStats} package is loaded}.
-For example, if \code{R_MATRIXSTATS_USENAMES_NA=defunct}, then option
-\option{matrixStats.useNames.NA} is set to \code{"defunct"} (string).
+For example, if \code{R_MATRIXSTATS_TIES_METHOD_FREQ=10}, then option
+\option{matrixStats.ties.method.freq} is set to \code{10} (integer).
 }
 
 \examples{
 \dontrun{
-options(matrixStats.useNames.NA = "defunct")
+options(matrixStats.ties.method.freq = 10L)
 }
 
 }

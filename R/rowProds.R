@@ -71,7 +71,7 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
       names(y) <- NULL
     }
   } else {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   }
 
   y
@@ -121,7 +121,7 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
       names(y) <- NULL
     }
   } else {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
   }
 
   y

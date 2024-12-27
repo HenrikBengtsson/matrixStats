@@ -44,7 +44,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     
     # Preserve rownames
     names <- rownames(x)
@@ -95,7 +95,7 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
         names(counts) <- NULL
       }
     } else {
-      deprecatedUseNamesNA()
+      defunctUseNamesNA()
     }  
   }
   counts
@@ -125,7 +125,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
+    if (is.na(useNames)) defunctUseNamesNA()
     
     # Preserve colnames
     names <- colnames(x)
@@ -176,7 +176,7 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
         names(counts) <- NULL
       }
     } else {
-      deprecatedUseNamesNA()
+      defunctUseNamesNA()
     }
   }
   counts

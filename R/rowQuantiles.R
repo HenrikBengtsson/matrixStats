@@ -140,7 +140,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
     rownames(q) <- rownames(x)
     # Add percentage names
     if (length(probs) > 0) {
@@ -270,7 +270,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
 
   # Preserve names attribute?
   if (is.na(useNames)) {
-    deprecatedUseNamesNA()
+    defunctUseNamesNA()
     rownames(q) <- colnames(x)
     # Add percentage names
     if (length(probs) > 0) {

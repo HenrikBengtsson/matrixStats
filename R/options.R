@@ -57,29 +57,19 @@
 #'    (Default: \code{25} - every 25:th call starting with the first)}
 #' }
 #'
-#' \describe{
-#'  \item{\option{matrixStats.useNames.NA}:}{(string)
-#'    Action taken when argument \code{useNames} is set to \code{NA}.
-#'    If \code{"defunct"}, an error is thrown.
-#'    If \code{"deprecated"}, a warning is signaled.
-#'    (Default: \code{"defunct"})}
-#' }
-#'
 #' @section Environment variables that set R options:
 #' All of the above \R \option{matrixStats.*} options can be set by
 #' corresponding environment variable \env{R_MATRIXSTATS_*}
 #' \emph{when the \pkg{matrixStats} package is loaded}.
-#' For example, if \code{R_MATRIXSTATS_USENAMES_NA=defunct}, then option
-#' \option{matrixStats.useNames.NA} is set to \code{"defunct"} (string).
+#' For example, if \code{R_MATRIXSTATS_TIES_METHOD_FREQ=10}, then option
+#' \option{matrixStats.ties.method.freq} is set to \code{10} (integer).
 #'
 #' @examples
 #' \dontrun{
-#' options(matrixStats.useNames.NA = "defunct")
+#' options(matrixStats.ties.method.freq = 10L)
 #' }
 #'
 #' @aliases
-#' matrixStats.useNames.NA
-#' R_MATRIXSTATS_USENAMES_NA
 #' matrixStats.vars.formula.freq
 #' R_MATRIXSTATS_VARS_FORMULA_FREQ
 #' matrixStats.vars.formula.onMistake
@@ -211,8 +201,6 @@ update_package_options <- function() {
   
   update_package_option("matrixStats.center.onScalar", default = "defunct", choices = c("deprecated", "defunct", "ignore"))
   
-  update_package_option("matrixStats.useNames.NA", default = "defunct", choices = c("deprecated", "defunct"))
-
   update_package_option("matrixStats.ties.method.missing", default = if (getRversion() >= "4.4.0") "deprecated" else "ignore", choices = c("deprecated", "defunct", "ignore"))
 
   update_package_option("matrixStats.ties.method.freq", mode = "numeric", default = "25")
