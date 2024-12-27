@@ -2,9 +2,9 @@
 
 ## Significant Changes
 
- * Package now requires R (>= 3.4.0), because the next release of R
-   will have stricter C header requirements that are not backward
-   compatible with older versions of R.
+ * Package now requires R (>= 3.4.0) [2017-04-21], because the next
+   release of R will have stricter C header requirements that are not
+   backward compatible with older versions of R.
 
 ## Deprecated and Defunct
 
