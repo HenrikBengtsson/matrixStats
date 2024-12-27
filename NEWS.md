@@ -1,8 +1,11 @@
 # Version (development version)
 
- * Minimum version requirement lifted to 3.4.0 due to
- removal of the flag `STRICT_R_HEADERS` in R 4.5.0.
- 
+## Significant Changes
+
+ * Package now requires R (>= 3.4.0), because the next release of R
+   will have stricter C header requirements that are not backward
+   compatible with older versions of R.
+   
  
 # Version 1.4.1 [2024-09-06]
 
