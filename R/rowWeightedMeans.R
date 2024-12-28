@@ -69,15 +69,13 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       res <- rep(NaN, times = m)
       
       # Update names attribute?
-      if (!is.na(useNames)) {
-        if (useNames) {
-          names <- rownames(x)
-          if (!is.null(names)) {
-            names(res) <- names
-          }
-        } else {
-          names(res) <- NULL
+      if (useNames) {
+        names <- rownames(x)
+        if (!is.null(names)) {
+          names(res) <- names
         }
+      } else {
+        names(res) <- NULL
       }
       
       return(res)
@@ -113,7 +111,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       x <- W * x
       
       # Preserve dimnames attribute?
-      if (!(is.na(useNames) || useNames)) {
+      if (!useNames) {
         dimnames(x) <- NULL
       }
       
@@ -132,14 +130,12 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
       x <- t_tx_OP_y(x, w, OP = "*", na.rm = FALSE)
       
       # Update dimnames attribute?
-      if (!is.na(useNames)) {
-        if (useNames) {
-          if (!is.null(dimnames)) {
-            dimnames(x) <- dimnames
-          }
-        } else {
-          dimnames(x) <- NULL
+      if (useNames) {
+        if (!is.null(dimnames)) {
+          dimnames(x) <- dimnames
         }
+      } else {
+        dimnames(x) <- NULL
       }
 
       w <- NULL  # Not needed anymore
@@ -151,7 +147,7 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     res <- rowMeans(x, na.rm = na.rm)
     
     # Preserve names attribute?
-    if (!(is.na(useNames) || useNames)) {
+    if (!useNames) {
       names(res) <- NULL
     }
   }
@@ -206,17 +202,15 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
       res <- rep(NaN, times = m)
       
       # Update names attribute?
-      if (!is.na(useNames)) {
-        if (useNames) {
-          names <- colnames(x)
-          if (!is.null(names)) {
-            names(res) <- names
-          }
-        } else {
-          names(res) <- NULL
+      if (useNames) {
+        names <- colnames(x)
+        if (!is.null(names)) {
+          names(res) <- names
         }
-      }      
-      
+      } else {
+        names(res) <- NULL
+      }
+    
       return(res)
     } else if (nw < n) {
       w <- w[idxs]
@@ -271,7 +265,7 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
   }
   
   # Preserve names attribute?
-  if (!(is.na(useNames) || useNames)) {
+  if (!useNames) {
     names(res) <- NULL
   }
 

@@ -99,7 +99,7 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
       z <- (x == value)
       dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
       if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
-      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      if (useNames) dimnames(z) <- dimnames(x)
       return(rowAlls(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
@@ -156,7 +156,7 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
       z <- (x == value)
       dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
       if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
-      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      if (useNames) dimnames(z) <- dimnames(x)
       return(colAlls(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
@@ -231,7 +231,7 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
       z <- (x == value)
       dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
       if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
-      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      if (useNames) dimnames(z) <- dimnames(x)
       return(rowAnys(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }
@@ -276,7 +276,7 @@ colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
       z <- (x == value)
       dim <- dim(x) # for 0xN and Mx0 cases; needed in R (< 3.4.0)
       if (!identical(dim(z), as.integer(dim))) dim(z) <- dim
-      if (isTRUE(useNames)) dimnames(z) <- dimnames(x)
+      if (useNames) dimnames(z) <- dimnames(x)
       return(colAnys(z, na.rm = na.rm, dim. = dim., ..., useNames = useNames))
     }
   }

@@ -68,7 +68,7 @@ rowWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     })
     
     # Preserve names attribute?
-    if (!(is.na(useNames) || useNames)) {
+    if (!useNames) {
       names(res) <- NULL
     }
 
@@ -125,7 +125,7 @@ colWeightedMedians <- function(x, w = NULL, rows = NULL, cols = NULL,
     })
     
     # Preserve names attribute?
-    if (!(is.na(useNames) || useNames)) {
+    if (!useNames) {
       names(res) <- NULL
     }
 
