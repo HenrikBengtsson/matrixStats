@@ -10,9 +10,9 @@ Issues with CRAN packages are summarised below.
 ### New problems
 (This reports the first line of each new failure)
 
-* nn2poly
+* locaR
   checking installed package size ... NOTE
 
-* slasso
+* SuperCell
   checking installed package size ... NOTE
 

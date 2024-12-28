@@ -17,25 +17,23 @@
 
 |package     |old   |new        |Δ  |
 |:-----------|:-----|:----------|:--|
-|matrixStats |1.4.1 |1.4.1-9002 |*  |
+|matrixStats |1.4.1 |1.4.1-9004 |*  |
 
 # Revdeps
 
-## Failed to check (3)
+## Failed to check (2)
 
 |package       |version |error |warning |note |
 |:-------------|:-------|:-----|:-------|:----|
 |[flowWorkspace](failures.md#flowworkspace)|4.18.0  |1     |        |     |
 |[graper](failures.md#graper)|1.22.0  |1     |        |     |
-|[miloR](failures.md#milor)|2.2.0   |1     |        |3    |
 
-## New problems (3)
+## New problems (2)
 
-|package |version |error |warning |note     |
-|:-------|:-------|:-----|:-------|:--------|
-|[DCATS](problems.md#dcats)|1.4.0   |      |        |4 __+1__ |
-|[nn2poly](problems.md#nn2poly)|0.1.2   |      |        |1 __+1__ |
-|[slasso](problems.md#slasso)|1.0.0   |      |        |2 __+1__ |
+|package   |version |error |warning |note     |
+|:---------|:-------|:-----|:-------|:--------|
+|[locaR](problems.md#locar)|0.1.2   |      |        |__+1__   |
+|[SuperCell](problems.md#supercell)|1.0.1   |      |        |1 __+1__ |
 
 ## All (497)
 
@@ -44,7 +42,7 @@
 |[abcrf](problems.md#abcrf)      |1.9     |      |        |1        |
 |ablasso                         |1.0     |      |        |         |
 |ACNE                            |0.9.1   |      |        |         |
-|ActivityIndex                   |0.3.7   |      |        |-1       |
+|ActivityIndex                   |0.3.7   |      |        |         |
 |adproclus                       |2.0.0   |      |        |         |
 |[airpart](problems.md#airpart)  |1.14.0  |      |        |1        |
 |[AlpsNMR](problems.md#alpsnmr)  |4.8.0   |1     |        |         |
@@ -73,7 +71,7 @@
 |[bingat](problems.md#bingat)    |1.3     |      |        |1        |
 |binsreg                         |1.1     |      |        |         |
 |[BioNERO](problems.md#bionero)  |1.14.0  |      |        |2        |
-|[biscuiteer](problems.md#biscuiteer)|1.20.0  |      |1       |3        |
+|[biscuiteer](problems.md#biscuiteer)|1.20.0  |1     |1       |4        |
 |[blackbox](problems.md#blackbox)|1.1.46  |      |        |1        |
 |[BloodGen3Module](problems.md#bloodgen3module)|1.14.0  |      |1       |1        |
 |[bmm](problems.md#bmm)          |1.0.1   |      |        |1        |
@@ -144,7 +142,7 @@
 |[cytomapper](problems.md#cytomapper)|1.18.0  |      |        |2        |
 |cytoMEM                         |1.10.0  |      |        |         |
 |DAMOCLES                        |2.3     |      |        |         |
-|[DCATS](problems.md#dcats)      |1.4.0   |      |        |4 __+1__ |
+|[DCATS](problems.md#dcats)      |1.4.0   |      |        |4        |
 |DCLEAR                          |1.0.13  |      |        |         |
 |[ddtlcm](problems.md#ddtlcm)    |0.2.1   |      |        |1        |
 |[dearseq](problems.md#dearseq)  |1.18.0  |      |        |1        |
@@ -156,7 +154,7 @@
 |DepCens                         |0.2.3   |      |        |         |
 |[DepecheR](problems.md#depecher)|1.22.0  |      |        |2        |
 |DepInfeR                        |1.10.0  |      |        |         |
-|[DEqMS](problems.md#deqms)      |1.24.0  |-1    |        |2        |
+|[DEqMS](problems.md#deqms)      |1.24.0  |      |        |2        |
 |[DESeq2](problems.md#deseq2)    |1.46.0  |      |        |1        |
 |[detrendr](problems.md#detrendr)|0.6.15  |      |        |2        |
 |[DHS.rates](problems.md#dhsrates)|0.9.2   |      |        |1        |
@@ -183,7 +181,7 @@
 |[ENmix](problems.md#enmix)      |1.42.0  |      |        |1        |
 |[EnrichedHeatmap](problems.md#enrichedheatmap)|1.36.0  |      |        |1        |
 |[EpiDISH](problems.md#epidish)  |2.22.0  |      |2       |1        |
-|[epimutacions](problems.md#epimutacions)|1.10.0  |      |        |3        |
+|[epimutacions](problems.md#epimutacions)|1.10.0  |1     |        |3        |
 |[epistasisGA](problems.md#epistasisga)|1.8.0   |      |        |2        |
 |epivizrData                     |1.34.0  |      |        |         |
 |[eseis](problems.md#eseis)      |0.8.0   |      |        |2        |
@@ -264,7 +262,7 @@
 |[ICBioMark](problems.md#icbiomark)|0.1.4   |      |        |1        |
 |icpack                          |0.1.0   |      |        |         |
 |IMIFA                           |2.2.0   |      |        |         |
-|immApex                         |1.0.4   |      |        |         |
+|[immApex](problems.md#immapex)  |1.0.4   |3     |        |         |
 |ImpactEffectsize                |0.7     |      |        |         |
 |[incidental](problems.md#incidental)|0.1     |      |        |1        |
 |InDisc                          |1.1.0   |      |        |         |
@@ -291,7 +289,7 @@
 |limorhyde                       |1.0.1   |      |        |         |
 |[Linnorm](problems.md#linnorm)  |2.30.0  |      |1       |3        |
 |localgauss                      |0.41    |      |        |         |
-|locaR                           |0.1.2   |      |        |         |
+|[locaR](problems.md#locar)      |0.1.2   |      |        |__+1__   |
 |loo                             |2.8.0   |      |        |         |
 |LS2Wstat                        |2.1-5   |      |        |         |
 |[LSAmitR](problems.md#lsamitr)  |1.0-3   |      |        |2        |
@@ -323,14 +321,14 @@
 |MicrobiomeStat                  |1.2     |      |        |         |
 |miesmuschel                     |0.0.4-2 |      |        |         |
 |[migest](problems.md#migest)    |2.0.4   |      |        |1        |
-|[miloR](failures.md#milor)      |2.2.0   |1     |        |3        |
+|[miloR](problems.md#milor)      |2.2.0   |      |        |3        |
 |MiMIR                           |1.5     |      |        |         |
 |[MinimumDistance](problems.md#minimumdistance)|1.50.0  |      |4       |4        |
 |[miRecSurv](problems.md#mirecsurv)|1.0.2   |      |        |1        |
 |[mixOmics](problems.md#mixomics)|6.30.0  |      |        |2        |
 |[mnem](problems.md#mnem)        |1.22.0  |      |        |1        |
 |[moanin](problems.md#moanin)    |1.14.0  |1     |        |3        |
-|[MOCHA](problems.md#mocha)      |1.1.0   |      |        |1 -1     |
+|[MOCHA](problems.md#mocha)      |1.1.0   |      |        |1        |
 |MoEClust                        |1.5.2   |      |        |         |
 |[monocle](problems.md#monocle)  |2.34.0  |      |1       |2        |
 |[moocore](problems.md#moocore)  |0.1.2   |      |        |1        |
@@ -358,7 +356,7 @@
 |nestedcv                        |0.7.12  |      |        |         |
 |[netZooR](problems.md#netzoor)  |1.10.0  |1     |        |4        |
 |neurobase                       |1.32.4  |      |        |         |
-|[nn2poly](problems.md#nn2poly)  |0.1.2   |      |        |1 __+1__ |
+|[nn2poly](problems.md#nn2poly)  |0.1.2   |      |        |2        |
 |[nnSVG](problems.md#nnsvg)      |1.10.0  |      |        |1        |
 |[NormalyzerDE](problems.md#normalyzerde)|1.24.0  |      |1       |2        |
 |nparMD                          |0.2.1   |      |        |         |
@@ -461,7 +459,7 @@
 |[Seurat](problems.md#seurat)    |5.1.0   |      |        |3        |
 |SGP                             |2.2-0.0 |      |        |         |
 |[SIAMCAT](problems.md#siamcat)  |2.10.0  |      |        |3        |
-|[SICtools](problems.md#sictools)|1.36.0  |      |1       |3        |
+|[SICtools](problems.md#sictools)|1.36.0  |      |1       |4        |
 |[sigminer](problems.md#sigminer)|2.3.1   |      |        |1        |
 |[SimBu](problems.md#simbu)      |1.8.0   |      |        |2        |
 |[simona](problems.md#simona)    |1.4.0   |      |        |2        |
@@ -472,13 +470,13 @@
 |[singleCellTK](problems.md#singlecelltk)|2.16.0  |      |        |2        |
 |[singscore](problems.md#singscore)|1.26.0  |      |        |1        |
 |sizeMat                         |1.1.2   |      |        |         |
-|[slasso](problems.md#slasso)    |1.0.0   |      |        |2 __+1__ |
+|[slasso](problems.md#slasso)    |1.0.0   |      |        |3        |
 |[slingshot](problems.md#slingshot)|2.14.0  |      |        |1        |
 |SpaceMarkers                    |1.2.1   |      |        |         |
 |[SpaNorm](problems.md#spanorm)  |1.0.0   |      |        |2        |
 |SPARRAfairness                  |0.0.0.2 |      |        |         |
 |[sparrow](problems.md#sparrow)  |1.12.0  |      |        |3        |
-|[SparseArray](problems.md#sparsearray)|1.6.0   |-1    |        |1        |
+|[SparseArray](problems.md#sparsearray)|1.6.0   |      |        |1 -1     |
 |[sparseMatrixStats](problems.md#sparsematrixstats)|1.18.0  |      |        |3        |
 |[spatzie](problems.md#spatzie)  |1.12.0  |      |        |1        |
 |spdesign                        |0.0.5   |      |        |         |
@@ -499,7 +497,7 @@
 |sts                             |1.2     |      |        |         |
 |[summarytools](problems.md#summarytools)|1.0.1   |      |1       |1        |
 |sumR                            |0.4.15  |      |        |         |
-|[SuperCell](problems.md#supercell)|1.0.1   |      |        |1        |
+|[SuperCell](problems.md#supercell)|1.0.1   |      |        |1 __+1__ |
 |[surveyPrev](problems.md#surveyprev)|1.0.0   |      |        |2        |
 |[susieR](problems.md#susier)    |0.12.35 |      |1       |         |
 |[sva](problems.md#sva)          |3.54.0  |      |1       |         |
