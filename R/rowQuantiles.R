@@ -139,14 +139,7 @@ rowQuantiles <- function(x, rows = NULL, cols = NULL,
   }
 
   # Preserve names attribute?
-  if (is.na(useNames)) {
-    defunctUseNamesNA()
-    rownames(q) <- rownames(x)
-    # Add percentage names
-    if (length(probs) > 0) {
-      colnames(q) <- quantile_probs_names(probs, digits = digits)
-    }
-  } else if (useNames) {
+  if (useNames) {
     rownames(q) <- rownames(x)
     # Add percentage names
     if (length(probs) > 0) {
@@ -269,14 +262,7 @@ colQuantiles <- function(x, rows = NULL, cols = NULL,
   }
 
   # Preserve names attribute?
-  if (is.na(useNames)) {
-    defunctUseNamesNA()
-    rownames(q) <- colnames(x)
-    # Add percentage names
-    if (length(probs) > 0) {
-      colnames(q) <- quantile_probs_names(probs, digits = digits)
-    }
-  } else if (useNames) {
+  if (useNames) {
     rownames(q) <- colnames(x)
     # Add percentage names
     if (length(probs) > 0) {

@@ -48,8 +48,6 @@ rowWeightedMeans <- function(x, w = NULL, rows = NULL, cols = NULL,
     }
   }
 
-  if (is.na(useNames)) defunctUseNamesNA()
-
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
@@ -186,8 +184,6 @@ colWeightedMeans <- function(x, w = NULL,  rows = NULL, cols = NULL,
       stop(sprintf("Argument '%s' must not contain negative values", "w"))
     }
   }
-
-  if (is.na(useNames)) defunctUseNamesNA()
 
   # Apply subset on x
   if (!is.null(rows) && !is.null(cols)) x <- x[rows, cols, drop = FALSE]

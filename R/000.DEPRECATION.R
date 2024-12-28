@@ -1,8 +1,3 @@
-defunctUseNamesNA <- function() {
-  .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE", .packageName), package = .packageName)
-}
-
-
 defunctShouldBeMatrixOrDim <- function(x) {
   x_class <- sQuote(class(x)[1])
   x_name <- sQuote(as.character(substitute(x)))

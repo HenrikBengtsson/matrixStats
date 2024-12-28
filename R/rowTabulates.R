@@ -80,15 +80,11 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   }
   
   # Update rownames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      rownames <- rownames(x)
-      if (!is.null(rownames)) rownames(counts) <- rownames
-    } else {
-      rownames(counts) <- NULL
-    }
+  if (useNames) {
+    rownames <- rownames(x)
+    if (!is.null(rownames)) rownames(counts) <- rownames
   } else {
-    defunctUseNamesNA()
+    rownames(counts) <- NULL
   }
 
   counts
@@ -152,15 +148,11 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   }
   
   # Update rownames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      colnames <- colnames(x)
-      if (!is.null(colnames)) rownames(counts) <- colnames
-    } else {
-      rownames(counts) <- NULL
-    }
+  if (useNames) {
+    colnames <- colnames(x)
+    if (!is.null(colnames)) rownames(counts) <- colnames
   } else {
-    defunctUseNamesNA()
+    rownames(counts) <- NULL
   }
   
   counts

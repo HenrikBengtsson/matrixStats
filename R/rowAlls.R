@@ -56,7 +56,6 @@
 rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas, useNames)
@@ -71,22 +70,18 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     res <- as.logical(counts)
     
     # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        names <- rownames(x)
-        if (!is.null(names)) {
-          if (!is.null(rows)) {
-            names <- names[rows]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL
-          }
-          names(res) <- names
+    if (useNames) {
+      names <- rownames(x)
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
         }
-      } else {
-        names(res) <- NULL
+        names(res) <- names
       }
     } else {
-      defunctUseNamesNA()
+      names(res) <- NULL
     }
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
@@ -118,7 +113,6 @@ rowAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
 colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 1L, na.rm, has_nas, useNames)
@@ -133,21 +127,19 @@ colAlls <- function(x, rows = NULL, cols = NULL, value = TRUE,
     res <- as.logical(counts)
     
     # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        names <- colnames(x)
-        if (!is.null(names)) {
-          if (!is.null(cols)) {
-            names <- names[cols]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL       
-          }
-          names(res) <- names
+    if (useNames) {
+      names <- colnames(x)
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL       
         }
-      } else {
-        names(res) <- NULL
+        names(res) <- names
       }
-    }    
+    } else {
+      names(res) <- NULL
+    }
   } else {
     if (!identical(dim(x), dim.)) dim(x) <- dim.
     if (!is.matrix(x)) defunctShouldBeMatrixOrDim(x)
@@ -207,7 +199,6 @@ allValue <- function(x, idxs = NULL, value = TRUE, na.rm = FALSE, ...) {
 rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_rowCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas, useNames)
@@ -254,7 +245,6 @@ rowAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
 colAnys <- function(x, rows = NULL, cols = NULL, value = TRUE,
                     na.rm = FALSE, dim. = dim(x), ..., useNames = TRUE) {
   if (is.numeric(x) && is.logical(value) && !is.na(value)) {
-    if (is.na(useNames)) defunctUseNamesNA()
     has_nas <- TRUE
     if (isTRUE(value)) {
       counts <- .Call(C_colCounts, x, dim., rows, cols, FALSE, 0L, na.rm, has_nas, useNames)
