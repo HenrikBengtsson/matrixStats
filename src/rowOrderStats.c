@@ -39,7 +39,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
   R_xlen_t *ccols = validateIndicesCheckNA(cols, ncol, 0, &ncols, &colsHasna);
   
   /* Argument 'useNames': */ 
-  int usenames = asLogical(useNames);
+  int usenames = asLogicalNoNA(useNames, "useNames");
 
   // Check missing rows
   if (rowsHasna && ncols > 0) {
@@ -62,7 +62,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
   if (isReal(x)) {
     PROTECT(ans = allocVector(REALSXP, nrows));
     rowOrderStats_dbl(REAL(x), nrow, ncol, crows, nrows, ccols, ncols, qq, REAL(ans));
-    if (usenames != NA_LOGICAL && usenames) {
+    if (usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         SEXP namesVec = VECTOR_ELT(dimnames, 0);
@@ -75,7 +75,7 @@ SEXP rowOrderStats(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP which, SEXP useN
   } else if (isInteger(x)) {
     PROTECT(ans = allocVector(INTSXP, nrows));
     rowOrderStats_int(INTEGER(x), nrow, ncol, crows, nrows, ccols, ncols, qq, INTEGER(ans));
-    if (usenames != NA_LOGICAL && usenames) {
+    if (usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         SEXP namesVec = VECTOR_ELT(dimnames, 0);

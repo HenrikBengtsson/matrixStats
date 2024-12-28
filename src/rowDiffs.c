@@ -49,7 +49,7 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   byrow = asLogical(byRow);
   
   /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
+  usenames = asLogicalNoNA(useNames, "useNames");
 
   /* Dimension of result matrix */
   if (byrow) {
@@ -65,7 +65,7 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrow_ans, ncol_ans));
     rowDiffs_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, lagg, diff, REAL(ans), nrow_ans, ncol_ans);
-    if (usenames != NA_LOGICAL && usenames) {
+    if (usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         if (byrow) {
@@ -79,7 +79,7 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   } else if (isInteger(x)) {
     PROTECT(ans = allocMatrix(INTSXP, nrow_ans, ncol_ans));
     rowDiffs_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, lagg, diff, INTEGER(ans), nrow_ans, ncol_ans);
-    if (usenames != NA_LOGICAL && usenames) {
+    if (usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
         if (byrow) {

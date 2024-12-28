@@ -60,9 +60,9 @@ SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SE
   }
   
   /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
+  usenames = asLogicalNoNA(useNames, "useNames");
   
-  if (usenames != NA_LOGICAL && usenames) {
+  if (usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       SEXP namesVec = VECTOR_ELT(dimnames, 0);
