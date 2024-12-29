@@ -1,17 +1,17 @@
 library("matrixStats")
 
-rowCummins_R <- function(x, ..., useNames = NA) {
+rowCummins_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cummin))
   })
  
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
+  dimnames(y) <- if (useNames) dimnames(x) else NULL
   y
 }
 
-rowCummaxs_R <- function(x, ..., useNames = NA) {
+rowCummaxs_R <- function(x, ..., useNames = TRUE) {
   mode <- storage.mode(x)
   # Change mode because a bug is detected on cummax for integer in R-3.2.0
   storage.mode(x) <- "numeric"
@@ -21,7 +21,7 @@ rowCummaxs_R <- function(x, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
+  dimnames(y) <- if (useNames) dimnames(x) else NULL
   
   y
 }

@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
+rowCollapse_R <- function(x, idxs, ..., useNames = TRUE) {
   ans <- c()
   storage.mode(ans) <- storage.mode(x)
   for (ii in seq_len(length(idxs))) {
@@ -8,7 +8,7 @@ rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
   }
   
   # Preserve names attribute
-  if (isTRUE(useNames)) {
+  if (useNames) {
     names <- rownames(x)
     if (!is.null(names)) names(ans) <- names
   }

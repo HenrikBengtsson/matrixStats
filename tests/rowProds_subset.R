@@ -1,8 +1,8 @@
 library("matrixStats")
 
-rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = NA) {
+rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 

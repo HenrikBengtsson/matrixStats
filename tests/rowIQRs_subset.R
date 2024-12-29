@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   quantile_na <- function(x, ..., na.rm = FALSE) {
     if (!na.rm && anyMissing(x))
       return(c(NA_real_, NA_real_))
@@ -12,7 +12,7 @@ rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   
   # Preserve names attribute
   dim(q) <- c(2L, nrow(x))
-  colnames(q) <- if (isTRUE(useNames)) rownames(x) else NULL
+  colnames(q) <- if (useNames) rownames(x) else NULL
   
   q[2L, , drop = TRUE] - q[1L, , drop = TRUE]
 }

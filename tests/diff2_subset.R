@@ -2,7 +2,7 @@ library("matrixStats")
 
 diff2_R <- function(..., useNames=NA){
   res <- diff(...)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

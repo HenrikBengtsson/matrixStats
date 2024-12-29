@@ -1,8 +1,8 @@
 library("matrixStats")
 
-diff2_R <- function(..., useNames = NA){
+diff2_R <- function(..., useNames = TRUE){
   res <- diff(...)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 

@@ -13,7 +13,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
   # Preserve names attribute
   names <- names(counts)  
   counts <- as.integer(counts)
-  if (isTRUE(useNames) && !is.null(names)) names(counts) <- names
+  if (useNames && !is.null(names)) names(counts) <- names
   counts
 }
 

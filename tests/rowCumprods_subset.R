@@ -1,13 +1,13 @@
 library("matrixStats")
 
-rowCumprods_R <- function(x, ..., useNames = NA) {
+rowCumprods_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cumprod))
   })
 
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
+  dimnames(y) <- if (useNames) dimnames(x) else NULL
   
   y
 }

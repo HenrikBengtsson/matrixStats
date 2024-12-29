@@ -1,8 +1,8 @@
 library("matrixStats")
 
-rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res <- rowMeans(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 

@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
   } else {
@@ -15,11 +15,11 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
     
     res <- apply(y, MARGIN = 1L, FUN = all, na.rm = na.rm)
   }
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
   } else {
@@ -34,13 +34,13 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
     
     res <- apply(y, MARGIN = 1L, FUN = any, na.rm = na.rm)
   }
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-rowAnyMissings_R <- function(x, ..., useNames = NA) {
+rowAnyMissings_R <- function(x, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = anyMissing)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 

@@ -2,7 +2,7 @@ library("matrixStats")
 
 dense_rank <- function(x) match(x, table = sort(unique(x)))
 
-rowRanks_R <- function(x, ties.method, ..., useNames = NA) {
+rowRanks_R <- function(x, ties.method, ..., useNames = TRUE) {
   if (ties.method == "dense") {
     res <- t(apply(x, MARGIN = 1L, FUN = dense_rank))
   } else {
@@ -11,12 +11,12 @@ rowRanks_R <- function(x, ties.method, ..., useNames = NA) {
   
   # Preserve dimnames attribute?
   dim(res) <- dim(x)
-  dimnames(res) <- if (isTRUE(useNames)) dimnames(x) else NULL
+  dimnames(res) <- if (useNames) dimnames(x) else NULL
   
   res
 }
 
-colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA) {
+colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = TRUE) {
   if (ties.method == "dense") {
     res <- t(apply(x, MARGIN = 2L, FUN = dense_rank))
   } else {
@@ -26,7 +26,7 @@ colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA
   # Preserve dimnames attribute?
   tx <- t(x)
   dim(res) <- dim(tx)
-  dimnames(res) <- if (isTRUE(useNames)) dimnames(tx) else NULL
+  dimnames(res) <- if (useNames) dimnames(tx) else NULL
   
   if (preserveShape) res <- t(res)
   res

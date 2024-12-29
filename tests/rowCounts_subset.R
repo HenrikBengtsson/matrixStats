@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
     counts <- apply(x, MARGIN = 1L, FUN = function(x)
       sum(is.na(x))
@@ -13,7 +13,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   # Preserve names attribute
   names <- names(counts)  
   counts <- as.integer(counts)
-  if (isTRUE(useNames) && !is.null(names)) names(counts) <- names
+  if (useNames && !is.null(names)) names(counts) <- names
   counts
 } # rowCounts_R()
 
