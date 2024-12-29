@@ -9,7 +9,8 @@
 ## Deprecated and Defunct
 
  * The hidden R options for deescalating the error for using `useNames
-   = NA` to a warning has been removed; `useNames = NA`.
+   = NA` to a warning has been removed; `useNames = NA` is now always
+   an error.
 
  
 # Version 1.4.1 [2024-09-06]
