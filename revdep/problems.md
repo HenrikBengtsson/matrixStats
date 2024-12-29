@@ -201,7 +201,7 @@ Run `revdepcheck::revdep_details(, "amplican")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 17.7Mb
+      installed size is 17.6Mb
       sub-directories of 1Mb or more:
         doc   15.1Mb
         libs   1.6Mb
@@ -585,7 +585,7 @@ Run `revdepcheck::revdep_details(, "bcf")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.0Mb
+      installed size is  9.9Mb
       sub-directories of 1Mb or more:
         libs   8.8Mb
     ```
@@ -671,24 +671,6 @@ Run `revdepcheck::revdep_details(, "biscuiteer")` for more info
 
 ## In both
 
-*   checking re-building of vignette outputs ... ERROR
-    ```
-    Error(s) in re-building vignettes:
-      ...
-    --- re-building ‘biscuiteer.Rmd’ using rmarkdown
-    
-    Quitting from lines 69-77 [unnamed-chunk-3] (biscuiteer.Rmd)
-    Error: processing vignette 'biscuiteer.Rmd' failed with diagnostics:
-    no 'restart' 'muffleWarning' found
-    --- failed re-building ‘biscuiteer.Rmd’
-    
-    SUMMARY: processing the following file failed:
-      ‘biscuiteer.Rmd’
-    
-    Error: Vignette re-building failed.
-    Execution halted
-    ```
-
 *   checking whether package ‘biscuiteer’ can be installed ... WARNING
     ```
     Found the following significant warnings:
@@ -708,31 +690,6 @@ Run `revdepcheck::revdep_details(, "biscuiteer")` for more info
     ```
     Problems with news in ‘NEWS.md’:
     No news entries found.
-    ```
-
-*   checking whether startup messages can be suppressed ... NOTE
-    ```
-    ExperimentHub caching warnings:
-    Corrupt Cache: resource path
-      See AnnotationHub's TroubleshootingTheHubs vignette section on corrupt cache
-      cache: /c4/home/henrik/.cache/R/ExperimentHub
-      potential duplicate files: 
-        3d0f734f9d80c0_1611
-        3d108755bfd37d_1611
-        1253732076f6be_2517
-        1258251f7f7d34_2517
-        1253735760b710_2519
-    ...
-        1a2fe8482d8b72_6738
-        1a34ea7f291070_6738
-        3f66a473905a6f_7579
-        3f66ac45cc3652_7579
-        1276c5726a6c73_8360
-        12780b21e11fa8_8360
-    Continuing with first found cached file
-    
-    It looks like this package (or a package it requires) has a startup
-    message which cannot be suppressed: see ?packageStartupMessage.
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -1076,10 +1033,10 @@ Run `revdepcheck::revdep_details(, "bulkAnalyseR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         doc       2.3Mb
-        extdata   5.4Mb
+        extdata   3.4Mb
     ```
 
 # bumphunter
@@ -1143,9 +1100,9 @@ Run `revdepcheck::revdep_details(, "CARBayesST")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 12.2Mb
+      installed size is 13.1Mb
       sub-directories of 1Mb or more:
-        R      1.0Mb
+        R      2.0Mb
         libs  10.0Mb
     ```
 
@@ -1223,9 +1180,9 @@ Run `revdepcheck::revdep_details(, "causalOT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.0Mb
+      installed size is  9.6Mb
       sub-directories of 1Mb or more:
-        R      1.6Mb
+        R      2.3Mb
         libs   6.7Mb
     ```
 
@@ -1637,12 +1594,12 @@ Run `revdepcheck::revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2024-12-27 15:47:12] [1] "serif"
-      INFO [2024-12-27 15:47:12] 
-      INFO [2024-12-27 15:47:12] $x
-      INFO [2024-12-27 15:47:12] $x$TF1
-      INFO [2024-12-27 15:47:12] [1] 3 4 5
-      INFO [2024-12-27 15:47:12] 
+      INFO [2024-12-28 18:46:14] [1] "serif"
+      INFO [2024-12-28 18:46:14] 
+      INFO [2024-12-28 18:46:14] $x
+      INFO [2024-12-28 18:46:14] $x$TF1
+      INFO [2024-12-28 18:46:14] [1] 3 4 5
+      INFO [2024-12-28 18:46:14] 
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -1895,9 +1852,8 @@ Run `revdepcheck::revdep_details(, "cmapR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.4Mb
+      installed size is  6.0Mb
       sub-directories of 1Mb or more:
-        R         1.0Mb
         data      2.3Mb
         extdata   2.1Mb
     ```
@@ -1951,9 +1907,9 @@ Run `revdepcheck::revdep_details(, "cna")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is  9.8Mb
       sub-directories of 1Mb or more:
-        libs  13.0Mb
+        libs   8.4Mb
     ```
 
 # CNVScope
@@ -2174,7 +2130,7 @@ Run `revdepcheck::revdep_details(, "conquer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 24.9Mb
+      installed size is 24.8Mb
       sub-directories of 1Mb or more:
         libs  24.6Mb
     ```
@@ -2247,10 +2203,10 @@ Run `revdepcheck::revdep_details(, "corrcoverage")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.7Mb
+      installed size is  5.6Mb
       sub-directories of 1Mb or more:
-        extdata   5.9Mb
-        libs      3.5Mb
+        extdata   3.8Mb
+        libs      1.4Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -2600,9 +2556,9 @@ Run `revdepcheck::revdep_details(, "DELocal")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 10.5Mb
+      installed size is  9.4Mb
       sub-directories of 1Mb or more:
-        extdata   9.6Mb
+        extdata   8.5Mb
     ```
 
 # DeMixT
@@ -3042,7 +2998,7 @@ Run `revdepcheck::revdep_details(, "Doscheda")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.2Mb
+      installed size is  6.1Mb
       sub-directories of 1Mb or more:
         data             2.1Mb
         doc              1.8Mb
@@ -3884,10 +3840,10 @@ Run `revdepcheck::revdep_details(, "fastcpd")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 24.9Mb
+      installed size is 22.9Mb
       sub-directories of 1Mb or more:
         doc    2.5Mb
-        help   3.8Mb
+        help   1.8Mb
         libs  17.4Mb
     ```
 
@@ -3909,9 +3865,9 @@ Run `revdepcheck::revdep_details(, "FastPCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.8Mb
+      installed size is 30.1Mb
       sub-directories of 1Mb or more:
-        libs  13.7Mb
+        libs  30.0Mb
     ```
 
 # FastRCS
@@ -4209,9 +4165,9 @@ Run `revdepcheck::revdep_details(, "flowCore")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 18.2Mb
+      installed size is 19.0Mb
       sub-directories of 1Mb or more:
-        R         1.2Mb
+        R         2.0Mb
         data      5.4Mb
         extdata   1.1Mb
         libs      9.2Mb
@@ -4760,7 +4716,7 @@ Run `revdepcheck::revdep_details(, "geocmeans")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.3Mb
+      installed size is 14.4Mb
       sub-directories of 1Mb or more:
         extdata   3.0Mb
         libs      9.0Mb
@@ -5284,9 +5240,9 @@ Run `revdepcheck::revdep_details(, "HACSim")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.4Mb
+      installed size is  6.5Mb
       sub-directories of 1Mb or more:
-        libs    4.0Mb
+        libs    2.1Mb
         shiny   4.3Mb
     ```
 
@@ -5501,10 +5457,10 @@ Run `revdepcheck::revdep_details(, "Holomics")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  5.3Mb
       sub-directories of 1Mb or more:
         app   1.7Mb
-        doc   4.0Mb
+        doc   3.3Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -5609,21 +5565,21 @@ Run `revdepcheck::revdep_details(, "immApex")` for more info
       Running ‘testthat.R’
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Last 50 lines of output:
-      > 
-      > library(testthat)
-      > library(immApex)
-      > 
-      > test_check("immApex")
+    Complete output:
+      > # This file is part of the standard setup for testthat.
+      > # It is recommended that you do not modify it.
+      > #
+      > # Where should you do additional test configuration?
+      > # Learn more about the roles of various files in:
     ...
+      ── Error ('test-getIMGT.R:6:3'): getIMGT works ─────────────────────────────────
+      Error in `getIMGT(species = "human", chain = "TRB", frame = "inframe", 
+          region = "v", sequence.type = "aa")`: Failed to retrieve data after 3 attempts.
+      Backtrace:
           ▆
-       1. └─immApex::sequenceDecoder(sequence.matrix) at test-sequenceDecoder.R:7:3
-       2.   └─immApex:::.onehotDecoder(...)
-       3.     └─reticulate::array_reshape(...)
-       4.       └─reticulate::import("numpy", convert = !is_py_object(x))
-       5.         └─reticulate:::py_module_import(module, convert = convert)
+       1. └─immApex::getIMGT(...) at test-getIMGT.R:6:3
       
-      [ FAIL 4 | WARN 0 | SKIP 2 | PASS 29 ]
+      [ FAIL 1 | WARN 0 | SKIP 2 | PASS 45 ]
       Error: Test failures
       Execution halted
     ```
@@ -5754,10 +5710,10 @@ Run `revdepcheck::revdep_details(, "iPath")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.0Mb
+      installed size is  7.4Mb
       sub-directories of 1Mb or more:
         data   2.5Mb
-        doc    1.1Mb
+        doc    3.5Mb
         libs   1.3Mb
     ```
 
@@ -5954,7 +5910,7 @@ Run `revdepcheck::revdep_details(, "ldsep")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.6Mb
+      installed size is  9.5Mb
       sub-directories of 1Mb or more:
         libs   8.7Mb
     ```
@@ -5984,7 +5940,7 @@ Run `revdepcheck::revdep_details(, "lemur")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.1Mb
+      installed size is  7.0Mb
       sub-directories of 1Mb or more:
         data   2.6Mb
         doc    1.1Mb
@@ -6083,9 +6039,9 @@ Run `revdepcheck::revdep_details(, "Linnorm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.2Mb
+      installed size is  6.0Mb
       sub-directories of 1Mb or more:
-        data   4.5Mb
+        data   2.3Mb
         doc    1.9Mb
         libs   1.5Mb
     ```
@@ -6208,9 +6164,9 @@ Run `revdepcheck::revdep_details(, "Luminescence")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.0Mb
+      installed size is  8.5Mb
       sub-directories of 1Mb or more:
-        R      2.0Mb
+        R      2.5Mb
         libs   3.8Mb
     ```
 
@@ -7207,12 +7163,11 @@ Run `revdepcheck::revdep_details(, "mixOmics")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 23.2Mb
+      installed size is 22.7Mb
       sub-directories of 1Mb or more:
         R      1.4Mb
         data   3.3Mb
         doc   16.5Mb
-        help   1.0Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -7451,7 +7406,7 @@ Run `revdepcheck::revdep_details(, "MOSim")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.6Mb
+      installed size is  7.5Mb
       sub-directories of 1Mb or more:
         data   5.8Mb
     ```
@@ -7634,10 +7589,10 @@ Run `revdepcheck::revdep_details(, "mrfDepth")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 32.1Mb
+      installed size is 21.6Mb
       sub-directories of 1Mb or more:
         data   1.6Mb
-        libs  30.0Mb
+        libs  19.6Mb
     ```
 
 # msqrob2
@@ -7740,9 +7695,9 @@ Run `revdepcheck::revdep_details(, "MultiBD")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.6Mb
+      installed size is 10.4Mb
       sub-directories of 1Mb or more:
-        libs  13.0Mb
+        libs   8.8Mb
     ```
 
 # multistateQTL
@@ -8229,7 +8184,7 @@ Run `revdepcheck::revdep_details(, "numbat")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  5.9Mb
       sub-directories of 1Mb or more:
         data   4.2Mb
         libs   1.2Mb
@@ -8603,9 +8558,9 @@ Run `revdepcheck::revdep_details(, "pARI")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.3Mb
+      installed size is 13.2Mb
       sub-directories of 1Mb or more:
-        libs   6.0Mb
+        libs  13.0Mb
     ```
 
 # PathoStat
@@ -9293,9 +9248,9 @@ Run `revdepcheck::revdep_details(, "rADA")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  5.7Mb
       sub-directories of 1Mb or more:
-        doc   6.8Mb
+        doc   5.5Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -9402,9 +9357,9 @@ Run `revdepcheck::revdep_details(, "reservr")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.2Mb
+      installed size is 18.7Mb
       sub-directories of 1Mb or more:
-        R      2.0Mb
+        R      1.5Mb
         doc    1.2Mb
         libs  15.7Mb
     ```
@@ -10471,7 +10426,7 @@ Run `revdepcheck::revdep_details(, "Seurat")` for more info
       installed size is 16.0Mb
       sub-directories of 1Mb or more:
         R      1.7Mb
-        libs  13.4Mb
+        libs  13.5Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -10564,14 +10519,6 @@ Run `revdepcheck::revdep_details(, "SICtools")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is  8.5Mb
-      sub-directories of 1Mb or more:
-        etc       4.0Mb
-        extdata   4.1Mb
-    ```
-
 *   checking R code for possible problems ... NOTE
     ```
     .indelDiffFunc: no visible global function definition for ‘fisher.test’
@@ -10607,9 +10554,8 @@ Run `revdepcheck::revdep_details(, "sigminer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.9Mb
+      installed size is  6.7Mb
       sub-directories of 1Mb or more:
-        R         1.0Mb
         extdata   1.0Mb
         help      1.7Mb
         libs      1.6Mb
@@ -10743,9 +10689,9 @@ Run `revdepcheck::revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 934.6Mb
+      installed size is 905.2Mb
       sub-directories of 1Mb or more:
-        data  924.5Mb
+        data  895.1Mb
         doc     9.9Mb
     ```
 
@@ -10920,10 +10866,10 @@ Run `revdepcheck::revdep_details(, "SpaNorm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.1Mb
+      installed size is 16.8Mb
       sub-directories of 1Mb or more:
-        data   4.2Mb
-        doc    3.7Mb
+        data  12.5Mb
+        doc    4.0Mb
     ```
 
 *   checking R code for possible problems ... NOTE
@@ -10987,16 +10933,6 @@ Run `revdepcheck::revdep_details(, "SparseArray")` for more info
 
 </details>
 
-## Newly fixed
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  6.5Mb
-      sub-directories of 1Mb or more:
-        R      3.5Mb
-        libs   2.0Mb
-    ```
-
 ## In both
 
 *   checking compiled code ... NOTE
@@ -11033,9 +10969,9 @@ Run `revdepcheck::revdep_details(, "sparseMatrixStats")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.7Mb
+      installed size is  7.0Mb
       sub-directories of 1Mb or more:
-        libs  13.0Mb
+        libs   5.3Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -11297,7 +11233,7 @@ Run `revdepcheck::revdep_details(, "stm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.1Mb
+      installed size is  6.0Mb
       sub-directories of 1Mb or more:
         data   1.7Mb
         libs   3.2Mb
@@ -11344,15 +11280,6 @@ Run `revdepcheck::revdep_details(, "summarytools")` for more info
 Run `revdepcheck::revdep_details(, "SuperCell")` for more info
 
 </details>
-
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.2Mb
-      sub-directories of 1Mb or more:
-        data   4.0Mb
-    ```
 
 ## In both
 
