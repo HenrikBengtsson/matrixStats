@@ -87,7 +87,7 @@ validateTiesMethodMissing <- local({
   always <- structure(TRUE, when = "each time this function is called")
   
   function() {
-    freq <- getOption("matrixStats.ties.method.freq", 25L)
+    freq <- getOption("matrixStats.ties.method.freq", 10L)
     
     ## Nothing to do?
     if (is.null(freq)) return(FALSE)
@@ -124,7 +124,7 @@ tiesMethodMissing <- local({
       defunct    = .Defunct,
       function(...) NULL
     )
-    msg <- sprintf("[%s (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options", .packageName, .packageName)
+    msg <- sprintf("[%s (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). If you are an end-user that cannot update the R code causing this, see ?matrixStats::matrixStats.options for how to temporarily disable this check", .packageName, .packageName)
     action(msg = msg, package = .packageName)
   }
 })
