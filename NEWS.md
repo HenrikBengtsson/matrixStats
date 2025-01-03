@@ -17,7 +17,7 @@
    [2024-04-10]. If not explicitly specified, a deprecation warning is
    now produced every 10:th call not specifying the `ties.method`
    argument.
-
+   
  
 # Version 1.4.1 [2024-09-06]
 

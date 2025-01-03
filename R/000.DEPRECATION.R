@@ -18,12 +18,14 @@ defunctShouldBeMatrixOrVector <- function(x) {
 
 validateScalarCenter <- function(center, n, dimname) {
   onScalar <- getOption("matrixStats.center.onScalar", "defunct")
-  if (identical(onScalar, "ignore")) return()
+  if (identical(onScalar, "ignore")) {
+    stop("R option 'matrixStats.center.onScalar' must not be \"ignore\"; only valid options are \"defunct\" (default) or \"deprecated\"")
+  }
   
   action <- switch(onScalar,
     deprecated = .Deprecated,
        defunct = .Defunct,
-    function(...) NULL
+                 .Defunct
   )
   
   msg <- sprintf("[%s (>= 0.58.0)] Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is %s: %s != %s (See also ?matrixStats::matrixStats.options)", .packageName, "center", dimname, "x", onScalar, length(center), n)
