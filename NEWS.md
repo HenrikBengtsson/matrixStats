@@ -12,14 +12,20 @@
    = NA` to a warning has been removed; `useNames = NA` is now always
    an error.
 
+ * Calling `colRanks()` and `rowRanks()` without explicitly specifying
+   argument `ties.method` is deprecated since version 1.3.0
+   [2024-04-10]. If not explicitly specified, a deprecation warning is
+   now produced every 10:th call not specifying the `ties.method`
+   argument.
+
  
 # Version 1.4.1 [2024-09-06]
 
 ## Bug Fixes
 
- * Fix a potential `runtime error: null pointer passed as argument 1,
-   which is declared to never be null` bug introduced in v1.4.0 that
-   was detected by the UndefinedBehaviorSanitizer (UBSan) running on CRAN.
+ * Fix a `runtime error: null pointer passed as argument 1, which is
+   declared to never be null` bug introduced in v1.4.0 that was
+   detected by the UndefinedBehaviorSanitizer (UBSan) running on CRAN.
  
 
 # Version 1.4.0 [2024-09-03]
@@ -43,8 +49,8 @@
 ## Deprecated and Defunct
 
  * Calling `colRanks()` and `rowRanks()` without explicitly specifying
-   argument `ties.method` is deprecated since version 1.3.0. If not
-   explicitly specified, a deprecation warning is now produced every
+   argument `ties.method` is deprecated since version 1.3.0 [2024-04-10].
+   If not explicitly specified, a deprecation warning is now produced every
    25:th call not specifying the `ties.method` argument.
    
 

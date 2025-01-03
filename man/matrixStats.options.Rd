@@ -73,7 +73,7 @@ Below are the \R options and environment variables that are used by the
 \describe{
  \item{\option{matrixStats.ties.method.freq}:}{(numeric)
    Controls how often the above validation is checked.
-   (Default: \code{25} - every 25:th call starting with the first)}
+   (Default: \code{10} - every 10:th call starting with the first)}
 }
 }
 

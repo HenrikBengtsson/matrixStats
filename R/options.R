@@ -54,7 +54,7 @@
 #' \describe{
 #'  \item{\option{matrixStats.ties.method.freq}:}{(numeric)
 #'    Controls how often the above validation is checked.
-#'    (Default: \code{25} - every 25:th call starting with the first)}
+#'    (Default: \code{10} - every 10:th call starting with the first)}
 #' }
 #'
 #' @section Environment variables that set R options:
@@ -203,5 +203,5 @@ update_package_options <- function() {
   
   update_package_option("matrixStats.ties.method.missing", default = if (getRversion() >= "4.4.0") "deprecated" else "ignore", choices = c("deprecated", "defunct", "ignore"))
 
-  update_package_option("matrixStats.ties.method.freq", mode = "numeric", default = "25")
+  update_package_option("matrixStats.ties.method.freq", mode = "numeric", default = "10")
 }
