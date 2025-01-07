@@ -1,3 +1,8 @@
+# Version (development version)
+
+ * ...
+ 
+
 # Version 1.5.0 [2025-01-07]
 
 ## Significant Changes
@@ -6,6 +11,12 @@
    release of R will have stricter C header requirements that are not
    backward compatible with older versions of R.
 
+## Bug Fixes
+
+ * The error message of `colTabulates()` and `rowTabulates()`
+   asserting that double values are not passed, reported on the class
+   of the input data, not the storage type.
+   
 ## Deprecated and Defunct
 
  * The hidden R options for deescalating the error for using `useNames
@@ -17,12 +28,6 @@
    [2024-04-10]. If not explicitly specified, a deprecation warning is
    now produced every 10:th call not specifying the `ties.method`
    argument.
-
-## Bug Fixes
-
- * The error message of `colTabulates()` and `rowTabulates()`
-   asserting that double values are passed, reported on the class of
-   the input data, not the storage type.
 
  
 # Version 1.4.1 [2024-09-06]
