@@ -12,12 +12,8 @@ colTabulates(x, rows = NULL, cols = NULL, values = NULL, ...,
   useNames = TRUE)
 }
 \arguments{
-\item{x}{A \code{\link[base]{numeric}}, a \code{\link[base]{logical}}, or
-a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.
-Matrix `x` may only be of type \code{\link[base]{double}} if `values`
-is specified and non-`NULL`, or if the values in `x` are all perfect
-integers or 1/2 values. The latter allows for tabulating ranks that
-may arrise from `ties.method = "average"`.}
+\item{x}{An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
+a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.}
 
 \item{rows}{A \code{\link[base]{vector}} indicating subset of rows to
 operate over. If \code{\link[base]{NULL}}, no subsetting is done.}

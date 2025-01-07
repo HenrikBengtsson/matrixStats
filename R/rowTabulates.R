@@ -2,12 +2,8 @@
 #'
 #' @inheritParams rowAlls
 #'
-#' @param x A \code{\link[base]{numeric}}, a \code{\link[base]{logical}}, or
+#' @param x An \code{\link[base]{integer}}, a \code{\link[base]{logical}}, or
 #' a \code{\link[base]{raw}} NxK \code{\link[base]{matrix}}.
-#' Matrix `x` may only be of type \code{\link[base]{double}} if `values`
-#' is specified and non-`NULL`, or if the values in `x` are all perfect
-#' integers or 1/2 values. The latter allows for tabulating ranks that
-#' may arrise from `ties.method = "average"`.
 #'
 #' @param values An \code{\link[base]{vector}} of J values of count. If
 #' \code{\link[base]{NULL}}, all (unique) values are counted.
@@ -40,9 +36,8 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   if (is.integer(x)) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
-  } else if (is.double(x)) {
   } else {
-    stop(sprintf("Argument '%s' is not integer, double, logical, or raw: %s", "x", storage.mode(x)))
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", storage.mode(x)))
   }
 
   # Apply subset
@@ -65,22 +60,6 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
     } else {
       values <- sort.int(values, na.last = TRUE)
       names <- as.character(values)
-    }
-    
-    ## When `values` is not specified, allow only for double `x` that
-    ## contains perfect integers or 1/2 values. This makes it possible
-    ## to tabulate ranks with ties.method = "average".
-    if (is.double(values)) {
-      ## Extract decimal part of values
-      remainders <- values - floor(values)
-      remainders <- remainders[remainders > 0]
-      if (length(remainders) > 0) {
-        ## Assert that they are all 1/2 values
-        if (any(remainders != 1/2)) {
-          stop(sprintf("Argument '%s' must not contain doubles when values = NULL, unless they are perfect integers or 1/2 values", "x"))
-        }
-      }
-      rm(list = "remainders")
     }
   } else {
     if (is.raw(values)) {
@@ -122,9 +101,8 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   if (is.integer(x)) {
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
-  } else if (is.double(x)) {
   } else {
-    stop(sprintf("Argument '%s' is not integer, double, logical, or raw: %s", "x", storage.mode(x)))
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", storage.mode(x)))
   }
 
   # Apply subset
@@ -147,22 +125,6 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
     } else {
       values <- sort.int(values, na.last = TRUE)
       names <- as.character(values)
-    }
-    
-    ## When `values` is not specified, allow only for double `x` that
-    ## contains perfect integers or 1/2 values. This makes it possible
-    ## to tabulate ranks with ties.method = "average".
-    if (is.double(values)) {
-      ## Extract decimal part of values
-      remainders <- values - floor(values)
-      remainders <- remainders[remainders > 0]
-      if (length(remainders) > 0) {
-        ## Assert that they are all 1/2 values
-        if (any(remainders != 1/2)) {
-          stop(sprintf("Argument '%s' must not contain doubles when values = NULL, unless they are perfect integers or 1/2 values", "x"))
-        }
-      }
-      rm(list = "remainders")
     }
   } else {
     if (is.raw(values)) {

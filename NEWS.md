@@ -6,17 +6,6 @@
    release of R will have stricter C header requirements that are not
    backward compatible with older versions of R.
 
-## New Features
-
- * Add support for using `colTabulates()` and `rowTabulates()` with
-   doubles in two special cases. The default is that passing doubles
-   is a mistake, as real values cannot be tabulated. The exception is
-   when there is a well-defined set of real values, which is the case
-   when argument `values` is specified and non-`NULL`. Another case is
-   when the input are real-valued ranks, which are either perfect
-   integers or 1/2 values, as may arrise from using rank functions
-   with `ties.method = "average"`.
-
 ## Deprecated and Defunct
 
  * The hidden R options for deescalating the error for using `useNames

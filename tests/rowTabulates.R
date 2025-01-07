@@ -118,36 +118,3 @@ for (mode in modes) {
 
   cat(sprintf("Mode: %s...done\n", mode))
 } # for (mode ...)
-
-
-message("Allow for 'x' of type double only for some special case ...")
-
-message(" - Allow for double, i.e. real values, when 'values' is specified")
-X <- matrix(rnorm(n = 12L), nrow = 3L)
-print(X)
-T <- rowTabulates(X, values = X[1:3])
-print(T)
-T <- colTabulates(X, values = X[1:3])
-print(T)
-
-message(" - Allow for double, i.e. real values, when they are ranks")
-X <- matrix(c(1, 1, 1, 1, 4, 3, 2, 4, 2, 1, 2, 2), nrow = 3L)
-R <- rowRanks(X, ties.method = "average")
-print(R)
-T <- rowTabulates(R)
-print(T)
-stopifnot(any(grepl("[.]5$", colnames(T))))
-T <- colTabulates(R)
-print(T)
-stopifnot(any(grepl("[.]5$", colnames(T))))
-
-message(" - In all other cases, passing real values is an error")
-X <- matrix(rnorm(n = 12L), nrow = 3L)
-res <- tryCatch(colTabulates(X), error = identity)
-print(res)
-stopifnot(inherits(res, "error"))
-res <- tryCatch(rowTabulates(X), error = identity)
-print(res)
-stopifnot(inherits(res, "error"))
-
-message("Allow for 'x' of type double only for some special case ... done")
