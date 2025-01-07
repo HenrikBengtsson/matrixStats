@@ -1,8 +1,8 @@
 library("matrixStats")
 
-rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = NA) {
+rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -28,7 +28,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowProds_R(x, na.rm = TRUE, useNames = useNames)
       print(y0)
       y1 <- rowProds(x, na.rm = TRUE, useNames = useNames)

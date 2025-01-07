@@ -6,7 +6,6 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = TRUE) {
   if (is.null(center)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
     constant <- as.numeric(constant)
     has_nas <- TRUE
     
@@ -41,13 +40,11 @@ rowMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     if (is.null(dim(x))) {
       dim(x) <- dim. # prevent from dim dropping
       # Preserve names attribute?
-      if (!is.na(useNames) && useNames) {
-        if (!is.null(names)) {
-          if (!is.null(rows)) {
-            names <- names[rows]
-          }
-          rownames(x) <- names
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
         }
+        rownames(x) <- names
       }
     }
     x <- abs(x)
@@ -65,7 +62,6 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
                     constant = 1.4826, na.rm = FALSE,
                     dim. = dim(x), ..., useNames = TRUE) {
   if (is.null(center)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
     constant <- as.numeric(constant)
     has_nas <- TRUE
     
@@ -103,19 +99,17 @@ colMads <- function(x, rows = NULL, cols = NULL, center = NULL,
     ## FAST:
     x <- t_tx_OP_y(x, center, OP = "-", na.rm = FALSE)
     # Preserve names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        if (!is.null(names)) {
-          if (!is.null(cols)) {
-            names <- names[cols]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL         
-          }
-          colnames(x) <- names
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL         
         }
-      } else {
-        colnames(x) <- NULL
+        colnames(x) <- names
       }
+    } else {
+      colnames(x) <- NULL
     }
     x <- abs(x)
     x <- colMedians(x, na.rm = na.rm, ..., useNames = useNames)

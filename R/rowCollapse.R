@@ -45,18 +45,14 @@ rowCollapse <- function(x, idxs, rows = NULL, dim. = dim(x), ..., useNames = TRU
   
   # Update names attribute?
   res <- x[idxs]
-  if (!is.na(useNames)) {
-    if (useNames) {
-      names <- rownames(x)
-      if (!is.null(names)) {
-        names(res) <- names
-      }
-    } else {
-      names(res) <- NULL
+  if (useNames) {
+    names <- rownames(x)
+    if (!is.null(names)) {
+      names(res) <- names
     }
   } else {
-    deprecatedUseNamesNA()
-  }  
+    names(res) <- NULL
+  }
 
   res
 }
@@ -90,15 +86,13 @@ colCollapse <- function(x, idxs, cols = NULL, dim. = dim(x), ..., useNames = TRU
   
   # Update names attribute?
   res <- x[idxs]
-  if (!is.na(useNames)) {
-    if (useNames) {
-      names <- colnames(x)
-      if (!is.null(names)) {
-        names(res) <- names
-      }
-    } else {
-      names(res) <- NULL
+  if (useNames) {
+    names <- colnames(x)
+    if (!is.null(names)) {
+      names(res) <- names
     }
+  } else {
+    names(res) <- NULL
   }
 
   res

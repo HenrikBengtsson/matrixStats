@@ -5,26 +5,26 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
+rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as rowWeightedMedians()
   if (!is.null(w)) {
     if (isFALSE(useNames)) names(res) <- NULL
   }
-  else if (is.na(useNames) || !useNames) names(res) <- NULL
+  else if (!useNames) names(res) <- NULL
   
   res
 }
 
-colWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
+colWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 2L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as colWeightedMedians()
   if (!is.null(w)) {
     if (isFALSE(useNames)) names(res) <- NULL
   }
-  else if (is.na(useNames) || !useNames) names(res) <- NULL
+  else if (!useNames) names(res) <- NULL
   
   res
 }
@@ -48,7 +48,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowMedians(x, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, useNames = useNames)
     x_est2 <- colWeightedMedians(t(x), useNames = useNames)
@@ -70,7 +70,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -93,7 +93,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -115,7 +115,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -137,7 +137,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -157,7 +157,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -181,7 +181,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, na.rm = TRUE, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -201,7 +201,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, na.rm = TRUE, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, na.rm = TRUE, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))
@@ -225,7 +225,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     x_est0 <- rowWeightedMedians_R(x, w = w, useNames = useNames)
     x_est1 <- rowWeightedMedians(x, w = w, useNames = useNames)
     stopifnot(all.equal(x_est1, x_est0))

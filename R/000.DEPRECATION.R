@@ -1,18 +1,3 @@
-isUseNamesNADefunct <- function() {
-  action <- getOption("matrixStats.useNames.NA", "defunct")
-  action <- match.arg(action, choices = c("deprecated", "defunct"))
-  (action == "defunct")
-}
-
-deprecatedUseNamesNA <- function() {
-  if (isUseNamesNADefunct()) {
-    .Defunct(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is defunct. Instead, specify either useNames = TRUE or useNames = FALSE. See also ?matrixStats::matrixStats.options", .packageName), package = .packageName)
-  } else {
-    .Deprecated(msg = sprintf("[%s (>= 1.2.0)] useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = FALSE. See also ?matrixStats::matrixStats.options", .packageName), package = .packageName)
-  }
-}
-
-
 defunctShouldBeMatrixOrDim <- function(x) {
   x_class <- sQuote(class(x)[1])
   x_name <- sQuote(as.character(substitute(x)))
@@ -31,15 +16,16 @@ defunctShouldBeMatrixOrVector <- function(x) {
   .Defunct(msg = sprintf("[%s] Argument %s is of class %s, but should be a matrix or a vector. The use of a %s is not supported, the correctness of the result is not guaranteed. Please update your code accordingly.", .packageName, x_name, x_class, x_class))  #nolint
 }
 
-validateScalarCenter <- function(center, n, dimname) {
-  onScalar <- getOption("matrixStats.center.onScalar", "defunct")
-  if (identical(onScalar, "ignore")) return()
-  
+validateScalarCenter <- function(center, n, dimname) {  onScalar <- getOption("matrixStats.center.onScalar", "defunct") 
   action <- switch(onScalar,
     deprecated = .Deprecated,
        defunct = .Defunct,
-    function(...) NULL
+                 NULL
   )
+  
+  if (is.null(action)) {
+    stop(sprintf("R option 'matrixStats.center.onScalar' must not be \"%s\"; the only valid values are \"defunct\" and \"deprecated\"", onScalar))
+  }
   
   msg <- sprintf("[%s (>= 0.58.0)] Argument '%s' should be of the same length as number of %s of '%s'. Use of a scalar value is %s: %s != %s (See also ?matrixStats::matrixStats.options)", .packageName, "center", dimname, "x", onScalar, length(center), n)
   action(msg = msg, package = .packageName)
@@ -80,12 +66,15 @@ centerOnUse <- function(fcnname, calls = sys.calls(), msg = NULL) {
   value <- getOption("matrixStats.center.onUse", "ignore")
   if (identical(value, "ignore")) return()
   
-  value <- match.arg(value, c("deprecated", "defunct"))
   action <- switch(value,
     deprecated = .Deprecated,
        defunct = .Defunct,
-    function(...) NULL
+                 NULL
   )
+
+  if (is.null(action)) {
+    stop(sprintf("R option 'matrixStats.center.onScalar' must not be \"%s\"; the only valid values are \"defunct\", \"deprecated\", and \"ignore\"", value))
+  }
 
   if (is.null(msg)) {
     msg <- sprintf("[%s] Argument '%s' of %s::%s() is %s: %s (See also ?matrixStats::matrixStats.options)",
@@ -102,7 +91,7 @@ validateTiesMethodMissing <- local({
   always <- structure(TRUE, when = "each time this function is called")
   
   function() {
-    freq <- getOption("matrixStats.ties.method.freq", 25L)
+    freq <- getOption("matrixStats.ties.method.freq", 10L)
     
     ## Nothing to do?
     if (is.null(freq)) return(FALSE)
@@ -128,18 +117,23 @@ validateTiesMethodMissing <- local({
 
 tiesMethodMissing <- local({
   function() {
-    action <- getOption("matrixStats.ties.method.missing", if (getRversion() >= "4.4.0") "deprecated" else "ignore")
-    if (action == "ignore") return()
+    value <- getOption("matrixStats.ties.method.missing", if (getRversion() >= "4.4.0") "deprecated" else "ignore")
+    if (value == "ignore") return()
 
     ## How often should we check?
     if (!validateTiesMethodMissing()) return()
     
-    action <- switch(action,
+    action <- switch(value,
       deprecated = .Deprecated,
       defunct    = .Defunct,
-      function(...) NULL
+                   NULL
     )
-    msg <- sprintf("[%s (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options", .packageName, .packageName)
+
+    if (is.null(action)) {
+      stop(sprintf("R option 'matrixStats.ties.method.missing' must not be \"%s\"; the only valid values are \"defunct\", \"deprecated\", and \"ignore\"", value))
+    }
+
+    msg <- sprintf("[%s (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of %s. This is because the current default ties.method=\"max\" will eventually be updated to ties.method=\"average\" in order to align with the default of base::rank(). If you are an end-user that cannot update the R code causing this, see ?matrixStats::matrixStats.options for how to temporarily disable this check", .packageName, .packageName)
     action(msg = msg, package = .packageName)
   }
 })

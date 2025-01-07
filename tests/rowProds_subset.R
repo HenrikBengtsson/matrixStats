@@ -1,8 +1,8 @@
 library("matrixStats")
 
-rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = NA) {
+rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = FUN, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -24,7 +24,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       for (na.rm in c(TRUE, FALSE)) {
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowProds, fsure = rowProds_R,
                                     method = "expSumLog",

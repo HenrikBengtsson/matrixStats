@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
     counts <- apply(x, MARGIN = 1L, FUN = function(x)
       sum(is.na(x))
@@ -13,7 +13,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
   # Preserve names attribute
   names <- names(counts)  
   counts <- as.integer(counts)
-  if (isTRUE(useNames) && !is.null(names)) names(counts) <- names
+  if (useNames && !is.null(names)) names(counts) <- names
   counts
 } # rowCounts_R()
 
@@ -36,7 +36,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         validateIndicesTestMatrix(x, rows, cols,
                                   ftest = rowCounts, fsure = rowCounts_R,
                                   value = 0, na.rm = TRUE, useNames = useNames)
@@ -68,7 +68,7 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- c(TRUE, FALSE)
       useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,

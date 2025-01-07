@@ -1,14 +1,14 @@
 library("matrixStats")
 
-rowMedians_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowMedians_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = median, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-colMedians_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+colMedians_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 2L, FUN = median, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -28,7 +28,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -57,7 +57,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -86,7 +86,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -133,7 +133,7 @@ for (mode in c("integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMedians_R(x, na.rm = TRUE, useNames = useNames)
       y1 <- rowMedians(x, na.rm = TRUE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -157,7 +157,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMedians_R(x, na.rm = TRUE, useNames = useNames)
     y1 <- rowMedians(x, na.rm = TRUE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -180,7 +180,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -203,7 +203,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -229,7 +229,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -252,7 +252,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMedians_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMedians(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))

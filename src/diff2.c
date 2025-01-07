@@ -35,7 +35,7 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
   R_xlen_t nidxs;
   
   /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
+  usenames = asLogicalNoNA(useNames, "useNames");
   
   int idxsHasNA;
   R_xlen_t *cidxs = validateIndicesCheckNA(idxs, nx, 1, &nidxs, &idxsHasNA);
@@ -56,7 +56,7 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
     error("Argument 'x' must be numeric");
   }
   
-  if (usenames != NA_LOGICAL && usenames) {
+  if (usenames) {
     SEXP namesVec;
     PROTECT(namesVec = getAttrib(x, R_NamesSymbol));
     if (namesVec != R_NilValue) {

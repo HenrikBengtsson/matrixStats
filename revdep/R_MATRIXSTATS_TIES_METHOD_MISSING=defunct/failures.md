@@ -29,7 +29,7 @@ Run `revdepcheck::revdep_details(, "flowWorkspace")` for more info
 ** package ‘flowWorkspace’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++17
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_API.cpp -o R_API.o
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_GatingHierarchy.cpp -o R_GatingHierarchy.o
@@ -56,7 +56,7 @@ ERROR: compilation failed for package ‘flowWorkspace’
 ** package ‘flowWorkspace’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++17
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_API.cpp -o R_API.o
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_GatingHierarchy.cpp -o R_GatingHierarchy.o
@@ -107,7 +107,7 @@ Run `revdepcheck::revdep_details(, "graper")` for more info
 ** package ‘graper’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++11
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c fit_graper.cpp -o fit_graper.o
@@ -134,7 +134,7 @@ ERROR: compilation failed for package ‘graper’
 ** package ‘graper’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++11
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c fit_graper.cpp -o fit_graper.o

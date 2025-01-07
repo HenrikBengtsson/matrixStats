@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = all, na.rm = na.rm)
   } else {
@@ -15,11 +15,11 @@ rowAlls_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
     
     res <- apply(y, MARGIN = 1L, FUN = all, na.rm = na.rm)
   }
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
+rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = TRUE) {
   if (is.na(value)) {
     res <- apply(is.na(x), MARGIN = 1L, FUN = any, na.rm = na.rm)
   } else {
@@ -34,13 +34,13 @@ rowAnys_R <- function(x, value = TRUE, na.rm = FALSE, ..., useNames = NA) {
     
     res <- apply(y, MARGIN = 1L, FUN = any, na.rm = na.rm)
   }
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-rowAnyMissings_R <- function(x, ..., useNames = NA) {
+rowAnyMissings_R <- function(x, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = anyMissing)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -74,7 +74,7 @@ for (kk in 1:3) {
 
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         m0 <- rowAlls_R(x, na.rm = na.rm, useNames = useNames)
         m1 <- rowAlls(x, na.rm = na.rm, useNames = useNames)
         m2 <- colAlls(t(x), na.rm = na.rm, useNames = useNames)
@@ -120,13 +120,13 @@ for (setDimnames in c(TRUE, FALSE)) {
   dimnames(x) <- if (setDimnames) dimnames else NULL
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       r0 <- rowAlls_R(x, value = value, na.rm = na.rm, useNames = useNames)
       r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = useNames)
       r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = useNames)
       stopifnot(identical(r1, r0))
       stopifnot(identical(r2, r1))
-      if (!is.na(useNames) && !useNames && !setDimnames) {
+      if (!useNames && !setDimnames) {
         for (rr in seq_len(nrow(x))) {
           c <- allValue(x[rr, ], value = value, na.rm = na.rm)
           stopifnot(identical(c, r1[rr]))
@@ -140,7 +140,7 @@ for (setDimnames in c(TRUE, FALSE)) {
       r2 <- colAnys(t(x), value = value, na.rm = na.rm, useNames = useNames)
       stopifnot(identical(r1, r0))
       stopifnot(identical(r2, r1))        
-      if (!is.na(useNames) && !useNames && !setDimnames) {
+      if (!useNames && !setDimnames) {
         for (rr in seq_len(nrow(x))) {
           c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
           stopifnot(identical(c, r1[rr]))
@@ -256,13 +256,13 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (value in c("g", NA_character_)) {
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         r0 <- rowAlls_R(x, value = value, na.rm = na.rm, useNames = useNames)
         r1 <- rowAlls(x, value = value, na.rm = na.rm, useNames = useNames)
         r2 <- colAlls(t(x), value = value, na.rm = na.rm, useNames = useNames)
         stopifnot(identical(r1, r0))
         stopifnot(identical(r2, r1))
-        if (!is.na(useNames) && !useNames && !setDimnames) {
+        if (!useNames && !setDimnames) {
           for (rr in seq_len(nrow(x))) {
             c0 <- all_R(x[rr, ], value, na.rm = na.rm)
             c <- allValue(x[rr, ], value = value, na.rm = na.rm)
@@ -276,7 +276,7 @@ for (setDimnames in c(TRUE, FALSE)) {
         r2 <- colAnys(t(x), value = value, na.rm = na.rm, useNames = useNames)
         stopifnot(identical(r1, r0))
         stopifnot(identical(r2, r1))        
-        if (!is.na(useNames) && !useNames && !setDimnames) {
+        if (!useNames && !setDimnames) {
           for (rr in seq_len(nrow(x))) {
             c0 <- any_R(x[rr, ], value, na.rm = na.rm)
             c <- anyValue(x[rr, ], value = value, na.rm = na.rm)
@@ -303,7 +303,7 @@ dimnames <- list(letters[1:3], LETTERS[1:3])
 for (setDimnames in c(TRUE, FALSE)) {
   dimnames(x) <- if (setDimnames) dimnames else NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     r0 <- rowAnys_R(x, value = 0, useNames = useNames)
     r1 <- rowAnys(x, value = 0, useNames = useNames)
     stopifnot(identical(r0, r1))

@@ -44,8 +44,6 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
-    
     # Preserve rownames
     names <- rownames(x)
     
@@ -81,22 +79,18 @@ rowCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- as.integer(counts)
     
     # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        if (!is.null(names)) {
-          if (!is.null(rows)) {
-            names <- names[rows]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL
-          }
-          names(counts) <- names
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
         }
-      } else {
-        names(counts) <- NULL
+        names(counts) <- names
       }
     } else {
-      deprecatedUseNamesNA()
-    }  
+      names(counts) <- NULL
+    }
   }
   counts
 }
@@ -125,8 +119,6 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
   # Count
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.numeric(x) || is.logical(x)) {
-    if (is.na(useNames)) deprecatedUseNamesNA()
-    
     # Preserve colnames
     names <- colnames(x)
     
@@ -162,21 +154,17 @@ colCounts <- function(x, rows = NULL, cols = NULL, value = TRUE,
     counts <- as.integer(counts)
     
     # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        if (!is.null(names)) {
-          if (!is.null(cols)) {
-            names <- names[cols]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL        
-          }
-          names(counts) <- names
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL        
         }
-      } else {
-        names(counts) <- NULL
+        names(counts) <- names
       }
     } else {
-      deprecatedUseNamesNA()
+      names(counts) <- NULL
     }
   }
   counts

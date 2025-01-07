@@ -1,20 +1,20 @@
 library("matrixStats")
 
-rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   ## FIXME: sum() may overflow for integers, whereas
   ## base::rowSums() doesn't.  What should rowSums2() do?
   ## apply(x, MARGIN = 1L, FUN = sum, na.rm = na.rm)
   res <- rowSums(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-colSums2_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+colSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   ## FIXME: sum() may overflow for integers, whereas
   ## base::colSums() doesn't.  What should colSums2() do?
   ## apply(x, MARGIN = 2L, FUN = sum, na.rm = na.rm)
   res <- colSums(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -31,7 +31,7 @@ for (mode in c("integer", "logical", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowSums2_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowSums2(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -59,7 +59,7 @@ for (mode in c("integer", "logical", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowSums2_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowSums2(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -106,7 +106,7 @@ for (mode in c("integer", "logical", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowSums2_R(x, na.rm = TRUE, useNames = useNames)
       y1 <- rowSums2(x, na.rm = TRUE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -130,7 +130,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowSums2_R(x, na.rm = TRUE, useNames = useNames)
     y1 <- rowSums2(x, na.rm = TRUE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -153,7 +153,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowSums2_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowSums2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -176,7 +176,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowSums2_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowSums2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -202,7 +202,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowSums2_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowSums2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -251,7 +251,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowSums2_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowSums2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))

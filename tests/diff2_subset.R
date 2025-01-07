@@ -2,7 +2,7 @@ library("matrixStats")
 
 diff2_R <- function(..., useNames=NA){
   res <- diff(...)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -16,7 +16,7 @@ for (setNames in c(TRUE, FALSE)) {
   for (l in 1:2) {
     for (d in 1:2) {
       for (idxs in index_cases) {
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           validateIndicesTestVector(x, idxs,
                                     ftest = diff2, fsure = diff2_R,
                                     lag = l, differences = d, useNames = useNames)

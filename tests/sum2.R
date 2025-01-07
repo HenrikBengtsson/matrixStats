@@ -240,7 +240,6 @@ x <- c(.Machine$integer.max, 1L, -.Machine$integer.max)
 s1 <- sum(x[1:2])                        # NA_integer_ w/ warning
 s2 <- sum2(x[1:2])                       # NA_integer_ w/ warning
 stopifnot(
-  getRversion() >= "3.5.0" || identical(s1, NA_integer_),
   identical(s2, NA_integer_)
 )
 

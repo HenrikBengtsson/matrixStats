@@ -9,7 +9,7 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
+rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = var, na.rm = na.rm)
   })
@@ -17,13 +17,13 @@ rowVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   
   # Keep naming support consistency same as rowVars()
   if (is.null(center) || ncol(x) <= 1L) {
-    if (is.na(useNames) || isFALSE(useNames)) names(res) <- NULL
+    if (isFALSE(useNames)) names(res) <- NULL
   }
   else if (isFALSE(useNames)) names(res) <- NULL
   res
 }
 
-colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
+colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 2L, FUN = var, na.rm = na.rm)
   })
@@ -31,28 +31,28 @@ colVars_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   
   # Keep naming support consistency same as colVars()
   if (is.null(center) || ncol(x) <= 1L) {
-    if (is.na(useNames) || isFALSE(useNames)) names(res) <- NULL
+    if (isFALSE(useNames)) names(res) <- NULL
   }
   else if (isFALSE(useNames)) names(res) <- NULL
   res
 }
 
 
-rowVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+rowVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm, useNames = FALSE)
   res <- rowVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(res)))
   res
 }
 
-colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+colVars_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm, useNames = FALSE)
   res <- colVars(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(res)))
   res
 }
 
-rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = NA) {
+rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   x <- sweep(x, MARGIN = 1, STATS = as.array(center), FUN = "-")
   x[is.infinite(center), ] <- NaN
   res <- rowVars(x, rows = rows, cols = cols, center = rep(0, times = nrow(x)), na.rm = na.rm, useNames = useNames)
@@ -60,7 +60,7 @@ rowVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.
   res
 }
 
-colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = NA) {
+colVars_center_naive <- function(x, rows = NULL, cols = NULL, center = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   x <- sweep(x, MARGIN = 2, STATS = as.array(center), FUN = "-")
   x[, is.infinite(center)] <- NaN
   res <- colVars(x, rows = rows, cols = cols, center = rep(0, times = ncol(x)), na.rm = na.rm, useNames = useNames)
@@ -98,7 +98,7 @@ for (mode in c("integer", "double")) {
       # Row/column variance
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           cat("na.rm = ", na.rm, "\n", sep = "")
           center <- rowMeans(x, na.rm = na.rm)
           
@@ -165,7 +165,7 @@ for (mode in c("integer", "double")) {
     # Row/column variance
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         cat("na.rm = ", na.rm, "\n", sep = "")
         
         r0 <- rowVars_R(x, na.rm = na.rm, useNames = useNames)
@@ -202,7 +202,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   # Row/column variance
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       cat("na.rm = ", na.rm, "\n", sep = "")
       
       r0 <- rowVars_R(x, na.rm = na.rm, useNames = useNames)

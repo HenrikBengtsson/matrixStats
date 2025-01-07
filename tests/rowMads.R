@@ -3,28 +3,28 @@ library("matrixStats")
 ## Always allow testing of the 'center' argument (as long as it's not defunct)
 options(matrixStats.center.onUse = "ignore")
 
-rowMads_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = mad, na.rm = na.rm)
   })
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-colMads_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+colMads_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 2L, FUN = mad, na.rm = na.rm)
   })
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-rowMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+rowMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   center <- rowMedians(x, cols = cols, na.rm = na.rm, useNames = FALSE)
   rowMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
 }
 
-colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+colMads_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   center <- colMedians(x, rows = rows, na.rm = na.rm, useNames = FALSE)
   colMads(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
 }
@@ -48,7 +48,7 @@ for (mode in c("integer", "double")) {
     else dimnames(x) <- NULL
     tx <- t(x)
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       cat("rowMads():\n")
       center <- rowMedians(x, na.rm = TRUE, useNames = useNames)
       r0 <- rowMads_R(x, na.rm = TRUE, useNames = useNames)
@@ -101,7 +101,7 @@ for (mode in c("integer", "double")) {
     else dimnames(x) <- NULL
     tx <- t(x)
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       cat("rowMads():\n")
       r0 <- rowMads_R(x, na.rm = TRUE, useNames = useNames)
       r1 <- rowMads(x, na.rm = TRUE, useNames = useNames)
@@ -143,7 +143,7 @@ for (mode in c("integer", "double")) {
     else dimnames(x) <- NULL
     tx <- t(x)
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       cat("rowMads():\n")
       r0 <- rowMads_R(x, na.rm = TRUE, useNames = useNames)
       r1 <- rowMads(x, na.rm = TRUE, useNames = useNames)
@@ -187,7 +187,7 @@ for (add_na in c(FALSE, TRUE)) {
     # Row/column ranges
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
       cat("na.rm = ", na.rm, "\n", sep = "")
         cat("rowMads():\n")
         center <- rowMedians(x, na.rm = na.rm, useNames = useNames)
@@ -235,7 +235,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   # Row/column ranges
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       cat("na.rm = ", na.rm, "\n", sep = "")
       r0 <- rowMads_R(x, na.rm = na.rm, useNames = useNames)
       if (na.rm) r0[is.na(r0)] <- NaN
@@ -262,7 +262,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   # Row/column ranges
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       cat("na.rm = ", na.rm, "\n", sep = "")
       r0 <- rowMads_R(x, na.rm = na.rm, useNames = useNames)
       r1 <- rowMads(x, na.rm = na.rm, useNames = useNames)

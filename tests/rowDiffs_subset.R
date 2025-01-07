@@ -1,11 +1,11 @@
 library("matrixStats")
 
-rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = NA) {
+rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = TRUE) {
   ncol2 <- ncol(x) - lag * differences
   if (ncol2 <= 0) {
     y <- matrix(x[integer(0L)], nrow = nrow(x), ncol = 0L)
     # Preserve names attribute
-    if (isTRUE(useNames) && !is.null(rownames(x))) rownames(y) <- rownames(x)
+    if (useNames && !is.null(rownames(x))) rownames(y) <- rownames(x)
     return(y)
   }
   suppressWarnings({
@@ -15,7 +15,7 @@ rowDiffs_R <- function(x, lag = 1L, differences = 1L, ..., useNames = NA) {
   
   # Preserve dimnames attribute
   dim(y) <- c(nrow(x), ncol2)
-  if (isTRUE(useNames) && !is.null(dimnames(x))) {
+  if (useNames && !is.null(dimnames(x))) {
     colnames <- colnames(x)
     if (!is.null(colnames)) {
       len <- length(colnames)
@@ -51,7 +51,7 @@ for (setDimnames in c(TRUE, FALSE)) {
       for (lag in 1:2) {
         for (differences in 1:3) {
           # Check dimnames attribute
-          useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+          useNames <- c(TRUE, FALSE)
           useNames <- useNames[count %% length(useNames) + 1]
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowDiffs, fsure = rowDiffs_R,

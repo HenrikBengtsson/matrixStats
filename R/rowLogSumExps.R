@@ -39,7 +39,6 @@
 #' @export
 rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                           dim. = dim(lx), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
   has_na <- TRUE
   .Call(C_rowLogSumExps, lx, dim., rows, cols, na.rm, has_na, TRUE, useNames)
 }
@@ -49,7 +48,6 @@ rowLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
 #' @export
 colLogSumExps <- function(lx, rows = NULL, cols = NULL, na.rm = FALSE,
                           dim. = dim(lx), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
   has_na <- TRUE
   .Call(C_rowLogSumExps, lx, dim., rows, cols, na.rm, has_na, FALSE, useNames)
 }

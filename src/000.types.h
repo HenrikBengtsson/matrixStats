@@ -1,4 +1,8 @@
 #include <Rinternals.h> /* R_xlen_t, ... */
+#include <Rversion.h>   /* R_VERSION, R_Version() */
+
+/* Needed if compiled prior to 4.5.0 with STRICT_R_HEADERS */
+#include <float.h>
 
 #ifndef R_INT_MIN
 #define R_INT_MIN -INT_MAX
@@ -31,38 +35,6 @@
 #else
 #define LDOUBLE double
 #define LDOUBLE_ALLOC(n) ((double*) R_alloc(n, sizeof(double)))
-#endif
-
-
-
-/* Backward compatibility with R (< 3.0.0)
-   As in <R>/src/include/Rinternals.h */
-#ifndef R_XLEN_T_MAX
-  typedef int R_xlen_t;
-  #define R_XLEN_T_MAX R_LEN_T_MAX
-  #ifndef xlength
-    #define xlength length
-  #endif
-#endif
-
-
-/* With strict headers (becoming the default), 
- * the prefixed variants R_Calloc and R_Free 
- * must be used instead of Calloc and Free. However, the prefixed variants 
- * do not exist prior to R 3.4.0, so we check whether strict headers are used and
- * apply the legacy functions if not. 
- * If future versions of R remove the un-prefixed variants
- * and no longer display the macro STRICT_R_HEADERS, this workaround will fail.
- * In such a case, we must enforce the prefixed variants and increase the version
- * requirement of the package to R 3.4.0.
- * 
- */
-#ifdef STRICT_R_HEADERS
-  #define R_CALLOC(num, size) R_Calloc(num, size)
-  #define R_FREE(ptr) R_Free(ptr)
-#else
-  #define R_CALLOC(num, size) Calloc(num, size)
-  #define R_FREE(ptr) Free(ptr)
 #endif
 
 

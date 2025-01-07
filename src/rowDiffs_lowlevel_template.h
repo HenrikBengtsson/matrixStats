@@ -229,7 +229,7 @@ void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
       nrow_tmp = nrows - lag;
       ncol_tmp = ncols;
     }
-    tmp = R_CALLOC(nrow_tmp*ncol_tmp, X_C_TYPE);
+    tmp = R_Calloc(nrow_tmp*ncol_tmp, X_C_TYPE);
 
     /* (a) First order of differences */
     DIFF_X_MATRIX_TYPE(x, nrow, rows, nrows, rowsHasNA, cols, ncols, colsHasNA, byrow, lag, tmp, nrow_tmp, ncol_tmp);
@@ -253,7 +253,7 @@ void CONCAT_MACROS(rowDiffs, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     DIFF_X_MATRIX(tmp, nrow_tmp, ncol_tmp, byrow, lag, ans, nrow_ans, ncol_ans);
 
     /* Deallocate temporary work matrix */
-    R_FREE(tmp);
+    R_Free(tmp);
   } /* if (differences ...) */
 }
 

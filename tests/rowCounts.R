@@ -13,7 +13,7 @@ rowCounts_R <- function(x, value = TRUE, na.rm = FALSE, ...) {
   # Preserve names attribute
   names <- names(counts)  
   counts <- as.integer(counts)
-  if (isTRUE(useNames) && !is.null(names)) names(counts) <- names
+  if (useNames && !is.null(names)) names(counts) <- names
   counts
 }
 
@@ -34,7 +34,7 @@ for (mode in c("integer", "double")) {
     else dimnames(x) <- NULL    
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         # Count zeros
         r0 <- rowCounts_R(x, value = 0, na.rm = na.rm, useNames = useNames)
         r1 <- rowCounts(x, value = 0, na.rm = na.rm, useNames = useNames)
@@ -77,7 +77,7 @@ for (na_value in na_list) {
     else dimnames(x) <- NULL    
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         r0 <- rowCounts_R(x, na.rm = na.rm, useNames = useNames)
         r1 <- rowCounts(x, na.rm = na.rm, useNames = useNames)
         r2 <- colCounts(t(x), na.rm = na.rm, useNames = useNames)
@@ -119,7 +119,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   # Row/column counts
   for (na.rm in c(FALSE, TRUE)) {
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       r0 <- rowCounts_R(x, na.rm = na.rm, useNames = useNames)
       r1 <- rowCounts(x, na.rm = na.rm, useNames = useNames)
       r2 <- colCounts(t(x), na.rm = na.rm, useNames = useNames)
@@ -179,7 +179,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL    
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     r0 <- rowCounts(x, value = 0, useNames = useNames)
     r1 <- rowCounts_R(x, value = 0, useNames = useNames)
     stopifnot(identical(r0, r1))

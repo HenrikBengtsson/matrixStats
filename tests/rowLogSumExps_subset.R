@@ -5,7 +5,7 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowLogSumExps_R <- function(x, ..., useNames = NA) {
+rowLogSumExps_R <- function(x, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = function(rx, ...) {
     log(sum(exp(rx), ...))
   }, ...)
@@ -30,7 +30,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       for (na.rm in c(TRUE, FALSE)) {
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowLogSumExps,
                                     fsure = rowLogSumExps_R,

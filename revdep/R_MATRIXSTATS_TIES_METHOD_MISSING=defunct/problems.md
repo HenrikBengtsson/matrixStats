@@ -585,7 +585,7 @@ Run `revdepcheck::revdep_details(, "bcf")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.9Mb
+      installed size is 10.0Mb
       sub-directories of 1Mb or more:
         libs   8.8Mb
     ```
@@ -1100,9 +1100,9 @@ Run `revdepcheck::revdep_details(, "CARBayesST")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.1Mb
+      installed size is 12.2Mb
       sub-directories of 1Mb or more:
-        R      2.0Mb
+        R      1.0Mb
         libs  10.0Mb
     ```
 
@@ -1180,9 +1180,9 @@ Run `revdepcheck::revdep_details(, "causalOT")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.6Mb
+      installed size is  8.9Mb
       sub-directories of 1Mb or more:
-        R      2.3Mb
+        R      1.6Mb
         libs   6.7Mb
     ```
 
@@ -1235,8 +1235,9 @@ Run `revdepcheck::revdep_details(, "celda")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 15.2Mb
+      installed size is 15.5Mb
       sub-directories of 1Mb or more:
+        R      1.0Mb
         doc    3.5Mb
         libs  10.2Mb
     ```
@@ -1594,12 +1595,12 @@ Run `revdepcheck::revdep_details(, "ChIPpeakAnno")` for more info
      ERROR
     Running the tests in ‘tests/runTests.R’ failed.
     Last 50 lines of output:
-      INFO [2024-12-28 18:46:14] [1] "serif"
-      INFO [2024-12-28 18:46:14] 
-      INFO [2024-12-28 18:46:14] $x
-      INFO [2024-12-28 18:46:14] $x$TF1
-      INFO [2024-12-28 18:46:14] [1] 3 4 5
-      INFO [2024-12-28 18:46:14] 
+      INFO [2024-12-29 10:56:45] [1] "serif"
+      INFO [2024-12-29 10:56:45] 
+      INFO [2024-12-29 10:56:45] $x
+      INFO [2024-12-29 10:56:45] $x$TF1
+      INFO [2024-12-29 10:56:45] [1] 3 4 5
+      INFO [2024-12-29 10:56:45] 
     ...
         6.     └─BSgenome (local) .local(x, ...)
         7.       └─BSgenome:::.extractFromBSgenomeMultipleSequences(...)
@@ -1621,14 +1622,14 @@ Run `revdepcheck::revdep_details(, "ChIPpeakAnno")` for more info
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-9-2.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-9-3.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-11-1.png" but not available.
+    Warning: call dbDisconnect() when finished working with a connection
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-18-1.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-19-1.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-20-1.png" but not available.
-    The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/ChIPpeakAnno/new/ChIPpeakAnno.Rcheck/vign_test/ChIPpeakAnno/vignettes/ChIPpeakAnno_files/figure-html/unnamed-chunk-21-1.png" but not available.
     ...
-    Error in .readFromCache(bfc, hash): Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
-    
+    Quitting from lines 1380-1385 [unnamed-chunk-76] (ChIPpeakAnno.Rmd)
+    Error: processing vignette 'ChIPpeakAnno.Rmd' failed with diagnostics:
+    length(intersect(seqlevelsStyle(peaks), seqlevelsStyle(annoData))) >  .... is not TRUE
     --- failed re-building ‘ChIPpeakAnno.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -1852,10 +1853,10 @@ Run `revdepcheck::revdep_details(, "cmapR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  8.1Mb
       sub-directories of 1Mb or more:
         data      2.3Mb
-        extdata   2.1Mb
+        extdata   4.1Mb
     ```
 
 *   checking for unstated dependencies in vignettes ... NOTE
@@ -2130,7 +2131,7 @@ Run `revdepcheck::revdep_details(, "conquer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 24.8Mb
+      installed size is 24.9Mb
       sub-directories of 1Mb or more:
         libs  24.6Mb
     ```
@@ -2203,10 +2204,10 @@ Run `revdepcheck::revdep_details(, "corrcoverage")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.6Mb
+      installed size is 11.8Mb
       sub-directories of 1Mb or more:
-        extdata   3.8Mb
-        libs      1.4Mb
+        extdata   7.9Mb
+        libs      3.5Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -2476,9 +2477,9 @@ Run `revdepcheck::revdep_details(, "ddtlcm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.1Mb
+      installed size is  8.2Mb
       sub-directories of 1Mb or more:
-        data   3.9Mb
+        data   7.0Mb
     ```
 
 # dearseq
@@ -2713,6 +2714,33 @@ Run `revdepcheck::revdep_details(, "DepecheR")` for more info
 Run `revdepcheck::revdep_details(, "DEqMS")` for more info
 
 </details>
+
+## Newly fixed
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘DEqMS-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: Residualplot
+    > ### Title: plot the residuals against the number of quantified
+    > ###   peptides/PSMs.
+    > ### Aliases: Residualplot
+    > 
+    > ### ** Examples
+    > 
+    ...
+    > eh = ExperimentHub(localHub=TRUE)
+    Using 'localHub=TRUE'
+      If offline, please also see BiocManager vignette section on offline use
+    > query(eh, "DEqMS")
+    ExperimentHub with 0 records
+    # snapshotDate(): 2024-12-19
+    > dat.psm = eh[["EH1663"]]
+    Error: File not previously downloaded.
+      Run with 'localHub=FALSE'
+    Execution halted
+    ```
 
 ## In both
 
@@ -3276,10 +3304,12 @@ Run `revdepcheck::revdep_details(, "epimutacions")` for more info
       ...
     --- re-building ‘epimutacions.Rmd’ using rmarkdown
     
-    Quitting from lines 610-611 [annot] (epimutacions.Rmd)
+    Quitting from lines 227-230 [unnamed-chunk-5] (epimutacions.Rmd)
     Error: processing vignette 'epimutacions.Rmd' failed with diagnostics:
-    Multiple cache results found.
-    Please clear your cache by running biomartCacheClear()
+    Corrupt Cache: sqlite file
+      See AnnotationHub's TroubleshootingTheHubs vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.sqlite3
     --- failed re-building ‘epimutacions.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -3325,7 +3355,7 @@ Run `revdepcheck::revdep_details(, "epistasisGA")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.5Mb
+      installed size is 14.6Mb
       sub-directories of 1Mb or more:
         doc    4.1Mb
         libs   9.9Mb
@@ -3865,9 +3895,9 @@ Run `revdepcheck::revdep_details(, "FastPCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 30.1Mb
+      installed size is 13.8Mb
       sub-directories of 1Mb or more:
-        libs  30.0Mb
+        libs  13.7Mb
     ```
 
 # FastRCS
@@ -3888,9 +3918,9 @@ Run `revdepcheck::revdep_details(, "FastRCS")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.1Mb
+      installed size is 30.1Mb
       sub-directories of 1Mb or more:
-        libs  19.0Mb
+        libs  30.0Mb
     ```
 
 # FDb.FANTOM4.promoters.hg19
@@ -4165,9 +4195,9 @@ Run `revdepcheck::revdep_details(, "flowCore")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.0Mb
+      installed size is 18.2Mb
       sub-directories of 1Mb or more:
-        R         2.0Mb
+        R         1.2Mb
         data      5.4Mb
         extdata   1.1Mb
         libs      9.2Mb
@@ -4257,7 +4287,7 @@ Run `revdepcheck::revdep_details(, "flowWorkspace")` for more info
 ** package ‘flowWorkspace’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++17
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_API.cpp -o R_API.o
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_GatingHierarchy.cpp -o R_GatingHierarchy.o
@@ -4284,7 +4314,7 @@ ERROR: compilation failed for package ‘flowWorkspace’
 ** package ‘flowWorkspace’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++17
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_API.cpp -o R_API.o
 g++ -std=gnu++17 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG -DROUT -I../inst/include -DBOOST_NO_AUTO_PTR -Wno-pedantic  -w -Wfatal-errors -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cpp11/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/BH/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/RProtoBufLib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/cytolib/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/flowWorkspace/Rhdf5lib/include' -I/usr/local/include    -fpic  -g -O2  -c R_GatingHierarchy.cpp -o R_GatingHierarchy.o
@@ -4716,7 +4746,7 @@ Run `revdepcheck::revdep_details(, "geocmeans")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 14.4Mb
+      installed size is 14.3Mb
       sub-directories of 1Mb or more:
         extdata   3.0Mb
         libs      9.0Mb
@@ -4761,6 +4791,13 @@ Run `revdepcheck::revdep_details(, "geva")` for more info
     
     Error: Vignette re-building failed.
     Execution halted
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        doc   4.5Mb
     ```
 
 # ggdmc
@@ -4980,6 +5017,7 @@ Run `revdepcheck::revdep_details(, "GRaNIE")` for more info
     ```
       installed size is 15.2Mb
       sub-directories of 1Mb or more:
+        R     1.0Mb
         doc  13.9Mb
     ```
 
@@ -5021,7 +5059,7 @@ Run `revdepcheck::revdep_details(, "graper")` for more info
 ** package ‘graper’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++11
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c fit_graper.cpp -o fit_graper.o
@@ -5048,7 +5086,7 @@ ERROR: compilation failed for package ‘graper’
 ** package ‘graper’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-using C++ compiler: ‘g++ (GCC) 13.2.1 20231205 (Red Hat 13.2.1-6)’
+using C++ compiler: ‘g++ (GCC) 13.3.1 20240611 (Red Hat 13.3.1-2)’
 using C++11
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c RcppExports.cpp -o RcppExports.o
 g++ -std=gnu++11 -I"/software/c4/cbi/software/_rocky8/R-4.4.2-gcc13/lib64/R/include" -DNDEBUG  -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/Rcpp/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/RcppArmadillo/include' -I'/c4/home/henrik/repositories/matrixStats/revdep/library/graper/BH/include' -I/usr/local/include    -fpic  -g -O2   -c fit_graper.cpp -o fit_graper.o
@@ -5148,6 +5186,30 @@ Run `revdepcheck::revdep_details(, "GUIDEseq")` for more info
     prepare_Rd: createBarcodeFasta.Rd:56-58: Dropping empty section \references
     prepare_Rd: getUsedBarcodes.Rd:53-55: Dropping empty section \references
     checkRd: (-1) mergePlusMinusPeaks.Rd:72: Escaped LaTeX specials: \_
+    ```
+
+# GUniFrac
+
+<details>
+
+* Version: 1.8
+* GitHub: NA
+* Source code: https://github.com/cran/GUniFrac
+* Date/Publication: 2023-09-14 00:02:32 UTC
+* Number of recursive dependencies: 103
+
+Run `revdepcheck::revdep_details(, "GUniFrac")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  6.6Mb
+      sub-directories of 1Mb or more:
+        doc    3.5Mb
+        libs   2.5Mb
     ```
 
 # Gviz
@@ -5264,10 +5326,10 @@ Run `revdepcheck::revdep_details(, "Harman")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.7Mb
+      installed size is  8.3Mb
       sub-directories of 1Mb or more:
-        doc    3.3Mb
-        libs   2.2Mb
+        doc    4.1Mb
+        libs   4.0Mb
     ```
 
 # hbamr
@@ -5457,7 +5519,7 @@ Run `revdepcheck::revdep_details(, "Holomics")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.3Mb
+      installed size is  5.2Mb
       sub-directories of 1Mb or more:
         app   1.7Mb
         doc   3.3Mb
@@ -5565,21 +5627,21 @@ Run `revdepcheck::revdep_details(, "immApex")` for more info
       Running ‘testthat.R’
      ERROR
     Running the tests in ‘tests/testthat.R’ failed.
-    Complete output:
-      > # This file is part of the standard setup for testthat.
-      > # It is recommended that you do not modify it.
-      > #
-      > # Where should you do additional test configuration?
-      > # Learn more about the roles of various files in:
+    Last 50 lines of output:
+      > 
+      > library(testthat)
+      > library(immApex)
+      > 
+      > test_check("immApex")
     ...
-      ── Error ('test-getIMGT.R:6:3'): getIMGT works ─────────────────────────────────
-      Error in `getIMGT(species = "human", chain = "TRB", frame = "inframe", 
-          region = "v", sequence.type = "aa")`: Failed to retrieve data after 3 attempts.
-      Backtrace:
           ▆
-       1. └─immApex::getIMGT(...) at test-getIMGT.R:6:3
+       1. └─immApex::sequenceDecoder(sequence.matrix) at test-sequenceDecoder.R:7:3
+       2.   └─immApex:::.onehotDecoder(...)
+       3.     └─reticulate::array_reshape(...)
+       4.       └─reticulate::import("numpy", convert = !is_py_object(x))
+       5.         └─reticulate:::py_module_import(module, convert = convert)
       
-      [ FAIL 1 | WARN 0 | SKIP 2 | PASS 45 ]
+      [ FAIL 4 | WARN 0 | SKIP 2 | PASS 29 ]
       Error: Test failures
       Execution halted
     ```
@@ -5710,10 +5772,10 @@ Run `revdepcheck::revdep_details(, "iPath")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.4Mb
+      installed size is  5.0Mb
       sub-directories of 1Mb or more:
         data   2.5Mb
-        doc    3.5Mb
+        doc    1.1Mb
         libs   1.3Mb
     ```
 
@@ -5887,6 +5949,69 @@ Run `revdepcheck::revdep_details(, "kpmt")` for more info
     checkRd: (-1) kpmt.Rd:52: Lost braces in \itemize; \value handles \item{}{} directly
     ```
 
+# LDM
+
+<details>
+
+* Version: 6.0.1
+* GitHub: https://github.com/yijuanhu/LDM
+* Source code: https://github.com/cran/LDM
+* Date/Publication: 2023-09-07 08:40:07 UTC
+* Number of recursive dependencies: 94
+
+Run `revdepcheck::revdep_details(, "LDM")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘LDM-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: ldm
+    > ### Title: Testing hypotheses about the microbiome using a linear
+    > ###   decomposition model (LDM)
+    > ### Aliases: ldm
+    > ### Keywords: microbiome
+    > 
+    > ### ** Examples
+    > 
+    > res.ldm <- ldm(formula=throat.otu.tab5 | (Sex+AntibioticUse) ~ SmokingStatus+PackYears, 
+    +               data=throat.meta, seed=67817, fdr.nominal=0.1, n.perm.max=1000, n.cores=1, 
+    +               verbose=FALSE) 
+    Error in tiesMethodMissing() : 
+      [matrixStats (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options
+    Calls: ldm -> array -> colRanks -> tiesMethodMissing -> action
+    Execution halted
+    ```
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > test_check("LDM")
+      Loading required package: LDM
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 1 ]
+      
+      ══ Failed tests ════════════════════════════════════════════════════════════════
+    ...
+          ▆
+       1. └─LDM::ldm(...) at test-ldm.R:10:5
+       2.   ├─base::array(colRanks(mat), c(n.var1, n.otu.smallp, n.perm.completed))
+       3.   └─matrixStats::colRanks(mat)
+       4.     └─matrixStats:::tiesMethodMissing()
+       5.       └─base (local) action(msg = msg, package = .packageName)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 1 ]
+      Error: Test failures
+      Execution halted
+    ```
+
 # ldsep
 
 <details>
@@ -5940,7 +6065,7 @@ Run `revdepcheck::revdep_details(, "lemur")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
         data   2.6Mb
         doc    1.1Mb
@@ -6076,29 +6201,6 @@ Run `revdepcheck::revdep_details(, "Linnorm")` for more info
     checkRd: (-1) Linnorm.tSNE.Rd:53: Lost braces in \itemize; \value handles \item{}{} directly
     ```
 
-# locaR
-
-<details>
-
-* Version: 0.1.2
-* GitHub: https://github.com/rhedley/locaR
-* Source code: https://github.com/cran/locaR
-* Date/Publication: 2023-02-16 15:40:04 UTC
-* Number of recursive dependencies: 55
-
-Run `revdepcheck::revdep_details(, "locaR")` for more info
-
-</details>
-
-## Newly broken
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.6Mb
-      sub-directories of 1Mb or more:
-        doc   4.1Mb
-    ```
-
 # LSAmitR
 
 <details>
@@ -6164,9 +6266,10 @@ Run `revdepcheck::revdep_details(, "Luminescence")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.5Mb
+      installed size is  8.0Mb
       sub-directories of 1Mb or more:
-        R      2.5Mb
+        R      2.0Mb
+        help   1.1Mb
         libs   3.8Mb
     ```
 
@@ -6235,14 +6338,14 @@ Run `revdepcheck::revdep_details(, "maEndToEnd")` for more info
     ```
     Error(s) in re-building vignettes:
     --- re-building ‘MA-Workflow.Rmd’ using rmarkdown
-    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/164_I_.CEL'
     trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/164_II.CEL'
-    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/183_I.CEL'
     trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/183_II.CEL'
     trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2114_I.CEL'
-    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2114_II.CEL'
     trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2209_A.CEL'
-    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2209_B.CEL'
+    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2255_I.CEL'
+    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2400_I.CEL'
+    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/2424_A.CEL'
+    trying URL 'ftp://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/967/E-MTAB-2967/Files/255_I.CEL'
     ...
     	 /c4/home/henrik/.cache/R/maEndToEnd/848_B.CEL
     	 /c4/home/henrik/.cache/R/maEndToEnd/888_I.CEL
@@ -6372,6 +6475,31 @@ Run `revdepcheck::revdep_details(, "MatrixGenerics")` for more info
 </details>
 
 ## In both
+
+*   checking tests ...
+    ```
+      Running ‘testthat.R’
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Complete output:
+      > library(testthat)
+      > library(MatrixGenerics)
+      Loading required package: matrixStats
+      
+      Attaching package: 'MatrixGenerics'
+      
+    ...
+      Error in `tiesMethodMissing()`: [matrixStats (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options
+      Backtrace:
+          ▆
+       1. └─matrixStats::colRanks(x = mat) at test-api_compatibility.R:513:9
+       2.   └─matrixStats:::tiesMethodMissing()
+       3.     └─base (local) action(msg = msg, package = .packageName)
+      
+      [ FAIL 1 | WARN 0 | SKIP 0 | PASS 378 ]
+      Error: Test failures
+      Execution halted
+    ```
 
 *   checking dependencies in R code ... NOTE
     ```
@@ -6787,9 +6915,9 @@ Run `revdepcheck::revdep_details(, "methylationArrayAnalysis")` for more info
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/vign_test/methylationArrayAnalysis/vignettes/methylationArrayAnalysis_files/figure-html/figure7-1.png" but not available.
     The magick package is required to crop "/c4/home/henrik/repositories/matrixStats/revdep/checks/methylationArrayAnalysis/new/methylationArrayAnalysis.Rcheck/vign_test/methylationArrayAnalysis/vignettes/methylationArrayAnalysis_files/figure-html/figure8-1.png" but not available.
     ...
-    Quitting from lines 461-465 [figure10] (methylationArrayAnalysis.Rmd)
-    Error: processing vignette 'methylationArrayAnalysis.Rmd' failed with diagnostics:
-    attempt to set an attribute on NULL
+      See AnnotationHub's TroubleshootingTheHubs vignette section on corrupt cache
+      cache: /c4/home/henrik/.cache/R/ExperimentHub
+      filename: experimenthub.sqlite3
     --- failed re-building ‘methylationArrayAnalysis.Rmd’
     
     SUMMARY: processing the following file failed:
@@ -7163,9 +7291,9 @@ Run `revdepcheck::revdep_details(, "mixOmics")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 22.7Mb
+      installed size is 23.3Mb
       sub-directories of 1Mb or more:
-        R      1.4Mb
+        R      2.0Mb
         data   3.3Mb
         doc   16.5Mb
     ```
@@ -8084,13 +8212,6 @@ Run `revdepcheck::revdep_details(, "nn2poly")` for more info
       Specified C++14: please drop specification unless essential
     ```
 
-*   checking installed package size ... NOTE
-    ```
-      installed size is 12.6Mb
-      sub-directories of 1Mb or more:
-        libs  12.0Mb
-    ```
-
 # nnSVG
 
 <details>
@@ -8184,7 +8305,7 @@ Run `revdepcheck::revdep_details(, "numbat")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.9Mb
+      installed size is  6.0Mb
       sub-directories of 1Mb or more:
         data   4.2Mb
         libs   1.2Mb
@@ -8325,9 +8446,9 @@ Run `revdepcheck::revdep_details(, "OncoBayes2")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 82.5Mb
+      installed size is 195.0Mb
       sub-directories of 1Mb or more:
-        libs  80.6Mb
+        libs  193.0Mb
     ```
 
 *   checking whether startup messages can be suppressed ... NOTE
@@ -8524,7 +8645,7 @@ Run `revdepcheck::revdep_details(, "pandaR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  9.5Mb
+      installed size is  9.4Mb
       sub-directories of 1Mb or more:
         data   9.0Mb
     ```
@@ -8558,9 +8679,9 @@ Run `revdepcheck::revdep_details(, "pARI")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 13.2Mb
+      installed size is  6.3Mb
       sub-directories of 1Mb or more:
-        libs  13.0Mb
+        libs   6.0Mb
     ```
 
 # PathoStat
@@ -8605,6 +8726,44 @@ Run `revdepcheck::revdep_details(, "pcaMethods")` for more info
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘ade4’
+    ```
+
+# pecora
+
+<details>
+
+* Version: 0.1.1
+* GitHub: NA
+* Source code: https://github.com/cran/pecora
+* Date/Publication: 2021-11-05 13:10:02 UTC
+* Number of recursive dependencies: 3
+
+Run `revdepcheck::revdep_details(, "pecora")` for more info
+
+</details>
+
+## In both
+
+*   checking examples ... ERROR
+    ```
+    Running examples in ‘pecora-Ex.R’ failed
+    The error most likely occurred in:
+    
+    > ### Name: pecora-package
+    > ### Title: pecora-package
+    > ### Aliases: pecora-package pecora.package pecorapackage
+    > ### Keywords: package
+    > 
+    > ### ** Examples
+    > 
+    > 
+    > X <- matrix(rnorm(100*20), nrow=20)
+    > out <- oneSample(X = X)
+    > pv <- t2p(Test = out, alternative = "two.sided")
+    Error in tiesMethodMissing() : 
+      [matrixStats (>= 1.3.0)] Please explicitly specify argument 'ties.method' when calling colRanks() and rowRanks() of matrixStats. This is because the current default ties.method="max" will eventually be updated to ties.method="average" in order to align with the default of base::rank(). See also ?matrixStats::matrixStats.options
+    Calls: t2p -> rowRanks -> tiesMethodMissing -> action
+    Execution halted
     ```
 
 # penppml
@@ -9248,9 +9407,9 @@ Run `revdepcheck::revdep_details(, "rADA")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  5.7Mb
+      installed size is  7.0Mb
       sub-directories of 1Mb or more:
-        doc   5.5Mb
+        doc   6.8Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -10334,6 +10493,30 @@ Run `revdepcheck::revdep_details(, "seeds")` for more info
     Package suggested but not available for checking: ‘rsbml’
     ```
 
+# sensobol
+
+<details>
+
+* Version: 1.1.5
+* GitHub: https://github.com/arnaldpuy/sensobol
+* Source code: https://github.com/cran/sensobol
+* Date/Publication: 2024-02-21 13:40:02 UTC
+* Number of recursive dependencies: 87
+
+Run `revdepcheck::revdep_details(, "sensobol")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.2Mb
+      sub-directories of 1Mb or more:
+        doc    3.5Mb
+        libs   1.4Mb
+    ```
+
 # seqArchR
 
 <details>
@@ -10426,7 +10609,7 @@ Run `revdepcheck::revdep_details(, "Seurat")` for more info
       installed size is 16.0Mb
       sub-directories of 1Mb or more:
         R      1.7Mb
-        libs  13.5Mb
+        libs  13.4Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -10554,7 +10737,7 @@ Run `revdepcheck::revdep_details(, "sigminer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.7Mb
+      installed size is  6.8Mb
       sub-directories of 1Mb or more:
         extdata   1.0Mb
         help      1.7Mb
@@ -10689,10 +10872,10 @@ Run `revdepcheck::revdep_details(, "Single.mTEC.Transcriptomes")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 905.2Mb
+      installed size is 916.9Mb
       sub-directories of 1Mb or more:
-        data  895.1Mb
-        doc     9.9Mb
+        data  903.6Mb
+        doc    13.2Mb
     ```
 
 *   checking Rd metadata ... NOTE
@@ -10866,9 +11049,9 @@ Run `revdepcheck::revdep_details(, "SpaNorm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.8Mb
+      installed size is  8.5Mb
       sub-directories of 1Mb or more:
-        data  12.5Mb
+        data   4.2Mb
         doc    4.0Mb
     ```
 
@@ -10969,7 +11152,7 @@ Run `revdepcheck::revdep_details(, "sparseMatrixStats")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  7.0Mb
+      installed size is  7.1Mb
       sub-directories of 1Mb or more:
         libs   5.3Mb
     ```
@@ -11233,9 +11416,9 @@ Run `revdepcheck::revdep_details(, "stm")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  6.0Mb
+      installed size is  6.9Mb
       sub-directories of 1Mb or more:
-        data   1.7Mb
+        data   2.5Mb
         libs   3.2Mb
     ```
 

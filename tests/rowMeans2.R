@@ -1,14 +1,14 @@
 library("matrixStats")
 
-rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res <- rowMeans(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-colMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+colMeans_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res <- colMeans(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -25,7 +25,7 @@ for (mode in c("integer", "logical", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -53,7 +53,7 @@ for (mode in c("integer", "logical", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
       y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -100,7 +100,7 @@ for (mode in c("integer", "logical", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       y0 <- rowMeans_R(x, na.rm = TRUE, useNames = useNames)
       y1 <- rowMeans2(x, na.rm = TRUE, useNames = useNames)
       stopifnot(all.equal(y1, y0))
@@ -124,7 +124,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMeans_R(x, na.rm = TRUE, useNames = useNames)
     y1 <- rowMeans2(x, na.rm = TRUE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -147,7 +147,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -170,7 +170,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -196,7 +196,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))
@@ -219,7 +219,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
     str(y0)
     stopifnot(all(is.na(y0)), length(unique(y0)) >= 1L)
@@ -256,7 +256,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowMeans_R(x, na.rm = FALSE, useNames = useNames)
     y1 <- rowMeans2(x, na.rm = FALSE, useNames = useNames)
     stopifnot(all.equal(y1, y0))

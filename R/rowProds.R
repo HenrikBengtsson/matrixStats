@@ -63,15 +63,11 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   }
   
   # Update names attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      names <- rownames(x)
-      if (!is.null(names)) names(y) <- names
-    } else {
-      names(y) <- NULL
-    }
+  if (useNames) {
+    names <- rownames(x)
+    if (!is.null(names)) names(y) <- names
   } else {
-    deprecatedUseNamesNA()
+    names(y) <- NULL
   }
 
   y
@@ -113,15 +109,11 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   }
   
   # Update names attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      names <- colnames(x)
-      if (!is.null(names)) names(y) <- names
-    } else {
-      names(y) <- NULL
-    }
+  if (useNames) {
+    names <- colnames(x)
+    if (!is.null(names)) names(y) <- names
   } else {
-    deprecatedUseNamesNA()
+    names(y) <- NULL
   }
 
   y

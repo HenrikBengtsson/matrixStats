@@ -29,12 +29,6 @@ rowIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
                     probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
   colnames(Q) <- NULL # Not needed anymore
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
-
-  # Remove attributes
-  if (is.na(useNames)) {
-    deprecatedUseNamesNA()
-    attributes(ans) <- NULL
-  }
   
   ans
 }
@@ -47,12 +41,6 @@ colIQRs <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = 
                     probs = c(0.25, 0.75), na.rm = na.rm, useNames = useNames, drop = FALSE, ...)
   colnames(Q) <- NULL # Not needed anymore
   ans <- Q[, 2L, drop = TRUE] - Q[, 1L, drop = TRUE]
-
-  # Remove attributes
-  if (is.na(useNames)) {
-    deprecatedUseNamesNA()
-    attributes(ans) <- NULL
-  }
   
   ans
 }

@@ -1,10 +1,10 @@
 library("matrixStats")
 
-rowOrderStats_R <- function(x, probs, ..., useNames = NA) {
+rowOrderStats_R <- function(x, probs, ..., useNames = TRUE) {
   ans <- apply(x, MARGIN = 1L, FUN = quantile, probs = probs, type = 3L)
 
   # Remove Attributes
-  if (is.na(useNames) || !useNames || length(ans) == 0L) attributes(ans) <- NULL
+  if (!useNames || length(ans) == 0L) attributes(ans) <- NULL
   ans
 } # rowOrderStats_R()
 
@@ -27,7 +27,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         if (is.null(cols)) which <- round(probs * ncol(x))
         else {
           xxrows <- rows

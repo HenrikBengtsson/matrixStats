@@ -37,7 +37,7 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", class(x)[1]))
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", storage.mode(x)))
   }
 
   # Apply subset
@@ -80,15 +80,11 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   }
   
   # Update rownames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      rownames <- rownames(x)
-      if (!is.null(rownames)) rownames(counts) <- rownames
-    } else {
-      rownames(counts) <- NULL
-    }
+  if (useNames) {
+    rownames <- rownames(x)
+    if (!is.null(rownames)) rownames(counts) <- rownames
   } else {
-    deprecatedUseNamesNA()
+    rownames(counts) <- NULL
   }
 
   counts
@@ -106,7 +102,7 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   } else if (is.logical(x)) {
   } else if (is.raw(x)) {
   } else {
-    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", class(x)[1]))
+    stop(sprintf("Argument '%s' is not integer, logical, or raw: %s", "x", storage.mode(x)))
   }
 
   # Apply subset
@@ -152,15 +148,11 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   }
   
   # Update rownames attribute?
-  if (!is.na(useNames)) {
-    if (useNames) {
-      colnames <- colnames(x)
-      if (!is.null(colnames)) rownames(counts) <- colnames
-    } else {
-      rownames(counts) <- NULL
-    }
+  if (useNames) {
+    colnames <- colnames(x)
+    if (!is.null(colnames)) rownames(counts) <- colnames
   } else {
-    deprecatedUseNamesNA()
+    rownames(counts) <- NULL
   }
   
   counts

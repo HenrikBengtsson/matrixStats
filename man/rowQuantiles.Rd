@@ -35,7 +35,7 @@ See \code{\link[stats]{quantile}} for more details.}
 \item{digits}{An \code{\link[base]{integer}} specifying the precision of
 the formatted percentages. Not used when `useNames = FALSE`.
 In **matrixStats** (< 0.63.0), the default used to be
-`max(2L, getOption("digits"))` inline with R (< 4.1.0).}
+`max(2L, getOption("digits"))` in line with R (< 4.1.0).}
 
 \item{...}{Additional arguments passed to \code{\link[stats]{quantile}}.}
 

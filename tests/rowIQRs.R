@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   quantile_na <- function(x, ..., na.rm = FALSE) {
     if (!na.rm && anyMissing(x))
       return(c(NA_real_, NA_real_))
@@ -12,7 +12,7 @@ rowIQRs_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
   
   # Preserve names attribute
   dim(q) <- c(2L, nrow(x))
-  colnames(q) <- if (isTRUE(useNames)) rownames(x) else NULL
+  colnames(q) <- if (useNames) rownames(x) else NULL
   
   q[2L, , drop = TRUE] - q[1L, , drop = TRUE]
 }
@@ -39,7 +39,7 @@ for (mode in c("integer", "double")) {
       else dimnames(x) <- NULL
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           probs <- c(0, 0.5, 1)
           q0 <- rowIQRs_R(x, na.rm = na.rm, useNames = useNames)
           print(q0)
@@ -91,7 +91,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     q0 <- rowIQRs_R(x, useNames = useNames)
     q1 <- rowIQRs(x, useNames = useNames)
     q2 <- colIQRs(t(x), useNames = useNames)

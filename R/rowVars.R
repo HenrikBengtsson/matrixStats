@@ -58,7 +58,6 @@
 #' @export
 rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, center = NULL,
                     dim. = dim(x), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, refine, has_nas, TRUE, useNames)
@@ -102,18 +101,14 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
     x <- rep(NA_real_, times = nrow(x))
     
     # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        if (!is.null(names)) {
-          if (!is.null(rows)) {
-            names <- names[rows]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL
-          }
-          names(x) <- names
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(rows)) {
+          names <- names[rows]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL
         }
-      } else {
-        names(x) <- NULL
+        names(x) <- names
       }
     }
     return(x)
@@ -173,7 +168,7 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
   x <- x * (n / (n - 1))
   
   # Preserve names attribute?
-  if (is.na(useNames) || useNames) {
+  if (useNames) {
     if (!is.null(names)) {
       if (!is.null(rows)) {
         names <- names[rows]
@@ -194,7 +189,6 @@ rowVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
 #' @export
 colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, center = NULL,
                     dim. = dim(x), ..., useNames = TRUE) {
-  if (is.na(useNames)) deprecatedUseNamesNA()
   if (is.null(center)) {
     has_nas <- TRUE
     sigma2 <- .Call(C_rowVars, x, dim., rows, cols, na.rm, refine, has_nas, FALSE, useNames)
@@ -238,21 +232,17 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
     x <- rep(NA_real_, times = ncol(x))
     
     # Update names attribute?
-    if (!is.na(useNames)) {
-      if (useNames) {
-        if (!is.null(names)) {
-          if (!is.null(cols)) {
-            names <- names[cols]
-            # Zero-length attribute? Keep behavior same as base R function
-            if (length(names) == 0L) names <- NULL         
-          }
-          names(x) <- names
+    if (useNames) {
+      if (!is.null(names)) {
+        if (!is.null(cols)) {
+          names <- names[cols]
+          # Zero-length attribute? Keep behavior same as base R function
+          if (length(names) == 0L) names <- NULL         
         }
-      } else {
-        names(x) <- NULL
-      }      
+        names(x) <- names
+      }
     } else {
-      deprecatedUseNamesNA()
+      names(x) <- NULL
     }
     return(x)
   }
@@ -315,7 +305,7 @@ colVars <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, refine = TRUE, c
   x <- x * (n / (n - 1))  
   
   # Preserve names attribute?
-  if (is.na(useNames) || useNames) {
+  if (useNames) {
     if (!is.null(names)) {
       if (!is.null(cols)) {
         names <- names[cols]

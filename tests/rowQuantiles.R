@@ -5,7 +5,7 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, drop = TRUE, type = 7L, ..., useNames = NA) {
+rowQuantiles_R <- function(x, probs = c(0, 0.25, 0.50, 0.75, 1), na.rm = FALSE, drop = TRUE, type = 7L, ..., useNames = TRUE) {
   q <- apply(x, MARGIN = 1L, FUN = function(x, probs, na.rm) {
     if (!na.rm && any(is.na(x))) {
       na_value <- NA_real_
@@ -44,17 +44,13 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
       print(q1)
-      ## FIXME: Workaround for R (< 3.0.0)
-      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q1) <- storage.mode(q0)
       stopifnot(all.equal(q1, q0))
       q2 <- colQuantiles(t(x), probs = probs, useNames = useNames)
-      ## FIXME: Workaround for R (< 3.0.0)
-      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q2) <- storage.mode(q0)
       stopifnot(all.equal(q2, q0))      
     }
   }
@@ -77,17 +73,13 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       q0 <- rowQuantiles_R(x, probs = probs, useNames = useNames)
       print(q0)
       q1 <- rowQuantiles(x, probs = probs, useNames = useNames)
-      ## FIXME: Workaround for R (< 3.0.0)
-      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q1) <- storage.mode(q0)
       print(q1)
       stopifnot(all.equal(q1, q0))
       q2 <- colQuantiles(t(x), probs = probs, useNames = useNames)
-      ## FIXME: Workaround for R (< 3.0.0)
-      if (getRversion() < "3.0.0" && mode == "logical") storage.mode(q2) <- storage.mode(q0)
       stopifnot(all.equal(q2, q0))      
     }
   }
@@ -144,15 +136,11 @@ for (kk in seq_len(n_sims)) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         q0 <- rowQuantiles_R(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
         q1 <- rowQuantiles(x, probs = probs, na.rm = has_na, type = type, useNames = useNames)
-        ## FIXME: Workaround for R (< 3.0.0)
-        if (getRversion() < "3.0.0" && mode == "logical" && !has_na && type == 7L) storage.mode(q1) <- storage.mode(q0)
         stopifnot(all.equal(q1, q0))
         q2 <- colQuantiles(t(x), probs = probs, na.rm = has_na, type = type, useNames = useNames)
-        ## FIXME: Workaround for R (< 3.0.0)
-        if (getRversion() < "3.0.0" && mode == "logical" && !has_na && type == 7L) storage.mode(q2) <- storage.mode(q0)
         stopifnot(all.equal(q2, q0))
       }
     }
@@ -179,7 +167,7 @@ for (mode in c("logical", "integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         qr0 <- rowQuantiles_R(x, type = type, useNames = useNames)
         
         qr <- rowQuantiles(x, type = type, useNames = useNames)

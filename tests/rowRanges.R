@@ -1,22 +1,22 @@
 library("matrixStats")
 
-rowMins_R <- function(x, ..., useNames = NA) {
+rowMins_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = min, ...)
   })
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 } # rowMins_R()
 
-rowMaxs_R <- function(x, ..., useNames = NA) {
+rowMaxs_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = max, ...)
   })
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 } # rowMaxs_R()
 
-rowRanges_R <- function(x, ..., useNames = NA) {
+rowRanges_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     ans <- t(apply(x, MARGIN = 1L, FUN = range, ...))
   })
@@ -28,7 +28,7 @@ rowRanges_R <- function(x, ..., useNames = NA) {
     rownames <- rownames(x)
     if (!is.null(dimnames)) rownames(ans) <- rownames
   }
-  if (is.na(useNames) || !useNames) dimnames(ans) <- NULL
+  if (!useNames) dimnames(ans) <- NULL
   ans
 } # rowRanges_R()
 
@@ -59,7 +59,7 @@ for (mode in c("integer", "double")) {
       # Row/column extremes
       for (na.rm in c(FALSE, TRUE)) {
         # Check names attribute
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           cat("na.rm = ", na.rm, "\n", sep = "")
           
           # Ranges
@@ -107,7 +107,7 @@ for (mode in c("integer", "double")) {
     else dimnames(x) <- NULL
     for (na.rm in c(FALSE, TRUE)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         cat("na.rm = ", na.rm, "\n", sep = "")
         r0 <- rowRanges_R(x, na.rm = na.rm, useNames = useNames)
         r1 <- rowRanges(x, na.rm = na.rm, useNames = useNames)
@@ -213,7 +213,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (na.rm in c(FALSE, TRUE)) {
     for (name in names(na_list)) {
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         na <- na_list[[name]]
         cat(sprintf("%s (%s) w/ na.rm = %s:\n", name, typeof(na), na.rm))
         print(na)

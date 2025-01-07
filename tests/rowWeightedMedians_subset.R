@@ -5,14 +5,14 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = NA) {
+rowWeightedMedians_R <- function(x, w, na.rm = FALSE, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = weightedMedian, w = w, na.rm = na.rm, ...)
   
   # Keep naming support consistency same as rowWeightedMedians()
   if (!is.null(w)) {
     if (isFALSE(useNames)) names(res) <- NULL
   }
-  else if (is.na(useNames) || !useNames) names(res) <- NULL
+  else if (!useNames) names(res) <- NULL
   
   res
 }
@@ -41,7 +41,7 @@ for (mode in c("numeric", "integer", "logical")) {
       for (cols in index_cases) {
         count <- count + 1L
         na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-        useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+        useNames <- c(TRUE, FALSE)
         useNames <- useNames[count %% length(useNames) + 1]
 
         validateIndicesTestMatrix_w(x, w, rows, cols,

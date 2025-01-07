@@ -1,22 +1,22 @@
 library("matrixStats")
 
-rowMins_R <- function(x, ..., useNames = NA) {
+rowMins_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = min, ...)
   })
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 } # rowMins_R()
 
-rowMaxs_R <- function(x, ..., useNames = NA) {
+rowMaxs_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     res <- apply(x, MARGIN = 1L, FUN = max, ...)
   })
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 } # rowMaxs_R()
 
-rowRanges_R <- function(x, ..., useNames = NA) {
+rowRanges_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     ans <- t(apply(x, MARGIN = 1L, FUN = range, ...))
   })
@@ -28,7 +28,7 @@ rowRanges_R <- function(x, ..., useNames = NA) {
     rownames <- rownames(x)
     if (!is.null(dimnames)) rownames(ans) <- rownames
   }
-  if (is.na(useNames) || !useNames) dimnames(ans) <- NULL
+  if (!useNames) dimnames(ans) <- NULL
   ans
 } # rowRanges_R()
 
@@ -53,7 +53,7 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- c(TRUE, FALSE)
       useNames <- useNames[count %% length(useNames) + 1]
 
       validateIndicesTestMatrix(x, rows, cols,

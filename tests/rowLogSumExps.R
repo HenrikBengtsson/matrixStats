@@ -192,7 +192,7 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowLogSumExps_R <- function(x, ..., useNames = NA) {
+rowLogSumExps_R <- function(x, ..., useNames = TRUE) {
   res <- apply(x, MARGIN = 1L, FUN = function(rx, ...) {
     log(sum(exp(rx), ...))
   }, ...)
@@ -209,7 +209,7 @@ dimnames <- list(letters[1:6], LETTERS[1:6])
 for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowLogSumExps_R(x, useNames = useNames)
     y1 <- rowLogSumExps(x, useNames = useNames)
     y2 <- colLogSumExps(t(x), useNames = useNames)

@@ -11,11 +11,11 @@ asWhich <- function(probs, max) {
   idx
 } # asWhich()
 
-rowOrderStats_R <- function(x, probs, ..., useNames = NA) {
+rowOrderStats_R <- function(x, probs, ..., useNames = TRUE) {
   ans <- apply(x, MARGIN = 1L, FUN = quantile, probs = probs, type = 3L)
   
   # Remove Attributes
-  if (is.na(useNames) || !useNames || length(ans) == 0L) attributes(ans) <- NULL
+  if (!useNames || length(ans) == 0L) attributes(ans) <- NULL
   ans
 } # rowOrderStats_R()
 
@@ -82,7 +82,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   if (setDimnames) dimnames(x) <- dimnames
   else dimnames(x) <- NULL
   # Check names attribute
-  for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+  for (useNames in c(TRUE, FALSE)) {
     y0 <- rowOrderStats_R(x, probs = probs, useNames = useNames)
     y1 <- rowOrderStats(x, which = which, useNames = useNames)
     stopifnot(all.equal(y1, y0))

@@ -62,7 +62,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
   byrow = asLogical(byRow);
   
   /* Argument 'useNames': */ 
-  usenames = asLogical(useNames);
+  usenames = asLogicalNoNA(useNames, "useNames");
 
   /* Double matrices are more common to use. */
   if (isReal(x)) {
@@ -133,7 +133,7 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
       } /* switch */
   }
   
-  if (usenames != NA_LOGICAL && usenames) {
+  if (usenames) {
     SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
     if (dimnames != R_NilValue) {
       setDimnames(ans, dimnames, nrows, crows, ncols, ccols, FALSE);

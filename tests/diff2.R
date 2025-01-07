@@ -1,8 +1,8 @@
 library("matrixStats")
 
-diff2_R <- function(..., useNames = NA){
+diff2_R <- function(..., useNames = TRUE){
   res <- diff(...)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -15,7 +15,7 @@ for (mode in c("integer", "double")) {
 
   for (has_na in c(FALSE, TRUE)) {
     for (setNames in c(TRUE, FALSE)) {
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         if (has_na) {
           x[sample(1:10, size = 3)] <- NA
         }

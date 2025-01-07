@@ -1,0 +1,8 @@
+## -------------------------------------------------------------------------
+## Ensure that all text files have LF line endings.
+##
+## If an editor introduces CRLF line endings, git will automatically
+## convert those to LF.  The 'auto' tells git to decide which
+## files are text files and which are not.
+## -------------------------------------------------------------------------
+* text=auto eol=lf

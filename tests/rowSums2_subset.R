@@ -1,20 +1,20 @@
 library("matrixStats")
 
-rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   ## FIXME: sum() may overflow for integers, whereas
   ## base::rowSums() doesn't.  What should rowSums2() do?
   ## apply(x, MARGIN = 1L, FUN = sum, na.rm = na.rm)
   res <- rowSums(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
-colSums2_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+colSums2_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   ## FIXME: sum() may overflow for integers, whereas
   ## base::colSums() doesn't.  What should colSums2() do?
   ## apply(x, MARGIN = 2L, FUN = sum, na.rm = na.rm)
   res <- colSums(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -36,7 +36,7 @@ for (setDimnames in c(TRUE, FALSE)) {
   for (rows in index_cases) {
     for (cols in index_cases) {
       for (na.rm in c(TRUE, FALSE)) {
-        for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+        for (useNames in c(TRUE, FALSE)) {
           validateIndicesTestMatrix(x, rows, cols,
                                     ftest = rowSums2, fsure = rowSums2_R,
                                     na.rm = na.rm, useNames = useNames)

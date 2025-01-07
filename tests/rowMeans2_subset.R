@@ -1,8 +1,8 @@
 library("matrixStats")
 
-rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = NA) {
+rowMeans_R <- function(x, na.rm = FALSE, ..., useNames = TRUE) {
   res <- rowMeans(x, na.rm = na.rm)
-  if (is.na(useNames) || !useNames) names(res) <- NULL
+  if (!useNames) names(res) <- NULL
   res
 }
 
@@ -26,7 +26,7 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- c(TRUE, FALSE)
       useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,

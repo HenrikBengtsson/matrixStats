@@ -1,23 +1,23 @@
 library("matrixStats")
 
-rowRanks_R <- function(x, ties.method = "average", ..., useNames = NA) {
+rowRanks_R <- function(x, ties.method = "average", ..., useNames = TRUE) {
   ans <- t(apply(x, MARGIN = 1L, FUN = rank, na.last = "keep",
                  ties.method = ties.method))
   
   # Preserve dimnames attribute?
   dim(ans) <- dim(x)
-  dimnames(ans) <- if (isTRUE(useNames)) dimnames(x) else NULL
+  dimnames(ans) <- if (useNames) dimnames(x) else NULL
 
   ans
 }
 
-colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = NA) {
+colRanks_R <- function(x, ties.method, preserveShape = FALSE, ..., useNames = TRUE) {
   ans <- t(apply(x, MARGIN = 2L, FUN = rank, na.last = "keep", ties.method = ties.method))
   
   # Preserve dimnames attribute?
   tx <- t(x)
   dim(ans) <- dim(tx)
-  dimnames(ans) <- if (isTRUE(useNames)) dimnames(tx) else NULL
+  dimnames(ans) <- if (useNames) dimnames(tx) else NULL
   
   if (preserveShape) ans <- t(ans)
   ans
@@ -33,7 +33,7 @@ storage.mode(x) <- "integer"
 # To check dimnames attribute
 dimnames <- list(letters[1:6], LETTERS[1:6])
 
-colRanks_R_t <- function(x, rows, cols, ..., useNames = NA) {
+colRanks_R_t <- function(x, rows, cols, ..., useNames = TRUE) {
   t(colRanks(t(x), rows = cols, cols = rows, preserveShape = TRUE, ..., useNames = useNames))
 }
 
@@ -47,7 +47,7 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- c(TRUE, FALSE)
       useNames <- useNames[count %% length(useNames) + 1]
 
       validateIndicesTestMatrix(x, rows, cols,

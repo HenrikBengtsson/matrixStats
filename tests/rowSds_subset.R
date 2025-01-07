@@ -8,7 +8,7 @@ if (!exists("isFALSE", mode="function")) {
   isFALSE <- function(x) is.logical(x) && length(x) == 1L && !is.na(x) && !x
 }
 
-rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
+rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
   suppressWarnings({
     sigma <- apply(x, MARGIN = 1L, FUN = sd, na.rm = na.rm)
   })
@@ -16,13 +16,13 @@ rowSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   
   # Keep naming support consistency same as rowSds()
   if (is.null(center) || ncol(x) <= 1L) {
-    if (is.na(useNames) || isFALSE(useNames)) names(sigma) <- NULL
+    if (isFALSE(useNames)) names(sigma) <- NULL
   }
   else if (isFALSE(useNames)) names(sigma) <- NULL
   sigma
 }
 
-colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
+colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = TRUE) {
   suppressWarnings({
     sigma <- apply(x, MARGIN = 2L, FUN = sd, na.rm = na.rm)
   })
@@ -30,21 +30,21 @@ colSds_R <- function(x, na.rm = FALSE, center = NULL, ..., useNames = NA) {
   
   # Keep naming support consistency same as colSds()
   if (is.null(center) || nrow(x) <= 1L) {
-    if (is.na(useNames) || isFALSE(useNames)) names(sigma) <- NULL
+    if (isFALSE(useNames)) names(sigma) <- NULL
   }
   else if (isFALSE(useNames)) names(sigma) <- NULL
   sigma
 }
 
 
-rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+rowSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   center <- rowWeightedMeans(x, cols = cols, na.rm = na.rm, useNames = FALSE)
   sigma <- rowSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(sigma)))
   sigma
 }
 
-colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = NA) {
+colSds_center <- function(x, rows = NULL, cols = NULL, na.rm = FALSE, ..., useNames = TRUE) {
   center <- colWeightedMeans(x, rows = rows, na.rm = na.rm, useNames = FALSE)
   sigma <- colSds(x, rows = rows, cols = cols, center = center, na.rm = na.rm, useNames = useNames)
   stopifnot(!any(is.infinite(sigma)))
@@ -72,7 +72,7 @@ for (setDimnames in c(TRUE, FALSE)) {
     for (cols in index_cases) {
       count <- count + 1L
       na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-      useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+      useNames <- c(TRUE, FALSE)
       useNames <- useNames[count %% length(useNames) + 1]
       
       validateIndicesTestMatrix(x, rows, cols,

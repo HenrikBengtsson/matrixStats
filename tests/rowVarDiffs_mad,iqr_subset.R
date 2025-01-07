@@ -34,7 +34,7 @@ for (fcn in names(fcns)) {
           for (cols in index_cases) {
             count <- count + 1L
             na.rm <- c(TRUE, FALSE)[count %% 2 + 1]
-            useNames <- c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)
+            useNames <- c(TRUE, FALSE)
             useNames <- useNames[count %% length(useNames) + 1]
             validateIndicesTestMatrix(x, rows, cols,
                                       ftest = row_fcn, fsure = row_fcn,

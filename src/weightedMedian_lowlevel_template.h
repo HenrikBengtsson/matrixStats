@@ -32,7 +32,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* Weights                                                             */
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-  wtmp =R_CALLOC(nidxs, double);
+  wtmp =R_Calloc(nidxs, double);
 
   /* Check for missing, negative, and infinite weights */
   nxt = 0;
@@ -48,7 +48,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
     weight = R_INDEX_GET(w, ((idxs == NULL) ? (ii) : idxs[ii]), NA_REAL, 1);
     if (ISNAN(weight)) {
       if (!narm) {
-        R_FREE(wtmp);
+        R_Free(wtmp);
         return NA_REAL;
       }
     } else if (weight <= 0) {
@@ -66,7 +66,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
           value = R_INDEX_GET(x, ((idxs == NULL) ? (jj) : idxs[jj]), X_NA, idxsHasNA);
           if (X_ISNAN(value)) {
             if (!narm) {
-              R_FREE(wtmp);
+              R_Free(wtmp);
               return NA_REAL;
             }
           } else {
@@ -76,7 +76,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
           }
         } else if (ISNAN(weight)) {
           if (!narm) {
-            R_FREE(wtmp);
+            R_Free(wtmp);
             return NA_REAL;
           }
         }
@@ -88,7 +88,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
       value = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
       if (X_ISNAN(value)) {
         if (!narm) {
-          R_FREE(wtmp);
+          R_Free(wtmp);
           return NA_REAL;
         }
       } else {
@@ -106,7 +106,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
 
   /* Nothing to do? */
   if (nxt == 0) {
-    R_FREE(wtmp);
+    R_Free(wtmp);
     return NA_REAL;
   }
 
@@ -114,7 +114,7 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* Copy (x,w) to work with and calculate total weight                  */
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-  xtmp =R_CALLOC(nxt, X_C_TYPE);
+  xtmp =R_Calloc(nxt, X_C_TYPE);
   jj = 0;
   wtotal = 0;
   for (ii=0; ii < nidxs; ii++) {
@@ -138,8 +138,8 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
   /* Early stopping? */
   if (nx == 1) {
     res = (double)x[0];
-    R_FREE(xtmp);
-    R_FREE(wtmp);
+    R_Free(xtmp);
+    R_Free(wtmp);
     return res;
   }
 
@@ -165,8 +165,8 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
       res = ((double)x[half-1] + (double)x[half]) / 2;
     }
 
-    R_FREE(xtmp);
-    R_FREE(wtmp);
+    R_Free(xtmp);
+    R_Free(wtmp);
     return res;
   }
 
@@ -176,12 +176,12 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
   /* one) according to the reordered vector.                             */
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
   /* (a) Sort x */
-  idxs_int =R_CALLOC(nx, int);
+  idxs_int =R_Calloc(nx, int);
   for (ii = 0; ii < nx; ii++) idxs_int[ii] = ii;
   X_QSORT_I(x, idxs_int, 1, nx);
 
   /* (b) Normalized cumulative weights */
-  wcum =R_CALLOC(nx, double);
+  wcum =R_Calloc(nx, double);
   tmp_d2 = 0;
   /* Index where cumulative weight passed 1/2 */
   half = nx+1; /* Default is last */
@@ -209,16 +209,16 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
       }
     }
   }
-  R_FREE(wtmp);
-  R_FREE(idxs_int);
+  R_Free(wtmp);
+  R_Free(idxs_int);
 
 
   /* Two special cases where more than half of the total weight is at
      a) the first, or b) the last value */
   if (half == 0 || half == nx) {
     res = (double)x[half];
-    R_FREE(wcum);
-    R_FREE(xtmp);
+    R_Free(wcum);
+    R_Free(xtmp);
     return res;
   }
 
@@ -242,8 +242,8 @@ double CONCAT_MACROS(weightedMedian, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, do
     /* The corresponding x value */
     res = dx + x[half];
 
-    R_FREE(wcum);
-    R_FREE(xtmp);
+    R_Free(wcum);
+    R_Free(xtmp);
 
     return res;
   }
@@ -290,8 +290,8 @@ printf("x[half+(-1:1)]=c(%g, %g, %g)\n", x[half-1-1], x[half-1], x[half-1+1]);
     }
   }
 
-  R_FREE(wcum);
-  R_FREE(xtmp);
+  R_Free(wcum);
+  R_Free(xtmp);
 
   return res;
 }

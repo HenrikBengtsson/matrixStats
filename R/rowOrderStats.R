@@ -36,7 +36,6 @@ rowOrderStats <- function(x, rows = NULL, cols = NULL, which,
     stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
-  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_rowOrderStats, x, dim., rows, cols, which, useNames)
 }
 
@@ -51,6 +50,5 @@ colOrderStats <- function(x, rows = NULL, cols = NULL, which,
     stop(sprintf("Argument '%s' must not contain missing values", "x"))
   }
 
-  if (is.na(useNames)) deprecatedUseNamesNA()
   .Call(C_colOrderStats, x, dim., rows, cols, which, useNames)
 }

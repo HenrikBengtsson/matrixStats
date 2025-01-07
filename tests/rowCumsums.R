@@ -1,13 +1,13 @@
 library("matrixStats")
 
-rowCumsums_R <- function(x, ..., useNames = NA) {
+rowCumsums_R <- function(x, ..., useNames = TRUE) {
   suppressWarnings({
     y <- t(apply(x, MARGIN = 1L, FUN = cumsum))
   })
   
   # Preserve dimnames attribute?
   dim(y) <- dim(x)
-  dimnames(y) <- if (isTRUE(useNames)) dimnames(x) else NULL
+  dimnames(y) <- if (useNames) dimnames(x) else NULL
   
   y
 }
@@ -34,7 +34,7 @@ for (mode in c("logical", "integer", "double")) {
       if (setDimnames) dimnames(x) <- dimnames
       else dimnames(x) <- NULL    
       # Check names attribute
-      for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+      for (useNames in c(TRUE, FALSE)) {
         # Row/column ranges
         r0 <- rowCumsums_R(x, useNames = useNames)
         r1 <- rowCumsums(x, useNames = useNames)
@@ -62,7 +62,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) dimnames(x) <- dimnames
     else dimnames(x) <- NULL    
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       # Row/column ranges
       r0 <- rowCumsums_R(x, useNames = useNames)
       r1 <- rowCumsums(x, useNames = useNames)
@@ -136,7 +136,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) colnames(x) <- colnames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       r0 <- rowCumsums_R(x, useNames = useNames)
       r1 <- rowCumsums(x, useNames = useNames)
       r2 <- t(rowCumsums(t(x), useNames = useNames))
@@ -155,7 +155,7 @@ for (mode in c("logical", "integer", "double")) {
     if (setDimnames) rownames(x) <- rownames
     else dimnames(x) <- NULL
     # Check names attribute
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       r0 <- rowCumsums_R(x, useNames = useNames)
       r1 <- rowCumsums(x, useNames = useNames)
       r2 <- t(rowCumsums(t(x), useNames = useNames))

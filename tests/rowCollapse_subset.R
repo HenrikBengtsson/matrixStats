@@ -1,6 +1,6 @@
 library("matrixStats")
 
-rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
+rowCollapse_R <- function(x, idxs, ..., useNames = TRUE) {
   ans <- c()
   storage.mode(ans) <- storage.mode(x)
   for (ii in seq_len(length(idxs))) {
@@ -8,7 +8,7 @@ rowCollapse_R <- function(x, idxs, ..., useNames = NA) {
   }
   
   # Preserve names attribute
-  if (isTRUE(useNames)) {
+  if (useNames) {
     names <- rownames(x)
     if (!is.null(names)) names(ans) <- names
   }
@@ -31,7 +31,7 @@ for (rows in index_cases) {
   if (is.null(rows)) rows <- seq_len(nrow(x))
 
   for (idxs in list(2L, seq_len(6L))) {
-    for (useNames in c(if (!matrixStats:::isUseNamesNADefunct()) NA, TRUE, FALSE)) {
+    for (useNames in c(TRUE, FALSE)) {
       suppressWarnings({
         actual <- tryCatch(rowCollapse(x, idxs, rows = rows, useNames = useNames),
                            error = function(c) "error")
