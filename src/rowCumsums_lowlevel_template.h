@@ -34,7 +34,7 @@ void CONCAT_MACROS(rowCumsums, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
   R_xlen_t ii, jj, kk, kk_prev, idx;
   R_xlen_t colBegin;
   X_C_TYPE xvalue;
-  LDOUBLE value;
+  long double value;
   int norows, nocols;
   if (cols == NULL) { nocols = 1; } else { nocols = 0; }
   if (rows == NULL) { norows = 1; } else { norows = 0; }
@@ -125,7 +125,7 @@ void CONCAT_MACROS(rowCumsums, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
             oks[ii] = 0;
             ans[kk] = ANS_NA;
           } else {
-            value = (LDOUBLE) ans[kk_prev] + (LDOUBLE) xvalue;
+            value = (long double) ans[kk_prev] + (long double) xvalue;
             /* Integer overflow? */
             if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
               oks[ii] = 0;
@@ -139,7 +139,7 @@ void CONCAT_MACROS(rowCumsums, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
           ans[kk] = ANS_NA;
         }
 #else
-        ans[kk] = (ANS_C_TYPE) ((LDOUBLE) ans[kk_prev] + (LDOUBLE) xvalue);
+        ans[kk] = (ANS_C_TYPE) ((long double) ans[kk_prev] + (long double) xvalue);
 #endif
 
         kk++;
@@ -191,7 +191,7 @@ void CONCAT_MACROS(rowCumsums, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen
             ok = 0;
             ans[kk] = ANS_NA;
           } else {
-            value += (LDOUBLE) xvalue;
+            value += (long double) xvalue;
             /* Integer overflow? */
             if (value < R_INT_MIN_d || value > R_INT_MAX_d) {
               ok = 0;
