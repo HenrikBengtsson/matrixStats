@@ -93,12 +93,15 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           rowRanksWithTies_Min_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, INTEGER(ans));
           break;
-        case 7:
+        default: 
+          /* Read: case 7. The reason why it is written
+          this way is to convince rchk that all code paths
+          result in exactly two calls to PROTECT() */
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           rowRanksWithTies_Dense_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, INTEGER(ans));
           break;
       } /* switch */
-  } else if (isInteger(x)) {
+  } else { /*isInteger(x)*/
       switch (tiesmethod) {
         case 1:
           PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
@@ -126,7 +129,10 @@ SEXP rowRanksWithTies(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP tiesMethod, S
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           rowRanksWithTies_Min_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, INTEGER(ans));
           break;
-        case 7:
+        default:
+          /* Read: case 7. The reason why it is written
+           this way is to convince rchk that all code paths
+           result in exactly two calls to PROTECT() */
           PROTECT(ans = allocMatrix(INTSXP, nrows, ncols));
           rowRanksWithTies_Dense_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, INTEGER(ans));
           break;
