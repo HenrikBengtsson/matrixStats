@@ -175,7 +175,7 @@ colAvgsPerRowSet <- function(X, W = NULL, cols = NULL, S,
   # Apply subset
   if (!is.null(cols)) {
     X <- X[, cols, drop = FALSE]
-    if (is.null(W)) W <- W[, cols, drop = FALSE]
+    if (!is.null(W)) W <- W[, cols, drop = FALSE]
   }
 
   # Argument 'tFUN':
