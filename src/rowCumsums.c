@@ -39,7 +39,7 @@ SEXP rowCumsums(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useName
   /* Double matrices are more common to use. */
   if (isReal(x)) {
     PROTECT(ans = allocMatrix(REALSXP, nrows, ncols));
-    rowCumsums_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, rowsHasNA, byrow, REAL(ans));
+    rowCumsums_dbl(REAL(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, byrow, REAL(ans));
     if (usenames) {
       SEXP dimnames = getAttrib(x, R_DimNamesSymbol);
       if (dimnames != R_NilValue) {
