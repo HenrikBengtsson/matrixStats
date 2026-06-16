@@ -84,6 +84,23 @@ Z2 <- colAvgsPerRowSet(X, W = W, S = S, FUN = colWeightedMeans)
 print(Z2)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Weighted FUN() must receive 'W' subset to each set's columns / rows
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
+rowWMean <- function(x, W, ...) rowSums(x * W) / rowSums(W)
+Z <- rowAvgsPerColSet(X, W = W, S = S, FUN = rowWMean)
+Z0 <- cbind(s1 = rowWMean(X[, 1:2], W[, 1:2]),
+            s2 = rowWMean(X[, 3:4], W[, 3:4]),
+            s3 = rowWMean(X[, 5:6], W[, 5:6]))
+stopifnot(identical(drop(Z), Z0))
+
+colWMean <- function(x, W, ...) colSums(x * W) / colSums(W)
+Z <- colAvgsPerRowSet(X, W = W, S = S, FUN = colWMean)
+Z0 <- rbind(s1 = colWMean(X[1:2, ], W[1:2, ]),
+            s2 = colWMean(X[3:4, ], W[3:4, ]),
+            s3 = colWMean(X[5:6, ], W[5:6, ]))
+stopifnot(identical(drop(Z), Z0))
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Result should always be a matrix, including when nrow(X) <= 1
 # (https://github.com/HenrikBengtsson/matrixStats/issues/108)
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
