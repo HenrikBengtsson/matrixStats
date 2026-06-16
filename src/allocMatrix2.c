@@ -129,7 +129,7 @@ SEXP allocMatrix2(SEXP nrow, SEXP ncol, SEXP value) {
   nr = asInteger(nrow);
   nc = asInteger(ncol);
   if (nr < 0) error("Argument 'nrow' is negative");
-  if (nr < 0) error("Argument 'ncol' is negative");
+  if (nc < 0) error("Argument 'ncol' is negative");
 
   /* Argument 'value': */
   if (!isVectorAtomic(value) || xlength(value) != 1) {
