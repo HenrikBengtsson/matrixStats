@@ -108,15 +108,16 @@ rowAvgsPerColSet <- function(X, W = NULL, rows = NULL, S,
     # Extract set of columns from X
     jj <- jj[is.finite(jj)]
     Zjj <- X[, jj, drop = FALSE]
+    if (hasW) Wjj <- W[, jj, drop = FALSE]
     jj <- NULL  # Not needed anymore
 
     if (tFUN) {
       Zjj <- t(Zjj)
+      if (hasW) Wjj <- t(Wjj)
     }
 
     # Average by weights
     if (hasW) {
-      Wjj <- W[, jj, drop = FALSE]
       Zjj <- FUN(Zjj, W = Wjj, ..., na.rm = na.rm)
       Wjj <- NULL  # Not needed anymore
     } else {
