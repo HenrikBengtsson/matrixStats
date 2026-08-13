@@ -37,3 +37,12 @@ for (mode in c("integer", "double")) {
     }
   } # for (has_na ...)
 }
+
+local({
+  ## Guard the named result while setNamesDiff() allocates (#258)
+  x <- setNames(as.double(seq_len(10L)), LETTERS[seq_len(10L)])
+  expected <- diff(x)
+  previous <- gctorture(TRUE)
+  actual <- tryCatch(diff2(x), finally = gctorture(previous))
+  stopifnot(identical(actual, expected))
+})
