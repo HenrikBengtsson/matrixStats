@@ -120,3 +120,14 @@ for (setDimnames in c(TRUE, FALSE)) {
     stopifnot(all.equal(r1, r2))
   } # for (useNames ...)
 } # for (setDimnames ...)
+
+local({
+  x <- matrix(seq_len(6L), nrow = 2L)
+  actual <- rowDiffs(x, lag = .Machine$integer.max,
+                     differences = .Machine$integer.max)
+  stopifnot(identical(dim(actual), c(2L, 0L)))
+
+  actual <- colDiffs(x, lag = .Machine$integer.max,
+                     differences = .Machine$integer.max)
+  stopifnot(identical(dim(actual), c(0L, 3L)))
+})
