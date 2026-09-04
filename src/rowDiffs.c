@@ -54,11 +54,9 @@ SEXP rowDiffs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP lag, SEXP differences
   /* Dimension of result matrix */
   if (byrow) {
     nrow_ans = nrows;
-    ncol_ans = (R_xlen_t)((double)ncols - ((double)diff*(double)lagg));
-    if (ncol_ans < 0) ncol_ans = 0;
+    ncol_ans = diff_length(ncols, lagg, diff);
   } else {
-    nrow_ans = (R_xlen_t)((double)nrows - ((double)diff*(double)lagg));
-    if (nrow_ans < 0) nrow_ans = 0;
+    nrow_ans = diff_length(nrows, lagg, diff);
     ncol_ans = ncols;
   }
 

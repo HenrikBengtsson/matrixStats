@@ -46,6 +46,13 @@
   #define NA_R_XLEN_T NA_INTEGER
 #endif
 
+#ifndef MATRIXSTATS_DIFF_LENGTH
+#define MATRIXSTATS_DIFF_LENGTH
+static R_INLINE R_xlen_t diff_length(R_xlen_t n, R_xlen_t lag, R_xlen_t differences) {
+  if (differences > n / lag) return 0;
+  return n - differences * lag;
+}
+#endif
 
 /* Macro to check for user interrupts every 2^20 iteration */
 #define R_CHECK_USER_INTERRUPT(i) if (i % 1048576 == 0) R_CheckUserInterrupt()
