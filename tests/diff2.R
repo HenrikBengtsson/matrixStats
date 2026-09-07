@@ -46,3 +46,10 @@ local({
   actual <- tryCatch(diff2(x), finally = gctorture(previous))
   stopifnot(identical(actual, expected))
 })
+
+local({
+  x <- seq_len(5L)
+  actual <- diff2(x, lag = .Machine$integer.max,
+                  differences = .Machine$integer.max)
+  stopifnot(identical(actual, integer(0L)))
+})
