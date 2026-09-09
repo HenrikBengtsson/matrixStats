@@ -26,7 +26,7 @@
 double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
                      R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA,
                      int narm, int hasna) {
-  LDOUBLE y = 0.0, t;
+  long double y = 0.0, t;
   R_xlen_t ii;
   int isneg = 0;
   int hasZero = 0;
@@ -64,7 +64,7 @@ double CONCAT_MACROS(productExpSumLog, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
       Rprintf("#%d: x=%g, is.nan(x)=%d, abs(x)=%g, is.nan(abs(x))=%d, log(abs(x))=%g, is.nan(log(abs(x)))=%d, sum=%g, is.nan(sum)=%d\n", ii, x[ii], R_IsNaN(x[ii]), X_ABS(x[ii]), R_IsNaN(abs(x[ii])), t, R_IsNaN(y), y, R_IsNaN(y));  */
 
 #if X_TYPE == 'r'
-    /* Early stopping? Special for long LDOUBLE vectors */
+    /* Early stopping? Special for long long double vectors */
     if (ii % 1048576 == 0 && ISNAN(y)) break;
 #endif
   }

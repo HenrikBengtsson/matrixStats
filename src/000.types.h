@@ -27,17 +27,6 @@
   #define SUBSETTED_REAL 2
 #endif
 
-
-/* As in <R>/src/include/Defn.h */
-#ifdef HAVE_LONG_DOUBLE
-#define LDOUBLE long double
-#define LDOUBLE_ALLOC(n) R_allocLD(n)
-#else
-#define LDOUBLE double
-#define LDOUBLE_ALLOC(n) ((double*) R_alloc(n, sizeof(double)))
-#endif
-
-
 /* define NA_R_XLEN_T */
 #ifdef LONG_VECTOR_SUPPORT
   #define R_XLEN_T_MIN -R_XLEN_T_MAX-1
