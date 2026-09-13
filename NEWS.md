@@ -1,6 +1,7 @@
 # Version (development version)
 
- * ...
+ * The result lengths of `diff2()` and `rowDiffs()` are no longer
+   calculated via floating-point arithmetic.
  
 
 # Version 1.5.0 [2025-01-07]

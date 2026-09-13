@@ -41,8 +41,7 @@ SEXP diff2(SEXP x, SEXP idxs, SEXP lag, SEXP differences, SEXP useNames) {
   R_xlen_t *cidxs = validateIndicesCheckNA(idxs, nx, 1, &nidxs, &idxsHasNA);
 
   /* Length of result vector */
-  nans = (R_xlen_t)((double)nidxs - ((double)diff*(double)lagg));
-  if (nans < 0) nans = 0;
+  nans = diff_length(nidxs, lagg, diff);
 
 
   /* Dispatch to low-level C function */
