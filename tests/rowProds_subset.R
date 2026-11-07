@@ -6,6 +6,33 @@ rowProds_R <- function(x, FUN = prod, na.rm = FALSE, ..., useNames = TRUE) {
   res
 }
 
+# Compare each selected group with its scalar operation. Duplicate and
+# missing indices affect both the values and the labels of the result.
+x <- matrix(c(-0, 2, -4, NA_real_, Inf, 0, 3, NaN, -1, 1, 5, -2), 3L,
+            dimnames = list(letters[1:3], LETTERS[1:4]))
+rows <- c(2L, NA_integer_, 2L, 1L)
+cols <- c(4L, 2L, 1L, 4L)
+selected <- x[rows, cols, drop = FALSE]
+for (byRow in c(TRUE, FALSE)) {
+  groups <- if (byRow) selected else t(selected)
+  reduce <- if (byRow) rowProds else colProds
+  for (remove in c(TRUE, FALSE)) {
+    for (method in c("direct", "expSumLog")) {
+      scalar <- if (method == "direct") prod else product
+      expected <- vapply(seq_len(nrow(groups)), function(i) {
+        scalar(groups[i, ], na.rm = remove)
+      }, double(1L))
+      names(expected) <- rownames(groups)
+      actual <- reduce(x, rows = rows, cols = cols, na.rm = remove, method = method)
+      stopifnot(identical(actual, expected))
+      zeros <- which(expected == 0)
+      stopifnot(identical(1 / actual[zeros], 1 / expected[zeros]))
+      stopifnot(identical(reduce(x, rows = rows, cols = cols, na.rm = remove,
+                               method = method, useNames = FALSE), unname(expected)))
+    }
+  }
+}
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Subsetted tests

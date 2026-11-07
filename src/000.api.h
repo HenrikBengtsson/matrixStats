@@ -15,6 +15,8 @@ SEXP logSumExp(SEXP lx, SEXP idxs, SEXP naRm, SEXP hasNA);
 SEXP mean2(SEXP x, SEXP idxs, SEXP naRm, SEXP refine);
 SEXP productExpSumLog(SEXP x, SEXP idxs, SEXP naRm, SEXP hasNA);
 SEXP psortKM(SEXP x, SEXP k, SEXP m);
+SEXP directProdsFormat(void);
+SEXP directProds(SEXP x, SEXP naRm, SEXP byRow);
 SEXP rowCounts(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP value, SEXP what, SEXP naRm, SEXP hasNA, SEXP useNames);
 SEXP rowCummaxs(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useNames);
 SEXP rowCummins(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP byRow, SEXP useNames);
