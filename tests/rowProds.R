@@ -116,3 +116,40 @@ y2 <- colProds(t(x), useNames = TRUE)
 print(y2)
 stopifnot(all.equal.na(y1, y0))
 stopifnot(all.equal.na(y2, y1))
+
+# The direct kernel must keep the order and precision of base::prod().
+checkDirect <- function(x, rm) {
+  for (byrow in c(TRUE, FALSE)) {
+    z <- if (byrow) x else t(x)
+    expected <- vapply(seq_len(nrow(z)), function(i) {
+      as.double(prod(z[i, , drop = TRUE], na.rm = rm))
+    }, double(1))
+    if (nrow(z)) names(expected) <- rownames(z)
+    actual <- if (byrow) rowProds(x, na.rm = rm) else colProds(x, na.rm = rm)
+    if (!identical(actual, expected)) {
+      stop(sprintf("%s products differ: actual %s, expected %s",
+                   if (byrow) "row" else "column",
+                   paste(actual, collapse = ", "), paste(expected, collapse = ", ")))
+    }
+    # Keep the sign of a zero product visible to the comparison.
+    zeros <- which(expected == 0)
+    stopifnot(identical(1 / actual[zeros], 1 / expected[zeros]))
+  }
+}
+
+for (rm in c(FALSE, TRUE)) {
+  checkDirect(matrix(c(NA_integer_, 0L, 3L, -2L, 1L, 4L), 2L), rm)
+  checkDirect(matrix(c(TRUE, NA, FALSE, FALSE, TRUE, TRUE), 2L), rm)
+  checkDirect(matrix(c(0, -0, -1, Inf, NA_real_, NaN, -Inf, 3), 2L), rm)
+  factors <- c(1e300, 1e300, 1e-300, 1e-300)
+  for (values in list(factors, rev(factors), c(1e300, 1e300))) {
+    checkDirect(matrix(values, nrow = 1L), rm)
+    checkDirect(matrix(values, ncol = 1L), rm)
+  }
+  checkDirect(matrix(double(), 3L, 0L), rm)
+  checkDirect(matrix(double(), 0L, 3L), rm)
+  z <- matrix(seq_len(12L), 3L, dimnames = list(letters[1:3], LETTERS[1:4]))
+  checkDirect(z[c(3L, NA_integer_, 3L), c(4L, 2L), drop = FALSE], rm)
+  stopifnot(identical(rowProds(z, rows = c(3L, 3L), cols = c(4L, 2L), useNames = FALSE),
+                      c(72, 72)))
+}

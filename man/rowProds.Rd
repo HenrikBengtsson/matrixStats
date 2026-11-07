@@ -49,8 +49,8 @@ Calculates the product for each row (column) in a matrix.
 If \code{method = "expSumLog"}, then then \code{\link{product}}() function is
 used, which calculates the product via the logarithmic transform (treating
 negative values specially).  This improves the precision and lowers the risk
-for numeric overflow.  If \code{method = "direct"}, the direct product is
-calculated via the \code{\link[base]{prod}}() function.
+for numeric overflow.  If \code{method = "direct"}, the values are
+multiplied in order, following the behavior of \code{\link[base]{prod}}().
 }
 \section{Missing values}{
 

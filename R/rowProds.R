@@ -5,8 +5,8 @@
 #' If \code{method = "expSumLog"}, then then \code{\link{product}}() function is
 #' used, which calculates the product via the logarithmic transform (treating
 #' negative values specially).  This improves the precision and lowers the risk
-#' for numeric overflow.  If \code{method = "direct"}, the direct product is
-#' calculated via the \code{\link[base]{prod}}() function.
+#' for numeric overflow.  If \code{method = "direct"}, the values are
+#' multiplied in order, following the behavior of \code{\link[base]{prod}}().
 #'
 #' @inheritParams rowAlls
 #' @inheritParams rowDiffs
@@ -40,28 +40,24 @@ rowProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  # Preallocate result (zero:ed by default)
   n <- nrow(x)
-  y <- double(length = n)
+  if (n == 0L) return(double())
 
-  # Nothing todo?
-  if (n == 0L) return(y)
-
-  # Argument 'method':
   method <- method[1L]
-
-  # How to calculate product?
-  if (method == "expSumLog") {
-    prod <- product
-  } else if (method == "direct") {
+  if (method == "direct" && canUseDirectProds(x, na.rm)) {
+    y <- .Call(C_directProds, x, na.rm, TRUE)
   } else {
-    stop(sprintf("Unknown value of argument '%s': %s", "method", method))
+    if (method == "expSumLog") {
+      prod <- product
+    } else if (method != "direct") {
+      stop(sprintf("Unknown value of argument '%s': %s", "method", method))
+    }
+    y <- double(n)
+    for (ii in seq_len(n)) {
+      y[ii] <- prod(x[ii, , drop = TRUE], na.rm = na.rm)
+    }
   }
 
-  for (ii in seq_len(n)) {
-    y[ii] <- prod(x[ii, , drop = TRUE], na.rm = na.rm)
-  }
-  
   # Update names attribute?
   if (useNames) {
     names <- rownames(x)
@@ -86,28 +82,24 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   else if (!is.null(rows)) x <- x[rows, , drop = FALSE]
   else if (!is.null(cols)) x <- x[, cols, drop = FALSE]
 
-  # Preallocate result (zero:ed by default)
   n <- ncol(x)
-  y <- double(length = n)
+  if (n == 0L) return(double())
 
-  # Nothing todo?
-  if (n == 0L) return(y)
-
-  # Argument 'method':
   method <- method[1L]
-
-  # How to calculate product?
-  if (method == "expSumLog") {
-    prod <- product
-  } else if (method == "direct") {
+  if (method == "direct" && canUseDirectProds(x, na.rm)) {
+    y <- .Call(C_directProds, x, na.rm, FALSE)
   } else {
-    stop(sprintf("Unknown value of argument '%s': %s", "method", method))
+    if (method == "expSumLog") {
+      prod <- product
+    } else if (method != "direct") {
+      stop(sprintf("Unknown value of argument '%s': %s", "method", method))
+    }
+    y <- double(n)
+    for (ii in seq_len(n)) {
+      y[ii] <- prod(x[, ii, drop = TRUE], na.rm = na.rm)
+    }
   }
 
-  for (ii in seq_len(n)) {
-    y[ii] <- prod(x[, ii, drop = TRUE], na.rm = na.rm)
-  }
-  
   # Update names attribute?
   if (useNames) {
     names <- colnames(x)
@@ -117,4 +109,20 @@ colProds <- function(x, rows = NULL, cols = NULL, na.rm = FALSE,
   }
 
   y
+}
+# Keep method dispatch and base R coercion for classed and unusual arguments.
+canUseDirectProds <- function(x, na.rm) {
+  if (is.object(x) || !typeof(x) %in% c("double", "integer", "logical") ||
+      !(identical(na.rm, TRUE) || identical(na.rm, FALSE))) return(FALSE)
+
+  # Older R versions may not expose the long-double format. In that case
+  # use base::prod() so the result always follows the running R.
+  if (isTRUE(capabilities("long.double"))) {
+    format <- c(.Machine$longdouble.digits, .Machine$longdouble.min.exp,
+                .Machine$longdouble.max.exp)
+  } else {
+    format <- c(.Machine$double.digits, .Machine$double.min.exp,
+                .Machine$double.max.exp)
+  }
+  identical(as.integer(format), .Call(C_directProdsFormat))
 }

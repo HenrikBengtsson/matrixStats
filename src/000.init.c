@@ -16,6 +16,8 @@ static R_CallMethodDef callMethods[]  = {
   CALLDEF(colRanges, 8),
   CALLDEF(count, 6),
   CALLDEF(diff2, 5),
+  CALLDEF(directProdsFormat, 0),
+  CALLDEF(directProds, 3),
   CALLDEF(indexByRow, 2),
   CALLDEF(logSumExp, 4),
   CALLDEF(mean2, 4),
