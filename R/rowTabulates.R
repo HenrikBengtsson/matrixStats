@@ -71,14 +71,9 @@ rowTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   }
 
 
-  nbr_of_values <- length(values)
-  counts <- matrix(0L, nrow = nrow(x), ncol = nbr_of_values)
+  counts <- tabulateByValue(x, values, byRow = TRUE)
   colnames(counts) <- names
-  na.rm <- anyMissing(x)
-  for (kk in seq_len(nbr_of_values)) {
-    counts[, kk] <- rowCounts(x, value = values[kk], na.rm = na.rm)
-  }
-  
+
   # Update rownames attribute?
   if (useNames) {
     rownames <- rownames(x)
@@ -136,17 +131,9 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
   }
 
 
-  transpose <- FALSE
-  if (!transpose) {
-    nbr_of_values <- length(values)
-    counts <- matrix(0L, nrow = ncol(x), ncol = nbr_of_values)
-    colnames(counts) <- names
-    na.rm <- anyMissing(x)
-    for (kk in seq_len(nbr_of_values)) {
-      counts[, kk] <- colCounts(x, value = values[kk], na.rm = na.rm)
-    }
-  }
-  
+  counts <- tabulateByValue(x, values, byRow = FALSE)
+  colnames(counts) <- names
+
   # Update rownames attribute?
   if (useNames) {
     colnames <- colnames(x)
@@ -155,5 +142,32 @@ colTabulates <- function(x, rows = NULL, cols = NULL, values = NULL, ..., useNam
     rownames(counts) <- NULL
   }
   
+  counts
+}
+
+tabulateByValue <- function(x, values, byRow) {
+  if (is.matrix(x) && !is.object(x) && !is.object(values) && is.atomic(values)) {
+    if (typeof(values) != typeof(x)) {
+      # rowCounts/colCounts coerce each requested value to the matrix type.
+      # Keep scalar conversion warnings and the displayed original bin labels.
+      keys <- vapply(seq_along(values), function(k) {
+        value <- values[k]
+        storage.mode(value) <- storage.mode(x)
+        as.integer(value)
+      }, integer(1), USE.NAMES = FALSE)
+    } else {
+      keys <- as.integer(values)
+    }
+    return(.Call(C_tabulateByValue, x, keys, byRow))
+  }
+
+  # Preserve S3 dispatch and errors for other inputs.
+  count <- if (byRow) rowCounts else colCounts
+  n <- if (byRow) nrow(x) else ncol(x)
+  counts <- matrix(0L, nrow = n, ncol = length(values))
+  na.rm <- anyMissing(x)
+  for (k in seq_along(values)) {
+    counts[, k] <- count(x, value = values[k], na.rm = na.rm)
+  }
   counts
 }

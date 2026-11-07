@@ -38,6 +38,7 @@ static R_CallMethodDef callMethods[]  = {
   CALLDEF(rowVars, 9),
   CALLDEF(signTabulate, 2),
   CALLDEF(sum2, 4),
+  CALLDEF(tabulateByValue, 3),
   CALLDEF(validate, 3),
   CALLDEF(weightedMean, 5),
   CALLDEF(weightedMedian, 6),
