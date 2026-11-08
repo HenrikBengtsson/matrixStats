@@ -2,6 +2,9 @@
 #'
 #' Gets the range of values in each row (column) of a matrix.
 #'
+#' @param x A logical, integer, or double NxK \code{\link[base]{matrix}}
+#' or, if \code{dim.} is specified, an N * K \code{\link[base]{vector}}.
+#'
 #' @inheritParams rowAlls
 #' @inheritParams rowDiffs
 #'
@@ -11,6 +14,10 @@
 #'
 #' \code{rowMins()/rowMaxs()} (\code{colMins()/colMaxs()}) returns a
 #' \code{\link[base]{numeric}} \code{\link[base]{vector}} of length N (K).
+#'
+#' For logical and integer input, the result is integer unless infinite
+#' values are needed (for example, when all values are missing and
+#' \code{na.rm = TRUE}), in which case it is double.
 #'
 #' @author Henrik Bengtsson
 #'

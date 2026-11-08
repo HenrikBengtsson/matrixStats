@@ -23,7 +23,7 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   PROTECT(dim = coerceVector(dim, INTSXP));
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = asR_xlen_t(dim, 0);
   ncol = asR_xlen_t(dim, 1);
 
@@ -79,13 +79,14 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
       }
     }
     UNPROTECT(1);
-  } else if (isInteger(x)) {
+  } else if (isInteger(x) || isLogical(x)) {
+    int *values = isLogical(x) ? LOGICAL(x) : INTEGER(x);
     if (what2 == 2) {
       PROTECT(ans = allocMatrix(INTSXP, ncols, 2));
     } else {
       PROTECT(ans = allocVector(INTSXP, ncols));
     }
-    colRanges_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, what2, narm, hasna, INTEGER(ans), is_counted);
+    colRanges_int(values, nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, what2, narm, hasna, INTEGER(ans), is_counted);
 
     /* Any entries with zero non-missing values? */
     all_counted = 1;

@@ -36,7 +36,7 @@ rowRanges_R <- function(x, ..., useNames = TRUE) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # With and without some NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
 
   for (add_na in c(FALSE, TRUE)) {
@@ -95,7 +95,7 @@ for (mode in c("integer", "double")) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # All NAs
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-for (mode in c("integer", "double")) {
+for (mode in c("logical", "integer", "double")) {
   cat("mode: ", mode, "\n", sep = "")
   x <- matrix(NA_real_, nrow = 10L, ncol = 5L)
   storage.mode(x) <- mode
@@ -250,4 +250,21 @@ for (setDimnames in c(TRUE, FALSE)) {
       }
     } # for (name ...)
   } # for (na.rm ...)
+}
+
+
+# Logical storage, empty extents, and exact integer/double result types.
+source("utils/rowRangesLogical.R")
+for (x in logicalRangeCases()) checkLogicalRanges(x)
+
+# Adding logical storage does not admit other atomic input types.
+for (name in c("rowMins", "rowMaxs", "rowRanges",
+               "colMins", "colMaxs", "colRanges")) {
+  for (x in list(matrix(as.raw(0:3), 2L), matrix(letters[1:4], 2L))) {
+    error <- tryCatch(get(name)(x), error = identity)
+    stopifnot(inherits(error, "error"),
+              identical(conditionMessage(error),
+                        paste0("Argument 'x' must be of type logical, integer ",
+                               "or numeric, not '", typeof(x), "'")))
+  }
 }
