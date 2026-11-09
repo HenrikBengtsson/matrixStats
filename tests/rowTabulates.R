@@ -118,3 +118,31 @@ for (mode in modes) {
 
   cat(sprintf("Mode: %s...done\n", mode))
 } # for (mode ...)
+
+# Independent scalar counts keep duplicate columns, names, and missing bins.
+checkBins <- function(x, keys) {
+  for (byRow in c(TRUE, FALSE)) {
+    count <- if (byRow) rowCounts else colCounts
+    tabulate <- if (byRow) rowTabulates else colTabulates
+    groups <- if (byRow) nrow(x) else ncol(x)
+    expected <- matrix(0L, groups, length(keys))
+    for (k in seq_along(keys)) {
+      expected[, k] <- count(x, value = keys[k], na.rm = anyNA(x))
+    }
+    labels <- if (is.raw(keys)) paste0("0x", sprintf("%x", as.integer(keys))) else as.character(keys)
+    colnames(expected) <- labels
+    rn <- if (byRow) rownames(x) else colnames(x)
+    if (!is.null(rn)) rownames(expected) <- rn
+    stopifnot(identical(tabulate(x, values = keys), expected))
+    rownames(expected) <- NULL
+    stopifnot(identical(tabulate(x, values = keys, useNames = FALSE), expected))
+  }
+}
+x <- matrix(c(NA_integer_, 0L, -17L, .Machine$integer.max, 0L, 8L),
+            nrow = 2L, dimnames = list(c("a", "b"), c("x", "y", "z")))
+checkBins(x, c(8L, NA_integer_, -17L, 8L, 7L, NA_integer_))
+checkBins(x, c(0.9, 0, -17.3, 0))
+checkBins(x[c(2L, NA_integer_, 2L), c(3L, 1L), drop = FALSE], c(0L, 8L, NA_integer_))
+checkBins(x[, integer(), drop = FALSE], c(0L, 8L, 0L))
+checkBins(matrix(c(TRUE, NA, FALSE, TRUE), 2L), c(2L, 0L, NA_integer_, 1L))
+checkBins(matrix(as.raw(c(0, 255, 0, 7)), 2L), as.raw(c(255, 0, 7, 0)))
