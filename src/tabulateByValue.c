@@ -1,29 +1,8 @@
 #include <Rdefines.h>
 #include <stdlib.h>
 #include <string.h>
-#include "000.utils.h"
 
-typedef struct {
-  int key;
-  int column;
-} Bin;
-
-static int compareBins(const void *left, const void *right) {
-  const Bin *a = left;
-  const Bin *b = right;
-  return (a->key > b->key) - (a->key < b->key);
-}
-
-/* Return the first matching bin in the sorted lookup, including NA_INTEGER. */
-static int firstBin(const Bin *bins, int count, int value) {
-  int lo = 0, hi = count;
-  while (lo < hi) {
-    const int mid = lo + (hi - lo) / 2;
-    if (bins[mid].key < value) lo = mid + 1;
-    else hi = mid;
-  }
-  return lo < count && bins[lo].key == value ? bins[lo].column : -1;
-}
+#include "tabulateByValue_lowlevel.h"
 
 SEXP tabulateByValue(SEXP x, SEXP keys, SEXP byRow) {
   const int type = TYPEOF(x);
@@ -39,22 +18,19 @@ SEXP tabulateByValue(SEXP x, SEXP keys, SEXP byRow) {
   int *out = INTEGER(ans);
   if (XLENGTH(ans)) memset(out, 0, (size_t)XLENGTH(ans) * sizeof(int));
   if (nbin && XLENGTH(x)) {
+    const int *c_keys = INTEGER(keys);
     Bin *bins = (Bin *)R_alloc(nbin, sizeof(Bin));
     for (int k = 0; k < nbin; ++k) {
-      bins[k].key = INTEGER(keys)[k];
+      bins[k].key = c_keys[k];
       bins[k].column = k;
     }
     qsort(bins, nbin, sizeof(Bin), compareBins);
-    const int *ints = type == INTSXP ? INTEGER(x) : type == LGLSXP ? LOGICAL(x) : NULL;
-    const Rbyte *raw = type == RAWSXP ? RAW(x) : NULL;
-    R_xlen_t pos = 0;
-    for (int j = 0; j < nc; ++j) {
-      for (int i = 0; i < nr; ++i, ++pos) {
-        R_CHECK_USER_INTERRUPT(pos);
-        const int value = raw ? raw[pos] : ints[pos];
-        const int bin = firstBin(bins, nbin, value);
-        if (bin >= 0) ++out[(R_xlen_t)bin * groups + (byrow ? i : j)];
-      }
+    if (type == INTSXP) {
+      tabulateByValue_int(INTEGER(x), nr, nc, bins, nbin, byrow, out);
+    } else if (type == LGLSXP) {
+      tabulateByValue_lgl(LOGICAL(x), nr, nc, bins, nbin, byrow, out);
+    } else if (type == RAWSXP) {
+      tabulateByValue_raw(RAW(x), nr, nc, bins, nbin, byrow, out);
     }
     /* A repeated key needs the same counts in each requested output column. */
     int first = 0;
