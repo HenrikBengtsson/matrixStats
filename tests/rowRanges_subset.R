@@ -78,3 +78,13 @@ for (setDimnames in c(TRUE, FALSE)) {
     }
   }
 }
+
+
+# Logical subsets: duplicated/reordered, missing, logical, negative and empty.
+source("utils/rowRangesLogical.R")
+x <- logicalRangeCases()[[3L]]
+for (rows in logicalRangeIndices(nrow(x))) {
+  for (cols in logicalRangeIndices(ncol(x))) {
+    checkLogicalRanges(x, rows = rows, cols = cols)
+  }
+}

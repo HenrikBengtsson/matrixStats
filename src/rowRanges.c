@@ -23,7 +23,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
   PROTECT(dim = coerceVector(dim, INTSXP));
 
   /* Argument 'x' and 'dim': */
-  assertArgMatrix(x, dim, (R_TYPE_INT | R_TYPE_REAL), "x");
+  assertArgMatrix(x, dim, (R_TYPE_LGL | R_TYPE_INT | R_TYPE_REAL), "x");
   nrow = asR_xlen_t(dim, 0);
   ncol = asR_xlen_t(dim, 1);
 
@@ -78,7 +78,7 @@ SEXP rowRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
       }
     }
     UNPROTECT(1);
-  } else if (isInteger(x)) {
+  } else if (isInteger(x) || isLogical(x)) {
     if (what2 == 2) {
       PROTECT(ans = allocMatrix(INTSXP, nrows, 2));
     } else {
