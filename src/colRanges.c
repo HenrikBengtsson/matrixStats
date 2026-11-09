@@ -80,13 +80,12 @@ SEXP colRanges(SEXP x, SEXP dim, SEXP rows, SEXP cols, SEXP what, SEXP naRm, SEX
     }
     UNPROTECT(1);
   } else if (isInteger(x) || isLogical(x)) {
-    int *values = isLogical(x) ? LOGICAL(x) : INTEGER(x);
     if (what2 == 2) {
       PROTECT(ans = allocMatrix(INTSXP, ncols, 2));
     } else {
       PROTECT(ans = allocVector(INTSXP, ncols));
     }
-    colRanges_int(values, nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, what2, narm, hasna, INTEGER(ans), is_counted);
+    colRanges_int(INTEGER(x), nrow, ncol, crows, nrows, rowsHasNA, ccols, ncols, colsHasNA, what2, narm, hasna, INTEGER(ans), is_counted);
 
     /* Any entries with zero non-missing values? */
     all_counted = 1;
