@@ -22,7 +22,7 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
   R_xlen_t ii, jj, idx;
   R_xlen_t *colOffset;
   X_C_TYPE value;
-  LDOUBLE sum, avg;
+  long double sum, avg;
   R_xlen_t count;
   int nocols, norows;
 
@@ -91,7 +91,7 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
         
 #if X_TYPE == 'i'
       if (!X_ISNAN(value)) {
-        sum += (LDOUBLE)value;
+        sum += (long double)value;
         ++count;
       } else if (!narm) {
         sum = R_NaReal;
@@ -99,11 +99,11 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
       }
 #elif X_TYPE == 'r'
       if (!narm) {
-        sum += (LDOUBLE)value;
+        sum += (long double)value;
         ++count;
         if (jj % 1048576 == 0 && ISNA(sum)) break;
       } else if (!ISNAN(value)) {
-        sum += (LDOUBLE)value;
+        sum += (long double)value;
         ++count;
       }
 #endif
@@ -143,10 +143,10 @@ void CONCAT_MACROS(rowMeans2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_
           }
         
           if (!narm) {
-            sum += (LDOUBLE)(value) - avg;
+            sum += (long double)(value) - avg;
             if (jj % 1048576 == 0 && ISNA(sum)) break;
           } else if (!ISNAN(value)) {
-            sum += (LDOUBLE)(value) - avg;
+            sum += (long double)(value) - avg;
           }
         }
         avg = avg + sum / count;

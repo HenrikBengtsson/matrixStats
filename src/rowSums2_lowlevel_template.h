@@ -32,8 +32,8 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     /* NOTE: For maintaining a tidy codebase, we bring variables for both
      * colsums and rowsums in scope, but only one of them will ever be used
      * at given call to the function */
-    LDOUBLE *rowSum;
-    LDOUBLE colSum;
+    long double *rowSum;
+    long double colSum;
     
     /* If there are no missing values, don't try to remove them. */
     if (hasna == FALSE)
@@ -43,7 +43,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
     if (rows == NULL) { norows = 1; } else { norows = 0; }
     
     if (byrow) {
-      rowSum = LDOUBLE_ALLOC(nrows);
+      rowSum = R_allocLD(nrows);
       /*
        * If nrows == 0, a NULL pointer is returned.
        * Calling memset() with a NULL pointer is apparently undefined behavior,
@@ -52,7 +52,7 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
       if (nrows > 0) {
         /* Ensures that all elements of array are intialized to zero,
          * this is VERY important */
-        memset(rowSum, 0, nrows*  sizeof(LDOUBLE));
+        memset(rowSum, 0, nrows*  sizeof(long double));
       }
       
     }
@@ -91,13 +91,13 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 #if X_TYPE == 'i'
         if (byrow) {
           if (!X_ISNAN(value)) {
-            rowSum[ii] += (LDOUBLE)value;
+            rowSum[ii] += (long double)value;
           } else if (!narm) {
             rowSum[ii] = R_NaReal;
           }
         } else {
           if (!X_ISNAN(value)) {
-            colSum += (LDOUBLE)value;
+            colSum += (long double)value;
           } else if (!narm) {
             colSum = R_NaReal;
             /* This optimization is harder to make for row sums
@@ -109,15 +109,15 @@ void CONCAT_MACROS(rowSums2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nrow, R_xlen_t
 #elif X_TYPE == 'r'
         if (byrow) {
           if (!narm) {
-            rowSum[ii] += (LDOUBLE)value;
+            rowSum[ii] += (long double)value;
           } else if (!ISNAN(value)) {
-            rowSum[ii] += (LDOUBLE)value;
+            rowSum[ii] += (long double)value;
             }
         } else {
           if (!narm) {
-            colSum += (LDOUBLE)value;
+            colSum += (long double)value;
           } else if (!ISNAN(value)) {
-            colSum += (LDOUBLE)value;
+            colSum += (long double)value;
               if (jj % 1048576 == 0 && ISNA(colSum)) {
                 break;
               }

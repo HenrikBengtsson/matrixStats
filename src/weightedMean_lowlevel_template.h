@@ -23,8 +23,8 @@ double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, doub
   X_C_TYPE value;
   double weight;
   R_xlen_t i;
-  LDOUBLE sum = 0, wtotal = 0;
-  LDOUBLE avg = R_NaN;
+  long double sum = 0, wtotal = 0;
+  long double avg = R_NaN;
 
   for (i=0; i < nidxs; i++) {
     /*
@@ -49,17 +49,17 @@ double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, doub
         break;
       }
     } else {
-      sum += (LDOUBLE)weight * (LDOUBLE)value;
+      sum += (long double)weight * (long double)value;
       wtotal += weight;
     }
 #elif X_TYPE == 'r'
     if (!narm) {
-      sum += (LDOUBLE)weight * (LDOUBLE)value;
+      sum += (long double)weight * (long double)value;
       wtotal += weight;
-      /* Early stopping? Special for long LDOUBLE vectors */
+      /* Early stopping? Special for long long double vectors */
       if (i % 1048576 == 0 && ISNAN(sum)) break;
     } else if (!X_ISNAN(value)) {
-      sum += (LDOUBLE)weight * (LDOUBLE)value;
+      sum += (long double)weight * (long double)value;
       wtotal += weight;
     }
 #endif
@@ -87,11 +87,11 @@ double CONCAT_MACROS(weightedMean, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx, doub
 
         value = R_INDEX_GET(x, ((idxs == NULL) ? (i) : idxs[i]), X_NA, idxsHasNA);
         if (!narm) {
-          sum += (LDOUBLE)weight * (value - avg);
-          /* Early stopping? Special for long LDOUBLE vectors */
+          sum += (long double)weight * (value - avg);
+          /* Early stopping? Special for long long double vectors */
           if (i % 1048576 == 0 && ISNAN(sum)) break;
         } else if (!ISNAN(value)) {
-          sum += (LDOUBLE)weight * (value - avg);
+          sum += (long double)weight * (value - avg);
         }
       }
       avg += (sum / wtotal);

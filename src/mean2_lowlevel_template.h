@@ -29,12 +29,12 @@ double CONCAT_MACROS(mean2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
                      int narm, int refine) {
   X_C_TYPE value;
   R_xlen_t ii;
-  LDOUBLE sum = 0, avg = R_NaN;
+  long double sum = 0, avg = R_NaN;
   int noidxs;
   if (idxs == NULL) { noidxs = 1; } else { noidxs = 0;}
   
 #if X_TYPE == 'r'
-  LDOUBLE rsum = 0;
+  long double rsum = 0;
 #endif
   R_xlen_t count = 0;
 
@@ -52,7 +52,7 @@ double CONCAT_MACROS(mean2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
     
 #if X_TYPE == 'i'
     if (!X_ISNAN(value)) {
-      sum += (LDOUBLE)value;
+      sum += (long double)value;
       ++count;
     } else if (!narm) {
         sum = R_NaReal;
@@ -60,12 +60,12 @@ double CONCAT_MACROS(mean2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
     }
 #elif X_TYPE == 'r'
     if (!narm) {
-      sum += (LDOUBLE)value;
+      sum += (long double)value;
       ++count;
       /* Early stopping if sum is NA_real_ (but not NaN, -Inf, or +Inf) */
       if (ii % 1048576 == 0 && ISNA(sum)) break;
     } else if (!ISNAN(value)) {
-      sum += (LDOUBLE)value;
+      sum += (long double)value;
       ++count;
     }
 #endif
@@ -84,7 +84,7 @@ double CONCAT_MACROS(mean2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
       for (ii=0; ii < nidxs; ++ii) {
         value = R_INDEX_GET(x, ((idxs == NULL) ? (ii) : idxs[ii]), X_NA, idxsHasNA);
         if (!narm || !ISNAN(value)) {
-          rsum += (LDOUBLE)(value - avg);
+          rsum += (long double)(value - avg);
         }
       }
       avg += (rsum / count);

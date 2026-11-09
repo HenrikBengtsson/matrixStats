@@ -28,7 +28,7 @@ double CONCAT_MACROS(sum2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
                      int narm) {
   X_C_TYPE value;
   R_xlen_t ii;
-  LDOUBLE sum = 0;
+  long double sum = 0;
   int noidxs;
   if (idxs == NULL) { noidxs = 1; } else { noidxs = 0; }
 
@@ -46,18 +46,18 @@ double CONCAT_MACROS(sum2, X_C_SIGNATURE)(X_C_TYPE *x, R_xlen_t nx,
     
 #if X_TYPE == 'i'
     if (!X_ISNAN(value)) {
-      sum += (LDOUBLE)value;
+      sum += (long double)value;
     } else if (!narm) {
         sum = R_NaReal;
         break;
     }
 #elif X_TYPE == 'r'
     if (!narm) {
-      sum += (LDOUBLE)value;
+      sum += (long double)value;
       /* Early stopping if sum is NA_real_ (but not NaN, -Inf, or +Inf) */
       if (ii % 1048576 == 0 && ISNA(sum)) break;
     } else if (!ISNAN(value)) {
-      sum += (LDOUBLE)value;
+      sum += (long double)value;
     }
 #endif
   } /* for (ii ...) */

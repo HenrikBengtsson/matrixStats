@@ -36,7 +36,7 @@
 double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA, int narm, int hasna, R_xlen_t by, double *xx) {
   R_xlen_t ii, iMax, idx;
   double xii, xMax;
-  LDOUBLE sum;
+  long double sum;
   int hasna2 = FALSE; /* Indicates whether NAs where detected or not */
   int xMaxIsNA;
   int noidxs;
@@ -193,7 +193,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
         sum += exp(xii - xMax);
       }
 
-      /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
+      /* Early long double stopping on -Inf/+Inf and user interrupt? */
       if (ii % 1048576 == 0) {
         if (!R_FINITE(sum)) break;
         R_CheckUserInterrupt();
@@ -223,7 +223,7 @@ double logSumExp_double(double *x, R_xlen_t *idxs, R_xlen_t nidxs, int idxsHasNA
         sum += exp(xii - xMax);
       }
 
-      /* Early LDOUBLE stopping on -Inf/+Inf and user interrupt? */
+      /* Early long double stopping on -Inf/+Inf and user interrupt? */
       if (ii % 1048576 == 0) {
         if (!R_FINITE(sum)) break;
         R_CheckUserInterrupt();

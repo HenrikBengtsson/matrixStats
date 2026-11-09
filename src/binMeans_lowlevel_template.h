@@ -29,7 +29,7 @@
 void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_xlen_t nbins, double *ans, int *count) {
   R_xlen_t ii = 0, jj = 0, iStart=0;
   R_xlen_t n = 0;
-  LDOUBLE sum = 0.0;
+  long double sum = 0.0;
   int warn = 0;
 
   // Count?
@@ -80,7 +80,7 @@ void METHOD_NAME(double *y, R_xlen_t ny, double *x, R_xlen_t nx, double *bx, R_x
       sum += y[ii];
       ++n;
 
-      /* Early LDOUBLE stopping? */
+      /* Early long double stopping? */
       if (n % 1048576 == 0 && !R_FINITE(sum)) break;
     }
 
