@@ -28,13 +28,28 @@
 #endif
 
 
-/* As in <R>/src/include/Defn.h */
-#ifdef HAVE_LONG_DOUBLE
-#define LDOUBLE long double
-#define LDOUBLE_ALLOC(n) R_allocLD(n)
+/* 
+ * The accumulator type ACC_T is used for storing the 
+ * intermediary results in sums and products. Here, better precision than R's
+ * default 64-bit floats may be desired to avoid round-off errors. Note that
+ * the final answer returned will always be 64-bit floats.
+ * Enable the following definition to switch from 64-bit floating point numbers
+ * to 80-bit extended precision floating numbers on platforms which support it 
+ * (eg. x86). 
+ * Some platforms do not support 80-bit floats 
+ * and will use 64-bit floats anyway.
+ * The trade-off of using 80-bit floats is performance. Unlike 64-bit floats,
+ * the compiler does not optimize it with SIMD instructions, meaning that 80-bit
+ * float operations may be considerably slower, often with a 2x difference on
+ * some benchmarks.
+ */
+// #define ACC_T_IS_LONG_DOUBLE
+#ifdef  ACC_T_IS_LONG_DOUBLE
+#define ACC_T long double
+#define ACC_T_ALLOC(n) R_allocLD(n)
 #else
-#define LDOUBLE double
-#define LDOUBLE_ALLOC(n) ((double*) R_alloc(n, sizeof(double)))
+#define ACC_T double
+#define ACC_T_ALLOC(n) ((double*) R_alloc(n, sizeof(double)))
 #endif
 
 
