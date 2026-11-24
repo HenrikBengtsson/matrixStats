@@ -1,6 +1,14 @@
-# Version (development version)
+# Version 1.6.0 (development version)
 
- * ...
+## Bug fixes
+
+* It turns out that `long double` was never actually used as the internal 
+  accumulator type in the C-level code of functions such as `rowSums2()` as
+  was discovered in Issue #278. Here, we clarify that the 64-bit `double` type
+  is used unconditionally which keeps current observed behavior.
+  In future releases, we may change this behavior to use `long double` meaning
+  80-bit floating point numbers are used for
+  platforms where the feature is available.
  
 
 # Version 1.5.0 [2025-01-07]
@@ -1183,7 +1191,9 @@
  * Better support for long vectors.
 
  * PRECISION: Using greater floating-point precision in more internal
-   intermediate calculations, where possible.
+   intermediate calculations, where possible. [Correction from
+   Version 1.6.0: Extended precision was never actually used due to a bug
+   in our code.]
 
 ## Software Quality
 
