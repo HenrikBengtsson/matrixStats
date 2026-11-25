@@ -1,7 +1,38 @@
 # Version (development version)
 
- * ...
- 
+## Performance
+
+`rowTabulates()` and `colTabulates()` can now tabulate a matrix in one pass
+through a binning process implemented in low-level code.
+
+## Bug fixes
+
+* Resolves an 'rchk' check failure in `rowRanksWithTies()`.
+
+* Fixes a bug where `rowCumsums()` with `double` matrices would segfault if `NA`
+`cols` were provided.
+
+* `colAvgsPerRowSet()` now correctly handles the weight matrix `W`.
+
+* Resolves a bug where the internal function `allocMatrix2()` did not check
+whether the argument `ncol` had negative length.
+
+* `rowAvgsPerColSet()` now correctly supports weights.
+
+* `diff2()` sometimes threw segfaults due to faulty GC protection. We have now
+resolved this issue.
+
+## Miscellaneous
+
+* Adds tests for `diff2()`, `rowDiffs()`, and `colDiffs()` in order to catch
+memory bugs related to extreme values of `lag` and `differences`. Currently,
+these functions use floating point arithmetic for some of the index
+computations. There has been some discussion on replacing these operations with
+pure integer operations, but this has shown to cause trouble on 32-bit
+platforms.
+
+* `rowRanges()` and `colRanges()` now accept logical matrices 
+(although this is not very useful).
 
 # Version 1.5.0 [2025-01-07]
 
